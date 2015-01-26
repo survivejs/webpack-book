@@ -1,6 +1,7 @@
 'use strict';
 
 require('purecss/pure.css');
+require('highlight.js/styles/github.css');
 require('../css/style.css');
 
 var recipes = require('./output.json');
