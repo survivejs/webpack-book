@@ -6,7 +6,7 @@ module.exports = {
         './demos/index'
     ],
     resolve: {
-        extensions: ['', '.js', '.jsx', '.css', '.png', '.jpg']
+        extensions: ['', '.js', '.json', '.jsx', '.css', '.png', '.jpg']
     },
 };
 
@@ -14,6 +14,10 @@ module.exports.loaders = [
     {
         test: /\.css$/,
         loaders: ['style', 'css']
+    },
+    {
+        test: /\.json$/,
+        loader: 'json-loader'
     },
     {
         test: /\.png$/,

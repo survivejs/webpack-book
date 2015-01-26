@@ -3,11 +3,15 @@
 require('purecss/pure.css');
 require('../css/style.css');
 
+var json = require('./output.json');
+
 var React = require('react');
 
 
 var App = React.createClass({
     render() {
+        console.log('json', json);
+
         return <div className='pure-g'>
             <a href='https://github.com/christianalfoni/react-webpack-cookbook'>
                 <img
