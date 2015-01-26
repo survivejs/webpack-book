@@ -7,6 +7,7 @@
     "start": "node server.js",
     "generate": "node generate.js > site/data.json",
     "gh-pages": "node_modules/.bin/webpack --config ./config/webpack.gh-pages.js",
+    "deploy-gh-pages": "node ./config/deploy-gh-pages.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
