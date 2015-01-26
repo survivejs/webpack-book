@@ -33,6 +33,12 @@ function main(pattern) {
                 return console.error(err);
             }
 
+            results = results.map(function(result, i) {
+                result.id = i;
+
+                return result;
+            });
+
             console.log(JSON.stringify(results));
         });
     });
@@ -53,7 +59,7 @@ function processPath(path, cb) {
 
             cb(null, {
                 title: titleCase(_path.basename(path, _path.extname(path))),
-                content: content
+                body: content,
             });
         });
     });
