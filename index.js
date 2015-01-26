@@ -33,7 +33,7 @@ function main(pattern) {
                 return console.error(err);
             }
 
-            console.log(results);
+            console.log(JSON.stringify(results));
         });
     });
 }
