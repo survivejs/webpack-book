@@ -5,8 +5,10 @@ var _path = require('path');
 var async = require('async');
 var glob = require('glob');
 var highlight = require('highlight.js');
+var lunr = require('lunr');
 var marked = require('marked');
 var titleCase = require('title-case');
+
 
 marked.setOptions({
     highlight: function(code) {
@@ -33,7 +35,12 @@ function main(pattern) {
                 return console.error(err);
             }
 
-            console.log(JSON.stringify(results));
+            results = generateIds(results);
+
+            console.log(JSON.stringify({
+                index: generateIndex(results),
+                content: cleanResults(results),
+            }));
         });
     });
 }
@@ -54,7 +61,42 @@ function processPath(path, cb) {
             cb(null, {
                 title: titleCase(_path.basename(path, _path.extname(path))),
                 body: content,
+                text: text,
             });
         });
     });
+}
+
+function generateIds(arr) {
+    return arr.map(function(o, i) {
+        o.id = i.toString();
+
+        return o;
+    });
+}
+
+function cleanResults(arr) {
+    return arr.map(function(o) {
+        delete o.text;
+
+        return o;
+    });
+}
+
+function generateIndex(data) {
+    var index = lunr(function() {
+        this.field('title', {boost: 10});
+        this.field('body');
+        this.ref('id');
+    });
+
+    data.forEach(function(d) {
+        index.add({
+            title: d.title,
+            body: d.text, // search against markdown, not html
+            id: d.id,
+        });
+    });
+
+    return index.toJSON();
 }

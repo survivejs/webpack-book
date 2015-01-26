@@ -7,16 +7,16 @@ require('../css/style.css');
 var React = require('react');
 var lunr = require('lunr');
 
-var recipes = generateIds(require('./content.json'));
+var data = require('./data.json');
 
 
 module.exports = React.createClass({
     getInitialState() {
         return {
-            data: recipes,
-            index: generateIndex(recipes),
+            data: data.content,
+            index: lunr.Index.load(data.index),
             query: '',
-            results: recipes,
+            results: data.content,
         };
     },
 
@@ -73,29 +73,3 @@ module.exports = React.createClass({
         });
     },
 });
-
-function generateIds(arr) {
-    return arr.map((o, i) => {
-        o.id = i.toString();
-
-        return o;
-    });
-}
-
-function generateIndex(data) {
-    if(!data) {
-        return console.error('generateIndex - missing data');
-    }
-
-    var index = lunr(function() {
-        this.field('title', {boost: 10});
-        this.field('body');
-        this.ref('id');
-    });
-
-    data.forEach((d) =>
-        index.add(d)
-    );
-
-    return index;
-}
