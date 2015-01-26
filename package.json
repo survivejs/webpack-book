@@ -4,6 +4,8 @@
   "description": "React, WebPack cookbook generator",
   "main": "./index.js",
   "scripts": {
+    "start": "node server.js",
+    "gh-pages": "node_modules/.bin/webpack --config ./config/webpack.gh-pages.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,9 +24,23 @@
   "homepage": "https://github.com/christianalfoni/react-webpack-cookbook",
   "dependencies": {
     "async": "^0.9.0",
+    "css-loader": "^0.9.1",
+    "file-loader": "^0.8.1",
+    "gh-pages": "^0.2.0",
     "glob": "^4.3.5",
     "highlight.js": "^8.4.0",
+    "html-webpack-plugin": "^1.1.0",
+    "jsx-loader": "^0.12.2",
     "marked": "^0.3.3",
-    "title-case": "^1.1.0"
+    "purecss": "^0.5.0",
+    "react": "^0.12.2",
+    "react-hot-loader": "^1.1.1",
+    "react-tools": "^0.12.2",
+    "style-loader": "^0.8.3",
+    "title-case": "^1.1.0",
+    "url-loader": "^0.5.5",
+    "webpack": "^1.5.3",
+    "webpack-dev-server": "^1.7.0",
+    "xtend": "^4.0.0"
   }
 }
