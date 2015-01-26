@@ -4,7 +4,6 @@
   "description": "React, WebPack cookbook generator",
   "main": "./index.js",
   "scripts": {
-    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,6 +21,10 @@
   },
   "homepage": "https://github.com/christianalfoni/react-webpack-cookbook",
   "dependencies": {
-    "glob": "^4.3.5"
+    "async": "^0.9.0",
+    "glob": "^4.3.5",
+    "highlight.js": "^8.4.0",
+    "marked": "^0.3.3",
+    "title-case": "^1.1.0"
   }
 }

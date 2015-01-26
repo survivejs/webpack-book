@@ -9,4 +9,4 @@ Please move a long to the [wiki](https://github.com/christianalfoni/react-webpac
 
 1. `git clone https://github.com/christianalfoni/react-webpack-cookbook.wiki.git`
 2. `npm install`
-3. `npm start`
+3. `node index.js > output.json`
