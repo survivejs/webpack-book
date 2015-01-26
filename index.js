@@ -33,12 +33,6 @@ function main(pattern) {
                 return console.error(err);
             }
 
-            results = results.map(function(result, i) {
-                result.id = i;
-
-                return result;
-            });
-
             console.log(JSON.stringify(results));
         });
     });
