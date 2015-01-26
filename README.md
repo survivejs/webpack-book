@@ -3,7 +3,7 @@ A cookbook for using webpack with React JS
 
 Please move a long to the [wiki](https://github.com/christianalfoni/react-webpack-cookbook/wiki)
 
-## JSON Generator
+## JSON Generators
 
 The generator converts the wiki content to JSON. The JSON content can be served through a web frontend.
 
@@ -11,7 +11,7 @@ The generator converts the wiki content to JSON. The JSON content can be served 
 
 1. `git clone https://github.com/christianalfoni/react-webpack-cookbook.wiki.git`
 2. `npm install`
-3. `npm run generate-content`
+3. `npm run generate`
 
 ## Site
 
