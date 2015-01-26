@@ -7,17 +7,22 @@ require('../css/style.css');
 var React = require('react');
 var lunr = require('lunr');
 
-var recipes = require('./output.json');
+var recipes = generateIds(require('./output.json'));
 
 
 module.exports = React.createClass({
     getInitialState() {
         return {
-            index: generateIndex(recipes)
+            data: recipes,
+            index: generateIndex(recipes),
+            query: '',
+            results: recipes,
         };
     },
 
     render() {
+        var results = this.state.results;
+
         return <div className='pure-g'>
             <a href='https://github.com/christianalfoni/react-webpack-cookbook'>
                 <img
@@ -30,18 +35,52 @@ module.exports = React.createClass({
                 <h1>React Webpack cookbook</h1>
 
                 <div className='description'>Learn to use React.js with Webpack</div>
+
+                <form className='pure-form search-form' onSubmit={this.preventDefault}>
+                    <input className='pure-input-rounded' placeholder='Search' type='text' value={this.state.search} onChange={this.onSearch}></input>
+                </form>
             </header>
             <article className='pure-u-1'>{
-                recipes.map((recipe, i) =>
+                results.map((result, i) =>
                     <div className='recipe' key={'recipe-' + i}>
-                        <h2>{recipe.title}</h2>
-                        <div dangerouslySetInnerHTML={{__html: recipe.body}}></div>
+                        <h2>{result.title}</h2>
+                        <div dangerouslySetInnerHTML={{__html: result.body}}></div>
                     </div>
                 )
             }</article>
         </div>;
     },
+
+    preventDefault(e) {
+        e.preventDefault();
+    },
+
+    onSearch(e) {
+        var query = e.target.value.trim();
+        var results = this.state.data;
+
+        if(query) {
+            var indices = this.state.index.search(query).map((result) => result.ref);
+
+            results = results.filter((result) =>
+                indices.indexOf(result.id) >= 0
+            );
+        }
+
+        this.setState({
+            query: e.target.value,
+            results: results,
+        });
+    },
 });
+
+function generateIds(arr) {
+    return arr.map((o, i) => {
+        o.id = i.toString();
+
+        return o;
+    });
+}
 
 function generateIndex(data) {
     if(!data) {
@@ -49,9 +88,9 @@ function generateIndex(data) {
     }
 
     var index = lunr(function() {
-        this.field('title', {boost: 10}),
-        this.field('body'),
-        this.ref('id')
+        this.field('title', {boost: 10});
+        this.field('body');
+        this.ref('id');
     });
 
     data.forEach((d) =>

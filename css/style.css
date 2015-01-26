@@ -5,8 +5,6 @@ body {
 }
 
 header {
-    padding: 1em;
-    padding-bottom: 4em;
 
     text-align: center;
 
@@ -31,4 +29,8 @@ article {
     right: 0;
 
     border: 0;
+}
+
+.search-form {
+    margin: 1em;
 }
