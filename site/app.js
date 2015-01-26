@@ -4,15 +4,20 @@ require('purecss/pure.css');
 require('highlight.js/styles/github.css');
 require('../css/style.css');
 
+var React = require('react');
+var lunr = require('lunr');
+
 var recipes = require('./output.json');
 
-var React = require('react');
 
+module.exports = React.createClass({
+    getInitialState() {
+        return {
+            index: generateIndex(recipes)
+        };
+    },
 
-var App = React.createClass({
     render() {
-        console.log('json', recipes);
-
         return <div className='pure-g'>
             <a href='https://github.com/christianalfoni/react-webpack-cookbook'>
                 <img
@@ -30,7 +35,7 @@ var App = React.createClass({
                 recipes.map((recipe, i) =>
                     <div className='recipe' key={'recipe-' + i}>
                         <h2>{recipe.title}</h2>
-                        <div dangerouslySetInnerHTML={{__html: recipe.content}}></div>
+                        <div dangerouslySetInnerHTML={{__html: recipe.body}}></div>
                     </div>
                 )
             }</article>
@@ -38,4 +43,20 @@ var App = React.createClass({
     },
 });
 
-module.exports = App;
+function generateIndex(data) {
+    if(!data) {
+        return console.error('generateIndex - missing data');
+    }
+
+    var index = lunr(function() {
+        this.field('title', {boost: 10}),
+        this.field('body'),
+        this.ref('id')
+    });
+
+    data.forEach((d) =>
+        index.add(d)
+    );
+
+    return index;
+}
