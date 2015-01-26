@@ -2,12 +2,11 @@
   "name": "react-webpack-cookbook",
   "version": "0.0.0",
   "description": "React, WebPack cookbook generator",
-  "main": "index.js",
+  "main": "./index.js",
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "main": "./index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/christianalfoni/react-webpack-cookbook.git"
@@ -21,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/christianalfoni/react-webpack-cookbook/issues"
   },
-  "homepage": "https://github.com/christianalfoni/react-webpack-cookbook"
+  "homepage": "https://github.com/christianalfoni/react-webpack-cookbook",
+  "dependencies": {
+    "glob": "^4.3.5"
+  }
 }
