@@ -3,14 +3,14 @@
 require('purecss/pure.css');
 require('../css/style.css');
 
-var json = require('./output.json');
+var recipes = require('./output.json');
 
 var React = require('react');
 
 
 var App = React.createClass({
     render() {
-        console.log('json', json);
+        console.log('json', recipes);
 
         return <div className='pure-g'>
             <a href='https://github.com/christianalfoni/react-webpack-cookbook'>
@@ -25,9 +25,14 @@ var App = React.createClass({
 
                 <div className='description'>Learn to use React.js with Webpack</div>
             </header>
-            <article className='pure-u-1'>
-                content should go here
-            </article>
+            <article className='pure-u-1'>{
+                recipes.map((recipe, i) =>
+                    <div className='recipe' key={'recipe-' + i}>
+                        <h2>{recipe.title}</h2>
+                        <div dangerouslySetInnerHTML={{__html: recipe.content}}></div>
+                    </div>
+                )
+            }</article>
         </div>;
     },
 });
