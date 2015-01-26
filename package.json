@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "generate": "node generate.js > site/data.json",
-    "gh-pages": "node_modules/.bin/webpack --config ./config/webpack.gh-pages.js",
+    "gh-pages": "npm run generate && node_modules/.bin/webpack --config ./config/webpack.gh-pages.js && cp site/data.json gh-pages/data.json",
     "deploy-gh-pages": "node ./config/deploy-gh-pages.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
