@@ -1,4 +1,4 @@
 node_modules/
 *.wiki/
-site/output.json
+site/content.json
 

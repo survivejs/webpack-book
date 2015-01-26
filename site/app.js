@@ -7,7 +7,7 @@ require('../css/style.css');
 var React = require('react');
 var lunr = require('lunr');
 
-var recipes = generateIds(require('./output.json'));
+var recipes = generateIds(require('./content.json'));
 
 
 module.exports = React.createClass({

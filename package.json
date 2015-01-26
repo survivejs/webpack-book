@@ -5,6 +5,7 @@
   "main": "./index.js",
   "scripts": {
     "start": "node server.js",
+    "generate-content": "node generate/content.js > site/content.json",
     "gh-pages": "node_modules/.bin/webpack --config ./config/webpack.gh-pages.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

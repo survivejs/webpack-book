@@ -11,7 +11,7 @@ The generator converts the wiki content to JSON. The JSON content can be served 
 
 1. `git clone https://github.com/christianalfoni/react-webpack-cookbook.wiki.git`
 2. `npm install`
-3. `node index.js > site/output.json`
+3. `npm run generate-content`
 
 ## Site
 
