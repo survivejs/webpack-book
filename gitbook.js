@@ -47,7 +47,7 @@ function generateSummary(config, cb) {
 }
 
 function generateGitbook(config, cb) {
-    gitbook.generate.folder(config).then(function(res) {
+    gitbook.generate.folder(config).then(function() {
         cb();
     }, cb);
 }
