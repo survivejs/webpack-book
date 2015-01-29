@@ -2,7 +2,7 @@
 
 [General Recipes](Home)
 
-* [Basics](Why-Webpack-and-React-JS%3F)
+* [Basics](Basics)
     * [Getting started](Getting-started)
     * [Configuring React JS](Configuring-react-js)
     * [Running a workflow](Running-a-workflow)

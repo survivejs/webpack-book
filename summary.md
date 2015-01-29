@@ -2,7 +2,7 @@
 
 [General Recipes](Home.md)
 
-* [Basics](Why-Webpack-and-React-JS%3F.md)
+* [Basics](Basics.md)
     * [Getting started](Getting-started.md)
     * [Configuring React JS](Configuring-react-js.md)
     * [Running a workflow](Running-a-workflow.md)
