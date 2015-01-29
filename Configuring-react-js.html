@@ -5,9 +5,9 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Introduction | </title>
+        <title>Configuring React JS | </title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="Work in progress! The idea here is to complement the official documentation with brief, straight to point recipes that answer to some specific problem.">
+        <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -19,8 +19,10 @@
         
     
     
-    <link rel="next" href="./Why-Webpack-and-React-JS%3F.html" />
+    <link rel="next" href="./Running-a-workflow.html" />
     
+    
+    <link rel="prev" href="./Getting-started.html" />
     
 
         
@@ -32,7 +34,7 @@
 
 
         
-    <div class="book" data-level="0" data-basepath="." data-revision="1422522299099">
+    <div class="book" data-level="1.2" data-basepath="." data-revision="1422522299099">
     
 
 <div class="book-summary">
@@ -50,7 +52,7 @@
         
     
         
-        <li class="chapter active" data-level="0" data-path="index.html">
+        <li class="chapter " data-level="0" data-path="index.html">
             
                 
                     <a href="./index.html">
@@ -97,7 +99,7 @@
         </li>
     
         
-        <li class="chapter " data-level="1.2" data-path="Configuring-react-js.html">
+        <li class="chapter active" data-level="1.2" data-path="Configuring-react-js.html">
             
                 
                     <a href="./Configuring-react-js.html">
@@ -394,12 +396,63 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_8">
+                    <section class="normal" id="section-gitbook_2">
                     
-                        <blockquote>
-<p><strong>Work in progress!</strong> The idea here is to complement <a href="http://webpack.github.io/docs/" target="_blank">the official documentation</a> with brief, straight to point recipes that answer to some specific problem.</p>
-<p>If you are completely new to Webpack and want to go through a good introduction, check out <a href="https://github.com/petehunt/webpack-howto" target="_blank">Pete Hunt&#39;s guide</a>. You&#39;ll find the basics there. This guide merely complements his one.</p>
-</blockquote>
+                        <h2 id="installing-react-js">Installing React JS</h2>
+<p><code>npm install react --save</code></p>
+<p>There is really nothing more to it. You can now start using React JS in your code.</p>
+<h2 id="using-react-js-in-the-code">Using React JS in the code</h2>
+<p><em>In any file</em></p>
+<pre><code class="lang-javascript">import React from <span class="hljs-string">'react'</span>;
+
+export <span class="hljs-keyword">default</span> React.createClass({
+  render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> React.createElement(<span class="hljs-string">'h1'</span>, <span class="hljs-literal">null</span>, <span class="hljs-string">'Hello world'</span>);
+  }
+});
+;
+</code></pre>
+<h2 id="converting-jsx">Converting JSX</h2>
+<p>To use the JSX syntax you will need webpack to transform your JavaScript. This is the job of a loader. </p>
+<p><code>npm install jsx-loader</code></p>
+<p>Now we have to configure webpack to use this loader.</p>
+<p><em>webpack.config.js</em></p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>);
+<span class="hljs-keyword">var</span> config = {
+  entry: path.resolve(__dirname, <span class="hljs-string">'app/main.js'</span>)
+  output: {
+    path: path.resolve(__dirname, <span class="hljs-string">'build'</span>),
+    filename: <span class="hljs-string">'bundle.js'</span>
+  },
+  <span class="hljs-built_in">module</span>: {
+    loaders: [{
+      test: <span class="hljs-regexp">/\.jsx$/</span>, <span class="hljs-comment">// A regexp to test the require path</span>
+      loader: <span class="hljs-string">'jsx'</span> <span class="hljs-comment">// The module to load. "jsx" is short for "jsx-loader"</span>
+    }]
+  }
+};
+
+<span class="hljs-built_in">module</span>.exports = config;
+</code></pre>
+<p>Webpack will test each path required in your code. In this project we are using ES6 module loader syntax, which means that the require path of <code>import MyComponent from &#39;./Component.jsx&#39;;</code> is <code>&#39;./Component.jsx&#39;</code>.</p>
+<h2 id="changing-the-component-file-and-running-the-code">Changing the Component file and running the code</h2>
+<p>In the <code>/app</code> folder we now change the filename of our <em>Component.js</em> file to <strong>Component.jsx</strong>.</p>
+<p><em>Component.jsx</em></p>
+<pre><code class="lang-javascript">import React from <span class="hljs-string">'react'</span>;
+
+export <span class="hljs-keyword">default</span> React.createClass({
+  render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>Hello world!<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+  }
+});</span>
+</code></pre>
+<p>We have now changed the return statement of our render method to use JSX syntax. Run <code>webpack</code> in the console and refresh the page.</p>
+<h2 id="what-sort-of-tooling-to-use">What sort of tooling to use?</h2>
+<ul>
+<li><a href="https://github.com/gaearon/react-hot-loader" target="_blank">react-hot-loader</a> works great during development. In that case you would use loaders: [&#39;react-hot&#39;, &#39;jsx?harmony&#39;] . Note that Harmony (ES6) features are enabled so you get to use fat arrows etc.</li>
+<li>There is also a <a href="https://github.com/6to5/6to5-loader" target="_blank">6to5-loader</a> available</li>
+<li><a href="http://gcanti.github.io/flowcheck/" target="_blank">Flowcheck</a> gives you runtime checks based on your Flow definitions. Not surprisingly there&#39;s a loader for that too.</li>
+</ul>
 
                     
                     </section>
@@ -410,8 +463,10 @@
         </div>
 
         
+        <a href="./Getting-started.html" class="navigation navigation-prev " aria-label="Previous page: Getting started"><i class="fa fa-angle-left"></i></a>
         
-        <a href="./Why-Webpack-and-React-JS%3F.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Basics"><i class="fa fa-angle-right"></i></a>
+        
+        <a href="./Running-a-workflow.html" class="navigation navigation-next " aria-label="Next page: Running a workflow"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

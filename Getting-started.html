@@ -5,9 +5,9 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Introduction | </title>
+        <title>Getting started | </title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="Work in progress! The idea here is to complement the official documentation with brief, straight to point recipes that answer to some specific problem.">
+        <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -19,8 +19,10 @@
         
     
     
-    <link rel="next" href="./Why-Webpack-and-React-JS%3F.html" />
+    <link rel="next" href="./Configuring-react-js.html" />
     
+    
+    <link rel="prev" href="./Why-Webpack-and-React-JS%3F.html" />
     
 
         
@@ -32,7 +34,7 @@
 
 
         
-    <div class="book" data-level="0" data-basepath="." data-revision="1422522299099">
+    <div class="book" data-level="1.1" data-basepath="." data-revision="1422522299099">
     
 
 <div class="book-summary">
@@ -50,7 +52,7 @@
         
     
         
-        <li class="chapter active" data-level="0" data-path="index.html">
+        <li class="chapter " data-level="0" data-path="index.html">
             
                 
                     <a href="./index.html">
@@ -81,7 +83,7 @@
                 
     
         
-        <li class="chapter " data-level="1.1" data-path="Getting-started.html">
+        <li class="chapter active" data-level="1.1" data-path="Getting-started.html">
             
                 
                     <a href="./Getting-started.html">
@@ -394,12 +396,58 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_8">
+                    <section class="normal" id="section-gitbook_4">
                     
-                        <blockquote>
-<p><strong>Work in progress!</strong> The idea here is to complement <a href="http://webpack.github.io/docs/" target="_blank">the official documentation</a> with brief, straight to point recipes that answer to some specific problem.</p>
-<p>If you are completely new to Webpack and want to go through a good introduction, check out <a href="https://github.com/petehunt/webpack-howto" target="_blank">Pete Hunt&#39;s guide</a>. You&#39;ll find the basics there. This guide merely complements his one.</p>
-</blockquote>
+                        <h2 id="installing-webpack">Installing webpack</h2>
+<ul>
+<li>In your project folder: <code>npm init</code></li>
+<li><code>npm install webpack -g</code> , <em>Installs webpack globally</em></li>
+<li><em>optional</em> <code>npm install webpack</code> , <em>Installs a project version of webpack</em></li>
+</ul>
+<h2 id="creating-a-configuration">Creating a configuration</h2>
+<p>Create a file in your project root named: <strong>webpack.config.js</strong>.</p>
+<p><em>webpack.config.js</em></p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>);
+<span class="hljs-keyword">var</span> config = {
+  entry: path.resolve(__dirname, <span class="hljs-string">"APP_ENTRY.js"</span>) <span class="hljs-comment">// E.g. "app/main.js",</span>
+  output: {
+    path: path.resolve(__dirname, <span class="hljs-string">"BUILD_DIR"</span>), <span class="hljs-comment">// E.g. "build"</span>
+    filename: <span class="hljs-string">"BUNDLE_NAME.js"</span> <span class="hljs-comment">// E.g. "bundle.js"</span>
+  }
+};
+
+<span class="hljs-built_in">module</span>.exports = config;
+</code></pre>
+<h2 id="folder-structure">Folder structure</h2>
+<ul>
+<li>/app<ul>
+<li>main.js</li>
+</ul>
+</li>
+<li>/build<ul>
+<li>bundle.js</li>
+</ul>
+</li>
+<li>package.json</li>
+<li>webpack.config.js</li>
+</ul>
+<p>You can of course define this structure yourself, but webpack will need a folder where your bundled files and chunks will run from.</p>
+<h2 id="creating-your-first-app">Creating your first app</h2>
+<p>Let us create a simple application that says &quot;Hello world&quot;. We start off by creating a <strong>Component.js</strong> file in our <code>/app</code> folder.</p>
+<p><em>Component.js</em></p>
+<pre><code class="lang-javascript">export <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">var</span> element = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'h1'</span>);
+  element.innerHTML = <span class="hljs-string">'Hello world'</span>;
+  <span class="hljs-keyword">return</span> element;
+};
+</code></pre>
+<p>And lets update our main.js file to render this component to the body.</p>
+<p><em>main.js</em></p>
+<pre><code class="lang-javascript">import Component from <span class="hljs-string">'./Component.js'</span>;
+<span class="hljs-built_in">document</span>.body.appendChild(Component());
+</code></pre>
+<h2 id="building-the-application">Building the application</h2>
+<p>Run <code>webpack</code> in your terminal and your application will be built. A <em>bundle.js</em> file will appear in your <code>/build</code> folder. </p>
 
                     
                     </section>
@@ -410,8 +458,10 @@
         </div>
 
         
+        <a href="./Why-Webpack-and-React-JS%3F.html" class="navigation navigation-prev " aria-label="Previous page: Basics"><i class="fa fa-angle-left"></i></a>
         
-        <a href="./Why-Webpack-and-React-JS%3F.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Basics"><i class="fa fa-angle-right"></i></a>
+        
+        <a href="./Configuring-react-js.html" class="navigation navigation-next " aria-label="Next page: Configuring React JS"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

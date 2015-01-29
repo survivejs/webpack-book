@@ -5,9 +5,9 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Introduction | </title>
+        <title>Writing loaders | </title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="Work in progress! The idea here is to complement the official documentation with brief, straight to point recipes that answer to some specific problem.">
+        <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -19,8 +19,10 @@
         
     
     
-    <link rel="next" href="./Why-Webpack-and-React-JS%3F.html" />
+    <link rel="next" href="./Optimizing-workflow.html" />
     
+    
+    <link rel="prev" href="./Loading-code.html" />
     
 
         
@@ -32,7 +34,7 @@
 
 
         
-    <div class="book" data-level="0" data-basepath="." data-revision="1422522299099">
+    <div class="book" data-level="1.5" data-basepath="." data-revision="1422522299099">
     
 
 <div class="book-summary">
@@ -50,7 +52,7 @@
         
     
         
-        <li class="chapter active" data-level="0" data-path="index.html">
+        <li class="chapter " data-level="0" data-path="index.html">
             
                 
                     <a href="./index.html">
@@ -145,7 +147,7 @@
         </li>
     
         
-        <li class="chapter " data-level="1.5" data-path="Writing-loaders.html">
+        <li class="chapter active" data-level="1.5" data-path="Writing-loaders.html">
             
                 
                     <a href="./Writing-loaders.html">
@@ -394,12 +396,49 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_8">
+                    <section class="normal" id="section-gitbook_13">
                     
-                        <blockquote>
-<p><strong>Work in progress!</strong> The idea here is to complement <a href="http://webpack.github.io/docs/" target="_blank">the official documentation</a> with brief, straight to point recipes that answer to some specific problem.</p>
-<p>If you are completely new to Webpack and want to go through a good introduction, check out <a href="https://github.com/petehunt/webpack-howto" target="_blank">Pete Hunt&#39;s guide</a>. You&#39;ll find the basics there. This guide merely complements his one.</p>
-</blockquote>
+                        <p>Let&#39;s say we want a custom Markdown loader. Ie. we would like to do something like <code>var readme = require(&#39;../README.md&#39;);</code> at our JavaScript file and inject some Markdown converted as HTML there.</p>
+<p>As it happens doing something like this is quite easy with Webpack. We&#39;ll need to implement a little loader for this and hook it up with our Webpack configuration. Consider the example below. I&#39;ve included syntax highlighting just for the kicks.</p>
+<p><strong>loaders/markdown.js</strong></p>
+<pre><code class="lang-javascript"><span class="hljs-pi">'use strict'</span>;
+
+<span class="hljs-keyword">var</span> marked = <span class="hljs-built_in">require</span>(<span class="hljs-string">'marked'</span>);
+<span class="hljs-keyword">var</span> highlight = <span class="hljs-built_in">require</span>(<span class="hljs-string">'highlight.js'</span>);
+
+marked.setOptions({
+    highlight: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(code)</span> </span>{
+        <span class="hljs-keyword">return</span> highlight.highlightAuto(code).value;
+    }
+});
+
+
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(markdown)</span> </span>{
+    <span class="hljs-keyword">this</span>.cacheable();
+
+    <span class="hljs-keyword">return</span> marked(markdown);
+};
+</code></pre>
+<p><strong>Webpack configuration</strong></p>
+<pre><code class="lang-javascript">resolve: {
+    extensions: [<span class="hljs-string">'.md'</span>, ...],
+    ...
+},
+loaders: [
+    {
+        test: <span class="hljs-regexp">/\.md$/</span>,
+        loader: <span class="hljs-string">'html!./loaders/markdown'</span>,
+    },
+]
+</code></pre>
+<p>Simple as that! You can read more about <a href="http://webpack.github.io/docs/loaders.html" target="_blank">loaders at the official documentation</a>.</p>
+<p>If you want to attach some CSS for syntax highlighting by the way, you can just <code>require</code> the needed CSS like this: <code>require(&#39;highlight.js/styles/github.css&#39;);</code>. That expects <code>highlight.js</code> has been installed correctly (ie. within <code>node_modules</code>) and Webpack can find it. You should also have <code>css-loader</code> set up like this:</p>
+<pre><code class="lang-javascript">{
+    test: <span class="hljs-regexp">/\.css$/</span>,
+    loaders: [<span class="hljs-string">'style'</span>, <span class="hljs-string">'css'</span>],
+},
+</code></pre>
+<p>This expects you have <code>style-loader</code> and <code>css-loader</code> installed into your project, preferably as development dependencies (<code>npm i style-loader css-loader --save-dev</code>).</p>
 
                     
                     </section>
@@ -410,8 +449,10 @@
         </div>
 
         
+        <a href="./Loading-code.html" class="navigation navigation-prev " aria-label="Previous page: Loading files"><i class="fa fa-angle-left"></i></a>
         
-        <a href="./Why-Webpack-and-React-JS%3F.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Basics"><i class="fa fa-angle-right"></i></a>
+        
+        <a href="./Optimizing-workflow.html" class="navigation navigation-next " aria-label="Next page: Advanced"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

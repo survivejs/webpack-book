@@ -5,9 +5,9 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Introduction | </title>
+        <title>Matchers | </title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="Work in progress! The idea here is to complement the official documentation with brief, straight to point recipes that answer to some specific problem.">
+        <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -19,8 +19,8 @@
         
     
     
-    <link rel="next" href="./Why-Webpack-and-React-JS%3F.html" />
     
+    <link rel="prev" href="./Understanding-chunks.html" />
     
 
         
@@ -32,7 +32,7 @@
 
 
         
-    <div class="book" data-level="0" data-basepath="." data-revision="1422522299099">
+    <div class="book" data-level="3.1" data-basepath="." data-revision="1422522299099">
     
 
 <div class="book-summary">
@@ -50,7 +50,7 @@
         
     
         
-        <li class="chapter active" data-level="0" data-path="index.html">
+        <li class="chapter " data-level="0" data-path="index.html">
             
                 
                     <a href="./index.html">
@@ -285,7 +285,7 @@
                 
     
         
-        <li class="chapter " data-level="3.1" data-path="Matchers.html">
+        <li class="chapter active" data-level="3.1" data-path="Matchers.html">
             
                 
                     <a href="./Matchers.html">
@@ -394,12 +394,14 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_8">
+                    <section class="normal" id="section-gitbook_6">
                     
-                        <blockquote>
-<p><strong>Work in progress!</strong> The idea here is to complement <a href="http://webpack.github.io/docs/" target="_blank">the official documentation</a> with brief, straight to point recipes that answer to some specific problem.</p>
-<p>If you are completely new to Webpack and want to go through a good introduction, check out <a href="https://github.com/petehunt/webpack-howto" target="_blank">Pete Hunt&#39;s guide</a>. You&#39;ll find the basics there. This guide merely complements his one.</p>
-</blockquote>
+                        <h2 id="what-kind-of-matchers-can-i-use">What kind of matchers can I use?</h2>
+<ul>
+<li><code>{ test: /\.js$/, loader: &#39;jsx-loader&#39; }</code> - Matches just .js</li>
+<li><code>{ test: /\.(js|jsx)$/, loader: &#39;jsx-loader&#39; }</code> - Matches both js and jsx</li>
+<li>Generally put it&#39;s just a JavaScript regex so standard tricks apply</li>
+</ul>
 
                     
                     </section>
@@ -410,8 +412,8 @@
         </div>
 
         
+        <a href="./Understanding-chunks.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Theory"><i class="fa fa-angle-left"></i></a>
         
-        <a href="./Why-Webpack-and-React-JS%3F.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Basics"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
