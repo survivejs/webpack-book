@@ -2,13 +2,9 @@
 
 var ghpages = require('gh-pages');
 
-var config = require('./webpack.gh-pages');
-
 
 main();
 
 function main() {
-    var path = config.output.path;
-
-    ghpages.publish(config.output.path, console.error.bind(console));
+    ghpages.publish('./gh-pages', console.error.bind(console));
 }
