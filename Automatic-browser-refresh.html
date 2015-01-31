@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Writing loaders | </title>
+        <title>Automatic browser refresh | </title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
-    <link rel="next" href="./Optimizing-workflow.html" />
+    <link rel="next" href="./Requiring-files.html" />
     
     
-    <link rel="prev" href="./Requiring-files.html" />
+    <link rel="prev" href="./Running-a-workflow.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="1.5" data-basepath="." data-revision="1422722128803">
+    <div class="book" data-level="1.3" data-basepath="." data-revision="1422722128803">
     
 
 <div class="book-summary">
@@ -115,7 +115,7 @@
         </li>
     
         
-        <li class="chapter " data-level="1.3" data-path="Automatic-browser-refresh.html">
+        <li class="chapter active" data-level="1.3" data-path="Automatic-browser-refresh.html">
             
                 
                     <a href="./Automatic-browser-refresh.html">
@@ -147,7 +147,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="1.5" data-path="Writing-loaders.html">
+        <li class="chapter " data-level="1.5" data-path="Writing-loaders.html">
             
                 
                     <a href="./Writing-loaders.html">
@@ -428,49 +428,24 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_15">
+                    <section class="normal" id="section-gitbook_1">
                     
-                        <p>Let&#39;s say we want a custom Markdown loader. Ie. we would like to do something like <code>var readme = require(&#39;../README.md&#39;);</code> at our JavaScript file and inject some Markdown converted as HTML there.</p>
-<p>As it happens doing something like this is quite easy with Webpack. We&#39;ll need to implement a little loader for this and hook it up with our Webpack configuration. Consider the example below. I&#39;ve included syntax highlighting just for the kicks.</p>
-<p><strong>loaders/markdown.js</strong></p>
-<pre><code class="lang-javascript"><span class="hljs-pi">'use strict'</span>;
-
-<span class="hljs-keyword">var</span> marked = <span class="hljs-built_in">require</span>(<span class="hljs-string">'marked'</span>);
-<span class="hljs-keyword">var</span> highlight = <span class="hljs-built_in">require</span>(<span class="hljs-string">'highlight.js'</span>);
-
-marked.setOptions({
-    highlight: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(code)</span> </span>{
-        <span class="hljs-keyword">return</span> highlight.highlightAuto(code).value;
-    }
-});
-
-
-<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(markdown)</span> </span>{
-    <span class="hljs-keyword">this</span>.cacheable();
-
-    <span class="hljs-keyword">return</span> marked(markdown);
-};
+                        <p>When <strong>webpack-dev-server</strong> is running it will watch your files for changes. When that happens it rebundles your project and notifies browsers listening to refresh. To trigger this behavior you need to change your <em>index.html</em> file in the <code>build/</code> folder.</p>
+<p><em>build/index.html</em></p>
+<pre><code class="lang-html"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"UTF-8"</span>/&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"http://localhost:8080/webpack-dev-server.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"bundle.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
 </code></pre>
-<p><strong>Webpack configuration</strong></p>
-<pre><code class="lang-javascript">resolve: {
-    extensions: [<span class="hljs-string">'.md'</span>, ...],
-    ...
-},
-loaders: [
-    {
-        test: <span class="hljs-regexp">/\.md$/</span>,
-        loader: <span class="hljs-string">'html!./loaders/markdown'</span>,
-    },
-]
-</code></pre>
-<p>Simple as that! You can read more about <a href="http://webpack.github.io/docs/loaders.html" target="_blank">loaders at the official documentation</a>.</p>
-<p>If you want to attach some CSS for syntax highlighting by the way, you can just <code>require</code> the needed CSS like this: <code>require(&#39;highlight.js/styles/github.css&#39;);</code>. That expects <code>highlight.js</code> has been installed correctly (ie. within <code>node_modules</code>) and Webpack can find it. You should also have <code>css-loader</code> set up like this:</p>
-<pre><code class="lang-javascript">{
-    test: <span class="hljs-regexp">/\.css$/</span>,
-    loaders: [<span class="hljs-string">'style'</span>, <span class="hljs-string">'css'</span>],
-},
-</code></pre>
-<p>This expects you have <code>style-loader</code> and <code>css-loader</code> installed into your project, preferably as development dependencies (<code>npm i style-loader css-loader --save-dev</code>).</p>
+<p>We added a script that refreshes the application when a change occurs. That is all you need.</p>
+<h2 id="default-environment">Default environment</h2>
+<p>In the example above we created our own <em>index.html</em> file to give more freedom and control. It is also possible to run the application from <strong><a href="http://localhost:8080/webpack-dev-server/bundle" target="_blank">http://localhost:8080/webpack-dev-server/bundle</a></strong>. This will fire up a default <em>index.html</em> file that you do not control. It also fires this file up in an iFrame allowing for a status bar to indicate the status of the rebundling process.</p>
 
                     
                     </section>
@@ -481,10 +456,10 @@ loaders: [
         </div>
 
         
-        <a href="./Requiring-files.html" class="navigation navigation-prev " aria-label="Previous page: Requiring files"><i class="fa fa-angle-left"></i></a>
+        <a href="./Running-a-workflow.html" class="navigation navigation-prev " aria-label="Previous page: Running a workflow"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./Optimizing-workflow.html" class="navigation navigation-next " aria-label="Next page: React JS"><i class="fa fa-angle-right"></i></a>
+        <a href="./Requiring-files.html" class="navigation navigation-next " aria-label="Next page: Requiring files"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
