@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Flow | </title>
+        <title>Loading LESS or SASS | </title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
-    <link rel="next" href="./CSS-Fonts-Images.html" />
+    <link rel="next" href="./Inlining-images.html" />
     
     
-    <link rel="prev" href="./Optimizing-rebundling.html" />
+    <link rel="prev" href="./Automatic-CSS-refresh.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="2.3" data-basepath="." data-revision="1423075310118">
+    <div class="book" data-level="3.3" data-basepath="." data-revision="1423075310118">
     
 
 <div class="book-summary">
@@ -201,7 +201,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="2.3" data-path="Type-checking-with-flow.html">
+        <li class="chapter " data-level="2.3" data-path="Type-checking-with-flow.html">
             
                 
                     <a href="./Type-checking-with-flow.html">
@@ -271,7 +271,7 @@
         </li>
     
         
-        <li class="chapter " data-level="3.3" data-path="Loading-LESS-or-SASS.html">
+        <li class="chapter active" data-level="3.3" data-path="Loading-LESS-or-SASS.html">
             
                 
                     <a href="./Loading-LESS-or-SASS.html">
@@ -546,16 +546,47 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_19">
+                    <section class="normal" id="section-gitbook_11">
                     
-                        <p>If you come to JavaScript from other programming languages you are familiar with types. You have types in JavaScript too, but you do not have to specify these types when declaring variables, receiving arguments etc. This is one of the things that makes JavaScript great, but at the same time not so great. </p>
-<p>Specifically when working on very large projects with many developers type checking gives stability to your project, much like a good test does. So using <strong>Flow</strong> is definitely not a requirement. It is for developers who depends on type checking as more of a routine and for the before mentioned large projects with many developers. Webpack makes it easy to include <strong>Flow</strong> in your workflow.</p>
-<h2 id="installing-flow">Installing flow</h2>
-<ul>
-<li>Have to try this out :-)</li>
-<li>What about &quot;flowcheck-loader&quot;, tried it? <a href="https://www.npmjs.com/package/flowcheck-loader" target="_blank">https://www.npmjs.com/package/flowcheck-loader</a> (probably works, haven&#39;t tried this one yet)</li>
-<li><a href="https://tryflow.org/" target="_blank">https://tryflow.org/</a></li>
-</ul>
+                        <p>If you want to use compiled CSS, there are two loaders available for you. The <strong>less-loader</strong> and the <strong>sass-loader</strong>. Depending on your preference, this is how you set it up.</p>
+<h2 id="installing-and-configuring-the-loader">Installing and configuring the loader</h2>
+<p><code>npm install less-loader</code> or <code>npm install sass-loader</code>.</p>
+<p><em>webpack.config.js</em></p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>);
+<span class="hljs-keyword">var</span> config = {
+  entry: path.resolve(__dirname, <span class="hljs-string">'app/main.js'</span>)
+  output: {
+    path: path.resolve(__dirname, <span class="hljs-string">'build'</span>),
+    filename: <span class="hljs-string">'bundle.js'</span>
+  },
+  <span class="hljs-built_in">module</span>: {
+    loaders: [{
+      test: <span class="hljs-regexp">/\.jsx$/</span>,
+      loader: <span class="hljs-string">'jsx'</span>
+    }, 
+
+    <span class="hljs-comment">// LESS</span>
+    {
+      test: <span class="hljs-regexp">/\.less$/</span>,
+      loader: <span class="hljs-string">'style!css!less'</span>
+    },
+
+    <span class="hljs-comment">// SASS</span>
+    {
+      test: <span class="hljs-regexp">/\.scss$/</span>,
+      loader: <span class="hljs-string">'style!css!sass'</span>
+    }]
+  }
+};
+</code></pre>
+<h2 id="what-about-imports-in-less-and-sass">What about imports in LESS and SASS?</h2>
+<p>If you import one LESS/SASS file from an other, use the exact same pattern as anywhere else. Webpack will dig into these files and figure out the dependencies.</p>
+<pre><code class="lang-less"><span class="hljs-at_rule">@import</span> <span class="hljs-string">"./variables.less"</span>;
+</code></pre>
+<p>You can also load LESS files directly from your node_modules directory.</p>
+<pre><code class="lang-less">$import &quot;~bootstrap/less/bootstrap&quot;;
+</code></pre>
+<p><strong>Note!</strong> Webpack is currently unable to resolve SASS import statements, but it will very soon: <a href="https://github.com/jtangelder/sass-loader/issues/31" target="_blank">issue 31</a></p>
 
                     
                     </section>
@@ -566,10 +597,10 @@
         </div>
 
         
-        <a href="./Optimizing-rebundling.html" class="navigation navigation-prev " aria-label="Previous page: Optimizing rebundling"><i class="fa fa-angle-left"></i></a>
+        <a href="./Automatic-CSS-refresh.html" class="navigation navigation-prev " aria-label="Previous page: Automatic CSS refresh"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./CSS-Fonts-Images.html" class="navigation navigation-next " aria-label="Next page: CSS, Fonts and Images"><i class="fa fa-angle-right"></i></a>
+        <a href="./Inlining-images.html" class="navigation navigation-next " aria-label="Next page: Inlining images"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

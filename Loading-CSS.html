@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Flow | </title>
+        <title>Loading CSS | </title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
-    <link rel="next" href="./CSS-Fonts-Images.html" />
+    <link rel="next" href="./Automatic-CSS-refresh.html" />
     
     
-    <link rel="prev" href="./Optimizing-rebundling.html" />
+    <link rel="prev" href="./CSS-Fonts-Images.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="2.3" data-basepath="." data-revision="1423075310118">
+    <div class="book" data-level="3.1" data-basepath="." data-revision="1423075310118">
     
 
 <div class="book-summary">
@@ -201,7 +201,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="2.3" data-path="Type-checking-with-flow.html">
+        <li class="chapter " data-level="2.3" data-path="Type-checking-with-flow.html">
             
                 
                     <a href="./Type-checking-with-flow.html">
@@ -239,7 +239,7 @@
                 
     
         
-        <li class="chapter " data-level="3.1" data-path="Loading-CSS.html">
+        <li class="chapter active" data-level="3.1" data-path="Loading-CSS.html">
             
                 
                     <a href="./Loading-CSS.html">
@@ -546,16 +546,114 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_19">
+                    <section class="normal" id="section-gitbook_10">
                     
-                        <p>If you come to JavaScript from other programming languages you are familiar with types. You have types in JavaScript too, but you do not have to specify these types when declaring variables, receiving arguments etc. This is one of the things that makes JavaScript great, but at the same time not so great. </p>
-<p>Specifically when working on very large projects with many developers type checking gives stability to your project, much like a good test does. So using <strong>Flow</strong> is definitely not a requirement. It is for developers who depends on type checking as more of a routine and for the before mentioned large projects with many developers. Webpack makes it easy to include <strong>Flow</strong> in your workflow.</p>
-<h2 id="installing-flow">Installing flow</h2>
-<ul>
-<li>Have to try this out :-)</li>
-<li>What about &quot;flowcheck-loader&quot;, tried it? <a href="https://www.npmjs.com/package/flowcheck-loader" target="_blank">https://www.npmjs.com/package/flowcheck-loader</a> (probably works, haven&#39;t tried this one yet)</li>
-<li><a href="https://tryflow.org/" target="_blank">https://tryflow.org/</a></li>
-</ul>
+                        <p>Webpack allows you to load CSS like you load any other code. What strategy you choose is up to you, but you can do everything from loading all your css in the main entry point file to one css file for each component.</p>
+<p>Loading CSS requires the <strong>css-loader</strong> and the <strong>style-loader</strong>. They have two different jobs. The <strong>css-loader</strong> will go through the CSS file and find <code>url()</code> expressions and resolve them. The <strong>style-loader</strong> will insert the raw css into a style tag on your page.</p>
+<h2 id="preparing-css-loading">Preparing CSS loading</h2>
+<p>Install the two loaders: <code>npm install css-loader style-loader --save-dev</code>.</p>
+<p>In the <em>webpack.config.js</em> file you can add the following loader configuration:</p>
+<p><em>webpack.config.js</em></p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>);
+<span class="hljs-keyword">var</span> config = {
+  entry: path.resolve(__dirname, <span class="hljs-string">'app/main.js'</span>)
+  output: {
+    path: path.resolve(__dirname, <span class="hljs-string">'build'</span>),
+    filename: <span class="hljs-string">'bundle.js'</span>
+  },
+  <span class="hljs-built_in">module</span>: {
+    loaders: [{
+      test: <span class="hljs-regexp">/\.jsx$/</span>,
+      loader: <span class="hljs-string">'jsx'</span>
+    }, {
+      test: <span class="hljs-regexp">/\.css$/</span>, <span class="hljs-comment">// Only .css files</span>
+      loader: <span class="hljs-string">'style!css'</span> <span class="hljs-comment">// Run both loaders</span>
+    }]
+  }
+};
+
+<span class="hljs-built_in">module</span>.exports = config;
+</code></pre>
+<h2 id="loading-a-css-file">Loading a CSS file</h2>
+<p>Loading a CSS file is a simple as loading any file:</p>
+<p><em>main.js</em></p>
+<pre><code class="lang-javascript">import <span class="hljs-string">'./main.css'</span>;
+<span class="hljs-comment">// Other code</span>
+</code></pre>
+<p><em>Component.jsx</em></p>
+<pre><code class="lang-javascript">import <span class="hljs-string">'./Component.css'</span>;
+import React from <span class="hljs-string">'react'</span>;
+
+export <span class="hljs-keyword">default</span> React.createClass({
+  render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>Hello world!<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+  }
+});</span>
+</code></pre>
+<p><strong>Note!</strong> You can of course do this with both CommonJS and AMD.</p>
+<h2 id="css-loading-strategies">CSS loading strategies</h2>
+<p>Depending on your application you might consider three main strategies. In addition to this you should consider including some of your basic CSS inlined with the initial payload (index.html). This will set the structure and maybe a loader while the rest of your application is downloading and executing.</p>
+<h3 id="all-in-one">All in one</h3>
+<p>In your main entry point, e.g. <code>app/main.js</code> you can load up your entire CSS for the whole project:</p>
+<p><em>app/main.js</em></p>
+<pre><code class="lang-javascript">import <span class="hljs-string">'./project-styles.css'</span>;
+<span class="hljs-comment">// Other JS code</span>
+</code></pre>
+<p>The CSS is included in the application bundle and does not need to download.</p>
+<h3 id="lazy-loading">Lazy loading</h3>
+<p>If you take advantage of lazy loading by having multiple entry points to your application, you can include specific CSS for each of those entry points:</p>
+<p><em>app/main.js</em></p>
+<pre><code class="lang-javascript">import <span class="hljs-string">'./style.css'</span>;
+<span class="hljs-comment">// Other JS code</span>
+</code></pre>
+<p><em>app/entryA/main.js</em></p>
+<pre><code class="lang-javascript">import <span class="hljs-string">'./style.css'</span>;
+<span class="hljs-comment">// Other JS code</span>
+</code></pre>
+<p><em>app/entryB/main.js</em></p>
+<pre><code class="lang-javascript">import <span class="hljs-string">'./style.css'</span>;
+<span class="hljs-comment">// Other JS code</span>
+</code></pre>
+<p>You divide your modules by folders and include both CSS and JavaScript files in those folders. Again, the imported CSS is included in each entry bundle when running in production. </p>
+<h3 id="component-specific">Component specific</h3>
+<p>With this strategy you create a CSS file for each component. It is common to namespace the CSS classes with the component name, thus avoiding some class of one component interfering with the class of an other.</p>
+<p>*app/components/MyComponent.css</p>
+<pre><code class="lang-css"><span class="hljs-class">.MyComponent-wrapper</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#EEE</span></span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre>
+<p><em>app/components/MyComponent.jsx</em></p>
+<pre><code>import &#39;./MyComponent.css&#39;;
+import React from &#39;react&#39;;
+
+export default React.createClass({
+  render: function () {
+    return (
+      &lt;div className=&quot;MyComponent-wrapper&quot;&gt;
+        &lt;h1&gt;Hello world&lt;/h1&gt;
+      &lt;/div&gt;
+    )
+  }
+});
+</code></pre><h2 id="using-inline-styles-instead-of-stylesheets">Using inline styles instead of stylesheets</h2>
+<p>With &quot;React Native&quot; you do not use stylesheets at all, you only use the <em>style-attribute</em>. By defining your CSS as objects. Depending on your project, you might consider this as your CSS strategy.</p>
+<p><em>app/components/MyComponent.jsx</em></p>
+<pre><code class="lang-javascript">import React from <span class="hljs-string">'react'</span>;
+
+<span class="hljs-keyword">var</span> style = {
+  backgroundColor: <span class="hljs-string">'#EEE'</span>
+};
+
+export <span class="hljs-keyword">default</span> React.createClass({
+  render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{style}</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>Hello world<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    )
+  }
+});</span>
+</code></pre>
 
                     
                     </section>
@@ -566,10 +664,10 @@
         </div>
 
         
-        <a href="./Optimizing-rebundling.html" class="navigation navigation-prev " aria-label="Previous page: Optimizing rebundling"><i class="fa fa-angle-left"></i></a>
+        <a href="./CSS-Fonts-Images.html" class="navigation navigation-prev " aria-label="Previous page: CSS, Fonts and Images"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./CSS-Fonts-Images.html" class="navigation navigation-next " aria-label="Next page: CSS, Fonts and Images"><i class="fa fa-angle-right"></i></a>
+        <a href="./Automatic-CSS-refresh.html" class="navigation navigation-next " aria-label="Next page: Automatic CSS refresh"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

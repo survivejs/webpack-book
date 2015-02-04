@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Flow | </title>
+        <title>CSS, Fonts and Images | </title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
-    <link rel="next" href="./CSS-Fonts-Images.html" />
+    <link rel="next" href="./Loading-CSS.html" />
     
     
-    <link rel="prev" href="./Optimizing-rebundling.html" />
+    <link rel="prev" href="./Type-checking-with-flow.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="2.3" data-basepath="." data-revision="1423075310118">
+    <div class="book" data-level="3" data-basepath="." data-revision="1423075310118">
     
 
 <div class="book-summary">
@@ -201,7 +201,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="2.3" data-path="Type-checking-with-flow.html">
+        <li class="chapter " data-level="2.3" data-path="Type-checking-with-flow.html">
             
                 
                     <a href="./Type-checking-with-flow.html">
@@ -222,7 +222,7 @@
         </li>
     
         
-        <li class="chapter " data-level="3" data-path="CSS-Fonts-Images.html">
+        <li class="chapter active" data-level="3" data-path="CSS-Fonts-Images.html">
             
                 
                     <a href="./CSS-Fonts-Images.html">
@@ -546,16 +546,35 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_19">
+                    <section class="normal" id="section-gitbook_4">
                     
-                        <p>If you come to JavaScript from other programming languages you are familiar with types. You have types in JavaScript too, but you do not have to specify these types when declaring variables, receiving arguments etc. This is one of the things that makes JavaScript great, but at the same time not so great. </p>
-<p>Specifically when working on very large projects with many developers type checking gives stability to your project, much like a good test does. So using <strong>Flow</strong> is definitely not a requirement. It is for developers who depends on type checking as more of a routine and for the before mentioned large projects with many developers. Webpack makes it easy to include <strong>Flow</strong> in your workflow.</p>
-<h2 id="installing-flow">Installing flow</h2>
-<ul>
-<li>Have to try this out :-)</li>
-<li>What about &quot;flowcheck-loader&quot;, tried it? <a href="https://www.npmjs.com/package/flowcheck-loader" target="_blank">https://www.npmjs.com/package/flowcheck-loader</a> (probably works, haven&#39;t tried this one yet)</li>
-<li><a href="https://tryflow.org/" target="_blank">https://tryflow.org/</a></li>
-</ul>
+                        <p>Historically web frontends have been split in three separate parts: structure markup (ie. HTML), style (ie. CSS) and logic (ie. JavaScript). You end up with something functional once you have these together. A well designed site should work even without JavaScript enabled and the content should make sense even without CSS. In practice this isn&#39;t always true and depending on your requirements you may be able to flex here.</p>
+<p>I won&#39;t go into detail to explain why we ended up with HTML, CSS and JavaScript. This is the triad what you&#39;ll build will most likely be using given that&#39;s what browsers support. In case of JavaScript you might compile down to something that&#39;s ES5 compatible and set up shims where needed. Shims can come in handy if you need to patch functionality for old browsers (IE 8 and such) and can help to an extent. A site such as <a href="http://caniuse.com/" target="_blank">caniuse.com</a> can be helpful in figuring out what works and where and whether shims exist.</p>
+<h2 id="css">CSS</h2>
+<p>In its essence CSS is aspect oriented programming. It will allow you attach some behavior to selected features. Sometimes the boundary between CSS and JavaScript can be quite fuzzy and at times people have achieved amazing feats just by using CSS. That doesn&#39;t mean it should be used that way but it&#39;s always fun to push the envelope a bit.</p>
+<p>These days CSS incorporates a powerful selector syntax, media queries (customize per resolution), animation capabilities, whatnot. Depending on what you are doing you may whether love or hate its layout capabilities. Originally CSS was designed page layout in mind. These days we live more and more in the world of apps so you might need to struggle every once in a while a bit.</p>
+<p>Understanding the box model of CSS can help a lot. In addition the usage of CSS reset can be helpful. That eliminates some of the rendering differences between various browsers and provides more consistent results. In addition settings attributes such as <code>box-sizing: border-box;</code> can make the language more intuitive to use.</p>
+<blockquote>
+<p>Instead of CSS we could be writing something like JavaScript, namely <a href="https://en.wikipedia.org/wiki/JavaScript_Style_Sheets" target="_blank">JSS</a>, if things had gone differently.</p>
+</blockquote>
+<h3 id="missing-features">Missing Features</h3>
+<p>The core language is missing a lot of power programmers take granted. You won&#39;t have things such as variables or functions. This is the main reason why various preprocessors have appeared. They add some new functionality that has great potential to simplify your work as a developer. It isn&#39;t very <a href="http://www.nixtu.info/2011/12/how-to-write-css-preprocessor-using.html" target="_blank">hard to write a system of your own</a>. That said these days people like to stick with something like <a href="http://sass-lang.com/" target="_blank">Sass</a>, <a href="http://lesscss.org/" target="_blank">Less</a> or <a href="http://learnboost.github.io/stylus/" target="_blank">Stylus</a>. Each to his own.</p>
+<p>Using webpack makes it easy to utilize these solutions. Often all you need to do is to set up a loader and then just <code>require</code> the assets you need. Images, fonts and such take extra setup but that&#39;s what this chapter is about so read on.</p>
+<h3 id="conventions">Conventions</h3>
+<p>There isn&#39;t single right way to develop CSS. As a result many approaches have appeared. Examples: <a href="https://smacss.com/" target="_blank">SMACSS</a>, <a href="http://suitcss.github.io/" target="_blank">Suit CSS</a>, <a href="https://bem.info/" target="_blank">BEM</a>.</p>
+<p>On macro level there are entire schools of design such as <a href="https://en.wikipedia.org/wiki/Responsive_web_design" target="_blank">Responsive Web Design</a>, Mobile First Design or <a href="http://bradfrost.com/blog/post/atomic-web-design/" target="_blank">Atomic Web Design</a>.</p>
+<p>With React we might be forced to rethink some of our approaches as highlighted by <a href="https://speakerdeck.com/vjeux/react-css-in-js" target="_blank">a presentation by @vjeux</a>. There are already tools such as <a href="https://github.com/js-next/react-style" target="_blank">react-style</a> and <a href="https://github.com/jsstyles/jss" target="_blank">JSS</a> which allow us to author CSS within components.</p>
+<p>You could say moving declarations back to markup is backwards. After all, inline styles have been frowned upon a long time. Every once in a while it is a good idea to challenge the dogma and move ahead. Maybe it can be useful to have all relevant information on component level. Even if you have basic style declarations on component level this doesn&#39;t mean you couldn&#39;t inject customizations from higher level if you design your components right.</p>
+<p>Of course there are questions such are these kind of ideas compatible with CSS frameworks such as <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>, <a href="http://foundation.zurb.com/" target="_blank">Foundation</a> or <a href="http://purecss.io/" target="_blank">Pure</a> but that&#39;s another topic.</p>
+<h2 id="fonts">Fonts</h2>
+<p>The simplest way to make your page look nicer is to set</p>
+<pre><code class="lang-css"><span class="hljs-tag">body</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">font-family</span>:<span class="hljs-value"> Sans-Serif</span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre>
+<p>Of course CSS provides <a href="https://developer.mozilla.org/en/docs/Web/CSS/font" target="_blank">a ton of other options</a>. Even more interesting these days we have <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face" target="_blank">web fonts</a> which provide additional options for designers.</p>
+<h2 id="images">Images</h2>
+<p>A large amount of content we consume is image based. Especially thanks to the introduction of high resolution displays on mobile devices, there are additional challenges available. You could say the situation is still not ideal but we are getting there thanks to initiatives such as <a href="http://responsiveimages.org/" target="_blank">Responsive Images Community Group</a>. It will take a little bit of effort to serve the correct images for various devices but in the end if you want to provide the best service, you should go for the extra mile.</p>
 
                     
                     </section>
@@ -566,10 +585,10 @@
         </div>
 
         
-        <a href="./Optimizing-rebundling.html" class="navigation navigation-prev " aria-label="Previous page: Optimizing rebundling"><i class="fa fa-angle-left"></i></a>
+        <a href="./Type-checking-with-flow.html" class="navigation navigation-prev " aria-label="Previous page: Flow"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./CSS-Fonts-Images.html" class="navigation navigation-next " aria-label="Next page: CSS, Fonts and Images"><i class="fa fa-angle-right"></i></a>
+        <a href="./Loading-CSS.html" class="navigation navigation-next " aria-label="Next page: Loading CSS"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

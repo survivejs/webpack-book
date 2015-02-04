@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Flow | </title>
+        <title>Webpack | </title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
-    <link rel="next" href="./CSS-Fonts-Images.html" />
+    <link rel="next" href="./Getting-started.html" />
     
     
-    <link rel="prev" href="./Optimizing-rebundling.html" />
+    <link rel="prev" href="./index.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="2.3" data-basepath="." data-revision="1423075310118">
+    <div class="book" data-level="1" data-basepath="." data-revision="1423075310118">
     
 
 <div class="book-summary">
@@ -66,7 +66,7 @@
         </li>
     
         
-        <li class="chapter " data-level="1" data-path="Introduction-to-Webpack.html">
+        <li class="chapter active" data-level="1" data-path="Introduction-to-Webpack.html">
             
                 
                     <a href="./Introduction-to-Webpack.html">
@@ -201,7 +201,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="2.3" data-path="Type-checking-with-flow.html">
+        <li class="chapter " data-level="2.3" data-path="Type-checking-with-flow.html">
             
                 
                     <a href="./Type-checking-with-flow.html">
@@ -546,16 +546,96 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_19">
+                    <section class="normal" id="section-gitbook_9">
                     
-                        <p>If you come to JavaScript from other programming languages you are familiar with types. You have types in JavaScript too, but you do not have to specify these types when declaring variables, receiving arguments etc. This is one of the things that makes JavaScript great, but at the same time not so great. </p>
-<p>Specifically when working on very large projects with many developers type checking gives stability to your project, much like a good test does. So using <strong>Flow</strong> is definitely not a requirement. It is for developers who depends on type checking as more of a routine and for the before mentioned large projects with many developers. Webpack makes it easy to include <strong>Flow</strong> in your workflow.</p>
-<h2 id="installing-flow">Installing flow</h2>
-<ul>
-<li>Have to try this out :-)</li>
-<li>What about &quot;flowcheck-loader&quot;, tried it? <a href="https://www.npmjs.com/package/flowcheck-loader" target="_blank">https://www.npmjs.com/package/flowcheck-loader</a> (probably works, haven&#39;t tried this one yet)</li>
-<li><a href="https://tryflow.org/" target="_blank">https://tryflow.org/</a></li>
-</ul>
+                        <p>In web development we deal with a lot of small technical artefacts. You use HTML to describe page structure, CSS how to style it and JavaScript for logic. Or you can replace HTML with something like Jade, CSS with Sass or LESS, JavaScript with CoffeeScript, TypeScript and the ilk. In addition you have to deal with project dependencies (ie. external libraries and such).</p>
+<p>There are good reasons why we use these various technologies. Regardless of what we use, however, we still want to end up with something that can be run on the browsers of the clients. This is where build systems come in. Historically speaking there have been many. <a href="https://en.wikipedia.org/wiki/Make_%28software%29" target="_blank">Make</a> is perhaps the most known one and still a viable option in many cases. In the world of frontend development particularly <a href="http://gruntjs.com/" target="_blank">Grunt</a> and <a href="http://gulpjs.com/" target="_blank">Gulp</a> have gained popularity. Both are made powerful by plugins. <a href="https://www.npmjs.com/" target="_blank">NPM</a>, the Node.js package manager, is full of those.</p>
+<h2 id="grunt">Grunt</h2>
+<p>Grunt is the older project. It relies on plugin specific configuration. This is fine up to a point but believe me, you don&#39;t want to end up having to maintain a 300 line <code>Gruntfile</code>. The approach simply turns against itself at some point. Just in case you are curious what the configuration looks like, here&#39;s an example from <a href="http://gruntjs.com/sample-gruntfile" target="_blank">Grunt documentation</a>:</p>
+<pre><code class="lang-javascript"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(grunt)</span> </span>{
+
+  grunt.initConfig({
+    jshint: {
+      files: [<span class="hljs-string">'Gruntfile.js'</span>, <span class="hljs-string">'src/**/*.js'</span>, <span class="hljs-string">'test/**/*.js'</span>],
+      options: {
+        globals: {
+          jQuery: <span class="hljs-literal">true</span>
+        }
+      }
+    },
+    watch: {
+      files: [<span class="hljs-string">'&lt;%= jshint.files %&gt;'</span>],
+      tasks: [<span class="hljs-string">'jshint'</span>]
+    }
+  });
+
+  grunt.loadNpmTasks(<span class="hljs-string">'grunt-contrib-jshint'</span>);
+  grunt.loadNpmTasks(<span class="hljs-string">'grunt-contrib-watch'</span>);
+
+  grunt.registerTask(<span class="hljs-string">'default'</span>, [<span class="hljs-string">'jshint'</span>]);
+
+};
+</code></pre>
+<h2 id="gulp">Gulp</h2>
+<p>Gulp takes a different approach. Instead of relying on configuration per plugin you deal with actual code. Gulp builds on top of the tried and true concept of piping. If you are familiar with Unix, it&#39;s the same here. You simply have sources, filters and sinks. In this case sources happen to match to some files, filters perform some operations on those (ie. convert to JavaScript) and then output to sinks (your build directory etc.). Here&#39;s a sample <code>Gulpfile</code> to give you a better idea of the approach taken from the project README and abbreviated a bit:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> gulp = <span class="hljs-built_in">require</span>(<span class="hljs-string">'gulp'</span>);
+<span class="hljs-keyword">var</span> coffee = <span class="hljs-built_in">require</span>(<span class="hljs-string">'gulp-coffee'</span>);
+<span class="hljs-keyword">var</span> concat = <span class="hljs-built_in">require</span>(<span class="hljs-string">'gulp-concat'</span>);
+<span class="hljs-keyword">var</span> uglify = <span class="hljs-built_in">require</span>(<span class="hljs-string">'gulp-uglify'</span>);
+<span class="hljs-keyword">var</span> sourcemaps = <span class="hljs-built_in">require</span>(<span class="hljs-string">'gulp-sourcemaps'</span>);
+<span class="hljs-keyword">var</span> del = <span class="hljs-built_in">require</span>(<span class="hljs-string">'del'</span>);
+
+<span class="hljs-keyword">var</span> paths = {
+  scripts: [<span class="hljs-string">'client/js/**/*.coffee'</span>, <span class="hljs-string">'!client/external/**/*.coffee'</span>],
+};
+
+<span class="hljs-comment">// Not all tasks need to use streams</span>
+<span class="hljs-comment">// A gulpfile is just another node program and you can use all packages available on npm</span>
+gulp.task(<span class="hljs-string">'clean'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(cb)</span> </span>{
+  <span class="hljs-comment">// You can use multiple globbing patterns as you would with `gulp.src`</span>
+  del([<span class="hljs-string">'build'</span>], cb);
+});
+
+gulp.task(<span class="hljs-string">'scripts'</span>, [<span class="hljs-string">'clean'</span>], <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-comment">// Minify and copy all JavaScript (except vendor scripts)</span>
+  <span class="hljs-comment">// with sourcemaps all the way down</span>
+  <span class="hljs-keyword">return</span> gulp.src(paths.scripts)
+    .pipe(sourcemaps.init())
+      .pipe(coffee())
+      .pipe(uglify())
+      .pipe(concat(<span class="hljs-string">'all.min.js'</span>))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(<span class="hljs-string">'build/js'</span>));
+});
+
+<span class="hljs-comment">// Rerun the task when a file changes</span>
+gulp.task(<span class="hljs-string">'watch'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+  gulp.watch(paths.scripts, [<span class="hljs-string">'scripts'</span>]);
+});
+
+<span class="hljs-comment">// The default task (called when you run `gulp` from cli)</span>
+gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string">'watch'</span>, <span class="hljs-string">'scripts'</span>]);
+</code></pre>
+<p>Given the configuration is code you can always just hack it if you run into troubles. You can wrap existing Node.js modules as Gulp plugins and so on. You still end up writing a lot of boilerplate for casual tasks, though.</p>
+<h2 id="browserify">Browserify</h2>
+<p>Dealing with JavaScript modules has always been a bit of a problem given the language actually doesn&#39;t have a concept of module till ES6. Ergo we are stuck with the 90s when it comes to browser environment. Various solutions, including <a href="http://browserify.org/" target="_blank">AMD</a>, have been proposed. In practice it can be useful just to use CommonJS, the Node.js format, and let tooling deal with the rest. The advantage is that you can often hook into NPM and avoid reinventing the wheel.</p>
+<p><a href="http://browserify.org/" target="_blank">Browserify</a> solves this problem. It provides a way to bundle CommonJS modules together. You can hook it up with Gulp. In addition there are tons of smaller transformation tools that allow you to move beyond the basic usage (ie. <a href="https://www.npmjs.com/package/watchify" target="_blank">watchify</a> provides a file watcher that creates bundles for you during development automatically). This will save some effort and no doubt is a good solution up to a point.</p>
+<h2 id="webpack">Webpack</h2>
+<p>Webpack expands on the idea of hooking into CommonJS <code>require</code>. What if you could just <code>require</code> whatever you needed in your code, be it CoffeeScript, Sass, Markdown or something? Well, Webpack does just this. It takes your dependencies, puts them through loaders and outputs browser compatible static assets. All of this is based on configuration. Here is a sample configuration from <a href="http://webpack.github.io/docs/tutorials/getting-started/" target="_blank">the official Webpack tutorial</a>:</p>
+<pre><code class="lang-javascript"><span class="hljs-built_in">module</span>.exports = {
+    entry: <span class="hljs-string">"./entry.js"</span>,
+    output: {
+        path: __dirname,
+        filename: <span class="hljs-string">"bundle.js"</span>
+    },
+    <span class="hljs-built_in">module</span>: {
+        loaders: [
+            { test: <span class="hljs-regexp">/\.css$/</span>, loader: <span class="hljs-string">"style!css"</span> }
+        ]
+    }
+};
+</code></pre>
+<p>In the following sections we&#39;ll build on top of this idea and show how powerful it is. You can, and probably should, use Webpack with some other tools. It won&#39;t solve everything. It does solve the difficult problem of bundling, however, and that&#39;s one worry less during development.</p>
 
                     
                     </section>
@@ -566,10 +646,10 @@
         </div>
 
         
-        <a href="./Optimizing-rebundling.html" class="navigation navigation-prev " aria-label="Previous page: Optimizing rebundling"><i class="fa fa-angle-left"></i></a>
+        <a href="./index.html" class="navigation navigation-prev " aria-label="Previous page: Introduction"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./CSS-Fonts-Images.html" class="navigation navigation-next " aria-label="Next page: CSS, Fonts and Images"><i class="fa fa-angle-right"></i></a>
+        <a href="./Getting-started.html" class="navigation navigation-next " aria-label="Next page: Getting started"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
