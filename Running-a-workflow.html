@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="1.2" data-basepath="." data-revision="1424093682258">
+    <div class="book" data-level="1.2" data-basepath="." data-revision="1424099992476">
     
 
 <div class="book-summary">
@@ -666,52 +666,27 @@
                 
                     <section class="normal" id="section-gitbook_20">
                     
-                        <h2 id="installing-the-dependencies">Installing the dependencies</h2>
-<ul>
-<li>In your project root: <code>npm install webpack-dev-server -g</code></li>
-<li><em>optional:</em> <code>npm install webpack-dev-server</code> (Installs a version for the project)</li>
-</ul>
-<h2 id="configuring-the-workflow">Configuring the workflow</h2>
-<p>It is a good idea that <strong>npm</strong> starts up your workflow. In your <em>package.json</em> file add a new script.</p>
+                        <p>Hitting <code>npm run build</code> all the time will get boring eventually. Fortunately we can work around that quite easily. Let&#39;s set up <code>webpack-dev-server</code>.</p>
+<h2 id="setting-up-webpack-dev-server">Setting up <code>webpack-dev-server</code></h2>
+<p>As a first step, hit <code>npm i webpack-dev-server --save</code>. In addition we&#39;ll need to tweak <code>package.json</code> <em>scripts</em> section to include it. Here&#39;s the basic idea:</p>
 <p><em>package.json</em></p>
 <pre><code class="lang-json">{
-  "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"my-project"</span></span>,
-  "<span class="hljs-attribute">version</span>": <span class="hljs-value"><span class="hljs-string">"0.0.0"</span></span>,
-  "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"My awesome project!"</span></span>,
-  "<span class="hljs-attribute">main</span>": <span class="hljs-value"><span class="hljs-string">"app/main.js"</span></span>,
   "<span class="hljs-attribute">scripts</span>": <span class="hljs-value">{
-    "<span class="hljs-attribute">dev</span>": <span class="hljs-value"><span class="hljs-string">"webpack-dev-server --devtool eval --progress --colors --hot --content-base build"</span>
-  </span>}</span>,
-  "<span class="hljs-attribute">author</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
-  "<span class="hljs-attribute">license</span>": <span class="hljs-value"><span class="hljs-string">"ISC"</span></span>,
-  "<span class="hljs-attribute">devDependencies</span>": <span class="hljs-value">{
-    "<span class="hljs-attribute">webpack</span>": <span class="hljs-value"><span class="hljs-string">"^1.4.13"</span></span>,
-    "<span class="hljs-attribute">webpack-dev-server</span>": <span class="hljs-value"><span class="hljs-string">"^1.6.6"</span>
-  </span>}</span>,
-  "<span class="hljs-attribute">dependencies</span>": <span class="hljs-value">{}
-</span>}
-</code></pre>
-<p>Let us focus on the <strong>scripts</strong> property:</p>
-<pre><code class="lang-json">{
-  "<span class="hljs-attribute">scripts</span>": <span class="hljs-value">{
-    "<span class="hljs-attribute">dev</span>": <span class="hljs-value"><span class="hljs-string">"webpack-dev-server --devtool eval --progress --colors --content-base build"</span>
+    "<span class="hljs-attribute">build</span>": <span class="hljs-value"><span class="hljs-string">"node_modules/.bin/webpack"</span></span>,
+    "<span class="hljs-attribute">dev</span>": <span class="hljs-value"><span class="hljs-string">"node_modules/.bin/webpack-dev-server --devtool eval --progress --colors --hot --content-base build"</span>
   </span>}
 </span>}
 </code></pre>
 <p>When you run <code>npm run dev</code> from your terminal it will execute the command stated as a value on the <strong>dev</strong> property. This is what it does:</p>
-<h5 id="webpack-dev-server">webpack-dev-server</h5>
-<p>Starts a web service on localhost:8080</p>
-<h5 id="--devtool-eval">--devtool eval</h5>
-<p>Creates source urls for your code. Making you able to pinpoint by filename and line number where any errors are thrown</p>
-<h5 id="--progress">--progress</h5>
-<p>Will show progress of bundling your application</p>
-<h5 id="--colors">--colors</h5>
-<p>Yay, colors in the terminal!</p>
-<h5 id="--content-base-build">--content-base build</h5>
-<p>Points to the output directory configured</p>
-<h2 id="run-the-workflow">Run the workflow</h2>
-<p>As we now have configured an <strong>npm</strong> script we can run that simply by: <code>npm run dev</code>. This will fire up the webservice, watch for file changes and automatically rebundle your application when any file changes occur.</p>
-<p><strong>Go to <a href="http://localhost:8080" target="_blank">http://localhost:8080</a></strong></p>
+<ol>
+<li><code>webpack-dev-server</code> - Starts a web service on localhost:8080</li>
+<li><code>--devtool eval</code> - Creates source urls for your code. Making you able to pinpoint by filename and line number where any errors are thrown</li>
+<li><code>--progress</code> - Will show progress of bundling your application</li>
+<li><code>--colors</code> - Yay, colors in the terminal!</li>
+<li><code>--content-base build</code> - Points to the output directory configured</li>
+</ol>
+<p>To recap, when you run <code>npm run dev</code> this will fire up the webservice, watch for file changes and automatically rebundle your application when any file changes occur. How neat is that!</p>
+<p>Go to <strong><a href="http://localhost:8080" target="_blank">http://localhost:8080</a></strong> and you should see something.</p>
 
                     
                     </section>

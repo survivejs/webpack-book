@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="1.1" data-basepath="." data-revision="1424093682258">
+    <div class="book" data-level="1.1" data-basepath="." data-revision="1424099992476">
     
 
 <div class="book-summary">
@@ -666,16 +666,15 @@
                 
                     <section class="normal" id="section-gitbook_6">
                     
-                        <h2 id="installing-webpack">Installing webpack</h2>
-<ol>
-<li>In your project folder: <code>npm init</code></li>
-<li><code>npm install webpack -g</code> (Installs webpack globally)</li>
-<li><em>optional:</em> <code>npm install webpack</code> , (Installs a project version of webpack)</li>
-</ol>
-<h2 id="folder-structure">Folder structure</h2>
+                        <p>Getting started with Webpack is straightforward. I&#39;ll show you how to set up a simple project based on it. As a first step, set a directory for your project and hit <code>npm init</code> and fill in some answers. That will create a <code>package.json</code> for you. Don&#39;t worry if some fields don&#39;t look ok, you can modify those later.</p>
+<h2 id="installing-webpack">Installing Webpack</h2>
+<p>Next you should get Webpack installed. You can either do a global install (<code>npm i webpack -g</code>) or a local one (<code>npm i webpack</code>). In former case you&#39;ll be able to invoke the tool simply via <code>webpack</code>. In latter case you can use <code>node_modules/.bin/webpack</code>. Either way works for now.</p>
+<h2 id="directory-structure">Directory Structure</h2>
+<p>Structure your project like this:</p>
 <ul>
 <li>/app<ul>
 <li>main.js</li>
+<li>component.js</li>
 </ul>
 </li>
 <li>/build<ul>
@@ -686,34 +685,41 @@
 <li>package.json</li>
 <li>webpack.config.js</li>
 </ul>
-<p>You can of course define this structure yourself, but Webpack will need an <em>output</em> folder. In this example <code>build/</code>.</p>
-<h2 id="creating-a-configuration">Creating a configuration</h2>
-<p>Create a file in your project root named: <strong>webpack.config.js</strong>.</p>
+<p>In this case we&#39;ll create <code>bundle.js</code> using Webpack based on our <code>/app</code>. To make this possible, let&#39;s set up <code>webpack.config.js</code>.</p>
+<h2 id="creating-webpack-configuration">Creating Webpack Configuration</h2>
+<p>In our case a basic configuration could look like this:</p>
 <p><em>webpack.config.js</em></p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>);
-<span class="hljs-keyword">var</span> config = {
-  entry: path.resolve(__dirname, <span class="hljs-string">"APP_ENTRY.js"</span>) <span class="hljs-comment">// E.g. "app/main.js",</span>
-  output: {
-    path: path.resolve(__dirname, <span class="hljs-string">"BUILD_DIR"</span>), <span class="hljs-comment">// E.g. "build"</span>
-    filename: <span class="hljs-string">"BUNDLE_NAME.js"</span> <span class="hljs-comment">// E.g. "bundle.js"</span>
-  }
-};
 
-<span class="hljs-built_in">module</span>.exports = config;
-</code></pre>
-<h2 id="running-your-first-build">Running your first build</h2>
-<p>Let us create a simple build that says &quot;Hello world&quot; when run in the browser. We start off by creating a <strong>Component.js</strong> file in our <code>/app</code> folder.</p>
-<p><em>app/Component.js</em></p>
-<pre><code class="lang-javascript">export <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-  <span class="hljs-keyword">var</span> element = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'h1'</span>);
-  element.innerHTML = <span class="hljs-string">'Hello world'</span>;
-  <span class="hljs-keyword">return</span> element;
+
+<span class="hljs-built_in">module</span>.exports = {
+    entry: path.resolve(__dirname, <span class="hljs-string">'app/main.js'</span>),
+    output: {
+        path: path.resolve(__dirname, <span class="hljs-string">'build'</span>),
+        filename: <span class="hljs-string">'bundle.js'</span>,
+    },
 };
 </code></pre>
-<p>And lets update our main.js file to render this component to the body.</p>
+<h2 id="running-your-first-build">Running Your First Build</h2>
+<p>Now that we have basic configuration in place, we&#39;ll need something to build. Let&#39;s start with a classic <code>Hello World</code> type of app. Set up <code>/app</code> like this:</p>
+<p><em>app/component.js</em></p>
+<pre><code class="lang-javascript"><span class="hljs-pi">'use strict'</span>;
+
+
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">var</span> element = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'h1'</span>);
+
+    element.innerHTML = <span class="hljs-string">'Hello world'</span>;
+
+    <span class="hljs-keyword">return</span> element;
+};
+</code></pre>
 <p><em>app/main.js</em></p>
-<pre><code class="lang-javascript">import Component from <span class="hljs-string">'./Component.js'</span>;
-<span class="hljs-built_in">document</span>.body.appendChild(Component());
+<pre><code class="lang-javascript"><span class="hljs-pi">'use strict'</span>;
+<span class="hljs-keyword">var</span> component = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./component.js'</span>);
+
+
+<span class="hljs-built_in">document</span>.body.appendChild(component());
 </code></pre>
 <p>Now run <code>webpack</code> in your terminal and your application will be built. A <em>bundle.js</em> file will appear in your <code>/build</code> folder. Your <em>index.html</em> file in the <code>build/</code> folder will need to load up the application.</p>
 <p><em>build/index.html</em></p>
@@ -727,8 +733,25 @@
   <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
 </code></pre>
-<h2 id="running-the-application">Running the application</h2>
+<blockquote>
+<p>It would be possible to generate this file with Webpack using <a href="https://www.npmjs.com/package/html-webpack-plugin" target="_blank">html-webpack-plugin</a>. You can give it a go if you are feeling adventurous. It is mostly a matter of configuration. Generally this is the way you work with Webpack.</p>
+</blockquote>
+<h2 id="running-the-application">Running the Application</h2>
 <p>Just double-click the <em>index.html</em> file or set up a web server pointing to the <code>build/</code> folder.</p>
+<h2 id="setting-up-packagejson-scripts">Setting Up <code>package.json</code> <em>scripts</em></h2>
+<p>It can be useful to run build, serve and such commands through <code>npm</code>. That way you don&#39;t have to worry about the technology used in the project. You just invoke the commands. This can be achieved easily by setting up a <code>scripts</code> section to <code>package.json</code>.</p>
+<p>In this case we can move the build step behind <code>npm run build</code> like this:</p>
+<ol>
+<li><code>npm i webpack --save</code> - If you want to install Webpack just a development dependency, you can use <code>--save-dev</code>. This is handy if you are developing a library and don&#39;t want it to depend on the tool (bad idea!).</li>
+<li>Add the following to <code>package.json</code>:</li>
+</ol>
+<pre><code class="lang-json">  &quot;scripts&quot;: {
+    &quot;build&quot;: &quot;node_modules/.bin/webpack&quot;
+  }
+</code></pre>
+<p>To invoke a build, you can hit <code>npm run build</code> now.</p>
+<p>Later on this approach will become more powerful as project complexity grows. You can hide the complexity within <code>scripts</code> while keeping the interface simple.</p>
+<p>The potential problem with this approach is that it can tie you to a Unix environment in case you use environment specific commands. If so, you may want to consider using something environment agnostic, such as <a href="https://www.npmjs.com/package/gulp-webpack" target="_blank">gulp-webpack</a>.</p>
 
                     
                     </section>

@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="1.4" data-basepath="." data-revision="1424093682258">
+    <div class="book" data-level="1.4" data-basepath="." data-revision="1424099992476">
     
 
 <div class="book-summary">
@@ -679,7 +679,7 @@
 
 });
 </code></pre>
-<h2 id="understanding-paths">Understanding paths</h2>
+<h2 id="understanding-paths">Understanding Paths</h2>
 <p>A module is loaded by filepath. Imagine the following tree structure:</p>
 <ul>
 <li>/app<ul>
@@ -718,6 +718,7 @@ import utils from <span class="hljs-string">'/utils.js'</span>;
 <p>The <strong>relative path</strong> is relative to the current file. The <strong>absolute path</strong> is relative to the entry file, which in this case is <em>main.js</em>.</p>
 <h3 id="do-i-have-to-use-file-extension">Do I have to use file extension?</h3>
 <p>No, you do not have to use <em>.js</em>, but it highlights better what you are requiring. You might have some .js files, and some .jsx files and even images and css can be required by Webpack. It also clearly differs from required node_modules and specific files.</p>
+<p>Remember that Webpack is a module bundler! This means you can set it up to load any format you want given there is a loader for it. We&#39;ll delve into this topic later on.</p>
 
                     
                     </section>
