@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="2" data-basepath="." data-revision="1424099992476">
+    <div class="book" data-level="2" data-basepath="." data-revision="1424100310678">
     
 
 <div class="book-summary">
@@ -719,7 +719,7 @@
 </code></pre>
 <p>You can see some basic features of a React component above. First we create a class for our component. After that we define some initial state for it, then we render and finally we define some custom callbacks for our handlers if they exist. In this case I decided to implement an extra feature, liking. The current implementation just keeps track of the amount of likes per component.</p>
 <p>In practice you would transmit like amounts to a backend and add some validation there but this is a good starting point for understanding how state works in React.</p>
-<p><code>getInitialState</code> and <code>render</code> are a part of a [React component&#39;s lifecycle as documented officially]. There are additional hooks that allow you to do things like set up adapters for <code>jQuery</code> plugins and such.</p>
+<p><code>getInitialState</code> and <code>render</code> are a part of a <a href="http://facebook.github.io/react/docs/component-specs.html" target="_blank">React component&#39;s lifecycle as documented officially</a>. There are additional hooks that allow you to do things like set up adapters for <code>jQuery</code> plugins and such.</p>
 <p>In this example CSS naming has been modeled after <a href="http://suitcss.github.io/" target="_blank">Suit CSS</a> conventions as those look clean to me. That&#39;s just one way to deal with it.</p>
 <h3 id="dealing-with-manipulation">Dealing with Manipulation</h3>
 <p>Let&#39;s say we want to modify the owner of our TodoItems. For the sake of simplicity let&#39;s expect it&#39;s just a string and owner is the same for all TodoItems. Based on this design it would make sense to have an input for owner at our user interface. A naive implementation would look something like this:</p>
