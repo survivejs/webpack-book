@@ -5,11 +5,9 @@ Please move a long to the [wiki](https://github.com/christianalfoni/react-webpac
 
 Note that `gh-pages` branch gets generated based on the wiki content. If you find errors, please open [an issue](https://github.com/christianalfoni/react-webpack-cookbook/issues/new).
 
-## JSON Generators
+## Gitbook Generator
 
-The generator converts the wiki content to JSON. The JSON content can be served through a web frontend.
-
-### Usage
+The generator converts the wiki content to Gitbook (standalone site). In this case it is pushed to `gh-pages`. Use it as follows:
 
 1. `git clone https://github.com/christianalfoni/react-webpack-cookbook.wiki.git`
 2. `npm install`
