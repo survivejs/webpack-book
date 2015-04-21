@@ -1,5 +1,4 @@
-gh-pages/
 node_modules/
-*.wiki/
-site/data.json
+gh-pages/
+wiki/
 

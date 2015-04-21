@@ -10,7 +10,7 @@ main();
 
 function main() {
     var input = './content';
-    var output = './react-webpack-cookbook.wiki';
+    var output = './wiki';
 
     fs.mkdir(output, function() {
         // if it dir exists already, just override content
