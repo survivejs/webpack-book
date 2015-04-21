@@ -5,6 +5,7 @@
   "main": "./index.js",
   "scripts": {
     "gitbook": "gitbook build ./content ./gh-pages",
+    "wiki": "node ./scripts/generate-wiki.js",
     "deploy": "node ./scripts/deploy-gh-pages.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
