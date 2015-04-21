@@ -1,10 +1,10 @@
 {
   "name": "react-webpack-cookbook",
   "version": "0.0.0",
-  "description": "React, WebPack cookbook generator",
+  "description": "React Webpack cookbook",
   "main": "./index.js",
   "scripts": {
-    "gitbook": "node ./scripts/gitbook.js",
+    "gitbook": "gitbook build ./content ./gh-pages",
     "deploy": "node ./scripts/deploy-gh-pages.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,9 +24,9 @@
   "homepage": "https://github.com/christianalfoni/react-webpack-cookbook",
   "dependencies": {
     "async": "^0.9.0",
-    "fs-extra": "^0.16.3",
+    "fs-extra": "^0.18.2",
     "gh-pages": "^0.2.0",
-    "gitbook": "^1.5.0"
+    "gitbook-cli": "^0.3.3"
   },
   "devDependencies": {}
 }

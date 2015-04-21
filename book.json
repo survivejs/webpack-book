@@ -1,0 +1,6 @@
+{
+    "gitbook": ">=2.0.0",
+    "title": "React Webpack cookbook",
+    "description": "Recipes for solving common Webpack problems",
+    "language": "en"
+}
