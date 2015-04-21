@@ -1,0 +1,1 @@
+- Using bower files with noparse to improve rebundle speed

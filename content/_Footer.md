@@ -1,0 +1,1 @@
+The React Webpack Cookbook is a work in progress by @bebraw and @christianalfoni

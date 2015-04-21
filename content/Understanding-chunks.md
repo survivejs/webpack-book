@@ -1,0 +1,2 @@
+- Explain how webpack thinks chunks and not files
+- What are files to load? And what does webpack create for you? And how?
