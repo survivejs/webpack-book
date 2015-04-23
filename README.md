@@ -1,7 +1,5 @@
 # react-webpack-cookbook
-A cookbook for using webpack with React JS
-
-Please move a long to the [wiki](https://christianalfoni.github.io/react-webpack-cookbook/)
+A cookbook for using webpack with React JS: [Go to coobook](https://christianalfoni.github.io/react-webpack-cookbook/)
 
 Note that `gh-pages` branch and wiki content gets generated based on the wiki content. If you find errors, please open [an issue](https://github.com/christianalfoni/react-webpack-cookbook/issues/new) or create a PR against `/content`.
 
