@@ -12,7 +12,7 @@ The greatest and worst feature of frameworks is that they sort of cage you in. A
 
 React provides a component centric approach to frontend development. You will design your application as smaller components, each of which has it own purpose. Taken to the extreme a component may contain its logic, layout and basic styling. To give you an example of JSX:
 
-```jsx
+```html
 ...
 <TodoItem className='urgent' owner={owner} task='Make a dinner' />
 ...
@@ -24,7 +24,7 @@ In practice you would most likely structure this a little differently to fit you
 
 We can mix normal JavaScript code within those \{\}'s. We can use this idea to render a list of `TodoItem`s like this (ES syntax):
 
-```jsx
+```html
 <ul>{todoItems.map((todoItem, i) =>
     <li key={'todoitem' + i}><TodoItem owner={todoItem.owner} task={todoItem.task} /></li>
 )}</ul>
