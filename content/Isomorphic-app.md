@@ -29,4 +29,4 @@ app.get('/', function (req, res) {
 });
 ```
 
-So this was a very naive and simple way of showing it, but what yo should notice here is that we use the same **App.js** file on the client and server, but we have two different ways of producing the state.
+So this was a very naive and simple way of showing it, but what you should notice here is that we use the same **App.js** file on the client and server, but we have two different ways of producing the state.
