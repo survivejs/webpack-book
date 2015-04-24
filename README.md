@@ -1,9 +1,21 @@
-# react-webpack-cookbook
-A cookbook for using webpack with React JS. 
+# react-webpack-cookbook - A cookbook for using Webpack with React JS.
 
-#### [Go to cookbook](https://christianalfoni.github.io/react-webpack-cookbook/)
+> [Go to cookbook](https://christianalfoni.github.io/react-webpack-cookbook/)
 
-Note that `gh-pages` branch and wiki content gets generated based on the wiki content. If you find errors, please open [an issue](https://github.com/christianalfoni/react-webpack-cookbook/issues/new) or create a PR against `/content`.
+## Contributing
+
+If you notice something to improve, the easiest way to do that is to
+
+1. Fork this repo
+2. Set up a branch
+3. Make the changes (see `/content`)
+4. Submit a PR
+
+So all in all it's just a regular GitHub PR flow.
+
+Alternatively you can [open an issue](https://github.com/christianalfoni/react-webpack-cookbook/issues/new) and we'll look into it.
+
+Note that `gh-pages` branch and wiki content gets generated based on the main repository content.
 
 ## Gitbook Generator
 

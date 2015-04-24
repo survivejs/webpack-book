@@ -1,6 +1,6 @@
 [Gitbook version](http://christianalfoni.github.io/react-webpack-cookbook/)
 
-> **Work in progress!** We welcome feedback at [our issue tracker](https://github.com/christianalfoni/react-webpack-cookbook/issues).
+> In case you want to contribute, please create a PR against [the main repo](https://github.com/christianalfoni/react-webpack-cookbook) or contact us through [the issue tracker](https://github.com/christianalfoni/react-webpack-cookbook/issues).
 
 The purpose of this cookbook is to guide you into the world of React and Webpack. Both are powerful technologies and when used together, frontend development becomes a joy.
 
