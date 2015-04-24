@@ -4,7 +4,7 @@
 
 The purpose of this cookbook is to guide you into the world of React and Webpack. Both are powerful technologies and when used together, frontend development becomes a joy.
 
-The cookbook should have something to offer for all skill levels. If you are interested in just React, skip the Webpack part and vice versa.
+The cookbook should have something to offer for all skill levels. If you are interested in just React, skip the Webpack part and vice versa. A more tutorial oriented approach is available in the form of [SurviveJS - Webpack and React](https://github.com/survivejs/webpack_react) book.
 
 ## React
 
