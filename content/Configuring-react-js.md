@@ -7,15 +7,45 @@ There is really nothing more to it. You can now start using React JS in your cod
 ## Using React JS in the code
 
 *In any file*
+
 ```javascript
 import React from 'react';
 
-export default React.createClass({
-  render: function () {
-    return React.createElement('h1', null, 'Hello world');
+export default class Hellow extends React.Component {
+  render() {
+    return <h1>Hello world</h1>;
   }
-});
-;
+}
+```
+
+**main.js**
+
+```javascript
+import React from 'react';
+import Component from './component';
+
+main();
+
+function main() {
+    React.render(<Component />, document.getElementById('app'));
+}
+```
+
+**build/index.html**
+
+```javascript
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"/>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script src="http://localhost:8080/webpack-dev-server.js"></script>
+    <script src="bundle.js"></script>
+  </body>
+</html>
 ```
 
 ## Converting JSX
@@ -48,19 +78,4 @@ module.exports = config;
 
 Webpack will test each path required in your code. In this project we are using ES6 module loader syntax, which means that the require path of `import MyComponent from './Component.jsx';` is `'./Component.jsx'`.
 
-## Changing the Component file and running the code
-
-In the `/app` folder we now change the filename of our *Component.js* file to **Component.jsx**.
-
-*Component.jsx*
-```javascript
-import React from 'react';
-
-export default React.createClass({
-  render: function () {
-    return <h1>Hello world!</h1>
-  }
-});
-```
-
-We have now changed the return statement of our render method to use JSX syntax. Run `npm run dev` in the console and refresh the page, unless you are already running.
+Run `npm run dev` in the console and refresh the page to see something.
