@@ -11,7 +11,7 @@ There is really nothing more to it. You can now start using React JS in your cod
 ```javascript
 import React from 'react';
 
-export default class Hellow extends React.Component {
+export default class Hello extends React.Component {
   render() {
     return <h1>Hello world</h1>;
   }
@@ -22,12 +22,12 @@ export default class Hellow extends React.Component {
 
 ```javascript
 import React from 'react';
-import Component from './component';
+import Hello from './component';
 
 main();
 
 function main() {
-    React.render(<Component />, document.getElementById('app'));
+    React.render(<Hello />, document.getElementById('app'));
 }
 ```
 
