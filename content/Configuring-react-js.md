@@ -19,9 +19,10 @@ export default React.createClass({
 ```
 
 ## Converting JSX
-To use the JSX syntax you will need webpack to transform your JavaScript. This is the job of a loader.
 
-`npm install jsx-loader --save-dev`
+To use the JSX syntax you will need webpack to transform your JavaScript. This is the job of a loader. We'll use [Babel](https://babeljs.io/) as it's nice and has plenty of features.
+
+`npm install babel-loader --save-dev`
 
 Now we have to configure webpack to use this loader.
 
@@ -37,7 +38,7 @@ var config = {
   module: {
     loaders: [{
       test: /\.jsx?$/, // A regexp to test the require path. accepts either js or jsx
-      loader: 'jsx?harmony' // The module to load. "jsx" is short for "jsx-loader"
+      loader: 'babel' // The module to load. "babel" is short for "babel-loader"
     }]
   }
 };
@@ -63,6 +64,3 @@ export default React.createClass({
 ```
 
 We have now changed the return statement of our render method to use JSX syntax. Run `npm run dev` in the console and refresh the page, unless you are already running.
-
-## Seriously consider JavaScript next
-Instead of using a specific JSX loader you can use Babel that also gives you tomorrows JavaScript today. Read more about that [here](Javascript-next).
