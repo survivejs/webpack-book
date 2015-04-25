@@ -19,7 +19,7 @@ export default React.createClass({
 ```
 
 ## Converting JSX
-To use the JSX syntax you will need webpack to transform your JavaScript. This is the job of a loader. 
+To use the JSX syntax you will need webpack to transform your JavaScript. This is the job of a loader.
 
 `npm install jsx-loader --save-dev`
 
@@ -36,7 +36,7 @@ var config = {
   },
   module: {
     loaders: [{
-      test: /\.jsx$/, // A regexp to test the require path
+      test: /\.jsx?$/, // A regexp to test the require path. accepts either js or jsx
       loader: 'jsx?harmony' // The module to load. "jsx" is short for "jsx-loader"
     }]
   }
