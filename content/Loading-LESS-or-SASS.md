@@ -45,4 +45,3 @@ You can also load LESS files directly from your node_modules directory.
 $import "~bootstrap/less/bootstrap";
 ```
 
-**Note!** Webpack is currently unable to resolve SASS import statements, but it will very soon: [issue 31](https://github.com/jtangelder/sass-loader/issues/31)
