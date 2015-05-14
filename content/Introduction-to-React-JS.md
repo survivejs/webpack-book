@@ -55,7 +55,7 @@ module.exports = React.createClass({
         var likes = this.state.likes;
 
         return <div className='TodoItem'>
-            <span className='TodoItem-owner'>{owner}<span>
+            <span className='TodoItem-owner'>{owner}</span>
             <span className='TodoItem-task'>{task}</span>
             <span className='TodoItem-likes'>{likes}</span>
             <span className='TodoItem-like' onClick={this.like}>Like</span>
