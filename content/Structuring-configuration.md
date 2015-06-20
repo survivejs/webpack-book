@@ -33,8 +33,10 @@ So there really is not much difference in creating the dev and production versio
 
 ```javascript
 var path = require('path');
+var node_modules_dir = path.resolve(__dirname, 'node_modules');
+
 var config = {
-  entry: path.resolve(__dirname, 'app/main.js')
+  entry: path.resolve(__dirname, 'app/main.js'),
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
