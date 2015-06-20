@@ -6,7 +6,7 @@ There is really nothing more to it. You can now start using React JS in your cod
 
 ## Using React JS in the code
 
-*In any file*
+**component.jsx**
 
 ```javascript
 import React from 'react';
