@@ -1,4 +1,4 @@
-So this part is just freakin' awesome. With React JS and the react-hot-loader you can change the class code of your component and see the instances update live in the DOM, without loosing their state! This is pretty much exactly how CSS updates behave, only that it is your components.
+So this part is just freakin' awesome. With React JS and the react-hot-loader you can change the class code of your component and see the instances update live in the DOM, without losing their state! This is pretty much exactly how CSS updates behave, only that it is your components.
 
 ## Setting it up
 This setup requires that you use the **webpack-dev-server** as introduced in earlier chapters. Now we just have to install the loader with `npm install react-hot-loader --save-dev`, do a small config change:
@@ -51,6 +51,6 @@ if (module.hot) {
 
 ```
 
-It is that simple. Render a component to the DOM and make a code change on the class of that component. It will render itself again, keeping the existing state. Cool?
+It is that simple. Render a component to the DOM and make a code change on the component's class. It will render itself again, keeping the existing state. Cool?
 
 Read more about the [react-hot-loader](http://gaearon.github.io/react-hot-loader/getstarted/).
