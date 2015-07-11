@@ -1,4 +1,4 @@
-[Gitbook version](http://christianalfoni.github.io/react-webpack-cookbook/)
+> [zh-cn](https://fakefish.github.io/react-webpack-cookbook/)
 
 > In case you want to contribute, please create a PR against [the main repo](https://github.com/christianalfoni/react-webpack-cookbook) or contact us through [the issue tracker](https://github.com/christianalfoni/react-webpack-cookbook/issues).
 
