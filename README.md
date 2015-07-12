@@ -2,6 +2,8 @@
 
 > [Go to cookbook](https://christianalfoni.github.io/react-webpack-cookbook/)
 
+> [中文版](https://fakefish.github.io/react-webpack-cookbook/)
+
 ## Contributing
 
 If you notice something to improve, the easiest way to do that is to
