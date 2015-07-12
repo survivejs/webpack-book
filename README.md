@@ -1,6 +1,7 @@
 # react-webpack-cookbook - A cookbook for using Webpack with React JS.
 
 > [Go to cookbook](https://christianalfoni.github.io/react-webpack-cookbook/)
+> [中文版](https://fakefish.github.io/react-webpack-cookbook/)
 
 ## Contributing
 
