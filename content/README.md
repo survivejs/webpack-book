@@ -19,3 +19,7 @@ Perhaps the most intriguing thing about React is that it keeps on challenging tr
 Webpack operates on a lower level. It is a module bundler. In essence it is something that you use to build your project into deliverable components (HTML, CSS, JS). The nice thing about Webpack is that once you initially configure it, it deals with the nasty details for you. This allows you to mix various technologies within your project without a headache.
 
 If you are completely new to Webpack and want to go through a good introduction, check out [Pete Hunt's guide](https://github.com/petehunt/webpack-howto). You'll find the basics there. This guide merely complements his.
+
+## Written by
+
+[Christian Alfoni](http://www.christianalfoni.com/) and [Juho Vepsäläinen](http://survivejs.com/).
