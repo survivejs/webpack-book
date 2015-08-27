@@ -1,11 +1,13 @@
 Webpack has a [few ways](https://github.com/webpack/webpack/issues/595) to load SVG. However the simplest way is through **file-loader**.
 
 ## Installation and configuration
+
 Install the loader: `npm install file-loader --save-dev`.
 
 In the webpack config file you can add the following loader configuration:
 
-webpack.config.js
+**webpack.config.js**
+
 ```javascript
 var path = require('path');
 var config = {
@@ -17,7 +19,7 @@ var config = {
   module: {
     loaders: [{
       test: /\.jsx$/,
-      loader: 'jsx'
+      loader: 'babel'
     }, {
       test: /\.svg$/,
       loader: 'file-loader'
