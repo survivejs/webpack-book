@@ -22,7 +22,7 @@ export default class Hello extends React.Component {
 
 ```javascript
 import React from 'react';
-import Hello from './component';
+import Hello from './component.jsx';
 
 main();
 

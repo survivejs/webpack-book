@@ -1,9 +1,11 @@
 If you want to use compiled CSS, there are two loaders available for you. The **less-loader** and the **sass-loader**. Depending on your preference, this is how you set it up.
 
 ## Installing and configuring the loader
+
 `npm install less-loader` or `npm install sass-loader`.
 
-*webpack.config.js*
+**webpack.config.js**
+
 ```javascript
 var path = require('path');
 var config = {
@@ -15,9 +17,9 @@ var config = {
   module: {
     loaders: [{
       test: /\.jsx$/,
-      loader: 'jsx'
-    }, 
-     
+      loader: 'babel'
+    },
+
     // LESS
     {
       test: /\.less$/,

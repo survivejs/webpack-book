@@ -14,7 +14,7 @@ var config = {
   module: {
     loaders: [{
       test: /\.jsx$/,
-      loader: 'jsx'
+      loader: 'babel'
     }, {
       test: /\.(png|jpg)$/,
       loader: 'url?limit=25000'
@@ -22,4 +22,5 @@ var config = {
   }
 };
 ```
-The limit is an argument passed to the url-loader. It tells it that images that er 25KB or smaller in size will be converted to a BASE64 string and included in the CSS file where it is defined.
+
+The limit is an argument passed to the url-loader. It tells it that images that are 25KB or smaller in size will be converted to a BASE64 string and included in the CSS file where it is defined.
