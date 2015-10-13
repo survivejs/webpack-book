@@ -19,7 +19,9 @@ var config = {
     filename: 'bundle.js'
   },
   module: {
-    loaders: [{
+    loaders: [
+      { test: /\.js$/, loader: 'babel-loader' },
+      {
       test: /\.jsx$/,
       loader: 'babel'
     }, {
