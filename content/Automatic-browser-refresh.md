@@ -9,6 +9,7 @@ When **webpack-dev-server** is running it will watch your files for changes. Whe
     <meta charset="UTF-8"/>
   </head>
   <body>
+    <script src="http://localhost:8080/webpack-dev-server.js"></script>
     <script src="bundle.js"></script>
   </body>
 </html>
