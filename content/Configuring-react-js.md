@@ -51,8 +51,9 @@ function main() {
 ## Converting JSX
 
 To use the JSX syntax you will need webpack to transform your JavaScript. This is the job of a loader. We'll use [Babel](https://babeljs.io/) as it's nice and has plenty of features.
+Below we install the babel-loader with two other presets, es2015 and react.
 
-`npm install babel-loader --save-dev`
+`npm install babel-loader babel-core babel-preset-es2015 babel-preset-react --save-dev`
 
 Now we have to configure webpack to use this loader.
 
@@ -69,6 +70,9 @@ var config = {
     loaders: [{
       test: /\.jsx?$/, // A regexp to test the require path. accepts either js or jsx
       loader: 'babel' // The module to load. "babel" is short for "babel-loader"
+      query: {
+          presets: [ 'es2015', 'react' ]
+      }
     }]
   }
 };
