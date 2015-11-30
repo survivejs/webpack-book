@@ -70,14 +70,20 @@ var config = {
     loaders: [{
       test: /\.jsx?$/, // A regexp to test the require path. accepts either js or jsx
       loader: 'babel' // The module to load. "babel" is short for "babel-loader"
-      query: {
-          presets: [ 'es2015', 'react' ]
-      }
     }]
   }
 };
 
 module.exports = config;
+```
+
+To configure the babel-loader to use the es2015 and react presets, we create a .babelrc file as shown below.
+
+*.babelrc*
+```jascript
+{
+    "presets": [ "es2015", "react" ]
+}
 ```
 
 Webpack will test each path required in your code. In this project we are using ES6 module loader syntax, which means that the require path of `import MyComponent from './Component.jsx';` is `'./Component.jsx'`.
