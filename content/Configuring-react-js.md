@@ -80,7 +80,7 @@ module.exports = config;
 To configure the babel-loader to use the es2015 and react presets, we create a .babelrc file as shown below.
 
 *.babelrc*
-```jascript
+```javascript
 {
     "presets": [ "es2015", "react" ]
 }
