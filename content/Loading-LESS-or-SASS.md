@@ -2,7 +2,7 @@ If you want to use compiled CSS, there are two loaders available for you. The **
 
 ## Installing and configuring the loader
 
-`npm install less-loader` or `npm install sass-loader`.
+`npm install less-loader` or `npm install sass-loader node-sass`.
 
 **webpack.config.js**
 
