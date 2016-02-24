@@ -20,7 +20,7 @@ var config = {
   },
   module: {
     loaders: [{
-      test: /\.jsx$/,
+      test: /\.jsx?$/,
       loader: 'babel'
     }, {
       test: /\.css$/, // Only .css files
