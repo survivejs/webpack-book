@@ -2,7 +2,7 @@ Hitting `npm run build` all the time will get boring eventually. Fortunately we 
 
 ## Setting up `webpack-dev-server`
 
-As a first step, hit `npm i webpack-dev-server --save`. In addition we'll need to tweak `package.json` *scripts* section to include it. Here's the basic idea:
+As a first step, hit `npm i webpack-dev-server --save-dev`. In addition we'll need to tweak `package.json` *scripts* section to include it. Here's the basic idea:
 
 *package.json*
 ```json
