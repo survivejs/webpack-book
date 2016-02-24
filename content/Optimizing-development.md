@@ -42,6 +42,9 @@ module.exports = config;
 ```
 Not all modules include a minified distributed version of the lib, but most do. Especially with large libraries like React JS you will get a significant improvement.
 
+#### Important!
+Not all modules support module.noParse, the files included by deps array should have no call to *require*, *define* or similar, or you will get an error when the app runs: **Uncaught ReferenceError: require is not defined**.
+
 ## Exposing React to the global scope
 You might be using distributed versions that requires React JS on the global scope. To fix that you can install the expose-loader by `npm install expose-loader --save-dev` and set up the following config, focusing on the *module* property:
 
