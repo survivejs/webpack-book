@@ -51,8 +51,9 @@ function main() {
 ## Converting JSX
 
 To use the JSX syntax you will need webpack to transform your JavaScript. This is the job of a loader. We'll use [Babel](https://babeljs.io/) as it's nice and has plenty of features.
+Below we install the babel-loader with two other presets, es2015 and react.
 
-`npm install babel-loader --save-dev`
+`npm install babel-loader babel-core babel-preset-es2015 babel-preset-react --save-dev`
 
 Now we have to configure webpack to use this loader.
 
@@ -74,6 +75,15 @@ var config = {
 };
 
 module.exports = config;
+```
+
+To configure the babel-loader to use the es2015 and react presets, we create a .babelrc file as shown below.
+
+*.babelrc*
+```javascript
+{
+    "presets": [ "es2015", "react" ]
+}
 ```
 
 Webpack will test each path required in your code. In this project we are using ES6 module loader syntax, which means that the require path of `import MyComponent from './Component.jsx';` is `'./Component.jsx'`.
