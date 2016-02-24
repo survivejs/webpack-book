@@ -32,6 +32,9 @@ module.exports = {
         path: path.resolve(__dirname, 'build'),
         filename: 'bundle.js',
     },
+    modulesDirectories: [
+      'node_modules'
+    ]
 };
 ```
 
