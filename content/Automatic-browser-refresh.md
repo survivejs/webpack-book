@@ -11,6 +11,7 @@ When **webpack-dev-server** is running it will watch your files for changes. Whe
   <body>
     <script src="http://localhost:8080/webpack-dev-server.js"></script>
     <script src="bundle.js"></script>
+    <script src="http://localhost:8080/webpack-dev-server.js"></script>
   </body>
 </html>
 ```
