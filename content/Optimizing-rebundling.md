@@ -1,4 +1,4 @@
-You might notice after requiring React JS into your project that the time it takes from a save to a finished rebundle of your application takes more time. In development you ideally went from 200-800 ms rebundle speed, depending on what part of the application you are working on.
+You might notice after requiring React JS into your project that the time it takes from a save to a finished rebundle of your application takes more time. In development you ideally want 200-800 ms rebundle speed, depending on what part of the application you are working on.
 
 > IMPORTANT! This setup a minified, production version of React. As a result you will lose `propTypes` based type validation!
 
