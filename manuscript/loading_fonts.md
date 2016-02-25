@@ -1,4 +1,4 @@
-# Inlining Fonts
+# Loading Fonts
 
 Fonts can be really difficult to get right. First of all we have typically 4 different formats, but only one of them will be used by the respective browser. You do not want to inline all 4 formats, as that will just bloat your CSS file and in no way be an optimization.
 
