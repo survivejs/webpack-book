@@ -8,7 +8,8 @@ Basics_of_Webpack.md
 webpack_compared.md
 getting_started.md
 automatic_browser_refresh.md
-requiring_files.md
+refreshing_css.md
+setting_up_npm_install_webpack_plugin.md
 
 CSS_Fonts_and_Images.md
 loading_css.md

@@ -53,7 +53,7 @@ The output means that the development server is running. If you open *http://loc
 
 T> If you fail to see anything at the browser, you may need to use a different port through *webpack-dev-server --port 3000* kind of invocation. One reason why the server might fail to run is simply because there's something else running in the port. You can verify this through a terminal command, such as `netstat -na | grep 8080`. If there's something running in the port 8080, it should display a message. The exact command may depend on your platform.
 
-### Splitting Up the Configuration
+## Splitting Up the Configuration
 
 As the development setup has certain requirements of its own, we'll need to split our Webpack configuration. Given Webpack configuration is just JavaScript, there are many ways to achieve this. At least the following ways are feasible:
 
@@ -120,7 +120,7 @@ leanpub-end-insert
 
 Now that we have room for expansion, we can hook up Hot Module Replacement to make the browser refresh and make the development mode more useful.
 
-### Configuring Hot Module Replacement (HMR)
+## Configuring Hot Module Replacement (HMR)
 
 Hot Module Replacement gives us simple means to refresh the browser automatically as we make changes. The idea is that if we change our *app/component.js*, the browser will refresh itself. The same goes for possible CSS changes.
 
@@ -206,7 +206,7 @@ T> You should be able to access the application alternatively through **localhos
 
 T> If you want to default to some other port than *8080*, you can use a declaration like `port: process.env.PORT || 3000`.
 
-### HMR on Windows
+## HMR on Windows
 
 The setup may be problematic on certain versions of Windows. Instead of using `devServer` and `plugins` configuration, implement it like this:
 
@@ -242,13 +242,13 @@ Given this setup polls the filesystem, it is going to be more resource intensive
 
 T> There are more details in *webpack-dev-server* issue [#155](https://github.com/webpack/webpack-dev-server/issues/155).
 
-### Accessing Development Server from Network
+## Accessing the Development Server from Network
 
 It is possible to customize host and port settings through the environment in our setup (i.e., `export PORT=3000` on Unix or `SET PORT=3000` on Windows). This can be useful if you want to access your server using some other device within the same network. The default settings are enough on most platforms.
 
 To access your server, you'll need to figure out the ip of your machine. On Unix this can be achieved using `ifconfig`. On Windows `ipconfig` can be used. An npm package, such as [node-ip](https://www.npmjs.com/package/node-ip) may come in handy as well. Especially on Windows you may need to set your `HOST` to match your ip to make it accessible.
 
-### Alternative Ways to Use *webpack-dev-server*
+## Alternative Ways to Use *webpack-dev-server*
 
 We could have passed *webpack-dev-server* options through terminal. I find it clearer to manage it within Webpack configuration as that helps to keep *package.json* nice and tidy.
 
@@ -258,161 +258,6 @@ T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environme
 
 W> Note that there are [slight differences](https://github.com/webpack/webpack-dev-server/issues/106) between the CLI and the Node.js API. This is the reason why some prefer to solely use the Node.js API.
 
-## Refreshing CSS
-
-We can extend this approach to work with CSS. Webpack allows us to change CSS without forcing a full refresh. To load CSS into a project, we'll need to use a couple of loaders. To get started, invoke
-
-```bash
-npm i css-loader style-loader --save-dev
-```
-
-Now that we have the loaders we need, we'll need to make sure Webpack is aware of them. Configure as follows:
-
-**webpack.config.js**
-
-```javascript
-...
-
-const common = {
-  ...
-leanpub-start-delete
-  }
-leanpub-end-delete
-leanpub-start-insert
-  },
-  module: {
-    loaders: [
-      {
-        // Test expects a RegExp! Note the slashes!
-        test: /\.css$/,
-        loaders: ['style', 'css'],
-        // Include accepts either a path or an array of paths.
-        include: PATHS.app
-      }
-    ]
-  }
-leanpub-end-insert
-}
-
-...
-```
-
-The configuration we added means that files ending with `.css` should invoke given loaders. `test` matches against a JavaScript style regular expression. The loaders are evaluated from right to left. In this case, *css-loader* gets evaluated first, then *style-loader*. *css-loader* will resolve `@import` and `url` statements in our CSS files. *style-loader* deals with `require` statements in our JavaScript. A similar approach works with CSS preprocessors, like Sass and Less, and their loaders.
-
-T> Loaders are transformations that are applied to source files, and return the new source. Loaders can be chained together, like using a pipe in Unix. See Webpack's [What are loaders?](http://webpack.github.io/docs/using-loaders.html) and [list of loaders](http://webpack.github.io/docs/list-of-loaders.html).
-
-W> If `include` isn't set, Webpack will traverse all files within the base directory. This can hurt performance! It is a good idea to set up `include` always. There's also `exclude` option that may come in handy. Prefer `include`, however.
-
-## Setting Up Initial CSS
-
-We are missing just one bit, the actual CSS itself:
-
-**app/main.css**
-
-```css
-body {
-  background: cornsilk;
-}
-```
-
-Also, we'll need to make Webpack aware of it. Without having a `require` pointing at it, Webpack won't be able to find the file:
-
-**app/index.js**
-
-```javascript
-leanpub-start-insert
-require('./main.css');
-leanpub-end-insert
-
-...
-```
-
-Execute `npm start` now. Point your browser to **localhost:8080** if you are using the default port.
-
-Open up *main.css* and change the background color to something like `lime` (`background: lime`). Develop styles as needed to make it look a little nicer.
-
-![Hello cornsilk world](images/hello_02.png)
-
-T> An alternative way to load CSS would be to define a separate entry through which we point at CSS.
-
-## Enabling Sourcemaps
-
-To improve the debuggability of the application, we can set up sourcemaps. They allow you to see exactly where an error was raised. In Webpack this is controlled through the `devtool` setting. We can use a decent default as follows:
-
-**webpack.config.js**
-
-```javascript
-...
-
-if(TARGET === 'start' || !TARGET) {
-  module.exports = merge(common, {
-leanpub-start-insert
-    devtool: 'eval-source-map',
-leanpub-end-insert
-    ...
-  });
-}
-
-...
-```
-
-If you run the development build now using `npm start`, Webpack will generate sourcemaps. Webpack provides many different ways to generate them as discussed in the [official documentation](https://webpack.github.io/docs/configuration.html#devtool). In this case, we're using `eval-source-map`. It builds slowly initially, but it provides fast rebuild speed and yields real files.
-
-Faster development specific options, such as `cheap-module-eval-source-map` and `eval`, produce lower quality sourcemaps. All `eval` options will emit sourcemaps as a part of your JavaScript code. Therefore they are not suitable for a production environment. Given size isn't an issue during development, they tend to be a good fit for that use case.
-
-It is possible you may need to enable sourcemaps in your browser for this to work. See [Chrome](https://developer.chrome.com/devtools/docs/javascript-debugging) and [Firefox](https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Use_a_source_map) instructions for further details.
-
-## Avoiding `npm install` by Using *npm-install-webpack-plugin*
-
-In order to avoid some typing, we can set up a Webpack plugin known as [npm-install-webpack-plugin](https://www.npmjs.com/package/npm-install-webpack-plugin). As we develop the project, it will detect changes made to Webpack configuration and the projects files and install the dependencies for us. It will modify *package.json* automatically as well.
-
-You can still install dependencies manually if you want. Any dependencies within `app` should be installed through `--save` (or `-S`). Root level dependencies (i.e. packages needed by Webpack), should be installed through `--save-dev` (or `-D`). This separation will become handy when we generate production bundles at *Building Kanban*.
-
-To get the plugin installed, execute:
-
-```bash
-npm i npm-install-webpack-plugin --save-dev
-```
-
-We also need to connect it with our configuration:
-
-**webpack.config.js**
-
-```javascript
-const path = require('path');
-const merge = require('webpack-merge');
-const webpack = require('webpack');
-leanpub-start-insert
-const NpmInstallPlugin = require('npm-install-webpack-plugin');
-leanpub-end-insert
-
-...
-
-// Default configuration
-if(TARGET === 'start' || !TARGET) {
-  module.exports = merge(common, {
-    ...
-    plugins: [
-leanpub-start-delete
-      new webpack.HotModuleReplacementPlugin(),
-leanpub-end-delete
-leanpub-start-insert
-      new webpack.HotModuleReplacementPlugin(),
-      new NpmInstallPlugin({
-        save: true // --save
-      })
-leanpub-end-insert
-    ]
-  });
-}
-
-if(TARGET === 'build') {
-  module.exports = merge(common, {});
-}
-```
-
-After this change we can save quite a bit of typing and context switches.
-
 ## Conclusion
 
-In this chapter, you learned to set up Webpack to refresh your browser during development. Our build configuration isn't that sophisticated yet, though. I'll show you how to push it further in the next chapter.
+In this chapter you learned to set up Webpack to refresh your browser automatically. We can go a notch further and make this work beautifully with CSS files. We'll do that in the next chapter.
