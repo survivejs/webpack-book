@@ -1,9 +1,11 @@
 Frontmatter.txt
+
 introduction.md
+
 Mainmatter.txt
 
 Basics_of_Webpack.md
-introduction_to_webpack.md
+webpack_compared.md
 getting_started.md
 running_a_workflow.md
 automatic_browser_refresh.md
