@@ -11,7 +11,7 @@ automatic_browser_refresh.md
 refreshing_css.md
 setting_up_npm_install_webpack_plugin.md
 
-Deployment_Strategies.md
+Build_Techniques.md
 deploying_to_production.md
 single_bundle.md
 splitting_app_and_vendors.md
