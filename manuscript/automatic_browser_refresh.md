@@ -76,7 +76,7 @@ Next, we need to define some split points to our configuration so we can customi
 **webpack.config.js**
 
 ```javascript
-...
+const path = require('path');
 leanpub-start-insert
 const merge = require('webpack-merge');
 leanpub-end-insert
@@ -118,7 +118,7 @@ if(TARGET === 'build') {
 leanpub-end-insert
 ```
 
-Now that we have room for expansion, we can hook up Hot Module Replacement to make the browser refresh and make the development mode more useful.
+After this change our build should behave exactly the same way as before. This time, however, we have room for expansion. We can hook up Hot Module Replacement next to make the browser refresh and turn our the development mode into something more useful.
 
 ## Configuring Hot Module Replacement (HMR)
 
@@ -196,7 +196,7 @@ leanpub-end-insert
 ...
 ```
 
-Execute `npm start` and surf to **localhost:8080**. Try modifying *app/component.js*. It should refresh the browser. Note that this is hard refresh in case you modify JavaScript code. CSS modifications work in a neater manner and can be applied without a refresh. In the next chapter we discuss how to achieve something similar with React. This will provide us a little better development experience.
+Execute `npm start` and surf to **localhost:8080**. Try modifying *app/component.js*. It should refresh the browser. Note that this is hard refresh in case you modify JavaScript code. CSS modifications work in a neater manner and can be applied without a refresh.
 
 If you using Windows and it doesn't refresh, see the following section for an alternative setup.
 
