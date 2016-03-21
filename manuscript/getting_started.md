@@ -44,7 +44,7 @@ After executing, you should see a version, a link to the command line interface 
 
 ```bash
 webpack_demo $ node_modules/.bin/webpack
-webpack 1.12.12
+webpack 1.12.14
 Usage: https://webpack.github.io/docs/cli.html
 
 Options:
