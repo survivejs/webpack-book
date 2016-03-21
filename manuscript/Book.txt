@@ -12,9 +12,14 @@ refreshing_css.md
 setting_up_npm_install_webpack_plugin.md
 
 Build_Techniques.md
-deploying_to_production.md
-single_bundle.md
-splitting_app_and_vendors.md
+minifying_build.md
+setting_environment_variables.md
+splitting_bundles.md
+adding_hashes_to_filenames.md
+cleaning_build.md
+separating_css.md
+analyzing_build_statistics.md
+hosting_on_github_pages.md
 
 Optimization_Techniques.md
 optimizing_development.md
@@ -45,4 +50,3 @@ type_checking_with_flow.md
 universal_app.md
 
 Backmatter.txt
-
