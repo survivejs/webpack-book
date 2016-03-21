@@ -36,7 +36,7 @@ To add Webpack to our project, execute
 npm i webpack --save-dev # or just -D if you want to save typing
 ```
 
-You should see Webpack at your *package.json* `devDependencies` section after this. In addition to installing the package locally below the *node_modules` directory, npm also generates an entry for the executable.
+You should see Webpack at your *package.json* `devDependencies` section after this. In addition to installing the package locally below the *node_modules* directory, npm also generates an entry for the executable.
 
 You can display the exact path of the executables using `npm bin`. Most likely it points at *./node_modules/.bin*. Try executing Webpack from there through terminal using `node_modules/.bin/webpack` or a similar command.
 
