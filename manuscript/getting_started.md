@@ -142,8 +142,9 @@ const PATHS = {
 };
 
 module.exports = {
-  // Entry accepts a path or an object of entries. We'll be using the
-  // latter form given it's convenient with more complex configurations.
+  // Entry accepts a path or an object of entries.
+  // We'll be using the latter form given it's
+  // convenient with more complex configurations.
   entry: {
     app: PATHS.app
   },
@@ -162,8 +163,8 @@ If you execute `node_modules/.bin/webpack`, you should see output like this:
 
 ```bash
 Hash: 2dca5a3850ce5d2de54c
-Version: webpack 1.12.13
-Time: 85ms
+Version: webpack 1.12.14
+Time: 74ms
     Asset     Size  Chunks             Chunk Names
 bundle.js  1.75 kB       0  [emitted]  app
    [0] ./app/index.js 144 bytes {0} [built]
