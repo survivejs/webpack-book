@@ -11,6 +11,16 @@ automatic_browser_refresh.md
 refreshing_css.md
 setting_up_npm_install_webpack_plugin.md
 
+Deployment_Strategies.md
+deploying_to_production.md
+single_bundle.md
+splitting_app_and_vendors.md
+
+Optimization_Techniques.md
+optimizing_development.md
+optimizing_caching.md
+optimizing_rebundling.md
+
 CSS_Fonts_and_Images.md
 loading_css.md
 loading_less_or_sass.md
@@ -18,11 +28,6 @@ loading_stylus_and_yeticss.md
 loading_images.md
 loading_svg.md
 loading_fonts.md
-
-Deployment_Strategies.md
-deploying_to_production.md
-single_bundle.md
-splitting_app_and_vendors.md
 
 Chunking_in_Webpack.md
 understanding_chunks.md
@@ -32,11 +37,6 @@ lazy_loaded_entry_points.md
 Advanced_Techniques.md
 authoring_libraries.md
 writing_loaders.md
-
-Optimization_Techniques.md
-optimizing_development.md
-optimizing_caching.md
-optimizing_rebundling.md
 
 React_Techniques.md
 configuring_react.md
