@@ -21,11 +21,7 @@ separating_css.md
 analyzing_build_statistics.md
 hosting_on_github_pages.md
 
-Optimization_Techniques.md
-optimizing_development.md
-optimizing_rebundling.md
-
-CSS_Fonts_and_Images.md
+Loading_Assets.md
 loading_less_or_sass.md
 loading_stylus_and_yeticss.md
 loading_images.md
@@ -37,6 +33,7 @@ understanding_chunks.md
 lazy_loaded_entry_points.md
 
 Advanced_Techniques.md
+optimizing_development.md
 authoring_libraries.md
 writing_loaders.md
 
