@@ -1,4 +1,4 @@
-# Loading Styling
+# Loading Styles
 
 TODO
 

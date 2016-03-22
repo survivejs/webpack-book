@@ -22,7 +22,7 @@ analyzing_build_statistics.md
 hosting_on_github_pages.md
 
 Loading_Assets.md
-loading_styling.md
+loading_styles.md
 loading_images.md
 loading_svg.md
 loading_fonts.md
