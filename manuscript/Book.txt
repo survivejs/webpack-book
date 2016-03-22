@@ -11,7 +11,7 @@ automatic_browser_refresh.md
 refreshing_css.md
 setting_up_npm_install_webpack_plugin.md
 
-Build_Techniques.md
+Building_with_Webpack.md
 minifying_build.md
 setting_environment_variables.md
 splitting_bundles.md
