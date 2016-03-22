@@ -1,8 +1,8 @@
 # Automatic Browser Refresh
 
-*webpack-dev-server* is a development server running in-memory. It refreshes content automatically in the browser while you develop your application. This makes it roughly equivalent to tools, such as [LiveReload](http://livereload.com/) or [Browsersync](http://www.browsersync.io/).
+Tools, such as [LiveReload](http://livereload.com/) or [Browsersync](http://www.browsersync.io/), allow us to refresh the browser as we develop our application. They can even avoid refresh for CSS changes. It is possible to set up the latter to work with Webpack by using [browser-sync-webpack-plugin](https://www.npmjs.com/package/browser-sync-webpack-plugin). In this case I'm going to show you how to use something more Webpack specific - namely *webpack-dev-server*.
 
-The greatest advantage Webpack has over these tools is Hot Module Replacement (HMR). In short, it provides a way to patch the browser state without a full refresh.
+*webpack-dev-server* is a development server running in-memory. It refreshes content automatically in the browser while you develop your application. It also supports an advanced feature known as Hot Module Replacement (HMR). In short, it provides a way to patch the browser state without a full refresh. This is particularly powerful with technology, such as React.
 
 W> You should use *webpack-dev-server* strictly for development. If you want to host your application, consider other, standard solutions, such as Apache or Nginx.
 
@@ -28,7 +28,7 @@ leanpub-start-delete
 leanpub-end-delete
 leanpub-start-insert
   "build": "webpack",
-  "start": "webpack-dev-server --content-base build"
+  "start": "webpack-dev-server"
 leanpub-end-insert
 },
 ...
@@ -39,12 +39,11 @@ If you execute either *npm run start* or *npm start* now, you should see somethi
 ```bash
 > webpack-dev-server
 
-http://localhost:8080/
+http://localhost:8080/webpack-dev-server/
 webpack result is served from /
-content is served from .../webpack_demo/build
-404s will fallback to /index.html
-
-webpack: bundle is now VALID.
+content is served from /Users/juhovepsalainen/Projects/tmp/webpack_demo
+Hash: 2dca5a3850ce5d2de54c
+Version: webpack 1.12.14
 ```
 
 The output means that the development server is running. If you open *http://localhost:8080/* at your browser, you should see something. If you try modifying the code, you should see output at your terminal. The problem is that the browser doesn't catch these changes without a hard refresh. That's something we need to resolve next.
@@ -71,17 +70,21 @@ npm i webpack-merge --save-dev
 
 to add it to the project.
 
+### Defining Split Points
+
 Next, we need to define some split points to our configuration so we can customize it per npm script. Here's the basic idea:
 
 **webpack.config.js**
 
 ```javascript
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 leanpub-start-insert
 const merge = require('webpack-merge');
 leanpub-end-insert
 
 leanpub-start-insert
+// Detect how npm is run and branch based on that
 const TARGET = process.env.npm_lifecycle_event;
 leanpub-end-insert
 const PATHS = {
@@ -95,19 +98,26 @@ leanpub-end-delete
 leanpub-start-insert
 const common = {
 leanpub-end-insert
-  // Entry accepts a path or an object of entries. We'll be using the
-  // latter form given it's convenient with more complex configurations.
+  // Entry accepts a path or an object of entries.
+  // We'll be using the latter form given it's
+  // convenient with more complex configurations.
   entry: {
     app: PATHS.app
   },
   output: {
     path: PATHS.build,
     filename: 'bundle.js'
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Webpack demo'
+    })
+  ]
 };
 
 leanpub-start-insert
-// Default configuration
+// Default configuration. We will return this if
+// Webpack is called outside of npm.
 if(TARGET === 'start' || !TARGET) {
   module.exports = merge(common, {});
 }
@@ -145,8 +155,6 @@ leanpub-end-delete
 leanpub-start-insert
   module.exports = merge(common, {
     devServer: {
-      contentBase: PATHS.build,
-
       // Enable history API fallback so HTML5 History API based
       // routing works. This is a good default that will come
       // in handy in more complicated setups.
@@ -158,13 +166,13 @@ leanpub-start-insert
       // Display only errors to reduce the amount of output.
       stats: 'errors-only',
 
-      // Parse host and port from env so this is easy to customize.
+      // Parse host and port from env to allow customization.
       //
       // If you use Vagrant or Cloud9, set
       // host: process.env.HOST || '0.0.0.0';
       //
-      // 0.0.0.0 is available to all network devices unlike default
-      // localhost
+      // 0.0.0.0 is available to all network devices
+      // unlike default localhost
       host: process.env.HOST,
       port: process.env.PORT
     },
@@ -175,24 +183,6 @@ leanpub-start-insert
 leanpub-end-insert
 }
 
-...
-```
-
-Given we pushed `contentBase` configuration to JavaScript, we can remove it from *package.json*:
-
-**package.json**
-
-```json
-...
-"scripts": {
-  "build": "webpack"
-leanpub-start-delete
-  "start": "webpack-dev-server --content-base build"
-leanpub-end-delete
-leanpub-start-insert
-  "start": "webpack-dev-server"
-leanpub-end-insert
-},
 ...
 ```
 

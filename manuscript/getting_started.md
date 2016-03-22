@@ -63,17 +63,16 @@ T> We can use `--save` and `--save-dev` to separate application and development 
 
 ## Directory Structure
 
-As projects with just *package.json* are boring, we should set up something more concrete. To get started, we can implement a little web site that loads some JavaScript which we then build using Webpack. Set up a structure like this:
+As projects with just *package.json* are boring, we should set up something more concrete. To get started, we can implement a little web site that loads some JavaScript which we then build using Webpack. After we progress a bit, we'll end up with a directory structure like this:
 
 - /app
   - index.js
   - component.js
 - /build
-  - index.html
 - package.json
 - webpack.config.js
 
-In this case, we'll generate *bundle.js* using Webpack based on our */app*. To make this possible, we should set up some assets and *webpack.config.js*.
+The idea is that we'll transform that *app/* to as a *bundle.js* below *build/*. To make this possible, we should set up the assets needed and *webpack.config.js* of course.
 
 ## Setting Up Assets
 
@@ -104,37 +103,23 @@ document.body.appendChild(app);
 app.appendChild(component());
 ```
 
-We are also going to need some HTML so we can load the generated bundle:
-
-**build/index.html**
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Webpack demo</title>
-  </head>
-  <body>
-    <div id="app"></div>
-
-    <script src="./bundle.js"></script>
-  </body>
-</html>
-```
-
-T> An alternative way to deal with this would be to use the [html-webpack-plugin](https://www.npmjs.org/package/html-webpack-plugin). It is able to generate links to your assets automatically.
-
 ## Setting Up Webpack Configuration
 
 We'll need to tell Webpack how to deal with the assets we just set up. For this purpose we'll develop a *webpack.config.js* file. Webpack and its development server will be able to discover this file through convention.
 
-To map our application to *build/bundle.js* we need configuration like this:
+To keep things simple to maintain, we'll be using [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) to generate *index.html* for our application. *html-webpack-plugin* wires up the generated assets with it. Install it to the project:
+
+```bash
+npm i html-webpack-plugin --save-dev
+```
+
+To map our application to *build/bundle.js* and to set up the plugin we need configuration like this:
 
 **webpack.config.js**
 
 ```javascript
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const PATHS = {
   app: path.join(__dirname, 'app'),
@@ -151,7 +136,12 @@ module.exports = {
   output: {
     path: PATHS.build,
     filename: 'bundle.js'
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Webpack demo'
+    })
+  ]
 };
 ```
 
@@ -159,19 +149,22 @@ The `entry` path could be given as a relative one. The [context](https://webpack
 
 I like to use `path.join`, but `path.resolve` would be a good alternative. `path.resolve` is equivalent to navigating the file system through *cd*. `path.join` gives you just that, a join. See [Node.js path API](https://nodejs.org/api/path.html) for the exact details.
 
-If you execute `node_modules/.bin/webpack`, you should see output like this:
+If you execute `node_modules/.bin/webpack`, you should see output:
 
 ```bash
 Hash: 2dca5a3850ce5d2de54c
 Version: webpack 1.12.14
-Time: 74ms
-    Asset     Size  Chunks             Chunk Names
-bundle.js  1.75 kB       0  [emitted]  app
+Time: 805ms
+     Asset       Size  Chunks             Chunk Names
+ bundle.js    1.75 kB       0  [emitted]  app
+index.html  160 bytes          [emitted]
    [0] ./app/index.js 144 bytes {0} [built]
    [1] ./app/component.js 136 bytes {0} [built]
+Child html-webpack-plugin for "index.html":
+        + 3 hidden modules
 ```
 
-This means you have a build at your output directory. You can open the `build/index.html` file directly through a browser to examine the results. On OS X `open ./build/index.html` works.
+This means you have a build at your output directory. You can open the `build/index.html` file directly through a browser to examine the results. On OS X `open build/index.html` works.
 
 T> Another way to serve the contents of the directory through a server, such as *serve* (`npm i serve -g`). In this case, execute `serve` at the output directory and head to `localhost:3000` at your browser. You can configure the port through the `--port` parameter.
 
@@ -191,7 +184,7 @@ Given executing `node_modules/.bin/webpack` is a little verbose, we should do so
 
 You can execute the scripts defined this way through *npm run*. If you execute *npm run build* now, you should get a build at your output directory just like earlier.
 
-This works because npm adds `node_modules/.bin` temporarily to the path. As a result, rather than having to write `"build": "node_modules/.bin/webpack"`, we can do just `"build": "webpack"`.
+This works because npm adds *node_modules/.bin* temporarily to the path. As a result, rather than having to write `"build": "node_modules/.bin/webpack"`, we can do just `"build": "webpack"`.
 
 Task runners, such as Grunt or Gulp, allow you to achieve the same result while operating in a cross-platform manner. If you go through *package.json* like this, you may have to be more careful. On the plus side, this is a very light approach. To keep things simple, we'll be relying on it.
 

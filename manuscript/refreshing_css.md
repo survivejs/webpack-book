@@ -20,10 +20,10 @@ Now that we have the loaders we need, we'll need to make sure Webpack is aware o
 const common = {
   ...
 leanpub-start-delete
-  }
+  ]
 leanpub-end-delete
 leanpub-start-insert
-  },
+  ],
   module: {
     loaders: [
       {
