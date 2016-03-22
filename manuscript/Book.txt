@@ -28,11 +28,8 @@ loading_images.md
 loading_svg.md
 loading_fonts.md
 
-Chunking_in_Webpack.md
-understanding_chunks.md
-lazy_loaded_entry_points.md
-
 Advanced_Techniques.md
+understanding_chunks.md
 optimizing_development.md
 authoring_libraries.md
 writing_loaders.md
