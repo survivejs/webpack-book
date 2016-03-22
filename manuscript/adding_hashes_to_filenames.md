@@ -47,19 +47,20 @@ leanpub-end-insert
 If you execute `npm run build` now, you should see output like this.
 
 ```bash
-> webpack
-
-Hash: d3d5126c92fb895721d8
+Hash: fe4a796ff1a386bb12ed
 Version: webpack 1.12.14
-Time: 4014ms
+Time: 5858ms
                            Asset       Size  Chunks             Chunk Names
-     app.d14aa423d1a0702976f0.js    3.99 kB    0, 2  [emitted]  app
+     app.3a31b2adb861aa89b3b2.js    3.99 kB    0, 2  [emitted]  app
   vendor.81bcf80e75a5333783c4.js     131 kB    1, 2  [emitted]  vendor
-manifest.b7ada7656f01f38ce8d4.js  763 bytes       2  [emitted]  manifest
-   [0] ./app/index.js 187 bytes {0} [built]
+manifest.f12e3201b045981598d6.js  763 bytes       2  [emitted]  manifest
+                      index.html  288 bytes          [emitted]
+   [0] ./app/index.js 186 bytes {0} [built]
    [0] multi vendor 28 bytes {1} [built]
  [157] ./app/component.js 136 bytes {0} [built]
     + 156 hidden modules
+Child html-webpack-plugin for "index.html":
+        + 3 hidden modules
 ```
 
 Our files have neat hashes now. To prove that it works, you could try altering *app/index.js* and include a `console.log` there. After you build, only `app` and `manifest` related bundles should change.

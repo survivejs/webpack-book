@@ -42,7 +42,7 @@ leanpub-start-delete
     filename: 'bundle.js'
 leanpub-end-delete
 leanpub-start-insert
-    // Output using entry name
+    // Output using the entry name
     filename: '[name].js'
 leanpub-end-insert
   },
@@ -74,18 +74,19 @@ Beyond this, it's possible to define chunks that are loaded dynamically. This ca
 If you execute the build now using `npm run build`, you should see something along this:
 
 ```bash
-> webpack
-
-Hash: 718c818a965ab9219b17
+Hash: faafbe36cd3283ec761e
 Version: webpack 1.12.14
-Time: 6857ms
-    Asset    Size  Chunks             Chunk Names
-   app.js  135 kB       0  [emitted]  app
-vendor.js  131 kB       1  [emitted]  vendor
-   [0] ./app/index.js 187 bytes {0} [built]
+Time: 7877ms
+     Asset       Size  Chunks             Chunk Names
+    app.js     135 kB       0  [emitted]  app
+ vendor.js     131 kB       1  [emitted]  vendor
+index.html  190 bytes          [emitted]
+   [0] ./app/index.js 186 bytes {0} [built]
    [0] multi vendor 28 bytes {1} [built]
  [157] ./app/component.js 136 bytes {0} [built]
     + 156 hidden modules
+Child html-webpack-plugin for "index.html":
+        + 3 hidden modules
 ```
 
 Now we have separate `app` and `vendor` bundles. There's something wrong, however. If you examine the files, you'll see that *app.js* contains *vendor* dependencies. We need to do something to tell Webpack to avoid this situation. This is where `CommonsChunkPlugin` comes in.
@@ -121,19 +122,20 @@ leanpub-end-insert
 If you run `npm run build` now, you should see output as below:
 
 ```bash
-> webpack
-
-Hash: a84c644846ec5b7d6064
+Hash: 5324e81665088f9c191f
 Version: webpack 1.12.14
-Time: 3998ms
+Time: 5712ms
       Asset       Size  Chunks             Chunk Names
      app.js    3.99 kB    0, 2  [emitted]  app
   vendor.js     131 kB    1, 2  [emitted]  vendor
 manifest.js  743 bytes       2  [emitted]  manifest
-   [0] ./app/index.js 187 bytes {0} [built]
+ index.html  225 bytes          [emitted]
+   [0] ./app/index.js 186 bytes {0} [built]
    [0] multi vendor 28 bytes {1} [built]
  [157] ./app/component.js 136 bytes {0} [built]
     + 156 hidden modules
+Child html-webpack-plugin for "index.html":
+        + 3 hidden modules
 ```
 
 We have `app` and `vendor` bundles now. There's also something known as `manifest`. That's a file that maps `app` and `vendor` entry bundles to the resulting asset files. This tiny file is needed to make our caching setup work later on.
