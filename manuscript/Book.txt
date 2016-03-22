@@ -23,7 +23,6 @@ hosting_on_github_pages.md
 
 Optimization_Techniques.md
 optimizing_development.md
-optimizing_caching.md
 optimizing_rebundling.md
 
 CSS_Fonts_and_Images.md
