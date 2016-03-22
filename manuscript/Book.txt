@@ -26,7 +26,6 @@ optimizing_development.md
 optimizing_rebundling.md
 
 CSS_Fonts_and_Images.md
-loading_css.md
 loading_less_or_sass.md
 loading_stylus_and_yeticss.md
 loading_images.md
@@ -35,7 +34,6 @@ loading_fonts.md
 
 Chunking_in_Webpack.md
 understanding_chunks.md
-multiple_entry_points.md
 lazy_loaded_entry_points.md
 
 Advanced_Techniques.md
