@@ -2,6 +2,7 @@ Frontmatter.txt
 
 introduction.md
 webpack_compared.md
+formats_supported.md
 
 Mainmatter.txt
 
