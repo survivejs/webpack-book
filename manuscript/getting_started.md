@@ -192,4 +192,4 @@ W> Unless Webpack is installed to the project, this can point to a possible glob
 
 ## Conclusion
 
-Even though we've managed to set up a basic Webpack setup, it's not that great yet. Developing this way would be slow. That's where Webpack's more advanced features come in. In the next chapter I will show you how to set up automatic browser refresh with Webpack.
+Even though we've managed to set up a basic Webpack setup, it's not that great yet. Developing this way would be slow. That's where Webpack's more advanced features come in. To make room for these features, I will show you how to split your Webpack configuration in the next chapter.

@@ -7,6 +7,7 @@ Mainmatter.txt
 
 Developing_with_Webpack.md
 getting_started.md
+splitting_configuration.md
 automatic_browser_refresh.md
 refreshing_css.md
 setting_up_npm_install_webpack_plugin.md
