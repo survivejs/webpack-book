@@ -1,4 +1,4 @@
-# Universal App
+# Universal Applications
 
 So the great thing about React JS is that it runs on the server too. But that does not mean you can just create any app and run it on the server. You have to make some decisions on the architecture. The reason is that even though React JS and the components run on the server, you might be having dependencies in those components that does not run on the server.
 

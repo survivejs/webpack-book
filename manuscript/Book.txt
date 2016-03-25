@@ -6,38 +6,38 @@ webpack_compared.md
 Mainmatter.txt
 
 Developing_with_Webpack.md
-getting_started.md
-splitting_configuration.md
-automatic_browser_refresh.md
-refreshing_css.md
-setting_up_npm_install_webpack_plugin.md
+developing_with_webpack/getting_started.md
+developing_with_webpack/splitting_configuration.md
+developing_with_webpack/automatic_browser_refresh.md
+developing_with_webpack/refreshing_css.md
+developing_with_webpack/setting_up_npm_install_webpack_plugin.md
 
 Building_with_Webpack.md
-minifying_build.md
-setting_environment_variables.md
-splitting_bundles.md
-adding_hashes_to_filenames.md
-cleaning_build.md
-separating_css.md
-analyzing_build_statistics.md
-hosting_on_github_pages.md
+building_with_webpack/minifying_build.md
+building_with_webpack/setting_environment_variables.md
+building_with_webpack/splitting_bundles.md
+building_with_webpack/adding_hashes_to_filenames.md
+building_with_webpack/cleaning_build.md
+building_with_webpack/separating_css.md
+building_with_webpack/analyzing_build_statistics.md
+building_with_webpack/hosting_on_github_pages.md
 
 Loading_Assets.md
-loading_styles.md
-loading_images.md
-loading_svg.md
-loading_fonts.md
+loading_assets/loading_styles.md
+loading_assets/loading_images.md
+loading_assets/loading_svg.md
+loading_assets/loading_fonts.md
 
 Advanced_Techniques.md
-understanding_chunks.md
-optimizing_development.md
-authoring_libraries.md
-writing_loaders.md
+advanced_techniques/understanding_chunks.md
+advanced_techniques/optimizing_development.md
+advanced_techniques/authoring_libraries.md
+advanced_techniques/writing_loaders.md
 
 React_Techniques.md
-configuring_react.md
-hot_loading_components.md
-type_checking_with_flow.md
-universal_app.md
+react_techniques/configuring_react.md
+react_techniques/hot_loading_components.md
+react_techniques/type_checking_with_flow.md
+react_techniques/universal_applications.md
 
 Backmatter.txt
