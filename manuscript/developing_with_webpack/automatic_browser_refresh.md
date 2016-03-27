@@ -110,7 +110,7 @@ leanpub-end-insert
 
 Execute `npm start` and surf to **localhost:8080**. Try modifying *app/component.js*. It should refresh the browser. Note that this is hard refresh in case you modify JavaScript code. CSS modifications work in a neater manner and can be applied without a refresh.
 
-If you using Windows and it doesn't refresh, see the following section for an alternative setup.
+If you are using Windows and it doesn't refresh, see the following section for an alternative setup.
 
 W> *webpack-dev-server* can be very particular about paths. If the given `include` paths don't match the system casing exactly, this can cause it to fail to work. Webpack [issue #675](https://github.com/webpack/webpack/issues/675) discusses this in more detail.
 
