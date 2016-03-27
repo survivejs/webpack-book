@@ -1,4 +1,4 @@
-# Formats Supported by Webpack
+# Formats Supported
 
 Webpack supports a large variety of formats through *loaders*. In addition, it supports a couple of JavaScript module formats out of the box. I discuss specific asset types in the *Loading Assets* part. Generally, the idea is always the same. You always set up a loader, or loaders, and connect those with your directory structure.
 

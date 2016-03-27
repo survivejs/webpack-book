@@ -2,7 +2,6 @@ Frontmatter.txt
 
 introduction.md
 webpack_compared.md
-formats_supported.md
 
 Mainmatter.txt
 
@@ -24,6 +23,7 @@ building_with_webpack/analyzing_build_statistics.md
 building_with_webpack/hosting_on_github_pages.md
 
 Loading_Assets.md
+loading_assets/formats_supported.md
 loading_assets/loading_styles.md
 loading_assets/loading_images.md
 loading_assets/loading_svg.md
