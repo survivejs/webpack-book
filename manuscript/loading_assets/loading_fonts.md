@@ -1,35 +1,45 @@
 # Loading Fonts
 
-Fonts can be really difficult to get right. First of all we have typically 4 different formats, but only one of them will be used by the respective browser. You do not want to inline all 4 formats, as that will just bloat your CSS file and in no way be an optimization.
+Loading fonts is a surprisingly tough problem. There are typically four(!) font formats to worry about, each for certain browser. Inlining all formats at once wouldn't be a particularly good idea. There are a couple of strategies we can consider.
 
-## Choose one format
+## Choose One Format
 
-Depending on your project you might be able to get away with one font format. If you exclude Opera Mini, all browsers support the .woff and .svg format. The thing is that fonts can look a little bit different in the different formats, on the different browsers. So try out .woff and .svg and choose the one that looks the best in all browsers.
+Depending on your project requirements, you might be able to get away with less formats. If you exclude Opera Mini, all browsers support *.woff* and *.svg* formats. The render result may differ depending on the browser so you might want to experiment here.
 
-There are probably other strategies here too, so please share by creating an issue or pull request.
-
-## Doing the actual inlining
-
-You do this exactly like you do when inlining images.
+If we go with just one format, we can use a similar setup as for images and rely on both *file-loader* and *url-loader* while using the limit option:
 
 ```javascript
-var path = require('path');
-var config = {
-  entry: path.resolve(__dirname, 'app/main.js')
-  output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js'
-  },
-  module: {
-    loaders: [{
-      test: /\.jsx$/,
-      loader: 'babel'
-    }, {
-      test: /\.woff$/,
-      loader: 'url?limit=100000'
-    }]
-  }
-};
+{
+  test: /\.woff$/,
+  loader: 'url?limit=50000',
+  include: PATHS.fonts
+}
 ```
 
-Just make sure you have a limit above the size of the fonts, or they will of course not be inlined.
+## Supporting Multiple Formats
+
+In case we want to make sure our site looks good on a maximum amount of browsers, we might as well use just *file-loader* and forget about inlining. Again, it's a trade-off as we get extra requests, but perhaps it's the right move. Here we could end up with a loader configuration like this:
+
+```javascript
+{
+  test: /\.woff$/,
+  // Inline small woff files and output them below font/.
+  // Set mimetype just in case.
+  loaders: ['url?prefix=font/&limit=5000&mimetype=application/font-woff'],
+  include: PATHS.fonts
+},
+{
+  test: /\.ttf$|\.eot$/,
+  loaders: ['file?prefix=font/'],
+  include: PATHS.fonts
+},
+{
+  test: /\.svg$/,
+  loaders: ['file?prefix=font/'],
+  include: PATHS.fonts
+}
+```
+
+## Conclusion
+
+Loading fonts is similar as loading other assets. Here we have extra concerns to consider. We need to consider the browsers we want to support and choose the loading strategy based on that.
