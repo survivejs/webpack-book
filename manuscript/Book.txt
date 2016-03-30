@@ -26,7 +26,6 @@ Loading_Assets.md
 loading_assets/formats_supported.md
 loading_assets/loading_styles.md
 loading_assets/loading_images.md
-loading_assets/loading_svg.md
 loading_assets/loading_fonts.md
 
 Advanced_Techniques.md
