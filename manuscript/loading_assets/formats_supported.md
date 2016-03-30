@@ -1,8 +1,8 @@
 # Formats Supported
 
-Webpack supports a large variety of formats through *loaders*. In addition, it supports a couple of JavaScript module formats out of the box. I discuss specific asset types in the *Loading Assets* part. Generally, the idea is always the same. You always set up a loader, or loaders, and connect those with your directory structure.
+Webpack supports a large variety of formats through *loaders*. In addition, it supports a couple of JavaScript module formats out of the box. Generally, the idea is always the same. You always set up a loader, or loaders, and connect those with your directory structure. The system relies on configuration. Consider the example below where we set Webpack to load CSS:
 
-The system relies on configuration. Consider the example below where we set Webpack to load CSS. We'll dig into the details of CSS loading later in the book.
+**webpack.config.js**
 
 ```javascript
 ...
@@ -62,7 +62,7 @@ The problem with this approach is that it isn't particularly readable. A better 
 
 This approach becomes problematic with multiple loaders since it's limited just to one loader at a time. If you want to use this format with multiple, you need separate declarations.
 
-It is goodt o keep in mind that Webpack `loaders` are always evaluated from right to left and from bottom to top (separate definitions). The following two declarations are equal based on this rule:
+It is good to keep in mind that Webpack `loaders` are always evaluated from right to left and from bottom to top (separate definitions). The following two declarations are equal based on this rule:
 
 ```javascript
 {
@@ -121,11 +121,11 @@ export default function () { ... };
 export function hello() {...};
 ```
 
-Webpack doesn't support this format out of the box yet so you will have to use [babel-loader](https://www.npmjs.com/package/babel-loader). Webpack 2 will change the situation.
+T> Webpack doesn't support this format out of the box yet so you will have to use [babel-loader](https://www.npmjs.com/package/babel-loader). Webpack 2 will change the situation.
 
 ### AMD
 
-AMD, or asynchronous module definition, was invented as a workaround. It introduces a `define` wrapper:
+AMD, or asynchronous module definition, was invented as a workaround and popularized by [RequireJS](http://requirejs.org/) script loader. It introduced a `define` wrapper:
 
 ```javascript
 define(['./MyModule.js'], function (MyModule) {
@@ -152,7 +152,7 @@ define(['require'], function (require) {
 });
 ```
 
-This approach definitely eliminates some of the clutter. You will still end up with some code that might feel redundant. Given there's ES6 now, it probably doesn't make much sense to use AMD anymore unless you really have to.
+This latter approach definitely eliminates some of the clutter. You will still end up with some code that might feel redundant. Given there's ES6 now, it probably doesn't make much sense to use AMD anymore unless you really have to.
 
 ### UMD
 
@@ -164,4 +164,4 @@ Webpack can generate UMD wrappers for you (`output.libraryTarget: 'umd'`). This 
 
 Webpack supports a large variety of file formats. More often than not you will have to install some loader. Webpack itself supports just a couple of common JavaScript module formats.
 
-I will show you how to get a development setup done in the next part of this book. After that we will dig into build related concerns.
+I will discuss specific assets types and how to load them using Webpack next.

@@ -1,56 +1,76 @@
 # Loading Styles
 
-TODO
+Generally loading styles follows the same idea. You set up a loader definition that matches your style files and apply the format specific loaders to it. There's some complexity involved as you need to use multiple loaders in conjunction.
 
 ## Loading CSS
 
-TODO
-
-## Loading LESS or SASS
-
-If you want to use compiled CSS, there are two loaders available for you. The **less-loader** and the **sass-loader**. Depending on your preference, this is how you set it up.
-
-`npm install less-loader` or `npm install sass-loader node-sass`.
+Loading vanilla CSS is fairly straightforward as you can see in the example below. It parses the styles in the given `include` path (accepts an array too) while making sure only files ending with `.css` are matched. The definition then applies both *style-loader* and *css-loader* on it:
 
 **webpack.config.js**
 
 ```javascript
-var path = require('path');
-var config = {
-  entry: path.resolve(__dirname, 'app/main.js')
-  output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js'
-  },
+const common = {
+  ...
   module: {
-    loaders: [{
-      test: /\.jsx$/,
-      loader: 'babel'
-    },
-
-    // LESS
-    {
-      test: /\.less$/,
-      loader: 'style!css!less'
-    },
-
-    // SASS
-    {
-      test: /\.scss$/,
-      loader: 'style!css!sass'
-    }]
-  }
+    loaders: [
+      {
+        test: /\.css$/,
+        loaders: ['style', 'css'],
+        include: PATHS.style
+      }
+    ]
+  },
+  ...
 };
 ```
 
-## What about imports in LESS and SASS?
+When Webpack evaluates the files, first [css-loader](https://www.npmjs.com/package/css-loader) goes through possible `@import` and `url()` statements within the matched files and treats them as regular `require`. This allows us to rely on various other loaders, such as [file-loader](https://www.npmjs.com/package/file-loader) or [url-loader](https://www.npmjs.com/package/url-loader). We will see how these work in the next chapters.
+
+*file-loader* generates files, whereas *url-loader* can create inline data URLs for small resources. This can be useful for optimizing application loading. You avoid unnecessary requests while providing a slightly bigger payload. Small improvements can yield large benefits if you depend on a lot of small resources in your style definitions.
+
+After *css-loader* has done its part, *style-loader* picks up the output and injects the CSS into the resulting bundle. This will be inlined JavaScript by default. This is something you want to avoid in production usage. It makes sense to use `ExtractTextPlugin` to generate a separate CSS file in this case as we saw earlier.
+
+Setting up other formats than vanilla CSS is simple as well. I'll discuss specific examples next.
+
+T> If you want to enable sourcemaps for CSS, you should use `['style', 'css?sourceMap']` and set `output.publicPath` to an absolute url. *css-loader* [issue 29](https://github.com/webpack/css-loader/issues/29) discusses this problem further.
+
+## Loading LESS
+
+[Less](http://lesscss.org/) is a popular CSS processor that is packed with functionality. In Webpack using Less doesn't take a lot of effort. [less-loader](https://www.npmjs.com/package/less-loader) deals with the heavy lifting:
+
+```javascript
+{
+  test: /\.less$/,
+  loaders: ['style', 'css', 'less'],
+  include: PATHS.style
+}
+```
+
+There is also support for Less plugins, sourcemaps, and so on. To understand how those work you should check out the project itself.
+
+## Loading SASS
+
+[Sass](http://sass-lang.com/) is a popular alternative to Less. You should use [sass-loader](https://www.npmjs.com/package/sass-loader) with it. Remember to install `node-sass` to your project as the loader has a peer dependency on that. Webpack doesn't take much configuration:
+
+```javascript
+{
+  test: /\.scss$/,
+  loaders: ['style', 'css', 'sass'],
+  include: PATHS.style
+}
+```
+
+Check out the loader for more advanced usage.
+
+## Imports in LESS and SASS
+
 If you import one LESS/SASS file from an other, use the exact same pattern as anywhere else. Webpack will dig into these files and figure out the dependencies.
 
 ```less
 @import "./variables.less";
 ```
 
-You can also load LESS files directly from your node_modules directory.
+You can also load LESS files directly from your node_modules directory. This is handy with libraries like Twitter Bootstrap:
 
 ```less
 $import "~bootstrap/less/bootstrap";
@@ -58,44 +78,30 @@ $import "~bootstrap/less/bootstrap";
 
 ## Loading Stylus and YETICSS
 
-Another css extension is the **stylus-loader**. A great complement to this is **yeticss** a lightweight, modular pattern library written in stylus.
-
-
-`npm install stylus-loader yeticss`
+Stylus is yet another example of a CSS processor. It works well through [stylus-loader](https://github.com/shama/stylus-loader). There's also a pattern library known as [yeticss](https://www.npmjs.com/package/yeticss) that works well with it. Consider the following configuration:
 
 **webpack.config.js**
 
 ```javascript
-var path = require('path');
-var config = {
-  entry: path.resolve(__dirname, 'app/main.js')
-  output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js'
-  },
+const common = {
+  ...
   module: {
-    loaders: [{
-      test: /\.jsx$/,
-      loader: 'babel'
-    },
-
-  // STYLUS
-   {
-      test: /\.styl$/,
-      loader: 'style!css!stylus'
-    }
+    loaders: [
+      {
+        test: /\.styl$/,
+        loaders: ['style', 'css', 'stylus'],
+        include: PATHS.style
+      }
+    ]
   },
-
-  // YETICSS
+  // yeticss
   stylus: {
     use: [require('yeticss')]
   }
 };
 ```
 
-## Using Stylus
-
-To start using Stylus, you must import it one of your app's .styl file.
+To start using yeticss with Stylus, you must import it to one of your app's .styl files:
 
 ```javascript
 @import 'yeticss'
@@ -104,8 +110,47 @@ To start using Stylus, you must import it one of your app's .styl file.
 @import 'yeticss/components/type'
 ```
 
-For more info see [stylus](https://github.com/shama/stylus-loader) and [yeticss](https://github.com/andyet/yeti.css).
+## PostCSS
+
+[PostCSS](https://github.com/postcss/postcss) allows you to perform transformations over CSS through JavaScript plugins. You can even find plugins that provide you Sass-like features. PostCSS can be thought as the equivalent of Babel for styling. It can be used through [postcss-loader](https://www.npmjs.com/package/postcss-loader) with Webpack as below:
+
+```javascript
+var autoprefixer = require('autoprefixer');
+var precss = require('precss');
+
+module.exports = {
+  module: {
+    loaders: [
+      {
+        test: /\.css$/,
+        loaders: ['style', 'css', 'postcss'],
+        include: PATHS.style
+      }
+    ]
+  },
+  // PostCSS plugins go here
+  postcss: function () {
+      return [autoprefixer, precss];
+  }
+};
+```
+
+### cssnext
+
+![cssnext](images/cssnext.jpg)
+
+[cssnext](https://cssnext.github.io/) is a PostCSS plugin that allows us to experience the future now. There are some restrictions, but it may be worth a go. In Webpack it is simply a matter of installing [cssnext-loader](https://www.npmjs.com/package/cssnext-loader) and attaching it to your CSS configuration. In our case, you would end up with the following:
+
+```javascript
+{
+  test: /\.css$/,
+  loaders: ['style', 'css', 'cssnext'],
+  include: PATHS.style
+}
+```
+
+Alternatively, you could consume it through *postcss-loader* as a plugin if you need more control.
 
 ## Conclusion
 
-TODO
+Loading style files through Webpack is fairly straight-forward. It supports even advanced techniques like [CSS Modules](https://github.com/css-modules/webpack-demo). CSS Modules make CSS local by default. This can be a great boon especially for developers who work with component oriented libraries. The approach works beautifully there.
