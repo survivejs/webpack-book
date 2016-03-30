@@ -9,3 +9,5 @@ T> See also [the Chinese translation (zh-cn)](https://fakefish.github.io/react-w
 ## Contributors
 
 Big thanks to [Christian Alfoni](http://www.christianalfoni.com/) for helping me to craft the first version of this book. That inspired the whole SurviveJS effort. The version you see now has been heavily revised.
+
+Thanks to Mike Kamermans and many others who have contributed feedback!

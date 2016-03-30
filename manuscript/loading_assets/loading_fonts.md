@@ -4,7 +4,7 @@ Loading fonts is a surprisingly tough problem. There are typically four(!) font 
 
 ## Choose One Format
 
-Depending on your project requirements, you might be able to get away with less formats. If you exclude Opera Mini, all browsers support *.woff* and *.svg* formats. The render result may differ depending on the browser so you might want to experiment here.
+Depending on your project requirements, you might be able to get away with less formats. If you exclude Opera Mini, all browsers support the *.woff* format. The render result may differ depending on the browser so you might want to experiment here.
 
 If we go with just one format, we can use a similar setup as for images and rely on both *file-loader* and *url-loader* while using the limit option:
 
@@ -30,11 +30,6 @@ In case we want to make sure our site looks good on a maximum amount of browsers
 },
 {
   test: /\.ttf$|\.eot$/,
-  loaders: ['file?prefix=font/'],
-  include: PATHS.fonts
-},
-{
-  test: /\.svg$/,
   loaders: ['file?prefix=font/'],
   include: PATHS.fonts
 }
