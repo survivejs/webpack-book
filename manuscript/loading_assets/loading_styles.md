@@ -36,7 +36,7 @@ T> If you want to enable sourcemaps for CSS, you should use `['style', 'css?sour
 
 ## Loading LESS
 
-[Less](http://lesscss.org/) is a popular CSS processor that is packed with functionality. In Webpack using Less doesn't take a lot of effort. [less-loader](https://www.npmjs.com/package/less-loader) deals with the heavy lifting:
+[Less](http://lesscss.org/) is a popular CSS processor that is packed with functionality. In Webpack using Less doesn't take a lot of effort. [less-loader](https://www.npmjs.com/package/less-loader) deals with the heavy lifting. You should install [less](https://www.npmjs.com/package/less) as well given it's a peer dependency of *less-loader*. Consider the following minimal setup:
 
 ```javascript
 {
@@ -50,7 +50,7 @@ There is also support for Less plugins, sourcemaps, and so on. To understand how
 
 ## Loading SASS
 
-[Sass](http://sass-lang.com/) is a popular alternative to Less. You should use [sass-loader](https://www.npmjs.com/package/sass-loader) with it. Remember to install `node-sass` to your project as the loader has a peer dependency on that. Webpack doesn't take much configuration:
+[Sass](http://sass-lang.com/) is a popular alternative to Less. You should use [sass-loader](https://www.npmjs.com/package/sass-loader) with it. Remember to install [node-sass](https://www.npmjs.com/package/node-sass) to your project as the loader has a peer dependency on that. Webpack doesn't take much configuration:
 
 ```javascript
 {
