@@ -11,6 +11,7 @@ developing_with_webpack/splitting_configuration.md
 developing_with_webpack/automatic_browser_refresh.md
 developing_with_webpack/refreshing_css.md
 developing_with_webpack/setting_up_npm_install_webpack_plugin.md
+developing_with_webpack/optimizing_development.md
 
 Building_with_Webpack.md
 building_with_webpack/minifying_build.md
@@ -30,7 +31,6 @@ loading_assets/loading_fonts.md
 
 Advanced_Techniques.md
 advanced_techniques/understanding_chunks.md
-advanced_techniques/optimizing_development.md
 advanced_techniques/authoring_libraries.md
 advanced_techniques/writing_loaders.md
 
