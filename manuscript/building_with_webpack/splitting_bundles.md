@@ -12,6 +12,7 @@ To make it easy to split the bundles, check out *package.json* and make sure onl
 
 ```javascript
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
 const webpack = require('webpack');
 const NpmInstallPlugin = require('npm-install-webpack-plugin');
@@ -27,14 +28,12 @@ const PATHS = {
   build: path.join(__dirname, 'build')
 };
 
-process.env.BABEL_ENV = TARGET;
-
 const common = {
+  // Entry accepts a path or an object of entries.
+  // We'll be using the latter form given it's
+  // convenient with more complex configurations.
   entry: {
     app: PATHS.app
-  },
-  resolve: {
-    extensions: ['', '.js', '.jsx']
   },
   output: {
     path: PATHS.build,
@@ -69,7 +68,7 @@ leanpub-end-insert
 
 The setup tells Webpack that we want a separate *entry chunk* for our project `vendor` level dependencies.
 
-Beyond this, it's possible to define chunks that are loaded dynamically. This can be achieved through [require.ensure](https://webpack.github.io/docs/code-splitting.html). We'll cover bundle splitting in detail later in this book.
+Beyond this, it's possible to define chunks that are loaded dynamically. This can be achieved through [require.ensure](https://webpack.github.io/docs/code-splitting.html). We'll cover it in the *Understanding Chunks* chapter.
 
 If you execute the build now using `npm run build`, you should see something along this:
 
@@ -126,7 +125,7 @@ Hash: 5324e81665088f9c191f
 Version: webpack 1.12.14
 Time: 5712ms
       Asset       Size  Chunks             Chunk Names
-     app.js    3.99 kB    0, 2  [emitted]  app
+     app.js    3.92 kB    0, 2  [emitted]  app
   vendor.js     131 kB    1, 2  [emitted]  vendor
 manifest.js  743 bytes       2  [emitted]  manifest
  index.html  225 bytes          [emitted]
