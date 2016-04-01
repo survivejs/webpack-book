@@ -4,6 +4,8 @@ Even though we have a nice build set up now, where did all the CSS go? As per ou
 
 It just so happens that Webpack provides a means to generate a separate CSS bundle. We can achieve this using the [ExtractTextPlugin](https://www.npmjs.com/package/extract-text-webpack-plugin). It comes with overhead during the compilation phase, and it won't work with Hot Module Replacement (HMR) by design. Given we are using it only for production, that won't be a problem.
 
+T> This same technique can be used with other assets, like templates, too.
+
 ## Setting Up `extract-text-webpack-plugin`
 
 It will take some configuration to make it work. Execute
@@ -25,11 +27,16 @@ leanpub-end-insert
 ...
 
 const common = {
+  // Entry accepts a path or an object of entries.
+  // We'll be using the latter form given it's
+  // convenient with more complex configurations.
   entry: {
     app: PATHS.app
   },
-  resolve: {
-    extensions: ['', '.js', '.jsx']
+  output: {
+    path: PATHS.build,
+    // Output using the entry name
+    filename: '[name].js'
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -74,7 +81,8 @@ leanpub-start-insert
 leanpub-end-insert
     plugins: [
       ...
-    ]
+    ],
+    ...
   });
 }
 
@@ -119,12 +127,12 @@ After running `npm run build`, you should see output similar to the following:
 clean-webpack-plugin: .../webpack-demo/build has been removed.
 Hash: 5576106e9ebb9a1d8c1e
 Version: webpack 1.12.14
-Time: 5604ms
+Time: 5688ms
                            Asset       Size  Chunks             Chunk Names
-     app.3bdd5f69f8374d244dff.js  277 bytes    0, 2  [emitted]  app
-  vendor.81bcf80e75a5333783c4.js     131 kB    1, 2  [emitted]  vendor
-manifest.795f5bf566d083d8a946.js  763 bytes       2  [emitted]  manifest
-    app.3bdd5f69f8374d244dff.css   24 bytes    0, 2  [emitted]  app
+     app.d5784ed97e8034f66273.js  228 bytes    0, 2  [emitted]  app
+  vendor.32ffcee47b9808ea7de7.js     131 kB    1, 2  [emitted]  vendor
+manifest.5845ef4d01edbef2544f.js  763 bytes       2  [emitted]  manifest
+    app.d5784ed97e8034f66273.css   24 bytes    0, 2  [emitted]  app
                       index.html  347 bytes          [emitted]
    [0] ./app/index.js 186 bytes {0} [built]
    [0] multi vendor 28 bytes {1} [built]
@@ -165,6 +173,7 @@ leanpub-end-delete
 ...
 
 const PATHS = {
+  react: path.join(__dirname, 'node_modules/react/dist/react.min.js'),
   app: path.join(__dirname, 'app'),
 leanpub-start-delete
   build: path.join(__dirname, 'build')
@@ -199,13 +208,13 @@ If you build the project now through `npm run build`, you should see something l
 clean-webpack-plugin: .../webpack-demo/build has been removed.
 Hash: a0699bad5573ea059c39
 Version: webpack 1.12.14
-Time: 5827ms
+Time: 5647ms
                            Asset       Size  Chunks             Chunk Names
-     app.0cff8ece60ddfcada2ae.js  250 bytes    0, 3  [emitted]  app
-   style.896457f18867289e6614.js   38 bytes    1, 3  [emitted]  style
-  vendor.d9a332053af2a294217b.js     131 kB    2, 3  [emitted]  vendor
-manifest.732260bc4c7f53c7812b.js  788 bytes       3  [emitted]  manifest
-  style.896457f18867289e6614.css   24 bytes    1, 3  [emitted]  style
+     app.ee7cdcb255609569a291.js  201 bytes    0, 3  [emitted]  app
+   style.a99616d0ff966461386c.js   38 bytes    1, 3  [emitted]  style
+  vendor.05a555881b4c125d77fc.js     131 kB    2, 3  [emitted]  vendor
+manifest.26f23cea21d7734e9dd0.js  788 bytes       3  [emitted]  manifest
+  style.a99616d0ff966461386c.css   24 bytes    1, 3  [emitted]  style
                       index.html  402 bytes          [emitted]
    [0] ./app/index.js 163 bytes {0} [built]
    [0] multi vendor 28 bytes {2} [built]
