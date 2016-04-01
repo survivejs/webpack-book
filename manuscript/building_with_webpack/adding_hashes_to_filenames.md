@@ -51,9 +51,9 @@ Hash: fe4a796ff1a386bb12ed
 Version: webpack 1.12.14
 Time: 5858ms
                            Asset       Size  Chunks             Chunk Names
-     app.3a31b2adb861aa89b3b2.js    3.99 kB    0, 2  [emitted]  app
-  vendor.81bcf80e75a5333783c4.js     131 kB    1, 2  [emitted]  vendor
-manifest.f12e3201b045981598d6.js  763 bytes       2  [emitted]  manifest
+     app.4ea5918866d5a1d11cc7.js    3.92 kB    0, 2  [emitted]  app
+  vendor.32ffcee47b9808ea7de7.js     131 kB    1, 2  [emitted]  vendor
+manifest.733f3bbc2f050bacdcdd.js  763 bytes       2  [emitted]  manifest
                       index.html  288 bytes          [emitted]
    [0] ./app/index.js 186 bytes {0} [built]
    [0] multi vendor 28 bytes {1} [built]
