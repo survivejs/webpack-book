@@ -1,102 +1,93 @@
 # Optimizing Development
 
-We talked about how you could use the minified versions of your dependencies in development to make the rebundling go as fast as possible. Let us look at a small helper you can implement to make this a bit easier to handle.
+There are times when you might want to optimize your development setup. I am going to show you one useful trick. To benefit from it, we need to make our project heavier first, though. In order to achieve this, we can install React and speed up our development build after that.
+
+## Including React to the Project
+
+To include React to the project, use:
+
+```bash
+npm i react --save
+```
+
+We also need to refer to it from our project:
+
+**app/index.js**
+
+```javascript
+leanpub-start-insert
+require('react');
+leanpub-end-insert
+require('./main.css');
+
+...
+```
+
+If you start the project in a development mode (`npm start`) now and try to modify *app/component.js*, it should load refresh your browser a little slower than before. As our application isn't that complex yet, there probably won't be that big a difference. It's still worth knowing how to speed this up, though.
 
 ## Optimizing Rebundling
 
-You might notice after requiring React JS into your project that the time it takes from a save to a finished rebundle of your application takes more time. In development you ideally want 200-800 ms rebundle speed, depending on what part of the application you are working on.
+We can optimize our project by pointing the development setup to a minified version of React. The gotcha is that we will lose `propType` based validation! But if speed is more important, this technique may be worth a go. You can hide it behind an environment flag for instance if you want type checking.
 
-> IMPORTANT! This setup a minified, production version of React. As a result you will lose `propTypes` based type validation!
+In order to achieve what we want, we can use Webpack's `module.noParse` option. It accepts a RegExp or an array of RegExps. We can also pass full paths to it to keep our lives simple.
 
-## Running minified file in development
+In addition to telling Webpack not to parse the minified file we want to use, we also need to point `react` to it. This can be achieved using a feature known as `resolve.alias`. It is a mapping between a module name and its target path. In other words, it tells Webpack where to look up the matching module.
 
-Instead of making Webpack go through React JS and all its dependencies, you can override the behavior in development.
+Aliasing is a powerful technique and it has usages beyond this particular case. You could for example use it manage a configuration file depending on development and production.
+
+The code below shows how to set these two fields up:
 
 **webpack.config.js**
 
 ```javascript
-var path = require('path');
-var node_modules = path.resolve(__dirname, 'node_modules');
-var pathToReact = path.resolve(node_modules, 'react/dist/react.min.js');
+...
+const PATHS = {
+leanpub-start-insert
+  react: path.join(__dirname, 'node_modules/react/dist/react.min.js'),
+leanpub-end-insert
+  app: path.join(__dirname, 'app'),
+  build: path.join(__dirname, 'build')
+};
 
-config = {
-    entry: ['webpack/hot/dev-server', path.resolve(__dirname, 'app/main.js')],
-    resolve: {
-        alias: {
-          'react': pathToReact
-        }
-    },
-    output: {
-        path: path.resolve(__dirname, 'build'),
-        filename: 'bundle.js',
-    },
+...
+if(TARGET === 'start' || !TARGET) {
+  module.exports = merge(common, {
+    ...
+    plugins: [
+      new webpack.HotModuleReplacementPlugin(),
+      new NpmInstallPlugin({
+        save: true // --save
+      })
+leanpub-start-delete
+    ]
+leanpub-end-delete
+leanpub-start-insert
+    ],
     module: {
-        loaders: [{
-            test: /\.jsx?$/,
-            loader: 'babel'
-        }],
-        noParse: [pathToReact]
+      noParse: [
+        PATHS.react
+      ]
+    },
+    resolve: {
+      alias: {
+        react: PATHS.react
+      }
     }
-};
+leanpub-end-insert
+  });
+}
 
-module.exports = config;
+...
 ```
 
-We do two things in this configuration:
+If you try developing our application now, it should be at least a little bit faster. The difference isn't particularly big here. The technique is worth knowing, though.
 
-1. Whenever "react" is required in the code it will fetch the minified React JS file instead of going to *node_modules*
-2. Whenever Webpack tries to parse the minified file, we stop it, as it is not necessary
+It would have been possible to define the configuration at `common`, but in order to demonstrate another technique later, I decided to push it to development configuration.
 
-## XXX
+Given it can be boring to maintain each of those `alias` and `noParse` pairs, it is possible to write a little function to handle the problem for you. I'll leave that as an exercise to the reader.
 
-*webpack.config.js*
-
-```javascript
-var webpack = require('webpack');
-var path = require('path');
-var node_modules_dir = path.join(__dirname, 'node_modules');
-
-var deps = [
-  'react/dist/react.min.js',
-  'react-router/dist/react-router.min.js',
-  'moment/min/moment.min.js',
-  'underscore/underscore-min.js',
-];
-
-var config = {
-  entry: ['webpack/hot/dev-server', './app/main.js'],
-  output: {
-    path: path.resolve(__dirname, './build'),
-    filename: 'bundle.js'
-  },
-  resolve: {
-    alias: {}
-  },
-  module: {
-    noParse: [],
-    loaders: []
-  }
-};
-
-// Run through deps and extract the first part of the path,
-// as that is what you use to require the actual node modules
-// in your code. Then use the complete path to point to the correct
-// file and make sure webpack does not try to parse it
-deps.forEach(function (dep) {
-  var depPath = path.resolve(node_modules_dir, dep);
-  config.resolve.alias[dep.split(path.sep)[0]] = depPath;
-  config.module.noParse.push(depPath);
-});
-
-module.exports = config;
-```
-
-Not all modules include a minified distributed version of the lib, but most do. Especially with large libraries like React JS you will get a significant improvement.
-
-#### Important!
-
-Not all modules support module.noParse, the files included by deps array should have no call to *require*, *define* or similar, or you will get an error when the app runs: **Uncaught ReferenceError: require is not defined**.
+W> Not all modules support `module.noParse`, the files included by deps array should have no call to `require`, `define` or similar, or you will get an error when the app runs: `Uncaught ReferenceError: require is not defined`.
 
 ## Conclusion
 
-TODO
+In this chapter we learned a bit about `module.noParse` and `resolve.alias`. Particularly latter allows interesting configuration. Aliasing can be powerful especially when you are dealing with legacy applications you want to port to Webpack. Note that aliasing works also with loaders through [resolveLoader.alias](https://webpack.github.io/docs/configuration.html#resolveloader).

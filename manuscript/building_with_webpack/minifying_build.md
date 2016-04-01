@@ -6,27 +6,6 @@ The first of these techniques is known as minification. It is a process where co
 
 When certain aggressive minification techniques are applied, sometimes even the meaning of the resulting code may change. This is the reason why certain frameworks apply certain countermeasures against excessive minification. You can see this in Angular 1 definitions for example.
 
-## Including React to the Project
-
-In order to get something to optimize, we can include React to our sample project. Install it like this:
-
-```bash
-npm i react --save
-```
-
-We also need to refer to it from our project:
-
-**app/index.js**
-
-```javascript
-leanpub-start-insert
-require('react')
-leanpub-end-insert
-require('./main.css');
-
-...
-```
-
 If you run `npm run build` now, you should see somewhat chunky results:
 
 ```bash
