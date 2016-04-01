@@ -17,8 +17,8 @@ Before going further, make sure you have `node` and `npm` commands available at 
 To get a starting point, we should create a directory for our project and set up a *package.json* there. npm uses that to manage project dependencies. Here are the basic commands:
 
 ```bash
-mkdir webpack_demo
-cd webpack_demo
+mkdir webpack-demo
+cd webpack-demo
 npm init -y # -y gives you default *package.json*, skip for more control
 ```
 
@@ -43,7 +43,7 @@ You can display the exact path of the executables using `npm bin`. Most likely i
 After executing, you should see a version, a link to the command line interface guide and a long list of options. We won't be using most of those, but it's good to know that this tool is packed with functionality, if nothing else.
 
 ```bash
-webpack_demo $ node_modules/.bin/webpack
+webpack-demo $ node_modules/.bin/webpack
 webpack 1.12.14
 Usage: https://webpack.github.io/docs/cli.html
 

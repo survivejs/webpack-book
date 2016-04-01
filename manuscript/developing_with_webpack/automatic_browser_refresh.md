@@ -41,7 +41,7 @@ If you execute either *npm run start* or *npm start* now, you should see somethi
 
 http://localhost:8080/webpack-dev-server/
 webpack result is served from /
-content is served from /Users/juhovepsalainen/Projects/tmp/webpack_demo
+content is served from .../webpack-demo
 Hash: 2dca5a3850ce5d2de54c
 Version: webpack 1.12.14
 ```
