@@ -74,7 +74,7 @@ if(TARGET === 'build') {
 leanpub-end-insert
 ```
 
-After this change our build should behave exactly the same way as before. This time, however, we have room for expansion. We can hook up Hot Module Replacement next to make the browser refresh and turn our the development mode into something more useful.
+After this change our build should behave exactly the same way as before. This time, however, we have room for expansion. We can hook up **Hot Module Replacement** next to make the browser refresh and turn our the development mode into something more useful.
 
 ## Conclusion
 
