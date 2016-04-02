@@ -8,6 +8,8 @@ When certain aggressive minification techniques are applied, sometimes even the 
 
 T> Even if we minify our build, we can still generate sourcemaps through the `devtool` option we discussed earlier. This will give us better means to debug even production code.
 
+## Generating a Baseline Build
+
 To get started, we should generate a baseline build so we have something to optimize. Execute `npm run build`. You should end up with something like this:
 
 ```bash
