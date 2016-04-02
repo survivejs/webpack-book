@@ -35,7 +35,7 @@ In addition to telling Webpack not to parse the minified file we want to use, we
 
 Aliasing is a powerful technique and it has usages beyond this particular case. You could for example use it manage a configuration file depending on development and production.
 
-The code below shows how to set these two fields up:
+The code below shows how to set up these two fields:
 
 **webpack.config.js**
 
@@ -86,8 +86,12 @@ It would have been possible to define the configuration at `common`, but in orde
 
 Given it can be boring to maintain each of those `alias` and `noParse` pairs, it is possible to write a little function to handle the problem for you. I'll leave that as an exercise to the reader.
 
+T> Note that aliasing works also with loaders through [resolveLoader.alias](https://webpack.github.io/docs/configuration.html#resolveloader).
+
 W> Not all modules support `module.noParse`, the files included by deps array should have no call to `require`, `define` or similar, or you will get an error when the app runs: `Uncaught ReferenceError: require is not defined`.
 
 ## Conclusion
 
-In this chapter we learned a bit about `module.noParse` and `resolve.alias`. Particularly latter allows interesting configuration. Aliasing can be powerful especially when you are dealing with legacy applications you want to port to Webpack. Note that aliasing works also with loaders through [resolveLoader.alias](https://webpack.github.io/docs/configuration.html#resolveloader).
+In this chapter we learned a bit about `module.noParse` and `resolve.alias`. Particularly latter allows interesting configuration. Aliasing can be powerful especially when you are dealing with legacy applications you want to port to Webpack.
+
+In the next part we'll focus on setting up a good production build.
