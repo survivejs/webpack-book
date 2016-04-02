@@ -1,6 +1,6 @@
 # Loading Styles
 
-Generally loading styles follows the same idea. You set up a loader definition that matches your style files and apply the format specific loaders to it. There's some complexity involved as you need to use multiple loaders in conjunction.
+Loading styles is a standard operation. There are a lot of variants depending on the styling approach you use, though. I'll cover the most common options next. You can combine these approaches with the `ExtractTextPlugin` to get better output for your production build.
 
 ## Loading CSS
 
