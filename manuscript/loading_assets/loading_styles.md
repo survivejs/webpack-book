@@ -145,8 +145,6 @@ module.exports = {
 
 ### cssnext
 
-![cssnext](images/cssnext.jpg)
-
 [cssnext](https://cssnext.github.io/) is a PostCSS plugin that allows us to experience the future now. There are some restrictions, but it may be worth a go. In Webpack it is simply a matter of installing [cssnext-loader](https://www.npmjs.com/package/cssnext-loader) and attaching it to your CSS configuration. In our case, you would end up with the following:
 
 **webpack.config.js**
