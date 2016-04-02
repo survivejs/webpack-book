@@ -2,9 +2,9 @@
   "name": "react-webpack-cookbook",
   "private": true,
   "version": "0.0.0",
-  "description": "React Webpack cookbook",
+  "description": "SurviveJS - React",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "check-markdown-links manuscript"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,7 @@
   },
   "homepage": "https://github.com/survivejs/webpack",
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "check-markdown-links": "^0.1.1"
+  }
 }
