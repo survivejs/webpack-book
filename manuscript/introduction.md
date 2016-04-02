@@ -86,4 +86,4 @@ Big thanks to [Christian Alfoni](http://www.christianalfoni.com/) for helping me
 
 This book wouldn't have been possible without the original "SurviveJS - Webpack and React" effort. Anyone who contributed to that, deserves my thanks! You can check that book for more specific attribution.
 
-Thanks to Mike "Pomax" Kamermans, Cesar Andreu, and many others who have contributed direct feedback for this book!
+Thanks to Mike "Pomax" Kamermans, Cesar Andreu, Dan Palmer, and many others who have contributed direct feedback for this book!
