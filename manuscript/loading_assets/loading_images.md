@@ -52,7 +52,11 @@ Assuming you have set up your styling correctly, you can refer to your SVG files
 
 If you want the raw SVG content, you can use the [raw-loader](https://www.npmjs.com/package/raw-loader) for this purpose. This can be useful if you want to inject the SVG content to directly to JavaScript or HTML markup.
 
-T> For SVG compression check out the [svgo-loader](https://github.com/pozadi/svgo-loader).
+## Compressing Images
+
+In case you want to compress your images, use [image-webpack-loader](https://www.npmjs.com/package/image-webpack-loader) or [svgo-loader](https://github.com/pozadi/svgo-loader) (SVG specific). This type of loader should be applied first to the data so remember to place it as the last within `loaders` listing.
+
+Compression is particularly useful during production usage as it will decrease the amount of bandwidth required to download your image assets and speed up your site or application as a result.
 
 ## Conclusion
 
