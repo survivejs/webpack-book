@@ -119,7 +119,9 @@ A lot of the hard work has been done for us already. In order to configure our s
 npm i babel-preset-react-hmre --save-dev
 ```
 
-Given it doesn't make sense to instrument our code with the hot loading logic for production usage, we should restrict it development only. One way to achieve this is to control *.babelrc* through `BABEL_ENV` environment variable. If you are following the single file setup discussed in this book, we can control it using npm lifecycle event captured when npm is executed. This gives a predictable mapping between *package.json* and *.babelrc*. You can achieve this as follows:
+Given it doesn't make sense to instrument our code with the hot loading logic for production usage, we should restrict it development only. One way to achieve this is to control *.babelrc* through `BABEL_ENV` environment variable.
+
+If you are following the single file setup discussed in this book, we can control it using npm lifecycle event captured when npm is executed. This gives a predictable mapping between *package.json* and *.babelrc*. You can achieve this as follows:
 
 **webpack.config.js**
 
@@ -168,7 +170,9 @@ After these steps your development setup should support hot loading. It is one o
 
 ### Configuring Redux
 
-In order to configure Redux reducers to support hot loading, we need to implement Webpack's hot loading protocol. Webpack provides a hook known as `module.hot.accept`. It gets called whenever Webpack detects a change. This allows you to reload and patch your code. The idea is useful beyond Redux and can be used with other systems as well. To give you a rough implementation, consider the code below:
+In order to configure Redux reducers to support hot loading, we need to implement Webpack's hot loading protocol. Webpack provides a hook known as `module.hot.accept`. It gets called whenever Webpack detects a change. This allows you to reload and patch your code.
+
+The idea is useful beyond Redux and can be used with other systems as well. To give you a rough implementation, consider the code below:
 
 ```javascript
 ...
