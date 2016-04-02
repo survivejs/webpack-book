@@ -35,7 +35,7 @@ I settled with [Mocha](https://mochajs.org/) and Node.js [assert](https://nodejs
 
 The test setup itself is minimal. Here's the relevant *package.json* portion:
 
-***package.json**
+**package.json**
 
 ```json
 ...
