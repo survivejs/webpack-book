@@ -1,6 +1,10 @@
 # Understanding Chunks
 
-Chunks are one of the most fundamental concepts of Webpack. We already touched the topic at the *Splitting Bundles* chapter. There we set up two separate entries, one for the application code and one for our vendor dependencies. With some additional setup Webpack was able to output separate bundles for these. We also did something similar with CSS as we separated it from our code to a bundle of its own in order to improve caching behavior.
+Chunks are one of the most fundamental concepts of Webpack. We already touched the topic at the *Splitting Bundles* chapter. There we set up two separate entries, one for the application code and one for our vendor dependencies.
+
+With some additional setup Webpack was able to output separate bundles for these. We also did something similar with CSS as we separated it from our code to a bundle of its own in order to improve caching behavior.
+
+## Chunk Types
 
 As [discussed in the documentation](https://webpack.github.io/docs/code-splitting.html#chunk-types), internally Webpack treats chunks in three types:
 
@@ -16,11 +20,17 @@ What makes Webpack powerful is its capability of splitting up your application i
 
 Often you don't need all of the dependencies at once. As we saw earlier, you can split your dependencies and benefit from browser caching behavior. This is a good step, but it's not enough always. Your bundles can still be somewhat big. *Lazy loading* allows us to go further.
 
+### Introduction to Lazy Loaded Search with *lunr*
+
+Let's say we want to implement a rough little search for our application without a proper search back-end. We might want to use something like [lunr](http://lunrjs.com/) for generating an index to search against.
+
+The problem is that the index can be quite big depending on the amount of the content. The dumb way to implement this kind of search would be to include the index required to the application bundle itself and then perform search against that.
+
+The good thing is that we don't actually need the search index straight from the start. We can do something more clever. We can start loading the index when the user selects our search field.
+
+This defers the loading and moves it to a place where it's more acceptable. Given the initial search might be slower than the subsequent ones we could display a loading indicator. But that's fine from the user point of view.
+
 ### Implementing Search with Lazy Loading
-
-Let's say we want to implement a rough little search for our application without a proper search back-end. We might want to use something like [lunr](http://lunrjs.com/) for generating an index to search against. The problem is that the index can be quite big depending on the amount of the content. The dumb way to implement this kind of search would be to include the index required to the application bundle itself and then perform search against that.
-
-The good thing is that we don't actually need the search index straight from the start. We can do something more clever. We can start loading the index when the user selects our search field. This defers the loading and moves it to a place where it's more acceptable. Given the initial search might be slower than the subsequent ones we could display a loading indicator. But that's fine from the user point of view.
 
 Implementing this idea is straight-forward. We need to capture when the user selects the search element, load the data unless it has been loaded already, and then execute our search logic against it. In React we could end up with something like this:
 
@@ -152,7 +162,9 @@ T> There's a [full example](https://github.com/survivejs/lunr-demo) showing how 
 
 Beyond `require.ensure`, there's another type of `require` that you should be aware of. It's [require.context](https://webpack.github.io/docs/context.html). `require.context` is a type of `require` which contents aren't known compile-time.
 
-Let's say you are writing a static site generator on top of Webpack. You could model your site contents within a directory structure. At the simplest level you could have just a `pages/` directory which would contain Markdown files with YAML frontmatter to define their metadata. The url of each page could be determined based on the filename. This is enough information to map the directory as a site. Code-wise we would end up with a statement like this somewhere:
+Let's say you are writing a static site generator on top of Webpack. You could model your site contents within a directory structure. At the simplest level you could have just a `pages/` directory which would contain Markdown files.
+
+Each of these files would have a YAML frontmatter for their metadata. The url of each page could be determined based on the filename. This is enough information to map the directory as a site. Code-wise we would end up with a statement like this somewhere:
 
 ```javascript
 // Process pages through `yaml-frontmatter-loader` and `json-loader`.
