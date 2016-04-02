@@ -52,6 +52,8 @@ There is also support for Less plugins, sourcemaps, and so on. To understand how
 
 [Sass](http://sass-lang.com/) is a popular alternative to Less. You should use [sass-loader](https://www.npmjs.com/package/sass-loader) with it. Remember to install [node-sass](https://www.npmjs.com/package/node-sass) to your project as the loader has a peer dependency on that. Webpack doesn't take much configuration:
 
+**webpack.config.js**
+
 ```javascript
 {
   test: /\.scss$/,
@@ -112,7 +114,11 @@ To start using yeticss with Stylus, you must import it to one of your app's .sty
 
 ## PostCSS
 
-[PostCSS](https://github.com/postcss/postcss) allows you to perform transformations over CSS through JavaScript plugins. You can even find plugins that provide you Sass-like features. PostCSS can be thought as the equivalent of Babel for styling. It can be used through [postcss-loader](https://www.npmjs.com/package/postcss-loader) with Webpack as below:
+[PostCSS](https://github.com/postcss/postcss) allows you to perform transformations over CSS through JavaScript plugins. You can even find plugins that provide you Sass-like features. PostCSS can be thought as the equivalent of Babel for styling. It can be used through [postcss-loader](https://www.npmjs.com/package/postcss-loader) with Webpack.
+
+The example below illustrates how to set up autoprefixing using it. You can mix this technique with other loaders:
+
+**webpack.config.js**
 
 ```javascript
 var autoprefixer = require('autoprefixer');
@@ -140,6 +146,8 @@ module.exports = {
 ![cssnext](images/cssnext.jpg)
 
 [cssnext](https://cssnext.github.io/) is a PostCSS plugin that allows us to experience the future now. There are some restrictions, but it may be worth a go. In Webpack it is simply a matter of installing [cssnext-loader](https://www.npmjs.com/package/cssnext-loader) and attaching it to your CSS configuration. In our case, you would end up with the following:
+
+**webpack.config.js**
 
 ```javascript
 {
