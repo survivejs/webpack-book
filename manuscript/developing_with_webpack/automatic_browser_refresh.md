@@ -56,7 +56,9 @@ T> If you fail to see anything at the browser, you may need to use a different p
 
 Hot Module Replacement gives us simple means to refresh the browser automatically as we make changes. The idea is that if we change our *app/component.js*, the browser will refresh itself. The same goes for possible CSS changes.
 
-In order to make this work, we'll need to connect the generated bundle running in-memory to the development server. Webpack uses WebSocket based communication to achieve this. To keep things simple, we'll let Webpack generate the client portion for us through the development server *inline* option. The option will include the client side scripts needed by HMR to the bundle that Webpack generates.
+In order to make this work, we'll need to connect the generated bundle running in-memory to the development server. Webpack uses WebSocket based communication to achieve this.
+
+To keep things simple, we'll let Webpack generate the client portion for us through the development server *inline* option. The option will include the client side scripts needed by HMR to the bundle that Webpack generates.
 
 Beyond this we'll need to enable `HotModuleReplacementPlugin` to make the setup work. In addition I am going to enable HTML5 History API fallback as that is convenient default to have especially if you are dealing with advanced routing. Here's the setup:
 
@@ -97,6 +99,9 @@ leanpub-start-insert
       // unlike default localhost
       host: process.env.HOST,
       port: process.env.PORT
+
+      // If you want defaults, you can use a little trick like this
+      // port: process.env.PORT || 3000
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin()
@@ -116,11 +121,9 @@ W> *webpack-dev-server* can be very particular about paths. If the given `includ
 
 T> You should be able to access the application alternatively through **localhost:8080/webpack-dev-server/** instead of root. You can see all the files the development server is serving there.
 
-T> If you want to default to some other port than *8080*, you can use a declaration like `port: process.env.PORT || 3000`.
+## HMR on Windows and Ubuntu
 
-## HMR on Windows
-
-The setup may be problematic on certain versions of Windows. Instead of using `devServer` and `plugins` configuration, implement it like this:
+The setup may be problematic on certain versions of Windows and Ubuntu. Instead of using `devServer` and `plugins` configuration, implement it like this:
 
 **webpack.config.js**
 
