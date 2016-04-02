@@ -30,63 +30,9 @@ module.exports = {
 };
 ```
 
-Webpack's loader definition is almost too flexible. I'll cover some of the common variants you see in the wild next. I'll look into JavaScript module support after that.
+Webpack's loader definition is almost too flexible. I'll cover variants in the next chapter. Before that we can take a quick look at JavaScript module formats supported by Webpack.
 
-## Loader Declaration Formats
-
-Sometimes you might want to pass query parameters to a loader. By default you could do it through a query string:
-
-```javascript
-{
-  test: /\.jsx?$/,
-  loaders: [
-    'babel?cacheDirectory,presets[]=react,presets[]=es2015,presets[]=survivejs-kanban'
-  ],
-  include: path.join(__dirname, 'app')
-}
-```
-
-The problem with this approach is that it isn't particularly readable. A better way is to use the combination of `loader` and `query` fields:
-
-```javascript
-{
-  test: /\.jsx?$/,
-  loader: 'babel',
-  query: {
-    cacheDirectory: true,
-    presets: ['react', 'es2015', 'survivejs-kanban']
-  },
-  include: PATHS.app
-}
-```
-
-This approach becomes problematic with multiple loaders since it's limited just to one loader at a time. If you want to use this format with multiple, you need separate declarations.
-
-It is good to keep in mind that Webpack `loaders` are always evaluated from right to left and from bottom to top (separate definitions). The following two declarations are equal based on this rule:
-
-```javascript
-{
-    test: /\.css$/,
-    loaders: ['style', 'css'],
-},
-```
-
-```javascript
-{
-    test: /\.css$/,
-    loaders: ['style'],
-},
-{
-    test: /\.css$/,
-    loaders: ['css'],
-},
-```
-
-The `loaders` of the latter definition could be rewritten in the query format discussed above after performing a split like this.
-
-Another way to deal with query parameters would be to rely on Node.js [querystring](https://nodejs.org/api/querystring.html) module and stringify structures through it so they can be passed through a `loaders` definition.
-
-## Module Formats Supported by Webpack
+## JavaScript Module Formats Supported by Webpack
 
 Webpack allows you to use different module formats, but under the hood they all work the same way. Most importantly you get CommonJS and AMD support out of the box. Webpack 2 will support ES6 module definition as well. For now, you have to stick with [Babel](https://babeljs.io) and [babel-loader](https://www.npmjs.org/package/babel-loader) to attain ES6 support.
 
@@ -164,4 +110,4 @@ Webpack can generate UMD wrappers for you (`output.libraryTarget: 'umd'`). This 
 
 Webpack supports a large variety of file formats. More often than not you will have to install some loader. Webpack itself supports just a couple of common JavaScript module formats.
 
-I will discuss specific assets types and how to load them using Webpack next.
+I will discuss Webpack's loader definitions in detail next.
