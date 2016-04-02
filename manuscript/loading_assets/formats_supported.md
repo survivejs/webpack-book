@@ -106,7 +106,7 @@ This latter approach definitely eliminates some of the clutter. You will still e
 
 UMD, universal module definition, takes it all to the next level. It is a monster of a format that aims to make the aforementioned formats compatible with each other. I will spare your eyes from it. Never write it yourself, leave it to the tools. If that didn't scare you off, check out [the official definitions](https://github.com/umdjs/umd).
 
-Webpack can generate UMD wrappers for you (`output.libraryTarget: 'umd'`). This is particularly useful for library authors. We'll get back to this later when discussing npm and library authorship in detail at the *Authoring Libraries* chapter.
+Webpack can generate UMD wrappers for you (`output.libraryTarget: 'umd'`). This is particularly useful for package authors. We'll get back to this later in the *Authoring Packages* chapter.
 
 ## Conclusion
 
