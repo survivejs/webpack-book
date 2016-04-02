@@ -10,13 +10,13 @@ W> It can be potentially dangerous to use inline styles in production as it repr
 
 ## Setting Up *extract-text-webpack-plugin*
 
-It will take some configuration to make it work. Execute
+It will take some configuration to make it work. Install the plugin:
 
 ```bash
 npm i extract-text-webpack-plugin --save-dev
 ```
 
-to get started. Next, we need to get rid of our current CSS related declaration at `common` configuration. After that, we need to split it up between `build` and `dev` configuration sections as follows:
+Next, we need to get rid of our current CSS related declaration at `common` configuration. After that, we need to split it up between `build` and `dev` configuration sections as follows:
 
 **webpack.config.js**
 
