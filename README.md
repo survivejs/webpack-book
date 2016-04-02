@@ -1,5 +1,7 @@
 # SurviveJS - Webpack
 
+[![Join the chat at https://gitter.im/survivejs/webpack](https://badges.gitter.im/survivejs/webpack.svg)](https://gitter.im/survivejs/webpack?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 > [Go to cookbook](http://survivejs.com/webpack_react/introduction/)
 
 > [中文版](https://fakefish.github.io/react-webpack-cookbook/)
