@@ -36,6 +36,8 @@ T> If you want to enable sourcemaps for CSS, you should use `['style', 'css?sour
 
 ## Loading LESS
 
+![Less](images/less.png)
+
 [Less](http://lesscss.org/) is a popular CSS processor that is packed with functionality. In Webpack using Less doesn't take a lot of effort. [less-loader](https://www.npmjs.com/package/less-loader) deals with the heavy lifting. You should install [less](https://www.npmjs.com/package/less) as well given it's a peer dependency of *less-loader*. Consider the following minimal setup:
 
 ```javascript
@@ -49,6 +51,8 @@ T> If you want to enable sourcemaps for CSS, you should use `['style', 'css?sour
 There is also support for Less plugins, sourcemaps, and so on. To understand how those work you should check out the project itself.
 
 ## Loading SASS
+
+![Sass](images/sass.png)
 
 [Sass](http://sass-lang.com/) is a popular alternative to Less. You should use [sass-loader](https://www.npmjs.com/package/sass-loader) with it. Remember to install [node-sass](https://www.npmjs.com/package/node-sass) to your project as the loader has a peer dependency on that. Webpack doesn't take much configuration:
 
@@ -64,7 +68,7 @@ There is also support for Less plugins, sourcemaps, and so on. To understand how
 
 Check out the loader for more advanced usage.
 
-## Imports in LESS and SASS
+### Imports in LESS and SASS
 
 If you import one LESS/SASS file from an other, use the exact same pattern as anywhere else. Webpack will dig into these files and figure out the dependencies.
 
@@ -79,6 +83,8 @@ $import "~bootstrap/less/bootstrap";
 ```
 
 ## Loading Stylus and YETICSS
+
+![Stylus](images/stylus.png)
 
 Stylus is yet another example of a CSS processor. It works well through [stylus-loader](https://github.com/shama/stylus-loader). There's also a pattern library known as [yeticss](https://www.npmjs.com/package/yeticss) that works well with it. Consider the following configuration:
 
@@ -114,6 +120,8 @@ To start using yeticss with Stylus, you must import it to one of your app's .sty
 
 ## PostCSS
 
+![PostCSS](images/postcss.png)
+
 [PostCSS](https://github.com/postcss/postcss) allows you to perform transformations over CSS through JavaScript plugins. You can even find plugins that provide you Sass-like features. PostCSS can be thought as the equivalent of Babel for styling. It can be used through [postcss-loader](https://www.npmjs.com/package/postcss-loader) with Webpack.
 
 The example below illustrates how to set up autoprefixing using it. You can mix this technique with other loaders:
@@ -142,6 +150,8 @@ module.exports = {
 ```
 
 ### cssnext
+
+![cssnext](images/cssnext.jpg)
 
 [cssnext](https://cssnext.github.io/) is a PostCSS plugin that allows us to experience the future now. There are some restrictions, but it may be worth a go. In Webpack it is simply a matter of installing [cssnext-loader](https://www.npmjs.com/package/cssnext-loader) and attaching it to your CSS configuration. In our case, you would end up with the following:
 
