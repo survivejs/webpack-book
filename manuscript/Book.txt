@@ -33,11 +33,6 @@ Advanced_Techniques.md
 advanced_techniques/understanding_chunks.md
 advanced_techniques/authoring_packages.md
 advanced_techniques/writing_loaders.md
-
-React_Techniques.md
-react_techniques/configuring_react.md
-react_techniques/hot_loading_components.md
-react_techniques/type_checking_with_flow.md
-react_techniques/universal_applications.md
+advanced_techniques/configuring_react.md
 
 Backmatter.txt
