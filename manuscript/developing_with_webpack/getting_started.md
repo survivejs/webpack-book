@@ -30,7 +30,9 @@ T> You can set those `npm init` defaults at *~/.npmrc*.
 
 ## Installing Webpack
 
-Even though Webpack can be installed globally (`npm i webpack -g`), I recommend maintaining it as a dependency per each project. This will avoid issues as then you will have control over the exact version you are running. The approach works nicely in **Continuous Integration** (CI) setups as well. A CI system can install your local dependencies, compile your project using them, and then push the result to a server.
+Even though Webpack can be installed globally (`npm i webpack -g`), I recommend maintaining it as a dependency per each project. This will avoid issues as then you will have control over the exact version you are running.
+
+The approach works nicely in **Continuous Integration** (CI) setups as well. A CI system can install your local dependencies, compile your project using them, and then push the result to a server.
 
 To add Webpack to our project, execute
 
@@ -39,6 +41,8 @@ npm i webpack --save-dev # or just -D if you want to save typing
 ```
 
 You should see Webpack at your *package.json* `devDependencies` section after this. In addition to installing the package locally below the *node_modules* directory, npm also generates an entry for the executable.
+
+## Executing Webpack
 
 You can display the exact path of the executables using `npm bin`. Most likely it points at *./node_modules/.bin*. Try executing Webpack from there through terminal using `node_modules/.bin/webpack` or a similar command.
 
