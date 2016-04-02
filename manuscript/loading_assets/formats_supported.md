@@ -32,6 +32,8 @@ module.exports = {
 
 Webpack's loader definition is almost too flexible. I'll cover variants in the next chapter. Before that we can take a quick look at JavaScript module formats supported by Webpack.
 
+T> If you are not sure how a particular RegExp matches, consider using an online tool, such as [regex101](https://regex101.com/).
+
 ## JavaScript Module Formats Supported by Webpack
 
 Webpack allows you to use different module formats, but under the hood they all work the same way. Most importantly you get CommonJS and AMD support out of the box. Webpack 2 will support ES6 module definition as well. For now, you have to stick with [Babel](https://babeljs.io) and [babel-loader](https://www.npmjs.org/package/babel-loader) to attain ES6 support.
