@@ -2,6 +2,7 @@
 
 Webpack provides placeholders that can be used to access different types of hashes and entry name as we saw before. The most useful ones are:
 
+* `[path]` - Returns entry path.
 * `[name]` - Returns entry name.
 * `[hash]` - Returns build hash.
 * `[chunkhash]` - Returns a chunk specific hash.
