@@ -1,8 +1,8 @@
+[![build status](https://secure.travis-ci.org/survivejs/webpack.png)](http://travis-ci.org/survivejs/webpack) [![Join the chat at https://gitter.im/survivejs/webpack](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/survivejs/webpack)
+
 # SurviveJS - Webpack
 
-> [Go to cookbook](http://survivejs.com/webpack_react/introduction/)
-
-> [中文版](https://fakefish.github.io/react-webpack-cookbook/)
+> [Go to cookbook](http://survivejs.com/webpack/introduction/)
 
 ## Contributing
 
