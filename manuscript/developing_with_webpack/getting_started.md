@@ -4,6 +4,8 @@ If you are not one of those people who likes to skip the introductions, you migh
 
 This sounds simple, but in practice, it can be a complicated and messy process. You definitely don't want to deal with all the details yourself. This is where Webpack fits in. Next, we'll get Webpack set up. In the following chapter we'll get a project running in development mode.
 
+T> If you want to see the completed configuration, head to [GitHub](https://github.com/survivejs-demos/webpack-demo). Study the version history to see the progression step by step. If you are unsure of something, you can refer there.
+
 ## Prerequisites
 
 Make sure you are using a recent version of [Node.js](http://nodejs.org/) installed. Particularly older versions (e.g. 0.10) are problematic and require extra work, such as polyfilling `Promise` through `require('es6-promise').polyfill()`. This technique depends on the [es6-promise](https://www.npmjs.com/package/es6-promise) package.
