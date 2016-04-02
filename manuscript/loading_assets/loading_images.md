@@ -46,9 +46,11 @@ Assuming you have set up your styling correctly, you can refer to your SVG files
 
 ```css
 .icon {
-   background-image: url(../assets/icon.svg);
+   background-image: url('../assets/icon.svg');
 }
 ```
+
+If you want the raw SVG content, you can use the [raw-loader](https://www.npmjs.com/package/raw-loader) for this purpose. This can be useful if you want to inject the SVG content to directly to JavaScript or HTML markup.
 
 T> For SVG compression check out the [svgo-loader](https://github.com/pozadi/svgo-loader).
 
