@@ -31,7 +31,7 @@ loading_assets/loading_fonts.md
 
 Advanced_Techniques.md
 advanced_techniques/understanding_chunks.md
-advanced_techniques/authoring_libraries.md
+advanced_techniques/authoring_packages.md
 advanced_techniques/writing_loaders.md
 
 React_Techniques.md
