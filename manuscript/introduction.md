@@ -56,7 +56,7 @@ https://github.com/survivejs/webpack/compare/v1.0.0...v1.1.0
 
 The page will show you the individual commits that went to the project between the given version range. You can also see the lines that have changed in the book. This excludes the private chapters, but it's enough to give you a good idea of the major changes made to the book.
 
-The current version of the book is **1.0.1**.
+The current version of the book is **1.0.2**.
 
 ## Getting Support
 
