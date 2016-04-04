@@ -129,8 +129,8 @@ The example below illustrates how to set up autoprefixing using it. You can mix 
 **webpack.config.js**
 
 ```javascript
-var autoprefixer = require('autoprefixer');
-var precss = require('precss');
+const autoprefixer = require('autoprefixer');
+const precss = require('precss');
 
 module.exports = {
   module: {
