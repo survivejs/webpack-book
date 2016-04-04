@@ -53,6 +53,24 @@ leanpub-end-insert
 if(TARGET === 'start' || !TARGET) {
   module.exports = merge(common, {
     ...
+    module: {
+      loaders: [
+        // Define development specific CSS setup
+        {
+          test: /\.css$/,
+          loaders: ['style', 'css'],
+          include: PATHS.app
+        }
+leanpub-start-delete
+      ]
+leanpub-end-delete
+leanpub-start-insert
+      ],
+      noParse: [
+        PATHS.react
+      ]
+leanpub-end-insert
+    },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
       new NpmInstallPlugin({
@@ -63,11 +81,6 @@ leanpub-start-delete
 leanpub-end-delete
 leanpub-start-insert
     ],
-    module: {
-      noParse: [
-        PATHS.react
-      ]
-    },
     resolve: {
       alias: {
         react: PATHS.react
