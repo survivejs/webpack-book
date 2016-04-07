@@ -72,7 +72,7 @@ leanpub-end-insert
 
 ...
 
-if(TARGET === 'start' || !TARGET) {
+if(TARGET === 'start') {
 leanpub-start-delete
   module.exports = merge(common, {});
 leanpub-end-delete
@@ -130,7 +130,7 @@ The setup may be problematic on certain versions of Windows and Ubuntu. Instead 
 ```javascript
 ...
 
-if(TARGET === 'start' || !TARGET) {
+if(TARGET === 'start') {
   module.exports = merge(common, {});
 }
 
