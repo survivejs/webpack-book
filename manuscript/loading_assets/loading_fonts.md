@@ -29,7 +29,7 @@ A more elaborate way to achieve a similar result would be to use:
     name: './fonts/[hash].[ext]'
   }
 }
-````
+```
 
 ## Supporting Multiple Formats
 
