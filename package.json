@@ -1,7 +1,7 @@
 {
   "name": "react-webpack-cookbook",
   "private": true,
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "SurviveJS - React",
   "scripts": {
     "test": "check-markdown-links manuscript"
