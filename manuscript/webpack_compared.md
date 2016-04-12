@@ -147,6 +147,8 @@ Given the configuration is code, you can always just hack it if you run into tro
 
 T> [gulp-webpack](https://www.npmjs.com/package/gulp-webpack) allows you to use Webpack in a Gulp environment.
 
+T> [Fly](https://github.com/bucaran/fly) is a similar tool as Gulp. It relies on ES6 generators instead.
+
 ## Browserify
 
 ![Browserify](images/browserify.png)
