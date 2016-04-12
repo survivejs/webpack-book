@@ -121,35 +121,31 @@ W> *webpack-dev-server* can be very particular about paths. If the given `includ
 
 T> You should be able to access the application alternatively through **localhost:8080/webpack-dev-server/** instead of root. You can see all the files the development server is serving there.
 
-## HMR on Windows and Ubuntu
+### HMR on Windows, Ubuntu, and Vagrant
 
-The setup may be problematic on certain versions of Windows and Ubuntu. Instead of using `devServer` and `plugins` configuration, implement it like this:
+The setup may be problematic on certain versions of Windows, Ubuntu, and Vagrant. Instead of using `devServer` and `plugins` configuration, implement it like this:
 
 **webpack.config.js**
 
 ```javascript
 ...
+leanpub-start-insert
+const webpack = require('webpack');
+leanpub-end-insert
+
+...
 
 if(TARGET === 'start' || !TARGET) {
-  module.exports = merge(common, {});
+  module.exports = merge(common, {
+leanpub-start-insert
+    watchOptions: {
+      poll: true
+    },
+leanpub-end-insert
+    ...
+  };
 }
 
-...
-```
-
-**package.json**
-
-```json
-...
-"scripts": {
-  "build": "webpack",
-leanpub-start-delete
-  "start": "webpack-dev-server"
-leanpub-end-delete
-leanpub-start-insert
-  "start": "webpack-dev-server --watch-poll --inline --hot"
-leanpub-end-insert
-},
 ...
 ```
 
