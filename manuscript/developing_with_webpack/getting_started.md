@@ -8,7 +8,7 @@ T> If you want to see the completed configuration, head to [GitHub](https://gith
 
 ## Prerequisites
 
-Make sure you are using a recent version of [Node.js](http://nodejs.org/) installed. Particularly older versions (e.g. 0.10) are problematic and require extra work, such as polyfilling `Promise` through `require('es6-promise').polyfill()`. This technique depends on the [es6-promise](https://www.npmjs.com/package/es6-promise) package.
+Make sure you are using a recent version of [Node.js](http://nodejs.org/) installed. Particularly older versions (e.g. 0.10) are problematic and require extra work, such as polyfilling `Promise` through `require('es6-promise').polyfill()`. This technique depends on the [es6-promise](https://www.npmjs.com/package/es6-promise) package. I recommend using at least the most recent LTS (Long-Term Support) version.
 
 There are [packages available for many platforms](https://nodejs.org/en/download/package-manager/). A good alternative is to set up a [Vagrant](https://www.vagrantup.com/) box and maintain your development environment there. This will incur a performance penalty, but on the plus side the setup is easier to share with other people. That's valuable especially in a team environment. You can also manage your setup per project this way.
 
