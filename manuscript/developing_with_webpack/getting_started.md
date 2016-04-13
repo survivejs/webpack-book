@@ -195,6 +195,8 @@ Task runners, such as Grunt or Gulp, allow you to achieve the same result while 
 
 T> There are shortcuts like *npm start* and *npm test*. We can run these directly without *npm run* although that will work too.
 
+T> You can execute *npm run* anywhere within the project. It doesn't have to be run in the project root in order to work.
+
 W> Unless Webpack is installed to the project, this can point to a possible global install. That can be potentially confusing. Prefer local installs over global for this reason.
 
 ## Conclusion
