@@ -14,6 +14,8 @@ There are [packages available for many platforms](https://nodejs.org/en/download
 
 Before going further, make sure you have `node` and `npm` commands available at your terminal.
 
+T> If you want to control Node.js version, consider using [nvm](https://www.npmjs.com/package/nvm).
+
 ## Setting Up the Project
 
 To get a starting point, we should create a directory for our project and set up a *package.json* there. npm uses that to manage project dependencies. Here are the basic commands:
