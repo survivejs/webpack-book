@@ -136,6 +136,8 @@ stat('dist-modules', function(error, stat) {
 
 The script may need tweaking to fit your purposes. But it's enough to give you a rough idea. If the `dist_modules` directory is missing, we'll generate it here. That's it.
 
+W> Relying on `postinstall` scripts can be [potentially dangerous](http://blog.npmjs.org/post/141702881055/package-install-scripts-vulnerability). Security minded developers may want to use `npm install --ignore-scripts`. You can set that default through `npm config set ignore-scripts true` if you want. Being a little cautious might not hurt.
+
 ## Conclusion
 
 Webpack can do a lot of work for a package author. Just picking up `output.libraryTarget` and `externals` help you a lot. These options are useful beyond package authoring. Particularly `externals` comes in handy when you want to exclude certain dependencies outside of your bundles and load them using some other way.
