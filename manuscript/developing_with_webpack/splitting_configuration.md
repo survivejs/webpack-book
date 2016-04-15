@@ -64,6 +64,7 @@ var config;
 switch(process.env.npm_lifecycle_event) {
   case 'build':
     config = merge(common, {});
+    break;
   default:
     config = merge(common, {});
 }

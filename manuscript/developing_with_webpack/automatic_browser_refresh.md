@@ -121,6 +121,7 @@ leanpub-end-insert
 switch(process.env.npm_lifecycle_event) {
   case 'build':
     config = merge(common, {});
+    break;
   default:
 leanpub-start-delete
     config = merge(common, {});
