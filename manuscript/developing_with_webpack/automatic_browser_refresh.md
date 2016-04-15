@@ -39,11 +39,12 @@ If you execute either *npm run start* or *npm start* now, you should see somethi
 ```bash
 > webpack-dev-server
 
+[webpack-validator] Config is valid.
 http://localhost:8080/webpack-dev-server/
 webpack result is served from /
 content is served from .../webpack-demo
 Hash: 2dca5a3850ce5d2de54c
-Version: webpack 1.12.14
+Version: webpack 1.12.15
 ```
 
 The output means that the development server is running. If you open *http://localhost:8080/* at your browser, you should see something. If you try modifying the code, you should see output at your terminal. The problem is that the browser doesn't catch these changes without a hard refresh. That's something we need to resolve next.
@@ -56,28 +57,21 @@ T> If you fail to see anything at the browser, you may need to use a different p
 
 Hot Module Replacement gives us simple means to refresh the browser automatically as we make changes. The idea is that if we change our *app/component.js*, the browser will refresh itself. The same goes for possible CSS changes.
 
-In order to make this work, we'll need to connect the generated bundle running in-memory to the development server. Webpack uses WebSocket based communication to achieve this.
+In order to make this work, we'll need to connect the generated bundle running in-memory to the development server. Webpack uses WebSocket based communication to achieve this. We'll let Webpack generate the client portion for us through the development server *inline* option. The option will include the client side scripts needed by HMR to the bundle that Webpack generates.
 
-To keep things simple, we'll let Webpack generate the client portion for us through the development server *inline* option. The option will include the client side scripts needed by HMR to the bundle that Webpack generates.
+Beyond this we'll need to enable `HotModuleReplacementPlugin` to make the setup work. In addition I am going to enable HTML5 History API fallback as that is convenient default to have especially if you are dealing with advanced routing.
 
-Beyond this we'll need to enable `HotModuleReplacementPlugin` to make the setup work. In addition I am going to enable HTML5 History API fallback as that is convenient default to have especially if you are dealing with advanced routing. Here's the setup:
+To keep our configuration manageable, I'll split functionalities like HMR into parts of their own. This keeps our *webpack.config.js* simple and promotes reuse. We could push a collection like this to a npm package of its own. We could even turn them into presets to use across projects. Functional composition allows that.
 
-**webpack.config.js**
+I'll push all of our configuration parts to *lib/parts.js* and consume them from there. Here's what a part would look like for HMR:
+
+**lib/parts.js**
 
 ```javascript
-...
-leanpub-start-insert
 const webpack = require('webpack');
-leanpub-end-insert
 
-...
-
-if(TARGET === 'start' || !TARGET) {
-leanpub-start-delete
-  module.exports = merge(common, {});
-leanpub-end-delete
-leanpub-start-insert
-  module.exports = merge(common, {
+exports.devServer = function(options) {
+  return {
     devServer: {
       // Enable history API fallback so HTML5 History API based
       // routing works. This is a good default that will come
@@ -97,20 +91,53 @@ leanpub-start-insert
       //
       // 0.0.0.0 is available to all network devices
       // unlike default localhost
-      host: process.env.HOST,
-      port: process.env.PORT
-
-      // If you want defaults, you can use a little trick like this
-      // port: process.env.PORT || 3000
+      host: options.host,
+      port: options.port
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin()
     ]
-  });
+  };
+}
+```
+
+It's plenty of code, but it's better to encapsulate it so it contains ideas we understand and want to reuse later on. Fortunately hooking up this part with our main configuration is simple:
+
+**webpack.config.js**
+
+```javascript
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const merge = require('webpack-merge');
+const validate = require('webpack-validator');
+
+leanpub-start-insert
+const parts = require('./lib/parts');
+leanpub-end-insert
+
+...
+
+// Detect how npm is run and branch based on that
+switch(process.env.npm_lifecycle_event) {
+  case 'build':
+    config = merge(common, {});
+  default:
+leanpub-start-delete
+    config = merge(common, {});
+leanpub-end-delete
+leanpub-start-insert
+    config = merge(
+      common,
+      parts.devServer({
+        // Customize host/port here if needed
+        host: process.env.HOST,
+        port: process.env.PORT
+      })
+    );
 leanpub-end-insert
 }
 
-...
+module.exports = validate(config);
 ```
 
 Execute `npm start` and surf to **localhost:8080**. Try modifying *app/component.js*. It should refresh the browser. Note that this is hard refresh in case you modify JavaScript code. CSS modifications work in a neater manner and can be applied without a refresh.
@@ -125,28 +152,24 @@ T> You should be able to access the application alternatively through **localhos
 
 The setup may be problematic on certain versions of Windows, Ubuntu, and Vagrant. Instead of using `devServer` and `plugins` configuration, implement it like this:
 
-**webpack.config.js**
+**lib/parts.js**
 
 ```javascript
-...
-leanpub-start-insert
+
 const webpack = require('webpack');
-leanpub-end-insert
 
-...
-
-if(TARGET === 'start' || !TARGET) {
-  module.exports = merge(common, {
+exports.devServer = function(options) {
+  return {
 leanpub-start-insert
     watchOptions: {
       poll: true
     },
 leanpub-end-insert
-    ...
+    devServer: {
+      ...
+    }
   };
 }
-
-...
 ```
 
 Given this setup polls the filesystem, it is going to be more resource intensive. It's worth giving a go if the default doesn't work, though.

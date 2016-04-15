@@ -33,14 +33,39 @@ In order to achieve what we want, we can use Webpack's `module.noParse` option. 
 
 In addition to telling Webpack not to parse the minified file we want to use, we also need to point `react` to it. This can be achieved using a feature known as `resolve.alias`. It is a mapping between a module name and its target path. In other words, it tells Webpack where to look up the matching module.
 
-Aliasing is a powerful technique and it has usages beyond this particular case. You could for example use it manage a configuration file depending on development and production.
+Aliasing is a powerful technique and it has usages beyond this particular case. You could for example use it manage a configuration file depending on development and production environments.
 
-The code below shows how to set up these two fields:
+We can encapsulate the basic idea within a configuration part like this:
+
+**lib/parts.js**
+
+```javascript
+...
+
+exports.dontParse = function(options) {
+  const alias = {};
+  alias[options.name] = options.path;
+
+  return {
+    module: {
+      noParse: [
+        options.path
+      ]
+    },
+    resolve: {
+      alias: alias
+    }
+  };
+}
+```
+
+We also need to connect this idea with our configuration:
 
 **webpack.config.js**
 
 ```javascript
 ...
+
 const PATHS = {
 leanpub-start-insert
   react: path.join(__dirname, 'node_modules/react/dist/react.min.js'),
@@ -50,54 +75,41 @@ leanpub-end-insert
 };
 
 ...
-if(TARGET === 'start' || !TARGET) {
-  module.exports = merge(common, {
-    ...
-    module: {
-      loaders: [
-        // Define development specific CSS setup
-        {
-          test: /\.css$/,
-          loaders: ['style', 'css'],
-          include: PATHS.app
-        }
-leanpub-start-delete
-      ]
-leanpub-end-delete
+
+// Detect how npm is run and branch based on that
+switch(process.env.npm_lifecycle_event) {
+  case 'build':
+    config = merge(common, {});
+  default:
+    config = merge(
+      common,
+      {
+        devtool: 'eval-source-map',
+        plugins: [
+          new NpmInstallPlugin({
+            save: true // --save
+          })
+        ]
+      },
 leanpub-start-insert
-      ],
-      noParse: [
-        PATHS.react
-      ]
+      parts.dontParse({
+        name: 'react',
+        path: PATHS.react
+      }),
 leanpub-end-insert
-    },
-    plugins: [
-      new webpack.HotModuleReplacementPlugin(),
-      new NpmInstallPlugin({
-        save: true // --save
+      parts.setupCSS(PATHS.app),
+      parts.devServer({
+        // Customize host/port here if needed
+        host: process.env.HOST,
+        port: process.env.PORT
       })
-leanpub-start-delete
-    ]
-leanpub-end-delete
-leanpub-start-insert
-    ],
-    resolve: {
-      alias: {
-        react: PATHS.react
-      }
-    }
-leanpub-end-insert
-  });
+    );
 }
 
-...
+module.exports = validate(config);
 ```
 
 If you try developing our application now, it should be at least a little bit faster. The difference isn't particularly big here. The technique is worth knowing, though.
-
-It would have been possible to define the configuration at `common`, but in order to demonstrate another technique later, I decided to push it to development configuration.
-
-Given it can be boring to maintain each of those `alias` and `noParse` pairs, it is possible to write a little function to handle the problem for you. I'll leave that as an exercise to the reader.
 
 T> Note that aliasing works also with loaders through [resolveLoader.alias](https://webpack.github.io/docs/configuration.html#resolveloader).
 

@@ -12,33 +12,47 @@ npm i css-loader style-loader --save-dev
 
 Now that we have the loaders we need, we'll need to make sure Webpack is aware of them. Configure as follows:
 
+**lib/parts.js**
+
+```javascript
+...
+
+exports.setupCSS = function(path) {
+  return {
+    module: {
+      loaders: [
+        {
+          test: /\.css$/,
+          loaders: ['style', 'css'],
+          include: path
+        }
+      ]
+    }
+  };
+}
+```
+
+We also need to connect our configuration fragment with the main configuration:
+
 **webpack.config.js**
 
 ```javascript
 ...
 
-const common = {
-  ...
-leanpub-start-delete
-  ]
-leanpub-end-delete
+switch(process.env.npm_lifecycle_event) {
+  case 'build':
+    config = merge(common, {});
+  default:
+    config = merge(
+      common,
 leanpub-start-insert
-  ],
-  module: {
-    loaders: [
-      {
-        // Test expects a RegExp! Note the slashes!
-        test: /\.css$/,
-        loaders: ['style', 'css'],
-        // Include accepts either a path or an array of paths.
-        include: PATHS.app
-      }
-    ]
-  }
+      parts.setupCSS(PATHS.app),
 leanpub-end-insert
+      ...
+    );
 }
 
-...
+module.exports = validate(config);
 ```
 
 The configuration we added means that files ending with `.css` should invoke given loaders. `test` matches against a JavaScript style regular expression. The loaders are evaluated from right to left.
@@ -83,30 +97,41 @@ T> An alternative way to load CSS would be to define a separate entry through wh
 
 ## Enabling Sourcemaps
 
-To improve the debuggability of the application, we can set up sourcemaps. They allow you to see exactly where an error was raised. In Webpack this is controlled through the `devtool` setting. We can use a decent default as follows:
+To improve the debuggability of the application, we can set up sourcemaps. They allow you to see exactly where an error was raised. In Webpack this is controlled through the `devtool` setting.
+
+Note that if you are running webpack-dev-server, Webpack won't generate any physical files. Webpack provides development specific types of sourcemaps that are actually generated inline with your JavaScript bundle code. This improves particularly re-build while it also increases the bundle size. In production usage you will want to use options that generate separate files.
+
+To enable sourcemaps during development, we can use a decent default as follows:
 
 **webpack.config.js**
 
 ```javascript
 ...
 
-if(TARGET === 'start' || !TARGET) {
-  module.exports = merge(common, {
+switch(process.env.npm_lifecycle_event) {
+  case 'build':
+    config = merge(common, {});
+  default:
+    config = merge(
+      common,
 leanpub-start-insert
-    devtool: 'eval-source-map',
+      {
+        devtool: 'eval-source-map'
+      },
 leanpub-end-insert
-    ...
-  });
+      parts.setupCSS(PATHS.app),
+      ...
+    );
 }
 
-...
+module.exports = validate(config);
 ```
 
-If you run the development build now using `npm start`, Webpack will generate sourcemaps. Webpack provides many different ways to generate them as discussed in the [official documentation](https://webpack.github.io/docs/configuration.html#devtool). In this case, we're using `eval-source-map`. It builds slowly initially, but it provides fast rebuild speed and yields real files.
-
-Faster development specific options, such as `cheap-module-eval-source-map` and `eval`, produce lower quality sourcemaps. All `eval` options will emit sourcemaps as a part of your JavaScript code. Therefore they are not suitable for a production environment. Given size isn't an issue during development, they tend to be a good fit for that use case.
+In this case, we're using `eval-source-map`. It builds slowly initially, but it provides fast rebuild speed and yields real files. Faster development specific options, such as `cheap-module-eval-source-map` and `eval`, produce lower quality sourcemaps. All `eval` options will emit sourcemaps as a part of your JavaScript code.
 
 It is possible you may need to enable sourcemaps in your browser for this to work. See [Chrome](https://developer.chrome.com/devtools/docs/javascript-debugging) and [Firefox](https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Use_a_source_map) instructions for further details.
+
+T> [The official documentation](https://webpack.github.io/docs/configuration.html#devtool) covers sourcemap options in greater detail.
 
 ## Conclusion
 
