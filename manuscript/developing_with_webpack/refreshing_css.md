@@ -41,7 +41,16 @@ We also need to connect our configuration fragment with the main configuration:
 
 switch(process.env.npm_lifecycle_event) {
   case 'build':
+leanpub-start-delete
     config = merge(common, {});
+leanpub-end-delete
+leanpub-start-insert
+    config = merge(
+      common,
+      parts.setupCSS(PATHS.app)
+    );
+leanpub-end-insert
+    break;
   default:
     config = merge(
       common,

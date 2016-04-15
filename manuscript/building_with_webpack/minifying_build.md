@@ -13,36 +13,37 @@ T> Even if we minify our build, we can still generate sourcemaps through the `de
 To get started, we should generate a baseline build so we have something to optimize. Execute `npm run build`. You should end up with something like this:
 
 ```bash
-Hash: 58740194b7e319d95423
-Version: webpack 1.12.14
-Time: 2022ms
+[webpack-validator] Config is valid.
+Hash: 9dda4176279d454a7542
+Version: webpack 1.12.15
+Time: 1448ms
      Asset       Size  Chunks             Chunk Names
- bundle.js     687 kB       0  [emitted]  app
+ bundle.js     131 kB       0  [emitted]  app
 index.html  160 bytes          [emitted]
-   [0] ./app/index.js 186 bytes {0} [built]
- [162] ./app/component.js 136 bytes {0} [built]
-    + 161 hidden modules
+   [0] ./app/index.js 123 bytes {0} [built]
+  [36] ./app/component.js 136 bytes {0} [built]
+    + 35 hidden modules
 Child html-webpack-plugin for "index.html":
         + 3 hidden modules
 ```
 
-687 kB is a lot! Minification should bring down the size a lot.
+131 kB is a lot! Minification should bring down the size a lot.
 
 ## Minifying the Code
 
 Minification will convert our code into a smaller format without losing any meaning. Usually this means some amount of rewriting code through predefined transformations. Sometimes, this can break code as it can rewrite pieces of code you inadvertently depend upon.
 
-The easiest way to enable minification is to call `webpack -p` (`-p` as in `production`). Alternatively, we an use a plugin directly as this provides us more control. By default Uglify will output a lot of warnings and they don't provide value in this case, we'll be disabling them. Add the following section to your Webpack configuration:
+The easiest way to enable minification is to call `webpack -p` (`-p` as in `production`). Alternatively, we an use a plugin directly as this provides us more control. By default Uglify will output a lot of warnings and they don't provide value in this case, we'll be disabling them.
 
-**webpack.config.js**
+As earlier, we can define a little function for this purpose and then point to it from our main configuration. Here's the basic idea:
+
+**lib/parts.js**
 
 ```javascript
-if(TARGET === 'build') {
-leanpub-start-delete
-  module.exports = merge(common, {});
-leanpub-end-delete
-leanpub-start-insert
-  module.exports = merge(common, {
+...
+
+exports.minify = function() {
+  return {
     plugins: [
       new webpack.optimize.UglifyJsPlugin({
         compress: {
@@ -50,30 +51,56 @@ leanpub-start-insert
         }
       })
     ]
-  });
-leanpub-end-insert
+  };
 }
 ```
 
-T> Uglify warnings can help you to understand how it processes the code. Therefore it may be beneficial to have a peek at the output every once in a while.
+Now we can hook it up with our configuration like this:
+
+**webpack.config.js**
+
+```javascript
+...
+
+// Detect how npm is run and branch based on that
+switch(process.env.npm_lifecycle_event) {
+  case 'build':
+    config = merge(
+      common,
+leanpub-start-insert
+      parts.minify()
+leanpub-end-insert
+      parts.setupCSS(PATHS.app)
+    );
+    break;
+  default:
+    ...
+}
+
+module.exports = validate(config);
+}
+```
 
 If you execute `npm run build` now, you should see better results:
 
 ```bash
-Hash: 64a955b2a5675a4ce31b
-Version: webpack 1.12.14
-Time: 5923ms
+[webpack-validator] Config is valid.
+Hash: b7f78734454b5f37c435
+Version: webpack 1.12.15
+Time: 3018ms
      Asset       Size  Chunks             Chunk Names
- bundle.js     193 kB       0  [emitted]  app
+ bundle.js    37.3 kB       0  [emitted]  app
 index.html  160 bytes          [emitted]
-   [0] ./app/index.js 186 bytes {0} [built]
- [162] ./app/component.js 136 bytes {0} [built]
-    + 161 hidden modules
+   [0] ./app/index.js 123 bytes {0} [built]
+  [36] ./app/component.js 136 bytes {0} [built]
+    + 35 hidden modules
 Child html-webpack-plugin for "index.html":
         + 3 hidden modules
 ```
 
 Given it needs to do more work, it took longer. But on the plus side the build is significantly smaller now.
+
+T> Uglify warnings can help you to understand how it processes the code. Therefore it may be beneficial to have a peek at the full output every once in a while.
 
 T> It is possible to push minification further by enabling variable name mangling. It comes with some extra complexity to worry about, but it may be worth it when you are pushing for minimal size. See [the official documentation](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) for details.
 
