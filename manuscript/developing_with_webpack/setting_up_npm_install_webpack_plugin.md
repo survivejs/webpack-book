@@ -15,37 +15,53 @@ We also need to connect it with our configuration:
 **webpack.config.js**
 
 ```javascript
-...
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const merge = require('webpack-merge');
+const validate = require('webpack-validator');
 leanpub-start-insert
 const NpmInstallPlugin = require('npm-install-webpack-plugin');
 leanpub-end-insert
 
 ...
 
-// Default configuration
-if(TARGET === 'start' || !TARGET) {
-  module.exports = merge(common, {
-    ...
-    plugins: [
+var config;
+
+// Detect how npm is run and branch based on that
+switch(process.env.npm_lifecycle_event) {
+  case 'build':
+    config = merge(common, {});
+  default:
+    config = merge(
+      common,
+      {
 leanpub-start-delete
-      new webpack.HotModuleReplacementPlugin(),
+        devtool: 'eval-source-map'
 leanpub-end-delete
 leanpub-start-insert
-      new webpack.HotModuleReplacementPlugin(),
-      new NpmInstallPlugin({
-        save: true // --save
-      })
+        devtool: 'eval-source-map',
+        plugins: [
+          new NpmInstallPlugin({
+            save: true // --save
+          })
+        ]
 leanpub-end-insert
-    ]
-  });
+      },
+      parts.setupCSS(PATHS.app),
+      parts.devServer({
+        // Customize host/port here if needed
+        host: process.env.HOST,
+        port: process.env.PORT
+      })
+    );
 }
 
-if(TARGET === 'build') {
-  module.exports = merge(common, {});
-}
+module.exports = validate(config);
 ```
 
-After this change we can save quite a bit of typing and context switches.
+It would be possible to push the plugin declaration to a function of its own. I'm leaving here it as a part of the main configuration for now, though.
+
+Enabling the plugin we can save quite a bit of typing and context switches.
 
 ## Conclusion
 

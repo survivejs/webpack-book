@@ -29,10 +29,6 @@ leanpub-start-insert
 const merge = require('webpack-merge');
 leanpub-end-insert
 
-leanpub-start-insert
-// Detect how npm is run and branch based on that
-const TARGET = process.env.npm_lifecycle_event;
-leanpub-end-insert
 const PATHS = {
   app: path.join(__dirname, 'app'),
   build: path.join(__dirname, 'build')
@@ -62,19 +58,55 @@ leanpub-end-insert
 };
 
 leanpub-start-insert
-// Default configuration. We will return this if
-// Webpack is called outside of npm.
-if(TARGET === 'start' || !TARGET) {
-  module.exports = merge(common, {});
+var config;
+
+// Detect how npm is run and branch based on that
+switch(process.env.npm_lifecycle_event) {
+  case 'build':
+    config = merge(common, {});
+  default:
+    config = merge(common, {});
 }
 
-if(TARGET === 'build') {
-  module.exports = merge(common, {});
-}
+module.exports = config;
 leanpub-end-insert
 ```
 
 After this change our build should behave exactly the same way as before. This time, however, we have room for expansion. We can hook up **Hot Module Replacement** next to make the browser refresh and turn our the development mode into something more useful.
+
+## Integrating *webpack-validator*
+
+To make it easier to develop our configuration, we can integrate a tool known as [webpack-validator](https://www.npmjs.com/package/webpack-validator) to our project. It will validate the configuration against a schema and warn if we are trying to do something not sensible. This takes some pain out of learning and using Webpack.
+
+Install it first:
+
+```bash
+npm i webpack-validator --save-dev
+```
+
+Integrating it to our project is straight-forward:
+
+**webpack.config.js**
+
+```javascript
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const merge = require('webpack-merge');
+leanpub-start-insert
+const validate = require('webpack-validator');
+leanpub-end-insert
+
+...
+
+leanpub-start-delete
+module.exports = config;
+leanpub-end-delete
+leanpub-start-insert
+module.exports = validate(config);
+leanpub-end-insert
+```
+
+If you break your Webpack configuration somehow after doing this, the validator will likely notice and give you a nice validation error to fix.
 
 ## Conclusion
 
