@@ -4,140 +4,143 @@ The main advantage of splitting the application into two separate bundles is tha
 
 Given each request comes with a slight overhead, this scheme won't load as fast initially as a single bundle. Caching more than makes up for that, though.
 
-## Defining a `vendor` Entry Point
+## Setting Up a `vendor` Bundle
 
-To make it easy to split the bundles, check out *package.json* and make sure only **react** is included in `dependencies`. We'll use this information for constructing our `vendor` bundle. Here's the basic setup:
-
-**webpack.config.js**
+So far our project has only a single entry. This entry has been named as `app`. The basic configuration looks like this:
 
 ```javascript
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const merge = require('webpack-merge');
-const webpack = require('webpack');
-const NpmInstallPlugin = require('npm-install-webpack-plugin');
-
-leanpub-start-insert
-// Load *package.json* so we can use `dependencies` from there
-const pkg = require('./package.json');
-leanpub-end-insert
-
-const TARGET = process.env.npm_lifecycle_event;
-const PATHS = {
-  app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'build')
-};
-
 const common = {
-  // Entry accepts a path or an object of entries.
-  // We'll be using the latter form given it's
-  // convenient with more complex configurations.
   entry: {
     app: PATHS.app
   },
   output: {
     path: PATHS.build,
-leanpub-start-delete
-    filename: 'bundle.js'
-leanpub-end-delete
-leanpub-start-insert
-    // Output using the entry name
     filename: '[name].js'
-leanpub-end-insert
   },
   ...
-};
-
-if(TARGET === 'build') {
-  module.exports = merge(common, {
-leanpub-start-insert
-    // Define vendor entry point needed for splitting
-    entry: {
-      // Set up an entry chunk for our vendor bundle.
-      // You can filter out dependencies here if needed with
-      // `.filter(...)`.
-      vendor: Object.keys(pkg.dependencies)
-    },
-leanpub-end-insert
-    plugins: [
-      ...
-    ]
-  });
 }
 ```
 
-The setup tells Webpack that we want a separate *entry chunk* for our project `vendor` level dependencies.
+The configuration tells Webpack to traverse dependencies starting from the `app` entry directory and then to output the resulting bundle below our `build` directory using the entry name and `.js` extension.
 
-Beyond this, it's possible to define chunks that are loaded dynamically. This can be achieved through [require.ensure](https://webpack.github.io/docs/code-splitting.html). We'll cover it in the *Understanding Chunks* chapter.
+We could add a vendor entry point to the configuration like this:
 
-If you execute the build now using `npm run build`, you should see something along this:
-
-```bash
-Hash: faafbe36cd3283ec761e
-Version: webpack 1.12.14
-Time: 7877ms
-     Asset       Size  Chunks             Chunk Names
-    app.js     135 kB       0  [emitted]  app
- vendor.js     131 kB       1  [emitted]  vendor
-index.html  190 bytes          [emitted]
-   [0] ./app/index.js 186 bytes {0} [built]
-   [0] multi vendor 28 bytes {1} [built]
- [157] ./app/component.js 136 bytes {0} [built]
-    + 156 hidden modules
-Child html-webpack-plugin for "index.html":
-        + 3 hidden modules
+```javascript
+const common = {
+  entry: {
+    app: PATHS.app,
+    vendor: ['react']
+  },
+  output: {
+    path: PATHS.build,
+    filename: '[name].js'
+  },
+  ...
+}
 ```
 
-Now we have separate `app` and `vendor` bundles. There's something wrong, however. If you examine the files, you'll see that *app.js* contains *vendor* dependencies. We need to do something to tell Webpack to avoid this situation. This is where `CommonsChunkPlugin` comes in.
+Based on the logic above this would generate two bundles - `app.js` and `vendor.js` - below our `build` directory. Webpack will treat these two cases separately. Given the `app` entry points at React dependency, it will be included to the `app` bundle by default.
+
+This problem can be overcome with additional configuration that tells Webpack to generate a bundle so that it contains only dependencies belonging to the passed entry. A plugin known as `CommonsChunkPlugin` allows us to achieve this.
 
 ## Setting Up `CommonsChunkPlugin`
 
-`CommonsChunkPlugin` allows us to extract the code we need for the `vendor` bundle. In addition, we will use it to extract a *manifest*. It is a file that tells Webpack how to map each module to each file. We will need this in the next step for setting up long term caching. Here's the setup:
+[CommonsChunkPlugin](https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin) is powerful and complex plugin. The use case we are covering here is a basic yet useful one. As before, we can define a function that wraps the basic idea.
+
+To make our life easier in the future, we can make it to extract a file known as **manifest**. It contains Webpack runtime that starts the whole application and contains the dependency information needed by it. Even though it's yet another file for the browser to load, it allows us to implement reliable caching in the next chapter.
+
+The following code combines the `entry` idea above with basic `CommonsChunkPlugin` setup. To make sure only `entry` modules are included in the resulting bundle we need to set `minChunks`. It would work without, but it's a good idea to set it to avoid issues on larger codebases. Consider the code below:
+
+**lib/parts.js**
+
+```javascript
+...
+
+exports.extractBundle = function(options) {
+  const entry = {};
+  entry[options.name] = options.entries;
+
+  return {
+    // Define an entry point needed for splitting.
+    entry: entry,
+    plugins: [
+      // Extract bundle and manifest files. Manifest is
+      // needed for reliable caching.
+      new webpack.optimize.CommonsChunkPlugin({
+        names: [options.name, 'manifest'],
+
+        // options.name modules only
+        minChunks: Infinity
+      })
+    ]
+  };
+}
+```
+
+As you might remember from the earlier, it is a good idea to separate application and development level dependencies. That is something we can leverage here. Instead of having to type in each `vendor` dependency, we can perform a lookup against *package.json* and the connect those dependencies with our solution above:
 
 **webpack.config.js**
 
 ```javascript
 ...
 
-if(TARGET === 'build') {
-  module.exports = merge(common, {
-    // Define vendor entry point needed for splitting
-    entry: {
-      ...
-    },
-    plugins: [
+const parts = require('./lib/parts');
+
 leanpub-start-insert
-      // Extract vendor and manifest files
-      new webpack.optimize.CommonsChunkPlugin({
-        names: ['vendor', 'manifest']
+// Load *package.json* so we can use `dependencies` from there
+const pkg = require('./package.json');
+leanpub-end-insert
+
+...
+
+// Detect how npm is run and branch based on that
+switch(process.env.npm_lifecycle_event) {
+  case 'build':
+    config = merge(
+      common,
+      parts.setFreeVariable(
+        'process.env.NODE_ENV',
+        'production'
+      ),
+leanpub-start-insert
+      parts.extractBundle({
+        name: 'vendor',
+        entries: Object.keys(pkg.dependencies)
       }),
 leanpub-end-insert
-      ...
-    ]
-  });
+      parts.minify(),
+      parts.setupCSS(PATHS.app)
+    );
+    break;
+  default:
 }
+
+module.exports = validate(config);
 ```
 
-If you run `npm run build` now, you should see output as below:
+If you execute the build now using `npm run build`, you should see something along this:
 
 ```bash
-Hash: 5324e81665088f9c191f
-Version: webpack 1.12.14
-Time: 5712ms
+[webpack-validator] Config is valid.
+Hash: e8e35ff9743bdaab9f55
+Version: webpack 1.12.15
+Time: 2797ms
       Asset       Size  Chunks             Chunk Names
-     app.js    3.92 kB    0, 2  [emitted]  app
-  vendor.js     131 kB    1, 2  [emitted]  vendor
+     app.js    3.91 kB    0, 2  [emitted]  app
+  vendor.js    20.7 kB    1, 2  [emitted]  vendor
 manifest.js  743 bytes       2  [emitted]  manifest
  index.html  225 bytes          [emitted]
-   [0] ./app/index.js 186 bytes {0} [built]
+   [0] ./app/index.js 123 bytes {0} [built]
    [0] multi vendor 28 bytes {1} [built]
- [157] ./app/component.js 136 bytes {0} [built]
-    + 156 hidden modules
+  [35] ./app/component.js 136 bytes {0} [built]
+    + 34 hidden modules
 Child html-webpack-plugin for "index.html":
         + 3 hidden modules
 ```
 
-We have `app` and `vendor` bundles now. There's also something known as `manifest`. That's a file that maps `app` and `vendor` entry bundles to the resulting asset files. This tiny file is needed to make our caching setup work later on.
+If you want, you can try the same without `CommonsChunkPlugin`. In that case React should end up in the `app` bundle. Here it goes directly to `vendor`. `manifest` ties that all together. Consider taking a look at the file contents to understand better how Webpack bootstraps the code.
+
+Beyond this, it's possible to define chunks that are loaded dynamically. This can be achieved through [require.ensure](https://webpack.github.io/docs/code-splitting.html). We'll cover it in the *Understanding Chunks* chapter.
 
 ## Conclusion
 
