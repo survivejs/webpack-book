@@ -19,21 +19,31 @@ leanpub-end-insert
 }
 ```
 
+We also need to make sure we use the correct configuration in this case:
+
 **webpack.config.js**
 
 ```javascript
 ...
 
-leanpub-start-delete
-if(TARGET === 'build') {
-leanpub-end-delete
+
+// Detect how npm is run and branch based on that
+switch(process.env.npm_lifecycle_event) {
+  case 'build':
 leanpub-start-insert
-if(TARGET === 'build' || TARGET === 'stats') {
+  case 'stats':
 leanpub-end-insert
-  ...
+    config = merge(
+      ...
+    );
+    break;
+  default:
+    config = merge(
+      ...
+    );
 }
 
-...
+module.exports = validate(config);
 ```
 
 If you execute `npm run stats` now, you should find *stats.json* at your project root after it has finished processing. We can take this file and pass it to [the online tool](http://webpack.github.io/analyse/). Note that the tool works only over HTTP! If your data is sensitive, consider using [the standalone version](https://github.com/webpack/analyse) instead.
