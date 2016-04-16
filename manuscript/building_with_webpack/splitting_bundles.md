@@ -123,7 +123,7 @@ If you execute the build now using `npm run build`, you should see something alo
 ```bash
 [webpack-validator] Config is valid.
 Hash: e8e35ff9743bdaab9f55
-Version: webpack 1.12.15
+Version: webpack 1.13.0
 Time: 2797ms
       Asset       Size  Chunks             Chunk Names
      app.js    3.91 kB    0, 2  [emitted]  app
