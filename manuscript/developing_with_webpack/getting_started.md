@@ -80,7 +80,7 @@ As projects with just *package.json* are boring, we should set up something more
 - package.json
 - webpack.config.js
 
-The idea is that we'll transform that *app/* to as a *bundle.js* below *build/*. To make this possible, we should set up the assets needed and *webpack.config.js* of course.
+The idea is that we'll transform that *app/* to as a bundle below *build/*. To make this possible, we should set up the assets needed and *webpack.config.js* of course.
 
 ## Setting Up Assets
 
@@ -118,7 +118,7 @@ To keep things simple to maintain, we'll be using [html-webpack-plugin](https://
 npm i html-webpack-plugin --save-dev
 ```
 
-To map our application to *build/bundle.js* and to set up the plugin we need configuration like this:
+To generate a bundle to our build directory and to set up the plugin we need configuration like this:
 
 **webpack.config.js**
 
@@ -140,7 +140,7 @@ module.exports = {
   },
   output: {
     path: PATHS.build,
-    filename: 'bundle.js'
+    filename: '[name].js'
   },
   plugins: [
     new HtmlWebpackPlugin({
