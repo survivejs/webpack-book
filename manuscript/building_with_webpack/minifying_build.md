@@ -68,7 +68,7 @@ switch(process.env.npm_lifecycle_event) {
     config = merge(
       common,
 leanpub-start-insert
-      parts.minify()
+      parts.minify(),
 leanpub-end-insert
       parts.setupCSS(PATHS.app)
     );
