@@ -64,7 +64,7 @@ Hash: ec8895fca7f20e0deae0
 Version: webpack 1.12.15
 Time: 2555ms
      Asset       Size  Chunks             Chunk Names
- bundle.js    24.7 kB       0  [emitted]  app
+    app.js    24.7 kB       0  [emitted]  app
 index.html  160 bytes          [emitted]
    [0] ./app/index.js 123 bytes {0} [built]
   [35] ./app/component.js 136 bytes {0} [built]
