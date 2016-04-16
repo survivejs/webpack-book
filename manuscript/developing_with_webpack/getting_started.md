@@ -52,7 +52,7 @@ After executing, you should see a version, a link to the command line interface 
 
 ```bash
 webpack-demo $ node_modules/.bin/webpack
-webpack 1.12.14
+webpack 1.13.0
 Usage: https://webpack.github.io/docs/cli.html
 
 Options:
@@ -158,7 +158,7 @@ If you execute `node_modules/.bin/webpack`, you should see output:
 
 ```bash
 Hash: 2dca5a3850ce5d2de54c
-Version: webpack 1.12.14
+Version: webpack 1.13.0
 Time: 805ms
      Asset       Size  Chunks             Chunk Names
  bundle.js    1.75 kB       0  [emitted]  app

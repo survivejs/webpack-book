@@ -15,7 +15,7 @@ To get started, we should generate a baseline build so we have something to opti
 ```bash
 [webpack-validator] Config is valid.
 Hash: 9dda4176279d454a7542
-Version: webpack 1.12.15
+Version: webpack 1.13.0
 Time: 1448ms
      Asset       Size  Chunks             Chunk Names
     app.js     131 kB       0  [emitted]  app
@@ -86,7 +86,7 @@ If you execute `npm run build` now, you should see better results:
 ```bash
 [webpack-validator] Config is valid.
 Hash: b7f78734454b5f37c435
-Version: webpack 1.12.15
+Version: webpack 1.13.0
 Time: 3018ms
      Asset       Size  Chunks             Chunk Names
     app.js    37.3 kB       0  [emitted]  app

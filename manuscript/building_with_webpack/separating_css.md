@@ -91,7 +91,7 @@ After running `npm run build`, you should see output similar to the following:
 [webpack-validator] Config is valid.
 clean-webpack-plugin: .../webpack_demo/build has been removed.
 Hash: 9db9cfd0a072849bd44c
-Version: webpack 1.12.15
+Version: webpack 1.13.0
 Time: 2873ms
                            Asset       Size  Chunks             Chunk Names
      app.7dd976206027a3ae3682.js  224 bytes    0, 2  [emitted]  app
@@ -170,7 +170,7 @@ If you build the project now through `npm run build`, you should see something l
 [webpack-validator] Config is valid.
 clean-webpack-plugin: .../webpack_demo/build has been removed.
 Hash: 3cf433acf480f23a6ac4
-Version: webpack 1.12.15
+Version: webpack 1.13.0
 Time: 2520ms
                            Asset       Size  Chunks             Chunk Names
      app.48e4396b1a49d473833d.js  199 bytes    0, 3  [emitted]  app

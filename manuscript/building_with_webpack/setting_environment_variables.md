@@ -61,7 +61,7 @@ Execute `npm run build` again, and you should see improved results:
 ```bash
 [webpack-validator] Config is valid.
 Hash: ec8895fca7f20e0deae0
-Version: webpack 1.12.15
+Version: webpack 1.13.0
 Time: 2555ms
      Asset       Size  Chunks             Chunk Names
     app.js    24.7 kB       0  [emitted]  app

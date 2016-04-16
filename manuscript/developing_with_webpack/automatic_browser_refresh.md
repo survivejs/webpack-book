@@ -44,7 +44,7 @@ http://localhost:8080/webpack-dev-server/
 webpack result is served from /
 content is served from .../webpack-demo
 Hash: 2dca5a3850ce5d2de54c
-Version: webpack 1.12.15
+Version: webpack 1.13.0
 ```
 
 The output means that the development server is running. If you open *http://localhost:8080/* at your browser, you should see something. If you try modifying the code, you should see output at your terminal. The problem is that the browser doesn't catch these changes without a hard refresh. That's something we need to resolve next.
