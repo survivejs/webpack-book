@@ -8,13 +8,11 @@ W> You should use *webpack-dev-server* strictly for development. If you want to 
 
 ## Getting Started with *webpack-dev-server*
 
-To get started with *webpack-dev-server*, execute
+To get started with *webpack-dev-server*, execute:
 
 ```bash
 npm i webpack-dev-server --save-dev
 ```
-
-at the project root to get the server installed.
 
 Just like in the previous chapter, we'll need to define an entry point to the `scripts` section of *package.json*. Given our *index.html* is below *./build*, we should let *webpack-dev-server* to serve the content from there. We'll move this to Webpack configuration later, but this will do for now:
 
@@ -23,13 +21,10 @@ Just like in the previous chapter, we'll need to define an entry point to the `s
 ```json
 ...
 "scripts": {
-leanpub-start-delete
-  "build": "webpack"
-leanpub-end-delete
 leanpub-start-insert
-  "build": "webpack",
   "start": "webpack-dev-server"
 leanpub-end-insert
+  "build": "webpack"
 },
 ...
 ```
@@ -156,7 +151,6 @@ The setup may be problematic on certain versions of Windows, Ubuntu, and Vagrant
 **lib/parts.js**
 
 ```javascript
-
 const webpack = require('webpack');
 
 exports.devServer = function(options) {
