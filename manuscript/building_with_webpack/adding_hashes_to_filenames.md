@@ -16,50 +16,57 @@ vendor.dc746a5db4ed650296e1.js
 
 If the file contents are different, the hash will change as well, thus invalidating the cache, or more accurately the browser will send a new request for the new file. This means if only `app` bundle gets updated, only that file needs to be requested again.
 
-T> An alternative way to achieve the same would be to generate static filenames and invalidate the cache through a querystring (i.e., `app.js?d587bbd6e38337f5accd`). The part behind the question mark will invalidate the cache. This method is not recommended. According to [Steve Souders](http://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/), attaching the hash to the filename is a more performant way to go.
+An alternative way to achieve the same would be to generate static filenames and invalidate the cache through a querystring (i.e., `app.js?d587bbd6e38337f5accd`). The part behind the question mark will invalidate the cache. This method is not recommended. According to [Steve Souders](http://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/), attaching the hash to the filename is a more performant way to go.
 
 ## Setting Up Hashing
 
-We can use the placeholder idea within our configuration like this:
+We have already done half of the work needed for a hashing setup to work. In the previous chapter we extracted a manifest to make Webpack build results reliable. We are missing just one thing, hashes. To generate the hashes, we need to tweak the `output` configuration slightly:
 
 **webpack.config.js**
 
 ```javascript
-if(TARGET === 'build') {
-  module.exports = merge(common, {
-    // Define vendor entry point needed for splitting
-    entry: {
+...
+
+// Detect how npm is run and branch based on that
+switch(process.env.npm_lifecycle_event) {
+  case 'build':
+    config = merge(
+      common,
+      {
+        output: {
+          path: PATHS.build,
+          filename: '[name].[chunkhash].js',
+          // This is used for require.ensure. The setup
+          // will work without but this is useful to set.
+          chunkFilename: '[chunkhash].js'
+        }
+      },
       ...
-    },
-leanpub-start-insert
-    output: {
-      path: PATHS.build,
-      filename: '[name].[chunkhash].js',
-      chunkFilename: '[chunkhash].js'
-    },
-leanpub-end-insert
-    plugins: [
-      ...
-    ]
-  });
+    );
+    break;
+  default:
+    ...
 }
+
+module.exports = validate(config);
 ```
 
 If you execute `npm run build` now, you should see output like this.
 
 ```bash
-Hash: fe4a796ff1a386bb12ed
-Version: webpack 1.12.14
-Time: 5858ms
+[webpack-validator] Config is valid.
+Hash: 8a939300f2fb786ffd37
+Version: webpack 1.12.15
+Time: 2884ms
                            Asset       Size  Chunks             Chunk Names
-     app.4ea5918866d5a1d11cc7.js    3.92 kB    0, 2  [emitted]  app
-  vendor.32ffcee47b9808ea7de7.js     131 kB    1, 2  [emitted]  vendor
-manifest.733f3bbc2f050bacdcdd.js  763 bytes       2  [emitted]  manifest
+     app.12fae4700037fec81543.js    3.91 kB    0, 2  [emitted]  app
+  vendor.0328dbecd1e0c3534145.js    20.7 kB    1, 2  [emitted]  vendor
+manifest.fdff3a084b5fe7e06078.js  763 bytes       2  [emitted]  manifest
                       index.html  288 bytes          [emitted]
-   [0] ./app/index.js 186 bytes {0} [built]
+   [0] ./app/index.js 123 bytes {0} [built]
    [0] multi vendor 28 bytes {1} [built]
- [157] ./app/component.js 136 bytes {0} [built]
-    + 156 hidden modules
+  [35] ./app/component.js 136 bytes {0} [built]
+    + 34 hidden modules
 Child html-webpack-plugin for "index.html":
         + 3 hidden modules
 ```
@@ -70,4 +77,4 @@ One more way to improve the build further would be to load popular dependencies,
 
 ## Conclusion
 
-Adding hashes to our filenames brings a new problem. If a hash changes, we still have possible older files within our output directory. To eliminate this problem, we can set up a little plugin to clean it up for us.
+Even though our project has neat caching behavior now, adding hashes to our filenames brings a new problem. If a hash changes, we still have possible older files within our output directory. To eliminate this problem, we can set up a little plugin to clean it up for us.
