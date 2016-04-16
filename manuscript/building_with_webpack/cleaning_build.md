@@ -6,33 +6,67 @@ Another valid way to resolve the issue would be to handle this outside of Webpac
 
 ## Setting Up *clean-webpack-plugin*
 
-Install [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin) and change the build configuration as follows to integrate it:
+Install [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin) first:
 
 ```bash
 npm i clean-webpack-plugin --save-dev
 ```
 
-**webpack.config.js**
+Next we need to define a little function to wrap the basic idea. We could use the plugin directly, but this feels like something that could be useful across projects so it makes sense to push to our library:
+
+**lib/parts.js**
 
 ```javascript
-...
+const webpack = require('webpack');
 leanpub-start-insert
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 leanpub-end-insert
 
 ...
 
-if(TARGET === 'build') {
-  module.exports = merge(common, {
-    ...
+exports.clean = function(path) {
+  return {
     plugins: [
+      new CleanWebpackPlugin([path], {
+        // Without `root` CleanWebpackPlugin won't point to our
+        // project and will fail to work.
+        root: process.cwd()
+      })
+    ]
+  };
+}
+```
+
+We can connect it with our project like this:
+
+**webpack.config.js**
+
+```javascript
+...
+
+// Detect how npm is run and branch based on that
+switch(process.env.npm_lifecycle_event) {
+  case 'build':
+    config = merge(
+      common,
+      {
+        output: {
+          path: PATHS.build,
+          filename: '[name].[chunkhash].js',
+          chunkFilename: '[chunkhash].js'
+        }
+      },
 leanpub-start-insert
-      new CleanWebpackPlugin([PATHS.build]),
+      parts.clean(PATHS.build),
 leanpub-end-insert
       ...
-    ]
-  });
+    );
+    break;
+  default:
+    ...
 }
+
+module.exports = validate(config);
 ```
 
 After this change, our `build` directory should remain nice and tidy when building. You can verify this by building the project and making sure no old files remained in the output directory.
