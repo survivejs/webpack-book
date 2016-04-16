@@ -157,13 +157,13 @@ I like to use `path.join`, but `path.resolve` would be a good alternative. `path
 If you execute `node_modules/.bin/webpack`, you should see output:
 
 ```bash
-Hash: 2dca5a3850ce5d2de54c
+Hash: 2a7a7bccea1741de9447
 Version: webpack 1.13.0
-Time: 805ms
+Time: 813ms
      Asset       Size  Chunks             Chunk Names
- bundle.js    1.75 kB       0  [emitted]  app
-index.html  160 bytes          [emitted]
-   [0] ./app/index.js 144 bytes {0} [built]
+    app.js    1.69 kB       0  [emitted]  app
+index.html  157 bytes          [emitted]
+   [0] ./app/index.js 80 bytes {0} [built]
    [1] ./app/component.js 136 bytes {0} [built]
 Child html-webpack-plugin for "index.html":
         + 3 hidden modules
