@@ -48,7 +48,7 @@ leanpub-end-insert
   },
   output: {
     path: PATHS.build,
-    filename: 'bundle.js'
+    filename: '[name].js'
   },
   plugins: [
     new HtmlWebpackPlugin({
