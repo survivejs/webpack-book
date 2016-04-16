@@ -40,6 +40,10 @@ switch(process.env.npm_lifecycle_event) {
     config = merge(
       common,
 leanpub-start-insert
+      parts.setFreeVariable(
+        'process.env.NODE_ENV',
+        'production'
+      ),
 leanpub-end-insert
       parts.minify(),
       parts.setupCSS(PATHS.app)
