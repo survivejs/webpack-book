@@ -8,7 +8,7 @@ Before going further, make sure you have `node` and `npm` commands available at 
 
 T> If you want to control Node.js version, consider using [nvm](https://www.npmjs.com/package/nvm).
 
-T> If you want to see the completed configuration, head to [GitHub](https://github.com/survivejs-demos/webpack-demo). If you are unsure of something, you can refer there.
+T> The completed configuration is available at [GitHub](https://github.com/survivejs-demos/webpack-demo). If you are unsure of something, refer there.
 
 ## Setting Up the Project
 
