@@ -187,4 +187,6 @@ T> It is possible to execute *npm run* anywhere within the project. It doesn't h
 
 ## Conclusion
 
-Even though we've managed to set up a basic Webpack setup, it's not that great yet. Developing this way would be slow. That's where Webpack's more advanced features come in. To make room for these features, I will show you how to split your Webpack configuration in the next chapter.
+Even though we've managed to set up a basic Webpack setup, it's not that great yet. Developing against it would be painful. Each time we wanted to check out our application, we would have to build it manually using `npm run build` and then refresh the browser.
+
+That's where Webpack's more advanced features come in. To make room for these features, I will show you how to split your Webpack configuration in the next chapter.
