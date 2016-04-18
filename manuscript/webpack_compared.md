@@ -59,12 +59,14 @@ With Make, you model your tasks using Make-specific syntax and terminal commands
 
 ![Grunt](images/grunt.png)
 
-Grunt went mainstream before Gulp. Its plugin architecture, especially, contributed towards its popularity. At the same time, this architecture is the Achilles' heel of Grunt. I know from experience that you **don't** want to end up having to maintain a 300-line *Gruntfile*. Here's an example from [Grunt documentation](http://gruntjs.com/sample-gruntfile):
+Grunt went mainstream before Gulp. Its plugin architecture, especially, contributed towards its popularity. Often plugins are complex by themselves. As a result when configuration grows, it can become difficult to understand what's going on.
+
+Here's an example from [Grunt documentation](http://gruntjs.com/sample-gruntfile). In this configuration, we define a linting and a watcher task. When the *watch* task is run, it will trigger the *lint* task as well. This way, as we run Grunt, we'll get warnings in real-time in our terminal as we edit our source code.
 
 ```javascript
 module.exports = function(grunt) {
   grunt.initConfig({
-    jshint: {
+    lint: {
       files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
       options: {
         globals: {
@@ -73,21 +75,19 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      files: ['<%= jshint.files %>'],
-      tasks: ['jshint']
+      files: ['<%= lint.files %>'],
+      tasks: ['lint']
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('default', ['jshint']);
+  grunt.registerTask('default', ['lint']);
 };
 ```
 
-In this sample, we define two basic tasks related to *jshint*, a linting tool that locates possible problem spots in your JavaScript source code. We have a standalone task for running jshint. Also, we have a watcher based task. When we run Grunt, we'll get warnings in real-time in our terminal as we edit and save our source code.
-
-In practice, you would have many small tasks for various purposes, such as building the project. The example shows how these tasks are constructed. An important part of the power of Grunt is that it hides a lot of the wiring from you. Taken too far, this can get problematic, though. It can become hard to thoroughly understand what's going on under the hood.
+In practice, you would have many small tasks like this for various purposes, such as building the project. An important part of the power of Grunt is that it hides a lot of the wiring from you. Taken too far, this can get problematic, though. It can become hard to thoroughly understand what's going on under the hood.
 
 T> Note that the [grunt-webpack](https://www.npmjs.com/package/grunt-webpack) plugin allows you to use Webpack in a Grunt environment. You can leave the heavy lifting to Webpack.
 
