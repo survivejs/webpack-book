@@ -181,8 +181,6 @@ You can execute these scripts through *npm run*. For instance, in this case we c
 
 This works because npm adds *node_modules/.bin* temporarily to the path. As a result, rather than having to write `"build": "node_modules/.bin/webpack"`, we can do just `"build": "webpack"`.
 
-Task runners, such as Grunt or Gulp, allow you to achieve the same result while operating in a cross-platform manner. If you go through *package.json* like this, you may have to be more careful. On the plus side, this is a very light approach. To keep things simple, we'll be relying on it.
-
 T> There are shortcuts like *npm start* and *npm test*. We can run these directly without *npm run* although that will work too.
 
 T> It is possible to execute *npm run* anywhere within the project. It doesn't have to be run in the project root in order to work.
