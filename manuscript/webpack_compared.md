@@ -238,4 +238,4 @@ I hope this chapter helped you understand why Webpack is a valuable tool worth l
 
 In the following chapters we'll examine Webpack in more detail. You will learn to develop a basic development and build configuration. The later chapters delve into more advanced topics.
 
-You can, and probably should, use Webpack with some other tools. It won't solve everything. It does solve the difficult problem of bundling, however. That's one less worry during development. Just using *package.json*, `scripts`, and Webpack takes you far, as we will see soon.
+You can use Webpack with some other tools. It won't solve everything. It does solve the difficult problem of bundling, however. That's one less worry during development. Just using *package.json*, `scripts`, and Webpack takes you far, as we will see soon.
