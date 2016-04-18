@@ -38,4 +38,4 @@ T> [The official documentation](https://webpack.github.io/docs/configuration.htm
 
 ## Conclusion
 
-Sourcemaps can be convenient during development. They provide us better means to debug our applications as we can still examine the original code over generated one. The next chapter covers a Webpack plugin known as *npm-install-webpack-plugin*. Plugins like this allow us to push our development flow further. All of these little improvements count.
+Sourcemaps can be convenient during development. They provide us better means to debug our applications as we can still examine the original code over generated one. Our build configuration isn't that sophisticated yet, though. I'll show you how to push it further in the next part as we discuss various build related techniques.
