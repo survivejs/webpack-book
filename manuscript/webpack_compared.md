@@ -165,7 +165,7 @@ The Browserify ecosystem is composed of a lot of small modules. In this way, Bro
 
 ![webpack](images/webpack.png)
 
-You could say Webpack (or just *webpack*) takes a more monolithic approach than Browserify. Whereas Browserify consists of multiple small tools, Webpack comes with a core that provides a lot of functionality out of the box. The core can be extended using specific *loaders* and *plugins*.
+You could say Webpack takes a more monolithic approach than Browserify. Whereas Browserify consists of multiple small tools, Webpack comes with a core that provides a lot of functionality out of the box. The core can be extended using specific *loaders* and *plugins*.
 
 Webpack will traverse through the `require` statements of your project and will generate the bundles you have defined. You can even load your dependencies in a dynamic manner using a custom `require.ensure` statement. The loader mechanism works for CSS as well and `@import` is supported. There are also plugins for specific tasks, such as minification, localization, hot loading, and so on.
 
