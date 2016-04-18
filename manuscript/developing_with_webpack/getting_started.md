@@ -1,12 +1,8 @@
 # Getting Started
 
-Make sure you are using a recent version of [Node.js](http://nodejs.org/) installed. Particularly older versions (e.g. 0.10) are problematic and require extra work, such as polyfilling `Promise` through `require('es6-promise').polyfill()`. This technique depends on the [es6-promise](https://www.npmjs.com/package/es6-promise) package. I recommend using at least the most recent LTS (Long-Term Support) version.
+Make sure you are using a recent version of [Node.js](http://nodejs.org/) installed. Particularly older versions (e.g. 0.10) are problematic and require extra work, such as polyfilling `Promise` through `require('es6-promise').polyfill()`. This technique depends on the [es6-promise](https://www.npmjs.com/package/es6-promise) package. I recommend using at least the most recent LTS (Long-Term Support) version. Before going further, make sure you have `node` and `npm` commands available at your terminal.
 
-There are [packages available for many platforms](https://nodejs.org/en/download/package-manager/). A good alternative is to set up a [Vagrant](https://www.vagrantup.com/) box and maintain your development environment there. This will incur a performance penalty, but on the plus side the setup is easier to share with other people. That's valuable especially in a team environment. You can also manage your setup per project this way.
-
-Before going further, make sure you have `node` and `npm` commands available at your terminal.
-
-T> If you want to control Node.js version, consider using [nvm](https://www.npmjs.com/package/nvm).
+T> It is possible to get a more controlled environment by using a solution such as [Vagrant](https://www.vagrantup.com/) or [nvm](https://www.npmjs.com/package/nvm). Especially Vagrant comes with a performance penalty as it relies on a virtual machine. Vagrant is particularly useful in a team environment, though, as it gives you a predictable environment to develop against.
 
 T> The completed configuration is available at [GitHub](https://github.com/survivejs-demos/webpack-demo). If you are unsure of something, refer there.
 
