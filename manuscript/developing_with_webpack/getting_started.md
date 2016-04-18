@@ -22,7 +22,7 @@ T> You can set those `npm init` defaults at *~/.npmrc*.
 
 ## Installing Webpack
 
-Even though Webpack can be installed globally (`npm i webpack -g`), I recommend maintaining it as a dependency per each project. This will avoid issues as then you will have control over the exact version you are running.
+Even though Webpack can be installed globally (`npm i webpack -g`), I recommend maintaining it as a dependency of your project. This will avoid issues as then you will have control over the exact version you are running.
 
 The approach works nicely in **Continuous Integration** (CI) setups as well. A CI system can install your local dependencies, compile your project using them, and then push the result to a server.
 
@@ -63,10 +63,10 @@ T> We can use `--save` and `--save-dev` to separate application and development 
 
 As projects with just *package.json* are boring, we should set up something more concrete. To get started, we can implement a little web site that loads some JavaScript which we then build using Webpack. After we progress a bit, we'll end up with a directory structure like this:
 
-- /app
+- app/
   - index.js
   - component.js
-- /build
+- build/
 - package.json
 - webpack.config.js
 
@@ -159,7 +159,7 @@ Child html-webpack-plugin for "index.html":
         + 3 hidden modules
 ```
 
-This means you have a build at your output directory at *build/bundle.js*. You can examine the output through your editor to see what Webpack did there. To see the application running, open the `build/index.html` file directly through a browser. On OS X `open ./build/index.html` works.
+This means you have a build at your output directory at *build/app.js*. You can examine the output through your editor to see what Webpack did there. To see the application running, open the `build/index.html` file directly through a browser. On OS X `open ./build/index.html` works.
 
 T> Another way to serve the contents of the directory through a server, such as *serve* (`npm i serve -g`). In this case, execute `serve` at the output directory and head to `localhost:3000` at your browser. You can configure the port through the `--port` parameter.
 
