@@ -104,44 +104,6 @@ Open up *main.css* and change the background color to something like `lime` (`ba
 
 T> An alternative way to load CSS would be to define a separate entry through which we point at CSS.
 
-## Enabling Sourcemaps
-
-To improve the debuggability of the application, we can set up sourcemaps. They allow you to see exactly where an error was raised. In Webpack this is controlled through the `devtool` setting.
-
-Note that if you are running webpack-dev-server, Webpack won't generate any physical files. Webpack provides development specific types of sourcemaps that are actually generated inline with your JavaScript bundle code. This improves particularly re-build while it also increases the bundle size. In production usage you will want to use options that generate separate files.
-
-To enable sourcemaps during development, we can use a decent default as follows:
-
-**webpack.config.js**
-
-```javascript
-...
-
-switch(process.env.npm_lifecycle_event) {
-  case 'build':
-    config = merge(common, {});
-  default:
-    config = merge(
-      common,
-leanpub-start-insert
-      {
-        devtool: 'eval-source-map'
-      },
-leanpub-end-insert
-      parts.setupCSS(PATHS.app),
-      ...
-    );
-}
-
-module.exports = validate(config);
-```
-
-In this case, we're using `eval-source-map`. It builds slowly initially, but it provides fast rebuild speed and yields real files. Faster development specific options, such as `cheap-module-eval-source-map` and `eval`, produce lower quality sourcemaps. All `eval` options will emit sourcemaps as a part of your JavaScript code.
-
-It is possible you may need to enable sourcemaps in your browser for this to work. See [Chrome](https://developer.chrome.com/devtools/docs/javascript-debugging) and [Firefox](https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Use_a_source_map) instructions for further details.
-
-T> [The official documentation](https://webpack.github.io/docs/configuration.html#devtool) covers sourcemap options in greater detail.
-
 ## Conclusion
 
-In this chapter, you learned to set up Webpack to refresh your browser during development. I'll discuss a Webpack plugin known as *npm-install-webpack-plugin* in the next chapter. Plugins like this allow us to push our development flow further. All of these little improvements count.
+In this chapter, you learned to set up Webpack to refresh your browser during development. The next chapter covers a convenience feature known as sourcemaps.

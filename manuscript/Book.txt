@@ -10,6 +10,7 @@ developing_with_webpack/getting_started.md
 developing_with_webpack/splitting_configuration.md
 developing_with_webpack/automatic_browser_refresh.md
 developing_with_webpack/refreshing_css.md
+developing_with_webpack/enabling_sourcemaps.md
 developing_with_webpack/setting_up_npm_install_webpack_plugin.md
 developing_with_webpack/optimizing_development.md
 
