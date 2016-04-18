@@ -185,8 +185,6 @@ T> There are shortcuts like *npm start* and *npm test*. We can run these directl
 
 T> It is possible to execute *npm run* anywhere within the project. It doesn't have to be run in the project root in order to work.
 
-W> Unless Webpack is installed to the project, this can point to a possible global install. That can be potentially confusing. Prefer local installs over global for this reason.
-
 ## Conclusion
 
 Even though we've managed to set up a basic Webpack setup, it's not that great yet. Developing this way would be slow. That's where Webpack's more advanced features come in. To make room for these features, I will show you how to split your Webpack configuration in the next chapter.
