@@ -8,9 +8,9 @@ It isn't the easiest tool to learn due to its configuration driven approach. The
 
 Web browsers have been designed to consume HTML, JavaScript, and CSS. The simplest way to develop is simply to write files that the browser understands directly. The problem is that this becomes unwieldy eventually. This is particularly true when you are developing web applications.
 
-There are multiple ways to approach this problem. You can start splitting up your JavaScript and CSS to separate files. You could load dependencies through `script` tags. Even though this is better, it is still a little problematic.
+The naïve way to load JavaScript is simply to bundle it all into a single file. Eventually this won't be enough. You will need to start to split it up to benefit from caching. You can even begin to load dependencies dynamically as you need them. As an application develops, the complexity of handling it grows.
 
-If you want to use technologies that compile to these target formats, you will need to introduce preprocessing steps. Task runners, such as Grunt and Gulp, allow you to achieve this, but even then you need to write a lot of configuration by hand.
+Webpack was developed to counter this problem. It handles all the aforementioned problems. It is possible to achieve the same results using different tools and build the processing workflows you need. In fact, that can be often enough. Task runners, such as Grunt and Gulp, allow you to achieve this, but even then you need to write a lot of configuration by hand.
 
 ### How Webpack Changes the Situation?
 
@@ -20,19 +20,15 @@ Webpack does all the preprocessing for you and gives you the bundles you specify
 
 ## What Will You Learn?
 
-This book has been designed to complement [the official documentation of Webpack](https://webpack.github.io/docs/). Even though the official documentation covers a lot of material, it might not be the easiest starting point for learning to use the tool. The goal of this guide is to ease the learning curve while giving food for thought to more advanced users.
+This book has been designed to complement [the official documentation of Webpack](https://webpack.github.io/docs/). Even though the official documentation covers a lot of material, it might not be the easiest starting point for learning to use the tool. The goal of this book is to ease the learning curve while giving food for thought to more advanced users.
 
 You will learn to develop a basic Webpack configuration for both development and production purposes. You will also learn advanced techniques that allow you to benefit from some of the greatest features of Webpack.
 
-The book is an on-going effort and I welcome feedback through various channels discussed below in the *Getting Support* section. I expand the guide based on demand to make it serve you as well as I can. You can even contribute fixes of your own to the book as the source is available.
-
-A part of the profit goes towards funding the development of the tool itself. It also enables this type of work.
-
 ## How is This Book Organized?
 
-The first parts of the book introduce you to Webpack and its basic concepts. You will develop basic configuration you can then expand to fit your specific purposes. The early chapters are task oriented. You can refer to them later if you forget how to achieve something specific with Webpack.
+The first two parts of the book introduce you to Webpack and its basic concepts. You will develop basic configuration you can then expand to fit your specific purposes. The early chapters are task oriented. You can refer to them later if you forget how to achieve something specific with Webpack.
 
-The last parts of the book focus more on advanced topics. You will learn more about loading specific types of assets. You will also deepen your understanding of Webpack's chunking mechanism and learn to utilize it for package and even loader definition.
+The latter portion of the book focuses more on advanced topics. You will learn more about loading specific types of assets. You will also deepen your understanding of Webpack's chunking mechanism, learn to utilize it for package authoring, and write your own loaders.
 
 ## Who is This Book for?
 
@@ -57,6 +53,10 @@ https://github.com/survivejs/webpack/compare/v1.0.0...v1.1.0
 The page will show you the individual commits that went to the project between the given version range. You can also see the lines that have changed in the book. This excludes the private chapters, but it's enough to give you a good idea of the major changes made to the book.
 
 The current version of the book is **1.0.3**.
+
+The book is an on-going effort and I welcome feedback through various channels discussed below. I expand the guide based on demand to make it serve you as well as I can. You can even contribute fixes of your own to the book as the source is available.
+
+A part of the profit goes towards funding the development of the tool itself. It also enables this type of work.
 
 ## Getting Support
 
