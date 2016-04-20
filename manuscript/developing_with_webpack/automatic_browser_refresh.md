@@ -1,10 +1,10 @@
 # Automatic Browser Refresh
 
-Tools, such as [LiveReload](http://livereload.com/) or [Browsersync](http://www.browsersync.io/), allow us to refresh the browser as we develop our application. They can even avoid refresh for CSS changes. It is possible to set up the latter to work with Webpack by using [browser-sync-webpack-plugin](https://www.npmjs.com/package/browser-sync-webpack-plugin). In this case I'm going to show you how to use something more Webpack specific - namely *webpack-dev-server*.
+Tools, such as [LiveReload](http://livereload.com/) or [Browsersync](http://www.browsersync.io/), allow us to refresh the browser as we develop our application. They can even avoid refresh for CSS changes. In this case I'm going to show you how to use something more Webpack specific - namely *webpack-dev-server*.
 
-*webpack-dev-server* is a development server running in-memory. It refreshes content automatically in the browser while you develop your application. It also supports an advanced feature known as Hot Module Replacement (HMR). In short, it provides a way to patch the browser state without a full refresh. This is particularly powerful with technology, such as React.
+*webpack-dev-server* is a development server running in-memory. It refreshes content automatically in the browser while you develop your application. It also supports an advanced Webpack feature known as Hot Module Replacement (HMR), which provides a way to patch the browser state without a full refresh. This is particularly powerful with technology such as React.
 
-W> You should use *webpack-dev-server* strictly for development. If you want to host your application, consider other, standard solutions, such as Apache or Nginx.
+W> You should use *webpack-dev-server* strictly for development. If you want to host your application, consider other standard solutions, such as Apache or Nginx.
 
 ## Getting Started with *webpack-dev-server*
 
@@ -14,7 +14,7 @@ To get started with *webpack-dev-server*, execute:
 npm i webpack-dev-server --save-dev
 ```
 
-Just like in the previous chapter, we'll need to define an entry point to the `scripts` section of *package.json*. Given our *index.html* is below *./build*, we should let *webpack-dev-server* to serve the content from there. We'll move this to Webpack configuration later, but this will do for now:
+Just like in the previous chapter, we'll need to define a new command to the `scripts` section of *package.json*:
 
 **package.json**
 
