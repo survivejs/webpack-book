@@ -1,6 +1,6 @@
 # Splitting the Configuration
 
-As the development setup has certain requirements of its own, we'll need to split our Webpack configuration. Given Webpack configuration is just JavaScript, there are many ways to achieve this. At least the following ways are feasible:
+At minimum, your Webpack configuration can be contained in a single file. As the needs of your project grow, you'll need to figure out means to manage it. It becomes necessary to split it up per environment so that you have enough control over the build result. There is no single right way to achieve this, but at least the following ways are feasible:
 
 * Maintain configuration in multiple files and point Webpack to each through `--config` parameter. Share configuration through module imports. You can see this approach in action at [webpack/react-starter](https://github.com/webpack/react-starter).
 * Push configuration to a library which you then consume. Example: [HenrikJoreteg/hjs-webpack](https://github.com/HenrikJoreteg/hjs-webpack).
@@ -73,7 +73,7 @@ module.exports = config;
 leanpub-end-insert
 ```
 
-After this change our build should behave exactly the same way as before. This time, however, we have room for expansion. We can hook up **Hot Module Replacement** next to make the browser refresh and turn our the development mode into something more useful.
+After this change our build should behave exactly the same way as before. This time, however, we have room for expansion. We can hook up **Hot Module Replacement** in the next chapter to make the browser refresh and turn our the development mode into something more useful.
 
 ## Integrating *webpack-validator*
 
