@@ -6,6 +6,8 @@ Tools, such as [LiveReload](http://livereload.com/) or [Browsersync](http://www.
 
 W> You should use *webpack-dev-server* strictly for development. If you want to host your application, consider other standard solutions, such as Apache or Nginx.
 
+W> An IDE feature known as **safe save** can wreak havoc with hot loading. Therefore it is advisable to turn it off when using a HMR based setup.
+
 ## Getting Started with *webpack-dev-server*
 
 To get started with *webpack-dev-server*, execute:
