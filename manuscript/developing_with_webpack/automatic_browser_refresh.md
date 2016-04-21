@@ -93,7 +93,7 @@ exports.devServer = function(options) {
       // Parse host and port from env to allow customization.
       //
       // If you use Vagrant or Cloud9, set
-      // host: process.env.HOST || '0.0.0.0';
+      // host: options.host || '0.0.0.0';
       //
       // 0.0.0.0 is available to all network devices
       // unlike default localhost
