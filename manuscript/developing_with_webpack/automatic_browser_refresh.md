@@ -14,6 +14,14 @@ To get started with *webpack-dev-server*, execute:
 npm i webpack-dev-server --save-dev
 ```
 
+As before, this command will generate a command below the `npm bin` directory. You could try running *webpack-dev-server* from there. The quickest way to enable automatic browser refresh and HMR for our project is in fact to run `webpack-dev-server --inline --hot`. That does all the relevant Webpack setup for us.
+
+The first flag, `--inline`, runs the server in so called *inline* mode that writes the webpack-dev-server client to the resulting code. `--hot` enables the HMR portion and enables communication between the server and the browser through WebSockets.
+
+### Attaching *webpack-dev-server* to the Project
+
+Given relying on flags isn't good for understanding what's going on, I prefer to maintain configuration through *webpack.config.js*. Even though it's more code to write, it's also clearer as you don't need to look up what the flags exactly do from Webpack source.
+
 Just like in the previous chapter, we'll need to define a new command to the `scripts` section of *package.json*:
 
 **package.json**
@@ -56,6 +64,8 @@ In order to make this work, we'll need to connect the generated bundle running i
 
 Beyond this we'll need to enable `HotModuleReplacementPlugin` to make the setup work. In addition I am going to enable HTML5 History API fallback as that is convenient default to have especially if you are dealing with advanced routing.
 
+### Defining Configuration for HMR
+
 To keep our configuration manageable, I'll split functionalities like HMR into parts of their own. This keeps our *webpack.config.js* simple and promotes reuse. We could push a collection like this to a npm package of its own. We could even turn them into presets to use across projects. Functional composition allows that.
 
 I'll push all of our configuration parts to *lib/parts.js* and consume them from there. Here's what a part would look like for HMR:
@@ -72,6 +82,9 @@ exports.devServer = function(options) {
       // routing works. This is a good default that will come
       // in handy in more complicated setups.
       historyApiFallback: true,
+
+      // Unlike the cli flag, this doesn't set
+      // HotModuleReplacementPlugin!
       hot: true,
       inline: true,
       progress: true,
@@ -90,7 +103,11 @@ exports.devServer = function(options) {
       port: options.port
     },
     plugins: [
-      new webpack.HotModuleReplacementPlugin()
+      // Enable multi-pass compilation for enhanced performance
+      // in larger projects. Good default.
+      new webpack.HotModuleReplacementPlugin({
+        multiStep: true
+      })
     ]
   };
 }
@@ -136,9 +153,7 @@ leanpub-end-insert
 module.exports = validate(config);
 ```
 
-Execute `npm start` and surf to **localhost:8080**. Try modifying *app/component.js*. It should refresh the browser. Note that this is hard refresh in case you modify JavaScript code. CSS modifications work in a neater manner and can be applied without a refresh.
-
-If you are using Windows and it doesn't refresh, see the following section for an alternative setup.
+Execute `npm start` and surf to **localhost:8080**. Try modifying *app/component.js*. It should refresh the browser. Note that this is hard refresh in case you modify JavaScript code. CSS modifications work in a neater manner and can be applied without a refresh as we will see in the next chapter.
 
 W> *webpack-dev-server* can be very particular about paths. If the given `include` paths don't match the system casing exactly, this can cause it to fail to work. Webpack [issue #675](https://github.com/webpack/webpack/issues/675) discusses this in more detail.
 
@@ -146,7 +161,7 @@ T> You should be able to access the application alternatively through **localhos
 
 ### HMR on Windows, Ubuntu, and Vagrant
 
-The setup may be problematic on certain versions of Windows, Ubuntu, and Vagrant. Instead of using `devServer` and `plugins` configuration, implement it like this:
+The setup may be problematic on certain versions of Windows, Ubuntu, and Vagrant. Instead of using `devServer` and `plugins` configuration, implement it through polling like this:
 
 **lib/parts.js**
 
@@ -179,9 +194,9 @@ To access your server, you'll need to figure out the ip of your machine. On Unix
 
 ## Alternative Ways to Use *webpack-dev-server*
 
-We could have passed *webpack-dev-server* options through terminal. I find it clearer to manage it within Webpack configuration as that helps to keep *package.json* nice and tidy.
+We could have passed *webpack-dev-server* options through terminal. I find it clearer to manage it within Webpack configuration as that helps to keep *package.json* nice and tidy. It is also easier to understand what's going on as you don't need to dig the answers from Webpack source.
 
-Alternatively, we could have set up an Express server of our own and used *webpack-dev-server* as a [middleware](https://webpack.github.io/docs/webpack-dev-middleware.html). There's also a [Node.js API](https://webpack.github.io/docs/webpack-dev-server.html#api).
+Alternatively, we could have set up an Express server of our own and used *webpack-dev-server* as a [middleware](https://webpack.github.io/docs/webpack-dev-middleware.html). There's also a [Node.js API](https://webpack.github.io/docs/webpack-dev-server.html#api). This is a good approach if you want control and flexibility.
 
 T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environment variables through a *.env* file. This can be somewhat convenient during development!
 
