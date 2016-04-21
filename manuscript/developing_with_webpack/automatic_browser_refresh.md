@@ -20,9 +20,7 @@ As before, this command will generate a command below the `npm bin` directory. Y
 
 ### Attaching *webpack-dev-server* to the Project
 
-Given relying on flags isn't good for understanding what's going on, I prefer to maintain configuration through *webpack.config.js*. Even though it's more code to write, it's also clearer as you don't need to look up what the flags exactly do from Webpack source.
-
-Just like in the previous chapter, we'll need to define a new command to the `scripts` section of *package.json*:
+To integrate *webpack-dev-server* to our project, we can follow the same idea as in the previous chapter and define a new command to the `scripts` section of *package.json*:
 
 **package.json**
 
@@ -36,6 +34,8 @@ leanpub-end-insert
 },
 ...
 ```
+
+We'll add that `--inline` part back through Webpack configuration in a bit. I prefer to keep the npm *scripts* portion as simple as possible and push the complexity to configuration. Even though it's more code to write, it's also easier to maintain as you can see easier what's going on.
 
 If you execute either *npm run start* or *npm start* now, you should see something like this at the terminal:
 
