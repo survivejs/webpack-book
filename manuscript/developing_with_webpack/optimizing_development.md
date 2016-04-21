@@ -59,6 +59,8 @@ exports.dontParse = function(options) {
 }
 ```
 
+T> `module.noParse` also accepts a regular expression. If we wanted to ignore all `*.min.js` files for instance, we could set it to `/\.min\.js/`. That can be a more generic way to solve the problem in some cases.
+
 We also need to connect this idea with our configuration:
 
 **webpack.config.js**
