@@ -16,9 +16,7 @@ To get started with *webpack-dev-server*, execute:
 npm i webpack-dev-server --save-dev
 ```
 
-As before, this command will generate a command below the `npm bin` directory. You could try running *webpack-dev-server* from there. The quickest way to enable automatic browser refresh and HMR for our project is in fact to run `webpack-dev-server --inline --hot`. That does all the relevant Webpack setup for us.
-
-The first flag, `--inline`, runs the server in so called *inline* mode that writes the webpack-dev-server client to the resulting code. `--hot` enables the HMR portion and enables communication between the server and the browser through WebSockets.
+As before, this command will generate a command below the `npm bin` directory. You could try running *webpack-dev-server* from there. The quickest way to enable automatic browser refresh for our project is to run `webpack-dev-server --inline`. `--inline`, runs the server in so called *inline* mode that writes the webpack-dev-server client to the resulting code.
 
 ### Attaching *webpack-dev-server* to the Project
 
@@ -52,7 +50,7 @@ Hash: 2dca5a3850ce5d2de54c
 Version: webpack 1.13.0
 ```
 
-The output means that the development server is running. If you open *http://localhost:8080/* at your browser, you should see something. If you try modifying the code, you should see output at your terminal. The problem is that the browser doesn't catch these changes without a hard refresh. That's something we need to resolve next.
+The output means that the development server is running. If you open *http://localhost:8080/* at your browser, you should see something. If you try modifying the code, you should see output at your terminal. The problem is that the browser doesn't catch these changes without a hard refresh and that flag. That's something we need to resolve next through configuration.
 
 ![Hello world](images/hello_01.png)
 
@@ -62,9 +60,7 @@ T> If you fail to see anything at the browser, you may need to use a different p
 
 Hot Module Replacement gives us simple means to refresh the browser automatically as we make changes. The idea is that if we change our *app/component.js*, the browser will refresh itself. The same goes for possible CSS changes.
 
-In order to make this work, we'll need to connect the generated bundle running in-memory to the development server. Webpack uses WebSocket based communication to achieve this. We'll let Webpack generate the client portion for us through the development server *inline* option. The option will include the client side scripts needed by HMR to the bundle that Webpack generates.
-
-Beyond this we'll need to enable `HotModuleReplacementPlugin` to make the setup work. In addition I am going to enable HTML5 History API fallback as that is convenient default to have especially if you are dealing with advanced routing.
+We could use `webpack-dev-server --inline --hot` to achieve this from the CLI. `--hot` enables the HMR portion from Webpack through a specific plugin designed for this purpose and writes an entry pointing to a JavaScript file related to it.
 
 ### Defining Configuration for HMR
 
