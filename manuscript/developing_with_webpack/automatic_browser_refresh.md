@@ -54,11 +54,11 @@ The output means that the development server is running. If you open *http://loc
 
 ![Hello world](images/hello_01.png)
 
-T> If you fail to see anything at the browser, you may need to use a different port through *webpack-dev-server --port 3000* kind of invocation. One reason why the server might fail to run is simply because there's something else running in the port. You can verify this through a terminal command, such as `netstat -na | grep 8080`. If there's something running in the port 8080, it should display a message. The exact command may depend on your platform.
+T> If you fail to see anything at the browser, you may need to use a different port through `webpack-dev-server --port 3000` kind of invocation. One reason why the server might fail to run is simply because there's something else running in the port. You can verify this through a terminal command, such as `netstat -na | grep 8080`. If there's something running in the port 8080, it should display a message. The exact command may depend on your platform.
 
 ## Configuring Hot Module Replacement (HMR)
 
-Hot Module Replacement gives us simple means to refresh the browser automatically as we make changes. The idea is that if we change our *app/component.js*, the browser will refresh itself. The same goes for possible CSS changes.
+Hot Module Replacement builds on top the *webpack-dev-server*. It enables an interface that makes it possible to swap modules live. For example *style-loader* is able to update your CSS without forcing a refresh. The same idea works for JavaScript too. In the *Configuring React* chapter we discuss one possible solution.
 
 We could use `webpack-dev-server --inline --hot` to achieve this from the CLI. `--hot` enables the HMR portion from Webpack through a specific plugin designed for this purpose and writes an entry pointing to a JavaScript file related to it.
 
