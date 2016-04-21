@@ -104,6 +104,25 @@ T> Uglify warnings can help you to understand how it processes the code. Therefo
 
 T> It is possible to push minification further by enabling variable name mangling. It comes with some extra complexity to worry about, but it may be worth it when you are pushing for minimal size. See [the official documentation](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) for details.
 
+## UglifyJS Specific Options
+
+[UglifyJS](http://lisperator.net/uglifyjs/) is a powerful tool and it provides advanced options you can consider using if you want to push your build further. One useful option is known as `mangle`. It will reduce local variable names to a minimum, usually a single character. It can also rewrite properties to a more compact format. Given these transformations can break your code, be careful.
+
+Here's how you would enable property mangling through Webpack:
+
+```javascript
+new webpack.optimize.UglifyJsPlugin({
+  compress: {
+    warnings: false
+  },
+  mangle: {
+    props: /mangle_matching_properties/
+  }
+})
+```
+
+You can also enable features, such as dropping logging, through further configuration. `console` statements could be dropped by setting `compress.drop_console: true`. UglifyJS documentation contains more ideas like these.
+
 ## Conclusion
 
 Even though our build is a little better now, there's still a fair amount of work left. The next simple step is to set an environment variable during the build to allow React optimize itself. This technique can be used in your own code as well. You might want to skip certain checks in production usage and so on to bring the build size down.
