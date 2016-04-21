@@ -168,6 +168,8 @@ leanpub-end-insert
 
 After these steps your development setup should support hot loading. It is one of those features that makes development a little faster.
 
+T> If you want to optimize your production build, consider studying Babel presets such as [babel-preset-react-optimize](https://www.npmjs.com/package/babel-preset-react-optimize).
+
 ### Configuring Redux
 
 In order to configure Redux reducers to support hot loading, we need to implement Webpack's hot loading protocol. Webpack provides a hook known as `module.hot.accept`. It gets called whenever Webpack detects a change. This allows you to reload and patch your code.
