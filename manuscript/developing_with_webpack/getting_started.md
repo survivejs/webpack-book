@@ -1,10 +1,12 @@
 # Getting Started
 
-Make sure you are using a recent version of [Node.js](http://nodejs.org/) installed. Particularly older versions (e.g. 0.10) are problematic and require extra work, such as polyfilling `Promise` through `require('es6-promise').polyfill()`. This technique depends on the [es6-promise](https://www.npmjs.com/package/es6-promise) package. I recommend using at least the most recent LTS (Long-Term Support) version. Before going further, make sure you have `node` and `npm` commands available at your terminal.
+Make sure you are using a recent version of [Node.js](http://nodejs.org/) installed. I recommend using at least the most recent LTS (Long-Term Support) version. Before going further, make sure you have `node` and `npm` commands available at your terminal.
+
+The completed configuration is available at [GitHub](https://github.com/survivejs-demos/webpack-demo). If you are unsure of something, refer there.
 
 T> It is possible to get a more controlled environment by using a solution such as [Vagrant](https://www.vagrantup.com/) or [nvm](https://www.npmjs.com/package/nvm). Especially Vagrant comes with a performance penalty as it relies on a virtual machine. Vagrant is particularly useful in a team environment, though, as it gives you a predictable environment to develop against.
 
-T> The completed configuration is available at [GitHub](https://github.com/survivejs-demos/webpack-demo). If you are unsure of something, refer there.
+W> Particularly older versions (e.g. 0.10) are problematic and require extra work, such as polyfilling `Promise` through `require('es6-promise').polyfill()`. This technique depends on the [es6-promise](https://www.npmjs.com/package/es6-promise) package.
 
 ## Setting Up the Project
 
@@ -13,7 +15,7 @@ To get a starting point, we should create a directory for our project and set up
 ```bash
 mkdir webpack-demo
 cd webpack-demo
-npm init -y # -y gives you default *package.json*, skip for more control
+npm init -y # -y generates *package.json*, skip for more control
 ```
 
 You can tweak the generated *package.json* manually to make further changes to it. We'll be doing some changes through *npm* tool, but manual tweaks are acceptable. The official documentation explains various [package.json options](https://docs.npmjs.com/files/package.json) in more detail.
