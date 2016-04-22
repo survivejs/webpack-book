@@ -226,6 +226,37 @@ If you try building your project with this setup, you should notice your bundle 
 
 T> A similar setup works for Preact too. In that case you would point to *preact-compat* instead. See [preact-boilerplate](https://github.com/developit/preact-boilerplate) for the exact setup.
 
+## Exposing React Performance Utilities to Browser
+
+React provides a set of powerful [performance related utilities](https://facebook.github.io/react/docs/perf.html) for figuring out how your application performs. Enabling them takes some setup. After the setup is done, you can access them through your browser console.
+
+To get started, install the needed dependencies:
+
+```bash
+npm i expose-loader react-addons-perf --save-dev
+```
+
+Next we need to expose React to the console through the [expose-loader](https://www.npmjs.com/package/expose-loader). The idea is that we'll bind the React performance utilities to that during development. Here's the Webpack loader configuration for exposing React as a global:
+
+```javascript
+{
+  test: require.resolve('react'),
+  loader: 'expose?React'
+}
+```
+
+After this you should be able to access `React` through a console. To make it possible to access the performance utilities, we need to do one more step. Add the following to the entry point of your application to enable `React.Perf` during development:
+
+```javascript
+if(process.env.NODE_ENV !== 'production') {
+  React.Perf = require('react-addons-perf');
+}
+```
+
+If you check out the browser console now, you should be able to access the performance related API through `React.Perf`. The utilities allow you to understand better what's taking time and squeeze the last bits of performance out of your application. The *Elements* tab in Chrome can be useful as well. You can see how React operates on the DOM as it flashes.
+
+T> It can be a good idea to install [React Developer Tools](https://github.com/facebook/react-devtools) to Chrome for even more information. It allows you to inspect *props* and *state* of your application.
+
 ## Setting Up Flow
 
 [Flow](http://flowtype.org/) performs static analysis based on your code and its type annotations. This means you will install it as a separate tool. You will then run it against your code. There's a Webpack plugin known as [flow-status-webpack-plugin](https://www.npmjs.com/package/flow-status-webpack-plugin) that allows you to run it through Webpack during development.
