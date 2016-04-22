@@ -84,6 +84,8 @@ Feel free to subscribe.
 
 Big thanks to [Christian Alfoni](http://www.christianalfoni.com/) for helping me to craft the first version of this book. That inspired the whole SurviveJS effort. The version you see now has been heavily revised.
 
-This book wouldn't have been possible without the original "SurviveJS - Webpack and React" effort. Anyone who contributed to that, deserves my thanks! You can check that book for more specific attribution.
+The book wouldn't be half as good as it is without patient editing and feedback by my editor [Jesús Rodríguez Rodríguez](https://github.com/Foxandxss). Thank you.
+
+This book wouldn't have been possible without the original "SurviveJS - Webpack and React" effort. Anyone who contributed to that, deserves my thanks! You can check that book for more specific attributions.
 
 Thanks to Mike "Pomax" Kamermans, Cesar Andreu, Dan Palmer, and many others who have contributed direct feedback for this book!
