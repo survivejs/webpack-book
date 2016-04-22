@@ -199,6 +199,33 @@ The code doesn't do that much. It just waits for a change and then patches the c
 
 T> You can find [a full implementation of the idea online](https://github.com/survivejs-demos/redux-demo).
 
+## Using react-lite Instead of React for Production
+
+React is quite heavy library even though the API is quite small considering. There are light alternatives, such as [Preact](https://www.npmjs.com/package/preact) and [react-lite](https://www.npmjs.com/package/react-lite). react-lite implements React's API apart from features like `propTypes` and server side rendering. You lose out in debugging capabilities, but gain far smaller size. Preact implements a smaller subset of features and it's even smaller than react-lite.
+
+Using react-lite in production instead of React can save around 100 kB minified code. Depending on your application, this can be a saving worth pursuing. Fortunately integrating react-lite is simple. It takes only a few lines of configuration to pull off.
+
+To get started, install react-lite:
+
+```bash
+npm i react-lite --save-dev
+```
+
+On the Webpack side, we can use a `resolve.alias` to point our React imports to react-lite instead:
+
+```javascript
+resolve: {
+  alias: {
+    'react': 'react-lite',
+    'react-dom': 'react-lite'
+  }
+}
+```
+
+If you try building your project with this setup, you should notice your bundle is considerably smaller.
+
+T> A similar setup works for Preact too. In that case you would point to *preact-compat* instead. See [preact-boilerplate](https://github.com/developit/preact-boilerplate) for the exact setup.
+
 ## Setting Up Flow
 
 [Flow](http://flowtype.org/) performs static analysis based on your code and its type annotations. This means you will install it as a separate tool. You will then run it against your code. There's a Webpack plugin known as [flow-status-webpack-plugin](https://www.npmjs.com/package/flow-status-webpack-plugin) that allows you to run it through Webpack during development.
