@@ -17,14 +17,14 @@ Now that we have the loaders we need, we'll need to make sure Webpack is aware o
 ```javascript
 ...
 
-exports.setupCSS = function(path) {
+exports.setupCSS = function(paths) {
   return {
     module: {
       loaders: [
         {
           test: /\.css$/,
           loaders: ['style', 'css'],
-          include: path
+          include: paths
         }
       ]
     }

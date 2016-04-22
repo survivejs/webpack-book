@@ -109,7 +109,7 @@ leanpub-start-insert
       }),
 leanpub-end-insert
       parts.minify(),
-      parts.setupCSS(PATHS.app)
+      parts.setupCSS(PATHS.style)
     );
     break;
   default:

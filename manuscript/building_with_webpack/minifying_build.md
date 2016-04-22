@@ -70,7 +70,7 @@ switch(process.env.npm_lifecycle_event) {
 leanpub-start-insert
       parts.minify(),
 leanpub-end-insert
-      parts.setupCSS(PATHS.app)
+      parts.setupCSS(PATHS.style)
     );
     break;
   default:
