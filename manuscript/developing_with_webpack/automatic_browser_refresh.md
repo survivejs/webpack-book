@@ -56,7 +56,7 @@ If you try modifying the code, you should see output at your terminal. The probl
 
 ![Hello world](images/hello_01.png)
 
-T> If you fail to see anything at the browser, you may need to use a different port through `webpack-dev-server --port 3000` kind of invocation. One reason why the server might fail to run is simply because there's something else running in the port. You can verify this through a terminal command, such as `netstat -na | grep 8080`. If there's something running in the port 8080, it should display a message. The exact command may depend on your platform.
+T> If you fail to see anything at the browser, you may need to use a different port. The server might fail to run because there's something else running in the port. You can verify this through terminal using a command such as `netstat -na | grep 8080`. If there's something running in the port 8080, it should display a message. The exact command may depend on the platform.
 
 ## Configuring Hot Module Replacement (HMR)
 
