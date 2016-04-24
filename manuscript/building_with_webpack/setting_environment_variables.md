@@ -15,6 +15,7 @@ As before, we can encapsulate this idea to a function:
 ```javascript
 ...
 
+leanpub-start-insert
 exports.setFreeVariable = function(key, value) {
   const env = {};
   env[key] = JSON.stringify(value);
@@ -25,6 +26,7 @@ exports.setFreeVariable = function(key, value) {
     ]
   };
 }
+leanpub-end-insert
 ```
 
 We can connect this with our configuration like this:
@@ -60,13 +62,13 @@ Execute `npm run build` again, and you should see improved results:
 
 ```bash
 [webpack-validator] Config is valid.
-Hash: ec8895fca7f20e0deae0
+Hash: 91794c1d732112aea30b
 Version: webpack 1.13.0
-Time: 2555ms
+Time: 2679ms
      Asset       Size  Chunks             Chunk Names
     app.js    24.7 kB       0  [emitted]  app
-index.html  160 bytes          [emitted]
-   [0] ./app/index.js 123 bytes {0} [built]
+index.html  157 bytes          [emitted]
+   [0] ./app/index.js 124 bytes {0} [built]
   [35] ./app/component.js 136 bytes {0} [built]
     + 34 hidden modules
 Child html-webpack-plugin for "index.html":
