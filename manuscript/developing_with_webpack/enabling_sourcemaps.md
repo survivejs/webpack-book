@@ -38,7 +38,9 @@ T> [The official documentation](https://webpack.github.io/docs/configuration.htm
 
 ## Sourcemap Types Supported by Webpack
 
-Even though a sourcemap type, such as `eval-source-map` or `eval`, can be enough during development, Webpack provides other types too. Given these will be generated within your bundles, they won't be useful during production. The following table adapted from the [documentation](https://webpack.github.io/docs/configuration.html#devtool)) contains the supported types arranged based on speed. The lower the quality, the higher build and rebuild speeds are possible.
+Even though a sourcemap type, such as `eval-source-map` or `eval`, can be enough during development, Webpack provides other types too. Given these will be generated within your bundles, they won't be useful during production.
+
+The following table adapted from the [documentation](https://webpack.github.io/docs/configuration.html#devtool) contains the supported types arranged based on speed. The lower the quality, the higher build and rebuild speeds are possible.
 
 |Sourcemap type                 |Quality                       |Notes                                                                                   |
 |-------------------------------|------------------------------|----------------------------------------------------------------------------------------|
@@ -77,11 +79,13 @@ new webpack.SourceMapDevToolPlugin({
   include: string | RegExp | Array,
   exclude: string | RegExp | Array,
 
-  // If filename is set, output to this file. See `sourceMapFileName`
+  // If filename is set, output to this file.
+  // See `sourceMapFileName`.
   filename: string,
 
   // This line is appended to the original asset processed. For
-  // instance '[url]' would get replaced with an url to the sourcemap.
+  // instance '[url]' would get replaced with an url to the
+  // sourcemap.
   append: false | string,
 
   // See `devtoolModuleFilenameTemplate` for specifics.
