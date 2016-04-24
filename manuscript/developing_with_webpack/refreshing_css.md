@@ -17,6 +17,7 @@ Now that we have the loaders we need, we'll need to make sure Webpack is aware o
 ```javascript
 ...
 
+leanpub-start-insert
 exports.setupCSS = function(paths) {
   return {
     module: {
@@ -30,6 +31,7 @@ exports.setupCSS = function(paths) {
     }
   };
 }
+leanpub-end-insert
 ```
 
 We also need to connect our configuration fragment with the main configuration:
