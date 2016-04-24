@@ -6,7 +6,7 @@ Another valid way to resolve the issue would be to handle this outside of Webpac
 
 ## Setting Up *clean-webpack-plugin*
 
-Install [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin) first:
+Install the [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin) first:
 
 ```bash
 npm i clean-webpack-plugin --save-dev
@@ -24,6 +24,7 @@ leanpub-end-insert
 
 ...
 
+leanpub-start-insert
 exports.clean = function(path) {
   return {
     plugins: [
@@ -35,6 +36,7 @@ exports.clean = function(path) {
     ]
   };
 }
+leanpub-end-insert
 ```
 
 We can connect it with our project like this:
