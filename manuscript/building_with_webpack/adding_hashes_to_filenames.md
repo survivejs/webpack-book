@@ -32,6 +32,7 @@ switch(process.env.npm_lifecycle_event) {
   case 'build':
     config = merge(
       common,
+leanpub-start-insert
       {
         output: {
           path: PATHS.build,
@@ -41,6 +42,7 @@ switch(process.env.npm_lifecycle_event) {
           chunkFilename: '[chunkhash].js'
         }
       },
+leanpub-end-insert
       ...
     );
     break;
@@ -55,15 +57,15 @@ If you execute `npm run build` now, you should see output like this.
 
 ```bash
 [webpack-validator] Config is valid.
-Hash: 8a939300f2fb786ffd37
+Hash: 5ee4340ea7d9c82ecba8
 Version: webpack 1.13.0
-Time: 2884ms
+Time: 2332ms
                            Asset       Size  Chunks             Chunk Names
-     app.12fae4700037fec81543.js    3.91 kB    0, 2  [emitted]  app
+     app.61a2f8164146f5d06b9f.js    3.91 kB    0, 2  [emitted]  app
   vendor.0328dbecd1e0c3534145.js    20.7 kB    1, 2  [emitted]  vendor
-manifest.fdff3a084b5fe7e06078.js  763 bytes       2  [emitted]  manifest
+manifest.6d22dc49ed30205a5468.js  763 bytes       2  [emitted]  manifest
                       index.html  288 bytes          [emitted]
-   [0] ./app/index.js 123 bytes {0} [built]
+   [0] ./app/index.js 124 bytes {0} [built]
    [0] multi vendor 28 bytes {1} [built]
   [35] ./app/component.js 136 bytes {0} [built]
     + 34 hidden modules
