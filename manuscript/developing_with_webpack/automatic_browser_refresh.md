@@ -50,7 +50,9 @@ Hash: 2dca5a3850ce5d2de54c
 Version: webpack 1.13.0
 ```
 
-The output means that the development server is running. If you open *http://localhost:8080/* at your browser, you should see something. If you try modifying the code, you should see output at your terminal. The problem is that the browser doesn't catch these changes without a hard refresh and that flag. That's something we need to resolve next through configuration.
+The output means that the development server is running. If you open *http://localhost:8080/* at your browser, you should see something.
+
+If you try modifying the code, you should see output at your terminal. The problem is that the browser doesn't catch these changes without a hard refresh and that flag. That's something we need to resolve next through configuration.
 
 ![Hello world](images/hello_01.png)
 
