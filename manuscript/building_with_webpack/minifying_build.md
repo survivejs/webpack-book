@@ -10,17 +10,35 @@ T> Even if we minify our build, we can still generate sourcemaps through the `de
 
 ## Generating a Baseline Build
 
-To get started, we should generate a baseline build so we have something to optimize. Execute `npm run build`. You should end up with something like this:
+To get started, we should generate a baseline build so we have something to optimize. Given our project is so small, there isn't much to optimize yet. We could bring a heavy dependency like React to get something to slim up. Install React first:
+
+```bash
+npm i react --save
+```
+
+We also need to make our project depend on it:
+
+**app/index.js**
+
+```
+leanpub-start-insert
+require('react');
+leanpub-end-insert
+
+...
+```
+
+Now that we have something to optimize, execute `npm run build`. You should end up with something like this:
 
 ```bash
 [webpack-validator] Config is valid.
-Hash: 9dda4176279d454a7542
+Hash: b7b26f63b32810418e84
 Version: webpack 1.13.0
-Time: 1448ms
+Time: 1490ms
      Asset       Size  Chunks             Chunk Names
     app.js     131 kB       0  [emitted]  app
-index.html  160 bytes          [emitted]
-   [0] ./app/index.js 123 bytes {0} [built]
+index.html  157 bytes          [emitted]
+   [0] ./app/index.js 124 bytes {0} [built]
   [36] ./app/component.js 136 bytes {0} [built]
     + 35 hidden modules
 Child html-webpack-plugin for "index.html":
@@ -42,6 +60,7 @@ As earlier, we can define a little function for this purpose and then point to i
 ```javascript
 ...
 
+leanpub-start-insert
 exports.minify = function() {
   return {
     plugins: [
@@ -53,6 +72,7 @@ exports.minify = function() {
     ]
   };
 }
+leanpub-end-insert
 ```
 
 Now we can hook it up with our configuration like this:
@@ -85,13 +105,13 @@ If you execute `npm run build` now, you should see better results:
 
 ```bash
 [webpack-validator] Config is valid.
-Hash: b7f78734454b5f37c435
+Hash: aa4bbb0d73451705d8e0
 Version: webpack 1.13.0
-Time: 3018ms
+Time: 3042ms
      Asset       Size  Chunks             Chunk Names
     app.js    37.3 kB       0  [emitted]  app
-index.html  160 bytes          [emitted]
-   [0] ./app/index.js 123 bytes {0} [built]
+index.html  157 bytes          [emitted]
+   [0] ./app/index.js 124 bytes {0} [built]
   [36] ./app/component.js 136 bytes {0} [built]
     + 35 hidden modules
 Child html-webpack-plugin for "index.html":
@@ -116,7 +136,12 @@ new webpack.optimize.UglifyJsPlugin({
     warnings: false
   },
   mangle: {
-    props: /mangle_matching_properties/
+    // Mangle matching properties
+    props: /matching_props/,
+    // Don't mangle these
+    except: [
+      'Array', 'BigInteger', 'Boolean', 'Buffer'
+    ]
   }
 })
 ```
