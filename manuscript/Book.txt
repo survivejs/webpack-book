@@ -11,7 +11,6 @@ developing_with_webpack/splitting_configuration.md
 developing_with_webpack/automatic_browser_refresh.md
 developing_with_webpack/refreshing_css.md
 developing_with_webpack/enabling_sourcemaps.md
-developing_with_webpack/optimizing_development.md
 
 Building_with_Webpack.md
 building_with_webpack/minifying_build.md

@@ -257,6 +257,63 @@ If you check out the browser console now, you should be able to access the perfo
 
 T> It can be a good idea to install [React Developer Tools](https://github.com/facebook/react-devtools) to Chrome for even more information. It allows you to inspect *props* and *state* of your application.
 
+## Optimizing Rebundling Speed During Development
+
+We can optimize React's rebundling times during development by pointing the development setup to a minified version of React. The gotcha is that we will lose `propType` based validation! But if speed is more important, this technique may be worth a go. You can hide it behind an environment flag for instance if you want type checking.
+
+In order to achieve what we want, we can use Webpack's `module.noParse` option. It accepts a RegExp or an array of RegExps. We can also pass full paths to it to keep our lives simple.
+
+In addition to telling Webpack not to parse the minified file we want to use, we also need to point `react` to it. This can be achieved using a feature known as `resolve.alias` just like we did with *react-lite* above.
+
+We can encapsulate the basic idea within a function like this:
+
+```javascript
+...
+
+exports.dontParse = function(options) {
+  const alias = {};
+  alias[options.name] = options.path;
+
+  return {
+    module: {
+      noParse: [
+        options.path
+      ]
+    },
+    resolve: {
+      alias: alias
+    }
+  };
+}
+```
+
+You would use the function like this assuming you are using [webpack-merge](https://www.npmjs.com/package/webpack-merge):
+
+```javascript
+...
+
+merge(
+  common,
+leanpub-start-insert
+  dontParse({
+    name: 'react',
+    path: path.join(__dirname, 'node_modules/react/dist/react.min.js')
+  }),
+leanpub-end-insert
+  ...
+)
+
+...
+```
+
+If you try developing your application now, it should be at least a little bit faster to rebuild. The technique can be useful for production usage as well as you avoid some processing then.
+
+T> `module.noParse` also accepts a regular expression. If we wanted to ignore all `*.min.js` files for instance, we could set it to `/\.min\.js/`. That can be a more generic way to solve the problem in some cases.
+
+T> Note that aliasing works also with loaders through [resolveLoader.alias](https://webpack.github.io/docs/configuration.html#resolveloader).
+
+W> Not all modules support `module.noParse`, the files included by deps array should have no call to `require`, `define` or similar, or you will get an error when the app runs: `Uncaught ReferenceError: require is not defined`.
+
 ## Setting Up Flow
 
 [Flow](http://flowtype.org/) performs static analysis based on your code and its type annotations. This means you will install it as a separate tool. You will then run it against your code. There's a Webpack plugin known as [flow-status-webpack-plugin](https://www.npmjs.com/package/flow-status-webpack-plugin) that allows you to run it through Webpack during development.
