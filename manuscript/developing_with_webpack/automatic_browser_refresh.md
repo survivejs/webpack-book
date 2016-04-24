@@ -157,7 +157,7 @@ Execute `npm start` and surf to **localhost:8080**. Try modifying *app/component
 
 W> *webpack-dev-server* can be very particular about paths. If the given `include` paths don't match the system casing exactly, this can cause it to fail to work. Webpack [issue #675](https://github.com/webpack/webpack/issues/675) discusses this in more detail.
 
-T> You should be able to access the application alternatively through **localhost:8080/webpack-dev-server/** instead of root. You can see all the files the development server is serving there.
+T> You should be able to access the application alternatively through **localhost:8080/webpack-dev-server/** instead of the root. You can see all the files the development server is serving there.
 
 ### HMR on Windows, Ubuntu, and Vagrant
 
