@@ -28,7 +28,7 @@ To integrate *webpack-dev-server* to our project, we can follow the same idea as
 ...
 "scripts": {
 leanpub-start-insert
-  "start": "webpack-dev-server"
+  "start": "webpack-dev-server",
 leanpub-end-insert
   "build": "webpack"
 },
