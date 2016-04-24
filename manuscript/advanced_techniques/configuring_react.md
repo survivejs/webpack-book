@@ -6,7 +6,9 @@ Babel is useful beyond React development and worth understanding as it allows yo
 
 ## Setting Up Babel with React
 
-Most of the React code out there relies on a format known as [JSX](https://facebook.github.io/jsx/). It is a superset of JavaScript that allows you to mix XMLis syntax with JavaScript. A lot of people find this convenient as they get something that resembles what they know already while they can use the power of JavaScript. This is in contrast to template DSLs that implement the same logic using custom constructs.
+Most of the React code out there relies on a format known as [JSX](https://facebook.github.io/jsx/). It is a superset of JavaScript that allows you to mix XMLis syntax with JavaScript.
+
+A lot of people find this convenient as they get something that resembles what they know already while they can use the power of JavaScript. This is in contrast to template DSLs that implement the same logic using custom constructs.
 
 Some React developers prefer to attach type annotations to their code using a language extension known as [Flow](http://flowtype.org/). The technology fits React well, but it's not restricted to it. [TypeScript](http://www.typescriptlang.org/) is another viable alternative. Both work with JSX.
 
@@ -26,7 +28,7 @@ npm i babel-loader babel-core --save-dev
 
 ### Connecting *babel-loader* with Webpack
 
-Now that we have the loader installed, we can connect it with Webpack configuration. In addition to a loader definition, we can perform an additional tweak to make imports without an extension possible. This is optional and some people prefer to leave possible `.jsx` extension visible to communicate clearly that the imported file contains JSX syntax.
+Now that we have the loader installed, we can connect it with Webpack configuration. In addition to a loader definition, we can perform an additional tweak to make imports without an extension possible. Leaving the extension visible is a valid alternative.
 
 Webpack provides a field known as [resolve.extensions](https://webpack.github.io/docs/configuration.html#resolve-extensions) that can be used for this purpose. If you want to allow imports like `import Button from './Button';`, set it up as follows:
 
@@ -42,7 +44,9 @@ resolve: {
 ...
 ```
 
-The loader configuration is straight-forward as well. We can use a RegExp to match both `.js` and `.jsx` files. It's up to your tastes to figure out a neat pattern. I prefer to use `\.jsx?$` myself. This just makes `x` optional. Alternatively you could spell out the options using a matcher such as `\.(js|jsx)$`. Latter format can be particularly useful if you have to match against multiple different formats.
+The loader configuration is straight-forward as well. We can use a RegExp to match both `.js` and `.jsx` files. It's up to your tastes to figure out a neat pattern. I prefer to use `\.jsx?$` myself. This just makes `x` optional.
+
+Alternatively, you could spell out the options using a matcher such as `\.(js|jsx)$`. Latter format can be particularly useful if you have to match against multiple different formats.
 
 *babel-loader* comes with a set of options. In this case I'm going to enable `cacheDirectory` to improve its performance during development. Simply passing it as a flag helps. You can also pass a specific directory to it as a parameter. I.e., `babel?cacheDirectory=<path>`. Here's the full loader configuration:
 
@@ -55,11 +59,13 @@ module: {
     {
       test: /\.jsx?$/,
       // Enable caching for improved performance during development
-      // It uses default OS directory by default. If you need something
-      // more custom, pass a path to it. I.e., babel?cacheDirectory=<path>
+      // It uses default OS directory by default. If you need
+      // something more custom, pass a path to it.
+      // I.e., babel?cacheDirectory=<path>
       loaders: ['babel?cacheDirectory'],
-      // Parse only app files! Without this it will go through entire project.
-      // In addition to being slow, that will most likely result in an error.
+      // Parse only app files! Without this it will go through
+      // the entire project. In addition to being slow,
+      // that will most likely result in an error.
       include: PATHS.app
     },
     ...
@@ -105,7 +111,9 @@ T> There are other possible [.babelrc options](https://babeljs.io/docs/usage/opt
 
 ## Setting Up Hot Loading
 
-One of the features that sets React and Webpack apart is a feature known as hot loading. This is something that sits on top of Webpack's Hot Module Replacement (HMR). The idea is that instead of forcing a full refresh on modification, we patch the code that changed during the runtime. The advantage of doing this is that it allows our application to retain its state. The process isn't fool proof, but when it works, it's quite neat.
+One of the features that sets React and Webpack apart is a feature known as hot loading. This is something that sits on top of Webpack's Hot Module Replacement (HMR). The idea is that instead of forcing a full refresh on modification, we patch the code that changed during the runtime.
+
+The advantage of doing this is that it allows our application to retain its state. The process isn't fool proof, but when it works, it's quite neat. As a result we get good developer experience (DX).
 
 You could achieve something similar by persisting your application state in other ways. For instance you could consider using `localStorage` for a similar purpose. You will still get a refresh, but it's far better than losing the entire state. You can reach the same result using multiple ways.
 
