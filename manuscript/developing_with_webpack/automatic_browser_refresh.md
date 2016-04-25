@@ -98,9 +98,9 @@ exports.devServer = function(options) {
       // host: options.host || '0.0.0.0';
       //
       // 0.0.0.0 is available to all network devices
-      // unlike default localhost
-      host: options.host,
-      port: options.port
+      // unlike default `localhost`.
+      host: options.host, // Defaults to `localhost`
+      port: options.port // Defaults to 8080
     },
     plugins: [
       // Enable multi-pass compilation for enhanced performance
@@ -161,7 +161,7 @@ T> You should be able to access the application alternatively through **localhos
 
 ### HMR on Windows, Ubuntu, and Vagrant
 
-The setup may be problematic on certain versions of Windows, Ubuntu, and Vagrant. Instead of using `devServer` and `plugins` configuration, implement it through polling like this:
+The setup may be problematic on certain versions of Windows, Ubuntu, and Vagrant. We can solve this through polling:
 
 **lib/parts.js**
 
@@ -172,12 +172,16 @@ exports.devServer = function(options) {
   return {
 leanpub-start-insert
     watchOptions: {
-      poll: true
+      // Delay the rebuild after the first change
+      aggregateTimeout: 300,
+      // Poll using interval (in ms, accepts boolean too)
+      poll: 1000
     },
 leanpub-end-insert
     devServer: {
       ...
-    }
+    },
+    ...
   };
 }
 ```
