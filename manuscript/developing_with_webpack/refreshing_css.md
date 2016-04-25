@@ -1,10 +1,10 @@
 # Refreshing CSS
 
-We can extend automatic browser refreshing to work with CSS. Webpack doesn't even have to force a full refresh in this case.
+In this chapter we'll set up CSS with our project and see how it works out with automatic browser refreshing. The neat thing is that in this case Webpack doesn't have to force a full refresh. Instead, it can do something smarter as we'll see soon.
 
 ## Loading CSS
 
-To load CSS into a project, we'll need to use a couple of loaders. To get started, invoke
+To set up CSS, we'll need to use a couple of loaders. To get started, invoke
 
 ```bash
 npm i css-loader style-loader --save-dev
