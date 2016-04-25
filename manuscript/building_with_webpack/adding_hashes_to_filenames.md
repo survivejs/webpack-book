@@ -32,8 +32,9 @@ switch(process.env.npm_lifecycle_event) {
   case 'build':
     config = merge(
       common,
-leanpub-start-insert
       {
+        devtool: 'source-map',
+leanpub-start-insert
         output: {
           path: PATHS.build,
           filename: '[name].[chunkhash].js',
@@ -41,8 +42,8 @@ leanpub-start-insert
           // will work without but this is useful to set.
           chunkFilename: '[chunkhash].js'
         }
-      },
 leanpub-end-insert
+      },
       ...
     );
     break;

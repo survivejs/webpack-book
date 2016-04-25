@@ -4,7 +4,7 @@ To improve the debuggability of the application, we can set up sourcemaps. They 
 
 ## Enabling Sourcemaps during Development
 
-To enable sourcemaps during development, we can use a decent default known as `eval-source-map` like this:
+To enable sourcemaps during development, we can use a decent default known as `eval-source-map` and for production we can use normal sourcemaps (separate file) like this:
 
 **webpack.config.js**
 
@@ -13,7 +13,15 @@ To enable sourcemaps during development, we can use a decent default known as `e
 
 switch(process.env.npm_lifecycle_event) {
   case 'build':
-    config = merge(common, {});
+    config = merge(
+      common,
+leanpub-start-insert
+      {
+        devtool: 'source-map'
+      },
+leanpub-end-insert
+      parts.setupCSS(PATHS.app)
+    );
   default:
     config = merge(
       common,
