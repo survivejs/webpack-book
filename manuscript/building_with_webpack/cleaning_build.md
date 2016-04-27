@@ -74,7 +74,7 @@ module.exports = validate(config);
 
 After this change, our `build` directory should remain nice and tidy when building. You can verify this by building the project and making sure no old files remained in the output directory.
 
-T> If you want to preserve possible dotfiles within your build directory, you can use `[path.join(PATHS.build, '/*')]` instead of `[PATHS.build]`.
+T> If you want to preserve possible dotfiles within your build directory, you can use `path.join(PATHS.build, '/*')` instead of `PATHS.build`.
 
 ## Conclusion
 
