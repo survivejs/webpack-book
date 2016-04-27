@@ -145,7 +145,7 @@ In addition, we need to define a separate entry for styling:
 const PATHS = {
   app: path.join(__dirname, 'app'),
 leanpub-start-insert
-  style: path.join(__dirname, 'app/main.css'),
+  style: path.join(__dirname, 'app', 'main.css'),
 leanpub-end-insert
   build: path.join(__dirname, 'build')
 };
@@ -263,12 +263,12 @@ const PATHS = {
   app: path.join(__dirname, 'app'),
 leanpub-start-insert
   style: [
-    path.join(__dirname, 'node_modules/purecss'),
-    path.join(__dirname, 'app/main.css')
+    path.join(__dirname, 'node_modules', 'purecss'),
+    path.join(__dirname, 'app', 'main.css')
   ],
 leanpub-end-insert
 leanpub-start-delete
-  style: path.join(__dirname, 'app/main.css'),
+  style: path.join(__dirname, 'app', 'main.css'),
 leanpub-end-delete
   build: path.join(__dirname, 'build')
 };
