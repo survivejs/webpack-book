@@ -61,7 +61,7 @@ Child html-webpack-plugin for "index.html":
 
 This might not be what you expected. The problem is that our `app` bundle contains data it shouldn't. React has been bundled with it given how entry chunks work by definition. Fortunately there's a way to get around this by using the `CommonsChunkPlugin`.
 
-T> It can be convenient to define a `vendor` entry based on *package.json* `dependencies`. Load the file first using `const pkg = require('./package.json');` and then do `vendor: Object.keys(pkg)`.
+T> It can be convenient to define a `vendor` entry based on *package.json* `dependencies`. Load the file first using `const pkg = require('./package.json');` and then do `vendor: Object.keys(pkg.dependencies)`.
 
 ## Setting Up `CommonsChunkPlugin`
 
