@@ -305,7 +305,9 @@ merge(
 leanpub-start-insert
   dontParse({
     name: 'react',
-    path: path.join(__dirname, 'node_modules/react/dist/react.min.js')
+    path: path.join(
+      __dirname, 'node_modules', 'react', 'dist', 'react.min.js'
+    )
   }),
 leanpub-end-insert
   ...
