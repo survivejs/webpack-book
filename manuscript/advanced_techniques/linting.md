@@ -16,7 +16,7 @@ Besides linting for issues, it can be useful to manage the code style on some le
 
 ## Webpack and JSHint
 
-Interestingly, no JSLint loader seems to exist for Webpack yet. Fortunately, there's one for JSHint. You could set it up on a legacy project easily. Install [jshint-loader](https://www.npmjs.com/package/jshint-loader) to your project first:
+Interestingly, no JSLint loader seems to exist for Webpack yet. Fortunately, there's one for JSHint. You could set it up on a legacy project easily. To get started, install [jshint-loader](https://www.npmjs.com/package/jshint-loader) to your project first:
 
 ```bash
 npm i jshint jshint-loader --save-dev
@@ -60,8 +60,6 @@ JSHint will look into specific rules to apply from `.jshintrc`. You can also def
 
 This tells JSHint we're operating within browser environment, don't care about linting for camelcase naming, want to use double quotes everywhere and so on.
 
-If you try running JSHint on our project, you will get a lot of output. It's not the ideal solution for React projects. ESLint will be more useful so we'll be setting it up next for better insights. Remember to remove JSHint configuration before proceeding further.
-
 ## Setting Up ESLint
 
 ![ESLint](images/eslint.png)
@@ -72,7 +70,7 @@ T> Since *v1.4.0* ESLint supports a feature known as [autofixing](http://eslint.
 
 ### Connecting ESlint with *package.json*
 
-In order to integrate ESLint to a project, a couple of steps are needed. To get started, install ESLint as a development dependency:
+To get started, install ESLint as a development dependency:
 
 ```bash
 npm i eslint --save-dev
@@ -116,7 +114,7 @@ T> ESLint supports custom formatters through `--format` parameter. [eslint-frien
 
 ### Configuring ESLint
 
-In order to truly benefit from ESLint, you'll need to configure. There are a lot of rules included, you can load even more through plugins, and you can even write your own. See the official [ESLint rules documentation](http://eslint.org/docs/rules/) for more details on rules.
+In order to truly benefit from ESLint, you'll need to configure it. There are a lot of rules included, you can load even more through plugins, and you can even write your own. See the official [ESLint rules documentation](http://eslint.org/docs/rules/) for more details on rules.
 
 Consider the sample configuration below. It extends the recommended set of rules with some of our own:
 
@@ -124,7 +122,14 @@ Consider the sample configuration below. It extends the recommended set of rules
 
 ```json
 {
-  "extends": "eslint:recommended",
+  // Extend existing configuration
+  // from ESlint and eslint-plugin-react defaults.
+  "extends": [
+    "eslint:recommended", "plugin:react/recommended"
+  ],
+  // Enable ES6 support. If you want to use custom Babel
+  // features, you will need to enable a custom parser
+  // as described in a section below.
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module"
@@ -133,18 +138,18 @@ Consider the sample configuration below. It extends the recommended set of rules
     "browser": true,
     "node": true
   },
+  // Enable custom plugin known as eslint-plugin-react
   "plugins": [
     "react"
   ],
   "rules": {
+    // Disable `no-console` rule
     "no-console": 0,
-    "new-cap": 0,
-    "strict": 0,
-    "no-underscore-dangle": 0,
-    "no-use-before-define": 0,
-    "eol-last": 0,
-    "quotes": [2, "single"],
-    "react/jsx-boolean-value": 1
+    // Give a warning if identifiers contain underscores
+    "no-underscore-dangle": 1,
+    // Default to single quotes and raise an error if something
+    // else is used
+    "quotes": [2, "single"]
   }
 }
 ```
@@ -159,13 +164,29 @@ T> There are useful plugins, such as [eslint-plugin-react](https://www.npmjs.com
 
 ### Connecting ESLint with Babel
 
-In case you want to lint against custom language features that go beyond standard ES6, use [babel-eslint](https://www.npmjs.com/package/babel-eslint). Setting it up is easy. Install the parser first:
+In case you want to lint against custom language features that go beyond standard ES6, use [babel-eslint](https://www.npmjs.com/package/babel-eslint). Install the parser first:
 
 ```bash
 npm i babel-eslint --save-dev
 ```
 
-Tweak your ESLint configuration so that it includes `"parser": "babel-eslint"` after this. It should be safe to drop `parserOptions` section of *.babelrc* once `parser` is et.
+Change *.eslintrc* like this so that ESLint knows to use the custom parser over the default one:
+
+```json
+{
+  ...
+leanpub-start-insert
+  "parser": "babel-eslint",
+leanpub-end-insert
+leanpub-start-delete
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+leanpub-end-delete
+  ...
+}
+```
 
 ### Severity of ESLint Rules
 
