@@ -405,11 +405,11 @@ Next, we'll need to integrate it with our configuration:
 
 ```javascript
 ...
-var stylelint = require('stylelint');
+const stylelint = require('stylelint');
 
 ...
 
-var common = {
+const common = {
   ...
   module: {
     preLoaders: [
@@ -423,11 +423,13 @@ var common = {
     ...
   },
   postcss: function () {
-    return [stylelint({
-      rules: {
-        'color-hex-case': 'lower'
-      }
-    })];
+    return [
+      stylelint({
+        rules: {
+          'color-hex-case': 'lower'
+        }
+      })
+    ];
   },
   ...
 }
@@ -436,7 +438,7 @@ var common = {
 If you define a CSS rule, such as `background-color: #EFEFEF;`, you should see a warning at your terminal. See stylelint documentation for a full list of rules. npm lists [possible stylelint rulesets](https://www.npmjs.com/search?q=stylelint-config). You consume them as your project dependency like this:
 
 ```javascript
-var configSuitcss = require('stylelint-config-suitcss');
+const configSuitcss = require('stylelint-config-suitcss');
 
 ...
 
