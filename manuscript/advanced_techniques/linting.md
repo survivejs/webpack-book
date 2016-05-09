@@ -447,7 +447,9 @@ const configSuitcss = require('stylelint-config-suitcss');
 stylelint(configSuitcss)
 ```
 
-Given stylelint is still under development, there's no CLI tool available yet. `.stylelintrc` type functionality is planned.
+It is possible to define configuration through a *.stylelintrc* file. The idea is similar as for other linting tools. There's also a CLI available.
+
+T> If you want to try out an alternative way to set up stylelint, consider using the [stylelint-webpack-plugin](https://www.npmjs.com/package/stylelint-webpack-plugin) instead.
 
 ## EditorConfig
 
