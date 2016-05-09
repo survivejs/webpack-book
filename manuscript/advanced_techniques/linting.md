@@ -112,6 +112,8 @@ If you need to ignore some specific directory in addition to the *.gitignore* de
 
 T> ESLint supports custom formatters through `--format` parameter. [eslint-friendly-formatter](https://www.npmjs.com/package/eslint-friendly-formatter) is an example of a formatter that provides terminal friendly output. This way you can jump conveniently straight to the warnings and errors from there.
 
+T> You can get more performance out of ESLint by running it through a daemon, such as [eslint_d](https://www.npmjs.com/package/eslint_d). Using it brings down the overhead and it can bring down linting times considerably.
+
 ### Configuring ESLint
 
 In order to truly benefit from ESLint, you'll need to configure it. There are a lot of rules included, you can load even more through plugins, and you can even write your own. See the official [ESLint rules documentation](http://eslint.org/docs/rules/) for more details on rules.
