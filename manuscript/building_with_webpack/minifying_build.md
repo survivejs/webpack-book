@@ -148,6 +148,8 @@ new webpack.optimize.UglifyJsPlugin({
 
 You can also enable features, such as dropping logging, through further configuration. `console` statements could be dropped by setting `compress.drop_console: true`. UglifyJS documentation contains more ideas like these.
 
+T> Dropping the `console` statements can be achieved through Babel too by using the [babel-plugin-remove-console](https://www.npmjs.com/package/babel-plugin-remove-console) plugin.
+
 ## Conclusion
 
 Even though our build is a little better now, there's still a fair amount of work left. The next simple step is to set an environment variable during the build to allow React optimize itself. This technique can be used in your own code as well. You might want to skip certain checks in production usage and so on to bring the build size down.
