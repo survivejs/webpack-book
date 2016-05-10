@@ -27,6 +27,26 @@ leanpub-end-insert
 }
 ```
 
+To make the asset paths work on GitHub Pages, we also need to tweak a Webpack setting known as `output.publicPath`. It gives us control over the resulting urls you see at *index.html* for instance. If you are hosting your assets on a CDN, this would be the place to tweak. In this case it's enough to set it to point the GitHub project like this:
+
+```javascript
+const common = {
+  ...
+  output: {
+    path: PATHS.build,
+leanpub-start-insert
+    // Tweak this to match your GitHub project name
+    publicPath: '/webpack-demo/'
+leanpub-end-insert
+    filename: '[name].[chunkhash].js',
+    // This is used for require.ensure. The setup
+    // will work without but this is useful to set.
+    chunkFilename: '[chunkhash].js'
+  },
+  ...
+}
+```
+
 If you execute `npm run deploy` now and everything goes fine, you should have your application hosted through GitHub Pages. You should find it at `https://<name>.github.io/<project>` (`github.com/<name>/<project>` at GitHub) assuming it worked.
 
 T> If you need a more elaborate setup, you can use the Node.js API that *gh-pages* provides. The default CLI tool it provides is often enough, though.
