@@ -165,6 +165,8 @@ T> Another way to serve the contents of the directory through a server, such as 
 
 T> I like to use `path.join`, but `path.resolve` would be a good alternative. See the [Node.js path API](https://nodejs.org/api/path.html) for further details.
 
+T> [favicons-webpack-plugin](https://www.npmjs.com/package/favicons-webpack-plugin) makes it easy to deal with favicons using Webpack. It is compatible with *html-webpack-plugin*.
+
 ## Adding a Build Shortcut
 
 Given executing `node_modules/.bin/webpack` is a little verbose, we should do something about it. npm and *package.json* double as a task runner with some configuration. Adjust it as follows:
