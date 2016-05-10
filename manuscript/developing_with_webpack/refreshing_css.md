@@ -106,6 +106,37 @@ Open up *main.css* and change the background color to something like `lime` (`ba
 
 T> An alternative way to load CSS would be to define a separate entry through which we point at CSS.
 
+## Understanding CSS Scoping and CSS Modules
+
+When you `require` a CSS file like this, Webpack will include it to the bundle where you `require` it. Assuming you are using the *style-loader*, Webpack will write it to a `style` .tag. This means it's going to be in a global scope by default!
+
+Specification known as [CSS Modules](https://github.com/css-modules/css-modules) allows you to default to local scoping. Webpack's *css-loader* supports it. So if you want local scope by default over a global one, enable them through `css?modules`. After this you'll need to wrap your global styles within `:global(body) { ... }` kind of declarations.
+
+In this case the `require` statement will give you the local classes you can then bind to elements. Assuming we had styling like this:
+
+**app/main.css**
+
+```css
+:local(.redButton) {
+  background: red;
+}
+```
+
+We could then bind the resulting class to a component like this:
+
+**app/component.js**
+
+```javascript
+var styles = require('./main.css');
+
+...
+
+// Attach the generated class name
+element.className = styles.redButton;
+```
+
+Even though this might feel like a strange way of working, defaulting to local scoping can take away a lot of pain you encounter with CSS. We'll be using old skool styling in this little demonstration project of ours, but it's a good technique to be aware of. It even enables features like composition so it's worth knowing.
+
 ## Conclusion
 
 In this chapter, you learned to set up Webpack to refresh your browser during development. The next chapter covers a convenience feature known as sourcemaps.
