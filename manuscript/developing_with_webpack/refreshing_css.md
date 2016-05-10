@@ -132,7 +132,7 @@ var styles = require('./main.css');
 ...
 
 // Attach the generated class name
-element.className = styles.redButton;
+element.className = styles.locals.redButton;
 ```
 
 Even though this might feel like a strange way of working, defaulting to local scoping can take away a lot of pain you encounter with CSS. We'll be using old skool styling in this little demonstration project of ours, but it's a good technique to be aware of. It even enables features like composition so it's worth knowing.
