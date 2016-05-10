@@ -178,6 +178,8 @@ After these steps your development setup should support hot loading. It is one o
 
 T> If you want to optimize your production build, consider studying Babel presets such as [babel-preset-react-optimize](https://www.npmjs.com/package/babel-preset-react-optimize).
 
+T> If you prefer to see possible syntax errors at the browser console instead of hmre overlay, enable `webpack.NoErrorsPlugin()` at your Webpack `plugins` declaration.
+
 ### Configuring Redux
 
 In order to configure Redux reducers to support hot loading, we need to implement Webpack's hot loading protocol. Webpack provides a hook known as `module.hot.accept`. It gets called whenever Webpack detects a change. This allows you to reload and patch your code.
