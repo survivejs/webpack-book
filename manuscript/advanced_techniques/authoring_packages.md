@@ -49,7 +49,7 @@ I've annotated a part of *package.json* of my [React component boilerplate](http
     "start": "webpack-dev-server",
 
     "test": "karma start",
-    "test:tdd": "karma start --auto-watch --no-single-run",
+    "test:tdd": "npm run test -- --auto-watch --no-single-run",
     "test:lint": "eslint . --ext .js --ext .jsx --cache",
 
     "gh-pages": "webpack",
