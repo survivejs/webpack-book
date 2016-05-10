@@ -1,6 +1,6 @@
 # Getting Started
 
-Make sure you are using a recent version of [Node.js](http://nodejs.org/) installed. I recommend using at least the most recent LTS (Long-Term Support) version. Before going further, make sure you have `node` and `npm` commands available at your terminal.
+Make sure you are using a recent version of [Node.js](http://nodejs.org/) installed. I recommend using at least the most recent LTS (Long-Term Support) version. Before going further, you should have `node` and `npm` commands available at your terminal.
 
 The completed configuration is available at [GitHub](https://github.com/survivejs-demos/webpack-demo). If you are unsure of something, refer there.
 
