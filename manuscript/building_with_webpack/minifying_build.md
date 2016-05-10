@@ -32,15 +32,16 @@ Now that we have something to optimize, execute `npm run build`. You should end 
 
 ```bash
 [webpack-validator] Config is valid.
-Hash: b7b26f63b32810418e84
+Hash: dde0419cac0674732a83
 Version: webpack 1.13.0
-Time: 1490ms
+Time: 1730ms
      Asset       Size  Chunks             Chunk Names
-    app.js     131 kB       0  [emitted]  app
+    app.js     133 kB       0  [emitted]  app
+app.js.map     157 kB       0  [emitted]  app
 index.html  157 bytes          [emitted]
-   [0] ./app/index.js 124 bytes {0} [built]
-  [36] ./app/component.js 136 bytes {0} [built]
-    + 35 hidden modules
+   [0] ./app/index.js 123 bytes {0} [built]
+  [37] ./app/component.js 136 bytes {0} [built]
+    + 36 hidden modules
 Child html-webpack-plugin for "index.html":
         + 3 hidden modules
 ```
@@ -105,15 +106,16 @@ If you execute `npm run build` now, you should see better results:
 
 ```bash
 [webpack-validator] Config is valid.
-Hash: aa4bbb0d73451705d8e0
+Hash: aec016ce2e9d0dfa1577
 Version: webpack 1.13.0
-Time: 3042ms
+Time: 3342ms
      Asset       Size  Chunks             Chunk Names
-    app.js    37.3 kB       0  [emitted]  app
+    app.js      38 kB       0  [emitted]  app
+app.js.map     325 kB       0  [emitted]  app
 index.html  157 bytes          [emitted]
-   [0] ./app/index.js 124 bytes {0} [built]
-  [36] ./app/component.js 136 bytes {0} [built]
-    + 35 hidden modules
+   [0] ./app/index.js 123 bytes {0} [built]
+  [37] ./app/component.js 136 bytes {0} [built]
+    + 36 hidden modules
 Child html-webpack-plugin for "index.html":
         + 3 hidden modules
 ```

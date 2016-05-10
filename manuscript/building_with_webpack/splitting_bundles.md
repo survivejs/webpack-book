@@ -44,17 +44,19 @@ If you try to generate a build now (`npm run build`), you should see something l
 
 ```bash
 [webpack-validator] Config is valid.
-Hash: 036a8d3cdde84af8b0a2
+Hash: 6b55239dc87e2ae8efd6
 Version: webpack 1.13.0
-Time: 3735ms
-     Asset       Size  Chunks             Chunk Names
-    app.js    24.7 kB       0  [emitted]  app
- vendor.js    20.9 kB       1  [emitted]  vendor
-index.html  190 bytes          [emitted]
-   [0] ./app/index.js 124 bytes {0} [built]
+Time: 4168ms
+        Asset       Size  Chunks             Chunk Names
+       app.js    25.4 kB       0  [emitted]  app
+    vendor.js    21.6 kB       1  [emitted]  vendor
+   app.js.map     307 kB       0  [emitted]  app
+vendor.js.map     277 kB       1  [emitted]  vendor
+   index.html  190 bytes          [emitted]
+   [0] ./app/index.js 123 bytes {0} [built]
    [0] multi vendor 28 bytes {1} [built]
-  [35] ./app/component.js 136 bytes {0} [built]
-    + 34 hidden modules
+  [36] ./app/component.js 136 bytes {0} [built]
+    + 35 hidden modules
 Child html-webpack-plugin for "index.html":
         + 3 hidden modules
 ```
@@ -137,6 +139,9 @@ switch(process.env.npm_lifecycle_event) {
   case 'build':
     config = merge(
       common,
+      {
+        devtool: 'source-map'
+      },
       parts.setFreeVariable(
         'process.env.NODE_ENV',
         'production'
@@ -152,6 +157,7 @@ leanpub-end-insert
     );
     break;
   default:
+    ...
 }
 
 module.exports = validate(config);
@@ -161,18 +167,21 @@ If you execute the build now using `npm run build`, you should see something alo
 
 ```bash
 [webpack-validator] Config is valid.
-Hash: e4b73974f20ab74a2968
+Hash: 516a574ca6ee19e87209
 Version: webpack 1.13.0
-Time: 3901ms
-      Asset       Size  Chunks             Chunk Names
-     app.js    3.91 kB    0, 2  [emitted]  app
-  vendor.js    20.7 kB    1, 2  [emitted]  vendor
-manifest.js  743 bytes       2  [emitted]  manifest
- index.html  225 bytes          [emitted]
-   [0] ./app/index.js 124 bytes {0} [built]
+Time: 2568ms
+          Asset       Size  Chunks             Chunk Names
+         app.js    3.94 kB    0, 2  [emitted]  app
+      vendor.js    21.4 kB    1, 2  [emitted]  vendor
+    manifest.js  780 bytes       2  [emitted]  manifest
+     app.js.map    30.7 kB    0, 2  [emitted]  app
+  vendor.js.map     274 kB    1, 2  [emitted]  vendor
+manifest.js.map    8.72 kB       2  [emitted]  manifest
+     index.html  225 bytes          [emitted]
+   [0] ./app/index.js 123 bytes {0} [built]
    [0] multi vendor 28 bytes {1} [built]
-  [35] ./app/component.js 136 bytes {0} [built]
-    + 34 hidden modules
+  [36] ./app/component.js 136 bytes {0} [built]
+    + 35 hidden modules
 Child html-webpack-plugin for "index.html":
         + 3 hidden modules
 ```
@@ -181,4 +190,4 @@ Now our bundles look just the way we want. Beyond this, it is possible to define
 
 ## Conclusion
 
-The situation is far better now. Note how small `app` bundle compared to the `vendor` bundle. In order to really benefit from this split, we should set up caching. This can be achieved by adding cache busting hashes to filenames.
+The situation is far better now. Note how small `app` bundle compared to the `vendor` bundle. In order to really benefit from this split, we should set up caching. This can be achieved by adding cache busting hashes to the filenames.

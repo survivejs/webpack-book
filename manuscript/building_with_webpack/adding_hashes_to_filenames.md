@@ -33,8 +33,11 @@ switch(process.env.npm_lifecycle_event) {
     config = merge(
       common,
       {
-        devtool: 'source-map',
+leanpub-start-delete
+        devtool: 'source-map'
+leanpub-end-delete
 leanpub-start-insert
+        devtool: 'source-map',
         output: {
           path: PATHS.build,
           filename: '[name].[chunkhash].js',
@@ -58,18 +61,21 @@ If you execute `npm run build` now, you should see output like this.
 
 ```bash
 [webpack-validator] Config is valid.
-Hash: 5ee4340ea7d9c82ecba8
+Hash: 77395b0652b78e910b14
 Version: webpack 1.13.0
-Time: 2332ms
-                           Asset       Size  Chunks             Chunk Names
-     app.61a2f8164146f5d06b9f.js    3.91 kB    0, 2  [emitted]  app
-  vendor.0328dbecd1e0c3534145.js    20.7 kB    1, 2  [emitted]  vendor
-manifest.6d22dc49ed30205a5468.js  763 bytes       2  [emitted]  manifest
-                      index.html  288 bytes          [emitted]
-   [0] ./app/index.js 124 bytes {0} [built]
+Time: 2679ms
+                               Asset       Size  Chunks             Chunk Names
+         app.81e040e8c3dcc71d5624.js    3.96 kB    0, 2  [emitted]  app
+      vendor.21dc91b20c0b1e6e16a1.js    21.4 kB    1, 2  [emitted]  vendor
+    manifest.9e0e3d4035bea9b56f55.js  821 bytes       2  [emitted]  manifest
+     app.81e040e8c3dcc71d5624.js.map    30.8 kB    0, 2  [emitted]  app
+  vendor.21dc91b20c0b1e6e16a1.js.map     274 kB    1, 2  [emitted]  vendor
+manifest.9e0e3d4035bea9b56f55.js.map    8.78 kB       2  [emitted]  manifest
+                          index.html  288 bytes          [emitted]
+   [0] ./app/index.js 123 bytes {0} [built]
    [0] multi vendor 28 bytes {1} [built]
-  [35] ./app/component.js 136 bytes {0} [built]
-    + 34 hidden modules
+  [36] ./app/component.js 136 bytes {0} [built]
+    + 35 hidden modules
 Child html-webpack-plugin for "index.html":
         + 3 hidden modules
 ```
