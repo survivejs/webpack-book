@@ -307,6 +307,8 @@ externals: {
 
 These two fields help you a lot as a package author but there's more to it.
 
+T> If you want to include all modules in *node_modules* by default, it could be interesting to use [webpack-node-externals](https://www.npmjs.com/package/webpack-node-externals) instead. Then you would end up with `externals: [nodeExternals()]` kind of declaration. If you don't need to adapt to different environments, this could be a neat way to go.
+
 ### Processing Node.js Version through Babel
 
 If you are processing your code through Babel, I suggest you process the Node.js version of the package directly through Babel and skip Webpack. The advantage of doing this is that it gives you separate modules that are easier to consume one by one if needed. This avoids having to go through a heavy bundle. In this case you'll likely want a setup like this:
