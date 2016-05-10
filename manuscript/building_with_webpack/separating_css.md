@@ -345,6 +345,9 @@ exports.purifyCSS = function(paths) {
     plugins: [
       new PurifyCSSPlugin({
         basePath: process.cwd(),
+        // `paths` is used to point PurifyCSS to files not
+        // visible to Webpack. You can pass glob patterns
+        // to it.
         paths: paths
       }),
     ]
@@ -380,6 +383,8 @@ leanpub-end-delete
 module.exports = validate(config);
 ```
 
+Given Webpack is aware of `PATHS.app` through an entry, we could skip assing it to `parts.purifyCSS`. As explicit is often nicer than implicit, passing it here doesn't hurt. We'll get the same result either way.
+
 If you execute `npm run build` now, you should see something like this:
 
 ```bash
@@ -409,6 +414,8 @@ Child extract-text-webpack-plugin:
 ```
 
 The size of our style went from 16.6 kB to 13.1 kB. It is not a huge difference in this case, but it is still something. It is interesting to note that processing time went from three seconds to eight so there is a cost involved! The technique is useful to know as it will likely come in handy with heavier CSS frameworks.
+
+PurifyCSS supports [additional options](https://github.com/purifycss/purifycss#the-optional-options-argument). You could for example enable additional logging by setting `purifyOptions: {info: true}` when instantiating the plugin.
 
 ## Conclusion
 
