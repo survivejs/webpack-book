@@ -26,6 +26,8 @@ In larger projects, you may find the following:
 
 In addition, you'll likely have various directories for source, tests, demos, documentation, and so on.
 
+T> If you want to decrease the size of your dependencies, consider using a tool like [package-config-checker](https://www.npmjs.com/package/package-config-checker). It can pinpoint packages not using the `files` field correctly. Once you know which ones haven't set it, you can consider making Pull Requests (PRs) to those projects.
+
 ## Understanding *package.json*
 
 All packages come with a *package.json* that describes metadata related to them. This includes information about the author, various links, dependencies, and so on. The [official documentation](https://docs.npmjs.com/files/package.json) covers them in detail.
