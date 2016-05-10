@@ -4,7 +4,9 @@ Even though Webpack is useful for bundling applications, it has its uses for pac
 
 ## Setting Up UMD
 
-Allowing Webpack to output your bundle in the UMD format is simple. Webpack allows you to control the output format using [output.libraryTarget](https://webpack.github.io/docs/configuration.html#output-librarytarget) field. It defaults to `var`. This means it will set your bundle to a variable defined using the `output.library` field. There are other options too, but the one we are interested in is `output.libraryTarget: 'umd'`. Consider the example below:
+Allowing Webpack to output your bundle in the UMD format is simple. Webpack allows you to control the output format using [output.libraryTarget](https://webpack.github.io/docs/configuration.html#output-librarytarget) field. It defaults to `var`. This means it will set your bundle to a variable defined using the `output.library` field.
+
+There are other options too, but the one we are interested in is `output.libraryTarget: 'umd'`. Consider the example below:
 
 **webpack.config.js**
 
