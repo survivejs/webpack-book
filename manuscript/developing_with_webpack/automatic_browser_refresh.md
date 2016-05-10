@@ -1,6 +1,8 @@
 # Automatic Browser Refresh
 
-Tools, such as [LiveReload](http://livereload.com/) or [Browsersync](http://www.browsersync.io/), allow us to refresh the browser as we develop our application. They can even avoid refresh for CSS changes. In this case I'm going to show you how to use something more Webpack specific - namely *webpack-dev-server*.
+Tools, such as [LiveReload](http://livereload.com/) or [Browsersync](http://www.browsersync.io/), allow us to refresh the browser as we develop our application. They can even avoid refresh for CSS changes.
+
+A good first step towards a better development environment would be to use Webpack in its **watch** mode. You can activate it through `webpack --watch`. Once enabled, it will detect changes made to your files and recompiles automatically. A solution known as *webpack-dev-server* builds on top of the watch mode and goes even further.
 
 *webpack-dev-server* is a development server running in-memory. It refreshes content automatically in the browser while you develop your application. It also supports an advanced Webpack feature known as Hot Module Replacement (HMR), which provides a way to patch the browser state without a full refresh. This is particularly powerful with technology such as React.
 
