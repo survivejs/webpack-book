@@ -83,6 +83,8 @@ new webpack.SourceMapDevToolPlugin({
   // Match assets just like for loaders.
   test: string | RegExp | Array,
   include: string | RegExp | Array,
+
+  // `exclude` matches file names, not package names!
   exclude: string | RegExp | Array,
 
   // If filename is set, output to this file.
