@@ -80,7 +80,7 @@ If you are processing your code through Babel, I suggest you process the Node.js
 
 There is one problem, though. What if someone points to a development version of your package directly through GitHub? It simply won't work as the `dist-modules` directory will be missing. This can be fixed using a hook that will generate the needed source.
 
-## Generating Distribution for Development Usage
+## Generating a Distribution for Development Usage
 
 To solve the development distribution problem, we need to hook up a custom script the right way. First, we need to connect the hook with a custom script:
 
