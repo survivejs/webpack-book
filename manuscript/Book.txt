@@ -5,35 +5,35 @@ webpack_compared.md
 
 Mainmatter.txt
 
-Developing_with_Webpack.md
-developing_with_webpack/getting_started.md
-developing_with_webpack/splitting_configuration.md
-developing_with_webpack/automatic_browser_refresh.md
-developing_with_webpack/refreshing_css.md
-developing_with_webpack/enabling_sourcemaps.md
+01_Developing_with_Webpack.md
+developing_with_webpack/01_getting_started.md
+developing_with_webpack/02_splitting_configuration.md
+developing_with_webpack/03_automatic_browser_refresh.md
+developing_with_webpack/04_refreshing_css.md
+developing_with_webpack/05_enabling_sourcemaps.md
 
-Building_with_Webpack.md
-building_with_webpack/minifying_build.md
-building_with_webpack/setting_environment_variables.md
-building_with_webpack/splitting_bundles.md
-building_with_webpack/adding_hashes_to_filenames.md
-building_with_webpack/cleaning_build.md
-building_with_webpack/separating_css.md
-building_with_webpack/analyzing_build_statistics.md
-building_with_webpack/hosting_on_github_pages.md
+02_Building_with_Webpack.md
+building_with_webpack/01_minifying_build.md
+building_with_webpack/02_setting_environment_variables.md
+building_with_webpack/03_splitting_bundles.md
+building_with_webpack/04_adding_hashes_to_filenames.md
+building_with_webpack/05_cleaning_build.md
+building_with_webpack/06_separating_css.md
+building_with_webpack/07_analyzing_build_statistics.md
+building_with_webpack/08_hosting_on_github_pages.md
 
-Loading_Assets.md
-loading_assets/formats_supported.md
-loading_assets/loader_definitions.md
-loading_assets/loading_styles.md
-loading_assets/loading_images.md
-loading_assets/loading_fonts.md
+03_Loading_Assets.md
+loading_assets/01_formats_supported.md
+loading_assets/02_loader_definitions.md
+loading_assets/03_loading_styles.md
+loading_assets/04_loading_images.md
+loading_assets/05_loading_fonts.md
 
-Advanced_Techniques.md
-advanced_techniques/understanding_chunks.md
-advanced_techniques/linting.md
-advanced_techniques/authoring_packages.md
-advanced_techniques/writing_loaders.md
-advanced_techniques/configuring_react.md
+04_Advanced_Techniques.md
+advanced_techniques/01_understanding_chunks.md
+advanced_techniques/02_linting.md
+advanced_techniques/03_authoring_packages.md
+advanced_techniques/04_writing_loaders.md
+advanced_techniques/05_configuring_react.md
 
 Backmatter.txt
