@@ -1,6 +1,6 @@
 # Minifying the Build
 
-So far we haven't given thought to our build output and no doubt it's going to be a little chunky, especially as we included React to it. We can apply a variety of techniques to bring down the size of it. We can also leverage client level caching, load certain assets lazily. I'll discuss the latter topic in the *Understanding Chunks* chapter later on.
+So far we haven't given thought to our build output and no doubt it's going to be a little chunky, especially as we include React in it. We can apply a variety of techniques to bring down the size of it. We can also leverage client level caching and load certain assets lazily. I'll discuss the latter topic in the *Understanding Chunks* chapter later on.
 
 The first of these techniques is known as minification. It is a process where code is simplified without losing any meaning that matters to the interpreter. As a result your code will most likely look quite jumbled and it will be hard to read. But that's the point.
 
