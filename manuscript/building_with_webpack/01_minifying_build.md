@@ -46,7 +46,7 @@ Child html-webpack-plugin for "index.html":
         + 3 hidden modules
 ```
 
-131 kB is a lot! Minification should bring down the size a lot.
+133 kB is a lot! Minification should bring down the size a lot.
 
 ## Minifying the Code
 
