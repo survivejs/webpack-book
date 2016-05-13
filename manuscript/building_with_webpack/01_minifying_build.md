@@ -52,7 +52,7 @@ Child html-webpack-plugin for "index.html":
 
 Minification will convert our code into a smaller format without losing any meaning. Usually this means some amount of rewriting code through predefined transformations. Sometimes, this can break code as it can rewrite pieces of code you inadvertently depend upon.
 
-The easiest way to enable minification is to call `webpack -p` (`-p` as in `production`). Alternatively, we an use a plugin directly as this provides us more control. By default Uglify will output a lot of warnings and they don't provide value in this case, we'll be disabling them.
+The easiest way to enable minification is to call `webpack -p` (`-p` as in `production`). Alternatively, we can use a plugin directly as this provides us more control. By default Uglify will output a lot of warnings and they don't provide value in this case, we'll be disabling them.
 
 As earlier, we can define a little function for this purpose and then point to it from our main configuration. Here's the basic idea:
 
