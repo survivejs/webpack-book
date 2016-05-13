@@ -6,7 +6,7 @@ Babel is useful beyond React development and worth understanding as it allows yo
 
 ## Setting Up Babel with React
 
-Most of the React code out there relies on a format known as [JSX](https://facebook.github.io/jsx/). It is a superset of JavaScript that allows you to mix XMLis syntax with JavaScript.
+Most of the React code out there relies on a format known as [JSX](https://facebook.github.io/jsx/). It is a superset of JavaScript that allows you to mix XML syntax with JavaScript.
 
 A lot of people find this convenient as they get something that resembles what they know already while they can use the power of JavaScript. This is in contrast to template DSLs that implement the same logic using custom constructs.
 
