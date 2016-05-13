@@ -36,11 +36,14 @@ Webpack provides a field known as [resolve.extensions](https://webpack.github.io
 
 ```javascript
 ...
-// Important! Do not remove ''. If you do, imports without
-// an extension won't work anymore!
-resolve: {
-  extensions: ['', '.js', '.jsx']
-},
+const common = {
+  ...
+  // Important! Do not remove ''. If you do, imports without
+  // an extension won't work anymore!
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  }
+}
 ...
 ```
 
