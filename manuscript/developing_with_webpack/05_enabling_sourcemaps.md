@@ -1,6 +1,6 @@
 # Enabling Sourcemaps
 
-To improve the debuggability of the application, we can set up sourcemaps. They allow you to see exactly where an error was raised. In Webpack this is controlled through the `devtool` setting. Webpack can generate both inline sourcemaps included to within bundles or separate sourcemap files. Former is useful during development due to better performance while latter is handy for production usage.
+To improve the debuggability of the application, we can set up sourcemaps. They allow you to see exactly where an error was raised. In Webpack this is controlled through the `devtool` setting. Webpack can generate both inline sourcemaps included within bundles or separate sourcemap files. The former is useful during development due to better performance while the latter is handy for production usage.
 
 ## Enabling Sourcemaps during Development
 

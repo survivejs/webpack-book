@@ -79,7 +79,7 @@ Child html-webpack-plugin for "index.html":
         + 3 hidden modules
 ```
 
-So we went from 131 kB to 38 kB, and finally, to 25.4 kB. The final build is a little faster than the previous one. As that 25.4 kB can be served gzipped, it is quite reasonable. gzipping will drop around another 40%. It is well supported by browsers.
+So we went from 133 kB to 38 kB, and finally, to 25.4 kB. The final build is a little faster than the previous one. As that 25.4 kB can be served gzipped, it is quite reasonable. gzipping will drop around another 40%. It is well supported by browsers.
 
 T> [babel-plugin-transform-inline-environment-variables](https://www.npmjs.com/package/babel-plugin-transform-inline-environment-variables) Babel plugin can be used to achieve the same effect. See [the official documentation](https://babeljs.io/docs/plugins/transform-inline-environment-variables/) for details.
 

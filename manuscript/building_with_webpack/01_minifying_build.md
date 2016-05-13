@@ -1,6 +1,6 @@
 # Minifying the Build
 
-So far we haven't given thought to our build output and no doubt it's going to be a little chunky, especially as we included React to it. We can apply a variety of techniques to bring down the size of it. We can also leverage client level caching, load certain assets lazily. I'll discuss the latter topic in the *Understanding Chunks* chapter later on.
+So far we haven't given thought to our build output and no doubt it's going to be a little chunky, especially as we include React in it. We can apply a variety of techniques to bring down the size of it. We can also leverage client level caching and load certain assets lazily. I'll discuss the latter topic in the *Understanding Chunks* chapter later on.
 
 The first of these techniques is known as minification. It is a process where code is simplified without losing any meaning that matters to the interpreter. As a result your code will most likely look quite jumbled and it will be hard to read. But that's the point.
 
@@ -46,13 +46,13 @@ Child html-webpack-plugin for "index.html":
         + 3 hidden modules
 ```
 
-131 kB is a lot! Minification should bring down the size a lot.
+133 kB is a lot! Minification should bring down the size a lot.
 
 ## Minifying the Code
 
 Minification will convert our code into a smaller format without losing any meaning. Usually this means some amount of rewriting code through predefined transformations. Sometimes, this can break code as it can rewrite pieces of code you inadvertently depend upon.
 
-The easiest way to enable minification is to call `webpack -p` (`-p` as in `production`). Alternatively, we an use a plugin directly as this provides us more control. By default Uglify will output a lot of warnings and they don't provide value in this case, we'll be disabling them.
+The easiest way to enable minification is to call `webpack -p` (`-p` as in `production`). Alternatively, we can use a plugin directly as this provides us more control. By default Uglify will output a lot of warnings and they don't provide value in this case, we'll be disabling them.
 
 As earlier, we can define a little function for this purpose and then point to it from our main configuration. Here's the basic idea:
 
@@ -154,4 +154,4 @@ T> Dropping the `console` statements can be achieved through Babel too by using 
 
 ## Conclusion
 
-Even though our build is a little better now, there's still a fair amount of work left. The next simple step is to set an environment variable during the build to allow React optimize itself. This technique can be used in your own code as well. You might want to skip certain checks in production usage and so on to bring the build size down.
+Even though our build is a little better now, there's still a fair amount of work left. The next simple step is to set an environment variable during the build to allow React to optimize itself. This technique can be used in your own code as well. You might want to skip certain checks in production usage and so on to bring the build size down.

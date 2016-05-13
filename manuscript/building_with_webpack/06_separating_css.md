@@ -125,7 +125,7 @@ T> If you have a complex project with a lot of dependencies, it is likely a good
 
 ## Separating Application Code and Styling
 
-A logical way to solve our chunk issue is to push application code and styling to separate entry chunks. This breaks the dependency and fixes caching. To achieve this we need to decouple styling from it current chunk and define a custom chunk for it through configuration:
+A logical way to solve our chunk issue is to push application code and styling to separate entry chunks. This breaks the dependency and fixes caching. To achieve this we need to decouple styling from its current chunk and define a custom chunk for it through configuration:
 
 **app/index.js**
 
