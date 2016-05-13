@@ -6,7 +6,7 @@ Given each request comes with a slight overhead, this scheme won't load as fast 
 
 ## Setting Up a `vendor` Bundle
 
-So far our project has only a single entry named as `app`. As you might rememmber, our configuration tells Webpack to traverse dependencies starting from the `app` entry directory and then to output the resulting bundle below our `build` directory using the entry name and `.js` extension.
+So far our project has only a single entry named as `app`. As you might remember, our configuration tells Webpack to traverse dependencies starting from the `app` entry directory and then to output the resulting bundle below our `build` directory using the entry name and `.js` extension.
 
 To improve the situation, we could define a `vendor` entry containing React. Change the code like this:
 
@@ -71,7 +71,7 @@ T> It can be convenient to define a `vendor` entry based on *package.json* `depe
 
 To make our life easier in the future, we can make it to extract a file known as **manifest**. It contains Webpack runtime that starts the whole application and contains the dependency information needed by it. Even though it's yet another file for the browser to load, it allows us to implement reliable caching in the next chapter.
 
-The following code combines the `entry` idea above with basic `CommonsChunkPlugin` setup. To make sure only `entry` modules are included in the resulting bundle we need to set `minChunks`. It would work without, but it's a good idea to set it to avoid issues on larger codebases. Set up a function like this:
+The following code combines the `entry` idea above with basic `CommonsChunkPlugin` setup. To make sure only `entry` modules are included in the resulting bundle we need to set `minChunks`. It would work without it, but it's a good idea to set it to avoid issues on larger codebases. Set up a function like this:
 
 **lib/parts.js**
 
