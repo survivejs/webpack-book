@@ -88,4 +88,4 @@ The book wouldn't be half as good as it is without patient editing and feedback 
 
 This book wouldn't have been possible without the original "SurviveJS - Webpack and React" effort. Anyone who contributed to that, deserves my thanks! You can check that book for more specific attributions.
 
-Thanks to Mike "Pomax" Kamermans, Cesar Andreu, Dan Palmer, Viktor Jančík, Tom Byrer, Christian Hettlage, and many others who have contributed direct feedback for this book!
+Thanks to Mike "Pomax" Kamermans, Cesar Andreu, Dan Palmer, Viktor Jančík, Tom Byrer, Christian Hettlage, David A. Lee, and many others who have contributed direct feedback for this book!
