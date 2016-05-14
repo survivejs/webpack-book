@@ -206,7 +206,7 @@ module.exports = {
 
 Given the configuration is written in JavaScript, it's quite malleable. As long as it's JavaScript, Webpack is fine with it.
 
-The configuration model may make Webpack feel a bit opaque at times. It can be difficult to understand what it's doing. This is particularly true for more complicated cases. I have compiled [a webpack cookbook](https://christianalfoni.github.io/react-webpack-cookbook/) with Christian Alfoni that goes into more detail when it comes to specific problems.
+The configuration model may make Webpack feel a bit opaque at times. It can be difficult to understand what it's doing. This is particularly true for more complicated cases. Covering those is one of the main reasons why this book exists.
 
 ## Why to Use Webpack?
 
