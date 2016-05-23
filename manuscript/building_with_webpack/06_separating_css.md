@@ -397,7 +397,7 @@ leanpub-end-delete
 module.exports = validate(config);
 ```
 
-Given Webpack is aware of `PATHS.app` through an entry, we could skip assing it to `parts.purifyCSS`. As explicit is often nicer than implicit, passing it here doesn't hurt. We'll get the same result either way.
+Given Webpack is aware of `PATHS.app` through an entry, we could skip passing it to `parts.purifyCSS`. As explicit is often nicer than implicit, having it here doesn't hurt. We'll get the same result either way.
 
 If you execute `npm run build` now, you should see something like this:
 
