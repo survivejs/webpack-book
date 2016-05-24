@@ -48,7 +48,15 @@ leanpub-end-insert
     );
 }
 
+leanpub-start-remove
 module.exports = validate(config);
+leanpub-end-remove
+leanpub-start-insert
+// Run validator in quiet mode to avoid output in stats
+module.exports = validate(config, {
+  quiet: true
+});
+leanpub-end-insert
 ```
 
 If you execute `npm run stats` now, you should find *stats.json* at your project root after it has finished processing. We can take this file and pass it to [the online tool](http://webpack.github.io/analyse/). Note that the tool works only over HTTP! If your data is sensitive, consider using [the standalone version](https://github.com/webpack/analyse) instead.
