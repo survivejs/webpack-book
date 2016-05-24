@@ -70,9 +70,9 @@ We could use `webpack-dev-server --inline --hot` to achieve this from the CLI. `
 
 To keep our configuration manageable, I'll split functionalities like HMR into parts of their own. This keeps our *webpack.config.js* simple and promotes reuse. We could push a collection like this to a npm package of its own. We could even turn them into presets to use across projects. Functional composition allows that.
 
-I'll push all of our configuration parts to *lib/parts.js* and consume them from there. Here's what a part would look like for HMR:
+I'll push all of our configuration parts to *libs/parts.js* and consume them from there. Here's what a part would look like for HMR:
 
-**lib/parts.js**
+**libs/parts.js**
 
 ```javascript
 const webpack = require('webpack');
@@ -125,7 +125,7 @@ const merge = require('webpack-merge');
 const validate = require('webpack-validator');
 
 leanpub-start-insert
-const parts = require('./lib/parts');
+const parts = require('./libs/parts');
 leanpub-end-insert
 
 ...
@@ -164,7 +164,7 @@ T> You should be able to access the application alternatively through **localhos
 
 The setup may be problematic on certain versions of Windows, Ubuntu, and Vagrant. We can solve this through polling:
 
-**lib/parts.js**
+**libs/parts.js**
 
 ```javascript
 const webpack = require('webpack');

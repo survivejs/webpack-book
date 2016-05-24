@@ -73,7 +73,7 @@ To make our life easier in the future, we can make it to extract a file known as
 
 The following code combines the `entry` idea above with basic `CommonsChunkPlugin` setup. To make sure only `entry` modules are included in the resulting bundle we need to set `minChunks`. It would work without it, but it's a good idea to set it to avoid issues on larger codebases. Set up a function like this:
 
-**lib/parts.js**
+**libs/parts.js**
 
 ```javascript
 ...

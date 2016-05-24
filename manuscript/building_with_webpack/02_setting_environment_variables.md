@@ -10,7 +10,7 @@ Writing code like this allows us to enable specific features based on given rule
 
 As before, we can encapsulate this idea to a function:
 
-**lib/parts.js**
+**libs/parts.js**
 
 ```javascript
 ...

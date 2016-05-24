@@ -14,7 +14,7 @@ npm i clean-webpack-plugin --save-dev
 
 Next we need to define a little function to wrap the basic idea. We could use the plugin directly, but this feels like something that could be useful across projects so it makes sense to push to our library:
 
-**lib/parts.js**
+**libs/parts.js**
 
 ```javascript
 const webpack = require('webpack');

@@ -18,7 +18,7 @@ npm i extract-text-webpack-plugin --save-dev
 
 The plugin operates in two parts. There's a loader, `ExtractTextPlugin.extract`, that marks the assets to be extracted. The plugin itself will then use that information to write the file. In a function form the idea looks like this:
 
-**lib/parts.js**
+**libs/parts.js**
 
 ```javascript
 const webpack = require('webpack');
@@ -341,7 +341,7 @@ If you run the application (`npm start`), our "Hello world" should look like a b
 
 We need one more bit, the configuration needed to make purifycss work. Expand parts like this:
 
-**lib/parts.js**
+**libs/parts.js**
 
 ```javascript
 const webpack = require('webpack');
