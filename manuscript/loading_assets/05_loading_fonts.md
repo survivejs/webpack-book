@@ -42,7 +42,7 @@ In case we want to make sure our site looks good on a maximum amount of browsers
   // Set mimetype just in case.
   loader: 'url',
   query: {
-    prefix: 'font/',
+    name: 'font/[hash].[ext]',
     limit: 5000,
     mimetype: 'application/font-woff'
   },
@@ -52,7 +52,7 @@ In case we want to make sure our site looks good on a maximum amount of browsers
   test: /\.ttf$|\.eot$/,
   loader: 'file',
   query: {
-    prefix: 'font/'
+    name: 'font/[hash].[ext]'
   },
   include: PATHS.fonts
 }
