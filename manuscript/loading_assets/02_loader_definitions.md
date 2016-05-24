@@ -8,7 +8,7 @@ It can be a good idea to prefer absolute paths here as it allows you to move con
 
 ## Loader Evaluation Order
 
-It is good to keep in mind that Webpack's `loaders` are always evaluated from right to left and from bottom to top (separate definitions). The following two declarations are equal based on this rule:
+It is good to keep in mind that Webpack's `loaders` are always evaluated from right to left and from bottom to top (separate definitions). The right to left rule is easier to remember when you think about it in terms of functions. You can read definition `loaders: ['style', 'css']` as `style(css(input))` based on this rule. The following examples are equivalent as well:
 
 ```javascript
 {
