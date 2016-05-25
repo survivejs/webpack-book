@@ -4,8 +4,6 @@ So far we haven't given thought to our build output and no doubt it's going to b
 
 The first of these techniques is known as minification. It is a process where code is simplified without losing any meaning that matters to the interpreter. As a result your code will most likely look quite jumbled and it will be hard to read. But that's the point.
 
-When certain aggressive minification techniques are applied, sometimes even the meaning of the resulting code may change. This is the reason why certain frameworks apply certain countermeasures against excessive minification. You can see this in Angular 1 definitions for example.
-
 T> Even if we minify our build, we can still generate sourcemaps through the `devtool` option we discussed earlier. This will give us better means to debug even production code.
 
 ## Generating a Baseline Build
@@ -52,7 +50,7 @@ Child html-webpack-plugin for "index.html":
 
 Minification will convert our code into a smaller format without losing any meaning. Usually this means some amount of rewriting code through predefined transformations. Sometimes, this can break code as it can rewrite pieces of code you inadvertently depend upon.
 
-The easiest way to enable minification is to call `webpack -p` (`-p` as in `production`). Alternatively, we can use a plugin directly as this provides us more control. By default Uglify will output a lot of warnings and they don't provide value in this case, we'll be disabling them.
+The easiest way to enable minification is to call `webpack -p`. `-p` is a shortcut for `--optimize-minimize`, you can think it as `-p` for "production". Alternatively, we can use a plugin directly as this provides us more control. By default Uglify will output a lot of warnings and they don't provide value in this case, we'll be disabling them.
 
 As earlier, we can define a little function for this purpose and then point to it from our main configuration. Here's the basic idea:
 
@@ -88,6 +86,9 @@ switch(process.env.npm_lifecycle_event) {
   case 'build':
     config = merge(
       common,
+      {
+        devtool: 'source-map'
+      },
 leanpub-start-insert
       parts.minify(),
 leanpub-end-insert
@@ -124,31 +125,43 @@ Given it needs to do more work, it took longer. But on the plus side the build i
 
 T> Uglify warnings can help you to understand how it processes the code. Therefore it may be beneficial to have a peek at the full output every once in a while.
 
-T> It is possible to push minification further by enabling variable name mangling. It comes with some extra complexity to worry about, but it may be worth it when you are pushing for minimal size. See [the official documentation](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) for details.
+## Controlling UglifyJS through Webpack
 
-## UglifyJS Specific Options
+An UglifyJS feature known as **mangling** will be enabled by default. The feature will reduce local function and variable names to a minimum, usually to a single character. It can also rewrite properties to a more compact format.
 
-[UglifyJS](http://lisperator.net/uglifyjs/) is a powerful tool and it provides advanced options you can consider using if you want to push your build further. One useful option is known as `mangle`. It will reduce local variable names to a minimum, usually a single character. It can also rewrite properties to a more compact format. Given these transformations can break your code, be careful.
+Given these transformations can break your code, you have to be a little careful. A good example of this is Angular 1 and its dependency injection system. As it relies on strings, you must be careful not to mangle those or else it will fail to work.
 
-Here's how you would enable property mangling through Webpack:
+Beyond mangling, it is possible to control all other [UglifyJS features](http://lisperator.net/uglifyjs/) through Webpack as illustrated below:
 
 ```javascript
 new webpack.optimize.UglifyJsPlugin({
+  // Don't beautify output (enable for neater output)
+  beautify: false,
+
+  // Eliminate comments
+  comments: false,
+
+  // Compression specific options
   compress: {
-    warnings: false
+    warnings: false,
+
+    // Drop `console` statements
+    drop_console: true
   },
+
+  // Mangling specific options
   mangle: {
-    // Mangle matching properties
-    props: /matching_props/,
-    // Don't mangle these
-    except: [
-      'Array', 'BigInteger', 'Boolean', 'Buffer'
-    ]
+    // Don't mangle $
+    except: ['$'],
+
+    // Don't care about IE8
+    screw_ie8 : true,
+
+    // Don't mangle function names
+    keep_fnames: true
   }
 })
 ```
-
-You can also enable features, such as dropping logging, through further configuration. `console` statements could be dropped by setting `compress.drop_console: true`. UglifyJS documentation contains more ideas like these.
 
 T> Dropping the `console` statements can be achieved through Babel too by using the [babel-plugin-remove-console](https://www.npmjs.com/package/babel-plugin-remove-console) plugin.
 
