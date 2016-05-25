@@ -2,11 +2,75 @@
 
 React relies on `process.env.NODE_ENV` based optimizations. If we force it to `production`, React will get built in an optimized manner. This will disable some checks (e.g., property type checks). Most importantly it will give you a smaller build and improved performance.
 
+## The Basic Idea of `DefinePlugin`
+
+Webpack provides `DefinePlugin`. It is able to rewrite matching **free variables**. To understand the idea better, consider the example below:
+
+```javascript
+var foo;
+
+// Not free, not ok to replace
+if(foo === 'bar') {
+  console.log('bar');
+}
+
+// Free, ok to replace
+if(bar === 'bar') {
+  console.log('bar');
+}
+```
+
+If we replaced `bar` with a string like `'bar'`, then we would end up with code like this:
+
+```javascript
+var foo;
+
+// Not free, not ok to replace
+if(foo === 'bar') {
+  console.log('bar');
+}
+
+// Free, ok to replace
+if('bar' === 'bar') {
+  console.log('bar');
+}
+```
+
+Further analysis shows that `'bar' === 'bar'` equals `true` so UglifyJS gives us:
+
+```javascript
+var foo;
+
+// Not free, not ok to replace
+if(foo === 'bar') {
+  console.log('bar');
+}
+
+// Free, ok to replace
+if(true) {
+  console.log('bar');
+}
+```
+
+And based on this UglifyJS can eliminate the `if` statement:
+
+```javascript
+var foo;
+
+// Not free, not ok to replace
+if(foo === 'bar') {
+  console.log('bar');
+}
+
+// Free, ok to replace
+console.log('bar');
+```
+
+This is the core idea of `DefinePlugin`. We can toggle parts of code using it using this kind of mechanism. UglifyJS is able to perform the analysis for us and enable/disable entire portions of it as we prefer.
+
 ## Setting `process.env.NODE_ENV`
 
-Webpack provides `DefinePlugin`. It is able to rewrite matching free variables. We could have a declaration like `if(process.env.NODE_ENV === 'development')` within our code. Using `DefinePlugin` we could replace `process.env.NODE_ENV` with `'development'` to make our statement evaluate as true.
-
-Writing code like this allows us to enable specific features based on given rules. Minification process will eliminate the branches that evaluate as false. They won't contribute towards the size of the bundle as a result.
+To show you the idea in practice, we could have a declaration like `if(process.env.NODE_ENV === 'development')` within our code. Using `DefinePlugin` we could replace `process.env.NODE_ENV` with `'development'` to make our statement evaluate as true just like above.
 
 As before, we can encapsulate this idea to a function:
 
