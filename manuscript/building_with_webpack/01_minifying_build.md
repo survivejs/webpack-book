@@ -127,7 +127,7 @@ T> Uglify warnings can help you to understand how it processes the code. Therefo
 
 ## Controlling UglifyJS through Webpack
 
-An UglifyJS feature known as **mangling** will be enabled by default. The feature will reduce local function and variable names to a minimum, usually to a single character. It can also rewrite properties to a more compact format.
+An UglifyJS feature known as **mangling** will be enabled by default. The feature will reduce local function and variable names to a minimum, usually to a single character. It can also rewrite properties to a more compact format if configured specifically.
 
 Given these transformations can break your code, you have to be a little careful. A good example of this is Angular 1 and its dependency injection system. As it relies on strings, you must be careful not to mangle those or else it will fail to work.
 
@@ -163,7 +163,11 @@ new webpack.optimize.UglifyJsPlugin({
 })
 ```
 
+If you enable mangling, it is a good idea to set `except: ['webpackJsonp']` to avoid mangling the Webpack runtime.
+
 T> Dropping the `console` statements can be achieved through Babel too by using the [babel-plugin-remove-console](https://www.npmjs.com/package/babel-plugin-remove-console) plugin. Babel is discussed in greater detail at the *Configuring React* chapter.
+
+T> Yet another way to control Uglify would be to use the [uglify-loader](https://www.npmjs.com/package/uglify-loader). That gives yet another way to control minification behavior.
 
 ## Conclusion
 
