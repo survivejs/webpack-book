@@ -62,7 +62,9 @@ T> If you fail to see anything at the browser, you may need to use a different p
 
 ## Configuring Hot Module Replacement (HMR)
 
-Hot Module Replacement builds on top the *webpack-dev-server*. It enables an interface that makes it possible to swap modules live. For example *style-loader* is able to update your CSS without forcing a refresh. The same idea works for JavaScript too. In the *Configuring React* chapter we discuss one possible solution.
+Hot Module Replacement builds on top the *webpack-dev-server*. It enables an interface that makes it possible to swap modules live. For example, *style-loader* is able to update your CSS without forcing a refresh. It is easy to perform HMR with CSS as it doesn't contain any application state.
+
+HRM is possible with JavaScript too, but given due to the state we have in our applications, it's harder. In the *Configuring React* chapter we discuss how to set it up with React. You can use the same idea elsewhere.
 
 We could use `webpack-dev-server --inline --hot` to achieve this from the CLI. `--hot` enables the HMR portion from Webpack through a specific plugin designed for this purpose and writes an entry pointing to a JavaScript file related to it.
 
