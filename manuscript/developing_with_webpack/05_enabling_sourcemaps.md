@@ -69,43 +69,65 @@ Webpack can also generate production usage friendly sourcemaps. These will end u
 
 There are a couple of other options that affect sourcemap generation:
 
-* `output.sourceMapFilename` - This option allows you to modify the name of the generated sourcemap file. It defaults to `[file].map` and supports `[file]`, `[id]`, and `[hash]` replacements. The default is often all you need.
-* `output.devtoolModuleFilenameTemplate`. - In case you want to modify sourcemap outlook, this is the option. It's behavior depends on the `devtool` chosen. The [official documentation](https://webpack.github.io/docs/configuration.html#output-sourcemapfilename) digs into the specifics.
+```javascript
+const config = {
+  output: {
+    // Modify the name of the generated sourcemap file.
+    // You can use [file], [id], and [hash] replacements here.
+    // The default option is enough for most use cases.
+    sourceMapFilename: '[file].map', // Default
+
+    // This is the sourcemap filename template. It's default format
+    // depends on the devtool option used. You don't need to modify this
+    // often.
+    devtoolModuleFilenameTemplate: 'webpack:///[resource-path]?[loaders]'
+  },
+  ...
+};
+```
+
+T> The [official documentation](https://webpack.github.io/docs/configuration.html#output-sourcemapfilename) digs into devtool specifics.
 
 ## `SourceMapDevToolPlugin`
 
-If you want more control over sourcemap generation, it is possible to use the plugin instead. This way you can generate sourcemaps only for the portions of the code you want while having strict control over the result. In case you use the plugin, you can skip `devtool` option altogether.
+If you want more control over sourcemap generation, it is possible to use the `SourceMapDevToolPlugin` instead. This way you can generate sourcemaps only for the portions of the code you want while having strict control over the result. In case you use the plugin, you can skip `devtool` option altogether.
 
 Here's what it looks like in its entirety (adapted from [the official documentation](https://webpack.github.io/docs/list-of-plugins.html#sourcemapdevtoolplugin)):
 
 ```javascript
-new webpack.SourceMapDevToolPlugin({
-  // Match assets just like for loaders.
-  test: string | RegExp | Array,
-  include: string | RegExp | Array,
+const config = {
+  plugins: [
+    new webpack.SourceMapDevToolPlugin({
+      // Match assets just like for loaders.
+      test: string | RegExp | Array,
+      include: string | RegExp | Array,
 
-  // `exclude` matches file names, not package names!
-  exclude: string | RegExp | Array,
+      // `exclude` matches file names, not package names!
+      exclude: string | RegExp | Array,
 
-  // If filename is set, output to this file.
-  // See `sourceMapFileName`.
-  filename: string,
+      // If filename is set, output to this file.
+      // See `sourceMapFileName`.
+      filename: string,
 
-  // This line is appended to the original asset processed. For
-  // instance '[url]' would get replaced with an url to the
-  // sourcemap.
-  append: false | string,
+      // This line is appended to the original asset processed. For
+      // instance '[url]' would get replaced with an url to the
+      // sourcemap.
+      append: false | string,
 
-  // See `devtoolModuleFilenameTemplate` for specifics.
-  moduleFilenameTemplate: string,
-  fallbackModuleFilenameTemplate: string,
+      // See `devtoolModuleFilenameTemplate` for specifics.
+      moduleFilenameTemplate: string,
+      fallbackModuleFilenameTemplate: string,
 
-  module: bool, // If false, separate sourcemaps aren't generated.
-  columns: bool, // If false, column mappings are ignored.
+      module: bool, // If false, separate sourcemaps aren't generated.
+      columns: bool, // If false, column mappings are ignored.
 
-  // Use simpler line to line mappings for the matched modules.
-  lineToLine: bool | {test, include, exclude}
-})
+      // Use simpler line to line mappings for the matched modules.
+      lineToLine: bool | {test, include, exclude}
+    }),
+    ...
+  ],
+  ...
+};
 ```
 
 ## Conclusion

@@ -8,7 +8,7 @@ T> Even if we minify our build, we can still generate sourcemaps through the `de
 
 ## Generating a Baseline Build
 
-To get started, we should generate a baseline build so we have something to optimize. Given our project is so small, there isn't much to optimize yet. We could bring a heavy dependency like React to get something to slim up. Install React first:
+To get started, we should generate a baseline build so we have something to optimize. Given our project is so small, there isn't much to optimize yet. We could bring a large dependency like React to get something to slim up. Install React first:
 
 ```bash
 npm i react --save
@@ -163,7 +163,7 @@ new webpack.optimize.UglifyJsPlugin({
 })
 ```
 
-T> Dropping the `console` statements can be achieved through Babel too by using the [babel-plugin-remove-console](https://www.npmjs.com/package/babel-plugin-remove-console) plugin.
+T> Dropping the `console` statements can be achieved through Babel too by using the [babel-plugin-remove-console](https://www.npmjs.com/package/babel-plugin-remove-console) plugin. Babel is discussed in greater detail at the *Configuring React* chapter.
 
 ## Conclusion
 

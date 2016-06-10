@@ -1,14 +1,18 @@
 # Splitting Bundles
 
-The main advantage of splitting the application into two separate bundles is that it allows us to benefit from client level caching. We might, for instance, make most of our changes to the small `app` bundle. In this case, the client would have to fetch only the `app` bundle, assuming the `vendor` bundle has already been loaded.
+Currently the production version of our application is a single JavaScript file. This isn't ideal. If we change the application, the client has to download vendor dependencies as well. It would be better to download only the changed portion. If the vendor dependencies change, then the client should fetch only the vendor dependencies. The same goes for actual application code.
 
-Given each request comes with a slight overhead, this scheme won't load as fast initially as a single bundle. Caching more than makes up for that, though.
+This technique is known as **bundle splitting**. We can push the vendor dependencies to a bundle of its own and benefit from client level caching. We can do this in a such way that the whole size of the application remains the same. Given there are more requests to perform, there's a slight overhead. But the benefit of caching makes up for this cost.
+
+To give you a simple example, instead of having *app.js* (100 kB), we could end up with *app.js* (10 kB) and *vendor.js* (90 kB). Now changes made to the application are cheap for the clients that have already used the application earlier.
+
+Caching comes with its own problems. One of those is cache invalidation. We'll discuss a potential approach related to that in the next chapter. But before that, let's split some bundles.
 
 ## Setting Up a `vendor` Bundle
 
 So far our project has only a single entry named as `app`. As you might remember, our configuration tells Webpack to traverse dependencies starting from the `app` entry directory and then to output the resulting bundle below our `build` directory using the entry name and `.js` extension.
 
-To improve the situation, we could define a `vendor` entry containing React. Change the code like this:
+To improve the situation, we can define a `vendor` entry containing React. Webpack will treat it as a separate **entry chunk** as we will see in the build output. Change the code like this:
 
 ```javascript
 ...
@@ -40,6 +44,8 @@ leanpub-end-delete
 ...
 ```
 
+T> The *Understanding Chunks* chapter digs into other available chunk types. Understanding that from Webpack's point of view we have entry chunks now is important.
+
 If you try to generate a build now (`npm run build`), you should see something like this:
 
 ```bash
@@ -61,7 +67,9 @@ Child html-webpack-plugin for "index.html":
         + 3 hidden modules
 ```
 
-This might not be what you expected. The problem is that our `app` bundle contains data it shouldn't. React has been bundled with it given how entry chunks work by definition. Fortunately there's a way to get around this by using the `CommonsChunkPlugin`.
+*app.js* and *vendor.js* have separate chunk ids right now. Webpack treats each `entry` as an **entry chunk** of its own. The output size is a little off, though. *app.js* should be significantly smaller. If you examine the resulting bundle, you can see that it contains React given that's how the default definition works. Webpack pulls the related dependencies to a bundle by default.
+
+A Webpack plugin known as `CommonsChunkPlugin` allows us alter this default behavior so that we can get the bundles we might expect.
 
 T> It can be convenient to define a `vendor` entry based on *package.json* `dependencies`. Load the file first using `const pkg = require('./package.json');` and then do `vendor: Object.keys(pkg.dependencies)`.
 
@@ -69,7 +77,7 @@ T> It can be convenient to define a `vendor` entry based on *package.json* `depe
 
 [CommonsChunkPlugin](https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin) is a powerful and complex plugin. The use case we are covering here is a basic yet useful one. As before, we can define a function that wraps the basic idea.
 
-To make our life easier in the future, we can make it to extract a file known as **manifest**. It contains Webpack runtime that starts the whole application and contains the dependency information needed by it. Even though it's yet another file for the browser to load, it allows us to implement reliable caching in the next chapter.
+To make our life easier in the future, we can make it extract a file known as a **manifest**. It contains the Webpack runtime that starts the whole application and contains the dependency information needed by it. Even though it's yet another file for the browser to load, it allows us to implement reliable caching in the next chapter.
 
 The following code combines the `entry` idea above with basic `CommonsChunkPlugin` setup. To make sure only `entry` modules are included in the resulting bundle we need to set `minChunks`. It would work without it, but it's a good idea to set it to avoid issues on larger codebases. Set up a function like this:
 

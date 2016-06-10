@@ -6,7 +6,7 @@ The completed configuration is available at [GitHub](https://github.com/survivej
 
 T> It is possible to get a more controlled environment by using a solution such as [Vagrant](https://www.vagrantup.com/) or [nvm](https://www.npmjs.com/package/nvm). Especially Vagrant comes with a performance penalty as it relies on a virtual machine. Vagrant is particularly useful in a team environment, though, as it gives you a predictable environment to develop against.
 
-W> Particularly older versions (e.g. 0.10) are problematic and require extra work, such as polyfilling `Promise` through `require('es6-promise').polyfill()`. This technique depends on the [es6-promise](https://www.npmjs.com/package/es6-promise) package.
+W> Particularly older version of Node.js (e.g. 0.10) are problematic and require extra work, such as polyfilling `Promise` through `require('es6-promise').polyfill()`. This technique depends on the [es6-promise](https://www.npmjs.com/package/es6-promise) package.
 
 ## Setting Up the Project
 
@@ -104,13 +104,13 @@ document.body.appendChild(component());
 
 We'll need to tell Webpack how to deal with the assets we just set up. For this purpose we'll develop a *webpack.config.js* file. Webpack and its development server will be able to discover this file through convention.
 
-To keep things simple to maintain, we'll be using [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) to generate an *index.html* for our application. *html-webpack-plugin* wires up the generated assets with it. Install it to the project:
+To keep things simple to maintain, we'll be using [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) to generate an *index.html* for our application. *html-webpack-plugin* wires up the generated assets with it. Install it in the project:
 
 ```bash
 npm i html-webpack-plugin --save-dev
 ```
 
-To generate a bundle to our build directory and to set up the plugin we need configuration like this:
+Here is the configuration to setup the plugin and generate a bundle in our build directory:
 
 **webpack.config.js**
 
@@ -159,9 +159,19 @@ Child html-webpack-plugin for "index.html":
         + 3 hidden modules
 ```
 
-This means you have a build at your output directory at *build/app.js*. You can examine the output through your editor to see what Webpack did there. To see the application running, open the `build/index.html` file directly through a browser. On OS X `open ./build/index.html` works.
+The output tells us a lot. I've annotated it below:
 
-T> Another way to serve the contents of the directory through a server, such as *serve* (`npm i serve -g`). In this case, execute `serve` at the output directory and head to `localhost:3000` at your browser. You can configure the port through the `--port` parameter.
+* `Hash: 2a7a7bccea1741de9447` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. We'll discuss hashing in detail at the *Adding Hashes to Filenames* chapter.
+* `Version: webpack 1.13.0` - Webpack version.
+* `Time: 813ms` - Time it took to execute the build.
+* `app.js    1.69 kB       0  [emitted]  app` - Name of the generated asset, size, the ids of the **chunks** into which it is related, status information telling how it was generated, name of the chunk.
+* `[0] ./app/index.js 80 bytes {0} [built]` - The id of the generated asset, name, size, entry chunk id, the way it was generated.
+* `Child html-webpack-plugin for "index.html":` - This is plugin related output. In this case *html-webpack-plugin* is doing output of its own.
+* `+ 3 hidden modules` - This tells you that Webpack is omitting some output, namely modules within `node_modules` and similar directories. You can run Webpack using `webpack --display-modules` to display this information. See [Stack Overflow](https://stackoverflow.com/questions/28858176/what-does-webpack-mean-by-xx-hidden-modules) for an expanded explanation.
+
+Examine the output below `build/`. If you look closely, you can see the same ids within the source. To see the application running, open the `build/index.html` file directly through a browser. On OS X `open ./build/index.html` works.
+
+T> It can be convenient to use a tool like *serve* (`npm i serve -g`) to serve the build directory. In this case, execute `serve` at the output directory and head to `localhost:3000` at your browser. You can configure the port through the `--port` parameter.
 
 T> I like to use `path.join`, but `path.resolve` would be a good alternative. See the [Node.js path API](https://nodejs.org/api/path.html) for further details.
 
