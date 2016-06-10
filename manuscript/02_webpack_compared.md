@@ -10,11 +10,11 @@ The popularity of Node.js and [npm](https://www.npmjs.com/), the Node.js package
 
 Historically speaking, there have been many build systems. [Make](https://en.wikipedia.org/wiki/Make_%28software%29) is perhaps the best known, and is still a viable option. To make things easier, specialized *task runners*, such as [Grunt](http://gruntjs.com/) and [Gulp](http://gulpjs.com/) appeared. Plugins available through npm made both task runners powerful.
 
-Task runners are great tools on a high level. They allow you to perform operations in a cross-platform manner. The problems begin when you need to splice various assets together and produce bundles. This is the reason we have *bundlers*, such as [Browserify](http://browserify.org/) or [Webpack](https://webpack.github.io/).
+Task runners are great tools on a high level. They allow you to perform operations in a cross-platform manner. The problems begin when you need to splice various assets together and produce bundles. This is the reason we have *bundlers*, such as [Browserify](http://browserify.org/) [Brunch](http://brunch.io/), or [Webpack](https://webpack.github.io/).
 
 Continuing further on this path, [JSPM](http://jspm.io/) pushes package management directly to the browser. It relies on [System.js](https://github.com/systemjs/systemjs), a dynamic module loader. Webpack 2 will support System.js semantics as well.
 
-Unlike Browserify and Webpack, JSPM skips the bundling step altogether during development. You can generate a production bundle using it, however. Glen Maddern goes into good detail at his [video about JSPM](https://www.youtube.com/watch?t=33&v=iukBMY4apvI).
+Unlike Browserify, Brunch, and Webpack, JSPM skips the bundling step altogether during development. You can generate a production bundle using it, however. Glen Maddern goes into good detail at his [video about JSPM](https://www.youtube.com/watch?t=33&v=iukBMY4apvI).
 
 ## Make
 
@@ -162,6 +162,40 @@ In practice, it can be useful just to use CommonJS, the Node.js format, and let 
 [Browserify](http://browserify.org/) is one solution to the module problem. It provides a way to bundle CommonJS modules together. You can hook it up with Gulp. There are smaller transformation tools that allow you to move beyond the basic usage. For example, [watchify](https://www.npmjs.com/package/watchify) provides a file watcher that creates bundles for you during development. This will save some effort and no doubt is a good solution up to a point.
 
 The Browserify ecosystem is composed of a lot of small modules. In this way, Browserify adheres to the Unix philosophy. Browserify is a little easier to adopt than Webpack, and is, in fact, a good alternative to it.
+
+## Brunch
+
+![Brunch](images/brunch.png)
+
+Compared to Gulp, Brunch operates on a higher level of abstraction. It uses a declarative approach similar to Webpack's. To give you an example, consider the following configuration adapted from the [Brunch site](http://brunch.io/):
+
+```javascript
+module.exports = {
+  files: {
+    javascripts: {
+      joinTo: {
+        'vendor.js': /^(?!app)/,
+        'app.js': /^app/
+      }
+    },
+    stylesheets: {
+      joinTo: 'app.css'
+    }
+  },
+  plugins: {
+    babel: {
+      presets: ['es2015', 'react']
+    },
+    postcss: {
+      processors: [require('autoprefixer')]
+    }
+  }
+};
+```
+
+Brunch comes with commands like `brunch new`, `brunch watch --server`, and `brunch build --production`. It contains a lot out of box and can be extended using plugins.
+
+T> There is an experimental [Hot Module Reloading runtime](https://github.com/brunch/hmr-brunch) for Brunch.
 
 ## JSPM
 
