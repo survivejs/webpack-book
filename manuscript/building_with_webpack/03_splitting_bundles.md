@@ -77,7 +77,13 @@ A Webpack plugin known as `CommonsChunkPlugin` allows us alter this default beha
 
 [CommonsChunkPlugin](https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin) is a powerful and complex plugin. The use case we are covering here is a basic yet useful one. As before, we can define a function that wraps the basic idea.
 
-To make our life easier in the future, we can make it extract a file known as a **manifest**. It contains the Webpack runtime that starts the whole application and contains the dependency information needed by it. Even though it's yet another file for the browser to load, it allows us to implement reliable caching in the next chapter. The following code combines the `entry` idea above with a basic `CommonsChunkPlugin` setup:
+To make our life easier in the future, we can make it extract a file known as a **manifest**. It contains the Webpack runtime that starts the whole application and contains the dependency information needed by it. This avoids a serious invalidation problem. Even though it's yet another file for the browser to load, it allows us to implement reliable caching in the next chapter.
+
+If we don't extract a manifest, Webpack will generate the runtime to the vendor bundle. In case we modify the application code, the application bundle hash will change. Because that hash will change, so does the implementation of the runtime as it uses the hash to load the application bundle. Due to this the vendor bundle will receive a new hash too! This is why you should keep the manifest separate from the main bundles as doing this avoids the problem.
+
+T> If you want to see this behavior in practice, try tweaking the implementation so that it **doesn't** generate the manifest after the next chapter. Change application code after that and see what happens to the generated code.
+
+The following code combines the `entry` idea above with a basic `CommonsChunkPlugin` setup:
 
 **libs/parts.js**
 
