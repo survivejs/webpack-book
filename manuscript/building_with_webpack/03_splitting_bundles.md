@@ -77,9 +77,7 @@ T> It can be convenient to define a `vendor` entry based on *package.json* `depe
 
 [CommonsChunkPlugin](https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin) is a powerful and complex plugin. The use case we are covering here is a basic yet useful one. As before, we can define a function that wraps the basic idea.
 
-To make our life easier in the future, we can make it extract a file known as a **manifest**. It contains the Webpack runtime that starts the whole application and contains the dependency information needed by it. Even though it's yet another file for the browser to load, it allows us to implement reliable caching in the next chapter.
-
-The following code combines the `entry` idea above with basic `CommonsChunkPlugin` setup. To make sure only `entry` modules are included in the resulting bundle we need to set `minChunks`. It would work without it, but it's a good idea to set it to avoid issues on larger codebases. Set up a function like this:
+To make our life easier in the future, we can make it extract a file known as a **manifest**. It contains the Webpack runtime that starts the whole application and contains the dependency information needed by it. Even though it's yet another file for the browser to load, it allows us to implement reliable caching in the next chapter. The following code combines the `entry` idea above with a basic `CommonsChunkPlugin` setup:
 
 **libs/parts.js**
 
@@ -98,10 +96,7 @@ exports.extractBundle = function(options) {
       // Extract bundle and manifest files. Manifest is
       // needed for reliable caching.
       new webpack.optimize.CommonsChunkPlugin({
-        names: [options.name, 'manifest'],
-
-        // options.name modules only
-        minChunks: Infinity
+        names: [options.name, 'manifest']
       })
     ]
   };
