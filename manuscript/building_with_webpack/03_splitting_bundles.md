@@ -67,7 +67,11 @@ Child html-webpack-plugin for "index.html":
         + 3 hidden modules
 ```
 
-*app.js* and *vendor.js* have separate chunk ids right now. Webpack treats each `entry` as an **entry chunk** of its own. The output size is a little off, though. *app.js* should be significantly smaller. If you examine the resulting bundle, you can see that it contains React given that's how the default definition works. Webpack pulls the related dependencies to a bundle by default.
+*app.js* and *vendor.js* have separate chunk ids right now. Webpack treats each `entry` as an **entry chunk** of its own. The output size is a little off, though. *app.js* should be significantly smaller.
+
+If you examine the resulting bundle, you can see that it contains React given that's how the default definition works. Webpack pulls the related dependencies to a bundle by default as illustrated by the image below:
+
+![Separate app and vendor bundles](images/bundle_01.png)
 
 A Webpack plugin known as `CommonsChunkPlugin` allows us alter this default behavior so that we can get the bundles we might expect.
 
@@ -187,7 +191,11 @@ Child html-webpack-plugin for "index.html":
         + 3 hidden modules
 ```
 
-Now our bundles look just the way we want. Beyond this, it is possible to define chunks that are loaded dynamically. This can be achieved through [require.ensure](https://webpack.github.io/docs/code-splitting.html). We'll cover it in the *Understanding Chunks* chapter.
+Now our bundles look just the way we want. The image below illustrates the current situation:
+
+![App and vendor bundles after applying `CommonsChunkPlugin`](images/bundle_02.png)
+
+T> Beyond this, it is possible to define chunks that are loaded dynamically. This can be achieved through [require.ensure](https://webpack.github.io/docs/code-splitting.html). We'll cover it in the *Understanding Chunks* chapter.
 
 ## Loading `dependencies` to a `vendor` Bundle Automatically
 
