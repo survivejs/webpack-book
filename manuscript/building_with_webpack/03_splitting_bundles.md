@@ -71,8 +71,6 @@ Child html-webpack-plugin for "index.html":
 
 A Webpack plugin known as `CommonsChunkPlugin` allows us alter this default behavior so that we can get the bundles we might expect.
 
-T> It can be convenient to define a `vendor` entry based on *package.json* `dependencies`. Load the file first using `const pkg = require('./package.json');` and then do `vendor: Object.keys(pkg.dependencies)`.
-
 ## Setting Up `CommonsChunkPlugin`
 
 [CommonsChunkPlugin](https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin) is a powerful and complex plugin. The use case we are covering here is a basic yet useful one. As before, we can define a function that wraps the basic idea.
@@ -190,6 +188,30 @@ Child html-webpack-plugin for "index.html":
 ```
 
 Now our bundles look just the way we want. Beyond this, it is possible to define chunks that are loaded dynamically. This can be achieved through [require.ensure](https://webpack.github.io/docs/code-splitting.html). We'll cover it in the *Understanding Chunks* chapter.
+
+## Loading `dependencies` to a `vendor` Bundle Automatically
+
+If you maintain strict separation between `dependencies` and `devDependencies`, you can make Webpack to pick up your `vendor` dependencies automatically based on this information. You avoid having to manage those manually then. The basic idea goes like this:
+
+```javascript
+...
+
+const pkg = require('./package.json');
+
+...
+
+const common = {
+  entry: {
+    app: PATHS.app,
+    vendor: Object.keys(pkg.dependencies)
+  },
+  ...
+}
+
+...
+```
+
+You can still exclude certain dependencies from the `vendor` entry point if you want by adding a bit of code for that. You can for instance `filter` out the dependencies you don't want there.
 
 ## Conclusion
 
