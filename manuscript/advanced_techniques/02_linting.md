@@ -162,7 +162,7 @@ T> It is possible to generate a custom *.eslintrc* by using `eslint --init`. It 
 
 T> ESLint supports ES6 features through configuration. You will have to specify the features to use through the [ecmaFeatures](http://eslint.org/docs/user-guide/configuring.html#specifying-language-options) property.
 
-T> There are useful plugins, such as [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react), that you might want to consider integrating to your project.
+T> There are useful plugins, such as [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react) and [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import), that you might want to consider integrating to your project.
 
 ### Connecting ESLint with Babel
 
