@@ -2,6 +2,8 @@
 
 Analyzing build statistics is a good step towards understanding Webpack better. We can get statistics from it easily and we can visualize them using a tool. This shows us the composition of our bundles.
 
+## Configuring Webpack
+
 In order to get suitable output we'll need to do a couple of tweaks to our configuration. We'll need to enable two flags:
 
 * `--profile` to capture timing related information.
@@ -24,7 +26,9 @@ leanpub-end-insert
 }
 ```
 
-We also need to make sure we use the correct configuration in this case:
+This is the basic setup you'll need regardless of your Webpack configuration.
+
+To adapt the tutorial configuration to work with the new npm script, we'll want to make sure it evaluates the build output. That gives realistic results to us. Adjust the configuration as follows:
 
 **webpack.config.js**
 
@@ -59,12 +63,21 @@ module.exports = validate(config, {
 leanpub-end-insert
 ```
 
-If you execute `npm run stats` now, you should find *stats.json* at your project root after it has finished processing. We can take this file and pass it to [the online tool](http://webpack.github.io/analyse/). Note that the tool works only over HTTP! If your data is sensitive, consider using [the standalone version](https://github.com/webpack/analyse) instead.
+If you execute `npm run stats` now, you should find *stats.json* at your project root after it has finished processing. Even though having a look at the file itself gives you some idea of what's going on, often it's preferable to use a specific tool for that. I've listed a few alternatives below:
 
-Besides helping you to understand your bundle composition, the tool can help you to optimize your output further.
+* [The official analyse tool](http://webpack.github.io/analyse/) gives you recommendations and a good idea of your application dependency graph. [Source](https://github.com/webpack/analyse).
+* [Webpack Visualizer](https://chrisbateman.github.io/webpack-visualizer/) provides a pie chart showing your bundle composition. This is handy for understanding which dependencies contribute to the size of the overall result.
+* [Webpack Chart](https://alexkuz.github.io/webpack-chart/) is another similar visualization.
+* [robertknight/webpack-bundle-size-analyzer](https://github.com/robertknight/webpack-bundle-size-analyzer) gives a text based composition.
 
-T> You can achieve similar results through Webpack's Node.js API and there's [a plugin](https://www.npmjs.com/package/stats-webpack-plugin) too.
+When you are optimizing the size of your bundle output, these tools are invaluable. The official tool has the most functionality, but even a simple visualization can reveal problem spots.
+
+## Webpack Stats Plugin
+
+If you want to manage stats through a plugin, check out [stats-webpack-plugin](https://www.npmjs.com/package/stats-webpack-plugin). It gives you a bit more control over the output. You can use it to exclude certain dependencies from the output for example.
 
 ## Conclusion
 
-There isn't a lot more to say about analyzing the build output. To complete our setup, we could make it possible to push our build output to static hosting like GitHub Pages. In practice you would probably use something more sophisticated, but this is enough for demonstrating simple applications and libraries.
+It is useful to analyze your build output. You can use the same technique with older projects to understand their composition.
+
+To complete our setup, we'll set up a little deployment script that will allow us to push build output to GitHub Pages. In practice you would use something more sophisticated, but it's enough to illustrate the idea.
