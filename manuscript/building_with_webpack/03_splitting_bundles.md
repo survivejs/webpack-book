@@ -12,7 +12,7 @@ Caching comes with its own problems. One of those is cache invalidation. We'll d
 
 So far our project has only a single entry named as `app`. As you might remember, our configuration tells Webpack to traverse dependencies starting from the `app` entry directory and then to output the resulting bundle below our `build` directory using the entry name and `.js` extension.
 
-To improve the situation, we can define a `vendor` entry containing React. Webpack will treat it as a separate **entry chunk** as we will see in the build output. Change the code like this:
+To improve the situation, we can define a `vendor` entry containing React. This is done by matching the dependency name. It is possible to generate this information automatically as discussed at the end of this chapter, but I'll go with a static array here to illustrate the basic idea. Change the code like this:
 
 ```javascript
 ...
@@ -44,9 +44,7 @@ leanpub-end-delete
 ...
 ```
 
-T> The *Understanding Chunks* chapter digs into other available chunk types. Understanding that from Webpack's point of view we have entry chunks now is important.
-
-If you try to generate a build now (`npm run build`), you should see something like this:
+We have two separate entries, or **entry chunks**, now. The *Understanding Chunks* chapter digs into other available chunk types. Now we have a mapping between entries and the output configuration. `[name].js` will kick in based on the entry name and if you try to generate a build now (`npm run build`), you should see something like this:
 
 ```bash
 [webpack-validator] Config is valid.
@@ -67,7 +65,7 @@ Child html-webpack-plugin for "index.html":
         + 3 hidden modules
 ```
 
-*app.js* and *vendor.js* have separate chunk ids right now. Webpack treats each `entry` as an **entry chunk** of its own. The output size is a little off, though. *app.js* should be significantly smaller.
+*app.js* and *vendor.js* have separate chunk ids right now given they are entry chunks of their own. The output size is a little off, though. *app.js* should be significantly smaller to attain our goal with this build.
 
 If you examine the resulting bundle, you can see that it contains React given that's how the default definition works. Webpack pulls the related dependencies to a bundle by default as illustrated by the image below:
 
