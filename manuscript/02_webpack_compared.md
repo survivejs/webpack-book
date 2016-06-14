@@ -10,7 +10,7 @@ The popularity of Node.js and [npm](https://www.npmjs.com/), the Node.js package
 
 Historically speaking, there have been many build systems. [Make](https://en.wikipedia.org/wiki/Make_%28software%29) is perhaps the best known, and is still a viable option. To make things easier, specialized *task runners*, such as [Grunt](http://gruntjs.com/) and [Gulp](http://gulpjs.com/) appeared. Plugins available through npm made both task runners powerful.
 
-Task runners are great tools on a high level. They allow you to perform operations in a cross-platform manner. The problems begin when you need to splice various assets together and produce bundles. This is the reason we have *bundlers*, such as [Browserify](http://browserify.org/) [Brunch](http://brunch.io/), or [Webpack](https://webpack.github.io/).
+Task runners are great tools on a high level. They allow you to perform operations in a cross-platform manner. The problems begin when you need to splice various assets together and produce bundles. This is the reason we have *bundlers*, such as [Browserify](http://browserify.org/), [Brunch](http://brunch.io/), or [Webpack](https://webpack.github.io/).
 
 Continuing further on this path, [JSPM](http://jspm.io/) pushes package management directly to the browser. It relies on [System.js](https://github.com/systemjs/systemjs), a dynamic module loader. Webpack 2 will support System.js semantics as well.
 
