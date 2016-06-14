@@ -1,8 +1,12 @@
 # Enabling Sourcemaps
 
-To improve the debuggability of the application, we can set up sourcemaps. They allow you to see exactly where an error was raised. In Webpack this is controlled through the `devtool` setting. Webpack can generate both inline sourcemaps included within bundles or separate sourcemap files. The former is useful during development due to better performance while the latter is handy for production usage.
+![Sourcemaps in Chrome](images/sourcemaps.png)
 
-## Enabling Sourcemaps during Development
+To improve the debuggability of the application, we can set up sourcemaps for both code and styling. Sourcemaps allow you to see exactly where an error was raised. Webpack can generate both inline sourcemaps included within bundles or separate sourcemap files. The former is useful during development due to better performance while the latter is handy for production usage as it will keep the bundle size small.
+
+I'll show you how to enable sourcemaps for JavaScript code next. It is a good idea to study the documentation of the loaders you are using to see specific tips. For example with TypeScript you may need to set a certain flag to make it to work.
+
+## Enabling Sourcemaps During Development
 
 To enable sourcemaps during development, we can use a decent default known as `eval-source-map` and for production we can use normal sourcemaps (separate file) like this:
 
@@ -129,6 +133,12 @@ const config = {
   ...
 };
 ```
+
+## Sourcemaps for Styling
+
+If you want to enable sourcemaps for styling files, you can achieve this using a query parameter. Loaders, such as *css-loader*, *sass-loader*, and *less-loader*, accept a `?sourceMap` (i.e, `css?sourceMap`).
+
+This isn't without gotchas. The *css-loader* documentation notes that relative paths within CSS declarations are known to be buggy and suggests using setting an absolute public path (`output.publicPath`) resolving to the server url.
 
 ## Conclusion
 
