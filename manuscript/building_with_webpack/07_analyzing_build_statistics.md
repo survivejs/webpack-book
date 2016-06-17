@@ -52,9 +52,9 @@ leanpub-end-insert
     );
 }
 
-leanpub-start-remove
+leanpub-start-delete
 module.exports = validate(config);
-leanpub-end-remove
+leanpub-end-delete
 leanpub-start-insert
 // Run validator in quiet mode to avoid output in stats
 module.exports = validate(config, {
