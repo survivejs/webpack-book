@@ -6,7 +6,7 @@
 
 > **IMPORTANT!** If you want to support the development of this book, you can [purchase a copy at Leanpub](https://leanpub.com/survivejs-webpack). A part (~30%) of the proceedings will go directly to the author of Webpack to support its development.
 
-Webpack, a module bundler, solves a significant problem for web developers. It can be daunting to learn but once you grok it, life gets easier. The purpose of this guide is to make it easier to pick up the tool while learning more advanced techniques as well.
+Webpack, a module bundler, solves a significant problem for web developers. It can be daunting to learn but once you grok it, life gets easier. The purpose of this book is to make it easier to pick up the tool while learning more advanced techniques as well. You can [read the book online](http://survivejs.com/webpack/introduction/).
 
 ## How to Use This Repository?
 
