@@ -318,7 +318,7 @@ Child extract-text-webpack-plugin:
         + 2 hidden modules
 ```
 
-As you can see, `style.e6624bc802ded7753823.css` grew from 82 bytes to 16.7 kB as it should have. Also the hash changed because the file contents changed as well.
+As you can see, `style.e6624bc802ded7753823.css` reduced from 82 bytes to 16.7 kB as it should have. Also the hash changed because the file contents changed as well.
 
 In order to give purifycss a chance to work and not eliminate whole PureCSS, we'll need to refer to it from our code. Add a `className` to our demo component like this:
 
