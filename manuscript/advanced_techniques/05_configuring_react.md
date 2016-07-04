@@ -139,6 +139,10 @@ If you are following the single file setup discussed in this book, we can contro
 ```javascript
 ...
 
+const TARGET = process.env.npm_lifecycle_event;
+
+...
+
 leanpub-start-insert
 process.env.BABEL_ENV = TARGET;
 leanpub-end-insert
