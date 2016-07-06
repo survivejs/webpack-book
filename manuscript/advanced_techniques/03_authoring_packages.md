@@ -58,7 +58,7 @@ I've annotated a part of *package.json* of my [React component boilerplate](http
 
     "dist": "webpack",
     "dist:min": "webpack",
-    "dist:modules": "babel ./src --out-dir ./dist-modules",
+    "dist:modules": "rm -rf ./dist-modules && babel ./src --out-dir ./dist-modules",
 
     "pretest": "npm run test:lint",
     "preversion": "npm run test && npm run dist && npm run dist:min && git commit --allow-empty -am \"Update dist\"",
