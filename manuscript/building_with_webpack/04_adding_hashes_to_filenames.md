@@ -1,22 +1,33 @@
 # Adding Hashes to Filenames
 
-Webpack provides placeholders that can be used to access different types of hashes and entry name as we saw before. The most useful ones are:
+Webpack relies on the concept of **placeholders**. These strings are used to attach specific information to Webpack output. The most useful ones are:
 
-* `[path]` - Returns entry path.
-* `[name]` - Returns entry name.
-* `[hash]` - Returns build hash.
+* `[path]` - Returns an entry path.
+* `[name]` - Returns an entry name.
+* `[hash]` - Returns the build hash.
 * `[chunkhash]` - Returns a chunk specific hash.
 
-Using these placeholders you could end up with filenames, such as:
+Assuming we have configuration like this:
+
+```javascript
+{
+  output: {
+    path: PATHS.build,
+    filename: '[name].[chunkhash].js',
+  }
+}
+```
+
+We can generate filenames like these:
 
 ```bash
 app.d587bbd6e38337f5accd.js
 vendor.dc746a5db4ed650296e1.js
 ```
 
-If the file contents related to a chunk are different, the hash will change as well, thus invalidating the cache. More accurately the browser will send a new request for the new file. This means if only `app` bundle gets updated, only that file needs to be requested again.
+If the file contents related to a chunk are different, the hash will change as well, thus invalidating the cache. More accurately, the browser will send a new request for the new file. This means if only `app` bundle gets updated, only that file needs to be requested again.
 
-An alternative way to achieve the same would be to generate static filenames and invalidate the cache through a querystring (i.e., `app.js?d587bbd6e38337f5accd`). The part behind the question mark will invalidate the cache. This method is not recommended. According to [Steve Souders](http://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/), attaching the hash to the filename is a more performant way to go.
+An alternative way to achieve the same result would be to generate static filenames and invalidate the cache through a querystring (i.e., `app.js?d587bbd6e38337f5accd`). The part behind the question mark will invalidate the cache. This method is not recommended, though. According to [Steve Souders](http://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/), attaching the hash to the filename is the more performant way to go.
 
 ## Setting Up Hashing
 
