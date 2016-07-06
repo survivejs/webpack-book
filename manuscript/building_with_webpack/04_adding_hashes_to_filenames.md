@@ -31,7 +31,9 @@ An alternative way to achieve the same result would be to generate static filena
 
 ## Setting Up Hashing
 
-We have already done half of the work needed for a hashing setup to work. In the previous chapter we extracted a manifest to make Webpack build results reliable. We are missing just one thing, hashes. To generate the hashes, we need to tweak the `output` configuration slightly:
+We have already split our application into `app.js` and `vendor.js` bundles and set up a separate `manifest` that bootstraps it. To get the hashing behavior we are after, we should generate `app.d587bbd6e38337f5accd.js` and `vendor.dc746a5db4ed650296e1.js` kind of files instead.
+
+To make the setup work, our configuration is missing one vital part, the placeholders. Include them to the production configuration as follows:
 
 **webpack.config.js**
 
