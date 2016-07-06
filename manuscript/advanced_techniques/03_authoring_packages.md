@@ -355,11 +355,7 @@ To solve the development distribution problem, we need to hook up a custom scrip
     /* Point to the script that generates the missing source. */
     "postinstall": "node lib/post_install.js"
   },
-  "devDependencies": {
-    ...
-    /* You should install sync-exec through `npm i` to get a recent version */
-    "sync-exec": "^0.6.2"
-  }
+  ...
 }
 ```
 
@@ -368,31 +364,27 @@ Secondly we'll need the script itself:
 **lib/post_install.js**
 
 ```javascript
+#!/usr/bin/env node
 // adapted based on rackt/history (MIT)
-// Node 0.10+
-var execSync = require('child_process').execSync;
-var stat = require('fs').stat;
-
-// Node 0.10 check
-if (!execSync) {
-  execSync = require('sync-exec');
-}
-
-function exec(command) {
-  execSync(command, {
-    stdio: [0, 1, 2]
-  });
-}
+const spawn = require('child_process').spawn;
+const stat = require('fs').stat;
 
 stat('dist-modules', function(error, stat) {
-  // Skip building on Travis
-  if (process.env.TRAVIS) {
-    return;
-  }
-
   if (error || !stat.isDirectory()) {
-    exec('npm i babel-cli babel-preset-es2015 babel-preset-react');
-    exec('npm run dist-modules');
+    spawn(
+      'npm',
+      [
+        'i',
+        'babel-cli',
+        'babel-preset-es2015',
+        'babel-preset-react'
+      ],
+      {
+        stdio: [0, 1, 2]
+      }
+    ).on('close', function(exitCode) {
+      spawn('npm', ['run', 'dist-modules'], { stdio: [0, 1, 2] });
+    });
   }
 });
 ```
