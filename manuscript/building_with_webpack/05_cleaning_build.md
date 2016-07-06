@@ -2,7 +2,7 @@
 
 Our current setup doesn't clean the `build` directory between builds. As this can get annoying if we change our setup, we can use a plugin to clean the directory for us.
 
-Another valid way to resolve the issue would be to handle this outside of Webpack. You could solve it on the system level through a npm script. In this case you would trigger `rm -rf ./build && webpack`. Alternatively a task runner could work as well.
+Another valid way to resolve the issue would be to handle this outside of Webpack. You could solve it on the system level through a npm script. In this case you would trigger `rm -rf ./build && webpack`. A task runner could work as well.
 
 ## Setting Up *clean-webpack-plugin*
 
