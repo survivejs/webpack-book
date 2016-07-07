@@ -16,7 +16,7 @@ It will take some configuration to make it work. Install the plugin:
 npm i extract-text-webpack-plugin --save-dev
 ```
 
-The plugin operates in two parts. There's a loader, `ExtractTextPlugin.extract`, that marks the assets to be extracted. The plugin itself will then use that information to write the file. In a function form the idea looks like this:
+The plugin operates in two parts. There's a loader, `ExtractTextPlugin.extract`, that marks the assets to be extracted. The plugin will perform its work based on this annotation. The idea looks like this:
 
 **libs/parts.js**
 
