@@ -30,20 +30,31 @@ leanpub-end-insert
 To make the asset paths work on GitHub Pages, we also need to tweak a Webpack setting known as `output.publicPath`. It gives us control over the resulting urls you see at *index.html* for instance. If you are hosting your assets on a CDN, this would be the place to tweak. In this case it's enough to set it to point the GitHub project like this:
 
 ```javascript
-const common = {
-  ...
-  output: {
-    path: PATHS.build,
+...
+
+// Detect how npm is run and branch based on that
+switch(process.env.npm_lifecycle_event) {
+  case 'build':
+  case 'stats':
+    config = merge(
+      common,
+      {
+        devtool: 'source-map',
+        output: {
+          path: PATHS.build,
 leanpub-start-insert
-    // Tweak this to match your GitHub project name
-    publicPath: '/webpack-demo/'
+          // Tweak this to match your GitHub project name
+          publicPath: '/webpack-demo/'
 leanpub-end-insert
-    filename: '[name].[chunkhash].js',
-    // This is used for require.ensure. The setup
-    // will work without but this is useful to set.
-    chunkFilename: '[chunkhash].js'
-  },
-  ...
+          filename: '[name].[chunkhash].js',
+          chunkFilename: '[chunkhash].js'
+        }
+      },
+      ...
+    );
+    break;
+  default:
+    ...
 }
 ```
 
