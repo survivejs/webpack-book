@@ -91,7 +91,7 @@ A minimal Babel and React setup needs just two Babel presets. Install them:
 npm i babel-preset-es2015 babel-preset-react --save-dev
 ```
 
-T> Instead of typing it all out, we could use brace expansion. Example: `npm i babel-preset-{es2015,react} -D`. `-D` equals `--save-dev` as you might remember.
+T> Instead of typing it all out, we could use brace expansion. Example: `npm i babel-preset-{es2015,react} -D`. `-D` equals `--save-dev` as you might remember. Note that this doesn't work on Windows CMD.
 
 To make Babel aware of them, we need to write a *.babelrc*:
 
