@@ -47,12 +47,12 @@ If you don't know much about the topic, consider going carefully through the fir
 Given this book receives a fair amount of maintenance and improvements due to the pace of innovation, there's a rough versioning scheme in place. I maintain release notes for each new version at the [book blog](http://survivejs.com/blog/). That should give you a good idea of what has changed between versions. Also examining the GitHub repository may be beneficial. I recommend using the GitHub *compare* tool for this purpose. Example:
 
 ```
-https://github.com/survivejs/webpack/compare/v1.2.0...v1.3.1
+https://github.com/survivejs/webpack/compare/v1.2.0...v1.3.2
 ```
 
 The page will show you the individual commits that went to the project between the given version range. You can also see the lines that have changed in the book. This excludes the private chapters, but it's enough to give you a good idea of the major changes made to the book.
 
-The current version of the book is **1.3.1**.
+The current version of the book is **1.3.2**.
 
 The book is an on-going effort and I welcome feedback through various channels discussed below. I expand the guide based on demand to make it serve you as well as I can. You can even contribute fixes of your own to the book as the source is available.
 
