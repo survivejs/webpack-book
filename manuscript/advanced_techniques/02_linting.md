@@ -76,7 +76,7 @@ To get started, install ESLint as a development dependency:
 npm i eslint --save-dev
 ```
 
-This will add ESLint and the loader we want to use as our project development dependencies. Next, we'll need to do some configuration so we can run ESLint easily through npm. I am using the `test` namespace to signify it's a testing related task. I am also enabling caching to improve performance on subsequent runs. Add the following:
+This will add ESLint as our project development dependency. Next, we'll need to do some configuration so we can run ESLint easily through npm. I am using the `test` namespace to signify it's a testing related task. I am also enabling caching to improve performance on subsequent runs. Add the following:
 
 **package.json**
 
@@ -87,6 +87,14 @@ This will add ESLint and the loader we want to use as our project development de
 }
 ...
 ```
+
+Given ESLint expects configuration to work, generate a sample:
+
+```bash
+node_modules/.bin/eslint --init
+```
+
+T> You can check the exact location through `npm bin`. This can be different depending on your operating system.
 
 If you run `npm run test:lint` now, it will trigger ESLint against all JS and JSX files of our project. This configuration will likely lint a bit too much. Set up *.eslintignore* to the project root like this to skip *build/*:
 
