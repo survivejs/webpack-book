@@ -56,7 +56,7 @@ The current version of the book is **1.3.2**.
 
 The book is an on-going effort and I welcome feedback through various channels discussed below. I expand the guide based on demand to make it serve you as well as I can. You can even contribute fixes of your own to the book as the source is available.
 
-A part of the profit goes towards funding the development of the tool itself. It also enables this type of work.
+A part of the profit goes towards funding the development of the tool itself.
 
 ## Getting Support
 
