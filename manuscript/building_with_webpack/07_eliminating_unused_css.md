@@ -15,7 +15,7 @@ npm i purifycss-webpack-plugin --save-dev
 To make our demo more realistic, let's install a little CSS framework known as [Pure.css](http://purecss.io/) as well and refer to it from our project so that we can see purifycss in action:
 
 ```bash
-npm i purecss --save-dev
+npm i purecss --save
 ```
 
 We also need to refer to it from our configuration:
