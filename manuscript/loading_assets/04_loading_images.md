@@ -6,7 +6,9 @@ Webpack allows you to inline assets by using [url-loader](https://www.npmjs.com/
 
 ## Setting Up *url-loader*
 
-If you want to use *url-loader* and its *limit* feature, you will need to install both *url-loader* and *file-loader* to your project. Assuming you have configured your styles correctly, Webpack will resolve any `url()` statements your styling might have. You can of course point to the image assets through your JavaScript code as well.
+*url-loader* is a good starting point and it's the perfect option for development purposes as you don't have to care about the size of the resulting bundle. It comes with a *limit* option that can be used defer image generation to *file-loader* after certain limit is reached. This way you can inline small files to your JavaScript bundles while generating separate files for the bigger ones.
+
+If you use the limit option, you will need to install both *url-loader* and *file-loader* to your project. Assuming you have configured your styles correctly, Webpack will resolve any `url()` statements your styling might have. You can of course point to the image assets through your JavaScript code as well.
 
 In order to load *.jpg* and *.png* files while inlining files below 25kB, we would set up a loader like this:
 
@@ -20,7 +22,7 @@ In order to load *.jpg* and *.png* files while inlining files below 25kB, we wou
 
 ## Setting Up *file-loader*
 
-If you want to skip inlining, you can use *file-loader* directly. The following setup customizes the resulting filename. By default *file-loader* returns the MD5 hash of the file's contents with the original extension:
+If you want to skip inlining altogether, you can use *file-loader* directly. The following setup customizes the resulting filename. By default *file-loader* returns the MD5 hash of the file's contents with the original extension:
 
 ```javascript
 {
@@ -57,6 +59,27 @@ If you want the raw SVG content, you can use the [raw-loader](https://www.npmjs.
 In case you want to compress your images, use [image-webpack-loader](https://www.npmjs.com/package/image-webpack-loader) or [svgo-loader](https://github.com/pozadi/svgo-loader) (SVG specific). This type of loader should be applied first to the data so remember to place it as the last within `loaders` listing.
 
 Compression is particularly useful during production usage as it will decrease the amount of bandwidth required to download your image assets and speed up your site or application as a result.
+
+## Referencing to Images
+
+Webpack can pick up images from stylesheets through `@import` and `url()` assuming *css-loader* has been configured. You can also refer to your images within code. In this case you'll have to import the files explicitly
+
+```jsx
+const src = require('./avatar.png');
+
+// Use the image in your code somehow now
+const Profile = () => (
+  <img src={src} />
+);
+````
+
+If you are using React, then you use [babel-plugin-transform-react-jsx-img-import](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-img-import) to generate the `require` automatically. In that case you would end up with code like this:
+
+```jsx
+const Profile = () => (
+  <img src="avatar.png" />
+);
+```
 
 ## Conclusion
 
