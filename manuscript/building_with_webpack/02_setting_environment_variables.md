@@ -115,7 +115,7 @@ leanpub-start-insert
       ),
 leanpub-end-insert
       parts.minify(),
-      parts.setupCSS(PATHS.style)
+      parts.setupCSS(PATHS.app)
     );
     break;
   default:
