@@ -191,7 +191,9 @@ Child extract-text-webpack-plugin:
 
 The size of our style went from 16.7 kB to 13.1 kB. It is not a huge difference in this case, but it is still something. It is interesting to note that processing time went from three seconds to eight so there is a cost involved! The technique is useful to know as it will likely come in handy with heavier CSS frameworks.
 
-PurifyCSS supports [additional options](https://github.com/purifycss/purifycss#the-optional-options-argument). You could for example enable additional logging by setting `purifyOptions: {info: true}` when instantiating the plugin.
+PurifyCSS supports [additional options](https://github.com/purifycss/purifycss#the-optional-options-argument). You could for example enable additional logging by setting `purifyOptions: { info: true }` when instantiating the plugin.
+
+T> To decrease size further, you should set `purifyOptions: { minify: true }`. This will enable CSS minification.
 
 ## Conclusion
 
