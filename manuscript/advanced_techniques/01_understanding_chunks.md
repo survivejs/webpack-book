@@ -152,7 +152,7 @@ function loadIndex() {
 }
 ```
 
-Even though there's a lot going on in this example, it's worth understanding. Webpack detect the `require.ensure` statically. It is able to generate a separate bundle based on this split point. Given it relies on static analysis, you cannot generalize `loadIndex` in this case and pass the search index path as a parameter.
+In the example, Webpack detects the `require.ensure` statically. It is able to generate a separate bundle based on this split point. Given it relies on static analysis, you cannot generalize `loadIndex` in this case and pass the search index path as a parameter.
 
 The approach is useful with routers too. As the user enters some route, you can load the dependencies the resulting view needs. Alternatively you can start loading dependencies as the user scrolls a page and gets near parts with actual functionality. `require.ensure` provides a lot of power and allows you to keep your application lean.
 
