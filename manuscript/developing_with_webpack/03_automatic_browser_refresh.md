@@ -173,18 +173,26 @@ const webpack = require('webpack');
 
 exports.devServer = function(options) {
   return {
-leanpub-start-insert
-    watchOptions: {
-      // Delay the rebuild after the first change
-      aggregateTimeout: 300,
-      // Poll using interval (in ms, accepts boolean too)
-      poll: 1000
-    },
-leanpub-end-insert
     devServer: {
+leanpub-start-insert
+      watchOptions: {
+        // Delay the rebuild after the first change
+        aggregateTimeout: 300,
+        // Poll using interval (in ms, accepts boolean too)
+        poll: 1000
+      },
+leanpub-end-insert
       ...
     },
-    ...
+    plugins: [
+leanpub-start-insert
+      // ignore node_modules so CPU usage with poll watching drops significantly
+      new webpack.WatchIgnorePlugin([
+        path.join(__dirname, 'node_modules')
+      ]),
+leanpub-end-insert
+      ...
+    ]
   };
 }
 ```
