@@ -184,7 +184,15 @@ leanpub-start-insert
 leanpub-end-insert
       ...
     },
-    ...
+    plugins: [
+leanpub-start-insert
+      // ignore node_modules so CPU usage with poll watching drops significantly
+      new webpack.WatchIgnorePlugin([
+        path.join(__dirname, 'node_modules')
+      ]),
+leanpub-end-insert
+      ...
+    ]
   };
 }
 ```
