@@ -173,15 +173,15 @@ const webpack = require('webpack');
 
 exports.devServer = function(options) {
   return {
-leanpub-start-insert
-    watchOptions: {
-      // Delay the rebuild after the first change
-      aggregateTimeout: 300,
-      // Poll using interval (in ms, accepts boolean too)
-      poll: 1000
-    },
-leanpub-end-insert
     devServer: {
+leanpub-start-insert
+      watchOptions: {
+        // Delay the rebuild after the first change
+        aggregateTimeout: 300,
+        // Poll using interval (in ms, accepts boolean too)
+        poll: 1000
+      },
+leanpub-end-insert
       ...
     },
     ...
