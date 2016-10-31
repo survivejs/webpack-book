@@ -71,7 +71,7 @@ const src = require('./avatar.png');
 const Profile = () => (
   <img src={src} />
 );
-````
+```
 
 If you are using React, then you use [babel-plugin-transform-react-jsx-img-import](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-img-import) to generate the `require` automatically. In that case you would end up with code like this:
 
