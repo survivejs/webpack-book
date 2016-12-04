@@ -72,7 +72,7 @@ module: {
       include: PATHS.app
     },
     ...
-  }
+  ]
 }
 ...
 ```
