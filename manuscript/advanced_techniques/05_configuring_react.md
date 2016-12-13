@@ -112,6 +112,10 @@ Sometimes you might want to use experimental features. Although you can find a l
 
 T> There are other possible [.babelrc options](https://babeljs.io/docs/usage/options/) beyond the ones covered here.
 
+T> [babel-react-optimize](https://github.com/thejameskyle/babel-react-optimize) implements a variety of React specific optimizations you may want to experiment with.
+
+T> [babel-plugin-transform-react-remove-prop-types](https://www.npmjs.com/package/babel-plugin-transform-react-remove-prop-types) is handy if you want to remove `propType` related code from your production build. It also allows component authors to generated code that's wrapped so that setting environment at `DefinePlugin` can kick in and give the same effect without the consumers having to use the plugin.
+
 ## Setting Up Hot Loading
 
 One of the features that sets React and Webpack apart is a feature known as hot loading. This is something that sits on top of Webpack's Hot Module Replacement (HMR). The idea is that instead of forcing a full refresh on modification, we patch the code that changed during the runtime.
