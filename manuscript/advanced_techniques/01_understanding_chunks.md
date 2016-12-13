@@ -158,7 +158,7 @@ The approach is useful with routers too. As the user enters some route, you can 
 
 T> `require.ensure` respects `output.publicPath` option.
 
-T> Webpack 2 supports [SystemJS](https://github.com/systemjs/systemjs) semantics. We can use `System.import('lunr').then(lunr => ...).catch(err => ...)` kind of declarations there.
+T> Webpack 2 supports [SystemJS](https://github.com/systemjs/systemjs) semantics. We can use `import('lunr').then(lunr => ...).catch(err => ...)` kind of declarations there.
 
 T> There's a [full example](https://github.com/survivejs/lunr-demo) showing how it all goes together with lunr, React, and Webpack.
 
