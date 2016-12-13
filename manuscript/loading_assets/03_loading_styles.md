@@ -68,6 +68,8 @@ There is also support for Less plugins, sourcemaps, and so on. To understand how
 
 Check out the loader for more advanced usage.
 
+T> If you want more performance especially during development, check out [fast-sass-loader](https://www.npmjs.com/package/fast-sass-loader).
+
 ### Imports in LESS and SASS
 
 If you import one LESS/SASS file from an other, use the exact same pattern as anywhere else. Webpack will dig into these files and figure out the dependencies.
