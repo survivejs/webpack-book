@@ -120,7 +120,7 @@ T> JSON doesn't support comments even though I'm using them above. There are ext
 
 Working with npm is surprisingly simple. To get started, you will need to use [npm adduser](https://docs.npmjs.com/cli/adduser) (aliased to `npm login`). It allows you to set up an account. After this process has completed, it will create *~/.npmrc* and use that data for authentication. There's also [npm logout](https://docs.npmjs.com/cli/logout) that will clear the credentials.
 
-T> When creating a project, `npm init` respects the values set at *~/.npmrc*. Hence it may be worth your while to set reasonable defaults there to save some time.
+T> When creating a project, `npm init` respects the values set at *~/.npmrc*. Hence it may be worth your while to set reasonable defaults there to save some time. If you want to limit your package to a specific scope, use `npm init --scope=<scope>`. As a result you will get `@<scope>/<package>`. This is handy especially for personal packages given the default namespace of npm is so crowded.
 
 ### Publishing a Package
 
