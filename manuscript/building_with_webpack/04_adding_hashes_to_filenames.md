@@ -7,6 +7,8 @@ Webpack relies on the concept of **placeholders**. These strings are used to att
 * `[hash]` - Returns the build hash.
 * `[chunkhash]` - Returns a chunk specific hash.
 
+T> If you want shorter hashes, it is possible to slice `hash` and `chunkhash` using `:` syntax like this: `[chunkhash:8]`. Instead of a hash like `8c4cbfdb91ff93f3f3c5` this would yield `8c4cbfdb`.
+
 Assuming we have configuration like this:
 
 ```javascript
