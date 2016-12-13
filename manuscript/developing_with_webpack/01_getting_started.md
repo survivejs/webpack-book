@@ -177,6 +177,8 @@ T> I like to use `path.join`, but `path.resolve` would be a good alternative. Se
 
 T> [favicons-webpack-plugin](https://www.npmjs.com/package/favicons-webpack-plugin) makes it easy to deal with favicons using Webpack. It is compatible with *html-webpack-plugin*.
 
+T> You can use packages like [html-webpack-template](https://www.npmjs.com/package/html-webpack-template) or [html-webpack-template-pug](https://www.npmjs.com/package/html-webpack-template-pug) with *html-webpack-plugin*. There are also specific plugins for the plugin and you can even generate favicons using [favicons-webpack-plugin](https://www.npmjs.com/package/favicons-webpack-plugin).
+
 ## Adding a Build Shortcut
 
 Given executing `node_modules/.bin/webpack` is a little verbose, we should do something about it. npm and *package.json* double as a task runner with some configuration. Adjust it as follows:
