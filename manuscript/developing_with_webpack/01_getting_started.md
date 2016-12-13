@@ -144,6 +144,8 @@ module.exports = {
 
 The `entry` path could be given as a relative one. The [context](https://webpack.github.io/docs/configuration.html#context) field can be used to configure that lookup. Given plenty of places expect absolute paths, I prefer to use absolute paths everywhere to avoid confusion.
 
+T> I like to use `path.join`, but `path.resolve` would be a good alternative. See the [Node.js path API](https://nodejs.org/api/path.html) for further details.
+
 If you execute `node_modules/.bin/webpack`, you should see output:
 
 ```bash
@@ -173,11 +175,9 @@ Examine the output below `build/`. If you look closely, you can see the same ids
 
 T> It can be convenient to use a tool like *serve* (`npm i serve -g`) to serve the build directory. In this case, execute `serve` at the output directory and head to `localhost:3000` at your browser. You can configure the port through the `--port` parameter.
 
-T> I like to use `path.join`, but `path.resolve` would be a good alternative. See the [Node.js path API](https://nodejs.org/api/path.html) for further details.
+T> You can use packages like [html-webpack-template](https://www.npmjs.com/package/html-webpack-template) or [html-webpack-template-pug](https://www.npmjs.com/package/html-webpack-template-pug) with *html-webpack-plugin*.
 
-T> [favicons-webpack-plugin](https://www.npmjs.com/package/favicons-webpack-plugin) makes it easy to deal with favicons using Webpack. It is compatible with *html-webpack-plugin*.
-
-T> You can use packages like [html-webpack-template](https://www.npmjs.com/package/html-webpack-template) or [html-webpack-template-pug](https://www.npmjs.com/package/html-webpack-template-pug) with *html-webpack-plugin*. There are also specific plugins for the plugin and you can even generate favicons using [favicons-webpack-plugin](https://www.npmjs.com/package/favicons-webpack-plugin).
+T> There are also specific plugins for the plugin and you can even generate favicons using [favicons-webpack-plugin](https://www.npmjs.com/package/favicons-webpack-plugin). [script-ext-html-webpack-plugin](https://www.npmjs.com/package/script-ext-html-webpack-plugin) gives you more control over script tags and allows you to tune script loading further.
 
 ## Adding a Build Shortcut
 
