@@ -60,6 +60,10 @@ In case you want to compress your images, use [image-webpack-loader](https://www
 
 Compression is particularly useful during production usage as it will decrease the amount of bandwidth required to download your image assets and speed up your site or application as a result.
 
+## Utilizing `srcset`
+
+[resize-image-loader](https://www.npmjs.com/package/resize-image-loader) allows you to generate `srcset` compatible collections of images. This is particularly useful with modern browsers. It gives more control to them over what images to load and when resulting in higher performance.
+
 ## Referencing to Images
 
 Webpack can pick up images from stylesheets through `@import` and `url()` assuming *css-loader* has been configured. You can also refer to your images within code. In this case you'll have to import the files explicitly
