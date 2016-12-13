@@ -42,6 +42,14 @@ leanpub-end-delete
 ...
 ```
 
+It is important to note that webpack `entry` expects files over directories. In this case webpack will resolve Pure.css in steps like this:
+
+1. webpack looks up `node_modules/purecss/package.json`.
+2. It find `"main": "build/pure-min.css"` field.
+3. Based on that it will end up resolving to `node_modules/purecss/build/pure-min.css`.
+
+Note that webpack allows you to shape this process. Sometimes `main` field might be missing entirely and you may need to define a `resolve.alias` to point to the file you want.
+
 Thanks to our path setup we don't need to tweak the remainder of the code. If you execute `npm run build`, you should see something like this:
 
 ```bash
@@ -77,7 +85,7 @@ Child extract-text-webpack-plugin:
 
 As you can see, `style.e6624bc802ded7753823.css` grew from 82 bytes to 16.7 kB as it should have. Also the hash changed because the file contents changed as well.
 
-In order to give purifycss a chance to work and not eliminate whole PureCSS, we'll need to refer to it from our code. Add a `className` to our demo component like this:
+In order to give purifycss a chance to work and not eliminate whole Pure.css, we'll need to refer to it from our code. Add a `className` to our demo component like this:
 
 **app/component.js**
 
