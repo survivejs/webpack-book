@@ -2,45 +2,47 @@
 
 [Webpack](https://webpack.github.io/) simplifies web development by solving a fundamental problem - the problem of bundling. It takes in various assets, such as JavaScript, CSS, and HTML, and then transforms these assets into a format that's easy to consume through a browser. By doing this well, it takes away significant amount of pain from web development.
 
-It isn't the easiest tool to learn due to its configuration driven approach. The purpose of this guide is to help you get started with Webpack and then go beyond basics.
+It isn't the easiest tool to learn due to its configuration driven approach. The purpose of this guide is to help you get started with webpack and then go beyond basics.
 
 ## What is Webpack?
 
 Web browsers have been designed to consume HTML, JavaScript, and CSS. The simplest way to develop is simply to write files that the browser understands directly. The problem is that this becomes unwieldy eventually. This is particularly true when you are developing web applications.
 
-The naïve way to load JavaScript is simply to bundle it all into a single file. Eventually this won't be enough. You will need to start to split it up to benefit from caching. You can even begin to load dependencies dynamically as you need them. As an application develops, the complexity of handling it grows.
+The naïve way to load JavaScript is simply to bundle it all into a single file. Eventually this won't be enough. You will need to start to split it up to benefit from caching. You can even begin to load dependencies dynamically as you need them. As an application develops, the complexity of handling it grows as well.
 
-Webpack was developed to counter this problem. It handles all the aforementioned problems. It is possible to achieve the same results using different tools and build the processing workflows you need. In fact, that can be often enough. Task runners, such as Grunt and Gulp, allow you to achieve this, but even then you need to write a lot of configuration by hand.
+Webpack was developed to counter this problem. It handles the aforementioned problems through static analysis. It gets most of the work done. That said, it is possible to achieve the same results using different tools. Task runners, such as Grunt and Gulp, allow you to achieve this, but often the problem is that need to write the workflows by hand.
 
 ### How Webpack Changes the Situation?
 
 Webpack takes another route. It allows you to treat your project as a dependency graph. You could have an *index.js* in your project that pulls in the dependencies the project needs through standard `import` statements. You can refer to your style files and other assets the same way.
 
-Webpack does all the preprocessing for you and gives you the bundles you specify through configuration. This declarative approach is powerful, but it is a little difficult to learn. However, once you begin to understand how Webpack works, it becomes an indispensable tool. This book has been designed to get through that initial learning curve.
+Webpack does all the preprocessing for you and gives you the bundles you specify through configuration. This declarative approach is powerful, but it is a little difficult to learn. However, once you begin to understand how webpack works, it becomes an indispensable tool. This book has been designed to get through that initial learning curve.
 
 ## What Will You Learn?
 
-This book has been designed to complement [the official documentation of Webpack](https://webpack.github.io/docs/). Even though the official documentation covers a lot of material, it might not be the easiest starting point for learning to use the tool. The goal of this book is to ease the learning curve while giving food for thought to more advanced users.
+This book has been designed to complement [the official documentation of Webpack](https://webpack.js.org/). The official documentation goes further in many aspects. Consider this book more like a quick walkthrough that eases the initial learning curve while giving food for thought to more advanced users.
 
-You will learn to develop a basic Webpack configuration for both development and production purposes. You will also learn advanced techniques that allow you to benefit from some of the greatest features of Webpack.
+You will learn to develop composable webpack configuration for both development and production purposes. You will also learn advanced techniques that allow you to benefit from some of the greatest features of webpack.
 
 ## How is This Book Organized?
 
-The first two parts of the book introduce you to Webpack and its basic concepts. You will develop basic configuration you can then expand to fit your specific purposes. The early chapters are task oriented. You can refer to them later if you forget how to achieve something specific with Webpack.
+The first two parts of the book introduce you to webpack and its basic concepts. You will develop basic configuration you can then expand to fit your specific purposes. The early chapters are task oriented. You can refer to them later if you forget how to achieve something specific with webpack.
 
-The latter portion of the book focuses more on advanced topics. You will learn more about loading specific types of assets. You will also deepen your understanding of Webpack's chunking mechanism, learn to utilize it for package authoring, and write your own loaders.
+The latter portion of the book focuses more on advanced topics. You will learn more about loading specific types of assets. You will also deepen your understanding of webpack's chunking mechanism, learn to utilize it for package authoring, and write your own loaders.
 
 ## Who is This Book for?
 
-I expect that you have a basic knowledge of JavaScript and Node.js. You should be able to use npm on an elementary level. If you know something about Webpack, that's great. By reading this book you will deepen your understanding of these tools.
+I expect that you have a basic knowledge of JavaScript and Node.js. You should be able to use npm on an elementary level. If you know something about webpack, that's great. By reading this book you will deepen your understanding of these tools.
 
-If you happen to know Webpack well, there still might be something in the book for you. Skim through it and see if you can pick up some techniques. I've done my best to cover even some of the knottier parts of the tool.
+If you happen to know webpack well, there still might be something in the book for you. Skim through it and see if you can pick up some techniques. I've done my best to cover even some of the knottier parts of the tool.
 
-If you find yourself struggling, consider seeking help from the  community around the book. In case you are stuck or don't understand something, we are there to help. Any comments you might have will go towards improving the book content.
+If you find yourself struggling, consider seeking help from the community around the book. In case you are stuck or don't understand something, we are there to help. Any comments you might have will go towards improving the book content.
 
 ## How to Approach the Book?
 
-If you don't know much about the topic, consider going carefully through the first two parts. You can skim the rest to pick the bits you find interesting. If you know Webpack already, skim and pick up the techniques you find valuable.
+If you don't know much about the topic, consider going carefully through the first two parts. You can skim the rest to pick the bits you find interesting. If you know webpack already, skim and pick up the techniques you find valuable.
+
+I have compiled [a set of slides online](http://presentations.survivejs.com/advanced-webpack/) that overlap with the book. Consider going through the set to get a rough idea and then delve into the book to understand the ideas in greater detail.
 
 ## Book Versioning
 
@@ -56,7 +58,7 @@ The current version of the book is **1.3.3**.
 
 The book is an on-going effort and I welcome feedback through various channels discussed below. I expand the guide based on demand to make it serve you as well as I can. You can even contribute fixes of your own to the book as the source is available.
 
-A part of the profit goes towards funding the development of the tool itself.
+A part of the profit goes towards funding the development of the tool itself. You can also [support webpack directly through Open Collective](https://opencollective.com/webpack).
 
 ## Getting Support
 
@@ -66,7 +68,7 @@ As no book is perfect, you will likely come by issues and might have some questi
 * Join me at [Gitter Chat](https://gitter.im/survivejs/webpack)
 * Follow [@survivejs](https://twitter.com/survivejs) at Twitter for official news or poke me through [@bebraw](https://twitter.com/bebraw) directly
 * Send me email at [info@survivejs.com](mailto:info@survivejs.com)
-* Ask me anything about Webpack or React at [SurviveJS AmA](https://github.com/survivejs/ama/issues)
+* Ask me anything about webpack or React at [SurviveJS AmA](https://github.com/survivejs/ama/issues)
 
 If you post questions to Stack Overflow, tag them using **survivejs** so I will get notified of them. You can use the hashtag **#survivejs** at Twitter for same effect.
 
