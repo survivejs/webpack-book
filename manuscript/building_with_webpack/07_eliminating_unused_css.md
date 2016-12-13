@@ -1,10 +1,10 @@
 # Eliminating Unused CSS
 
-Frameworks like [Bootstrap](https://getbootstrap.com/) tend to come with a lot of CSS. Often you use only a small part of it. Normally you just bundle even the unused CSS. It is possible, however, to eliminate the portions you aren't using. A tool known as [purifycss](https://github.com/purifycss/purifycss) can achieve this by analyzing our files. It also works with single page applications.
+Frameworks like [Bootstrap](https://getbootstrap.com/) tend to come with a lot of CSS. Often you use only a small part of it. Normally you just bundle even the unused CSS. It is possible, however, to eliminate the portions you aren't using. A tool known as [PurifyCSS](https://github.com/purifycss/purifycss) can achieve this by analyzing our files. It also works with single page applications.
 
-## Setting Up purifycss
+## Setting Up PurifyCSS
 
-Using purifycss can lead to great savings. In their example they purify and minify Bootstrap (140 kB) in an application using ~40% of its selectors to mere ~35 kB. That's a big difference.
+Using PurifyCSS can lead to great savings. In their example they purify and minify Bootstrap (140 kB) in an application using ~40% of its selectors to mere ~35 kB. That's a big difference.
 
 Webpack plugin known as [purifycss-webpack-plugin](https://www.npmjs.com/package/purifycss-webpack-plugin) allows us to achieve results like this. It is preferable to use the `ExtractTextPlugin` with it. Install it first:
 
@@ -12,11 +12,15 @@ Webpack plugin known as [purifycss-webpack-plugin](https://www.npmjs.com/package
 npm i purifycss-webpack-plugin --save-dev
 ```
 
-To make our demo more realistic, let's install a little CSS framework known as [Pure.css](http://purecss.io/) as well and refer to it from our project so that we can see purifycss in action:
+To make our demo more realistic, let's install a little CSS framework known as [Pure.css](http://purecss.io/) as well and refer to it from our project so that we can see PurifyCSS in action:
 
 ```bash
 npm i purecss --save
 ```
+
+W> You cannot use symlinks here. The dependencies have to be local like this or else webpack's lookups will fail to work reliably.
+
+### Configuring Webpack
 
 We also need to refer to it from our configuration:
 
@@ -85,7 +89,7 @@ Child extract-text-webpack-plugin:
 
 As you can see, `style.e6624bc802ded7753823.css` grew from 82 bytes to 16.7 kB as it should have. Also the hash changed because the file contents changed as well.
 
-In order to give purifycss a chance to work and not eliminate whole Pure.css, we'll need to refer to it from our code. Add a `className` to our demo component like this:
+In order to give PurifyCSS a chance to work and not eliminate whole Pure.css, we'll need to refer to it from our code. Add a `className` to our demo component like this:
 
 **app/component.js**
 
@@ -104,7 +108,9 @@ leanpub-end-insert
 
 If you run the application (`npm start`), our "Hello world" should look like a button.
 
-We need one more bit, the configuration needed to make purifycss work. Expand parts like this:
+### Enabling PurifyCSS
+
+We need one more bit, PurifyCSS configuration. Expand parts like this:
 
 **libs/parts.js**
 
@@ -125,9 +131,12 @@ exports.purifyCSS = function(paths) {
       new PurifyCSSPlugin({
         basePath: process.cwd(),
         // `paths` is used to point PurifyCSS to files not
-        // visible to Webpack. You can pass glob patterns
-        // to it.
-        paths: paths
+        // visible to Webpack. This expects glob patterns so
+        // we adapt here.
+        paths: paths.map(path => `${path}/*`),
+        // Walk through only html files within node_modules. It
+        // picks up .js files by default!
+        resolveExtensions: ['.html']
       }),
     ]
   }
