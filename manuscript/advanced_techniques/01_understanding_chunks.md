@@ -134,20 +134,17 @@ function loadIndex() {
   // must be loaded first. Given there aren't any, we will
   // leave it as an empty array.
   return new Promise((resolve, reject) => {
-    try {
-      require.ensure([], require => {
-        const lunr = require('lunr');
-        const search = require('../search_index.json');
+    // This can be replaced with `import` in webpack 2. That would return
+    // a Promise and give proper error handling unlike `require.ensure`.
+    require.ensure([], require => {
+      const lunr = require('lunr');
+      const search = require('../search_index.json');
 
-        resolve({
-          index: lunr.Index.load(search.index),
-          lines: search.lines
-        });
+      resolve({
+        index: lunr.Index.load(search.index),
+        lines: search.lines
       });
-    }
-    catch(err) {
-      reject(err);
-    }
+    });
   });
 }
 ```
@@ -158,7 +155,7 @@ The approach is useful with routers too. As the user enters some route, you can 
 
 T> `require.ensure` respects `output.publicPath` option.
 
-T> Webpack 2 supports [SystemJS](https://github.com/systemjs/systemjs) semantics. We can use `import('lunr').then(lunr => ...).catch(err => ...)` kind of declarations there.
+T> Webpack 2 supports [import](https://github.com/tc39/proposal-dynamic-import) semantics. We can use `import('lunr').then(lunr => ...).catch(err => ...)` kind of declarations there.
 
 T> There's a [full example](https://github.com/survivejs/lunr-demo) showing how it all goes together with lunr, React, and Webpack.
 
