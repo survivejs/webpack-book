@@ -169,6 +169,12 @@ T> Dropping the `console` statements can be achieved through Babel too by using 
 
 T> Yet another way to control Uglify would be to use the [uglify-loader](https://www.npmjs.com/package/uglify-loader). That gives yet another way to control minification behavior.
 
+## Minifying CSS
+
+*css-loader* allows minifying CSS through [cssnano](http://cssnano.co/). If you use `UglifyJsPlugin`, it actually sets your code into minifying mode by default. So assuming you point to your styling through JavaScript, it would minify by default.
+
+Since we are not pointing to the styling through JavaScript in this setup, you can force minification to be used by setting `minimize` option (`css-loader?minimize`). You can also pass [cssnano specific options](http://cssnano.co/optimisations/) to the query to customize the behavior further.
+
 ## Conclusion
 
 Even though our build is a little better now, there's still a fair amount of work left. The next simple step is to set an environment variable during the build to allow React to optimize itself. This technique can be used in your own code as well. You might want to skip certain checks in production usage and so on to bring the build size down.
