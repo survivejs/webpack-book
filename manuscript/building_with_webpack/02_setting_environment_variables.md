@@ -149,6 +149,8 @@ T> [babel-plugin-transform-inline-environment-variables](https://www.npmjs.com/p
 
 T> Note that we are missing [react-dom](https://www.npmjs.com/package/react-dom) from our build. In practice our React application would be significantly larger unless we are using a lighter version such as [preact](https://www.npmjs.com/package/preact) or [react-lite](https://www.npmjs.com/package/react-lite). These libraries might be missing some features, but they are worth knowing about if you use React.
 
+T> `webpack.EnvironmentPlugin(['NODE_ENV'])` is a shortcut that allows you to refer to environment variables. It uses `DefinePlugin` internally and can be useful by itself in more limited cases. You can achieve the same effect by passing `process.env.NODE_ENV` to the custom function we made.
+
 ## Conclusion
 
 Even though simply setting `process.env.NODE_ENV` the right way can help a lot especially with React related code, we can do better. We can split `app` and `vendor` bundles and add hashes to their filenames to benefit from browser caching. After all, the data that you don't need to fetch loads the fastest.
