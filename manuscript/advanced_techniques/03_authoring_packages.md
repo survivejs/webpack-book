@@ -116,6 +116,8 @@ As you can see, *package.json* can contain a lot of information. You can attach 
 
 T> JSON doesn't support comments even though I'm using them above. There are extended notations, such as [Hjson](http://hjson.org/), that do.
 
+T> If you want something cross-platform, consider using [rimraf](https://www.npmjs.com/package/rimraf) over `rm -rf` as latter won't work on Windows.
+
 ## npm Workflow
 
 Working with npm is surprisingly simple. To get started, you will need to use [npm adduser](https://docs.npmjs.com/cli/adduser) (aliased to `npm login`). It allows you to set up an account. After this process has completed, it will create *~/.npmrc* and use that data for authentication. There's also [npm logout](https://docs.npmjs.com/cli/logout) that will clear the credentials.
