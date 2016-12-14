@@ -31,7 +31,7 @@ var common = {
     preLoaders: [
       {
         test: /\.jsx?$/,
-        loaders: ['jshint'],
+        loaders: ['jshint-loader'],
         // define an include so we check just the files we need
         include: PATHS.app
       }
@@ -251,7 +251,7 @@ const common = {
     preLoaders: [
       {
         test: /\.jsx?$/,
-        loaders: ['eslint'],
+        loaders: ['eslint-loader'],
         include: PATHS.app
       }
     ]
@@ -425,7 +425,7 @@ const common = {
     preLoaders: [
       {
         test: /\.css$/,
-        loaders: ['postcss'],
+        loaders: ['postcss-loader'],
         include: PATHS.app
       },
       ...

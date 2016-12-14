@@ -37,7 +37,7 @@ exports.extractCSS = function(paths) {
         // Extract CSS during build
         {
           test: /\.css$/,
-          loader: ExtractTextPlugin.extract('style', 'css'),
+          loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
           include: paths
         }
       ]
@@ -83,7 +83,7 @@ module.exports = validate(config);
 
 Using this setup, we can still benefit from the HMR during development. For a production build, we generate a separate CSS, though. *html-webpack-plugin* will pick it up automatically and inject it into our `index.html`.
 
-W> Definitions, such as `loaders: [ExtractTextPlugin.extract('style', 'css')]`, won't work and will cause the build to error instead! So when using `ExtractTextPlugin`, use the `loader` form instead.
+W> Definitions, such as `loaders: [ExtractTextPlugin.extract('style-loader', 'css-loader')]`, won't work and will cause the build to error instead! So when using `ExtractTextPlugin`, use the `loader` form instead.
 
 W> If you want to pass more loaders to the `ExtractTextPlugin`, you should use `!` syntax. Example: `ExtractTextPlugin.extract('style', 'css!postcss')`.
 

@@ -8,12 +8,12 @@ It can be a good idea to prefer absolute paths here as it allows you to move con
 
 ## Loader Evaluation Order
 
-It is good to keep in mind that Webpack's `loaders` are always evaluated from right to left and from bottom to top (separate definitions). The right to left rule is easier to remember when you think about it in terms of functions. You can read definition `loaders: ['style', 'css']` as `style(css(input))` based on this rule. The following examples are equivalent as well:
+It is good to keep in mind that Webpack's `loaders` are always evaluated from right to left and from bottom to top (separate definitions). The right to left rule is easier to remember when you think about it in terms of functions. You can read definition `loaders: ['style-loader', 'css-loader']` as `style(css(input))` based on this rule. The following examples are equivalent as well:
 
 ```javascript
 {
   test: /\.css$/,
-  loaders: ['style', 'css'],
+  loaders: ['style-loader', 'css-loader'],
   include: PATHS.app
 }
 ```
@@ -21,12 +21,12 @@ It is good to keep in mind that Webpack's `loaders` are always evaluated from ri
 ```javascript
 {
   test: /\.css$/,
-  loaders: ['style'],
+  loaders: ['style-loader'],
   include: PATHS.app
 },
 {
   test: /\.css$/,
-  loaders: ['css'],
+  loaders: ['css-loader'],
   include: PATHS.app
 }
 ```
@@ -41,7 +41,7 @@ Sometimes you might want to pass query parameters to a loader. By default you co
 {
   test: /\.jsx?$/,
   loaders: [
-    'babel?cacheDirectory,presets[]=react,presets[]=es2015'
+    'babel-loader?cacheDirectory,presets[]=react,presets[]=es2015'
   ],
   include: PATHS.app
 }
@@ -52,7 +52,7 @@ The problem with this approach is that it isn't particularly readable. A better 
 ```javascript
 {
   test: /\.jsx?$/,
-  loader: 'babel',
+  loader: 'babel-loader',
   query: {
     cacheDirectory: true,
     presets: ['react', 'es2015']

@@ -2,7 +2,7 @@
 
 As we've seen so far, loaders are one of the building blocks of Webpack. If you want to load an asset, you'll most likely need to set up a matching loader definition. Even though there are a lot of [available loaders](https://webpack.github.io/docs/list-of-loaders.html), it is possible you are missing one fitting your purposes.
 
-The [official documentation](https://webpack.github.io/docs/loaders.html) covers the loader API fairly well. To give you a concrete example, I'm going to discuss a subset of a loader I have developed. [highlight-loader](https://github.com/bebraw/highlight-loader) accepts HTML and then applies [highlight.js](https://highlightjs.org/) on it. Even though the transformation itself is quite simple, the loader implementation isn't trivial.
+The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API fairly well. To give you a concrete example, I'm going to discuss a subset of a loader I have developed. [highlight-loader](https://github.com/bebraw/highlight-loader) accepts HTML and then applies [highlight.js](https://highlightjs.org/) on it. Even though the transformation itself is quite simple, the loader implementation isn't trivial.
 
 ## Setting Up a Loader Project
 
@@ -155,7 +155,6 @@ module.exports = function(input) {
 This is an example of a synchronous loader. Sometimes you might want to perform asynchronous operations instead. That's when you could do something like this in your loader code:
 
 ```javascript
-// 
 var callback = this.async();
 
 if(!callback) {

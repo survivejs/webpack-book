@@ -15,7 +15,7 @@ const common = {
     loaders: [
       {
         test: /\.css$/,
-        loaders: ['style', 'css'],
+        loaders: ['style-loader', 'css-loader'],
         include: PATHS.style
       }
     ]
@@ -43,7 +43,7 @@ T> If you want to enable sourcemaps for CSS, you should use `['style', 'css?sour
 ```javascript
 {
   test: /\.less$/,
-  loaders: ['style', 'css', 'less'],
+  loaders: ['style-loader', 'css-loader', 'less-loader'],
   include: PATHS.style
 }
 ```
@@ -61,7 +61,7 @@ There is also support for Less plugins, sourcemaps, and so on. To understand how
 ```javascript
 {
   test: /\.scss$/,
-  loaders: ['style', 'css', 'sass'],
+  loaders: ['style-loader', 'css-loader', 'sass-loader'],
   include: PATHS.style
 }
 ```
@@ -99,7 +99,7 @@ const common = {
     loaders: [
       {
         test: /\.styl$/,
-        loaders: ['style', 'css', 'stylus'],
+        loaders: ['style-loader', 'css-loader', 'stylus-loader'],
         include: PATHS.style
       }
     ]
@@ -139,7 +139,7 @@ The example below illustrates how to set up autoprefixing using it. It also sets
         loaders: [
           {
             test: /\.css$/,
-            loaders: ['style', 'css', 'postcss'],
+            loaders: ['style-loader', 'css-loader', 'postcss-loader'],
             include: PATHS.style
           }
         ]
@@ -162,7 +162,7 @@ The example below illustrates how to set up autoprefixing using it. It also sets
 ```javascript
 {
   test: /\.css$/,
-  loaders: ['style', 'css', 'cssnext'],
+  loaders: ['style-loader', 'css-loader', 'cssnext-loader'],
   include: PATHS.style
 }
 ```

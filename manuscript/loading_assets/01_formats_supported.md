@@ -18,7 +18,7 @@ module.exports = {
         // Apply loaders against it. These need to
         // be installed separately. In this case our
         // project would need *style-loader* and *css-loader*.
-        loaders: ['style', 'css'],
+        loaders: ['style-loader', 'css-loader'],
 
         // Restrict matching to a directory. This also accepts an array of paths.
         // Although optional, I prefer to set this (better performance,
