@@ -187,7 +187,7 @@ npm supports multiple version ranges. I've listed the common ones below:
 
 You can set the default range using `npm config set save-prefix='^'` in case you prefer something else than caret. Alternatively you can modify *~/.npmrc* directly. Especially defaulting to tilde can be a good idea that can help you to avoid some trouble with dependencies.
 
-T> Sometimes, using version ranges can feel a little dangerous. What if some future version is broken? [npm shrinkwrap](https://docs.npmjs.com/cli/shrinkwrap) allows you to fix your dependency versions and have stricter control over the versions you are using in a production environment. [lockdown](https://www.npmjs.com/package/lockdown) goes further and gives guarantees about dependency content, not just version.
+T> Sometimes, using version ranges can feel a little dangerous. What if some future version is broken? [npm shrinkwrap](https://docs.npmjs.com/cli/shrinkwrap) allows you to fix your dependency versions and have stricter control over the versions you are using in a production environment. [lockdown](https://www.npmjs.com/package/lockdown) goes further and gives guarantees about dependency content, not just version. [shrinkpack](https://www.npmjs.com/package/shrinkpack) is another interesting complementary option.
 
 T> If you want to bundle some dependencies with your distribution version, consider using the [bundledDependencies](https://docs.npmjs.com/files/package.json#bundleddependencies) (or just `bundleDependencies`) field. This can be useful if you want to share third party files not available through npm. There's a great [Stack Overflow answer](http://stackoverflow.com/a/25044361/228885) discussing the topic further.
 
