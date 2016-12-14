@@ -75,7 +75,7 @@ A Webpack plugin known as `CommonsChunkPlugin` allows us alter this default beha
 
 ## Setting Up `CommonsChunkPlugin`
 
-[CommonsChunkPlugin](https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin) is a powerful and complex plugin. The use case we are covering here is a basic yet useful one. As before, we can define a function that wraps the basic idea.
+[CommonsChunkPlugin](https://webpack.js.org/guides/code-splitting-libraries/#commonschunkplugin) is a powerful and complex plugin. The use case we are covering here is a basic yet useful one. As before, we can define a function that wraps the basic idea.
 
 To make our life easier in the future, we can make it extract a file known as a **manifest**. It contains the Webpack runtime that starts the whole application and contains the dependency information needed by it. This avoids a serious invalidation problem. Even though it's yet another file for the browser to load, it allows us to implement reliable caching in the next chapter.
 
@@ -199,7 +199,7 @@ Now our bundles look just the way we want. The image below illustrates the curre
 
 ![App and vendor bundles after applying `CommonsChunkPlugin`](images/bundle_02.png)
 
-T> Beyond this, it is possible to define chunks that are loaded dynamically. This can be achieved through [require.ensure](https://webpack.github.io/docs/code-splitting.html). We'll cover it in the *Understanding Chunks* chapter.
+T> Beyond this, it is possible to define chunks that are loaded dynamically. This can be achieved through [require.ensure or import](https://webpack.js.org/guides/code-splitting-require/). We'll cover it in the *Understanding Chunks* chapter.
 
 ## Loading `dependencies` to a `vendor` Bundle Automatically
 

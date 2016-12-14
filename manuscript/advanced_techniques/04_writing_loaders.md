@@ -1,6 +1,6 @@
 # Writing Loaders
 
-As we've seen so far, loaders are one of the building blocks of Webpack. If you want to load an asset, you'll most likely need to set up a matching loader definition. Even though there are a lot of [available loaders](https://webpack.github.io/docs/list-of-loaders.html), it is possible you are missing one fitting your purposes.
+As we've seen so far, loaders are one of the building blocks of webpack. If you want to load an asset, you'll most likely need to set up a matching loader definition. Even though there are a lot of [available loaders](https://webpack.js.org/loaders/), it is possible you are missing one fitting your purposes.
 
 The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API fairly well. To give you a concrete example, I'm going to discuss a subset of a loader I have developed. [highlight-loader](https://github.com/bebraw/highlight-loader) accepts HTML and then applies [highlight.js](https://highlightjs.org/) on it. Even though the transformation itself is quite simple, the loader implementation isn't trivial.
 
@@ -23,7 +23,7 @@ I follow the following layout in my loader project:
 └── test.js
 ```
 
-This is a fairly standard way to write a small Node.js package. `index.js` contains the loader source, `test.js` contains my tests, `demo` directory contains something that can be run against Webpack. I actually started by developing the demo first and added tests later on.
+This is a fairly standard way to write a small Node.js package. `index.js` contains the loader source, `test.js` contains my tests, `demo` directory contains something that can be run against webpack. I actually started by developing the demo first and added tests later on.
 
 Writing tests first can be a good idea, though, as it gives you a specification which you can use to validate your implementation. It takes some advanced knowledge to pull this off, though. I'll give you a basic testing setup next and then discuss my loader implementation.
 
@@ -50,7 +50,7 @@ To run tests, you can simply invoke `npm test`. To run the test setup in the wat
 
 ### Test Structure
 
-Given this is so small project, I ended up writing all my tests into a single file. The following excerpt should give you a better idea of what they look like. There are a couple of Webpack loader specific tweaks in place to make it easier to test them:
+Given this is so small project, I ended up writing all my tests into a single file. The following excerpt should give you a better idea of what they look like. There are a couple of webpack loader specific tweaks in place to make it easier to test them:
 
 **test.js**
 
@@ -102,9 +102,9 @@ describe('highlight-loader', function () {
 function noop() {}
 ```
 
-Even though I'm not a great fan of mocking, it works well enough for a case like this. The biggest fear is that Webpack API changes at some point. This would mean my test code would break and I would have to rewrite a large part of it.
+Even though I'm not a great fan of mocking, it works well enough for a case like this. The biggest fear is that webpack API changes at some point. This would mean my test code would break and I would have to rewrite a large part of it.
 
-It could be interesting to run the tests through Webpack itself to avoid mocking. In this approach you wouldn't have to worry about the test facing parts so much and it would be more about capturing output for the given input. The problem is that this would add a significant overhead to the tests and bring problems of its own as you would have to figure out more effective ways to execute them.
+It could be interesting to run the tests through webpack itself to avoid mocking. In this approach you wouldn't have to worry about the test facing parts so much and it would be more about capturing output for the given input. The problem is that this would add a significant overhead to the tests and bring problems of its own as you would have to figure out more effective ways to execute them.
 
 ## Implementing a Loader
 

@@ -30,7 +30,7 @@ npm i babel-loader babel-core --save-dev
 
 Now that we have the loader installed, we can connect it with Webpack configuration. In addition to a loader definition, we can perform an additional tweak to make imports without an extension possible. Leaving the extension visible is a valid alternative.
 
-Webpack provides a field known as [resolve.extensions](https://webpack.github.io/docs/configuration.html#resolve-extensions) that can be used for this purpose. If you want to allow imports like `import Button from './Button';`, set it up as follows:
+Webpack provides a field known as [resolve.extensions](https://webpack.js.org/guides/migrating/#resolve-extensions) that can be used for this purpose. If you want to allow imports like `import Button from './Button';`, set it up as follows:
 
 **webpack.config.js**
 
@@ -45,9 +45,7 @@ const common = {
 ...
 ```
 
-The loader configuration is straight-forward as well. We can use a RegExp to match both `.js` and `.jsx` files. It's up to your tastes to figure out a neat pattern. I prefer to use `\.jsx?$` myself. This just makes `x` optional.
-
-Alternatively, you could spell out the options using a matcher such as `\.(js|jsx)$`. Latter format can be particularly useful if you have to match against multiple different formats.
+The loader configuration is straight-forward as well. We can use a RegExp to match both `.js` and `.jsx` files. It's up to your tastes to figure out a neat pattern. I prefer to use `\.(js|jsx)$` myself. This just makes `x` optional and you can extend the pattern easily to include more formats.
 
 *babel-loader* comes with a set of options. In this case I'm going to enable `cacheDirectory` to improve its performance during development. Simply passing it as a flag helps. You can also pass a specific directory to it as a parameter. I.e., `babel?cacheDirectory=<path>`. Here's the full loader configuration:
 
@@ -333,7 +331,7 @@ If you try developing your application now, it should be at least a little bit f
 
 T> `module.noParse` also accepts a regular expression. If we wanted to ignore all `*.min.js` files for instance, we could set it to `/\.min\.js/`. That can be a more generic way to solve the problem in some cases.
 
-T> Note that aliasing works also with loaders through [resolveLoader.alias](https://webpack.github.io/docs/configuration.html#resolveloader).
+T> Note that aliasing works also with loaders through [resolveLoader.alias](https://webpack.js.org/configuration/resolve/#resolveloader).
 
 W> Not all modules support `module.noParse`, the files included by deps array should have no call to `require`, `define` or similar, or you will get an error when the app runs: `Uncaught ReferenceError: require is not defined`.
 

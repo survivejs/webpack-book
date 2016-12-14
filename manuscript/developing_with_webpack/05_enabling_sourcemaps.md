@@ -50,7 +50,7 @@ It is possible you may need to enable sourcemaps in your browser for this to wor
 
 Even though a sourcemap type, such as `eval-source-map` or `eval`, can be enough during development, Webpack provides other types too. Given these will be generated within your bundles, they won't be useful during production.
 
-The following table adapted from the [documentation](https://webpack.github.io/docs/configuration.html#devtool) contains the supported types arranged based on speed. The lower the quality, the higher build and rebuild speeds are possible.
+The following table adapted from the [documentation](https://webpack.js.org/configuration/devtool/#devtool) contains the supported types arranged based on speed. The lower the quality, the higher build and rebuild speeds are possible.
 
 |Sourcemap type                 |Quality                       |Notes                                                                                   |
 |-------------------------------|------------------------------|----------------------------------------------------------------------------------------|
@@ -90,7 +90,7 @@ const config = {
 };
 ```
 
-T> The [official documentation](https://webpack.github.io/docs/configuration.html#output-sourcemapfilename) digs into devtool specifics.
+T> The [official documentation](https://webpack.js.org/configuration/output/#output-sourcemapfilename) digs into devtool specifics.
 
 ## `SourceMapDevToolPlugin`
 

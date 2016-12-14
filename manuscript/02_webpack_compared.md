@@ -1,6 +1,6 @@
 # Webpack Compared
 
-You can understand better why Webpack's approach is powerful by putting it into a historical context. Back in the day, it was enough just to concatenate some scripts together. Times have changed, though, and now distributing your JavaScript code can be a complex endeavor.
+You can understand better why webpack's approach is powerful by putting it into a historical context. Back in the day, it was enough just to concatenate some scripts together. Times have changed, though, and now distributing your JavaScript code can be a complex endeavor.
 
 This problem has escalated with the rise of single page applications (SPAs). They tend to rely on numerous hefty libraries. There are multiple strategies on how to deal with loading them. You could load them all at once. You could also consider loading libraries as you need them. These are examples of strategies you can apply, and Webpack supports many of them.
 
@@ -10,11 +10,11 @@ The popularity of Node.js and [npm](https://www.npmjs.com/), the Node.js package
 
 Historically speaking, there have been many build systems. Make is perhaps the best known, and is still a viable option. To make things easier, specialized *task runners*, such as Grunt, and Gulp appeared. Plugins available through npm made both task runners powerful.
 
-Task runners are great tools on a high level. They allow you to perform operations in a cross-platform manner. The problems begin when you need to splice various assets together and produce bundles. This is the reason we have *bundlers*, such as Browserify, Brunch, or Webpack.
+Task runners are great tools on a high level. They allow you to perform operations in a cross-platform manner. The problems begin when you need to splice various assets together and produce bundles. This is the reason we have *bundlers*, such as Browserify, Brunch, or webpack.
 
 Continuing further on this path, [JSPM](http://jspm.io/) pushes package management directly to the browser. It relies on [System.js](https://github.com/systemjs/systemjs), a dynamic module loader. Webpack 2 will support System.js semantics as well.
 
-Unlike Browserify, Brunch, and Webpack, JSPM skips the bundling step altogether during development. You can generate a production bundle using it, however. Glen Maddern goes into good detail at his [video about JSPM](https://www.youtube.com/watch?t=33&v=iukBMY4apvI).
+Unlike Browserify, Brunch, and webpack, JSPM skips the bundling step altogether during development. You can generate a production bundle using it, however. Glen Maddern goes into good detail at his [video about JSPM](https://www.youtube.com/watch?t=33&v=iukBMY4apvI).
 
 ## Make
 
@@ -209,11 +209,11 @@ Given JSPM is still a young project, there might be rough spots. That said, it m
 
 ![webpack](images/webpack.png)
 
-You could say [Webpack](https://webpack.github.io/) takes a more monolithic approach than Browserify. Whereas Browserify consists of multiple small tools, Webpack comes with a core that provides a lot of functionality out of the box. The core can be extended using specific *loaders* and *plugins*.
+You could say [webpack](https://webpack.js.org/) takes a more monolithic approach than Browserify. Whereas Browserify consists of multiple small tools, webpack comes with a core that provides a lot of functionality out of the box. The core can be extended using specific *loaders* and *plugins*.
 
 Webpack will traverse through the `require` statements of your project and will generate the bundles you have defined. The loader mechanism works for CSS as well and `@import` is supported. There are also plugins for specific tasks, such as minification, localization, hot loading, and so on.
 
-To give you an example, `require('style!css!./main.css')` loads the contents of *main.css* and processes it through CSS and style loaders from right to left. Given that this kind of declarations tie the source code to Webpack, it is preferable to set up the loaders at Webpack configuration. Here is a sample configuration adapted from [the official webpack tutorial](http://webpack.github.io/docs/tutorials/getting-started/):
+To give you an example, `require('style!css!./main.css')` loads the contents of *main.css* and processes it through CSS and style loaders from right to left. Given that this kind of declarations tie the source code to Webpack, it is preferable to set up the loaders at webpack configuration. Here is a sample configuration adapted from [the official webpack tutorial](https://webpack.js.org/get-started/):
 
 **webpack.config.js**
 
@@ -240,23 +240,23 @@ module.exports = {
 };
 ```
 
-Given the configuration is written in JavaScript, it's quite malleable. As long as it's JavaScript, Webpack is fine with it.
+Given the configuration is written in JavaScript, it's quite malleable. As long as it's JavaScript, webpack is fine with it.
 
-The configuration model may make Webpack feel a bit opaque at times. It can be difficult to understand what it's doing. This is particularly true for more complicated cases. Covering those is one of the main reasons why this book exists.
+The configuration model may make webpack feel a bit opaque at times. It can be difficult to understand what it's doing. This is particularly true for more complicated cases. Covering those is one of the main reasons why this book exists.
 
 ## Why Webpack?
 
-Why would you use Webpack over tools like Gulp or Grunt? It's not an either-or proposition. Webpack deals with the difficult problem of bundling, but there's so much more. I picked up Webpack because of its support for **Hot Module Replacement** (HMR). This is a feature used by [babel-plugin-react-transform](https://github.com/gaearon/babel-plugin-react-transform). I will show you later how to set it up.
+Why would you use webpack over tools like Gulp or Grunt? It's not an either-or proposition. Webpack deals with the difficult problem of bundling, but there's so much more. I picked up Webpack because of its support for **Hot Module Replacement** (HMR). This is a feature used by [babel-plugin-react-transform](https://github.com/gaearon/babel-plugin-react-transform). I will show you later how to set it up.
 
 ### Hot Module Replacement
 
 You might be familiar with tools, such as [LiveReload](http://livereload.com/) or [Browsersync](http://www.browsersync.io/), already. These tools refresh the browser automatically as you make changes. HMR takes things one step further. In the case of React, it allows the application to maintain its state. This sounds simple, but it makes a big difference in practice.
 
-Note that HMR is available in Browserify via [livereactload](https://github.com/milankinen/livereactload), so it's not a feature that's exclusive to Webpack.
+Note that HMR is available in Browserify via [livereactload](https://github.com/milankinen/livereactload), so it's not a feature that's exclusive to webpack.
 
 ### Bundle Splitting
 
-Aside from the HMR feature, Webpack's bundling capabilities are extensive. It allows you to split bundles in various ways. You can even load them dynamically as your application gets executed. This sort of lazy loading comes in handy, especially for larger applications. You can load dependencies as you need them.
+Aside from the HMR feature, webpack's bundling capabilities are extensive. It allows you to split bundles in various ways. You can even load them dynamically as your application gets executed. This sort of lazy loading comes in handy, especially for larger applications. You can load dependencies as you need them.
 
 ### Asset Hashing
 
@@ -266,12 +266,12 @@ With Webpack, you can easily inject a hash to each bundle name (e.g., *app.d587b
 
 All these smaller features add up. Surprisingly, you can get many things done out of the box. And if you are missing something, there are loaders and plugins available that allow you to go further.
 
-Webpack comes with a significant learning curve. Even still, it's a tool worth learning, given it saves so much time and effort over the long term. To get a better idea how it compares to some other tools, check out [the official comparison](https://webpack.github.io/docs/comparison.html).
+Webpack comes with a significant learning curve. Even still, it's a tool worth learning, given it saves so much time and effort over the long term. To get a better idea how it compares to some other tools, check out [the official comparison](https://webpack.js.org/get-started/why-webpack/#comparison).
 
 ## Conclusion
 
-I hope this chapter helped you understand why Webpack is a valuable tool worth learning. It solves a fair share of common web development problems. If you know it well, it will save a great deal of time.
+I hope this chapter helped you understand why webpack is a valuable tool worth learning. It solves a fair share of common web development problems. If you know it well, it will save a great deal of time.
 
-In the following chapters we'll examine Webpack in more detail. You will learn to develop a basic development and build configuration. The later chapters delve into more advanced topics.
+In the following chapters we'll examine webpack in more detail. You will learn to develop a basic development and build configuration. The later chapters delve into more advanced topics.
 
-You can use Webpack with some other tools. It won't solve everything. It does solve the difficult problem of bundling, however. That's one less worry during development. Just using *package.json*, `scripts`, and Webpack takes you far, as we will see soon.
+You can use webpack with some other tools. It won't solve everything. It does solve the difficult problem of bundling, however. That's one less worry during development. Just using *package.json*, `scripts`, and webpack takes you far, as we will see soon.
