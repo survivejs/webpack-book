@@ -74,7 +74,7 @@ To show you the idea in practice, we could have a declaration like `if(process.e
 
 As before, we can encapsulate this idea to a function:
 
-**libs/parts.js**
+**webpack.parts.js**
 
 ```javascript
 ...

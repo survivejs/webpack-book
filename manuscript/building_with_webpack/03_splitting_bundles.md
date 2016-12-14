@@ -85,7 +85,7 @@ T> If you want to see this behavior in practice, try tweaking the implementation
 
 The following code combines the `entry` idea above with a basic `CommonsChunkPlugin` setup:
 
-**libs/parts.js**
+**webpack.parts.js**
 
 ```javascript
 ...

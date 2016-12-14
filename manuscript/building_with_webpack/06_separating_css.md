@@ -18,7 +18,7 @@ npm i extract-text-webpack-plugin --save-dev
 
 The plugin operates in two parts. There's a loader, `ExtractTextPlugin.extract`, that marks the assets to be extracted. The plugin will perform its work based on this annotation. The idea looks like this:
 
-**libs/parts.js**
+**webpack.parts.js**
 
 ```javascript
 const webpack = require('webpack');

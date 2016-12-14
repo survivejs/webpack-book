@@ -12,7 +12,7 @@ npm i css-loader style-loader --save-dev
 
 Now that we have the loaders we need, we'll need to make sure Webpack is aware of them. Configure as follows:
 
-**libs/parts.js**
+**webpack.parts.js**
 
 ```javascript
 ...

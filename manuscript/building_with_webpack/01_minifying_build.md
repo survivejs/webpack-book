@@ -54,7 +54,7 @@ The easiest way to enable minification is to call `webpack -p`. `-p` is a shortc
 
 As earlier, we can define a little function for this purpose and then point to it from our main configuration. Here's the basic idea:
 
-**libs/parts.js**
+**webpack.parts.js**
 
 ```javascript
 ...

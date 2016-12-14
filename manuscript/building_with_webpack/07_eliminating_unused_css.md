@@ -112,7 +112,7 @@ If you run the application (`npm start`), our "Hello world" should look like a b
 
 We need one more bit, PurifyCSS configuration. Expand parts like this:
 
-**libs/parts.js**
+**webpack.parts.js**
 
 ```javascript
 const webpack = require('webpack');
