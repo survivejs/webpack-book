@@ -66,7 +66,7 @@ Compression is particularly useful during production usage as it will decrease t
 
 ## Utilizing `srcset`
 
-[resize-image-loader](https://www.npmjs.com/package/resize-image-loader) allows you to generate `srcset` compatible collections of images. This is particularly useful with modern browsers. It gives more control to them over what images to load and when resulting in higher performance.
+[resize-image-loader](https://www.npmjs.com/package/resize-image-loader) and [responsive-loader](https://www.npmjs.com/package/responsive-loader) allow you to generate `srcset` compatible collections of images. This is particularly useful with modern browsers. It gives more control to them over what images to load and when resulting in higher performance.
 
 ## Referencing to Images
 
