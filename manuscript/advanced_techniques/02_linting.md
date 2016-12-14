@@ -214,7 +214,7 @@ T> It is possible to generate a sample `.eslintrc` using `eslint --init` (or `no
 
 ### Dealing with `ELIFECYCLE` Error
 
-In case the linting process fails, `npm` will give you a nasty looking `ELIFECYCLE` error. A good way to achieve a tidier output is to invoke `npm run lint --silent`. That will hide the `ELIFECYCLE` bit. You can define an alias for this purpose. In Unix you would do `alias run='npm run --silent'` and then `run <script>`.
+In case the linting process fails, `npm` will give you a nasty looking `ELIFECYCLE` error. A good way to achieve a tidier output is to invoke `npm run lint --silent` (or `-s`). That will hide the `ELIFECYCLE` bit. You can define an alias for this purpose. In Unix you would do `alias run='npm run --silent'` and then `run <script>`.
 
 Alternatively, you could pipe output to `true` like this:
 
