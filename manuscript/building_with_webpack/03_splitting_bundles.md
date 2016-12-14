@@ -10,7 +10,7 @@ Caching comes with its own problems. One of those is cache invalidation. We'll d
 
 ## Setting Up a `vendor` Bundle
 
-So far our project has only a single entry named as `app`. As you might remember, our configuration tells Webpack to traverse dependencies starting from the `app` entry directory and then to output the resulting bundle below our `build` directory using the entry name and `.js` extension.
+So far our project has only a single entry named as `app`. As you might remember, our configuration tells webpack to traverse dependencies starting from the `app` entry directory and then to output the resulting bundle below our `build` directory using the entry name and `.js` extension.
 
 To improve the situation, we can define a `vendor` entry containing React. This is done by matching the dependency name. It is possible to generate this information automatically as discussed at the end of this chapter, but I'll go with a static array here to illustrate the basic idea. Change the code like this:
 
@@ -71,15 +71,15 @@ If you examine the resulting bundle, you can see that it contains React given th
 
 ![Separate app and vendor bundles](images/bundle_01.png)
 
-A Webpack plugin known as `CommonsChunkPlugin` allows us alter this default behavior so that we can get the bundles we might expect.
+A webpack plugin known as `CommonsChunkPlugin` allows us alter this default behavior so that we can get the bundles we might expect.
 
 ## Setting Up `CommonsChunkPlugin`
 
 [CommonsChunkPlugin](https://webpack.js.org/guides/code-splitting-libraries/#commonschunkplugin) is a powerful and complex plugin. The use case we are covering here is a basic yet useful one. As before, we can define a function that wraps the basic idea.
 
-To make our life easier in the future, we can make it extract a file known as a **manifest**. It contains the Webpack runtime that starts the whole application and contains the dependency information needed by it. This avoids a serious invalidation problem. Even though it's yet another file for the browser to load, it allows us to implement reliable caching in the next chapter.
+To make our life easier in the future, we can make it extract a file known as a **manifest**. It contains the webpack runtime that starts the whole application and contains the dependency information needed by it. This avoids a serious invalidation problem. Even though it's yet another file for the browser to load, it allows us to implement reliable caching in the next chapter.
 
-If we don't extract a manifest, Webpack will generate the runtime to the vendor bundle. In case we modify the application code, the application bundle hash will change. This is problematic as it will invalidate both bundles since the runtime needs to change too. This is why you should keep the manifest separate from the main bundles as doing this avoids the problem.
+If we don't extract a manifest, webpack will generate the runtime to the vendor bundle. In case we modify the application code, the application bundle hash will change. This is problematic as it will invalidate both bundles since the runtime needs to change too. This is why you should keep the manifest separate from the main bundles as doing this avoids the problem.
 
 T> If you want to see this behavior in practice, try tweaking the implementation so that it **doesn't** generate the manifest after the next chapter. Change application code after that and see what happens to the generated code.
 
@@ -203,7 +203,7 @@ T> Beyond this, it is possible to define chunks that are loaded dynamically. Thi
 
 ## Loading `dependencies` to a `vendor` Bundle Automatically
 
-If you maintain strict separation between `dependencies` and `devDependencies`, you can make Webpack to pick up your `vendor` dependencies automatically based on this information. You avoid having to manage those manually then. The basic idea goes like this:
+If you maintain strict separation between `dependencies` and `devDependencies`, you can make webpack to pick up your `vendor` dependencies automatically based on this information. You avoid having to manage those manually then. The basic idea goes like this:
 
 ```javascript
 ...
