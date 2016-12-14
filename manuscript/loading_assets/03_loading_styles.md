@@ -66,6 +66,8 @@ There is also support for Less plugins, sourcemaps, and so on. To understand how
 }
 ```
 
+Sometimes you might see imports like `@import "~bootstrap/css/bootstrap";` in SASS code. The tilde (`~`) tells webpack that it's not a relative import as by default in SASS. If tilde is included, it will perform a lookup against `node_modules` (default setting) although this is configurable through the [resolve.modules](https://webpack.js.org/configuration/resolve/#resolve-modules) field.
+
 Check out the loader for more advanced usage.
 
 T> If you want more performance especially during development, check out [fast-sass-loader](https://www.npmjs.com/package/fast-sass-loader).
