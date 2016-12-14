@@ -89,6 +89,24 @@ const Profile = () => (
 );
 ```
 
+## Loading Sprites
+
+A technique known as spriting allows you to combine multiple smaller images into a single image. It has been used for games to describe animations and it's useful for web development as well as you avoid request overhead.
+
+[webpack-spritesmith](https://www.npmjs.com/package/webpack-spritesmith) converts provided images into a spritesheet and SASS/LESS/Stylus mixins. You have to set up a `SpritesmithPlugin`, point it to target images, and set the name of the generated mixin. After that your styling can pick it up like this:
+
+```sass
+@import '~sprite.sass';
+
+.close-button {
+  sprite($close);
+}
+
+.open-button {
+  sprite($open);
+}
+```
+
 ## Conclusion
 
 Webpack allows you to inline images within your bundles when needed. Figuring out good inlining limits for your images might take some experimentation. You have to balance between bundle sizes and the amount of requests.
