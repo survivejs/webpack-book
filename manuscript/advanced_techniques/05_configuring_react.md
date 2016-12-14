@@ -187,6 +187,8 @@ T> If you want to optimize your production build, consider studying Babel preset
 
 T> If you prefer to see possible syntax errors at the browser console instead of hmre overlay, enable `webpack.NoErrorsPlugin()` at your Webpack `plugins` declaration.
 
+T> Given Babel uses [JSON5](http://json5.org/) underneath, this means you can comment your *.babelrc* files using regular (`//`) comments.
+
 ### Configuring Redux
 
 In order to configure Redux reducers to support hot loading, we need to implement Webpack's hot loading protocol. Webpack provides a hook known as `module.hot.accept`. It gets called whenever Webpack detects a change. This allows you to reload and patch your code.
