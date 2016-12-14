@@ -196,6 +196,10 @@ The technique can be useful for other purposes, such as testing. When you need a
 
 T> Note that webpack will also turn statements written in the form `require('./pages/' + pageName + '.md')` into the `require.context` format!
 
+## Dealing with Dynamic Imports
+
+Given the approaches discussed here rely on static analysis and webpack has to find the files in question, it doesn't work for every possible case. Maybe the assets you need come from somewhere else. Consider using browser-side loaders like [$script.js](https://github.com/ded/script.js/) or [little-loader](https://github.com/walmartlabs/little-loader) on top of webpack in this case.
+
 ## Conclusion
 
 Understanding how webpack's chunking works helps you to untap a lot of its power. Just applying `import` alone can be very effective. It opens a world of possibilities. `require.context` has more limited possibilities, but it's a powerful tool especially for tool developers.
