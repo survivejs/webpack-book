@@ -68,6 +68,7 @@ If you execute `npm run stats` now, you should find *stats.json* at your project
 * [The official analyse tool](http://webpack.github.io/analyse/) gives you recommendations and a good idea of your application dependency graph. [Source](https://github.com/webpack/analyse).
 * [Webpack Visualizer](https://chrisbateman.github.io/webpack-visualizer/) provides a pie chart showing your bundle composition. This is handy for understanding which dependencies contribute to the size of the overall result.
 * [Webpack Chart](https://alexkuz.github.io/webpack-chart/) is another similar visualization.
+* [Stellar Webpack](https://alexkuz.github.io/stellar-webpack/) gives a universe based visualization and allows you to examine your application in a 3D form.
 * [th0r/webpack-bundle-analyzer](https://github.com/th0r/webpack-bundle-analyzer) provides a zoomable treemap.
 * [robertknight/webpack-bundle-size-analyzer](https://github.com/robertknight/webpack-bundle-size-analyzer) gives a text based composition.
 * [inspectpack](https://github.com/formidablelabs/inspectpack) is useful for figuring out specific places of code to improve.
