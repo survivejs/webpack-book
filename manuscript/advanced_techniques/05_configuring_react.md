@@ -4,6 +4,12 @@ Facebook's [React](https://facebook.github.io/react/) is a popular alternative f
 
 Babel is useful beyond React development and worth understanding as it allows you to use future JavaScript features now without having to worry too much about browser support. Due to technical constraints it doesn't support all features within the specification, but still it can be a good tool to have in your arsenal.
 
+## create-react-app - Get Started Fast
+
+[create-react-app](https://www.npmjs.com/package/create-react-app) encapsulates a lot of best practices related to developing React applications. It's particularly useful if you want to get started with a little project fast with minimal setup.
+
+One of the main attractions of *create-react-app* is a feature known as *ejecting*. This means that instead of treating it as a project dependency, you'll get a full webpack setup out of it. There's a gotcha, though. After you eject, you cannot go back to the dependency based model and you will have to maintain the resulting setup yourself.
+
 ## Setting Up Babel with React
 
 Most of the React code out there relies on a format known as [JSX](https://facebook.github.io/jsx/). It is a superset of JavaScript that allows you to mix XMLish syntax with JavaScript.
