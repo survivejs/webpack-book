@@ -1,10 +1,10 @@
 # Automatic Browser Refresh
 
-Tools, such as [LiveReload](http://livereload.com/) or [Browsersync](http://www.browsersync.io/), allow us to refresh the browser as we develop our application. They can even avoid refresh for CSS changes.
+Tools, such as [LiveReload](http://livereload.com/) or [BrowserSync](http://www.browsersync.io/), allow us to refresh the browser as we develop our application and avoid refresh for CSS changes. It is possible to setup Browsersync to work with webpack through [browser-sync-webpack-plugin](https://www.npmjs.com/package/browser-sync-webpack-plugin), but webpack has more tricks in store.
 
-A good first step towards a better development environment would be to use Webpack in its **watch** mode. You can activate it through `webpack --watch`. Once enabled, it will detect changes made to your files and recompiles automatically. A solution known as *webpack-dev-server* builds on top of the watch mode and goes even further.
+A good first step towards a better development environment would be to use webpack in its **watch** mode. You can activate it through `webpack --watch`. Once enabled, it will detect changes made to your files and recompiles automatically. A solution known as *webpack-dev-server* builds on top of the watch mode and goes even further.
 
-*webpack-dev-server* is a development server running in-memory. It refreshes content automatically in the browser while you develop your application. It also supports an advanced Webpack feature known as Hot Module Replacement (HMR), which provides a way to patch the browser state without a full refresh. This is particularly powerful with technology such as React.
+*webpack-dev-server* is a development server running in-memory. It refreshes content automatically in the browser while you develop your application. It also supports an advanced webpack feature known as Hot Module Replacement (HMR), which provides a way to patch the browser state without a full refresh. This is particularly powerful with technology such as React.
 
 T> Even though it's good that *webpack-dev-server* operates in-memory by default, sometimes it can be good to emit files to the file system. This is particularly true if you are integrating with other server that expects to find the files. [webpack-disk-plugin](https://www.npmjs.com/package/webpack-disk-plugin) and more specifically [html-webpack-harddisk-plugin](https://www.npmjs.com/package/html-webpack-harddisk-plugin) can achieve this.
 
@@ -221,4 +221,4 @@ W> Note that there are [slight differences](https://github.com/webpack/webpack-d
 
 ## Conclusion
 
-In this chapter you learned to set up Webpack to refresh your browser automatically. We can go a notch further and make this work beautifully with CSS files. We'll do that in the next chapter.
+In this chapter you learned to set up webpack to refresh your browser automatically. We can go a notch further and make this work beautifully with CSS files. We'll do that in the next chapter.
