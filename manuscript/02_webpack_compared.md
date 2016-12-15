@@ -252,7 +252,7 @@ Why would you use webpack over tools like Gulp or Grunt? It's not an either-or p
 
 ### Hot Module Replacement
 
-You might be familiar with tools, such as [LiveReload](http://livereload.com/) or [Browsersync](http://www.browsersync.io/), already. These tools refresh the browser automatically as you make changes. HMR takes things one step further. In the case of React, it allows the application to maintain its state. This sounds simple, but it makes a big difference in practice.
+You might be familiar with tools, such as [LiveReload](http://livereload.com/) or [BrowserSync](http://www.browsersync.io/), already. These tools refresh the browser automatically as you make changes. HMR takes things one step further. In the case of React, it allows the application to maintain its state. This sounds simple, but it makes a big difference in practice.
 
 Note that HMR is available in Browserify via [livereactload](https://github.com/milankinen/livereactload), so it's not a feature that's exclusive to webpack.
 
