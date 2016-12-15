@@ -169,6 +169,8 @@ T> Dropping the `console` statements can be achieved through Babel too by using 
 
 T> Yet another way to control Uglify would be to use the [uglify-loader](https://www.npmjs.com/package/uglify-loader). That gives yet another way to control minification behavior.
 
+T> [webpack-parallel-uglify-plugin](https://www.npmjs.com/package/webpack-parallel-uglify-plugin) allows you to parallelize the minifying step and may yield extra performance as webpack doesn't run in parallel by default.
+
 ## Minifying CSS
 
 *css-loader* allows minifying CSS through [cssnano](http://cssnano.co/). If you use `UglifyJsPlugin`, it actually sets your code into minifying mode by default. So assuming you point to your styling through JavaScript, it would minify by default.
