@@ -54,6 +54,8 @@ It is important to note that webpack `entry` expects files over directories. In 
 
 Note that webpack allows you to shape this process. Sometimes `main` field might be missing entirely and you may need to define a `resolve.alias` to point to the file you want.
 
+W> If you are using [cnpm](https://cnpmjs.org/), the path to *purecss* will be different. You can try `path.resolve(__dirname, 'node_modules/.npminstall/purecss/0.6.0/purecss')` or a similar line instead. Check out the *node_modules* directory carefully to figure out the exact path.
+
 Thanks to our path setup we don't need to tweak the remainder of the code. If you execute `npm run build`, you should see something like this:
 
 ```bash
