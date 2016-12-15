@@ -163,6 +163,8 @@ In practice, it can be useful just to use CommonJS, the Node.js format, and let 
 
 The Browserify ecosystem is composed of a lot of small modules. In this way, Browserify adheres to the Unix philosophy. Browserify is a little easier to adopt than Webpack, and is, in fact, a good alternative to it.
 
+T> [Splittable](https://github.com/cramforce/splittable) is a Browserify wrapper that allows code splitting, supports ES6 out of the box, tree shaking, and more.
+
 ## Brunch
 
 ![Brunch](images/brunch.png)
