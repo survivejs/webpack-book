@@ -192,7 +192,7 @@ const demoPage = req('./demo.md');
 
 This information is enough for generating an entire site. And this is exactly what I've done with [Antwar](https://github.com/antwarjs/antwar). You can find a more elaborate example in that static site generator.
 
-The technique can be useful for other purposes, such as testing. When you need a dynamic require, `require.context` works.
+The technique can be useful for other purposes, such as testing or adding files for webpack to watch. In that case you would set up a `require.context` within a file which you then point to through a webpack `entry`.
 
 T> Note that webpack will also turn statements written in the form `require('./pages/' + pageName + '.md')` into the `require.context` format!
 
