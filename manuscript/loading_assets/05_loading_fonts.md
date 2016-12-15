@@ -11,7 +11,11 @@ If we go with just one format, we can use a similar setup as for images and rely
 ```javascript
 {
   test: /\.woff$/,
-  loader: 'url-loader?limit=50000',
+  loader: 'url-loader',
+  query: {
+    limit: 50000
+  },
+  // An array of paths or an individual path
   include: PATHS.fonts
 }
 ```

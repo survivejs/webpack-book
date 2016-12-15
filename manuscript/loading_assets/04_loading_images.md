@@ -17,7 +17,11 @@ In order to load *.jpg* and *.png* files while inlining files below 25kB, we wou
 ```javascript
 {
   test: /\.(jpg|png)$/,
-  loader: 'url-loader?limit=25000',
+  loader: 'url-loader',
+  query: {
+    limit: 25000
+  },
+  // An array of paths or an individual path
   include: PATHS.images
 }
 ```

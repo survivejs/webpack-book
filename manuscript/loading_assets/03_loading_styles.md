@@ -9,19 +9,12 @@ Loading vanilla CSS is fairly straightforward as you can see in the example belo
 **webpack.config.js**
 
 ```javascript
-const common = {
-  ...
-  module: {
-    loaders: [
-      {
-        test: /\.css$/,
-        loaders: ['style-loader', 'css-loader'],
-        include: PATHS.style
-      }
-    ]
-  },
-  ...
-};
+{
+  test: /\.css$/,
+  loaders: ['style-loader', 'css-loader'],
+  // An array of paths or an individual path
+  include: PATHS.style
+}
 ```
 
 When webpack evaluates the files, first [css-loader](https://www.npmjs.com/package/css-loader) goes through possible `@import` and `url()` statements within the matched files and treats them as regular `require`. This allows us to rely on various other loaders, such as [file-loader](https://www.npmjs.com/package/file-loader) or [url-loader](https://www.npmjs.com/package/url-loader). We will see how these work in the next chapters.
