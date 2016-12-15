@@ -151,6 +151,8 @@ T> Note that we are missing [react-dom](https://www.npmjs.com/package/react-dom)
 
 T> `webpack.EnvironmentPlugin(['NODE_ENV'])` is a shortcut that allows you to refer to environment variables. It uses `DefinePlugin` internally and can be useful by itself in more limited cases. You can achieve the same effect by passing `process.env.NODE_ENV` to the custom function we made.
 
+T> Even though you can let your server to gzip the files using a suitable middleware, you can also setup webpack to generate the gzips for you using [compression-webpack-plugin](https://www.npmjs.com/package/compression-webpack-plugin). This can save some processing time on the server.
+
 ## Conclusion
 
 Even though simply setting `process.env.NODE_ENV` the right way can help a lot especially with React related code, we can do better. We can split `app` and `vendor` bundles and add hashes to their filenames to benefit from browser caching. After all, the data that you don't need to fetch loads the fastest.
