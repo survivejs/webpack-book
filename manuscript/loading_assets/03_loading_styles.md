@@ -24,7 +24,7 @@ const common = {
 };
 ```
 
-When Webpack evaluates the files, first [css-loader](https://www.npmjs.com/package/css-loader) goes through possible `@import` and `url()` statements within the matched files and treats them as regular `require`. This allows us to rely on various other loaders, such as [file-loader](https://www.npmjs.com/package/file-loader) or [url-loader](https://www.npmjs.com/package/url-loader). We will see how these work in the next chapters.
+When webpack evaluates the files, first [css-loader](https://www.npmjs.com/package/css-loader) goes through possible `@import` and `url()` statements within the matched files and treats them as regular `require`. This allows us to rely on various other loaders, such as [file-loader](https://www.npmjs.com/package/file-loader) or [url-loader](https://www.npmjs.com/package/url-loader). We will see how these work in the next chapters.
 
 *file-loader* generates files, whereas *url-loader* can create inline data URLs for small resources. This can be useful for optimizing application loading. You avoid unnecessary requests while providing a slightly bigger payload. Small improvements can yield large benefits if you depend on a lot of small resources in your style definitions.
 
@@ -38,7 +38,7 @@ T> If you want to enable sourcemaps for CSS, you should use `['style', 'css?sour
 
 ![Less](images/less.png)
 
-[Less](http://lesscss.org/) is a popular CSS processor that is packed with functionality. In Webpack using Less doesn't take a lot of effort. [less-loader](https://www.npmjs.com/package/less-loader) deals with the heavy lifting. You should install [less](https://www.npmjs.com/package/less) as well given it's a peer dependency of *less-loader*. Consider the following minimal setup:
+[Less](http://lesscss.org/) is a popular CSS processor that is packed with functionality. In webpack using Less doesn't take a lot of effort. [less-loader](https://www.npmjs.com/package/less-loader) deals with the heavy lifting. You should install [less](https://www.npmjs.com/package/less) as well given it's a peer dependency of *less-loader*. Consider the following minimal setup:
 
 ```javascript
 {
@@ -54,7 +54,7 @@ There is also support for Less plugins, sourcemaps, and so on. To understand how
 
 ![Sass](images/sass.png)
 
-[Sass](http://sass-lang.com/) is a popular alternative to Less. You should use [sass-loader](https://www.npmjs.com/package/sass-loader) with it. Remember to install [node-sass](https://www.npmjs.com/package/node-sass) to your project as the loader has a peer dependency on that. Webpack doesn't take much configuration:
+[Sass](http://sass-lang.com/) is a popular alternative to Less. You should use [sass-loader](https://www.npmjs.com/package/sass-loader) with it. Remember to install [node-sass](https://www.npmjs.com/package/node-sass) to your project as the loader has a peer dependency on that. webpack doesn't take much configuration:
 
 **webpack.config.js**
 
@@ -74,7 +74,7 @@ T> If you want more performance especially during development, check out [fast-s
 
 ### Imports in LESS and SASS
 
-If you import one LESS/SASS file from an other, use the exact same pattern as anywhere else. Webpack will dig into these files and figure out the dependencies.
+If you import one LESS/SASS file from an other, use the exact same pattern as anywhere else. webpack will dig into these files and figure out the dependencies.
 
 ```less
 @import "./variables.less";
@@ -126,7 +126,7 @@ To start using yeticss with Stylus, you must import it to one of your app's .sty
 
 ![PostCSS](images/postcss.png)
 
-[PostCSS](https://github.com/postcss/postcss) allows you to perform transformations over CSS through JavaScript plugins. You can even find plugins that provide you Sass-like features. PostCSS can be thought as the equivalent of Babel for styling. It can be used through [postcss-loader](https://www.npmjs.com/package/postcss-loader) with Webpack.
+[PostCSS](https://github.com/postcss/postcss) allows you to perform transformations over CSS through JavaScript plugins. You can even find plugins that provide you Sass-like features. PostCSS can be thought as the equivalent of Babel for styling. It can be used through [postcss-loader](https://www.npmjs.com/package/postcss-loader) with webpack.
 
 The example below illustrates how to set up autoprefixing using it. It also sets up [precss](https://www.npmjs.com/package/precss), a PostCSS plugin that allows you to use Sass-like markup in your CSS. You can mix this technique with other loaders to allow autoprefixing there.
 
@@ -157,7 +157,7 @@ The example below illustrates how to set up autoprefixing using it. It also sets
 
 ![cssnext](images/cssnext.jpg)
 
-[cssnext](https://cssnext.github.io/) is a PostCSS plugin that allows us to experience the future now. There are some restrictions, but it may be worth a go. In Webpack it is simply a matter of installing [cssnext-loader](https://www.npmjs.com/package/cssnext-loader) and attaching it to your CSS configuration. In our case, you would end up with the following:
+[cssnext](https://cssnext.github.io/) is a PostCSS plugin that allows us to experience the future now. There are some restrictions, but it may be worth a go. In webpack it is simply a matter of installing [cssnext-loader](https://www.npmjs.com/package/cssnext-loader) and attaching it to your CSS configuration. In our case, you would end up with the following:
 
 **webpack.config.js**
 
@@ -173,4 +173,4 @@ Alternatively, you could consume it through *postcss-loader* as a plugin if you 
 
 ## Conclusion
 
-Loading style files through Webpack is fairly straight-forward. It supports even advanced techniques like [CSS Modules](https://github.com/css-modules/webpack-demo). CSS Modules make CSS local by default. This can be a great boon especially for developers who work with component oriented libraries. The approach works beautifully there.
+Loading style files through webpack is fairly straight-forward. It supports even advanced techniques like [CSS Modules](https://github.com/css-modules/webpack-demo). CSS Modules make CSS local by default. This can be a great boon especially for developers who work with component oriented libraries. The approach works beautifully there.
