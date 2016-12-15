@@ -46,6 +46,8 @@ module.exports = validate(config);
 
 It is possible you may need to enable sourcemaps in your browser for this to work. See [Chrome](https://developer.chrome.com/devtools/docs/javascript-debugging), [Firefox](https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Use_a_source_map), [IE Edge](https://developer.microsoft.com/en-us/microsoft-edge/platform/documentation/f12-devtools-guide/debugger/#source-maps), and [Safari](https://developer.apple.com/library/safari/documentation/AppleApplications/Conceptual/Safari_Developer_Guide/ResourcesandtheDOM/ResourcesandtheDOM.html#//apple_ref/doc/uid/TP40007874-CH3-SW2) instructions for further details.
 
+W> Sometimes sourcemaps [might not update in Chrome inspector](https://github.com/webpack/webpack/issues/2478). For now the temporary fix is to force the inspector to reload itself by using *alt-r*.
+
 ## Sourcemap Types Supported by Webpack
 
 Even though a sourcemap type, such as `eval-source-map` or `eval`, can be enough during development, Webpack provides other types too. Given these will be generated within your bundles, they won't be useful during production.
