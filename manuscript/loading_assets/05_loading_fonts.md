@@ -42,7 +42,7 @@ In case we want to make sure our site looks good on a maximum amount of browsers
   // Set mimetype just in case.
   loader: 'url-loader',
   query: {
-    name: 'font/[hash].[ext]',
+    name: 'fonts/[hash].[ext]',
     limit: 5000,
     mimetype: 'application/font-woff'
   },
@@ -52,9 +52,32 @@ In case we want to make sure our site looks good on a maximum amount of browsers
   test: /\.ttf$|\.eot$/,
   loader: 'file-loader',
   query: {
-    name: 'font/[hash].[ext]'
+    name: 'fonts/[hash].[ext]'
   },
   include: PATHS.fonts
+}
+```
+
+## Manipulating `file-loader` Output Path and `publicPath`
+
+As discussed above and in [webpack issue tracker](https://github.com/webpack/file-loader/issues/32#issuecomment-250622904), *file-loader* allows shaping the output. This way you can output your fonts below `fonts/`, images below `images/`, and so on over using the root.
+
+Furthermore, it's possible to manipulate `publicPath` and override the default per loader definition. The following example illustrates these techniques together:
+
+```javascript
+{
+  // Match woff2 in addition to patterns like .woff?v=1.1.1.
+  test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+  loader: 'url-loader',
+  query: {
+    limit: 50000,
+    mimetype: 'application/font-woff',
+    // Output below the fonts directory
+    name: './fonts/[hash].[ext]',
+    // Tweak publicPath to fix CSS lookups to take
+    // the directory into account.
+    publicPath: '../'
+  }
 }
 ```
 
