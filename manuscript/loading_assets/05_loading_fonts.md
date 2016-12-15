@@ -58,6 +58,10 @@ In case we want to make sure our site looks good on a maximum amount of browsers
 }
 ```
 
+## Generating Font Files Based on SVGs
+
+Sometimes you might have a bunch of SVG files that would be nice to bundle as font files of their own. The setup is a little involved, but [fontgen-loader](https://www.npmjs.com/package/fontgen-loader) achieves just this.
+
 ## Manipulating `file-loader` Output Path and `publicPath`
 
 As discussed above and in [webpack issue tracker](https://github.com/webpack/file-loader/issues/32#issuecomment-250622904), *file-loader* allows shaping the output. This way you can output your fonts below `fonts/`, images below `images/`, and so on over using the root.
