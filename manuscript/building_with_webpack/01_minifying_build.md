@@ -167,11 +167,11 @@ If you enable mangling, it is a good idea to set `except: ['webpackJsonp']` to a
 
 T> Dropping the `console` statements can be achieved through Babel too by using the [babel-plugin-remove-console](https://www.npmjs.com/package/babel-plugin-remove-console) plugin. Babel is discussed in greater detail at the *Configuring React* chapter.
 
-T> Yet another way to control Uglify would be to use the [uglify-loader](https://www.npmjs.com/package/uglify-loader). That gives yet another way to control minification behavior.
+## Other Solutions
 
-T> [webpack-parallel-uglify-plugin](https://www.npmjs.com/package/webpack-parallel-uglify-plugin) allows you to parallelize the minifying step and may yield extra performance as webpack doesn't run in parallel by default.
+Yet another way to control Uglify would be to use the [uglify-loader](https://www.npmjs.com/package/uglify-loader). That gives yet another way to control minification behavior. [webpack-parallel-uglify-plugin](https://www.npmjs.com/package/webpack-parallel-uglify-plugin) allows you to parallelize the minifying step and may yield extra performance as webpack doesn't run in parallel by default.
 
-T> Instead of UglifyJS, you can consider trying [webpack-closure-compiler](https://www.npmjs.com/package/webpack-closure-compiler). It runs parallel and may even give smaller result.
+Instead of UglifyJS, you can consider trying [webpack-closure-compiler](https://www.npmjs.com/package/webpack-closure-compiler). It runs parallel and may even give smaller result. [babili](https://www.npmjs.com/package/babili), a Babel specific solution, is yet another option. It can be used either as a CLI tool or through [babili-webpack-plugin](https://www.npmjs.com/package/babili-webpack-plugin).
 
 ## Minifying CSS
 
