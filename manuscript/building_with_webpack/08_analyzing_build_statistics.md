@@ -71,6 +71,7 @@ If you execute `npm run stats` now, you should find *stats.json* at your project
 * [th0r/webpack-bundle-analyzer](https://github.com/th0r/webpack-bundle-analyzer) provides a zoomable treemap.
 * [robertknight/webpack-bundle-size-analyzer](https://github.com/robertknight/webpack-bundle-size-analyzer) gives a text based composition.
 * [inspectpack](https://github.com/formidablelabs/inspectpack) is useful for figuring out specific places of code to improve.
+* [webpack-unused](https://www.npmjs.com/package/webpack-unused) can be used to understand which assets are no longer used and can be removed from the project.
 
 When you are optimizing the size of your bundle output, these tools are invaluable. The official tool has the most functionality, but even a simple visualization can reveal problem spots.
 
