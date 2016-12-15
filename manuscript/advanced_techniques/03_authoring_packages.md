@@ -132,6 +132,8 @@ An alternative way to consume a library is to point at it directly in *package.j
 
 T> If you want to see what files will be published to npm, consider using a tool known as [irish-pub](https://www.npmjs.com/package/irish-pub). It will give you a listing to review. You can also use [publish-diff](https://www.npmjs.com/package/publish-diff) to get a better of the changes that are going to be published.
 
+T> A package known as [np](https://www.npmjs.com/package/np) gives an interactive UI for publishing packages. It performs more work by default. [semantic-release](https://www.npmjs.com/package/semantic-release) takes the idea one step further and automates entire process.
+
 ### Bumping a Version
 
 In order to bump your package version, you'll just need to invoke one of these commands:
