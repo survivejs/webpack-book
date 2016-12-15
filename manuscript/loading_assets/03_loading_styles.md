@@ -126,24 +126,26 @@ The example below illustrates how to set up autoprefixing using it. It also sets
 **webpack.config.js**
 
 ```javascript
-    const autoprefixer = require('autoprefixer');
-    const precss = require('precss');
+const autoprefixer = require('autoprefixer');
+const precss = require('precss');
 
-    module.exports = {
-      module: {
-        loaders: [
-          {
-            test: /\.css$/,
-            loaders: ['style-loader', 'css-loader', 'postcss-loader'],
-            include: PATHS.style
-          }
-        ]
-      },
-      // PostCSS plugins go here
-      postcss: function () {
-          return [autoprefixer, precss];
+module.exports = {
+  module: {
+    loaders: [
+      {
+        test: /\.css$/,
+        loaders: ['style-loader', 'css-loader', 'postcss-loader'],
+        include: PATHS.style
       }
-    };
+    ]
+  },
+  // PostCSS plugins go here. Note the wrapping! It is
+  // required for hot loading to work. PostCSS will work
+  // without too, but this is the preferred way.
+  postcss: function () {
+    return [autoprefixer, precss];
+  }
+};
 ```
 
 ### cssnext
