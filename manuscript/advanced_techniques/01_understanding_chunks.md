@@ -159,6 +159,8 @@ T> Webpack 2 supports [import](https://github.com/tc39/proposal-dynamic-import) 
 
 T> There's a [full example](https://github.com/survivejs-demos/lunr-demo) showing how it all goes together with lunr, React, and Webpack.
 
+T> Incidentally it is possible to implement Google's [PRPL pattern](https://developers.google.com/web/fundamentals/performance/prpl-pattern/) using lazy loading. PRPL (Push, Render, Pre-cache, Lazy-load) has been designed mobile web in mind and canbe implemented using webpack.
+
 ## Dynamic Loading with Webpack
 
 Beyond `require.ensure`, there's another type of `require` that you should be aware of. It's [require.context](https://webpack.js.org/configuration/entry-context/#context). `require.context` is a type of `require` which contents aren't known compile-time.
