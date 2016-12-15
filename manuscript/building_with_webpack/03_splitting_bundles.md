@@ -225,6 +225,8 @@ const common = {
 
 You can still exclude certain dependencies from the `vendor` entry point if you want by adding a bit of code for that. You can for instance `filter` out the dependencies you don't want there.
 
+T> `webpack.ProgressPlugin` or [nyan-progress-webpack-plugin](https://www.npmjs.com/package/nyan-progress-webpack-plugin) can be used to get tidier output during the build process. Take care with Continuous Integration (CI) systems like Travis, though, as they might clobber the output.
+
 ## Conclusion
 
 The situation is far better now. Note how small `app` bundle compared to the `vendor` bundle. In order to really benefit from this split, we should set up caching. This can be achieved by adding cache busting hashes to the filenames.
