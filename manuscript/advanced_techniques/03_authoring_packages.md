@@ -222,6 +222,8 @@ Since we want to avoid having to run the command directly whenever we publish a 
 
 Make sure you execute `npm i babel --save-dev` to include the tool into your project.
 
+W> It is important to note that in npm 3 `prepublish` hook will get triggered also when you run `npm install` on the project locally. Sometimes this can be surprising and counter-productive even. A solution known as [in-publish](https://www.npmjs.com/package/in-publish) allows you to tune the behavior and skip the installation step. You need to prepend your script with `in-publish && babel ...` kind of line for this to work. npm 4 and the following versions will fix this confusing behavior.
+
 You probably don't want the directory content to end up in your Git repository. In order to avoid this and to keep your `git status` clean, consider this sort of `.gitignore`:
 
 ```bash
