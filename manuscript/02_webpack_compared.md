@@ -147,7 +147,7 @@ gulp.task('default', ['watch', 'scripts']);
 
 Given the configuration is code, you can always just hack it if you run into troubles. You can wrap existing Node.js packages as Gulp plugins, and so on. Compared to Grunt, you have a clearer idea of what's going on. You still end up writing a lot of boilerplate for casual tasks, though. That is where some newer approaches come in.
 
-T> [gulp-webpack](https://www.npmjs.com/package/gulp-webpack) allows you to use Webpack in a Gulp environment.
+T> [webpack-stream](https://www.npmjs.com/package/webpack-stream) allows you to use Webpack in a Gulp environment.
 
 T> [Fly](https://github.com/bucaran/fly) is a similar tool as Gulp. It relies on ES6 generators instead.
 
