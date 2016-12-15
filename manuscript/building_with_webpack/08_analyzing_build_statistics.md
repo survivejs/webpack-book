@@ -75,6 +75,8 @@ If you execute `npm run stats` now, you should find *stats.json* at your project
 
 When you are optimizing the size of your bundle output, these tools are invaluable. The official tool has the most functionality, but even a simple visualization can reveal problem spots.
 
+T> [source-map-explorer](https://www.npmjs.com/package/source-map-explorer) is a tool independent from webpack. It allows you to get insight into your build by using sourcemaps. It gives a treemap based visualization showing what code contributes to the result.
+
 ## Webpack Stats Plugin
 
 If you want to manage stats through a plugin, check out [stats-webpack-plugin](https://www.npmjs.com/package/stats-webpack-plugin). It gives you a bit more control over the output. You can use it to exclude certain dependencies from the output for example.
