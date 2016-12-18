@@ -38,19 +38,24 @@ I've annotated a part of *package.json* of my [React component boilerplate](http
 {
   /* Name of the project */
   "name": "react-component-boilerplate",
+
   /* Brief description */
   "description": "Boilerplate for React.js components",
+
   /* Who is the author + optional email + optional site */
   "author": "Juho Vepsäläinen <email goes here> (site goes here)",
+
   /* Version of the package */
   "version": "0.0.0",
-  /* `npm run <name>` */
+
+  /* `npm run <name>` - `npm run` to get the available commands */
   "scripts": {
     "start": "webpack-dev-server",
 
-    "test": "karma start",
-    "test:tdd": "npm run test -- --auto-watch --no-single-run",
-    "test:lint": "eslint . --ext .js --ext .jsx --cache",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch",
+    "test:lint": "eslint . --ext .js --ext .jsx --ignore-path .gitignore --ignore-pattern dist --cache",
 
     "gh-pages": "webpack",
     "gh-pages:deploy": "gh-pages -d gh-pages",
@@ -64,24 +69,24 @@ I've annotated a part of *package.json* of my [React component boilerplate](http
     "preversion": "npm run test && npm run dist && npm run dist:min && git commit --allow-empty -am \"Update dist\"",
     "prepublish": "npm run dist:modules",
     "postpublish": "npm run gh-pages && npm run gh-pages:deploy",
+
     /* If your library is installed through Git, you may want to transpile it */
     "postinstall": "node lib/post_install.js"
   },
+
   /* Entry point for terminal (i.e., <package name>) */
   /* Don't set this unless you intend to allow CLI usage */
   "bin": "./index.js",
+
   /* Entry point (defaults to index.js) */
   "main": "dist-modules",
-  /* Package dependencies */
-  "dependencies": {},
-  /* Package development dependencies */
-  "devDependencies": {
-    "babel": "^6.3.17",
-    ...
-    "webpack": "^1.12.2",
-    "webpack-dev-server": "^1.12.0",
-    "webpack-merge": "^0.7.0"
-  },
+
+  /* Package dependencies needed to use it (peer deps can work too, see beloq) */
+  "dependencies": { ... },
+
+  /* Package development dependencies needed to develop/compile it */
+  "devDependencies": { ... },
+
   /* Package peer dependencies. The consumer will fix exact versions. */
   /* In npm3 these won't get installed automatically and it's up to the */
   /* user to define which versions to use. */
@@ -90,7 +95,8 @@ I've annotated a part of *package.json* of my [React component boilerplate](http
   "peerDependencies": {
     "lodash": ">= 3.5.0 < 4.0.0",
     "react": ">= 0.11.2 < 16.0.0"
-  }
+  },
+
   /* Links to repository, homepage, and issue tracker */
   "repository": {
     "type": "git",
@@ -100,6 +106,7 @@ I've annotated a part of *package.json* of my [React component boilerplate](http
   "bugs": {
     "url": "https://github.com/survivejs/react-component-boilerplate/issues"
   },
+
   /* Keywords related to package. */
   /* Fill this well to make the package findable. */
   "keywords": [
@@ -107,6 +114,7 @@ I've annotated a part of *package.json* of my [React component boilerplate](http
     "reactjs",
     "boilerplate"
   ],
+
   /* Which license to use */
   "license": "MIT"
 }
