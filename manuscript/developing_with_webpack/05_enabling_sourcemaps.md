@@ -10,7 +10,7 @@ W> You may **not** want to generate a sourcemap for your production bundle as th
 
 ## Enabling Sourcemaps During Development
 
-To enable sourcemaps during development, we can use a decent default known as `eval-source-map` and for production we can use normal sourcemaps (separate file) like this:
+To enable sourcemaps during development, we can use a default such as `eval-source-map`. This gives good quality for traces while trading off performance. The generated sourcemap will be inlined in the development bundle. The `source-map` option yields a separate file. You can set these up as follows:
 
 **webpack.config.js**
 
@@ -52,7 +52,9 @@ W> Sometimes sourcemaps [might not update in Chrome inspector](https://github.co
 
 ## Sourcemap Types Supported by Webpack
 
-Even though a sourcemap type, such as `eval-source-map` or `eval`, can be enough during development, Webpack provides other types too. Given these will be generated within your bundles, they won't be useful during production.
+Even though a sourcemap type, such as `eval-source-map` or `eval`, can be enough during development, webpack provides other types too. Given these will be generated within your bundles, they won't be useful during production.
+
+It will take experimentation to find the right option. You can start from the highest quality one and if that begins to feel slow, try out the faster alternatives.
 
 The following table adapted from the [documentation](https://webpack.js.org/configuration/devtool/#devtool) contains the supported types arranged based on speed. The lower the quality, the higher build and rebuild speeds are possible.
 
