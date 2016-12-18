@@ -28,11 +28,13 @@ In addition, you will need a little bit of configuration:
 var common = {
   ...
   module: {
-    preLoaders: [
+    rules: [
       {
-        test: /\.jsx?$/,
-        loaders: ['jshint-loader'],
-        // define an include so we check just the files we need
+        test: /\.js$/,
+        loader: 'jshint-loader',
+        // Execute before other loaders
+        enforce: 'pre',
+        // Define an include so we check just the files we need
         include: PATHS.app
       }
     ]
@@ -248,10 +250,11 @@ A good way to set it up is to go through `preLoaders` like this:
 const common = {
   ...
   module: {
-    preLoaders: [
+    rules: [
       {
-        test: /\.jsx?$/,
-        loaders: ['eslint-loader'],
+        test: /\.(js|jsx)$/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
         include: PATHS.app
       }
     ]
@@ -422,10 +425,11 @@ const stylelint = require('stylelint');
 const common = {
   ...
   module: {
-    preLoaders: [
+    rules: [
       {
         test: /\.css$/,
-        loaders: ['postcss-loader'],
+        loader: 'postcss-loader',
+        enforce: 'pre',
         include: PATHS.app
       },
       ...
