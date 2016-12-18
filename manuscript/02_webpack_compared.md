@@ -16,6 +16,7 @@ There are a couple of developing alternatives as well. I have listed a couple of
 
 * [JSPM](http://jspm.io/) pushes package management directly to the browser. It relies on [System.js](https://github.com/systemjs/systemjs), a dynamic module loader. It skips the bundling step altogether during development. You can generate a production bundle using it, however. Glen Maddern goes into good detail at his [video about JSPM](https://www.youtube.com/watch?t=33&v=iukBMY4apvI).
 * [pundle](https://www.npmjs.com/package/pundle) advertises itself as a next generation bundler and notes particularly its performance.
+* [rollup](https://www.npmjs.com/package/rollup) focuses particularly on bundling ES6 code. A feature known as *tree shaking* is one of its main attractions. It allows you to drop unused code based on usage.
 * [AssetGraph](https://www.npmjs.com/package/assetgraph) takes entirely different approach and builds on top of tried and true HTML semantics making it highly useful for tasks like [hyperlink analysis](https://www.npmjs.com/package/hyperlink) or [structural analysis](https://www.npmjs.com/package/assetviz).
 * [FuseBox](https://github.com/fuse-box/fuse-box) is bundler focusing on speed. It uses zero-configuration approach and aims to be usable out of the box.
 
