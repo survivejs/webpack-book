@@ -2,7 +2,7 @@
 
 Our current setup doesn't clean the `build` directory between builds. As this can get annoying if we change our setup, we can use a plugin to clean the directory for us.
 
-Another valid way to resolve the issue would be to handle this outside of Webpack. You could solve it on the system level through a npm script. In this case you would trigger `rm -rf ./build && webpack` or `rimraf ./build && webpack`. A task runner could work as well.
+Another valid way to resolve the issue would be to handle this outside of Webpack. You could solve it on the system level through a npm script. In this case you would trigger `rm -rf ./build && webpack` or `rimraf ./build && webpack` to keep it cross-platform. A task runner could work as well.
 
 ## Setting Up *clean-webpack-plugin*
 
@@ -46,17 +46,16 @@ We can connect it with our project like this:
 ```javascript
 ...
 
-// Detect how npm is run and branch based on that
-switch(process.env.npm_lifecycle_event) {
-  case 'build':
-    config = merge(
+module.exports = function(env) {
+  if (env === 'build') {
+    return merge(
       common,
       {
         devtool: 'source-map',
         output: {
           path: PATHS.build,
           filename: '[name].[chunkhash].js',
-          // This is used for require.ensure. The setup
+          // This is used for code splitting. The setup
           // will work without but this is useful to set.
           chunkFilename: '[chunkhash].js'
         }
@@ -65,13 +64,11 @@ leanpub-start-insert
       parts.clean(PATHS.build),
 leanpub-end-insert
       ...
-    );
-    break;
-  default:
-    ...
-}
+    };
+  }
 
-module.exports = validate(config);
+  ...
+};
 ```
 
 After this change, our `build` directory should remain nice and tidy when building. You can verify this by building the project and making sure no old files remained in the output directory.
