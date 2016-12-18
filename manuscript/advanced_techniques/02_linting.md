@@ -263,7 +263,9 @@ const common = {
 
 If you execute `npm start` now and break some linting rule while developing, you should see that in the terminal output. The same should happen when you build the project.
 
-T> Especially on bigger projects it may be beneficial to run ESLint outside of webpack. That keeps code compilation fast while still giving the advantage of linting. Most IDEs and editors have good integration as well so you can spot issues as you develop. This applies to other linting tools as well.
+T> Especially on bigger projects it may be beneficial to run ESLint outside of webpack. That keeps code compilation fast while still giving the advantage of linting. Solutions like [lint-staged](https://www.npmjs.com/package/lint-staged) and [fastlint](https://www.npmjs.com/package/fastlint) can make this even faster.
+
+T> Most IDEs and editors have good ESLint integration so you can spot issues as you develop. This applies to other linting tools as well.
 
 ## Customizing ESLint
 
