@@ -6,6 +6,8 @@ To improve the debuggability of the application, we can set up sourcemaps for bo
 
 I'll show you how to enable sourcemaps for JavaScript code next. It is a good idea to study the documentation of the loaders you are using to see specific tips. For example with TypeScript you may need to set a certain flag to make it to work.
 
+W> You may **not** want to generate a sourcemap for your production bundle as this makes it easy to inspect your application (depends on whether you want this or not, good for staging!). Simply skip the `devtool` field then. This also speeds up your build a notch.
+
 ## Enabling Sourcemaps During Development
 
 To enable sourcemaps during development, we can use a decent default known as `eval-source-map` and for production we can use normal sourcemaps (separate file) like this:
