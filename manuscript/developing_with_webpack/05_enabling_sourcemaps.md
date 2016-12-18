@@ -96,6 +96,8 @@ const config = {
 
 T> The [official documentation](https://webpack.js.org/configuration/output/#output-sourcemapfilename) digs into devtool specifics.
 
+W> If you are using any of the *cheap* options and `UglifyJsPlugin`, you need to remember to enable `sourceMap: true` for the plugin. Otherwise the result won't be what you expect.
+
 ## `SourceMapDevToolPlugin`
 
 If you want more control over sourcemap generation, it is possible to use the `SourceMapDevToolPlugin` instead. This way you can generate sourcemaps only for the portions of the code you want while having strict control over the result. In case you use the plugin, you can skip `devtool` option altogether.
