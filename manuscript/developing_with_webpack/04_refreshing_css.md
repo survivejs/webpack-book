@@ -21,7 +21,7 @@ leanpub-start-insert
 exports.setupCSS = function(paths) {
   return {
     module: {
-      loaders: [
+      rules: [
         {
           test: /\.css$/,
           loaders: ['style-loader', 'css-loader'],
@@ -114,7 +114,7 @@ When you `require` a CSS file like this, Webpack will include it to the bundle w
 
 Specification known as [CSS Modules](https://github.com/css-modules/css-modules) allows you to default to local scoping. Webpack's *css-loader* supports it. So if you want local scope by default over a global one, enable them through `css?modules`. After this you'll need to wrap your global styles within `:global(body) { ... }` kind of declarations.
 
-T> The query syntax, `css?modules` is discussed in greater detail in the *Loader Definitions* chapter. There are multiple ways to achieve the same effect in Webpack.
+T> The query syntax, `css?modules`, and its alternatives is discussed in greater detail in the *Loader Definitions* chapter. There are multiple ways to achieve the same effect in Webpack.
 
 In this case the `require` statement will give you the local classes you can then bind to elements. Assuming we had styling like this:
 

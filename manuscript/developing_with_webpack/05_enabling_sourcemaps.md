@@ -138,7 +138,7 @@ const config = {
 
 ## Sourcemaps for Styling
 
-If you want to enable sourcemaps for styling files, you can achieve this using a query parameter. Loaders, such as *css-loader*, *sass-loader*, and *less-loader*, accept a `?sourceMap` (i.e, `css?sourceMap`).
+If you want to enable sourcemaps for styling files, you can achieve this using a query parameter or by setting it through an option. Loaders, such as *css-loader*, *sass-loader*, and *less-loader*, accept a `?sourceMap` (i.e, `css-loader?sourceMap`).
 
 This isn't without gotchas. The *css-loader* documentation notes that relative paths within CSS declarations are known to be buggy and suggests using setting an absolute public path (`output.publicPath`) resolving to the server url.
 

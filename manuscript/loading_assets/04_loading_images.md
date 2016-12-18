@@ -18,7 +18,7 @@ In order to load *.jpg* and *.png* files while inlining files below 25kB, we wou
 {
   test: /\.(jpg|png)$/,
   loader: 'url-loader',
-  query: {
+  options: {
     limit: 25000
   },
   // An array of paths or an individual path

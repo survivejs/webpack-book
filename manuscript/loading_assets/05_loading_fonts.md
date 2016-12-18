@@ -12,7 +12,7 @@ If we go with just one format, we can use a similar setup as for images and rely
 {
   test: /\.woff$/,
   loader: 'url-loader',
-  query: {
+  options: {
     limit: 50000
   },
   // An array of paths or an individual path
@@ -27,7 +27,7 @@ A more elaborate way to achieve a similar result would be to use:
   // Match woff2 in addition to patterns like .woff?v=1.1.1.
   test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
   loader: 'url-loader',
-  query: {
+  options: {
     limit: 50000,
     mimetype: 'application/font-woff',
     name: './fonts/[hash].[ext]'
@@ -45,7 +45,7 @@ In case we want to make sure our site looks good on a maximum amount of browsers
   // Inline small woff files and output them below font/.
   // Set mimetype just in case.
   loader: 'url-loader',
-  query: {
+  options: {
     name: 'fonts/[hash].[ext]',
     limit: 5000,
     mimetype: 'application/font-woff'
@@ -55,7 +55,7 @@ In case we want to make sure our site looks good on a maximum amount of browsers
 {
   test: /\.ttf$|\.eot$/,
   loader: 'file-loader',
-  query: {
+  options: {
     name: 'fonts/[hash].[ext]'
   },
   include: PATHS.fonts
@@ -77,7 +77,7 @@ Furthermore, it's possible to manipulate `publicPath` and override the default p
   // Match woff2 in addition to patterns like .woff?v=1.1.1.
   test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
   loader: 'url-loader',
-  query: {
+  options: {
     limit: 50000,
     mimetype: 'application/font-woff',
     // Output below the fonts directory
