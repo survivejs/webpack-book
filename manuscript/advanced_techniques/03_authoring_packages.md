@@ -81,7 +81,12 @@ I've annotated a part of *package.json* of my [React component boilerplate](http
   /* Entry point (defaults to index.js) */
   "main": "dist-modules",
 
-  /* Package dependencies needed to use it (peer deps can work too, see beloq) */
+  /* ES6 entry points for bundlers to pick up */
+  /* This assumes only standard features are used! */
+  "jsnext:main": "./src",
+  "module": "./src",
+
+  /* Package dependencies needed to use it (peer deps can work too, see below) */
   "dependencies": { ... },
 
   /* Package development dependencies needed to develop/compile it */
