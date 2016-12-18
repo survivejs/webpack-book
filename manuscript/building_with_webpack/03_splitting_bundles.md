@@ -1,12 +1,16 @@
 # Splitting Bundles
 
-Currently the production version of our application is a single JavaScript file. This isn't ideal. If we change the application, the client has to download vendor dependencies as well. It would be better to download only the changed portion. If the vendor dependencies change, then the client should fetch only the vendor dependencies. The same goes for actual application code.
+Currently the production version of our application is a single JavaScript file. This isn't ideal. If we change the application, the client has to download vendor dependencies as well. It would be better to download only the changed portion. If the vendor dependencies change, then the client should fetch only the vendor dependencies. The same goes for actual application code. This technique is known as **bundle splitting**.
 
-This technique is known as **bundle splitting**. We can push the vendor dependencies to a bundle of its own and benefit from client level caching. We can do this in a such way that the whole size of the application remains the same. Given there are more requests to perform, there's a slight overhead. But the benefit of caching makes up for this cost.
+## The Idea of Bundle Splitting
+
+Using bundle splitting, we can push the vendor dependencies to a bundle of its own and benefit from client level caching. We can do this in a such way that the whole size of the application remains the same. Given there are more requests to perform, there's a slight overhead. But the benefit of caching makes up for this cost.
 
 To give you a simple example, instead of having *app.js* (100 kB), we could end up with *app.js* (10 kB) and *vendor.js* (90 kB). Now changes made to the application are cheap for the clients that have already used the application earlier.
 
 Caching comes with its own problems. One of those is cache invalidation. We'll discuss a potential approach related to that in the next chapter. But before that, let's split some bundles.
+
+Bundle splitting isn't the only way out. In the *Understanding Chunks* chapter we will discuss a technique known as **code splitting** that exists within bundle splitting and allows you to go more granular. Effectively it allows you to load code on demand based on prerequisites related to the user interface.
 
 ## Setting Up a `vendor` Bundle
 
@@ -18,17 +22,14 @@ To improve the situation, we can define a `vendor` entry containing React. This 
 ...
 
 const common = {
-  // Entry accepts a path or an object of entries.
-  // We'll be using the latter form given it's
-  // convenient with more complex configurations.
   entry: {
+leanpub-start-delete
+    app: PATHS.app
+leanpub-end-delete
 leanpub-start-insert
     app: PATHS.app,
     vendor: ['react']
 leanpub-end-insert
-leanpub-start-delete
-    app: PATHS.app
-leanpub-end-delete
   },
   output: {
     path: PATHS.build,
@@ -47,22 +48,21 @@ leanpub-end-delete
 We have two separate entries, or **entry chunks**, now. The *Understanding Chunks* chapter digs into other available chunk types. Now we have a mapping between entries and the output configuration. `[name].js` will kick in based on the entry name and if you try to generate a build now (`npm run build`), you should see something like this:
 
 ```bash
-[webpack-validator] Config is valid.
-Hash: 6b55239dc87e2ae8efd6
-Version: webpack 1.13.0
-Time: 4168ms
-        Asset       Size  Chunks             Chunk Names
-       app.js    25.4 kB       0  [emitted]  app
-    vendor.js    21.6 kB       1  [emitted]  vendor
-   app.js.map     307 kB       0  [emitted]  app
-vendor.js.map     277 kB       1  [emitted]  vendor
-   index.html  190 bytes          [emitted]
-   [0] ./app/index.js 123 bytes {0} [built]
-   [0] multi vendor 28 bytes {1} [built]
-  [36] ./app/component.js 136 bytes {0} [built]
-    + 35 hidden modules
+Hash: 429e76650de02eccd6f9
+Version: webpack 2.2.0-rc.1
+Time: 1455ms
+     Asset       Size  Chunks           Chunk Names
+    app.js    24.1 kB  0[emitted]  app
+ vendor.js    20.1 kB  1[emitted]  vendor
+index.html  236 bytes  [emitted]
+  [27] ./app/component.js 136 bytes {0} [built]
+  [28] ./app/main.css 904 bytes {0} [built]
+  [29] ./~/css-loader!./app/main.css 190 bytes {0} [built]
+  [32] ./app/index.js 124 bytes {0} [built]
+  [33] multi vendor 28 bytes {1} [built]
+    + 29 hidden modules
 Child html-webpack-plugin for "index.html":
-        + 3 hidden modules
+        + 4 hidden modules
 ```
 
 *app.js* and *vendor.js* have separate chunk ids right now given they are entry chunks of their own. The output size is a little off, though. *app.js* should be significantly smaller to attain our goal with this build.
@@ -120,17 +120,14 @@ Given the function handles the entry for us, we can drop our `vendor` related co
 ...
 
 const common = {
-  // Entry accepts a path or an object of entries.
-  // We'll be using the latter form given it's
-  // convenient with more complex configurations.
   entry: {
-leanpub-start-insert
-    app: PATHS.app
-leanpub-end-insert
 leanpub-start-delete
     app: PATHS.app,
     vendor: ['react']
 leanpub-end-delete
+leanpub-start-insert
+    app: PATHS.app
+leanpub-end-insert
   },
   output: {
     path: PATHS.build,
@@ -143,12 +140,9 @@ leanpub-end-delete
   ]
 };
 
-...
-
-// Detect how npm is run and branch based on that
-switch(process.env.npm_lifecycle_event) {
-  case 'build':
-    config = merge(
+module.exports = function(env) {
+  if (env === 'build') {
+    return merge(
       common,
       {
         devtool: 'source-map'
@@ -166,35 +160,31 @@ leanpub-end-insert
       parts.minify(),
       parts.setupCSS(PATHS.app)
     );
-    break;
-  default:
-    ...
-}
+  }
 
-module.exports = validate(config);
+  ...
+};
 ```
 
 If you execute the build now using `npm run build`, you should see something along this:
 
 ```bash
-[webpack-validator] Config is valid.
-Hash: 516a574ca6ee19e87209
-Version: webpack 1.13.0
-Time: 2568ms
-          Asset       Size  Chunks             Chunk Names
-         app.js    3.94 kB    0, 2  [emitted]  app
-      vendor.js    21.4 kB    1, 2  [emitted]  vendor
-    manifest.js  780 bytes       2  [emitted]  manifest
-     app.js.map    30.7 kB    0, 2  [emitted]  app
-  vendor.js.map     274 kB    1, 2  [emitted]  vendor
-manifest.js.map    8.72 kB       2  [emitted]  manifest
-     index.html  225 bytes          [emitted]
-   [0] ./app/index.js 123 bytes {0} [built]
-   [0] multi vendor 28 bytes {1} [built]
-  [36] ./app/component.js 136 bytes {0} [built]
-    + 35 hidden modules
+Hash: db8515bb8c604c66b5b7
+Version: webpack 2.2.0-rc.1
+Time: 1225ms
+      Asset       Size  Chunks           Chunk Names
+  vendor.js    19.7 kB  0, 2[emitted]  vendor
+     app.js    4.06 kB  1, 2[emitted]  app
+manifest.js    1.37 kB  2[emitted]  manifest
+ index.html  294 bytes  [emitted]
+  [15] ./app/component.js 136 bytes {1} [built]
+  [16] ./app/main.css 904 bytes {1} [built]
+  [17] ./~/css-loader!./app/main.css 190 bytes {1} [built]
+  [32] ./app/index.js 124 bytes {1} [built]
+  [33] multi vendor 28 bytes {0} [built]
+    + 29 hidden modules
 Child html-webpack-plugin for "index.html":
-        + 3 hidden modules
+        + 4 hidden modules
 ```
 
 Now our bundles look just the way we want. The image below illustrates the current situation:
@@ -205,27 +195,9 @@ T> Beyond this, it is possible to define chunks that are loaded dynamically. Thi
 
 ## Loading `dependencies` to a `vendor` Bundle Automatically
 
-If you maintain strict separation between `dependencies` and `devDependencies`, you can make webpack to pick up your `vendor` dependencies automatically based on this information. You avoid having to manage those manually then. The basic idea goes like this:
+If you maintain strict separation between `dependencies` and `devDependencies`, you can make webpack to pick up your `vendor` dependencies automatically based on this information. You avoid having to manage those manually then.
 
-```javascript
-...
-
-const pkg = require('./package.json');
-
-...
-
-const common = {
-  entry: {
-    app: PATHS.app,
-    vendor: Object.keys(pkg.dependencies)
-  },
-  ...
-}
-
-...
-```
-
-You can still exclude certain dependencies from the `vendor` entry point if you want by adding a bit of code for that. You can for instance `filter` out the dependencies you don't want there.
+Instead of having `['react']`, we could have `Object.keys(require('./package.json').dependencies)`. That can be filtered and adjusted further if needed depending on how dynamic solution you want.
 
 T> `webpack.ProgressPlugin` or [nyan-progress-webpack-plugin](https://www.npmjs.com/package/nyan-progress-webpack-plugin) can be used to get tidier output during the build process. Take care with Continuous Integration (CI) systems like Travis, though, as they might clobber the output.
 
