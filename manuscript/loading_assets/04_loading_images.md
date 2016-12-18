@@ -111,6 +111,10 @@ A technique known as spriting allows you to combine multiple smaller images into
 }
 ```
 
+## Images and *css-loader* Sourcemap Gotcha
+
+If you are using images and *css-loader* with the `sourceMap` option enabled, it is important that you will set `output.publicPath` to an absolute value. Otherwise images won't show up! See [the relevant webpack issue](https://github.com/webpack/style-loader/issues/55) for further explanation.
+
 ## Conclusion
 
 Webpack allows you to inline images within your bundles when needed. Figuring out good inlining limits for your images might take some experimentation. You have to balance between bundle sizes and the amount of requests.
