@@ -4,34 +4,34 @@ React relies on `process.env.NODE_ENV` based optimizations. If we force it to `p
 
 ## The Basic Idea of `DefinePlugin`
 
-Webpack provides `DefinePlugin`. It is able to rewrite matching **free variables**. To understand the idea better, consider the example below:
+Webpack provides `DefinePlugin` that is able to rewrite matching **free variables**. To understand the idea better, consider the example below:
 
 ```javascript
 var foo;
 
-// Not free, not ok to replace
-if(foo === 'bar') {
+// Not free due to "foo" above, not ok to replace
+if (foo === 'bar') {
   console.log('bar');
 }
 
-// Free, ok to replace
-if(bar === 'bar') {
+// Free since we don't refer to "bar", ok to replace
+if (bar === 'bar') {
   console.log('bar');
 }
 ```
 
-If we replaced `bar` with a string like `'bar'`, then we would end up with code like this:
+If we replaced `bar` with a string like `'foobar'`, then we would end up with code like this:
 
 ```javascript
 var foo;
 
-// Not free, not ok to replace
-if(foo === 'bar') {
+// Not free due to "foo" above, not ok to replace
+if (foo === 'bar') {
   console.log('bar');
 }
 
-// Free, ok to replace
-if('bar' === 'bar') {
+// Free since we don't refer to "bar", ok to replace
+if ('foobar' === 'bar') {
   console.log('bar');
 }
 ```
@@ -41,13 +41,13 @@ Further analysis shows that `'bar' === 'bar'` equals `true` so UglifyJS gives us
 ```javascript
 var foo;
 
-// Not free, not ok to replace
-if(foo === 'bar') {
+// Not free due to "foo" above, not ok to replace
+if (foo === 'bar') {
   console.log('bar');
 }
 
-// Free, ok to replace
-if(true) {
+// Free since we don't refer to "bar", ok to replace
+if (false) {
   console.log('bar');
 }
 ```
@@ -58,19 +58,18 @@ And based on this UglifyJS can eliminate the `if` statement:
 var foo;
 
 // Not free, not ok to replace
-if(foo === 'bar') {
+if (foo === 'bar') {
   console.log('bar');
 }
 
-// Free, ok to replace
-console.log('bar');
+// if (false) means the block can be dropped entirely!
 ```
 
 This is the core idea of `DefinePlugin`. We can toggle parts of code using it using this kind of mechanism. UglifyJS is able to perform the analysis for us and enable/disable entire portions of it as we prefer.
 
 ## Setting `process.env.NODE_ENV`
 
-To show you the idea in practice, we could have a declaration like `if(process.env.NODE_ENV === 'development')` within our code. Using `DefinePlugin` we could replace `process.env.NODE_ENV` with `'development'` to make our statement evaluate as true just like above.
+To show you the idea in practice, we could have a declaration like `if (process.env.NODE_ENV === 'development')` within our code. Using `DefinePlugin` we could replace `process.env.NODE_ENV` with `'production'` to make our statement evaluate as false just like above and eliminate the related code as a result.
 
 As before, we can encapsulate this idea to a function:
 
@@ -100,10 +99,9 @@ We can connect this with our configuration like this:
 ```javascript
 ...
 
-// Detect how npm is run and branch based on that
-switch(process.env.npm_lifecycle_event) {
-  case 'build':
-    config = merge(
+module.exports = function(env) {
+  if (env === 'build') {
+    return merge(
       common,
       {
         devtool: 'source-map'
@@ -117,33 +115,31 @@ leanpub-end-insert
       parts.minify(),
       parts.setupCSS(PATHS.app)
     );
-    break;
-  default:
-    ...
-}
+  }
 
-module.exports = validate(config);
+  ...
+};
 ```
 
 Execute `npm run build` again, and you should see improved results:
 
 ```bash
-[webpack-validator] Config is valid.
-Hash: 9880a5782dc874c824c4
-Version: webpack 1.13.0
-Time: 3004ms
-     Asset       Size  Chunks             Chunk Names
-    app.js    25.4 kB       0  [emitted]  app
-app.js.map     307 kB       0  [emitted]  app
-index.html  157 bytes          [emitted]
-   [0] ./app/index.js 123 bytes {0} [built]
-  [36] ./app/component.js 136 bytes {0} [built]
-    + 35 hidden modules
+Hash: 796b5780b9701387d6cb
+Version: webpack 2.2.0-rc.1
+Time: 1211ms
+     Asset       Size  Chunks           Chunk Names
+    app.js    24.1 kB  0[emitted]  app
+index.html  180 bytes  [emitted]
+  [14] ./app/component.js 136 bytes {0} [built]
+  [16] ./app/main.css 904 bytes {0} [built]
+  [17] ./~/css-loader!./app/main.css 190 bytes {0} [built]
+  [32] ./app/index.js 124 bytes {0} [built]
+    + 29 hidden modules
 Child html-webpack-plugin for "index.html":
-        + 3 hidden modules
+        + 4 hidden modules
 ```
 
-So we went from 133 kB to 38 kB, and finally, to 25.4 kB. The final build is a little faster than the previous one. As that 25.4 kB can be served gzipped, it is quite reasonable. gzipping will drop around another 40%. It is well supported by browsers.
+So we went from 148 kB to 45 kB, and finally, to 24.1 kB. The final build is a little faster than the previous one. As that 24.1 kB can be served gzipped, it is quite reasonable. gzipping will drop around another 40% and it is well supported by browsers.
 
 T> [babel-plugin-transform-inline-environment-variables](https://www.npmjs.com/package/babel-plugin-transform-inline-environment-variables) Babel plugin can be used to achieve the same effect. See [the official documentation](https://babeljs.io/docs/plugins/transform-inline-environment-variables/) for details.
 
@@ -151,7 +147,9 @@ T> Note that we are missing [react-dom](https://www.npmjs.com/package/react-dom)
 
 T> `webpack.EnvironmentPlugin(['NODE_ENV'])` is a shortcut that allows you to refer to environment variables. It uses `DefinePlugin` internally and can be useful by itself in more limited cases. You can achieve the same effect by passing `process.env.NODE_ENV` to the custom function we made.
 
-T> Even though you can let your server to gzip the files using a suitable middleware, you can also setup webpack to generate the gzips for you using [compression-webpack-plugin](https://www.npmjs.com/package/compression-webpack-plugin). This can save some processing time on the server.
+## Generating gzips with Webpack
+
+Even though you can let your server to gzip the files using a suitable middleware, you can also setup webpack to generate the gzips for you using [compression-webpack-plugin](https://www.npmjs.com/package/compression-webpack-plugin). This can save some processing time on the server.
 
 ## Conclusion
 
