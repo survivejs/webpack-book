@@ -2,29 +2,33 @@
 
 Tools, such as [LiveReload](http://livereload.com/) or [BrowserSync](http://www.browsersync.io/), allow us to refresh the browser as we develop our application and avoid refresh for CSS changes. It is possible to setup Browsersync to work with webpack through [browser-sync-webpack-plugin](https://www.npmjs.com/package/browser-sync-webpack-plugin), but webpack has more tricks in store.
 
-A good first step towards a better development environment would be to use webpack in its **watch** mode. You can activate it through `webpack --watch`. Once enabled, it will detect changes made to your files and recompiles automatically. A solution known as *webpack-dev-server* builds on top of the watch mode and goes even further.
+## Webpack `watch` Mode and *webpack-dev-server*
 
-*webpack-dev-server* is a development server running in-memory. It refreshes content automatically in the browser while you develop your application. It also supports an advanced webpack feature known as Hot Module Replacement (HMR), which provides a way to patch the browser state without a full refresh. This is particularly powerful with technology such as React.
+A good first step towards a better development environment is to use webpack in its **watch** mode. You can activate it through `webpack --watch`. Once enabled, it will detect changes made to your files and recompiles automatically. A solution known as *webpack-dev-server* (WDS) builds on top of the watch mode and goes even further.
 
-HMR goes further than simply refreshing browser on change. webpack-dev-server provides an interface that makes it possible to patch code on the fly. This means you will need to implement it for client-side code. It is trivial for something like CSS by definition (no state), but it's a harder problem with JavaScript frameworks and libraries. Often careful design is needed to allow this. When the feature works, it is beautiful, though.
+WDS is a development server running in-memory. It refreshes content automatically in the browser while you develop your application. It also supports an advanced webpack feature known as **Hot Module Replacement** (HMR), which provides a way to patch the browser state without a full refresh. This is particularly powerful with technology such as React.
 
-T> Even though it's good that *webpack-dev-server* operates in-memory by default, sometimes it can be good to emit files to the file system. This is particularly true if you are integrating with other server that expects to find the files. [webpack-disk-plugin](https://www.npmjs.com/package/webpack-disk-plugin), [write-file-webpack-plugin](https://www.npmjs.com/package/write-file-webpack-plugin), and more specifically [html-webpack-harddisk-plugin](https://www.npmjs.com/package/html-webpack-harddisk-plugin) can achieve this.
-
-W> You should use *webpack-dev-server* strictly for development. If you want to host your application, consider other standard solutions, such as Apache or Nginx.
+HMR goes further than simply refreshing browser on change. WDS provides an interface that makes it possible to patch code on the fly. This means you will need to implement it for client-side code. It is trivial for something like CSS by definition (no state), but it's a harder problem with JavaScript frameworks and libraries. Often careful design is needed to allow this. When the feature works, it is beautiful, though.
 
 W> An IDE feature known as **safe write** can wreak havoc with hot loading. Therefore it is advisable to turn it off when using a HMR based setup.
 
+## Emitting Files from *webpack-dev-server*
+
+Even though it's good that WDS operates in-memory by default, sometimes it can be good to emit files to the file system. This is particularly true if you are integrating with other server that expects to find the files. [webpack-disk-plugin](https://www.npmjs.com/package/webpack-disk-plugin), [write-file-webpack-plugin](https://www.npmjs.com/package/write-file-webpack-plugin), and more specifically [html-webpack-harddisk-plugin](https://www.npmjs.com/package/html-webpack-harddisk-plugin) can achieve this.
+
+W> You should use *webpack-dev-server* strictly for development. If you want to host your application, consider other standard solutions, such as Apache or Nginx.
+
 ## Getting Started with *webpack-dev-server*
 
-To get started with *webpack-dev-server*, execute:
+To get started with WDS, execute:
 
 ```bash
-npm i webpack-dev-server --save-dev
+npm i webpack-dev-server@2.2.0-rc.0 --save-dev
 ```
 
-As before, this command will generate a command below the `npm bin` directory. You could try running *webpack-dev-server* from there. The quickest way to enable automatic browser refresh for our project is to run `webpack-dev-server --inline`.
+As before, this command will generate a command below the `npm bin` directory. You could try running *webpack-dev-server* from there. The quickest way to enable automatic browser refresh for our project is to run `webpack-dev-server --inline`. After that you have a development server running at `localhost:8080`.
 
-`--inline`, runs the server in so called *inline* mode that writes the webpack-dev-server client to the resulting code in addition to yours. The code it writes contains the client it needs to communicate with the server component.
+`--inline`, runs the server in so called *inline* mode that writes the WDS client to the resulting code in addition to yours. The code it writes contains the client it needs to communicate with the server component.
 
 An alternative way to achieve the same result would be to write the entries containing the same code by hand, but often that's more complicated way to deal with it as then you need to worry about ports. Without the *inline* mode, you would need to set entries like this:
 
@@ -43,7 +47,7 @@ entry: [
 
 ### Attaching *webpack-dev-server* to the Project
 
-To integrate *webpack-dev-server* to our project, we can follow the same idea as in the previous chapter and define a new command to the `scripts` section of *package.json*:
+To integrate WDS to our project, we can follow the same idea as in the previous chapter and define a new command to the `scripts` section of *package.json*:
 
 **package.json**
 
@@ -51,39 +55,44 @@ To integrate *webpack-dev-server* to our project, we can follow the same idea as
 ...
 "scripts": {
 leanpub-start-insert
-  "start": "webpack-dev-server",
+  "start": "webpack-dev-server --env start",
 leanpub-end-insert
-  "build": "webpack"
+  "build": "webpack --env build"
 },
 ...
 ```
 
-We'll add that `--inline` part back through Webpack configuration in a bit. I prefer to keep the npm *scripts* portion as simple as possible and push the complexity to configuration. Even though it's more code to write, it's also easier to maintain as you can see easier what's going on.
+We'll add that `--inline` part back through webpack configuration in a bit. I prefer to keep the npm *scripts* portion as simple as possible and push the complexity to configuration. Even though it's more code to write, it's also easier to maintain as you can see what's going on easier.
 
 If you execute either *npm run start* or *npm start* now, you should see something like this at the terminal:
 
 ```bash
-> webpack-dev-server
+> webpack-dev-server --env start
 
-[webpack-validator] Config is valid.
-http://localhost:8080/webpack-dev-server/
-webpack result is served from /
-content is served from .../webpack-demo
-Hash: 2dca5a3850ce5d2de54c
-Version: webpack 1.13.0
+Project is running at http://localhost:8080/
+webpack output is served from /
+Hash: 589c2d7b750b2711e6bc
+Version: webpack 2.2.0-rc.1
+Time: 677ms
+     Asset       Size  Chunks           Chunk Names
+    app.js     246 kB  0[emitted]  app
+index.html  180 bytes  [emitted]
+chunk    {0} app.js (app) 233 kB [entry] [rendered]
+...
+webpack: bundle is now VALID.
 ```
 
-The output means that the development server is running. If you open *http://localhost:8080/* at your browser, you should see something.
+The output means that the development server is running. If you open *http://localhost:8080/* at your browser, you should see something familiar.
 
-If you try modifying the code, you should see output at your terminal. The problem is that the browser doesn't catch these changes without a hard refresh and that flag. That's something we need to resolve next through configuration.
+If you try modifying the code, you should see output at your terminal. The problem is that the browser doesn't catch these changes without a hard refresh. That's something we need to resolve next through configuration.
 
 ![Hello world](images/hello_01.png)
 
-T> If you fail to see anything at the browser, you may need to use a different port. The server might fail to run because there's something else running in the port. You can verify this through terminal using a command such as `netstat -na | grep 8080`. If there's something running in the port 8080, it should display a message. The exact command may depend on the platform.
+T> WDS will try to run in another port in case the default one is being used. So keep an eye on the terminal output to figure out where it ends up running. You can debug the situation with a command like `netstat -na | grep 8080`. If there's something running in the port 8080, it should display a message. The exact command may depend on the platform.
 
 ## Configuring Hot Module Replacement (HMR)
 
-Hot Module Replacement builds on top the *webpack-dev-server*. It enables an interface that makes it possible to swap modules live. For example, *style-loader* is able to update your CSS without forcing a refresh. It is easy to perform HMR with CSS as it doesn't contain any application state.
+Hot Module Replacement builds on top the WDS. It enables an interface that makes it possible to swap modules live. For example, *style-loader* is able to update your CSS without forcing a refresh. It is easy to perform HMR with CSS as it doesn't contain any application state.
 
 HMR is possible with JavaScript too, but due to the state we have in our applications, it's harder. In the *Configuring React* chapter we discuss how to set it up with React. You can use the same idea elsewhere.
 
@@ -91,7 +100,7 @@ We could use `webpack-dev-server --inline --hot` to achieve this from the CLI. `
 
 ### Defining Configuration for HMR
 
-To keep our configuration manageable, I'll split functionalities like HMR into parts of their own. This keeps our *webpack.config.js* simple and promotes reuse. We could push a collection like this to a npm package of its own. We could even turn them into presets to use across projects. Functional composition allows that.
+To keep our configuration manageable, I'll split functionalities like HMR into *parts* of their own. This keeps our *webpack.config.js* simple and promotes reuse. We could push a collection like this to a npm package of its own. We could even turn them into presets to use across projects. Functional composition allows that.
 
 I'll push all of our configuration parts to *webpack.parts.js* and consume them from there. Here's what a part would look like for HMR:
 
@@ -139,7 +148,7 @@ exports.devServer = function(options) {
 
 It's plenty of code, but it's better to encapsulate it so it contains ideas we understand and want to reuse later on.
 
-W> You should **not** enable HMR for production configuration. It will likely work, but having the capability enabled there won't do any good.
+W> You should **not** enable HMR for your production configuration. It will likely work, but having the capability enabled there won't do any good and it will make your bundles bigger than they have to be.
 
 ### Connecting with Configuration
 
@@ -154,40 +163,45 @@ const merge = require('webpack-merge');
 const validate = require('webpack-validator');
 
 leanpub-start-insert
-const parts = require('./libs/parts');
+const parts = require('./webpack.parts');
 leanpub-end-insert
 
 ...
 
-// Detect how npm is run and branch based on that
-switch(process.env.npm_lifecycle_event) {
-  case 'build':
-    config = merge(common, {});
-    break;
-  default:
 leanpub-start-delete
-    config = merge(common, {});
+module.exports = function(env) {
+  return merge(common);
+};
 leanpub-end-delete
 leanpub-start-insert
-    config = merge(
-      common,
-      parts.devServer({
-        // Customize host/port here if needed
-        host: process.env.HOST,
-        port: process.env.PORT
-      })
-    );
-leanpub-end-insert
-}
+module.exports = function(env) {
+  if (env === 'build') {
+    return merge(common);
+  }
 
-module.exports = validate(config);
+  return merge(
+    common,
+    {
+      // Disable performance hints during development
+      performance: {
+        hints: false
+      }
+    },
+    parts.devServer({
+      // Customize host/port here if needed
+      host: process.env.HOST,
+      port: process.env.PORT
+    })
+  );
+};
+leanpub-end-insert
 ```
 
-Execute `npm start` and surf to **localhost:8080**. Try modifying *app/component.js*. It should refresh the browser. Note that this is a hard refresh in case you modify JavaScript code. CSS modifications work in a neater manner and can be applied without a refresh as we will see in the next chapter.
+Execute `npm start` and surf to **localhost:8080**. Try modifying *app/component.js*. It should refresh the browser just like earlier, but now we have the setup needed to enable the rest. We'll cover how CSS modifications can be applied without a hard refresh in the next chapter.
 
 W> *webpack-dev-server* can be very particular about paths. If the given `include` paths don't match the system casing exactly, this can cause it to fail to work. Webpack [issue #675](https://github.com/webpack/webpack/issues/675) discusses this in more detail.
 
-T> You should be able to access the application alternatively through **localhost:8080/webpack-dev-server/** instead of the root. It will provide status information within the browser itself at the top of the application.
+T> You should be able to access the application alternatively through **localhost:8080/webpack-dev-server/** instead of the root. It will provide status information within the browser itself at the top of the application. If your application relies on WebSockets and you use WDS proxying, you'll need to use this specific url as otherwise WDS own logic will interfere.
 
 ### HMR on Windows, Ubuntu, and Vagrant
 
@@ -224,7 +238,7 @@ leanpub-end-insert
 }
 ```
 
-Given this setup polls the filesystem, it is going to be more resource intensive. It's worth giving a go if the default doesn't work, though.
+Given this setup polls the file system, it is going to be more resource intensive. It's worth giving a go if the default doesn't work, though.
 
 T> There are more details in *webpack-dev-server* issue [#155](https://github.com/webpack/webpack-dev-server/issues/155).
 
@@ -236,9 +250,9 @@ To access your server, you'll need to figure out the ip of your machine. On Unix
 
 ## Alternative Ways to Use *webpack-dev-server*
 
-We could have passed *webpack-dev-server* options through terminal. I find it clearer to manage it within Webpack configuration as that helps to keep *package.json* nice and tidy. It is also easier to understand what's going on as you don't need to dig the answers from Webpack source.
+We could have passed the WDS options through terminal. I find it clearer to manage it within webpack configuration as that helps to keep *package.json* nice and tidy. It is also easier to understand what's going on as you don't need to dig the answers from webpack source.
 
-Alternatively, we could have set up an Express server of our own and used *webpack-dev-server* as a [middleware](https://webpack.js.org/guides/development/#webpack-dev-middleware). There's also a [Node.js API](https://webpack.github.io/docs/webpack-dev-server.html#api). This is a good approach if you want control and flexibility.
+Alternatively, we could have set up an Express server of our own and used WDS as a [middleware](https://webpack.js.org/guides/development/#webpack-dev-middleware). There's also a [Node.js API](https://webpack.github.io/docs/webpack-dev-server.html#api). This is a good approach if you want control and flexibility.
 
 T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environment variables through a *.env* file. This can be somewhat convenient during development!
 

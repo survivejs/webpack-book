@@ -32,22 +32,22 @@ const PATHS = {
   build: path.join(__dirname, 'build')
 };
 
-module.exports = function(env) {
-  const common = {
-    entry: {
-      app: PATHS.app
-    },
-    output: {
-      path: PATHS.build,
-      filename: '[name].js'
-    },
-    plugins: [
-      new HtmlWebpackPlugin({
-        title: 'Webpack demo'
-      })
-    ]
-  };
+const common = {
+  entry: {
+    app: PATHS.app
+  },
+  output: {
+    path: PATHS.build,
+    filename: '[name].js'
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Webpack demo'
+    })
+  ]
+};
 
+module.exports = function(env) {
   return merge(common);
 };
 
