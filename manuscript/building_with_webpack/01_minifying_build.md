@@ -4,7 +4,7 @@ So far we haven't given thought to our build output and no doubt it's going to b
 
 The first of these techniques is known as minification. It is a process where code is simplified without losing any meaning that matters to the interpreter. As a result your code will most likely look quite jumbled and it will be hard to read. But that's the point.
 
-T> Even if we minify our build, we can still generate sourcemaps through the `devtool` option we discussed earlier. This will give us better means to debug even production code.
+T> Even if we minify our build, we can still generate sourcemaps through the `devtool` option we discussed earlier. This will give us better means to debug even production code if we want.
 
 ## Generating a Baseline Build
 
@@ -29,22 +29,23 @@ leanpub-end-insert
 Now that we have something to optimize, execute `npm run build`. You should end up with something like this:
 
 ```bash
-[webpack-validator] Config is valid.
-Hash: dde0419cac0674732a83
-Version: webpack 1.13.0
-Time: 1730ms
-     Asset       Size  Chunks             Chunk Names
-    app.js     133 kB       0  [emitted]  app
-app.js.map     157 kB       0  [emitted]  app
-index.html  157 bytes          [emitted]
-   [0] ./app/index.js 123 bytes {0} [built]
-  [37] ./app/component.js 136 bytes {0} [built]
-    + 36 hidden modules
+Hash: 8ce504f07a063d49058a
+Version: webpack 2.2.0-rc.1
+Time: 866ms
+     Asset       Size  Chunks           Chunk Names
+    app.js     148 kB  0[emitted]  app
+app.js.map     177 kB  0[emitted]  app
+index.html  180 bytes  [emitted]
+  [18] ./app/component.js 136 bytes {0} [built]
+  [20] ./app/main.css 904 bytes {0} [built]
+  [21] ./~/css-loader!./app/main.css 190 bytes {0} [built]
+  [36] ./app/index.js 124 bytes {0} [built]
+    + 33 hidden modules
 Child html-webpack-plugin for "index.html":
-        + 3 hidden modules
+        + 4 hidden modules
 ```
 
-133 kB is a lot! Minification should bring down the size a lot.
+148 kB is a lot! Minification should bring down the size quite a bit.
 
 ## Minifying the Code
 
@@ -81,10 +82,9 @@ Now we can hook it up with our configuration like this:
 ```javascript
 ...
 
-// Detect how npm is run and branch based on that
-switch(process.env.npm_lifecycle_event) {
-  case 'build':
-    config = merge(
+module.exports = function(env) {
+  if (env === 'build') {
+    return merge(
       common,
       {
         devtool: 'source-map'
@@ -94,31 +94,28 @@ leanpub-start-insert
 leanpub-end-insert
       parts.setupCSS(PATHS.app)
     );
-    break;
-  default:
-    ...
-}
+  }
 
-module.exports = validate(config);
-}
+  ...
+};
 ```
 
 If you execute `npm run build` now, you should see better results:
 
 ```bash
-[webpack-validator] Config is valid.
-Hash: aec016ce2e9d0dfa1577
-Version: webpack 1.13.0
-Time: 3342ms
-     Asset       Size  Chunks             Chunk Names
-    app.js      38 kB       0  [emitted]  app
-app.js.map     325 kB       0  [emitted]  app
-index.html  157 bytes          [emitted]
-   [0] ./app/index.js 123 bytes {0} [built]
-  [37] ./app/component.js 136 bytes {0} [built]
-    + 36 hidden modules
+Hash: 8ce504f07a063d49058a
+Version: webpack 2.2.0-rc.1
+Time: 1345ms
+     Asset       Size  Chunks           Chunk Names
+    app.js    44.8 kB  0[emitted]  app
+index.html  180 bytes  [emitted]
+  [18] ./app/component.js 136 bytes {0} [built]
+  [20] ./app/main.css 904 bytes {0} [built]
+  [21] ./~/css-loader!./app/main.css 190 bytes {0} [built]
+  [36] ./app/index.js 124 bytes {0} [built]
+    + 33 hidden modules
 Child html-webpack-plugin for "index.html":
-        + 3 hidden modules
+        + 4 hidden modules
 ```
 
 Given it needs to do more work, it took longer. But on the plus side the build is significantly smaller now.
@@ -160,10 +157,10 @@ new webpack.optimize.UglifyJsPlugin({
     // Don't mangle function names
     keep_fnames: true
   }
-})
+});
 ```
 
-If you enable mangling, it is a good idea to set `except: ['webpackJsonp']` to avoid mangling the Webpack runtime.
+If you enable mangling, it is a good idea to set `except: ['webpackJsonp']` to avoid mangling the webpack runtime.
 
 T> Dropping the `console` statements can be achieved through Babel too by using the [babel-plugin-remove-console](https://www.npmjs.com/package/babel-plugin-remove-console) plugin. Babel is discussed in greater detail at the *Configuring React* chapter.
 
