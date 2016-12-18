@@ -2,25 +2,27 @@
 
 [Webpack](https://webpack.js.org/) simplifies web development by solving a fundamental problem - the problem of bundling. It takes in various assets, such as JavaScript, CSS, and HTML, and then transforms these assets into a format that's easy to consume through a browser. By doing this well, it takes away significant amount of pain from web development.
 
-It isn't the easiest tool to learn due to its configuration driven approach. The purpose of this guide is to help you get started with webpack and then go beyond basics.
+It isn't the easiest tool to learn due to its configuration driven approach. The purpose of this guide is to help you get started with webpack and then go beyond the basics.
 
 ## What is Webpack?
 
 Web browsers have been designed to consume HTML, JavaScript, and CSS. The simplest way to develop is simply to write files that the browser understands directly. The problem is that this becomes unwieldy eventually. This is particularly true when you are developing web applications.
 
-The naïve way to load JavaScript is simply to bundle it all into a single file. Eventually this won't be enough. You will need to start to split it up to benefit from caching. You can even begin to load dependencies dynamically as you need them. As an application develops, the complexity of handling it grows as well.
+The naïve way to load JavaScript is simply to bundle it all into a single file. Eventually this won't be enough as the size of your single bundle grows too big to load. You will need alternative strategies. One common way is to start to splitting it up and then benefit from caching. You can even begin to load dependencies dynamically as you need them. As an application develops, the complexity of handling it grows as well.
 
-Webpack was developed to counter this problem. It handles the aforementioned problems through static analysis. It gets most of the work done. That said, it is possible to achieve the same results using different tools. Task runners, such as Grunt and Gulp, allow you to achieve this, but often the problem is that need to write the workflows by hand.
+Webpack was developed to counter this problem. It handles the aforementioned problems through static analysis. This process gets most of the work done. It is one of the fundamental issues of web development currently and solving the problem well can help you a lot.
+
+Webpack isn't the only way to handle this problem possible and a collection of different tools have emerged. Task runners, such as Grunt and Gulp, are good examples of higher level tools. Often the problem is that need to write the workflows by hand. Pushing that problem to a bundler, such as webpack, is a step forward.
 
 ### How Webpack Changes the Situation?
 
-Webpack takes another route. It allows you to treat your project as a dependency graph. You could have an *index.js* in your project that pulls in the dependencies the project needs through standard `import` statements. You can refer to your style files and other assets the same way.
+Webpack takes another route. It allows you to treat your project as a dependency graph. You could have an *index.js* in your project that pulls in the dependencies the project needs through standard `import` statements. You can refer to your style files and other assets the same way if you want.
 
-Webpack does all the preprocessing for you and gives you the bundles you specify through configuration. This declarative approach is powerful, but it is a little difficult to learn. However, once you begin to understand how webpack works, it becomes an indispensable tool. This book has been designed to get through that initial learning curve.
+Webpack does all the preprocessing for you and gives you the bundles you specify through configuration and your code. This declarative approach is powerful, but it is a little difficult to learn. Once you begin to understand how webpack works, it becomes an indispensable tool. This book has been designed to get through that initial learning curve and even go a little further.
 
 ## What Will You Learn?
 
-This book has been designed to complement [the official documentation of Webpack](https://webpack.js.org/). The official documentation goes further in many aspects. Consider this book more like a quick walkthrough that eases the initial learning curve while giving food for thought to more advanced users.
+This book has been designed to complement [the official documentation of Webpack](https://webpack.js.org/). The official documentation goes deeper in many aspects and this book can be considered a companion to it. This book is more like a quick walkthrough that eases the initial learning curve while giving food for thought to more advanced users.
 
 You will learn to develop composable webpack configuration for both development and production purposes. You will also learn advanced techniques that allow you to benefit from some of the greatest features of webpack.
 
@@ -52,13 +54,13 @@ Given this book receives a fair amount of maintenance and improvements due to th
 https://github.com/survivejs/webpack/compare/v1.2.0...v1.3.3
 ```
 
-The page will show you the individual commits that went to the project between the given version range. You can also see the lines that have changed in the book. This excludes the private chapters, but it's enough to give you a good idea of the major changes made to the book.
+The page will show you the individual commits that went to the project between the given version range. You can also see the lines that have changed in the book.
 
 The current version of the book is **1.3.3**.
 
 The book is an on-going effort and I welcome feedback through various channels discussed below. I expand the guide based on demand to make it serve you as well as I can. You can even contribute fixes of your own to the book as the source is available.
 
-A part of the profit goes towards funding the development of the tool itself. You can also [support webpack directly through Open Collective](https://opencollective.com/webpack).
+A part of the profit goes towards funding the development of the tool itself. Most of it goes to the core developers, including myself. You can also [support webpack directly through Open Collective](https://opencollective.com/webpack).
 
 ## Getting Support
 
