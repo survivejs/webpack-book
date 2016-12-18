@@ -416,6 +416,14 @@ The script may need tweaking to fit your purposes. But it's enough to give you a
 
 W> Relying on `postinstall` scripts can be [potentially dangerous](http://blog.npmjs.org/post/141702881055/package-install-scripts-vulnerability). Security minded developers may want to use `npm install --ignore-scripts`. You can set that default through `npm config set ignore-scripts true` if you want. Being a little cautious might not hurt.
 
+### Deprecating and Unpublishing Packages
+
+It is possible that at some point in time your package reaches end of its life. Another package might replace it or it simply might become obsolete. For this purpose npm provides [npm deprecate](https://docs.npmjs.com/cli/deprecate) command. You can state `npm deprecate foo@"< 0.4.0" "Use bar package instead"`.
+
+You can deprecate a range like this or a whole package by skipping the range. Given mistakes happen, you can undeprecate a package by providing an empty message.
+
+There is a heavier duty option known as [npm unpublish](https://docs.npmjs.com/cli/unpublish). Using `npm unpublish` you can literally pull a package out of the registry. Given this can be potentially dangerous and break code for a lot of people, it has been [restricted to versions that are less than 24 hours old](http://blog.npmjs.org/post/141905368000/changes-to-npms-unpublish-policy). Most likely you don't need the feature at all, but it is good to know it exists.
+
 ## Conclusion
 
 You should now have a basic idea of how to author npm packages. Webpack can help you a lot here. Just picking up `output.libraryTarget` and `externals` help you a lot. These options are useful beyond package authoring. Particularly `externals` comes in handy when you want to exclude certain dependencies outside of your bundles and load them using some other way.
