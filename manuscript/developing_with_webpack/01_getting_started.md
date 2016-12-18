@@ -1,6 +1,6 @@
 # Getting Started
 
-Make sure you are using a recent version of [Node.js](http://nodejs.org/) installed. I recommend using at least the most recent LTS (Long-Term Support) version. Before going further, you should have `node` and `npm` commands available at your terminal.
+Before getting started, make sure you are using a recent version of [Node.js](http://nodejs.org/) installed. I recommend using at least the most recent LTS (Long-Term Support) version. Before going further, you should have `node` and `npm` commands available at your terminal.
 
 The completed configuration is available at [GitHub](https://github.com/survivejs-demos/webpack-demo). If you are unsure of something, refer there.
 
@@ -22,19 +22,23 @@ You can tweak the generated *package.json* manually to make further changes to i
 
 T> You can set those `npm init` defaults at *~/.npmrc*.
 
+T> This is a good place to set up version control using [Git](https://git-scm.com/). You can create a commit per step and tag per chapter so it's easier to move back and forth if you want.
+
 ## Installing Webpack
 
-Even though Webpack can be installed globally (`npm i webpack -g`), I recommend maintaining it as a dependency of your project. This will avoid issues as then you will have control over the exact version you are running.
+Even though webpack can be installed globally (`npm i webpack -g`), I recommend maintaining it as a dependency of your project. This will avoid issues as then you will have control over the exact version you are running.
 
 The approach works nicely in **Continuous Integration** (CI) setups as well. A CI system can install your local dependencies, compile your project using them, and then push the result to a server.
 
 To add Webpack to our project, execute
 
 ```bash
-npm i webpack --save-dev # or just -D if you want to save typing
+npm i webpack@beta --save-dev # or just -D if you want to save typing
 ```
 
-You should see Webpack at your *package.json* `devDependencies` section after this. In addition to installing the package locally below the *node_modules* directory, npm also generates an entry for the executable.
+You should see webpack at your *package.json* `devDependencies` section after this. In addition to installing the package locally below the *node_modules* directory, npm also generates an entry for the executable.
+
+W> We are using the most recent `beta` version of webpack 2 in this tutorial! You an drop that `--tag` part in the future. A lot of loaders and plugins may give peer dependency warnings as well.
 
 ## Executing Webpack
 
@@ -44,26 +48,16 @@ After executing, you should see a version, a link to the command line interface 
 
 ```bash
 webpack-demo $ node_modules/.bin/webpack
-webpack 1.13.0
-Usage: https://webpack.github.io/docs/cli.html
-
-Options:
-  --help, -h, -?
-  --config
-  --context
-  --entry
-...
-  --display-cached-assets
-  --display-reasons, --verbose, -v
-
-Output filename not configured.
+No configuration file found and no output filename configured via CLI option.
+A configuration file could be named 'webpack.config.js' in the current directory.
+Use --help to display the CLI options.
 ```
 
 T> We can use `--save` and `--save-dev` to separate application and development dependencies. The former will install and write to *package.json* `dependencies` field whereas the latter will write to `devDependencies` instead.
 
 ## Directory Structure
 
-As projects with just *package.json* are boring, we should set up something more concrete. To get started, we can implement a little web site that loads some JavaScript which we then build using Webpack. After we progress a bit, we'll end up with a directory structure like this:
+As projects with just *package.json* are boring, we should set up something more concrete. To get started, we can implement a little web site that loads some JavaScript which we then build using webpack. After we progress a bit, we'll end up with a directory structure like this:
 
 - app/
   - index.js
@@ -102,7 +96,7 @@ document.body.appendChild(component());
 
 ## Setting Up Webpack Configuration
 
-We'll need to tell Webpack how to deal with the assets we just set up. For this purpose we'll develop a *webpack.config.js* file. Webpack and its development server will be able to discover this file through convention.
+We'll need to tell webpack how to deal with the assets we just set up. For this purpose we'll develop a *webpack.config.js* file. Webpack and its development server will be able to discover this file through convention.
 
 To keep things simple to maintain, we'll be using [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) to generate an *index.html* for our application. *html-webpack-plugin* wires up the generated assets with it. Install it in the project:
 
@@ -146,34 +140,35 @@ module.exports = {
 };
 ```
 
-The `entry` path could be given as a relative one. The [context](https://webpack.js.org/configuration/entry-context/#context) field can be used to configure that lookup. Given plenty of places expect absolute paths, I prefer to use absolute paths everywhere to avoid confusion.
+The `entry` path could be given as a relative one. The [context](https://webpack.js.org/configuration/entry-context/#context) field can be used to configure that lookup. Given plenty of places expect absolute paths, I prefer to use absolute paths everywhere to avoid confusion and keep it simple.
 
 T> I like to use `path.join`, but `path.resolve` would be a good alternative. See the [Node.js path API](https://nodejs.org/api/path.html) for further details.
 
 If you execute `node_modules/.bin/webpack`, you should see output:
 
 ```bash
-Hash: 2a7a7bccea1741de9447
-Version: webpack 1.13.0
-Time: 813ms
-     Asset       Size  Chunks             Chunk Names
-    app.js    1.69 kB       0  [emitted]  app
-index.html  157 bytes          [emitted]
-   [0] ./app/index.js 80 bytes {0} [built]
-   [1] ./app/component.js 136 bytes {0} [built]
+Hash: 57470680d11512534351
+Version: webpack 2.2.0-rc.1
+Time: 381ms
+     Asset       Size  Chunks           Chunk Names
+    app.js     2.8 kB  0[emitted]  app
+index.html  180 bytes  [emitted]
+   [0] ./app/component.js 136 bytes {0} [built]
+   [1] ./app/index.js 80 bytes {0} [built]
 Child html-webpack-plugin for "index.html":
-        + 3 hidden modules
+        + 4 hidden modules
 ```
 
 The output tells us a lot. I've annotated it below:
 
-* `Hash: 2a7a7bccea1741de9447` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. We'll discuss hashing in detail at the *Adding Hashes to Filenames* chapter.
-* `Version: webpack 1.13.0` - Webpack version.
-* `Time: 813ms` - Time it took to execute the build.
-* `app.js    1.69 kB       0  [emitted]  app` - Name of the generated asset, size, the ids of the **chunks** into which it is related, status information telling how it was generated, name of the chunk.
-* `[0] ./app/index.js 80 bytes {0} [built]` - The id of the generated asset, name, size, entry chunk id, the way it was generated.
+* `Hash: 57470680d11512534351` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. We'll discuss hashing in detail at the *Adding Hashes to Filenames* chapter.
+* `Version: webpack 2.2.0-rc.1` - Webpack version.
+* `Time: 381ms` - Time it took to execute the build.
+* `app.js     2.8 kB  0[emitted]  app` - Name of the generated asset, size, the ids of the **chunks** into which it is related, status information telling how it was generated, name of the chunk.
+* `index.html  180 bytes  [emitted]` - Another generated asset that was emitted by the process.
+* `[0] ./app/component.js 136 bytes {0} [built]` - The id of the generated asset, name, size, entry chunk id, the way it was generated.
 * `Child html-webpack-plugin for "index.html":` - This is plugin related output. In this case *html-webpack-plugin* is doing output of its own.
-* `+ 3 hidden modules` - This tells you that Webpack is omitting some output, namely modules within `node_modules` and similar directories. You can run Webpack using `webpack --display-modules` to display this information. See [Stack Overflow](https://stackoverflow.com/questions/28858176/what-does-webpack-mean-by-xx-hidden-modules) for an expanded explanation.
+* `+ 4 hidden modules` - This tells you that webpack is omitting some output, namely modules within `node_modules` and similar directories. You can run webpack using `webpack --display-modules` to display this information. See [Stack Overflow](https://stackoverflow.com/questions/28858176/what-does-webpack-mean-by-xx-hidden-modules) for an expanded explanation.
 
 Examine the output below `build/`. If you look closely, you can see the same ids within the source. To see the application running, open the `build/index.html` file directly through a browser. On OS X `open ./build/index.html` works.
 
@@ -197,16 +192,16 @@ Given executing `node_modules/.bin/webpack` is a little verbose, we should do so
 ...
 ```
 
-You can execute these scripts through *npm run*. For instance, in this case we could use *npm run build*. As a result you should get build output as before.
+You can execute these scripts through *npm run*. If you run it as is, it will give you the listing of available scripts. In this case we can use just *npm run build*. As a result you should get the same output as before.
 
 This works because npm adds *node_modules/.bin* temporarily to the path. As a result, rather than having to write `"build": "node_modules/.bin/webpack"`, we can do just `"build": "webpack"`.
 
-T> There are shortcuts like *npm start* and *npm test*. We can run these directly without *npm run* although that will work too.
+T> There are shortcuts like *npm start* and *npm test*. We can run these directly without *npm run* although that will work too. For those in hurry, you can use *npm t* to run your tests.
 
-T> It is possible to execute *npm run* anywhere within the project. It doesn't have to be run in the project root in order to work.
+T> It is possible to execute *npm run* anywhere within the project. It doesn't have to be run in the project root in order to work. npm will figure out the project root for you.
 
 ## Conclusion
 
-Even though we've managed to set up a basic Webpack setup, it's not that great yet. Developing against it would be painful. Each time we wanted to check out our application, we would have to build it manually using `npm run build` and then refresh the browser.
+Even though we've managed to get webpack up and running, it's not that much yet. Developing against it would be painful. Each time we wanted to check out our application, we would have to build it manually using `npm run build` and then refresh the browser.
 
-That's where Webpack's more advanced features come in. To make room for these features, I will show you how to split your Webpack configuration in the next chapter.
+That's where webpack's more advanced features come in. To make room for these features, I will show you how to split your webpack configuration in the next chapter.
