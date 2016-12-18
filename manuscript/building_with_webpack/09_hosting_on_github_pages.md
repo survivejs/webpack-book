@@ -27,38 +27,38 @@ leanpub-end-insert
 }
 ```
 
-To make the asset paths work on GitHub Pages, we also need to tweak a Webpack setting known as `output.publicPath`. It gives us control over the resulting urls you see at *index.html* for instance. If you are hosting your assets on a CDN, this would be the place to tweak. In this case it's enough to set it to point the GitHub project like this:
+To make the asset paths work on GitHub Pages, we also need to tweak a Webpack setting known as `output.publicPath`. Otherwise they will point at root and that won't work unless you are hosting behind a root domain directly.
+
+`publicPath` gives control over the resulting urls you see at *index.html* for instance. If you are hosting your assets on a CDN, this would be the place to tweak. In this case it's enough to set it to point the GitHub project like this:
 
 ```javascript
 ...
 
-// Detect how npm is run and branch based on that
-switch(process.env.npm_lifecycle_event) {
-  case 'build':
-  case 'stats':
-    config = merge(
+module.exports = function(env) {
+  if (env === 'build') {
+    return merge(
       common,
       {
         devtool: 'source-map',
         output: {
           path: PATHS.build,
-leanpub-start-insert
+          filename: '[name].[chunkhash].js',
+          // This is used for code splitting. The setup
+          // will work without but this is useful to set.
+          chunkFilename: '[chunkhash].js',
           // Tweak this to match your GitHub project name
           publicPath: '/webpack-demo/'
-leanpub-end-insert
-          filename: '[name].[chunkhash].js',
-          chunkFilename: '[chunkhash].js'
         }
       },
       ...
-    );
-    break;
-  default:
-    ...
-}
+    };
+  }
+
+  ...
+};
 ```
 
-If you execute `npm run deploy` now and everything goes fine, you should have your application hosted through GitHub Pages. You should find it at `https://<name>.github.io/<project>` (`github.com/<name>/<project>` at GitHub) assuming it worked.
+After building (`npm run build`) and deploying (`npm run deploy`), you should have your application from the `build/` directory hosted through GitHub Pages. You should find it at `https://<name>.github.io/<project>` (`github.com/<name>/<project>` at GitHub) assuming everything went fine.
 
 T> If you need a more elaborate setup, you can use the Node.js API that *gh-pages* provides. The default CLI tool it provides is often enough, though.
 
@@ -66,4 +66,4 @@ T> If you need a more elaborate setup, you can use the Node.js API that *gh-page
 
 The same idea works with other environments too. You can set up *gh-pages* to push into a branch you want. After this step we have a fairly complete development and production setup.
 
-We'll discuss various Webpack related techniques in greater detail in the following parts of this book.
+We'll discuss various webpack related techniques in greater detail in the following parts of this book.
