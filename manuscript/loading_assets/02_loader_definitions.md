@@ -1,6 +1,6 @@
 # Loader Definitions
 
-Webpack provides multiple ways to set up module loaders. I'll cover the most important ones next. Generally you either use `loader` (accepts string or `options` field) or `loaders` field (accepts array of strings) and then pass possible option parameters using one of the available methods.
+Webpack provides multiple ways to set up module loaders. Generally you either use `loader` (accepts string or `options` field) or `loaders` field (accepts array of strings) and then pass possible option parameters using one of the available methods.
 
 I recommend maintaining an `include` definition per each loader definition. This will restrict its search path, improve performance, and make your configuration easier to follow. `include` accepts either a path or an array of paths.
 
@@ -20,17 +20,17 @@ The `use` field added in webpack 2 gives syntax like this:
 }
 ```
 
-Furthermore each loader definition can be expanded further as shown later in this chapter. The above example would be equivalent to this without `use`:
+Furthermore each loader definition can be expanded further as shown later in this chapter. The above example can be split up while keeping it equivalent.
 
 ```javascript
 {
   test: /\.css$/,
-  loader: ['style-loader'],
+  use: ['style-loader'],
   include: PATHS.app
 },
 {
   test: /\.css$/,
-  loader: ['css-loader'],
+  use: ['css-loader'],
   include: PATHS.app
 }
 ```
@@ -59,7 +59,7 @@ The query format allows passing parameters as well:
 }
 ```
 
-This isn't readable. Instead it's preferable to use the combination of `loader` and `options` fields either like this:
+This isn't very readable. Instead, it's preferable to use the combination of `loader` and `options` fields either like this:
 
 ```javascript
 {
@@ -73,7 +73,7 @@ This isn't readable. Instead it's preferable to use the combination of `loader` 
 }
 ```
 
-Or like this if you want to apply multiple loaders:
+Or you can apply `use` and handle it there. The advantage of this approach is that it allows you to set up multiple loaders per match in a readable manner:
 
 ```javascript
 {
@@ -91,10 +91,8 @@ Or like this if you want to apply multiple loaders:
 }
 ```
 
-T> Another way to deal with query parameters would be to rely on Node.js [querystring](https://nodejs.org/api/querystring.html) module and stringify structures through it so they can be passed through a `loaders` definition.
-
 ## Conclusion
 
-Webpack provides multiple ways to set up loaders. You should be careful especially with loader ordering. Sometimes naming (i.e, `loader` vs. `loaders`) can cause mysterious issues as well.
+Webpack provides multiple ways to set up loaders. You should be careful especially with loader ordering. `use` is a good default even if it's more verbose than sticking to `loader`.
 
 I will discuss specific assets types and how to load them using webpack next.
