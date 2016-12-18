@@ -42,8 +42,6 @@ var common = {
 };
 ```
 
-`preLoaders` section of the configuration gets executed before `loaders`. If linting fails, you'll know about it first. There's a third section, `postLoaders`, that gets executed after `loaders`. You could include code coverage checking there during testing, for instance.
-
 JSHint will look into specific rules to apply from `.jshintrc`. You can also define custom settings within a `jshint` object at your Webpack configuration. Exact configuration options have been covered at [the JSHint documentation](http://jshint.com/docs/) in detail. `.jshintrc` could look like this:
 
 **.jshintrc**
@@ -242,7 +240,7 @@ npm i eslint-loader --save-dev
 
 W> Note that `eslint-loader` will use a globally installed version of ESLint unless you have one included with the project itself! Make sure you have ESLint as a development dependency to avoid strange behavior.
 
-A good way to set it up is to go through `preLoaders` like this:
+You can set it up as below to make sure the linter gets executed before the other code. This way we'll know early of if our code fails to lint during development. It is useful to include linting to the production target of your project as well.
 
 **webpack.config.js**
 
@@ -263,9 +261,9 @@ const common = {
 };
 ```
 
-By using a preloader definition, we make sure ESLint goes through our code before processing it any further. This way we'll know early of if our code fails to lint during development. It is useful to include linting to the production target of your project as well.
-
 If you execute `npm start` now and break some linting rule while developing, you should see that in the terminal output. The same should happen when you build the project.
+
+T> Especially on bigger projects it may be beneficial to run ESLint outside of webpack. That keeps code compilation fast while still giving the advantage of linting. Most IDEs and editors have good integration as well so you can spot issues as you develop. This applies to other linting tools as well.
 
 ## Customizing ESLint
 
