@@ -45,9 +45,14 @@ module.exports = function(env) {
           filename: '[name].[chunkhash].js',
           // This is used for code splitting. The setup
           // will work without but this is useful to set.
+leanpub-start-delete
+          chunkFilename: '[chunkhash].js'
+leanpub-start-delete
+leanpub-start-insert
           chunkFilename: '[chunkhash].js',
           // Tweak this to match your GitHub project name
           publicPath: '/webpack-demo/'
+leanpub-end-insert
         }
       },
       ...
