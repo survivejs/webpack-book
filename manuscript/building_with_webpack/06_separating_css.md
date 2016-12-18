@@ -1,8 +1,8 @@
 # Separating CSS
 
-Even though we have a nice build set up now, where did all the CSS go? As per our configuration, it has been inlined to JavaScript! Even though this can be convenient during development, it doesn't sound ideal. The current solution doesn't allow us to cache CSS. In some cases we might suffer from a Flash of Unstyled Content (FOUC).
+Even though we have a nice build set up now, where did all the CSS go? As per our configuration, it has been inlined to JavaScript! Even though this can be convenient during development, it doesn't sound ideal. The current solution doesn't allow us to cache CSS. In some cases we might suffer from a **Flash of Unstyled Content** (FOUC).
 
-It just so happens that Webpack provides a means to generate a separate CSS bundle. We can achieve this using the [ExtractTextPlugin](https://www.npmjs.com/package/extract-text-webpack-plugin). It comes with overhead during the compilation phase, and it won't work with Hot Module Replacement (HMR) by design. Given we are using it only for production, that won't be a problem.
+It just so happens that webpack provides a means to generate a separate CSS bundle. We can achieve this using the [ExtractTextPlugin](https://www.npmjs.com/package/extract-text-webpack-plugin). It comes with overhead during the compilation phase, and it won't work with Hot Module Replacement (HMR) by design. Given we are using it only for production, that won't be a problem.
 
 T> This same technique can be used with other assets, like templates, too.
 
@@ -13,7 +13,7 @@ W> It can be potentially dangerous to use inline styles in production as it repr
 It will take some configuration to make it work. Install the plugin:
 
 ```bash
-npm i extract-text-webpack-plugin --save-dev
+npm i extract-text-webpack-plugin@2.0.0-beta.4 --save-dev
 ```
 
 The plugin operates in two parts. There's a loader, `ExtractTextPlugin.extract`, that marks the assets to be extracted. The plugin will perform its work based on this annotation. The idea looks like this:
@@ -33,11 +33,14 @@ leanpub-start-insert
 exports.extractCSS = function(paths) {
   return {
     module: {
-      loaders: [
+      rules: [
         // Extract CSS during build
         {
           test: /\.css$/,
-          loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
+          loader: ExtractTextPlugin.extract({
+            fallbackLoader: 'style-loader',
+            loader: 'css-loader'
+          }),
           include: paths
         }
       ]
@@ -62,70 +65,61 @@ Connect the function with our configuration as below:
 ```javascript
 ...
 
-// Detect how npm is run and branch based on that
-switch(process.env.npm_lifecycle_event) {
-  case 'build':
-    config = merge(
+module.exports = function(env) {
+  if (env === 'build') {
+    return merge(
+      common,
       ...
       parts.minify(),
-leanpub-start-insert
-      parts.extractCSS(PATHS.app)
-leanpub-end-insert
 leanpub-start-delete
       parts.setupCSS(PATHS.app)
 leanpub-end-delete
+leanpub-start-insert
+      parts.extractCSS(PATHS.app)
+leanpub-end-insert
     );
-    break;
-  default:
-    config = merge(
-      ...
-    );
-}
+  }
 
-module.exports = validate(config);
+  ...
+};
 ```
 
 Using this setup, we can still benefit from the HMR during development. For a production build, we generate a separate CSS, though. *html-webpack-plugin* will pick it up automatically and inject it into our `index.html`.
 
-W> Definitions, such as `loaders: [ExtractTextPlugin.extract('style-loader', 'css-loader')]`, won't work and will cause the build to error instead! So when using `ExtractTextPlugin`, use the `loader` form instead.
-
-W> If you want to pass more loaders to the `ExtractTextPlugin`, you should use `!` syntax. Example: `ExtractTextPlugin.extract('style', 'css!postcss')`.
+W> If you want to pass more loaders to the `ExtractTextPlugin`, you should use `!` syntax. Example: `ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader!postcss-loader' })`.
 
 After running `npm run build`, you should see output similar to the following:
 
 ```bash
-[webpack-validator] Config is valid.
-clean-webpack-plugin: .../webpack-demo/build has been removed.
-Hash: 27832e316f572a80ce4f
-Version: webpack 1.13.0
-Time: 3084ms
-                               Asset       Size  Chunks             Chunk Names
-         app.c3162186fdfffbe6bbed.js  277 bytes    0, 2  [emitted]  app
-      vendor.21dc91b20c0b1e6e16a1.js    21.4 kB    1, 2  [emitted]  vendor
-    manifest.149335ad7c6634496b11.js  821 bytes       2  [emitted]  manifest
-        app.c3162186fdfffbe6bbed.css   80 bytes    0, 2  [emitted]  app
-     app.c3162186fdfffbe6bbed.js.map    1.77 kB    0, 2  [emitted]  app
-    app.c3162186fdfffbe6bbed.css.map  105 bytes    0, 2  [emitted]  app
-  vendor.21dc91b20c0b1e6e16a1.js.map     274 kB    1, 2  [emitted]  vendor
-manifest.149335ad7c6634496b11.js.map    8.78 kB       2  [emitted]  manifest
-                          index.html  347 bytes          [emitted]
-   [0] ./app/index.js 123 bytes {0} [built]
-   [0] multi vendor 28 bytes {1} [built]
-  [36] ./app/component.js 136 bytes {0} [built]
-    + 35 hidden modules
+clean-webpack-plugin: /Users/juhovepsalainen/Projects/tmp/webpack-demo/build has been removed.
+Hash: 98f119f8cf4be1762511
+Version: webpack 2.2.0-rc.1
+Time: 1318ms
+                           Asset       Size  Chunks           Chunk Names
+  vendor.d2d69e2291719248289e.js    19.7 kB  0, 2[emitted]  vendor
+     app.f295058dfe46ebb72667.js  230 bytes  1, 2[emitted]  app
+manifest.2c4031296370b2595d31.js    1.42 kB  2[emitted]  manifest
+    app.f295058dfe46ebb72667.css   88 bytes  1, 2[emitted]  app
+app.f295058dfe46ebb72667.css.map  105 bytes  1, 2[emitted]  app
+                      index.html  416 bytes  [emitted]
+  [15] ./app/component.js 136 bytes {1} [built]
+  [16] ./app/main.css 41 bytes {1} [built]
+  [29] ./app/index.js 124 bytes {1} [built]
+  [30] multi vendor 28 bytes {0} [built]
+  [31] ./~/css-loader!./app/main.css 190 bytes [built]
+    + 29 hidden modules
 Child html-webpack-plugin for "index.html":
-        + 3 hidden modules
+        + 4 hidden modules
 Child extract-text-webpack-plugin:
-        + 2 hidden modules
+       [1] ./~/css-loader!./app/main.css 190 bytes {0} [built]
+        + 1 hidden modules
 ```
 
 T> If you are getting `Module build failed: CssSyntaxError:` error, make sure your `common` configuration doesn't have a CSS related section set up!
 
 Now our styling has been pushed to a separate CSS file. As a result, our JavaScript bundles have become slightly smaller. We also avoid the FOUC problem. The browser doesn't have to wait for JavaScript to load to get styling information. Instead, it can process the CSS separately avoiding the flash.
 
-The current setup is fairly nice. There's one problem, though. If you try to modify either *index.js* or *main.css*, the hash of both files (*app.js* and *app.css*) will change! This is because they belong to the same entry chunk due to that `require` at *app/index.js*. The problem can be avoided by separating chunks further.
-
-T> If you have a complex project with a lot of dependencies, it is likely a good idea to use the `DedupePlugin`. It will find possible duplicate files and deduplicate them. Use `new webpack.optimize.DedupePlugin()` in your plugins definition to enable it. You should use it in your production build.
+The current setup is fairly nice. There's one problem, though. If you try to modify either *index.js* or *main.css*, the hash of both files (*app.js* and *app.css*) will change! This is because they belong to the same entry chunk due to that `require` at *app/index.js*. The problem can be avoided by separating chunks further or by using an alternative module id scheme that doesn't rely on number based chunk ids.
 
 ## Separating Application Code and Styling
 
@@ -171,68 +165,89 @@ leanpub-end-insert
   ...
 };
 
-// Detect how npm is run and branch based on that
-switch(process.env.npm_lifecycle_event) {
-  case 'build':
-    config = merge(
-      ...
+module.exports = function(env) {
+  if (env === 'build') {
+    return merge(
+      common,
+      {
+        devtool: 'source-map',
+        output: {
+          path: PATHS.build,
+          filename: '[name].[chunkhash].js',
+          // This is used for code splitting. The setup
+          // will work without but this is useful to set.
+          chunkFilename: '[chunkhash].js'
+        }
+      },
+      parts.clean(PATHS.build),
+      parts.setFreeVariable(
+        'process.env.NODE_ENV',
+        'production'
+      ),
+      parts.extractBundle({
+        name: 'vendor',
+        entries: ['react']
+      }),
       parts.minify(),
-leanpub-start-insert
-      parts.extractCSS(PATHS.style)
-leanpub-end-insert
 leanpub-start-delete
       parts.extractCSS(PATHS.app)
 leanpub-end-delete
-    );
-    break;
-  default:
-    config = merge(
-      ...
 leanpub-start-insert
-      parts.setupCSS(PATHS.style),
+      parts.extractCSS(PATHS.style)
 leanpub-end-insert
-leanpub-start-delete
-      parts.setupCSS(PATHS.app),
-leanpub-end-delete
-      parts.devServer({
-        // Customize host/port here if needed
-        host: process.env.HOST,
-        port: process.env.PORT
-      })
     );
-}
+  }
 
-module.exports = validate(config);
+  return merge(
+    common,
+    {
+      devtool: 'eval-source-map',
+      // Disable performance hints during development
+      performance: {
+        hints: false
+      }
+    },
+leanpub-start-delete
+    parts.setupCSS(PATHS.app),
+leanpub-end-delete
+leanpub-start-insert
+    parts.setupCSS(PATHS.style),
+leanpub-end-insert
+    parts.devServer({
+      // Customize host/port here if needed
+      host: process.env.HOST,
+      port: process.env.PORT
+    })
+  );
+};
 ```
 
 If you build the project now through `npm run build`, you should see something like this:
 
 ```bash
-[webpack-validator] Config is valid.
-clean-webpack-plugin: .../webpack-demo/build has been removed.
-Hash: e6e6cecdefbb54c610c1
-Version: webpack 1.13.0
-Time: 2788ms
-                               Asset       Size  Chunks             Chunk Names
-     app.a51c1a5cde933b81dc3e.js.map    1.57 kB    0, 3  [emitted]  app
-         app.a51c1a5cde933b81dc3e.js  252 bytes    0, 3  [emitted]  app
-      vendor.6947db44af2e47a304eb.js    21.4 kB    2, 3  [emitted]  vendor
-    manifest.c2487fa71892504eb968.js  846 bytes       3  [emitted]  manifest
-      style.e5eae09a78b3efd50e73.css   82 bytes    1, 3  [emitted]  style
-       style.e5eae09a78b3efd50e73.js   93 bytes    1, 3  [emitted]  style
-   style.e5eae09a78b3efd50e73.js.map  430 bytes    1, 3  [emitted]  style
-  style.e5eae09a78b3efd50e73.css.map  107 bytes    1, 3  [emitted]  style
-  vendor.6947db44af2e47a304eb.js.map     274 kB    2, 3  [emitted]  vendor
-manifest.c2487fa71892504eb968.js.map    8.86 kB       3  [emitted]  manifest
-                          index.html  402 bytes          [emitted]
-   [0] ./app/index.js 100 bytes {0} [built]
-   [0] multi vendor 28 bytes {2} [built]
-  [32] ./app/component.js 136 bytes {0} [built]
-    + 35 hidden modules
+clean-webpack-plugin: /Users/juhovepsalainen/Projects/tmp/webpack-demo/build has been removed.
+Hash: 992b15713ea05d224ee8
+Version: webpack 2.2.0-rc.1
+Time: 1194ms
+                              Asset       Size  Chunks           Chunk Names
+     vendor.0940842d7696bb59b31f.js    19.7 kB  0, 2, 3[emitted]  vendor
+        app.e4846c8c4fa21d73bb72.js  213 bytes  1, 2, 3[emitted]  app
+      style.547b5113533f91256e7d.js   28 bytes  2, 3[emitted]  style
+   manifest.487f0a20d591b15ab733.js    1.45 kB  3, 2[emitted]  manifest
+    vendor.0940842d7696bb59b31f.css   91 bytes  0, 2, 3[emitted]  vendor
+vendor.0940842d7696bb59b31f.css.map  108 bytes  0, 2, 3[emitted]  vendor
+                         index.html  495 bytes  [emitted]
+  [15] ./app/component.js 136 bytes {1} [built]
+  [16] ./app/main.css 41 bytes {0} [built]
+  [29] ./app/index.js 124 bytes {1} [built]
+  [30] multi vendor 28 bytes {0} [built]
+  [31] ./~/css-loader!./app/main.css 190 bytes [built]
+    + 29 hidden modules
 Child html-webpack-plugin for "index.html":
-        + 3 hidden modules
+        + 4 hidden modules
 Child extract-text-webpack-plugin:
-        + 2 hidden modules
+       [1] ./~/css-loader!./app/main.css 190 bytes {0} [built]
+        + 1 hidden modules
 ```
 
 After this step we have managed to separate styling from JavaScript. Changes made to it shouldn't affect JavaScript chunk hashes or vice versa. The approach comes with a small glitch, though.
