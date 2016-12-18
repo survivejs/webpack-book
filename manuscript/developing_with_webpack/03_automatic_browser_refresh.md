@@ -6,6 +6,8 @@ A good first step towards a better development environment would be to use webpa
 
 *webpack-dev-server* is a development server running in-memory. It refreshes content automatically in the browser while you develop your application. It also supports an advanced webpack feature known as Hot Module Replacement (HMR), which provides a way to patch the browser state without a full refresh. This is particularly powerful with technology such as React.
 
+HMR goes further than simply refreshing browser on change. webpack-dev-server provides an interface that makes it possible to patch code on the fly. This means you will need to implement it for client-side code. It is trivial for something like CSS by definition (no state), but it's a harder problem with JavaScript frameworks and libraries. Often careful design is needed to allow this. When the feature works, it is beautiful, though.
+
 T> Even though it's good that *webpack-dev-server* operates in-memory by default, sometimes it can be good to emit files to the file system. This is particularly true if you are integrating with other server that expects to find the files. [webpack-disk-plugin](https://www.npmjs.com/package/webpack-disk-plugin), [write-file-webpack-plugin](https://www.npmjs.com/package/write-file-webpack-plugin), and more specifically [html-webpack-harddisk-plugin](https://www.npmjs.com/package/html-webpack-harddisk-plugin) can achieve this.
 
 W> You should use *webpack-dev-server* strictly for development. If you want to host your application, consider other standard solutions, such as Apache or Nginx.
