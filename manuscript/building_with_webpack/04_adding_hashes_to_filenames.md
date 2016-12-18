@@ -9,6 +9,8 @@ Webpack relies on the concept of **placeholders**. These strings are used to att
 
 T> If you want shorter hashes, it is possible to slice `hash` and `chunkhash` using `:` syntax like this: `[chunkhash:8]`. Instead of a hash like `8c4cbfdb91ff93f3f3c5` this would yield `8c4cbfdb`.
 
+## Using Placeholders
+
 Assuming we have configuration like this:
 
 ```javascript
@@ -29,7 +31,9 @@ vendor.dc746a5db4ed650296e1.js
 
 If the file contents related to a chunk are different, the hash will change as well, thus invalidating the cache. More accurately, the browser will send a new request for the new file. This means if only `app` bundle gets updated, only that file needs to be requested again.
 
-An alternative way to achieve the same result would be to generate static filenames and invalidate the cache through a querystring (i.e., `app.js?d587bbd6e38337f5accd`). The part behind the question mark will invalidate the cache. This method is not recommended, though. According to [Steve Souders](http://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/), attaching the hash to the filename is the more performant way to go.
+An alternative way to achieve the same result would be to generate static filenames and invalidate the cache through a querystring (i.e., `app.js?d587bbd6e38337f5accd`). The part behind the question mark will invalidate the cache.
+
+This method is not recommended, though as according to [Steve Souders](http://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/), attaching the hash to the filename is the more performant way to go.
 
 ## Setting Up Hashing
 
@@ -42,10 +46,9 @@ To make the setup work, our configuration is missing one vital part, the placeho
 ```javascript
 ...
 
-// Detect how npm is run and branch based on that
-switch(process.env.npm_lifecycle_event) {
-  case 'build':
-    config = merge(
+module.exports = function(env) {
+  if (env === 'build') {
+    return merge(
       common,
       {
 leanpub-start-delete
@@ -56,43 +59,39 @@ leanpub-start-insert
         output: {
           path: PATHS.build,
           filename: '[name].[chunkhash].js',
-          // This is used for require.ensure. The setup
+          // This is used for code splitting. The setup
           // will work without but this is useful to set.
           chunkFilename: '[chunkhash].js'
         }
 leanpub-end-insert
       },
       ...
-    );
-    break;
-  default:
-    ...
-}
+    };
+  }
 
-module.exports = validate(config);
+  ...
+};
 ```
 
 If you execute `npm run build` now, you should see output like this.
 
 ```bash
-[webpack-validator] Config is valid.
-Hash: 77395b0652b78e910b14
-Version: webpack 1.13.0
-Time: 2679ms
-                               Asset       Size  Chunks             Chunk Names
-         app.81e040e8c3dcc71d5624.js    3.96 kB    0, 2  [emitted]  app
-      vendor.21dc91b20c0b1e6e16a1.js    21.4 kB    1, 2  [emitted]  vendor
-    manifest.9e0e3d4035bea9b56f55.js  821 bytes       2  [emitted]  manifest
-     app.81e040e8c3dcc71d5624.js.map    30.8 kB    0, 2  [emitted]  app
-  vendor.21dc91b20c0b1e6e16a1.js.map     274 kB    1, 2  [emitted]  vendor
-manifest.9e0e3d4035bea9b56f55.js.map    8.78 kB       2  [emitted]  manifest
-                          index.html  288 bytes          [emitted]
-   [0] ./app/index.js 123 bytes {0} [built]
-   [0] multi vendor 28 bytes {1} [built]
-  [36] ./app/component.js 136 bytes {0} [built]
-    + 35 hidden modules
+Hash: 295e44e81d90cb11f12d
+Version: webpack 2.2.0-rc.1
+Time: 1223ms
+                           Asset       Size  Chunks           Chunk Names
+  vendor.6fcd8ee954db093c19c0.js    19.7 kB  0, 2[emitted]  vendor
+     app.5caccf3ee1ca2f876fe1.js    4.06 kB  1, 2[emitted]  app
+manifest.9236efcd5974e259d881.js    1.42 kB  2[emitted]  manifest
+                      index.html  357 bytes  [emitted]
+  [15] ./app/component.js 136 bytes {1} [built]
+  [16] ./app/main.css 904 bytes {1} [built]
+  [17] ./~/css-loader!./app/main.css 190 bytes {1} [built]
+  [32] ./app/index.js 124 bytes {1} [built]
+  [33] multi vendor 28 bytes {0} [built]
+    + 29 hidden modules
 Child html-webpack-plugin for "index.html":
-        + 3 hidden modules
+        + 4 hidden modules
 ```
 
 Our files have neat hashes now. To prove that it works, you could try altering *app/index.js* and include a `console.log` there. After you build, only `app` and `manifest` related bundles should change.
