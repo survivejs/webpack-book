@@ -132,7 +132,13 @@ const config = {
       columns: bool, // If false, column mappings are ignored.
 
       // Use simpler line to line mappings for the matched modules.
-      lineToLine: bool | {test, include, exclude}
+      lineToLine: bool | {test, include, exclude},
+
+      // Remove source content from sourcemaps. This is useful especially
+      // if your sourcemaps are very big (over 10 MB) as browsers can
+      // struggle with those.
+      // See https://github.com/webpack/webpack/issues/2669 for more.
+      noSources: bool // If true, remove source content from sourcemaps.
     }),
     ...
   ],
