@@ -2,11 +2,17 @@
 
 ![Sourcemaps in Chrome](images/sourcemaps.png)
 
-To improve the debuggability of the application, we can set up sourcemaps for both code and styling. Sourcemaps allow you to see exactly where an error was raised. Webpack can generate both inline sourcemaps included within bundles or separate sourcemap files. The former is useful during development due to better performance while the latter is handy for production usage as it will keep the bundle size small.
+To improve the debuggability of the application, we can set up sourcemaps for both code and styling. Sourcemaps allow you to see exactly where an error was raised. This makes them particularly valuable during development.
 
-I'll show you how to enable sourcemaps for JavaScript code next. It is a good idea to study the documentation of the loaders you are using to see specific tips. For example with TypeScript you may need to set a certain flag to make it to work.
+Sometimes the best approach is simply to skip sourcemaps entirely and rely on browser support of language features. This works particularly if you use ES6 without any extensions and develop using a modern browser.
 
-W> You may **not** want to generate a sourcemap for your production bundle as this makes it easy to inspect your application (depends on whether you want this or not, good for staging!). Simply skip the `devtool` field then. This also speeds up your build a notch.
+## Inline Sourcemaps and Separate Sourcemaps
+
+Webpack can generate both inline sourcemaps included within bundles or separate sourcemap files. The former are useful during development due to better performance while the latter are handy for production usage as it will keep the bundle size small. The loading sourcemaps becomes optional.
+
+I'll show you how to enable sourcemaps for JavaScript code next. It is a good idea to study the documentation of the loaders you are using to see loader specific tips. For example, with TypeScript you may need to set a certain flag to make it to work.
+
+W> You may **not** want to generate a sourcemap for your production bundle as this makes it easy to inspect your application (depends on whether you want this or not, good for staging!). Simply skip the `devtool` field then. This also speeds up your build a notch as generating sourcemaps at the best quality can be a heavy operation.
 
 ## Enabling Sourcemaps During Development
 
@@ -17,9 +23,9 @@ To enable sourcemaps during development, we can use a default such as `eval-sour
 ```javascript
 ...
 
-switch(process.env.npm_lifecycle_event) {
-  case 'build':
-    config = merge(
+module.exports = function(env) {
+  if (env === 'build') {
+    return merge(
       common,
 leanpub-start-insert
       {
@@ -28,20 +34,27 @@ leanpub-start-insert
 leanpub-end-insert
       parts.setupCSS(PATHS.app)
     );
-  default:
-    config = merge(
-      common,
-leanpub-start-insert
-      {
-        devtool: 'eval-source-map'
-      },
-leanpub-end-insert
-      parts.setupCSS(PATHS.app),
-      ...
-    );
-}
+  }
 
-module.exports = validate(config);
+  return merge(
+    common,
+    {
+leanpub-start-insert
+      devtool: 'eval-source-map',
+leanpub-end-insert
+      // Disable performance hints during development
+      performance: {
+        hints: false
+      }
+    },
+    parts.setupCSS(PATHS.app),
+    parts.devServer({
+      // Customize host/port here if needed
+      host: process.env.HOST,
+      port: process.env.PORT
+    })
+  );
+};
 ```
 
 `eval-source-map` builds slowly initially, but it provides fast rebuild speed and yields real files. Faster development specific options, such as `cheap-module-eval-source-map` and `eval`, produce lower quality sourcemaps. All `eval` options will emit sourcemaps as a part of your JavaScript code.
@@ -96,7 +109,7 @@ const config = {
 };
 ```
 
-T> The [official documentation](https://webpack.js.org/configuration/output/#output-sourcemapfilename) digs into devtool specifics.
+T> The [official documentation](https://webpack.js.org/configuration/output/#output-sourcemapfilename) digs into `devtool` specifics.
 
 W> If you are using any of the *cheap* options and `UglifyJsPlugin`, you need to remember to enable `sourceMap: true` for the plugin. Otherwise the result won't be what you expect.
 
@@ -121,26 +134,29 @@ const config = {
       // See `sourceMapFileName`.
       filename: string,
 
-      // This line is appended to the original asset processed. For
-      // instance '[url]' would get replaced with an url to the
-      // sourcemap.
+      // This line is appended to the original asset processed.
+      // For instance '[url]' would get replaced with an url
+      // to the sourcemap.
       append: false | string,
 
       // See `devtoolModuleFilenameTemplate` for specifics.
       moduleFilenameTemplate: string,
       fallbackModuleFilenameTemplate: string,
 
-      module: bool, // If false, separate sourcemaps aren't generated.
-      columns: bool, // If false, column mappings are ignored.
+      // If false, separate sourcemaps aren't generated.
+      module: bool,
+
+      // If false, column mappings are ignored.
+      columns: bool,
 
       // Use simpler line to line mappings for the matched modules.
       lineToLine: bool | {test, include, exclude},
 
-      // Remove source content from sourcemaps. This is useful especially
-      // if your sourcemaps are very big (over 10 MB) as browsers can
-      // struggle with those.
-      // See https://github.com/webpack/webpack/issues/2669 for more.
-      noSources: bool // If true, remove source content from sourcemaps.
+      // Remove source content from sourcemaps. This is useful
+      // especially if your sourcemaps are very big (over 10 MB)
+      // as browsers can struggle with those.
+      // See https://github.com/webpack/webpack/issues/2669.
+      noSources: bool
     }),
     ...
   ],
@@ -150,7 +166,7 @@ const config = {
 
 ## Sourcemaps for Styling
 
-If you want to enable sourcemaps for styling files, you can achieve this using a query parameter or by setting it through an option. Loaders, such as *css-loader*, *sass-loader*, and *less-loader*, accept a `?sourceMap` (i.e, `css-loader?sourceMap`).
+If you want to enable sourcemaps for styling files, you can achieve this using a query parameter or by setting it through an option. Loaders, such as *css-loader*, *sass-loader*, and *less-loader*, accept a `?sourceMap` (i.e, `css-loader?sourceMap`) flag.
 
 This isn't without gotchas. The *css-loader* documentation notes that relative paths within CSS declarations are known to be buggy and suggests using setting an absolute public path (`output.publicPath`) resolving to the server url.
 
