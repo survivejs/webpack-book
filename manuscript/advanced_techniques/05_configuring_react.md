@@ -242,7 +242,7 @@ To get started, install react-lite:
 npm i react-lite --save-dev
 ```
 
-On the Webpack side, we can use a `resolve.alias` to point our React imports to react-lite instead:
+On the webpack side, we can use a `resolve.alias` to point our React imports to react-lite instead. Consider doing this only for your production setup!
 
 ```javascript
 resolve: {
@@ -253,11 +253,13 @@ resolve: {
 }
 ```
 
-If you try building your project with this setup, you should notice your bundle is considerably smaller.
+If you try building your project now, you should notice your bundle is considerably smaller.
 
-T> A similar setup works for Preact too. In that case you would point to *preact-compat* instead. See [preact-boilerplate](https://github.com/developit/preact-boilerplate) for the exact setup.
+Similar setup works for Preact too. In that case you would point to *preact-compat* instead. preact-compat can be used during development as well as it supports `propTypes`. See [preact-boilerplate](https://github.com/developit/preact-boilerplate) for the exact setup and more information.
 
-T> If you stick with vanilla React, you can still optimize it for production usage. See the *Setting Environment Variables* chapter to see how to achieve this.
+[Inferno](https://www.npmjs.com/package/inferno) is yet another alternative. The setup is the same and you can find *inferno-compat* with a similar idea. I discuss these alternatives in more detail at my slide set known as [React Compatible Alternatives](https://presentations.survivejs.com/react-compatible-alternatives).
+
+T> If you stick with vanilla React, you can still optimize it for production usage. See the *Setting Environment Variables* chapter to see how to achieve this. The same trick works with preact-compat as well.
 
 ## Exposing React Performance Utilities to Browser
 
@@ -269,7 +271,7 @@ To get started, install the needed dependencies:
 npm i expose-loader react-addons-perf --save-dev
 ```
 
-Next we need to expose React to the console through the [expose-loader](https://www.npmjs.com/package/expose-loader). The idea is that we'll bind the React performance utilities to that during development. Here's the Webpack loader configuration for exposing React as a global:
+Next we need to expose React to the console through the [expose-loader](https://www.npmjs.com/package/expose-loader). The idea is that we'll bind the React performance utilities to that during development. Here's the webpack loader configuration for exposing React as a global:
 
 ```javascript
 {
@@ -294,9 +296,9 @@ T> It can be a good idea to install [React Developer Tools](https://github.com/f
 
 We can optimize React's rebundling times during development by pointing the development setup to a minified version of React. The gotcha is that we will lose `propType` based validation! But if speed is more important, this technique may be worth a go. You can hide it behind an environment flag for instance if you want type checking.
 
-In order to achieve what we want, we can use Webpack's `module.noParse` option. It accepts a RegExp or an array of RegExps. We can also pass full paths to it to keep our lives simple.
+In order to achieve what we want, we can use webpack's `module.noParse` option. It accepts a RegExp or an array of RegExps. We can also pass full paths to it to keep our lives simple.
 
-In addition to telling Webpack not to parse the minified file we want to use, we also need to point `react` to it. This can be achieved using a feature known as `resolve.alias` just like we did with *react-lite* above.
+In addition to telling webpack not to parse the minified file we want to use, we also need to point `react` to it. This can be achieved using a feature known as `resolve.alias` just like we did with *react-lite* above.
 
 We can encapsulate the basic idea within a function like this:
 
@@ -351,7 +353,7 @@ W> Not all modules support `module.noParse`, the files included by deps array sh
 
 ## Setting Up Flow
 
-[Flow](http://flowtype.org/) performs static analysis based on your code and its type annotations. This means you will install it as a separate tool. You will then run it against your code. There's a Webpack plugin known as [flow-status-webpack-plugin](https://www.npmjs.com/package/flow-status-webpack-plugin) that allows you to run it through Webpack during development.
+[Flow](http://flowtype.org/) performs static analysis based on your code and its type annotations. This means you will install it as a separate tool. You will then run it against your code. There's a webpack plugin known as [flow-status-webpack-plugin](https://www.npmjs.com/package/flow-status-webpack-plugin) that allows you to run it through webpack during development.
 
 When using React, the Babel preset does most of the work. It is able to strip Flow annotations and convert your code into a format that is possible to transpile further.
 
@@ -371,7 +373,7 @@ Even though useful, Flow static checker is able to catch more errors. Runtime ch
 
 ## Setting Up TypeScript
 
-Microsoft's [TypeScript](http://www.typescriptlang.org/) is a far more established solution than Facebook's Flow. As a result you will find more premade type definitions for it and overall the quality of support should be better. You can use it with Webpack using at least the following loaders:
+Microsoft's [TypeScript](http://www.typescriptlang.org/) is a far more established solution than Facebook's Flow. As a result you will find more premade type definitions for it and overall the quality of support should be better. You can use it with webpack using at least the following loaders:
 
 * [ts-loader](https://www.npmjs.com/package/ts-loader)
 * [awesome-typescript-loader](https://www.npmjs.com/package/awesome-typescript-loader)
@@ -379,4 +381,4 @@ Microsoft's [TypeScript](http://www.typescriptlang.org/) is a far more establish
 
 ## Conclusion
 
-There are a lot of aspects to keep in mind when configuring Webpack to work with React. Fortunately this is something you don't have to perform often. Once you have a solid basic setup fitting your needs together, it will take you far.
+There are a lot of aspects to keep in mind when configuring webpack to work with React. Fortunately this is something you don't have to perform often. Once you have a solid basic setup fitting your needs together, it will take you far.
