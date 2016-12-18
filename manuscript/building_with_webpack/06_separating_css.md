@@ -51,7 +51,11 @@ exports.extractCSS = function(paths) {
 leanpub-end-insert
 ```
 
-Connect the function with our configuration:
+W> You should **not** use `ExtractTextPlugin` for development configuration. In addition to slowing it down, it won't work with Hot Module Replacement (HMR). Inline the assets there for better development experience.
+
+### Connecting with Configuration
+
+Connect the function with our configuration as below:
 
 **webpack.config.js**
 

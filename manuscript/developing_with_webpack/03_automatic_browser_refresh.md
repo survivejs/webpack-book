@@ -118,7 +118,13 @@ exports.devServer = function(options) {
 }
 ```
 
-It's plenty of code, but it's better to encapsulate it so it contains ideas we understand and want to reuse later on. Fortunately hooking up this part with our main configuration is simple:
+It's plenty of code, but it's better to encapsulate it so it contains ideas we understand and want to reuse later on.
+
+W> You should **not** enable HMR for production configuration. It will likely work, but having the capability enabled there won't do any good.
+
+### Connecting with Configuration
+
+Hooking up this part with our main configuration is simple:
 
 **webpack.config.js**
 
