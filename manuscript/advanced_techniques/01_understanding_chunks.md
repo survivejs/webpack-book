@@ -22,7 +22,7 @@ What makes webpack powerful is its capability of splitting up your application i
 
 Often you don't need all of the dependencies at once. As we saw earlier, you can split your dependencies and benefit from browser caching behavior. This is a good step, but it's not enough always. Your bundles can still be somewhat big. *Lazy loading* allows us to go further.
 
-### Introduction to Lazy Loaded Search with *lunr*
+## Introduction to Lazy Loaded Search with *lunr*
 
 Let's say we want to implement a rough little search for our application without a proper search back-end. We might want to use something like [lunr](http://lunrjs.com/) for generating an index to search against.
 
@@ -32,9 +32,42 @@ The good thing is that we don't actually need the search index straight from the
 
 This defers the loading and moves it to a place where it's more acceptable. Given the initial search might be slower than the subsequent ones we could display a loading indicator. But that's fine from the user point of view.
 
+### Required Setup
+
+It's going to take some setup to make this work. Assuming you are using Babel for processing, you should have the following dependencies available:
+
+```bash
+npm i babel-plugin-syntax-dynamic-import babel-preset-es2015 babel-preset-react-hmre -D
+```
+
+Especially that `babel-plugin-syntax-dynamic-import` is important as otherwise [dynamic imports](https://github.com/tc39/proposal-dynamic-import) won't work! The rest are specific to this demo. Here's the minimal Babel setup:
+
+**.babelrc**
+
+```json
+{
+  "plugins": ["syntax-dynamic-import"],
+  "presets": [
+    [
+      "es2015",
+      {
+        "modules": false
+      }
+    ],
+    "react"
+  ]
+}
+```
+
+Note that I have disabled modules from Babel as webpack 2 can handle those.
+
 ### Implementing Search with Lazy Loading
 
-Implementing this idea is straight-forward. We need to capture when the user selects the search element, load the data unless it has been loaded already, and then execute our search logic against it. In React we could end up with something like this:
+Implementing lazy loading is straight-forward. First you will need to decide where to put the split point, put it there, and then handle the `Promise`. The basic `import` looks like `import('./asset').then(asset => ...).catch(err => ...)`.
+
+The nice thing is that this gives us error handling in case something goes wrong (network is down etc.) and gives us a chance to recover. We can also use `Promise` based utilities like `Promise.all` for composing more complicated queries.
+
+In this case we need to detect when the user selects the search element, load the data unless it has been loaded already, and then execute our search logic against it. Using React we could end up with something like this:
 
 **App.jsx**
 
@@ -111,8 +144,13 @@ export default class App extends React.Component {
     });
   }
   search(lines, index, query) {
-    // Search against index and match README lines against the results.
-    return index.search(query.trim()).map(match => lines[match.ref]);
+    // Search against index and match README lines
+    // against the results.
+    return index.search(
+      query.trim()
+    ).map(
+      match => lines[match.ref]
+    );
   }
 };
 
@@ -126,44 +164,41 @@ const Results = ({results}) => {
   return <span>No results</span>;
 };
 
+
 function loadIndex() {
-  // Here's the magic. Set up `require.ensure` to tell Webpack
+  // Here's the magic. Set up `import` to tell Webpack
   // to split here and load our search index dynamically.
   //
-  // The first parameter defines possible dependencies that
-  // must be loaded first. Given there aren't any, we will
-  // leave it as an empty array.
-  return new Promise((resolve, reject) => {
-    // This can be replaced with `import` in webpack 2. That would return
-    // a Promise and give proper error handling unlike `require.ensure`.
-    require.ensure([], require => {
-      const lunr = require('lunr');
-      const search = require('../search_index.json');
-
-      resolve({
-        index: lunr.Index.load(search.index),
-        lines: search.lines
-      });
-    });
+  // Note that you will need to shim Promise.all for
+  // older browsers and Internet Explorer!
+  return Promise.all([
+    import('lunr'),
+    import('../search_index.json')
+  ]).then(([lunr, search]) => {
+    return {
+      index: lunr.Index.load(search.index),
+      lines: search.lines
+    };
   });
 }
+
 ```
 
-In the example, webpack detects the `require.ensure` statically. It is able to generate a separate bundle based on this split point. Given it relies on static analysis, you cannot generalize `loadIndex` in this case and pass the search index path as a parameter.
+In the example, webpack detects the `import` statically. It is able to generate a separate bundle based on this split point. Given it relies on static analysis, you cannot generalize `loadIndex` in this case and pass the search index path as a parameter.
 
 The approach is useful with routers too. As the user enters some route, you can load the dependencies the resulting view needs. Alternatively you can start loading dependencies as the user scrolls a page and gets near parts with actual functionality. `require.ensure` provides a lot of power and allows you to keep your application lean.
 
-T> `require.ensure` respects `output.publicPath` option.
+You can find a [full example](https://github.com/survivejs-demos/lunr-demo) showing how it all goes together with lunr, React, and webpack. The basic idea is the same, but there's more setup in place.
 
-T> Webpack 2 supports [import](https://github.com/tc39/proposal-dynamic-import) semantics. We can use `import('lunr').then(lunr => ...).catch(err => ...)` kind of declarations there.
-
-T> There's a [full example](https://github.com/survivejs-demos/lunr-demo) showing how it all goes together with lunr, React, and Webpack.
+T> `import` respects `output.publicPath` option.
 
 T> Incidentally it is possible to implement Google's [PRPL pattern](https://developers.google.com/web/fundamentals/performance/prpl-pattern/) using lazy loading. PRPL (Push, Render, Pre-cache, Lazy-load) has been designed mobile web in mind and canbe implemented using webpack.
 
-## Dynamic Loading with Webpack
+T> In webpack 1 this feature was known as `require.ensure`. Its main handicap was that it was missing proper error handling. It was also more difficult to compose as it wasn't `Promise` based.
 
-Beyond `require.ensure`, there's another type of `require` that you should be aware of. It's [require.context](https://webpack.js.org/configuration/entry-context/#context). `require.context` is a type of `require` which contents aren't known compile-time.
+## Dynamic Loading with `require.context`
+
+Beyond `import`, there's another type of `require` that you should be aware of. It's [require.context](https://webpack.js.org/configuration/entry-context/#context). `require.context` is a type of `require` which contents aren't known compile-time.
 
 Let's say you are writing a static site generator on top of webpack. You could model your site contents within a directory structure. At the simplest level you could have just a `pages/` directory which would contain Markdown files.
 
