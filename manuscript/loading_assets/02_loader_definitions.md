@@ -65,8 +65,6 @@ Or even:
 }
 ```
 
-To keep it simple, I would recommend sticking with `use` and its variants which we'll cover briefly.
-
 T> There may still be use for the old query format especially if you have to perform quick processing in your source files.
 
 ## Passing Parameters to a Loader
@@ -95,7 +93,7 @@ This isn't very readable. Instead, it's preferable to use the combination of `lo
 }
 ```
 
-Or you can apply `use` and handle it there. The advantage of this approach is that it allows you to set up multiple loaders per match in a readable manner:
+Or you can apply `use` and handle it there. The advantage of this approach is that it allows you to set up multiple loaders per match in a readable manner. Since we are using only one loader, wrapping it in an array feels a little too much:
 
 ```javascript
 {
@@ -122,6 +120,7 @@ Given webpack 2 forbids arbitrary root level configuration, you have to use `Loa
   plugins: [
     new webpack.LoaderOptionsPlugin({
       options: {
+        context: __dirname,
         postcss: function() {
           return [autoprefixer];
         }
@@ -133,4 +132,4 @@ Given webpack 2 forbids arbitrary root level configuration, you have to use `Loa
 
 ## Conclusion
 
-Webpack provides multiple ways to set up loaders. You should be careful especially with loader ordering. `use` is a good default. I will discuss specific assets types and how to load them using webpack next.
+Webpack provides multiple ways to set up loaders. You should be careful especially with loader ordering. If you have a single loader, then using `loader` is enough. For more complex case `use` works better as it allows you to manage multiple loaders. I will discuss specific assets types and how to load them using webpack next.
