@@ -27,7 +27,7 @@ leanpub-end-insert
 }
 ```
 
-To make the asset paths work on GitHub Pages, we also need to tweak a Webpack setting known as `output.publicPath`. Otherwise they will point at root and that won't work unless you are hosting behind a root domain directly.
+To make the asset paths work on GitHub Pages, we also need to tweak a webpack setting known as `output.publicPath`. Otherwise they will point at root and that won't work unless you are hosting behind a root domain directly.
 
 `publicPath` gives control over the resulting urls you see at *index.html* for instance. If you are hosting your assets on a CDN, this would be the place to tweak. In this case it's enough to set it to point the GitHub project like this:
 

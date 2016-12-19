@@ -59,7 +59,7 @@ clean:
     rm -rf build
 ```
 
-With Make, you model your tasks using Make-specific syntax and terminal commands. This allows it to integrate easily with Webpack.
+With Make, you model your tasks using Make-specific syntax and terminal commands. This allows it to integrate easily with webpack.
 
 ## Grunt
 
@@ -99,7 +99,7 @@ In practice, you would have many small tasks like this for specific purposes, su
 
 Taken too far, this can get problematic, though. It can become hard to thoroughly understand what's going on under the hood. That's the architectural lesson to take from Grunt.
 
-T> Note that the [grunt-webpack](https://www.npmjs.com/package/grunt-webpack) plugin allows you to use Webpack in a Grunt environment. You can leave the heavy lifting to Webpack.
+T> Note that the [grunt-webpack](https://www.npmjs.com/package/grunt-webpack) plugin allows you to use Webpack in a Grunt environment. You can leave the heavy lifting to webpack.
 
 ## Gulp
 
@@ -154,7 +154,7 @@ gulp.task('default', ['watch', 'scripts']);
 
 Given the configuration is code, you can always just hack it if you run into troubles. You can wrap existing Node.js packages as Gulp plugins, and so on. Compared to Grunt, you have a clearer idea of what's going on. You still end up writing a lot of boilerplate for casual tasks, though. That is where some newer approaches come in.
 
-T> [webpack-stream](https://www.npmjs.com/package/webpack-stream) allows you to use Webpack in a Gulp environment.
+T> [webpack-stream](https://www.npmjs.com/package/webpack-stream) allows you to use webpack in a Gulp environment.
 
 T> [Fly](https://github.com/bucaran/fly) is a similar tool as Gulp. It relies on ES6 generators instead.
 
@@ -168,7 +168,7 @@ In practice, it can be useful just to use CommonJS, the Node.js format, and let 
 
 [Browserify](http://browserify.org/) is one solution to the module problem. It provides a way to bundle CommonJS modules together. You can hook it up with Gulp. There are smaller transformation tools that allow you to move beyond the basic usage. For example, [watchify](https://www.npmjs.com/package/watchify) provides a file watcher that creates bundles for you during development. This will save some effort and no doubt is a good solution up to a point.
 
-The Browserify ecosystem is composed of a lot of small modules. In this way, Browserify adheres to the Unix philosophy. Browserify is a little easier to adopt than Webpack, and is, in fact, a good alternative to it.
+The Browserify ecosystem is composed of a lot of small modules. In this way, Browserify adheres to the Unix philosophy. Browserify is a little easier to adopt than webpack, and is, in fact, a good alternative to it.
 
 T> [Splittable](https://github.com/cramforce/splittable) is a Browserify wrapper that allows code splitting, supports ES6 out of the box, tree shaking, and more.
 
@@ -272,7 +272,7 @@ The configuration model may make webpack feel a bit opaque at times as it can be
 
 ## Why Webpack?
 
-Why would you use webpack over tools like Gulp or Grunt? It's not an either-or proposition. Webpack deals with the difficult problem of bundling, but there's so much more. I picked up Webpack because of its support for **Hot Module Replacement** (HMR). This is a feature used by [babel-plugin-react-transform](https://github.com/gaearon/babel-plugin-react-transform). I will show you later how to set it up.
+Why would you use webpack over tools like Gulp or Grunt? It's not an either-or proposition. Webpack deals with the difficult problem of bundling, but there's so much more. I picked up webpack because of its support for **Hot Module Replacement** (HMR). This is a feature used by [babel-plugin-react-transform](https://github.com/gaearon/babel-plugin-react-transform). I will show you later how to set it up.
 
 You can use webpack with task runners and let it tackle the hardest part. The community has developed a large amount of plugins to support it so it is fair to say that the line between webpack and task runners has become blurred. Often you set up npm scripts to invoke webpack in various ways and that's enough.
 

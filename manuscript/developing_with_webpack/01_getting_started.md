@@ -30,7 +30,7 @@ Even though webpack can be installed globally (`npm i webpack -g`), I recommend 
 
 The approach works nicely in **Continuous Integration** (CI) setups as well. A CI system can install your local dependencies, compile your project using them, and then push the result to a server.
 
-To add Webpack to our project, execute
+To add webpack to our project, execute
 
 ```bash
 npm i webpack@beta --save-dev # or just -D if you want to save typing
@@ -42,7 +42,7 @@ W> We are using the most recent `beta` version of webpack 2 in this tutorial! Yo
 
 ## Executing Webpack
 
-You can display the exact path of the executables using `npm bin`. Most likely it points at *./node_modules/.bin*. Try executing Webpack from there through terminal using `node_modules/.bin/webpack` or a similar command.
+You can display the exact path of the executables using `npm bin`. Most likely it points at *./node_modules/.bin*. Try executing webpack from there through terminal using `node_modules/.bin/webpack` or a similar command.
 
 After executing, you should see a version, a link to the command line interface guide and a long list of options. We won't be using most of those, but it's good to know that this tool is packed with functionality, if nothing else.
 

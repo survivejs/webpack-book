@@ -1,6 +1,6 @@
 # Adding Hashes to Filenames
 
-Webpack relies on the concept of **placeholders**. These strings are used to attach specific information to Webpack output. The most useful ones are:
+Webpack relies on the concept of **placeholders**. These strings are used to attach specific information to webpack output. The most useful ones are:
 
 * `[path]` - Returns an entry path.
 * `[name]` - Returns an entry name.

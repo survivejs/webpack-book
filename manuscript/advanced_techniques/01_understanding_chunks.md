@@ -6,7 +6,7 @@ With some additional setup webpack was able to output separate bundles for these
 
 ## Chunk Types
 
-As [discussed in the documentation](https://webpack.github.io/docs/code-splitting.html#chunk-types), internally Webpack treats chunks in three types:
+As [discussed in the documentation](https://webpack.github.io/docs/code-splitting.html#chunk-types), internally webpack treats chunks in three types:
 
 * **Entry chunks** - Entry chunks contain webpack runtime and modules it then loads. So far we've been dealing with these.
 * **Normal chunks** - Normal chunks **don't** contain webpack runtime. Instead, these can be loaded dynamically while the application is running. A suitable wrapper (JSONP for example) is generated for these.
@@ -126,7 +126,7 @@ export default class App extends React.Component {
 
     // If the index doesn't exist, we need to set it up.
     // Unfortunately we cannot pass the path so we need to
-    // hardcode it (Webpack uses static analysis).
+    // hardcode it (webpack uses static analysis).
     //
     // You could show loading indicator here as loading might
     // take a while depending on the size of the index.
@@ -166,7 +166,7 @@ const Results = ({results}) => {
 
 
 function loadIndex() {
-  // Here's the magic. Set up `import` to tell Webpack
+  // Here's the magic. Set up `import` to tell webpack
   // to split here and load our search index dynamically.
   //
   // Note that you will need to shim Promise.all for

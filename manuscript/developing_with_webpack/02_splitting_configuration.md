@@ -90,4 +90,4 @@ Perhaps the biggest problem is that with composition you need to know what you a
 
 ## Conclusion
 
-Now that we have room for growth, I will show you how to set up automatic browser refresh with Webpack in the next chapter. You will see the same theme in the chapters after that. We'll solve some specific problem through composition and we will expand our vocabulary that way.
+Now that we have room for growth, I will show you how to set up automatic browser refresh with webpack in the next chapter. You will see the same theme in the chapters after that. We'll solve some specific problem through composition and we will expand our vocabulary that way.

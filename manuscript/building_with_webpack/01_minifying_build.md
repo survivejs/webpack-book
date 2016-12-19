@@ -128,7 +128,7 @@ An UglifyJS feature known as **mangling** will be enabled by default. The featur
 
 Given these transformations can break your code, you have to be a little careful. A good example of this is Angular 1 and its dependency injection system. As it relies on strings, you must be careful not to mangle those or else it will fail to work.
 
-Beyond mangling, it is possible to control all other [UglifyJS features](http://lisperator.net/uglifyjs/) through Webpack as illustrated below:
+Beyond mangling, it is possible to control all other [UglifyJS features](http://lisperator.net/uglifyjs/) through webpack as illustrated below:
 
 ```javascript
 new webpack.optimize.UglifyJsPlugin({
