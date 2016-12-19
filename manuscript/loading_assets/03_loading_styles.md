@@ -148,6 +148,7 @@ module.exports = {
   plugins: [
     new webpack.LoaderOptionsPlugin({
       options: {
+        context: __dirname,
         // PostCSS plugins go here. Note the wrapping! It is
         // required for hot loading to work. PostCSS will work
         // without too, but this is the preferred way.
