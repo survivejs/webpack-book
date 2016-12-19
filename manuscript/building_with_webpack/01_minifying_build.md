@@ -172,9 +172,9 @@ Instead of UglifyJS, you can consider trying [webpack-closure-compiler](https://
 
 ## Minifying CSS
 
-*css-loader* allows minifying CSS through [cssnano](http://cssnano.co/). If you use `UglifyJsPlugin`, it actually sets your code into minifying mode by default. So assuming you point to your styling through JavaScript, it would minify by default.
+*css-loader* allows minifying CSS through [cssnano](http://cssnano.co/). Minification needs to be enabled explicitly using the `minimize` option. You can also pass [cssnano specific options](http://cssnano.co/optimisations/) to the query to customize the behavior further.
 
-Since we are not pointing to the styling through JavaScript in this setup, you can force minification to be used by setting `minimize` option (`css-loader?minimize`). You can also pass [cssnano specific options](http://cssnano.co/optimisations/) to the query to customize the behavior further.
+W> In webpack 1 `minimize` was set on by default if `UglifyJsPlugin` was used. This confusing behavior was fixed in webpack 2 and now you have explicit control over minification.
 
 ## Conclusion
 
