@@ -113,6 +113,24 @@ Or you can apply `use` and handle it there. The advantage of this approach is th
 }
 ```
 
+## `LoaderOptionsPlugin`
+
+Given webpack 2 forbids arbitrary root level configuration, you have to use `LoaderOptionsPlugin` to manage it. The plugin exists for legacy compatibility and may disappear in a future release. Consider the example below:
+
+```javascript
+{
+  plugins: [
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: function() {
+          return [autoprefixer];
+        }
+      }
+    })
+  ]
+}
+```
+
 ## Conclusion
 
 Webpack provides multiple ways to set up loaders. You should be careful especially with loader ordering. `use` is a good default. I will discuss specific assets types and how to load them using webpack next.
