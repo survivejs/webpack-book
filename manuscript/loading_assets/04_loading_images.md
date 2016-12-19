@@ -17,7 +17,7 @@ In order to load *.jpg* and *.png* files while inlining files below 25kB, we wou
 ```javascript
 {
   test: /\.(jpg|png)$/,
-  loader: 'url-loader',
+  use: 'url-loader',
   options: {
     limit: 25000
   },
@@ -33,7 +33,7 @@ If you want to skip inlining altogether, you can use *file-loader* directly. The
 ```javascript
 {
   test: /\.(jpg|png)$/,
-  loader: 'file-loader',
+  use: 'file-loader',
   options: {
     name: '[path][name].[hash].[ext]'
   },
@@ -48,7 +48,7 @@ Webpack has a [few ways](https://github.com/webpack/webpack/issues/595) to load 
 ```javascript
 {
   test: /\.svg$/,
-  loader: 'file-loader',
+  use: 'file-loader',
   include: PATHS.images
 }
 ```
