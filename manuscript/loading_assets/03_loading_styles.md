@@ -11,7 +11,7 @@ Loading vanilla CSS is fairly straightforward as you can see in the example belo
 ```javascript
 {
   test: /\.css$/,
-  loaders: ['style-loader', 'css-loader'],
+  use: ['style-loader', 'css-loader'],
   // An array of paths or an individual path
   include: PATHS.style
 }
@@ -36,7 +36,7 @@ T> If you want to enable sourcemaps for CSS, you should use `['style', 'css?sour
 ```javascript
 {
   test: /\.less$/,
-  loaders: ['style-loader', 'css-loader', 'less-loader'],
+  use: ['style-loader', 'css-loader', 'less-loader'],
   include: PATHS.style
 }
 ```
@@ -54,7 +54,7 @@ There is also support for Less plugins, sourcemaps, and so on. To understand how
 ```javascript
 {
   test: /\.scss$/,
-  loaders: ['style-loader', 'css-loader', 'sass-loader'],
+  use: ['style-loader', 'css-loader', 'sass-loader'],
   include: PATHS.style
 }
 ```
@@ -91,18 +91,24 @@ Stylus is yet another example of a CSS processor. It works well through [stylus-
 const common = {
   ...
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.styl$/,
-        loaders: ['style-loader', 'css-loader', 'stylus-loader'],
+        use: ['style-loader', 'css-loader', 'stylus-loader'],
         include: PATHS.style
       }
     ]
   },
-  // yeticss
-  stylus: {
-    use: [require('yeticss')]
-  }
+  plugins: [
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        // yeticss
+        stylus: {
+          use: [require('yeticss')]
+        }
+      }
+    })
+  ]
 };
 ```
 
@@ -131,20 +137,26 @@ const precss = require('precss');
 
 module.exports = {
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.css$/,
-        loaders: ['style-loader', 'css-loader', 'postcss-loader'],
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
         include: PATHS.style
       }
     ]
   },
-  // PostCSS plugins go here. Note the wrapping! It is
-  // required for hot loading to work. PostCSS will work
-  // without too, but this is the preferred way.
-  postcss: function () {
-    return [autoprefixer, precss];
-  }
+  plugins: [
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        // PostCSS plugins go here. Note the wrapping! It is
+        // required for hot loading to work. PostCSS will work
+        // without too, but this is the preferred way.
+        postcss: function() {
+          return [autoprefixer, precss];
+        }
+      }
+    })
+  ]
 };
 ```
 
@@ -159,7 +171,7 @@ module.exports = {
 ```javascript
 {
   test: /\.css$/,
-  loaders: ['style-loader', 'css-loader', 'cssnext-loader'],
+  use: ['style-loader', 'css-loader', 'cssnext-loader'],
   include: PATHS.style
 }
 ```
