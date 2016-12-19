@@ -63,19 +63,15 @@ module: {
   rules: [
     {
       test: /\.(js|jsx)$/,
-      use: [
-        {
-          loader: 'babel-loader',
-          options: {
-            // Enable caching for improved performance during
-            // development.
-            // It uses default OS directory by default. If you need
-            // something more custom, pass a path to it.
-            // I.e., babel?cacheDirectory=<path>
-            cacheDirectory: true
-          }
-        }
-      ],
+      use: 'babel-loader',
+      options: {
+        // Enable caching for improved performance during
+        // development.
+        // It uses default OS directory by default. If you need
+        // something more custom, pass a path to it.
+        // I.e., babel?cacheDirectory=<path>
+        cacheDirectory: true
+      },
       // Parse only app files! Without this it will go through
       // the entire project. In addition to being slow,
       // that will most likely result in an error.
@@ -110,7 +106,12 @@ To make Babel aware of them, we need to write a *.babelrc*:
 ```json
 {
   "presets": [
-    "es2015",
+    [
+      "es2015",
+      {
+        "modules": false
+      }
+    ],
     "react"
   ]
 }
