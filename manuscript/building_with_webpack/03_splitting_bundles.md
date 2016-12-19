@@ -199,6 +199,27 @@ If you maintain strict separation between `dependencies` and `devDependencies`, 
 
 Instead of having `['react']`, we could have `Object.keys(require('./package.json').dependencies)`. That can be filtered and adjusted further if needed depending on how dynamic solution you want.
 
+CommonsChunkPlugin` provides a `minChunks` parameter. In addition to a number and certain other values, it accepts a function. This makes it possible to deduce which modules are external without having to perform a lookup against *package.json*. To adapt Rafael De Leon's solution from [Stack Overflow](http://stackoverflow.com/a/38733864/228885), you could end up with code like this:
+
+```javascript
+new CommonsChunkPlugin({
+  name: 'vendor',
+  minChunks: function(module) {
+    const userRequest = module.userRequest;
+
+    if (typeof userRequest !== 'string') {
+      return false;
+    }
+
+    // You can perform other similar checks here too.
+    // Now we check just node_modules.
+    return userRequest.indexOf('node_modules') >= 0;
+  }
+}),
+```
+
+It would be easy to extend `extractBundle` so that you have more control over `minChunks` behavior. Then you could plug in `isExternal` check for `minChunks`. The advantage of this approach is that it will use **only** dependencies you refer to in your application.
+
 T> `webpack.ProgressPlugin` or [nyan-progress-webpack-plugin](https://www.npmjs.com/package/nyan-progress-webpack-plugin) can be used to get tidier output during the build process. Take care with Continuous Integration (CI) systems like Travis, though, as they might clobber the output.
 
 ## Conclusion
