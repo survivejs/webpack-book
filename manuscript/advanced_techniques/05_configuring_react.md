@@ -8,7 +8,9 @@ Babel is useful beyond React development and worth understanding as it allows yo
 
 [create-react-app](https://www.npmjs.com/package/create-react-app) encapsulates a lot of best practices related to developing React applications. It's particularly useful if you want to get started with a little project fast with minimal setup.
 
-One of the main attractions of *create-react-app* is a feature known as *ejecting*. This means that instead of treating it as a project dependency, you'll get a full webpack setup out of it. There's a gotcha, though. After you eject, you cannot go back to the dependency based model and you will have to maintain the resulting setup yourself.
+One of the main attractions of *create-react-app* is a feature known as *ejecting*. This means that instead of treating it as a project dependency, you'll get a full webpack setup out of it.
+
+There's a gotcha, though. After you eject, you cannot go back to the dependency based model and you will have to maintain the resulting setup yourself.
 
 ## Setting Up Babel with React
 
@@ -18,7 +20,7 @@ A lot of people find this convenient as they get something that resembles what t
 
 Some React developers prefer to attach type annotations to their code using a language extension known as [Flow](http://flowtype.org/). The technology fits React well, but it's not restricted to it. [TypeScript](http://www.typescriptlang.org/) is another viable alternative. Both work with JSX.
 
-Babel allows us to use JSX with React easily. In addition, we can enable language features we want either using plugins or presets that encapsulate collections of plugins. For instance you can find all ES6 features within a preset. The same goes for React related functionality. We'll be relying on these within our setup.
+Babel allows us to use JSX with React easily. In addition, we can enable language features we want either using plugins or presets that encapsulate collections of plugins. For instance, you can find all ES6 features within a preset. The same goes for React related functionality. We'll be relying on these within our setup.
 
 T> It is a good practice to name React components containing JSX using the `.jsx` suffix. In addition to communicating this fact, your editor can apply syntax highlighting automatically as you open the files.
 
@@ -34,7 +36,7 @@ npm i babel-loader babel-core --save-dev
 
 ### Connecting *babel-loader* with Webpack
 
-Now that we have the loader installed, we can connect it with Webpack configuration. In addition to a loader definition, we can perform an additional tweak to make imports without an extension possible. Leaving the extension visible is a valid alternative.
+Now that we have the loader installed, we can connect it with webpack configuration. In addition to a loader definition, we can perform an additional tweak to make imports without an extension possible. Leaving the extension visible is a valid alternative.
 
 Webpack provides a field known as [resolve.extensions](https://webpack.js.org/guides/migrating/#resolve-extensions) that can be used for this purpose. If you want to allow imports like `import Button from './Button';`, set it up as follows:
 
@@ -85,9 +87,9 @@ module: {
 
 Even though we have Babel installed and set up, we are still missing one bit - Babel configuration. It would be possible to pass it through the loader definition. Instead, I prefer to handle it using a dotfile known as *.babelrc*.
 
-The benefit of doing this is that it allows us to process our Webpack configuration itself using the same language rules. The rules will also be shared with Babel running outside of Webpack. This can be useful for package authors.
+The benefit of doing this is that it allows us to process our webpack configuration itself using the same language rules. The rules will also be shared with Babel running outside of webpack. This can be useful for package authors.
 
-T> If you want to process your Webpack configuration through Babel, name your Webpack configuration as *webpack.config.babel.js*. Webpack will notice you want to use Babel and execute your configuration through it.
+T> If you want to process your webpack configuration through Babel, name your webpack configuration as *webpack.config.babel.js*. Webpack will notice you want to use Babel and execute your configuration through it.
 
 ### Setting Up *.babelrc*
 
@@ -117,19 +119,21 @@ To make Babel aware of them, we need to write a *.babelrc*:
 }
 ```
 
-Babel should pick up the presets now and you should be able to develop both ES6 and React code using Webpack now.
+Babel should pick up the presets now and you should be able to develop both ES6 and React code using webpack now. Note that given webpack 2 handles ES6 modules, it is possible to tell Babel to skip doing that.
 
 Sometimes you might want to use experimental features. Although you can find a lot of them within so called stage presets, I recommend enabling them one by one and even organizing them to a preset of their own unless you are working on a throwaway project. If you expect your project to live a long time, it's better to document the features you are using well.
 
 T> There are other possible [.babelrc options](https://babeljs.io/docs/usage/options/) beyond the ones covered here.
 
-T> [babel-react-optimize](https://github.com/thejameskyle/babel-react-optimize) implements a variety of React specific optimizations you may want to experiment with.
+### Babel Based Optimizations for React
 
-T> [babel-plugin-transform-react-remove-prop-types](https://www.npmjs.com/package/babel-plugin-transform-react-remove-prop-types) is handy if you want to remove `propType` related code from your production build. It also allows component authors to generated code that's wrapped so that setting environment at `DefinePlugin` can kick in and give the same effect without the consumers having to use the plugin.
+[babel-react-optimize](https://github.com/thejameskyle/babel-react-optimize) implements a variety of React specific optimizations you may want to experiment with.
+
+[babel-plugin-transform-react-remove-prop-types](https://www.npmjs.com/package/babel-plugin-transform-react-remove-prop-types) is handy if you want to remove `propType` related code from your production build. It also allows component authors to generated code that's wrapped so that setting environment at `DefinePlugin` can kick in and give the same effect without the consumers having to use the plugin.
 
 ## Setting Up Hot Loading
 
-One of the features that sets React and Webpack apart is a feature known as hot loading. This is something that sits on top of Webpack's Hot Module Replacement (HMR). The idea is that instead of forcing a full refresh on modification, we patch the code that changed during the runtime.
+One of the features that sets React and webpack apart is a feature known as hot loading. This is something that sits on top of webpack's Hot Module Replacement (HMR). The idea is that instead of forcing a full refresh on modification, we patch the code that changed during the runtime.
 
 The advantage of doing this is that it allows our application to retain its state. The process isn't fool proof, but when it works, it's quite neat. As a result we get good developer experience (DX).
 
@@ -154,16 +158,16 @@ If you are following the single file setup discussed in this book, we can contro
 ```javascript
 ...
 
-const TARGET = process.env.npm_lifecycle_event;
-
+module.exports = function(env) {
 leanpub-start-insert
-process.env.BABEL_ENV = TARGET;
+  process.env.BABEL_ENV = env;
 leanpub-end-insert
 
-...
+  ...
+};
 ```
 
-In addition we need to expand our Babel configuration to include the plugin we need during development. This is where that `BABEL_ENV` comes in. Babel determines the value of `env` like this:
+In addition, we need to expand our Babel configuration to include the plugin we need during development. This is where that `BABEL_ENV` comes in. Babel determines the value of `env` like this:
 
 1. Use the value of `BABEL_ENV` if set.
 2. Use the value of `NODE_ENV` if set.
@@ -176,7 +180,12 @@ To connect `BABEL_ENV='start'` with Babel, configure as follows:
 ```json
 {
   "presets": [
-    "es2015",
+    [
+      "es2015",
+      {
+        "modules": false
+      }
+    ],
     "react"
 leanpub-start-delete
   ]
@@ -196,15 +205,13 @@ leanpub-end-insert
 
 After these steps your development setup should support hot loading. It is one of those features that makes development a little faster.
 
-T> If you want to optimize your production build, consider studying Babel presets such as [babel-preset-react-optimize](https://www.npmjs.com/package/babel-preset-react-optimize).
-
-T> If you prefer to see possible syntax errors at the browser console instead of hmre overlay, enable `webpack.NoErrorsPlugin()` at your Webpack `plugins` declaration.
+T> If you prefer to see possible syntax errors at the browser console instead of the HMR overlay, enable `webpack.NoErrorsPlugin()` at your webpack `plugins` declaration.
 
 T> Given Babel uses [JSON5](http://json5.org/) underneath, this means you can comment your *.babelrc* files using regular (`//`) comments.
 
 ### Configuring Redux
 
-In order to configure Redux reducers to support hot loading, we need to implement Webpack's hot loading protocol. Webpack provides a hook known as `module.hot.accept`. It gets called whenever Webpack detects a change. This allows you to reload and patch your code.
+In order to configure Redux reducers to support hot loading, we need to implement webpack's hot loading protocol. Webpack provides a hook known as `module.hot.accept`. It gets called whenever webpack detects a change. This allows you to reload and patch your code.
 
 The idea is useful beyond Redux and can be used with other systems as well. To give you a rough implementation, consider the code below:
 
@@ -215,7 +222,7 @@ export default function configureStore(initialState) {
   const store = createStoreWithMiddleware(rootReducer, initialState);
 
   if(module.hot) {
-    // Enable Webpack hot module replacement for reducers
+    // Enable webpack hot module replacement for reducers
     module.hot.accept('../reducers', () => {
       const nextReducer = require('../reducers/index').default;
 
@@ -233,9 +240,11 @@ T> You can find [a full implementation of the idea online](https://github.com/su
 
 ## Using react-lite Instead of React for Production
 
-React is quite heavy library even though the API is quite small considering. There are light alternatives, such as [Preact](https://www.npmjs.com/package/preact) and [react-lite](https://www.npmjs.com/package/react-lite). react-lite implements React's API apart from features like `propTypes` and server side rendering. You lose out in debugging capabilities, but gain far smaller size. Preact implements a smaller subset of features and it's even smaller than react-lite.
+React is quite heavy library even though the API is quite small considering. There are light alternatives, such as [Preact](https://www.npmjs.com/package/preact) and [react-lite](https://www.npmjs.com/package/react-lite). react-lite implements React's API apart from features like `propTypes` and server side rendering.
 
-Using react-lite in production instead of React can save around 100 kB minified code. Depending on your application, this can be a saving worth pursuing. Fortunately integrating react-lite is simple. It takes only a few lines of configuration to pull off.
+You lose out in debugging capabilities, but gain far smaller size. Preact implements a smaller subset of features and it's even smaller than react-lite. Interestingly [preact-compat](https://www.npmjs.com/package/preact-compat) provides support for `propTypes` and bridges the gap between vanilla React and Preact somewhat.
+
+Using react-lite or Preact in production instead of React can save around 100 kB minified code. Depending on your application, this can be a saving worth pursuing. Fortunately integrating react-lite is simple. It takes only a few lines of configuration to pull off.
 
 To get started, install react-lite:
 
@@ -256,7 +265,7 @@ resolve: {
 
 If you try building your project now, you should notice your bundle is considerably smaller.
 
-Similar setup works for Preact too. In that case you would point to *preact-compat* instead. preact-compat can be used during development as well as it supports `propTypes`. See [preact-boilerplate](https://github.com/developit/preact-boilerplate) for the exact setup and more information.
+Similar setup works for Preact too. In that case you would point to *preact-compat* instead. See [preact-boilerplate](https://github.com/developit/preact-boilerplate) for the exact setup and more information.
 
 [Inferno](https://www.npmjs.com/package/inferno) is yet another alternative. The setup is the same and you can find *inferno-compat* with a similar idea. I discuss these alternatives in more detail at my slide set known as [React Compatible Alternatives](https://presentations.survivejs.com/react-compatible-alternatives).
 
@@ -277,7 +286,7 @@ Next we need to expose React to the console through the [expose-loader](https://
 ```javascript
 {
   test: require.resolve('react'),
-  loader: 'expose-loader?React'
+  use: 'expose-loader?React'
 }
 ```
 
