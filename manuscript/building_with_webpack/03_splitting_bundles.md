@@ -222,6 +222,12 @@ It would be easy to extend `extractBundle` so that you have more control over `m
 
 T> `webpack.ProgressPlugin` or [nyan-progress-webpack-plugin](https://www.npmjs.com/package/nyan-progress-webpack-plugin) can be used to get tidier output during the build process. Take care with Continuous Integration (CI) systems like Travis, though, as they might clobber the output.
 
+## Tidying Up Development Console
+
+You might notice that if you run the development server now, it prints out `[WDS] Hot Module Replacement enabled.` twice at the browser console. This happens because *webpack-dev-server* hooks up HMR per entry. One way to solve this is to perform `extractBundle` for the development configuration as well.
+
+This can be achieved by pushing the current `extractBundle` code to `common` and merging it there to the rest so that you get `const common = merge({ ... }, extractBundle(...))`. If you do this, remember to remove `extractBundle` from the production specific branch of your configuration.
+
 ## Conclusion
 
 The situation is far better now. Note how small `app` bundle compared to the `vendor` bundle. In order to really benefit from this split, we should set up caching. This can be achieved by adding cache busting hashes to the filenames.
