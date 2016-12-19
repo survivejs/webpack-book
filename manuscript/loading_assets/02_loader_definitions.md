@@ -35,38 +35,6 @@ Based on the right to left rule, the example can be split up while keeping it eq
 }
 ```
 
-You could also use the old query style format, but that's not preferable anymore given `use` exists. I've included it below for completeness:
-
-```javascript
-{
-  test: /\.css$/,
-  use: ['style-loader!css-loader'],
-  include: PATHS.app
-}
-```
-
-Using an older style, you could write:
-
-```javascript
-{
-  test: /\.css$/,
-  loaders: ['style-loader', 'css-loader'],
-  include: PATHS.app
-}
-```
-
-Or even:
-
-```javascript
-{
-  test: /\.css$/,
-  loader: 'style-loader!css-loader',
-  include: PATHS.app
-}
-```
-
-T> There may still be use for the old query format especially if you have to perform quick processing in your source files.
-
 ## Passing Parameters to a Loader
 
 The query format allows passing parameters as well:
@@ -74,17 +42,19 @@ The query format allows passing parameters as well:
 ```javascript
 {
   test: /\.(js|jsx)$/,
-  loader: 'babel-loader?cacheDirectory,presets[]=react,presets[]=es2015',
+  use: 'babel-loader?cacheDirectory,presets[]=react,presets[]=es2015',
   include: PATHS.app
 }
 ```
 
-This isn't very readable. Instead, it's preferable to use the combination of `loader` and `options` fields either like this:
+This isn't very readable. There may still be use for the old query format especially if you have to perform processing within your source files. Often there are better ways available, though.
+
+Instead, it's preferable to use the combination of `use` and `options` fields either like this:
 
 ```javascript
 {
   test: /\.(js|jsx)$/,
-  loader: 'babel-loader',
+  use: 'babel-loader',
   options: {
     cacheDirectory: true,
     presets: ['react', 'es2015']
@@ -93,7 +63,7 @@ This isn't very readable. Instead, it's preferable to use the combination of `lo
 }
 ```
 
-Or you can apply `use` and handle it there. The advantage of this approach is that it allows you to set up multiple loaders per match in a readable manner. Since we are using only one loader, wrapping it in an array feels a little too much:
+Or you can apply `use` and handle it there. The advantage of this approach is that it allows you to set up multiple loaders per match in a readable manner. Since we are using only one loader, wrapping it in an array feels a little too much, but if we had more, this would work:
 
 ```javascript
 {
@@ -105,7 +75,8 @@ Or you can apply `use` and handle it there. The advantage of this approach is th
         cacheDirectory: true,
         presets: ['react', 'es2015']
       }
-    }
+    },
+    // Add more loaders here
   ],
   include: PATHS.app
 }
@@ -132,4 +103,4 @@ Given webpack 2 forbids arbitrary root level configuration, you have to use `Loa
 
 ## Conclusion
 
-Webpack provides multiple ways to set up loaders. You should be careful especially with loader ordering. If you have a single loader, then using `loader` is enough. For more complex case `use` works better as it allows you to manage multiple loaders. I will discuss specific assets types and how to load them using webpack next.
+Webpack provides multiple ways to set up loaders, but sticking with `use` is enough in webpack 2. You should be careful especially with loader ordering. I will discuss specific assets types and how to load them using webpack next.
