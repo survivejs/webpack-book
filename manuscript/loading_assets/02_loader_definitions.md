@@ -1,6 +1,6 @@
 # Loader Definitions
 
-Webpack provides multiple ways to set up module loaders. Generally you either use `loader` (accepts string or `options` field) or `loaders` field (accepts array of strings) and then pass possible option parameters using one of the available methods.
+Webpack provides multiple ways to set up module loaders. Webpack 2 simplified the situation by introducing a field known as `use`. The legacy options (`loader` and `loaders`) still work. I'll discuss all of the options for completeness as you may see them in various configurations out there.
 
 I recommend maintaining an `include` definition per each loader definition. This will restrict its search path, improve performance, and make your configuration easier to follow. `include` accepts either a path or an array of paths.
 
@@ -8,9 +8,9 @@ It can be a good idea to prefer absolute paths here as it allows you to move con
 
 ## Loader Evaluation Order
 
-It is good to keep in mind that webpack's `loaders` are always evaluated from right to left and from bottom to top (separate definitions). The right to left rule is easier to remember when you think about it in terms of functions. You can read definition `loaders: ['style-loader', 'css-loader']` as `style(css(input))` based on this rule.
+It is good to keep in mind that webpack's `loaders` are always evaluated from right to left and from bottom to top (separate definitions). The right to left rule is easier to remember when you think about it in terms of functions. You can read definition `use: ['style-loader', 'css-loader']` as `style(css(input))` based on this rule.
 
-The `use` field added in webpack 2 gives syntax like this:
+To see the rule in action, consider the example below:
 
 ```javascript
 {
@@ -20,7 +20,7 @@ The `use` field added in webpack 2 gives syntax like this:
 }
 ```
 
-Furthermore each loader definition can be expanded further as shown later in this chapter. The above example can be split up while keeping it equivalent.
+Based on the right to left rule, the example can be split up while keeping it equivalent:
 
 ```javascript
 {
@@ -40,10 +40,32 @@ You could also use the old query style format, but that's not preferable anymore
 ```javascript
 {
   test: /\.css$/,
-  loader: ['style-loader!css-loader'],
+  use: ['style-loader!css-loader'],
   include: PATHS.app
 }
 ```
+
+Using an older style, you could write:
+
+```javascript
+{
+  test: /\.css$/,
+  loaders: ['style-loader', 'css-loader'],
+  include: PATHS.app
+}
+```
+
+Or even:
+
+```javascript
+{
+  test: /\.css$/,
+  loader: 'style-loader!css-loader',
+  include: PATHS.app
+}
+```
+
+To keep it simple, I would recommend sticking with `use` and its variants which we'll cover briefly.
 
 T> There may still be use for the old query format especially if you have to perform quick processing in your source files.
 
@@ -54,7 +76,7 @@ The query format allows passing parameters as well:
 ```javascript
 {
   test: /\.(js|jsx)$/,
-  loader: 'babel-loader?cacheDirectory,presets[]=react,presets[]=es2015'
+  loader: 'babel-loader?cacheDirectory,presets[]=react,presets[]=es2015',
   include: PATHS.app
 }
 ```
@@ -93,6 +115,4 @@ Or you can apply `use` and handle it there. The advantage of this approach is th
 
 ## Conclusion
 
-Webpack provides multiple ways to set up loaders. You should be careful especially with loader ordering. `use` is a good default even if it's more verbose than sticking to `loader`.
-
-I will discuss specific assets types and how to load them using webpack next.
+Webpack provides multiple ways to set up loaders. You should be careful especially with loader ordering. `use` is a good default. I will discuss specific assets types and how to load them using webpack next.
