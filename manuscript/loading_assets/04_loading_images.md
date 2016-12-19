@@ -33,7 +33,10 @@ If you want to skip inlining altogether, you can use *file-loader* directly. The
 ```javascript
 {
   test: /\.(jpg|png)$/,
-  loader: 'file-loader?name=[path][name].[hash].[ext]',
+  loader: 'file-loader',
+  options: {
+    name: '[path][name].[hash].[ext]'
+  },
   include: PATHS.images
 }
 ```
