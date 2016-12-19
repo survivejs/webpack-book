@@ -1,8 +1,8 @@
 {
-  "name": "survivejs-react",
+  "name": "survivejs-webpack",
   "private": true,
   "version": "1.4.0",
-  "description": "SurviveJS - React",
+  "description": "SurviveJS - Webpack",
   "scripts": {
     "test": "check-markdown-links manuscript"
   },
