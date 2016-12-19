@@ -1,8 +1,8 @@
 # Authoring Packages
 
-Even though Webpack is useful for bundling applications, it has its uses for package authors as well. You can use it to output your bundle in the [UMD format](https://github.com/umdjs/umd). It is a format that's compatible with various environments (CommonJS, AMD, globals).
+Even though webpack is useful for bundling applications, it has its uses for package authors as well. You can use it to output your bundle in the [UMD format](https://github.com/umdjs/umd). It is a format that's compatible with various environments (CommonJS, AMD, globals).
 
-As Webpack alone isn't enough, I'll provide a short overview of the npm side of things before discussing specific techniques.
+As webpack alone isn't enough, I'll provide a short overview of the npm side of things before discussing specific techniques.
 
 ## Anatomy of a npm Package
 
@@ -165,7 +165,9 @@ T> A tool known as [dont-break](https://www.npmjs.com/package/dont-break) allows
 
 ### Respect the SemVer or ComVer
 
-Even though it is simple to publish new versions out there, it is important to respect the SemVer. Roughly, it states that you should not break backwards compatibility, given certain rules are met. For example, if your current version is `0.1.4` and you do a breaking change, you should bump to `0.2.0` and document the changes. You can understand SemVer much better by studying [the online tool](http://semver.npmjs.com/) and how it behaves.
+Even though it is simple to publish new versions out there, it is important to respect the SemVer. Roughly, it states that you should not break backwards compatibility, given certain rules are met.
+
+For example, if your current version is `0.1.4` and you do a breaking change, you should bump to `0.2.0` and document the changes. You can understand SemVer much better by studying [the online tool](http://semver.npmjs.com/) and how it behaves.
 
 Given SemVer can be a little tricky to manage, a backwards compatible alternative known as [ComVer](https://github.com/staltz/comver) has been developed. The versioning scheme can be described as `<not compatible>.<compatible>`. Every time you make a change that's not compatible with an earlier version, you'll bump the first number. Otherwise you will bump the other.
 
@@ -180,7 +182,9 @@ Sometimes, you might want to publish something preliminary for other people to t
 * v0.5.0-rc2
 * v0.5.0
 
-The initial alpha release will allow the users to try out the upcoming functionality and provide feedback. The beta releases can be considered more stable. The release candidates (rc) are close to an actual release and won't introduce any new functionality. They are all about refining the release till it's suitable for general consumption.
+The initial alpha release will allow the users to try out the upcoming functionality and provide feedback. The beta releases can be considered more stable.
+
+The release candidates (rc) are close to an actual release and won't introduce any new functionality. They are all about refining the release till it's suitable for general consumption.
 
 The workflow in this case is straight-forward:
 
@@ -195,7 +199,9 @@ T> It can be useful to utilize `npm link` during development. That will allow yo
 
 Before starting to develop, it can be a good idea to spend a little bit of time on figuring out a good name for your package. It's not very fun to write a great package just to notice the name has been taken. A good name is easy to find through a search engine, and most importantly, is available at npm.
 
-As of npm 2.7.0 it is possible to create [scoped packages](https://docs.npmjs.com/getting-started/scoped-packages). They follow format `@username/project-name`. Simply follow that when naming your project.
+As of npm 2.7.0 it is possible to create [scoped packages](https://docs.npmjs.com/getting-started/scoped-packages). They follow format `@username/project-name`. Simply follow that when naming your project. This is a good way to grow packages.
+
+T> If you find a good name that appears to be abandoned, contact npm and they'll likely give it you if you ask nicely.
 
 ### Version Ranges
 
@@ -208,7 +214,11 @@ npm supports multiple version ranges. I've listed the common ones below:
 
 You can set the default range using `npm config set save-prefix='^'` in case you prefer something else than caret. Alternatively you can modify *~/.npmrc* directly. Especially defaulting to tilde can be a good idea that can help you to avoid some trouble with dependencies.
 
-T> Sometimes, using version ranges can feel a little dangerous. What if some future version is broken? [npm shrinkwrap](https://docs.npmjs.com/cli/shrinkwrap) allows you to fix your dependency versions and have stricter control over the versions you are using in a production environment. [lockdown](https://www.npmjs.com/package/lockdown) goes further and gives guarantees about dependency content, not just version. [shrinkpack](https://www.npmjs.com/package/shrinkpack) is another interesting complementary option.
+### Shrinkwrapping Versions
+
+Sometimes, using version ranges can feel a little dangerous. What if some future version is broken? [npm shrinkwrap](https://docs.npmjs.com/cli/shrinkwrap) allows you to fix your dependency versions and have stricter control over the versions you are using in a production environment.
+
+[lockdown](https://www.npmjs.com/package/lockdown) goes further and gives guarantees about dependency content, not just version. [shrinkpack](https://www.npmjs.com/package/shrinkpack) is another interesting complementary option.
 
 T> If you want to bundle some dependencies with your distribution version, consider using the [bundledDependencies](https://docs.npmjs.com/files/package.json#bundleddependencies) (or just `bundleDependencies`) field. This can be useful if you want to share third party files not available through npm. There's a great [Stack Overflow answer](http://stackoverflow.com/a/25044361/228885) discussing the topic further.
 
@@ -235,8 +245,6 @@ Since we want to avoid having to run the command directly whenever we publish a 
 
 Make sure you execute `npm i babel --save-dev` to include the tool into your project.
 
-W> It is important to note that in npm 3 `prepublish` hook will get triggered also when you run `npm install` on the project locally. Sometimes this can be surprising and counter-productive even. A solution known as [in-publish](https://www.npmjs.com/package/in-publish) allows you to tune the behavior and skip the installation step. You need to prepend your script with `in-publish && babel ...` kind of line for this to work. npm 4 and the following versions will fix this confusing behavior.
-
 You probably don't want the directory content to end up in your Git repository. In order to avoid this and to keep your `git status` clean, consider this sort of `.gitignore`:
 
 ```bash
@@ -248,6 +256,12 @@ Besides `prepublish`, npm provides a set of other hooks. The naming is always th
 
 There are plenty of smaller tricks to learn for advanced usage. Those are better covered by [the official documentation](https://docs.npmjs.com/misc/scripts). Often all you need is just a `prepublish` script for build automation.
 
+### Working Around `prepublish` in npm 3
+
+It is important to note that in npm 3 `prepublish` hook will get triggered also when you run `npm install` on the project locally. Sometimes this can be surprising and counter-productive even.
+
+A solution known as [in-publish](https://www.npmjs.com/package/in-publish) allows you to tune the behavior and skip the installation step. You need to prepend your script with `in-publish && babel ...` kind of line for this to work. npm 4 and the following versions will fix this confusing behavior.
+
 ## Keeping Dependencies Up to Date
 
 An important part of maintaining npm packages is keeping their dependencies up to date. How to do this depends a lot on the maturity of your package. Ideally, you have a nice set of tests covering the functionality. If not, things can get a little hairier. There are a few ways to approach dependency updates:
@@ -256,7 +270,11 @@ An important part of maintaining npm packages is keeping their dependencies up t
 * Install the newest version of some specific dependency, e.g., `npm i lodash@* --save`. This is a more controlled way to approach the problem.
 * Patch version information by hand by modifying *package.json* directly.
 
-It is important to remember that your dependencies may introduce backwards incompatible changes. It can be useful to remember how SemVer works and study dependency release notes. They might not always exist, so you may have to go through the project commit history. There are a few services that can help you to keep track of your project dependencies:
+It is important to remember that your dependencies may introduce backwards incompatible changes. It can be useful to remember how SemVer works and study release notes of dependencies. They might not always exist, so you may have to go through the project commit history.
+
+### Tracking Dependencies
+
+There are a few services that can help you to keep track of your dependencies:
 
 * [David](https://david-dm.org/)
 * [versioneye](https://www.versioneye.com/)
@@ -280,11 +298,13 @@ See [npm documentation](https://docs.npmjs.com/cli/owner) for the most up to dat
 
 ## Package Authoring Techniques
 
-There are a couple of package authoring related techniques that are good to know. You can set up Webpack to generate a UMD build. You can also exclude certain dependencies out of your bundle. To make it easier to consume your packages, you can also generate a Node.js friendly versions. This technique can be improved further by setting up a script to generate a Node.js friendly version.
+There are a couple of package authoring related techniques that are good to know. You can set up webpack to generate a UMD build. You can also exclude certain dependencies out of your bundle.
+
+To make it easier to consume your packages, you can also generate a Node.js friendly versions. This technique can be improved further by setting up a script to generate a Node.js friendly version.
 
 ### Setting Up UMD
 
-Allowing Webpack to output your bundle in the UMD format is simple. Webpack allows you to control the output format using [output.libraryTarget](https://webpack.js.org/configuration/output/#output-librarytarget) field. It defaults to `var`. This means it will set your bundle to a variable defined using the `output.library` field.
+Allowing webpack to output your bundle in the UMD format is simple. Webpack allows you to control the output format using [output.libraryTarget](https://webpack.js.org/configuration/output/#output-librarytarget) field. It defaults to `var`. This means it will set your bundle to a variable defined using the `output.library` field.
 
 There are other options too, but the one we are interested in is `output.libraryTarget: 'umd'`. Consider the example below:
 
@@ -334,7 +354,9 @@ T> If you want to include all modules in *node_modules* by default, it could be 
 
 ### Processing Node.js Version through Babel
 
-If you are processing your code through Babel, I suggest you process the Node.js version of the package directly through Babel and skip Webpack. The advantage of doing this is that it gives you separate modules that are easier to consume one by one if needed. This avoids having to go through a heavy bundle. In this case you'll likely want a setup like this:
+If you are processing your code through Babel, I suggest you process the Node.js version of the package directly through Babel and skip webpack. The advantage of doing this is that it gives you separate modules that are easier to consume one by one if needed. This avoids having to go through a heavy bundle.
+
+In this case you'll likely want a setup like this:
 
 **package.json**
 
@@ -426,4 +448,6 @@ There is a heavier duty option known as [npm unpublish](https://docs.npmjs.com/c
 
 ## Conclusion
 
-You should now have a basic idea of how to author npm packages. Webpack can help you a lot here. Just picking up `output.libraryTarget` and `externals` help you a lot. These options are useful beyond package authoring. Particularly `externals` comes in handy when you want to exclude certain dependencies outside of your bundles and load them using some other way.
+You should now have a basic idea of how to author npm packages. Webpack can help you a lot here. Just picking up `output.libraryTarget` and `externals` help you a lot.
+
+These options are useful beyond package authoring. Particularly `externals` comes in handy when you want to exclude certain dependencies outside of your bundles and load them using some other way.
