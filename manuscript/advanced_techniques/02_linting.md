@@ -16,7 +16,7 @@ Besides linting for issues, it can be useful to manage the code style on some le
 
 ## Webpack and JSHint
 
-Interestingly, no JSLint loader seems to exist for Webpack yet. Fortunately, there's one for JSHint. You could set it up on a legacy project easily. To get started, install [jshint-loader](https://www.npmjs.com/package/jshint-loader) to your project first:
+Interestingly, no JSLint loader seems to exist for webpack yet. Fortunately, there's one for JSHint. You could set it up on a legacy project easily. To get started, install [jshint-loader](https://www.npmjs.com/package/jshint-loader) to your project first:
 
 ```bash
 npm i jshint jshint-loader --save-dev
@@ -31,7 +31,7 @@ var common = {
     rules: [
       {
         test: /\.js$/,
-        loader: 'jshint-loader',
+        use: 'jshint-loader',
         // Execute before other loaders
         enforce: 'pre',
         // Define an include so we check just the files we need
@@ -251,7 +251,7 @@ const common = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        loader: 'eslint-loader',
+        use: 'eslint-loader',
         enforce: 'pre',
         include: PATHS.app
       }
@@ -428,7 +428,7 @@ const common = {
     rules: [
       {
         test: /\.css$/,
-        loader: 'postcss-loader',
+        use: 'postcss-loader',
         enforce: 'pre',
         include: PATHS.app
       },
@@ -436,18 +436,24 @@ const common = {
     ],
     ...
   },
-  postcss: function () {
-    return [
-      stylelint({
-        rules: {
-          'color-hex-case': 'lower'
-        },
-        // Ignore node_modules CSS
-        ignoreFiles: 'node_modules/**/*.css'
-      })
-    ];
-  },
-  ...
+  plugins: [
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        context: __dirname,
+        postcss: function () {
+          return [
+            stylelint({
+              rules: {
+                'color-hex-case': 'lower'
+              },
+              // Ignore node_modules CSS
+              ignoreFiles: 'node_modules/**/*.css'
+            })
+          ];
+        }
+      }
+    })
+  ]
 }
 ```
 
