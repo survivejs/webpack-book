@@ -25,7 +25,7 @@ After *css-loader* has done its part, *style-loader* picks up the output and inj
 
 Setting up other formats than vanilla CSS is simple as well. I'll discuss specific examples next.
 
-T> If you want to enable sourcemaps for CSS, you should use `['style', 'css?sourceMap']` and set `output.publicPath` to an absolute url. *css-loader* [issue 29](https://github.com/webpack/css-loader/issues/29) discusses this problem further.
+T> If you want to enable sourcemaps for CSS, you should enable `sourceMap` option for *css-loader* and set `output.publicPath` to an absolute url. In case you have more loaders, each needs to enable sourcemap support separately! *css-loader* [issue 29](https://github.com/webpack/css-loader/issues/29) discusses this problem further.
 
 ## Loading LESS
 
