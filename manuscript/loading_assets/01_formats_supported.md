@@ -12,7 +12,7 @@ The system relies on configuration. Consider the example below where we set webp
 module.exports = {
   ...
   module: {
-    loaders: [
+    rules: [
       {
         // Match files against RegExp
         test: /\.css$/,

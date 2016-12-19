@@ -250,7 +250,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        loaders: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader']
       }
     ]
   },
