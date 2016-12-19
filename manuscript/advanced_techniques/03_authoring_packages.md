@@ -214,6 +214,8 @@ npm supports multiple version ranges. I've listed the common ones below:
 
 You can set the default range using `npm config set save-prefix='^'` in case you prefer something else than caret. Alternatively you can modify *~/.npmrc* directly. Especially defaulting to tilde can be a good idea that can help you to avoid some trouble with dependencies.
 
+T> If you want to be strict about versions, you can use `--save-exact` over `--save`. The shortcut for this operation is `-E`.
+
 ### Shrinkwrapping Versions
 
 Sometimes, using version ranges can feel a little dangerous. What if some future version is broken? [npm shrinkwrap](https://docs.npmjs.com/cli/shrinkwrap) allows you to fix your dependency versions and have stricter control over the versions you are using in a production environment.
