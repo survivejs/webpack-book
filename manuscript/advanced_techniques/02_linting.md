@@ -210,7 +210,7 @@ Some rules, such as `quotes`, accept an array instead. This allows you to pass e
 
 T> Note that you can write ESLint configuration directly to *package.json*. Set up a `eslintConfig` field, and write your declarations below it. You can also write `.eslintrc.js` and export the configuration as JavaScript from there. ESLint can parse YAML too.
 
-T> There's a [full listing of available ESLint rules](https://gist.github.com/cletusw/e01a85e399ab563b1236). This is handy if you are curious about what's available. The official documentation is worth studying too.
+T> There's a [full listing of available ESLint rules](http://eslint.org/docs/rules/). This is handy if you are curious about what's available. The official documentation is worth studying too.
 
 T> It is possible to generate a sample `.eslintrc` using `eslint --init` (or `node_modules/.bin/eslint --init` for local install). This can be useful on new projects.
 
