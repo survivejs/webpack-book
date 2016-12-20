@@ -8,7 +8,7 @@ The popularity of Node.js and [npm](https://www.npmjs.com/), the Node.js package
 
 ## Task Runners and Bundlers
 
-Historically speaking, there have been many build systems. *Make* is perhaps the best known, and is still a viable option. Specialized *task runners*, such as Grunt, and Gulp were created particularly with JavaScript developers in mind. Plugins available through npm made both task runners powerful and extensible.
+Historically speaking, there have been many build systems. *Make* is perhaps the best known, and is still a viable option. Specialized *task runners*, such as Grunt, and Gulp were created particularly with JavaScript developers in mind. Plugins available through npm made both task runners powerful and extensible. It is possible to use even npm `scripts` as a task runner. That's common particularly with webpack.
 
 Task runners are great tools on a high level. They allow you to perform operations in a cross-platform manner. The problems begin when you need to splice various assets together and produce bundles. This is the reason we have *bundlers*, such as Browserify, Brunch, or webpack.
 
@@ -157,6 +157,30 @@ Given the configuration is code, you can always just hack it if you run into tro
 T> [webpack-stream](https://www.npmjs.com/package/webpack-stream) allows you to use webpack in a Gulp environment.
 
 T> [Fly](https://github.com/bucaran/fly) is a similar tool as Gulp. It relies on ES6 generators instead.
+
+## npm `scripts` as a Task Runner
+
+Even though npm CLI wasn't primarily designed to be used as a task runner, it works as such thanks to *package.json* `scripts` field. Consider the example below:
+
+**package.json**
+
+```json
+{
+  "scripts": {
+    "stats": "webpack --env production --profile --json > stats.json",
+    "development": "webpack-dev-server --env development",
+    "deploy": "gh-pages -d build",
+    "production": "webpack --env production"
+  },
+  ...
+}
+```
+
+These scripts can be listed using `npm run` and then executed using `npm run <script>`. There are also shortcuts for common commands like `npm start` or `npm test` (same as `npm t`), although using `npm run` is often convenient. You can also namespace your scripts using a convention like `test:watch`.
+
+The gotcha is that it takes some care to keep it cross-platform. Instead of `rm -rf` you might want to use a utility like [rimraf](https://www.npmjs.com/package/rimraf) and so on. It's possible to invoke other tasks runners here to hide the fact that you are using one. This way you can refactor your tooling while keeping the interface as the same.
+
+You also cannot document the tasks given the default JSON format used by npm doesn't support comments. Some tools, such as Babel, support JSON5 that allows commenting. ESLint goes further and supports even YAML and JavaScript based configuration.
 
 ## Browserify
 
