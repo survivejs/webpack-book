@@ -204,7 +204,7 @@ CommonsChunkPlugin` provides a `minChunks` parameter. In addition to a number an
 ```javascript
 new CommonsChunkPlugin({
   name: 'vendor',
-  minChunks: function(module) {
+  minChunks: function(module, count) {
     const userRequest = module.userRequest;
 
     if (typeof userRequest !== 'string') {
@@ -219,6 +219,8 @@ new CommonsChunkPlugin({
 ```
 
 It would be easy to extend `extractBundle` so that you have more control over `minChunks` behavior. Then you could plug in `isExternal` check for `minChunks`. The advantage of this approach is that it will use **only** dependencies you refer to in your application.
+
+Given `minChunks` receives `count` as its second parameter, you could force it to capture chunks based on usage. This is particularly useful in more complex setups where you have split your code multiple times and want more control over the result.
 
 T> `webpack.ProgressPlugin` or [nyan-progress-webpack-plugin](https://www.npmjs.com/package/nyan-progress-webpack-plugin) can be used to get tidier output during the build process. Take care with Continuous Integration (CI) systems like Travis, though, as they might clobber the output.
 
