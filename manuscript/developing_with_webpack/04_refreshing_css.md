@@ -10,7 +10,7 @@ To set up CSS, we'll need to use a couple of loaders. To get started, invoke
 npm i css-loader style-loader --save-dev
 ```
 
-Now that we have the loaders we need, we'll need to make sure webpack is aware of them. Configure as follows:
+Now let's make sure webpack is aware of them. Configure as follows:
 
 **webpack.parts.js**
 
