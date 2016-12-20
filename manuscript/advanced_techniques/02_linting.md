@@ -345,12 +345,25 @@ In ESLint's case we just want to check the structure and report in case somethin
 ```javascript
 module.exports = {
   rules: {
-    demo: function(context) {
-      return {
-        Identifier: function(node) {
-          context.report(node, 'This is unexpected!');
-        }
-      };
+    demo: {
+      docs: {
+        description: 'Demo rule',
+        category: 'Best Practices',
+        recommended: true
+      },
+      schema: [{
+        type: 'object',
+        // JSON Schema to describe properties
+        properties: {},
+        additionalProperties: false
+      }],
+      create: function(context) {
+        return {
+          Identifier: function(node) {
+            context.report(node, 'This is unexpected!');
+          }
+        };
+      }
     }
   }
 };
