@@ -208,6 +208,8 @@ Given different systems treat paths differently, it can be handy to force path c
 
 As sometimes your build can fail for some reason, it can be handy to hear it. This is where [system-bell-webpack-plugin](https://www.npmjs.com/package/system-bell-webpack-plugin) comes in. It rings the system bell on failure.
 
+[webpack-dashboard](https://www.npmjs.com/package/webpack-dashboard) gives an entire terminal based dashboard over the standard webpack output. If you prefer clear visual output, this one will come in handy.
+
 There are more small plugins like this. It can be worth your while to set up linting to enforce coding standards. The *Linting* chapter digs into that topic in greater detail.
 
 ## Conclusion
