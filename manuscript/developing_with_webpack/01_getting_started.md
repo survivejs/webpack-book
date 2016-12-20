@@ -200,6 +200,16 @@ T> There are shortcuts like *npm start* and *npm test*. We can run these directl
 
 T> It is possible to execute *npm run* anywhere within the project. It doesn't have to be run in the project root in order to work. npm will figure out the project root for you.
 
+## Plugins to Help with Development
+
+Given different systems treat paths differently, it can be handy to force path case sensitivity. [case-sensitive-paths-webpack-plugin](https://www.npmjs.com/package/case-sensitive-paths-webpack-plugin) has been designed for this purpose. Consider setting it up especially if you work in a mixed environment.
+
+[npm-install-webpack-plugin](https://www.npmjs.com/package/npm-install-webpack-plugin) allows webpack to install and wire the installed packages with your *package.json* as you import new packages to your project. It's almost magical this way.
+
+As sometimes your build can fail for some reason, it can be handy to hear it. This is where [system-bell-webpack-plugin](https://www.npmjs.com/package/system-bell-webpack-plugin) comes in. It rings the system bell on failure.
+
+There are more small plugins like this. It can be worth your while to set up linting to enforce coding standards. The *Linting* chapter digs into that topic in greater detail.
+
 ## Conclusion
 
 Even though we've managed to get webpack up and running, it's not that much yet. Developing against it would be painful. Each time we wanted to check out our application, we would have to build it manually using `npm run build` and then refresh the browser.
