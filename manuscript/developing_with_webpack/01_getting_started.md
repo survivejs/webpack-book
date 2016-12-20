@@ -38,7 +38,7 @@ npm i webpack@beta --save-dev # or just -D if you want to save typing
 
 You should see webpack at your *package.json* `devDependencies` section after this. In addition to installing the package locally below the *node_modules* directory, npm also generates an entry for the executable.
 
-W> We are using the most recent `beta` version of webpack 2 in this tutorial! You an drop that `@beta` part in the future. A lot of loaders and plugins may give peer dependency warnings as well.
+W> We are using the most recent `beta` version of webpack 2 in this tutorial! You can drop that `@beta` part in the future. A lot of loaders and plugins may give peer dependency warnings as well.
 
 ## Executing Webpack
 
