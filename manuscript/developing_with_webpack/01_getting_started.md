@@ -200,7 +200,7 @@ T> There are shortcuts like *npm start* and *npm test*. We can run these directl
 
 T> It is possible to execute *npm run* anywhere within the project. It doesn't have to be run in the project root in order to work. npm will figure out the project root for you.
 
-## Plugins to Help with Development
+## Useful Plugins for Development
 
 Given different systems treat paths differently, it can be handy to force path case sensitivity. [case-sensitive-paths-webpack-plugin](https://www.npmjs.com/package/case-sensitive-paths-webpack-plugin) has been designed for this purpose. Consider setting it up especially if you work in a mixed environment.
 
