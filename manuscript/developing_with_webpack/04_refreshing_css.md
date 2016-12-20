@@ -82,7 +82,7 @@ T> Loaders are transformations that are applied to source files, and return the 
 
 T> See webpack's [loader documentation](https://webpack.js.org/concepts/loaders/) and [list of loaders](https://webpack.js.org/loaders/) for further information.
 
-W> If `include` isn't set, webpack will traverse all files within the base directory. This can hurt performance! It is a good idea to set up `include` always. There's also `exclude` option that may come in handy. Prefer `include`, however as it's literally more inclusive option.
+W> If `include` isn't set, webpack will traverse all files within the base directory. This can hurt performance! It is a good idea to set up `include` always. There's also `exclude` option that may come in handy. Prefer `include`, however as it's a more restrictive option.
 
 ## Setting Up the Initial CSS
 
