@@ -96,6 +96,15 @@ const Profile = () => (
 );
 ```
 
+It is also possible to set up dynamic imports. This actually uses a feature known `require.context` internally. It is covered in greater detail at the *Understanding Chunks* chapter. Here's a small example:
+
+```javascript
+// The name of the avatar is received from somewhere
+const src = require('./avatars/' + avatar);
+
+...
+```
+
 ## Loading Sprites
 
 A technique known as spriting allows you to combine multiple smaller images into a single image. It has been used for games to describe animations and it's useful for web development as well as you avoid request overhead.
