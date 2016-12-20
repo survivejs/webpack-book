@@ -390,6 +390,12 @@ Microsoft's [TypeScript](http://www.typescriptlang.org/) is a far more establish
 * [typescript-loader](https://www.npmjs.com/package/typescript-loader)
 * [light-ts-loader](https://www.npmjs.com/package/light-ts-loader)
 
+## Maintaining Components
+
+One way to structure React projects is to push components to directories which expose their code through a *index.js* file. Often that's just boilerplate code which you have to add for webpack to resolve correctly. [component-directory-webpack-plugin](https://www.npmjs.com/package/component-directory-webpack-plugin) has been designed to alleviate this problem and it allows you to skip *index.js* while performing lookups based on a naming convention.
+
+A separate tool known as [create-index](https://www.npmjs.com/package/create-index) is a different way to solve the same problem. It literally generates those boilerplate *index.js* files to your project and keeps them up to date.
+
 ## Conclusion
 
 There are a lot of aspects to keep in mind when configuring webpack to work with React. Fortunately this is something you don't have to perform often. Once you have a solid basic setup fitting your needs together, it will take you far.
