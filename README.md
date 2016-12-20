@@ -4,7 +4,7 @@
 
 <img align="right" width="255" height="329" src="manuscript/images/title_page_small.png" />
 
-> **IMPORTANT!** If you want to support the development of this book, you can [purchase a copy at Leanpub](https://leanpub.com/survivejs-webpack). A part (~30%) of the proceedings will go directly to the author of Webpack to support its development.
+> **IMPORTANT!** If you want to support the development of this book, you can [purchase a copy at Leanpub](https://leanpub.com/survivejs-webpack). A part (~30%) of the proceedings will go directly to the author of webpack to support its development.
 
 Webpack, a module bundler, solves a significant problem for web developers. It can be daunting to learn but once you grok it, life gets easier. The purpose of this book is to make it easier to pick up the tool while learning more advanced techniques as well. You can [read the book online](http://survivejs.com/webpack/introduction/).
 
@@ -22,7 +22,7 @@ As no book is perfect, you will likely come by issues and might have some questi
 * Join me at [Gitter Chat](https://gitter.im/survivejs/webpack)
 * Follow [@survivejs](https://twitter.com/survivejs) at Twitter for official news or poke me through [@bebraw](https://twitter.com/bebraw) directly
 * Send me email at [info@survivejs.com](mailto:info@survivejs.com)
-* Ask me anything about Webpack or React at [SurviveJS AmA](https://github.com/survivejs/ama/issues)
+* Ask me anything about webpack or React at [SurviveJS AmA](https://github.com/survivejs/ama/issues)
 
 If you post questions to [Stack Overflow](http://stackoverflow.com/search?q=survivejs), tag them using [**survivejs**](https://stackoverflow.com/questions/tagged/survivejs) so I will get notified of them. You can also use the hashtag **#survivejs** at Twitter.
 
