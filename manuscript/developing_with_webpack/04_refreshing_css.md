@@ -118,16 +118,16 @@ T> An alternative way to load CSS would be to define a separate entry through wh
 
 When you `require` a CSS file like this, webpack will include it to the bundle where you `require` it. Assuming you are using the *style-loader*, webpack will write it to a `style` tag. This means it's going to be in a global scope by default!
 
-Specification known as [CSS Modules](https://github.com/css-modules/css-modules) allows you to default to local scoping and webpack's *css-loader* supports it. So if you want local scope by default over a global one, enable them through `css?modules`. After this you'll need to wrap your global styles within `:global(body) { ... }` kind of declarations.
+Specification known as [CSS Modules](https://github.com/css-modules/css-modules) allows you to default to local scoping and webpack's *css-loader* supports it. So if you want local scope by default over a global one, enable them through `css-loader?modules`. After this you'll need to wrap your global styles within `:global(body) { ... }` kind of declarations.
 
-T> The query syntax, `css?modules`, and its alternatives is discussed in greater detail in the *Loader Definitions* chapter. There are multiple ways to achieve the same effect in webpack some of which are clearer than others.
+T> The query syntax, `css-loader?modules`, and its alternatives is discussed in greater detail in the *Loader Definitions* chapter. There are multiple ways to achieve the same effect in webpack some of which are clearer than others.
 
 In this case the `require` statement will give you the local classes you can then bind to elements. Assuming we had styling like this:
 
 **app/main.css**
 
 ```css
-:local(.redButton) {
+.redButton {
   background: red;
 }
 ```
