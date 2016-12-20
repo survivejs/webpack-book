@@ -388,6 +388,7 @@ Microsoft's [TypeScript](http://www.typescriptlang.org/) is a far more establish
 * [ts-loader](https://www.npmjs.com/package/ts-loader)
 * [awesome-typescript-loader](https://www.npmjs.com/package/awesome-typescript-loader)
 * [typescript-loader](https://www.npmjs.com/package/typescript-loader)
+* [light-ts-loader](https://www.npmjs.com/package/light-ts-loader)
 
 ## Conclusion
 
