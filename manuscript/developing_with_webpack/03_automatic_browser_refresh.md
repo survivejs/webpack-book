@@ -161,7 +161,6 @@ Hooking up this part with our main configuration is simple:
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
-const validate = require('webpack-validator');
 
 leanpub-start-insert
 const parts = require('./webpack.parts');
