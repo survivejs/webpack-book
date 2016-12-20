@@ -9,6 +9,8 @@ Webpack relies on the concept of **placeholders**. These strings are used to att
 
 T> If you want shorter hashes, it is possible to slice `hash` and `chunkhash` using `:` syntax like this: `[chunkhash:8]`. Instead of a hash like `8c4cbfdb91ff93f3f3c5` this would yield `8c4cbfdb`.
 
+W> It is preferable to use particularly `hash` and `chunkhash` only for production purposes! Hashing won't do much good during development.
+
 ## Using Placeholders
 
 Assuming we have configuration like this:
