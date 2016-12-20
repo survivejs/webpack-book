@@ -195,7 +195,7 @@ T> Beyond this, it is possible to define chunks that are loaded dynamically. Thi
 
 ## Loading `dependencies` to a `vendor` Bundle Automatically
 
-If you maintain strict separation between `dependencies` and `devDependencies`, you can make webpack to pick up your `vendor` dependencies automatically based on this information. You avoid having to manage those manually then.
+If you maintain strict separation between `dependencies` and `devDependencies`, you can make webpack pick up your `vendor` dependencies automatically based on this information. You avoid having to manage those manually then.
 
 Instead of having `['react']`, we could have `Object.keys(require('./package.json').dependencies)`. That can be filtered and adjusted further if needed depending on how dynamic solution you want.
 
