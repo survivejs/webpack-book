@@ -4,7 +4,7 @@ The easiest way to make your application slow is to load a lot of small assets. 
 
 Webpack allows you to inline assets by using [url-loader](https://www.npmjs.com/package/url-loader). It will output your images as BASE64 strings within your JavaScript bundles. This will decrease the amount of requests needed while growing the bundle size. It is enough to use *url-loader* during development. You may want to consider other alternatives for the production build, though.
 
-Webpack allows you to control the inlining process and defer loading to [file-loader](https://www.npmjs.com/package/file-loader) that outputs image files and returns paths to them. This technique works with other assets types, such as fonts, as we will see in the later chapters.
+Webpack gives control over the inlining process and can defer loading to [file-loader](https://www.npmjs.com/package/file-loader). *file-loader* outputs image files and returns paths to them instead of inlining. This technique works with other assets types, such as fonts, as we will see in the later chapters.
 
 ## Setting Up *url-loader*
 
