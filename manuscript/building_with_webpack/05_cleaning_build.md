@@ -47,7 +47,7 @@ We can connect it with our project like this:
 ...
 
 module.exports = function(env) {
-  if (env === 'build') {
+  if (env === 'production') {
     return merge(
       common,
       {

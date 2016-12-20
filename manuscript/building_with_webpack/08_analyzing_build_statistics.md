@@ -18,7 +18,7 @@ Here's the line of code we need to pipe the output to a file:
   ...
   "scripts": {
 leanpub-start-insert
-    "stats": "webpack --env build --profile --json > stats.json",
+    "stats": "webpack --env production --profile --json > stats.json",
 leanpub-end-insert
     ...
   },

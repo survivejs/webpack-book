@@ -55,9 +55,9 @@ To integrate WDS to our project, we can follow the same idea as in the previous 
 ...
 "scripts": {
 leanpub-start-insert
-  "start": "webpack-dev-server --env start",
+  "start": "webpack-dev-server --env development",
 leanpub-end-insert
-  "build": "webpack --env build"
+  "build": "webpack --env production"
 },
 ...
 ```
@@ -67,7 +67,7 @@ We'll add that `--inline` part back through webpack configuration in a bit. I pr
 If you execute either *npm run start* or *npm start* now, you should see something like this at the terminal:
 
 ```bash
-> webpack-dev-server --env start
+> webpack-dev-server --env development
 
 Project is running at http://localhost:8080/
 webpack output is served from /
@@ -176,7 +176,7 @@ module.exports = function(env) {
 leanpub-end-delete
 leanpub-start-insert
 module.exports = function(env) {
-  if (env === 'build') {
+  if (env === 'production') {
     return merge(common);
   }
 

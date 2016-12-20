@@ -141,7 +141,7 @@ leanpub-end-insert
 };
 
 module.exports = function(env) {
-  if (env === 'build') {
+  if (env === 'production') {
     return merge(
       common,
       {

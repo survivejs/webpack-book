@@ -168,9 +168,9 @@ Even though npm CLI wasn't primarily designed to be used as a task runner, it wo
 {
   "scripts": {
     "stats": "webpack --env production --profile --json > stats.json",
-    "development": "webpack-dev-server --env development",
+    "start": "webpack-dev-server --env development",
     "deploy": "gh-pages -d build",
-    "production": "webpack --env production"
+    "build": "webpack --env production"
   },
   ...
 }

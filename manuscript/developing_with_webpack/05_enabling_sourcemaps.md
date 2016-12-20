@@ -24,7 +24,7 @@ To enable sourcemaps during development, we can use a default such as `eval-sour
 ...
 
 module.exports = function(env) {
-  if (env === 'build') {
+  if (env === 'production') {
     return merge(
       common,
 leanpub-start-insert

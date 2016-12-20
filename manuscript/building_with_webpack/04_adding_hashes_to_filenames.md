@@ -47,7 +47,7 @@ To make the setup work, our configuration is missing one vital part, the placeho
 ...
 
 module.exports = function(env) {
-  if (env === 'build') {
+  if (env === 'production') {
     return merge(
       common,
       {

@@ -42,7 +42,7 @@ We also need to connect our configuration fragment with the main configuration:
 ...
 
 module.exports = function(env) {
-  if (env === 'build') {
+  if (env === 'production') {
 leanpub-start-delete
     return merge(common);
 leanpub-end-delete

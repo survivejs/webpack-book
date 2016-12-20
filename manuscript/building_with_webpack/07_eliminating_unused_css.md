@@ -156,7 +156,7 @@ Next we need to connect this part to our configuration. It is important the plug
 ...
 
 module.exports = function(env) {
-  if (env === 'build') {
+  if (env === 'production') {
     return merge(
       ...
       parts.minify(),

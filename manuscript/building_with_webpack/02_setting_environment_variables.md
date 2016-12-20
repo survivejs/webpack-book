@@ -100,7 +100,7 @@ We can connect this with our configuration like this:
 ...
 
 module.exports = function(env) {
-  if (env === 'build') {
+  if (env === 'production') {
     return merge(
       common,
       {

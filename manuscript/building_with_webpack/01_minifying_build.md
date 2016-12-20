@@ -83,7 +83,7 @@ Now we can hook it up with our configuration like this:
 ...
 
 module.exports = function(env) {
-  if (env === 'build') {
+  if (env === 'production') {
     return merge(
       common,
       {

@@ -70,13 +70,13 @@ leanpub-start-delete
   "build": "webpack"
 leanpub-end-delete
 leanpub-start-insert
-  "build": "webpack --env build"
+  "build": "webpack --env production"
 leanpub-end-insert
 },
 ...
 ```
 
-To verify that it works, you can drop a temporary `console.log(env)` within your configuration function. It should print out `build`.
+To verify that it works, you can drop a temporary `console.log(env)` within your configuration function. It should print out `production`.
 
 ## The Benefits of Composing Configuration
 

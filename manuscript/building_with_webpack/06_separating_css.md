@@ -66,7 +66,7 @@ Connect the function with our configuration as below:
 ...
 
 module.exports = function(env) {
-  if (env === 'build') {
+  if (env === 'production') {
     return merge(
       common,
       ...
@@ -166,7 +166,7 @@ leanpub-end-insert
 };
 
 module.exports = function(env) {
-  if (env === 'build') {
+  if (env === 'production') {
     return merge(
       common,
       {

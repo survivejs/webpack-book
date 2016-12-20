@@ -35,7 +35,7 @@ To make the asset paths work on GitHub Pages, we also need to tweak a webpack se
 ...
 
 module.exports = function(env) {
-  if (env === 'build') {
+  if (env === 'production') {
     return merge(
       common,
       {
