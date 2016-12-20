@@ -8,7 +8,7 @@ The popularity of Node.js and [npm](https://www.npmjs.com/), the Node.js package
 
 ## Task Runners and Bundlers
 
-Historically speaking, there have been many build systems. *Make* is perhaps the best known, and is still a viable option. Specialized *task runners*, such as Grunt, and Gulp were developed particularly JavaScript developers in mind. Plugins available through npm made both task runners powerful and extensible.
+Historically speaking, there have been many build systems. *Make* is perhaps the best known, and is still a viable option. Specialized *task runners*, such as Grunt, and Gulp were created particularly with JavaScript developers in mind. Plugins available through npm made both task runners powerful and extensible.
 
 Task runners are great tools on a high level. They allow you to perform operations in a cross-platform manner. The problems begin when you need to splice various assets together and produce bundles. This is the reason we have *bundlers*, such as Browserify, Brunch, or webpack.
 
@@ -65,7 +65,7 @@ With Make, you model your tasks using Make-specific syntax and terminal commands
 
 ![Grunt](images/grunt.png)
 
-[Grunt](http://gruntjs.com/) went mainstream before Gulp. Especially its plugin architecture contributed towards its popularity. Plugins are often complex by themselves. As a result when configuration grows, it can become difficult to understand what's going on.
+[Grunt](http://gruntjs.com/) was the first popular task runner for front-end developers. Especially its plugin architecture contributed towards its popularity. Plugins are often complex by themselves. As a result when configuration grows, it can become difficult to understand what's going on.
 
 Here's an example from [Grunt documentation](http://gruntjs.com/sample-gruntfile). In this configuration, we define a linting and a watcher task. When the *watch* task is run, it will trigger the *lint* task as well. This way, as we run Grunt, we'll get warnings in real-time in our terminal as we edit our source code.
 
