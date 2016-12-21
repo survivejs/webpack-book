@@ -6,6 +6,8 @@ I recommend maintaining an `include` definition per each loader definition. This
 
 It can be a good idea to prefer absolute paths here as it allows you to move configuration without breaking assumptions. Ideally you have to tweak just a single place during restructuring.
 
+Packages loaded from *node_modules* will still work as the assumption is that they have been compiled in such way that they work out of box. Sometimes you may come upon a badly packaged one, but often you can work around these by tweaking your loader configuration or setting up a `resolve.alias` against an asset that is included with the offending package.
+
 ## Loader Evaluation Order
 
 It is good to keep in mind that webpack's `loaders` are always evaluated from right to left and from bottom to top (separate definitions). The right to left rule is easier to remember when you think about it in terms of functions. You can read definition `use: ['style-loader', 'css-loader']` as `style(css(input))` based on this rule.
