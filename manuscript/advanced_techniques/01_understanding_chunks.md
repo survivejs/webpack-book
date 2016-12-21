@@ -233,6 +233,18 @@ The technique can be useful for other purposes, such as testing or adding files 
 
 T> Note that webpack will also turn statements written in the form `require('./pages/' + pageName + '.md')` into the `require.context` format!
 
+## Dynamic Paths with Dynamic `import`
+
+The same idea works with dynamic `import`. Instead of passing an absolute path, you can pass a partial one. Webpack will set up a context internally. Here's a brief example:
+
+```javascript
+// Set up a target or derive this somehow
+const target = 'demo.json';
+
+// Elsewhere in code
+import(`indexes/${target}).then(...).catch(...);
+```
+
 ## Dealing with Dynamic Imports
 
 Given the approaches discussed here rely on static analysis and webpack has to find the files in question, it doesn't work for every possible case. Maybe the assets you need come from somewhere else. Consider using browser-side loaders like [$script.js](https://github.com/ded/script.js/) or [little-loader](https://github.com/walmartlabs/little-loader) on top of webpack in this case.
