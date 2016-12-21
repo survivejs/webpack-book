@@ -25,6 +25,8 @@ exports.setupCSS = function(paths) {
         {
           test: /\.css$/,
           use: ['style-loader', 'css-loader'],
+          // Restrict extraction process to the given
+          // paths.
           include: paths
         }
       ]
@@ -81,8 +83,6 @@ In this case, *css-loader* gets evaluated first, then *style-loader*. *css-loade
 T> Loaders are transformations that are applied to source files, and return the new source. Loaders can be chained together, like using a pipe in Unix. `loaders: ['style-loader', 'css-loader']` can be read as `styleLoader(cssLoader(input))`.
 
 T> See webpack's [loader documentation](https://webpack.js.org/concepts/loaders/) and [list of loaders](https://webpack.js.org/loaders/) for further information.
-
-W> If `include` isn't set, webpack will traverse all files within the base directory. This can hurt performance! It is a good idea to set up `include` always. There's also `exclude` option that may come in handy. Prefer `include`, however as it's a more restrictive option.
 
 ## Setting Up the Initial CSS
 

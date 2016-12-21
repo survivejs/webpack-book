@@ -15,16 +15,19 @@ module.exports = {
     rules: [
       {
         // Match files against RegExp
-        test: /\.css$/,
+        test: /\.js$/,
 
         // Apply loaders against it. These need to
         // be installed separately. In this case our
-        // project would need *style-loader* and *css-loader*.
-        use: ['style-loader', 'css-loader'],
+        // project would need *babel-loader*. This
+        // accepts an array of loaders as well.
+        use: 'babel-loader',
 
-        // Restrict matching to a directory. This also accepts an array of paths.
-        // Although optional, I prefer to set this (better performance,
-        // clearer configuration).
+        // Restrict matching to a directory. This
+        // also accepts an array of paths.
+        // Although optional, I prefer to set this for
+        // JavaScript source as it helps with
+        // performance and keeps the configuration cleaner.
         include: path.join(__dirname, 'app')
       }
     ]

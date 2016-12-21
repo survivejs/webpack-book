@@ -41,6 +41,8 @@ exports.extractCSS = function(paths) {
             fallbackLoader: 'style-loader',
             loader: 'css-loader'
           }),
+          // Restrict extraction process to the given
+          // paths.
           include: paths
         }
       ]

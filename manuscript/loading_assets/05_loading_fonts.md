@@ -14,9 +14,7 @@ If we go with just one format, we can use a similar setup as for images and rely
   use: 'url-loader',
   options: {
     limit: 50000
-  },
-  // An array of paths or an individual path
-  include: PATHS.fonts
+  }
 }
 ```
 
@@ -49,16 +47,14 @@ In case we want to make sure our site looks good on a maximum amount of browsers
     name: 'fonts/[hash].[ext]',
     limit: 5000,
     mimetype: 'application/font-woff'
-  },
-  include: PATHS.fonts
+  }
 },
 {
   test: /\.ttf$|\.eot$/,
   use: 'file-loader',
   options: {
     name: 'fonts/[hash].[ext]'
-  },
-  include: PATHS.fonts
+  }
 }
 ```
 

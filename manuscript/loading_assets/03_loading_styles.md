@@ -4,16 +4,14 @@ Loading styles is a standard operation. There are a lot of variants depending on
 
 ## Loading CSS
 
-Loading vanilla CSS is fairly straightforward as you can see in the example below. It parses the styles in the given `include` path (accepts an array too) while making sure only files ending with `.css` are matched. The definition then applies both *style-loader* and *css-loader* on it:
+Loading vanilla CSS is fairly straightforward as you can see in the example below. It parses the styles referred by the project while making sure only files ending with `.css` are matched by the loaders. The definition then applies both *style-loader* and *css-loader* on it:
 
 **webpack.config.js**
 
 ```javascript
 {
   test: /\.css$/,
-  use: ['style-loader', 'css-loader'],
-  // An array of paths or an individual path
-  include: PATHS.style
+  use: ['style-loader', 'css-loader']
 }
 ```
 
@@ -36,8 +34,7 @@ T> If you want to enable sourcemaps for CSS, you should enable `sourceMap` optio
 ```javascript
 {
   test: /\.less$/,
-  use: ['style-loader', 'css-loader', 'less-loader'],
-  include: PATHS.style
+  use: ['style-loader', 'css-loader', 'less-loader']
 }
 ```
 
@@ -54,8 +51,7 @@ There is also support for Less plugins, sourcemaps, and so on. To understand how
 ```javascript
 {
   test: /\.scss$/,
-  use: ['style-loader', 'css-loader', 'sass-loader'],
-  include: PATHS.style
+  use: ['style-loader', 'css-loader', 'sass-loader']
 }
 ```
 
@@ -94,8 +90,7 @@ const common = {
     rules: [
       {
         test: /\.styl$/,
-        use: ['style-loader', 'css-loader', 'stylus-loader'],
-        include: PATHS.style
+        use: ['style-loader', 'css-loader', 'stylus-loader']
       }
     ]
   },
@@ -140,8 +135,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader'],
-        include: PATHS.style
+        use: ['style-loader', 'css-loader', 'postcss-loader']
       }
     ]
   }
@@ -174,8 +168,7 @@ T> For this to work, you will have to remember to include [autoprefixer](https:/
 ```javascript
 {
   test: /\.css$/,
-  use: ['style-loader', 'css-loader', 'cssnext-loader'],
-  include: PATHS.style
+  use: ['style-loader', 'css-loader', 'cssnext-loader']
 }
 ```
 

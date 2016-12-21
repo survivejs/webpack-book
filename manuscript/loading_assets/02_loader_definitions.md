@@ -17,8 +17,7 @@ To see the rule in action, consider the example below:
 ```javascript
 {
   test: /\.css$/,
-  use: ['style-loader', 'css-loader'],
-  include: PATHS.app
+  use: ['style-loader', 'css-loader']
 }
 ```
 
@@ -27,13 +26,11 @@ Based on the right to left rule, the example can be split up while keeping it eq
 ```javascript
 {
   test: /\.css$/,
-  use: ['style-loader'],
-  include: PATHS.app
+  use: ['style-loader']
 },
 {
   test: /\.css$/,
-  use: ['css-loader'],
-  include: PATHS.app
+  use: ['css-loader']
 }
 ```
 
@@ -43,7 +40,7 @@ The query format allows passing parameters as well:
 
 ```javascript
 {
-  test: /\.(js|jsx)$/,
+  test: /\.js$/,
   use: 'babel-loader?cacheDirectory,presets[]=react,presets[]=es2015',
   include: PATHS.app
 }
@@ -55,7 +52,7 @@ Instead, it's preferable to use the combination of `use` and `options` fields ei
 
 ```javascript
 {
-  test: /\.(js|jsx)$/,
+  test: /\.js$/,
   use: 'babel-loader',
   options: {
     cacheDirectory: true,
@@ -69,7 +66,7 @@ Or you can apply `use` and handle it there. The advantage of this approach is th
 
 ```javascript
 {
-  test: /\.(js|jsx)$/,
+  test: /\.js$/,
   use: [
     {
       loader: 'babel-loader',
