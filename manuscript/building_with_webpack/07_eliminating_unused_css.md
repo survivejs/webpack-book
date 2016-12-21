@@ -179,23 +179,21 @@ Given webpack is aware of `PATHS.app` through an entry, we could skip passing it
 If you execute `npm run build` now, you should see something like this:
 
 ```bash
-clean-webpack-plugin: /Users/juhovepsalainen/Projects/tmp/webpack-demo/build has been removed.
-Hash: 1e318eccaccf2a67caac
-Version: webpack 2.2.0-rc.1
-Time: 1488ms
-                              Asset       Size  Chunks           Chunk Names
-     vendor.7dd64197ab77e318b260.js    19.7 kB  0, 3[emitted]  vendor
-      style.e7ecd54f5d0714af3e65.js   87 bytes  1, 3[emitted]  style
-        app.2e387bc81deb031d3bcc.js  236 bytes  2, 3[emitted]  app
-   manifest.84bb8a5c29115deb5756.js    1.45 kB  3[emitted]  manifest
-     style.e7ecd54f5d0714af3e65.css  568 bytes  1, 3[emitted]  style
-    vendor.7dd64197ab77e318b260.css   91 bytes  0, 3[emitted]  vendor
-vendor.7dd64197ab77e318b260.css.map  108 bytes  0, 3[emitted]  vendor
- style.e7ecd54f5d0714af3e65.css.map  107 bytes  1, 3[emitted]  style
-                         index.html  556 bytes  [emitted]
-   [5] ./app/main.css 41 bytes {0} [built]
-  [16] ./app/component.js 173 bytes {2} [built]
-  [30] ./app/index.js 124 bytes {2} [built]
+clean-webpack-plugin: /Users/juhovepsalainen/Projects/survivejs/demos/webpack-demo/build has been removed.
+Hash: 2c831bfa6dc6b8a5a81b
+Version: webpack 2.1.0-beta.28
+Time: 1762ms
+                             Asset       Size  Chunks           Chunk Names
+    vendor.8c4cbfdb91ff93f3f3c5.js    19.7 kB  0, 3[emitted]  vendor
+     style.069a857ebde0b802286b.js  107 bytes  1, 3[emitted]  style
+       app.babb03f557a1fcacb6fb.js  231 bytes  2, 3[emitted]  app
+  manifest.6278f4d9b1f92d7c0012.js    1.46 kB  3[emitted]  manifest
+    style.069a857ebde0b802286b.css  602 bytes  1, 3[emitted]  style
+style.069a857ebde0b802286b.css.map  107 bytes  1, 3[emitted]  style
+                        index.html  564 bytes  [emitted]
+  [15] ./app/component.js 173 bytes {2} [built]
+  [16] ./app/main.css 41 bytes {1} [built]
+  [30] ./app/index.js 100 bytes {2} [built]
   [31] multi style 40 bytes {1} [built]
   [32] multi vendor 28 bytes {0} [built]
   [33] ./~/css-loader!./app/main.css 190 bytes [built]
@@ -209,7 +207,7 @@ Child extract-text-webpack-plugin:
         + 1 hidden modules
 ```
 
-The size of our style went from 15.8 kB to 568 bytes. Quite a difference! The technique is useful to know as it will likely come in handy with heavier CSS frameworks.
+The size of our style went from 15.8 kB to 602 bytes. Quite a difference! The technique is useful to know as it will likely come in handy with heavier CSS frameworks.
 
 PurifyCSS supports [additional options](https://github.com/purifycss/purifycss#the-optional-options-argument). You could for example enable additional logging by setting `purifyOptions: { info: true }` when instantiating the plugin.
 
