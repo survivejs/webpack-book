@@ -450,26 +450,26 @@ const common = {
       ...
     ],
     ...
-  },
-  plugins: [
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        context: __dirname,
-        postcss: function () {
-          return [
-            stylelint({
-              rules: {
-                'color-hex-case': 'lower'
-              },
-              // Ignore node_modules CSS
-              ignoreFiles: 'node_modules/**/*.css'
-            })
-          ];
-        }
-      }
-    })
-  ]
+  }
 }
+```
+
+This is also going to require PostCSS specific configuration:
+
+**postcss.config.js**
+
+```javascript
+module.exports = {
+  plugins: {
+    stylelint: {
+      rules: {
+        'color-hex-case': 'lower'
+      },
+      // Ignore node_modules CSS
+      ignoreFiles: 'node_modules/**/*.css'
+    }
+  }
+};
 ```
 
 If you define a CSS rule, such as `background-color: #EFEFEF;`, you should see a warning at your terminal. See stylelint documentation for a full list of rules. npm lists [possible stylelint rulesets](https://www.npmjs.com/search?q=stylelint-config). You consume them as your project dependency like this:

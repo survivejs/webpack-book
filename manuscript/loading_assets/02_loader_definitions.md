@@ -90,11 +90,10 @@ Given webpack 2 forbids arbitrary root level configuration, you have to use `Loa
 {
   plugins: [
     new webpack.LoaderOptionsPlugin({
-      options: {
-        context: __dirname,
-        postcss: function() {
-          return [autoprefixer];
-        }
+      sassLoader: {
+        includePaths: [
+          path.join(__dirname, 'style')
+        ]
       }
     })
   ]

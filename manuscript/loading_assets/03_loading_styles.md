@@ -144,22 +144,24 @@ module.exports = {
         include: PATHS.style
       }
     ]
-  },
-  plugins: [
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        context: __dirname,
-        // PostCSS plugins go here. Note the wrapping! It is
-        // required for hot loading to work. PostCSS will work
-        // without too, but this is the preferred way.
-        postcss: function() {
-          return [autoprefixer, precss];
-        }
-      }
-    })
-  ]
+  }
 };
 ```
+
+In addition to webpack configuration, we need to set up some for PostCSS:
+
+**postcss.config.js**
+
+```javascript
+module.exports = {
+  plugins: {
+    autoprefixer: {},
+    precss: {}
+  }
+};
+```
+
+T> For this to work, you will have to remember to include [autoprefixer](https://www.npmjs.com/package/autoprefixer) and [precss](https://www.npmjs.com/package/precss) to your project.
 
 ### cssnext
 
