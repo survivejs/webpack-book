@@ -100,7 +100,7 @@ It is also possible to set up dynamic imports. This actually uses a feature know
 
 ```javascript
 // The name of the avatar is received from somewhere
-const src = require('./avatars/' + avatar);
+const src = require(`./avatars/${avatar}`);
 
 ...
 ```
