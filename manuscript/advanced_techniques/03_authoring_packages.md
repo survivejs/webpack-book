@@ -323,6 +323,12 @@ output: {
 }
 ```
 
+### Setting Up SystemJS
+
+[SystemJS](https://github.com/systemjs/systemjs) is an emerging standard that's starting to get more attention. A plugin known as [webpack-system-register](https://www.npmjs.com/package/webpack-system-register) allows you to wrap your output in a `System.register` call making it compatible with the scheme.
+
+If you want to support SystemJS this way, set up another build target where to generate a bundle for it.
+
 ### Avoiding Bundling Dependencies
 
 Given it's not a good idea to bundle your package dependencies, such as React, within the distribution bundle itself, you should let the user inject them. You can configure external dependencies using the `externals` configuration. You can control it like this:
