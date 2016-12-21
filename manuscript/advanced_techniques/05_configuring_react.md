@@ -125,6 +125,52 @@ Sometimes you might want to use experimental features. Although you can find a l
 
 T> There are other possible [.babelrc options](https://babeljs.io/docs/usage/options/) beyond the ones covered here.
 
+### Rendering a React Application
+
+To get a simple React application running you'll need to mount it to a DOM element first. [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) can come in handy here. It can be combined with [html-webpack-template](https://www.npmjs.com/package/html-webpack-template) or [html-webpack-template-pug](https://www.npmjs.com/package/html-webpack-template-pug) for more advanced functionality. You can also provide a custom template of your own to it.
+
+The webpack configuration is quite simple. Consider the following example:
+
+**webpack.config.js**
+
+```javascript
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackTemplate = require('html-webpack-template');
+
+const common = {
+  ...
+  plugins: {
+    new HtmlWebpackPlugin({
+      template: HtmlWebpackTemplate,
+      title: 'Demo app'
+      appMountId: 'app', // Generate #app where to mount
+      mobile: true, // Scale page on mobile
+      inject: false // html-webpack-template requires this to work
+    })
+  }
+};
+
+module.exports = function(env) {
+  ...
+};
+```
+
+Now that there's a template and a DOM element where to render, React needs to be told to render there:
+
+**app/index.js**
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+ReactDOM.render(
+  <div>Hello world</div>,
+  document.getElementById('app')
+);
+```
+
+It would be possible to extend the application from here. Depending on your tastes, you might want to name the file as *index.jsx* instead, but sticking with *index.js* can be acceptable too.
+
 ### Babel Based Optimizations for React
 
 [babel-react-optimize](https://github.com/thejameskyle/babel-react-optimize) implements a variety of React specific optimizations you may want to experiment with.
