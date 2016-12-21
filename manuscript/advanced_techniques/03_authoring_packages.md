@@ -167,9 +167,17 @@ T> A tool known as [dont-break](https://www.npmjs.com/package/dont-break) allows
 
 Even though it is simple to publish new versions out there, it is important to respect the SemVer. Roughly, it states that you should not break backwards compatibility, given certain rules are met.
 
-For example, if your current version is `0.1.4` and you do a breaking change, you should bump to `0.2.0` and document the changes. You can understand SemVer much better by studying [the online tool](http://semver.npmjs.com/) and how it behaves.
+For example, if your current version is `0.1.4` and you do a breaking change, you should bump to `0.2.0` and document the changes. The official definition goes like this:
+
+1. The MAJOR version gets incremented when incompatible API changes are made to stable APIs.
+2. The MINOR version gets incremented when backwards-compatible functionality are added.
+3. The PATCH version gets incremented when backwards-compatible bug are fixed.
+
+Once you consider your package suitable to public, it's a good idea to bump it to `1.0.0`. Then the rule can be applied as `<MAJOR>.<MINOR>.<PATCH>` over `0.<MAJOR>.<MINOR>`.
 
 Given SemVer can be a little tricky to manage, a backwards compatible alternative known as [ComVer](https://github.com/staltz/comver) has been developed. The versioning scheme can be described as `<not compatible>.<compatible>`. Every time you make a change that's not compatible with an earlier version, you'll bump the first number. Otherwise you will bump the other.
+
+T> You can understand SemVer much better by studying [the online tool](http://semver.npmjs.com/) and how it behaves.
 
 ### Publishing a Prerelease Version
 
