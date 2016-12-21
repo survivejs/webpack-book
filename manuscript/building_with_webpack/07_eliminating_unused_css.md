@@ -61,7 +61,6 @@ W> If you are using [cnpm](https://cnpmjs.org/), the path to *purecss* will be d
 Thanks to our path setup we don't need to tweak the remainder of the code. If you execute `npm run build`, you should see something like this:
 
 ```bash
-clean-webpack-plugin: /Users/juhovepsalainen/Projects/tmp/webpack-demo/build has been removed.
 Hash: 36fadcf148aa839c3b88
 Version: webpack 2.2.0-rc.1
 Time: 1347ms
@@ -71,8 +70,6 @@ Time: 1347ms
         app.0936851ef7c1e4aef745.js  210 bytes  2, 3[emitted]  app
    manifest.a1de636cb54db545a66e.js    1.45 kB  3[emitted]  manifest
      style.e7ecd54f5d0714af3e65.css    15.8 kB  1, 3[emitted]  style
-    vendor.7dd64197ab77e318b260.css   91 bytes  0, 3[emitted]  vendor
-vendor.7dd64197ab77e318b260.css.map  108 bytes  0, 3[emitted]  vendor
  style.e7ecd54f5d0714af3e65.css.map  107 bytes  1, 3[emitted]  style
                          index.html  556 bytes  [emitted]
    [5] ./app/main.css 41 bytes {0} [built]
@@ -179,7 +176,6 @@ Given webpack is aware of `PATHS.app` through an entry, we could skip passing it
 If you execute `npm run build` now, you should see something like this:
 
 ```bash
-clean-webpack-plugin: /Users/juhovepsalainen/Projects/survivejs/demos/webpack-demo/build has been removed.
 Hash: 2c831bfa6dc6b8a5a81b
 Version: webpack 2.1.0-beta.28
 Time: 1762ms

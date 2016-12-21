@@ -91,7 +91,6 @@ W> If you want to pass more loaders to the `ExtractTextPlugin`, you should use `
 After running `npm run build`, you should see output similar to the following:
 
 ```bash
-clean-webpack-plugin: /Users/juhovepsalainen/Projects/tmp/webpack-demo/build has been removed.
 Hash: 98f119f8cf4be1762511
 Version: webpack 2.2.0-rc.1
 Time: 1318ms
@@ -225,7 +224,6 @@ leanpub-end-insert
 If you build the project now through `npm run build`, you should see something like this:
 
 ```bash
-clean-webpack-plugin: /Users/juhovepsalainen/Projects/tmp/webpack-demo/build has been removed.
 Hash: 992b15713ea05d224ee8
 Version: webpack 2.2.0-rc.1
 Time: 1194ms
