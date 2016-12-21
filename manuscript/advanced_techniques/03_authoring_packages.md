@@ -167,7 +167,7 @@ T> A tool known as [dont-break](https://www.npmjs.com/package/dont-break) allows
 
 Even though it is simple to publish new versions out there, it is important to respect the SemVer. Roughly, it states that you should not break backwards compatibility, given certain rules are met.
 
-For example, if your current version is `0.1.4` and you do a breaking change, you should bump to `0.2.0` and document the changes. The official definition goes like this:
+For example, if your current version is `0.1.4` and you do a breaking change, you should bump to `0.2.0` and document the changes. [The official definition](http://semver.org/) goes like this:
 
 1. The MAJOR version gets incremented when incompatible API changes are made to stable APIs.
 2. The MINOR version gets incremented when backwards-compatible functionality are added.
