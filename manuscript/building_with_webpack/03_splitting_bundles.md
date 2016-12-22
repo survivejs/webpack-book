@@ -81,12 +81,6 @@ W> Webpack doesn't allow referring to entry files within entries. If you inadver
 
 [CommonsChunkPlugin](https://webpack.js.org/guides/code-splitting-libraries/#commonschunkplugin) is a powerful and complex plugin. The use case we are covering here is a basic yet useful one. As before, we can define a function that wraps the basic idea.
 
-To make our life easier in the future, we can make it extract a file known as a **manifest**. It contains the webpack runtime that starts the whole application and contains the dependency information needed by it. This avoids a serious invalidation problem. Even though it's yet another file for the browser to load, it allows us to implement reliable caching in the next chapter.
-
-If we don't extract a manifest, webpack will generate the runtime to the vendor bundle. In case we modify the application code, the application bundle hash will change. This is problematic as it will invalidate both bundles since the runtime needs to change too. This is why you should keep the manifest separate from the main bundles as doing this avoids the problem.
-
-T> If you want to see this behavior in practice, try tweaking the implementation so that it **doesn't** generate the manifest after the next chapter. Change application code after that and see what happens to the generated code.
-
 The following code combines the `entry` idea above with a basic `CommonsChunkPlugin` setup:
 
 **webpack.parts.js**
@@ -97,16 +91,19 @@ The following code combines the `entry` idea above with a basic `CommonsChunkPlu
 leanpub-start-insert
 exports.extractBundle = function(options) {
   const entry = {};
-  entry[options.name] = options.entries;
+
+  // Set up entries if they have been provided.
+  if (options.entries) {
+    entry[options.name] = options.entries;
+  }
 
   return {
     // Define an entry point needed for splitting.
     entry: entry,
     plugins: [
-      // Extract bundle and manifest files. Manifest is
-      // needed for reliable caching.
+      // Extract bundle.
       new webpack.optimize.CommonsChunkPlugin({
-        names: [options.name, 'manifest']
+        names: [options.name]
       })
     ]
   };
@@ -177,7 +174,6 @@ Time: 1225ms
       Asset       Size  Chunks           Chunk Names
   vendor.js    19.7 kB  0, 2[emitted]  vendor
      app.js    4.06 kB  1, 2[emitted]  app
-manifest.js    1.37 kB  2[emitted]  manifest
  index.html  294 bytes  [emitted]
   [15] ./app/component.js 136 bytes {1} [built]
   [16] ./app/main.css 904 bytes {1} [built]

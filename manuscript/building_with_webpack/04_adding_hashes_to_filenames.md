@@ -84,7 +84,6 @@ Time: 1223ms
                            Asset       Size  Chunks           Chunk Names
   vendor.6fcd8ee954db093c19c0.js    19.7 kB  0, 2[emitted]  vendor
      app.5caccf3ee1ca2f876fe1.js    4.06 kB  1, 2[emitted]  app
-manifest.9236efcd5974e259d881.js    1.42 kB  2[emitted]  manifest
                       index.html  357 bytes  [emitted]
   [15] ./app/component.js 136 bytes {1} [built]
   [16] ./app/main.css 904 bytes {1} [built]
@@ -102,4 +101,6 @@ One more way to improve the build further would be to load popular dependencies,
 
 ## Conclusion
 
-Even though our project has neat caching behavior now, adding hashes to our filenames brings a new problem. If a hash changes, we still have possible older files within our output directory. To eliminate this problem, we can set up a little plugin to clean it up for us.
+Even though our project has basic caching behavior now, adding hashes to our filenames brings a new problem - cache invalidation. If you modify *app.js*, you should notice that both *app* and *vendor* output names change. This isn't good as it goes against the idea. Only *app* output should change in this case.
+
+The problem is that we are bundling something known as **manifest** within the *vendor* bundle. As a result the problem can be remedied by separating the manifest from it. This is what we will do in the next chapter.
