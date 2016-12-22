@@ -175,7 +175,9 @@ For example, if your current version is `0.1.4` and you do a breaking change, yo
 
 Once you consider your package suitable to public, it's a good idea to bump it to `1.0.0`. Then the rule can be applied as `<MAJOR>.<MINOR>.<PATCH>` over `0.<MAJOR>.<MINOR>`.
 
-Tools like [commitizen](https://www.npmjs.com/package/commitizen) or [next-ver](https://www.npmjs.com/package/next-ver) can make it easier to deal with SemVer. They expect that you annotate your commits in a certain way. For example, you might have `fix(merge)` or `feat(merge)` prefix that describes what kind of a change was made and in what portion of the code.
+[next-ver](https://www.npmjs.com/package/next-ver) can compute the next version you should use and update it. [commitizen](https://www.npmjs.com/package/commitizen) goes further and allows changelog generation and automated releases.
+
+Both of these tools rely on commit message annotations. On small projects you might have `fix` or `feat` prefix at your commit titles (e.g., `fix - Allow doodad to work with zero`). You can also communicate the context using `chore(docs)` kind of style to document which part of the project was touched.
 
 This metadata lets the tooling to figure out the types of the changes you made. It can help even with changelog generation and allow automated releases over manual ones. Annotating your commits well is a good practice in any case as it will make it easier to debug your code later on.
 
