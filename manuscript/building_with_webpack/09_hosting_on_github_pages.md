@@ -67,6 +67,8 @@ After building (`npm run build`) and deploying (`npm run deploy`), you should ha
 
 T> If you need a more elaborate setup, you can use the Node.js API that *gh-pages* provides. The default CLI tool it provides is often enough, though.
 
+T> GitHub Pages allows you to choose the branch where you deploy now. It is possible to use the `master` branch even. This is enough for minimal sites that don't need bundling. You can also point below the *./docs* directory within your `master` branch and maintain your site. That is useful for small projects.
+
 ## Conclusion
 
 The same idea works with other environments too. You can set up *gh-pages* to push into a branch you want. After this step we have a fairly complete development and production setup.
