@@ -4,6 +4,8 @@
 
 It isn't the easiest tool to learn due to its configuration driven approach. The purpose of this guide is to help you get started with webpack and then go beyond the basics.
 
+W> There are known issues with Node.js 7 and webpack. Please use Node.js 4-6 for now to avoid problems.
+
 ## What is Webpack?
 
 Web browsers have been designed to consume HTML, JavaScript, and CSS. The simplest way to develop is simply to write files that the browser understands directly. The problem is that this becomes unwieldy eventually. This is particularly true when you are developing web applications.
