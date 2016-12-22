@@ -29,7 +29,7 @@ T> If you want to enable sourcemaps for CSS, you should enable `sourceMap` optio
 
 ![Less](images/less.png)
 
-[Less](http://lesscss.org/) is a popular CSS processor that is packed with functionality. In webpack using Less doesn't take a lot of effort. [less-loader](https://www.npmjs.com/package/less-loader) deals with the heavy lifting. You should install [less](https://www.npmjs.com/package/less) as well given it's a peer dependency of *less-loader*. Consider the following minimal setup:
+[Less](http://lesscss.org/) is a CSS processor that is packed with functionality. In webpack using Less doesn't take a lot of effort. [less-loader](https://www.npmjs.com/package/less-loader) deals with the heavy lifting. You should install [less](https://www.npmjs.com/package/less) as well given it's a peer dependency of *less-loader*. Consider the following minimal setup:
 
 ```javascript
 {
@@ -44,7 +44,7 @@ There is also support for Less plugins, sourcemaps, and so on. To understand how
 
 ![Sass](images/sass.png)
 
-[Sass](http://sass-lang.com/) is a popular alternative to Less. You should use [sass-loader](https://www.npmjs.com/package/sass-loader) with it. Remember to install [node-sass](https://www.npmjs.com/package/node-sass) to your project as the loader has a peer dependency on that. webpack doesn't take much configuration:
+[Sass](http://sass-lang.com/) is a widely used CSS preprocessor. You should use [sass-loader](https://www.npmjs.com/package/sass-loader) with it. Remember to install [node-sass](https://www.npmjs.com/package/node-sass) to your project as the loader has a peer dependency on that. webpack doesn't take much configuration:
 
 **webpack.config.js**
 
@@ -57,8 +57,6 @@ There is also support for Less plugins, sourcemaps, and so on. To understand how
 
 Sometimes you might see imports like `@import "~bootstrap/css/bootstrap";` in SASS code. The tilde (`~`) tells webpack that it's not a relative import as by default in SASS. If tilde is included, it will perform a lookup against `node_modules` (default setting) although this is configurable through the [resolve.modules](https://webpack.js.org/configuration/resolve/#resolve-modules) field.
 
-Check out the loader for more advanced usage.
-
 T> If you want more performance especially during development, check out [fast-sass-loader](https://www.npmjs.com/package/fast-sass-loader).
 
 ### Imports in LESS and SASS
@@ -69,10 +67,10 @@ If you import one LESS/SASS file from an other, use the exact same pattern as an
 @import "./variables.less";
 ```
 
-You can also load LESS files directly from your node_modules directory. This is handy with libraries like Twitter Bootstrap:
+You can also load LESS and SASS files directly from your node_modules directory. This is handy with libraries like Twitter Bootstrap:
 
 ```less
-$import "~bootstrap/less/bootstrap";
+@import "~bootstrap/less/bootstrap";
 ```
 
 ## Loading Stylus and YETICSS
