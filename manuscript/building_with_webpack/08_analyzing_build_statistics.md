@@ -28,9 +28,11 @@ leanpub-end-insert
 
 This is the basic setup you'll need regardless of your webpack configuration. Given our configuration matches to `env`, you execute `npm run stats` now. After a while you should find *stats.json* at your project root.
 
-### stats-webpack-plugin
+### *stats-webpack-plugin* and *webpack-stats-plugin*
 
 If you want to manage stats through a plugin, check out [stats-webpack-plugin](https://www.npmjs.com/package/stats-webpack-plugin). It gives you a bit more control over the output. You can use it to exclude certain dependencies from the output for example.
+
+[webpack-stats-plugin](https://www.npmjs.com/package/webpack-stats-plugin) is another option. It allows you to transform the data before outputting it.
 
 ## Available Analysis Tools
 
