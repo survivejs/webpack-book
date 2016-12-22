@@ -51,7 +51,7 @@ Child html-webpack-plugin for "index.html":
 
 Minification will convert our code into a smaller format without losing any meaning. Usually this means some amount of rewriting code through predefined transformations. Sometimes, this can break code as it can rewrite pieces of code you inadvertently depend upon.
 
-The easiest way to enable minification is to call `webpack -p`. `-p` is a shortcut for `--optimize-minimize`, you can think it as `-p` for "production". Alternatively, we can use a plugin directly as this provides us more control. By default Uglify will output a lot of warnings and they don't provide value in this case, we'll be disabling them.
+The easiest way to enable minification is to call `webpack -p`. `-p` is a shortcut for `--optimize-minimize`, you can think it as `-p` for "production". Alternatively, we can use a plugin directly as this provides us more control. By default UglifyJS will output a lot of warnings and they don't provide value in this case, we'll be disabling them.
 
 As earlier, we can define a little function for this purpose and then point to it from our main configuration. Here's the basic idea:
 
@@ -120,7 +120,7 @@ Child html-webpack-plugin for "index.html":
 
 Given it needs to do more work, it took longer. But on the plus side the build is significantly smaller now.
 
-T> Uglify warnings can help you to understand how it processes the code. Therefore it may be beneficial to have a peek at the full output every once in a while.
+T> UglifyJS warnings can help you to understand how it processes the code. Therefore it may be beneficial to have a peek at the full output every once in a while.
 
 ## Controlling UglifyJS through Webpack
 
@@ -166,9 +166,12 @@ T> Dropping the `console` statements can be achieved through Babel too by using 
 
 ## Other Solutions
 
-Yet another way to control Uglify would be to use the [uglify-loader](https://www.npmjs.com/package/uglify-loader). That gives yet another way to control minification behavior. [webpack-parallel-uglify-plugin](https://www.npmjs.com/package/webpack-parallel-uglify-plugin) allows you to parallelize the minifying step and may yield extra performance as webpack doesn't run in parallel by default.
+Yet another way to control UglifyJS would be to use the [uglify-loader](https://www.npmjs.com/package/uglify-loader). That gives yet another way to control minification behavior. [webpack-parallel-uglify-plugin](https://www.npmjs.com/package/webpack-parallel-uglify-plugin) allows you to parallelize the minifying step and may yield extra performance as webpack doesn't run in parallel by default.
 
-Instead of UglifyJS, you can consider trying [webpack-closure-compiler](https://www.npmjs.com/package/webpack-closure-compiler). It runs parallel and may even give smaller result. [babili](https://www.npmjs.com/package/babili), a Babel specific solution, is yet another option. It can be used either as a CLI tool or through [babili-webpack-plugin](https://www.npmjs.com/package/babili-webpack-plugin).
+I've listed a couple of UglifyJS alternatives below:
+
+* [webpack-closure-compiler](https://www.npmjs.com/package/webpack-closure-compiler) runs parallel and may give even smaller result than UglifyJS.
+* [babili](https://www.npmjs.com/package/babili) is a Babel specific solution. It can be used either as a CLI tool or through [babili-webpack-plugin](https://www.npmjs.com/package/babili-webpack-plugin).
 
 ## Minifying CSS
 
