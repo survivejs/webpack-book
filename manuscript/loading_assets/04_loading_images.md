@@ -38,6 +38,8 @@ If you want to skip inlining altogether, you can use *file-loader* directly. The
 }
 ```
 
+T> If you want to output your images below a specific directory, set it up like this: `name: './images/[hash].[ext]'`. Adjust to your liking.
+
 ## Loading SVGs
 
 Webpack has a [few ways](https://github.com/webpack/webpack/issues/595) to load SVGs. However the simplest way is through *file-loader* as follows:
