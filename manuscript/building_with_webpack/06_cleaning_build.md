@@ -80,3 +80,5 @@ T> If you want to preserve possible dotfiles within your build directory, you ca
 Our build is starting to get pretty neat now. There's one major issue, though. Our CSS has been inlined with JavaScript. This can result in the dreaded **Flash of Unstyled Content** (FOUC). It's also not ideal caching-wise.
 
 A small change to the CSS would invalidate our `app` bundle. This doesn't hurt during development, but it's not something we want to experience in production. We can resolve this problem by separating our CSS to a file of its own.
+
+T> Copying files is another common operation you can handle with a webpack plugin such as [copy-webpack-plugin](https://www.npmjs.com/package/copy-webpack-plugin). It can be handy if you need to bring external files to your build without having webpack pointing at them directly.
