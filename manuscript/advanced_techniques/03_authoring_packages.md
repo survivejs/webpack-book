@@ -163,7 +163,7 @@ T> Consider using [semantic-release](https://www.npmjs.com/package/semantic-rele
 
 T> A tool known as [dont-break](https://www.npmjs.com/package/dont-break) allows you to run the unit tests of dependent projects against your current code to see if it breaks anything. Sometimes it's easy to overlook some use case that might not be a part of the public API even and break a dependency. *dont-break* helps with that particular problem.
 
-### Respect the SemVer or ComVer
+### Respect the SemVer
 
 Even though it is simple to publish new versions out there, it is important to respect the SemVer. Roughly, it states that you should not break backwards compatibility, given certain rules are met.
 
@@ -174,6 +174,10 @@ For example, if your current version is `0.1.4` and you do a breaking change, yo
 3. The PATCH version gets incremented when backwards-compatible bug are fixed.
 
 Once you consider your package suitable to public, it's a good idea to bump it to `1.0.0`. Then the rule can be applied as `<MAJOR>.<MINOR>.<PATCH>` over `0.<MAJOR>.<MINOR>`.
+
+Tools like [commitizen](https://www.npmjs.com/package/commitizen) or [next-ver](https://www.npmjs.com/package/next-ver) can make it easier to deal with SemVer. They expect that you annotate your commits in a certain way. For example, you might have `fix(merge)` or `feat(merge)` prefix that describes what kind of a change was made and in what portion of the code.
+
+This metadata lets the tooling to figure out the types of the changes you made. It can help even with changelog generation and allow automated releases over manual ones. Annotating your commits well is a good practice in any case as it will make it easier to debug your code later on.
 
 Given SemVer can be a little tricky to manage, a backwards compatible alternative known as [ComVer](https://github.com/staltz/comver) has been developed. The versioning scheme can be described as `<not compatible>.<compatible>`. Every time you make a change that's not compatible with an earlier version, you'll bump the first number. Otherwise you will bump the other.
 
