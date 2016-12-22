@@ -106,6 +106,8 @@ Each approach comes with its pros and cons. I am comfortable with the compositio
 
 Perhaps the biggest problem is that with composition you need to know what you are doing and it is possible you won't get the composition right the first time around. But that's a software engineering problem that goes beyond webpack. You can always iterate on the interfaces and find better ones.
 
+T> If you have to support both webpack 1 and 2, you can perform branching based on version using `require('webpack/package.json').version` kind of code to detect it. After that you have to set specific branches for each and merge. You can still extract the commonality as you see the best.
+
 ## Conclusion
 
 Now that we have room for growth, I will show you how to set up automatic browser refresh with webpack in the next chapter. You will see the same theme in the chapters after that. We'll solve some specific problem through composition and we will expand our vocabulary that way.
