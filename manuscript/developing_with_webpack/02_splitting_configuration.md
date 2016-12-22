@@ -78,6 +78,24 @@ leanpub-end-insert
 
 To verify that it works, you can drop a temporary `console.log(env)` within your configuration function. It should print out `production`.
 
+## Understanding `--env`
+
+Even though `--env` allows us to pass strings, it can do a bit more. Consider the following example:
+
+**package.json**
+
+```json
+...
+"scripts": {
+  "build": "webpack --env.target production"
+}
+...
+```
+
+Instead of a string, we should receive an object `{ target: 'production' }` at your configuration now. We could pass more key-value pairs and they would go to the `env` object. It is important to note that if you set `--env foo` while setting `--env.target`, the string will override the object.
+
+W> Webpack 2 changed argument behavior compared to webpack 1. You are not allowed to pass custom parameters through the CLI anymore. Instead, it's better to go through the `--env` mechanism if you need to do this.
+
 ## The Benefits of Composing Configuration
 
 Even though a simple technique, splitting configuration this way makes room for growing your setup. The biggest win is the fact that we can extract commonalities between different targets. We can also identify smaller configuration parts to compose. These configuration parts can be pushed to packages of their own to consume across projects.
