@@ -63,6 +63,8 @@ If you want the raw SVG content, you can use the [raw-loader](https://www.npmjs.
 
 [svg-sprite-loader](https://www.npmjs.com/package/svg-sprite-loader) is able to merge separate SVG files into a single sprite making it potentially more effective to load as you avoid request overhead. It supports raster images (*.jpg*, *.png*) as well.
 
+T> You can still use *url-loader* and the aforementioned tips with SVGs too.
+
 ## Compressing Images
 
 In case you want to compress your images, use [image-webpack-loader](https://www.npmjs.com/package/image-webpack-loader) or [svgo-loader](https://github.com/pozadi/svgo-loader) (SVG specific). This type of loader should be applied first to the data so remember to place it as the last within `use` listing.
