@@ -85,6 +85,62 @@ Furthermore, it's possible to manipulate `publicPath` and override the default p
 }
 ```
 
+## Using Font Awesome
+
+The ideas above can be wrapped into a configuration part that allows you to work with [Font Awesome](https://www.npmjs.com/package/font-awesome). Here's the idea:
+
+```javascript
+exports.loadFonts = function(options) {
+  const paths = options.paths;
+  const limit = options.limit;
+  const name = options.name || 'fonts/[chunkhash].[ext]';
+
+  return {
+    module: {
+      rules: [
+        {
+          test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+          loader: 'url-loader',
+          options: {
+            limit: limit,
+            mimetype: 'application/font-woff',
+            name: name
+          }
+        },
+        {
+          test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+          loader: 'url-loader',
+          options: {
+            limit: limit,
+            mimetype: 'application/octet-stream',
+            name: name
+          }
+        },
+        {
+          test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+          loader: 'url-loader',
+          options: {
+            limit: limit,
+            name: name
+          }
+        },
+        {
+          test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+          loader: 'url-loader',
+          options: {
+            limit: limit,
+            mimetype: 'image/svg+xml',
+            name: name
+          }
+        }
+      ]
+    }
+  };
+}
+```
+
+To include Font Awesome into your project, install it (`npm i font-awesome -S`) and then refer to it. One way to handle that is to point to `path.resolve(__dirname, 'node_modules/font-awesome/css/font-awesome.css')` at your style paths or import the file through your application code. After this you can use Font Awesome classes across your code.
+
 ## Conclusion
 
 Loading fonts is similar as loading other assets. Here we have extra concerns to consider. We need to consider the browsers we want to support and choose the loading strategy based on that.
