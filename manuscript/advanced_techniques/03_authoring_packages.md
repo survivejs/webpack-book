@@ -62,7 +62,7 @@ I've annotated a part of *package.json* of my [React component boilerplate](http
     "gh-pages:stats": "webpack --profile --json > stats.json",
 
     "dist": "webpack",
-    "dist:min": "webpack",
+    "dist:min": "webpack -p",
     "dist:modules": "rm -rf ./dist-modules && babel ./src --out-dir ./dist-modules",
 
     "pretest": "npm run test:lint",
