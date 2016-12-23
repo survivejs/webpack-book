@@ -48,12 +48,12 @@ The query format allows passing parameters as well:
 
 This isn't very readable. There may still be use for the old query format especially if you have to perform processing within your source files. Often there are better ways available, though.
 
-Instead, it's preferable to use the combination of `use` and `options` fields either like this:
+Instead, it's preferable to use the combination of `loader` and `options` fields either like this:
 
 ```javascript
 {
   test: /\.js$/,
-  use: 'babel-loader',
+  loader: 'babel-loader',
   options: {
     cacheDirectory: true,
     presets: ['react', 'es2015']
@@ -62,7 +62,9 @@ Instead, it's preferable to use the combination of `use` and `options` fields ei
 }
 ```
 
-Or you can apply `use` and handle it there. The advantage of this approach is that it allows you to set up multiple loaders per match in a readable manner. Since we are using only one loader, wrapping it in an array feels a little too much, but if we had more, this would work:
+W> `use` won't work with `options` alone even though it passes validation! See the [related webpack issue](https://github.com/webpack/webpack/issues/3556) for more information.
+
+If you want to go through `use`, you have to wrap it in an array. The advantage of this approach is that it allows you to set up multiple loaders per match in a readable manner. Since we are using only one loader, wrapping it in an array feels a little too much, but if we had more, this would work:
 
 ```javascript
 {

@@ -11,7 +11,7 @@ If we go with just one format, we can use a similar setup as for images and rely
 ```javascript
 {
   test: /\.woff$/,
-  use: 'url-loader',
+  loader: 'url-loader',
   options: {
     limit: 50000
   }
@@ -24,7 +24,7 @@ A more elaborate way to achieve a similar result would be to use:
 {
   // Match woff2 in addition to patterns like .woff?v=1.1.1.
   test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-  use: 'url-loader',
+  loader: 'url-loader',
   options: {
     limit: 50000,
     mimetype: 'application/font-woff',
@@ -42,7 +42,7 @@ In case we want to make sure our site looks good on a maximum amount of browsers
   test: /\.woff$/,
   // Inline small woff files and output them below font/.
   // Set mimetype just in case.
-  use: 'url-loader',
+  loader: 'url-loader',
   options: {
     name: 'fonts/[hash].[ext]',
     limit: 5000,
@@ -51,7 +51,7 @@ In case we want to make sure our site looks good on a maximum amount of browsers
 },
 {
   test: /\.ttf$|\.eot$/,
-  use: 'file-loader',
+  loader: 'file-loader',
   options: {
     name: 'fonts/[hash].[ext]'
   }
@@ -72,7 +72,7 @@ Furthermore, it's possible to manipulate `publicPath` and override the default p
 {
   // Match woff2 in addition to patterns like .woff?v=1.1.1.
   test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-  use: 'url-loader',
+  loader: 'url-loader',
   options: {
     limit: 50000,
     mimetype: 'application/font-woff',

@@ -17,7 +17,7 @@ In order to load *.jpg* and *.png* files while inlining files below 25kB, we wou
 ```javascript
 {
   test: /\.(jpg|png)$/,
-  use: 'url-loader',
+  loader: 'url-loader',
   options: {
     limit: 25000
   }
@@ -31,7 +31,7 @@ If you want to skip inlining altogether, you can use *file-loader* directly. The
 ```javascript
 {
   test: /\.(jpg|png)$/,
-  use: 'file-loader',
+  loader: 'file-loader',
   options: {
     name: '[path][name].[hash].[ext]'
   }
