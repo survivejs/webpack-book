@@ -8,7 +8,7 @@ Webpack gives control over the inlining process and can defer loading to [file-l
 
 ## Setting Up *url-loader*
 
-*url-loader* is a good starting point and it's the perfect option for development purposes as you don't have to care about the size of the resulting bundle. It comes with a *limit* option that can be used defer image generation to *file-loader* after certain limit is reached. This way you can inline small files to your JavaScript bundles while generating separate files for the bigger ones.
+*url-loader* is a good starting point and it's the perfect option for development purposes as you don't have to care about the size of the resulting bundle. It comes with a *limit* option that can be used to defer image generation to *file-loader* after certain limit is reached. This way you can inline small files to your JavaScript bundles while generating separate files for the bigger ones.
 
 If you use the limit option, you will need to install both *url-loader* and *file-loader* to your project. Assuming you have configured your styles correctly, webpack will resolve any `url()` statements your styling might have. You can of course point to the image assets through your JavaScript code as well.
 
