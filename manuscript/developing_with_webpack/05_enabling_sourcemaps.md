@@ -74,7 +74,7 @@ The following table adapted from the [documentation](https://webpack.js.org/conf
 |Sourcemap type                 |Quality                       |Notes                                                                                   |
 |-------------------------------|------------------------------|----------------------------------------------------------------------------------------|
 |`eval`                         |Generated code                |Each module is executed with `eval` and `//@ sourceURL`.                                |
-|`cheap-eval-source-map`        |Transformed code (lines only) |Each module is executed with `eval` and a sourcemap is added as a dataurl to the `eval`.|
+|`cheap-eval-source-map`        |Transformed code (lines only, no column mappings!) |Each module is executed with `eval` and a sourcemap is added as a dataurl to the `eval`.|
 |`cheap-module-eval-source-map` |Original source (lines only)  |Same idea, but higher quality with lower performance.                                   |
 |`eval-source-map`              |Original source               |Same idea, but highest quality and lowest performance.                                  |
 
@@ -84,7 +84,7 @@ Webpack can also generate production usage friendly sourcemaps. These will end u
 
 |Sourcemap type            |Quality                       |Notes                                                                                  |
 |--------------------------|------------------------------|---------------------------------------------------------------------------------------|
-|`cheap-source-map`        |Transformed code (lines only) |Generated sourcemaps don't have column mappings. Sourcemaps from loaders are not used. |
+|`cheap-source-map`        |Transformed code (lines only) |Generated sourcemaps don't have column mappings. Sourcemaps from loaders, such as *css-loader*, are not used. |
 |`cheap-module-source-map` |Original source (lines only)  |Same except sourcemaps from loaders are simplified to a single mapping per line.       |
 |`source-map`              |Original source               |The best quality with the most complete result, but also the slowest.                  |
 
