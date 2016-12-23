@@ -210,7 +210,7 @@ Each of these files would have a YAML frontmatter for their metadata. The url of
 // converts it into a JSON structure we can use later. Markdown hasn't
 // been processed yet.
 const req = require.context(
-  'json!yaml-frontmatter!./pages',
+  'json-loader!yaml-frontmatter-loader!./pages',
   true, // Load files recursively. Pass false to skip recursion.
   /^\.\/.*\.md$/ // Match files ending with .md.
 );
