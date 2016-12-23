@@ -154,6 +154,6 @@ Child html-webpack-plugin for "index.html":
 
 ## Conclusion
 
-Even though our project has basic caching behavior now, adding hashes to our filenames brings a new problem - cache invalidation. If you modify *app.js*, you should notice that both *app* and *vendor* output names change. This isn't good as it goes against the idea. Only *app* output should change in this case.
+Our project has basic caching behavior now. If you try to modify *app.js* or *component.js*, the vendor bundle should remain the same. Note that if you remove `HashedModuleIdsPlugin` from the configuration, that behavior breaks!
 
-The problem is that we are bundling something known as **manifest** within the *vendor* bundle. As a result the problem can be remedied by separating the manifest from it. This is what we will do in the next chapter.
+Earlier it was possible to work around that problem by extracting something known as a **manifest** from webpack source. Given it's good to understand the idea, we can do that anyway, although it won't be absolutely necessary anymore. We'll do that in the next chapter.
