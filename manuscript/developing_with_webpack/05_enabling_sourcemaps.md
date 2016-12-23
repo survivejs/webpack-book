@@ -117,51 +117,57 @@ W> If you are using any `UglifyJsPlugin` and want sourcemaps, you need to enable
 
 If you want more control over sourcemap generation, it is possible to use the `SourceMapDevToolPlugin` instead. This way you can generate sourcemaps only for the portions of the code you want while having strict control over the result. In case you use the plugin, you can skip `devtool` option altogether.
 
-Here's what it looks like in its entirety (adapted from [the official documentation](https://webpack.github.io/docs/list-of-plugins.html#sourcemapdevtoolplugin)):
+You could model a configuration part for the plugin like this (adapted from [the official documentation](https://webpack.github.io/docs/list-of-plugins.html#sourcemapdevtoolplugin)):
 
 ```javascript
-const config = {
-  plugins: [
-    new webpack.SourceMapDevToolPlugin({
-      // Match assets just like for loaders.
-      test: string | RegExp | Array,
-      include: string | RegExp | Array,
+exports.generateSourcemaps = function(options) {
+  const test = options.test;
+  const include = options.include;
+  const separateSourcemaps = options.separateSourcemaps;
+  const columnMappings = options.columnMappings;
 
-      // `exclude` matches file names, not package names!
-      exclude: string | RegExp | Array,
+  // Enable functionality as you want to expose it
+  return {
+    plugins: [
+      new webpack.SourceMapDevToolPlugin({
+        // Match assets just like for loaders.
+        test: test, // string | RegExp | Array,
+        include: include, // string | RegExp | Array,
 
-      // If filename is set, output to this file.
-      // See `sourceMapFileName`.
-      filename: string,
+        // `exclude` matches file names, not package names!
+        // exclude: string | RegExp | Array,
 
-      // This line is appended to the original asset processed.
-      // For instance '[url]' would get replaced with an url
-      // to the sourcemap.
-      append: false | string,
+        // If filename is set, output to this file.
+        // See `sourceMapFileName`.
+        // filename: string,
 
-      // See `devtoolModuleFilenameTemplate` for specifics.
-      moduleFilenameTemplate: string,
-      fallbackModuleFilenameTemplate: string,
+        // This line is appended to the original asset processed.
+        // For instance '[url]' would get replaced with an url
+        // to the sourcemap.
+        // append: false | string,
 
-      // If false, separate sourcemaps aren't generated.
-      module: bool,
+        // See `devtoolModuleFilenameTemplate` for specifics.
+        // moduleFilenameTemplate: string,
+        // fallbackModuleFilenameTemplate: string,
 
-      // If false, column mappings are ignored.
-      columns: bool,
+        // If false, separate sourcemaps aren't generated.
+        module: separateSourcemaps,
 
-      // Use simpler line to line mappings for the matched modules.
-      lineToLine: bool | {test, include, exclude},
+        // If false, column mappings are ignored.
+        columns: columnMappings,
 
-      // Remove source content from sourcemaps. This is useful
-      // especially if your sourcemaps are very big (over 10 MB)
-      // as browsers can struggle with those.
-      // See https://github.com/webpack/webpack/issues/2669.
-      noSources: bool
-    }),
-    ...
-  ],
-  ...
-};
+        // Use simpler line to line mappings for the matched modules.
+        // lineToLine: bool | {test, include, exclude},
+
+        // Remove source content from sourcemaps. This is useful
+        // especially if your sourcemaps are very big (over 10 MB)
+        // as browsers can struggle with those.
+        // See https://github.com/webpack/webpack/issues/2669.
+        // noSources: bool
+      })
+    ]
+  };
+}
 ```
 
 ## Sourcemap Loader
