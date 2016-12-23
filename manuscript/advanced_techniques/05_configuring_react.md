@@ -26,7 +26,7 @@ T> It is a good practice to name React components containing JSX using the `.jsx
 
 ### Installing *babel-loader*
 
-The first step towards configuring Babel to work with webpack is to set up [babel-loader](https://www.npmjs.com/package/babel-loader). It will take our futuristic code and turn it into a format normal browsers can understand. Install *babel-loader with:
+The first step towards configuring Babel to work with webpack is to set up [babel-loader](https://www.npmjs.com/package/babel-loader). It will take our futuristic code and turn it into a format normal browsers can understand. Install *babel-loader* with:
 
 ```bash
 npm i babel-loader babel-core --save-dev
