@@ -50,19 +50,19 @@ I've annotated a part of *package.json* of my [React component boilerplate](http
 
   /* `npm run <name>` - `npm run` to get the available commands */
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --env development",
 
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
     "test:lint": "eslint . --ext .js --ext .jsx --ignore-path .gitignore --ignore-pattern dist --cache",
 
-    "gh-pages": "webpack",
+    "gh-pages": "webpack --env gh-pages",
     "gh-pages:deploy": "gh-pages -d gh-pages",
-    "gh-pages:stats": "webpack --profile --json > stats.json",
+    "gh-pages:stats": "webpack --env gh-pages --profile --json > stats.json",
 
-    "dist": "webpack",
-    "dist:min": "webpack",
+    "dist": "webpack" --env dist",
+    "dist:min": "webpack --env dist:min",
     "dist:modules": "rm -rf ./dist-modules && babel ./src --out-dir ./dist-modules",
 
     "pretest": "npm run test:lint",
