@@ -203,6 +203,56 @@ W> *webpack-dev-server* can be very particular about paths. If the given `includ
 
 T> You should be able to access the application alternatively through **localhost:8080/webpack-dev-server/** instead of the root. It will provide status information within the browser itself at the top of the application. If your application relies on WebSockets and you use WDS proxying, you'll need to use this specific url as otherwise WDS own logic will interfere.
 
+### Making Module Ids More Debuggable
+
+When webpack generates a bundle, it needs to tell different modules apart. By default it uses numbers for this purpose. The problem is that this makes it difficult to debug the code if you have to inspect the resulting code. It can also lead to issues with hashing behavior.
+
+To overcome this problem it is a good idea to use an alternative module id scheme. As it happens, webpack provides a plugin that's ideal for debugging. This plugin, `NamedModulesPlugin`, emits module paths over numeric ids. This information is useful for development.
+
+You can enable this better behavior as follows:
+
+**webpack.config.js**
+
+```javascript
+const path = require('path');
+leanpub-start-insert
+const webpack = require('webpack');
+leanpub-end-insert
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const merge = require('webpack-merge');
+
+module.exports = function(env) {
+  if (env === 'production') {
+    return merge(common);
+  }
+
+  return merge(
+    common,
+    {
+      // Disable performance hints during development
+      performance: {
+        hints: false
+leanpub-start-delete
+      }
+leanpub-end-delete
+leanpub-start-insert
+      },
+      plugins: [
+        new webpack.NamedModulesPlugin()
+      ]
+leanpub-end-insert
+    },
+    parts.devServer({
+      // Customize host/port here if needed
+      host: process.env.HOST,
+      port: process.env.PORT
+    })
+  );
+};
+```
+
+If you make your code crash somehow and examine the resulting code, you should see familiar paths in the output. Even though a small change, enabling this behavior is useful for development. We will perform a similar trick for production usage later on in this book in the *Adding Hashes to Filenames* chapter.
+
 ### HMR on Windows, Ubuntu, and Vagrant
 
 The setup may be problematic on certain versions of Windows, Ubuntu, and Vagrant. We can solve this through polling:

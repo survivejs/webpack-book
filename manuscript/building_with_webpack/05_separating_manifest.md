@@ -70,6 +70,7 @@ In our current setup you end up with an extra request to fetch the small manifes
 
 ```javascript
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 leanpub-start-insert
 const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin');
@@ -109,22 +110,18 @@ module.exports = function(env) {
         output: {
           path: PATHS.build,
           filename: '[name].[chunkhash].js',
-          // This is used for code splitting. The setup
-          // will work without but this is useful to set.
-          chunkFilename: '[chunkhash].js',
-          // Tweak this to match your GitHub project name
-          publicPath: '/webpack-demo/'
-leanpub-start-delete
         }
+        plugins: [
+leanpub-start-delete
+          new webpack.HashedModuleIdsPlugin()
 leanpub-end-delete
 leanpub-start-insert
-        },
-        plugins: [
+          new webpack.HashedModuleIdsPlugin(),
           new InlineManifestWebpackPlugin({
             name: 'webpackManifest'
           })
-        ]
 leanpub-end-insert
+        ]
       },
       ...
     );

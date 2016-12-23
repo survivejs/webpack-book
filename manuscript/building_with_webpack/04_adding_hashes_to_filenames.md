@@ -99,6 +99,59 @@ Our files have neat hashes now. To prove that it works, you could try altering *
 
 One more way to improve the build further would be to load popular dependencies, such as React, through a CDN. That would decrease the size of the vendor bundle even further while adding an external dependency on the project. The idea is that if the user has hit the CDN earlier, caching can kick in just like here.
 
+## Enabling `HashedModuleIdsPlugin`
+
+As you might remember, webpack uses number based ids for the module code it generates. The problem is that they are difficult to work with and can lead to difficult to debug issues particularly with hashing. Just as we did with the development setup earlier, we can perform a simplification here as well.
+
+Webpack provides a plugin known as `HashedModuleIdsPlugin`. It's like `NamedModulesPlugin` except it hashes the result and hides the path information. This keeps module ids stable as they aren't derived based on order. We sacrifice a few bytes for a cleaner setup, but the trade-off is well worth it.
+
+The change required is simple. Tweak the configuration as follows:
+
+**webpack.config.js**
+
+```javascript
+...
+
+module.exports = function(env) {
+  if (env === 'production') {
+    return merge(
+      common,
+      {
+        devtool: 'source-map',
+leanpub-start-insert
+        plugins: [
+          new webpack.HashedModuleIdsPlugin()
+        ]
+leanpub-end-insert
+      },
+      ...
+    );
+  }
+
+  ...
+};
+```
+
+As you can see in the build output, the difference is negligible.
+
+```bash
+Hash: 295e44e81d90cb11f12d
+Version: webpack 2.2.0-rc.1
+Time: 1223ms
+                           Asset       Size  Chunks           Chunk Names
+  vendor.6fcd8ee954db093c19c0.js    19.8 kB  0, 2[emitted]  vendor
+     app.5caccf3ee1ca2f876fe1.js    4.12 kB  1, 2[emitted]  app
+                      index.html  357 bytes  [emitted]
+  [15] ./app/component.js 136 bytes {1} [built]
+  [16] ./app/main.css 904 bytes {1} [built]
+  [17] ./~/css-loader!./app/main.css 190 bytes {1} [built]
+  [32] ./app/index.js 124 bytes {1} [built]
+  [33] multi vendor 28 bytes {0} [built]
+    + 29 hidden modules
+Child html-webpack-plugin for "index.html":
+        + 4 hidden modules
+```
+
 ## Conclusion
 
 Even though our project has basic caching behavior now, adding hashes to our filenames brings a new problem - cache invalidation. If you modify *app.js*, you should notice that both *app* and *vendor* output names change. This isn't good as it goes against the idea. Only *app* output should change in this case.
