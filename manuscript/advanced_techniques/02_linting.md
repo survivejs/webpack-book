@@ -8,11 +8,27 @@ Better yet, modern editors and IDEs offer strong support for popular tools. This
 
 The linter that started it all for JavaScript is Douglas Crockford's [JSLint](http://www.jslint.com/). It is opinionated like the man himself. The next step in evolution was [JSHint](http://jshint.com/). It took the opinionated edge out of JSLint and allowed for more customization. [ESLint](http://eslint.org/) is the newest tool in vogue.
 
-ESLint goes to the next level as it allows you to implement custom rules, parsers, and reporters. ESLint works with Babel and JSX syntax making it ideal for React projects. The project rules have been documented well and you have full control over their severity. These features alone make it a powerful tool.
+### ESLint is Customizable
+
+ESLint goes to the next level as it allows you to implement custom rules, parsers, and reporters. ESLint works with Babel and JSX syntax making it ideal for React projects. It doesn't support JSX by default, though, so a Babel specific parser will need to be used.
+
+ESLint rules have been documented well and you have full control over their severity. These features alone make it a powerful tool. Better yet, there is a large amount of rules and presets beyond the core as the community has built on top of it.
+
+### eslint-config-airbnb
+
+[eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb) is a good example of a popular preset. Often it is enough to find a preset you like, tweak it a little bit to your liking with some local rules, or by deriving a preset of your own based on it, and then using that. This way you don't have to worry so much about all the available functionality.
+
+### JSCS Joined the ESLint Project
 
 It is quite telling that a competing project, JSCS, [decided to merge its efforts with ESLint](http://eslint.org/blog/2016/04/welcoming-jscs-to-eslint). JSCS reached end of life with its 3.0.0 release and the core team joined with ESLint.
 
+### Linting is About More than Just Catching Issues
+
 Besides linting for issues, it can be useful to manage the code style on some level. Nothing is more annoying than having to work with source code that has mixed tabs and spaces. Stylistically consistent code reads better and is easier to work with. Linting tools allow you to do this.
+
+Establishing strong linting can be beneficial especially in a context where you need to collaborate with others. Even when working alone you will benefit from linting as it can catch obvious issues you might otherwise neglect. JavaScript as a language allows a lot of usage some of which, while valid, may not be the clearest to understand or may be incorrect even.
+
+Linting does **not** replace proper testing, but it can complement testing approaches. It is one way to harden a codebase and make it a little harder to break. This is particularly important as the size of your project grows and it becomes more challenging to manage.
 
 ## Webpack and JSHint
 
