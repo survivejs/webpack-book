@@ -308,6 +308,25 @@ T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environme
 
 W> Note that there are [slight differences](https://github.com/webpack/webpack-dev-server/issues/106) between the CLI and the Node.js API. This is the reason why some prefer to solely use the Node.js API.
 
+## Making It Faster to Develop Configuration
+
+Given restarting the development server each time you make a change tends to get boring after a while, it can be a good idea to let the computer do that for us. As [discussed in GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892), a monitoring tool known as [nodemon](https://www.npmjs.com/package/nodemon) can be used for this purpose.
+
+To get it to work, you will have to install it first through `npm i nodemon --save-dev`. After that you can make it watch WDS and restart it on change. Here's the script if you want to give it a go:
+
+**package.json**
+
+```json
+...
+"scripts": {
+  "start": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --env development\"",
+  ...
+},
+...
+```
+
+It is possible WDS [will support the functionality](https://github.com/webpack/webpack/issues/3153) itself in the future. If you want to make it reload itself on change, you will have to implement a little work-around like this for now.
+
 ## Conclusion
 
 In this chapter you learned to set up webpack to refresh your browser automatically. We can go a notch further and make this work beautifully with CSS files. We'll do that in the next chapter.
