@@ -58,6 +58,8 @@ leanpub-end-insert
 
 W> You should **not** use `ExtractTextPlugin` for development configuration. In addition to slowing it down, it won't work with Hot Module Replacement (HMR). Inline the assets there for better development experience.
 
+W> If you want to pass more loaders to the `ExtractTextPlugin`, you should use `!` syntax. Example: `ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader!postcss-loader' })`. It also supports `loader: { loader: 'css-loader', query: { ... } }` (note `query` over `options`!) formats, but not the webpack 2 standard format (`use` etc.).
+
 ### Connecting with Configuration
 
 Connect the function with our configuration as below:
@@ -87,8 +89,6 @@ leanpub-end-insert
 ```
 
 Using this setup, we can still benefit from the HMR during development. For a production build, we generate a separate CSS, though. *html-webpack-plugin* will pick it up automatically and inject it into our `index.html`.
-
-W> If you want to pass more loaders to the `ExtractTextPlugin`, you should use `!` syntax. Example: `ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader!postcss-loader' })`.
 
 After running `npm run build`, you should see output similar to the following:
 
