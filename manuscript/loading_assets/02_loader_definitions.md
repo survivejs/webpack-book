@@ -62,9 +62,23 @@ Instead, it's preferable to use the combination of `loader` and `options` fields
 }
 ```
 
-W> `use` won't work with `options` alone even though it passes validation! See the [related webpack issue](https://github.com/webpack/webpack/issues/3556) for more information.
+You can also go through `use` like this:
 
-If you want to go through `use`, you have to wrap it in an array. The advantage of this approach is that it allows you to set up multiple loaders per match in a readable manner. Since we are using only one loader, wrapping it in an array feels a little too much, but if we had more, this would work:
+```javascript
+{
+  test: /\.js$/,
+  use: {
+    loader: 'babel-loader',
+    options: {
+      cacheDirectory: true,
+      presets: ['react', 'es2015']
+    },
+  },
+  include: PATHS.app
+}
+```
+
+If we wanted to use more than one loader, we could pass an array to `use` and expand from there:
 
 ```javascript
 {
