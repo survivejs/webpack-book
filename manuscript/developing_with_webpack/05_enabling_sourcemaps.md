@@ -164,6 +164,10 @@ const config = {
 };
 ```
 
+## Sourcemap Loader
+
+Assuming you are using a package that uses inline sourcemaps in its distribution, you can use [source-map-loader](https://www.npmjs.com/package/source-map-loader) to make webpack aware of them. Without setting it up against the package, you will get minified debug output. This is a special case, though, and often you can skip this step.
+
 ## Sourcemaps for Styling
 
 If you want to enable sourcemaps for styling files, you can achieve this by enabling the `sourceMap` option. This works with style loaders such as *css-loader*, *sass-loader*, and *less-loader*.
