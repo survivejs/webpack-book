@@ -207,15 +207,15 @@ T> It is possible to execute *npm run* anywhere within the project. It doesn't h
 
 ## Useful Plugins for Development
 
-Given different systems treat paths differently, it can be handy to force path case sensitivity. [case-sensitive-paths-webpack-plugin](https://www.npmjs.com/package/case-sensitive-paths-webpack-plugin) has been designed for this purpose. Consider setting it up especially if you work in a mixed environment.
+As webpack plugin ecosystem is quite diverse, there are a lot of plugins that can help specifically with development. I've listed a few of these below to give you a better idea of what's available:
 
-[npm-install-webpack-plugin](https://www.npmjs.com/package/npm-install-webpack-plugin) allows webpack to install and wire the installed packages with your *package.json* as you import new packages to your project. It's almost magical this way.
+* [case-sensitive-paths-webpack-plugin](https://www.npmjs.com/package/case-sensitive-paths-webpack-plugin) has been designed to avoid issues with mixed path naming. A path that is valid on macOS, might not be that on Windows. If you work in a mixed environment, this plugin can be handy.
+* [npm-install-webpack-plugin](https://www.npmjs.com/package/npm-install-webpack-plugin) allows webpack to install and wire the installed packages with your *package.json* as you import new packages to your project. It's almost magical this way.
+* [system-bell-webpack-plugin](https://www.npmjs.com/package/system-bell-webpack-plugin) rings the system bell on failure instead of letting webpack fail silently.
+* [friendly-errors-webpack-plugin](https://www.npmjs.com/package/friendly-errors-webpack-plugin) improves on error reporting of webpack. It captures common errors and displays them in a more friendly manner, hence the name.
+* [webpack-dashboard](https://www.npmjs.com/package/webpack-dashboard) gives an entire terminal based dashboard over the standard webpack output. If you prefer clear visual output, this one will come in handy.
 
-As sometimes your build can fail for some reason, it can be handy to hear it. This is where [system-bell-webpack-plugin](https://www.npmjs.com/package/system-bell-webpack-plugin) comes in. It rings the system bell on failure.
-
-[webpack-dashboard](https://www.npmjs.com/package/webpack-dashboard) gives an entire terminal based dashboard over the standard webpack output. If you prefer clear visual output, this one will come in handy.
-
-There are more small plugins like this. It can be worth your while to set up linting to enforce coding standards. The *Linting* chapter digs into that topic in greater detail.
+In addition to plugins like these, it can be worth your while to set up linting to enforce coding standards. The *Linting* chapter digs into that topic in greater detail.
 
 ## Conclusion
 
