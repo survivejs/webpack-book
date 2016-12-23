@@ -259,7 +259,7 @@ Since we want to avoid having to run the command directly whenever we publish a 
 }
 ```
 
-Make sure you execute `npm i babel --save-dev` to include the tool into your project.
+Make sure you execute `npm i babel-cli --save-dev` to include the tool into your project.
 
 You probably don't want the directory content to end up in your Git repository. In order to avoid this and to keep your `git status` clean, consider this sort of `.gitignore`:
 
