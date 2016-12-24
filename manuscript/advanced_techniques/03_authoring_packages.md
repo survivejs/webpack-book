@@ -388,8 +388,8 @@ In this case you'll likely want a setup like this:
   /* `npm run <name>` */
   "scripts": {
     ...
-    "dist": "webpack",
-    "dist:min": "webpack",
+    "dist": "webpack --env dist",
+    "dist:min": "webpack --env dist:min",
 
     /* Process source through Babel! */
     "dist:modules": "babel ./src --out-dir ./dist-modules",
