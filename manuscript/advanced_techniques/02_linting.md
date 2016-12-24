@@ -48,10 +48,11 @@ var common = {
       {
         test: /\.js$/,
         use: 'jshint-loader',
-        // Execute before other loaders
-        enforce: 'pre',
         // Define an include so we check just the files we need
-        include: PATHS.app
+        include: PATHS.app,
+
+        // Execute before other loaders
+        enforce: 'pre'
       }
     ]
   },
@@ -269,9 +270,10 @@ const common = {
     rules: [
       {
         test: /\.(js|jsx)$/,
+        include: PATHS.app,
+
         use: 'eslint-loader',
-        enforce: 'pre',
-        include: PATHS.app
+        enforce: 'pre'
       }
     ]
   },
@@ -459,9 +461,10 @@ const common = {
     rules: [
       {
         test: /\.css$/,
+        include: PATHS.app,
+
         use: 'postcss-loader',
-        enforce: 'pre',
-        include: PATHS.app
+        enforce: 'pre'
       },
       ...
     ],

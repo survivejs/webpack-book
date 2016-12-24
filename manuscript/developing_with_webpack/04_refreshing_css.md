@@ -24,10 +24,11 @@ exports.setupCSS = function(paths) {
       rules: [
         {
           test: /\.css$/,
-          use: ['style-loader', 'css-loader'],
           // Restrict extraction process to the given
           // paths.
-          include: paths
+          include: paths,
+
+          use: ['style-loader', 'css-loader']
         }
       ]
     }

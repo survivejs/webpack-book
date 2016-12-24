@@ -37,13 +37,14 @@ exports.extractCSS = function(paths) {
         // Extract CSS during build
         {
           test: /\.css$/,
+          // Restrict extraction process to the given
+          // paths.
+          include: paths,
+
           loader: ExtractTextPlugin.extract({
             fallbackLoader: 'style-loader',
             loader: 'css-loader'
-          }),
-          // Restrict extraction process to the given
-          // paths.
-          include: paths
+          })
         }
       ]
     },

@@ -41,8 +41,8 @@ The query format allows passing parameters as well:
 ```javascript
 {
   test: /\.js$/,
-  use: 'babel-loader?cacheDirectory,presets[]=react,presets[]=es2015',
-  include: PATHS.app
+  include: PATHS.app,
+  use: 'babel-loader?cacheDirectory,presets[]=react,presets[]=es2015'
 }
 ```
 
@@ -52,13 +52,16 @@ Instead, it's preferable to use the combination of `loader` and `options` fields
 
 ```javascript
 {
+  // Conditions
   test: /\.js$/,
+  include: PATHS.app,
+
+  // Actions
   loader: 'babel-loader',
   options: {
     cacheDirectory: true,
     presets: ['react', 'es2015']
-  },
-  include: PATHS.app
+  }
 }
 ```
 
@@ -66,15 +69,18 @@ You can also go through `use` like this:
 
 ```javascript
 {
+  // Conditions
   test: /\.js$/,
+  include: PATHS.app,
+
+  // Actions
   use: {
     loader: 'babel-loader',
     options: {
       cacheDirectory: true,
       presets: ['react', 'es2015']
-    },
-  },
-  include: PATHS.app
+    }
+  }
 }
 ```
 
@@ -83,6 +89,8 @@ If we wanted to use more than one loader, we could pass an array to `use` and ex
 ```javascript
 {
   test: /\.js$/,
+  include: PATHS.app,
+
   use: [
     {
       loader: 'babel-loader',
@@ -90,10 +98,9 @@ If we wanted to use more than one loader, we could pass an array to `use` and ex
         cacheDirectory: true,
         presets: ['react', 'es2015']
       }
-    },
+    }
     // Add more loaders here
-  ],
-  include: PATHS.app
+  ]
 }
 ```
 

@@ -72,6 +72,11 @@ module: {
     {
       test: /\.(js|jsx)$/,
       use: 'babel-loader',
+      // Parse only app files! Without this it will go through
+      // the entire project. In addition to being slow,
+      // that will most likely result in an error.
+      include: PATHS.app,
+
       options: {
         // Enable caching for improved performance during
         // development.
@@ -79,11 +84,7 @@ module: {
         // something more custom, pass a path to it.
         // I.e., { cacheDirectory: '<path>' }
         cacheDirectory: true
-      },
-      // Parse only app files! Without this it will go through
-      // the entire project. In addition to being slow,
-      // that will most likely result in an error.
-      include: PATHS.app
+      }
     },
     ...
   ]
