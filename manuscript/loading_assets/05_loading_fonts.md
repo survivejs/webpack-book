@@ -97,7 +97,7 @@ exports.loadFonts = function(options) {
     module: {
       rules: [
         {
-          // Capture both eot, ttf, svg, woff and woff2
+          // Capture eot, ttf, svg, woff, and woff2
           test: /\.(eot|ttf|svg|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
           loader: 'file-loader',
           options: {
