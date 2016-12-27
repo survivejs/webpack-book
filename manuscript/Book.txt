@@ -13,9 +13,9 @@ developing_with_webpack/04_enabling_sourcemaps.md
 
 04_Understanding_Loaders.md
 understanding_loaders/01_loader_definitions.md
-understanding_loaders/03_loading_images.md
-understanding_loaders/04_loading_fonts.md
-understanding_loaders/05_writing_loaders.md
+understanding_loaders/02_loading_images.md
+understanding_loaders/03_loading_fonts.md
+understanding_loaders/04_writing_loaders.md
 
 05_Handling_Styling.md
 handling_styling/01_loading_styles.md
