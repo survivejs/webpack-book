@@ -33,8 +33,9 @@ loading_assets/04_loading_fonts.md
 06_Advanced_Techniques.md
 advanced_techniques/01_understanding_chunks.md
 advanced_techniques/02_linting.md
-advanced_techniques/03_authoring_packages.md
-advanced_techniques/04_writing_loaders.md
-advanced_techniques/05_configuring_react.md
+advanced_techniques/03_consuming_packages.md
+advanced_techniques/04_authoring_packages.md
+advanced_techniques/05_writing_loaders.md
+advanced_techniques/06_configuring_react.md
 
 Backmatter.txt

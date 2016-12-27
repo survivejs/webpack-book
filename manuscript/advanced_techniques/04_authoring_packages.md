@@ -165,25 +165,15 @@ T> A tool known as [dont-break](https://www.npmjs.com/package/dont-break) allows
 
 ### Respect the SemVer
 
-Even though it is simple to publish new versions out there, it is important to respect the SemVer. Roughly, it states that you should not break backwards compatibility, given certain rules are met.
+Even though it is simple to publish new versions out there, it is important to respect the SemVer. Roughly, it states that you should not break backwards compatibility, given certain rules are met. The exact rules were covered in the previous chapter so I won't cover them again here.
 
-For example, if your current version is `0.1.4` and you do a breaking change, you should bump to `0.2.0` and document the changes. [The official definition](http://semver.org/) goes like this:
-
-1. The MAJOR version gets incremented when incompatible API changes are made to stable APIs.
-2. The MINOR version gets incremented when backwards-compatible functionality are added.
-3. The PATCH version gets incremented when backwards-compatible bug are fixed.
-
-Once you consider your package suitable to public, it's a good idea to bump it to `1.0.0`. Then the rule can be applied as `<MAJOR>.<MINOR>.<PATCH>` over `0.<MAJOR>.<MINOR>`.
-
-[next-ver](https://www.npmjs.com/package/next-ver) can compute the next version you should use and update it. [commitizen](https://www.npmjs.com/package/commitizen) goes further and allows changelog generation and automated releases.
+To make it easier to comply with SemVer, [next-ver](https://www.npmjs.com/package/next-ver) can compute the next version you should use and update it for you. [commitizen](https://www.npmjs.com/package/commitizen) goes further and allows changelog generation and automated releases.
 
 Both of these tools rely on commit message annotations. On small projects you might have `fix` or `feat` prefix at your commit titles (e.g., `fix - Allow doodad to work with zero`). You can also communicate the context using `chore(docs)` kind of style to document which part of the project was touched.
 
 This metadata lets the tooling to figure out the types of the changes you made. It can help even with changelog generation and allow automated releases over manual ones. Annotating your commits well is a good practice in any case as it will make it easier to debug your code later on.
 
 Given SemVer can be a little tricky to manage, a backwards compatible alternative known as [ComVer](https://github.com/staltz/comver) has been developed. The versioning scheme can be described as `<not compatible>.<compatible>`. Every time you make a change that's not compatible with an earlier version, you'll bump the first number. Otherwise you will bump the other.
-
-T> You can understand SemVer much better by studying [the online tool](http://semver.npmjs.com/) and how it behaves.
 
 ### Publishing a Prerelease Version
 
@@ -216,27 +206,6 @@ Before starting to develop, it can be a good idea to spend a little bit of time 
 As of npm 2.7.0 it is possible to create [scoped packages](https://docs.npmjs.com/getting-started/scoped-packages). They follow format `@username/project-name`. Simply follow that when naming your project. This is a good way to grow packages.
 
 T> If you find a good name that appears to be abandoned, contact npm and they'll likely give it you if you ask nicely.
-
-### Version Ranges
-
-npm supports multiple version ranges. I've listed the common ones below:
-
-* `~` - Tilde matches only patch versions. For example, `~1.2` would be equal to `1.2.x`.
-* `^` - Caret is the default you get using `--save` or `--save-dev`. It matches to It matches minor versions. This means `^0.2.0` would be equal to `0.2.x`.
-* `*` - Asterisk matches major releases. This is the most dangerous of the ranges. Using this recklessly can easily break your project in the future and I would advise against using it.
-* `>= 1.3.0 < 2.0.0` - Range between versions. This can be particularly useful if you are using `peerDependencies`.
-
-You can set the default range using `npm config set save-prefix='^'` in case you prefer something else than caret. Alternatively you can modify *~/.npmrc* directly. Especially defaulting to tilde can be a good idea that can help you to avoid some trouble with dependencies.
-
-T> If you want to be strict about versions, you can use `--save-exact` over `--save`. The shortcut for this operation is `-E`.
-
-### Shrinkwrapping Versions
-
-Sometimes, using version ranges can feel a little dangerous. What if some future version is broken? [npm shrinkwrap](https://docs.npmjs.com/cli/shrinkwrap) allows you to fix your dependency versions and have stricter control over the versions you are using in a production environment.
-
-[lockdown](https://www.npmjs.com/package/lockdown) goes further and gives guarantees about dependency content, not just version. [shrinkpack](https://www.npmjs.com/package/shrinkpack) is another interesting complementary option.
-
-T> If you want to bundle some dependencies with your distribution version, consider using the [bundledDependencies](https://docs.npmjs.com/files/package.json#bundleddependencies) (or just `bundleDependencies`) field. This can be useful if you want to share third party files not available through npm. There's a great [Stack Overflow answer](http://stackoverflow.com/a/25044361/228885) discussing the topic further.
 
 ## npm Lifecycle Hooks
 
@@ -277,32 +246,6 @@ There are plenty of smaller tricks to learn for advanced usage. Those are better
 It is important to note that in npm 3 `prepublish` hook will get triggered also when you run `npm install` on the project locally. Sometimes this can be surprising and counter-productive even.
 
 A solution known as [in-publish](https://www.npmjs.com/package/in-publish) allows you to tune the behavior and skip the installation step. You need to prepend your script with `in-publish && babel ...` kind of line for this to work. npm 4 and the following versions will fix this confusing behavior.
-
-## Keeping Dependencies Up to Date
-
-An important part of maintaining npm packages is keeping their dependencies up to date. How to do this depends a lot on the maturity of your package. Ideally, you have a nice set of tests covering the functionality. If not, things can get a little hairier. There are a few ways to approach dependency updates:
-
-* You can update all dependencies at once and hope for the best. Tools, such as [npm-check-updates](https://www.npmjs.com/package/npm-check-updates), [npm-check](https://www.npmjs.com/package/npm-check), or [npm-upgrade](https://www.npmjs.com/package/npm-upgrade), can do this for you.
-* Install the newest version of some specific dependency, e.g., `npm i lodash@* --save`. This is a more controlled way to approach the problem.
-* Patch version information by hand by modifying *package.json* directly.
-
-It is important to remember that your dependencies may introduce backwards incompatible changes. It can be useful to remember how SemVer works and study release notes of dependencies. They might not always exist, so you may have to go through the project commit history.
-
-### Tracking Dependencies
-
-There are a few services that can help you to keep track of your dependencies:
-
-* [David](https://david-dm.org/)
-* [versioneye](https://www.versioneye.com/)
-* [Gemnasium](https://gemnasium.com)
-
-These services provide badges you can integrate into your project *README.md* and they may email you about important changes. They can also point out possible security issues that have been fixed.
-
-For testing your projects you can consider solutions, such as [Travis CI](https://travis-ci.org/) or [SauceLabs](https://saucelabs.com/). They can test your project against different environments and browsers even. The advantage of doing this is that it allows you to detect regressions. If you accept pull requests to your project, these services can help to keep their quality higher as it forces the authors to maintain their code on higher level.
-
-[Codecov](https://codecov.io/) and [Coveralls](https://coveralls.io/) provide code coverage information and a badge to include in your README. This is useful for figuring out which portions of the source to test better. It is a part of improving the quality of your pull requests as they should maintain the current coverage at minimum and ideally improve it.
-
-T> [shields.io](http://shields.io/) lists a large amount of available badges.
 
 ## Sharing Authorship
 
@@ -373,6 +316,8 @@ externals: {
 These two fields help you a lot as a package author but there's more to it.
 
 T> If you want to include all modules in *node_modules* by default, it could be interesting to use [webpack-node-externals](https://www.npmjs.com/package/webpack-node-externals) instead. Then you would end up with `externals: [nodeExternals()]` kind of declaration. If you don't need to adapt to different environments, this could be a neat way to go.
+
+T> Given bundling may be required sometimes, consider using the [bundledDependencies](https://docs.npmjs.com/files/package.json#bundleddependencies) (or just `bundleDependencies`) field. This can be useful if you want to share third party files not available through npm. There's a great [Stack Overflow answer](http://stackoverflow.com/a/25044361/228885) discussing the topic further.
 
 ### Processing Node.js Version through Babel
 

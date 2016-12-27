@@ -534,3 +534,5 @@ indent_size = 2
 ## Conclusion
 
 In this chapter, you learned how to lint your code using Webpack in various ways. It is one of those techniques that yields benefits over the long term. You can fix possible problems before they become actual issues.
+
+In the next chapter we'll discuss how to consume packages through npm. Although it's often simple, sometimes some amount of patching might be required.
