@@ -112,7 +112,7 @@ The idea is that if webpack resolver matches `demo` in the beginning, it will re
 
 T> The same technique works with loaders too. You can use `resolveLoader.alias` in the same way to alias a loader elsewhere. This can be particularly useful if you have to adapt a RequireJS project to work with webpack.
 
-## Patching Moment.js
+## Removing Unused Modules
 
 Even though packages might work well out of the box, they might bring too much code to your project by default. [Moment.js](https://www.npmjs.com/package/moment) is a popular example. It brings locale data to your project by default. The simplest way to disable that behavior is to use `IgnorePlugin` to ignore locales like this:
 
