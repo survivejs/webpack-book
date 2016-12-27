@@ -6,8 +6,11 @@ Webpack relies on the concept of **placeholders**. These strings are used to att
 * `[name]` - Returns an entry name.
 * `[hash]` - Returns the build hash.
 * `[chunkhash]` - Returns a chunk specific hash.
+* `[contenthash]` - Returns a hash specific to content. This is available for `ExtractTextPlugin` only.
 
 T> If you want shorter hashes, it is possible to slice `hash` and `chunkhash` using `:` syntax like this: `[chunkhash:8]`. Instead of a hash like `8c4cbfdb91ff93f3f3c5` this would yield `8c4cbfdb`.
+
+T> There are more options available and you can even modify the hashing and digest type as discussed at [loader-utils](https://www.npmjs.com/package/loader-utils#interpolatename) documentation.
 
 W> It is preferable to use particularly `hash` and `chunkhash` only for production purposes! Hashing won't do much good during development.
 
