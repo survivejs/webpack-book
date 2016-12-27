@@ -159,18 +159,19 @@ T> For this to work, you will have to remember to include [autoprefixer](https:/
 
 ![cssnext](images/cssnext.jpg)
 
-[cssnext](https://cssnext.github.io/) is a PostCSS plugin that allows us to experience the future now. There are some restrictions, but it may be worth a go. In webpack it is simply a matter of installing [cssnext-loader](https://www.npmjs.com/package/cssnext-loader) and attaching it to your CSS configuration. In our case, you would end up with the following:
+[cssnext](https://cssnext.github.io/) is a PostCSS plugin that allows us to experience the future now. There are some restrictions, but it may be worth a go. You can use it through [postcss-cssnext](https://www.npmjs.com/package/postcss-cssnext) and you can enable it as follows.
 
-**webpack.config.js**
+**postcss.config.js**
 
 ```javascript
-{
-  test: /\.css$/,
-  use: ['style-loader', 'css-loader', 'cssnext-loader']
-}
+module.exports = {
+  plugins: {
+    cssnext: {}
+  }
+};
 ```
 
-Alternatively, you could consume it through *postcss-loader* as a plugin if you need more control.
+See [the usage documentation](http://cssnext.io/usage/) for available options.
 
 ## Conclusion
 
