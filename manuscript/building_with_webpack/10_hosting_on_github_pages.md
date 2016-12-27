@@ -69,6 +69,15 @@ T> If you need a more elaborate setup, you can use the Node.js API that *gh-page
 
 T> GitHub Pages allows you to choose the branch where you deploy now. It is possible to use the `master` branch even. This is enough for minimal sites that don't need bundling. You can also point below the *./docs* directory within your `master` branch and maintain your site. That is useful for small projects.
 
+## Archiving Old Versions
+
+*gh-pages* provides an `add` option that is useful for archival purposes. This is great especially for documentation sites. The idea goes as follows:
+
+1. Copy the old version of the site in a temporary directory and remove *archive* directory from it. You can name the archival directory as you want.
+2. Clean and build the project.
+3. Copy the old version below *build/archive/<version>*
+4. Set up a script to call *gh-pages* through Node.js like this: `ghpages.publish(path.join(__dirname, 'build'), { add: true }, callback);`. You should capture possible error in that callback.
+
 ## Conclusion
 
 The same idea works with other environments too. You can set up *gh-pages* to push into a branch you want. After this step we have a fairly complete development and production setup.
