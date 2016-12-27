@@ -37,7 +37,7 @@ This defers the loading and moves it to a place where it's more acceptable. Give
 It's going to take some setup to make this work. Assuming you are using Babel for processing, you should have the following dependencies available:
 
 ```bash
-npm i babel-plugin-syntax-dynamic-import babel-preset-es2015 babel-preset-react-hmre -D
+npm i babel-plugin-syntax-dynamic-import babel-preset-es2015 -D
 ```
 
 Especially that `babel-plugin-syntax-dynamic-import` is important as otherwise [dynamic imports](https://github.com/tc39/proposal-dynamic-import) won't work! The rest are specific to this demo. Here's the minimal Babel setup:
