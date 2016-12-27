@@ -89,7 +89,7 @@ T> The same technique works with loaders too. You can use `resolveLoader.alias` 
 
 ## Patching Moment.js
 
-Even though packages might work well out of the box, they might bring too much code to your project by default. [Moment.js](https://www.npmjs.com/package/moment) is a popular example. It brings locale data to your project by default. The simplest way to disable that behavior is to use `IgnorePlugin` like this:
+Even though packages might work well out of the box, they might bring too much code to your project by default. [Moment.js](https://www.npmjs.com/package/moment) is a popular example. It brings locale data to your project by default. The simplest way to disable that behavior is to use `IgnorePlugin` to ignore locales like this:
 
 ```javascript
 {
@@ -98,6 +98,8 @@ Even though packages might work well out of the box, they might bring too much c
   ]
 }
 ```
+
+T> You can use the same mechanism to work around problematic dependencies. Example: `new webpack.IgnorePlugin(/^(buffertools)$/)`.
 
 To bring specific locales to your project, you should use `ContextReplacementPlugin`:
 
