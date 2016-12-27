@@ -1,10 +1,6 @@
 # Separating Manifest
 
-When webpack writes bundles, it writes something known as **manifest** as well. You can find it in the generated *vendor* bundle in this project. The manifest describes what files webpack should load. When it comes to hashing, the default behavior becomes problematic as it leads to a validation problem.
-
-The problem is that if our application bundle changes somehow, this means its hash will change as well. And when the hash changes, so does the manifest. Because the manifest changes, this means the vendor bundle hash needs to change. This cascade effect invalidates both and it's something that's better to be avoided to get a stable hashing behavior.
-
-The easiest way to solve the problem is to tell webpack to extract the manifest to a file of its own.
+When webpack writes bundles, it writes something known as **manifest** as well. You can find it in the generated *vendor* bundle in this project. The manifest describes what files webpack should load. It is possible to extract it and start loading the files of our project faster instead of having to wait for the *vendor* bundle to be loaded.
 
 ## Extracting Manifest
 
@@ -176,4 +172,4 @@ Child html-webpack-plugin for "index.html":
 
 ## Conclusion
 
-Even though our project has neat caching behavior now, adding hashes to our filenames brings a new problem. If a hash changes, we still have possible older files within our output directory. To eliminate this problem, we can set up a little plugin to clean it up for us.
+The project is starting to look good, but there's a small problem. Each time the hash changes, our *build* directory grows as more files appear there. To eliminate this problem, we can set up a little plugin to clean it up for us.
