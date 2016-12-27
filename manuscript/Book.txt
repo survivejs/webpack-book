@@ -13,17 +13,17 @@ developing_with_webpack/04_configuring_hmr.md
 developing_with_webpack/05_enabling_sourcemaps.md
 developing_with_webpack/06_linting.md
 
-04_Understanding_Loaders.md
-understanding_loaders/01_loader_definitions.md
-understanding_loaders/02_loading_images.md
-understanding_loaders/03_loading_fonts.md
-understanding_loaders/04_writing_loaders.md
-
-05_Handling_Styling.md
+04_Handling_Styling.md
 handling_styling/01_loading_styles.md
 handling_styling/02_refreshing_css.md
 handling_styling/03_separating_css.md
 handling_styling/04_eliminating_unused_css.md
+
+05_Understanding_Loaders.md
+understanding_loaders/01_loader_definitions.md
+understanding_loaders/02_loading_images.md
+understanding_loaders/03_loading_fonts.md
+understanding_loaders/04_writing_loaders.md
 
 06_Building_with_Webpack.md
 building_with_webpack/01_splitting_bundles.md
