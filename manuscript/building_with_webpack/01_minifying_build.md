@@ -20,10 +20,11 @@ We also need to make our project depend on it:
 
 ```
 leanpub-start-insert
-require('react');
+import 'react';
 leanpub-end-insert
+import component from './component';
 
-...
+document.body.appendChild(component());
 ```
 
 Now that we have something to optimize, execute `npm run build`. You should end up with something like this:

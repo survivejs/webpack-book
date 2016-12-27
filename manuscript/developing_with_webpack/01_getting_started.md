@@ -73,13 +73,13 @@ As you never get tired of `Hello world`, we might as well model a variant of tha
 **app/component.js**
 
 ```javascript
-module.exports = function () {
+export default function () {
   var element = document.createElement('h1');
 
   element.innerHTML = 'Hello world';
 
   return element;
-};
+}
 ```
 
 Next, we are going to need an entry point for our application. It will simply `require` our component and render it through the DOM:
@@ -87,7 +87,7 @@ Next, we are going to need an entry point for our application. It will simply `r
 **app/index.js**
 
 ```javascript
-var component = require('./component');
+import component from './component';
 
 document.body.appendChild(component());
 ```
