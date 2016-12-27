@@ -108,33 +108,29 @@ leanpub-end-insert
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
 
-module.exports = function(env) {
-  if (env === 'production') {
-    return merge(common);
-  }
+const PATHS = {
+  app: path.join(__dirname, 'app'),
+  build: path.join(__dirname, 'build')
+};
 
+module.exports = function(env) {
+leanpub-start-delete
+  return merge(common);
+leanpub-end-delete
+leanpub-start-insert
   return merge(
     common,
     {
       // Disable performance hints during development
       performance: {
         hints: false
-leanpub-start-delete
-      }
-leanpub-end-delete
-leanpub-start-insert
       },
       plugins: [
         new webpack.NamedModulesPlugin()
       ]
-leanpub-end-insert
-    },
-    parts.devServer({
-      // Customize host/port here if needed
-      host: process.env.HOST,
-      port: process.env.PORT
-    })
+    }
   );
+leanpub-end-insert
 };
 ```
 
