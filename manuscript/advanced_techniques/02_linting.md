@@ -229,8 +229,6 @@ T> Note that you can write ESLint configuration directly to *package.json*. Set 
 
 T> There's a [full listing of available ESLint rules](http://eslint.org/docs/rules/). This is handy if you are curious about what's available. The official documentation is worth studying too.
 
-T> It is possible to generate a sample `.eslintrc` using `eslint --init` (or `node_modules/.bin/eslint --init` for local install). This can be useful on new projects.
-
 ### Dealing with `ELIFECYCLE` Error
 
 In case the linting process fails, `npm` will give you a nasty looking `ELIFECYCLE` error. A good way to achieve a tidier output is to invoke `npm run lint --silent` (or `-s`). That will hide the `ELIFECYCLE` bit. You can define an alias for this purpose. In Unix you would do `alias run='npm run --silent'` and then `run <script>`.
