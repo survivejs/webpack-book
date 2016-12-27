@@ -9,8 +9,9 @@ Mainmatter.txt
 developing_with_webpack/01_getting_started.md
 developing_with_webpack/02_splitting_configuration.md
 developing_with_webpack/03_automatic_browser_refresh.md
-developing_with_webpack/04_enabling_sourcemaps.md
-developing_with_webpack/05_linting.md
+developing_with_webpack/04_configuring_hmr.md
+developing_with_webpack/05_enabling_sourcemaps.md
+developing_with_webpack/06_linting.md
 
 04_Understanding_Loaders.md
 understanding_loaders/01_loader_definitions.md
@@ -46,5 +47,6 @@ Backmatter.txt
 
 09_Appendices.md
 appendices/01_searching_with_react.md
-appendices/02_writing_eslint_plugins.md
-appendices/03_customizing_eslint.md
+appendices/02_configuring_hmr_with_react.md
+appendices/03_writing_eslint_plugins.md
+appendices/04_customizing_eslint.md
