@@ -24,7 +24,7 @@ Webpack does all the preprocessing for you and gives you the bundles you specify
 
 ## What Will You Learn?
 
-This book has been designed to complement [the official documentation of Webpack](https://webpack.js.org/). The official documentation goes deeper in many aspects and this book can be considered a companion to it. This book is more like a quick walkthrough that eases the initial learning curve while giving food for thought to more advanced users.
+This book has been designed to complement [the official documentation of webpack](https://webpack.js.org/). The official documentation goes deeper in many aspects and this book can be considered a companion to it. This book is more like a quick walkthrough that eases the initial learning curve while giving food for thought to more advanced users.
 
 You will learn to develop composable webpack configuration for both development and production purposes. You will also learn advanced techniques that allow you to benefit from some of the greatest features of webpack.
 
@@ -42,7 +42,7 @@ If you find yourself struggling, consider seeking help from the community around
 
 ## How to Approach the Book?
 
-If you don't know much about the topic, consider going carefully through the first two parts. You can skim the rest to pick the bits you find interesting. If you know webpack already, skim and pick up the techniques you find valuable.
+If you don't know much about the topic, consider going carefully through the early parts. You can skim the rest to pick the bits you find interesting. If you know webpack already, skim and pick up the techniques you find valuable.
 
 I have compiled [a set of slides online](http://presentations.survivejs.com/advanced-webpack/) that overlap with the book. Consider going through the set to get a rough idea and then delve into the book to understand the ideas in greater detail.
 
