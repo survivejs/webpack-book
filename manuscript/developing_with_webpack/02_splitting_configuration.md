@@ -6,7 +6,9 @@ At minimum, your webpack configuration can be contained in a single file. As the
 * Push configuration to a library which you then consume. Example: [HenrikJoreteg/hjs-webpack](https://github.com/HenrikJoreteg/hjs-webpack).
 * Maintain configuration within a single file and branch there by relying on the `--env` parameter. Webpack gives us easy access to it. Earlier you had to dig the same information through npm, but in webpack 2 this is easy.
 
-I prefer the last approach as it allows me to understand what's going on easily. I've developed a little tool known as [webpack-merge](https://www.npmjs.org/package/webpack-merge) to achieve this. Compared to `Object.assign` or a `merge` function you might know from lodash, it does a little more. It appends arrays and combines objects. There's also more control available in the form of strategies although we won't need those in this book.
+I prefer the last approach as it allows me to understand what's going on easily. I've developed a little tool known as [webpack-merge](https://www.npmjs.org/package/webpack-merge) to achieve this.
+
+Compared to `Object.assign` or a `merge` function you might know from lodash, *webpack-merge* does a little more. It appends arrays and combines objects. There's also more control available in the form of strategies although we won't need those in this book.
 
 ## Setting Up *webpack-merge*
 
@@ -50,12 +52,11 @@ const common = {
 module.exports = function(env) {
   return merge(common);
 };
-
 ```
 
 After this change our build should behave exactly the same way as before. This time, however, we have room for expansion at `merge` as we can branch there based on `env`.
 
-T> Given webpack 2 validates the configuration by default, we are good now. Earlier it was useful to set up a solution known as [webpack-validator](https://www.npmjs.com/package/webpack-validator), but that's not needed anymore.
+T> Webpack 2 validates the configuration by default. If you make an obvious mistake, it will let you know. Earlier it was useful to set up a solution known as [webpack-validator](https://www.npmjs.com/package/webpack-validator), but that's not needed anymore.
 
 ## Passing `env` from Webpack
 
@@ -92,7 +93,7 @@ Even though `--env` allows us to pass strings, it can do a bit more. Consider th
 ...
 ```
 
-Instead of a string, we should receive an object `{ target: 'production' }` at your configuration now. We could pass more key-value pairs and they would go to the `env` object. It is important to note that if you set `--env foo` while setting `--env.target`, the string will override the object.
+Instead of a string, we should receive an object `{ target: 'production' }` at configuration now. We could pass more key-value pairs and they would go to the `env` object. It is important to note that if you set `--env foo` while setting `--env.target`, the string will override the object.
 
 W> Webpack 2 changed argument behavior compared to webpack 1. You are not allowed to pass custom parameters through the CLI anymore. Instead, it's better to go through the `--env` mechanism if you need to do this.
 
