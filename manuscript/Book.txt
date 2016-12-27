@@ -17,6 +17,7 @@ handling_styling/01_loading_styles.md
 handling_styling/02_refreshing_css.md
 handling_styling/03_separating_css.md
 handling_styling/04_eliminating_unused_css.md
+handling_styling/05_linting.md
 
 05_Understanding_Loaders.md
 understanding_loaders/01_loader_definitions.md

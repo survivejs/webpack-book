@@ -52,7 +52,7 @@ exports.devServer = function(options) {
       })
     ]
   };
-}
+};
 ```
 
 It's plenty of code, but it's better to encapsulate it so it contains ideas we understand and want to reuse later on.
