@@ -203,9 +203,9 @@ The release candidates (rc) are close to an actual release and won't introduce a
 The workflow in this case is straight-forward:
 
 1. `npm version 0.5.0-alpha1` - Update *package.json* as discussed earlier.
-2. `npm publish --tag alpha1` - Publish the package under *alpha1* tag.
+2. `npm publish --tag alpha` - Publish the package under *alpha* tag.
 
-In order to consume the test version, your users will have to use `npm i <your package name>@alpha1`.
+In order to consume the test version, your users will have to use `npm i <your package name>@alpha`.
 
 T> It can be useful to utilize `npm link` during development. That will allow you to use a development version of your library from some other context. Node.js will resolve to the linked version unless local `node_modules` happens to contain a version. If you want to remove the link, use `npm unlink`.
 
