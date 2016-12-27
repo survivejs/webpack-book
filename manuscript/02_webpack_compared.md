@@ -12,6 +12,8 @@ Historically speaking, there have been many build systems. *Make* is perhaps the
 
 Task runners are great tools on a high level. They allow you to perform operations in a cross-platform manner. The problems begin when you need to splice various assets together and produce bundles. This is the reason we have *bundlers*, such as Browserify, Brunch, or webpack.
 
+For a while, a solution known as [RequireJS](http://requirejs.org/) was popular. The idea was to provide an asynchronous module definition and build on top of that. The format, AMD, is covered in greater detail at the *Formats Supported* chapter. Fortunately the standards have caught up and RequireJS seems more like a curiosity now.
+
 There are a couple of developing alternatives as well. I have listed a couple of these below:
 
 * [JSPM](http://jspm.io/) pushes package management directly to the browser. It relies on [System.js](https://github.com/systemjs/systemjs), a dynamic module loader and skips the bundling step altogether during development. You can generate a production bundle using it. Glen Maddern goes into good detail at his [video about JSPM](https://www.youtube.com/watch?t=33&v=iukBMY4apvI).
@@ -60,6 +62,45 @@ clean:
 ```
 
 With Make, you model your tasks using Make-specific syntax and terminal commands. This allows it to integrate easily with webpack.
+
+## RequireJS
+
+[RequireJS](http://requirejs.org/) was perhaps the first script loader that became truly popular. It gave us the first proper look of what modular JavaScript at the web could be. Its greatest attraction was AMD. It introduced a `define` wrapper:
+
+```javascript
+define(['./MyModule.js'], function (MyModule) {
+  // export at module root
+  return function() {};
+});
+
+// or
+define(['./MyModule.js'], function (MyModule) {
+  // export as module function
+  return {
+    hello: function() {...}
+  };
+});
+```
+
+Incidentally, it is possible to use `require` within the wrapper like this:
+
+```javascript
+define(['require'], function (require) {
+  var MyModule = require('./MyModule.js');
+
+  return function() {...};
+});
+```
+
+This latter approach definitely eliminates some of the clutter. You will still end up with some code that might feel redundant. Given there's ES6 now, it probably doesn't make much sense to use AMD anymore unless you really have to due to legacy reasons.
+
+T> Jamund Ferguson has written a nice blog series on how to port from [RequireJS to webpack](https://gist.github.com/xjamundx/b1c800e9282e16a6a18e).
+
+### UMD
+
+UMD, universal module definition, takes it all to the next level. It is a monster of a format that aims to make the various formats compatible with each other. Check out [the official definitions](https://github.com/umdjs/umd) to understand it in greater detail.
+
+T> Webpack can generate UMD wrappers for you (`output.libraryTarget: 'umd'`). This is particularly useful for package authors. We'll get back to this later in the *Authoring Packages* chapter.
 
 ## Grunt
 
@@ -246,9 +287,15 @@ You could say [webpack](https://webpack.js.org/) takes a more monolithic approac
 
 It gives control over how it *resolves* the modules making it possible to adapt your build to match specific situations and work around packages that don't work perfectly out of the box. It is good to have options although relying too much on webpack's resolution mechanism isn't recommended.
 
-Webpack will traverse through the `require` and `import` statements of your project and will generate the bundles you have defined. The loader mechanism works for CSS as well and `@import` is supported. There are also plugins for specific tasks, such as minification, localization, hot loading, and so on.
+### Webpack Traverses Import Statements
+
+Webpack will traverse through the `require` and `import` statements of your project and will generate the bundles you have defined. It supports ES6, CommonJS, and AMD module formats out of the box.
+
+The loader mechanism works for CSS as well and `@import` is supported. There are also plugins for specific tasks, such as minification, localization, hot loading, and so on.
 
 To give you an example, `require('style-loader!css-loader!./main.css')` loads the contents of *main.css* and processes it through CSS and style loaders from right to left. The result will be inlined to your JavaScript code by default and given this isn't nice for production usage, there's a plugin to extract it as a separate file.
+
+### Webpack is Configuration Driven
 
 Given this kind of declarations tie the source code to webpack, it is preferable to set up the loaders at configuration. Here is a sample configuration adapted from [the official webpack tutorial](https://webpack.js.org/get-started/):
 
@@ -294,7 +341,7 @@ Given the configuration is written in JavaScript, it's quite malleable. As long 
 
 The configuration model may make webpack feel a bit opaque at times as it can be difficult to understand what it's doing. This is particularly true for more complicated cases. Covering those is one of the main reasons why this book exists.
 
-## Why Webpack?
+### Why Webpack?
 
 Why would you use webpack over tools like Gulp or Grunt? It's not an either-or proposition. Webpack deals with the difficult problem of bundling, but there's so much more. I picked up webpack because of its support for **Hot Module Replacement** (HMR). This is a feature used by [babel-plugin-react-transform](https://github.com/gaearon/babel-plugin-react-transform). I will show you later how to set it up.
 

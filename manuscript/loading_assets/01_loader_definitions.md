@@ -8,6 +8,45 @@ It can be a good idea to prefer absolute paths here as it allows you to move con
 
 Packages loaded from *node_modules* will still work as the assumption is that they have been compiled in such way that they work out of the box. Sometimes you may come upon a badly packaged one, but often you can work around these by tweaking your loader configuration or setting up a `resolve.alias` against an asset that is included with the offending package.
 
+## Anatomy of a Loader
+
+Webpack supports a large variety of formats through *loaders*. In addition, it supports a couple of JavaScript module formats out of the box. Generally, the idea is the same. You always set up a loader, or loaders, and connect those with your directory structure.
+
+The system relies on configuration. Consider the example below where we set webpack to process JavaScript through Babel:
+
+**webpack.config.js**
+
+```javascript
+...
+
+module.exports = {
+  ...
+  module: {
+    rules: [
+      {
+        // Match files against RegExp
+        test: /\.js$/,
+
+        // Restrict matching to a directory. This
+        // also accepts an array of paths.
+        // Although optional, I prefer to set this for
+        // JavaScript source as it helps with
+        // performance and keeps the configuration cleaner.
+        include: path.join(__dirname, 'app'),
+
+        // Apply loaders against it. These need to
+        // be installed separately. In this case our
+        // project would need *babel-loader*. This
+        // accepts an array of loaders as well.
+        use: 'babel-loader'
+      }
+    ]
+  }
+};
+```
+
+T> If you are not sure how a particular RegExp matches, consider using an online tool, such as [regex101](https://regex101.com/).
+
 ## Loader Evaluation Order
 
 It is good to keep in mind that webpack's `loaders` are always evaluated from right to left and from bottom to top (separate definitions). The right to left rule is easier to remember when you think about it in terms of functions. You can read definition `use: ['style-loader', 'css-loader']` as `style(css(input))` based on this rule.
