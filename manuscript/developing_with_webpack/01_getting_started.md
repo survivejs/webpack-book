@@ -145,28 +145,30 @@ T> I like to use `path.join`, but `path.resolve` would be a good alternative. Se
 If you execute `node_modules/.bin/webpack`, you should see output:
 
 ```bash
-Hash: 57470680d11512534351
-Version: webpack 2.2.0-rc.1
-Time: 381ms
-     Asset       Size  Chunks           Chunk Names
-    app.js     2.8 kB  0[emitted]  app
-index.html  180 bytes  [emitted]
-   [0] ./app/component.js 136 bytes {0} [built]
-   [1] ./app/index.js 80 bytes {0} [built]
+Hash: 54c437ee9dcc8fee36de
+Version: webpack 2.2.0-rc.2
+Time: 386ms
+     Asset       Size  Chunks             Chunk Names
+    app.js    3.06 kB       0  [emitted]  app
+index.html  180 bytes          [emitted]
+   [0] ./app/component.js 133 bytes {0} [built]
+   [1] ./app/index.js 77 bytes {0} [built]
 Child html-webpack-plugin for "index.html":
-        + 4 hidden modules
+       [0] ./~/lodash/lodash.js 540 kB {0} [built]
+       [1] (webpack)/buildin/global.js 506 bytes {0} [built]
+       [2] (webpack)/buildin/module.js 548 bytes {0} [built]
+       [3] ./~/html-webpack-plugin/lib/loader.js!./~/html-webpack-plugin/default_index.ejs 540 bytes {0} [built]
 ```
 
 The output tells us a lot. I've annotated it below:
 
-* `Hash: 57470680d11512534351` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. We'll discuss hashing in detail at the *Adding Hashes to Filenames* chapter.
-* `Version: webpack 2.2.0-rc.1` - Webpack version.
-* `Time: 381ms` - Time it took to execute the build.
-* `app.js     2.8 kB  0[emitted]  app` - Name of the generated asset, size, the ids of the **chunks** into which it is related, status information telling how it was generated, name of the chunk.
+* `Hash: 54c437ee9dcc8fee36de` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. We'll discuss hashing in detail at the *Adding Hashes to Filenames* chapter.
+* `Version: webpack 2.2.0-rc.2` - Webpack version.
+* `Time: 386ms` - Time it took to execute the build.
+* `app.js     3.06 kB  0[emitted]  app` - Name of the generated asset, size, the ids of the **chunks** into which it is related, status information telling how it was generated, name of the chunk.
 * `index.html  180 bytes  [emitted]` - Another generated asset that was emitted by the process.
-* `[0] ./app/component.js 136 bytes {0} [built]` - The id of the generated asset, name, size, entry chunk id, the way it was generated.
+* `[0] ./app/component.js 133 bytes {0} [built]` - The id of the generated asset, name, size, entry chunk id, the way it was generated.
 * `Child html-webpack-plugin for "index.html":` - This is plugin related output. In this case *html-webpack-plugin* is doing output of its own.
-* `+ 4 hidden modules` - This tells you that webpack is omitting some output, namely modules within `node_modules` and similar directories. You can run webpack using `webpack --display-modules` to display this information. See [Stack Overflow](https://stackoverflow.com/questions/28858176/what-does-webpack-mean-by-xx-hidden-modules) for an expanded explanation.
 
 Examine the output below `build/`. If you look closely, you can see the same ids within the source. To see the application running, open the `build/index.html` file directly through a browser. On macOS `open ./build/index.html` works.
 
@@ -197,7 +199,9 @@ Given executing `node_modules/.bin/webpack` is a little verbose, we should do so
 ...
 ```
 
-You can execute these scripts through *npm run*. If you run it as is, it will give you the listing of available scripts. In this case we can use just *npm run build*. As a result you should get the same output as before.
+Run *npm run build*. As a result you should get the same output as before.
+
+You can execute these scripts through *npm run*. If you run it as is, it will give you the listing of available scripts.
 
 This works because npm adds *node_modules/.bin* temporarily to the path. As a result, rather than having to write `"build": "node_modules/.bin/webpack"`, we can do just `"build": "webpack"`.
 
