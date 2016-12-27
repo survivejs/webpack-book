@@ -10,6 +10,7 @@ developing_with_webpack/01_getting_started.md
 developing_with_webpack/02_splitting_configuration.md
 developing_with_webpack/03_automatic_browser_refresh.md
 developing_with_webpack/04_enabling_sourcemaps.md
+developing_with_webpack/05_linting.md
 
 04_Understanding_Loaders.md
 understanding_loaders/01_loader_definitions.md
@@ -37,10 +38,13 @@ optimizing_build/04_adding_hashes_to_filenames.md
 optimizing_build/05_separating_manifest.md
 
 08_Advanced_Techniques.md
-advanced_techniques/01_understanding_chunks.md
-advanced_techniques/02_linting.md
-advanced_techniques/03_consuming_packages.md
-advanced_techniques/04_authoring_packages.md
-advanced_techniques/05_configuring_react.md
+advanced_techniques/01_consuming_packages.md
+advanced_techniques/02_authoring_packages.md
+advanced_techniques/03_configuring_react.md
 
 Backmatter.txt
+
+09_Appendices.md
+appendices/01_searching_with_react.md
+appendices/02_writing_eslint_plugins.md
+appendices/03_customizing_eslint.md
