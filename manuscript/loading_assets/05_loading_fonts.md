@@ -91,41 +91,16 @@ The ideas above can be wrapped into a configuration part that allows you to work
 
 ```javascript
 exports.loadFonts = function(options) {
-  const paths = options.paths;
   const name = options.name || 'fonts/[chunkhash].[ext]';
 
   return {
     module: {
       rules: [
         {
-          // Capture both woff and woff2
-          test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+          // Capture both eot, ttf, svg, woff and woff2
+          test: /\.(eot|ttf|svg|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
           loader: 'file-loader',
           options: {
-            mimetype: 'application/font-woff',
-            name: name
-          }
-        },
-        {
-          test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-          loader: 'file-loader',
-          options: {
-            mimetype: 'application/octet-stream',
-            name: name
-          }
-        },
-        {
-          test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-          loader: 'file-loader',
-          options: {
-            name: name
-          }
-        },
-        {
-          test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-          loader: 'file-loader',
-          options: {
-            mimetype: 'image/svg+xml',
             name: name
           }
         }
