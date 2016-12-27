@@ -505,7 +505,7 @@ T> If you want to try out an alternative way to set up stylelint, consider using
 
 ## EditorConfig
 
-[EditorConfig](http://editorconfig.org/) allows you to maintain a consistent coding style across different IDEs and editors. Some even come with built-in support. For others, you have to install a separate plugin. In addition to this you'll need to set up a `.editorconfig` file like this:
+[EditorConfig](http://editorconfig.org/) allows you to maintain a consistent coding style across different IDEs and editors. Some even come with built-in support. For others, you have to install a separate plugin. In addition to this you'll need to set up a file like this:
 
 **.editorconfig**
 
