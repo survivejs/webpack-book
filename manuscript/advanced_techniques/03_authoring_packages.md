@@ -282,7 +282,7 @@ A solution known as [in-publish](https://www.npmjs.com/package/in-publish) allow
 
 An important part of maintaining npm packages is keeping their dependencies up to date. How to do this depends a lot on the maturity of your package. Ideally, you have a nice set of tests covering the functionality. If not, things can get a little hairier. There are a few ways to approach dependency updates:
 
-* You can update all dependencies at once and hope for the best. Tools, such as [npm-check-updates](https://www.npmjs.com/package/npm-check-updates) or [npm-check](https://www.npmjs.com/package/npm-check), can do this for you.
+* You can update all dependencies at once and hope for the best. Tools, such as [npm-check-updates](https://www.npmjs.com/package/npm-check-updates), [npm-check](https://www.npmjs.com/package/npm-check), or [npm-upgrade](https://www.npmjs.com/package/npm-upgrade), can do this for you.
 * Install the newest version of some specific dependency, e.g., `npm i lodash@* --save`. This is a more controlled way to approach the problem.
 * Patch version information by hand by modifying *package.json* directly.
 
