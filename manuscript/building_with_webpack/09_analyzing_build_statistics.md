@@ -101,6 +101,10 @@ $ inspectpack --action=duplicates --bundle=bundle.js
 
 [inspectpack](https://www.npmjs.com/package/inspectpack) is useful for figuring out specific places of code to improve.
 
+### webpack-bundle-tracker
+
+[webpack-bundle-tracker](https://www.npmjs.com/package/webpack-bundle-tracker) can capture data while webpack is compiling. It uses JSON for this purpose.
+
 ### webpack-unused
 
 [webpack-unused](https://www.npmjs.com/package/webpack-unused) prints out unused files and can be used to understand which assets are no longer used and can be removed from the project.
