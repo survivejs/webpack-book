@@ -187,7 +187,7 @@ T> You can understand SemVer much better by studying [the online tool](http://se
 
 ### Publishing a Prerelease Version
 
-Sometimes, you might want to publish something preliminary for other people to test. There are certain conventions for this. You rarely see *alpha* releases at npm. *beta* and *rc (release candidate) are common, though. For example, a package might have versions like this:
+Sometimes, you might want to publish something preliminary for other people to test. There are certain conventions for this. You rarely see *alpha* releases at npm. *beta* and *rc* (release candidate) are common, though. For example, a package might have versions like this:
 
 * v0.5.0-alpha1
 * v0.5.0-beta1
