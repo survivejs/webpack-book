@@ -155,6 +155,8 @@ module.exports = {
 
 T> For this to work, you will have to remember to include [autoprefixer](https://www.npmjs.com/package/autoprefixer) and [precss](https://www.npmjs.com/package/precss) to your project.
 
+T> *postcss-loader* relies on [cosmiconfig](https://www.npmjs.com/package/cosmiconfig) internally. This means it can pick up configuration from your *package.json*, JSON or YAML, or that you can even push your configuration below an arbitrary directory. *cosmiconfig* will find it.
+
 ### cssnext
 
 ![cssnext](images/cssnext.jpg)
