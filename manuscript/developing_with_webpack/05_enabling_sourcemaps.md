@@ -63,6 +63,8 @@ It is possible you may need to enable sourcemaps in your browser for this to wor
 
 W> Sometimes sourcemaps [might not update in Chrome inspector](https://github.com/webpack/webpack/issues/2478). For now the temporary fix is to force the inspector to reload itself by using *alt-r*.
 
+W> If you want to use breakpoints (i.e., a `debugger;` statement or ones set through the browser), the `eval` based options won't work in Chrome!
+
 ## Sourcemap Types Supported by Webpack
 
 Even though a sourcemap type, such as `eval-source-map` or `eval`, can be enough during development, webpack provides other types too. Given these will be generated within your bundles, they won't be useful during production.
