@@ -30,9 +30,7 @@ You will learn to develop composable webpack configuration for both development 
 
 ## How is This Book Organized?
 
-The first two parts of the book introduce you to webpack and its basic concepts. You will develop basic configuration you can then expand to fit your specific purposes. The early chapters are task oriented. You can refer to them later if you forget how to achieve something specific with webpack.
-
-The latter portion of the book focuses more on advanced topics. You will learn more about loading specific types of assets. You will also deepen your understanding of webpack's chunking mechanism, learn to utilize it for package authoring, and write your own loaders.
+The book has been split up into smaller parts each of which discusses a specific topic in greater detail. First you will develop a basic configuration that's then expanded to work with a variety of formats and different styling approaches. After that we'll discuss build related concerns and techniques while developing the configuration further. Finally we'll discuss a variety of advanced techniques while learning more about npm packages.
 
 ## Who is This Book for?
 
