@@ -22,6 +22,31 @@ Given SemVer can be a little tricky to manage, some packages use a backwards com
 
 T> You can understand SemVer much better by studying [the online tool](http://semver.npmjs.com/) and how it behaves.
 
+## Understanding npm Lookup
+
+npm's lookup algorithm is another aspect that's good to understand. Sometimes this can explain certain errors and it also leads to good practices, such as preferring local dependencies over global ones. The basic algorithm goes like this:
+
+1. Look into immediate packages. If there is *node_modules*, crawl through that. This will also check the parent directories until it reaches project root. You can check that using `npm root`.
+2. If nothing was found, check globally installed packages. If you are using Unix, look into */usr/local/lib/node_modules* to find them. You can figure out the exact directory using `npm root -g`.
+3. If the global lookup fails, fail hard. You should get an error now.
+
+The lookup algorithm respects an environment variable known as `NODE_PATH`. If you want to tweak the resolution further, you can attach specific directories to it. Example: `NODE_PATH=$NODE_PATH:./demo`. A call like this can be included in the beginning of a *package.json* script to patch the runtime environment temporarily although it's better to avoid this if possible.
+
+You can tweak webpack's module resolution through the `resolve.modules` field. Example:
+
+```javascript
+{
+  resolve: {
+    modules: [
+      path.join(__dirname, 'demo'),
+      'node_modules'
+    ]
+  }
+}
+```
+
+Sometimes it may be beneficial to use these techniques together. Compared to npm environment, webpack provides more flexibility, although you can mimic a lot of webpack's functionality using terminal based tricks.
+
 ## Version Ranges
 
 npm supports multiple version ranges. I've listed the common ones below:
