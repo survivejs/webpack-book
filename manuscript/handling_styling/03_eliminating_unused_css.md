@@ -106,7 +106,7 @@ exports.purifyCSS = function(paths) {
         resolveExtensions: ['.html']
       }),
     ]
-  }
+  };
 };
 leanpub-end-insert
 ```
