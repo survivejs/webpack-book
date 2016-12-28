@@ -10,22 +10,22 @@ I follow the following layout in my loader project:
 
 ```bash
 .
-├── LICENSE
-├── README.md
-├── demo
-│   ├── demo_index.js
-│   ├── input.md
-│   ├── output
-│   └── run_demo.js
-├── index.js
-├── node_modules
-├── package.json
-└── test.js
+├── LICENSE           - License terms of the project
+├── README.md         - Basic description of the project
+├── demo              - Demo against webpack
+│   ├── demo_index.js - Entry for webpack
+│   ├── input.md      - Data to process
+│   ├── output        - Output directory to examine
+│   └── run_demo.js   - Webpack configuration
+├── index.js          - Loader source
+├── node_modules      - Dependencies as per Node.js
+├── package.json      - npm metadata
+└── test.js           - Tests
 ```
 
-This is a fairly standard way to write a small Node.js package. `index.js` contains the loader source, `test.js` contains my tests, `demo` directory contains something that can be run against webpack. I actually started by developing the demo first and added tests later on.
+This is a fairly standard way to write a small Node.js package. I actually started by developing the demo first and added tests later on. Writing tests first can be a good idea, though, as it gives you a specification which you can use to validate your implementation.
 
-Writing tests first can be a good idea, though, as it gives you a specification which you can use to validate your implementation. It takes some advanced knowledge to pull this off, though. I'll give you a basic testing setup next and then discuss my loader implementation.
+I'll give you a basic testing setup next and then discuss my loader implementation.
 
 ## Writing Tests for a Loader
 
@@ -117,10 +117,10 @@ To keep this discussion simple, I'll give you a subset of the implementation nex
 ```javascript
 'use strict';
 ...
-var hl = require('highlight.js');
-var loaderUtils = require('loader-utils');
-var highlightAuto = hl.highlightAuto;
-var highlight = hl.highlight;
+const hl = require('highlight.js');
+const loaderUtils = require('loader-utils');
+const highlightAuto = hl.highlightAuto;
+const highlight = hl.highlight;
 
 module.exports = function(input) {
   // Failsafe against `undefined` as highlight.js
@@ -131,7 +131,7 @@ module.exports = function(input) {
   this.cacheable();
 
   // Parse custom query parameters.
-  var query = loaderUtils.parseQuery(this.query);
+  const query = loaderUtils.parseQuery(this.query);
 
   // Check against a custom parameter and apply custom logic
   // related to it. In this case we execute against the parameter
@@ -157,7 +157,7 @@ module.exports = function(input) {
 This is an example of a synchronous loader. Sometimes you might want to perform asynchronous operations instead. That's when you could do something like this in your loader code:
 
 ```javascript
-var callback = this.async();
+const callback = this.async();
 
 if(!callback) {
   // Synchronous fallback.
