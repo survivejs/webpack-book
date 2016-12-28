@@ -8,7 +8,7 @@ At minimum, your webpack configuration can be contained in a single file. As the
 
 I prefer the last approach as it allows me to understand what's going on easily. I've developed a little tool known as [webpack-merge](https://www.npmjs.org/package/webpack-merge) to achieve this.
 
-Compared to `Object.assign` or a `merge` function you might know from lodash, *webpack-merge* does a little more. It appends arrays and combines objects. There's also more control available in the form of strategies although we won't need those in this book.
+Compared to `Object.assign` or a `merge` function you might know from Lodash, *webpack-merge* does a little more. It appends arrays and combines objects. There's also more control available in the form of strategies although we won't need those in this book.
 
 ## Setting Up *webpack-merge*
 
