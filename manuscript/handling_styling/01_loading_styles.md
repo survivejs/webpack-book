@@ -258,9 +258,6 @@ The example below illustrates how to set up autoprefixing using it. It also sets
 **webpack.config.js**
 
 ```javascript
-const autoprefixer = require('autoprefixer');
-const precss = require('precss');
-
 module.exports = {
   module: {
     rules: [
