@@ -1,8 +1,8 @@
 # Linting CSS
 
-[stylelint](http://stylelint.io/) allows us to lint CSS. It can be used with webpack through [postcss-loader](https://www.npmjs.com/package/postcss-loader).
+As discussed earlier in the *Linting JavaScript* chapter, linting is a technique that allows us to avoid certain categories of mistakes. Automation is good as it can save effort. In addition to JavaScript, it's possible to lint CSS. [stylelint](http://stylelint.io/) is a tool that allows that and it can be used with webpack through [postcss-loader](https://www.npmjs.com/package/postcss-loader).
 
-## Getting Started
+## Setting Up Stylelint
 
 To get started, install the required dependencies:
 
@@ -10,7 +10,31 @@ To get started, install the required dependencies:
 npm i stylelint postcss-loader --save-dev
 ```
 
-Next, we'll need to integrate it with our configuration:
+Next, we'll need to integrate it with our configuration. Set up a configuration part first:
+
+**webpack.parts.js**
+
+```javascript
+...
+
+exports.lintCSS = function(paths) {
+  return {
+    module: {
+      rules: [
+        {
+          test: /\.css$/,
+          include: paths,
+
+          use: 'postcss-loader',
+          enforce: 'pre'
+        }
+      ]
+    }
+  };
+};
+```
+
+Then add it to `common` configuration:
 
 **webpack.config.js**
 
@@ -20,25 +44,20 @@ const stylelint = require('stylelint');
 
 ...
 
-const common = {
-  ...
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        include: PATHS.app,
-
-        use: 'postcss-loader',
-        enforce: 'pre'
-      },
-      ...
-    ],
+const common = merge(
+  {
     ...
-  }
-}
+  },
+leanpub-start-insert
+  parts.lintCSS(PATHS.app),
+leanpub-end-insert
+  parts.lintJavaScript(PATHS.app)
+);
+
+...
 ```
 
-This is also going to require PostCSS specific configuration:
+This is also going to require PostCSS specific configuration to enable Stylelint:
 
 **postcss.config.js**
 
@@ -56,19 +75,20 @@ module.exports = {
 };
 ```
 
-If you define a CSS rule, such as `background-color: #EFEFEF;`, you should see a warning at your terminal. See stylelint documentation for a full list of rules. npm lists [possible stylelint rulesets](https://www.npmjs.com/search?q=stylelint-config). You consume them as your project dependency like this:
+If you define a CSS rule, such as `background-color: #EFEFEF;` at *main.css* now, you should see a warning like this at your terminal:
 
-```javascript
-const configSuitcss = require('stylelint-config-suitcss');
-
-...
-
-stylelint(configSuitcss)
+```bash
+WARNING in ./~/css-loader!./~/postcss-loader!./app/main.css
+stylelint: /webpack-demo/app/main.css:2:21: Expected "#EFEFEF" to be "#efefef" (color-hex-case)
+ @ ./app/main.css 4:14-117
+ @ ./app/index.js
 ```
 
-It is possible to define configuration through a *.stylelintrc* file. The idea is similar as for other linting tools. There's also a CLI available.
+See stylelint documentation for a full list of rules. npm lists [possible stylelint rulesets](https://www.npmjs.com/search?q=stylelint-config) you can enable through configuration.
 
-T> If you want to try out an alternative way to set up stylelint, consider using the [stylelint-webpack-plugin](https://www.npmjs.com/package/stylelint-webpack-plugin) instead.
+## stylelint-webpack-plugin
+
+[stylelint-webpack-plugin](https://www.npmjs.com/package/stylelint-webpack-plugin) is an alternative way to achieve the same result. Its greatest advantage over the setup above is that it will follow possible `@import` statements you might have in your styling.
 
 ## Conclusion
 
