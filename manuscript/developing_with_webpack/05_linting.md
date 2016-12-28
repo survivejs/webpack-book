@@ -117,11 +117,12 @@ module.exports = {
 };
 ```
 
-In addition we need to tell ESLint to skip linting possible *build* directory by setting up ignore patterns:
+In addition we need to tell ESLint to skip linting *node_modules* and *build* directories by setting up ignore patterns:
 
 **.eslintignore**
 
 ```bash
+node_modules/
 build/
 ```
 
