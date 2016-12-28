@@ -63,7 +63,7 @@ module.exports = function(env) {
       ]
     },
 leanpub-start-insert
-    parts.loadCSS(PATHS.app),
+    parts.loadCSS(),
 leanpub-end-insert
     parts.devServer({
       // Customize host/port here if needed

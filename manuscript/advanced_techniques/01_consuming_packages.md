@@ -30,7 +30,13 @@ npm's lookup algorithm is another aspect that's good to understand. Sometimes th
 2. If nothing was found, check globally installed packages. If you are using Unix, look into */usr/local/lib/node_modules* to find them. You can figure out the exact directory using `npm root -g`.
 3. If the global lookup fails, fail hard. You should get an error now.
 
-The lookup algorithm respects an environment variable known as `NODE_PATH`. If you want to tweak the resolution further, you can attach specific directories to it. Example: `NODE_PATH=$NODE_PATH:./demo`. A call like this can be included in the beginning of a *package.json* script to patch the runtime environment temporarily although it's better to avoid this if possible.
+On a package level, npm resolves to a file like this:
+
+1. Look up *package.json* of the package.
+2. Get the contents of the `main` field. If it doesn't exist, default to *<package>/index.js*.
+3. Resolve to the `main` file.
+
+The general lookup algorithm respects an environment variable known as `NODE_PATH`. If you want to tweak the resolution further, you can attach specific directories to it. Example: `NODE_PATH=$NODE_PATH:./demo`. A call like this can be included in the beginning of a *package.json* script to patch the runtime environment temporarily although it's better to avoid this if possible.
 
 You can tweak webpack's module resolution through the `resolve.modules` field. Example:
 

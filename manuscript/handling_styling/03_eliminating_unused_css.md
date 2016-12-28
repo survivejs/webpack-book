@@ -4,93 +4,27 @@ Frameworks like [Bootstrap](https://getbootstrap.com/) tend to come with a lot o
 
 A tool known as [PurifyCSS](https://github.com/purifycss/purifycss) can achieve this by analyzing files. It walks through your code and figures out which CSS classes are being used. This is enough information for it to strip unused CSS from your project. It also works with single page applications.
 
-## Setting Up PurifyCSS
+## Setting Up Pure.css
 
-Using PurifyCSS can lead to great savings. In their example they purify and minify Bootstrap (140 kB) in an application using ~40% of its selectors to mere ~35 kB. That's a big difference.
-
-Webpack plugin known as [purifycss-webpack-plugin](https://www.npmjs.com/package/purifycss-webpack-plugin) allows us to achieve results like this. It is preferable to use the `ExtractTextPlugin` with it. Install it first:
-
-```bash
-npm i purifycss-webpack-plugin --save-dev
-```
-
-To make our demo more realistic, let's install a little CSS framework known as [Pure.css](http://purecss.io/) as well and refer to it from our project so that we can see PurifyCSS in action:
+To make our demo more realistic, let's install a little CSS framework known as [Pure.css](http://purecss.io/) as well and refer to it from our project so that we can see PurifyCSS in action. These two projects aren't related in any way despite the naming.
 
 ```bash
 npm i purecss --save
 ```
 
-W> You cannot use symlinks here. The dependencies have to be local like this or else webpack's lookups will fail to work reliably.
+To make the project aware of Pure.css, `import` it:
 
-### Configuring Webpack
-
-We also need to refer to it from our configuration:
-
-**webpack.config.js**
+**app/index.js**
 
 ```javascript
-...
-
-const PATHS = {
-  app: path.join(__dirname, 'app'),
-leanpub-start-delete
-  style: path.join(__dirname, 'app', 'main.css'),
-leanpub-end-delete
 leanpub-start-insert
-  style: [
-    path.join(__dirname, 'node_modules', 'purecss'),
-    path.join(__dirname, 'app', 'main.css')
-  ],
+import 'purecss';
 leanpub-end-insert
-  build: path.join(__dirname, 'build')
-};
-
-...
+import './main.css';
+import component from './component';
 ```
 
-It is important to note that webpack `entry` expects files over directories. In this case webpack will resolve Pure.css in steps like this:
-
-1. webpack looks up `node_modules/purecss/package.json`.
-2. It find `"main": "build/pure-min.css"` field.
-3. Based on that it will end up resolving to `node_modules/purecss/build/pure-min.css`.
-
-Note that webpack allows you to shape this process. Sometimes `main` field might be missing entirely and you may need to define a `resolve.alias` to point to the file you want.
-
-W> If you are using [cnpm](https://cnpmjs.org/), the path to *purecss* will be different. You can try `path.resolve(__dirname, 'node_modules/.npminstall/purecss/0.6.0/purecss')` or a similar line instead. Check out the *node_modules* directory carefully to figure out the exact path.
-
-Thanks to our path setup we don't need to tweak the remainder of the code. If you execute `npm run build`, you should see something like this:
-
-```bash
-Hash: 36fadcf148aa839c3b88
-Version: webpack 2.2.0-rc.1
-Time: 1347ms
-                              Asset       Size  Chunks           Chunk Names
-     vendor.7dd64197ab77e318b260.js    19.7 kB  0, 3[emitted]  vendor
-      style.e7ecd54f5d0714af3e65.js   87 bytes  1, 3[emitted]  style
-        app.0936851ef7c1e4aef745.js  210 bytes  2, 3[emitted]  app
-   manifest.a1de636cb54db545a66e.js    1.45 kB  3[emitted]  manifest
-     style.e7ecd54f5d0714af3e65.css    15.8 kB  1, 3[emitted]  style
- style.e7ecd54f5d0714af3e65.css.map  107 bytes  1, 3[emitted]  style
-                         index.html  556 bytes  [emitted]
-   [5] ./app/main.css 41 bytes {0} [built]
-  [16] ./app/component.js 136 bytes {2} [built]
-  [30] ./app/index.js 124 bytes {2} [built]
-  [31] multi style 40 bytes {1} [built]
-  [32] multi vendor 28 bytes {0} [built]
-  [33] ./~/css-loader!./app/main.css 190 bytes [built]
-    + 31 hidden modules
-Child html-webpack-plugin for "index.html":
-        + 4 hidden modules
-Child extract-text-webpack-plugin:
-        + 2 hidden modules
-Child extract-text-webpack-plugin:
-       [1] ./~/css-loader!./app/main.css 190 bytes {0} [built]
-        + 1 hidden modules
-```
-
-As you can see, `style.e7ecd54f5d0714af3e65.css` grew from 28 bytes to 15.8 kB as it should have. Also the hash changed because the file contents changed as well.
-
-In order to give PurifyCSS a chance to work and not eliminate whole Pure.css, we'll need to refer to it from our code. Add a `className` to our demo component like this:
+We should also make our demo component use a Pure.css class so we have something to work with:
 
 **app/component.js**
 
@@ -109,7 +43,36 @@ leanpub-end-insert
 
 If you run the application (`npm start`), our "Hello world" should look like a button.
 
-### Enabling PurifyCSS
+![Styled hello](images/styled-button.png)
+
+Building the application should yield output like this:
+
+```bash
+Hash: 5992a41d4859911e454a
+Version: webpack 2.2.0-rc.2
+Time: 1161ms
+                                   Asset       Size  Chunks             Chunk Names
+                                  app.js    4.19 kB       0  [emitted]  app
+app.788492b4b5beed29cef12fe793f316a0.css    15.8 kB       0  [emitted]  app
+                              index.html  251 bytes          [emitted]
+   [0] ./app/component.js 170 bytes {0} [built]
+   [1] ./app/main.css 41 bytes {0} [built]
+   [2] ./~/purecss/build/pure-min.css 41 bytes {0} [built]
+   [3] ./app/index.js 566 bytes {0} [built]
+...
+```
+
+As you can see, the size of the CSS file grew quite a bit. This is something we'll fix next with PurifyCSS.
+
+## Enabling PurifyCSS
+
+Using PurifyCSS can lead to great savings. In their example they purify and minify Bootstrap (140 kB) in an application using ~40% of its selectors to mere ~35 kB. That's a big difference.
+
+Webpack plugin known as [purifycss-webpack-plugin](https://www.npmjs.com/package/purifycss-webpack-plugin) allows us to achieve results like this. It is preferable to use the `ExtractTextPlugin` with it. Install it first:
+
+```bash
+npm i purifycss-webpack-plugin --save-dev
+```
 
 We need one more bit, PurifyCSS configuration. Expand parts like this:
 
@@ -117,7 +80,6 @@ We need one more bit, PurifyCSS configuration. Expand parts like this:
 
 ```javascript
 const webpack = require('webpack');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 leanpub-start-insert
 const PurifyCSSPlugin = require('purifycss-webpack-plugin');
@@ -130,18 +92,22 @@ exports.purifyCSS = function(paths) {
   return {
     plugins: [
       new PurifyCSSPlugin({
-        basePath: process.cwd(),
+        // Our paths are absolute so Purify needs patching
+        // against that to work.
+        basePath: '/',
+
         // `paths` is used to point PurifyCSS to files not
         // visible to Webpack. This expects glob patterns so
         // we adapt here.
         paths: paths.map(path => `${path}/*`),
+
         // Walk through only html files within node_modules. It
         // picks up .js files by default!
         resolveExtensions: ['.html']
       }),
     ]
   }
-}
+};
 leanpub-end-insert
 ```
 
@@ -155,13 +121,12 @@ Next we need to connect this part to our configuration. It is important the plug
 module.exports = function(env) {
   if (env === 'production') {
     return merge(
-      ...
-      parts.minify(),
+      common,
 leanpub-start-delete
-      parts.extractCSS(PATHS.style)
+      parts.extractCSS()
 leanpub-end-delete
 leanpub-start-insert
-      parts.extractCSS(PATHS.style),
+      parts.extractCSS(),
       parts.purifyCSS([PATHS.app])
 leanpub-end-insert
     );
@@ -171,44 +136,27 @@ leanpub-end-insert
 };
 ```
 
-Given webpack is aware of `PATHS.app` through an entry, we could skip passing it to `parts.purifyCSS`. As explicit is often nicer than implicit, having it here doesn't hurt. We'll get the same result either way.
-
 If you execute `npm run build` now, you should see something like this:
 
 ```bash
-Hash: 2c831bfa6dc6b8a5a81b
-Version: webpack 2.1.0-beta.28
-Time: 1762ms
-                             Asset       Size  Chunks           Chunk Names
-    vendor.8c4cbfdb91ff93f3f3c5.js    19.7 kB  0, 3[emitted]  vendor
-     style.069a857ebde0b802286b.js  107 bytes  1, 3[emitted]  style
-       app.babb03f557a1fcacb6fb.js  231 bytes  2, 3[emitted]  app
-  manifest.6278f4d9b1f92d7c0012.js    1.46 kB  3[emitted]  manifest
-    style.069a857ebde0b802286b.css  602 bytes  1, 3[emitted]  style
-style.069a857ebde0b802286b.css.map  107 bytes  1, 3[emitted]  style
-                        index.html  564 bytes  [emitted]
-  [15] ./app/component.js 173 bytes {2} [built]
-  [16] ./app/main.css 41 bytes {1} [built]
-  [30] ./app/index.js 100 bytes {2} [built]
-  [31] multi style 40 bytes {1} [built]
-  [32] multi vendor 28 bytes {0} [built]
-  [33] ./~/css-loader!./app/main.css 190 bytes [built]
-    + 31 hidden modules
-Child html-webpack-plugin for "index.html":
-        + 4 hidden modules
-Child extract-text-webpack-plugin:
-        + 2 hidden modules
-Child extract-text-webpack-plugin:
-       [1] ./~/css-loader!./app/main.css 190 bytes {0} [built]
-        + 1 hidden modules
+Hash: 5992a41d4859911e454a
+Version: webpack 2.2.0-rc.2
+Time: 1277ms
+                                   Asset       Size  Chunks             Chunk Names
+                                  app.js    4.19 kB       0  [emitted]  app
+app.788492b4b5beed29cef12fe793f316a0.css    2.15 kB       0  [emitted]  app
+                              index.html  251 bytes          [emitted]
+   [0] ./app/component.js 170 bytes {0} [built]
+   [1] ./app/main.css 41 bytes {0} [built]
+   [2] ./~/purecss/build/pure-min.css 41 bytes {0} [built]
+   [3] ./app/index.js 566 bytes {0} [built]
+...
 ```
 
-The size of our style went from 15.8 kB to 602 bytes. Quite a difference! The technique is useful to know as it will likely come in handy with heavier CSS frameworks.
+The size of our style has decreased significantly. Instead of almost 16k we have roughly 2k now. The difference would be even bigger for heavier CSS frameworks.
 
-PurifyCSS supports [additional options](https://github.com/purifycss/purifycss#the-optional-options-argument). You could for example enable additional logging by setting `purifyOptions: { info: true }` when instantiating the plugin.
-
-T> To decrease size further, you should set `purifyOptions: { minify: true }`. This will enable CSS minification.
+T> PurifyCSS supports [additional options](https://github.com/purifycss/purifycss#the-optional-options-argument) including `minify`. You could for example enable additional logging by setting `purifyOptions: { info: true }` when instantiating the plugin.
 
 ## Conclusion
 
-Build-wise our little project is starting to get there. Now our CSS is separate and pure. In the next chapter I'll show you how to analyze webpack build statistics so you understand better what the generated bundles actually contain.
+The styling portion of our demo is in a good shape. We can make it better by including CSS linting to the project. We'll do that next.

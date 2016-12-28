@@ -74,7 +74,7 @@ leanpub-start-insert
   if (env === 'production') {
     return merge(
       common,
-      parts.extractCSS(PATHS.app)
+      parts.extractCSS()
     );
   }
 leanpub-end-insert
