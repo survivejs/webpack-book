@@ -107,10 +107,10 @@ exports.loadFonts = function(options) {
       ]
     }
   };
-}
+};
 ```
 
-To include Font Awesome into your project, install it (`npm i font-awesome -S`) and then refer to it. One way to handle that is to point to `path.resolve(__dirname, 'node_modules/font-awesome/css/font-awesome.css')` at your style paths or import the file through your application code. After this you can use Font Awesome classes across your code.
+To include Font Awesome into your project, install it (`npm i font-awesome -S`) and then refer to it through your code. Given the distribution version is missing *package.json* `main`, you will have to point at *node_modules/font-awesome/css/font-awesome.css*. See the *Consuming Packages* chapter for further techniques.
 
 ## Conclusion
 
