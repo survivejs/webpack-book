@@ -103,11 +103,55 @@ leanpub-end-insert
 };
 ```
 
-Execute `npm start` and surf to **localhost:8080**. Try modifying *app/component.js*. It should refresh the browser just like earlier, but now we have the setup needed to enable the rest. We'll cover how CSS modifications can be applied without a hard refresh in the next part of the book when we discuss styling.
+Execute `npm start` and surf to **localhost:8080**. Try modifying *app/component.js*. It should refresh the browser just like earlier, but now we have the setup needed to enable the rest. To demonstrate the idea better, we can implement the hot loading interface ourselves to see the system in action.
 
 W> *webpack-dev-server* can be very particular about paths. If the given `include` paths don't match the system casing exactly, this can cause it to fail to work. Webpack [issue #675](https://github.com/webpack/webpack/issues/675) discusses this in more detail.
 
 T> You should be able to access the application alternatively through **localhost:8080/webpack-dev-server/** instead of the root. It will provide status information within the browser itself at the top of the application. If your application relies on WebSockets and you use WDS proxying, you'll need to use this specific url as otherwise WDS own logic will interfere.
+
+## Implementing the HMR Interface
+
+It is possible to implement the HMR interface through a global known as `module.hot` exposed by webpack. It provides updates through a function known as `module.hot.accept`. It's first parameter will accept a path to watch for updates while the latter will accept a function where to deal with the hot update. That's where we can reload the module and patch out application.
+
+In this case it is enough to replace the old DOM node with a newer one as we receive updates. The following implementation illustrates the idea:
+
+**app/index.js**
+
+```javascript
+import component from './component';
+
+leanpub-start-delete
+document.body.appendChild(component());
+leanpub-end-delete
+leanpub-start-insert
+let demoComponent = component();
+
+document.body.appendChild(demoComponent);
+
+// HMR interface
+if(module.hot) {
+  // Capture hot update
+  module.hot.accept('./component', () => {
+    // We have to go through CommonJS here and capture the
+    // default export explicitly!
+    const nextComponent = require('./component').default();
+
+    // Replace old content with the hot loaded one
+    document.body.replaceChild(nextComponent, demoComponent);
+
+    demoComponent = nextComponent;
+  });
+}
+leanpub-end-insert
+```
+
+If you try to modify *app/component.js* after this change and change the text to something else, you should notice that the browser does not refresh at all. Instead, it should replace the DOM node while retaining the rest of the application as is. The image below shows possible output.
+
+![Patched a module successfully through HMR](images/hmr.png)
+
+The idea is the same with styling, React, Redux, and other technologies. They use the same interface internally and often you don't need to care about the exact implementation. Still, it's good to know what it's doing under the hood.
+
+W> If you make a mistake at within your `module.hot.accept` handler, it will force a refresh by default! This happens because WDS defaults to `webpack/hot/dev-server`. Follow the setup of the previous chapter and use `webpack/hot/only-dev-server` instead to avoid this behavior.
 
 T> Check out the *Configuring Hot Module Replacement with React* to learn how to get webpack and React work together in a nicer manner.
 
