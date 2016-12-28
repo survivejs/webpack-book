@@ -91,7 +91,7 @@ The ideas above can be wrapped into a configuration part that allows you to work
 
 ```javascript
 exports.loadFonts = function(options) {
-  const name = options.name || 'fonts/[chunkhash].[ext]';
+  const name = (options && options.name) || 'fonts/[chunkhash].[ext]';
 
   return {
     module: {
