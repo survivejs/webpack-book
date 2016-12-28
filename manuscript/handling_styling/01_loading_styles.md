@@ -1,35 +1,166 @@
 # Loading Styles
 
-Loading styles is a standard operation. There are a lot of variants depending on the styling approach you use, though. I'll cover the most common options next. You can combine these approaches with the `ExtractTextPlugin` to get better output for your production build.
+Webpack doesn't handle styling out of the box. Instead, you will have to configure loaders and plugins to get the setup you need.
+
+In this chapter we'll set up CSS with our project and see how it works out with automatic browser refreshing. The neat thing is that in this case webpack doesn't have to force a full refresh. Instead, it can do something smarter as we'll see soon.
 
 ## Loading CSS
 
-Loading vanilla CSS is fairly straightforward as you can see in the example below. It parses the styles referred by the project while making sure only files ending with `.css` are matched by the loaders. The definition then applies both *style-loader* and *css-loader* on it:
+To load CSS, we'll need to use [css-loader](https://www.npmjs.com/package/css-loader) and [style-loader](https://www.npmjs.com/package/style-loader). *css-loader* goes through possible `@import` and `url()` statements within the matched files and treats them as regular `require`. This allows us to rely on various other loaders, such as [file-loader](https://www.npmjs.com/package/file-loader) or [url-loader](https://www.npmjs.com/package/url-loader)
+
+After *css-loader* has done its part, *style-loader* picks up the output and injects the CSS into the resulting bundle. This will be inlined JavaScript by default and it implements the HMR interface. As inlining isn't a good idea for production usage, it makes sense to use `ExtractTextPlugin` to generate a separate CSS file. We'll do this in the next chapter.
+
+To get started, invoke
+
+```bash
+npm i css-loader style-loader --save-dev
+```
+
+Now let's make sure webpack is aware of them. Configure as follows:
+
+**webpack.parts.js**
+
+```javascript
+...
+
+leanpub-start-insert
+exports.loadCSS = function(paths) {
+  return {
+    module: {
+      rules: [
+        {
+          test: /\.css$/,
+          // Restrict extraction process to the given
+          // paths.
+          include: paths,
+
+          use: ['style-loader', 'css-loader']
+        }
+      ]
+    }
+  };
+};
+leanpub-end-insert
+```
+
+We also need to connect our configuration fragment with the main configuration:
 
 **webpack.config.js**
 
 ```javascript
-{
-  test: /\.css$/,
-  use: ['style-loader', 'css-loader']
-}
+...
+
+module.exports = function(env) {
+  return merge(
+    common,
+    {
+      // Disable performance hints during development
+      performance: {
+        hints: false
+      },
+      plugins: [
+        new webpack.NamedModulesPlugin()
+      ]
+    },
+leanpub-start-insert
+    parts.loadCSS(PATHS.app),
+leanpub-end-insert
+    parts.devServer({
+      // Customize host/port here if needed
+      host: process.env.HOST,
+      port: process.env.PORT
+    })
+  );
+};
 ```
 
-When webpack evaluates the files, first [css-loader](https://www.npmjs.com/package/css-loader) goes through possible `@import` and `url()` statements within the matched files and treats them as regular `require`. This allows us to rely on various other loaders, such as [file-loader](https://www.npmjs.com/package/file-loader) or [url-loader](https://www.npmjs.com/package/url-loader). We will see how these work in the next chapters.
+The configuration we added means that files ending with `.css` should invoke given loaders. `test` matches against a JavaScript style regular expression. The loaders are evaluated from right to left.
 
-*file-loader* generates files, whereas *url-loader* can create inline data URLs for small resources. This can be useful for optimizing application loading. You avoid unnecessary requests while providing a slightly bigger payload. Small improvements can yield large benefits if you depend on a lot of small resources in your style definitions.
-
-After *css-loader* has done its part, *style-loader* picks up the output and injects the CSS into the resulting bundle. This will be inlined JavaScript by default. This is something you want to avoid in production usage. It makes sense to use `ExtractTextPlugin` to generate a separate CSS file in this case as we saw earlier.
-
-Setting up other formats than vanilla CSS is simple as well. I'll discuss specific examples next.
+T> Loaders are transformations that are applied to source files, and return the new source. Loaders can be chained together, like using a pipe in Unix. `loaders: ['style-loader', 'css-loader']` can be read as `styleLoader(cssLoader(input))`.
 
 T> If you want to enable sourcemaps for CSS, you should enable `sourceMap` option for *css-loader* and set `output.publicPath` to an absolute url. In case you have more loaders, each needs to enable sourcemap support separately! *css-loader* [issue 29](https://github.com/webpack/css-loader/issues/29) discusses this problem further.
 
+## Setting Up the Initial CSS
+
+We are missing just one bit, the actual CSS itself:
+
+**app/main.css**
+
+```css
+body {
+  background: cornsilk;
+}
+```
+
+Also, we'll need to make webpack aware of it. Without having an entry pointing at it somehow, webpack won't be able to find the file:
+
+**app/index.js**
+
+```javascript
+leanpub-start-insert
+import './main.css';
+leanpub-end-insert
+import component from './component';
+
+...
+```
+
+Execute `npm start` now. Browse to **localhost:8080** if you are using the default port and open up *main.css* and change the background color to something like `lime` (`background: lime`). Develop styles as needed to make it look a little nicer. Note that it does **not** perform a hard refresh on the browser since we have HMR setup in place.
+
+We'll continue from here in the next chapter. Before that, though, I will discuss several styling related techniques you may find useful. If you want, integrate some of them to your project.
+
+![Hello cornsilk world](images/hello_02.png)
+
+T> An alternative way to load CSS would be to define a separate entry and point to the CSS there. Coupling styling to application code can be a nice way to handle it, though, as then you can see which styling is related to what file. This also enables the usage of CSS Modules with a bit of extra effort.
+
+## Understanding CSS Scoping and CSS Modules
+
+Perhaps the biggest challenge of CSS is that all rules exist within **global scope**. This has lead to specific conventions that work around this feature. A specification known as [CSS Modules](https://github.com/css-modules/css-modules) solves the problem by introducing **local scope** per `import`. As it happens, this makes CSS more bearable to use as you don't have to worry about namespace collisions anymore.
+
+Enabling CSS Modules in webpack is simple as *css-loader* supports the feature. You can enable it through `css-loader?modules` or set `modules` field `true` through the loader `options`.
+
+After this change your class definitions will remain local to the files. In case you want global class definitions, you'll need to wrap them within `:global(.redButton) { ... }` kind of declarations.
+
+In this case the `import` statement will give you the local classes you can then bind to elements. Assuming we had styling like this:
+
+**app/main.css**
+
+```css
+body {
+  background: cornsilk;
+}
+
+.redButton {
+  background: red;
+}
+```
+
+We could then bind the resulting class to a component like this:
+
+**app/component.js**
+
+```javascript
+import styles from './main.css';
+
+...
+
+// Attach the generated class name
+element.className = styles.redButton;
+```
+
+Note that `body` remains as a global declaration still. It's that `redButton` that makes the difference. You can build component specific styles that don't leak elsewhere this way.
+
+CSS Modules provides also features like composition to make it even easier to work with your styles. You can also combine it with other loaders as long as you apply them before *css-loader*.
+
+T> The query syntax, `css-loader?modules`, and its alternatives is discussed in greater detail in the *Loader Definitions* chapter. There are multiple ways to achieve the same effect in webpack some of which are clearer than others.
+
 ## Loading LESS
 
-![Less](images/less.png)
+![LESS](images/less.png)
 
-[Less](http://lesscss.org/) is a CSS processor that is packed with functionality. In webpack using Less doesn't take a lot of effort. [less-loader](https://www.npmjs.com/package/less-loader) deals with the heavy lifting. You should install [less](https://www.npmjs.com/package/less) as well given it's a peer dependency of *less-loader*. Consider the following minimal setup:
+[LESS](http://lesscss.org/) is a CSS processor that is packed with functionality. In webpack using LESS doesn't take a lot of effort. [less-loader](https://www.npmjs.com/package/less-loader) deals with the heavy lifting. You should install [less](https://www.npmjs.com/package/less) as well given it's a peer dependency of *less-loader*.
+
+Consider the following minimal setup:
 
 ```javascript
 {
@@ -42,9 +173,11 @@ There is also support for Less plugins, sourcemaps, and so on. To understand how
 
 ## Loading SASS
 
-![Sass](images/sass.png)
+![SASS](images/sass.png)
 
-[Sass](http://sass-lang.com/) is a widely used CSS preprocessor. You should use [sass-loader](https://www.npmjs.com/package/sass-loader) with it. Remember to install [node-sass](https://www.npmjs.com/package/node-sass) to your project as the loader has a peer dependency on that. webpack doesn't take much configuration:
+[SASS](http://sass-lang.com/) is a widely used CSS preprocessor. You should use [sass-loader](https://www.npmjs.com/package/sass-loader) with it. Remember to install [node-sass](https://www.npmjs.com/package/node-sass) to your project as it's a peer dependency.
+
+Webpack doesn't take much configuration:
 
 **webpack.config.js**
 
@@ -55,13 +188,13 @@ There is also support for Less plugins, sourcemaps, and so on. To understand how
 }
 ```
 
-Sometimes you might see imports like `@import "~bootstrap/css/bootstrap";` in SASS code. The tilde (`~`) tells webpack that it's not a relative import as by default in SASS. If tilde is included, it will perform a lookup against `node_modules` (default setting) although this is configurable through the [resolve.modules](https://webpack.js.org/configuration/resolve/#resolve-modules) field.
+Sometimes you might see imports like `@import "~bootstrap/css/bootstrap";` in SASS code. The tilde (`~`) tells webpack that it's not a relative import as by default in SASS. If tilde is included, it will perform a lookup against `node_modules` (default setting) although this is configurable through the [resolve.modules](https://webpack.js.org/configuration/resolve/#resolve-modules) field. This is a general rule that applies to other loaders as well.
 
 T> If you want more performance especially during development, check out [fast-sass-loader](https://www.npmjs.com/package/fast-sass-loader).
 
 ### Imports in LESS and SASS
 
-If you import one LESS/SASS file from an other, use the exact same pattern as anywhere else. webpack will dig into these files and figure out the dependencies.
+If you import one LESS/SASS file from an other, use the exact same pattern as anywhere else. Webpack will dig into these files and figure out the dependencies.
 
 ```less
 @import "./variables.less";
@@ -153,7 +286,7 @@ module.exports = {
 };
 ```
 
-T> For this to work, you will have to remember to include [autoprefixer](https://www.npmjs.com/package/autoprefixer) and [precss](https://www.npmjs.com/package/precss) to your project.
+For this to work, you will have to remember to include [autoprefixer](https://www.npmjs.com/package/autoprefixer) and [precss](https://www.npmjs.com/package/precss) to your project.
 
 T> *postcss-loader* relies on [cosmiconfig](https://www.npmjs.com/package/cosmiconfig) internally. This means it can pick up configuration from your *package.json*, JSON or YAML, or that you can even push your configuration below an arbitrary directory. *cosmiconfig* will find it.
 
@@ -177,4 +310,4 @@ See [the usage documentation](http://cssnext.io/usage/) for available options.
 
 ## Conclusion
 
-Loading style files through webpack is fairly straight-forward. It supports even advanced techniques like [CSS Modules](https://github.com/css-modules/webpack-demo). CSS Modules make CSS local by default. This can be a great boon especially for developers who work with component oriented libraries. The approach works beautifully there.
+Loading style files through webpack is fairly straight-forward. It supports even advanced specifications like [CSS Modules](https://github.com/css-modules/webpack-demo). The approaches covered here inline the styling by default. Although that's enough for development purposes, it's not ideal for production usage. We'll cover how to handle this problem in the next chapter.
