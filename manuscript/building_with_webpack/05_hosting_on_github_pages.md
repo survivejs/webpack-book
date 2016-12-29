@@ -44,8 +44,10 @@ module.exports = function(env) {
       common,
 leanpub-start-insert
       {
-        // Tweak this to match your GitHub project name
-        publicPath: '/webpack-demo/'
+        output: {
+          // Tweak this to match your GitHub project name
+          publicPath: '/webpack-demo/'
+        }
       },
 leanpub-end-insert
       parts.extractBundle({
