@@ -30,7 +30,7 @@ We should also make our demo component use a Pure.css class so we have something
 
 ```javascript
 module.exports = function () {
-  var element = document.createElement('h1');
+  const element = document.createElement('h1');
 
 leanpub-start-insert
   element.className = 'pure-button';
