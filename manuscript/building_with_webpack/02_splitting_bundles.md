@@ -10,7 +10,7 @@ To give you a simple example, instead of having *app.js* (100 kB), we could end 
 
 Caching comes with its own problems. One of those is cache invalidation. We'll discuss a potential approach related to that in the next part of this book.
 
-Bundle splitting isn't the only way out. In the *Code Splitting* chapter we will discuss a more granular technique that allows us to load code on demand.
+Bundle splitting isn't the only way out. In the next chapter we will discuss a more granular technique known as *code splitting* that allows us to load code on demand.
 
 ## Adding Something to Split
 
@@ -238,4 +238,4 @@ Given `minChunks` receives `count` as its second parameter, you could force it t
 
 ## Conclusion
 
-The situation is better now. Note how small `app` bundle compared to the `vendor` bundle. In order to really benefit from this split, we will set up caching in the next part. But before that, we can make the build output a little cleaner and learn something about hosting the application.
+The situation is better now. Note how small `app` bundle compared to the `vendor` bundle. In order to really benefit from this split, we will set up caching in the next part. But before that, we can learn about a technique known as *code splitting* to go even more granular.

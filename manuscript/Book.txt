@@ -27,16 +27,16 @@ understanding_loaders/04_writing_loaders.md
 06_Building_with_Webpack.md
 building_with_webpack/01_enabling_sourcemaps.md
 building_with_webpack/02_splitting_bundles.md
-building_with_webpack/03_cleaning_build.md
-building_with_webpack/04_analyzing_build_statistics.md
+building_with_webpack/03_code_splitting.md
+building_with_webpack/04_cleaning_build.md
 building_with_webpack/05_hosting_on_github_pages.md
 
 07_Optimizing_Build.md
 optimizing_build/01_minifying_build.md
 optimizing_build/02_setting_environment_variables.md
-optimizing_build/03_code_splitting.md
-optimizing_build/04_adding_hashes_to_filenames.md
-optimizing_build/05_separating_manifest.md
+optimizing_build/03_adding_hashes_to_filenames.md
+optimizing_build/04_separating_manifest.md
+optimizing_build/05_analyzing_build_statistics.md
 
 08_Advanced_Techniques.md
 advanced_techniques/01_consuming_packages.md
