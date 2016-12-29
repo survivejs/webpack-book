@@ -8,9 +8,52 @@ Using bundle splitting, we can push the vendor dependencies to a bundle of its o
 
 To give you a simple example, instead of having *app.js* (100 kB), we could end up with *app.js* (10 kB) and *vendor.js* (90 kB). Now changes made to the application are cheap for the clients that have already used the application earlier.
 
-Caching comes with its own problems. One of those is cache invalidation. We'll discuss a potential approach related to that in the next chapter. But before that, let's split some bundles.
+Caching comes with its own problems. One of those is cache invalidation. We'll discuss a potential approach related to that in the next part of this book.
 
-Bundle splitting isn't the only way out. In the *Understanding Chunks* chapter we will discuss a technique known as **code splitting** that exists within bundle splitting and allows you to go more granular. Effectively it allows you to load code on demand based on prerequisites related to the user interface.
+Bundle splitting isn't the only way out. In the *Code Splitting* chapter we will discuss a more granular technique that allows us to load code on demand.
+
+## Adding Something to Split
+
+Given there's not much to split into the vendor bundle yet, we should add something there. Add React to the project first:
+
+```bash
+npm i react --save
+```
+
+Then make the project depend on it:
+
+**app/index.js**
+
+```
+leanpub-start-insert
+import 'react';
+leanpub-end-insert
+import 'purecss';
+import './main.css';
+import component from './component';
+
+...
+```
+
+Execute `npm run build` to get a baseline build. You should end up with something like this:
+
+```bash
+Hash: 02507cd84349e6a33ffd
+Version: webpack 2.2.0-rc.2
+Time: 1843ms
+                                       Asset       Size  Chunks             Chunk Names
+                                      app.js     140 kB       0  [emitted]  app
+    app.788492b4b5beed29cef12fe793f316a0.css    2.22 kB       0  [emitted]  app
+                                  app.js.map     165 kB       0  [emitted]  app
+app.788492b4b5beed29cef12fe793f316a0.css.map  117 bytes       0  [emitted]  app
+                                  index.html  251 bytes          [emitted]
+   [3] ./~/react/lib/ReactElement.js 11.2 kB {0} [built]
+   [5] ./~/object-assign/index.js 1.99 kB {0} [built]
+   [9] ./~/react/lib/ReactComponent.js 4.61 kB {0} [built]
+...
+```
+
+As you can see, *app.js* is quite big. This is exactly what we wanted. We have to do something about this next.
 
 ## Setting Up a `vendor` Bundle
 
@@ -21,48 +64,43 @@ To improve the situation, we can define a `vendor` entry containing React. This 
 ```javascript
 ...
 
-const common = {
-  entry: {
-leanpub-start-delete
-    app: PATHS.app
-leanpub-end-delete
+module.exports = function(env) {
+  if (env === 'production') {
+    return merge(
+      common,
 leanpub-start-insert
-    app: PATHS.app,
-    vendor: ['react']
+      {
+        entry: {
+          vendor: ['react']
+        }
+      },
 leanpub-end-insert
-  },
-  output: {
-    path: PATHS.build,
-    filename: '[name].js'
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Webpack demo'
-    })
-  ]
-};
+      parts.generateSourcemaps('source-map'),
+      parts.extractCSS(),
+      parts.purifyCSS([PATHS.app])
+    );
+  }
 
-...
+  ...
+};
 ```
 
-We have two separate entries, or **entry chunks**, now. The *Understanding Chunks* chapter digs into other available chunk types. Now we have a mapping between entries and the output configuration. `[name].js` will kick in based on the entry name and if you try to generate a build now (`npm run build`), you should see something like this:
+We have two separate entries, or **entry chunks**, now. `[name].js` of our existing `output.path` configuration will kick in based on the entry name and if you try to generate a build now (`npm run build`), you should see something like this:
 
 ```bash
-Hash: 429e76650de02eccd6f9
-Version: webpack 2.2.0-rc.1
-Time: 1455ms
-     Asset       Size  Chunks           Chunk Names
-    app.js    24.1 kB  0[emitted]  app
- vendor.js    20.1 kB  1[emitted]  vendor
-index.html  236 bytes  [emitted]
-  [27] ./app/component.js 136 bytes {0} [built]
-  [28] ./app/main.css 904 bytes {0} [built]
-  [29] ./~/css-loader!./app/main.css 190 bytes {0} [built]
-  [32] ./app/index.js 124 bytes {0} [built]
-  [33] multi vendor 28 bytes {1} [built]
-    + 29 hidden modules
-Child html-webpack-plugin for "index.html":
-        + 4 hidden modules
+Hash: 3723651d04f393524f98
+Version: webpack 2.2.0-rc.2
+Time: 1880ms
+                                       Asset       Size  Chunks             Chunk Names
+                                      app.js     140 kB       0  [emitted]  app
+                                   vendor.js     138 kB       1  [emitted]  vendor
+    app.788492b4b5beed29cef12fe793f316a0.css    2.22 kB       0  [emitted]  app
+                                  app.js.map     165 kB       0  [emitted]  app
+app.788492b4b5beed29cef12fe793f316a0.css.map  117 bytes       0  [emitted]  app
+                               vendor.js.map     164 kB       1  [emitted]  vendor
+                                  index.html  307 bytes          [emitted]
+   [3] ./~/react/lib/ReactElement.js 11.2 kB {0} {1} [built]
+   [5] ./~/object-assign/index.js 1.99 kB {0} {1} [built]
 ```
 
 *app.js* and *vendor.js* have separate chunk ids right now given they are entry chunks of their own. The output size is a little off, though. *app.js* should be significantly smaller to attain our goal with this build.
@@ -107,7 +145,7 @@ exports.extractBundle = function(options) {
       })
     ]
   };
-}
+};
 leanpub-end-insert
 ```
 
@@ -118,46 +156,26 @@ Given the function handles the entry for us, we can drop our `vendor` related co
 ```javascript
 ...
 
-const common = {
-  entry: {
-leanpub-start-delete
-    app: PATHS.app,
-    vendor: ['react']
-leanpub-end-delete
-leanpub-start-insert
-    app: PATHS.app
-leanpub-end-insert
-  },
-  output: {
-    path: PATHS.build,
-    filename: '[name].js'
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Webpack demo'
-    })
-  ]
-};
-
 module.exports = function(env) {
   if (env === 'production') {
     return merge(
       common,
+leanpub-start-delete
       {
-        devtool: 'source-map'
+        entry: {
+          vendor: ['react']
+        }
       },
-      parts.setFreeVariable(
-        'process.env.NODE_ENV',
-        'production'
-      ),
+leanpub-end-delete
 leanpub-start-insert
       parts.extractBundle({
         name: 'vendor',
         entries: ['react']
       }),
 leanpub-end-insert
-      parts.minify(),
-      parts.setupCSS(PATHS.app)
+      parts.generateSourcemaps('source-map'),
+      parts.extractCSS(),
+      parts.purifyCSS([PATHS.app])
     );
   }
 
@@ -168,28 +186,26 @@ leanpub-end-insert
 If you execute the build now using `npm run build`, you should see something along this:
 
 ```bash
-Hash: db8515bb8c604c66b5b7
-Version: webpack 2.2.0-rc.1
-Time: 1225ms
-      Asset       Size  Chunks           Chunk Names
-  vendor.js    19.7 kB  0, 2[emitted]  vendor
-     app.js    4.06 kB  1, 2[emitted]  app
- index.html  294 bytes  [emitted]
-  [15] ./app/component.js 136 bytes {1} [built]
-  [16] ./app/main.css 904 bytes {1} [built]
-  [17] ./~/css-loader!./app/main.css 190 bytes {1} [built]
-  [32] ./app/index.js 124 bytes {1} [built]
-  [33] multi vendor 28 bytes {0} [built]
-    + 29 hidden modules
-Child html-webpack-plugin for "index.html":
-        + 4 hidden modules
+Hash: 01df5abc2fa1a0d5152a
+Version: webpack 2.2.0-rc.2
+Time: 1781ms
+                                       Asset       Size  Chunks             Chunk Names
+                                      app.js    2.03 kB       0  [emitted]  app
+                                   vendor.js     141 kB       1  [emitted]  vendor
+    app.788492b4b5beed29cef12fe793f316a0.css    2.22 kB       0  [emitted]  app
+                                  app.js.map    1.72 kB       0  [emitted]  app
+app.788492b4b5beed29cef12fe793f316a0.css.map  117 bytes       0  [emitted]  app
+                               vendor.js.map     167 kB       1  [emitted]  vendor
+                                  index.html  307 bytes          [emitted]
+   [3] ./~/react/lib/ReactElement.js 11.2 kB {1} [built]
+   [5] ./~/object-assign/index.js 1.99 kB {1} [built]
+   [7] ./~/react/react.js 56 bytes {1} [built]
+...
 ```
 
 Now our bundles look just the way we want. The image below illustrates the current situation:
 
 ![App and vendor bundles after applying `CommonsChunkPlugin`](images/bundle_02.png)
-
-T> Beyond this, it is possible to define chunks that are loaded dynamically. This can be achieved through [require.ensure or import](https://webpack.js.org/guides/code-splitting-require/). We'll cover it in the *Understanding Chunks* chapter.
 
 ## Loading `dependencies` to a `vendor` Bundle Automatically
 
@@ -197,7 +213,7 @@ If you maintain strict separation between `dependencies` and `devDependencies`, 
 
 Instead of having `['react']`, we could have `Object.keys(require('./package.json').dependencies)`. That can be filtered and adjusted further if needed depending on how dynamic solution you want.
 
-`CommonsChunkPlugin` provides a `minChunks` parameter. In addition to a number and certain other values, it accepts a function. This makes it possible to deduce which modules are external without having to perform a lookup against *package.json*. To adapt Rafael De Leon's solution from [Stack Overflow](http://stackoverflow.com/a/38733864/228885), you could end up with code like this:
+A better way to handle this is to use `CommonsChunkPlugin` and its `minChunks` parameter. In addition to a number and certain other values, it accepts a function. This makes it possible to deduce which modules are external without having to perform a lookup against *package.json*. To adapt Rafael De Leon's solution from [Stack Overflow](http://stackoverflow.com/a/38733864/228885), you could end up with code like this:
 
 ```javascript
 new CommonsChunkPlugin({
@@ -216,18 +232,10 @@ new CommonsChunkPlugin({
 }),
 ```
 
-It would be easy to extend `extractBundle` so that you have more control over `minChunks` behavior. Then you could plug in `isExternal` check for `minChunks`. The advantage of this approach is that it will use **only** dependencies you refer to in your application.
+It would be easy to extend `extractBundle` so that you have more control over `minChunks` behavior. Then you could plug in `isExternal` check for `minChunks` through the part interface. The advantage of this approach is that it will use **only** dependencies you refer to in your application.
 
 Given `minChunks` receives `count` as its second parameter, you could force it to capture chunks based on usage. This is particularly useful in more complex setups where you have split your code multiple times and want more control over the result.
 
-T> `webpack.ProgressPlugin` or [nyan-progress-webpack-plugin](https://www.npmjs.com/package/nyan-progress-webpack-plugin) can be used to get tidier output during the build process. Take care with Continuous Integration (CI) systems like Travis, though, as they might clobber the output.
-
-## Tidying Up Development Console
-
-You might notice that if you run the development server now, it prints out `[WDS] Hot Module Replacement enabled.` twice at the browser console. This happens because *webpack-dev-server* hooks up HMR per entry. One way to solve this is to perform `extractBundle` for the development configuration as well.
-
-This can be achieved by pushing the current `extractBundle` code to `common` and merging it there to the rest so that you get `const common = merge({ ... }, extractBundle(...))`. If you do this, remember to remove `extractBundle` from the production specific branch of your configuration.
-
 ## Conclusion
 
-The situation is far better now. Note how small `app` bundle compared to the `vendor` bundle. In order to really benefit from this split, we should set up caching. This can be achieved by adding cache busting hashes to the filenames.
+The situation is better now. Note how small `app` bundle compared to the `vendor` bundle. In order to really benefit from this split, we will set up caching in the next part. But before that, we can make the build output a little cleaner and learn something about hosting the application.
