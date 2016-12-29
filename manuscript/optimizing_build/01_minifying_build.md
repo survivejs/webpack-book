@@ -8,45 +8,29 @@ T> Even if we minify our build, we can still generate sourcemaps through the `de
 
 ## Generating a Baseline Build
 
-To get started, we should generate a baseline build so we have something to optimize. Given our project is so small, there isn't much to optimize yet. We could bring a large dependency like React to get something to slim up. Install React first:
+To get started, we should generate a baseline build so we have something to optimize. Execute `npm run build`. You should end up with something like this:
 
 ```bash
-npm i react --save
+Hash: 773076e7c2666eec3c83
+Version: webpack 2.2.0-rc.2
+Time: 1932ms
+                                       Asset       Size  Chunks             Chunk Names
+             scripts/e0b0c7ed4cbed4fcf3b2.js  295 bytes       0  [emitted]
+                                      app.js    2.27 kB       1  [emitted]  app
+                                   vendor.js     141 kB       2  [emitted]  vendor
+    app.788492b4b5beed29cef12fe793f316a0.css    2.22 kB       1  [emitted]  app
+         scripts/e0b0c7ed4cbed4fcf3b2.js.map  304 bytes       0  [emitted]
+                                  app.js.map    1.95 kB       1  [emitted]  app
+app.788492b4b5beed29cef12fe793f316a0.css.map  117 bytes       1  [emitted]  app
+                               vendor.js.map     167 kB       2  [emitted]  vendor
+                                  index.html  349 bytes          [emitted]
+   [0] ./~/process/browser.js 5.3 kB {2} [built]
+   [3] ./~/react/lib/ReactElement.js 11.2 kB {2} [built]
+   [7] ./~/react/react.js 56 bytes {2} [built]
+...
 ```
 
-We also need to make our project depend on it:
-
-**app/index.js**
-
-```
-leanpub-start-insert
-import 'react';
-leanpub-end-insert
-import component from './component';
-
-document.body.appendChild(component());
-```
-
-Now that we have something to optimize, execute `npm run build`. You should end up with something like this:
-
-```bash
-Hash: 8ce504f07a063d49058a
-Version: webpack 2.2.0-rc.1
-Time: 866ms
-     Asset       Size  Chunks           Chunk Names
-    app.js     148 kB  0[emitted]  app
-app.js.map     177 kB  0[emitted]  app
-index.html  180 bytes  [emitted]
-  [18] ./app/component.js 136 bytes {0} [built]
-  [20] ./app/main.css 904 bytes {0} [built]
-  [21] ./~/css-loader!./app/main.css 190 bytes {0} [built]
-  [36] ./app/index.js 124 bytes {0} [built]
-    + 33 hidden modules
-Child html-webpack-plugin for "index.html":
-        + 4 hidden modules
-```
-
-148 kB is a lot! Minification should bring down the size quite a bit.
+141 kB for a vendor bundle is a lot! Minification should bring down the size quite a bit.
 
 ## Minifying the Code
 
@@ -72,7 +56,7 @@ exports.minify = function() {
       })
     ]
   };
-}
+};
 leanpub-end-insert
 ```
 
@@ -86,14 +70,14 @@ Now we can hook it up with our configuration like this:
 module.exports = function(env) {
   if (env === 'production') {
     return merge(
-      common,
-      {
-        devtool: 'source-map'
-      },
+      ...
+      parts.clean(PATHS.build),
+      parts.generateSourcemaps('source-map'),
 leanpub-start-insert
       parts.minify(),
 leanpub-end-insert
-      parts.setupCSS(PATHS.app)
+      parts.extractCSS(),
+      parts.purifyCSS([PATHS.app])
     );
   }
 
