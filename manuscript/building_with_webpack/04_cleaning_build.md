@@ -74,5 +74,3 @@ T> Copying files is another common operation you can handle with a webpack plugi
 ## Conclusion
 
 Often you work with webpack like this. First you identify a problem and then find a plugin to tackle it. It is entirely fine to solve these type of issues outside of webpack, but webpack can often handle them as well.
-
-I will show you how to deploy the project in the next chapter. After that we will move onto build optimization.

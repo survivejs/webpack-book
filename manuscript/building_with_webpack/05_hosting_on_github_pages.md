@@ -2,6 +2,10 @@
 
 A package known as [gh-pages](https://www.npmjs.com/package/gh-pages) allows us host our application on GitHub easily. You point it to your build directory first. It will then pick up the contents and push them to the `gh-pages` branch.
 
+Despite its name, the package works with other services that support hosting from a Git repository as well. But given GitHub is so popular, it's good enough for demonstrating the idea.
+
+In practice you would likely have more complicated setup in place that would push the result to some other service through a Continuous Environment (CI) system. The approach discussed here is enough for small projects and demonstrations that can be entirely static.
+
 ## Setting Up *gh-pages*
 
 To get started, execute
@@ -38,25 +42,21 @@ module.exports = function(env) {
   if (env === 'production') {
     return merge(
       common,
-      {
-        devtool: 'source-map',
-        output: {
-          path: PATHS.build,
-          filename: '[name].[chunkhash].js',
-          // This is used for code splitting. The setup
-          // will work without but this is useful to set.
-leanpub-start-delete
-          chunkFilename: '[chunkhash].js'
-leanpub-start-delete
 leanpub-start-insert
-          chunkFilename: '[chunkhash].js',
-          // Tweak this to match your GitHub project name
-          publicPath: '/webpack-demo/'
-leanpub-end-insert
-        }
+      {
+        // Tweak this to match your GitHub project name
+        publicPath: '/webpack-demo/'
       },
-      ...
-    };
+leanpub-end-insert
+      parts.extractBundle({
+        name: 'vendor',
+        entries: ['react']
+      }),
+      parts.clean(PATHS.build),
+      parts.generateSourcemaps('source-map'),
+      parts.extractCSS(),
+      parts.purifyCSS([PATHS.app])
+    );
   }
 
   ...
@@ -65,9 +65,9 @@ leanpub-end-insert
 
 After building (`npm run build`) and deploying (`npm run deploy`), you should have your application from the `build/` directory hosted through GitHub Pages. You should find it at `https://<name>.github.io/<project>` (`github.com/<name>/<project>` at GitHub) assuming everything went fine.
 
-T> If you need a more elaborate setup, you can use the Node.js API that *gh-pages* provides. The default CLI tool it provides is often enough, though.
+T> If you need a more elaborate setup, use the Node.js API that *gh-pages* provides. The default CLI tool it provides is enough for simple purposes, though.
 
-T> GitHub Pages allows you to choose the branch where you deploy now. It is possible to use the `master` branch even. This is enough for minimal sites that don't need bundling. You can also point below the *./docs* directory within your `master` branch and maintain your site. That is useful for small projects.
+T> GitHub Pages allows you to choose the branch where you deploy. It is possible to use the `master` branch even. This is enough for minimal sites that don't need bundling. You can also point below the *./docs* directory within your `master` branch and maintain your site. That is useful for small projects.
 
 ## Archiving Old Versions
 
@@ -81,5 +81,3 @@ T> GitHub Pages allows you to choose the branch where you deploy now. It is poss
 ## Conclusion
 
 The same idea works with other environments too. You can set up *gh-pages* to push into a branch you want. After this step we have a fairly complete development and production setup.
-
-We'll discuss various webpack related techniques in greater detail in the following parts of this book.
