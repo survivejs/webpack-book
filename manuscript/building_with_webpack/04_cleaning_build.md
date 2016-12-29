@@ -1,8 +1,10 @@
 # Cleaning the Build
 
-Our current setup doesn't clean the `build` directory between builds. As this can get annoying if we change our setup, we can use a plugin to clean the directory for us.
+Our current setup doesn't clean the *build* directory between builds. As a result it will keep on accumulating files as our project changes. Given this can get annoying, we should clean it up in between.
 
-Another valid way to resolve the issue would be to handle this outside of webpack. You could solve it on the system level through a npm script. In this case you would trigger `rm -rf ./build && webpack` or `rimraf ./build && webpack` to keep it cross-platform. A task runner could work as well.
+This issue can be resolved either by using a webpack plugin or solving it outside of it. You could trigger `rm -rf ./build && webpack` or `rimraf ./build && webpack` in a npm script to keep it cross-platform. A task runner could work for this purpose as well.
+
+I will show you how to solve this issue using webpack next.
 
 ## Setting Up *clean-webpack-plugin*
 
@@ -18,6 +20,8 @@ Next we need to define a little function to wrap the basic idea. We could use th
 
 ```javascript
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const PurifyCSSPlugin = require('purifycss-webpack-plugin');
 leanpub-start-insert
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 leanpub-end-insert
@@ -28,18 +32,14 @@ leanpub-start-insert
 exports.clean = function(path) {
   return {
     plugins: [
-      new CleanWebpackPlugin([path], {
-        // Without `root` CleanWebpackPlugin won't point to our
-        // project and will fail to work.
-        root: process.cwd()
-      })
+      new CleanWebpackPlugin([path])
     ]
   };
-}
+};
 leanpub-end-insert
 ```
 
-We can connect it with our project like this:
+Connect it with our project like this:
 
 **webpack.config.js**
 
@@ -50,35 +50,29 @@ module.exports = function(env) {
   if (env === 'production') {
     return merge(
       common,
-      {
-        devtool: 'source-map',
-        output: {
-          path: PATHS.build,
-          filename: '[name].[chunkhash].js',
-          // This is used for code splitting. The setup
-          // will work without but this is useful to set.
-          chunkFilename: '[chunkhash].js'
-        }
-      },
+      parts.extractBundle({
+        name: 'vendor',
+        entries: ['react']
+      }),
 leanpub-start-insert
       parts.clean(PATHS.build),
 leanpub-end-insert
-      ...
-    };
+      parts.generateSourcemaps('source-map'),
+      parts.extractCSS(),
+      parts.purifyCSS([PATHS.app])
+    );
   }
 
   ...
 };
 ```
 
-After this change, our `build` directory should remain nice and tidy when building. You can verify this by building the project and making sure no old files remained in the output directory.
+After this change, our `build` directory should remain nice and tidy while building. You can verify this by building the project and making sure no old files remained in the output directory.
 
-T> If you want to preserve possible dotfiles within your build directory, you can use `path.join(PATHS.build, '*')` instead of `PATHS.build`.
+T> Copying files is another common operation you can handle with a webpack plugin such as [copy-webpack-plugin](https://www.npmjs.com/package/copy-webpack-plugin). It can be handy if you need to bring external files to your build without having webpack pointing at them directly.
 
 ## Conclusion
 
-Our build is starting to get pretty neat now. There's one major issue, though. Our CSS has been inlined with JavaScript. This can result in the dreaded **Flash of Unstyled Content** (FOUC). It's also not ideal caching-wise.
+Often you work with webpack like this. First you identify a problem and then find a plugin to tackle it. It is entirely fine to solve these type of issues outside of webpack, but webpack can often handle them as well.
 
-A small change to the CSS would invalidate our `app` bundle. This doesn't hurt during development, but it's not something we want to experience in production. We can resolve this problem by separating our CSS to a file of its own.
-
-T> Copying files is another common operation you can handle with a webpack plugin such as [copy-webpack-plugin](https://www.npmjs.com/package/copy-webpack-plugin). It can be handy if you need to bring external files to your build without having webpack pointing at them directly.
+I will show you how to deploy the project in the next chapter. After that we will move onto build optimization.
