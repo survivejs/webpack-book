@@ -4,19 +4,43 @@
 
 To improve the debuggability of the application, we can set up sourcemaps for both code and styling. Sourcemaps allow you to see exactly where an error was raised. This makes them particularly valuable during development.
 
-Sometimes the best approach is simply to skip sourcemaps entirely and rely on browser support of language features. This works particularly if you use ES6 without any extensions and develop using a modern browser.
+One approach is to simply skip sourcemaps during development and rely on browser support of language features. This works particularly if you use ES6 without any extensions and develop using a modern browser. This improves performance a notch and avoids various problems related to sourcemaps.
 
 ## Inline Sourcemaps and Separate Sourcemaps
 
-Webpack can generate both inline sourcemaps included within bundles or separate sourcemap files. The former are useful during development due to better performance while the latter are handy for production usage as it will keep the bundle size small. The loading sourcemaps becomes optional.
+Webpack can generate both inline sourcemaps included within bundles or separate sourcemap files. The former are useful during development due to better performance while the latter are handy for production usage as it will keep the bundle size small. In this case loading sourcemaps becomes optional.
 
-I'll show you how to enable sourcemaps for JavaScript code next. It is a good idea to study the documentation of the loaders you are using to see loader specific tips. For example, with TypeScript you may need to set a certain flag to make it to work.
+You may **not** want to generate a sourcemap for your production bundle as this makes it easy to inspect your application (depends on whether you want this or not, good for staging!). Simply skip the `devtool` field then. This also speeds up your build a notch as generating sourcemaps at the best quality can be a heavy operation.
 
-W> You may **not** want to generate a sourcemap for your production bundle as this makes it easy to inspect your application (depends on whether you want this or not, good for staging!). Simply skip the `devtool` field then. This also speeds up your build a notch as generating sourcemaps at the best quality can be a heavy operation.
+You can also do a compromise and generate so called hidden sourcemaps for production. The idea is that we'll get sourcemaps for trace information only. This is useful if you connect the information with a monitoring service that can send these traces for your to study and fix.
 
-## Enabling Sourcemaps During Development
+T> It is a good idea to study the documentation of the loaders you are using to see loader specific tips. For example, with TypeScript you may need to set a certain flag to make it to work as you expect.
 
-To enable sourcemaps during development, we can use a default such as `eval-source-map`. This gives good quality for traces while trading off performance. The generated sourcemap will be inlined in the development bundle. The `source-map` option yields a separate file. You can set these up as follows:
+## Enabling Sourcemaps
+
+Webpack provides two ways to enable sourcemaps. There's a shortcut field known as `devtool`. There's also a plugin that gives exposes more options to tweak. We'll discuss that briefly at the end of this chapter.
+
+To get started, we can wrap the basic idea within a configuration part. You can convert this to use the plugin later if you want:
+
+**webpack.parts.js**
+
+```javascript
+...
+
+exports.generateSourcemaps = function(type) {
+  return {
+    devtool: type
+  };
+};
+```
+
+Webpack support a wide variety of sourcemap types. These vary based on quality and build speed. For now, we can enable `eval-source-map` for development and `source-map` for production. This way we get good quality while trading off performance especially during development.
+
+`eval-source-map` builds slowly initially, but it provides fast rebuild speed. Faster development specific options, such as `cheap-module-eval-source-map` and `eval`, produce lower quality sourcemaps. All `eval` options will emit sourcemaps as a part of your JavaScript code.
+
+`source-map` is the slowest and highest quality option of them all, but that's fine for a production build.
+
+You can set these up as follows:
 
 **webpack.config.js**
 
@@ -28,26 +52,28 @@ module.exports = function(env) {
     return merge(
       common,
 leanpub-start-insert
-      {
-        devtool: 'source-map'
-      },
+      parts.generateSourcemaps('source-map'),
 leanpub-end-insert
-      parts.setupCSS(PATHS.app)
+      parts.extractCSS(),
+      parts.purifyCSS([PATHS.app])
     );
   }
 
   return merge(
     common,
     {
-leanpub-start-insert
-      devtool: 'eval-source-map',
-leanpub-end-insert
       // Disable performance hints during development
       performance: {
         hints: false
-      }
+      },
+      plugins: [
+        new webpack.NamedModulesPlugin()
+      ]
     },
-    parts.setupCSS(PATHS.app),
+leanpub-start-insert
+    parts.generateSourcemaps('eval-source-map'),
+leanpub-end-insert
+    parts.loadCSS(),
     parts.devServer({
       // Customize host/port here if needed
       host: process.env.HOST,
@@ -57,9 +83,31 @@ leanpub-end-insert
 };
 ```
 
-`eval-source-map` builds slowly initially, but it provides fast rebuild speed. Faster development specific options, such as `cheap-module-eval-source-map` and `eval`, produce lower quality sourcemaps. All `eval` options will emit sourcemaps as a part of your JavaScript code.
+If you build the project now (`npm run build`), you should see something like this:
 
-It is possible you may need to enable sourcemaps in your browser for this to work. See [Chrome](https://developer.chrome.com/devtools/docs/javascript-debugging), [Firefox](https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Use_a_source_map), [IE Edge](https://developer.microsoft.com/en-us/microsoft-edge/platform/documentation/f12-devtools-guide/debugger/#source-maps), and [Safari](https://developer.apple.com/library/safari/documentation/AppleApplications/Conceptual/Safari_Developer_Guide/ResourcesandtheDOM/ResourcesandtheDOM.html#//apple_ref/doc/uid/TP40007874-CH3-SW2) instructions for further details.
+```bash
+Hash: 5992a41d4859911e454a
+Version: webpack 2.2.0-rc.2
+Time: 2412ms
+                                       Asset       Size  Chunks             Chunk Names
+                                      app.js    4.34 kB       0  [emitted]  app
+    app.788492b4b5beed29cef12fe793f316a0.css    2.22 kB       0  [emitted]  app
+                                  app.js.map     4.2 kB       0  [emitted]  app
+app.788492b4b5beed29cef12fe793f316a0.css.map  117 bytes       0  [emitted]  app
+                                  index.html  251 bytes          [emitted]
+   [0] ./app/component.js 170 bytes {0} [built]
+   [1] ./app/main.css 41 bytes {0} [built]
+   [2] ./~/purecss/build/pure-min.css 41 bytes {0} [built]
+```
+
+Take a good look at those *.map* files. That's where the mapping between the generated and the original source happens.
+
+During development it will write the mapping information within the bundle itself. To use them, it is possible you may need to enable sourcemaps in your browser for this to work. I've listed reference per browser below:
+
+* [Chrome](https://developer.chrome.com/devtools/docs/javascript-debugging)
+* [Firefox](https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Use_a_source_map)
+* [IE Edge](https://developer.microsoft.com/en-us/microsoft-edge/platform/documentation/f12-devtools-guide/debugger/#source-maps)
+* [Safari](https://developer.apple.com/library/safari/documentation/AppleApplications/Conceptual/Safari_Developer_Guide/ResourcesandtheDOM/ResourcesandtheDOM.html#//apple_ref/doc/uid/TP40007874-CH3-SW2)
 
 W> Sometimes sourcemaps [might not update in Chrome inspector](https://github.com/webpack/webpack/issues/2478). For now the temporary fix is to force the inspector to reload itself by using *alt-r*.
 
@@ -67,11 +115,7 @@ W> If you want to use breakpoints (i.e., a `debugger;` statement or ones set thr
 
 ## Sourcemap Types Supported by Webpack
 
-Even though a sourcemap type, such as `eval-source-map` or `eval`, can be enough during development, webpack provides other types too. Given these will be generated within your bundles, they won't be useful during production.
-
-It will take experimentation to find the right option. You can start from the highest quality one and if that begins to feel slow, try out the faster alternatives.
-
-The following table adapted from the [documentation](https://webpack.js.org/configuration/devtool/#devtool) contains the supported types arranged based on speed. The lower the quality, the higher build and rebuild speeds are possible.
+The following table adapted from the [documentation](https://webpack.js.org/configuration/devtool/#devtool) contains the supported types arranged based on speed. The lower the quality, the higher build and rebuild speeds are possible. It may take some experimentation to find the options that make the most sense for you.
 
 |Sourcemap type                 |Quality                       |Notes                                                                                   |
 |-------------------------------|------------------------------|----------------------------------------------------------------------------------------|
@@ -96,7 +140,7 @@ Webpack can also generate production usage friendly sourcemaps. These will end u
 There are a couple of other options that affect sourcemap generation:
 
 ```javascript
-const config = {
+{
   output: {
     // Modify the name of the generated sourcemap file.
     // You can use [file], [id], and [hash] replacements here.
@@ -108,15 +152,14 @@ const config = {
     // often.
     devtoolModuleFilenameTemplate: 'webpack:///[resource-path]?[loaders]'
   },
-  ...
-};
+}
 ```
 
-T> The [official documentation](https://webpack.js.org/configuration/output/#output-sourcemapfilename) digs into `devtool` specifics.
+T> The [official documentation](https://webpack.js.org/configuration/output/#output-sourcemapfilename) digs into `output` specifics.
 
 W> If you are using any `UglifyJsPlugin` and want sourcemaps, you need to enable `sourceMap: true` for the plugin. Otherwise the result won't be what you might expect!
 
-## `SourceMapDevToolPlugin`
+## SourceMapDevToolPlugin
 
 If you want more control over sourcemap generation, it is possible to use the `SourceMapDevToolPlugin` instead. This way you can generate sourcemaps only for the portions of the code you want while having strict control over the result. In case you use the plugin, you can skip `devtool` option altogether.
 
@@ -170,10 +213,10 @@ exports.generateSourcemaps = function(options) {
       })
     ]
   };
-}
+};
 ```
 
-## Sourcemap Loader
+## Using Dependency Sourcemaps
 
 Assuming you are using a package that uses inline sourcemaps in its distribution, you can use [source-map-loader](https://www.npmjs.com/package/source-map-loader) to make webpack aware of them. Without setting it up against the package, you will get minified debug output. This is a special case, though, and often you can skip this step.
 
@@ -186,5 +229,3 @@ This isn't without gotchas. The *css-loader* documentation notes that relative p
 ## Conclusion
 
 Sourcemaps can be convenient during development. They provide us better means to debug our applications as we can still examine the original code over generated one. They can be useful even for production usage and allow you to debug issues while serving a client friendly version of your application.
-
-Our build configuration isn't that sophisticated yet, though. I'll show you how to push it further in the next part as we discuss various build related techniques.
