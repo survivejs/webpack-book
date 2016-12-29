@@ -199,7 +199,7 @@ Given executing `node_modules/.bin/webpack` is a little verbose, we should do so
 ...
 ```
 
-Run *npm run build*. As a result you should get the same output as before.
+Run `npm run build`. As a result you should get the same output as before.
 
 You can execute these scripts through *npm run*. If you run it as is, it will give you the listing of available scripts.
 
