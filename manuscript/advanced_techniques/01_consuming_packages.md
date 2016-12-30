@@ -1,24 +1,18 @@
 # Consuming Packages
 
-Even though consuming npm packages is simple using webpack, there are certain special considerations to take into account. Sometimes the packages might not play with you nicely or they might require special tweaking to work properly.
-
-In this chapter I'll go through several basic concepts first and then cover webpack specific tweaks you can perform.
+Even though consuming npm packages is simple using webpack, there are certain special considerations to take into account. Sometimes the packages might not play with you nicely or they might require special tweaking to work properly. At the core of this is the concept of SemVer.
 
 ## Understanding SemVer
 
-When working with packages, it is a good idea to understand SemVer. Most of the packages out there comply with it. It's not problematic as sometimes packages may inadvertently break it, but there are ways around this.
-
-Roughly, SemVer states that you should not break backwards compatibility, given certain rules are met.
-
-For example, if the current version of a package is `0.1.4` and a breaking change is performed, it should bump to `0.2.0`. [The official definition](http://semver.org/) goes like this:
+Most of the packages out there comply with a versioning scheme known as SemVer. It's not problematic as sometimes packages may inadvertently break it, but there are ways around this. Roughly, SemVer states that you should not break backwards compatibility, given [certain rules](http://semver.org/) are met:
 
 1. The MAJOR version gets incremented when incompatible API changes are made to stable APIs.
 2. The MINOR version gets incremented when backwards-compatible functionality are added.
 3. The PATCH version gets incremented when backwards-compatible bug are fixed.
 
-The rules are a little different for `0.x` versions. There the rule is `0.<MAJOR>.<MINOR>`. For packages considered stable and suitable for public usage (`1.0.0` and above), the rules is `<MAJOR>.<MINOR>.<PATCH>`.
+The rules are a little different for `0.x` versions. There the rule is `0.<MAJOR>.<MINOR>`. For packages considered stable and suitable for public usage (`1.0.0` and above), the rules is `<MAJOR>.<MINOR>.<PATCH>`. For example, if the current version of a package is `0.1.4` and a breaking change is performed, it should bump to `0.2.0`.
 
-Given SemVer can be a little tricky to manage, some packages use a backwards compatible alternative known as [ComVer](https://github.com/staltz/comver). The versioning scheme can be described as `<not compatible>.<compatible>`.
+Given SemVer can be a little tricky to manage, some packages use a backwards compatible alternative known as [ComVer](https://github.com/staltz/comver). SemVer can be described as a binary decision `<not compatible>.<compatible>`.
 
 T> You can understand SemVer much better by studying [the online tool](http://semver.npmjs.com/) and how it behaves.
 
@@ -63,8 +57,6 @@ npm supports multiple version ranges. I've listed the common ones below:
 * `>= 1.3.0 < 2.0.0` - Range between versions. This can be particularly useful if you are using `peerDependencies`.
 
 You can set the default range using `npm config set save-prefix='^'` in case you prefer something else than caret. Alternatively you can modify *~/.npmrc* directly. Especially defaulting to tilde can be a good idea that can help you to avoid some trouble with dependencies although it won't remove potential problems entirely. That's where shrinkwrapping comes in.
-
-T> If you want to be strict about versions, you can use `--save-exact` over `--save`. The shortcut for this operation is `-E`.
 
 ## Shrinkwrapping Versions
 
