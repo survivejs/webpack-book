@@ -8,6 +8,8 @@ It can be a good idea to prefer absolute paths here as it allows you to move con
 
 Packages loaded from *node_modules* will still work as the assumption is that they have been compiled in such way that they work out of the box. Sometimes you may come upon a badly packaged one, but often you can work around these by tweaking your loader configuration or setting up a `resolve.alias` against an asset that is included with the offending package.
 
+T> Webpack loaders can be run standalone through [loader-runner](https://www.npmjs.com/package/loader-runner).
+
 ## Anatomy of a Loader
 
 Webpack supports a large variety of formats through *loaders*. In addition, it supports a couple of JavaScript module formats out of the box. Generally, the idea is the same. You always set up a loader, or loaders, and connect those with your directory structure.
