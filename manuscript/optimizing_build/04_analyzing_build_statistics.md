@@ -26,7 +26,9 @@ leanpub-end-insert
 }
 ```
 
-This is the basic setup you'll need regardless of your webpack configuration. Given our configuration matches to `env`, you execute `npm run stats` now. After a while you should find *stats.json* at your project root.
+This is the basic setup you'll need regardless of your webpack configuration. Execute `npm run stats` now. After a while you should find *stats.json* at your project root. This file can be pushed through a variety of tools to understand better what's going on.
+
+W> Given we piggyback on the production target, this process will clean the build directory! If you want to avoid that, set up a separate target where you don't clean.
 
 ### *stats-webpack-plugin* and *webpack-stats-plugin*
 
