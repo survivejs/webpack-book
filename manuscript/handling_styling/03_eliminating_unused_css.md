@@ -104,7 +104,7 @@ exports.purifyCSS = function(paths) {
         // Walk through only html files within node_modules. It
         // picks up .js files by default!
         resolveExtensions: ['.html']
-      }),
+      })
     ]
   };
 };
