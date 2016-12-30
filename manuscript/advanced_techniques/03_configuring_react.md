@@ -24,19 +24,7 @@ Babel allows us to use JSX with React easily. In addition, we can enable languag
 
 T> It is a good practice to name React components containing JSX using the `.jsx` suffix. In addition to communicating this fact, your editor can apply syntax highlighting automatically as you open the files.
 
-### Installing *babel-loader*
-
-The first step towards configuring Babel to work with webpack is to set up [babel-loader](https://www.npmjs.com/package/babel-loader). It will take our futuristic code and turn it into a format normal browsers can understand. Install *babel-loader* with:
-
-```bash
-npm i babel-loader babel-core --save-dev
-```
-
-*babel-core* contains the core logic of Babel so we need to install that as well.
-
 ### Connecting *babel-loader* with Webpack
-
-Now that we have the loader installed, we can connect it with webpack configuration. In addition to a loader definition, we can perform an additional tweak to make imports without an extension possible. Leaving the extension visible is a valid alternative.
 
 Webpack provides a field known as [resolve.extensions](https://webpack.js.org/guides/migrating/#resolve-extensions) that can be used for this purpose. If you want to allow imports like `import Button from './Button';`, set it up as follows:
 
@@ -56,49 +44,6 @@ const common = {
 The loader configuration is straight-forward as well. We can use a RegExp to match both `.js` and `.jsx` files. It's up to your tastes to figure out a neat pattern. I prefer to use `\.(js|jsx)$` myself. This just makes `x` optional and you can extend the pattern easily to include more formats.
 
 W> In webpack 1 you had to use `extensions: ['', '.js', '.jsx']` to match files without an extension too. This isn't needed in webpack 2.
-
-### Configuring *babel-loader*
-
-*babel-loader* comes with a set of options. In this case I'm going to enable `cacheDirectory` to improve its performance during development. You can also pass a specific directory to it as a parameter. I.e., `cacheDirectory=<path>`.
-
-Here's the full loader configuration:
-
-**webpack.config.js**
-
-```javascript
-...
-module: {
-  rules: [
-    {
-      test: /\.(js|jsx)$/,
-      use: 'babel-loader',
-      // Parse only app files! Without this it will go through
-      // the entire project. In addition to being slow,
-      // that will most likely result in an error.
-      include: PATHS.app,
-
-      options: {
-        // Enable caching for improved performance during
-        // development.
-        // It uses default OS directory by default. If you need
-        // something more custom, pass a path to it.
-        // I.e., { cacheDirectory: '<path>' }
-        cacheDirectory: true
-      }
-    },
-    ...
-  ]
-}
-...
-```
-
-Even though we have Babel installed and set up, we are still missing one bit - Babel configuration. It would be possible to pass it through the loader definition. Instead, I prefer to handle it using a dotfile known as *.babelrc*.
-
-The benefit of doing this is that it allows us to process our webpack configuration itself using the same language rules. The rules will also be shared with Babel running outside of webpack. This can be useful for package authors.
-
-T> If you want to process your webpack configuration through Babel, name your webpack configuration as *webpack.config.babel.js*. Webpack will notice you want to use Babel and execute your configuration through it.
-
-W> There are times when caching Babel compilation can surprise you. This can happen particularly if your dependencies change in a way that *babel-loader* default caching mechanism doesn't notice. If you want full control over caching behavior, override `cacheIdentifier` with a string that has been derived based on data that should invalidate the cache. This is where [Node.js crypto API](https://nodejs.org/api/crypto.html) and especially its MD5 related functions can come in handy.
 
 ### Setting Up *.babelrc*
 

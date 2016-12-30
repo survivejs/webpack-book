@@ -152,34 +152,6 @@ T> ESLint supports custom formatters through `--format` parameter. [eslint-frien
 
 T> You can get more performance out of ESLint by running it through a daemon, such as [eslint_d](https://www.npmjs.com/package/eslint_d). Using it brings down the overhead and it can bring down linting times considerably.
 
-### Connecting ESLint with Babel
-
-In case you want to lint against custom language features that go beyond standard ES6, use [babel-eslint](https://www.npmjs.com/package/babel-eslint). Install the parser first:
-
-```bash
-npm i babel-eslint --save-dev
-```
-
-Change *.eslintrc.js* like this so that ESLint knows to use the custom parser over the default one:
-
-**.eslintrc.js**
-
-```json
-module.exports = {
-  ...
-  "extends": "eslint:recommended",
-leanpub-start-delete
-  "parserOptions": {
-    "sourceType": "module"
-  },
-leanpub-end-delete
-leanpub-start-insert
-  "parser": "babel-eslint",
-leanpub-end-insert
-  ...
-};
-```
-
 ### Connecting ESLint with Webpack
 
 We can make Webpack emit ESLint messages for us by using [eslint-loader](https://www.npmjs.com/package/eslint-loader). As the first step execute

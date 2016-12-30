@@ -10,7 +10,7 @@ T> Incidentally, it is possible to implement Google's [PRPL pattern](https://dev
 
 ## Setting Up Code Splitting
 
-Code splitting can be done in two primary ways in webpack: through a [dynamic import](https://github.com/tc39/proposal-dynamic-import) or `require.ensure` syntax. We'll be using the former in this demo. The syntax isn't in the official specification yet so it will require minor tweaks especially at ESLint and Babel too if you are using that. I will cover the Babel specifics at the end of this chapter.
+Code splitting can be done in two primary ways in webpack: through a [dynamic import](https://github.com/tc39/proposal-dynamic-import) or `require.ensure` syntax. We'll be using the former in this demo. The syntax isn't in the official specification yet so it will require minor tweaks especially at ESLint and Babel too if you are using that.
 
 ### Code Splitting Formats
 
@@ -251,37 +251,6 @@ import(`indexes/${target}).then(...).catch(...);
 Given the approaches discussed here rely on static analysis and webpack has to find the files in question, it doesn't work for every possible case. If the files you need are on another server or have to be accessed through a specific end-point, then webpack isn't enough.
 
 Consider using browser-side loaders like [$script.js](https://github.com/ded/script.js/) or [little-loader](https://github.com/walmartlabs/little-loader) on top of webpack in this case.
-
-## Babel Setup for Dynamic `import`
-
-Babel can be made to work with dynamic `import` with some extra setup. You should have the following dependencies available:
-
-```bash
-npm i babel-plugin-syntax-dynamic-import babel-preset-es2015 -D
-```
-
-Especially that `babel-plugin-syntax-dynamic-import` is important in this case!
-
-Here's the minimal Babel setup:
-
-**.babelrc**
-
-```json
-{
-  "plugins": ["syntax-dynamic-import"],
-  "presets": [
-    [
-      "es2015",
-      {
-        "modules": false
-      }
-    ],
-    "react"
-  ]
-}
-```
-
-Note that I have disabled modules from Babel as webpack 2 can handle those and you should not process them through Babel. After this Babel should work as long as you have configured [babel-loader](https://www.npmjs.org/package/babel-loader) correctly.
 
 ## Conclusion
 

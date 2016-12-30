@@ -28,8 +28,9 @@ understanding_loaders/04_writing_loaders.md
 building_with_webpack/01_enabling_sourcemaps.md
 building_with_webpack/02_splitting_bundles.md
 building_with_webpack/03_code_splitting.md
-building_with_webpack/04_cleaning_build.md
-building_with_webpack/05_hosting_on_github_pages.md
+building_with_webpack/04_processing_with_babel.md
+building_with_webpack/05_cleaning_build.md
+building_with_webpack/06_hosting_on_github_pages.md
 
 07_Optimizing_Build.md
 optimizing_build/01_minifying_build.md
