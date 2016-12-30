@@ -1,8 +1,6 @@
 # Configuring React
 
-Facebook's [React](https://facebook.github.io/react/) is a popular alternative for developing web applications. Even if you don't use it, it can be valuable to understand how to configure it. Most React setups rely on a transpiler known as [Babel](https://babeljs.io/).
-
-Babel is useful beyond React development and worth understanding as it allows you to use future JavaScript features now without having to worry too much about browser support. Due to technical constraints it doesn't support all features within the specification, but still it can be a good tool to have in your arsenal.
+Facebook's [React](https://facebook.github.io/react/) is a popular alternative for developing web applications. Even if you don't use it, it can be valuable to understand how to configure it.
 
 ## create-react-app - Get Started Fast
 
@@ -14,48 +12,46 @@ There's a gotcha, though. After you eject, you cannot go back to the dependency 
 
 ## Setting Up Babel with React
 
-Most of the React code out there relies on a format known as [JSX](https://facebook.github.io/jsx/). It is a superset of JavaScript that allows you to mix XMLish syntax with JavaScript.
+The *Processing with Babel* chapter covers the essentials of using Babel with webpack. There's some React specific setup you can perform, though.
 
-A lot of people find this convenient as they get something that resembles what they know already while they can use the power of JavaScript. This is in contrast to template DSLs that implement the same logic using custom constructs.
+Most of React projects rely on a format known as [JSX](https://facebook.github.io/jsx/). It is a superset of JavaScript that allows you to mix XMLish syntax with JavaScript. A lot of people find this convenient as they get something that resembles what they know already while they can use the power of JavaScript.
 
 Some React developers prefer to attach type annotations to their code using a language extension known as [Flow](http://flowtype.org/). The technology fits React well, but it's not restricted to it. [TypeScript](http://www.typescriptlang.org/) is another viable alternative. Both work with JSX.
 
-Babel allows us to use JSX with React easily. In addition, we can enable language features we want either using plugins or presets that encapsulate collections of plugins. For instance, you can find all ES6 features within a preset. The same goes for React related functionality. We'll be relying on these within our setup.
+### Configuring with Webpack
 
-T> It is a good practice to name React components containing JSX using the `.jsx` suffix. In addition to communicating this fact, your editor can apply syntax highlighting automatically as you open the files.
+Babel allows us to use JSX with React easily. Some people prefer to name their React components containing JSX using the `.jsx` suffix. Webpack can be configured to work with this convention. The benefit of doing this is that then your editor will be able to pick up the right syntax based on the file name.
 
-### Connecting *babel-loader* with Webpack
-
-Webpack provides a field known as [resolve.extensions](https://webpack.js.org/guides/migrating/#resolve-extensions) that can be used for this purpose. If you want to allow imports like `import Button from './Button';`, set it up as follows:
+Webpack provides a field known as [resolve.extensions](https://webpack.js.org/guides/migrating/#resolve-extensions) that can be used for this purpose. If you want to allow imports like `import Button from './Button';` while naming the file as *Button.jsx*, set it up as follows:
 
 **webpack.config.js**
 
 ```javascript
 ...
+
 const common = {
   ...
   resolve: {
     extensions: ['.js', '.jsx']
   }
 }
+
 ...
 ```
 
-The loader configuration is straight-forward as well. We can use a RegExp to match both `.js` and `.jsx` files. It's up to your tastes to figure out a neat pattern. I prefer to use `\.(js|jsx)$` myself. This just makes `x` optional and you can extend the pattern easily to include more formats.
+The loader configuration is straight-forward as well. Instead of matching only `/\.js$/`, we can expand it to include `.jsx` extension through `/\.(js|jsx)$/`.
 
 W> In webpack 1 you had to use `extensions: ['', '.js', '.jsx']` to match files without an extension too. This isn't needed in webpack 2.
 
-### Setting Up *.babelrc*
+### Configuring with Babel
 
-A minimal Babel and React setup needs just two Babel presets. Install them:
+To enable JSX with Babel, an addition preset is required. Install it:
 
 ```bash
-npm i babel-preset-es2015 babel-preset-react --save-dev
+npm i babel-preset-react --save-dev
 ```
 
-T> Instead of typing it all out, we could use brace expansion. Example: `npm i babel-preset-{es2015,react} -D`. `-D` equals `--save-dev` as you might remember. Note that this doesn't work on Windows CMD.
-
-To make Babel aware of them, we need to write a *.babelrc*:
+You also have to connect the preset with Babel configuration. Here's the rough idea:
 
 **.babelrc**
 
@@ -73,17 +69,11 @@ To make Babel aware of them, we need to write a *.babelrc*:
 }
 ```
 
-Babel should pick up the presets now and you should be able to develop both ES6 and React code using webpack now. Note that given webpack 2 handles ES6 modules, it is possible to tell Babel to skip doing that.
-
-Sometimes you might want to use experimental features. Although you can find a lot of them within so called stage presets, I recommend enabling them one by one and even organizing them to a preset of their own unless you are working on a throwaway project. If you expect your project to live a long time, it's better to document the features you are using well.
-
-T> There are other possible [.babelrc options](https://babeljs.io/docs/usage/options/) beyond the ones covered here.
-
 ### Rendering a React Application
 
 To get a simple React application running you'll need to mount it to a DOM element first. [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) can come in handy here. It can be combined with [html-webpack-template](https://www.npmjs.com/package/html-webpack-template) or [html-webpack-template-pug](https://www.npmjs.com/package/html-webpack-template-pug) for more advanced functionality. You can also provide a custom template of your own to it.
 
-The webpack configuration is quite simple. Consider the following example:
+Consider the following example:
 
 **webpack.config.js**
 
@@ -125,7 +115,7 @@ ReactDOM.render(
 
 It would be possible to extend the application from here. Depending on your tastes, you might want to name the file as *index.jsx* instead, but sticking with *index.js* can be acceptable too.
 
-T> Check out the *Configuring Hot Module Replacement with React* to learn how to get webpack and React work together in a nicer manner.
+T> Check out the *Configuring Hot Module Replacement with React* appendix to learn how to set up hot loading for React code with webpack and Babel.
 
 ### Babel Based Optimizations for React
 
@@ -207,6 +197,8 @@ In addition to telling webpack not to parse the minified file we want to use, we
 
 We can encapsulate the basic idea within a function like this:
 
+**webpack.parts.js**
+
 ```javascript
 ...
 
@@ -224,10 +216,12 @@ exports.dontParse = function(options) {
       alias: alias
     }
   };
-}
+};
 ```
 
-You would use the function like this assuming you are using [webpack-merge](https://www.npmjs.com/package/webpack-merge):
+The function can be used like this through [webpack-merge](https://www.npmjs.com/package/webpack-merge):
+
+**webpack.config.js**
 
 ```javascript
 ...
