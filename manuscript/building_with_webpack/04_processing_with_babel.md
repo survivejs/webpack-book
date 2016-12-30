@@ -71,8 +71,7 @@ exports.loadJavaScript = function(paths) {
           test: /\.js$/,
           include: paths,
 
-          use: 'babel-loader',
-
+          loader: 'babel-loader',
           options: {
             // Enable caching for improved performance during
             // development.
