@@ -1,8 +1,6 @@
 # Authoring Packages
 
-Even though webpack is useful for bundling applications, it has its uses for package authors as well. You can use it to output your bundle in the [UMD format](https://github.com/umdjs/umd). It is a format that's compatible with various environments (CommonJS, AMD, globals).
-
-As webpack alone isn't enough, I'll provide a short overview of the npm side of things before discussing specific techniques.
+Even though webpack is useful for bundling applications, it has its uses for package authors as well. You can use it to generate a website for your package and maintain the distribution files using it. It supports a format known as [UMD format](https://github.com/umdjs/umd). UMD is compatible with various environments (CommonJS, AMD, globals) making it good for distribution purposes.
 
 ## Anatomy of a npm Package
 
@@ -280,7 +278,7 @@ output: {
 }
 ```
 
-### Setting Up SystemJS
+### Supporting SystemJS
 
 [SystemJS](https://github.com/systemjs/systemjs) is an emerging standard that's starting to get more attention. A plugin known as [webpack-system-register](https://www.npmjs.com/package/webpack-system-register) allows you to wrap your output in a `System.register` call making it compatible with the scheme.
 
@@ -317,7 +315,7 @@ These two fields help you a lot as a package author but there's more to it.
 
 T> If you want to include all modules in *node_modules* by default, it could be interesting to use [webpack-node-externals](https://www.npmjs.com/package/webpack-node-externals) instead. Then you would end up with `externals: [nodeExternals()]` kind of declaration. If you don't need to adapt to different environments, this could be a neat way to go.
 
-T> Given bundling may be required sometimes, consider using the [bundledDependencies](https://docs.npmjs.com/files/package.json#bundleddependencies) (or just `bundleDependencies`) field. This can be useful if you want to share third party files not available through npm. There's a great [Stack Overflow answer](http://stackoverflow.com/a/25044361/228885) discussing the topic further.
+T> Given bundling may still be required sometimes, consider using the [bundledDependencies](https://docs.npmjs.com/files/package.json#bundleddependencies) (or just `bundleDependencies`) field. This can be useful if you want to share third party files not available through npm. There's a great [Stack Overflow answer](http://stackoverflow.com/a/25044361/228885) discussing the topic further.
 
 ### Processing Node.js Version through Babel
 
