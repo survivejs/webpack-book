@@ -47,6 +47,8 @@ You can tweak webpack's module resolution through the `resolve.modules` field. E
 
 Sometimes it may be beneficial to use these techniques together. Compared to npm environment, webpack provides more flexibility, although you can mimic a lot of webpack's functionality using terminal based tricks.
 
+W> Installing packages globally can lead to surprising behavior. If you have a package installed both globally and it a project happens to contain it, executing associated terminal command (say `webpack`) will point to the version of the project. This won't work unless the global package exists.
+
 ## Version Ranges
 
 npm supports multiple version ranges. I've listed the common ones below:
