@@ -70,7 +70,7 @@ Using version ranges can feel a little dangerous as it doesn't take much to brea
 
 An important part of maintaining a project is keeping their dependencies up to date. How to do this depends a lot on the maturity of your project. Ideally, you have a nice set of tests covering the functionality. If not, things can get a little hairier. There are a few ways to approach dependency updates:
 
-* You can update all dependencies at once and hope for the best. Tools, such as [npm-check-updates](https://www.npmjs.com/package/npm-check-updates), [npm-check](https://www.npmjs.com/package/npm-check), or [npm-upgrade](https://www.npmjs.com/package/npm-upgrade), can do this for you.
+* You can update all dependencies at once and hope for the best. Tools, such as [npm-check-updates](https://www.npmjs.com/package/npm-check-updates), [npm-check](https://www.npmjs.com/package/npm-check), [npm-upgrade](https://www.npmjs.com/package/npm-upgrade), or [updtr](https://www.npmjs.com/package/updtr), can do this for you.
 * Install the newest version of some specific dependency, e.g., `npm i lodash@* --save`. This is a more controlled way to approach the problem.
 * Patch version information by hand by modifying *package.json* directly.
 
