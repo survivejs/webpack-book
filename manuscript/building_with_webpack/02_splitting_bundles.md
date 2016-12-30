@@ -221,13 +221,9 @@ new webpack.optimize.CommonsChunkPlugin({
   minChunks: function(module, count) {
     const userRequest = module.userRequest;
 
-    if (typeof userRequest !== 'string') {
-      return false;
-    }
-
     // You can perform other similar checks here too.
     // Now we check just node_modules.
-    return userRequest.indexOf('node_modules') >= 0;
+    return userRequest && userRequest.indexOf('node_modules') >= 0;
   }
 }),
 ```
