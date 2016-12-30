@@ -216,7 +216,7 @@ Instead of having `['react']`, we could have `Object.keys(require('./package.jso
 A better way to handle this is to use `CommonsChunkPlugin` and its `minChunks` parameter. In addition to a number and certain other values, it accepts a function. This makes it possible to deduce which modules are external without having to perform a lookup against *package.json*. To adapt Rafael De Leon's solution from [Stack Overflow](http://stackoverflow.com/a/38733864/228885), you could end up with code like this:
 
 ```javascript
-new CommonsChunkPlugin({
+new webpack.optimize.CommonsChunkPlugin({
   name: 'vendor',
   minChunks: function(module, count) {
     const userRequest = module.userRequest;
