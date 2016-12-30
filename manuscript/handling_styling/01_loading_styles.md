@@ -305,6 +305,8 @@ module.exports = {
 
 See [the usage documentation](http://cssnext.io/usage/) for available options.
 
+T> Note that cssnext includes autoprefixer! You don't have to configure autoprefixing separately for it to work in this case.
+
 ## Conclusion
 
 Loading style files through webpack is fairly straight-forward. It supports even advanced specifications like [CSS Modules](https://github.com/css-modules/webpack-demo). The approaches covered here inline the styling by default. Although that's enough for development purposes, it's not ideal for production usage. We'll cover how to handle this problem in the next chapter.
