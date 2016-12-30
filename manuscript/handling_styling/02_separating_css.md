@@ -49,14 +49,16 @@ exports.extractCSS = function(paths) {
     },
     plugins: [
       // Output extracted CSS to a file
-      new ExtractTextPlugin('[name].[contenthash].css')
+      new ExtractTextPlugin('[name].css')
     ]
   };
 };
 leanpub-end-insert
 ```
 
-That `[contenthash]` placeholder in the configuration is something specific to *extract-text-plugin*. The hash is literally calculated based on content and gives us a good way to invalidate the CSS on the client.
+That `[name]` placeholder will use name derived based on the entry where the CSS is referred to. Placeholders are discussed in greater detail in the *Adding Hashes to Filenames* chapter.
+
+If you wanted to output the resulting file to a specific directory, you could do it like this: `new ExtractTextPlugin('styles/[name].css')`.
 
 W> If you want to pass more loaders to the `ExtractTextPlugin`, you should use `!` syntax. Example: `ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader!postcss-loader' })`. It also supports `loader: { loader: 'css-loader', query: { ... } }` (note `query` over `options`!) formats, but not the webpack 2 standard format (`use` etc.).
 

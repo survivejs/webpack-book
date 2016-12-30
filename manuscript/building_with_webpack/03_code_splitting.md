@@ -42,7 +42,7 @@ require.ensure(
 
 As you can see, `require.ensure` definition is more powerful. The gotcha is that it doesn't support error handling. Often you can achieve what you want through a dynamic `import`, but it's good to know this form exists as well.
 
-T> The formats respect `output.publicPath` option. You can also use `output.chunkFilename` to shape where they output. Example: `chunkFilename: 'scripts/[chunkhash].js'`.
+T> The formats respect `output.publicPath` option. You can also use `output.chunkFilename` to shape where they output. Example: `chunkFilename: 'scripts/[name].js'`.
 
 ### Tweaking ESLint
 
@@ -162,7 +162,7 @@ const common = merge(
     output: {
       path: PATHS.build,
 leanpub-start-insert
-      chunkFilename: 'scripts/[chunkhash].js',
+      chunkFilename: 'scripts/[name].js',
 leanpub-end-insert
       filename: '[name].js'
     },
