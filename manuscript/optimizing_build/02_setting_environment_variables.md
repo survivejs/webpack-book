@@ -1,10 +1,14 @@
 # Setting Environment Variables
 
-React relies on `process.env.NODE_ENV` based optimizations. If we force it to `production`, React will get built in an optimized manner. This will disable some checks (e.g., property type checks). Most importantly it will give you a smaller build and improved performance.
+Sometimes a part of your code should execute only during development. Or you might have experimental features in your build that are not ready for production yet. This code should not end up in the production build.
+
+As JavaScript minifiers can remove dead code (`if (false)`), we can build on top of this idea and write code that gets transformed into this form. Webpack's `DefinePlugin` enables replacing **free variables** so that we can convert `if (process.env.NODE_ENV === 'development')` kind of code to `if (true)` or `if (false)` depending on the environment.
+
+Many packages rely on this behavior. React is perhaps the most known example of an early adopter of the technique. Using `DefinePlugin` can bring down the size of your React production build somewhat as a result and you may see a similar effect with other packages as well.
 
 ## The Basic Idea of `DefinePlugin`
 
-Webpack provides `DefinePlugin` that is able to rewrite matching **free variables**. To understand the idea better, consider the example below:
+To understand the idea of `DefinePlugin` better, consider the example below:
 
 ```javascript
 var foo;
@@ -36,7 +40,7 @@ if ('foobar' === 'bar') {
 }
 ```
 
-Further analysis shows that `'bar' === 'bar'` equals `true` so UglifyJS gives us:
+Further analysis shows that `'bar' === 'bar'` equals `true` so a minifier gives us:
 
 ```javascript
 var foo;
@@ -52,7 +56,7 @@ if (false) {
 }
 ```
 
-And based on this UglifyJS can eliminate the `if` statement:
+And based on this a minifier can eliminate the `if` statement as it has become dead code:
 
 ```javascript
 var foo;
@@ -65,13 +69,13 @@ if (foo === 'bar') {
 // if (false) means the block can be dropped entirely!
 ```
 
-This is the core idea of `DefinePlugin`. We can toggle parts of code using it using this kind of mechanism. UglifyJS is able to perform the analysis for us and enable/disable entire portions of it as we prefer.
+This is the core idea of `DefinePlugin`. We can toggle parts of code using it using this kind of mechanism. A good minifier is able to perform the analysis for us and enable/disable entire portions of it as we prefer.
 
 ## Setting `process.env.NODE_ENV`
 
-To show you the idea in practice, we could have a declaration like `if (process.env.NODE_ENV === 'development')` within our code. Using `DefinePlugin` we could replace `process.env.NODE_ENV` with `'production'` to make our statement evaluate as false just like above and eliminate the related code as a result.
+Given we are using React in our project and it happens to use the technique, we can try to enable `DefinePlugin` and see what it does to our production build.
 
-As before, we can encapsulate this idea to a function:
+As before, encapsulate this idea to a function. It is important to note that given the way webpack replaces the free variable, we have to push it through `JSON.stringify`. In essence we'll end up with a string like `'\"demo\"' and then webpack will insert that into the slots it finds.
 
 **webpack.parts.js**
 
@@ -88,7 +92,7 @@ exports.setFreeVariable = function(key, value) {
       new webpack.DefinePlugin(env)
     ]
   };
-}
+};
 leanpub-end-insert
 ```
 
@@ -104,7 +108,10 @@ module.exports = function(env) {
     return merge(
       common,
       {
-        devtool: 'source-map'
+        output: {
+          // Tweak this to match your GitHub project name
+          publicPath: '/webpack-demo/'
+        }
       },
 leanpub-start-insert
       parts.setFreeVariable(
@@ -112,8 +119,7 @@ leanpub-start-insert
         'production'
       ),
 leanpub-end-insert
-      parts.minify(),
-      parts.setupCSS(PATHS.app)
+      ...
     );
   }
 
@@ -124,26 +130,27 @@ leanpub-end-insert
 Execute `npm run build` again, and you should see improved results:
 
 ```bash
-Hash: 796b5780b9701387d6cb
-Version: webpack 2.2.0-rc.1
-Time: 1211ms
-     Asset       Size  Chunks           Chunk Names
-    app.js    24.1 kB  0[emitted]  app
-index.html  180 bytes  [emitted]
-  [14] ./app/component.js 136 bytes {0} [built]
-  [16] ./app/main.css 904 bytes {0} [built]
-  [17] ./~/css-loader!./app/main.css 190 bytes {0} [built]
-  [32] ./app/index.js 124 bytes {0} [built]
-    + 29 hidden modules
-Child html-webpack-plugin for "index.html":
-        + 4 hidden modules
+Version: webpack 2.2.0-rc.2
+Time: 2368ms
+                                       Asset       Size  Chunks             Chunk Names
+             scripts/369fbad1e4924eb06bbb.js  130 bytes       0  [emitted]
+                                      app.js  525 bytes       1  [emitted]  app
+                                   vendor.js    21.1 kB       2  [emitted]  vendor
+    app.788492b4b5beed29cef12fe793f316a0.css    2.22 kB       1  [emitted]  app
+app.788492b4b5beed29cef12fe793f316a0.css.map  117 bytes       1  [emitted]  app
+                                  index.html  349 bytes          [emitted]
+   [5] ./~/react/react.js 56 bytes {2} [built]
+  [15] ./app/component.js 359 bytes {1} [built]
+  [16] ./app/main.css 41 bytes {1} [built]
 ```
 
-So we went from 148 kB to 45 kB, and finally, to 24.1 kB. The final build is a little faster than the previous one. As that 24.1 kB can be served gzipped, it is quite reasonable. gzipping will drop around another 40% and it is well supported by browsers.
+So we went from 167 kB to 41 kB, and finally, to 21.1 kB. The final build is a little faster than the previous one as well.
+
+Given this 21.1 kB can be served gzipped, it is somewhat reasonable. gzipping will drop around another 40% and it is well supported by browsers.
+
+It is good to remember that we didn't include *react-dom* in this case and that would add around 100 kB to the final result. To get back to these figures we would have to use a lighter alternative such as Preact or react-lite as discussed in the *Configuring React* chapter.
 
 T> [babel-plugin-transform-inline-environment-variables](https://www.npmjs.com/package/babel-plugin-transform-inline-environment-variables) Babel plugin can be used to achieve the same effect. See [the official documentation](https://babeljs.io/docs/plugins/transform-inline-environment-variables/) for details.
-
-T> Note that we are missing [react-dom](https://www.npmjs.com/package/react-dom) from our build. In practice our React application would be significantly larger unless we are using a lighter version such as [preact](https://www.npmjs.com/package/preact) or [react-lite](https://www.npmjs.com/package/react-lite). These libraries might be missing some features, but they are worth knowing about if you use React.
 
 T> `webpack.EnvironmentPlugin(['NODE_ENV'])` is a shortcut that allows you to refer to environment variables. It uses `DefinePlugin` internally and can be useful by itself in more limited cases. You can achieve the same effect by passing `process.env.NODE_ENV` to the custom function we made.
 
@@ -153,4 +160,4 @@ Even though you can let your server to gzip the files using a suitable middlewar
 
 ## Conclusion
 
-Even though simply setting `process.env.NODE_ENV` the right way can help a lot especially with React related code, we can do better. We can split `app` and `vendor` bundles and add hashes to their filenames to benefit from browser caching. After all, the data that you don't need to fetch loads the fastest.
+Even though simply setting `process.env.NODE_ENV` the right way can help a lot especially with React related code, we can do better. Currently our build doesn't benefit on client level caching. To achieve this, the build requires placeholders in which webpack can insert hashes that invalidate the files as we update the application.
