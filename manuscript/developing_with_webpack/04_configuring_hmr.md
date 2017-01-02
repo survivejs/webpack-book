@@ -1,6 +1,6 @@
 # Configuring Hot Module Replacement
 
-Hot Module Replacement (HMR) builds on top the WDS. It enables an interface that makes it possible to swap modules live. For example, *style-loader* is able to update your CSS without forcing a refresh. It is easy to perform HMR with CSS as it doesn't contain any application state.
+**Hot Module Replacement** (HMR) builds on top the WDS. It enables an interface that makes it possible to swap modules live. For example, *style-loader* is able to update your CSS without forcing a refresh. It is easy to perform HMR with CSS as it doesn't contain any application state.
 
 HMR is possible with JavaScript too, but due to the state we have in our applications, it's harder. In the *Configuring React* chapter we discuss how to set it up with React. You can use the same idea elsewhere.
 
@@ -114,9 +114,9 @@ T> You should be able to access the application alternatively through **localhos
 
 ## Implementing the HMR Interface
 
-It is possible to implement the HMR interface through a global known as `module.hot` exposed by webpack. It provides updates through a function known as `module.hot.accept`. It's first parameter will accept a path to watch for updates while the latter will accept a function where to deal with the hot update. That's where we can reload the module and patch out application.
+It is possible to implement the HMR interface through a global known as `module.hot` exposed by webpack. It provides updates through a function known as `module.hot.accept(<path to watch>, <handler>)`. It is that handler portion that is interesting as we need to patch the application there. In this case it is enough to replace the old DOM node with a newer one as we receive updates.
 
-In this case it is enough to replace the old DOM node with a newer one as we receive updates. The following implementation illustrates the idea:
+The following implementation illustrates the idea:
 
 **app/index.js**
 
