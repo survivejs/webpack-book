@@ -2,29 +2,30 @@ Frontmatter.txt
 
 01_introduction.md
 02_webpack_compared.md
+03_why_webpack.md
 
 Mainmatter.txt
 
-03_Developing_with_Webpack.md
+04_Developing_with_Webpack.md
 developing_with_webpack/01_getting_started.md
 developing_with_webpack/02_splitting_configuration.md
 developing_with_webpack/03_automatic_browser_refresh.md
 developing_with_webpack/04_configuring_hmr.md
 developing_with_webpack/05_linting.md
 
-04_Handling_Styling.md
+05_Handling_Styling.md
 handling_styling/01_loading_styles.md
 handling_styling/02_separating_css.md
 handling_styling/03_eliminating_unused_css.md
 handling_styling/04_linting.md
 
-05_Understanding_Loaders.md
+06_Understanding_Loaders.md
 understanding_loaders/01_loader_definitions.md
 understanding_loaders/02_loading_images.md
 understanding_loaders/03_loading_fonts.md
 understanding_loaders/04_writing_loaders.md
 
-06_Building_with_Webpack.md
+07_Building_with_Webpack.md
 building_with_webpack/01_enabling_sourcemaps.md
 building_with_webpack/02_splitting_bundles.md
 building_with_webpack/03_code_splitting.md
@@ -32,20 +33,20 @@ building_with_webpack/04_processing_with_babel.md
 building_with_webpack/05_cleaning_build.md
 building_with_webpack/06_hosting_on_github_pages.md
 
-07_Optimizing_Build.md
+08_Optimizing_Build.md
 optimizing_build/01_minifying_build.md
 optimizing_build/02_setting_environment_variables.md
 optimizing_build/03_adding_hashes_to_filenames.md
 optimizing_build/04_analyzing_build_statistics.md
 
-08_Advanced_Techniques.md
+09_Advanced_Techniques.md
 advanced_techniques/01_consuming_packages.md
 advanced_techniques/02_authoring_packages.md
 advanced_techniques/03_configuring_react.md
 
 Backmatter.txt
 
-09_Appendices.md
+10_Appendices.md
 appendices/01_searching_with_react.md
 appendices/02_configuring_hmr_with_react.md
 appendices/03_writing_eslint_plugins.md
