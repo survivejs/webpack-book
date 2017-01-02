@@ -33,7 +33,7 @@ I settled with [Mocha](https://mochajs.org/) and Node.js [assert](https://nodejs
 
 ### Test Setup
 
-The test setup itself is minimal. Here's the relevant *package.json* portion:
+Here's the relevant *package.json* portion:
 
 **package.json**
 
@@ -56,7 +56,6 @@ Given this is so small project, I ended up writing all my tests into a single fi
 
 ```javascript
 const assert = require('assert');
-const assign = require('object-assign');
 const loader = require('./');
 
 // Mock loader context (`this`) so that we have an environment
@@ -87,9 +86,12 @@ describe('highlight-loader', function () {
     const code = 'a = 4';
     // Pass custom query to the loader. In order to do this
     // we need to tweak the context (`this`).
-    const given = loader.call(assign({}, webpackContext, {
-      query: '?raw=true&lang=python'
-    }), code);
+    const given = loader.call(
+      Object.assign({}, webpackContext, {
+        query: '?raw=true&lang=python'
+      }),
+      code
+    );
     const expected = 'module.exports = ' +
       '"a = <span class=\\"hljs-number\\">4</span>"';
 
@@ -108,11 +110,13 @@ It could be interesting to run the tests through webpack itself to avoid mocking
 
 The problem is that this would add a significant overhead to the tests and bring problems of its own as you would have to figure out more effective ways to execute them.
 
+T> Webpack loaders can be run standalone through [loader-runner](https://www.npmjs.com/package/loader-runner). Using *loader-runner* would be one way to avoid mocking.
+
 ## Implementing a Loader
 
-The loader implementation itself isn't entirely trivial due to the amount of functionality within it. I use [cheerio](https://www.npmjs.org/package/cheerio) to apply *highlight.js* on the code portions of the passed HTML. Cheerio provides an API resembling jQuery making it ideal for small tasks, such as this.
+The loader implementation itself isn't entirely trivial due to the amount of functionality within it. I ended up using [cheerio](https://www.npmjs.org/package/cheerio) to apply *highlight.js* on the code portions of the passed HTML. Cheerio provides an API resembling jQuery making it ideal for small tasks, such as this.
 
-To keep this discussion simple, I'll give you a subset of the implementation next to show you the key parts:
+To keep this discussion simple, I'll give you a subset of the implementation to show you the key parts:
 
 ```javascript
 'use strict';
@@ -122,11 +126,7 @@ const loaderUtils = require('loader-utils');
 const highlightAuto = hl.highlightAuto;
 const highlight = hl.highlight;
 
-module.exports = function(input) {
-  // Failsafe against `undefined` as highlight.js
-  // seems to fail with that.
-  input = input || '';
-
+module.exports = function(input = '') {
   // Mark the loader as cacheable (same result for same input).
   this.cacheable();
 
