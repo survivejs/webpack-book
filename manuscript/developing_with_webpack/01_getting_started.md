@@ -145,13 +145,13 @@ T> I like to use `path.join`, but `path.resolve` would be a good alternative. Se
 If you execute `node_modules/.bin/webpack`, you should see output:
 
 ```bash
-Hash: 54c437ee9dcc8fee36de
-Version: webpack 2.2.0-rc.2
-Time: 386ms
+Hash: dabda4c88d9b4a4dee76
+Version: webpack 2.2.0-rc.3
+Time: 390ms
      Asset       Size  Chunks             Chunk Names
     app.js    3.06 kB       0  [emitted]  app
 index.html  180 bytes          [emitted]
-   [0] ./app/component.js 133 bytes {0} [built]
+   [0] ./app/component.js 135 bytes {0} [built]
    [1] ./app/index.js 77 bytes {0} [built]
 Child html-webpack-plugin for "index.html":
        [0] ./~/lodash/lodash.js 540 kB {0} [built]
@@ -163,11 +163,11 @@ Child html-webpack-plugin for "index.html":
 The output tells us a lot. I've annotated it below:
 
 * `Hash: 54c437ee9dcc8fee36de` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. We'll discuss hashing in detail at the *Adding Hashes to Filenames* chapter.
-* `Version: webpack 2.2.0-rc.2` - Webpack version.
-* `Time: 386ms` - Time it took to execute the build.
+* `Version: webpack 2.2.0-rc.3` - Webpack version.
+* `Time: 390ms` - Time it took to execute the build.
 * `app.js     3.06 kB  0[emitted]  app` - Name of the generated asset, size, the ids of the **chunks** into which it is related, status information telling how it was generated, name of the chunk.
 * `index.html  180 bytes  [emitted]` - Another generated asset that was emitted by the process.
-* `[0] ./app/component.js 133 bytes {0} [built]` - The id of the generated asset, name, size, entry chunk id, the way it was generated.
+* `[0] ./app/component.js 135 bytes {0} [built]` - The id of the generated asset, name, size, entry chunk id, the way it was generated.
 * `Child html-webpack-plugin for "index.html":` - This is plugin related output. In this case *html-webpack-plugin* is doing output of its own.
 
 Examine the output below `build/`. If you look closely, you can see the same ids within the source. To see the application running, open the `build/index.html` file directly through a browser. On macOS `open ./build/index.html` works.
