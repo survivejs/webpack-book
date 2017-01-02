@@ -4,13 +4,13 @@ Hot Module Replacement (HMR) builds on top the WDS. It enables an interface that
 
 HMR is possible with JavaScript too, but due to the state we have in our applications, it's harder. In the *Configuring React* chapter we discuss how to set it up with React. You can use the same idea elsewhere.
 
-We could use `webpack-dev-server --inline --hot` to achieve this from the CLI. `--hot` enables the HMR portion from webpack through a specific plugin designed for this purpose and writes an entry pointing to a JavaScript file related to it.
+We could use `webpack-dev-server --hot` to achieve this from the CLI. `--hot` enables the HMR portion from webpack through a specific plugin designed for this purpose and writes an entry pointing to a JavaScript file related to it.
 
 ## Defining Configuration for HMR
 
 To keep our configuration manageable, I'll split functionalities like HMR into *parts* of their own. This keeps our *webpack.config.js* simple and promotes reuse. We could push a collection like this to a npm package of its own. We could even turn them into presets to use across projects. Functional composition allows that.
 
-I'll push all of our configuration parts to *webpack.parts.js* and consume them from there. Here's what a part would look like for HMR:
+Here's what a part implementing HMR looks like:
 
 **webpack.parts.js**
 
@@ -28,7 +28,10 @@ exports.devServer = function(options) {
       // Unlike the cli flag, this doesn't set
       // HotModuleReplacementPlugin!
       hot: true,
-      inline: true,
+
+      // Don't refresh if hot loading fails. If you want
+      // refresh behavior, set inline: true instead.
+      hotOnly: true,
 
       // Display only errors to reduce the amount of output.
       stats: 'errors-only',
@@ -194,6 +197,28 @@ Given this setup polls the file system, it is going to be more resource intensiv
 
 T> There are more details in *webpack-dev-server* issue [#155](https://github.com/webpack/webpack-dev-server/issues/155).
 
+## Setting WDS Entry Points Manually
+
+In the setup above, the WDS related entries were injected automatically. Assuming you are using WDS through Node.js, you would have to set them yourself as the Node.js API doesn't support injecting. The example below illustrates how you might achieve this:
+
+```javascript
+entry: {
+  hmr: [
+    // Include the client code.
+    // Note how the host/port setting maps here.
+    'webpack-dev-server/client?http://localhost:8080',
+
+    // Hot reload only when compiled successfully
+    'webpack/hot/only-dev-server'
+
+    // Alternative with refresh on failure
+    // 'webpack/hot/dev-server'
+  ],
+  // Rest of the entries
+  ...
+}
+```
+
 ## Conclusion
 
-HMR is one of those aspects of webpack that makes it interesting for developers. Even though other tools have similar functionality, webpack has taken its implementation quite far.
+HMR is one of those aspects of webpack that makes it interesting for developers. Even though other tools have similar functionality, webpack has taken its implementation quite far. To get most out of it, you will have to implement the HMR interface or use solutions that implement it.

@@ -26,24 +26,7 @@ To get started with WDS, execute:
 npm i webpack-dev-server@2.2.0-rc.0 --save-dev
 ```
 
-As before, this command will generate a command below the `npm bin` directory. You could try running *webpack-dev-server* from there. The quickest way to enable automatic browser refresh for our project is to run `webpack-dev-server --inline`. After that you have a development server running at `localhost:8080`.
-
-`--inline`, runs the server in so called *inline* mode that writes the WDS client to the resulting code in addition to yours. The code it writes contains the client it needs to communicate with the server component.
-
-An alternative way to achieve the same result would be to write the entries containing the same code by hand, but often that's more complicated way to deal with it as then you need to worry about ports. Without the *inline* mode, you would need to set entries like this:
-
-```javascript
-entry: [
-  // Include the client code (note the host/port setting!)
-  'webpack-dev-server/client?http://localhost:8080',
-
-  // Hot reload only when compiled successfully
-  'webpack/hot/only-dev-server',
-
-  // Add your entries now
-  ...
-],
-```
+As before, this command will generate a command below the `npm bin` directory. You could try running *webpack-dev-server* from there. The quickest way to enable automatic browser refresh for our project is to run `webpack-dev-server`. After that you have a development server running at `localhost:8080`.
 
 ## Attaching *webpack-dev-server* to the Project
 
@@ -61,8 +44,6 @@ leanpub-end-insert
 },
 ...
 ```
-
-We'll add that `--inline` part back through webpack configuration in a bit. I prefer to keep the npm *scripts* portion as simple as possible and push the complexity to configuration. Even though it's more code to write, it's also easier to maintain as you can see what's going on easier.
 
 If you execute either *npm run start* or *npm start* now, you should see something like this at the terminal:
 
