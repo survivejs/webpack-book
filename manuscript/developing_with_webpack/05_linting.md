@@ -1,28 +1,26 @@
 # Linting JavaScript
 
-Nothing is easier than making mistakes when coding in JavaScript. Linting is one of those techniques that can help you to make less mistakes. You can spot issues before they become actual problems.
+Linting is one of those techniques that can help you to make less mistakes while coding JavaScript. You can spot issues before they become actual problems. Modern editors and IDEs offer strong support for popular tools allowing you to spot possible issues as you are developing.
 
-Better yet, modern editors and IDEs offer strong support for popular tools. This means you can spot possible issues as you are developing. Despite this, it is a good idea to set them up with Webpack. That allows you to cancel a production build that might not be up to your standards for example.
+Despite this, it is a good idea to set them up with webpack or at least in a separate task that gets run regularly. That allows you to cancel a production build that might not be up to your standards while enforcing teamwide standards.
 
 ## Brief History of Linting in JavaScript
 
-The linter that started it all for JavaScript is Douglas Crockford's [JSLint](http://www.jslint.com/). It is opinionated like the man himself. The next step in evolution was [JSHint](http://jshint.com/). It took the opinionated edge out of JSLint and allowed for more customization. [ESLint](http://eslint.org/) is the newest tool in vogue.
+The linter that started it all for JavaScript is Douglas Crockford's [JSLint](http://www.jslint.com/). JSLint is known to be opinionated like the man himself. The next step in evolution was [JSHint](http://jshint.com/) that took the opinionated edge out of JSLint and allowed for more customization. [ESLint](http://eslint.org/) is the newest tool in vogue and goes even further.
 
 ### ESLint is Customizable
 
-ESLint goes to the next level as it allows you to implement custom rules, parsers, and reporters. ESLint works with Babel and JSX syntax making it ideal for React projects. It doesn't support JSX by default, though, so a Babel specific parser will need to be used.
+ESLint goes to the next level as it allows you to implement custom rules, parsers, and reporters. ESLint works with Babel and JSX syntax making it ideal for React projects. It doesn't support JSX by default, though, so a Babel specific parser will need to be used. This is also true with custom language features although ESLint supports ES6 out of the box.
 
 ESLint rules have been documented well and you have full control over their severity. These features alone make it a powerful tool. Better yet, there is a large amount of rules and presets beyond the core as the community has built on top of it.
+
+T> It is quite telling that a competing project, JSCS, [decided to merge its efforts with ESLint](http://eslint.org/blog/2016/04/welcoming-jscs-to-eslint). JSCS reached end of life with its 3.0.0 release and the core team joined with ESLint.
 
 ### eslint-config-airbnb
 
 [eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb) is a good example of a popular preset. Often it is enough to find a preset you like, tweak it a little bit to your liking with some local rules, or by deriving a preset of your own based on it, and then using that. This way you don't have to worry so much about all the available functionality.
 
-### JSCS Joined the ESLint Project
-
-It is quite telling that a competing project, JSCS, [decided to merge its efforts with ESLint](http://eslint.org/blog/2016/04/welcoming-jscs-to-eslint). JSCS reached end of life with its 3.0.0 release and the core team joined with ESLint.
-
-### Linting is About More than Just Catching Issues
+## Linting is About More than Just Catching Issues
 
 Besides linting for issues, it can be useful to manage the code style on some level. Nothing is more annoying than having to work with source code that has mixed tabs and spaces. Stylistically consistent code reads better and is easier to work with. Linting tools allow you to do this.
 
@@ -117,7 +115,7 @@ module.exports = {
 };
 ```
 
-In addition we need to tell ESLint to skip linting *node_modules* and *build* directories by setting up ignore patterns:
+In addition, we need to tell ESLint to skip linting *node_modules* and *build* directories by setting up ignore patterns:
 
 **.eslintignore**
 
@@ -139,18 +137,6 @@ If you invoke `npm run test:lint` now, you should see a single warning:
 If you see more, fix them. We'll fix this one when we add more configuration in place.
 
 Beyond vanilla JSON, ESLint supports other formats, such as JavaScript or YAML. If you want to use a different format, name the file accordingly. I.e., *.eslintrc.yaml* would expect YAML. See the [documentation](http://eslint.org/docs/user-guide/configuring#configuration-file-formats) for further details.
-
-T> ESLint supports ES6 features through configuration. You will have to specify the features to use through the [ecmaFeatures](http://eslint.org/docs/user-guide/configuring.html#specifying-language-options) property.
-
-T> There are useful plugins, such as [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react), [eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise) , and [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import), that you might want to consider integrating to your project.
-
-### Generating a Starting Point
-
-Sometimes you might want to rely on some existing preset or set up custom configuration. That's where `--init` can come in handy. You can run it from `npm bin` and you'll end up with a call like `node_modules/.bin/eslint --init`
-
-T> ESLint supports custom formatters through `--format` parameter. [eslint-friendly-formatter](https://www.npmjs.com/package/eslint-friendly-formatter) is an example of a formatter that provides terminal friendly output. This way you can jump conveniently straight to the warnings and errors from there.
-
-T> You can get more performance out of ESLint by running it through a daemon, such as [eslint_d](https://www.npmjs.com/package/eslint_d). Using it brings down the overhead and it can bring down linting times considerably.
 
 ### Connecting ESLint with Webpack
 
@@ -215,15 +201,24 @@ leanpub-end-insert
 
 If you execute `npm start` now and break some linting rule while developing, you should see that in the terminal output. The same should happen when you build the project.
 
-T> Especially on bigger projects it may be beneficial to run ESLint outside of webpack. That keeps code compilation fast while still giving the advantage of linting. Solutions like [lint-staged](https://www.npmjs.com/package/lint-staged) and [fastlint](https://www.npmjs.com/package/fastlint) can make this even faster.
+W> Note that the webpack configuration lints only the application code. If you want to lint webpack configuration itself, execute `npm run test:lint` separately.
 
-T> Most IDEs and editors have good ESLint integration so you can spot issues as you develop. This applies to other linting tools as well.
+### ESLint Tips
 
-T> To learn how to write an ESLint plugin, check out the *Writing ESLint Plugins* appendix for more information. The *Customizing ESLint* appendix digs deeper into customization options and further resources.
+I've collected assorted ESLint tips below. The great thing about ESLint is that you can shape it to your purposes. The community around it is strong and you can find good integration in other tooling as well.
+
+* Generating a starting point - Sometimes you might want to rely on some existing preset or set up custom configuration. That's where `--init` can come in handy. You can run it from `npm bin` and you'll end up with a call like `node_modules/.bin/eslint --init`
+* Using custom formatting - ESLint supports custom formatters through `--format` parameter. [eslint-friendly-formatter](https://www.npmjs.com/package/eslint-friendly-formatter) is an example of a formatter that provides terminal friendly output. This way you can jump conveniently straight to the warnings and errors from there.
+* Better performance by skipping webpack - Especially on bigger projects it may be beneficial to run ESLint outside of webpack. That keeps code compilation fast while still giving the advantage of linting. Solutions like [lint-staged](https://www.npmjs.com/package/lint-staged) and [fastlint](https://www.npmjs.com/package/fastlint) can make this even faster.
+* Better performance with a daemon - You can get more performance out of ESLint by running it through a daemon, such as [eslint_d](https://www.npmjs.com/package/eslint_d). Using it brings down the overhead and it can bring down linting times considerably.
+* Using ES6 features - ESLint supports ES6 features through configuration. You will have to specify the features to use through the [ecmaFeatures](http://eslint.org/docs/user-guide/configuring.html#specifying-language-options) property.
+* Useful plugins - There are useful plugins, such as [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react), [eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise) , and [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import), that you might want to consider integrating to your project.
+* Integrating with IDEs and editors - Most IDEs and editors have good ESLint integration so you can spot issues as you develop. This applies to other linting tools as well.
+* Writing plugins and customizing further - To learn how to write an ESLint plugin, check out the *Writing ESLint Plugins* appendix for more information. The *Customizing ESLint* appendix digs deeper into customization options and further resources.
 
 ## EditorConfig
 
-[EditorConfig](http://editorconfig.org/) allows you to maintain a consistent coding style across different IDEs and editors. Some even come with built-in support. For others, you have to install a separate plugin. In addition to this you'll need to set up a file like this:
+[EditorConfig](http://editorconfig.org/) allows you to maintain a consistent coding style across different IDEs and editors. Some even come with built-in support. For others, you have to install a separate plugin. In addition, you'll need to set up a file like this:
 
 **.editorconfig**
 
@@ -252,5 +247,3 @@ indent_size = 2
 ## Conclusion
 
 In this chapter, you learned how to lint your code using webpack in various ways. It is one of those techniques that yields benefits over the long term. You can fix possible problems before they become actual issues.
-
-In the next chapter we'll learn how to deal with styling using webpack. We can also resume setting up HMR there and learn to drop unused CSS from our project.
