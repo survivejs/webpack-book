@@ -36,6 +36,29 @@ If you want to manage stats through a plugin, check out [stats-webpack-plugin](h
 
 [webpack-stats-plugin](https://www.npmjs.com/package/webpack-stats-plugin) is another option. It allows you to transform the data before outputting it.
 
+### Node.js API
+
+It is possible to capture stats through Node.js. Note that stats can contain errors so it is a good idea to handle that case separately.
+
+```javascript
+const webpack = require('webpack');
+const config = require('./webpack.config.js')('production');
+
+webpack(config, (err, stats) => {
+  if (err) {
+    return console.error(err);
+  }
+
+  if (stats.hasErrors()) {
+    return console.error(stats.toString('errors-only'));
+  }
+
+  console.log(stats);
+});
+```
+
+This technique can be useful if you want to do further processing on stats although often the other solutions are enough.
+
 ## Available Analysis Tools
 
 Even though having a look at the file itself gives you some idea of what's going on, often it's preferable to use a specific tool for that. I've listed a few alternatives below.
