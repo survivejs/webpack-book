@@ -10,9 +10,9 @@ W> There are known issues with Node.js 7 and webpack. Please use Node.js 4-6 for
 
 Web browsers have been designed to consume HTML, JavaScript, and CSS. The simplest way to develop is simply to write files that the browser understands directly. The problem is that this becomes unwieldy eventually. This is particularly true when you are developing web applications.
 
-The naïve way to load JavaScript is simply to bundle it all into a single file. Eventually this won't be enough as the size of your single bundle grows too big to load. You will need alternative strategies. One common way is to start to splitting it up and then benefit from caching. You can even begin to load dependencies dynamically as you need them. As an application develops, the complexity of handling it grows as well.
+The naïve way to load JavaScript is simply to bundle it all into a single file. Eventually this won't be enough as the size of your single bundle grows too big to load. You will need alternative strategies. One common way is to start to splitting it up and then benefit from caching. You can even begin to load dependencies dynamically as you need them.
 
-Webpack was developed to counter this problem. It handles the aforementioned problems through static analysis. This process gets most of the work done. It is one of the fundamental issues of web development currently and solving the problem well can help you a lot.
+As an application develops, the complexity of handling it grows as well. Webpack was developed to counter this problem. It handles the aforementioned problems through static analysis. This process gets most of the work done. It is one of the fundamental issues of web development currently and solving the problem well can help you a lot.
 
 Webpack isn't the only way to handle this problem possible and a collection of different tools have emerged. Task runners, such as Grunt and Gulp, are good examples of higher level tools. Often the problem is that need to write the workflows by hand. Pushing that problem to a bundler, such as webpack, is a step forward.
 
@@ -48,7 +48,9 @@ I have compiled [a set of slides online](http://presentations.survivejs.com/adva
 
 ## Book Versioning
 
-Given this book receives a fair amount of maintenance and improvements due to the pace of innovation, there's a rough versioning scheme in place. I maintain release notes for each new version at the [book blog](http://survivejs.com/blog/). That should give you a good idea of what has changed between versions. Also examining the GitHub repository may be beneficial. I recommend using the GitHub *compare* tool for this purpose. Example:
+Given this book receives a fair amount of maintenance and improvements due to the pace of innovation, there's a rough versioning scheme in place. I maintain release notes for each new version at the [book blog](http://survivejs.com/blog/). That should give you a good idea of what has changed between versions.
+
+Examining the GitHub repository may be beneficial. I recommend using the GitHub *compare* tool for this purpose. Example:
 
 ```
 https://github.com/survivejs/webpack/compare/v1.3.0...v1.4.2
