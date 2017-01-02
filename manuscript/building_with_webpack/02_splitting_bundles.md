@@ -225,7 +225,7 @@ A better way to handle this is to use `CommonsChunkPlugin` and its `minChunks` p
 ```javascript
 new webpack.optimize.CommonsChunkPlugin({
   name: 'vendor',
-  minChunks: function(module, count) {
+  minChunks: (module, count) => {
     const userRequest = module.userRequest;
 
     // You can perform other similar checks here too.
