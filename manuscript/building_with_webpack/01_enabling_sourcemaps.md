@@ -216,6 +216,8 @@ exports.generateSourcemaps = function(options) {
 };
 ```
 
+Given webpack matches only `.js` and `.css` files by default for sourcemaps, you can use `SourceMapDevToolPlugin` to overcome this issue. This can be achieved by passing a `test` pattern like `/\.(js|jsx|css)($|\?)/i`.
+
 ## Using Dependency Sourcemaps
 
 Assuming you are using a package that uses inline sourcemaps in its distribution, you can use [source-map-loader](https://www.npmjs.com/package/source-map-loader) to make webpack aware of them. Without setting it up against the package, you will get minified debug output. This is a special case, though, and often you can skip this step.
