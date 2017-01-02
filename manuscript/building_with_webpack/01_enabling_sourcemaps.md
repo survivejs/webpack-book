@@ -55,7 +55,7 @@ leanpub-start-insert
       parts.generateSourcemaps('source-map'),
 leanpub-end-insert
       parts.extractCSS(),
-      parts.purifyCSS([PATHS.app])
+      parts.purifyCSS(PATHS.app)
     );
   }
 

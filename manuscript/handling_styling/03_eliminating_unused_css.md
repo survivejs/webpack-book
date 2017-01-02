@@ -89,6 +89,8 @@ leanpub-end-insert
 
 leanpub-start-insert
 exports.purifyCSS = function(paths) {
+  paths = Array.isArray(paths) ? paths : [paths];
+
   return {
     plugins: [
       new PurifyCSSPlugin({
@@ -127,7 +129,7 @@ leanpub-start-delete
 leanpub-end-delete
 leanpub-start-insert
       parts.extractCSS(),
-      parts.purifyCSS([PATHS.app])
+      parts.purifyCSS(PATHS.app)
 leanpub-end-insert
     );
   }

@@ -77,7 +77,7 @@ leanpub-start-insert
 leanpub-end-insert
       parts.generateSourcemaps('source-map'),
       parts.extractCSS(),
-      parts.purifyCSS([PATHS.app])
+      parts.purifyCSS(PATHS.app)
     );
   }
 
@@ -175,7 +175,7 @@ leanpub-start-insert
 leanpub-end-insert
       parts.generateSourcemaps('source-map'),
       parts.extractCSS(),
-      parts.purifyCSS([PATHS.app])
+      parts.purifyCSS(PATHS.app)
     );
   }
 
