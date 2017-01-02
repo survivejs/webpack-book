@@ -119,7 +119,7 @@ W> Webpack doesn't allow referring to entry files within entries. If you inadver
 
 [CommonsChunkPlugin](https://webpack.js.org/guides/code-splitting-libraries/#commonschunkplugin) is a powerful and complex plugin. The use case we are covering here is a basic yet useful one. As before, we can define a function that wraps the basic idea.
 
-The following code combines the `entry` idea above with a basic `CommonsChunkPlugin` setup:
+The following code combines the `entry` idea above with a basic `CommonsChunkPlugin` setup. It has been designed so that it is possible to access advanced features of `CommonsChunkPlugin` while allowing you to define multiple splits through it.
 
 **webpack.parts.js**
 
@@ -127,22 +127,27 @@ The following code combines the `entry` idea above with a basic `CommonsChunkPlu
 ...
 
 leanpub-start-insert
-exports.extractBundle = function(options) {
+exports.extractBundles = function(bundles, options) {
   const entry = {};
+  const names = [];
 
-  // Set up entries if they have been provided.
-  if (options.entries) {
-    entry[options.name] = options.entries;
-  }
+  // Set up entries and names.
+  bundles.forEach(({ name, entries }) => {
+    if (entries) {
+      entry[name] = entries;
+    }
+
+    names.push(name);
+  });
 
   return {
     // Define an entry point needed for splitting.
-    entry: entry,
+    entry,
     plugins: [
-      // Extract bundle.
-      new webpack.optimize.CommonsChunkPlugin({
-        names: [options.name]
-      })
+      // Extract bundles.
+      new webpack.optimize.CommonsChunkPlugin(
+        Object.assign({}, options, { names })
+      )
     ]
   };
 };
@@ -168,10 +173,12 @@ leanpub-start-delete
       },
 leanpub-end-delete
 leanpub-start-insert
-      parts.extractBundle({
-        name: 'vendor',
-        entries: ['react']
-      }),
+      parts.extractBundles([
+        {
+          name: 'vendor',
+          entries: ['react']
+        }
+      ]),
 leanpub-end-insert
       parts.generateSourcemaps('source-map'),
       parts.extractCSS(),
@@ -228,7 +235,7 @@ new webpack.optimize.CommonsChunkPlugin({
 }),
 ```
 
-It would be easy to extend `extractBundle` so that you have more control over `minChunks` behavior. Then you could plug in `isExternal` check for `minChunks` through the part interface. The advantage of this approach is that it will use **only** dependencies you refer to in your application.
+You can pass a custom `minChunks` field to `extractBundles` so that you have more control over the behavior. You can plug in a custom `isExternal` check for example. The advantage of this approach is that it will use **only** dependencies you refer to in your application.
 
 Given `minChunks` receives `count` as its second parameter, you could force it to capture chunks based on usage. This is particularly useful in more complex setups where you have split your code multiple times and want more control over the result.
 

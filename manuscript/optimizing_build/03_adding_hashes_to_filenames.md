@@ -192,7 +192,7 @@ This is actually the root of our problem. If the hashes webpack generates change
 
 ### Extracting a Manifest
 
-We have done most of the work already when we set up `extractBundle`. To extract the manifest, a single change is required:
+We have done most of the work already when we set up `extractBundles`. To extract the manifest, a single change is required:
 
 **webpack.config.js**
 
@@ -203,15 +203,20 @@ module.exports = function(env) {
   if (env === 'production') {
     return merge(
       ...
-      parts.extractBundle({
-        name: 'vendor',
-        entries: ['react']
-      }),
+      parts.extractBundles([
+        {
+          name: 'vendor',
+          entries: ['react']
+leanpub-start-delete
+        }
+leanpub-end-delete
 leanpub-start-insert
-      parts.extractBundle({
-        name: 'manifest'
-      }),
+        },
+        {
+          name: 'manifest'
+        }
 leanpub-end-insert
+      ]),
       parts.clean(PATHS.build),
       parts.generateSourcemaps('source-map'),
       parts.extractCSS(),

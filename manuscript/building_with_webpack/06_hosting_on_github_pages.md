@@ -50,10 +50,12 @@ leanpub-start-insert
         }
       },
 leanpub-end-insert
-      parts.extractBundle({
-        name: 'vendor',
-        entries: ['react']
-      }),
+      parts.extractBundles([
+        {
+          name: 'vendor',
+          entries: ['react']
+        }
+      ]),
       parts.clean(PATHS.build),
       parts.generateSourcemaps('source-map'),
       parts.extractCSS(),

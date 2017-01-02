@@ -85,10 +85,12 @@ module.exports = function(env) {
 leanpub-start-insert
       parts.minify(),
 leanpub-end-insert
-      parts.extractBundle({
-        name: 'vendor',
-        entries: ['react']
-      }),
+      parts.extractBundles([
+        {
+          name: 'vendor',
+          entries: ['react']
+        }
+      ]),
       parts.clean(PATHS.build),
       parts.generateSourcemaps('source-map'),
       parts.extractCSS(),

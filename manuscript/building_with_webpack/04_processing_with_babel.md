@@ -107,10 +107,12 @@ module.exports = function(env) {
 leanpub-start-insert
       parts.loadJavaScript(PATHS.app),
 leanpub-end-insert
-      parts.extractBundle({
-        name: 'vendor',
-        entries: ['react']
-      }),
+      parts.extractBundles([
+        {
+          name: 'vendor',
+          entries: ['react']
+        }
+      ]),
       ...
     );
   }
