@@ -235,9 +235,11 @@ new webpack.optimize.CommonsChunkPlugin({
 }),
 ```
 
-You can pass a custom `minChunks` field to `extractBundles` so that you have more control over the behavior. You can plug in a custom `isExternal` check for example. The advantage of this approach is that it will use **only** dependencies you refer to in your application.
+The `module` parameter of `minChunks` contains a lot of data and you may want to `console.log` it to understand it in greater detail. `userRequest`, if it is set, contains the full path to the module that was imported. This is why the check above works.
 
 Given `minChunks` receives `count` as its second parameter, you could force it to capture chunks based on usage. This is particularly useful in more complex setups where you have split your code multiple times and want more control over the result.
+
+If you want to try out this technique, you can pass a custom `minChunks` check to `extractBundles` like above. The advantage of this approach is that it will use **only** dependencies you refer to in your application and you can eliminate the array.
 
 ## Chunk Types in Webpack
 
