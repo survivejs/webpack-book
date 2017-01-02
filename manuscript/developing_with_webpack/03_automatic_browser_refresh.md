@@ -52,9 +52,9 @@ If you execute either *npm run start* or *npm start* now, you should see somethi
 
 Project is running at http://localhost:8080/
 webpack output is served from /
-Hash: aedee08d0b51fb1c2e96
-Version: webpack 2.2.0-rc.2
-Time: 813ms
+Hash: 5901f1c1c0de0a563d85
+Version: webpack 2.2.0-rc.3
+Time: 731ms
      Asset       Size  Chunks             Chunk Names
     app.js     247 kB       0  [emitted]  app
 index.html  180 bytes          [emitted]
@@ -65,9 +65,9 @@ webpack: bundle is now VALID.
 
 The output means that the development server is running. If you open *http://localhost:8080/* at your browser, you should see something familiar.
 
-If you try modifying the code, you should see output at your terminal. The problem is that the browser doesn't catch these changes without a hard refresh. That's something we need to resolve next through configuration.
-
 ![Hello world](images/hello_01.png)
+
+If you try modifying the code, you should see output at your terminal. The problem is that the browser doesn't catch these changes without a hard refresh. That's something we need to resolve next through configuration.
 
 T> WDS will try to run in another port in case the default one is being used. So keep an eye on the terminal output to figure out where it ends up running. You can debug the situation with a command like `netstat -na | grep 8080`. If there's something running in the port 8080, it should display a message. The exact command may depend on the platform.
 
@@ -115,7 +115,9 @@ leanpub-end-insert
 };
 ```
 
-If you make your code crash somehow and examine the resulting code, you should see familiar paths in the output. Even though a small change, enabling this behavior is useful for development. We will perform a similar trick for production usage later on in this book in the *Adding Hashes to Filenames* chapter.
+If you make your code crash somehow and examine the resulting code, you should see familiar paths in the output. Even though a small change, enabling this behavior is useful for development.
+
+We will perform a similar trick for production usage later on in this book in the *Adding Hashes to Filenames* chapter.
 
 ## Accessing the Development Server from Network
 
