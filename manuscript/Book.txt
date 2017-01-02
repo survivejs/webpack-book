@@ -13,11 +13,11 @@ developing_with_webpack/03_automatic_browser_refresh.md
 developing_with_webpack/04_configuring_hmr.md
 developing_with_webpack/05_linting.md
 
-05_Handling_Styling.md
-handling_styling/01_loading_styles.md
-handling_styling/02_separating_css.md
-handling_styling/03_eliminating_unused_css.md
-handling_styling/04_linting.md
+05_Handling_Styles.md
+handling_styles/01_loading.md
+handling_styles/02_separating_css.md
+handling_styles/03_eliminating_unused_css.md
+handling_styles/04_linting.md
 
 06_Understanding_Loaders.md
 understanding_loaders/01_loader_definitions.md
