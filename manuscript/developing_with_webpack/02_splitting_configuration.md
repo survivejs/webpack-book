@@ -1,6 +1,10 @@
 # Splitting the Configuration
 
-At minimum, your webpack configuration can be contained in a single file. As the needs of your project grow, you'll need to figure out means to manage it. It becomes necessary to split it up per environment so that you have enough control over the build result. There is no single right way to achieve this, but at least the following ways are feasible:
+At minimum, your webpack configuration can be contained in a single file. As the needs of your project grow, you'll need to figure out means to manage it. It becomes necessary to split it up per environment so that you have enough control over the build result. There are a few ways to achieve this.
+
+## Possible Ways to Manage Configuration
+
+You can manage webpack configuration at least in the following ways:
 
 * Maintain configuration in multiple files and point webpack to each through the `--config` parameter. Share configuration through module imports. You can see this approach in action at [webpack/react-starter](https://github.com/webpack/react-starter).
 * Push configuration to a library which you then consume. Example: [HenrikJoreteg/hjs-webpack](https://github.com/HenrikJoreteg/hjs-webpack).
@@ -12,13 +16,11 @@ Compared to `Object.assign` or a `merge` function you might know from Lodash, *w
 
 ## Setting Up *webpack-merge*
 
-To get started, execute
+To get started, add *webpack-merge* to the project:
 
 ```bash
 npm i webpack-merge --save-dev
 ```
-
-to add *webpack-merge* to the project.
 
 Next, we need to define some split points to our configuration so we can customize it per npm script. Here's the basic idea in its entirety:
 
