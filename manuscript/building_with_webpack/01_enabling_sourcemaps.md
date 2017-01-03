@@ -4,21 +4,21 @@
 
 To improve the debuggability of the application, we can set up sourcemaps for both code and styling. Sourcemaps allow you to see exactly where an error was raised. This makes them particularly valuable during development.
 
-One approach is to simply skip sourcemaps during development and rely on browser support of language features. This works particularly if you use ES6 without any extensions and develop using a modern browser. This improves performance a notch and avoids various problems related to sourcemaps.
+One approach is to simply skip sourcemaps during development and rely on browser support of language features. This works particularly if you use ES6 without any extensions and develop using a modern browser. The great advantage of doing this is that you avoid all the problems related to sourcemaps while gaining better performance.
 
 ## Inline Sourcemaps and Separate Sourcemaps
 
 Webpack can generate both inline sourcemaps included within bundles or separate sourcemap files. The former are useful during development due to better performance while the latter are handy for production usage as it will keep the bundle size small. In this case loading sourcemaps becomes optional.
 
-You may **not** want to generate a sourcemap for your production bundle as this makes it easy to inspect your application (depends on whether you want this or not, good for staging!). Simply skip the `devtool` field then. This also speeds up your build a notch as generating sourcemaps at the best quality can be a heavy operation.
+You may **not** want to generate a sourcemap for your production bundle as this makes it easy to inspect your application (depends on whether you want this or not, good for staging!). Simply skip the `devtool` field then or generate hidden variant. Skipping sourcemaps entirely also speeds up your build a notch as generating sourcemaps at the best quality can be a heavy operation.
 
-You can also do a compromise and generate so called hidden sourcemaps for production. The idea is that we'll get sourcemaps for trace information only. This is useful if you connect the information with a monitoring service that can send these traces for your to study and fix.
+So called hidden sourcemaps give trace information only. You can connect it with a monitoring service to get traces as the application crashes allowing you to fix the problematic situations. This isn't ideal, but it's better to know about possible problems than not.
 
 T> It is a good idea to study the documentation of the loaders you are using to see loader specific tips. For example, with TypeScript you may need to set a certain flag to make it to work as you expect.
 
 ## Enabling Sourcemaps
 
-Webpack provides two ways to enable sourcemaps. There's a shortcut field known as `devtool`. There's also a plugin that gives exposes more options to tweak. We'll discuss that briefly at the end of this chapter.
+Webpack provides two ways to enable sourcemaps. There's a shortcut field known as `devtool`. There's also a plugin that gives exposes more options to tweak. We'll discuss the plugin briefly at the end of this chapter.
 
 To get started, we can wrap the basic idea within a configuration part. You can convert this to use the plugin later if you want:
 
@@ -86,23 +86,26 @@ leanpub-end-insert
 If you build the project now (`npm run build`), you should see something like this:
 
 ```bash
-Hash: 5992a41d4859911e454a
-Version: webpack 2.2.0-rc.2
-Time: 2412ms
-                                       Asset       Size  Chunks             Chunk Names
-                                      app.js    4.34 kB       0  [emitted]  app
-    app.788492b4b5beed29cef12fe793f316a0.css    2.22 kB       0  [emitted]  app
-                                  app.js.map     4.2 kB       0  [emitted]  app
-app.788492b4b5beed29cef12fe793f316a0.css.map  117 bytes       0  [emitted]  app
-                                  index.html  251 bytes          [emitted]
-   [0] ./app/component.js 170 bytes {0} [built]
+Hash: 7f50648c68ee015911f2
+Version: webpack 2.2.0-rc.3
+Time: 1632ms
+      Asset       Size  Chunks             Chunk Names
+     app.js    4.34 kB       0  [emitted]  app
+    app.css    2.18 kB       0  [emitted]  app
+ app.js.map     4.2 kB       0  [emitted]  app
+app.css.map   84 bytes       0  [emitted]  app
+ index.html  218 bytes          [emitted]
+   [0] ./app/component.js 172 bytes {0} [built]
    [1] ./app/main.css 41 bytes {0} [built]
    [2] ./~/purecss/build/pure-min.css 41 bytes {0} [built]
+   [3] ./app/index.js 566 bytes {0} [built]
 ```
 
-Take a good look at those *.map* files. That's where the mapping between the generated and the original source happens.
+Take a good look at those *.map* files. That's where the mapping between the generated and the original source happens. During development it will write the mapping information within the bundle itself.
 
-During development it will write the mapping information within the bundle itself. To use them, it is possible you may need to enable sourcemaps in your browser for this to work. I've listed reference per browser below:
+### Enabling Sourcemaps on Browsers
+
+To use sourcemaps on browsers, you may need to enable sourcemaps them explicitly. I've listed reference per browser below:
 
 * [Chrome](https://developer.chrome.com/devtools/docs/javascript-debugging)
 * [Firefox](https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Use_a_source_map)
