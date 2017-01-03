@@ -74,6 +74,14 @@ T> GitHub Pages allows you to choose the branch where you deploy. It is possible
 3. Copy the old version below *build/archive/<version>*
 4. Set up a script to call *gh-pages* through Node.js like this: `ghpages.publish(path.join(__dirname, 'build'), { add: true }, callback);`. You should capture possible error in that callback.
 
+## Deploying to Other Environments
+
+Even though you can push the problem of deployment outside of webpack, there are a couple of utilities that may come in handy:
+
+* [webpack-deploy](https://www.npmjs.com/package/webpack-deploy) is a collection of deployment utilities and works even outside of webpack.
+* [webpack-s3-sync-plugin](https://www.npmjs.com/package/webpack-s3-sync-plugin) syncs the assets to Amazon S3.
+* [ssh-webpack-plugin](https://www.npmjs.com/package/ssh-webpack-plugin) has been designed for deployments over SSH.
+
 ## Conclusion
 
 The same idea works with other environments too. You can set up *gh-pages* to push into a branch you want. After this step we have a fairly complete development and production setup.
