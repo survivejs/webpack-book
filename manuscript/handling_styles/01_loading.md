@@ -71,7 +71,8 @@ leanpub-end-insert
       // Customize host/port here if needed
       host: process.env.HOST,
       port: process.env.PORT
-    })
+    }),
+    parts.lintJavaScript(PATHS.app)
   );
 };
 ```
