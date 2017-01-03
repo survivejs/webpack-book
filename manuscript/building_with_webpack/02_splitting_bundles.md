@@ -221,9 +221,16 @@ Now our bundles look just the way we want. The image below illustrates the curre
 
 If you maintain strict separation between `dependencies` and `devDependencies`, you can make webpack pick up your `vendor` dependencies automatically based on this information. You avoid having to manage those manually then.
 
-Instead of having `['react']`, we could have `Object.keys(require('./package.json').dependencies)`. That can be filtered and adjusted further if needed depending on how dynamic solution you want. The problem is that this approach can bring unused dependencies to the vendor bundle.
+Instead of having `['react']`, we could go through `Object.keys` like this:
 
-A better way to handle this is to use `CommonsChunkPlugin` and its `minChunks` parameter. In addition to a number and certain other values, it accepts a function. This makes it possible to deduce which modules are external without having to perform a lookup against *package.json*. To adapt Rafael De Leon's solution from [Stack Overflow](http://stackoverflow.com/a/38733864/228885), you could end up with code like this:
+```javascript
+// Filter based on need
+Object.keys(require('./package.json').dependencies)
+```
+
+The problem is that this approach can bring unused dependencies to the vendor bundle. A better way to handle this is to use `CommonsChunkPlugin` and its `minChunks` parameter.
+
+In addition to a number and certain other values, `minChunks` accepts a function. This makes it possible to deduce which modules are external without having to perform a lookup against *package.json*. To adapt Rafael De Leon's solution from [Stack Overflow](http://stackoverflow.com/a/38733864/228885), you could end up with code like this:
 
 ```javascript
 new webpack.optimize.CommonsChunkPlugin({
