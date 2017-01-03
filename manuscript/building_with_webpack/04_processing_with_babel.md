@@ -30,7 +30,7 @@ webpackJsonp([1],{
 ...
 ```
 
-It is important to note that it does **not** transform ES6 specific syntax, such as `(lazy) => {` in the example, to ES5! This can be a problem especially on older browsers. It is also problematic if you minify your code through UglifyJS as it doesn't support ES6 syntax yet. If you try to process the code through UglifyJS, it will raise an error when it encounters the syntax it doesn't understand.
+It is important to note that it does **not** transform ES6 specific syntax, such as `(lazy) => {` in the example, to ES5! This can be a problem especially on older browsers. It is also problematic if you minify your code through UglifyJS as it doesn't support ES6 syntax yet and will raise an error when it encounters the syntax it doesn't understand.
 
 One way to work around this problem is to process the code through [Babel](https://babeljs.io/), a popular JavaScript compiler that supports ES6 features and more. It resembles ESLint in that it is built on top of presets and plugins. Presets are collections of plugins and you can define your own as well.
 
@@ -38,11 +38,13 @@ T> Given sometimes extending existing presets might not be enough, [modify-babel
 
 ## Using Babel with Webpack
 
-Even though Babel can be used standalone, as you can see in the *Authoring Packages* chapter, you can hook it up with webpack as well. During development we actually might skip processing. This is a good option especially if you don't rely on any custom language features and work using a modern browser. Processing through Babel becomes almost a necessity when you compile your code for production, though.
+Even though Babel can be used standalone, as you can see in the *Authoring Packages* chapter, you can hook it up with webpack as well. During development we actually might skip processing.
+
+This is a good option especially if you don't rely on any custom language features and work using a modern browser. Processing through Babel becomes almost a necessity when you compile your code for production, though.
 
 You can use Babel with webpack through [babel-loader](https://www.npmjs.com/package/babel-loader). It can pick up project level Babel configuration or you can configure it at the loader itself.
 
-Interestingly connecting Babel with a project allows you to process webpack configuration through Babel if you name your webpack configuration following *webpack.config.babel.js* convention. This works with other solutions too as it relies on a package known as [interpret](https://www.npmjs.com/package/interpret).
+Connecting Babel with a project allows you to process webpack configuration through Babel if you name your webpack configuration following *webpack.config.babel.js* convention. This works with other solutions too as it relies on a package known as [interpret](https://www.npmjs.com/package/interpret).
 
 T> Babel isn't the only option although it is the most popular one. [Bublé](https://buble.surge.sh) by Rich Harris is another commpiler worth checking out. There's experimental [buble-loader](https://www.npmjs.com/package/buble-loader) that allows you to use it with webpack. Bublé doesn't support ES6 modules, but that's not a problem as webpack provides that functionality.
 
@@ -87,7 +89,9 @@ exports.loadJavaScript = function(paths) {
 };
 ```
 
-Next we need to connect this with the main configuration. I'll process the code through Babel only during production although it would be possible to do it both for development and production usage. In addition I'll constrain webpack to process only our application code through Babel as I don't want it to process files from *node_modules* for example. In addition to helping with performance, this is a good practice with JavaScript files.
+Next we need to connect this with the main configuration. I'll process the code through Babel only during production although it would be possible to do it both for development and production usage.
+
+In addition, I'll constrain webpack to process only our application code through Babel as I don't want it to process files from *node_modules* for example. This helps with performance and it is a good practice with JavaScript files.
 
 **webpack.config.js**
 
@@ -98,12 +102,6 @@ module.exports = function(env) {
   if (env === 'production') {
     return merge(
       common,
-      {
-        output: {
-          // Tweak this to match your GitHub project name
-          publicPath: '/webpack-demo/'
-        }
-      },
 leanpub-start-insert
       parts.loadJavaScript(PATHS.app),
 leanpub-end-insert
@@ -123,7 +121,7 @@ leanpub-end-insert
 
 Even though we have Babel installed and set up, we are still missing one bit - Babel configuration. I prefer to handle it using a dotfile known as *.babelrc* as then other tooling can pick it up as well.
 
-W> There are times when caching Babel compilation can surprise you. This can happen particularly if your dependencies change in a way that *babel-loader* default caching mechanism doesn't notice. If you want full control over caching behavior, override `cacheIdentifier` with a string that has been derived based on data that should invalidate the cache. This is where [Node.js crypto API](https://nodejs.org/api/crypto.html) and especially its MD5 related functions can come in handy.
+W> There are times when caching Babel compilation can surprise you. This can happen particularly if your dependencies change in a way that *babel-loader* default caching mechanism doesn't notice. Override `cacheIdentifier` with a string that has been derived based on data that should invalidate the cache for better control. This is where [Node.js crypto API](https://nodejs.org/api/crypto.html) and especially its MD5 related functions can come in handy.
 
 ### Setting Up *.babelrc*
 
