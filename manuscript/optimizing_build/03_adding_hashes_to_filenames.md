@@ -72,7 +72,9 @@ leanpub-end-insert
 };
 ```
 
-To make the extracted CSS pick up a hash, we should set `contenthash` for it. We cannot use `chunkhash` given it's derived based on the entry and the CSS of the project belongs to the same entry chunk as the application code. This means a change made to the application code would invalidate CSS hash as well or vice versa. Instead, relying on a hash generated based on the CSS content is a stable way to go.
+To make the extracted CSS pick up a hash, we should set `contenthash` for it. We cannot use `chunkhash` given it's derived based on the entry and the CSS of the project belongs to the same entry chunk as the application code.
+
+This means a change made to the application code would invalidate CSS hash as well or vice versa. Instead, relying on a hash generated based on the CSS content is a stable way to go.
 
 **webpack.config.js**
 
@@ -102,18 +104,18 @@ leanpub-end-insert
 If you generate a build now (`npm run build`), you should see something like this:
 
 ```bash
-Hash: e9cb164a9537ddfa061c
-Version: webpack 2.2.0-rc.2
-Time: 2395ms
+Hash: e5280d321b095f139b7f
+Version: webpack 2.2.0-rc.3
+Time: 2283ms
                                        Asset       Size  Chunks             Chunk Names
              scripts/369fbad1e4924eb06bbb.js  130 bytes       0  [emitted]
-                 app.a46f3fc4c168e622b759.js  525 bytes       1  [emitted]  app
-              vendor.434456591fc20141a466.js    21.1 kB       2  [emitted]  vendor
-    app.788492b4b5beed29cef12fe793f316a0.css    2.22 kB       1  [emitted]  app
-app.788492b4b5beed29cef12fe793f316a0.css.map  117 bytes       1  [emitted]  app
+                 app.4d41d67a5817c8b5c492.js  525 bytes       1  [emitted]  app
+              vendor.a4651042b430d138535b.js    21.1 kB       2  [emitted]  vendor
+    app.c1795dcba8378aa1f99110548d21aede.css    2.22 kB       1  [emitted]  app
+app.c1795dcba8378aa1f99110548d21aede.css.map  117 bytes       1  [emitted]  app
                                   index.html  391 bytes          [emitted]
    [5] ./~/react/react.js 56 bytes {2} [built]
-  [15] ./app/component.js 359 bytes {1} [built]
+  [15] ./app/component.js 360 bytes {1} [built]
   [16] ./app/main.css 41 bytes {1} [built]
 ...
 ```
@@ -126,7 +128,7 @@ There's one problem, though. If you change the application code, it will invalid
 
 As you might remember, webpack uses number based ids for the module code it generates. The problem is that they are difficult to work with and can lead to difficult to debug issues particularly with hashing. Just as we did with the development setup earlier, we can perform a simplification here as well.
 
-Webpack provides a plugin known as `HashedModuleIdsPlugin`. It's like `NamedModulesPlugin` except it hashes the result and hides the path information. This keeps module ids stable as they aren't derived based on order. We sacrifice a few bytes for a cleaner setup, but the trade-off is well worth it.
+Webpack provides `HashedModuleIdsPlugin` that is like `NamedModulesPlugin` except it hashes the result and hides the path information. This keeps module ids stable as they aren't derived based on order. We sacrifice a few bytes for a cleaner setup, but the trade-off is well worth it.
 
 The change required is simple. Tweak the configuration as follows:
 
@@ -167,15 +169,15 @@ leanpub-end-insert
 As you can see in the build output, the difference is negligible.
 
 ```bash
-Hash: dd5b2df7b74d8a770ad0
-Version: webpack 2.2.0-rc.2
-Time: 2368ms
+Hash: d63a3b02283601dca095
+Version: webpack 2.2.0-rc.3
+Time: 2281ms
                                        Asset       Size  Chunks             Chunk Names
              scripts/bd391fd157ad5a033702.js  132 bytes       0  [emitted]
-                 app.ef637ad82083ff19590b.js  564 bytes       1  [emitted]  app
-              vendor.dd17789a0a12e3dcf73f.js    21.6 kB       2  [emitted]  vendor
-    app.788492b4b5beed29cef12fe793f316a0.css    2.22 kB       1  [emitted]  app
-app.788492b4b5beed29cef12fe793f316a0.css.map  117 bytes       1  [emitted]  app
+                 app.efcc58ab1c3c06c90c92.js  564 bytes       1  [emitted]  app
+              vendor.dce6507cfd7492d090a4.js    21.6 kB       2  [emitted]  vendor
+    app.c1795dcba8378aa1f99110548d21aede.css    2.22 kB       1  [emitted]  app
+app.c1795dcba8378aa1f99110548d21aede.css.map  117 bytes       1  [emitted]  app
                                   index.html  391 bytes          [emitted]
 [1Q41] ./app/main.css 41 bytes {1} [built]
 [2twT] ./app/index.js 586 bytes {1} [built]
@@ -231,19 +233,20 @@ leanpub-end-insert
 If you build the project now (`npm run build`), you should see something like this:
 
 ```bash
-Hash: 2669ba8070fbbb8bf5c9
-Version: webpack 2.2.0-rc.2
-Time: 2470ms
+Hash: d0183fcd7c65423862af
+Version: webpack 2.2.0-rc.3
+Time: 2296ms
                                        Asset       Size  Chunks             Chunk Names
              scripts/b1e8d40f1daf59fa574c.js  134 bytes    0, 3  [emitted]
               vendor.dc0770afbfb6269cfbce.js    20.1 kB    1, 3  [emitted]  vendor
-                 app.30e4ec1a00d6e09e90dd.js  566 bytes    2, 3  [emitted]  app
-            manifest.67b8d106a3d46f95972f.js    1.47 kB       3  [emitted]  manifest
-    app.788492b4b5beed29cef12fe793f316a0.css    2.22 kB    2, 3  [emitted]  app
-app.788492b4b5beed29cef12fe793f316a0.css.map  117 bytes    2, 3  [emitted]  app
+                 app.e7d19c94233a71b3e3d8.js  566 bytes    2, 3  [emitted]  app
+            manifest.7404620880c0c4cb07a2.js    1.47 kB       3  [emitted]  manifest
+    app.c1795dcba8378aa1f99110548d21aede.css    2.22 kB    2, 3  [emitted]  app
+app.c1795dcba8378aa1f99110548d21aede.css.map  117 bytes    2, 3  [emitted]  app
                                   index.html  484 bytes          [emitted]
 [1Q41] ./app/main.css 41 bytes {2} [built]
 [2twT] ./app/index.js 586 bytes {2} [built]
+...
 ```
 
 This simple change gave us a separate file that contains the manifest. To get a better idea of its contents, comment out `parts.minify()` and examine the resulting manifest. You should see familiar names there.
@@ -252,7 +255,7 @@ Try adjusting *app/index.js* and see how the hashes change. This time around it 
 
 ```bash
 Hash: 2ef316abb610355c2ec8
-Version: webpack 2.2.0-rc.2
+Version: webpack 2.2.0-rc.3
 Time: 2336ms
                                        Asset       Size  Chunks             Chunk Names
              scripts/b1e8d40f1daf59fa574c.js  134 bytes    0, 3  [emitted]
