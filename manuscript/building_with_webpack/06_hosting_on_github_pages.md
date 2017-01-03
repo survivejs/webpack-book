@@ -50,16 +50,8 @@ leanpub-start-insert
         }
       },
 leanpub-end-insert
-      parts.extractBundles([
-        {
-          name: 'vendor',
-          entries: ['react']
-        }
-      ]),
-      parts.clean(PATHS.build),
-      parts.generateSourcemaps('source-map'),
-      parts.extractCSS(),
-      parts.purifyCSS(PATHS.app)
+      parts.loadJavaScript(PATHS.app),
+      ...
     );
   }
 
