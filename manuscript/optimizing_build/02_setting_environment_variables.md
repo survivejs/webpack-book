@@ -130,21 +130,21 @@ leanpub-end-insert
 Execute `npm run build` again, and you should see improved results:
 
 ```bash
-Version: webpack 2.2.0-rc.2
-Time: 2368ms
-                                       Asset       Size  Chunks             Chunk Names
-             scripts/369fbad1e4924eb06bbb.js  130 bytes       0  [emitted]
-                                      app.js  525 bytes       1  [emitted]  app
-                                   vendor.js    21.1 kB       2  [emitted]  vendor
-    app.788492b4b5beed29cef12fe793f316a0.css    2.22 kB       1  [emitted]  app
-app.788492b4b5beed29cef12fe793f316a0.css.map  117 bytes       1  [emitted]  app
-                                  index.html  349 bytes          [emitted]
+Version: webpack 2.2.0-rc.3
+Time: 2435ms
+      Asset       Size  Chunks             Chunk Names
+       0.js  130 bytes       0  [emitted]
+     app.js  525 bytes       1  [emitted]  app
+  vendor.js    21.1 kB       2  [emitted]  vendor
+    app.css    2.18 kB       1  [emitted]  app
+app.css.map   84 bytes       1  [emitted]  app
+ index.html  316 bytes          [emitted]
    [5] ./~/react/react.js 56 bytes {2} [built]
-  [15] ./app/component.js 359 bytes {1} [built]
+  [15] ./app/component.js 360 bytes {1} [built]
   [16] ./app/main.css 41 bytes {1} [built]
 ```
 
-So we went from 167 kB to 41 kB, and finally, to 21.1 kB. The final build is a little faster than the previous one as well.
+So we went from 141 kB to 41 kB, and finally, to 21.1 kB. The final build is a little faster than the previous one as well.
 
 Given this 21.1 kB can be served gzipped, it is somewhat reasonable. gzipping will drop around another 40% and it is well supported by browsers.
 
@@ -154,10 +154,12 @@ T> [babel-plugin-transform-inline-environment-variables](https://www.npmjs.com/p
 
 T> `webpack.EnvironmentPlugin(['NODE_ENV'])` is a shortcut that allows you to refer to environment variables. It uses `DefinePlugin` internally and can be useful by itself in more limited cases. You can achieve the same effect by passing `process.env.NODE_ENV` to the custom function we made.
 
-## Generating gzips with Webpack
+## Generating gzip with Webpack
 
 Even though you can let your server to gzip the files using a suitable middleware, you can also setup webpack to generate the gzips for you using [compression-webpack-plugin](https://www.npmjs.com/package/compression-webpack-plugin). This can save some processing time on the server.
 
 ## Conclusion
 
-Even though simply setting `process.env.NODE_ENV` the right way can help a lot especially with React related code, we can do better. Currently our build doesn't benefit on client level caching. To achieve this, the build requires placeholders in which webpack can insert hashes that invalidate the files as we update the application.
+Even though simply setting `process.env.NODE_ENV` the right way can help a lot especially with React related code, we can do better. Currently our build doesn't benefit on client level cache invalidation.
+
+To achieve this, the build requires placeholders in which webpack can insert hashes that invalidate the files as we update the application.
