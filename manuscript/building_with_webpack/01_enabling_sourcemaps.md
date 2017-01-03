@@ -136,7 +136,7 @@ Webpack can also generate production usage friendly sourcemaps. These will end u
 |`cheap-source-map`        |Transformed code (lines only) |Generated sourcemaps don't have column mappings. Sourcemaps from loaders, such as *css-loader*, are not used. |
 |`cheap-module-source-map` |Original source (lines only)  |Same except sourcemaps from loaders are simplified to a single mapping per line.       |
 |`source-map`              |Original source               |The best quality with the most complete result, but also the slowest.                  |
-|`hidden-source-map`       |Same as `source-map` except without a reference comment. | Use this if you don't want to expose sourcemaps to development tools while getting proper stack traces.
+|`hidden-source-map`       |Original without a reference | Use this if you don't want to expose sourcemaps to development tools while getting proper stack traces.
 
 `source-map` is a good default here. Even though it will take longer to generate the sourcemaps this way, you will get the best quality. If you don't care about production sourcemaps, you can simply skip the setting there and get better performance in return.
 
