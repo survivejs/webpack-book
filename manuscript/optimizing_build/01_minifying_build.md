@@ -11,32 +11,32 @@ T> Even if we minify our build, we can still generate sourcemaps through the `de
 To get started, we should generate a baseline build so we have something to optimize. Execute `npm run build`. You should end up with something like this:
 
 ```bash
-Hash: 4019952cb4c3db3681ee
-Version: webpack 2.2.0-rc.2
-Time: 2368ms
-                                       Asset       Size  Chunks             Chunk Names
-             scripts/3c75491fd6387c3a7ce9.js  294 bytes       0  [emitted]
-                                      app.js    2.29 kB       1  [emitted]  app
-                                   vendor.js     141 kB       2  [emitted]  vendor
-    app.788492b4b5beed29cef12fe793f316a0.css    2.22 kB       1  [emitted]  app
-         scripts/3c75491fd6387c3a7ce9.js.map  260 bytes       0  [emitted]
-                                  app.js.map    2.58 kB       1  [emitted]  app
-app.788492b4b5beed29cef12fe793f316a0.css.map  117 bytes       1  [emitted]  app
-                               vendor.js.map     167 kB       2  [emitted]  vendor
-                                  index.html  349 bytes          [emitted]
+Hash: 1f0dc69edbfb58886fd4
+Version: webpack 2.2.0-rc.3
+Time: 2051ms
+        Asset       Size  Chunks             Chunk Names
+         0.js  275 bytes       0  [emitted]
+       app.js    2.29 kB       1  [emitted]  app
+    vendor.js     141 kB       2  [emitted]  vendor
+      app.css    2.18 kB       1  [emitted]  app
+     0.js.map  231 bytes       0  [emitted]
+   app.js.map    2.59 kB       1  [emitted]  app
+  app.css.map   84 bytes       1  [emitted]  app
+vendor.js.map     167 kB       2  [emitted]  vendor
+   index.html  316 bytes          [emitted]
    [0] ./~/process/browser.js 5.3 kB {2} [built]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {2} [built]
    [7] ./~/react/react.js 56 bytes {2} [built]
 ...
 ```
 
-167 kB for a vendor bundle is a lot! Minification should bring down the size quite a bit.
+141 kB for a vendor bundle is a lot! Minification should bring down the size quite a bit.
 
 ## Minifying the Code
 
-Ideally minification will convert our code into a smaller format without losing any meaning. Usually this means some amount of rewriting code through predefined transformations. Good examples of this are renaming variables or even removing entire blocks of code based on the fact that they are unreachable. A simple `if (false)` statement is a good example and this is a technique you can apply with webpack as discussed in the *Setting Environment Variables* chapter.
+Ideally minification will convert our code into a smaller format without losing any meaning. Usually this means some amount of rewriting code through predefined transformations. Good examples of this are renaming variables or even removing entire blocks of code based on the fact that they are unreachable like a `if (false)` statement.
 
-Sometimes minification can break code as it can rewrite pieces of code you inadvertently depend upon. Angular 1 was a good example of this as it relied on a specific function parameter naming and rewriting the parameters could break code unless you took precautions against it.
+Sometimes minification can break code as it can rewrite pieces of code you inadvertently depend upon. Angular 1 was an example of this as it relied on a specific function parameter naming and rewriting the parameters could break code unless you took precautions against it.
 
 The easiest way to enable minification in webpack is to call `webpack -p`. `-p` is a shortcut for `--optimize-minimize`, you can think it as `-p` for "production". Alternatively, we can use a plugin directly as this provides us more control.
 
@@ -83,18 +83,9 @@ module.exports = function(env) {
       },
       parts.loadJavaScript(PATHS.app),
 leanpub-start-insert
-      parts.minify(),
+      parts.minifyJavaScript(),
 leanpub-end-insert
-      parts.extractBundles([
-        {
-          name: 'vendor',
-          entries: ['react']
-        }
-      ]),
-      parts.clean(PATHS.build),
-      parts.generateSourcemaps('source-map'),
-      parts.extractCSS(),
-      parts.purifyCSS(PATHS.app)
+      ...
     );
   }
 
@@ -105,23 +96,23 @@ leanpub-end-insert
 If you execute `npm run build` now, you should see smaller results:
 
 ```bash
-Hash: 4019952cb4c3db3681ee
-Version: webpack 2.2.0-rc.2
-Time: 2537ms
-                                       Asset       Size  Chunks             Chunk Names
-             scripts/3c75491fd6387c3a7ce9.js  130 bytes       0  [emitted]
-                                      app.js  525 bytes       1  [emitted]  app
-                                   vendor.js    41.8 kB       2  [emitted]  vendor
-    app.788492b4b5beed29cef12fe793f316a0.css    2.22 kB       1  [emitted]  app
-app.788492b4b5beed29cef12fe793f316a0.css.map  117 bytes       1  [emitted]  app
-                                  index.html  349 bytes          [emitted]
+Hash: 1f0dc69edbfb58886fd4
+Version: webpack 2.2.0-rc.3
+Time: 2442ms
+      Asset       Size  Chunks             Chunk Names
+       0.js  130 bytes       0  [emitted]
+     app.js  525 bytes       1  [emitted]  app
+  vendor.js    41.7 kB       2  [emitted]  vendor
+    app.css    2.18 kB       1  [emitted]  app
+app.css.map   84 bytes       1  [emitted]  app
+ index.html  316 bytes          [emitted]
    [0] ./~/process/browser.js 5.3 kB {2} [built]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {2} [built]
    [7] ./~/react/react.js 56 bytes {2} [built]
 ...
 ```
 
-Given it needs to do more work, it took longer to execute the build. But on the plus side the build is significantly smaller now and our vendor build went from 167 kB to 41 kB.
+Given it needs to do more work, it took longer to execute the build. But on the plus side the build is significantly smaller now and our vendor build went from 141 kB to 41 kB.
 
 T> UglifyJS warnings can help you to understand how it processes the code. Therefore it may be beneficial to have a peek at the full output every once in a while.
 
