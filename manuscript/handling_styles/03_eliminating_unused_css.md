@@ -45,17 +45,17 @@ If you run the application (`npm start`), our "Hello world" should look like a b
 
 ![Styled hello](images/styled-button.png)
 
-Building the application should yield output like this:
+Building the application (`npm run build`) should yield output like this:
 
 ```bash
-Hash: 5992a41d4859911e454a
-Version: webpack 2.2.0-rc.2
-Time: 1161ms
-                                   Asset       Size  Chunks             Chunk Names
-                                  app.js    4.19 kB       0  [emitted]  app
-app.788492b4b5beed29cef12fe793f316a0.css    15.8 kB       0  [emitted]  app
-                              index.html  251 bytes          [emitted]
-   [0] ./app/component.js 170 bytes {0} [built]
+Hash: 7f50648c68ee015911f2
+Version: webpack 2.2.0-rc.3
+Time: 884ms
+     Asset       Size  Chunks             Chunk Names
+    app.js    4.19 kB       0  [emitted]  app
+   app.css    15.8 kB       0  [emitted]  app
+index.html  218 bytes          [emitted]
+   [0] ./app/component.js 172 bytes {0} [built]
    [1] ./app/main.css 41 bytes {0} [built]
    [2] ./~/purecss/build/pure-min.css 41 bytes {0} [built]
    [3] ./app/index.js 566 bytes {0} [built]
@@ -138,17 +138,19 @@ leanpub-end-insert
 };
 ```
 
+W> Note that the order matters! CSS extraction has to happen before purifying.
+
 If you execute `npm run build` now, you should see something like this:
 
 ```bash
-Hash: 5992a41d4859911e454a
-Version: webpack 2.2.0-rc.2
-Time: 1277ms
-                                   Asset       Size  Chunks             Chunk Names
-                                  app.js    4.19 kB       0  [emitted]  app
-app.788492b4b5beed29cef12fe793f316a0.css    2.15 kB       0  [emitted]  app
-                              index.html  251 bytes          [emitted]
-   [0] ./app/component.js 170 bytes {0} [built]
+Hash: 7f50648c68ee015911f2
+Version: webpack 2.2.0-rc.3
+Time: 965ms
+     Asset       Size  Chunks             Chunk Names
+    app.js    4.19 kB       0  [emitted]  app
+   app.css    2.15 kB       0  [emitted]  app
+index.html  218 bytes          [emitted]
+   [0] ./app/component.js 172 bytes {0} [built]
    [1] ./app/main.css 41 bytes {0} [built]
    [2] ./~/purecss/build/pure-min.css 41 bytes {0} [built]
    [3] ./app/index.js 566 bytes {0} [built]
