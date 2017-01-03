@@ -1,6 +1,8 @@
 # Splitting Bundles
 
-Currently the production version of our application is a single JavaScript file. This isn't ideal. If we change the application, the client has to download vendor dependencies as well. It would be better to download only the changed portion. If the vendor dependencies change, then the client should fetch only the vendor dependencies. The same goes for actual application code. This technique is known as **bundle splitting**.
+Currently the production version of our application is a single JavaScript file. This isn't ideal. If we change the application, the client has to download vendor dependencies as well.
+
+It would be better to download only the changed portion. If the vendor dependencies change, then the client should fetch only the vendor dependencies. The same goes for actual application code. This technique is known as **bundle splitting**.
 
 ## The Idea of Bundle Splitting
 
@@ -8,7 +10,7 @@ Using bundle splitting, we can push the vendor dependencies to a bundle of its o
 
 To give you a simple example, instead of having *app.js* (100 kB), we could end up with *app.js* (10 kB) and *vendor.js* (90 kB). Now changes made to the application are cheap for the clients that have already used the application earlier.
 
-Caching comes with its own problems. One of those is cache invalidation. We'll discuss a potential approach related to that in the next part of this book.
+Caching comes with its own problems. One of those is cache invalidation. We'll discuss a potential approach related to that in the *Adding Hashes to Filenames* chapter.
 
 Bundle splitting isn't the only way out. In the next chapter we will discuss a more granular technique known as *code splitting* that allows us to load code on demand.
 
@@ -38,15 +40,15 @@ import component from './component';
 Execute `npm run build` to get a baseline build. You should end up with something like this:
 
 ```bash
-Hash: 02507cd84349e6a33ffd
-Version: webpack 2.2.0-rc.2
-Time: 1843ms
-                                       Asset       Size  Chunks             Chunk Names
-                                      app.js     140 kB       0  [emitted]  app
-    app.788492b4b5beed29cef12fe793f316a0.css    2.22 kB       0  [emitted]  app
-                                  app.js.map     165 kB       0  [emitted]  app
-app.788492b4b5beed29cef12fe793f316a0.css.map  117 bytes       0  [emitted]  app
-                                  index.html  251 bytes          [emitted]
+Hash: 33ce6392fbaece211262
+Version: webpack 2.2.0-rc.3
+Time: 1864ms
+      Asset       Size  Chunks             Chunk Names
+     app.js     140 kB       0  [emitted]  app
+    app.css    2.18 kB       0  [emitted]  app
+ app.js.map     165 kB       0  [emitted]  app
+app.css.map   84 bytes       0  [emitted]  app
+ index.html  218 bytes          [emitted]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {0} [built]
    [5] ./~/object-assign/index.js 1.99 kB {0} [built]
    [9] ./~/react/lib/ReactComponent.js 4.61 kB {0} [built]
@@ -88,19 +90,20 @@ leanpub-end-insert
 We have two separate entries, or **entry chunks**, now. `[name].js` of our existing `output.path` configuration will kick in based on the entry name and if you try to generate a build now (`npm run build`), you should see something like this:
 
 ```bash
-Hash: 3723651d04f393524f98
-Version: webpack 2.2.0-rc.2
-Time: 1880ms
-                                       Asset       Size  Chunks             Chunk Names
-                                      app.js     140 kB       0  [emitted]  app
-                                   vendor.js     138 kB       1  [emitted]  vendor
-    app.788492b4b5beed29cef12fe793f316a0.css    2.22 kB       0  [emitted]  app
-                                  app.js.map     165 kB       0  [emitted]  app
-app.788492b4b5beed29cef12fe793f316a0.css.map  117 bytes       0  [emitted]  app
-                               vendor.js.map     164 kB       1  [emitted]  vendor
-                                  index.html  307 bytes          [emitted]
+Hash: 18370a70583cfc914334
+Version: webpack 2.2.0-rc.3
+Time: 1921ms
+        Asset       Size  Chunks             Chunk Names
+       app.js     140 kB       0  [emitted]  app
+    vendor.js     138 kB       1  [emitted]  vendor
+      app.css    2.18 kB       0  [emitted]  app
+   app.js.map     165 kB       0  [emitted]  app
+  app.css.map   84 bytes       0  [emitted]  app
+vendor.js.map     164 kB       1  [emitted]  vendor
+   index.html  274 bytes          [emitted]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {0} {1} [built]
    [5] ./~/object-assign/index.js 1.99 kB {0} {1} [built]
+...
 ```
 
 *app.js* and *vendor.js* have separate chunk ids right now given they are entry chunks of their own. The output size is a little off, though. *app.js* should be significantly smaller to attain our goal with this build.
@@ -193,17 +196,17 @@ leanpub-end-insert
 If you execute the build now using `npm run build`, you should see something along this:
 
 ```bash
-Hash: 01df5abc2fa1a0d5152a
-Version: webpack 2.2.0-rc.2
-Time: 1781ms
-                                       Asset       Size  Chunks             Chunk Names
-                                      app.js    2.03 kB       0  [emitted]  app
-                                   vendor.js     141 kB       1  [emitted]  vendor
-    app.788492b4b5beed29cef12fe793f316a0.css    2.22 kB       0  [emitted]  app
-                                  app.js.map    1.72 kB       0  [emitted]  app
-app.788492b4b5beed29cef12fe793f316a0.css.map  117 bytes       0  [emitted]  app
-                               vendor.js.map     167 kB       1  [emitted]  vendor
-                                  index.html  307 bytes          [emitted]
+Hash: dfc58c1bb4f22724671f
+Version: webpack 2.2.0-rc.3
+Time: 1836ms
+        Asset       Size  Chunks             Chunk Names
+       app.js    2.03 kB       0  [emitted]  app
+    vendor.js     141 kB       1  [emitted]  vendor
+      app.css    2.18 kB       0  [emitted]  app
+   app.js.map    1.73 kB       0  [emitted]  app
+  app.css.map   84 bytes       0  [emitted]  app
+vendor.js.map     167 kB       1  [emitted]  vendor
+   index.html  274 bytes          [emitted]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {1} [built]
    [5] ./~/object-assign/index.js 1.99 kB {1} [built]
    [7] ./~/react/react.js 56 bytes {1} [built]
@@ -218,7 +221,7 @@ Now our bundles look just the way we want. The image below illustrates the curre
 
 If you maintain strict separation between `dependencies` and `devDependencies`, you can make webpack pick up your `vendor` dependencies automatically based on this information. You avoid having to manage those manually then.
 
-Instead of having `['react']`, we could have `Object.keys(require('./package.json').dependencies)`. That can be filtered and adjusted further if needed depending on how dynamic solution you want.
+Instead of having `['react']`, we could have `Object.keys(require('./package.json').dependencies)`. That can be filtered and adjusted further if needed depending on how dynamic solution you want. The problem is that this approach can bring unused dependencies to the vendor bundle.
 
 A better way to handle this is to use `CommonsChunkPlugin` and its `minChunks` parameter. In addition to a number and certain other values, it accepts a function. This makes it possible to deduce which modules are external without having to perform a lookup against *package.json*. To adapt Rafael De Leon's solution from [Stack Overflow](http://stackoverflow.com/a/38733864/228885), you could end up with code like this:
 
@@ -251,4 +254,4 @@ In the example above, we used something known as **entry chunks**. As [discussed
 
 ## Conclusion
 
-The situation is better now. Note how small `app` bundle compared to the `vendor` bundle. In order to really benefit from this split, we will set up caching in the next part. But before that, we can learn about a technique known as *code splitting* to go even more granular.
+The situation is better now. Note how small `app` bundle compared to the `vendor` bundle. In order to really benefit from this split, we will set up caching in the next part of this book. But before that, we can learn about a technique known as *code splitting* to go even more granular.
