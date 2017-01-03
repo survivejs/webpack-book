@@ -1,7 +1,7 @@
 {
   "name": "survivejs-webpack",
   "private": true,
-  "version": "1.4.2",
+  "version": "1.5.0",
   "description": "SurviveJS - Webpack",
   "scripts": {
     "test": "check-markdown-links manuscript"
