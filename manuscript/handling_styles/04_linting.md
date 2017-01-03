@@ -1,6 +1,8 @@
 # Linting CSS
 
-As discussed earlier in the *Linting JavaScript* chapter, linting is a technique that allows us to avoid certain categories of mistakes. Automation is good as it can save effort. In addition to JavaScript, it's possible to lint CSS. [stylelint](http://stylelint.io/) is a tool that allows that and it can be used with webpack through [postcss-loader](https://www.npmjs.com/package/postcss-loader).
+As discussed earlier in the *Linting JavaScript* chapter, linting is a technique that allows us to avoid certain categories of mistakes. Automation is good as it can save effort. In addition to JavaScript, it's possible to lint CSS.
+
+[stylelint](http://stylelint.io/) is a tool that allows linting. It can be used with webpack through [postcss-loader](https://www.npmjs.com/package/postcss-loader).
 
 ## Setting Up Stylelint
 
@@ -40,9 +42,6 @@ Then add it to `common` configuration:
 
 ```javascript
 ...
-const stylelint = require('stylelint');
-
-...
 
 const common = merge(
   {
@@ -75,7 +74,7 @@ module.exports = {
 };
 ```
 
-If you define a CSS rule, such as `background-color: #EFEFEF;` at *main.css* now, you should see a warning like this at your terminal:
+If you define a CSS rule, such as `background-color: #EFEFEF;` at *main.css* now, you should see a warning like this at your terminal when you run the build (`npm start` or `npm run build`):
 
 ```bash
 WARNING in ./~/css-loader!./~/postcss-loader!./app/main.css
