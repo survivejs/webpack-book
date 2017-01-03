@@ -150,9 +150,9 @@ There are a couple of other options that affect sourcemap generation:
     // The default option is enough for most use cases.
     sourceMapFilename: '[file].map', // Default
 
-    // This is the sourcemap filename template. It's default format
-    // depends on the devtool option used. You don't need to modify this
-    // often.
+    // This is the sourcemap filename template. It's default
+    // format depends on the devtool option used. You don't
+    // need to modify this often.
     devtoolModuleFilenameTemplate: 'webpack:///[resource-path]?[loaders]'
   },
 }
