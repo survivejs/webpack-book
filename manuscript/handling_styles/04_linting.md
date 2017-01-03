@@ -36,7 +36,7 @@ exports.lintCSS = function(paths) {
 };
 ```
 
-Then add it to `common` configuration:
+Then add it to the `common` configuration:
 
 **webpack.config.js**
 
