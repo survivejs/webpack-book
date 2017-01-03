@@ -34,7 +34,7 @@ building_with_webpack/05_cleaning_build.md
 building_with_webpack/06_hosting_on_github_pages.md
 
 08_Optimizing_Build.md
-optimizing_build/01_minifying_build.md
+optimizing_build/01_minifying.md
 optimizing_build/02_setting_environment_variables.md
 optimizing_build/03_adding_hashes_to_filenames.md
 optimizing_build/04_analyzing_build_statistics.md
