@@ -119,26 +119,26 @@ leanpub-end-insert
 }
 ```
 
-If you open up the application and click the button, you should see the new text in the button.
+If you open up the application (`npm start`) and click the button, you should see the new text in the button.
 
 ![Lazy loaded button content](images/lazy.png)
 
 Perhaps the more interesting thing is to see what the build result looks like. If you run `npm run build`, you should see something like this:
 
 ```bash
-Hash: 14803ace12d1084ce193
-Version: webpack 2.2.0-rc.2
-Time: 2680ms
-                                       Asset       Size  Chunks             Chunk Names
-                                        0.js  276 bytes       0  [emitted]
-                                      app.js    2.27 kB       1  [emitted]  app
-                                   vendor.js     141 kB       2  [emitted]  vendor
-    app.788492b4b5beed29cef12fe793f316a0.css    2.22 kB       1  [emitted]  app
-                                    0.js.map  277 bytes       0  [emitted]
-                                  app.js.map    1.95 kB       1  [emitted]  app
-app.788492b4b5beed29cef12fe793f316a0.css.map  117 bytes       1  [emitted]  app
-                               vendor.js.map     167 kB       2  [emitted]  vendor
-                                  index.html  307 bytes          [emitted]
+Hash: 6696958a5cc4dc489a67
+Version: webpack 2.2.0-rc.3
+Time: 1975ms
+        Asset       Size  Chunks             Chunk Names
+         0.js  275 bytes       0  [emitted]
+       app.js    2.27 kB       1  [emitted]  app
+    vendor.js     141 kB       2  [emitted]  vendor
+      app.css    2.18 kB       1  [emitted]  app
+     0.js.map  278 bytes       0  [emitted]
+   app.js.map    1.95 kB       1  [emitted]  app
+  app.css.map   84 bytes       1  [emitted]  app
+vendor.js.map     167 kB       2  [emitted]  vendor
+   index.html  274 bytes          [emitted]
    [0] ./~/process/browser.js 5.3 kB {2} [built]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {2} [built]
    [7] ./~/react/react.js 56 bytes {2} [built]
@@ -146,36 +146,6 @@ app.788492b4b5beed29cef12fe793f316a0.css.map  117 bytes       1  [emitted]  app
 ```
 
 That *0.js* is our split point. Examining the file reveals that webpack has wrapped the code in a `webpackJsonp` block and processed the code bit.
-
-To make the split point name use a hash so it gets invalidated on change, tweak as follows:
-
-**webpack.config.js**
-
-```javascript
-...
-
-const common = merge(
-  {
-    entry: {
-      app: PATHS.app
-    },
-    output: {
-      path: PATHS.build,
-leanpub-start-insert
-      chunkFilename: 'scripts/[name].js',
-leanpub-end-insert
-      filename: '[name].js'
-    },
-    ...
-  },
-  parts.lintCSS(PATHS.app),
-  parts.lintJavaScript(PATHS.app)
-);
-
-...
-```
-
-After this change, you should find the file below *scripts/e0b0c7ed4cbed4fcf3b2.js* or so. The hash may differ, but the idea is the same.
 
 ### Defining a Split Point Using `require.ensure`
 
