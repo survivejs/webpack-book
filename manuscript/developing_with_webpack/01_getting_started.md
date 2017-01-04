@@ -167,7 +167,7 @@ The output tells us a lot. I've annotated it below:
 * `Time: 390ms` - Time it took to execute the build.
 * `app.js     3.06 kB  0[emitted]  app` - Name of the generated asset, size, the ids of the **chunks** into which it is related, status information telling how it was generated, name of the chunk.
 * `index.html  180 bytes  [emitted]` - Another generated asset that was emitted by the process.
-* `[0] ./app/component.js 135 bytes {0} [built]` - The id of the generated asset, name, size, entry chunk id, the way it was generated.
+* `[0] ./app/component.js 135 bytes {0} [built]` - The id of the entry asset, name, size, entry chunk id, the way it was generated.
 * `Child html-webpack-plugin for "index.html":` - This is plugin related output. In this case *html-webpack-plugin* is doing output of its own.
 
 Examine the output below `build/`. If you look closely, you can see the same ids within the source. To see the application running, open the `build/index.html` file directly through a browser. On macOS `open ./build/index.html` works.
