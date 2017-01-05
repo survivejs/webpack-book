@@ -105,7 +105,7 @@ W> Webpack 2 changed argument behavior compared to webpack 1. You are not allowe
 
 Even though a simple technique, splitting configuration this way makes room for growing your setup. The biggest win is the fact that we can extract commonalities between different targets. We can also identify smaller configuration parts to compose. These configuration parts can be pushed to packages of their own to consume across projects.
 
-This is one way to decrease the amount of boilerplate fatigue. Instead of duplicating the same, or at worst similar, configuration across multiple projects, you can manage configuration as a dependency. This means that as you figure out better way to perform tasks, all your projects will receive the improvements.
+This is one way to decrease the amount of boilerplate fatigue. Instead of duplicating similar configuration across multiple projects, you can manage configuration as a dependency. This means that as you figure out better way to perform tasks, all your projects will receive the improvements.
 
 Each approach comes with its pros and cons. I am comfortable with the composition based approach myself although I can see merit in others as well. In addition to composition, it gives me a fairly limited amount of code to scan through, but it's a good idea to check out how other people do it too. You'll find something that works the best based on your tastes.
 
@@ -115,4 +115,4 @@ T> If you have to support both webpack 1 and 2, you can perform branching based 
 
 ## Conclusion
 
-Now that we have room for growth, I will show you how to set up automatic browser refresh with webpack in the next chapter. You will see the same theme in the chapters after that. We'll solve some specific problem through composition and we will expand our vocabulary that way.
+Now that we have room for growth, I will show you how to set up automatic browser refresh with webpack in the next chapter. You will see the same theme in the chapters after that. We'll solve specific problems through composition and expand our vocabulary that way.
