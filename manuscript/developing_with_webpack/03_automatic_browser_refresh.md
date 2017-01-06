@@ -94,6 +94,8 @@ const PATHS = {
   build: path.join(__dirname, 'build')
 };
 
+...
+
 module.exports = function(env) {
 leanpub-start-delete
   return merge(common);
