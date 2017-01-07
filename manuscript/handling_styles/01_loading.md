@@ -315,6 +315,10 @@ Sometimes you might see imports like `@import "~bootstrap/css/bootstrap";` in co
 
 If you want to enable sourcemaps for CSS, you should enable `sourceMap` option for *css-loader* and set `output.publicPath` to an absolute url. In case you have more loaders, each needs to enable sourcemap support separately! *css-loader* [issue 29](https://github.com/webpack/css-loader/issues/29) discusses this problem further.
 
+## Converting CSS to Strings
+
+Especially with Angular 2 it can be useful if you can get CSS in a string format that can be pushed to components. [css-to-string-loader](https://www.npmjs.com/package/css-to-string-loader) achieves exactly this.
+
 ## Conclusion
 
 Loading style files through webpack is fairly straight-forward. It supports even advanced specifications like [CSS Modules](https://github.com/css-modules/webpack-demo). The approaches covered here inline the styling by default. Although that's enough for development purposes, it's not ideal for production usage. We'll cover how to handle this problem in the next chapter.
