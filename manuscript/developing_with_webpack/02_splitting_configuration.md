@@ -12,7 +12,13 @@ You can manage webpack configuration at least in the following ways:
 
 I prefer the last approach as it allows me to understand what's going on easily. I've developed a little tool known as [webpack-merge](https://www.npmjs.org/package/webpack-merge) to achieve this.
 
-Compared to `Object.assign` or a `merge` function you might know from Lodash, *webpack-merge* does a little more. It appends arrays and combines objects. There's also more control available in the form of strategies although we won't need those in this book.
+## Why *webpack-merge*?
+
+Compared to `Object.assign` or a `merge` function you might know from Lodash, *webpack-merge* does a little more. It appends arrays and combines objects instead of overriding them. This is useful as it allows you to define common configuration parts and then compose. Compared to monolithic configuration, this gives a degree of abstraction.
+
+*webpack-merge* provides even more control through strategies that allow you to control its behavior per field. Strategies allow you to force it to append, prepend, or replace content. *webpack-merge* contains a webpack specific variant known as *smart merge* that folds webpack specific configuration into more compact form, but basic merge is enough for the configuration discussed in this book.
+
+Even though *webpack-merge* was designed for the purposes of this book, it has proven to be an invaluable tool beyond it as shown by its increasing popularity. You can consider it as a learning tool and pick it up in your work if you find it useful. Given how flexible webpack is, it's only one configuration approach out of many.
 
 ## Setting Up *webpack-merge*
 
