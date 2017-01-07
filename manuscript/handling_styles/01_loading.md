@@ -293,7 +293,7 @@ T> *postcss-loader* relies on [cosmiconfig](https://www.npmjs.com/package/cosmic
 
 ![cssnext](images/cssnext.jpg)
 
-[cssnext](https://cssnext.github.io/) is a PostCSS plugin that allows us to experience the future now. There are some restrictions, but it may be worth a go. You can use it through [postcss-cssnext](https://www.npmjs.com/package/postcss-cssnext) and you can enable it as follows.
+[cssnext](http://cssnext.io/) is a PostCSS plugin that allows us to experience the future now. There are some restrictions, but it may be worth a go. You can use it through [postcss-cssnext](https://www.npmjs.com/package/postcss-cssnext) and you can enable it as follows.
 
 **postcss.config.js**
 
