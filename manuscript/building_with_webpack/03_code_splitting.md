@@ -204,6 +204,35 @@ The technique can be useful for other purposes, such as testing or adding files 
 
 T> Note that webpack will also turn statements written in the form `require('./pages/' + pageName + '.md')` into the `require.context` format!
 
+## Combining Multiple `require.context`s
+
+Sometimes you might need to combine multiple separate `require.context`s into one. This can be done by wrapping them behind a similar API like this:
+
+```javascript
+const { concat, uniq } from 'lodash';
+
+function combineContexts(...contexts) {
+  function webpackContext(req) {
+    // Find the first match and execute
+    const matches = contexts.map(
+      context => context.keys().indexOf(req) >= 0 && context
+    ).filter(a => a);
+
+    return matches[0] && matches[0](req);
+  }
+  webpackContext.keys = () => uniq(
+    concat.apply(
+      null,
+      contexts.map(
+        context => context.keys()
+      )
+    )
+  );
+
+  return webpackContext;
+}
+```
+
 ## Dynamic Paths with a Dynamic `import`
 
 The same idea works with dynamic `import`. Instead of passing an absolute path, you can pass a partial one. Webpack will set up a context internally. Here's a brief example:
