@@ -175,6 +175,8 @@ exports.lintJavaScript = function(paths) {
 **webpack.config.js**
 
 ```javascript
+...
+
 const common = merge(
   {
     entry: {
@@ -197,6 +199,8 @@ leanpub-start-insert
   parts.lintJavaScript(PATHS.app)
 leanpub-end-insert
 );
+
+...
 ```
 
 If you execute `npm start` now and break some linting rule while developing, you should see that in the terminal output. The same should happen when you build the project.
