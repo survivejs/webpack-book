@@ -192,20 +192,6 @@ Webpack doesn't take much configuration:
 
 T> If you want more performance especially during development, check out [fast-sass-loader](https://www.npmjs.com/package/fast-sass-loader).
 
-### Imports in LESS and SASS
-
-If you import one LESS/SASS file from an other, use the exact same pattern as anywhere else. Webpack will dig into these files and figure out the dependencies.
-
-```less
-@import "./variables.less";
-```
-
-You can also load LESS and SASS files directly from your node_modules directory. This is handy with libraries like Twitter Bootstrap:
-
-```less
-@import "~bootstrap/less/bootstrap";
-```
-
 ## Loading Stylus and YETICSS
 
 ![Stylus](images/stylus.png)
@@ -309,7 +295,19 @@ T> Note that cssnext includes autoprefixer! You don't have to configure autopref
 
 ## Understanding Lookups
 
-Sometimes you might see imports like `@import "~bootstrap/css/bootstrap";` in code. The tilde (`~`) tells webpack that it's not a relative import as by default. If tilde is included, it will perform a lookup against `node_modules` (default setting) although this is configurable through the [resolve.modules](https://webpack.js.org/configuration/resolve/#resolve-modules) field.
+If you import one LESS/SASS file from an other, use the exact same pattern as anywhere else. Webpack will dig into these files and figure out the dependencies.
+
+```less
+@import "./variables.less";
+```
+
+You can also load LESS and SASS files directly from your node_modules directory. This is handy with libraries like Twitter Bootstrap:
+
+```less
+@import "~bootstrap/less/bootstrap";
+```
+
+The tilde (`~`) tells webpack that it's not a relative import as by default. If tilde is included, it will perform a lookup against `node_modules` (default setting) although this is configurable through the [resolve.modules](https://webpack.js.org/configuration/resolve/#resolve-modules) field.
 
 [resolve-url-loader](https://www.npmjs.com/package/resolve-url-loader) makes it possible to specify `url()`'s relative to the file location. This is particularly useful with *sass-loader*.
 
