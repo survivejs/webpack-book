@@ -105,6 +105,10 @@ const src = require(`./avatars/${avatar}`);
 ...
 ```
 
+## Getting Image Dimensions
+
+Sometimes getting only reference to an image isn't enough. [image-size-loader](https://www.npmjs.com/package/image-size-loader) emits image dimensions, type, and size in addition to the reference to the image itself.
+
 ## Loading Sprites
 
 A technique known as spriting allows you to combine multiple smaller images into a single image. It has been used for games to describe animations and it's useful for web development as well as you avoid request overhead.
