@@ -62,7 +62,7 @@ That `[name]` placeholder will use name derived based on the entry where the CSS
 
 T> If you wanted to output the resulting file to a specific directory, you could do it like this: `new ExtractTextPlugin('styles/[name].css')`.
 
-W> If you want to pass more loaders to the `ExtractTextPlugin`, you should use `!` syntax. Example: `ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader!postcss-loader' })`. It also supports `loader: { loader: 'css-loader', query: { ... } }` (note `query` over `options`!) formats, but not the webpack 2 standard format (`use` etc.).
+W> If you want to pass more loaders to the `ExtractTextPlugin`, you can use `loader: [{ loader: 'css-loader', query: { ... } }]` (note `query` over `options`!) kind of syntax. It also accepts an object (a single loader definition). The same rules apply to `fallbackLoader`.
 
 ### Connecting with Configuration
 
