@@ -212,7 +212,7 @@ You can also load LESS and SASS files directly from your node_modules directory.
 
 ![Stylus](images/stylus.png)
 
-Stylus is yet another example of a CSS processor. It works well through [stylus-loader](https://github.com/shama/stylus-loader). There's also a pattern library known as [yeticss](https://www.npmjs.com/package/yeticss) that works well with it. Consider the following configuration:
+[Stylus](http://stylus-lang.com/) is yet another example of a CSS processor. It works well through [stylus-loader](https://github.com/shama/stylus-loader). There's also a pattern library known as [yeticss](https://www.npmjs.com/package/yeticss) that works well with it. Consider the following configuration:
 
 **webpack.config.js**
 
