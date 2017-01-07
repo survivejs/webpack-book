@@ -6,10 +6,28 @@ const client = leanpub({
   bookSlug: meta.bookSlug
 });
 
-client.jobStatus(function(err, d) {
-  if(err) {
-   return console.error(err);
-  }
+// Poll for job status now until done
+pollJobStatus(1000);
 
-  console.log(d);
-});
+var previousMessage;
+function pollJobStatus(delay) {
+  setTimeout(function() {
+    client.jobStatus(function(err, d) {
+      if(err) {
+       return console.error(err);
+      }
+
+      if (d.status) {
+        if(previousMessage !== d.message) {
+          console.log(d.message);
+
+          previousMessage = d.message;
+        }
+
+        pollJobStatus(delay);
+      } else {
+        console.log('Done');
+      }
+    });
+  }, delay);
+}
