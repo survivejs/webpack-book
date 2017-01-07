@@ -106,7 +106,11 @@ leanpub-end-insert
 };
 ```
 
-Execute `npm start` and surf to **localhost:8080**. Try modifying *app/component.js*. It should refresh the browser just like earlier, but now we have the setup needed to enable the rest. To demonstrate the idea better, we can implement the hot loading interface ourselves to see the system in action.
+Execute `npm start` and surf to **localhost:8080**. Try modifying *app/component.js*. Note how it fails to refresh.
+
+![No refresh](images/no-refresh.png)
+
+We get this behavior because we set `hotOnly: true` for WDS. Going with `inline: true` would have swallowed the error and refreshed the page. This behavior is fine, though, as we will implement the HMR interface next to avoid the need for hard refresh.
 
 W> *webpack-dev-server* can be very particular about paths. If the given `include` paths don't match the system casing exactly, this can cause it to fail to work. Webpack [issue #675](https://github.com/webpack/webpack/issues/675) discusses this in more detail.
 
