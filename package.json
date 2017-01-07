@@ -4,6 +4,8 @@
   "version": "1.5.0",
   "description": "SurviveJS - Webpack",
   "scripts": {
+    "publish:silent": "node ./scripts/silent-publish.js",
+    "preview": "node ./scripts/preview.js",
     "test": "check-markdown-links manuscript"
   },
   "repository": {
@@ -22,6 +24,7 @@
   "homepage": "https://github.com/survivejs/webpack",
   "dependencies": {},
   "devDependencies": {
-    "check-markdown-links": "^0.1.1"
+    "check-markdown-links": "^0.1.1",
+    "leanpub": "^0.1.4"
   }
 }
