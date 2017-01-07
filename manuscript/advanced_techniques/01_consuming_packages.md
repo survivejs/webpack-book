@@ -94,6 +94,8 @@ For testing your project you can consider solutions, such as [Travis CI](https:/
 
 T> [shields.io](http://shields.io/) lists a large amount of available badges.
 
+T> There's a [Codecov extension](https://chrome.google.com/webstore/detail/codecov-extension/keefkhehidemnokodkdkejapdgfjmijf) for Chrome that allows you to see code coverage through GitHub user interface.
+
 ## Tweaking Module Resolution
 
 Sometimes packages might not follow the standard rules and their *package.json* might have a faulty `main` field or it might be missing altogether. This is where setting up a `resolve.alias` can come in handy. Consider the example below:
