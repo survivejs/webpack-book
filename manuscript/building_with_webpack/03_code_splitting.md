@@ -28,7 +28,7 @@ The `Promise` based interface allows composition and you could load multiple res
 require.ensure(
   // Modules to load, but not execute yet
   ['./load-earlier'],
-  (require) => {
+  () => {
     const loadEarlier = require('./load-earlier');
 
     // Load later on demand and include to the same chunk
@@ -41,6 +41,27 @@ require.ensure(
 ```
 
 As you can see, `require.ensure` definition is more powerful. The gotcha is that it doesn't support error handling. Often you can achieve what you want through a dynamic `import`, but it's good to know this form exists as well.
+
+The example above could be rewritten using a webpack specific function known as `require.include`:
+
+```
+require.ensure(
+  [],
+  () => {
+    require.include('./load-earlier');
+
+    const loadEarlier = require('./load-earlier');
+
+    // Load later on demand and include to the same chunk
+    const module1 = require('./module1');
+    const module2 = require('./module2');
+
+    ...
+  }
+);
+```
+
+If you had nested `require.ensure` definitions, you could pull a module to the parent chunk using either syntax.
 
 T> The formats respect `output.publicPath` option. You can also use `output.chunkFilename` to shape where they output. Example: `chunkFilename: 'scripts/[name].js'`.
 
