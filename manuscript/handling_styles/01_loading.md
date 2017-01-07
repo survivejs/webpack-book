@@ -160,7 +160,7 @@ T> The query syntax, `css-loader?modules`, and its alternatives is discussed in 
 
 ![LESS](images/less.png)
 
-[LESS](http://lesscss.org/) is a CSS processor that is packed with functionality. In webpack using LESS doesn't take a lot of effort. [less-loader](https://www.npmjs.com/package/less-loader) deals with the heavy lifting. You should install [less](https://www.npmjs.com/package/less) as well given it's a peer dependency of *less-loader*.
+[LESS](http://lesscss.org/) is a CSS processor that is packed with functionality. Using LESS doesn't take a lot of effort through webpack as [less-loader](https://www.npmjs.com/package/less-loader) deals with the heavy lifting. You should install [less](https://www.npmjs.com/package/less) as well given it's a peer dependency of *less-loader*.
 
 Consider the following minimal setup:
 
