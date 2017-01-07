@@ -82,6 +82,28 @@ Even though you can push the problem of deployment outside of webpack, there are
 * [webpack-s3-sync-plugin](https://www.npmjs.com/package/webpack-s3-sync-plugin) syncs the assets to Amazon S3.
 * [ssh-webpack-plugin](https://www.npmjs.com/package/ssh-webpack-plugin) has been designed for deployments over SSH.
 
+## Resolving `output.publicPath` Dynamically
+
+If you don't know `publicPath` beforehand, it's possible to resolve it based on the environment like this:
+
+1. Set `__webpack_public_path__ = window.myDynamicPublicPath;` in the application entry point and resolve it as you see fit.
+2. Remove `output.publicPath` setting from your webpack configuration.
+3. If you are using ESLint, set it to ignore the global:
+
+**.eslintrc.js**
+
+```javascript
+module.exports = {
+  ...
+  "globals": {
+    "__webpack_public_path__": true
+  },
+  ...
+};
+```
+
+When you compile, webpack picks up `__webpack_public_path__` and rewrites it so that it points to webpack logic.
+
 ## Conclusion
 
 The same idea works with other environments too. You can set up *gh-pages* to push into a branch you want. After this step we have a fairly complete development and production setup.
