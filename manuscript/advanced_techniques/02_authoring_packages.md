@@ -141,7 +141,7 @@ Provided you have logged in, creating new packages is just a matter of executing
 
 An alternative way to consume a library is to point at it directly in *package.json*. In that case, you can do `"depName": "<github user>/<project>#<reference>"` where `<reference>` can be either commit hash, tag, or branch. You can point to specific pull requests through `<github user>/<project>#pull/<id>/head`. These techniques can be useful, especially if you need to hack around something quickly and cannot wait for the fix.
 
-T> If you want to see what files will be published to npm, consider using a tool known as [irish-pub](https://www.npmjs.com/package/irish-pub). It will give you a listing to review. You can also use [publish-diff](https://www.npmjs.com/package/publish-diff) to get a better of the changes that are going to be published.
+T> If you want to see what files will be published to npm, consider using [npm pack](https://docs.npmjs.com/cli/pack) generates a tarball you can examine. A tool known as [irish-pub](https://www.npmjs.com/package/irish-pub) is another option and it will give you a listing to review. You can also use [publish-diff](https://www.npmjs.com/package/publish-diff) to get a better of the changes that are going to be published.
 
 T> A package known as [np](https://www.npmjs.com/package/np) gives an interactive UI for publishing packages. It performs more work by default. [semantic-release](https://www.npmjs.com/package/semantic-release) takes the idea one step further and automates entire process.
 
