@@ -6,7 +6,7 @@ In this chapter we'll set up CSS with our project and see how it works out with 
 
 ## Loading CSS
 
-To load CSS, we'll need to use [css-loader](https://www.npmjs.com/package/css-loader) and [style-loader](https://www.npmjs.com/package/style-loader). *css-loader* goes through possible `@import` and `url()` statements within the matched files and treats them as regular `require`.
+To load CSS, we'll need to use [css-loader](https://www.npmjs.com/package/css-loader) and [style-loader](https://www.npmjs.com/package/style-loader). *css-loader* goes through possible `@import` and `url()` lookups within the matched files and treats them as a regular `require`.
 
 This process allows us to rely on various other loaders, such as [file-loader](https://www.npmjs.com/package/file-loader) or [url-loader](https://www.npmjs.com/package/url-loader). If an `@import` points to an external resource, *css-loader* will skip it. Only internal resources get processed further by webpack.
 
@@ -79,8 +79,6 @@ leanpub-end-insert
 The configuration we added means that files ending with `.css` should invoke given loaders. `test` matches against a JavaScript style regular expression. The loaders are evaluated from right to left.
 
 T> Loaders are transformations that are applied to source files, and return the new source. Loaders can be chained together, like using a pipe in Unix. `loaders: ['style-loader', 'css-loader']` can be read as `styleLoader(cssLoader(input))`.
-
-T> If you want to enable sourcemaps for CSS, you should enable `sourceMap` option for *css-loader* and set `output.publicPath` to an absolute url. In case you have more loaders, each needs to enable sourcemap support separately! *css-loader* [issue 29](https://github.com/webpack/css-loader/issues/29) discusses this problem further.
 
 ## Setting Up the Initial CSS
 
@@ -189,8 +187,6 @@ Webpack doesn't take much configuration:
   use: ['style-loader', 'css-loader', 'sass-loader']
 }
 ```
-
-Sometimes you might see imports like `@import "~bootstrap/css/bootstrap";` in SASS code. The tilde (`~`) tells webpack that it's not a relative import as by default in SASS. If tilde is included, it will perform a lookup against `node_modules` (default setting) although this is configurable through the [resolve.modules](https://webpack.js.org/configuration/resolve/#resolve-modules) field. This is a general rule that applies to other loaders as well.
 
 T> If you want more performance especially during development, check out [fast-sass-loader](https://www.npmjs.com/package/fast-sass-loader).
 
@@ -308,6 +304,16 @@ module.exports = {
 See [the usage documentation](http://cssnext.io/usage/) for available options.
 
 T> Note that cssnext includes autoprefixer! You don't have to configure autoprefixing separately for it to work in this case.
+
+## Understanding Lookups
+
+Sometimes you might see imports like `@import "~bootstrap/css/bootstrap";` in code. The tilde (`~`) tells webpack that it's not a relative import as by default. If tilde is included, it will perform a lookup against `node_modules` (default setting) although this is configurable through the [resolve.modules](https://webpack.js.org/configuration/resolve/#resolve-modules) field.
+
+[resolve-url-loader](https://www.npmjs.com/package/resolve-url-loader) makes it possible to specify `url()`'s relative to the file location. This is particularly useful with *sass-loader*.
+
+## Enabling Sourcemaps
+
+If you want to enable sourcemaps for CSS, you should enable `sourceMap` option for *css-loader* and set `output.publicPath` to an absolute url. In case you have more loaders, each needs to enable sourcemap support separately! *css-loader* [issue 29](https://github.com/webpack/css-loader/issues/29) discusses this problem further.
 
 ## Conclusion
 
