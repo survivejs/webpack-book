@@ -138,6 +138,10 @@ If you see more, fix them. We'll fix this one when we add more configuration in 
 
 Beyond vanilla JSON, ESLint supports other formats, such as JavaScript or YAML. If you want to use a different format, name the file accordingly. I.e., *.eslintrc.yaml* would expect YAML. See the [documentation](http://eslint.org/docs/user-guide/configuring#configuration-file-formats) for further details.
 
+T> When ESLint gives errors, npm will show a long `ELIFECYCLE error` error block of its own. It is possible to disable that using the `silent` flag like this: `npm run test:lint --silent` or a shortcut `npm run test:lint -s`.
+
+T> This is a good time to try ESLint autofixing. You can run like this: `node_modules/.bin/eslint . --fix`. Check the exact location of the local ESLint through `npm bin`. Another alternative would be to push it behind a *package.json* script. Autofix won't be able to repair each error, but it can fix a lot. And as time goes by and ESLint improves, it is able to perform more work.
+
 ### Connecting ESLint with Webpack
 
 We can make Webpack emit ESLint messages for us by using [eslint-loader](https://www.npmjs.com/package/eslint-loader). As the first step execute
