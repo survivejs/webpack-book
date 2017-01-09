@@ -111,16 +111,17 @@ T> If you are getting `Module build failed: CssSyntaxError:` error, make sure yo
 
 ## Managing Styles Outside of JavaScript
 
-Even though referring to styling through JavaScript and then bundling is a valid option, it is possible to achieve the same result through an `entry`. The basic idea goes like this:
+Even though referring to styling through JavaScript and then bundling is a valid option, it is possible to achieve the same result through an `entry` and [globbinb](https://www.npmjs.com/package/glob). The basic idea goes like this:
 
 ```javascript
+...
 const glob = require('glob');
 
 // Glob CSS files as an array of CSS files
 const PATHS = {
   app: path.join(__dirname, 'app'),
   build: path.join(__dirname, 'build'),
-  style: glob.sync('app/**/*.css')
+  style: glob.sync('./app/**/*.css')
 };
 
 ...
@@ -129,7 +130,7 @@ const common = merge(
   {
     entry: {
       app: PATHS.app,
-      style: PATHS.style
+      style: ['purecss'].concat(PATHS.style)
     },
     ...
   },
