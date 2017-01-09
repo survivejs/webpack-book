@@ -50,7 +50,7 @@ As earlier, we can define a little function for this purpose and then point to i
 ...
 
 leanpub-start-insert
-exports.minify = function() {
+exports.minifyJavaScript = function() {
   return {
     plugins: [
       new webpack.optimize.UglifyJsPlugin({
