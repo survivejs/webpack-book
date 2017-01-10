@@ -66,7 +66,7 @@ As you can see, the size of the CSS file grew quite a bit. This is something we'
 
 ## Enabling PurifyCSS
 
-Using PurifyCSS can lead to great savings. In their example they purify and minify Bootstrap (140 kB) in an application using ~40% of its selectors to mere ~35 kB. That's a big difference.
+Using PurifyCSS can lead to great savings. In their example, they purify and minify Bootstrap (140 kB) in an application using ~40% of its selectors to mere ~35 kB. That's a big difference.
 
 Webpack plugin known as [purifycss-webpack-plugin](https://www.npmjs.com/package/purifycss-webpack-plugin) allows us to achieve results like this. It is preferable to use the `ExtractTextPlugin` with it. Install it first:
 
@@ -113,7 +113,7 @@ exports.purifyCSS = function(paths) {
 leanpub-end-insert
 ```
 
-Next we need to connect this part to our configuration. It is important the plugin is used *after* the `ExtractTextPlugin` as otherwise it won't work!
+Next, we have to connect this part to our configuration. It is important the plugin is used *after* the `ExtractTextPlugin` as otherwise it won't work!
 
 **webpack.config.js**
 

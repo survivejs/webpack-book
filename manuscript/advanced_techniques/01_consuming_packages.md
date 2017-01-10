@@ -7,8 +7,8 @@ Even though consuming npm packages is simple using webpack, there are certain sp
 Most of the packages out there comply with a versioning scheme known as SemVer. It's not problematic as sometimes packages may inadvertently break it, but there are ways around this. Roughly, SemVer states that you should not break backwards compatibility, given [certain rules](http://semver.org/) are met:
 
 1. The MAJOR version gets incremented when incompatible API changes are made to stable APIs.
-2. The MINOR version gets incremented when backwards-compatible functionality are added.
-3. The PATCH version gets incremented when backwards-compatible bug are fixed.
+2. The MINOR version gets incremented when backwards-compatible functionality is added.
+3. The PATCH version gets incremented when backwards-compatible bug is fixed.
 
 The rules are a little different for `0.x` versions. There the rule is `0.<MAJOR>.<MINOR>`. For packages considered stable and suitable for public usage (`1.0.0` and above), the rules is `<MAJOR>.<MINOR>.<PATCH>`. For example, if the current version of a package is `0.1.4` and a breaking change is performed, it should bump to `0.2.0`.
 
@@ -88,11 +88,11 @@ There are a few services that can help you to keep track of your dependencies:
 
 These services provide badges you can integrate into your project *README.md* and they may email you about important changes. They can also point out possible security issues that have been fixed.
 
-For testing your project you can consider solutions, such as [Travis CI](https://travis-ci.org/) or [SauceLabs](https://saucelabs.com/). They can test your project against different environments and browsers even. The advantage of doing this is that it allows you to detect regressions. If you accept pull requests to your project, these services can help to keep their quality higher as it forces the authors to maintain their code on higher level.
+For testing your project, you can consider solutions, such as [Travis CI](https://travis-ci.org/) or [SauceLabs](https://saucelabs.com/). They can test your project against different environments and browsers even. The advantage of doing this is that it allows you to detect regressions. If you accept pull requests to your project, these services can help to keep their quality higher as it forces the authors to maintain their code on higher level.
 
 [Codecov](https://codecov.io/) and [Coveralls](https://coveralls.io/) provide code coverage information and a badge to include in your README. This is useful for figuring out which portions of the source to test better. It is a part of improving the quality of your pull requests as they should maintain the current coverage at minimum and ideally improve it.
 
-T> [shields.io](http://shields.io/) lists a large amount of available badges.
+T> [shields.io](http://shields.io/) lists a large number of available badges.
 
 T> There's a [Codecov extension](https://chrome.google.com/webstore/detail/codecov-extension/keefkhehidemnokodkdkejapdgfjmijf) for Chrome that allows you to see code coverage through GitHub user interface.
 
@@ -142,6 +142,6 @@ T> There's a [Stack Overflow question](https://stackoverflow.com/questions/25384
 
 ## Conclusion
 
-Webpack can consume most npm packages without a hitch. Sometimes, though, some patching might be required. Fortunately its resolution mechanism is patchable enough and you can modify the way it brings source to your project if needed.
+Webpack can consume most npm packages without a hitch. Sometimes, though, some patching might be required. Fortunately, its resolution mechanism is patchable enough and you can modify the way it brings source to your project if needed.
 
-In the next chapter we'll discuss how to author your own npm packages. It's the other side of the same coin and worth understanding if you won't end up authoring packages of your own.
+In the next chapter, we'll discuss how to author your own npm packages. It's the other side of the same coin and worth understanding if you won't end up authoring packages of your own.

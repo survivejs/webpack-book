@@ -1,10 +1,10 @@
 # Loader Definitions
 
-Webpack provides multiple ways to set up module loaders. Webpack 2 simplified the situation by introducing a field known as `use`. The legacy options (`loader` and `loaders`) still work, though. I'll discuss all of the options for completeness as you may see them in various configurations out there.
+Webpack provides multiple ways to set up module loaders. Webpack 2 simplified the situation by introducing a field known as `use`. The legacy options (`loader` and `loaders`) still work, though. I'll discuss all the options for completeness as you may see them in various configurations out there.
 
 I recommend maintaining an `include` definition per each JavaScript related loader definition. This will restrict its search path, improve performance, and make your configuration easier to follow. `include` accepts either a path or an array of paths.
 
-It can be a good idea to prefer absolute paths here as it allows you to move configuration without breaking assumptions. Ideally you have to tweak just a single place during restructuring.
+It can be a good idea to prefer absolute paths here as it allows you to move configuration without breaking assumptions. Ideally you must tweak only a single place during restructuring.
 
 Packages loaded from *node_modules* will still work as the assumption is that they have been compiled in such way that they work out of the box. Sometimes you may come upon a badly packaged one, but often you can work around these by tweaking your loader configuration or setting up a `resolve.alias` against an asset that is included with the offending package.
 

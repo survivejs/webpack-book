@@ -64,7 +64,7 @@ module.exports = function(env) {
 };
 ```
 
-After this change our build should behave exactly the same way as before. This time, however, we have room for expansion at `merge` as we can branch there based on `env`.
+After this change our build should behave the same way as before. This time, however, we have room for expansion at `merge` as we can branch there based on `env`.
 
 T> Webpack 2 validates the configuration by default. If you make an obvious mistake, it will let you know. Earlier it was useful to set up a solution known as [webpack-validator](https://www.npmjs.com/package/webpack-validator), but that's not needed anymore.
 

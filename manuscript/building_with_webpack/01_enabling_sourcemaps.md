@@ -12,7 +12,7 @@ Webpack can generate both inline sourcemaps included within bundles or separate 
 
 You may **not** want to generate a sourcemap for your production bundle as this makes it easy to inspect your application (depends on whether you want this or not, good for staging!). Simply skip the `devtool` field then or generate hidden variant. Skipping sourcemaps entirely also speeds up your build a notch as generating sourcemaps at the best quality can be a heavy operation.
 
-So called hidden sourcemaps give trace information only. You can connect it with a monitoring service to get traces as the application crashes allowing you to fix the problematic situations. This isn't ideal, but it's better to know about possible problems than not.
+Hidden sourcemaps give trace information only. You can connect them with a monitoring service to get traces as the application crashes allowing you to fix the problematic situations. This isn't ideal, but it's better to know about possible problems than not.
 
 T> It is a good idea to study the documentation of the loaders you are using to see loader specific tips. For example, with TypeScript you may need to set a certain flag to make it to work as you expect.
 
@@ -101,7 +101,7 @@ app.css.map   84 bytes       0  [emitted]  app
    [3] ./app/index.js 566 bytes {0} [built]
 ```
 
-Take a good look at those *.map* files. That's where the mapping between the generated and the original source happens. During development it will write the mapping information within the bundle itself.
+Take a good look at those *.map* files. That's where the mapping between the generated and the original source happens. During development, it will write the mapping information within the bundle itself.
 
 ### Enabling Sourcemaps on Browsers
 
@@ -112,7 +112,7 @@ To use sourcemaps on browsers, you may need to enable sourcemaps them explicitly
 * [IE Edge](https://developer.microsoft.com/en-us/microsoft-edge/platform/documentation/f12-devtools-guide/debugger/#source-maps)
 * [Safari](https://developer.apple.com/library/safari/documentation/AppleApplications/Conceptual/Safari_Developer_Guide/ResourcesandtheDOM/ResourcesandtheDOM.html#//apple_ref/doc/uid/TP40007874-CH3-SW2)
 
-W> Sometimes sourcemaps [might not update in Chrome inspector](https://github.com/webpack/webpack/issues/2478). For now the temporary fix is to force the inspector to reload itself by using *alt-r*.
+W> Sometimes sourcemaps [might not update in Chrome inspector](https://github.com/webpack/webpack/issues/2478). For now, the temporary fix is to force the inspector to reload itself by using *alt-r*.
 
 W> If you want to use breakpoints (i.e., a `debugger;` statement or ones set through the browser), the `eval` based options won't work in Chrome!
 

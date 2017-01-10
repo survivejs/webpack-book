@@ -60,7 +60,7 @@ const loader = require('./');
 
 // Mock loader context (`this`) so that we have an environment
 // that's close enough to Webpack in order to avoid crashes
-// during testing. Alternatively we could code defensively
+// during testing. Alternatively, we could code defensively
 // and protect against the missing data.
 const webpackContext = {
   cacheable: noop,
@@ -106,7 +106,7 @@ function noop() {}
 
 Even though I'm not a great fan of mocking, it works well enough for a case like this. The biggest fear is that webpack API changes at some point. This would mean my test code would break and I would have to rewrite a large part of it.
 
-It could be interesting to run the tests through webpack itself to avoid mocking. In this approach you wouldn't have to worry about the test facing parts so much and it would be more about capturing output for the given input.
+It could be interesting to run the tests through webpack itself to avoid mocking. In this approach, you wouldn't have to worry about the test facing parts so much and it would be more about capturing output for the given input.
 
 The problem is that this would add a significant overhead to the tests and bring problems of its own as you would have to figure out more effective ways to execute them.
 

@@ -13,7 +13,7 @@ Webpack provides **placeholders** for this purpose. These strings are used to at
 
 It is preferable to use particularly `hash` and `chunkhash` only for production purposes as hashing won't do much good during development.
 
-T> If you want shorter hashes, it is possible to slice `hash` and `chunkhash` using `:` syntax like this: `[chunkhash:8]`. Instead of a hash like `8c4cbfdb91ff93f3f3c5` this would yield `8c4cbfdb`.
+T> If you want shorter hashes, it is possible to slice `hash` and `chunkhash` using syntax like this: `[chunkhash:8]`. Instead of a hash like `8c4cbfdb91ff93f3f3c5` this would yield `8c4cbfdb`.
 
 T> There are more options available and you can even modify the hashing and digest type as discussed at [loader-utils](https://www.npmjs.com/package/loader-utils#interpolatename) documentation.
 
@@ -72,7 +72,7 @@ leanpub-end-insert
 };
 ```
 
-To make the extracted CSS pick up a hash, we should set `contenthash` for it. We cannot use `chunkhash` given it's derived based on the entry and the CSS of the project belongs to the same entry chunk as the application code.
+To make the extracted CSS pick up a hash, we should set `contenthash` for it. We cannot use `chunkhash` given it is derived based on the entry and the CSS of the project belongs to the same entry chunk as the application code.
 
 This means a change made to the application code would invalidate CSS hash as well or vice versa. Instead, relying on a hash generated based on the CSS content is a stable way to go.
 
@@ -190,7 +190,7 @@ Note how the output has changed, though. Instead of numbers, you can see hashes.
 
 When webpack writes bundles, it writes something known as **manifest** as well. You can find it in the generated *vendor* bundle in this project. The manifest describes what files webpack should load. It is possible to extract it and start loading the files of our project faster instead of having to wait for the *vendor* bundle to be loaded.
 
-This is actually the root of our problem. If the hashes webpack generates change, then the manifest will change as well. As a result the contents of the vendor bundle will change and it will become invalidated. The problem can be eliminated by extracting the manifest to a file of its own or by writing it inline to the *index.html* of the project.
+This is the root of our problem. If the hashes webpack generates change, then the manifest will change as well. As a result, the contents of the vendor bundle will change and it will become invalidated. The problem can be eliminated by extracting the manifest to a file of its own or by writing it inline to the *index.html* of the project.
 
 ### Extracting a Manifest
 

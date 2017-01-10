@@ -12,7 +12,7 @@ The linter that started it all for JavaScript is Douglas Crockford's [JSLint](ht
 
 ESLint goes to the next level as it allows you to implement custom rules, parsers, and reporters. ESLint works with Babel and JSX syntax making it ideal for React projects. It doesn't support JSX by default, though, so a Babel specific parser will need to be used. This is also true with custom language features although ESLint supports ES6 out of the box.
 
-ESLint rules have been documented well and you have full control over their severity. These features alone make it a powerful tool. Better yet, there is a large amount of rules and presets beyond the core as the community has built on top of it.
+ESLint rules have been documented well and you have full control over their severity. These features alone make it a powerful tool. Better yet, there is a large number of rules and presets beyond the core as the community has built on top of it.
 
 T> It is quite telling that a competing project, JSCS, [decided to merge its efforts with ESLint](http://eslint.org/blog/2016/04/welcoming-jscs-to-eslint). JSCS reached end of life with its 3.0.0 release and the core team joined with ESLint.
 
@@ -230,7 +230,7 @@ I've collected assorted ESLint tips below. The great thing about ESLint is that 
 
 ## EditorConfig
 
-[EditorConfig](http://editorconfig.org/) allows you to maintain a consistent coding style across different IDEs and editors. Some even come with built-in support. For others, you have to install a separate plugin. In addition, you'll need to set up a file like this:
+[EditorConfig](http://editorconfig.org/) allows you to maintain a consistent coding style across different IDEs and editors. Some even come with built-in support. For others, you should install a separate plugin. In addition, you'll need to set up a file like this:
 
 **.editorconfig**
 

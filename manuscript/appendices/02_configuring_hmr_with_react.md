@@ -2,15 +2,15 @@
 
 One of the features that sets React and webpack apart is a feature known as hot loading. This is something that sits on top of webpack's Hot Module Replacement (HMR). The idea is that instead of forcing a full refresh on modification, we patch the code that changed during the runtime.
 
-The advantage of doing this is that it allows our application to retain its state. The process isn't fool proof, but when it works, it's quite neat. As a result we get good developer experience (DX).
+The advantage of doing this is that it allows our application to retain its state. The process isn't fool proof, but when it works, it's quite neat. As a result, we get good developer experience (DX).
 
-You could achieve something similar by persisting your application state in other ways. For instance you could consider using `localStorage` for a similar purpose. You will still get a refresh, but it's far better than losing the entire state. You can reach the same result using multiple ways.
+You could achieve something similar by persisting your application state in other ways. For instance, you could consider using `localStorage` for a similar purpose. You will still get a refresh, but it's far better than losing the entire state. You can reach the same result using multiple ways.
 
 You can even implement the hot loading interface on your own. I'll show you the basic setup for a state container known as [Redux](http://redux.js.org/). It was designed with hot loading in mind and the approach works very well with it.
 
 ## Setting Up *babel-preset-react-hmre*
 
-A lot of the hard work has been done for us already. In order to configure our setup to support hot loading, we need to enable a Babel preset known as [babel-preset-react-hmre](https://www.npmjs.com/package/babel-preset-react-hmre) during development. To get started, install it:
+A lot of the hard work has been done for us already. To configure our setup to support hot loading, we need to enable a Babel preset known as [babel-preset-react-hmre](https://www.npmjs.com/package/babel-preset-react-hmre) during development. To get started, install it:
 
 ```bash
 npm i babel-preset-react-hmre --save-dev

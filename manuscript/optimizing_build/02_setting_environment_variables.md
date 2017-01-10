@@ -75,7 +75,7 @@ This is the core idea of `DefinePlugin`. We can toggle parts of code using it us
 
 Given we are using React in our project and it happens to use the technique, we can try to enable `DefinePlugin` and see what it does to our production build.
 
-As before, encapsulate this idea to a function. It is important to note that given the way webpack replaces the free variable, we have to push it through `JSON.stringify`. In essence we'll end up with a string like `'\"demo\"' and then webpack will insert that into the slots it finds.
+As before, encapsulate this idea to a function. It is important to note that given the way webpack replaces the free variable, we should push it through `JSON.stringify`. We'll end up with a string like `'\"demo\"' and then webpack will insert that into the slots it finds.
 
 **webpack.parts.js**
 
@@ -144,7 +144,7 @@ app.css.map   84 bytes       1  [emitted]  app
   [16] ./app/main.css 41 bytes {1} [built]
 ```
 
-So we went from 141 kB to 41 kB, and finally, to 21.1 kB. The final build is a little faster than the previous one as well.
+We went from 141 kB to 41 kB, and finally, to 21.1 kB. The final build is a little faster than the previous one as well.
 
 Given this 21.1 kB can be served gzipped, it is somewhat reasonable. gzipping will drop around another 40% and it is well supported by browsers.
 

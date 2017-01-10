@@ -30,7 +30,7 @@ You will learn to develop composable webpack configuration for both development 
 
 ## How is This Book Organized?
 
-The book has been split up into smaller parts each of which discusses a specific topic in greater detail. First you will develop a basic configuration that's then expanded to work with a variety of formats and different styling approaches. After that we'll discuss build related concerns and techniques while developing the configuration further. Finally we'll discuss a variety of advanced techniques while learning more about npm packages.
+The book has been split up into smaller parts each of which discusses a specific topic in greater detail. First you will develop a basic configuration that's then expanded to work with a variety of formats and different styling approaches. After that we'll discuss build related concerns and techniques while developing the configuration further. Finally, we'll discuss a variety of advanced techniques while learning more about npm packages.
 
 ## Who is This Book for?
 
@@ -94,4 +94,4 @@ The book wouldn't be half as good as it is without patient editing and feedback 
 
 This book wouldn't have been possible without the original "SurviveJS - Webpack and React" effort. Anyone who contributed to that, deserves my thanks! You can check that book for more specific attributions.
 
-Thanks to Mike "Pomax" Kamermans, Cesar Andreu, Dan Palmer, Viktor Jančík, Tom Byrer, Christian Hettlage, David A. Lee, Alexandar Castaneda, Marcel Olszewski, Steve Schwartz, Chris Sanders, Charles Ju, Aditya Bhardwaj, Rasheed Bustamam, José Menor, Ben Gale, Jake Goulding, Andrew Ferk, gabo, Giang Nguyen, @Coaxial, @khronic, Henrik Raitasola, Gavin Orland, David Riccitelli, Stephen Wright, Majky Bašista, Artem Sapegin, Gunnari Auvinen, Jón Levy, Alexander Zaytsev, Richard Muller, and many others who have contributed direct feedback for this book!
+Thanks to Mike "Pomax" Kamermans, Cesar Andreu, Dan Palmer, Viktor Jančík, Tom Byrer, Christian Hettlage, David A. Lee, Alexandar Castaneda, Marcel Olszewski, Steve Schwartz, Chris Sanders, Charles Ju, Aditya Bhardwaj, Rasheed Bustamam, José Menor, Ben Gale, Jake Goulding, Andrew Ferk, gabo, Giang Nguyen, @Coaxial, @khronic, Henrik Raitasola, Gavin Orland, David Riccitelli, Stephen Wright, Majky Bašista, Artem Sapegin, Gunnari Auvinen, Jón Levy, Alexander Zaytsev, Richard Muller, Ava Mallory, and many others who have contributed direct feedback for this book!

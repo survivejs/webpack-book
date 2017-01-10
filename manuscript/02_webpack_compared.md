@@ -12,7 +12,7 @@ Historically speaking, there have been many build systems. *Make* is perhaps the
 
 Task runners are great tools on a high level. They allow you to perform operations in a cross-platform manner. The problems begin when you need to splice various assets together and produce bundles. This is the reason we have *bundlers*, such as Browserify, Brunch, or webpack.
 
-For a while, a solution known as [RequireJS](http://requirejs.org/) was popular. The idea was to provide an asynchronous module definition and build on top of that. The format, AMD, is covered in greater detail later in this chapter. Fortunately the standards have caught up and RequireJS seems more like a curiosity now.
+For a while, a solution known as [RequireJS](http://requirejs.org/) was popular. The idea was to provide an asynchronous module definition and build on top of that. The format, AMD, is covered in greater detail later in this chapter. Fortunately, the standards have caught up and RequireJS seems more like a curiosity now.
 
 There are a couple of developing alternatives as well. I have listed a couple of these below:
 
@@ -92,7 +92,7 @@ define(['require'], function (require) {
 });
 ```
 
-This latter approach definitely eliminates some of the clutter. You will still end up with some code that might feel redundant. Given there's ES6 now, it probably doesn't make much sense to use AMD anymore unless you really have to due to legacy reasons.
+This latter approach definitely eliminates some of the clutter. You will still end up with some code that might feel redundant. Given there's ES6 now, it probably doesn't make much sense to use AMD anymore unless you really must due to legacy reasons.
 
 T> Jamund Ferguson has written a nice blog series on how to port from [RequireJS to webpack](https://gist.github.com/xjamundx/b1c800e9282e16a6a18e).
 
@@ -106,7 +106,7 @@ T> Webpack can generate UMD wrappers for you (`output.libraryTarget: 'umd'`). Th
 
 ![Grunt](images/grunt.png)
 
-[Grunt](http://gruntjs.com/) was the first popular task runner for front-end developers. Especially its plugin architecture contributed towards its popularity. Plugins are often complex by themselves. As a result when configuration grows, it can become difficult to understand what's going on.
+[Grunt](http://gruntjs.com/) was the first popular task runner for front-end developers. Especially its plugin architecture contributed towards its popularity. Plugins are often complex by themselves. As a result, when configuration grows, it can become difficult to understand what's going on.
 
 Here's an example from [Grunt documentation](http://gruntjs.com/sample-gruntfile). In this configuration, we define a linting and a watcher task. When the *watch* task is run, it will trigger the *lint* task as well. This way, as we run Grunt, we'll get warnings in real-time in our terminal as we edit our source code.
 
@@ -227,7 +227,7 @@ You also cannot document the tasks given the default JSON format used by npm doe
 
 ![Browserify](images/browserify.png)
 
-Dealing with JavaScript modules has always been a bit of a problem. The language itself actually didn't have the concept of modules till ES6. Ergo, we have been stuck in the '90s when it comes to browser environments. Various solutions, including [AMD](http://requirejs.org/docs/whyamd.html), have been proposed.
+Dealing with JavaScript modules has always been a bit of a problem. The language itself didn't have the concept of modules till ES6. Ergo, we have been stuck in the '90s when it comes to browser environments. Various solutions, including [AMD](http://requirejs.org/docs/whyamd.html), have been proposed.
 
 In practice, it can be useful just to use CommonJS, the Node.js format, and let the tooling deal with the rest. The advantage is that you can often hook into npm and avoid reinventing the wheel.
 

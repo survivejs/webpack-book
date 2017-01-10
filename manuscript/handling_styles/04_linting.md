@@ -91,4 +91,4 @@ See stylelint documentation for a full list of rules. npm lists [possible stylel
 
 ## Conclusion
 
-After these changes we have linting for our styling in place. Now you can catch at least the most obvious CSS related problems.
+After these changes, we have linting for our styling in place. Now you can catch at least the most obvious CSS related problems.

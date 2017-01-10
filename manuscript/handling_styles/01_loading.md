@@ -1,6 +1,6 @@
 # Loading Styles
 
-Webpack doesn't handle styling out of the box. Instead, you will have to configure loaders and plugins to get the setup you need.
+Webpack doesn't handle styling out of the box. Instead, you must configure loaders and plugins to get the setup you need.
 
 In this chapter we'll set up CSS with our project and see how it works out with automatic browser refreshing. The neat thing is that in this case webpack doesn't have to force a full refresh. Instead, it can do something smarter as we'll see soon.
 
@@ -295,7 +295,7 @@ T> Note that cssnext includes autoprefixer! You don't have to configure autopref
 
 ## Understanding Lookups
 
-If you import one LESS/SASS file from an other, use the exact same pattern as anywhere else. Webpack will dig into these files and figure out the dependencies.
+If you import one LESS/SASS file from another, use the exact same pattern as anywhere else. Webpack will dig into these files and figure out the dependencies.
 
 ```less
 @import "./variables.less";

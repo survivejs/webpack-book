@@ -10,7 +10,7 @@ WDS is a development server running in-memory. It refreshes content automaticall
 
 HMR goes further than simply refreshing browser on change. WDS provides an interface that makes it possible to patch code on the fly. This means you will need to implement it for client-side code. It is trivial for something like CSS by definition (no state), but it's a harder problem with JavaScript frameworks and libraries. Often careful design is needed to allow this. When the feature works, it is beautiful, though.
 
-W> An IDE feature known as **safe write** can wreak havoc with hot loading. Therefore it is advisable to turn it off when using a HMR based setup.
+W> An IDE feature known as **safe write** can wreak havoc with hot loading. Therefore, it is advisable to turn it off when using a HMR based setup.
 
 ## Emitting Files from *webpack-dev-server*
 
@@ -69,13 +69,13 @@ The output means that the development server is running. If you open *http://loc
 
 If you try modifying the code, you should see output at your terminal. The problem is that the browser doesn't catch these changes without a hard refresh. That's something we need to resolve next through configuration.
 
-T> WDS will try to run in another port in case the default one is being used. So keep an eye on the terminal output to figure out where it ends up running. You can debug the situation with a command like `netstat -na | grep 8080`. If there's something running in the port 8080, it should display a message. The exact command may depend on the platform.
+T> WDS will try to run in another port in case the default one is being used. Keep an eye on the terminal output to figure out where it ends up running. You can debug the situation with a command like `netstat -na | grep 8080`. If there's something running in the port 8080, it should display a message. The exact command may depend on the platform.
 
 ## Making Module Ids More Debuggable
 
-When webpack generates a bundle, it needs to tell different modules apart. By default it uses numbers for this purpose. The problem is that this makes it difficult to debug the code if you have to inspect the resulting code. It can also lead to issues with hashing behavior.
+When webpack generates a bundle, it needs to tell different modules apart. By default, it uses numbers for this purpose. The problem is that this makes it difficult to debug the code if you must inspect the resulting code. It can also lead to issues with hashing behavior.
 
-To overcome this problem it is a good idea to use an alternative module id scheme. As it happens, webpack provides a plugin that's ideal for debugging. This plugin, `NamedModulesPlugin`, emits module paths over numeric ids. This information is useful for development.
+To overcome this problem, it is a good idea to use an alternative module id scheme. As it happens, webpack provides a plugin that's ideal for debugging. This plugin, `NamedModulesPlugin`, emits module paths over numeric ids. This information is useful for development.
 
 You can enable this better behavior as follows:
 
@@ -119,13 +119,13 @@ leanpub-end-insert
 
 If you make your code crash somehow and examine the resulting code, you should see familiar paths in the output. Even though a small change, enabling this behavior is useful for development.
 
-We will perform a similar trick for production usage later on in this book in the *Adding Hashes to Filenames* chapter.
+We will perform a similar trick for production usage later in this book in the *Adding Hashes to Filenames* chapter.
 
 ## Accessing the Development Server from Network
 
 It is possible to customize host and port settings through the environment in our setup (i.e., `export PORT=3000` on Unix or `SET PORT=3000` on Windows). This can be useful if you want to access your server using some other device within the same network. The default settings are enough on most platforms.
 
-To access your server, you'll need to figure out the ip of your machine. On Unix this can be achieved using `ifconfig | grep inet`. On Windows `ipconfig` can be used. An npm package, such as [node-ip](https://www.npmjs.com/package/node-ip) may come in handy as well. Especially on Windows you may need to set your `HOST` to match your ip to make it accessible.
+To access your server, you'll need to figure out the ip of your machine. On Unix, this can be achieved using `ifconfig | grep inet`. On Windows `ipconfig` can be used. An npm package, such as [node-ip](https://www.npmjs.com/package/node-ip) may come in handy as well. Especially on Windows you may need to set your `HOST` to match your ip to make it accessible.
 
 ## Alternative Ways to Use *webpack-dev-server*
 
@@ -154,8 +154,8 @@ To get it to work, you will have to install it first through `npm i nodemon --sa
 ...
 ```
 
-It is possible WDS [will support the functionality](https://github.com/webpack/webpack/issues/3153) itself in the future. If you want to make it reload itself on change, you will have to implement a little work-around like this for now.
+It is possible WDS [will support the functionality](https://github.com/webpack/webpack/issues/3153) itself in the future. If you want to make it reload itself on change, you should implement a little work-around like this for now.
 
 ## Conclusion
 
-In this chapter you learned to set up webpack to refresh your browser automatically. We can go a notch further and enable a feature known as Hot Module Replacement. We'll do that in the next chapter.
+In this chapter, you learned to set up webpack to refresh your browser automatically. We can go a notch further and enable a feature known as Hot Module Replacement. We'll do that in the next chapter.

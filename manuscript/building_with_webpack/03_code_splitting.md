@@ -2,7 +2,7 @@
 
 Web applications have the tendency to grow big as features are developed. This can be problematic especially for mobile usage. The longer it takes for your application to load, the more frustrating it is to the user. This problem is amplified in a mobile environment where the connections can be slow.
 
-Even though splitting our bundles can help a notch, they are not the only solution and you may still end up having to download a lot of data. Fortunately it is possible to do better thanks to a technique known as *code splitting*. It allows us to load code lazily as we need it.
+Even though splitting our bundles can help a notch, they are not the only solution and you may still end up having to download a lot of data. Fortunately, it is possible to do better thanks to a technique known as *code splitting*. It allows us to load code lazily as we need it.
 
 T> Incidentally, it is possible to implement Google's [PRPL pattern](https://developers.google.com/web/fundamentals/performance/prpl-pattern/) using lazy loading. PRPL (Push, Render, Pre-cache, Lazy-load) has been designed mobile web in mind and can be implemented using webpack.
 
@@ -114,7 +114,7 @@ A simple way to illustrate the idea might be to set up a module that contains a 
 export default 'Hello from lazy';
 ```
 
-In practice you could have a lot more code here and you could have additional split points even. This is a good place to extend the demonstration.
+In practice, you could have a lot more code here and you could have additional split points even. This is a good place to extend the demonstration.
 
 We also need to point the application to this file so it knows to load it. A simple way to do this is to bind the loading process to click. Whenever the user happens to click the button, we'll trigger the loading process and replace the button content.
 
@@ -192,7 +192,7 @@ export default function () {
 
 Beyond the variants above, there's another type of `require` that you should be aware of. [require.context](https://webpack.js.org/configuration/entry-context/#context) is a general form of the above.
 
-Let's say you are writing a static site generator on top of webpack. You could model your site contents within a directory structure. At the simplest level you could have just a `pages/` directory which would contain Markdown files.
+Let's say you are writing a static site generator on top of webpack. You could model your site contents within a directory structure. At the simplest level, you could have just a `pages/` directory which would contain Markdown files.
 
 Each of these files would have a YAML frontmatter for their metadata. The url of each page could be determined based on the filename. This is enough information to map the directory as a site. Code-wise we would end up with a statement like this somewhere:
 
@@ -276,7 +276,7 @@ Consider using browser-side loaders like [$script.js](https://github.com/ded/scr
 
 Code splitting is one of those features that allows you to push your application a notch further. You can load code when you need it. This gives faster initial load times and helps to improve user experience especially in a mobile context where bandwidth is limited.
 
-It comes with some extra work as you will have to figure out what's possible to split. Often you find good split points within a router. Or you may notice that specific functionality is required only when specific feature is used. Charting is a good example of this.
+It comes with some extra work as you must figure out what's possible to split. Often you find good split points within a router. Or you may notice that specific functionality is required only when specific feature is used. Charting is a good example of this.
 
 Just applying `import` or `require.ensure` alone can be very effective. `require.context` has more limited possibilities, but it's a powerful tool especially for tool developers.
 

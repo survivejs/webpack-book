@@ -1,6 +1,6 @@
 # Configuring Hot Module Replacement
 
-**Hot Module Replacement** (HMR) builds on top the WDS. It enables an interface that makes it possible to swap modules live. For example, *style-loader* is able to update your CSS without forcing a refresh. It is easy to perform HMR with CSS as it doesn't contain any application state.
+**Hot Module Replacement** (HMR) builds on top the WDS. It enables an interface that makes it possible to swap modules live. For example, *style-loader* can update your CSS without forcing a refresh. It is easy to perform HMR with CSS as it doesn't contain any application state.
 
 HMR is possible with JavaScript too, but due to the state we have in our applications, it's harder. In the *Configuring React* chapter we discuss how to set it up with React. You can use the same idea elsewhere.
 
@@ -58,9 +58,9 @@ exports.devServer = function(options) {
 };
 ```
 
-It's plenty of code, but it's better to encapsulate it so it contains ideas we understand and want to reuse later on.
+It's plenty of code, but it's better to encapsulate it so it contains ideas we understand and want to reuse later.
 
-W> You should **not** enable HMR for your production configuration. It will likely work, but having the capability enabled there won't do any good and it will make your bundles bigger than they have to be.
+W> You should **not** enable HMR for your production configuration. It will likely work, but having the capability enabled there won't do any good and it will make your bundles bigger than they should be.
 
 ## Connecting with Configuration
 
@@ -118,7 +118,7 @@ T> You should be able to access the application alternatively through **localhos
 
 ## Implementing the HMR Interface
 
-It is possible to implement the HMR interface through a global known as `module.hot` exposed by webpack. It provides updates through a function known as `module.hot.accept(<path to watch>, <handler>)`. It is that handler portion that is interesting as we need to patch the application there. In this case it is enough to replace the old DOM node with a newer one as we receive updates.
+It is possible to implement the HMR interface through a global known as `module.hot` exposed by webpack. It provides updates through a function known as `module.hot.accept(<path to watch>, <handler>)`. It is that handler portion that is interesting as we need to patch the application there. In this case, it is enough to replace the old DOM node with a newer one as we receive updates.
 
 The following implementation illustrates the idea:
 
@@ -225,4 +225,4 @@ entry: {
 
 ## Conclusion
 
-HMR is one of those aspects of webpack that makes it interesting for developers. Even though other tools have similar functionality, webpack has taken its implementation quite far. To get most out of it, you will have to implement the HMR interface or use solutions that implement it.
+HMR is one of those aspects of webpack that makes it interesting for developers. Even though other tools have similar functionality, webpack has taken its implementation quite far. To get most out of it, you must implement the HMR interface or use solutions that implement it.

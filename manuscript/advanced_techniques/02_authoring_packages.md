@@ -6,14 +6,14 @@ Even though webpack is useful for bundling applications, it has its uses for pac
 
 Most of the available npm packages are small and include just a select few files:
 
-* *index.js* - On small projects it's enough to have the code at the root. On larger ones you may want to start splitting it up further.
+* *index.js* - On small projects it's enough to have the code at the root. On larger ones, you may want to start splitting it up further.
 * *package.json* - npm metadata in JSON format
 * *README.md* - README is the most important document of your project. It is written in Markdown format and provides an overview. For simple projects the whole documentation can fit there. It will be shown at the package page at *npmjs.com*.
 * *LICENSE* - You should include licensing information within your project. You can refer to it from *package.json*.
 
 In larger projects, you may find the following:
 
-* *CONTRIBUTING.md* - A guide for potential contributors. How should the code be developed and so on.
+* *CONTRIBUTING.md* - A guide for potential contributors describing how the code should be developed.
 * *CHANGELOG.md* - This document describes major changes per version. If you do major API changes, it can be a good idea to cover them here. It is possible to generate the file based on Git commit history, provided you write nice enough commits.
 * *.travis.yml* - [Travis CI](https://travis-ci.org/) is a popular continuous integration platform that is free for open source projects. You can run the tests of your package over multiple systems using it. There are other alternatives of course, but Travis is very popular.
 * *.gitignore* - Ignore patterns for Git, i.e., which files shouldn't go under version control. It can be useful to ignore npm distribution files here so they don't clutter your repository.
@@ -133,7 +133,7 @@ T> If you want something cross-platform, consider using [rimraf](https://www.npm
 
 Working with npm is surprisingly simple. To get started, you will need to use [npm adduser](https://docs.npmjs.com/cli/adduser) (aliased to `npm login`). It allows you to set up an account. After this process has completed, it will create *~/.npmrc* and use that data for authentication. There's also [npm logout](https://docs.npmjs.com/cli/logout) that will clear the credentials.
 
-T> When creating a project, `npm init` respects the values set at *~/.npmrc*. Hence it may be worth your while to set reasonable defaults there to save some time. If you want to limit your package to a specific scope, use `npm init --scope=<scope>`. As a result you will get `@<scope>/<package>`. This is handy especially for personal packages given the default namespace of npm is so crowded.
+T> When creating a project, `npm init` respects the values set at *~/.npmrc*. Hence it may be worth your while to set reasonable defaults there to save some time. If you want to limit your package to a specific scope, use `npm init --scope=<scope>`. As a result, you will get `@<scope>/<package>`. This is handy especially for personal packages given the default namespace of npm is so crowded.
 
 ### Publishing a Package
 
@@ -167,9 +167,9 @@ Even though it is simple to publish new versions out there, it is important to r
 
 To make it easier to comply with SemVer, [next-ver](https://www.npmjs.com/package/next-ver) can compute the next version you should use and update it for you. [commitizen](https://www.npmjs.com/package/commitizen) goes further and allows changelog generation and automated releases.
 
-Both of these tools rely on commit message annotations. On small projects you might have `fix` or `feat` prefix at your commit titles (e.g., `fix - Allow doodad to work with zero`). You can also communicate the context using `chore(docs)` kind of style to document which part of the project was touched.
+Both these tools rely on commit message annotations. On small projects, you might have `fix` or `feat` prefix at your commit titles (e.g., `fix - Allow doodad to work with zero`). You can also communicate the context using `chore(docs)` kind of style to document which part of the project was touched.
 
-This metadata lets the tooling to figure out the types of the changes you made. It can help even with changelog generation and allow automated releases over manual ones. Annotating your commits well is a good practice in any case as it will make it easier to debug your code later on.
+This metadata lets the tooling to figure out the types of the changes you made. It can help even with changelog generation and allow automated releases over manual ones. Annotating your commits well is a good practice in any case as it will make it easier to debug your code later.
 
 Given SemVer can be a little tricky to manage, a backwards compatible alternative known as [ComVer](https://github.com/staltz/comver) has been developed. The versioning scheme can be described as `<not compatible>.<compatible>`. Every time you make a change that's not compatible with an earlier version, you'll bump the first number. Otherwise you will bump the other.
 
@@ -369,7 +369,7 @@ To solve the development distribution problem, we need to hook up a custom scrip
 }
 ```
 
-Secondly we'll need the script itself:
+Secondly, we'll need the script itself:
 
 **lib/post_install.js**
 

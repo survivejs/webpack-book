@@ -2,7 +2,7 @@
 
 The easiest way to make your application slow is to load a lot of small assets. Each request comes with an overhead after all. HTTP/2 will help in this regard and change the situation somewhat drastically. Till then we are stuck with different approaches. Webpack allows a few of these. They are particularly relevant for loading images.
 
-Webpack allows you to inline assets by using [url-loader](https://www.npmjs.com/package/url-loader). It will output your images as BASE64 strings within your JavaScript bundles. This will decrease the amount of requests needed while growing the bundle size. It is enough to use *url-loader* during development. You may want to consider other alternatives for the production build, though.
+Webpack allows you to inline assets by using [url-loader](https://www.npmjs.com/package/url-loader). It will output your images as BASE64 strings within your JavaScript bundles. This will decrease the number of requests needed while growing the bundle size. It is enough to use *url-loader* during development. You may want to consider other alternatives for the production build, though.
 
 Webpack gives control over the inlining process and can defer loading to [file-loader](https://www.npmjs.com/package/file-loader). *file-loader* outputs image files and returns paths to them instead of inlining. This technique works with other assets types, such as fonts, as we will see in the later chapters.
 
@@ -26,7 +26,7 @@ In order to load *.jpg* and *.png* files while inlining files below 25kB, we wou
 
 ## Setting Up *file-loader*
 
-If you want to skip inlining altogether, you can use *file-loader* directly. The following setup customizes the resulting filename. By default *file-loader* returns the MD5 hash of the file's contents with the original extension:
+If you want to skip inlining altogether, you can use *file-loader* directly. The following setup customizes the resulting filename. By default, *file-loader* returns the MD5 hash of the file's contents with the original extension:
 
 ```javascript
 {
@@ -42,7 +42,7 @@ T> If you want to output your images below a specific directory, set it up like 
 
 ## Loading SVGs
 
-Webpack has a [few ways](https://github.com/webpack/webpack/issues/595) to load SVGs. However the simplest way is through *file-loader* as follows:
+Webpack has a [few ways](https://github.com/webpack/webpack/issues/595) to load SVGs. However, the simplest way is through *file-loader* as follows:
 
 ```javascript
 {
@@ -61,7 +61,7 @@ Assuming you have set up your styling correctly, you can refer to your SVG files
 
 If you want the raw SVG content, you can use the [raw-loader](https://www.npmjs.com/package/raw-loader) for this purpose. [svg-inline-loader](https://www.npmjs.com/package/svg-inline-loader) goes a step further and eliminates unnecessary markup from your SVGs. These loaders can be useful if you want to inject the SVG content to directly to JavaScript or HTML markup.
 
-[svg-sprite-loader](https://www.npmjs.com/package/svg-sprite-loader) is able to merge separate SVG files into a single sprite making it potentially more effective to load as you avoid request overhead. It supports raster images (*.jpg*, *.png*) as well.
+[svg-sprite-loader](https://www.npmjs.com/package/svg-sprite-loader) can merge separate SVG files into a single sprite making it potentially more effective to load as you avoid request overhead. It supports raster images (*.jpg*, *.png*) as well.
 
 T> You can still use *url-loader* and the aforementioned tips with SVGs too.
 
@@ -77,7 +77,7 @@ Compression is particularly useful for production builds as it will decrease the
 
 ## Referencing to Images
 
-Webpack can pick up images from stylesheets through `@import` and `url()` assuming *css-loader* has been configured. You can also refer to your images within code. In this case you'll have to import the files explicitly
+Webpack can pick up images from stylesheets through `@import` and `url()` assuming *css-loader* has been configured. You can also refer to your images within code. In this case, you'll have to import the files explicitly
 
 ```jsx
 const src = require('./avatar.png');
@@ -88,7 +88,7 @@ const Profile = () => (
 );
 ```
 
-If you are using React, then you use [babel-plugin-transform-react-jsx-img-import](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-img-import) to generate the `require` automatically. In that case you would end up with code like this:
+If you are using React, then you use [babel-plugin-transform-react-jsx-img-import](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-img-import) to generate the `require` automatically. In that case, you would end up with code like this:
 
 ```jsx
 const Profile = () => (
@@ -96,7 +96,7 @@ const Profile = () => (
 );
 ```
 
-It is also possible to set up dynamic imports. This actually uses a feature known `require.context` internally. It is covered in greater detail at the *Understanding Chunks* chapter. Here's a small example:
+It is also possible to set up dynamic imports. This actually uses a feature known `require.context` internally. It is covered in greater detail at the *Code Splitting* chapter. Here's a small example:
 
 ```javascript
 // The name of the avatar is received from somewhere
@@ -129,7 +129,7 @@ A technique known as spriting allows you to combine multiple smaller images into
 
 ## Loading Images Dynamically
 
-Sometimes you might want to load an image dynamically based on some condition. Webpack feature known as `require.context` can come in handy here. It still assumes the images are available within the file system, but if that's the case, then the technique can work. See the *Understanding Chunks* chapter for further information.
+Sometimes you might want to load an image dynamically based on some condition. Webpack feature known as `require.context` can come in handy here. It still assumes the images are available within the file system, but if that's the case, then the technique can work. See the *Code Splitting* chapter for further information.
 
 ## Images and *css-loader* Sourcemap Gotcha
 
@@ -137,4 +137,4 @@ If you are using images and *css-loader* with the `sourceMap` option enabled, it
 
 ## Conclusion
 
-Webpack allows you to inline images within your bundles when needed. Figuring out good inlining limits for your images might take some experimentation. You have to balance between bundle sizes and the amount of requests.
+Webpack allows you to inline images within your bundles when needed. Figuring out good inlining limits for your images might take some experimentation. You have to balance between bundle sizes and the number of requests.

@@ -166,7 +166,7 @@ To get started, install the needed dependencies:
 npm i expose-loader react-addons-perf --save-dev
 ```
 
-Next we need to expose React to the console through the [expose-loader](https://www.npmjs.com/package/expose-loader). The idea is that we'll bind the React performance utilities to that during development. Here's the webpack loader configuration for exposing React as a global:
+Next, we need to expose React to the console through the [expose-loader](https://www.npmjs.com/package/expose-loader). The idea is that we'll bind the React performance utilities to that during development. Here's the webpack loader configuration for exposing React as a global:
 
 ```javascript
 {
@@ -272,7 +272,7 @@ Even though useful, Flow static checker is able to catch more errors. Runtime ch
 
 ## Setting Up TypeScript
 
-Microsoft's [TypeScript](http://www.typescriptlang.org/) is a far more established solution than Facebook's Flow. As a result you will find more premade type definitions for it and overall the quality of support should be better. You can use it with webpack using at least the following loaders:
+Microsoft's [TypeScript](http://www.typescriptlang.org/) is a far more established solution than Facebook's Flow. As a result, you will find more premade type definitions for it and overall the quality of support should be better. You can use it with webpack using at least the following loaders:
 
 * [ts-loader](https://www.npmjs.com/package/ts-loader)
 * [awesome-typescript-loader](https://www.npmjs.com/package/awesome-typescript-loader)
@@ -287,4 +287,4 @@ A separate tool known as [create-index](https://www.npmjs.com/package/create-ind
 
 ## Conclusion
 
-There are a lot of aspects to keep in mind when configuring webpack to work with React. Fortunately this is something you don't have to perform often. Once you have a solid basic setup fitting your needs together, it will take you far.
+There are a lot of aspects to keep in mind when configuring webpack to work with React. Fortunately, this is something you don't have to perform often. Once you have a solid basic setup fitting your needs together, it will take you far.

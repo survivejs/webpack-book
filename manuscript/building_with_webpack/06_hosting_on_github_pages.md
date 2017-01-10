@@ -4,7 +4,7 @@ A package known as [gh-pages](https://www.npmjs.com/package/gh-pages) allows us 
 
 Despite its name, the package works with other services that support hosting from a Git repository as well. But given GitHub is so popular, it's good enough for demonstrating the idea.
 
-In practice you would likely have more complicated setup in place that would push the result to some other service through a Continuous Environment (CI) system. The approach discussed here is enough for small projects and demonstrations that can be entirely static.
+In practice, you would likely have more complicated setup in place that would push the result to some other service through a Continuous Environment (CI) system. The approach discussed here is enough for small projects and demonstrations that can be entirely static.
 
 ## Setting Up *gh-pages*
 
@@ -33,7 +33,7 @@ leanpub-end-insert
 
 To make the asset paths work on GitHub Pages, we also need to tweak a webpack setting known as `output.publicPath`. Otherwise they will point at root and that won't work unless you are hosting behind a domain root (say `survivejs.com`) directly.
 
-`publicPath` gives control over the resulting urls you see at *index.html* for instance. If you are hosting your assets on a CDN, this would be the place to tweak. In this case it's enough to set it to point the GitHub project like this:
+`publicPath` gives control over the resulting urls you see at *index.html* for instance. If you are hosting your assets on a CDN, this would be the place to tweak. In this case, it's enough to set it to point the GitHub project like this:
 
 ```javascript
 ...
@@ -106,4 +106,4 @@ When you compile, webpack picks up `__webpack_public_path__` and rewrites it so 
 
 ## Conclusion
 
-The same idea works with other environments too. You can set up *gh-pages* to push into a branch you want. After this step we have a fairly complete development and production setup.
+The same idea works with other environments too. You can set up *gh-pages* to push into a branch you want. After this step, we have a complete development and production setup.
