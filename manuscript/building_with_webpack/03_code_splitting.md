@@ -263,7 +263,7 @@ The same idea works with dynamic `import`. Instead of passing an absolute path, 
 const target = 'demo.json';
 
 // Elsewhere in code
-import(`indexes/${target}).then(...).catch(...);
+import(`indexes/${target}`).then(...).catch(...);
 ```
 
 ## Dealing with Dynamic Paths
