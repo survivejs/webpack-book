@@ -23,7 +23,7 @@ A more elaborate way to achieve a similar result would be to use:
 ```javascript
 {
   // Match woff2 in addition to patterns like .woff?v=1.1.1.
-  test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+  test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/,
   loader: 'url-loader',
   options: {
     limit: 50000,
@@ -39,18 +39,18 @@ In case we want to make sure our site looks good on a maximum amount of browsers
 
 ```javascript
 {
-  test: /\.woff$/,
+  test: /\.woff2?$/,
   // Inline small woff files and output them below font/.
   // Set mimetype just in case.
   loader: 'url-loader',
   options: {
     name: 'fonts/[hash].[ext]',
-    limit: 5000,
+    limit: 50000,
     mimetype: 'application/font-woff'
   }
 },
 {
-  test: /\.ttf$|\.eot$/,
+  test: /\.(ttf|svg|eot)$/,
   loader: 'file-loader',
   options: {
     name: 'fonts/[hash].[ext]'
@@ -71,7 +71,7 @@ Furthermore, it's possible to manipulate `publicPath` and override the default p
 ```javascript
 {
   // Match woff2 in addition to patterns like .woff?v=1.1.1.
-  test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+  test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/,
   loader: 'url-loader',
   options: {
     limit: 50000,
@@ -98,7 +98,7 @@ exports.loadFonts = function(options) {
       rules: [
         {
           // Capture eot, ttf, svg, woff, and woff2
-          test: /\.(eot|ttf|svg|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+          test: /\.(woff2?|ttf|svg|eot)(\?v=\d+\.\d+\.\d+)?$/,
           loader: 'file-loader',
           options: {
             name: name
