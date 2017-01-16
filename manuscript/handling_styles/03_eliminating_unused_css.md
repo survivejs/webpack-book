@@ -161,6 +161,8 @@ The size of our style has decreased significantly. Instead of almost 16k we have
 
 T> PurifyCSS supports [additional options](https://github.com/purifycss/purifycss#the-optional-options-argument) including `minify`. You could for example enable additional logging by setting `purifyOptions: { info: true }` when instantiating the plugin.
 
+W> Using PurifyCSS will lose CSS sourcemaps even if you have enabled them through loader specific configuration! This has to do with the way it works internally.
+
 ## Conclusion
 
 The styling portion of our demo is in a good shape. We can make it better by including CSS linting to the project. We'll do that next.
