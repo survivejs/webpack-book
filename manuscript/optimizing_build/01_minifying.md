@@ -50,11 +50,11 @@ As earlier, we can define a little function for this purpose and then point to i
 ...
 
 leanpub-start-insert
-exports.minifyJavaScript = function(sourceMap) {
+exports.minifyJavaScript = function({ useSourceMap }) {
   return {
     plugins: [
       new webpack.optimize.UglifyJsPlugin({
-        sourceMap: sourceMap,
+        sourceMap: useSourceMap,
         compress: {
           warnings: false
         }
@@ -84,7 +84,7 @@ module.exports = function(env) {
       },
       parts.loadJavaScript(PATHS.app),
 leanpub-start-insert
-      parts.minifyJavaScript('source-map'),
+      parts.minifyJavaScript({ useSourceMap: true }),
 leanpub-end-insert
       ...
     );
