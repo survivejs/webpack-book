@@ -44,17 +44,18 @@ ESLint provides two ways to deal with this: local and global. If you want to set
 
 Global configuration is possible as well. In this case, you can use `env` key like this:
 
-**.eslintrc**
+**.eslintrc.js**
 
 ```json
-{
+module.exports = {
   "env": {
     "browser": true,
+    "commonjs": true,
+    "es6": true,
     "node": true,
-    "mocha": true
   },
   ...
-}
+};
 ```
 
 ## ESLint Resources

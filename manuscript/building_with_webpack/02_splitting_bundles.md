@@ -73,8 +73,8 @@ module.exports = function(env) {
 leanpub-start-insert
       {
         entry: {
-          vendor: ['react']
-        }
+          vendor: ['react'],
+        },
       },
 leanpub-end-insert
       parts.generateSourcemaps('source-map'),
@@ -171,16 +171,16 @@ module.exports = function(env) {
 leanpub-start-delete
       {
         entry: {
-          vendor: ['react']
-        }
+          vendor: ['react'],
+        },
       },
 leanpub-end-delete
 leanpub-start-insert
       parts.extractBundles([
         {
           name: 'vendor',
-          entries: ['react']
-        }
+          entries: ['react'],
+        },
       ]),
 leanpub-end-insert
       parts.generateSourcemaps('source-map'),

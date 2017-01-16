@@ -112,7 +112,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const PATHS = {
   app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'build')
+  build: path.join(__dirname, 'build'),
 };
 
 module.exports = {
@@ -124,21 +124,23 @@ module.exports = {
   // convention by default so if a directory contains *index.js*,
   // it will resolve to that.
   entry: {
-    app: PATHS.app
+    app: PATHS.app,
   },
   output: {
     path: PATHS.build,
-    filename: '[name].js'
+    filename: '[name].js',
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Webpack demo'
-    })
-  ]
+      title: 'Webpack demo',
+    }),
+  ],
 };
 ```
 
 The `entry` path could be given as a relative one. The [context](https://webpack.js.org/configuration/entry-context/#context) field can be used to configure that lookup. Given plenty of places expect absolute paths, I prefer to use absolute paths everywhere to avoid confusion and keep it simple.
+
+T> I will use **trailing commas** in the book examples on purpose as it gives cleaned diffs. I will show you how to enforce this in the *Linting JavaScript* chapter.
 
 T> I like to use `path.join`, but `path.resolve` would be a good alternative. See the [Node.js path API](https://nodejs.org/api/path.html) for further details.
 

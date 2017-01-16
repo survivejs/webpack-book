@@ -32,8 +32,8 @@ leanpub-start-insert
 exports.clean = function(path) {
   return {
     plugins: [
-      new CleanWebpackPlugin([path])
-    ]
+      new CleanWebpackPlugin([path]),
+    ],
   };
 };
 leanpub-end-insert
@@ -53,8 +53,8 @@ module.exports = function(env) {
       parts.extractBundles([
         {
           name: 'vendor',
-          entries: ['react']
-        }
+          entries: ['react'],
+        },
       ]),
 leanpub-start-insert
       parts.clean(PATHS.build),

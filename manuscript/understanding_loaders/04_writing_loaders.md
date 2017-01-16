@@ -63,7 +63,7 @@ const loader = require('./');
 // and protect against the missing data.
 const webpackContext = {
   cacheable: noop,
-  exec: noop
+  exec: noop,
 };
 // Bind the context. After this we can run the loader in our
 // tests.
@@ -87,12 +87,14 @@ describe('highlight-loader', function () {
     // we need to tweak the context (`this`).
     const given = loader.call(
       Object.assign({}, webpackContext, {
-        query: '?raw=true&lang=python'
+        query: '?raw=true&lang=python',
       }),
       code
     );
-    const expected = 'module.exports = ' +
-      '"a = <span class=\\"hljs-number\\">4</span>"';
+    const expected = (
+      'module.exports = ' +
+      '"a = <span class=\\"hljs-number\\">4</span>"'
+    );
 
     assert.equal(given, expected);
   });

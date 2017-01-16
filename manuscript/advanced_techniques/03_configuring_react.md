@@ -32,9 +32,9 @@ Webpack provides a field known as [resolve.extensions](https://webpack.js.org/gu
 const common = {
   ...
   resolve: {
-    extensions: ['.js', '.jsx']
-  }
-}
+    extensions: ['.js', '.jsx'],
+  },
+};
 
 ...
 ```
@@ -89,9 +89,9 @@ const common = {
       title: 'Demo app'
       appMountId: 'app', // Generate #app where to mount
       mobile: true, // Scale page on mobile
-      inject: false // html-webpack-template requires this to work
-    })
-  }
+      inject: false, // html-webpack-template requires this to work
+    }),
+  },
 };
 
 module.exports = function(env) {
@@ -123,7 +123,7 @@ T> Check out the *Configuring Hot Module Replacement with React* appendix to lea
 
 [babel-plugin-transform-react-remove-prop-types](https://www.npmjs.com/package/babel-plugin-transform-react-remove-prop-types) is handy if you want to remove `propType` related code from your production build. It also allows component authors to generated code that's wrapped so that setting environment at `DefinePlugin` can kick in and give the same effect without the consumers having to use the plugin.
 
-## Using react-lite Instead of React for Production
+## Using *react-lite* Instead of React for Production
 
 React is quite heavy library even though the API is quite small considering. There are light alternatives, such as [Preact](https://www.npmjs.com/package/preact) and [react-lite](https://www.npmjs.com/package/react-lite). react-lite implements React's API apart from features like `propTypes` and server side rendering.
 
@@ -143,9 +143,9 @@ On the webpack side, we can use a `resolve.alias` to point our React imports to 
 resolve: {
   alias: {
     'react': 'react-lite',
-    'react-dom': 'react-lite'
-  }
-}
+    'react-dom': 'react-lite',
+  },
+},
 ```
 
 If you try building your project now, you should notice your bundle is considerably smaller.
@@ -171,8 +171,8 @@ Next, we need to expose React to the console through the [expose-loader](https:/
 ```javascript
 {
   test: require.resolve('react'),
-  use: 'expose-loader?React'
-}
+  use: 'expose-loader?React',
+},
 ```
 
 After this, you should be able to access `React` through a console. To make it possible to access the performance utilities, we need to do one more step. Add the following to the entry point of your application to enable `React.Perf` during development:
@@ -209,12 +209,12 @@ exports.dontParse = function(options) {
   return {
     module: {
       noParse: [
-        options.path
-      ]
+        options.path,
+      ],
     },
     resolve: {
-      alias: alias
-    }
+      alias: alias,
+    },
   };
 };
 ```
@@ -232,8 +232,8 @@ leanpub-start-insert
   dontParse({
     name: 'react',
     path: path.join(
-      __dirname, 'node_modules', 'react', 'dist', 'react.min.js'
-    )
+      __dirname, 'node_modules', 'react', 'dist', 'react.min.js',
+    ),
   }),
 leanpub-end-insert
   ...

@@ -19,9 +19,9 @@ In order to load *.jpg* and *.png* files while inlining files below 25kB, we wou
   test: /\.(jpg|png)$/,
   loader: 'url-loader',
   options: {
-    limit: 25000
-  }
-}
+    limit: 25000,
+  },
+},
 ```
 
 ## Setting Up *file-loader*
@@ -33,9 +33,9 @@ If you want to skip inlining altogether, you can use *file-loader* directly. The
   test: /\.(jpg|png)$/,
   loader: 'file-loader',
   options: {
-    name: '[path][name].[hash].[ext]'
-  }
-}
+    name: '[path][name].[hash].[ext]',
+  },
+},
 ```
 
 T> If you want to output your images below a specific directory, set it up like this: `name: './images/[hash].[ext]'`. Adjust to your liking.
@@ -49,8 +49,8 @@ Webpack has a [few ways](https://github.com/webpack/webpack/issues/595) to load 
 ```javascript
 {
   test: /\.svg$/,
-  use: 'file-loader'
-}
+  use: 'file-loader',
+},
 ```
 
 Assuming you have set up your styling correctly, you can refer to your SVG files like this. The example SVG path below is relative to the CSS file:

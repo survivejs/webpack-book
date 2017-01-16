@@ -89,8 +89,8 @@ exports.setFreeVariable = function(key, value) {
 
   return {
     plugins: [
-      new webpack.DefinePlugin(env)
-    ]
+      new webpack.DefinePlugin(env),
+    ],
   };
 };
 leanpub-end-insert
@@ -110,8 +110,8 @@ module.exports = function(env) {
       {
         output: {
           // Tweak this to match your GitHub project name
-          publicPath: '/webpack-demo/'
-        }
+          publicPath: '/webpack-demo/',
+        },
       },
 leanpub-start-insert
       parts.setFreeVariable(

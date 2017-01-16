@@ -29,7 +29,7 @@ To get started, we can wrap the basic idea within a configuration part. You can 
 
 exports.generateSourcemaps = function(type) {
   return {
-    devtool: type
+    devtool: type,
   };
 };
 ```
@@ -62,13 +62,9 @@ leanpub-end-insert
   return merge(
     common,
     {
-      // Disable performance hints during development
-      performance: {
-        hints: false
-      },
       plugins: [
-        new webpack.NamedModulesPlugin()
-      ]
+        new webpack.NamedModulesPlugin(),
+      ],
     },
 leanpub-start-insert
     parts.generateSourcemaps('eval-source-map'),
@@ -77,7 +73,7 @@ leanpub-end-insert
     parts.devServer({
       // Customize host/port here if needed
       host: process.env.HOST,
-      port: process.env.PORT
+      port: process.env.PORT,
     })
   );
 };
@@ -212,9 +208,9 @@ exports.generateSourcemaps = function(options) {
         // especially if your sourcemaps are very big (over 10 MB)
         // as browsers can struggle with those.
         // See https://github.com/webpack/webpack/issues/2669.
-        // noSources: bool
-      })
-    ]
+        // noSources: bool,
+      }),
+    ],
   };
 };
 ```

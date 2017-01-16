@@ -91,7 +91,7 @@ const merge = require('webpack-merge');
 
 const PATHS = {
   app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'build')
+  build: path.join(__dirname, 'build'),
 };
 
 ...
@@ -104,14 +104,10 @@ leanpub-start-insert
   return merge(
     common,
     {
-      // Disable performance hints during development
-      performance: {
-        hints: false
-      },
       plugins: [
-        new webpack.NamedModulesPlugin()
-      ]
-    }
+        new webpack.NamedModulesPlugin(),
+      ],
+    },
   );
 leanpub-end-insert
 };

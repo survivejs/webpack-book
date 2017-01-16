@@ -56,8 +56,8 @@ exports.minifyJavaScript = function({ useSourceMap }) {
       new webpack.optimize.UglifyJsPlugin({
         sourceMap: useSourceMap,
         compress: {
-          warnings: false
-        }
+          warnings: false,
+        },
       })
     ]
   };
@@ -79,8 +79,8 @@ module.exports = function(env) {
       {
         output: {
           // Tweak this to match your GitHub project name
-          publicPath: '/webpack-demo/'
-        }
+          publicPath: '/webpack-demo/',
+        },
       },
       parts.loadJavaScript(PATHS.app),
 leanpub-start-insert
@@ -145,7 +145,7 @@ const treeShakingDemo = function () {
 
 export {
   component,
-  treeShakingDemo
+  treeShakingDemo,
 };
 leanpub-end-insert
 ```
@@ -205,7 +205,7 @@ new webpack.optimize.UglifyJsPlugin({
     screw_ie8 : true,
 
     // Don't mangle function names
-    keep_fnames: true
+    keep_fnames: true,
   }
 });
 ```

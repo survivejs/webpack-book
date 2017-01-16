@@ -84,34 +84,38 @@ module.exports = {
     "browser": true,
     "commonjs": true,
     "es6": true,
-    "node": true
+    "node": true,
   },
   "extends": "eslint:recommended",
   "parserOptions": {
-    "sourceType": "module"
+    "sourceType": "module",
   },
   "rules": {
+    "comma-dangle": [
+      "error",
+      "always-multiline",
+    ],
     "indent": [
       "error",
-      2
+      2,
     ],
     "linebreak-style": [
       "error",
-      "unix"
+      "unix",
     ],
     "quotes": [
       "error",
-      "single"
+      "single",
     ],
     "semi": [
       "error",
-      "always"
+      "always",
     ],
     "no-unused-vars": [
-      "warn"
+      "warn",
     ],
-    "no-console": 0
-  }
+    "no-console": 0,
+  },
 };
 ```
 
@@ -168,10 +172,10 @@ exports.lintJavaScript = function(paths) {
           include: paths,
 
           use: 'eslint-loader',
-          enforce: 'pre'
-        }
-      ]
-    }
+          enforce: 'pre',
+        },
+      ],
+    },
   };
 };
 ```
@@ -184,17 +188,17 @@ exports.lintJavaScript = function(paths) {
 const common = merge(
   {
     entry: {
-      app: PATHS.app
+      app: PATHS.app,
     },
     output: {
       path: PATHS.build,
-      filename: '[name].js'
+      filename: '[name].js',
     },
     plugins: [
       new HtmlWebpackPlugin({
-        title: 'Webpack demo'
-      })
-    ]
+        title: 'Webpack demo',
+      }),
+    ],
 leanpub-start-delete
   }
 leanpub-end-delete

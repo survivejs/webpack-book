@@ -13,9 +13,9 @@ If we go with just one format, we can use a similar setup as for images and rely
   test: /\.woff$/,
   loader: 'url-loader',
   options: {
-    limit: 50000
-  }
-}
+    limit: 50000,
+  },
+},
 ```
 
 A more elaborate way to achieve a similar result would be to use:
@@ -28,9 +28,9 @@ A more elaborate way to achieve a similar result would be to use:
   options: {
     limit: 50000,
     mimetype: 'application/font-woff',
-    name: './fonts/[hash].[ext]'
-  }
-}
+    name: './fonts/[hash].[ext]',
+  },
+},
 ```
 
 ## Supporting Multiple Formats
@@ -46,16 +46,16 @@ In case we want to make sure our site looks good on a maximum amount of browsers
   options: {
     name: 'fonts/[hash].[ext]',
     limit: 50000,
-    mimetype: 'application/font-woff'
-  }
+    mimetype: 'application/font-woff',
+  },
 },
 {
   test: /\.(ttf|svg|eot)$/,
   loader: 'file-loader',
   options: {
-    name: 'fonts/[hash].[ext]'
-  }
-}
+    name: 'fonts/[hash].[ext]',
+  },
+},
 ```
 
 Note that the way you write your CSS definition matters. Assuming we are going to inline the WOFF format, we should have it first like this in your CSS:
@@ -95,9 +95,9 @@ Furthermore, it's possible to manipulate `publicPath` and override the default p
     name: './fonts/[hash].[ext]',
     // Tweak publicPath to fix CSS lookups to take
     // the directory into account.
-    publicPath: '../'
-  }
-}
+    publicPath: '../',
+  },
+},
 ```
 
 ## Using Font Awesome
@@ -116,11 +116,11 @@ exports.loadFonts = function(options) {
           test: /\.(woff2?|ttf|svg|eot)(\?v=\d+\.\d+\.\d+)?$/,
           loader: 'file-loader',
           options: {
-            name: name
-          }
-        }
-      ]
-    }
+            name: name,
+          },
+        },
+      ],
+    },
   };
 };
 ```

@@ -80,11 +80,11 @@ exports.loadJavaScript = function(paths) {
             // It uses default OS directory by default. If you need
             // something more custom, pass a path to it.
             // I.e., { cacheDirectory: '<path>' }
-            cacheDirectory: true
-          }
-        }
-      ]
-    }
+            cacheDirectory: true,
+          },
+        },
+      ],
+    },
   };
 };
 ```
@@ -108,8 +108,8 @@ leanpub-end-insert
       parts.extractBundles([
         {
           name: 'vendor',
-          entries: ['react']
-        }
+          entries: ['react'],
+        },
       ]),
       ...
     );

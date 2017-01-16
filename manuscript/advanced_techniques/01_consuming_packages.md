@@ -39,10 +39,10 @@ You can tweak webpack's module resolution through the `resolve.modules` field. E
   resolve: {
     modules: [
       path.join(__dirname, 'demo'),
-      'node_modules'
-    ]
-  }
-}
+      'node_modules',
+    ],
+  },
+},
 ```
 
 Sometimes it may be beneficial to use these techniques together. Compared to npm environment, webpack provides more flexibility, although you can mimic a lot of webpack's functionality using terminal based tricks.
@@ -104,10 +104,10 @@ Sometimes packages might not follow the standard rules and their *package.json* 
 {
   resolve: {
     alias: {
-      demo: path.resolve(__dirname, 'node_modules/demo/dist/demo.js')
-    }
-  }
-}
+      demo: path.resolve(__dirname, 'node_modules/demo/dist/demo.js'),
+    },
+  },
+},
 ```
 
 The idea is that if webpack resolver matches `demo` in the beginning, it will resolve from the target. You can constrain the process to an exact name by using a pattern like `demo$`.
@@ -121,9 +121,9 @@ Even though packages might work well out of the box, they might bring too much c
 ```javascript
 {
   plugins: [
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
-  ]
-}
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+  ],
+},
 ```
 
 T> You can use the same mechanism to work around problematic dependencies. Example: `new webpack.IgnorePlugin(/^(buffertools)$/)`.
@@ -133,9 +133,9 @@ To bring specific locales to your project, you should use `ContextReplacementPlu
 ```javascript
 {
   plugins: [
-    new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /de|fi/)
-  ]
-}
+    new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /de|fi/),
+  ],
+},
 ```
 
 T> There's a [Stack Overflow question](https://stackoverflow.com/questions/25384360/how-to-prevent-moment-js-from-loading-locales-with-webpack/25426019) that covers these ideas in greater detail.

@@ -44,16 +44,16 @@ exports.devServer = function(options) {
       // 0.0.0.0 is available to all network devices
       // unlike default `localhost`.
       host: options.host, // Defaults to `localhost`
-      port: options.port // Defaults to 8080
+      port: options.port, // Defaults to 8080
     },
     plugins: [
       // Enable multi-pass compilation for enhanced performance
       // in larger projects. Good default.
       new webpack.HotModuleReplacementPlugin({
         // Disabled as this won't work with html-webpack-template yet
-        //multiStep: true
-      })
-    ]
+        //multiStep: true,
+      }),
+    ],
   };
 };
 ```
@@ -84,22 +84,16 @@ module.exports = function(env) {
   return merge(
     common,
     {
-      // Disable performance hints during development
-      performance: {
-        hints: false
-      },
       plugins: [
-        new webpack.NamedModulesPlugin()
-      ]
-leanpub-start-delete
-    }
+        new webpack.NamedModulesPlugin(),
+      ],
+    },
 leanpub-end-delete
 leanpub-start-insert
-    },
     parts.devServer({
       // Customize host/port here if needed
       host: process.env.HOST,
-      port: process.env.PORT
+      port: process.env.PORT,
     })
 leanpub-end-insert
   );
@@ -179,7 +173,7 @@ leanpub-start-insert
         // Delay the rebuild after the first change
         aggregateTimeout: 300,
         // Poll using interval (in ms, accepts boolean too)
-        poll: 1000
+        poll: 1000,
       },
 leanpub-end-insert
       ...
@@ -192,7 +186,7 @@ leanpub-start-insert
       ]),
 leanpub-end-insert
       ...
-    ]
+    ],
   };
 }
 ```
@@ -213,12 +207,12 @@ entry: {
     'webpack-dev-server/client?http://localhost:8080',
 
     // Hot reload only when compiled successfully
-    'webpack/hot/only-dev-server'
+    'webpack/hot/only-dev-server',
 
     // Alternative with refresh on failure
-    // 'webpack/hot/dev-server'
+    // 'webpack/hot/dev-server',
   ],
-  // Rest of the entries
+  // The rest of the entries
   ...
 }
 ```

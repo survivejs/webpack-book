@@ -28,10 +28,10 @@ exports.lintCSS = function(paths) {
           include: paths,
 
           use: 'postcss-loader',
-          enforce: 'pre'
-        }
-      ]
-    }
+          enforce: 'pre',
+        },
+      ],
+    },
   };
 };
 ```
@@ -65,12 +65,12 @@ module.exports = {
   plugins: {
     stylelint: {
       rules: {
-        'color-hex-case': 'lower'
+        'color-hex-case': 'lower',
       },
       // Ignore node_modules CSS
-      ignoreFiles: 'node_modules/**/*.css'
-    }
-  }
+      ignoreFiles: 'node_modules/**/*.css',
+    },
+  },
 };
 ```
 

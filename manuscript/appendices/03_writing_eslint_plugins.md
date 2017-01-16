@@ -25,23 +25,23 @@ module.exports = {
       docs: {
         description: 'Demo rule',
         category: 'Best Practices',
-        recommended: true
+        recommended: true,
       },
       schema: [{
         type: 'object',
         // JSON Schema to describe properties
         properties: {},
-        additionalProperties: false
+        additionalProperties: false,
       }],
       create: function(context) {
         return {
           Identifier: function(node) {
             context.report(node, 'This is unexpected!');
-          }
+          },
         };
-      }
-    }
-  }
+      },
+    },
+  },
 };
 ```
 

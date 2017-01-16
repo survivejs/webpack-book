@@ -299,15 +299,15 @@ externals: {
     // Look up lodash.merge below ['lodash', 'merge'] for AMD.
     amd:  ['lodash', 'merge'],
     // Look up lodash.merge through `_.merge` in global environment.
-    root: ['_', 'merge']
+    root: ['_', 'merge'],
   },
   // Adapt React to different environments.
   'react': {
     commonjs: 'react',
     commonjs2: 'react',
     amd: 'React',
-    root: 'React'
-  }
+    root: 'React',
+  },
 },
 ```
 

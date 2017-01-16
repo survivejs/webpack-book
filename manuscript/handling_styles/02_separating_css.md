@@ -44,15 +44,15 @@ exports.extractCSS = function(paths) {
 
           loader: ExtractTextPlugin.extract({
             fallbackLoader: 'style-loader',
-            loader: 'css-loader'
-          })
-        }
-      ]
+            loader: 'css-loader',
+          }),
+        },
+      ],
     },
     plugins: [
       // Output extracted CSS to a file
-      new ExtractTextPlugin('[name].css')
-    ]
+      new ExtractTextPlugin('[name].css'),
+    ],
   };
 };
 leanpub-end-insert
@@ -121,7 +121,7 @@ const glob = require('glob');
 const PATHS = {
   app: path.join(__dirname, 'app'),
   build: path.join(__dirname, 'build'),
-  style: glob.sync('./app/**/*.css')
+  style: glob.sync('./app/**/*.css'),
 };
 
 ...
@@ -130,7 +130,7 @@ const common = merge(
   {
     entry: {
       app: PATHS.app,
-      style: ['purecss'].concat(PATHS.style)
+      style: ['purecss'].concat(PATHS.style),
     },
     ...
   },

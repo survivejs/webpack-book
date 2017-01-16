@@ -26,8 +26,8 @@ Assuming we have configuration like this:
   output: {
     path: PATHS.build,
     filename: '[name].[chunkhash].js',
-  }
-}
+  },
+},
 ```
 
 Webpack would generate filenames like these:
@@ -61,8 +61,8 @@ leanpub-start-insert
 leanpub-end-insert
 
           // Tweak this to match your GitHub project name
-          publicPath: '/webpack-demo/'
-        }
+          publicPath: '/webpack-demo/',
+        },
       },
       ...
     );
@@ -147,15 +147,12 @@ module.exports = function(env) {
           filename: '[name].[chunkhash].js',
 
           // Tweak this to match your GitHub project name
-          publicPath: '/webpack-demo/'
-leanpub-start-delete
-        }
-leanpub-end-delete
-leanpub-start-insert
+          publicPath: '/webpack-demo/',
         },
+leanpub-start-insert
         plugins: [
-          new webpack.HashedModuleIdsPlugin()
-        ]
+          new webpack.HashedModuleIdsPlugin(),
+        ],
 leanpub-end-insert
       },
       ...
@@ -208,15 +205,12 @@ module.exports = function(env) {
       parts.extractBundles([
         {
           name: 'vendor',
-          entries: ['react']
-leanpub-start-delete
-        }
-leanpub-end-delete
-leanpub-start-insert
+          entries: ['react'],
         },
+leanpub-start-insert
         {
-          name: 'manifest'
-        }
+          name: 'manifest',
+        },
 leanpub-end-insert
       ]),
       parts.clean(PATHS.build),

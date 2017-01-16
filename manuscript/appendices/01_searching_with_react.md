@@ -31,7 +31,7 @@ export default class App extends React.Component {
       index: null,
       value: '',
       lines: [],
-      results: []
+      results: [],
     };
 
     this.onChange = this.onChange.bind(this);
@@ -67,7 +67,7 @@ export default class App extends React.Component {
     // Search against lines and index if they exist
     if(lines && index) {
       this.setState({
-        results: this.search(lines, index, value)
+        results: this.search(lines, index, value),
       });
 
       return;
@@ -84,7 +84,7 @@ export default class App extends React.Component {
       this.setState({
         index: lunr.index,
         lines: lunr.lines,
-        results: this.search(lunr.lines, lunr.index, value)
+        results: this.search(lunr.lines, lunr.index, value),
       });
     }).catch(err => {
       // Something unexpected happened (connection lost
@@ -122,11 +122,11 @@ function loadIndex() {
   // older browsers and Internet Explorer!
   return Promise.all([
     import('lunr'),
-    import('../search_index.json')
+    import('../search_index.json'),
   ]).then(([lunr, search]) => {
     return {
       index: lunr.Index.load(search.index),
-      lines: search.lines
+      lines: search.lines,
     };
   });
 }

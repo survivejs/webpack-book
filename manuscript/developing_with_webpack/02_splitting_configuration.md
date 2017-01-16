@@ -39,23 +39,23 @@ const merge = require('webpack-merge');
 
 const PATHS = {
   app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'build')
+  build: path.join(__dirname, 'build'),
 };
 
 const common = merge(
   {
     entry: {
-      app: PATHS.app
+      app: PATHS.app,
     },
     output: {
       path: PATHS.build,
-      filename: '[name].js'
+      filename: '[name].js',
     },
     plugins: [
       new HtmlWebpackPlugin({
-        title: 'Webpack demo'
-      })
-    ]
+        title: 'Webpack demo',
+      }),
+    ],
   }
 );
 

@@ -36,10 +36,10 @@ exports.loadCSS = function(paths) {
           // paths.
           include: paths,
 
-          use: ['style-loader', 'css-loader']
-        }
-      ]
-    }
+          use: ['style-loader', 'css-loader'],
+        },
+      ],
+    },
   };
 };
 leanpub-end-insert
@@ -56,13 +56,9 @@ module.exports = function(env) {
   return merge(
     common,
     {
-      // Disable performance hints during development
-      performance: {
-        hints: false
-      },
       plugins: [
-        new webpack.NamedModulesPlugin()
-      ]
+        new webpack.NamedModulesPlugin(),
+      ],
     },
 leanpub-start-insert
     parts.loadCSS(),
@@ -70,7 +66,7 @@ leanpub-end-insert
     parts.devServer({
       // Customize host/port here if needed
       host: process.env.HOST,
-      port: process.env.PORT
+      port: process.env.PORT,
     })
   );
 };
@@ -167,7 +163,7 @@ Consider the following minimal setup:
 ```javascript
 {
   test: /\.less$/,
-  use: ['style-loader', 'css-loader', 'less-loader']
+  use: ['style-loader', 'css-loader', 'less-loader'],
 }
 ```
 
@@ -186,7 +182,7 @@ Webpack doesn't take much configuration:
 ```javascript
 {
   test: /\.scss$/,
-  use: ['style-loader', 'css-loader', 'sass-loader']
+  use: ['style-loader', 'css-loader', 'sass-loader'],
 }
 ```
 
@@ -207,20 +203,20 @@ const common = {
     rules: [
       {
         test: /\.styl$/,
-        use: ['style-loader', 'css-loader', 'stylus-loader']
-      }
-    ]
+        use: ['style-loader', 'css-loader', 'stylus-loader'],
+      },
+    ],
   },
   plugins: [
     new webpack.LoaderOptionsPlugin({
       options: {
         // yeticss
         stylus: {
-          use: [require('yeticss')]
-        }
-      }
-    })
-  ]
+          use: [require('yeticss')],
+        },
+      },
+    }),
+  ],
 };
 ```
 
@@ -249,10 +245,10 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader']
-      }
-    ]
-  }
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
+      },
+    ],
+  },
 };
 ```
 
@@ -264,8 +260,8 @@ In addition to webpack configuration, we need to set up some for PostCSS:
 module.exports = {
   plugins: {
     autoprefixer: {},
-    precss: {}
-  }
+    precss: {},
+  },
 };
 ```
 
@@ -284,8 +280,8 @@ T> *postcss-loader* relies on [cosmiconfig](https://www.npmjs.com/package/cosmic
 ```javascript
 module.exports = {
   plugins: {
-    cssnext: {}
-  }
+    cssnext: {},
+  },
 };
 ```
 

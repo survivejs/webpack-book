@@ -25,11 +25,11 @@ The `Promise` based interface allows composition and you could load multiple res
 ```javascript
 Promise.all([
   import('lunr'),
-  import('../search_index.json')
+  import('../search_index.json'),
 ]).then(([lunr, search]) => {
   return {
     index: lunr.Index.load(search.index),
-    lines: search.lines
+    lines: search.lines,
   };
 });
 ```
@@ -107,19 +107,16 @@ module.exports = {
     "browser": true,
     "commonjs": true,
     "es6": true,
-    "node": true
+    "node": true,
   },
   "extends": "eslint:recommended",
 leanpub-start-insert
   "parser": "babel-eslint",
 leanpub-end-insert
   "parserOptions": {
-leanpub-start-delete
-    "sourceType": "module"
-leanpub-end-delete
 leanpub-start-insert
     "sourceType": "module",
-    "allowImportExportEverywhere": true
+    "allowImportExportEverywhere": true,
 leanpub-end-insert
   },
   ...

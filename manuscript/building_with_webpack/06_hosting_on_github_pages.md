@@ -46,8 +46,8 @@ leanpub-start-insert
       {
         output: {
           // Tweak this to match your GitHub project name
-          publicPath: '/webpack-demo/'
-        }
+          publicPath: '/webpack-demo/',
+        },
       },
 leanpub-end-insert
       parts.loadJavaScript(PATHS.app),
