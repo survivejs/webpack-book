@@ -99,7 +99,7 @@ exports.purifyCSS = function(paths) {
         basePath: '/',
 
         // `paths` is used to point PurifyCSS to files not
-        // visible to Webpack. This expects glob patterns so
+        // visible to webpack. This expects glob patterns so
         // we adapt here.
         paths: paths.map(path => `${path}/*`),
 
