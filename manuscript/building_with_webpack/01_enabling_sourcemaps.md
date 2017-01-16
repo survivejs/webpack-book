@@ -8,17 +8,17 @@ One approach is to simply skip sourcemaps during development and rely on browser
 
 ## Inline Sourcemaps and Separate Sourcemaps
 
-Webpack can generate both inline sourcemaps included within bundles or separate sourcemap files. The former are useful during development due to better performance while the latter are handy for production usage as it will keep the bundle size small. In this case loading sourcemaps becomes optional.
+Webpack can generate both inline sourcemaps included within bundles or separate sourcemap files. The former are useful during development due to better performance while the latter are handy for production usage as it will keep the bundle size small. In this case, loading sourcemaps becomes optional.
 
-You may **not** want to generate a sourcemap for your production bundle as this makes it easy to inspect your application (depends on whether you want this or not, good for staging!). Simply skip the `devtool` field then or generate hidden variant. Skipping sourcemaps entirely also speeds up your build a notch as generating sourcemaps at the best quality can be a heavy operation.
+You may **not** want to generate a sourcemap for your production bundle as this makes it easy to inspect your application (it depends on whether you want this or not; it is good for staging). Simply skip the `devtool` field then or generate hidden variant. Skipping sourcemaps entirely also speeds up your build a notch as generating sourcemaps at the best quality can be a heavy operation.
 
 Hidden sourcemaps give trace information only. You can connect them with a monitoring service to get traces as the application crashes allowing you to fix the problematic situations. This isn't ideal, but it's better to know about possible problems than not.
 
-T> It is a good idea to study the documentation of the loaders you are using to see loader specific tips. For example, with TypeScript you may need to set a certain flag to make it to work as you expect.
+T> It is a good idea to study the documentation of the loaders you are using to see loader specific tips. For example, with TypeScript, you may need to set a certain flag to make it work as you expect.
 
 ## Enabling Sourcemaps
 
-Webpack provides two ways to enable sourcemaps. There's a shortcut field known as `devtool`. There's also a plugin that gives exposes more options to tweak. We'll discuss the plugin briefly at the end of this chapter.
+Webpack provides two ways to enable sourcemaps. There's a shortcut field known as `devtool`. There's also a plugin that gives more options to tweak. We'll discuss the plugin briefly at the end of this chapter.
 
 To get started, we can wrap the basic idea within a configuration part. You can convert this to use the plugin later if you want:
 
@@ -34,7 +34,7 @@ exports.generateSourcemaps = function(type) {
 };
 ```
 
-Webpack support a wide variety of sourcemap types. These vary based on quality and build speed. For now, we can enable `eval-source-map` for development and `source-map` for production. This way we get good quality while trading off performance especially during development.
+Webpack supports a wide variety of sourcemap types. These vary based on quality and build speed. For now, we can enable `eval-source-map` for development and `source-map` for production. This way we get good quality while trading off performance, especially during development.
 
 `eval-source-map` builds slowly initially, but it provides fast rebuild speed. Faster development specific options, such as `cheap-module-eval-source-map` and `eval`, produce lower quality sourcemaps. All `eval` options will emit sourcemaps as a part of your JavaScript code.
 
@@ -105,7 +105,7 @@ Take a good look at those *.map* files. That's where the mapping between the gen
 
 ### Enabling Sourcemaps on Browsers
 
-To use sourcemaps on browsers, you may need to enable sourcemaps them explicitly. I've listed reference per browser below:
+To use sourcemaps on browsers, you may need to enable sourcemaps explicitly. I've listed reference per browser below:
 
 * [Chrome](https://developer.chrome.com/devtools/docs/javascript-debugging)
 * [Firefox](https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Use_a_source_map)
@@ -114,7 +114,7 @@ To use sourcemaps on browsers, you may need to enable sourcemaps them explicitly
 
 W> Sometimes sourcemaps [might not update in Chrome inspector](https://github.com/webpack/webpack/issues/2478). For now, the temporary fix is to force the inspector to reload itself by using *alt-r*.
 
-W> If you want to use breakpoints (i.e., a `debugger;` statement or ones set through the browser), the `eval` based options won't work in Chrome!
+W> If you want to use breakpoints (i.e., a `debugger;` statement or ones set through the browser), the `eval`-based options won't work in Chrome!
 
 ## Sourcemap Types Supported by Webpack
 
@@ -160,7 +160,7 @@ There are a couple of other options that affect sourcemap generation:
 
 T> The [official documentation](https://webpack.js.org/configuration/output/#output-sourcemapfilename) digs into `output` specifics.
 
-W> If you are using any `UglifyJsPlugin` and want sourcemaps, you need to enable `sourceMap: true` for the plugin. Otherwise the result won't be what you might expect!
+W> If you are using any `UglifyJsPlugin` and want sourcemaps, you need to enable `sourceMap: true` for the plugin. Otherwise, the result won't be what you might expect.
 
 ## SourceMapDevToolPlugin
 
@@ -233,4 +233,4 @@ This isn't without gotchas. The *css-loader* documentation notes that relative p
 
 ## Conclusion
 
-Sourcemaps can be convenient during development. They provide us better means to debug our applications as we can still examine the original code over generated one. They can be useful even for production usage and allow you to debug issues while serving a client friendly version of your application.
+Sourcemaps can be convenient during development. They provide us with better means to debug our applications as we can still examine the original code over a generated one. They can be useful even for production usage and allow you to debug issues while serving a client-friendly version of your application.

@@ -1,6 +1,6 @@
 # Processing with Babel
 
-Webpack processes ES6 module definitions by default and transforms them into code looks roughly like this:
+Webpack processes ES6 module definitions by default and transforms them into code that looks roughly like this:
 
 **build/app.js**
 
@@ -30,7 +30,7 @@ webpackJsonp([1],{
 ...
 ```
 
-It is important to note that it does **not** transform ES6 specific syntax, such as `(lazy) => {` in the example, to ES5! This can be a problem especially on older browsers. It is also problematic if you minify your code through UglifyJS as it doesn't support ES6 syntax yet and will raise an error when it encounters the syntax it doesn't understand.
+It is important to note that it does **not** transform ES6 specific syntax, such as `(lazy) => {` in the example, to ES5. This can be a problem especially on older browsers. It is also problematic if you minify your code through UglifyJS as it doesn't support ES6 syntax yet and will raise an error when it encounters the syntax it doesn't understand.
 
 One way to work around this problem is to process the code through [Babel](https://babeljs.io/), a popular JavaScript compiler that supports ES6 features and more. It resembles ESLint in that it is built on top of presets and plugins. Presets are collections of plugins and you can define your own as well.
 
@@ -119,13 +119,13 @@ leanpub-end-insert
 };
 ```
 
-Even though we have Babel installed and set up, we are still missing one bit - Babel configuration. I prefer to handle it using a dotfile known as *.babelrc* as then other tooling can pick it up as well.
+Even though we have Babel installed and set up, we are still missing one bit: Babel configuration. I prefer to handle it using a dotfile known as *.babelrc* as other tooling can pick it up as well.
 
 W> There are times when caching Babel compilation can surprise you. This can happen particularly if your dependencies change in a way that *babel-loader* default caching mechanism doesn't notice. Override `cacheIdentifier` with a string that has been derived based on data that should invalidate the cache for better control. This is where [Node.js crypto API](https://nodejs.org/api/crypto.html) and especially its MD5 related functions can come in handy.
 
 ### Setting Up *.babelrc*
 
-At minimum you will need a package known as [babel-preset-es2015](https://www.npmjs.com/package/babel-preset-es2015). Given our project uses dynamic `import`s and the feature isn't in the standard yet, we need a specific plugin known as [babel-plugin-syntax-dynamic-import](https://www.npmjs.com/package/babel-plugin-syntax-dynamic-import) for that. Install them:
+At a minimum you will need a package known as [babel-preset-es2015](https://www.npmjs.com/package/babel-preset-es2015). Given our project uses dynamic `import`s and the feature isn't in the standard yet, we need a specific plugin known as [babel-plugin-syntax-dynamic-import](https://www.npmjs.com/package/babel-plugin-syntax-dynamic-import) for that. Install them:
 
 ```bash
 npm i babel-plugin-syntax-dynamic-import babel-preset-es2015 --save-dev

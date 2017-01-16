@@ -1,6 +1,6 @@
 # Eliminating Unused CSS
 
-Frameworks like [Bootstrap](https://getbootstrap.com/) tend to come with a lot of CSS. Often you use only a small part of it. Normally you just bundle even the unused CSS. It is possible, however, to eliminate the portions you aren't using.
+Frameworks like [Bootstrap](https://getbootstrap.com/) tend to come with a lot of CSS. Often you use only a small part of it. Normally, you just bundle even the unused CSS. It is possible, however, to eliminate the portions you aren't using.
 
 A tool known as [PurifyCSS](https://github.com/purifycss/purifycss) can achieve this by analyzing files. It walks through your code and figures out which CSS classes are being used. This is enough information for it to strip unused CSS from your project. It also works with single page applications.
 
@@ -74,7 +74,7 @@ Webpack plugin known as [purifycss-webpack-plugin](https://www.npmjs.com/package
 npm i purifycss-webpack-plugin --save-dev
 ```
 
-We need one more bit, PurifyCSS configuration. Expand parts like this:
+We need one more bit: PurifyCSS configuration. Expand parts like this:
 
 **webpack.parts.js**
 
@@ -113,7 +113,7 @@ exports.purifyCSS = function(paths) {
 leanpub-end-insert
 ```
 
-Next, we have to connect this part to our configuration. It is important the plugin is used *after* the `ExtractTextPlugin` as otherwise it won't work!
+Next, we have to connect this part to our configuration. It is important the plugin is used *after* the `ExtractTextPlugin`; otherwise it won't work:
 
 **webpack.config.js**
 

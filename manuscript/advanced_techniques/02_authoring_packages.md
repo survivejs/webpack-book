@@ -2,11 +2,11 @@
 
 Even though webpack is useful for bundling applications, it has its uses for package authors as well. You can use it to generate a website for your package and maintain the distribution files using it. It supports a format known as [UMD format](https://github.com/umdjs/umd). UMD is compatible with various environments (CommonJS, AMD, globals) making it good for distribution purposes.
 
-## Anatomy of a npm Package
+## Anatomy of an npm Package
 
 Most of the available npm packages are small and include just a select few files:
 
-* *index.js* - On small projects it's enough to have the code at the root. On larger ones, you may want to start splitting it up further.
+* *index.js* - On small projects, it's enough to have the code at the root. On larger ones, you may want to start splitting it up further.
 * *package.json* - npm metadata in JSON format
 * *README.md* - README is the most important document of your project. It is written in Markdown format and provides an overview. For simple projects the whole documentation can fit there. It will be shown at the package page at *npmjs.com*.
 * *LICENSE* - You should include licensing information within your project. You can refer to it from *package.json*.
@@ -133,13 +133,13 @@ T> If you want something cross-platform, consider using [rimraf](https://www.npm
 
 Working with npm is surprisingly simple. To get started, you will need to use [npm adduser](https://docs.npmjs.com/cli/adduser) (aliased to `npm login`). It allows you to set up an account. After this process has completed, it will create *~/.npmrc* and use that data for authentication. There's also [npm logout](https://docs.npmjs.com/cli/logout) that will clear the credentials.
 
-T> When creating a project, `npm init` respects the values set at *~/.npmrc*. Hence it may be worth your while to set reasonable defaults there to save some time. If you want to limit your package to a specific scope, use `npm init --scope=<scope>`. As a result, you will get `@<scope>/<package>`. This is handy especially for personal packages given the default namespace of npm is so crowded.
+T> When creating a project, `npm init` respects the values set at *~/.npmrc*. Hence, it may be worth your while to set reasonable defaults there to save some time. If you want to limit your package to a specific scope, use `npm init --scope=<scope>`. As a result, you will get `@<scope>/<package>`. This is handy, especially for personal packages since the default namespace of npm is so crowded.
 
 ### Publishing a Package
 
 Provided you have logged in, creating new packages is just a matter of executing `npm publish`. Given that the package name is still available and everything goes fine, you should have something out there! After this, you can install your package through `npm install` or `npm i`.
 
-An alternative way to consume a library is to point at it directly in *package.json*. In that case, you can do `"depName": "<github user>/<project>#<reference>"` where `<reference>` can be either commit hash, tag, or branch. You can point to specific pull requests through `<github user>/<project>#pull/<id>/head`. These techniques can be useful, especially if you need to hack around something quickly and cannot wait for the fix.
+An alternate way to consume a library is to point at it directly in *package.json*. In that case, you can do `"depName": "<github user>/<project>#<reference>"` where `<reference>` can be either commit hash, tag, or branch. You can point to specific pull requests through `<github user>/<project>#pull/<id>/head`. These techniques can be useful, especially if you need to hack around something quickly and cannot wait for the fix.
 
 T> If you want to see what files will be published to npm, consider using [npm pack](https://docs.npmjs.com/cli/pack) generates a tarball you can examine. A tool known as [irish-pub](https://www.npmjs.com/package/irish-pub) is another option and it will give you a listing to review. You can also use [publish-diff](https://www.npmjs.com/package/publish-diff) to get a better of the changes that are going to be published.
 
@@ -155,15 +155,15 @@ In order to bump your package version, you'll just need to invoke one of these c
 
 Invoking any of these will update *package.json* and create a version commit to git automatically. If you execute `npm publish` after doing this, you should have something new out there.
 
-Note that in the example above I've set up `version` related hooks to make sure a version will contain a fresh version of a distribution build. I also run tests just in case. It's better to catch potential issues early on after all.
+Note that in the example above, I've set up `version`-related hooks to make sure a version will contain a fresh version of a distribution build. I also run tests just in case. It's better to catch potential issues early on after all.
 
-T> Consider using [semantic-release](https://www.npmjs.com/package/semantic-release) if you prefer more structured approach. It can take some pain out of the release process while automating a part of it. For instance, it is able to detect possible breaking changes and generate changelogs.
+T> Consider using [semantic-release](https://www.npmjs.com/package/semantic-release) if you prefer a more structured approach. It can take some pain out of the release process while automating a part of it. For instance, it is able to detect possible breaking changes and generate changelogs.
 
 T> A tool known as [dont-break](https://www.npmjs.com/package/dont-break) allows you to run the unit tests of dependent projects against your current code to see if it breaks anything. Sometimes it's easy to overlook some use case that might not be a part of the public API even and break a dependency. *dont-break* helps with that particular problem.
 
 ### Respect the SemVer
 
-Even though it is simple to publish new versions out there, it is important to respect the SemVer. Roughly, it states that you should not break backwards compatibility, given certain rules are met. The exact rules were covered in the previous chapter so I won't cover them again here.
+Even though it is simple to publish new versions out there, it is important to respect the SemVer. Roughly, it states that you should not break backwards compatibility, given certain rules are met. The exact rules were covered in the previous chapter, so I won't cover them again here.
 
 To make it easier to comply with SemVer, [next-ver](https://www.npmjs.com/package/next-ver) can compute the next version you should use and update it for you. [commitizen](https://www.npmjs.com/package/commitizen) goes further and allows changelog generation and automated releases.
 
@@ -207,7 +207,7 @@ T> If you find a good name that appears to be abandoned, contact npm and they'll
 
 ## npm Lifecycle Hooks
 
-npm provides various lifecycle hooks that can be useful. Suppose you are authoring a React component using Babel and some of its goodies. You could let the *package.json* `main` field point at the UMD version as generated above. This won't be ideal for those consuming the library through npm, though.
+npm provides various lifecycle hooks that can be useful. Suppose you are authoring a React component using Babel and some of its goodies. You could let the *package.json* `main` field point at the UMD version as generated above. However, this won't be ideal for those consuming the library through npm.
 
 It is better to generate a ES5 compatible version of the package for npm consumers. This can be achieved using **babel** CLI tool:
 
@@ -255,7 +255,7 @@ See [npm documentation](https://docs.npmjs.com/cli/owner) for the most up to dat
 
 ## Package Authoring Techniques
 
-There are a couple of package authoring related techniques that are good to know. You can set up webpack to generate a UMD build. You can also exclude certain dependencies out of your bundle.
+There are a couple of package authoring-related techniques that are good to know. You can set up webpack to generate a UMD build. You can also exclude certain dependencies out of your bundle.
 
 To make it easier to consume your packages, you can also generate a Node.js friendly versions. This technique can be improved further by setting up a script to generate a Node.js friendly version.
 
@@ -286,7 +286,7 @@ If you want to support SystemJS this way, set up another build target where to g
 
 ### Avoiding Bundling Dependencies
 
-Given it's not a good idea to bundle your package dependencies, such as React, within the distribution bundle itself, you should let the user inject them. You can configure external dependencies using the `externals` configuration. You can control it like this:
+Since it's not a good idea to bundle your package dependencies, such as React, within the distribution bundle itself, you should let the user inject them. You can configure external dependencies using the `externals` configuration. You can control it like this:
 
 **webpack.config.js**
 
@@ -315,7 +315,7 @@ These two fields help you a lot as a package author but there's more to it.
 
 T> If you want to include all modules in *node_modules* by default, it could be interesting to use [webpack-node-externals](https://www.npmjs.com/package/webpack-node-externals) instead. Then you would end up with `externals: [nodeExternals()]` kind of declaration. If you don't need to adapt to different environments, this could be a neat way to go.
 
-T> Given bundling may still be required sometimes, consider using the [bundledDependencies](https://docs.npmjs.com/files/package.json#bundleddependencies) (or just `bundleDependencies`) field. This can be useful if you want to share third party files not available through npm. There's a great [Stack Overflow answer](http://stackoverflow.com/a/25044361/228885) discussing the topic further.
+T> Given bundling may still be required sometimes, consider using the [bundledDependencies](https://docs.npmjs.com/files/package.json#bundleddependencies) (or just `bundleDependencies`) field. This can be useful if you want to share third-party files not available through npm. There's a great [Stack Overflow answer](http://stackoverflow.com/a/25044361/228885) discussing the topic further.
 
 ### Processing Node.js Version through Babel
 

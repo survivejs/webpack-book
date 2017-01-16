@@ -1,10 +1,10 @@
 # Getting Started
 
-Before getting started, make sure you are using a recent version of [Node.js](http://nodejs.org/) installed. I recommend using at least the most recent LTS (Long-Term Support) version. Before going further, you should have `node` and `npm` commands available at your terminal.
+Before getting started, make sure you are using a recent version of [Node.js](http://nodejs.org/). I recommend using at least the most recent LTS (long-term support) version. Before going further, you should have `node` and `npm` commands available at your terminal.
 
 The completed configuration is available at [GitHub](https://github.com/survivejs-demos/webpack-demo). If you are unsure of something, refer there.
 
-T> It is possible to get a more controlled environment by using a solution such as [Vagrant](https://www.vagrantup.com/) or [nvm](https://www.npmjs.com/package/nvm). Especially Vagrant comes with a performance penalty as it relies on a virtual machine. Vagrant is particularly useful in a team environment, though, as it gives you a predictable environment to develop against.
+T> It is possible to get a more controlled environment by using a solution such as [Vagrant](https://www.vagrantup.com/) or [nvm](https://www.npmjs.com/package/nvm). Vagrant comes with a performance penalty as it relies on a virtual machine. Vagrant is particularly useful in a team environment, though, as it gives you a predictable environment to develop against.
 
 ## Setting Up the Project
 
@@ -24,11 +24,11 @@ T> This is a good place to set up version control using [Git](https://git-scm.co
 
 ## Installing Webpack
 
-Even though webpack can be installed globally (`npm i webpack -g`), I recommend maintaining it as a dependency of your project. This will avoid issues as then you will have control over the exact version you are running.
+Even though webpack can be installed globally (`npm i webpack -g`), I recommend maintaining it as a dependency of your project. This will avoid issues, as then you will have control over the exact version you are running.
 
 The approach works nicely in **Continuous Integration** (CI) setups as well. A CI system can install your local dependencies, compile your project using them, and then push the result to a server.
 
-To add webpack to our project, execute
+To add webpack to our project, execute:
 
 ```bash
 npm i webpack@beta --save-dev # or just -D if you want to save typing
@@ -55,7 +55,7 @@ T> We can use `--save` and `--save-dev` to separate application and development 
 
 ## Directory Structure
 
-As projects with just *package.json* are boring, we should set up something more concrete. To get started, we can implement a little web site that loads some JavaScript which we then build using webpack. After we progress a bit, we'll end up with a directory structure like this:
+As projects with just *package.json* are boring, we should set up something more concrete. To get started, we can implement a little website that loads some JavaScript, which we then build using webpack. After we progress a bit, we'll end up with a directory structure like this:
 
 - app/
   - index.js
@@ -64,7 +64,7 @@ As projects with just *package.json* are boring, we should set up something more
 - package.json
 - webpack.config.js
 
-The idea is that we'll transform that *app/* to as a bundle below *build/*. To make this possible, we should set up the assets needed and *webpack.config.js* of course.
+The idea is that we'll transform that *app/* to as a bundle below *build/*. To make this possible, we should set up the assets needed and *webpack.config.js*.
 
 ## Setting Up Assets
 
@@ -168,7 +168,7 @@ The output tells us a lot. I've annotated it below:
 * `app.js     3.06 kB  0[emitted]  app` - Name of the generated asset, size, the ids of the **chunks** into which it is related, status information telling how it was generated, name of the chunk.
 * `index.html  180 bytes  [emitted]` - Another generated asset that was emitted by the process.
 * `[0] ./app/component.js 135 bytes {0} [built]` - The id of the entry asset, name, size, entry chunk id, the way it was generated.
-* `Child html-webpack-plugin for "index.html":` - This is plugin related output. In this case *html-webpack-plugin* is doing output of its own.
+* `Child html-webpack-plugin for "index.html":` - This is plugin-related output. In this case *html-webpack-plugin* is doing output of its own.
 
 Examine the output below `build/`. If you look closely, you can see the same ids within the source. To see the application running, open the `build/index.html` file directly through a browser. On macOS `open ./build/index.html` works.
 
@@ -214,7 +214,7 @@ T> It is possible to execute *npm run* anywhere within the project. It doesn't h
 
 As webpack plugin ecosystem is quite diverse, there are a lot of plugins that can help specifically with development. I've listed a few of these below to give you a better idea of what's available:
 
-* [case-sensitive-paths-webpack-plugin](https://www.npmjs.com/package/case-sensitive-paths-webpack-plugin) has been designed to avoid issues with mixed path naming. A path that is valid on macOS, might not be that on Windows. If you work in a mixed environment, this plugin can be handy.
+* [case-sensitive-paths-webpack-plugin](https://www.npmjs.com/package/case-sensitive-paths-webpack-plugin) has been designed to avoid issues with mixed path naming. A path that is valid on macOS might not be on Windows. If you work in a mixed environment, this plugin can be handy.
 * [npm-install-webpack-plugin](https://www.npmjs.com/package/npm-install-webpack-plugin) allows webpack to install and wire the installed packages with your *package.json* as you import new packages to your project. It's almost magical this way.
 * [system-bell-webpack-plugin](https://www.npmjs.com/package/system-bell-webpack-plugin) rings the system bell on failure instead of letting webpack fail silently.
 * [friendly-errors-webpack-plugin](https://www.npmjs.com/package/friendly-errors-webpack-plugin) improves on error reporting of webpack. It captures common errors and displays them in a friendlier manner, hence the name.

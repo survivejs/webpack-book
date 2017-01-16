@@ -1,6 +1,6 @@
 # Linting CSS
 
-As discussed earlier in the *Linting JavaScript* chapter, linting is a technique that allows us to avoid certain categories of mistakes. Automation is good as it can save effort. In addition to JavaScript, it's possible to lint CSS.
+As discussed earlier in the *Linting JavaScript* chapter, linting is a technique that allows us to avoid certain categories of mistakes. Automation is good, as it can save effort. In addition to JavaScript, it's possible to lint CSS.
 
 [stylelint](http://stylelint.io/) is a tool that allows linting. It can be used with webpack through [postcss-loader](https://www.npmjs.com/package/postcss-loader).
 
@@ -87,8 +87,8 @@ See stylelint documentation for a full list of rules. npm lists [possible stylel
 
 ## stylelint-webpack-plugin
 
-[stylelint-webpack-plugin](https://www.npmjs.com/package/stylelint-webpack-plugin) is an alternative way to achieve the same result. Its greatest advantage over the setup above is that it will follow possible `@import` statements you might have in your styling.
+[stylelint-webpack-plugin](https://www.npmjs.com/package/stylelint-webpack-plugin) is an alternate way to achieve the same result. Its greatest advantage over the setup above is that it will follow possible `@import` statements you might have in your styling.
 
 ## Conclusion
 
-After these changes, we have linting for our styling in place. Now you can catch at least the most obvious CSS related problems.
+After these changes, we have linting for our styling in place. Now you can catch at least the most obvious CSS-related problems.

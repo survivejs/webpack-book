@@ -23,7 +23,7 @@ I follow the following layout in my loader project:
 └── test.js           - Tests
 ```
 
-This is a fairly standard way to write a small Node.js package. I actually started by developing the demo first and added tests later on. Writing tests first can be a good idea, though, as it gives you a specification which you can use to validate your implementation.
+This is a fairly standard way to write a small Node.js package. I actually started by developing the demo first and added tests later. Writing tests first can be a good idea, though, as it gives you a specification which you can use to validate your implementation.
 
 I'll give you a basic testing setup next and then discuss my loader implementation.
 
@@ -50,7 +50,7 @@ To run tests, you can simply invoke `npm test`. To run the test setup in the wat
 
 ### Test Structure
 
-Given this is so small project, I ended up writing all my tests into a single file. The following excerpt should give you a better idea of what they look like. There are a couple of webpack loader specific tweaks in place to make it easier to test them:
+Given this project is so small, I ended up writing all my tests into a single file. The following excerpt should give you a better idea of what they look like. There are a couple of webpack loader specific tweaks in place to make it easier to test them:
 
 **test.js**
 
@@ -60,7 +60,7 @@ const loader = require('./');
 
 // Mock loader context (`this`) so that we have an environment
 // that's close enough to Webpack in order to avoid crashes
-// during testing. Alternatively, we could code defensively
+// during testing. Alternately, we could code defensively
 // and protect against the missing data.
 const webpackContext = {
   cacheable: noop,
@@ -104,7 +104,7 @@ describe('highlight-loader', function () {
 function noop() {}
 ```
 
-Even though I'm not a great fan of mocking, it works well enough for a case like this. The biggest fear is that webpack API changes at some point. This would mean my test code would break and I would have to rewrite a large part of it.
+Even though I'm not a great fan of mocking, it works well enough for a case like this. The biggest fear is that webpack API changes at some point. This would mean my test code would break, and I would have to rewrite a large part of it.
 
 It could be interesting to run the tests through webpack itself to avoid mocking. In this approach, you wouldn't have to worry about the test facing parts so much and it would be more about capturing output for the given input.
 
@@ -114,7 +114,7 @@ T> Webpack loaders can be run standalone through [loader-runner](https://www.npm
 
 ## Implementing a Loader
 
-The loader implementation itself isn't entirely trivial due to the amount of functionality within it. I ended up using [cheerio](https://www.npmjs.org/package/cheerio) to apply *highlight.js* on the code portions of the passed HTML. Cheerio provides an API resembling jQuery making it ideal for small tasks, such as this.
+The loader implementation isn't entirely trivial due to the amount of functionality within it. I ended up using [cheerio](https://www.npmjs.org/package/cheerio) to apply *highlight.js* on the code portions of the passed HTML. Cheerio provides an API resembling jQuery making it ideal for small tasks, such as this.
 
 To keep this discussion simple, I'll give you a subset of the implementation to show you the key parts:
 
@@ -170,6 +170,6 @@ asyncOp(callback);
 
 ## Conclusion
 
-Writing loaders is fun in sense that they just describe transformations from a format to another. Often you can figure out how to achieve something specific by either studying the API documentation or existing loaders.
+Writing loaders is fun in sense that they describe transformations from a format to another. Often you can figure out how to achieve something specific by either studying either the API documentation or the existing loaders.
 
 I recommend writing at least basic tests and a small demo to document your assumptions. Loader development fits this type of thinking very well.

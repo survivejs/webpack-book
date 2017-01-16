@@ -4,17 +4,17 @@ Tools, such as [LiveReload](http://livereload.com/) or [BrowserSync](http://www.
 
 ## Webpack `watch` Mode and *webpack-dev-server*
 
-A good first step towards a better development environment is to use webpack in its **watch** mode. You can activate it through `webpack --watch`. Once enabled, it will detect changes made to your files and recompiles automatically. A solution known as *webpack-dev-server* (WDS) builds on top of the watch mode and goes even further.
+A good first step towards a better development environment is to use webpack in its **watch** mode. You can activate it through `webpack --watch`. Once enabled, it will detect changes made to your files and recompile automatically. A solution known as *webpack-dev-server* (WDS) builds on top of the watch mode and goes even further.
 
 WDS is a development server running in-memory. It refreshes content automatically in the browser while you develop your application. It also supports an advanced webpack feature known as **Hot Module Replacement** (HMR), which provides a way to patch the browser state without a full refresh. This is particularly powerful with technology such as React.
 
-HMR goes further than simply refreshing browser on change. WDS provides an interface that makes it possible to patch code on the fly. This means you will need to implement it for client-side code. It is trivial for something like CSS by definition (no state), but it's a harder problem with JavaScript frameworks and libraries. Often careful design is needed to allow this. When the feature works, it is beautiful, though.
+HMR goes further than simply refreshing browser on change. WDS provides an interface that makes it possible to patch code on the fly. This means you will need to implement it for client-side code. It is trivial for something like CSS by definition (no state), but it's a harder problem with JavaScript frameworks and libraries. Often careful design is needed to allow this. When the feature works, it is beautiful.
 
-W> An IDE feature known as **safe write** can wreak havoc with hot loading. Therefore, it is advisable to turn it off when using a HMR based setup.
+W> An IDE feature known as **safe write** can wreak havoc with hot loading. Therefore, it is advisable to turn it off when using an HMR-based setup.
 
 ## Emitting Files from *webpack-dev-server*
 
-Even though it's good that WDS operates in-memory by default, sometimes it can be good to emit files to the file system. This is particularly true if you are integrating with other server that expects to find the files. [webpack-disk-plugin](https://www.npmjs.com/package/webpack-disk-plugin), [write-file-webpack-plugin](https://www.npmjs.com/package/write-file-webpack-plugin), and more specifically [html-webpack-harddisk-plugin](https://www.npmjs.com/package/html-webpack-harddisk-plugin) can achieve this.
+Even though it's good that WDS operates in-memory by default, sometimes it can be good to emit files to the file system. This is particularly true if you are integrating with another server that expects to find the files. [webpack-disk-plugin](https://www.npmjs.com/package/webpack-disk-plugin), [write-file-webpack-plugin](https://www.npmjs.com/package/write-file-webpack-plugin), and more specifically [html-webpack-harddisk-plugin](https://www.npmjs.com/package/html-webpack-harddisk-plugin) can achieve this.
 
 W> You should use *webpack-dev-server* strictly for development. If you want to host your application, consider other standard solutions, such as Apache or Nginx.
 
@@ -26,7 +26,7 @@ To get started with WDS, execute:
 npm i webpack-dev-server@2.2.0-rc.0 --save-dev
 ```
 
-As before, this command will generate a command below the `npm bin` directory. You could try running *webpack-dev-server* from there. The quickest way to enable automatic browser refresh for our project is to run `webpack-dev-server`. After that you have a development server running at `localhost:8080`.
+As before, this command will generate a command below the `npm bin` directory. You could try running *webpack-dev-server* from there. The quickest way to enable automatic browser refresh for our project is to run `webpack-dev-server`. After that, you have a development server running at `localhost:8080`.
 
 ## Attaching *webpack-dev-server* to the Project
 
@@ -125,23 +125,23 @@ We will perform a similar trick for production usage later in this book in the *
 
 It is possible to customize host and port settings through the environment in our setup (i.e., `export PORT=3000` on Unix or `SET PORT=3000` on Windows). This can be useful if you want to access your server using some other device within the same network. The default settings are enough on most platforms.
 
-To access your server, you'll need to figure out the ip of your machine. On Unix, this can be achieved using `ifconfig | grep inet`. On Windows `ipconfig` can be used. An npm package, such as [node-ip](https://www.npmjs.com/package/node-ip) may come in handy as well. Especially on Windows you may need to set your `HOST` to match your ip to make it accessible.
+To access your server, you'll need to figure out the ip of your machine. On Unix, this can be achieved using `ifconfig | grep inet`. On Windows, `ipconfig` can be used. An npm package, such as [node-ip](https://www.npmjs.com/package/node-ip) may come in handy as well. Especially on Windows you may need to set your `HOST` to match your ip to make it accessible.
 
-## Alternative Ways to Use *webpack-dev-server*
+## Alternate Ways to Use *webpack-dev-server*
 
-We could have passed the WDS options through terminal. I find it clearer to manage it within webpack configuration as that helps to keep *package.json* nice and tidy. It is also easier to understand what's going on as you don't need to dig the answers from webpack source.
+We could have passed the WDS options through terminal. I find it clearer to manage it within webpack configuration as that helps to keep *package.json* nice and tidy. It is also easier to understand what's going on as you don't need to dig out the answers from webpack source.
 
-Alternatively, we could have set up an Express server of our own and used WDS as a [middleware](https://webpack.js.org/guides/development/#webpack-dev-middleware). There's also a [Node.js API](https://webpack.github.io/docs/webpack-dev-server.html#api). This is a good approach if you want control and flexibility.
+Alternately, we could have set up an Express server of our own and used WDS as a [middleware](https://webpack.js.org/guides/development/#webpack-dev-middleware). There's also a [Node.js API](https://webpack.github.io/docs/webpack-dev-server.html#api). This is a good approach if you want control and flexibility.
 
-T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environment variables through a *.env* file. This can be somewhat convenient during development!
+T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environment variables through a *.env* file. This can be somewhat convenient during development.
 
 W> Note that there are [slight differences](https://github.com/webpack/webpack-dev-server/issues/106) between the CLI and the Node.js API. This is the reason why some prefer to solely use the Node.js API.
 
 ## Making It Faster to Develop Configuration
 
-Given restarting the development server each time you make a change tends to get boring after a while, it can be a good idea to let the computer do that for us. As [discussed in GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892), a monitoring tool known as [nodemon](https://www.npmjs.com/package/nodemon) can be used for this purpose.
+Restarting the development server each time you make a change tends to get boring after a while; therefore, it can be a good idea to let the computer do that for us. As [discussed in GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892), a monitoring tool known as [nodemon](https://www.npmjs.com/package/nodemon) can be used for this purpose.
 
-To get it to work, you will have to install it first through `npm i nodemon --save-dev`. After that you can make it watch WDS and restart it on change. Here's the script if you want to give it a go:
+To get it to work, you will have to install it first through `npm i nodemon --save-dev`. After that, you can make it watch WDS and restart it on change. Here's the script if you want to give it a go:
 
 **package.json**
 

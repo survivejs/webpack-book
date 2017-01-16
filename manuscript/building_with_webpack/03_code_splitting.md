@@ -6,7 +6,7 @@ Even though splitting our bundles can help a notch, they are not the only soluti
 
 T> Incidentally, it is possible to implement Google's [PRPL pattern](https://developers.google.com/web/fundamentals/performance/prpl-pattern/) using lazy loading. PRPL (Push, Render, Pre-cache, Lazy-load) has been designed mobile web in mind and can be implemented using webpack.
 
-![Bundle with a dynamically loaded normal chunk](images/dynamic.png)
+![Bundle with a dynamically-loaded normal chunk](images/dynamic.png)
 
 ## Setting Up Code Splitting
 
@@ -20,9 +20,9 @@ Dynamic imports look like this:
 import('./module').then((module) => {...}).catch((error) => {...});
 ```
 
-The `Promise` based interface allows composition and you could load multiple resources in parallel if you wanted. If you wanted to load multiple through one request, you would have to define an intermediate module where to achieve that.
+The `Promise` based interface allows composition and you could load multiple resources in parallel if you wanted. If you wanted to load multiple through one request, you would have to define an intermediate module of where to achieve that.
 
-[require.ensure](https://webpack.github.io/docs/code-splitting.html#commonjs-require-ensure) provides an alternative way:
+[require.ensure](https://webpack.github.io/docs/code-splitting.html#commonjs-require-ensure) provides an alternate way:
 
 ```javascript
 require.ensure(
@@ -102,7 +102,7 @@ leanpub-end-insert
 }
 ```
 
-After these changes ESLint won't complain if we write `import` in the middle of our code.
+After these changes, ESLint won't complain if we write `import` in the middle of our code.
 
 ### Defining a Split Point Using a Dynamic `import`
 
@@ -114,7 +114,7 @@ A simple way to illustrate the idea might be to set up a module that contains a 
 export default 'Hello from lazy';
 ```
 
-In practice, you could have a lot more code here and you could have additional split points even. This is a good place to extend the demonstration.
+In practice, you could have a lot more code here and additional split points. This is a good place to extend the demonstration.
 
 We also need to point the application to this file so it knows to load it. A simple way to do this is to bind the loading process to click. Whenever the user happens to click the button, we'll trigger the loading process and replace the button content.
 
@@ -192,7 +192,7 @@ export default function () {
 
 Beyond the variants above, there's another type of `require` that you should be aware of. [require.context](https://webpack.js.org/configuration/entry-context/#context) is a general form of the above.
 
-Let's say you are writing a static site generator on top of webpack. You could model your site contents within a directory structure. At the simplest level, you could have just a `pages/` directory which would contain Markdown files.
+Let's say you are writing a static site generator on top of webpack. You could model your site contents within a directory structure. At the simplest level, you could have just `./pages/` directory which would contain Markdown files.
 
 Each of these files would have a YAML frontmatter for their metadata. The url of each page could be determined based on the filename. This is enough information to map the directory as a site. Code-wise we would end up with a statement like this somewhere:
 
@@ -221,7 +221,7 @@ const demoPage = req('./demo.md');
 
 This information is enough for generating an entire site. And this is exactly what I've done with [Antwar](https://github.com/antwarjs/antwar). You can find a more elaborate example in that static site generator.
 
-The technique can be useful for other purposes, such as testing or adding files for webpack to watch. In that case you would set up a `require.context` within a file which you then point to through a webpack `entry`.
+The technique can be useful for other purposes, such as testing or adding files for webpack to watch. In that case, you would set up a `require.context` within a file which you then point to through a webpack `entry`.
 
 T> Note that webpack will also turn statements written in the form `require('./pages/' + pageName + '.md')` into the `require.context` format!
 
@@ -276,7 +276,7 @@ Consider using browser-side loaders like [$script.js](https://github.com/ded/scr
 
 Code splitting is one of those features that allows you to push your application a notch further. You can load code when you need it. This gives faster initial load times and helps to improve user experience especially in a mobile context where bandwidth is limited.
 
-It comes with some extra work as you must figure out what's possible to split. Often you find good split points within a router. Or you may notice that specific functionality is required only when specific feature is used. Charting is a good example of this.
+It comes with some extra work as you must figure out what's possible to split. Often, you find good split points within a router. Or you may notice that specific functionality is required only when specific feature is used. Charting is a good example of this.
 
 Just applying `import` or `require.ensure` alone can be very effective. `require.context` has more limited possibilities, but it's a powerful tool especially for tool developers.
 

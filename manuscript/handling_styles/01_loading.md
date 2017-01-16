@@ -2,7 +2,7 @@
 
 Webpack doesn't handle styling out of the box. Instead, you must configure loaders and plugins to get the setup you need.
 
-In this chapter we'll set up CSS with our project and see how it works out with automatic browser refreshing. The neat thing is that in this case webpack doesn't have to force a full refresh. Instead, it can do something smarter as we'll see soon.
+In this chapter, we'll set up CSS with our project and see how it works out with automatic browser refreshing. The neat thing is that in this case, webpack doesn't have to force a full refresh. Instead, it can do something smarter as we'll see soon.
 
 ## Loading CSS
 
@@ -10,7 +10,7 @@ To load CSS, we'll need to use [css-loader](https://www.npmjs.com/package/css-lo
 
 This process allows us to rely on various other loaders, such as [file-loader](https://www.npmjs.com/package/file-loader) or [url-loader](https://www.npmjs.com/package/url-loader). If an `@import` points to an external resource, *css-loader* will skip it. Only internal resources get processed further by webpack.
 
-After *css-loader* has done its part, *style-loader* picks up the output and injects the CSS into the resulting bundle. This will be inlined JavaScript by default and it implements the HMR interface. As inlining isn't a good idea for production usage, it makes sense to use `ExtractTextPlugin` to generate a separate CSS file. We'll do this in the next chapter.
+After *css-loader* has done its part, *style-loader* picks up the output and injects the CSS into the resulting bundle. This will be inlined JavaScript by default, and it implements the HMR interface. As inlining isn't a good idea for production usage, it makes sense to use `ExtractTextPlugin` to generate a separate CSS file. We'll do this in the next chapter.
 
 To get started, invoke
 
@@ -82,7 +82,7 @@ T> Loaders are transformations that are applied to source files, and return the 
 
 ## Setting Up the Initial CSS
 
-We are missing just one bit, the actual CSS itself:
+We are missing just one bit: the actual CSS itself:
 
 **app/main.css**
 
@@ -107,21 +107,21 @@ import component from './component';
 
 Execute `npm start` now. Browse to **localhost:8080** if you are using the default port and open up *main.css* and change the background color to something like `lime` (`background: lime`). Develop styles as needed to make it look a little nicer. Note that it does **not** perform a hard refresh on the browser since we have HMR setup in place.
 
-We'll continue from here in the next chapter. Before that, though, I will discuss several styling related techniques you may find useful. If you want, integrate some of them to your project.
+We'll continue from here in the next chapter. Before that, though, I will discuss several styling-related techniques you may find useful. If you want, integrate some of them to your project.
 
 ![Hello cornsilk world](images/hello_02.png)
 
-T> An alternative way to load CSS would be to define a separate entry and point to the CSS there. Coupling styling to application code can be a nice way to handle it, though, as then you can see which styling is related to what file. This also enables the usage of CSS Modules with a bit of extra effort.
+T> An alternate way to load CSS would be to define a separate entry and point to the CSS there. Coupling styling to application code can be a nice way to handle it, though, as then you can see which styling is related to what file. This also enables the usage of CSS Modules with a bit of extra effort.
 
 ## Understanding CSS Scoping and CSS Modules
 
-Perhaps the biggest challenge of CSS is that all rules exist within **global scope**. This has lead to specific conventions that work around this feature. A specification known as [CSS Modules](https://github.com/css-modules/css-modules) solves the problem by introducing **local scope** per `import`. As it happens, this makes CSS more bearable to use as you don't have to worry about namespace collisions anymore.
+Perhaps the biggest challenge of CSS is that all rules exist within **global scope**. This has led to specific conventions that work around this feature. A specification known as [CSS Modules](https://github.com/css-modules/css-modules) solves the problem by introducing **local scope** per `import`. As it happens, this makes CSS more bearable to use as you don't have to worry about namespace collisions anymore.
 
 Enabling CSS Modules in webpack is simple as *css-loader* supports the feature. You can enable it through `css-loader?modules` or set `modules` field `true` through the loader `options`.
 
-After this change your class definitions will remain local to the files. In case you want global class definitions, you'll need to wrap them within `:global(.redButton) { ... }` kind of declarations.
+After this change, your class definitions will remain local to the files. In case you want global class definitions, you'll need to wrap them within `:global(.redButton) { ... }` kind of declarations.
 
-In this case the `import` statement will give you the local classes you can then bind to elements. Assuming we had styling like this:
+In this case, the `import` statement will give you the local classes you can then bind to elements. Assuming we had styling like this:
 
 **app/main.css**
 
@@ -148,7 +148,7 @@ import styles from './main.css';
 element.className = styles.redButton;
 ```
 
-Note that `body` remains as a global declaration still. It's that `redButton` that makes the difference. You can build component specific styles that don't leak elsewhere this way.
+Note that `body` remains as a global declaration still. It's that `redButton` that makes the difference. You can build component-specific styles that don't leak elsewhere this way.
 
 CSS Modules provides also features like composition to make it even easier to work with your styles. You can also combine it with other loaders as long as you apply them before *css-loader*.
 
@@ -190,7 +190,7 @@ Webpack doesn't take much configuration:
 }
 ```
 
-T> If you want more performance especially during development, check out [fast-sass-loader](https://www.npmjs.com/package/fast-sass-loader).
+T> If you want more performance, especially during development, check out [fast-sass-loader](https://www.npmjs.com/package/fast-sass-loader).
 
 ## Loading Stylus and YETICSS
 
@@ -277,7 +277,7 @@ T> *postcss-loader* relies on [cosmiconfig](https://www.npmjs.com/package/cosmic
 
 ![cssnext](images/cssnext.jpg)
 
-[cssnext](http://cssnext.io/) is a PostCSS plugin that allows us to experience the future now. There are some restrictions, but it may be worth a go. You can use it through [postcss-cssnext](https://www.npmjs.com/package/postcss-cssnext) and you can enable it as follows.
+[cssnext](http://cssnext.io/) is a PostCSS plugin that allows us to experience the future now. There are some restrictions, but it may be worth a go. You can use it through [postcss-cssnext](https://www.npmjs.com/package/postcss-cssnext), and you can enable it as follows:
 
 **postcss.config.js**
 
@@ -313,20 +313,20 @@ The tilde (`~`) tells webpack that it's not a relative import as by default. If 
 
 ## Enabling Sourcemaps
 
-If you want to enable sourcemaps for CSS, you should enable `sourceMap` option for *css-loader* and set `output.publicPath` to an absolute url. In case you have more loaders, each needs to enable sourcemap support separately! *css-loader* [issue 29](https://github.com/webpack/css-loader/issues/29) discusses this problem further.
+If you want to enable sourcemaps for CSS, you should enable `sourceMap` option for *css-loader* and set `output.publicPath` to an absolute url. In case you have more loaders, each needs to enable sourcemap support separately. *css-loader* [issue 29](https://github.com/webpack/css-loader/issues/29) discusses this problem further.
 
 ## Using Bootstrap
 
 There are a couple of ways to use [Bootstrap](https://getbootstrap.com/) through webpack. One option is to point to the [npm version](https://www.npmjs.com/package/bootstrap) and perform loader configuration as above.
 
-The [SASS version](https://www.npmjs.com/package/bootstrap-sass) is another option. In this case you should set `precision` option of *sass-loader* to at least 8. This is [a known issue](https://www.npmjs.com/package/bootstrap-sass#sass-number-precision) explained at *bootstrap-sass*.
+The [SASS version](https://www.npmjs.com/package/bootstrap-sass) is another option. In this case, you should set `precision` option of *sass-loader* to at least 8. This is [a known issue](https://www.npmjs.com/package/bootstrap-sass#sass-number-precision) explained at *bootstrap-sass*.
 
-Third option is to go through [bootstrap-loader](https://www.npmjs.com/package/bootstrap-loader). It does a lot more, but allows customization.
+The third option is to go through [bootstrap-loader](https://www.npmjs.com/package/bootstrap-loader). It does a lot more but allows customization.
 
 ## Converting CSS to Strings
 
-Especially with Angular 2 it can be useful if you can get CSS in a string format that can be pushed to components. [css-to-string-loader](https://www.npmjs.com/package/css-to-string-loader) achieves exactly this.
+Especially with Angular 2, it can be useful if you can get CSS in a string format that can be pushed to components. [css-to-string-loader](https://www.npmjs.com/package/css-to-string-loader) achieves exactly this.
 
 ## Conclusion
 
-Loading style files through webpack is fairly straight-forward. It supports even advanced specifications like [CSS Modules](https://github.com/css-modules/webpack-demo). The approaches covered here inline the styling by default. Although that's enough for development purposes, it's not ideal for production usage. We'll cover how to handle this problem in the next chapter.
+Loading style files through webpack is fairly straight-forward. It even supports advanced specifications like [CSS Modules](https://github.com/css-modules/webpack-demo). The approaches covered here inline the styling by default. Although that's enough for development purposes, it's not ideal for production usage. We'll cover how to handle this problem in the next chapter.

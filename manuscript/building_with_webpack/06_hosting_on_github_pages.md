@@ -67,7 +67,7 @@ T> GitHub Pages allows you to choose the branch where you deploy. It is possible
 
 ## Archiving Old Versions
 
-*gh-pages* provides an `add` option that is useful for archival purposes. This is great especially for documentation sites. The idea goes as follows:
+*gh-pages* provides an `add` option that is useful for archival purposes. This is great, especially for documentation sites. The idea goes as follows:
 
 1. Copy the old version of the site in a temporary directory and remove *archive* directory from it. You can name the archival directory as you want.
 2. Clean and build the project.

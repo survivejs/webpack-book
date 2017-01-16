@@ -4,7 +4,7 @@ So far, we haven't given thought to our build output and no doubt it's going to 
 
 **Minification** is a process where code is simplified without losing any meaning that matters to the interpreter. As a result, your code will most likely look quite jumbled and it will be hard to read. But that's the point.
 
-T> Even if we minify our build, we can still generate sourcemaps through the `devtool` option we discussed earlier. This will give us better means to debug even production code if we want.
+T> Even if we minify our build, we can still generate sourcemaps through the `devtool` option we discussed earlier. This will give us better means to debug, even production code if we want.
 
 ## Generating a Baseline Build
 
@@ -34,11 +34,11 @@ vendor.js.map     167 kB       2  [emitted]  vendor
 
 ## Minifying the Code
 
-Ideally minification will convert our code into a smaller format without losing any meaning. Usually this means some amount of rewriting code through predefined transformations. Good examples of this are renaming variables or even removing entire blocks of code based on the fact that they are unreachable like a `if (false)` statement.
+Ideally, minification will convert our code into a smaller format without losing any meaning. Usually this means some amount of rewriting code through predefined transformations. Good examples of this include renaming variables or even removing entire blocks of code based on the fact that they are unreachable like an `if (false)` statement.
 
 Sometimes minification can break code as it can rewrite pieces of code you inadvertently depend upon. Angular 1 was an example of this as it relied on a specific function parameter naming and rewriting the parameters could break code unless you took precautions against it.
 
-The easiest way to enable minification in webpack is to call `webpack -p`. `-p` is a shortcut for `--optimize-minimize`, you can think it as `-p` for "production". Alternatively, we can use a plugin directly as this provides us more control.
+The easiest way to enable minification in webpack is to call `webpack -p`. `-p` is a shortcut for `--optimize-minimize`, you can think it as `-p` for "production". Alternately, we can use a plugin directly as this provides us more control.
 
 ### Setting Up Minification
 
@@ -177,4 +177,4 @@ W> In webpack 1 `minimize` was set on by default if `UglifyJsPlugin` was used. T
 
 ## Conclusion
 
-Minification is the simplest step you can take to make your build smaller. There are a few more tricks we can perform, though.
+Minification is the simplest step you can take to make your build smaller. However, there are a few more tricks we can perform.

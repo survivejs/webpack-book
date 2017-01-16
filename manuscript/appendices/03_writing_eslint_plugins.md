@@ -4,7 +4,7 @@ ESLint plugins rely on Abstract Syntax Tree (AST) definition of JavaScript. It i
 
 ## Understanding AST
 
-To get a better idea of how AST works and what it looks like, you can check [Esprima online JavaScript AST visualization](http://esprima.org/demo/parse.html) or [AST Explorer by Felix Kling](http://astexplorer.net/). Alternatively you can install `recast` and examine the output it gives. That is the structure we'll be working with for ESLint rules.
+To get a better idea of how AST works and what it looks like, you can check [Esprima online JavaScript AST visualization](http://esprima.org/demo/parse.html) or [AST Explorer by Felix Kling](http://astexplorer.net/). Alternately, you can install `recast` and examine the output it gives. That is the structure we'll be working with for ESLint rules.
 
 T> [Codemod](https://github.com/facebook/codemod) allows you to perform large scale changes to your codebase through AST based transformations.
 
@@ -82,4 +82,4 @@ Of course, the rule doesn't do anything useful yet. To move forward, I recommend
 
 ## Conclusion
 
-You can also check out some of the existing rules and plugins for inspiration to see how they achieve certain things. ESLint allows you to [extend these rulesets](http://eslint.org/docs/user-guide/configuring.html#extending-configuration-files) through `extends` property. It accepts either a path to it (`"extends": "./node_modules/coding-standard/.eslintrc"`) or an array of paths. The entries are applied in the given order and later ones override the former.
+You can also check out some of the existing rules and plugins for inspiration to see how they achieve certain things. ESLint allows you to [extend these rulesets](http://eslint.org/docs/user-guide/configuring.html#extending-configuration-files) through `extends` property. It accepts either a path to it (`"extends": "./node_modules/coding-standard/.eslintrc"`) or an array of paths. The entries are applied in the given order, and later ones override the former.

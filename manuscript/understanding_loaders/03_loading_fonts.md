@@ -1,6 +1,6 @@
 # Loading Fonts
 
-Loading fonts is a surprisingly tough problem. There are typically four(!) font formats to worry about, each for certain browser. Inlining all formats at once wouldn't be a particularly good idea. It is acceptable, and even preferable, during development. That said, there are a couple of production specific strategies we can consider.
+Loading fonts is a surprisingly tough problem. There are typically four font formats to worry about, each for a certain browser. Inlining all formats at once wouldn't be a particularly good idea. It is acceptable, and even preferable, during development. That said, there are a couple of production-specific strategies we can consider.
 
 ## Choosing One Format
 
@@ -60,7 +60,7 @@ In case we want to make sure our site looks good on a maximum amount of browsers
 
 ## Generating Font Files Based on SVGs
 
-Sometimes you might have a bunch of SVG files that would be nice to bundle as font files of their own. The setup is a little involved, but [fontgen-loader](https://www.npmjs.com/package/fontgen-loader) achieves just this.
+Sometimes you might have a bunch of SVG files that would be nice to bundle as font files of their own. The setup is a little involved, but [fontgen-loader](https://www.npmjs.com/package/fontgen-loader) achieves this.
 
 ## Manipulating `file-loader` Output Path and `publicPath`
 
@@ -114,4 +114,4 @@ To include Font Awesome into your project, install it (`npm i font-awesome -S`) 
 
 ## Conclusion
 
-Loading fonts is similar as loading other assets. Here we have extra concerns to consider. We need to consider the browsers we want to support and choose the loading strategy based on that.
+Loading fonts is similar to loading other assets. Here we have extra concerns to consider. We need to consider the browsers we want to support and choose the loading strategy based on that.

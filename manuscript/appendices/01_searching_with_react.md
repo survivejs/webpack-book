@@ -1,6 +1,6 @@
 # Searching with React
 
-Let's say we want to implement a rough little search for our application without a proper search back-end. We might want to use something like [lunr](http://lunrjs.com/) for generating an index to search against.
+Let's say we want to implement a rough little search for our application without a proper back-end. We might want to use something like [lunr](http://lunrjs.com/) for generating an index to search against.
 
 The problem is that the index can be quite big depending on the amount of the content. The dumb way to implement this kind of search would be to include the index required to the application bundle itself and then perform search against that.
 
@@ -16,7 +16,7 @@ Implementing lazy loading is straight-forward. First you will need to decide whe
 
 The nice thing is that this gives us error handling in case something goes wrong (network is down etc.) and gives us a chance to recover. We can also use `Promise` based utilities like `Promise.all` for composing more complicated queries.
 
-In this case, we need to detect when the user selects the search element, load the data unless it has been loaded already, and then execute our search logic against it. Using React we could end up with something like this:
+In this case, we need to detect when the user selects the search element, load the data unless it has been loaded already, and then execute our search logic against it. Using React, we could end up with something like this:
 
 **App.jsx**
 
@@ -136,6 +136,6 @@ In the example, webpack detects the `import` statically. It is able to generate 
 
 ## Conclusion
 
-Beyond search, the approach is useful with routers too. As the user enters some route, you can load the dependencies the resulting view needs. Alternatively, you can start loading dependencies as the user scrolls a page and gets near parts with actual functionality. `import` provides a lot of power and allows you to keep your application lean.
+Beyond search, the approach is useful with routers too. As the user enters some route, you can load the dependencies the resulting view needs. Alternately, you can start loading dependencies as the user scrolls a page and gets near parts with actual functionality. `import` provides a lot of power and allows you to keep your application lean.
 
 You can find a [full example](https://github.com/survivejs-demos/lunr-demo) showing how it all goes together with lunr, React, and webpack. The basic idea is the same, but there's more setup in place.

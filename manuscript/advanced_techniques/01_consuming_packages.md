@@ -18,11 +18,11 @@ T> You can understand SemVer much better by studying [the online tool](http://se
 
 ## Understanding npm Lookup
 
-npm's lookup algorithm is another aspect that's good to understand. Sometimes this can explain certain errors and it also leads to good practices, such as preferring local dependencies over global ones. The basic algorithm goes like this:
+npm's lookup algorithm is another aspect that's good to understand. Sometimes this can explain certain errors, and it also leads to good practices, such as preferring local dependencies over global ones. The basic algorithm goes like this:
 
 1. Look into immediate packages. If there is *node_modules*, crawl through that. This will also check the parent directories until it reaches project root. You can check that using `npm root`.
 2. If nothing was found, check globally installed packages. If you are using Unix, look into */usr/local/lib/node_modules* to find them. You can figure out the exact directory using `npm root -g`.
-3. If the global lookup fails, fail hard. You should get an error now.
+3. If the global lookup fails, it will fail hard. You should get an error now.
 
 On a package level, npm resolves to a file like this:
 
@@ -30,7 +30,7 @@ On a package level, npm resolves to a file like this:
 2. Get the contents of the `main` field. If it doesn't exist, default to *<package>/index.js*.
 3. Resolve to the `main` file.
 
-The general lookup algorithm respects an environment variable known as `NODE_PATH`. If you want to tweak the resolution further, you can attach specific directories to it. Example: `NODE_PATH=$NODE_PATH:./demo`. A call like this can be included in the beginning of a *package.json* script to patch the runtime environment temporarily although it's better to avoid this if possible.
+The general lookup algorithm respects an environment variable known as `NODE_PATH`. If you want to tweak the resolution further, you can attach specific directories to it. Example: `NODE_PATH=$NODE_PATH:./demo`. A call like this can be included in the beginning of a *package.json* script to patch the runtime environment temporarily, although it's better to avoid this if possible.
 
 You can tweak webpack's module resolution through the `resolve.modules` field. Example:
 
@@ -58,7 +58,7 @@ npm supports multiple version ranges. I've listed the common ones below:
 * `*` - Asterisk matches major releases. This is the most dangerous of the ranges. Using this recklessly can easily break your project in the future and I would advise against using it.
 * `>= 1.3.0 < 2.0.0` - Range between versions. This can be particularly useful if you are using `peerDependencies`.
 
-You can set the default range using `npm config set save-prefix='^'` in case you prefer something else than caret. Alternatively you can modify *~/.npmrc* directly. Especially defaulting to tilde can be a good idea that can help you to avoid some trouble with dependencies although it won't remove potential problems entirely. That's where shrinkwrapping comes in.
+You can set the default range using `npm config set save-prefix='^'` in case you prefer something else than caret. Alternately, you can modify *~/.npmrc* directly. Especially defaulting to tilde can be a good idea that can help you to avoid some trouble with dependencies, although it won't remove potential problems entirely. That's where shrinkwrapping comes in.
 
 ## Shrinkwrapping Versions
 
@@ -66,7 +66,7 @@ Using version ranges can feel a little dangerous as it doesn't take much to brea
 
 [lockdown](https://www.npmjs.com/package/lockdown) goes further and gives guarantees about dependency content, not just version. [shrinkpack](https://www.npmjs.com/package/shrinkpack) is another interesting complementary option.
 
-[Yarn](https://yarnpkg.com/), a npm alternative, goes a step further as it introduces something known as *lockfile*. Yarn is worth a look as it fixes certain shortcomings of npm.
+[Yarn](https://yarnpkg.com/), a npm alternative, goes a step further as it introduces something known as *lockfile*. Yarn is worth a look, as it fixes certain shortcomings of npm.
 
 ## Keeping Dependencies Up to Date
 
@@ -86,9 +86,9 @@ There are a few services that can help you to keep track of your dependencies:
 * [versioneye](https://www.versioneye.com/)
 * [Gemnasium](https://gemnasium.com)
 
-These services provide badges you can integrate into your project *README.md* and they may email you about important changes. They can also point out possible security issues that have been fixed.
+These services provide badges you can integrate into your project *README.md*, and they may email you about important changes. They can also point out possible security issues that have been fixed.
 
-For testing your project, you can consider solutions, such as [Travis CI](https://travis-ci.org/) or [SauceLabs](https://saucelabs.com/). They can test your project against different environments and browsers even. The advantage of doing this is that it allows you to detect regressions. If you accept pull requests to your project, these services can help to keep their quality higher as it forces the authors to maintain their code on higher level.
+For testing your project, you can consider solutions, such as [Travis CI](https://travis-ci.org/) or [SauceLabs](https://saucelabs.com/). They can test your project against different environments and browsers. The advantage of doing this is that it allows you to detect regressions. If you accept pull requests to your project, these services can help to keep their quality higher as it forces the authors to maintain their code on higher level.
 
 [Codecov](https://codecov.io/) and [Coveralls](https://coveralls.io/) provide code coverage information and a badge to include in your README. This is useful for figuring out which portions of the source to test better. It is a part of improving the quality of your pull requests as they should maintain the current coverage at minimum and ideally improve it.
 
@@ -110,7 +110,7 @@ Sometimes packages might not follow the standard rules and their *package.json* 
 }
 ```
 
-The idea is that if webpack resolver matches `demo` in the beginning, it will resolve from the target. You can constrain the process to exact name by using a pattern like `demo$`.
+The idea is that if webpack resolver matches `demo` in the beginning, it will resolve from the target. You can constrain the process to an exact name by using a pattern like `demo$`.
 
 T> The same technique works with loaders too. You can use `resolveLoader.alias` in the same way to alias a loader elsewhere. This can be particularly useful if you have to adapt a RequireJS project to work with webpack.
 

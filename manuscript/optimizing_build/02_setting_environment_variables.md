@@ -66,10 +66,10 @@ if (foo === 'bar') {
   console.log('bar');
 }
 
-// if (false) means the block can be dropped entirely!
+// if (false) means the block can be dropped entirely
 ```
 
-This is the core idea of `DefinePlugin`. We can toggle parts of code using it using this kind of mechanism. A good minifier is able to perform the analysis for us and enable/disable entire portions of it as we prefer.
+This is the core idea of `DefinePlugin`. We can toggle parts of code using this kind of mechanism. A good minifier is able to perform the analysis for us and enable/disable entire portions of it as we prefer.
 
 ## Setting `process.env.NODE_ENV`
 
@@ -146,9 +146,9 @@ app.css.map   84 bytes       1  [emitted]  app
 
 We went from 141 kB to 41 kB, and finally, to 21.1 kB. The final build is a little faster than the previous one as well.
 
-Given this 21.1 kB can be served gzipped, it is somewhat reasonable. gzipping will drop around another 40% and it is well supported by browsers.
+Given the 21.1 kB can be served gzipped, it is somewhat reasonable. gzipping will drop around another 40% and it is well supported by browsers.
 
-It is good to remember that we didn't include *react-dom* in this case and that would add around 100 kB to the final result. To get back to these figures we would have to use a lighter alternative such as Preact or react-lite as discussed in the *Configuring React* chapter.
+It is good to remember that we didn't include *react-dom* in this case and that would add around 100 kB to the final result. To get back to these figures, we would have to use a lighter alternative such as Preact or react-lite as discussed in the *Configuring React* chapter.
 
 T> [babel-plugin-transform-inline-environment-variables](https://www.npmjs.com/package/babel-plugin-transform-inline-environment-variables) Babel plugin can be used to achieve the same effect. See [the official documentation](https://babeljs.io/docs/plugins/transform-inline-environment-variables/) for details.
 
@@ -160,6 +160,6 @@ Even though you can let your server to gzip the files using a suitable middlewar
 
 ## Conclusion
 
-Even though simply setting `process.env.NODE_ENV` the right way can help a lot especially with React related code, we can do better. Currently our build doesn't benefit on client level cache invalidation.
+Even though simply setting `process.env.NODE_ENV` the right way can help a lot especially with React-related code, we can do better. Currently our build doesn't benefit on client level cache invalidation.
 
 To achieve this, the build requires placeholders in which webpack can insert hashes that invalidate the files as we update the application.

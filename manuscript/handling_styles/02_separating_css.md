@@ -8,7 +8,7 @@ Webpack provides a means to generate a separate CSS bundles using [ExtractTextPl
 
 T> This same technique can be used with other assets, like templates, too.
 
-W> It can be potentially dangerous to use inline styles in production as it represents an attack vector! Favor `ExtractTextPlugin` and similar solutions in production usage. In limited contexts inlining a small amount of CSS can be a viable option to speed up the initial load (less requests).
+W> It can be potentially dangerous to use inline styles in production as it represents an attack vector. Favor `ExtractTextPlugin` and similar solutions in production usage. In limited contexts inlining a small amount of CSS can be a viable option to speed up the initial load (less requests).
 
 ## Setting Up *extract-text-webpack-plugin*
 
@@ -58,7 +58,7 @@ exports.extractCSS = function(paths) {
 leanpub-end-insert
 ```
 
-That `[name]` placeholder will use name derived based on the entry where the CSS is referred to. Placeholders are discussed in greater detail in the *Adding Hashes to Filenames* chapter.
+That `[name]` placeholder will use the the name of the entry where the CSS is referred to. Placeholders and the overall idea are discussed in greater detail in the *Adding Hashes to Filenames* chapter.
 
 T> If you wanted to output the resulting file to a specific directory, you could do it like this: `new ExtractTextPlugin('styles/[name].css')`.
 
@@ -105,11 +105,11 @@ index.html  218 bytes          [emitted]
 ...
 ```
 
-Now our styling has been pushed to a separate CSS file. Thus, our JavaScript bundle has become slightly smaller. We also avoid the FOUC problem. The browser doesn't have to wait for JavaScript to load to get styling information. Instead, it can process the CSS separately avoiding the flash.
+Now our styling has been pushed to a separate CSS file. Thus, our JavaScript bundle has become slightly smaller. We also avoid the FOUC problem. The browser doesn't have to wait for JavaScript to load to get styling information. Instead, it can process the CSS separately, avoiding the flash.
 
-T> If you are getting `Module build failed: CssSyntaxError:` error, make sure your `common` configuration doesn't have a CSS related section set up!
+T> If you are getting `Module build failed: CssSyntaxError:` error, make sure your `common` configuration doesn't have a CSS-related section set up.
 
-## Managing Styles Outside of JavaScript
+## Managing Styles outside of JavaScript
 
 Even though referring to styling through JavaScript and then bundling is a valid option, it is possible to achieve the same result through an `entry` and [globbinb](https://www.npmjs.com/package/glob). The basic idea goes like this:
 
@@ -138,10 +138,10 @@ const common = merge(
 );
 ```
 
-After this type of change you would not have to refer to styling from your application code. It also means that CSS Modules won't work anymore. As a result, you should get both *style.css* and *style.js*. The latter file will contain roughly content like `webpackJsonp([1,3],[function(n,c){}]);` and it doesn't do anything useful. This is [a known limitation](https://github.com/webpack/webpack/issues/1967) in webpack.
+After this type of change, you would not have to refer to styling from your application code. It also means that CSS Modules won't work anymore. As a result, you should get both *style.css* and *style.js*. The latter file will contain roughly content like `webpackJsonp([1,3],[function(n,c){}]);` and it doesn't do anything useful. This is [a known limitation](https://github.com/webpack/webpack/issues/1967) in webpack.
 
 The approach can be useful if you have to port a legacy project relying on CSS concatenation. If you want strict control over the ordering, you can set up a single CSS entry and then use `@import` to bring the rest to the project through it. Another option would be to set up a JavaScript entry and go through `import` to get the same effect.
 
 ## Conclusion
 
-Our current setup separates styling from JavaScript neatly. There is more we can do with CSS, though. Often big CSS frameworks come with plenty of CSS rules and a lot of those end up being unused. In the next chapter I will show you how to eliminate these rules from your build.
+Our current setup separates styling from JavaScript neatly. There is more we can do with CSS, though. Often big CSS frameworks come with plenty of CSS rules, and a lot of those end up being unused. In the next chapter, I will show you how to eliminate these rules from your build.

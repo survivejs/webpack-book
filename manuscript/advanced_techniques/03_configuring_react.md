@@ -2,13 +2,13 @@
 
 Facebook's [React](https://facebook.github.io/react/) is a popular alternative for developing web applications. Even if you don't use it, it can be valuable to understand how to configure it.
 
-## create-react-app - Get Started Fast
+## Get Started Fast with *create-react-app*
 
 [create-react-app](https://www.npmjs.com/package/create-react-app) encapsulates a lot of best practices related to developing React applications. It's particularly useful if you want to get started with a little project fast with minimal setup.
 
 One of the main attractions of *create-react-app* is a feature known as *ejecting*. This means that instead of treating it as a project dependency, you'll get a full webpack setup out of it.
 
-There's a gotcha, though. After you eject, you cannot go back to the dependency based model and you will have to maintain the resulting setup yourself.
+There's a gotcha, though. After you eject, you cannot go back to the dependency-based model, and you will have to maintain the resulting setup yourself.
 
 ## Setting Up Babel with React
 
@@ -71,7 +71,7 @@ You also have to connect the preset with Babel configuration. Here's the rough i
 
 ### Rendering a React Application
 
-To get a simple React application running you'll need to mount it to a DOM element first. [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) can come in handy here. It can be combined with [html-webpack-template](https://www.npmjs.com/package/html-webpack-template) or [html-webpack-template-pug](https://www.npmjs.com/package/html-webpack-template-pug) for more advanced functionality. You can also provide a custom template of your own to it.
+To get a simple React application running, you'll need to mount it to a DOM element first. [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) can come in handy here. It can be combined with [html-webpack-template](https://www.npmjs.com/package/html-webpack-template) or [html-webpack-template-pug](https://www.npmjs.com/package/html-webpack-template-pug) for more advanced functionality. You can also provide a custom template of your own to it.
 
 Consider the following example:
 
@@ -99,7 +99,7 @@ module.exports = function(env) {
 };
 ```
 
-Now that there's a template and a DOM element where to render, React needs to be told to render there:
+Now that there's a template and a DOM element for where to render, React needs to be told to render there:
 
 **app/index.js**
 
@@ -117,7 +117,7 @@ It would be possible to extend the application from here. Depending on your tast
 
 T> Check out the *Configuring Hot Module Replacement with React* appendix to learn how to set up hot loading for React code with webpack and Babel.
 
-### Babel Based Optimizations for React
+### Babel-Based Optimizations for React
 
 [babel-react-optimize](https://github.com/thejameskyle/babel-react-optimize) implements a variety of React specific optimizations you may want to experiment with.
 
@@ -175,7 +175,7 @@ Next, we need to expose React to the console through the [expose-loader](https:/
 }
 ```
 
-After this you should be able to access `React` through a console. To make it possible to access the performance utilities, we need to do one more step. Add the following to the entry point of your application to enable `React.Perf` during development:
+After this, you should be able to access `React` through a console. To make it possible to access the performance utilities, we need to do one more step. Add the following to the entry point of your application to enable `React.Perf` during development:
 
 ```javascript
 if(process.env.NODE_ENV !== 'production') {
@@ -183,13 +183,13 @@ if(process.env.NODE_ENV !== 'production') {
 }
 ```
 
-If you check out the browser console now, you should be able to access the performance related API through `React.Perf`. The utilities allow you to understand better what's taking time and squeeze the last bits of performance out of your application. The *Elements* tab in Chrome can be useful as well. You can see how React operates on the DOM as it flashes.
+If you check out the browser console now, you should be able to access the performance-related API through `React.Perf`. The utilities allow you to understand better what's taking time and to squeeze the last bits of performance out of your application. The *Elements* tab in Chrome can be useful as well. You can see how React operates on the DOM as it flashes.
 
-T> It can be a good idea to install [React Developer Tools](https://github.com/facebook/react-devtools) to Chrome for even more information. It allows you to inspect *props* and *state* of your application.
+T> It can be a good idea to install [React Developer Tools](https://github.com/facebook/react-devtools) to Chrome for even more information. This allows you to inspect *props* and *state* of your application.
 
 ## Optimizing Rebundling Speed During Development
 
-We can optimize React's rebundling times during development by pointing the development setup to a minified version of React. The gotcha is that we will lose `propType` based validation! But if speed is more important, this technique may be worth a go. You can hide it behind an environment flag for instance if you want type checking.
+We can optimize React's rebundling times during development by pointing the development setup to a minified version of React. The gotcha is that we will lose `propType`-based validation. But if speed is more important, this technique may be worth a go. You can hide it behind an environment flag if you want type checking.
 
 In order to achieve what we want, we can use webpack's `module.noParse` option. It accepts a RegExp or an array of RegExps. We can also pass full paths to it to keep our lives simple.
 
@@ -256,7 +256,7 @@ W> Not all modules support `module.noParse`, the files included by deps array sh
 
 When using React, the Babel preset does most of the work. It is able to strip Flow annotations and convert your code into a format that is possible to transpile further.
 
-There's a Babel plugin known as [babel-plugin-typecheck](https://www.npmjs.com/package/babel-plugin-typecheck) that allows you to perform runtime checks based on your Flow annotations. After installing, you should just add the following section to the development section of your *.babelrc* to enable it:
+There's a Babel plugin known as [babel-plugin-typecheck](https://www.npmjs.com/package/babel-plugin-typecheck) that allows you to perform runtime checks based on your Flow annotations. After installing, you should add the following section to the development section of your *.babelrc* to enable it:
 
 **.babelrc**
 
@@ -272,7 +272,7 @@ Even though useful, Flow static checker is able to catch more errors. Runtime ch
 
 ## Setting Up TypeScript
 
-Microsoft's [TypeScript](http://www.typescriptlang.org/) is a far more established solution than Facebook's Flow. As a result, you will find more premade type definitions for it and overall the quality of support should be better. You can use it with webpack using at least the following loaders:
+Microsoft's [TypeScript](http://www.typescriptlang.org/) is a far more established solution than Facebook's Flow. As a result, you will find more premade type definitions for it, and overall, the quality of support should be better. You can use it with webpack using the following loaders:
 
 * [ts-loader](https://www.npmjs.com/package/ts-loader)
 * [awesome-typescript-loader](https://www.npmjs.com/package/awesome-typescript-loader)
