@@ -109,7 +109,7 @@ Now our styling has been pushed to a separate CSS file. Thus, our JavaScript bun
 
 T> If you are getting `Module build failed: CssSyntaxError:` error, make sure your `common` configuration doesn't have a CSS-related section set up.
 
-## Managing Styles outside of JavaScript
+## Managing Styles Outside of JavaScript
 
 Even though referring to styling through JavaScript and then bundling is a valid option, it is possible to achieve the same result through an `entry` and [globbinb](https://www.npmjs.com/package/glob). The basic idea goes like this:
 
