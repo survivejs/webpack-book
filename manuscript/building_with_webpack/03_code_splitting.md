@@ -8,11 +8,11 @@ T> Incidentally, it is possible to implement Google's [PRPL pattern](https://dev
 
 ![Bundle with a dynamically-loaded normal chunk](images/dynamic.png)
 
-## Setting Up Code Splitting
+## Code Splitting Formats
 
 Code splitting can be done in two primary ways in webpack: through a [dynamic import](https://github.com/tc39/proposal-dynamic-import) or `require.ensure` syntax. We'll be using the former in this demo. The syntax isn't in the official specification yet so it will require minor tweaks especially at ESLint and Babel too if you are using that.
 
-### Code Splitting Formats
+### Dynamic `import`
 
 Dynamic imports look like this:
 
@@ -20,7 +20,23 @@ Dynamic imports look like this:
 import('./module').then((module) => {...}).catch((error) => {...});
 ```
 
-The `Promise` based interface allows composition and you could load multiple resources in parallel if you wanted. If you wanted to load multiple through one request, you would have to define an intermediate module of where to achieve that.
+The `Promise` based interface allows composition and you could load multiple resources in parallel if wanted. `Promise.all` would work for that like this:
+
+```javascript
+Promise.all([
+  import('lunr'),
+  import('../search_index.json')
+]).then(([lunr, search]) => {
+  return {
+    index: lunr.Index.load(search.index),
+    lines: search.lines
+  };
+});
+```
+
+It is important to note that this will create separate chunks to request. If you wanted only one, you would have to define an intermediate module to `import`.
+
+### `require.ensure`
 
 [require.ensure](https://webpack.github.io/docs/code-splitting.html#commonjs-require-ensure) provides an alternate way:
 
@@ -41,6 +57,10 @@ require.ensure(
 ```
 
 As you can see, `require.ensure` definition is more powerful. The gotcha is that it doesn't support error handling. Often you can achieve what you want through a dynamic `import`, but it's good to know this form exists as well.
+
+W> `require.ensure` relies on `Promise`s internally. If you use `require.ensure` with older browsers, remember to shim `Promise`.
+
+### `require.include`
 
 The example above could be rewritten using a webpack specific function known as `require.include`:
 
@@ -65,9 +85,13 @@ If you had nested `require.ensure` definitions, you could pull a module to the p
 
 T> The formats respect `output.publicPath` option. You can also use `output.chunkFilename` to shape where they output. Example: `chunkFilename: 'scripts/[name].js'`.
 
+## Setting Up Code Splitting
+
+To demonstrate the idea of code splitting, we should pick up one of the formats above and integrate it to our project. Dynamic `import` is enough. Before we can implement the webpack side, ESLint needs a slight tweak.
+
 ### Tweaking ESLint
 
-Given ESLint supports only standard ES6 out of the box, it requires some tweaking to work with dynamic imports. Install *babel-eslint* parser first:
+Given ESLint supports only standard ES6 out of the box, it requires some tweaking to work with dynamic `import`. Install *babel-eslint* parser first:
 
 ```bash
 npm i babel-eslint -D
