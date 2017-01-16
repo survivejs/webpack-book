@@ -12,7 +12,7 @@ Packages loaded from *node_modules* will still work as the assumption is that th
 
 Webpack supports a large variety of formats through *loaders*. In addition, it supports a couple of JavaScript module formats out of the box. Generally, the idea is the same. You always set up a loader, or loaders, and connect those with your directory structure.
 
-The system relies on configuration. Consider the example below where we set webpack to process JavaScript through Babel:
+Consider the example below where we set webpack to process JavaScript through Babel, but do not add it to your configuration:
 
 **webpack.config.js**
 
@@ -46,6 +46,8 @@ module.exports = {
 ```
 
 T> If you are not sure how a particular RegExp matches, consider using an online tool, such as [regex101](https://regex101.com/).
+
+T> Babel is discussed in greater detail at the *Processing with Babel* chapter.
 
 ## Loader Evaluation Order
 
@@ -85,9 +87,9 @@ The query format allows passing parameters as well:
 }
 ```
 
-This isn't very readable. There may still be use for the old query format, especially if you have to perform processing within your source files. Often, there are better ways available, though.
+This isn't very readable and it takes a while to parse. It is good to note that this style of configuration works in entries and source imports too. Webpack will pick it up. There are special cases where the format may come in handy, but often you are better off using the other alternatives.
 
-Instead, it's preferable to use the combination of `loader` and `options` fields either like this:
+It is preferable to use the combination of `loader` and `options` fields either like this:
 
 ```javascript
 {
@@ -163,4 +165,4 @@ Given webpack 2 forbids arbitrary root level configuration, you have to use `Loa
 
 ## Conclusion
 
-Webpack provides multiple ways to set up loaders, but sticking with `use` is enough in webpack 2. You should be careful especially with loader ordering. I will discuss specific assets types and how to load them using webpack next.
+Webpack provides multiple ways to set up loaders, but sticking with `use` is enough in webpack 2. You should be careful, especially with loader ordering, as this is a common source of problems. I will discuss specific assets types and how to load them using webpack next.
