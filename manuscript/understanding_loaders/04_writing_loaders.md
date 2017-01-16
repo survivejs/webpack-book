@@ -10,20 +10,19 @@ I follow the following layout in my loader project:
 
 ```bash
 .
-├── LICENSE           - License terms of the project
-├── README.md         - Basic description of the project
-├── demo              - Demo against webpack
-│   ├── demo_index.js - Entry for webpack
-│   ├── input.md      - Data to process
-│   ├── output        - Output directory to examine
-│   └── run_demo.js   - Webpack configuration
-├── index.js          - Loader source
-├── node_modules      - Dependencies as per Node.js
-├── package.json      - npm metadata
-└── test.js           - Tests
+├── LICENSE          - License terms of the project
+├── README.md        - Basic description of the project
+├── examples         - Examples against webpack
+│   ├── app          - Simple app to run
+│   │   ├── index.js - Entry for webpack
+│   │   └── input.md - Data to process
+│   └── run.js       - Webpack configuration
+├── index.js         - Loader source
+├── package.json     - npm metadata
+└── test.js          - Tests
 ```
 
-This is a fairly standard way to write a small Node.js package. I actually started by developing the demo first and added tests later. Writing tests first can be a good idea, though, as it gives you a specification which you can use to validate your implementation.
+This is a fairly standard way to write a small Node.js package. I actually started by developing a basic example first and added tests later. Writing tests first can be a good idea, though, as it gives you a specification which you can use to validate your implementation.
 
 I'll give you a basic testing setup next and then discuss my loader implementation.
 
@@ -172,4 +171,4 @@ asyncOp(callback);
 
 Writing loaders is fun in sense that they describe transformations from a format to another. Often you can figure out how to achieve something specific by either studying either the API documentation or the existing loaders.
 
-I recommend writing at least basic tests and a small demo to document your assumptions. Loader development fits this type of thinking very well.
+I recommend writing at least basic tests and a small example to document your assumptions. Loader development fits this type of thinking very well.
