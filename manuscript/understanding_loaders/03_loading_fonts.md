@@ -58,6 +58,21 @@ In case we want to make sure our site looks good on a maximum amount of browsers
 }
 ```
 
+Note that the way you write your CSS definition matters. Assuming we are going to inline the WOFF format, we should have it first like this in your CSS:
+
+```css
+@font-face {
+  font-family: 'myfontfamily';
+  src: url('myfontfile.woff') format('woff2'),
+    url('myfontfile.ttf') format('truetype');
+    /* Other formats as you see fit */
+}
+```
+
+This way the browser will try to consume the inlined font before loading remote alternatives.
+
+T> [MDN discusses the font-family rule](https://developer.mozilla.org/en/docs/Web/CSS/@font-face) in greater detail.
+
 ## Generating Font Files Based on SVGs
 
 Sometimes you might have a bunch of SVG files that would be nice to bundle as font files of their own. The setup is a little involved, but [fontgen-loader](https://www.npmjs.com/package/fontgen-loader) achieves this.
@@ -111,6 +126,33 @@ exports.loadFonts = function(options) {
 ```
 
 To include Font Awesome into your project, install it (`npm i font-awesome -S`) and then refer to it through your code. Given the distribution version is missing *package.json* `main`, you will have to point at *node_modules/font-awesome/css/font-awesome.css*. See the *Consuming Packages* chapter for further techniques.
+
+If we wanted to integrate Font Awesome to our project, we would have to perform the following modifications:
+
+**app/index.js**
+
+```javascript
+leanpub-start-insert
+import '../node_modules/font-awesome/css/font-awesome.css';
+leanpub-end-insert
+
+...
+```
+
+**app/component.js**
+
+```javascript
+export default function () {
+  const element = document.createElement('h1');
+
+  element.className = 'fa fa-spock-o fa-1g';
+  element.innerHTML = 'Hello world';
+
+  return element;
+}
+```
+
+T> The `import` could be cleaned up as `import 'font-awesome'` by setting up a `resolve.alias`. The *Consuming Packages* chapter discusses this idea in greater detail.
 
 ## Conclusion
 
