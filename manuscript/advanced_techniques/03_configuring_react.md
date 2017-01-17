@@ -69,7 +69,7 @@ You also have to connect the preset with Babel configuration. Here's the rough i
 }
 ```
 
-### Rendering a React Application
+## Rendering a React Application
 
 To get a simple React application running, you'll need to mount it to a DOM element first. [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) can come in handy here. It can be combined with [html-webpack-template](https://www.npmjs.com/package/html-webpack-template) or [html-webpack-template-pug](https://www.npmjs.com/package/html-webpack-template-pug) for more advanced functionality. You can also provide a custom template of your own to it.
 
@@ -117,7 +117,7 @@ It would be possible to extend the application from here. Depending on your tast
 
 T> Check out the *Configuring Hot Module Replacement with React* appendix to learn how to set up hot loading for React code with webpack and Babel.
 
-### Babel-Based Optimizations for React
+## Babel-Based Optimizations for React
 
 [babel-react-optimize](https://github.com/thejameskyle/babel-react-optimize) implements a variety of React specific optimizations you may want to experiment with.
 
@@ -249,35 +249,6 @@ T> `module.noParse` also accepts a regular expression. If we wanted to ignore al
 T> Note that aliasing works also with loaders through [resolveLoader.alias](https://webpack.js.org/configuration/resolve/#resolveloader).
 
 W> Not all modules support `module.noParse`, the files included by deps array should have no call to `require`, `define` or similar, or you will get an error when the app runs: `Uncaught ReferenceError: require is not defined`.
-
-## Setting Up Flow
-
-[Flow](http://flowtype.org/) performs static analysis based on your code and its type annotations. This means you will install it as a separate tool. You will then run it against your code. There's a webpack plugin known as [flow-status-webpack-plugin](https://www.npmjs.com/package/flow-status-webpack-plugin) that allows you to run it through webpack during development.
-
-When using React, the Babel preset does most of the work. It is able to strip Flow annotations and convert your code into a format that is possible to transpile further.
-
-There's a Babel plugin known as [babel-plugin-typecheck](https://www.npmjs.com/package/babel-plugin-typecheck) that allows you to perform runtime checks based on your Flow annotations. After installing, you should add the following section to the development section of your *.babelrc* to enable it:
-
-**.babelrc**
-
-```json
-"plugins": [
-  [
-    "typecheck"
-  ]
-]
-```
-
-Even though useful, Flow static checker is able to catch more errors. Runtime checks are still cool, though, and worth enabling if you are using Flow.
-
-## Setting Up TypeScript
-
-Microsoft's [TypeScript](http://www.typescriptlang.org/) is a far more established solution than Facebook's Flow. As a result, you will find more premade type definitions for it, and overall, the quality of support should be better. You can use it with webpack using the following loaders:
-
-* [ts-loader](https://www.npmjs.com/package/ts-loader)
-* [awesome-typescript-loader](https://www.npmjs.com/package/awesome-typescript-loader)
-* [typescript-loader](https://www.npmjs.com/package/typescript-loader)
-* [light-ts-loader](https://www.npmjs.com/package/light-ts-loader)
 
 ## Maintaining Components
 

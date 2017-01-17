@@ -206,6 +206,28 @@ Perhaps the greatest thing about Babel is that it's possible to extend with pres
 * [babel-plugin-annotate-console-log](https://www.npmjs.com/package/babel-plugin-log-annotate-console-log) annotates `console.log` calls with information about invocation context so it's easier to see where they logged.
 * [babel-plugin-webpack-loaders](https://www.npmjs.com/package/babel-plugin-webpack-loaders) allows you to use many webpack loaders through Babel.
 
+## Setting Up TypeScript
+
+Microsoft's [TypeScript](http://www.typescriptlang.org/) is a compiled language that follows a similar setup as Babel. The neat thing is that in addition to JavaScript, it can emit type definitions. A good editor can pick those up and provide enhanced editing experience. Stronger typing is useful for development as it becomes easier to state your type contracts.
+
+Compared to Facebook's type checker Flow, TypeScript is a more established option. As a result, you will find more premade type definitions for it, and overall, the quality of support should be better.
+
+You can use TypeScript with webpack using the following loaders:
+
+* [ts-loader](https://www.npmjs.com/package/ts-loader)
+* [awesome-typescript-loader](https://www.npmjs.com/package/awesome-typescript-loader)
+* [light-ts-loader](https://www.npmjs.com/package/light-ts-loader)
+
+T> There's a [TypeScript parser for ESLint](https://www.npmjs.com/package/typescript-eslint-parser). It's also possible to lint it through [tslint](https://www.npmjs.com/package/tslint).
+
+## Setting Up Flow
+
+[Flow](http://flowtype.org/) performs static analysis based on your code and its type annotations. This means you will install it as a separate tool. You will then run it against your code. There's a webpack plugin known as [flow-status-webpack-plugin](https://www.npmjs.com/package/flow-status-webpack-plugin) that allows you to run it through webpack during development.
+
+If you use React, the React specific Babel preset does most of the work through [babel-plugin-syntax-flow](https://www.npmjs.com/package/babel-plugin-syntax-flow). It is able to strip Flow annotations and convert your code into a format that is possible to transpile further.
+
+There's also a Babel plugin known as [babel-plugin-typecheck](https://www.npmjs.com/package/babel-plugin-typecheck) that allows you to perform runtime checks based on your Flow annotations. Even though useful, Flow static checker is able to catch more errors. Runtime checks are still cool, though, and worth enabling if you are using Flow.
+
 ## Conclusion
 
 Babel has become an indispensable tool for many developers given it bridges the standard with older browsers. Even if you targeted modern browsers, transforming through Babel may be a necessity if you use UglifyJS.
