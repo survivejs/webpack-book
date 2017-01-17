@@ -127,9 +127,13 @@ To access your server, you'll need to figure out the ip of your machine. On Unix
 
 We could have passed the WDS options through terminal. I find it clearer to manage it within webpack configuration as that helps to keep *package.json* nice and tidy. It is also easier to understand what's going on as you don't need to dig out the answers from webpack source.
 
-Alternately, we could have set up an Express server of our own and used WDS as a [middleware](https://webpack.js.org/guides/development/#webpack-dev-middleware). There's also a [Node.js API](https://webpack.github.io/docs/webpack-dev-server.html#api). This is a good approach if you want control and flexibility.
+Alternately, we could have set up an Express server of our own and a middleware. There are a couple of options:
 
-T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environment variables through a *.env* file. This can be somewhat convenient during development.
+* [The official WDS middleware](https://webpack.js.org/guides/development/#webpack-dev-middleware)
+* [webpack-hot-middleware](https://www.npmjs.com/package/webpack-hot-middleware)
+* [webpack-universal-middleware](https://www.npmjs.com/package/webpack-universal-middleware)
+
+There's also a [Node.js API](https://webpack.github.io/docs/webpack-dev-server.html#api) if you want more control and flexibility.
 
 W> Note that there are [slight differences](https://github.com/webpack/webpack-dev-server/issues/106) between the CLI and the Node.js API. This is the reason why some prefer to solely use the Node.js API.
 
