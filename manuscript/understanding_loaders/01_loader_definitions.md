@@ -2,11 +2,13 @@
 
 Webpack provides multiple ways to set up module loaders. Webpack 2 simplified the situation by introducing a field known as `use`. The legacy options (`loader` and `loaders`) still work, though. I'll discuss all the options for completeness, as you may see them in various configurations out there.
 
-I recommend maintaining an `include` definition per each JavaScript-related loader definition. This will restrict its search path, improve performance, and make your configuration easier to follow. `include` accepts either a path or an array of paths.
+I recommend maintaining an `include` definition per each JavaScript-related loader definition. This will restrict its search path, improve performance, and make your configuration easier to follow. `include` accepts either a path or an array of paths. Another option would be to use `exclude`. Often you see declarations, like `exclude: /node_modules/`, for this reason.
 
-It can be a good idea to prefer absolute paths here as they allow you to move configuration without breaking assumptions. Ideally, you must tweak only a single place during restructuring.
+It can be a good idea to prefer absolute paths here as they allow you to move configuration without breaking assumptions. The other option is to set `context` field as this gives a similar effect and affects the way entry points and loaders are resolved. It won't affect the output, though, and you still need to use an absolute path or `/` there.
 
-Packages loaded from *node_modules* will still work as the assumption is that they have been compiled in such way that they work out of the box. Sometimes you may come upon a badly packaged one, but often you can work around these by tweaking your loader configuration or setting up a `resolve.alias` against an asset that is included with the offending package.
+Assuming you set a `include` or `exclude` rule, packages loaded from *node_modules* will still work as the assumption is that they have been compiled in such way that they work out of the box. Sometimes you may come upon a badly packaged one, but often you can work around these by tweaking your loader configuration or setting up a `resolve.alias` against an asset that is included with the offending package.
+
+T> The *Consuming Packages* chapter discusses the aliasing idea in further detail.
 
 ## Anatomy of a Loader
 
@@ -24,20 +26,34 @@ module.exports = {
   module: {
     rules: [
       {
-        // Match files against RegExp
+        // Match files against RegExp. This accepts
+        // a function too.
         test: /\.js$/,
 
         // Restrict matching to a directory. This
         // also accepts an array of paths.
+        //
         // Although optional, I prefer to set this for
         // JavaScript source as it helps with
         // performance and keeps the configuration cleaner.
+        //
+        // This accepts an array or a function too. The
+        // same applies to `exclude` as well.
         include: path.join(__dirname, 'app'),
 
-        // Apply loaders against it. These need to
+        /*
+        exclude(path) {
+          // You can perform more complicated checks
+          // through functions if you want.
+          return path.match(/node_modules/);
+        },
+        */
+
+        // Apply loaders the matched files. These need to
         // be installed separately. In this case our
         // project would need *babel-loader*. This
-        // accepts an array of loaders as well.
+        // accepts an array of loaders as well and
+        // more forms are possible as discussed below.
         use: 'babel-loader',
       },
     ],
