@@ -260,6 +260,8 @@ indent_style = space
 indent_size = 2
 ```
 
+T> [Prettier](https://www.npmjs.com/package/prettier) goes one step further and is able to format your code automatically according to your coding style.
+
 ## Conclusion
 
 In this chapter, you learned how to lint your code using webpack in various ways. It is one of those techniques that yields benefits over the long term. You can fix possible problems before they become actual issues.
