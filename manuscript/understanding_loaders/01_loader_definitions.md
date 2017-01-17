@@ -145,6 +145,29 @@ If we wanted to use more than one loader, we could pass an array to `use` and ex
 },
 ```
 
+## Inline Definitions
+
+Even though configuration level loader definitions are preferable, it is possible to write loader definitions inline like this:
+
+```javascript
+// Process foo.png through url-loader and other
+// possible matches.
+import 'url-loader!./foo.png';
+
+// Override possible higher level match completely
+import '!!url-loader!./bar.png';
+```
+
+The problem with this approach is that it couples your source with webpack. But it is a good form to know still. Given configuration entries go through the same mechanism, the forms work there as well:
+
+```javascript
+{
+  entry: {
+    app: 'babel-loader!./app',
+  },
+},
+```
+
 ## `LoaderOptionsPlugin`
 
 Given webpack 2 forbids arbitrary root level configuration, you have to use `LoaderOptionsPlugin` to manage it. The plugin exists for legacy compatibility and may disappear in a future release. Consider the example below:
