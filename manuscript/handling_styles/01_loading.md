@@ -309,7 +309,7 @@ The tilde (`~`) tells webpack that it's not a relative import as by default. If 
 
 ## Enabling Sourcemaps
 
-If you want to enable sourcemaps for CSS, you should enable `sourceMap` option for *css-loader* and set `output.publicPath` to an absolute url. In case you have more loaders, each needs to enable sourcemap support separately. *css-loader* [issue 29](https://github.com/webpack/css-loader/issues/29) discusses this problem further.
+If you want to enable sourcemaps for CSS, you should enable `sourceMap` option for *css-loader* and set `output.publicPath` to an absolute url pointing to your development server. If you have multiple loaders in a chain, you have to enable sourcemaps separately for each. *css-loader* [issue 29](https://github.com/webpack/css-loader/issues/29) discusses this problem further.
 
 ## Using Bootstrap
 
