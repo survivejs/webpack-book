@@ -209,6 +209,8 @@ export default function () {
 }
 ```
 
+T> [bundle-loader](https://www.npmjs.com/package/bundle-loader) gives similar results, but through a loader interface.
+
 ## Dynamic Loading with `require.context`
 
 Beyond the variants above, there's another type of `require` that you should be aware of. [require.context](https://webpack.js.org/configuration/entry-context/#context) is a general form of the above.
