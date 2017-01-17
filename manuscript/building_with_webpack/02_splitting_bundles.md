@@ -233,16 +233,26 @@ The problem is that this approach can bring unused dependencies to the vendor bu
 In addition to a number and certain other values, `minChunks` accepts a function. This makes it possible to deduce which modules are external without having to perform a lookup against *package.json*. To adapt Rafael De Leon's solution from [Stack Overflow](http://stackoverflow.com/a/38733864/228885), you could end up with code like this:
 
 ```javascript
-new webpack.optimize.CommonsChunkPlugin({
-  name: 'vendor',
-  minChunks: (module, count) => {
-    const userRequest = module.userRequest;
+{
+  ...
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: isVendor,
+    }),
+  ],
+  ...
+};
 
-    // You can perform other similar checks here too.
-    // Now we check just node_modules.
-    return userRequest && userRequest.indexOf('node_modules') >= 0;
-  }
-}),
+...
+
+function isVendor(module, count) {
+  const userRequest = module.userRequest;
+
+  // You can perform other similar checks here too.
+  // Now we check just node_modules.
+  return userRequest && userRequest.indexOf('node_modules') >= 0;
+}
 ```
 
 The `module` parameter of `minChunks` contains a lot of data; you may want to `console.log` it to understand it in greater detail. `userRequest`, if it is set, contains the full path to the module that was imported. Therefore, the check above works.
@@ -250,6 +260,37 @@ The `module` parameter of `minChunks` contains a lot of data; you may want to `c
 Given `minChunks` receives `count` as its second parameter, you could force it to capture chunks based on usage. This is particularly useful in more complex setups where you have split your code multiple times and want more control over the result.
 
 If you want to try out this technique, you can pass a custom `minChunks` check to `extractBundles` like above. The advantage of this approach is that it will use **only** dependencies you refer to in your application and you can eliminate the array.
+
+## Performing a More Granular Split
+
+Sometimes having only an app and a vendor bundle isn't enough. Especially as your application grows and gains more entry points, you may want to split the vendor bundle into multiples ones per each entry. The `minChunks` idea above can be combined with more granular control by specifying `chunks` which to process. Consider [the example adapted from a GitHub comment](https://github.com/webpack/webpack/issues/2855#issuecomment-239606760) below:
+
+```javascript
+{
+  ...
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'login',
+      chunks: ['login'],
+      minChunks: isVendor,
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      chunks: ['app'],
+      minChunks: isVendor,
+    }),
+    // Extract chunks common to both app and login
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'common',
+      chunks: ['login', 'app'],
+      minChunks: (module, count) => {
+        return count >= 2 && isVendor(module);
+      }
+    }),
+  ],
+  ...
+};
+```
 
 ## Chunk Types in Webpack
 
