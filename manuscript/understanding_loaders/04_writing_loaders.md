@@ -169,6 +169,27 @@ if(!callback) {
 asyncOp(callback);
 ```
 
+## Pitch Loaders
+
+Webpack evaluates loaders in two phases: pitching and running. The pitching process is performed first and it goes from left to right. In the running phase it goes back right to left. Pitching allows you to intercept a query or modify it. A pitch loader could inject parameters to a following loader for example or terminate execution given a condition is met.
+
+The following example [adapted from the documentation](https://webpack.js.org/api/loaders/#pitching-loader) illustrates how to attach a pitch handler to a loader:
+
+```javascript
+module.exports = function(content) {
+  ...
+};
+module.exports.pitch = function(remainingRequest, precedingRequest, data) {
+  if(... condition ...) {
+    // Either adjust metadata or terminate execution here by returning
+    return `module.exports = 'demo';`;
+  }
+
+  // You can set metadata to access later in the running phase.
+  data.value = 42;
+};
+```
+
 ## Conclusion
 
 Writing loaders is fun in sense that they describe transformations from a format to another. Often you can figure out how to achieve something specific by either studying either the API documentation or the existing loaders.
