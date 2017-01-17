@@ -65,6 +65,8 @@ If you want the raw SVG content, you can use the [raw-loader](https://www.npmjs.
 
 [svg-sprite-loader](https://www.npmjs.com/package/svg-sprite-loader) can merge separate SVG files into a single sprite, making it potentially more effective to load as you avoid request overhead. It supports raster images (*.jpg*, *.png*) as well.
 
+[react-svg-loader](https://www.npmjs.com/package/react-svg-loader) emits SVGs as React components meaning you could end up with code like `<Image width={50} height={50}/>` to render a SVG in your code after importing it.
+
 T> You can still use *url-loader* and the aforementioned tips with SVGs too.
 
 ## Compressing Images
