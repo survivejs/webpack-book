@@ -269,6 +269,50 @@ T> In order to integrate with asset pipelines, you can consider using plugins li
 
 T> One more way to improve the build further would be to load popular dependencies, such as React, through a CDN. That would decrease the size of the vendor bundle even further while adding an external dependency on the project. The idea is that if the user has hit the CDN earlier, caching can kick in just like here.
 
+## Using Records
+
+As mentioned in the *Splitting Bundles* chapter, plugins such as `AggressiveSplittingPlugin` use **records** to implement caching. The approaches discussed above are still valid, but records go one step further.
+
+Records are used for storing module ids across separate build. The gotcha is that you need to store this file some way. If you build locally, one option is to include it to your version control.
+
+To generate a *records.json* file, adjust the configuration as follows:
+
+```javascript
+...
+
+module.exports = function(env) {
+  if (env === 'production') {
+    return merge(
+      common,
+      {
+        output: {
+          chunkFilename: 'scripts/[chunkhash].js',
+          filename: '[name].[chunkhash].js',
+
+          // Tweak this to match your GitHub project name
+          publicPath: '/webpack-demo/',
+        },
+        plugins: [
+          new webpack.HashedModuleIdsPlugin(),
+        ],
+leanpub-start-insert
+        recordsPath: 'records.json',
+leanpub-end-insert
+      },
+      ...
+    };
+  }
+
+  ...
+};
+```
+
+If you build the project (`npm run build`), you should see a new file, *records.json*, at the project root. The next time webpack builds, it will pick up the information and rewrite the file if it has changed.
+
+Records are particularly useful if you have a complex setup with code splitting and want to make sure the split parts gain correct caching behavior. The biggest problem is maintaining the record file.
+
+T> `recordsInputPath` and `recordsOutputPath` give more granular control over input and output, but often setting only `recordsPath` is enough.
+
 ## Conclusion
 
 Our project has basic caching behavior now. If you try to modify *app.js* or *component.js*, the vendor bundle should remain the same. But what's contained in the build? You can figure that out by *Analyzing Build Statistics*, as we'll do in the next chapter.

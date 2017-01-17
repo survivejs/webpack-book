@@ -283,6 +283,42 @@ Sometimes having only an app and a vendor bundle isn't enough. Especially as you
 };
 ```
 
+## Splitting and Merging Chunks
+
+Webpack provides more control over the generated chunks by providing two plugins: `webpack.optimize.AggressiveSplittingPlugin` and `webpack.optimize.AggressiveMergingPlugin`. The former is particularly interesting as it allows you to emit more and smaller bundles. This is especially useful with HTTP/2 due to the way the new standard works.
+
+There's a trade-off involved as you'll lose out in caching if you split to many small bundles. You also get request overhead in HTTP/1 environment. For now, the approach doesn't work when when `HtmlWebpackPlugin` is enabled due to [a bug in the plugin](https://github.com/ampedandwired/html-webpack-plugin/issues/446).
+
+Here's the basic idea of aggressive splitting:
+
+```javascript
+{
+  plugins: [
+    new webpack.optimize.AggressiveSplittingPlugin({
+        minSize: 10000,
+        maxSize: 30000,
+    }),
+  ],
+},
+```
+
+The aggressive merging plugin works the inverse way and allows you to combine too small bundles into bigger ones:
+
+```javascript
+{
+  plugins: [
+    new AggressiveMergingPlugin({
+        minSizeReduce: 2,
+        moveToParents: true,
+    }),
+  ],
+},
+```
+
+It is possible to get good caching behavior with these plugins if a webpack feature known as **records** is used. The idea is discussed in greater detail at the *Adding Hashes to Filenames* chapter.
+
+T> Tobias Koppers discusses [aggressive merging in greater detail](https://medium.com/webpack/webpack-http-2-7083ec3f3ce6).
+
 ## Chunk Types in Webpack
 
 In the example above, we used something known as **entry chunks**. As [discussed in the documentation](https://webpack.github.io/docs/code-splitting.html#chunk-types), internally webpack treats chunks in three types:
