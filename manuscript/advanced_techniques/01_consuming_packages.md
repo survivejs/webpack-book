@@ -129,6 +129,18 @@ Sometimes modules might depend on globals, like the `$` provided by jQuery. [imp
 },
 ```
 
+Webpack's `ProvidePlugin` can be used for a similar purpose. It allows webpack to resolve globals as it encounters them:
+
+```javascript
+{
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+    }),
+  ],
+},
+```
+
 ## Removing Unused Modules
 
 Even though packages might work well out of the box, they might bring too much code to your project by default. [Moment.js](https://www.npmjs.com/package/moment) is a popular example. It brings locale data to your project by default. The simplest way to disable that behavior is to use `IgnorePlugin` to ignore locales like this:
