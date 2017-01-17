@@ -189,6 +189,8 @@ When webpack writes bundles, it writes something known as a **manifest** as well
 
 This is the root of our problem. If the hashes webpack generates change, then the manifest will change as well. As a result, the contents of the vendor bundle will change and it will become invalidated. The problem can be eliminated by extracting the manifest to a file of its own or by writing it inline to the *index.html* of the project.
 
+T> To understand how a manifest is generated in greater detail, [read the technical explanation at Stack Overflow](https://stackoverflow.com/questions/39548175/can-someone-explain-webpacks-commonschunkplugin/39600793).
+
 ### Extracting a Manifest
 
 We have done most of the work already when we set up `extractBundles`. To extract the manifest, a single change is required:
