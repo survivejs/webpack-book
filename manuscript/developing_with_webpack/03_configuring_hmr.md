@@ -24,7 +24,7 @@ const PATHS = {
   build: path.join(__dirname, 'build'),
 };
 
-const config = {
+const common = {
   ...
 };
 
@@ -72,19 +72,19 @@ module.exports = function(env) {
 leanpub-start-delete
   console.log('env', env);
 
-  return config;
+  return common;
 leanpub-end-delete
 leanpub-start-insert
   if (env === 'production') {
-    return config;
+    return common;
   }
 
   return Object.assign(
     {},
-    config,
+    common,
     developmentConfig,
     {
-      plugins: config.plugins.concat(developmentConfig.plugins),
+      plugins: common.plugins.concat(developmentConfig.plugins),
     }
   );
 leanpub-end-insert

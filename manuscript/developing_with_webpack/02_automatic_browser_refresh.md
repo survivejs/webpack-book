@@ -93,7 +93,7 @@ leanpub-start-delete
 module.exports = {
 leanpub-end-delete
 leanpub-start-insert
-const config = {
+const common = {
 leanpub-end-insert
   // Entry accepts a path or an object of entries.
   // We'll be using the latter form given it's
@@ -120,7 +120,7 @@ leanpub-start-insert
 module.exports = function(env) {
   console.log('env', env);
 
-  return config;
+  return common;
 };
 leanpub-end-insert
 ```
