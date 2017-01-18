@@ -2,118 +2,156 @@
 
 **Hot Module Replacement** (HMR) builds on top the WDS. It enables an interface that makes it possible to swap modules live. For example, *style-loader* can update your CSS without forcing a refresh. It is easy to perform HMR with CSS, as it doesn't contain any application state.
 
-HMR is possible with JavaScript too, but due to the state we have in our applications, it's harder. In the *Configuring React* chapter, we discuss how to set it up with React. You can use the same idea elsewhere.
+HMR is possible with JavaScript too, but due to the state we have in our applications, it's harder. In the *Configuring Hot Module Replacement for React* appendix, we discuss how to set it up with React. You can use the same idea elsewhere as well.
 
-We could use `webpack-dev-server --hot` to achieve this from the CLI. `--hot` enables the HMR portion from webpack through a specific plugin designed for this purpose and writes an entry pointing to a JavaScript file related to it.
+We could use `webpack-dev-server --hot` to achieve this from the CLI. `--hot` enables the HMR portion from webpack through a specific plugin designed for this purpose and writes an entry pointing to a JavaScript file related to it. Another option is to go through webpack configuration as that provides more flexibility.
 
 ## Defining Configuration for HMR
 
-To keep our configuration manageable, I'll split functionalities like HMR into *parts* of their own. This keeps our *webpack.config.js* simple and promotes reuse. We could push a collection like this to a npm package of its own. We could even turn it into presets to use across projects. Functional composition allows that.
-
-Here's what a part implementing HMR looks like:
-
-**webpack.parts.js**
-
-```javascript
-const webpack = require('webpack');
-
-exports.devServer = function(options) {
-  return {
-    devServer: {
-      // Enable history API fallback so HTML5 History API based
-      // routing works. This is a good default that will come
-      // in handy in more complicated setups.
-      historyApiFallback: true,
-
-      // Unlike the cli flag, this doesn't set
-      // HotModuleReplacementPlugin!
-      hot: true,
-
-      // Don't refresh if hot loading fails. If you want
-      // refresh behavior, set inline: true instead.
-      hotOnly: true,
-
-      // Display only errors to reduce the amount of output.
-      stats: 'errors-only',
-
-      // Parse host and port from env to allow customization.
-      //
-      // If you use Vagrant or Cloud9, set
-      // host: options.host || '0.0.0.0';
-      //
-      // 0.0.0.0 is available to all network devices
-      // unlike default `localhost`.
-      host: options.host, // Defaults to `localhost`
-      port: options.port, // Defaults to 8080
-    },
-    plugins: [
-      // Enable multi-pass compilation for enhanced performance
-      // in larger projects. Good default.
-      new webpack.HotModuleReplacementPlugin({
-        // Disabled as this won't work with html-webpack-template yet
-        //multiStep: true,
-      }),
-    ],
-  };
-};
-```
-
-It's plenty of code, but it's better to encapsulate it so it contains ideas we understand and want to reuse later.
-
-T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environment variables through a *.env* file. This can be somewhat convenient during development.
-
-W> You should **not** enable HMR for your production configuration. It will likely work, but having the capability enabled there won't do any good and it will make your bundles bigger than they should be.
-
-## Connecting with Configuration
-
-Hooking up this part with our main configuration is simple:
+If you set up WDS through webpack configuration, you have to attach WDS specific options to a `devServer` field and enable `HotModuleReplacementPlugin`. In addition we need to combine the new configuration with the old one so that it doesn't get applied to the production build as HMR doesn't have any value there. Consider the basic setup below:
 
 **webpack.config.js**
 
 ```javascript
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const merge = require('webpack-merge');
-
 leanpub-start-insert
-const parts = require('./webpack.parts');
+const webpack = require('webpack');
 leanpub-end-insert
 
-...
+const PATHS = {
+  app: path.join(__dirname, 'app'),
+  build: path.join(__dirname, 'build'),
+};
+
+const config = {
+  ...
+};
+
+leanpub-start-insert
+const developmentConfig = {
+  devServer: {
+    // Enable history API fallback so HTML5 History API based
+    // routing works. This is a good default that will come
+    // in handy in more complicated setups.
+    historyApiFallback: true,
+
+    // Unlike the cli flag, this doesn't set
+    // HotModuleReplacementPlugin!
+    hot: true,
+
+    // Don't refresh if hot loading fails. If you want
+    // refresh behavior, set inline: true instead.
+    hotOnly: true,
+
+    // Display only errors to reduce the amount of output.
+    stats: 'errors-only',
+
+    // Parse host and port from env to allow customization.
+    //
+    // If you use Vagrant or Cloud9, set
+    // host: options.host || '0.0.0.0';
+    //
+    // 0.0.0.0 is available to all network devices
+    // unlike default `localhost`.
+    host: process.env.HOST, // Defaults to `localhost`
+    port: process.env.PORT, // Defaults to 8080
+  },
+  plugins: [
+    // Enable multi-pass compilation for enhanced performance
+    // in larger projects. Good default.
+    new webpack.HotModuleReplacementPlugin({
+      // Disabled as this won't work with html-webpack-template yet
+      //multiStep: true,
+    }),
+  ],
+};
+leanpub-end-insert
 
 module.exports = function(env) {
-  return merge([
-    common,
-    {
-      plugins: [
-        new webpack.NamedModulesPlugin(),
-      ],
-    },
+leanpub-start-delete
+  console.log('env', env);
+
+  return config;
+leanpub-end-delete
 leanpub-start-insert
-    parts.devServer({
-      // Customize host/port here if needed
-      host: process.env.HOST,
-      port: process.env.PORT,
-    }),
+  if (env === 'production') {
+    return config;
+  }
+
+  return Object.assign(
+    {},
+    config,
+    developmentConfig,
+    {
+      plugins: config.plugins.concat(developmentConfig.plugins),
+    }
+  );
 leanpub-end-insert
-  ]);
 };
+
 ```
+
+It's plenty of code. Especially the `Object.assign` portion looks knotty. We'll fix that up in the *Splitting Configuration* chapter as we discuss configuration composition in greater detail.
 
 Execute `npm start` and surf to **localhost:8080**. Try modifying *app/component.js*. Note how it fails to refresh.
 
 ![No refresh](images/no-refresh.png)
 
-We get this behavior because we set `hotOnly: true` for WDS. Going with `inline: true` would have swallowed the error and refreshed the page. This behavior is fine, though, as we will implement the HMR interface next to avoid the need for hard refresh.
+We get this behavior because we set `hotOnly: true` for WDS. Going with `inline: true` would have swallowed the error and refreshed the page. This behavior is fine, though, as we will implement the HMR interface next to avoid the need for hard refresh. Before that we can do something about those cryptic numbers to get more sensible output.
 
 W> *webpack-dev-server* can be very particular about paths. If the given `include` paths don't match the system casing exactly, this can cause it to fail to work. Webpack [issue #675](https://github.com/webpack/webpack/issues/675) discusses this in more detail.
 
+W> You should **not** enable HMR for your production configuration. It will likely work, but having the capability enabled there won't do any good and it will make your bundles bigger than they should be.
+
 T> You should be able to access the application alternately through **localhost:8080/webpack-dev-server/** instead of the root. It will provide status information within the browser itself at the top of the application. If your application relies on WebSockets and you use WDS proxying, you'll need to use this specific url: otherwise, WDS logic will interfere.
+
+T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environment variables through a *.env* file. This can be somewhat convenient during development and allows you to control the host and port setting of our setup easily.
+
+## Making the Module Ids More Debuggable
+
+When webpack generates a bundle, it needs to tell different modules apart. By default, it uses numbers for this purpose. The problem is that this makes it difficult to debug the code if you must inspect the resulting code. It can also lead to issues with hashing behavior.
+
+To overcome this problem, it is a good idea to use an alternative module id scheme. As it happens, webpack provides a plugin that's ideal for debugging. This plugin, `NamedModulesPlugin`, emits module paths over numeric ids. This information is useful for development.
+
+You can enable this better behavior as follows:
+
+**webpack.config.js**
+
+```javascript
+...
+
+const developmentConfig = {
+  devServer: {
+    ...
+  },
+  plugins: [
+    // Enable multi-pass compilation for enhanced performance
+    // in larger projects. Good default.
+    new webpack.HotModuleReplacementPlugin({
+      // Disabled as this won't work with html-webpack-template yet
+      //multiStep: true,
+    }),
+leanpub-start-insert
+    new webpack.NamedModulesPlugin(),
+leanpub-end-insert
+  ],
+};
+
+...
+```
+
+If you run the development server again (`npm start`), you should see something more familiar:
+
+![No refresh, but better output](images/no-refresh2.png)
+
+The message tells us that even though the HMR interface notified the client portion of the code of a hot update, we failed to do anything about it. This is something we have to fix next to make the code work as we expect.
+
+T> We will perform a similar trick for production usage later in this book in the *Adding Hashes to Filenames* chapter.
 
 ## Implementing the HMR Interface
 
-It is possible to implement the HMR interface through a global known as `module.hot` exposed by webpack. It provides updates through a function known as `module.hot.accept(<path to watch>, <handler>)`. It is that handler portion that is interesting as we need to patch the application there. In this case, it is enough to replace the old DOM node with a newer one as we receive updates.
+Webpack exposes the HMR interface through a global known as `module.hot`. It provides updates through a function known as `module.hot.accept(<path to watch>, <handler>)`. It is that handler portion that is interesting as we need to patch the application there. In this case, it is enough to replace the old DOM node with a newer one as we receive updates.
 
 The following implementation illustrates the idea:
 
@@ -147,13 +185,11 @@ if(module.hot) {
 leanpub-end-insert
 ```
 
-If you try to modify *app/component.js* after this change and change the text to something else, you should notice that the browser does not refresh at all. Instead, it should replace the DOM node while retaining the rest of the application as is. The image below shows possible output.
+If you refresh the browser, try to modify *app/component.js* after this change, and alter the text to something else, you should notice that the browser does not refresh at all. Instead, it should replace the DOM node while retaining the rest of the application as is. The image below shows possible output.
 
 ![Patched a module successfully through HMR](images/hmr.png)
 
-The idea is the same with styling, React, Redux, and other technologies. They use the same interface internally and often you don't need to care about the exact implementation. Still, it's good to know what it's doing under the hood.
-
-W> If you make a mistake within your `module.hot.accept` handler, it will force a refresh by default. This happens because WDS defaults to `webpack/hot/dev-server`. Follow the setup of the previous chapter and use `webpack/hot/only-dev-server` instead to avoid this behavior.
+The idea is the same with styling, React, Redux, and other technologies. Sometimes you may not have to implement the interface yourself even as available tooling takes care of that for you.
 
 T> Check out the *Configuring Hot Module Replacement with React* to learn how to get webpack and React to work together in a nicer manner.
 
@@ -161,35 +197,36 @@ T> Check out the *Configuring Hot Module Replacement with React* to learn how to
 
 The setup may be problematic on certain versions of Windows, Ubuntu, and Vagrant. We can solve this through polling:
 
-**webpack.parts.js**
+**webpack.config.js**
 
 ```javascript
-const webpack = require('webpack');
+...
 
-exports.devServer = function(options) {
-  return {
-    devServer: {
+
+const developmentConfig = {
+  devServer: {
 leanpub-start-insert
-      watchOptions: {
-        // Delay the rebuild after the first change
-        aggregateTimeout: 300,
-        // Poll using interval (in ms, accepts boolean too)
-        poll: 1000,
-      },
-leanpub-end-insert
-      ...
+    watchOptions: {
+      // Delay the rebuild after the first change
+      aggregateTimeout: 300,
+      // Poll using interval (in ms, accepts boolean too)
+      poll: 1000,
     },
-    plugins: [
-leanpub-start-insert
-      // ignore node_modules so CPU usage with poll watching drops significantly
-      new webpack.WatchIgnorePlugin([
-        path.join(__dirname, 'node_modules')
-      ]),
 leanpub-end-insert
-      ...
-    ],
-  };
-}
+    ...
+  },
+  plugins: [
+leanpub-start-insert
+    // ignore node_modules so CPU usage with poll watching drops significantly
+    new webpack.WatchIgnorePlugin([
+      path.join(__dirname, 'node_modules')
+    ]),
+leanpub-end-insert
+    ...
+  ],
+};
+
+...
 ```
 
 Given this setup polls the file system, it is going to be more resource intensive. It's worth giving a go if the default doesn't work, though.
@@ -230,3 +267,5 @@ T> [The official documentation](https://webpack.js.org/configuration/dev-server/
 ## Conclusion
 
 HMR is one of those aspects of webpack that makes it interesting for developers. Even though other tools have similar functionality, webpack has taken its implementation quite far. To get the most out of it, you must implement the HMR interface or use solutions that implement it.
+
+In the next chapter we'll make it harder to make mistakes by introducing linting to our project.

@@ -23,14 +23,14 @@ W> You should use *webpack-dev-server* strictly for development. If you want to 
 To get started with WDS, execute:
 
 ```bash
-npm i webpack-dev-server@2.2.0-rc.0 --save-dev
+npm i webpack-dev-server@beta --save-dev
 ```
 
 As before, this command will generate a command below the `npm bin` directory. You could try running *webpack-dev-server* from there. The quickest way to enable automatic browser refresh for our project is to run `webpack-dev-server`. After that, you have a development server running at `localhost:8080`.
 
 ## Attaching *webpack-dev-server* to the Project
 
-To integrate WDS to our project, we can follow the same idea as in the previous chapter and define a new command to the `scripts` section of *package.json*:
+To integrate WDS to our project, we should define a npm script for it. To follow npm conventions, we can call it as *start*. To tell our targets apart, we should pass information about the environment to webpack configuration. This will allow us specialize the configuration as needed:
 
 **package.json**
 
@@ -39,8 +39,11 @@ To integrate WDS to our project, we can follow the same idea as in the previous 
 "scripts": {
 leanpub-start-insert
   "start": "webpack-dev-server --env development",
-leanpub-end-insert
   "build": "webpack --env production"
+leanpub-end-insert
+leanpub-start-delete
+  "build": "webpack"
+leanpub-end-delete
 },
 ...
 ```
@@ -52,9 +55,9 @@ If you execute either *npm run start* or *npm start* now, you should see somethi
 
 Project is running at http://localhost:8080/
 webpack output is served from /
-Hash: 5901f1c1c0de0a563d85
-Version: webpack 2.2.0-rc.3
-Time: 731ms
+Hash: a6629a1f55a2c758876b
+Version: webpack 2.2.0
+Time: 727ms
      Asset       Size  Chunks             Chunk Names
     app.js     247 kB       0  [emitted]  app
 index.html  180 bytes          [emitted]
@@ -67,55 +70,81 @@ The output means that the development server is running. If you open *http://loc
 
 ![Hello world](images/hello_01.png)
 
-If you try modifying the code, you should see output at your terminal. The problem is that the browser doesn't catch these changes without a hard refresh. That's something we need to resolve next through configuration.
+If you try modifying the code, you should see output at your terminal. The browser should also perform a hard refresh on change.
 
 T> WDS will try to run in another port in case the default one is being used. Keep an eye on the terminal output to figure out where it ends up running. You can debug the situation with a command like `netstat -na | grep 8080`. If there's something running in the port 8080, it should display a message. The exact command may depend on the platform.
 
-## Making Module Ids More Debuggable
+## Verifying that `--env` Works
 
-When webpack generates a bundle, it needs to tell different modules apart. By default, it uses numbers for this purpose. The problem is that this makes it difficult to debug the code if you must inspect the resulting code. It can also lead to issues with hashing behavior.
-
-To overcome this problem, it is a good idea to use an alternative module id scheme. As it happens, webpack provides a plugin that's ideal for debugging. This plugin, `NamedModulesPlugin`, emits module paths over numeric ids. This information is useful for development.
-
-You can enable this better behavior as follows:
+Webpack configuration receives the result of `--env` if if exposes a function. To verify that the correct environment is passed, adjust the configuration as follows:
 
 **webpack.config.js**
 
 ```javascript
 const path = require('path');
-leanpub-start-insert
-const webpack = require('webpack');
-leanpub-end-insert
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const merge = require('webpack-merge');
 
 const PATHS = {
   app: path.join(__dirname, 'app'),
   build: path.join(__dirname, 'build'),
 };
 
-...
-
-module.exports = function(env) {
 leanpub-start-delete
-  return merge(common);
+module.exports = {
 leanpub-end-delete
 leanpub-start-insert
-  return merge([
-    common,
-    {
-      plugins: [
-        new webpack.NamedModulesPlugin(),
-      ],
-    },
-  ]);
+const config = {
 leanpub-end-insert
+  // Entry accepts a path or an object of entries.
+  // We'll be using the latter form given it's
+  // convenient with more complex configurations.
+  //
+  // Entries have to resolve to files! It relies on Node.js
+  // convention by default so if a directory contains *index.js*,
+  // it will resolve to that.
+  entry: {
+    app: PATHS.app,
+  },
+  output: {
+    path: PATHS.build,
+    filename: '[name].js',
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Webpack demo',
+    }),
+  ],
 };
+
+leanpub-start-insert
+module.exports = function(env) {
+  console.log('env', env);
+
+  return config;
+};
+leanpub-end-insert
 ```
 
-If you make your code crash somehow and examine the resulting code, you should see familiar paths in the output. Even though a small change, enabling this behavior is useful for development.
+If you run the npm commands now, you should see a different terminal output depending on which one you trigger.
 
-We will perform a similar trick for production usage later in this book in the *Adding Hashes to Filenames* chapter.
+## Understanding `--env`
+
+Even though `--env` allows us to pass strings to configuration, it can do a bit more. Consider the following example:
+
+**package.json**
+
+```json
+...
+"scripts": {
+  "start": "webpack-dev-server --env development",
+  "build": "webpack --env.target production"
+}
+...
+```
+
+Instead of a string, we should receive an object `{ target: 'production' }` at configuration now. We could pass more key-value pairs and they would go to the `env` object. It is important to note that if you set `--env foo` while setting `--env.target`, the string will override the object.
+
+W> Webpack 2 changed argument behavior compared to webpack 1. You are not allowed to pass custom parameters through the CLI anymore. Instead, it's better to go through the `--env` mechanism if you need to do this.
 
 ## Accessing the Development Server from Network
 
@@ -149,7 +178,7 @@ To get it to work, you will have to install it first through `npm i nodemon --sa
 ...
 "scripts": {
   "start": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --env development\"",
-  ...
+  "build": "webpack --env production"
 },
 ...
 ```

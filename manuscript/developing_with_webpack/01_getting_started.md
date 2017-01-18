@@ -140,7 +140,7 @@ module.exports = {
 
 The `entry` path could be given as a relative one. The [context](https://webpack.js.org/configuration/entry-context/#context) field can be used to configure that lookup. Given plenty of places expect absolute paths, I prefer to use absolute paths everywhere to avoid confusion and keep it simple.
 
-T> I will use **trailing commas** in the book examples on purpose as it gives cleaned diffs. I will show you how to enforce this in the *Linting JavaScript* chapter.
+T> I use **trailing commas** in the book examples on purpose as it gives cleaner diffs for the code examples. I will show you how to enforce this rule in the *Linting JavaScript* chapter.
 
 T> `[name]` is a placeholder. Placeholders are discussed in greater detail in the *Adding Hashes to Filenames* chapter.
 
@@ -149,27 +149,27 @@ T> I like to use `path.join`, but `path.resolve` would be a good alternative. Se
 If you execute `node_modules/.bin/webpack`, you should see output:
 
 ```bash
-Hash: dabda4c88d9b4a4dee76
-Version: webpack 2.2.0-rc.3
-Time: 390ms
+Hash: d9b3a26d51481993359e
+Version: webpack 2.2.0
+Time: 375ms
      Asset       Size  Chunks             Chunk Names
-    app.js    3.06 kB       0  [emitted]  app
+    app.js    3.12 kB       0  [emitted]  app
 index.html  180 bytes          [emitted]
    [0] ./app/component.js 135 bytes {0} [built]
    [1] ./app/index.js 77 bytes {0} [built]
 Child html-webpack-plugin for "index.html":
        [0] ./~/lodash/lodash.js 540 kB {0} [built]
-       [1] (webpack)/buildin/global.js 506 bytes {0} [built]
-       [2] (webpack)/buildin/module.js 548 bytes {0} [built]
+       [1] (webpack)/buildin/global.js 509 bytes {0} [built]
+       [2] (webpack)/buildin/module.js 517 bytes {0} [built]
        [3] ./~/html-webpack-plugin/lib/loader.js!./~/html-webpack-plugin/default_index.ejs 540 bytes {0} [built]
 ```
 
 The output tells us a lot. I've annotated it below:
 
-* `Hash: 54c437ee9dcc8fee36de` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. We'll discuss hashing in detail in the *Adding Hashes to Filenames* chapter.
-* `Version: webpack 2.2.0-rc.3` - Webpack version.
-* `Time: 390ms` - Time it took to execute the build.
-* `app.js     3.06 kB  0[emitted]  app` - Name of the generated asset, size, the ids of the **chunks** into which it is related, status information telling how it was generated, name of the chunk.
+* `Hash: d9b3a26d51481993359e` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. We'll discuss hashing in detail in the *Adding Hashes to Filenames* chapter.
+* `Version: webpack 2.2.0` - Webpack version.
+* `Time: 375ms` - Time it took to execute the build.
+* `app.js    3.12 kB       0  [emitted]  app` - Name of the generated asset, size, the ids of the **chunks** into which it is related, status information telling how it was generated, name of the chunk.
 * `index.html  180 bytes  [emitted]` - Another generated asset that was emitted by the process.
 * `[0] ./app/component.js 135 bytes {0} [built]` - The id of the entry asset, name, size, entry chunk id, the way it was generated.
 * `Child html-webpack-plugin for "index.html":` - This is plugin-related output. In this case *html-webpack-plugin* is doing output of its own.
@@ -177,18 +177,6 @@ The output tells us a lot. I've annotated it below:
 Examine the output below `build/`. If you look closely, you can see the same ids within the source. To see the application running, open the `build/index.html` file directly through a browser. On macOS `open ./build/index.html` works.
 
 T> It can be convenient to use a tool like *serve* (`npm i serve -g`) to serve the build directory. In this case, execute `serve` at the output directory and head to `localhost:3000` at your browser. You can configure the port through the `--port` parameter.
-
-### Useful *html-webpack-plugin* Extensions
-
-[html-webpack-template](https://www.npmjs.com/package/html-webpack-template) or [html-webpack-template-pug](https://www.npmjs.com/package/html-webpack-template-pug) complement *html-webpack-plugin* and provide more powerful templates to use with it.
-
-There are also specific plugins that extend *html-webpack-plugin*'s functionality. I've listed a few of these below:
-
-* [favicons-webpack-plugin](https://www.npmjs.com/package/favicons-webpack-plugin) is able to generate favicons.
-* [script-ext-html-webpack-plugin](https://www.npmjs.com/package/script-ext-html-webpack-plugin) gives you more control over script tags and allows you to tune script loading further.
-* [html-webpack-cdn-plugin](https://www.npmjs.com/package/html-webpack-cdn-plugin) makes it easier to use popular open source CDNs with it.
-* [multipage-webpack-plugin](https://www.npmjs.com/package/multipage-webpack-plugin) builds on top of *html-webpack-plugin* and makes it easier to manage multi-page configurations.
-* [resource-hints-webpack-plugin](https://www.npmjs.com/package/resource-hints-webpack-plugin) adds [resource hints](https://www.w3.org/TR/resource-hints/) to your HTML files to speed up loading time.
 
 ## Adding a Build Shortcut
 
@@ -204,17 +192,17 @@ Given executing `node_modules/.bin/webpack` is a little verbose, we should do so
 ...
 ```
 
-Run `npm run build`. As a result, you should get the same output as before.
-
-You can execute these scripts through *npm run*. If you run it as is, it will give you the listing of available scripts.
+Run `npm run build`. You should see the same output as before.
 
 This works because npm adds *node_modules/.bin* temporarily to the path. As a result, rather than having to write `"build": "node_modules/.bin/webpack"`, we can do just `"build": "webpack"`.
+
+You can execute these kind of scripts through *npm run*. If you run it as is, it will give you the listing of available scripts.
 
 T> There are shortcuts like *npm start* and *npm test*. We can run these directly without *npm run* although that will work too. For those in hurry, you can use *npm t* to run your tests.
 
 T> It is possible to execute *npm run* anywhere within the project. It doesn't have to be run in the project root in order to work. npm will figure out the project root for you.
 
-## Useful Plugins for Development
+## Useful Development Plugins
 
 As webpack plugin ecosystem is quite diverse, there are a lot of plugins that can help specifically with development. I've listed a few of these below to give you a better idea of what's available:
 
@@ -227,8 +215,18 @@ As webpack plugin ecosystem is quite diverse, there are a lot of plugins that ca
 
 In addition to plugins like these, it can be worth your while to set up linting to enforce coding standards. The *Linting* chapter digs into that topic in greater detail.
 
+## Useful *html-webpack-plugin* Extensions
+
+[html-webpack-template](https://www.npmjs.com/package/html-webpack-template) or [html-webpack-template-pug](https://www.npmjs.com/package/html-webpack-template-pug) complement *html-webpack-plugin* and provide more powerful templates to use with it.
+
+There are also specific plugins that extend *html-webpack-plugin*'s functionality. I've listed a few of these below:
+
+* [favicons-webpack-plugin](https://www.npmjs.com/package/favicons-webpack-plugin) is able to generate favicons.
+* [script-ext-html-webpack-plugin](https://www.npmjs.com/package/script-ext-html-webpack-plugin) gives you more control over script tags and allows you to tune script loading further.
+* [html-webpack-cdn-plugin](https://www.npmjs.com/package/html-webpack-cdn-plugin) makes it easier to use popular open source CDNs with it.
+* [multipage-webpack-plugin](https://www.npmjs.com/package/multipage-webpack-plugin) builds on top of *html-webpack-plugin* and makes it easier to manage multi-page configurations.
+* [resource-hints-webpack-plugin](https://www.npmjs.com/package/resource-hints-webpack-plugin) adds [resource hints](https://www.w3.org/TR/resource-hints/) to your HTML files to speed up loading time.
+
 ## Conclusion
 
-Even though we've managed to get webpack up and running, it's not that much yet. Developing against it would be painful. Each time we wanted to check out our application, we would have to build it manually using `npm run build` and then refresh the browser.
-
-That's where webpack's more advanced features come in. To make room for these features, I will show you how to split your webpack configuration in the next chapter.
+Even though we've managed to get webpack up and running, it's not that much yet. Developing against it would be painful. Each time we wanted to check out our application, we would have to build it manually using `npm run build` and then refresh the browser. That's where webpack's more advanced features come in and we'll look into enabling automatic browser refresh in the next chapter.

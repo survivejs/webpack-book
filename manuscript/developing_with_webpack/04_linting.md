@@ -130,21 +130,13 @@ build/
 
 T> You can point ESLint to your Git ignores through `--ignore-path .gitignore`. It also accepts individual patterns, through `--ignore-pattern <pattern>`.
 
-If you invoke `npm run test:lint` now, you should see a single warning:
+If you invoke `npm run test:lint` now, it should execute without any warnings or errors. If you see either, this is a good time to try ESLint feature known as autofixing. You can run like this: `node_modules/.bin/eslint . --fix`. Check the exact location of the local ESLint through `npm bin`.
 
-```bash
-  28:27  warning  'env' is defined but never used  no-unused-vars
-
-✖ 1 problem (0 errors, 1 warning)
-```
-
-If you see more, fix them. We'll fix this one when we add more configuration in place.
+Another alternative would be to push it behind a *package.json* script. Autofix won't be able to repair each error, but it can fix a lot. And as time goes by and ESLint improves, it is able to perform more work.
 
 Beyond vanilla JSON, ESLint supports other formats, such as JavaScript or YAML. If you want to use a different format, name the file accordingly. I.e., *.eslintrc.yaml* would expect YAML. See the [documentation](http://eslint.org/docs/user-guide/configuring#configuration-file-formats) for further details.
 
 T> When ESLint gives errors, npm will show a long `ELIFECYCLE error` error block of its own. It is possible to disable that using the `silent` flag like this: `npm run test:lint --silent` or a shortcut `npm run test:lint -s`.
-
-T> This is a good time to try ESLint autofixing. You can run like this: `node_modules/.bin/eslint . --fix`. Check the exact location of the local ESLint through `npm bin`. Another alternative would be to push it behind a *package.json* script. Autofix won't be able to repair each error, but it can fix a lot. And as time goes by and ESLint improves, it is able to perform more work.
 
 ### Connecting ESLint with Webpack
 
@@ -156,78 +148,65 @@ npm i eslint-loader --save-dev
 
 W> Note that `eslint-loader` will use a globally installed version of ESLint unless you have one included with the project itself. Make sure you have ESLint as a development dependency to avoid strange behavior.
 
-You can set it up as below to make sure the linter gets executed before the other code. This way we'll know early on if our code fails to lint during development. It is useful to include linting to the production target of your project as well.
+The loader needs some wiring to work. We'll discuss loaders in greater detail at the *Understanding Loaders* part, but the basic idea is simple. A loader is connected to webpack through a rule that contains preconditions related to it and a reference to the loader itself. In this case we'll ensure that ESLint gets executed before anything else using a separate setting as that's a good practice.
 
-**webpack.parts.js**
-
-```javascript
-...
-
-exports.lintJavaScript = function(paths) {
-  return {
-    module: {
-      rules: [
-        {
-          test: /\.js$/,
-          include: paths,
-          enforce: 'pre',
-
-          use: 'eslint-loader',
-        },
-      ],
-    },
-  };
-};
-```
+Adjust the configuration as follows:
 
 **webpack.config.js**
 
 ```javascript
 ...
 
-const common = merge([
-  {
-    entry: {
-      app: PATHS.app,
-    },
-    output: {
-      path: PATHS.build,
-      filename: '[name].js',
-    },
-    plugins: [
-      new HtmlWebpackPlugin({
-        title: 'Webpack demo',
-      }),
-    ],
-leanpub-start-insert
+const developmentConfig = {
+  devServer: {
+    ...
   },
-  parts.lintJavaScript(PATHS.app),
+  plugins: [
+    ...
+  ],
+leanpub-start-insert
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        enforce: 'pre',
+
+        use: 'eslint-loader',
+      },
+    ],
+  },
 leanpub-end-insert
-)];
+};
 
 ...
-
-module.exports = function(env) {
-  ...
-};
 ```
 
 If you execute `npm start` now and break some linting rule while developing, you should see that in the terminal output. The same should happen when you build the project.
 
-W> Note that the webpack configuration lints only the application code. If you want to lint webpack configuration itself, execute `npm run test:lint` separately.
+W> Note that the webpack configuration lints only the application code we refer to. If you want to lint webpack configuration itself, execute `npm run test:lint` separately.
 
-### ESLint Tips
+T> It can be useful to attach the linting process to Git through a prepush hook. A package known as [git-prepush-hook](https://www.npmjs.com/package/git-prepush-hook) allows you to achieve this easily. This allows you to rebase your commits and fix possible problems before pushing.
+
+## ESLint Tips
 
 I've collected assorted ESLint tips below. The great thing about ESLint is that you can shape it to your purposes. The community around it is strong, and you can find good integration in other tooling as well.
 
-* Generating a starting point - Sometimes you might want to rely on some existing preset or set up custom configuration. That's where `--init` can come in handy. You can run it from `npm bin` and you'll end up with a call like `node_modules/.bin/eslint --init`
-* Using custom formatting - ESLint supports custom formatters through `--format` parameter. [eslint-friendly-formatter](https://www.npmjs.com/package/eslint-friendly-formatter) is an example of a formatter that provides terminal-friendly output. This way you can jump conveniently straight to the warnings and errors from there.
-* Better performance by skipping webpack - Especially on bigger projects it may be beneficial to run ESLint outside of webpack. That keeps code compilation fast while still giving the advantage of linting. Solutions like [lint-staged](https://www.npmjs.com/package/lint-staged) and [fastlint](https://www.npmjs.com/package/fastlint) can make this even faster.
-* Better performance with a daemon - You can get more performance out of ESLint by running it through a daemon, such as [eslint_d](https://www.npmjs.com/package/eslint_d). Using it brings down the overhead and it can bring down linting times considerably.
-* Using ES6 features - ESLint supports ES6 features through configuration. You will have to specify the features to use through the [ecmaFeatures](http://eslint.org/docs/user-guide/configuring.html#specifying-language-options) property.
-* Useful plugins - There are useful plugins, such as [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react), [eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise), [eslint-plugin-compat](https://www.npmjs.com/package/eslint-plugin-compat), and [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import), that you might want to consider integrating to your project.
-* Integrating with IDEs and editors - Most IDEs and editors have good ESLint integration so you can spot issues as you develop. This applies to other linting tools as well.
-* Writing plugins and customizing further - To learn how to write an ESLint plugin, check out the *Writing ESLint Plugins* appendix for more information. The *Customizing ESLint* appendix digs deeper into customization options and further resources.
+### Usability Tips
+
+* Sometimes you might want to rely on some existing preset or set up custom configuration. That's where `--init` can come in handy. You can run it from `npm bin` and you'll end up with a call like `node_modules/.bin/eslint --init`
+* ESLint supports custom formatters through `--format` parameter. [eslint-friendly-formatter](https://www.npmjs.com/package/eslint-friendly-formatter) is an example of a formatter that provides terminal-friendly output. This way you can jump conveniently straight to the warnings and errors from there.
+
+### Performance Tips
+
+* Especially on bigger projects it may be beneficial to run ESLint outside of webpack. That keeps code compilation fast while still giving the advantage of linting. Solutions like [lint-staged](https://www.npmjs.com/package/lint-staged) and [fastlint](https://www.npmjs.com/package/fastlint) can make this even faster.
+* You can get more performance out of ESLint by running it through a daemon, such as [eslint_d](https://www.npmjs.com/package/eslint_d). Using it brings down the overhead and it can bring down linting times considerably.
+
+### Extension Tips
+
+* ESLint supports ES6 features through configuration. You will have to specify the features to use through the [ecmaFeatures](http://eslint.org/docs/user-guide/configuring.html#specifying-language-options) property.
+* There are useful plugins, such as [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react), [eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise), [eslint-plugin-compat](https://www.npmjs.com/package/eslint-plugin-compat), and [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import), that you might want to consider integrating to your project.
+* Most IDEs and editors have good ESLint integration so you can spot issues as you develop. This applies to other linting tools as well.
+* To learn how to write an ESLint plugin, check out the *Writing ESLint Plugins* appendix for more information. The *Customizing ESLint* appendix digs deeper into customization options and further resources.
 
 ## EditorConfig
 
@@ -262,3 +241,5 @@ T> [Prettier](https://www.npmjs.com/package/prettier) goes one step further and 
 ## Conclusion
 
 In this chapter, you learned how to lint your code using webpack in various ways. It is one of those techniques that yields benefits over the long term. You can fix possible problems before they become actual issues.
+
+Given webpack configuration of our project is starting to get a little messy, and it won't get any easier should we extend it, it is a good time to discuss how to compose configuration and improve the situation further. We'll do that in the next chapter.
