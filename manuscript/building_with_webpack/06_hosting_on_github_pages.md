@@ -79,7 +79,7 @@ T> GitHub Pages allows you to choose the branch where you deploy. It is possible
 Even though you can push the problem of deployment outside of webpack, there are a couple of utilities that may come in handy:
 
 * [webpack-deploy](https://www.npmjs.com/package/webpack-deploy) is a collection of deployment utilities and works even outside of webpack.
-* [webpack-s3-sync-plugin](https://www.npmjs.com/package/webpack-s3-sync-plugin) syncs the assets to Amazon S3.
+* [webpack-s3-sync-plugin](https://www.npmjs.com/package/webpack-s3-sync-plugin) and [webpack-s3-plugin](https://www.npmjs.com/package/webpack-s3-plugin) sync the assets to Amazon S3.
 * [ssh-webpack-plugin](https://www.npmjs.com/package/ssh-webpack-plugin) has been designed for deployments over SSH.
 
 ## Resolving `output.publicPath` Dynamically
