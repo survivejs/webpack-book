@@ -48,7 +48,7 @@ Connect it with our project like this:
 
 module.exports = function(env) {
   if (env === 'production') {
-    return merge(
+    return merge([
       common,
       parts.extractBundles([
         {
@@ -61,8 +61,8 @@ leanpub-start-insert
 leanpub-end-insert
       parts.generateSourcemaps('source-map'),
       parts.extractCSS(),
-      parts.purifyCSS(PATHS.app)
-    );
+      parts.purifyCSS(PATHS.app),
+    ]);
   }
 
   ...

@@ -42,7 +42,7 @@ const PATHS = {
   build: path.join(__dirname, 'build'),
 };
 
-const common = merge(
+const common = merge([
   {
     entry: {
       app: PATHS.app,
@@ -56,8 +56,8 @@ const common = merge(
         title: 'Webpack demo',
       }),
     ],
-  }
-);
+  },
+]);
 
 module.exports = function(env) {
   return merge(common);

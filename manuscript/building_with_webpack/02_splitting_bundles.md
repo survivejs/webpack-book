@@ -68,7 +68,7 @@ To improve the situation, we can define a `vendor` entry containing React. This 
 
 module.exports = function(env) {
   if (env === 'production') {
-    return merge(
+    return merge([
       common,
 leanpub-start-insert
       {
@@ -79,8 +79,8 @@ leanpub-start-insert
 leanpub-end-insert
       parts.generateSourcemaps('source-map'),
       parts.extractCSS(),
-      parts.purifyCSS(PATHS.app)
-    );
+      parts.purifyCSS(PATHS.app),
+    ]);
   }
 
   ...
@@ -166,7 +166,7 @@ Given the function handles the entry for us, we can drop our `vendor`-related co
 
 module.exports = function(env) {
   if (env === 'production') {
-    return merge(
+    return merge([
       common,
 leanpub-start-delete
       {
@@ -185,8 +185,8 @@ leanpub-start-insert
 leanpub-end-insert
       parts.generateSourcemaps('source-map'),
       parts.extractCSS(),
-      parts.purifyCSS(PATHS.app)
-    );
+      parts.purifyCSS(PATHS.app),
+    ]);
   }
 
   ...

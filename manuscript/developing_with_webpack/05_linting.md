@@ -185,7 +185,7 @@ exports.lintJavaScript = function(paths) {
 ```javascript
 ...
 
-const common = merge(
+const common = merge([
   {
     entry: {
       app: PATHS.app,
@@ -199,14 +199,11 @@ const common = merge(
         title: 'Webpack demo',
       }),
     ],
-leanpub-start-delete
-  }
-leanpub-end-delete
 leanpub-start-insert
   },
-  parts.lintJavaScript(PATHS.app)
+  parts.lintJavaScript(PATHS.app),
 leanpub-end-insert
-);
+)];
 
 ...
 

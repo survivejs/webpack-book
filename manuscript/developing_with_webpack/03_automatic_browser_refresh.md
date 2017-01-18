@@ -101,14 +101,14 @@ leanpub-start-delete
   return merge(common);
 leanpub-end-delete
 leanpub-start-insert
-  return merge(
+  return merge([
     common,
     {
       plugins: [
         new webpack.NamedModulesPlugin(),
       ],
     },
-  );
+  ]);
 leanpub-end-insert
 };
 ```

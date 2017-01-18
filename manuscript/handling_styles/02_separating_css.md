@@ -76,10 +76,10 @@ Connect the function with our configuration as below:
 module.exports = function(env) {
 leanpub-start-insert
   if (env === 'production') {
-    return merge(
+    return merge([
       common,
-      parts.extractCSS()
-    );
+      parts.extractCSS(),
+    ]);
   }
 leanpub-end-insert
 
@@ -126,7 +126,7 @@ const PATHS = {
 
 ...
 
-const common = merge(
+const common = merge([
   {
     entry: {
       app: PATHS.app,
@@ -135,7 +135,7 @@ const common = merge(
     ...
   },
   ...
-);
+]);
 ```
 
 After this type of change, you would not have to refer to styling from your application code. It also means that CSS Modules won't work anymore. As a result, you should get both *style.css* and *style.js*. The latter file will contain roughly content like `webpackJsonp([1,3],[function(n,c){}]);` and it doesn't do anything useful. This is [a known limitation](https://github.com/webpack/webpack/issues/1967) in webpack.

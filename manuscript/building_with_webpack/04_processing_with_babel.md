@@ -100,7 +100,7 @@ In addition, I'll constrain webpack to process only our application code through
 
 module.exports = function(env) {
   if (env === 'production') {
-    return merge(
+    return merge([
       common,
 leanpub-start-insert
       parts.loadJavaScript(PATHS.app),
@@ -112,7 +112,7 @@ leanpub-end-insert
         },
       ]),
       ...
-    );
+    ]);
   }
 
   ...

@@ -226,7 +226,7 @@ The function can be used like this through [webpack-merge](https://www.npmjs.com
 ```javascript
 ...
 
-merge(
+merge([
   common,
 leanpub-start-insert
   dontParse({
@@ -237,7 +237,7 @@ leanpub-start-insert
   }),
 leanpub-end-insert
   ...
-)
+]);
 
 ...
 ```

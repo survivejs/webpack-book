@@ -105,7 +105,7 @@ We can connect this with our configuration like this:
 
 module.exports = function(env) {
   if (env === 'production') {
-    return merge(
+    return merge([
       common,
       {
         output: {
@@ -120,7 +120,7 @@ leanpub-start-insert
       ),
 leanpub-end-insert
       ...
-    );
+    ]);
   }
 
   ...

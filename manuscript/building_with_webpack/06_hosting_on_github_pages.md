@@ -40,7 +40,7 @@ To make the asset paths work on GitHub Pages, we also need to tweak a webpack se
 
 module.exports = function(env) {
   if (env === 'production') {
-    return merge(
+    return merge([
       common,
 leanpub-start-insert
       {
@@ -52,7 +52,7 @@ leanpub-start-insert
 leanpub-end-insert
       parts.loadJavaScript(PATHS.app),
       ...
-    );
+    ]);
   }
 
   ...

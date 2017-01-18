@@ -53,7 +53,7 @@ We also need to connect our configuration fragment with the main configuration:
 ...
 
 module.exports = function(env) {
-  return merge(
+  return merge([
     common,
     {
       plugins: [
@@ -67,8 +67,8 @@ leanpub-end-insert
       // Customize host/port here if needed
       host: process.env.HOST,
       port: process.env.PORT,
-    })
-  );
+    }),
+  ]);
 };
 ```
 

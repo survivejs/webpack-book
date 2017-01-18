@@ -49,17 +49,17 @@ You can set these up as follows:
 
 module.exports = function(env) {
   if (env === 'production') {
-    return merge(
+    return merge([
       common,
 leanpub-start-insert
       parts.generateSourcemaps('source-map'),
 leanpub-end-insert
       parts.extractCSS(),
-      parts.purifyCSS(PATHS.app)
-    );
+      parts.purifyCSS(PATHS.app),
+    ]);
   }
 
-  return merge(
+  return merge([
     common,
     {
       plugins: [
@@ -74,8 +74,8 @@ leanpub-end-insert
       // Customize host/port here if needed
       host: process.env.HOST,
       port: process.env.PORT,
-    })
-  );
+    }),
+  ]);
 };
 ```
 

@@ -43,15 +43,15 @@ Then add it to the `common` configuration:
 ```javascript
 ...
 
-const common = merge(
+const common = merge([
   {
     ...
   },
 leanpub-start-insert
   parts.lintCSS(PATHS.app),
 leanpub-end-insert
-  parts.lintJavaScript(PATHS.app)
-);
+  parts.lintJavaScript(PATHS.app),
+]);
 
 ...
 ```

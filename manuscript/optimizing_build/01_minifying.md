@@ -74,7 +74,7 @@ Now we can hook it up with our configuration:
 
 module.exports = function(env) {
   if (env === 'production') {
-    return merge(
+    return merge([
       common,
       {
         output: {
@@ -87,7 +87,7 @@ leanpub-start-insert
       parts.minifyJavaScript({ useSourceMap: true }),
 leanpub-end-insert
       ...
-    );
+    ]);
   }
 
   ...

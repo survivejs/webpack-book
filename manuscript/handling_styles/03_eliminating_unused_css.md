@@ -122,16 +122,13 @@ Next, we have to connect this part to our configuration. It is important the plu
 
 module.exports = function(env) {
   if (env === 'production') {
-    return merge(
+    return merge([
       common,
-leanpub-start-delete
-      parts.extractCSS()
-leanpub-end-delete
 leanpub-start-insert
       parts.extractCSS(),
-      parts.purifyCSS(PATHS.app)
+      parts.purifyCSS(PATHS.app),
 leanpub-end-insert
-    );
+    ]);
   }
 
   ...

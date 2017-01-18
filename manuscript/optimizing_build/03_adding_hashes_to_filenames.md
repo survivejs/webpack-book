@@ -51,7 +51,7 @@ There are a few places in the build we need to tweak to generate proper hashes. 
 ...
 module.exports = function(env) {
   if (env === 'production') {
-    return merge(
+    return merge([
       common,
       {
         output: {
@@ -65,7 +65,7 @@ leanpub-end-insert
         },
       },
       ...
-    );
+    ]);
   }
 
   ...
@@ -139,7 +139,7 @@ The change required is simple. Tweak the configuration as follows:
 
 module.exports = function(env) {
   if (env === 'production') {
-    return merge(
+    return merge([
       common,
       {
         output: {
@@ -156,7 +156,7 @@ leanpub-start-insert
 leanpub-end-insert
       },
       ...
-    );
+    ]);
   }
 
   ...
@@ -202,7 +202,7 @@ We have done most of the work already when we set up `extractBundles`. To extrac
 
 module.exports = function(env) {
   if (env === 'production') {
-    return merge(
+    return merge([
       ...
       parts.extractBundles([
         {
@@ -218,8 +218,8 @@ leanpub-end-insert
       parts.clean(PATHS.build),
       parts.generateSourcemaps('source-map'),
       parts.extractCSS(),
-      parts.purifyCSS(PATHS.app)
-    );
+      parts.purifyCSS(PATHS.app),
+    ]);
   }
 
   ...
@@ -284,7 +284,7 @@ To generate a *records.json* file, adjust the configuration as follows:
 
 module.exports = function(env) {
   if (env === 'production') {
-    return merge(
+    return merge([
       common,
       {
         output: {
@@ -302,7 +302,7 @@ leanpub-start-insert
 leanpub-end-insert
       },
       ...
-    };
+    ]);
   }
 
   ...

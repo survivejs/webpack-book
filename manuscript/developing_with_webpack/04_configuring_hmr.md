@@ -83,22 +83,21 @@ leanpub-end-insert
 ...
 
 module.exports = function(env) {
-  return merge(
+  return merge([
     common,
     {
       plugins: [
         new webpack.NamedModulesPlugin(),
       ],
     },
-leanpub-end-delete
 leanpub-start-insert
     parts.devServer({
       // Customize host/port here if needed
       host: process.env.HOST,
       port: process.env.PORT,
-    })
+    }),
 leanpub-end-insert
-  );
+  ]);
 };
 ```
 
