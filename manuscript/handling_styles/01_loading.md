@@ -76,6 +76,8 @@ The configuration we added means that files ending with `.css` should invoke giv
 
 T> Loaders are transformations that are applied to source files, and return the new source. Loaders can be chained together, like using a pipe in Unix. `loaders: ['style-loader', 'css-loader']` can be read as `styleLoader(cssLoader(input))`.
 
+T> If you want to disable *css-loader* `url` parsing, set `url: false`. The same idea applies to `@import` as to disable parsing imports you can set `import: false` through the loader options.
+
 ## Setting Up the Initial CSS
 
 We are missing just one bit: the actual CSS itself:
@@ -271,7 +273,7 @@ For this to work, you will have to remember to include [autoprefixer](https://ww
 
 T> PostCSS supports also *postcss.config.js* based configuration. It relies on [cosmiconfig](https://www.npmjs.com/package/cosmiconfig) internally. This means it can pick up configuration from your *package.json*, JSON or YAML, or that you can even push your configuration below an arbitrary directory. *cosmiconfig* will find it. The problem is that this style is harder to compose than inline configuration.
 
-W> It is important to set the `ident` field for the PostCSS loader options as otherwise it will fail to look up the plugins. This is a webpack related restriction.
+W> It is important to set the `ident` field for the PostCSS loader options as otherwise it will fail to look up the plugins. This is a webpack related restriction that has to do with function serialization.
 
 ### cssnext
 
