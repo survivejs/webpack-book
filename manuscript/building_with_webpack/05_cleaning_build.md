@@ -71,7 +71,7 @@ leanpub-end-insert
 
 After this change, our `build` directory should remain nice and tidy while building. You can verify this by building the project and making sure no old files remained in the output directory.
 
-T> Copying files is another common operation you can handle with a webpack plugin such as [copy-webpack-plugin](https://www.npmjs.com/package/copy-webpack-plugin). It can be handy if you need to bring external files to your build without having webpack pointing at them directly.
+T> Copying files is another common operation you can handle with a webpack plugin such as [copy-webpack-plugin](https://www.npmjs.com/package/copy-webpack-plugin). It can be handy if you need to bring external files to your build without having webpack pointing at them directly. [cpy-cli](https://www.npmjs.com/package/cpy-cli) is a good option if you want to copy outside of webpack in a cross-platform way.
 
 ## Conclusion
 
