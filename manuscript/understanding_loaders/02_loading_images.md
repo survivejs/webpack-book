@@ -100,7 +100,7 @@ const Profile = () => (
 );
 ```
 
-It is also possible to set up dynamic imports. This actually uses a feature known `require.context` internally. It is covered in greater detail at the *Code Splitting* chapter. Here's a small example:
+It is also possible to set up dynamic imports. This actually uses a feature known `require.context` internally. It is covered in greater detail in the *Code Splitting* chapter. Here's a small example:
 
 ```javascript
 // The name of the avatar is received from somewhere

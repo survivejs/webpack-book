@@ -61,7 +61,7 @@ As you can see, *app.js* is quite big. This is exactly what we wanted. We must d
 
 So far our project has only a single entry named as `app`. As you might remember, our configuration tells webpack to traverse dependencies starting from the `app` entry directory and then to output the resulting bundle below our `build` directory using the entry name and `.js` extension.
 
-To improve the situation, we can define a `vendor` entry containing React. This is done by matching the dependency name. It is possible to generate this information automatically as discussed at the end of this chapter, but I'll go with a static array here to illustrate the basic idea. Change the code like this:
+To improve the situation, we can define a `vendor` entry containing React. This is done by matching the dependency name. It is possible to generate this information automatically as discussed in the end of this chapter, but I'll go with a static array here to illustrate the basic idea. Change the code like this:
 
 ```javascript
 ...
@@ -315,7 +315,7 @@ The aggressive merging plugin works the inverse way and allows you to combine to
 },
 ```
 
-It is possible to get good caching behavior with these plugins if a webpack feature known as **records** is used. The idea is discussed in greater detail at the *Adding Hashes to Filenames* chapter.
+It is possible to get good caching behavior with these plugins if a webpack feature known as **records** is used. The idea is discussed in greater detail in the *Adding Hashes to Filenames* chapter.
 
 T> Tobias Koppers discusses [aggressive merging in greater detail](https://medium.com/webpack/webpack-http-2-7083ec3f3ce6).
 

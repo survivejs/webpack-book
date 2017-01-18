@@ -303,4 +303,4 @@ It comes with some extra work as you must figure out what's possible to split. O
 
 Just applying `import` or `require.ensure` alone can be very effective. `require.context` has more limited possibilities, but it's a powerful tool especially for tool developers.
 
-T> There's a more complete example of how to use the code splitting technique at the *Searching with React* chapter. You will see how to set up a static site index that's loaded when the user searches information.
+T> There's a more complete example of how to use the code splitting technique in the *Searching with React* chapter. You will see how to set up a static site index that's loaded when the user searches information.

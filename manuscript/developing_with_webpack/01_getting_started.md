@@ -142,6 +142,8 @@ The `entry` path could be given as a relative one. The [context](https://webpack
 
 T> I will use **trailing commas** in the book examples on purpose as it gives cleaned diffs. I will show you how to enforce this in the *Linting JavaScript* chapter.
 
+T> `[name]` is a placeholder. Placeholders are discussed in greater detail in the *Adding Hashes to Filenames* chapter.
+
 T> I like to use `path.join`, but `path.resolve` would be a good alternative. See the [Node.js path API](https://nodejs.org/api/path.html) for further details.
 
 If you execute `node_modules/.bin/webpack`, you should see output:
@@ -164,7 +166,7 @@ Child html-webpack-plugin for "index.html":
 
 The output tells us a lot. I've annotated it below:
 
-* `Hash: 54c437ee9dcc8fee36de` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. We'll discuss hashing in detail at the *Adding Hashes to Filenames* chapter.
+* `Hash: 54c437ee9dcc8fee36de` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. We'll discuss hashing in detail in the *Adding Hashes to Filenames* chapter.
 * `Version: webpack 2.2.0-rc.3` - Webpack version.
 * `Time: 390ms` - Time it took to execute the build.
 * `app.js     3.06 kB  0[emitted]  app` - Name of the generated asset, size, the ids of the **chunks** into which it is related, status information telling how it was generated, name of the chunk.
