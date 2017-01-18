@@ -245,29 +245,33 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader'],
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: function () {
+                return [
+                  require('autoprefixer'),
+                  require('precss'),
+                ];
+              },
+            },
+          },
+        ],
       },
     ],
   },
 };
 ```
 
-In addition to webpack configuration, we need to set up some for PostCSS:
-
-**postcss.config.js**
-
-```javascript
-module.exports = {
-  plugins: {
-    autoprefixer: {},
-    precss: {},
-  },
-};
-```
-
 For this to work, you will have to remember to include [autoprefixer](https://www.npmjs.com/package/autoprefixer) and [precss](https://www.npmjs.com/package/precss) to your project.
 
-T> *postcss-loader* relies on [cosmiconfig](https://www.npmjs.com/package/cosmiconfig) internally. This means it can pick up configuration from your *package.json*, JSON or YAML, or that you can even push your configuration below an arbitrary directory. *cosmiconfig* will find it.
+T> PostCSS supports also *postcss.config.js* based configuration. It relies on [cosmiconfig](https://www.npmjs.com/package/cosmiconfig) internally. This means it can pick up configuration from your *package.json*, JSON or YAML, or that you can even push your configuration below an arbitrary directory. *cosmiconfig* will find it. The problem is that this style is harder to compose than inline configuration.
+
+W> It is important to set the `ident` field for the PostCSS loader options as otherwise it will fail to look up the plugins. This is a webpack related restriction.
 
 ### cssnext
 

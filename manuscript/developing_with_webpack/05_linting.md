@@ -170,9 +170,9 @@ exports.lintJavaScript = function(paths) {
         {
           test: /\.js$/,
           include: paths,
+          enforce: 'pre',
 
           use: 'eslint-loader',
-          enforce: 'pre',
         },
       ],
     },

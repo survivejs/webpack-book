@@ -19,16 +19,28 @@ Next, we'll need to integrate it with our configuration. Set up a configuration 
 ```javascript
 ...
 
-exports.lintCSS = function(paths) {
+exports.lintCSS = function(paths, rules) {
   return {
     module: {
       rules: [
         {
           test: /\.css$/,
           include: paths,
-
-          use: 'postcss-loader',
           enforce: 'pre',
+
+          loader: 'postcss-loader',
+          options: {
+            ident: 'postcss',
+            plugins: function () {
+              return [
+                require('stylelint')({
+                  rules: rules,
+                  // Ignore node_modules CSS
+                  ignoreFiles: 'node_modules/**/*.css'
+                })
+              ];
+            }
+          }
         },
       ],
     },
@@ -48,30 +60,17 @@ const common = merge([
     ...
   },
 leanpub-start-insert
-  parts.lintCSS(PATHS.app),
+  parts.lintCSS(
+    PATHS.app,
+    {
+      'color-hex-case': 'lower',
+    }
+  ),
 leanpub-end-insert
   parts.lintJavaScript(PATHS.app),
 ]);
 
 ...
-```
-
-This is also going to require PostCSS specific configuration to enable Stylelint:
-
-**postcss.config.js**
-
-```javascript
-module.exports = {
-  plugins: {
-    stylelint: {
-      rules: {
-        'color-hex-case': 'lower',
-      },
-      // Ignore node_modules CSS
-      ignoreFiles: 'node_modules/**/*.css',
-    },
-  },
-};
 ```
 
 If you define a CSS rule, such as `background-color: #EFEFEF;` at *main.css* now, you should see a warning like this at your terminal when you run the build (`npm start` or `npm run build`):
