@@ -36,11 +36,11 @@ exports.lintCSS = function(paths, rules) {
                 require('stylelint')({
                   rules: rules,
                   // Ignore node_modules CSS
-                  ignoreFiles: 'node_modules/**/*.css'
-                })
+                  ignoreFiles: 'node_modules/**/*.css',
+                }),
               ];
-            }
-          }
+            },
+          },
         },
       ],
     },
