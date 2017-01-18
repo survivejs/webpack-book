@@ -219,6 +219,15 @@ entry: {
 }
 ```
 
+## Other Features of *webpack-dev-server*
+
+WDS provides quite a bit of functionality beyond what was covered above. There are two important fields that you should be aware of:
+
+* `devServer.contentBase` - Assuming you don't generate *index.html* dynamically like in this setup and rather prefer to maintain it yourself in some directory, you'll need to point WDS to it. `contentBase` accepts either a path (e.g., `'build'`) or an array of paths (e.g., `['build', 'images']`). This defaults to the project root.
+* `devServer.proxy` - If you are using multiple servers, you may have to proxy WDS to them. The proxy setting accepts an object of proxy mappings (e.g., `{ '/api': 'http://localhost:3000/api' }`) that allow WDS to resolve matching queries to another server. There are no proxy settings by default.
+
+T> [The official documentation](https://webpack.js.org/configuration/dev-server/) covers more options.
+
 ## Conclusion
 
 HMR is one of those aspects of webpack that makes it interesting for developers. Even though other tools have similar functionality, webpack has taken its implementation quite far. To get the most out of it, you must implement the HMR interface or use solutions that implement it.
