@@ -72,7 +72,11 @@ T> GitHub Pages allows you to choose the branch where you deploy. It is possible
 1. Copy the old version of the site in a temporary directory and remove *archive* directory from it. You can name the archival directory as you want.
 2. Clean and build the project.
 3. Copy the old version below *build/archive/<version>*
-4. Set up a script to call *gh-pages* through Node.js like this: `ghpages.publish(path.join(__dirname, 'build'), { add: true }, callback);`. You should capture possible error in that callback.
+4. Set up a script to call *gh-pages* through Node.js like this and capture possible errors in the callback:
+
+```javascript
+ghpages.publish(path.join(__dirname, 'build'), { add: true }, callback);
+```
 
 ## Deploying to Other Environments
 
