@@ -79,7 +79,7 @@ exports.devServer = function(options) {
   };
 };
 
-exports.lintJavaScript = function(paths) {
+exports.lintJavaScript = function({ paths, options }) {
   return {
     module: {
       rules: [
@@ -88,7 +88,8 @@ exports.lintJavaScript = function(paths) {
           include: paths,
           enforce: 'pre',
 
-          use: 'eslint-loader',
+          loader: 'eslint-loader',
+          options: options,
         },
       ],
     },
@@ -135,12 +136,14 @@ const common = merge([
       }),
     ],
   },
-  parts.lintJavaScript(PATHS.app),
 ]);
 
 module.exports = function(env) {
   if (env === 'production') {
-    return common;
+    return merge([
+      common,
+      parts.lintJavaScript({ paths: PATHS.app }),
+    ]);
   }
 
   return merge([
@@ -154,6 +157,14 @@ module.exports = function(env) {
       // Customize host/port here if needed
       host: process.env.HOST,
       port: process.env.PORT,
+    }),
+    parts.lintJavaScript({
+      paths: PATHS.app,
+      options: {
+        // Emit warnings over errors to avoid crashing
+        // HMR on error.
+        emitWarning: true,
+      },
     }),
   ]);
 };

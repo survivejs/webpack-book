@@ -67,7 +67,6 @@ leanpub-start-insert
     }
   ),
 leanpub-end-insert
-  parts.lintJavaScript(PATHS.app),
 ]);
 
 ...

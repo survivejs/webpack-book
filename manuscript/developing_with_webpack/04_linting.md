@@ -173,7 +173,10 @@ leanpub-start-insert
         test: /\.js$/,
         enforce: 'pre',
 
-        use: 'eslint-loader',
+        loader: 'eslint-loader',
+        options: {
+          emitWarning: true
+        },
       },
     ],
   },
