@@ -50,7 +50,7 @@ leanpub-start-insert
         },
       },
 leanpub-end-insert
-      parts.loadJavaScript(PATHS.app),
+      parts.clean(PATHS.build),
       ...
     ]);
   }
