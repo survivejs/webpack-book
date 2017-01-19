@@ -245,7 +245,11 @@ app.c1795dcba8378aa1f99110548d21aede.css.map  117 bytes    2, 3  [emitted]  app
 ...
 ```
 
-This simple change gave us a separate file that contains the manifest. To get a better idea of its contents, comment out `parts.minify()` and examine the resulting manifest. You should see familiar names there.
+This simple change gave us a separate file that contains the manifest. Given we are using *html-webpack-plugin*, it generates a reference to *index.html* automatically so we don't have to worry about loading it.
+
+Plugins, such as [inline-manifest-webpack-plugin](https://www.npmjs.com/package/inline-manifest-webpack-plugin) and [html-webpack-inline-chunk-plugin](https://www.npmjs.com/package/html-webpack-inline-chunk-plugin), work with *html-webpack-plugin* and allow you to write the manifest within *index.html* in order to avoid a request.
+
+T> To get a better idea of the manifest contents, comment out `parts.minify()` and examine the resulting manifest. You should see something familiar there.
 
 Try adjusting *app/index.js* and see how the hashes change. This time around it should **not** invalidate the vendor bundle, and only the manifest and app bundle names should be different like this:
 
@@ -264,8 +268,6 @@ app.788492b4b5beed29cef12fe793f316a0.css.map  117 bytes    2, 3  [emitted]  app
 [1Q41] ./app/main.css 41 bytes {2} [built]
 [2twT] ./app/index.js 607 bytes {2} [built]
 ```
-
-T> Plugins, such as [inline-manifest-webpack-plugin](https://www.npmjs.com/package/inline-manifest-webpack-plugin) and [html-webpack-inline-chunk-plugin](https://www.npmjs.com/package/html-webpack-inline-chunk-plugin), work with *html-webpack-plugin* and allow you to write the manifest within *index.html*. Doing this avoids a request.
 
 T> In order to integrate with asset pipelines, you can consider using plugins like [chunk-manifest-webpack-plugin](https://www.npmjs.com/package/chunk-manifest-webpack-plugin), [webpack-manifest-plugin](https://www.npmjs.com/package/webpack-manifest-plugin), [webpack-assets-manifest](https://www.npmjs.com/package/webpack-assets-manifest), or [webpack-rails-manifest-plugin](https://www.npmjs.com/package/webpack-rails-manifest-plugin). These solutions emit JSON that maps the original asset path to the new one.
 
