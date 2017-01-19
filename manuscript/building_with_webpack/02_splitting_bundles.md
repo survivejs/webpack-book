@@ -40,17 +40,17 @@ import component from './component';
 Execute `npm run build` to get a baseline build. You should end up with something like this:
 
 ```bash
-Hash: 33ce6392fbaece211262
-Version: webpack 2.2.0-rc.3
-Time: 1864ms
+Hash: 2cfd5a2f0c95a8ae2a88
+Version: webpack 2.2.0
+Time: 1861ms
       Asset       Size  Chunks             Chunk Names
      app.js     140 kB       0  [emitted]  app
-    app.css    2.18 kB       0  [emitted]  app
+    app.css     2.2 kB       0  [emitted]  app
  app.js.map     165 kB       0  [emitted]  app
 app.css.map   84 bytes       0  [emitted]  app
  index.html  218 bytes          [emitted]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {0} [built]
-   [5] ./~/object-assign/index.js 1.99 kB {0} [built]
+   [5] ./~/object-assign/index.js 2.11 kB {0} [built]
    [9] ./~/react/lib/ReactComponent.js 4.61 kB {0} [built]
 ...
 ```
@@ -78,8 +78,7 @@ leanpub-start-insert
       },
 leanpub-end-insert
       parts.generateSourcemaps('source-map'),
-      parts.extractCSS(),
-      parts.purifyCSS(PATHS.app),
+      ...
     ]);
   }
 
@@ -87,22 +86,23 @@ leanpub-end-insert
 };
 ```
 
-We have two separate entries, or **entry chunks**, now. `[name].js` of our existing `output.path` configuration will kick in based on the entry name and if you try to generate a build now (`npm run build`), you should see something like this:
+We have two separate entries, or **entry chunks**, now. `[name].js` of our existing `output.path` configuration will kick in based on the entry name and if you try to generate a build now (`npm run build`), you should see something along this:
 
 ```bash
-Hash: 18370a70583cfc914334
-Version: webpack 2.2.0-rc.3
-Time: 1921ms
+Hash: 2d1c23d0a7028ee451f8
+Version: webpack 2.2.0
+Time: 1875ms
         Asset       Size  Chunks             Chunk Names
        app.js     140 kB       0  [emitted]  app
     vendor.js     138 kB       1  [emitted]  vendor
-      app.css    2.18 kB       0  [emitted]  app
+      app.css     2.2 kB       0  [emitted]  app
    app.js.map     165 kB       0  [emitted]  app
   app.css.map   84 bytes       0  [emitted]  app
 vendor.js.map     164 kB       1  [emitted]  vendor
    index.html  274 bytes          [emitted]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {0} {1} [built]
-   [5] ./~/object-assign/index.js 1.99 kB {0} {1} [built]
+   [5] ./~/object-assign/index.js 2.11 kB {0} {1} [built]
+  [18] ./~/react/react.js 56 bytes {0} {1} [built]
 ...
 ```
 
@@ -184,8 +184,7 @@ leanpub-start-insert
       ]),
 leanpub-end-insert
       parts.generateSourcemaps('source-map'),
-      parts.extractCSS(),
-      parts.purifyCSS(PATHS.app),
+      ...
     ]);
   }
 
@@ -196,19 +195,19 @@ leanpub-end-insert
 If you execute the build now using `npm run build`, you should see something along this:
 
 ```bash
-Hash: dfc58c1bb4f22724671f
-Version: webpack 2.2.0-rc.3
-Time: 1836ms
+Hash: 57209c1891d4904db640
+Version: webpack 2.2.0
+Time: 1830ms
         Asset       Size  Chunks             Chunk Names
-       app.js    2.03 kB       0  [emitted]  app
+       app.js    2.09 kB       0  [emitted]  app
     vendor.js     141 kB       1  [emitted]  vendor
-      app.css    2.18 kB       0  [emitted]  app
+      app.css     2.2 kB       0  [emitted]  app
    app.js.map    1.73 kB       0  [emitted]  app
   app.css.map   84 bytes       0  [emitted]  app
 vendor.js.map     167 kB       1  [emitted]  vendor
    index.html  274 bytes          [emitted]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {1} [built]
-   [5] ./~/object-assign/index.js 1.99 kB {1} [built]
+   [5] ./~/object-assign/index.js 2.11 kB {1} [built]
    [7] ./~/react/react.js 56 bytes {1} [built]
 ...
 ```
