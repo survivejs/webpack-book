@@ -208,6 +208,8 @@ Perhaps the greatest thing about Babel is that it's possible to extend with pres
 * [babel-plugin-annotate-console-log](https://www.npmjs.com/package/babel-plugin-log-annotate-console-log) annotates `console.log` calls with information about invocation context so it's easier to see where they logged.
 * [babel-plugin-webpack-loaders](https://www.npmjs.com/package/babel-plugin-webpack-loaders) allows you to use many webpack loaders through Babel.
 
+T> It is possible to connect Babel with Node.js through [babel-register](https://www.npmjs.com/package/babel-register) or [babel-cli](https://www.npmjs.com/package/babel-cli). These packages can be handy if you want to execute your code through Babel without using webpack.
+
 ## Setting Up TypeScript
 
 Microsoft's [TypeScript](http://www.typescriptlang.org/) is a compiled language that follows a similar setup as Babel. The neat thing is that in addition to JavaScript, it can emit type definitions. A good editor can pick those up and provide enhanced editing experience. Stronger typing is useful for development as it becomes easier to state your type contracts.
