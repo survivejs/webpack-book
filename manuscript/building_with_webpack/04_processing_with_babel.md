@@ -44,9 +44,9 @@ This is a good option especially if you don't rely on any custom language featur
 
 You can use Babel with webpack through [babel-loader](https://www.npmjs.com/package/babel-loader). It can pick up project level Babel configuration or you can configure it at the loader itself.
 
-Connecting Babel with a project allows you to process webpack configuration through Babel if you name your webpack configuration following *webpack.config.babel.js* convention.
+Connecting Babel with a project allows you to process webpack configuration through it. To achieve this, name your webpack configuration using the *webpack.config.babel.js* convention. This works because of the [interpret](https://www.npmjs.com/package/interpret) package and supports other compilers as well.
 
-This works with other solutions too as it relies on a package known as [interpret](https://www.npmjs.com/package/interpret). Given that [Node.js supports the ES6 specification well](http://node.green/) these days, you can use a lot of features without the overhead, though.
+T> Given that [Node.js supports the ES6 specification well](http://node.green/) these days, you can use a lot of ES6 features without having to process configuration through Babel.
 
 T> Babel isn't the only option although it is the most popular one. [Bublé](https://buble.surge.sh) by Rich Harris is another commpiler worth checking out. There's experimental [buble-loader](https://www.npmjs.com/package/buble-loader) that allows you to use it with webpack. Bublé doesn't support ES6 modules, but that's not a problem as webpack provides that functionality.
 
