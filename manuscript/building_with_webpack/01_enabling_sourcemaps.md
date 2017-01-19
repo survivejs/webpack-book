@@ -54,6 +54,7 @@ module.exports = function(env) {
 leanpub-start-insert
       parts.generateSourcemaps('source-map'),
 leanpub-end-insert
+      parts.lintJavaScript({ paths: PATHS.app }),
       parts.extractCSS(),
       parts.purifyCSS(PATHS.app),
     ]);
@@ -69,12 +70,12 @@ leanpub-end-insert
 leanpub-start-insert
     parts.generateSourcemaps('eval-source-map'),
 leanpub-end-insert
-    parts.loadCSS(),
     parts.devServer({
       // Customize host/port here if needed
       host: process.env.HOST,
       port: process.env.PORT,
     }),
+    ...
   ]);
 };
 ```
@@ -82,13 +83,13 @@ leanpub-end-insert
 If you build the project now (`npm run build`), you should see something like this:
 
 ```bash
-Hash: 7f50648c68ee015911f2
-Version: webpack 2.2.0-rc.3
-Time: 1632ms
+Hash: a2231eda28272b4c83d5
+Version: webpack 2.2.0
+Time: 1671ms
       Asset       Size  Chunks             Chunk Names
-     app.js    4.34 kB       0  [emitted]  app
-    app.css    2.18 kB       0  [emitted]  app
- app.js.map     4.2 kB       0  [emitted]  app
+     app.js     4.4 kB       0  [emitted]  app
+    app.css     2.2 kB       0  [emitted]  app
+ app.js.map    4.21 kB       0  [emitted]  app
 app.css.map   84 bytes       0  [emitted]  app
  index.html  218 bytes          [emitted]
    [0] ./app/component.js 172 bytes {0} [built]
