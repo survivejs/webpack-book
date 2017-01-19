@@ -114,8 +114,8 @@ leanpub-start-insert
   "parser": "babel-eslint",
 leanpub-end-insert
   "parserOptions": {
-leanpub-start-insert
     "sourceType": "module",
+leanpub-start-insert
     "allowImportExportEverywhere": true,
 leanpub-end-insert
   },
@@ -168,15 +168,15 @@ If you open up the application (`npm start`) and click the button, you should se
 Perhaps the more interesting thing is to see what the build result looks like. If you run `npm run build`, you should see something like this:
 
 ```bash
-Hash: 6696958a5cc4dc489a67
-Version: webpack 2.2.0-rc.3
-Time: 1975ms
+Hash: 230ee0afd5597af17cb1
+Version: webpack 2.2.0
+Time: 1901ms
         Asset       Size  Chunks             Chunk Names
-         0.js  275 bytes       0  [emitted]
-       app.js    2.27 kB       1  [emitted]  app
+         0.js  314 bytes       0  [emitted]
+       app.js    2.32 kB       1  [emitted]  app
     vendor.js     141 kB       2  [emitted]  vendor
-      app.css    2.18 kB       1  [emitted]  app
-     0.js.map  278 bytes       0  [emitted]
+      app.css     2.2 kB       1  [emitted]  app
+     0.js.map  277 bytes       0  [emitted]
    app.js.map    1.95 kB       1  [emitted]  app
   app.css.map   84 bytes       1  [emitted]  app
 vendor.js.map     167 kB       2  [emitted]  vendor
@@ -303,4 +303,4 @@ It comes with some extra work as you must figure out what's possible to split. O
 
 Just applying `import` or `require.ensure` alone can be very effective. `require.context` has more limited possibilities, but it's a powerful tool especially for tool developers.
 
-T> There's a more complete example of how to use the code splitting technique in the *Searching with React* chapter. You will see how to set up a static site index that's loaded when the user searches information.
+T> There's a more complete example of how to use the code splitting technique in the *Searching with React* appendix. You will see how to set up a static site index that's loaded when the user searches information.
