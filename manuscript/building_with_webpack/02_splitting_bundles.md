@@ -284,7 +284,7 @@ Sometimes having only an app and a vendor bundle isn't enough. Especially as you
 
 ## Splitting and Merging Chunks
 
-Webpack provides more control over the generated chunks by providing two plugins: `webpack.optimize.AggressiveSplittingPlugin` and `webpack.optimize.AggressiveMergingPlugin`. The former is particularly interesting as it allows you to emit more and smaller bundles. This is especially useful with HTTP/2 due to the way the new standard works.
+Webpack provides more control over the generated chunks by providing two plugins: `AggressiveSplittingPlugin` and `AggressiveMergingPlugin`. The former is particularly interesting as it allows you to emit more and smaller bundles. This is especially useful with HTTP/2 due to the way the new standard works.
 
 There's a trade-off involved as you'll lose out in caching if you split to many small bundles. You also get request overhead in HTTP/1 environment. For now, the approach doesn't work when when `HtmlWebpackPlugin` is enabled due to [a bug in the plugin](https://github.com/ampedandwired/html-webpack-plugin/issues/446).
 
