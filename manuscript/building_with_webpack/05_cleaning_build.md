@@ -50,18 +50,11 @@ module.exports = function(env) {
   if (env === 'production') {
     return merge([
       common,
-      parts.extractBundles([
-        {
-          name: 'vendor',
-          entries: ['react'],
-        },
-      ]),
 leanpub-start-insert
       parts.clean(PATHS.build),
 leanpub-end-insert
-      parts.generateSourcemaps('source-map'),
-      parts.extractCSS(),
-      parts.purifyCSS(PATHS.app),
+      parts.loadJavaScript(PATHS.app),
+      ...
     ]);
   }
 
