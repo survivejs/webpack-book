@@ -22,6 +22,8 @@ import 'purecss';
 leanpub-end-insert
 import './main.css';
 import component from './component';
+
+...
 ```
 
 We should also make our demo component use a Pure.css class so we have something to work with:
@@ -48,17 +50,16 @@ If you run the application (`npm start`), our "Hello world" should look like a b
 Building the application (`npm run build`) should yield output like this:
 
 ```bash
-Hash: 7f50648c68ee015911f2
-Version: webpack 2.2.0-rc.3
-Time: 884ms
+Hash: a2231eda28272b4c83d5
+Version: webpack 2.2.0
+Time: 1210ms
      Asset       Size  Chunks             Chunk Names
-    app.js    4.19 kB       0  [emitted]  app
-   app.css    15.8 kB       0  [emitted]  app
+    app.js    4.25 kB       0  [emitted]  app
+   app.css    16.5 kB       0  [emitted]  app
 index.html  218 bytes          [emitted]
    [0] ./app/component.js 172 bytes {0} [built]
    [1] ./app/main.css 41 bytes {0} [built]
    [2] ./~/purecss/build/pure-min.css 41 bytes {0} [built]
-   [3] ./app/index.js 566 bytes {0} [built]
 ...
 ```
 
@@ -124,8 +125,9 @@ module.exports = function(env) {
   if (env === 'production') {
     return merge([
       common,
-leanpub-start-insert
+      parts.lintJavaScript({ paths: PATHS.app }),
       parts.extractCSS(),
+leanpub-start-insert
       parts.purifyCSS(PATHS.app),
 leanpub-end-insert
     ]);
@@ -140,17 +142,16 @@ W> Note that the order matters! CSS extraction has to happen before purifying.
 If you execute `npm run build` now, you should see something like this:
 
 ```bash
-Hash: 7f50648c68ee015911f2
-Version: webpack 2.2.0-rc.3
-Time: 965ms
+Hash: a2231eda28272b4c83d5
+Version: webpack 2.2.0
+Time: 1310ms
      Asset       Size  Chunks             Chunk Names
-    app.js    4.19 kB       0  [emitted]  app
-   app.css    2.15 kB       0  [emitted]  app
+    app.js    4.25 kB       0  [emitted]  app
+   app.css    2.17 kB       0  [emitted]  app
 index.html  218 bytes          [emitted]
    [0] ./app/component.js 172 bytes {0} [built]
    [1] ./app/main.css 41 bytes {0} [built]
    [2] ./~/purecss/build/pure-min.css 41 bytes {0} [built]
-   [3] ./app/index.js 566 bytes {0} [built]
 ...
 ```
 
