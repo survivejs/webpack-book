@@ -119,6 +119,7 @@ leanpub-start-insert
         'production'
       ),
 leanpub-end-insert
+      parts.clean(PATHS.build),
       ...
     ]);
   }
@@ -144,7 +145,7 @@ app.css.map   84 bytes       1  [emitted]  app
   [16] ./app/main.css 41 bytes {1} [built]
 ```
 
-We went from 141 kB to 41 kB, and finally, to 21.1 kB. The final build is a little faster than the previous one as well.
+We went from 141 kB to 42 kB, and finally, to 21.1 kB. The final build is a little faster than the previous one as well.
 
 Given the 21.1 kB can be served gzipped, it is somewhat reasonable. gzipping will drop around another 40% and it is well supported by browsers.
 
