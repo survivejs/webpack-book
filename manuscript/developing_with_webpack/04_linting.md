@@ -238,6 +238,8 @@ indent_size = 2
 
 T> [Prettier](https://www.npmjs.com/package/prettier) goes one step further and is able to format your code automatically according to your coding style.
 
+T> [Danger](https://github.com/danger/danger-js) operates on a higher level than the tools discussed. For example, it can check that the project changelog was updated before a release is pushed to the public. You can also force pull requests of your project to comply specific standards.
+
 ## Conclusion
 
 In this chapter, you learned how to lint your code using webpack in various ways. It is one of those techniques that yields benefits over the long term. You can fix possible problems before they become actual issues.
