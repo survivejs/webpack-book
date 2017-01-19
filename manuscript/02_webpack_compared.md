@@ -171,26 +171,39 @@ const paths = {
 // Not all tasks need to use streams.
 // A gulpfile is just another node program
 // and you can use all packages available on npm.
-gulp.task('clean', del.bind(null, ['build']);
+gulp.task(
+  'clean',
+  del.bind(null, ['build']
+);
 
-gulp.task('scripts', ['clean'], function() {
-  // Minify and copy all JavaScript (except vendor scripts)
-  // with sourcemaps all the way down.
-  return gulp.src(paths.scripts)
-    // Pipeline within pipeline
-    .pipe(sourcemaps.init())
-      .pipe(coffee())
-      .pipe(uglify())
-      .pipe(concat('all.min.js'))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest('build/js'));
-});
+gulp.task(
+  'scripts',
+  ['clean'],
+  function() {
+    // Minify and copy all JavaScript (except vendor scripts)
+    // with sourcemaps all the way down.
+    return gulp.src(paths.scripts)
+      // Pipeline within pipeline
+      .pipe(sourcemaps.init())
+        .pipe(coffee())
+        .pipe(uglify())
+        .pipe(concat('all.min.js'))
+      .pipe(sourcemaps.write())
+      .pipe(gulp.dest('build/js'));
+  }
+);
 
 // Rerun the task when a file changes.
-gulp.task('watch', gulp.watch.bind(null, paths.scripts, ['scripts']));
+gulp.task(
+  'watch',
+  gulp.watch.bind(null, paths.scripts, ['scripts'])
+);
 
 // The default task (called when you run `gulp` from CLI).
-gulp.task('default', ['watch', 'scripts']);
+gulp.task(
+  'default',
+  ['watch', 'scripts']
+);
 ```
 
 Given the configuration is code, you can always just hack it if you run into troubles. You can wrap existing Node.js packages as Gulp plugins, and so on. Compared to Grunt, you have a clearer idea of what's going on. You still end up writing a lot of boilerplate for casual tasks, though. That is where some newer approaches come in.
