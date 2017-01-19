@@ -64,6 +64,7 @@ leanpub-end-insert
           publicPath: '/webpack-demo/',
         },
       },
+      parts.clean(PATHS.build),
       ...
     ]);
   }
@@ -89,12 +90,12 @@ exports.extractCSS = function(paths) {
     plugins: [
       // Output extracted CSS to a file
 leanpub-start-delete
-      new ExtractTextPlugin('[name].css')
+      new ExtractTextPlugin('[name].css'),
 leanpub-end-delete
 leanpub-start-insert
-      new ExtractTextPlugin('[name].[contenthash].css')
+      new ExtractTextPlugin('[name].[contenthash].css'),
 leanpub-end-insert
-    ]
+    ],
   };
 };
 
@@ -104,18 +105,21 @@ leanpub-end-insert
 If you generate a build now (`npm run build`), you should see something like this:
 
 ```bash
-Hash: e5280d321b095f139b7f
-Version: webpack 2.2.0-rc.3
-Time: 2283ms
+Hash: b28400513ee1f3cc4b58
+Version: webpack 2.2.0
+Time: 2361ms
                                        Asset       Size  Chunks             Chunk Names
-             scripts/369fbad1e4924eb06bbb.js  130 bytes       0  [emitted]
-                 app.4d41d67a5817c8b5c492.js  525 bytes       1  [emitted]  app
-              vendor.a4651042b430d138535b.js    21.1 kB       2  [emitted]  vendor
-    app.c1795dcba8378aa1f99110548d21aede.css    2.22 kB       1  [emitted]  app
-app.c1795dcba8378aa1f99110548d21aede.css.map  117 bytes       1  [emitted]  app
+             scripts/a3e8b000643b89a4baf0.js  179 bytes       0  [emitted]
+                 app.0463c61541fc45af4e1d.js  612 bytes       1  [emitted]  app
+              vendor.0088a151dee083233d21.js    21.1 kB       2  [emitted]  vendor
+    app.581584c83549d8a12e1752ef1aab2cb8.css    2.23 kB       1  [emitted]  app
+         scripts/a3e8b000643b89a4baf0.js.map  850 bytes       0  [emitted]
+             app.0463c61541fc45af4e1d.js.map    5.31 kB       1  [emitted]  app
+app.581584c83549d8a12e1752ef1aab2cb8.css.map  117 bytes       1  [emitted]  app
+          vendor.0088a151dee083233d21.js.map     261 kB       2  [emitted]  vendor
                                   index.html  391 bytes          [emitted]
    [5] ./~/react/react.js 56 bytes {2} [built]
-  [15] ./app/component.js 360 bytes {1} [built]
+  [15] ./app/component.js 504 bytes {1} [built]
   [16] ./app/main.css 41 bytes {1} [built]
 ...
 ```
@@ -155,6 +159,10 @@ leanpub-start-insert
         ],
 leanpub-end-insert
       },
+      parts.setFreeVariable(
+        'process.env.NODE_ENV',
+        'production'
+      ),
       ...
     ]);
   }
@@ -166,18 +174,22 @@ leanpub-end-insert
 As you can see in the build output, the difference is negligible.
 
 ```bash
-Hash: d63a3b02283601dca095
-Version: webpack 2.2.0-rc.3
-Time: 2281ms
+Hash: b2f4e0352d585455643d
+Version: webpack 2.2.0
+Time: 2407ms
                                        Asset       Size  Chunks             Chunk Names
-             scripts/bd391fd157ad5a033702.js  132 bytes       0  [emitted]
-                 app.efcc58ab1c3c06c90c92.js  564 bytes       1  [emitted]  app
-              vendor.dce6507cfd7492d090a4.js    21.6 kB       2  [emitted]  vendor
-    app.c1795dcba8378aa1f99110548d21aede.css    2.22 kB       1  [emitted]  app
-app.c1795dcba8378aa1f99110548d21aede.css.map  117 bytes       1  [emitted]  app
+             scripts/ce7751bddf1a96fd3916.js  181 bytes       0  [emitted]
+                 app.a6c5ea36c65dd4a199a2.js  651 bytes       1  [emitted]  app
+              vendor.e4b418854dc5baf0b331.js    21.5 kB       2  [emitted]  vendor
+    app.581584c83549d8a12e1752ef1aab2cb8.css    2.23 kB       1  [emitted]  app
+         scripts/ce7751bddf1a96fd3916.js.map  858 bytes       0  [emitted]
+             app.a6c5ea36c65dd4a199a2.js.map    5.36 kB       1  [emitted]  app
+app.581584c83549d8a12e1752ef1aab2cb8.css.map  117 bytes       1  [emitted]  app
+          vendor.e4b418854dc5baf0b331.js.map     262 kB       2  [emitted]  vendor
                                   index.html  391 bytes          [emitted]
 [1Q41] ./app/main.css 41 bytes {1} [built]
-[2twT] ./app/index.js 586 bytes {1} [built]
+[2twT] ./app/index.js 591 bytes {1} [built]
+[3imu] ./~/react/lib/ReactPureComponent.js 1.32 kB {2} [built]
 ...
 ```
 
@@ -215,8 +227,8 @@ leanpub-start-insert
         },
 leanpub-end-insert
       ]),
-      parts.clean(PATHS.build),
       parts.generateSourcemaps('source-map'),
+      parts.lintJavaScript({ paths: PATHS.app }),
       parts.extractCSS(),
       parts.purifyCSS(PATHS.app),
     ]);
@@ -229,19 +241,24 @@ leanpub-end-insert
 If you build the project now (`npm run build`), you should see something like this:
 
 ```bash
-Hash: d0183fcd7c65423862af
-Version: webpack 2.2.0-rc.3
-Time: 2296ms
+Hash: 0a76a94d8d4b0e5663c1
+Version: webpack 2.2.0
+Time: 2391ms
                                        Asset       Size  Chunks             Chunk Names
-             scripts/b1e8d40f1daf59fa574c.js  134 bytes    0, 3  [emitted]
-              vendor.dc0770afbfb6269cfbce.js    20.1 kB    1, 3  [emitted]  vendor
-                 app.e7d19c94233a71b3e3d8.js  566 bytes    2, 3  [emitted]  app
-            manifest.7404620880c0c4cb07a2.js    1.47 kB       3  [emitted]  manifest
-    app.c1795dcba8378aa1f99110548d21aede.css    2.22 kB    2, 3  [emitted]  app
-app.c1795dcba8378aa1f99110548d21aede.css.map  117 bytes    2, 3  [emitted]  app
+         scripts/a749f8b7a6c990eff5b2.js.map  865 bytes    0, 3  [emitted]
+             scripts/a749f8b7a6c990eff5b2.js  183 bytes    0, 3  [emitted]
+                 app.4f0c0cbd6f41c9bb18af.js  653 bytes    2, 3  [emitted]  app
+            manifest.c8e56c8521a89cb22c6f.js    1.53 kB       3  [emitted]  manifest
+    app.581584c83549d8a12e1752ef1aab2cb8.css    2.23 kB    2, 3  [emitted]  app
+              vendor.e9b7f566aa067b34ae88.js    20.1 kB    1, 3  [emitted]  vendor
+          vendor.e9b7f566aa067b34ae88.js.map     249 kB    1, 3  [emitted]  vendor
+             app.4f0c0cbd6f41c9bb18af.js.map    5.36 kB    2, 3  [emitted]  app
+app.581584c83549d8a12e1752ef1aab2cb8.css.map  117 bytes    2, 3  [emitted]  app
+        manifest.c8e56c8521a89cb22c6f.js.map    14.1 kB       3  [emitted]  manifest
                                   index.html  484 bytes          [emitted]
 [1Q41] ./app/main.css 41 bytes {2} [built]
-[2twT] ./app/index.js 586 bytes {2} [built]
+[2twT] ./app/index.js 591 bytes {2} [built]
+[3imu] ./~/react/lib/ReactPureComponent.js 1.32 kB {1} [built]
 ...
 ```
 
@@ -254,19 +271,25 @@ T> To get a better idea of the manifest contents, comment out `parts.minify()` a
 Try adjusting *app/index.js* and see how the hashes change. This time around it should **not** invalidate the vendor bundle, and only the manifest and app bundle names should be different like this:
 
 ```bash
-Hash: 2ef316abb610355c2ec8
-Version: webpack 2.2.0-rc.3
-Time: 2336ms
+Hash: a8a9c6cca7360f1c485b
+Version: webpack 2.2.0
+Time: 2546ms
                                        Asset       Size  Chunks             Chunk Names
-             scripts/b1e8d40f1daf59fa574c.js  134 bytes    0, 3  [emitted]
-              vendor.dc0770afbfb6269cfbce.js    20.1 kB    1, 3  [emitted]  vendor
-                 app.6c13efe6036c3f42efe0.js  585 bytes    2, 3  [emitted]  app
-            manifest.42b7f0bdb496db8e5a2b.js    1.47 kB       3  [emitted]  manifest
-    app.788492b4b5beed29cef12fe793f316a0.css    2.22 kB    2, 3  [emitted]  app
-app.788492b4b5beed29cef12fe793f316a0.css.map  117 bytes    2, 3  [emitted]  app
+         scripts/a749f8b7a6c990eff5b2.js.map  865 bytes    0, 3  [emitted]
+             scripts/a749f8b7a6c990eff5b2.js  183 bytes    0, 3  [emitted]
+                 app.78b72e65a8da23867cd4.js  673 bytes    2, 3  [emitted]  app
+            manifest.263a1718ddc308cec749.js    1.53 kB       3  [emitted]  manifest
+    app.581584c83549d8a12e1752ef1aab2cb8.css    2.23 kB    2, 3  [emitted]  app
+              vendor.e9b7f566aa067b34ae88.js    20.1 kB    1, 3  [emitted]  vendor
+          vendor.e9b7f566aa067b34ae88.js.map     249 kB    1, 3  [emitted]  vendor
+             app.78b72e65a8da23867cd4.js.map    5.44 kB    2, 3  [emitted]  app
+app.581584c83549d8a12e1752ef1aab2cb8.css.map  117 bytes    2, 3  [emitted]  app
+        manifest.263a1718ddc308cec749.js.map    14.1 kB       3  [emitted]  manifest
                                   index.html  484 bytes          [emitted]
 [1Q41] ./app/main.css 41 bytes {2} [built]
-[2twT] ./app/index.js 607 bytes {2} [built]
+[2twT] ./app/index.js 613 bytes {2} [built]
+[3imu] ./~/react/lib/ReactPureComponent.js 1.32 kB {1} [built]
+...
 ```
 
 T> In order to integrate with asset pipelines, you can consider using plugins like [chunk-manifest-webpack-plugin](https://www.npmjs.com/package/chunk-manifest-webpack-plugin), [webpack-manifest-plugin](https://www.npmjs.com/package/webpack-manifest-plugin), [webpack-assets-manifest](https://www.npmjs.com/package/webpack-assets-manifest), or [webpack-rails-manifest-plugin](https://www.npmjs.com/package/webpack-rails-manifest-plugin). These solutions emit JSON that maps the original asset path to the new one.
@@ -303,6 +326,10 @@ leanpub-start-insert
         recordsPath: 'records.json',
 leanpub-end-insert
       },
+      parts.setFreeVariable(
+        'process.env.NODE_ENV',
+        'production'
+      ),
       ...
     ]);
   }
