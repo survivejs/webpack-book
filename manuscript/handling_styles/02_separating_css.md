@@ -15,7 +15,7 @@ W> It can be potentially dangerous to use inline styles in production as it repr
 It will take some configuration to make it work. Install the plugin:
 
 ```bash
-npm i extract-text-webpack-plugin@2.0.0-beta.4 --save-dev
+npm i extract-text-webpack-plugin@2.0.0-beta.5 --save-dev
 ```
 
 *extract-text-webpack-plugin* includes a loader, `ExtractTextPlugin.extract` that marks the assets to be extracted. Then a plugin will perform its work based on this annotation. The idea looks like this:
@@ -74,14 +74,15 @@ Connect the function with our configuration as below:
 ...
 
 module.exports = function(env) {
-leanpub-start-insert
   if (env === 'production') {
     return merge([
       common,
+      parts.lintJavaScript({ paths: PATHS.app }),
+leanpub-start-insert
       parts.extractCSS(),
+leanpub-end-insert
     ]);
   }
-leanpub-end-insert
 
   ...
 };
@@ -92,11 +93,11 @@ Using this setup, we can still benefit from the HMR during development. For a pr
 After running `npm run build`, you should see output similar to the following:
 
 ```bash
-Hash: fa85490b04f4c27b397c
-Version: webpack 2.2.0-rc.3
-Time: 748ms
+Hash: 1e301ee0f91b50d9db5b
+Version: webpack 2.2.0
+Time: 1006ms
      Asset       Size  Chunks             Chunk Names
-    app.js    3.84 kB       0  [emitted]  app
+    app.js    3.89 kB       0  [emitted]  app
    app.css   32 bytes       0  [emitted]  app
 index.html  218 bytes          [emitted]
    [0] ./app/component.js 135 bytes {0} [built]
@@ -130,7 +131,7 @@ const common = merge([
   {
     entry: {
       app: PATHS.app,
-      style: ['purecss'].concat(PATHS.style),
+      style: PATHS.style,
     },
     ...
   },
