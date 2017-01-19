@@ -74,7 +74,7 @@ Even small applications can benefit from code splitting, as it allows the users 
 
 ## Asset Hashing
 
-With webpack, you can easily inject a hash to each bundle name (e.g., *app.d587bbd6e38337f5accd.js*). This allows you to invalidate bundles on the client side as changes are made. Bundle-splitting allows the client to reload only a small part of the data in the ideal case.
+With webpack, you can easily inject a hash to each bundle name (e.g., *app.d587bbd6.js*). This allows you to invalidate bundles on the client side as changes are made. Bundle-splitting allows the client to reload only a small part of the data in the ideal case.
 
 Unfortunately, this isn't as easy as I would like, but it's manageable assuming you understand the possible setups well enough.
 
