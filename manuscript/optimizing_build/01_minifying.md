@@ -11,16 +11,16 @@ T> Even if we minify our build, we can still generate sourcemaps through the `de
 To get started, we should generate a baseline build so we have something to optimize. Execute `npm run build`. You should end up with something like this:
 
 ```bash
-Hash: 1f0dc69edbfb58886fd4
-Version: webpack 2.2.0-rc.3
-Time: 2051ms
+Hash: 68893abb76c6fcca56cc
+Version: webpack 2.2.0
+Time: 2016ms
         Asset       Size  Chunks             Chunk Names
-         0.js  275 bytes       0  [emitted]
-       app.js    2.29 kB       1  [emitted]  app
+         0.js  313 bytes       0  [emitted]
+       app.js    2.34 kB       1  [emitted]  app
     vendor.js     141 kB       2  [emitted]  vendor
-      app.css    2.18 kB       1  [emitted]  app
-     0.js.map  231 bytes       0  [emitted]
-   app.js.map    2.59 kB       1  [emitted]  app
+      app.css     2.2 kB       1  [emitted]  app
+     0.js.map  233 bytes       0  [emitted]
+   app.js.map    2.58 kB       1  [emitted]  app
   app.css.map   84 bytes       1  [emitted]  app
 vendor.js.map     167 kB       2  [emitted]  vendor
    index.html  316 bytes          [emitted]
@@ -82,6 +82,7 @@ module.exports = function(env) {
           publicPath: '/webpack-demo/',
         },
       },
+      parts.clean(PATHS.build),
       parts.loadJavaScript(PATHS.app),
 leanpub-start-insert
       parts.minifyJavaScript({ useSourceMap: true }),
@@ -97,23 +98,26 @@ leanpub-end-insert
 If you execute `npm run build` now, you should see smaller results:
 
 ```bash
-Hash: 1f0dc69edbfb58886fd4
-Version: webpack 2.2.0-rc.3
-Time: 2442ms
-      Asset       Size  Chunks             Chunk Names
-       0.js  130 bytes       0  [emitted]
-     app.js  525 bytes       1  [emitted]  app
-  vendor.js    41.7 kB       2  [emitted]  vendor
-    app.css    2.18 kB       1  [emitted]  app
-app.css.map   84 bytes       1  [emitted]  app
- index.html  316 bytes          [emitted]
+Hash: 68893abb76c6fcca56cc
+Version: webpack 2.2.0
+Time: 2553ms
+        Asset       Size  Chunks             Chunk Names
+         0.js  160 bytes       0  [emitted]
+       app.js  557 bytes       1  [emitted]  app
+    vendor.js    41.9 kB       2  [emitted]  vendor
+      app.css     2.2 kB       1  [emitted]  app
+     0.js.map  769 bytes       0  [emitted]
+   app.js.map     4.8 kB       1  [emitted]  app
+  app.css.map   84 bytes       1  [emitted]  app
+vendor.js.map     343 kB       2  [emitted]  vendor
+   index.html  316 bytes          [emitted]
    [0] ./~/process/browser.js 5.3 kB {2} [built]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {2} [built]
    [7] ./~/react/react.js 56 bytes {2} [built]
 ...
 ```
 
-Given it needs to do more work, it took longer to execute the build. But on the plus side the build is significantly smaller now and our vendor build went from 141 kB to 41 kB.
+Given it needs to do more work, it took longer to execute the build. But on the plus side the build is significantly smaller now and our vendor build went from 141 kB to roughly 42 kB.
 
 T> UglifyJS warnings can help you to understand how it processes the code. Therefore, it may be beneficial to have a peek at the full output every once in a while.
 
@@ -168,7 +172,7 @@ leanpub-end-insert
 ...
 ```
 
-If you build the project again (`npm run build`), the result should remain exactly the same. Webpack should pick up the unused code and shake it out of the project.
+If you build the project again (`npm run build`), the vendor bundle should remain exactly the same while the application bundle changes due to the different kind of import. Webpack should pick up the unused code and shake it out of the project.
 
 The same idea works with dependencies that use the ES6 module definition. Given the related packaging standards are still emerging, it is possible you may have to be careful when consuming such packages. Webpack will try to resolve *package.json* `module` field for this purpose. See the *Consuming Packages* chapter for related techniques.
 
