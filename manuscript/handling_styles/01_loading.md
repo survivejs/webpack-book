@@ -68,6 +68,9 @@ leanpub-end-insert
       host: process.env.HOST,
       port: process.env.PORT,
     }),
+    parts.lintJavaScript({
+      ...
+    }),
   ]);
 };
 ```
@@ -281,14 +284,19 @@ W> It is important to set the `ident` field for the PostCSS loader options as ot
 
 [cssnext](http://cssnext.io/) is a PostCSS plugin that allows us to experience the future now. There are some restrictions, but it may be worth a go. You can use it through [postcss-cssnext](https://www.npmjs.com/package/postcss-cssnext), and you can enable it as follows:
 
-**postcss.config.js**
-
+**webpack.config.js**
 ```javascript
-module.exports = {
-  plugins: {
-    cssnext: {},
+{
+  loader: 'postcss-loader',
+  options: {
+    ident: 'postcss',
+    plugins: function () {
+      return [
+        require('cssnext'),
+      ];
+    },
   },
-};
+}
 ```
 
 See [the usage documentation](http://cssnext.io/usage/) for available options.
