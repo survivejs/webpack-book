@@ -76,7 +76,7 @@ T> WDS will try to run in another port in case the default one is being used. Ke
 
 ## Verifying that `--env` Works
 
-Webpack configuration receives the result of `--env` if if exposes a function. To verify that the correct environment is passed, adjust the configuration as follows:
+Webpack configuration receives the result of `--env` if it exposes a function. To verify that the correct environment is passed, adjust the configuration as follows:
 
 **webpack.config.js**
 
