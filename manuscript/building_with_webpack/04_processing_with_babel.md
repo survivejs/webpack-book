@@ -205,7 +205,7 @@ Perhaps the greatest thing about Babel is that it's possible to extend with pres
 * [babel-preset-es2016](https://www.npmjs.org/package/babel-preset-es2016) includes **only** ES7/ES2016 features. Remember to include the previous preset as well if you want both!
 * [babel-plugin-import-asserts](https://www.npmjs.com/package/babel-plugin-import-asserts) asserts that your imports have been defined. This is useful outside of webpack as it can lead to less cryptic errors to debug.
 * [babel-plugin-log-deprecated](https://www.npmjs.com/package/babel-plugin-log-deprecated) adds `console.warn` to functions that have `@deprecate` annotation in their comment.
-* [babel-plugin-annotate-console-log](https://www.npmjs.com/package/babel-plugin-log-annotate-console-log) annotates `console.log` calls with information about invocation context so it's easier to see where they logged.
+* [babel-plugin-annotate-console-log](https://www.npmjs.com/package/babel-plugin-annotate-console-log) annotates `console.log` calls with information about invocation context so it's easier to see where they logged.
 * [babel-plugin-webpack-loaders](https://www.npmjs.com/package/babel-plugin-webpack-loaders) allows you to use many webpack loaders through Babel.
 
 T> It is possible to connect Babel with Node.js through [babel-register](https://www.npmjs.com/package/babel-register) or [babel-cli](https://www.npmjs.com/package/babel-cli). These packages can be handy if you want to execute your code through Babel without using webpack.
