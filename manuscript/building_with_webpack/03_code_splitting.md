@@ -58,7 +58,7 @@ require.ensure(
 
 As you can see, `require.ensure` definition is more powerful. The gotcha is that it doesn't support error handling. Often you can achieve what you want through a dynamic `import`, but it's good to know this form exists as well.
 
-W> `require.ensure` relies on `Promise`s internally. If you use `require.ensure` with older browsers, remember to shim `Promise`.
+W> `require.ensure` relies on `Promise`s internally. If you use `require.ensure` with older browsers, remember to shim `Promise` using a polyfill such as [es6-promise](https://www.npmjs.com/package/es6-promise).
 
 ### `require.include`
 
