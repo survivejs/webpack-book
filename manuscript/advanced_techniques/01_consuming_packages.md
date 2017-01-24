@@ -171,6 +171,31 @@ To bring specific locales to your project, you should use `ContextReplacementPlu
 
 T> There's a [Stack Overflow question](https://stackoverflow.com/questions/25384360/how-to-prevent-moment-js-from-loading-locales-with-webpack/25426019) that covers these ideas in greater detail.
 
+## Managing Pre-built Dependencies
+
+It is possible webpack will give the following warning with certain dependencies:
+
+```bash
+WARNING in ../~/jasmine-promises/dist/jasmine-promises.js
+Critical dependencies:
+1:113-120 This seems to be a pre-built javascript file. Though this is possible, it's not recommended. Try to require the original source to get better results.
+ @ ../~/jasmine-promises/dist/jasmine-promises.js 1:113-120
+```
+
+This can happen if a package happens to point at a pre-built (i.e., minified and already processed) file. Webpack detects this case and warns against it.
+
+One way to resolve eliminate the warning would be to alias the package to a source version as discussed above. Given sometimes the source might not be available, another option is to tell webpack to skip parsing the files through `module.noParse`. It accepts either a RegExp or an array of RegExps and can be configured as below:
+
+```javascript
+{
+  module: {
+    noParse: /node_modules\/demo-package\/dist\/demo-package.js/,
+  },
+},
+```
+
+T> There's a [webpack issue](https://github.com/webpack/webpack/issues/1617) that discusses the problem in greater detail.
+
 ## Conclusion
 
 Webpack can consume most npm packages without a hitch. Sometimes, though, some patching might be required. Fortunately, its resolution mechanism is patchable enough and you can modify the way it brings source to your project if needed.
