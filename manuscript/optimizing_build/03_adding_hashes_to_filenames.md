@@ -230,7 +230,9 @@ leanpub-end-insert
       parts.generateSourcemaps('source-map'),
       parts.lintJavaScript({ paths: PATHS.app }),
       parts.extractCSS(),
-      parts.purifyCSS(PATHS.app),
+      parts.purifyCSS(
+        glob.sync(path.join(PATHS.app, '*'))
+      ),
     ]);
   }
 

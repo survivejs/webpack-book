@@ -56,7 +56,9 @@ leanpub-start-insert
 leanpub-end-insert
       parts.lintJavaScript({ paths: PATHS.app }),
       parts.extractCSS(),
-      parts.purifyCSS(PATHS.app),
+      parts.purifyCSS(
+        glob.sync(path.join(PATHS.app, '*'))
+      ),
     ]);
   }
 

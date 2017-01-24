@@ -69,10 +69,10 @@ As you can see, the size of the CSS file grew quite a bit. This is something we'
 
 Using PurifyCSS can lead to great savings. In their example, they purify and minify Bootstrap (140 kB) in an application using ~40% of its selectors to mere ~35 kB. That's a big difference.
 
-Webpack plugin known as [purifycss-webpack-plugin](https://www.npmjs.com/package/purifycss-webpack-plugin) allows us to achieve results like this. It is preferable to use the `ExtractTextPlugin` with it. Install it first:
+Webpack plugin known as [purifycss-webpack](https://www.npmjs.com/package/purifycss-webpack) allows us to achieve results like this. It is preferable to use the `ExtractTextPlugin` with it for the best results. Install it and a [glob](https://www.npmjs.org/package/glob) helper first:
 
 ```bash
-npm i purifycss-webpack-plugin --save-dev
+npm i glob purifycss-webpack --save-dev
 ```
 
 We need one more bit: PurifyCSS configuration. Expand parts like this:
@@ -83,31 +83,16 @@ We need one more bit: PurifyCSS configuration. Expand parts like this:
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 leanpub-start-insert
-const PurifyCSSPlugin = require('purifycss-webpack-plugin');
+const PurifyCSSPlugin = require('purifycss-webpack');
 leanpub-end-insert
 
 ...
 
 leanpub-start-insert
 exports.purifyCSS = function(paths) {
-  paths = Array.isArray(paths) ? paths : [paths];
-
   return {
     plugins: [
-      new PurifyCSSPlugin({
-        // Our paths are absolute so Purify needs patching
-        // against that to work.
-        basePath: '/',
-
-        // `paths` is used to point PurifyCSS to files not
-        // visible to webpack. This expects glob patterns so
-        // we adapt here.
-        paths: paths.map(path => `${path}/*`),
-
-        // Walk through only html files within node_modules. It
-        // picks up .js files by default!
-        resolveExtensions: ['.html'],
-      }),
+      new PurifyCSSPlugin({ paths: paths }),
     ],
   };
 };
@@ -120,6 +105,13 @@ Next, we have to connect this part to our configuration. It is important the plu
 
 ```javascript
 ...
+leanpub-start-insert
+const glob = require('glob');
+leanpub-end-insert
+
+const parts = require('./webpack.parts');
+
+...
 
 module.exports = function(env) {
   if (env === 'production') {
@@ -128,7 +120,9 @@ module.exports = function(env) {
       parts.lintJavaScript({ paths: PATHS.app }),
       parts.extractCSS(),
 leanpub-start-insert
-      parts.purifyCSS(PATHS.app),
+      parts.purifyCSS(
+        glob.sync(path.join(PATHS.app, '*'))
+      ),
 leanpub-end-insert
     ]);
   }
@@ -157,7 +151,7 @@ index.html  218 bytes          [emitted]
 
 The size of our style has decreased significantly. Instead of almost 16k we have roughly 2k now. The difference would be even bigger for heavier CSS frameworks.
 
-T> PurifyCSS supports [additional options](https://github.com/purifycss/purifycss#the-optional-options-argument) including `minify`. You could for example enable additional logging by setting `purifyOptions: { info: true }` when instantiating the plugin.
+T> PurifyCSS supports [additional options](https://github.com/purifycss/purifycss#the-optional-options-argument) including `minify`. You can enable these through the `purifyOptions` field when instantiating the plugin.
 
 W> Using PurifyCSS will lose CSS sourcemaps even if you have enabled them through loader specific configuration! This has to do with the way it works internally.
 
