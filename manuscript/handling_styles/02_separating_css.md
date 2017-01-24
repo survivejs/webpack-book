@@ -15,7 +15,7 @@ W> It can be potentially dangerous to use inline styles in production as it repr
 It will take some configuration to make it work. Install the plugin:
 
 ```bash
-npm i extract-text-webpack-plugin@2.0.0-beta.5 --save-dev
+npm i extract-text-webpack-plugin@beta --save-dev
 ```
 
 *extract-text-webpack-plugin* includes a loader, `ExtractTextPlugin.extract` that marks the assets to be extracted. Then a plugin will perform its work based on this annotation. The idea looks like this:
