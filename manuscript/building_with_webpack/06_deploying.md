@@ -1,10 +1,12 @@
-# Hosting on GitHub Pages
+# Deploying
 
-A package known as [gh-pages](https://www.npmjs.com/package/gh-pages) allows us host our application on GitHub easily. You point it to your build directory first. It will then pick up the contents and push them to the `gh-pages` branch.
+A project built with webpack can be deployed to a variety of environments easily. A simple, public project that doesn't rely on a back-end can be pushed to GitHub Pages using a package known as *gh-pages*. In addition there are a variety of webpack plugins that can target other environments, such as S3.
 
-Despite its name, the package works with other services that support hosting from a Git repository as well. But given GitHub is so popular, it's good enough for demonstrating the idea.
+## Deploying with *gh-pages*
 
-In practice, you would likely have more complicated setup in place that would push the result to some other service through a Continuous Environment (CI) system. The approach discussed here is enough for small projects and demonstrations that can be entirely static.
+[gh-pages](https://www.npmjs.com/package/gh-pages) allows you to host stand-alone applications on GitHub Pages easily. It has to be pointed to a build directory first. It will then pick up the contents and push them to the `gh-pages` branch.
+
+Despite its name, the package works with other services that support hosting from a Git repository as well. But given GitHub is so popular, we can use it to demonstrate the idea. In practice, you would likely have more complicated setup in place that would push the result to some other service through a Continuous Environment (CI) system.
 
 ## Setting Up *gh-pages*
 
@@ -80,7 +82,7 @@ ghpages.publish(path.join(__dirname, 'build'), { add: true }, callback);
 
 ## Deploying to Other Environments
 
-Even though you can push the problem of deployment outside of webpack, there are a couple of utilities that may come in handy:
+Even though you can push the problem of deployment outside of webpack, there are a couple webpack specific utilities that may come in handy:
 
 * [webpack-deploy](https://www.npmjs.com/package/webpack-deploy) is a collection of deployment utilities and works even outside of webpack.
 * [webpack-s3-sync-plugin](https://www.npmjs.com/package/webpack-s3-sync-plugin) and [webpack-s3-plugin](https://www.npmjs.com/package/webpack-s3-plugin) sync the assets to Amazon S3.
