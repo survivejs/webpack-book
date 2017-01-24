@@ -94,7 +94,7 @@ For testing your project, you can consider solutions, such as [Travis CI](https:
 
 [Codecov](https://codecov.io/) and [Coveralls](https://coveralls.io/) provide code coverage information and a badge to include in your README. This is useful for figuring out which portions of the source to test better. It is a part of improving the quality of your pull requests as they should maintain the current coverage at minimum and ideally improve it.
 
-T> [shields.io](http://shields.io/) lists a large number of available badges.
+T> [shields.io](http://shields.io/) lists a large number of available badges. [NodeICO](https://nodei.co/) provides badges that aggregate package related information.
 
 T> There's a [Codecov extension](https://chrome.google.com/webstore/detail/codecov-extension/keefkhehidemnokodkdkejapdgfjmijf) for Chrome that allows you to see code coverage through GitHub user interface.
 
