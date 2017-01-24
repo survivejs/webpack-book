@@ -78,6 +78,8 @@ An important part of maintaining a project is keeping their dependencies up to d
 
 It is important to remember that your dependencies may introduce backwards incompatible changes. It can be useful to remember how SemVer works and study release notes of dependencies. They might not always exist, so you may have to go through the project commit history.
 
+T> `npm ls`, and more specifically `npm ls <package name>`, allow you to figure out which versions you have installed. `npm ls -g` performs a similar lookup against the globally installed packages.
+
 ## Tracking Dependencies
 
 There are a few services that can help you to keep track of your dependencies:
