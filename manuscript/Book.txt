@@ -11,7 +11,7 @@ developing_with_webpack/01_getting_started.md
 developing_with_webpack/02_automatic_browser_refresh.md
 developing_with_webpack/03_configuring_hmr.md
 developing_with_webpack/04_linting.md
-developing_with_webpack/05_splitting_configuration.md
+developing_with_webpack/05_composing_configuration.md
 
 05_Handling_Styles.md
 handling_styles/01_loading.md

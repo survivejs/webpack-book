@@ -1,4 +1,4 @@
-# Splitting the Configuration
+# Composing Configuration
 
 Even though we haven't done a lot with webpack yet, the amount of configuration is starting to feel substantial. In addition, we have to be careful about the way we compose it as we have separate production and development targets. This can only get worse as we want to add more functionality to our project.
 
@@ -16,7 +16,7 @@ These approaches can be combined. You can end up with a higher level configurati
 
 This is the approach we'll use in this book to discuss through various techniques. *webpack.config.js* will maintain higher level configuration while *webpack.parts.js* will contain the building blocks.
 
-## Composing Configuration
+## Composing Configuration by Merging
 
 In order to eliminate the problem of dealing with `Object.assign` and `Array.concat`, I have developed a little tool known as [webpack-merge](https://www.npmjs.org/package/webpack-merge). Effectively it does two things: it concatenates arrays and merges objects instead of overriding them. Even though a simple idea, this allows us to compose configuration and gives us a degree of abstraction.
 
