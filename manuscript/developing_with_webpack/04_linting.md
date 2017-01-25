@@ -148,7 +148,7 @@ We can make Webpack emit ESLint messages for us by using [eslint-loader](https:/
 npm i eslint-loader --save-dev
 ```
 
-W> Note that `eslint-loader` will use a globally installed version of ESLint unless you have one included with the project itself. Make sure you have ESLint as a development dependency to avoid strange behavior.
+W> Note that *eslint-loader* will use a globally installed version of ESLint unless you have one included with the project itself. Make sure you have ESLint as a development dependency to avoid strange behavior.
 
 The loader needs some wiring to work. We'll discuss loaders in greater detail at the *Understanding Loaders* part, but the basic idea is simple. A loader is connected to webpack through a rule that contains preconditions related to it and a reference to the loader itself. In this case we'll ensure that ESLint gets executed before anything else using a separate setting as that's a good practice.
 
@@ -191,6 +191,39 @@ If you execute `npm start` now and break some linting rule while developing, you
 W> Note that the webpack configuration lints only the application code we refer to. If you want to lint webpack configuration itself, execute `npm run test:lint` separately.
 
 T> It can be useful to attach the linting process to Git through a prepush hook. A package known as [git-prepush-hook](https://www.npmjs.com/package/git-prepush-hook) allows you to achieve this easily. This allows you to rebase your commits and fix possible problems before pushing.
+
+### Configuring ESLint Further
+
+Since webpack 2, the configuration schema of webpack has become stricter and it doesn't allow arbitrary fields at configuration root level anymore. To overcome this issue and to access all functionality of the *eslint-loader*, you'll need to use `LoaderOptionsPlugin` as below:
+
+```javascript
+{
+  plugins: [
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        eslint: {
+          // Fail only on errors
+          failOnWarning: false,
+          failOnError: true,
+
+          // Disable/enable autofix
+          fix: false,
+
+          // Output to Jenkins compatible XML
+          outputReport: {
+            filePath: 'checkstyle.xml',
+            formatter: require('eslint/lib/formatters/checkstyle'),
+          }
+        },
+      },
+    }),
+  ],
+},
+```
+
+There are more options and [eslint-loader](https://www.npmjs.com/package/eslint-loader) documentation covers those in greater detail.
+
+T> The idea is discussed in greater detail at the *Loader Definitions* chapter.
 
 ## ESLint Tips
 
