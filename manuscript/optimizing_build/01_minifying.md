@@ -236,6 +236,8 @@ I've listed a couple of UglifyJS alternatives below:
 
 W> In webpack 1 `minimize` was set on by default if `UglifyJsPlugin` was used. This confusing behavior was fixed in webpack 2 and now you have explicit control over minification.
 
+T> [clean-css-loader](https://www.npmjs.com/package/clean-css-loader) allows you to use a popular CSS minifier known as [clean-css](https://www.npmjs.com/package/clean-css).
+
 ## Conclusion
 
 Minification is the simplest step you can take to make your build smaller. However, there are a few more tricks we can perform.
