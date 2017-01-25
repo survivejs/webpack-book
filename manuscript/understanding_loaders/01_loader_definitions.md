@@ -14,7 +14,7 @@ T> The *Consuming Packages* chapter discusses the aliasing idea in further detai
 
 Webpack supports a large variety of formats through *loaders*. In addition, it supports a couple of JavaScript module formats out of the box. Generally, the idea is the same. You always set up a loader, or loaders, and connect those with your directory structure.
 
-Consider the example below where we set webpack to process JavaScript through Babel, but do not add it to your configuration:
+Consider the example below where webpack is set to process JavaScript through Babel:
 
 **webpack.config.js**
 
@@ -63,7 +63,7 @@ module.exports = {
 
 T> If you are not sure how a particular RegExp matches, consider using an online tool, such as [regex101](https://regex101.com/) or [RegExr](http://regexr.com/).
 
-T> Babel is discussed in greater detail in the *Processing with Babel* chapter.
+T> Babel is discussed in greater detail in the *Processing with Babel* chapter. We'll attach it to the book project there.
 
 ## Loader Evaluation Order
 
