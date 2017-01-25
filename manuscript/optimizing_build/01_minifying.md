@@ -121,6 +121,8 @@ Given it needs to do more work, it took longer to execute the build. But on the 
 
 T> UglifyJS warnings can help you to understand how it processes the code. Therefore, it may be beneficial to have a peek at the full output every once in a while.
 
+T> There's a standalone version of the plugin known as [uglifyjs-webpack-plugin](https://www.npmjs.com/package/uglifyjs-webpack-plugin). It allows you to control the version of UglifyJS you are using.
+
 ## Tree Shaking
 
 Webpack supports a feature enabled by the ES6 module definition known as **tree shaking**. The idea is that given it is possible to analyze the module definition in a static way without running it, webpack can tell which parts of the code are being used and which are not. It is possible to verify this behavior by expanding the application a little and adding code there that should be eliminated.
