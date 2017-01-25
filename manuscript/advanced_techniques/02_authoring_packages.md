@@ -249,7 +249,7 @@ A solution known as [in-publish](https://www.npmjs.com/package/in-publish) allow
 
 As packages evolve, you may want to start developing with others. You could become the new maintainer of some project, or pass the torch to someone else. These things happen as packages evolve.
 
-npm provides a few commands for these purposes. It's all behind `npm owner` namespace. More specifically, you'll find `ls <package name>`, `add <user> <package name>` and `rm <user> <package name>` there (i.e., `npm owner ls`). That's about it.
+npm provides a few commands for these purposes. It's all behind `npm owner` namespace. More specifically, you'll find `npm owner ls <package name>`, `npm owner add <user> <package name>` and `npm owner rm <user> <package name>` there. That's about it.
 
 See [npm documentation](https://docs.npmjs.com/cli/owner) for the most up to date information about the topic.
 
