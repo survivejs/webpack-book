@@ -155,9 +155,16 @@ T> [babel-plugin-transform-inline-environment-variables](https://www.npmjs.com/p
 
 T> `webpack.EnvironmentPlugin(['NODE_ENV'])` is a shortcut that allows you to refer to environment variables. It uses `DefinePlugin` internally and can be useful by itself in more limited cases. You can achieve the same effect by passing `process.env.NODE_ENV` to the custom function we made.
 
-## Generating gzip with Webpack
+## Webpack Optimization Plugins
 
-Even though you can let your server to gzip the files using a suitable middleware, you can also setup webpack to generate the gzips for you using [compression-webpack-plugin](https://www.npmjs.com/package/compression-webpack-plugin). This can save some processing time on the server.
+Webpack includes a collection of optimization related plugins, some of which we'll cover in greater detail in this book. In addition there are a few outside the core. I've listed the most important ones below:
+
+* [compression-webpack-plugin](https://www.npmjs.com/package/compression-webpack-plugin) allows you to push the problem of generating compressed files to webpack. This can potentially save processing time on the server.
+* `webpack.optimize.UglifyJsPlugin` discussed in the previous chapter allows you to minify output using different heuristics. Some of them might break code unless you are careful.
+* `webpack.optimize.OccurrenceOrderPlugin` sorts module ids so that the most used modules get the shortest numeric ids. This can give slightly better size if you prefer to rely on number based ids over the setup proposed in the book.
+* `webpack.optimize.AggressiveSplittingPlugin` allows you to split code into smaller bundles as discussed in the *Splitting Bundles* chapter. This can be particularly useful in HTTP/2 environment.
+* `webpack.optimize.CommonsChunkPlugin` discussed in the same chapter allows you to extract common dependencies into bundles of their own.
+* `webpack.DefinePlugin` allows you to use feature flags in your code and eliminate the redundant code as discussed in this chapter.
 
 ## Conclusion
 
