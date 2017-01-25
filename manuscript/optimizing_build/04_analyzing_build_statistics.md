@@ -152,4 +152,4 @@ In addition to tools that work with webpack output, there are a few that are web
 
 When you are optimizing the size of your bundle output, these tools are invaluable. The official tool has the most functionality, but even a simple visualization can reveal problem spots. You can use the same technique with older projects to understand their composition.
 
-To complete our setup, we'll set up a little deployment script that will allow us to push build output to GitHub Pages. In practice, you would use something more sophisticated, but it's enough to illustrate the idea.
+T> To complete the setup, you could set up a little deployment script as discussed in the *Deploying Applications* appendix.

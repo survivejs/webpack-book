@@ -31,7 +31,6 @@ building_with_webpack/02_splitting_bundles.md
 building_with_webpack/03_code_splitting.md
 building_with_webpack/04_processing_with_babel.md
 building_with_webpack/05_cleaning_build.md
-building_with_webpack/06_deploying.md
 
 08_Optimizing_Build.md
 optimizing_build/01_minifying.md
@@ -51,3 +50,4 @@ appendices/01_searching_with_react.md
 appendices/02_configuring_hmr_with_react.md
 appendices/03_writing_eslint_plugins.md
 appendices/04_customizing_eslint.md
+appendices/05_deploying.md

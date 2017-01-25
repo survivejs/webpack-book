@@ -69,3 +69,5 @@ T> Copying files is another common operation you can handle with a webpack plugi
 ## Conclusion
 
 Often, you work with webpack like this: First, you identify a problem and then find a plugin to tackle it. It is entirely fine to solve these types of issues outside of webpack, but webpack can often handle them as well.
+
+T> The *Deploying Applications* appendix discusses how to get your application online. It would be possible to host the demo application even in its current state.

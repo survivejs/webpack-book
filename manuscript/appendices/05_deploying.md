@@ -1,4 +1,4 @@
-# Deploying
+# Deploying Applications
 
 A project built with webpack can be deployed to a variety of environments easily. A simple, public project that doesn't rely on a back-end can be pushed to GitHub Pages using a package known as *gh-pages*. In addition there are a variety of webpack plugins that can target other environments, such as S3.
 
