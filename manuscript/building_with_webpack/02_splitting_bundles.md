@@ -318,6 +318,8 @@ It is possible to get good caching behavior with these plugins if a webpack feat
 
 T> Tobias Koppers discusses [aggressive merging in greater detail](https://medium.com/webpack/webpack-http-2-7083ec3f3ce6).
 
+T> `webpack.optimize.LimitChunkCountPlugin` and `webpack.optimize.MinChunkSizePlugin` give further control over chunk size.
+
 ## Chunk Types in Webpack
 
 In the example above, we used something known as **entry chunks**. As [discussed in the documentation](https://webpack.github.io/docs/code-splitting.html#chunk-types), internally webpack treats chunks in three types:
