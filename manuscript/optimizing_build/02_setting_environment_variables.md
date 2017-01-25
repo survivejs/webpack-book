@@ -165,6 +165,7 @@ Webpack includes a collection of optimization related plugins, some of which we'
 * `webpack.optimize.AggressiveSplittingPlugin` allows you to split code into smaller bundles as discussed in the *Splitting Bundles* chapter. This can be particularly useful in HTTP/2 environment.
 * `webpack.optimize.CommonsChunkPlugin` discussed in the same chapter allows you to extract common dependencies into bundles of their own.
 * `webpack.DefinePlugin` allows you to use feature flags in your code and eliminate the redundant code as discussed in this chapter.
+* [lodash-webpack-plugin](https://www.npmjs.com/package/lodash-webpack-plugin) creates smaller Lodash builds by replacing feature sets with smaller alternatives leading to more compact builds.
 
 ## Conclusion
 
