@@ -77,7 +77,7 @@ To make the extracted CSS pick up a hash, we should set `contenthash` for it. We
 
 This means a change made to the application code would invalidate CSS hash as well or vice versa. Instead, relying on a hash generated based on the CSS content is a stable way to go.
 
-**webpack.config.js**
+**webpack.parts.js**
 
 ```javascript
 ...
