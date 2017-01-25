@@ -53,17 +53,14 @@ module.exports = function(env) {
   if (env === 'production') {
     return merge([
       common,
+leanpub-start-insert
       {
         output: {
-leanpub-start-insert
           chunkFilename: 'scripts/[chunkhash].js',
           filename: '[name].[chunkhash].js',
-leanpub-end-insert
-
-          // Tweak this to match your GitHub project name
-          publicPath: '/webpack-demo/',
         },
       },
+leanpub-end-insert
       parts.clean(PATHS.build),
       ...
     ]);
@@ -149,9 +146,6 @@ module.exports = function(env) {
         output: {
           chunkFilename: 'scripts/[chunkhash].js',
           filename: '[name].[chunkhash].js',
-
-          // Tweak this to match your GitHub project name
-          publicPath: '/webpack-demo/',
         },
 leanpub-start-insert
         plugins: [
@@ -317,9 +311,6 @@ module.exports = function(env) {
         output: {
           chunkFilename: 'scripts/[chunkhash].js',
           filename: '[name].[chunkhash].js',
-
-          // Tweak this to match your GitHub project name
-          publicPath: '/webpack-demo/',
         },
         plugins: [
           new webpack.HashedModuleIdsPlugin(),
