@@ -296,7 +296,7 @@ T> One more way to improve the build further would be to load popular dependenci
 
 As mentioned in the *Splitting Bundles* chapter, plugins such as `AggressiveSplittingPlugin` use **records** to implement caching. The approaches discussed above are still valid, but records go one step further.
 
-Records are used for storing module ids across separate build. The gotcha is that you need to store this file some way. If you build locally, one option is to include it to your version control.
+Records are used for storing module ids across separate builds. The gotcha is that you need to store this file some way. If you build locally, one option is to include it to your version control.
 
 To generate a *records.json* file, adjust the configuration as follows:
 
