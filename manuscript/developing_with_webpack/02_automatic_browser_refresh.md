@@ -6,7 +6,7 @@ Tools, such as [LiveReload](http://livereload.com/) or [BrowserSync](http://www.
 
 A good first step towards a better development environment is to use webpack in its **watch** mode. You can activate it through `webpack --watch`. Once enabled, it will detect changes made to your files and recompile automatically. A solution known as *webpack-dev-server* (WDS) builds on top of the watch mode and goes even further.
 
-WDS is a development server running in-memory. It refreshes content automatically in the browser while you develop your application. It also supports an advanced webpack feature known as **Hot Module Replacement** (HMR), which provides a way to patch the browser state without a full refresh. This is particularly powerful with technology such as React.
+WDS is a development server running **in-memory**. It refreshes content automatically in the browser while you develop your application. It also supports an advanced webpack feature known as **Hot Module Replacement** (HMR), which provides a way to patch the browser state without a full refresh. This is particularly powerful with technology such as React.
 
 HMR goes further than simply refreshing browser on change. WDS provides an interface that makes it possible to patch code on the fly. This means you will need to implement it for client-side code. It is trivial for something like CSS by definition (no state), but it's a harder problem with JavaScript frameworks and libraries. Often careful design is needed to allow this. When the feature works, it is beautiful.
 
