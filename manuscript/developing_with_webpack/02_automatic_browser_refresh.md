@@ -185,6 +185,19 @@ To get it to work, you will have to install it first through `npm i nodemon --sa
 
 It is possible WDS [will support the functionality](https://github.com/webpack/webpack/issues/3153) itself in the future. If you want to make it reload itself on change, you should implement a little work-around like this for now.
 
+## Useful Development Plugins
+
+As webpack plugin ecosystem is quite diverse, there are a lot of plugins that can help specifically with development. I've listed a few of these below to give you a better idea of what's available:
+
+* [case-sensitive-paths-webpack-plugin](https://www.npmjs.com/package/case-sensitive-paths-webpack-plugin) has been designed to avoid issues with mixed path naming. A path that is valid on macOS might not be on Windows. If you work in a mixed environment, this plugin can be handy.
+* [npm-install-webpack-plugin](https://www.npmjs.com/package/npm-install-webpack-plugin) allows webpack to install and wire the installed packages with your *package.json* as you import new packages to your project. It's almost magical this way.
+* [system-bell-webpack-plugin](https://www.npmjs.com/package/system-bell-webpack-plugin) rings the system bell on failure instead of letting webpack fail silently.
+* [friendly-errors-webpack-plugin](https://www.npmjs.com/package/friendly-errors-webpack-plugin) improves on error reporting of webpack. It captures common errors and displays them in a friendlier manner, hence the name.
+* [nyan-progress-webpack-plugin](https://www.npmjs.com/package/nyan-progress-webpack-plugin) can be used to get tidier output during the build process. Take care with Continuous Integration (CI) systems like Travis, though, as they might clobber the output. Webpack provides `webpack.ProgressPlugin` for the same purpose. No nyan there, though.
+* [webpack-dashboard](https://www.npmjs.com/package/webpack-dashboard) gives an entire terminal based dashboard over the standard webpack output. If you prefer clear visual output, this one will come in handy.
+
+In addition to plugins like these, it can be worth your while to set up linting to enforce coding standards. The *Linting* chapter digs into that topic in greater detail.
+
 ## Conclusion
 
 In this chapter, you learned to set up webpack to refresh your browser automatically. We can go a notch further and enable a feature known as Hot Module Replacement. We'll do that in the next chapter.

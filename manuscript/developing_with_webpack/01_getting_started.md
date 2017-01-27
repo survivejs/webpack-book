@@ -230,19 +230,6 @@ This can be particularly useful if you want to build multiple separate pages thr
 
 T> [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) can be used to speed up the execution of this type of configuration. It will spawn a worker per each configuration and lead to substantial performance benefits. [happypack](https://www.npmjs.com/package/happypack) does something similar on lower level, but it also requires more configuration to work.
 
-## Useful Development Plugins
-
-As webpack plugin ecosystem is quite diverse, there are a lot of plugins that can help specifically with development. I've listed a few of these below to give you a better idea of what's available:
-
-* [case-sensitive-paths-webpack-plugin](https://www.npmjs.com/package/case-sensitive-paths-webpack-plugin) has been designed to avoid issues with mixed path naming. A path that is valid on macOS might not be on Windows. If you work in a mixed environment, this plugin can be handy.
-* [npm-install-webpack-plugin](https://www.npmjs.com/package/npm-install-webpack-plugin) allows webpack to install and wire the installed packages with your *package.json* as you import new packages to your project. It's almost magical this way.
-* [system-bell-webpack-plugin](https://www.npmjs.com/package/system-bell-webpack-plugin) rings the system bell on failure instead of letting webpack fail silently.
-* [friendly-errors-webpack-plugin](https://www.npmjs.com/package/friendly-errors-webpack-plugin) improves on error reporting of webpack. It captures common errors and displays them in a friendlier manner, hence the name.
-* [nyan-progress-webpack-plugin](https://www.npmjs.com/package/nyan-progress-webpack-plugin) can be used to get tidier output during the build process. Take care with Continuous Integration (CI) systems like Travis, though, as they might clobber the output. Webpack provides `webpack.ProgressPlugin` for the same purpose. No nyan there, though.
-* [webpack-dashboard](https://www.npmjs.com/package/webpack-dashboard) gives an entire terminal based dashboard over the standard webpack output. If you prefer clear visual output, this one will come in handy.
-
-In addition to plugins like these, it can be worth your while to set up linting to enforce coding standards. The *Linting* chapter digs into that topic in greater detail.
-
 ## Useful *html-webpack-plugin* Extensions
 
 [html-webpack-template](https://www.npmjs.com/package/html-webpack-template) or [html-webpack-template-pug](https://www.npmjs.com/package/html-webpack-template-pug) complement *html-webpack-plugin* and provide more powerful templates to use with it.
