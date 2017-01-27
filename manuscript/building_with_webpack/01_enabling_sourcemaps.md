@@ -123,7 +123,7 @@ The following table adapted from the [documentation](https://webpack.js.org/conf
 |-------------------------------|------------------------------|----------------------------------------------------------------------------------------|
 |`eval`                         |Generated code                |Each module is executed with `eval` and `//@ sourceURL`.                                |
 |`cheap-eval-source-map`        |Transformed code (lines only, no column mappings!) |Each module is executed with `eval` and a sourcemap is added as a dataurl to the `eval`.|
-|`cheap-module-eval-` `source-map` |Original source (lines only)  |Same idea, but higher quality with lower performance.                                   |
+|`cheap-module-eval-source-map` |Original source (lines only)  |Same idea, but higher quality with lower performance.                                   |
 |`eval-source-map`              |Original source               |Same idea, but highest quality and lowest performance.                                  |
 
 You can start from `eval-source-map` and move to other options as it starts to feel too slow.
