@@ -157,6 +157,12 @@ T> Given PurifyCSS might not pick all of the classes you are using, you can use 
 
 W> Using PurifyCSS will lose CSS sourcemaps even if you have enabled them through loader specific configuration! This has to do with the way it works internally.
 
+### Critical Path Rendering
+
+The idea of [critical path rendering](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/) takes a look at CSS performance from a different angle. Instead of optimizing for size, it optimized for render order and puts emphasis on **above-the-fold** CSS.
+
+[isomorphic-style-loader](https://www.npmjs.com/package/isomorphic-style-loader) achieves this using webpack and React. [critical-path-css-tools](https://github.com/addyosmani/critical-path-css-tools) listing by Addy Osmani lists other related tools.
+
 ## Conclusion
 
 Using PurifyCSS can lead to a significant decrease in file size. It is particularly useful with static sites that rely on a heavy CSS framework. The more dynamic a site or an application becomes, the harder it becomes to analyze reliably.
