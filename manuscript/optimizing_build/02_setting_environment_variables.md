@@ -149,6 +149,32 @@ T> [babel-plugin-transform-inline-environment-variables](https://www.npmjs.com/p
 
 T> `webpack.EnvironmentPlugin(['NODE_ENV'])` is a shortcut that allows you to refer to environment variables. It uses `DefinePlugin` internally and can be useful by itself in more limited cases. You can achieve the same effect by passing `process.env.NODE_ENV` to the custom function we made.
 
+## Choosing Which Module to Use Based on Environment
+
+The techniques discussed in this chapter can be useful for choosing entire modules depending on the environment. As seen above, `DefinePlugin` based splitting allows us to choose which branch of code to use and which to discard. This idea an be used to implement branching on module level. Consider the file structure below:
+
+```bash
+.
+└── store
+    ├── index.js
+    ├── store.dev.js
+    └── store.prod.js
+```
+
+The idea is that we will choose either `dev` or `prod` version of the store depending on the environment. It's that *index.js* which does the hard work like this:
+
+```javascript
+if(process.env.NODE_ENV === 'production') {
+  module.exports = require('./store.prod');
+} else {
+  module.exports = require('./store.dev');
+}
+```
+
+Webpack is able to pick the right code based on our `DefinePlugin` declaration and this code. It is good to note that we will have to use CommonJS module definition style here as ES6 module definition won't work by definition. ES6 definition doesn't allow dynamic behavior like this by design.
+
+T> A related technique known as **aliasing** is discussed in the *Consuming Packages* chapter. You could alias to development or production specific file depending on the environment. The gotcha is that it will tie your setup to webpack in a tighter way than the solution above.
+
 ## Webpack Optimization Plugins
 
 Webpack includes a collection of optimization related plugins, some of which we'll cover in greater detail in this book. In addition there are a few outside the core. I've listed the most important ones below:
