@@ -38,7 +38,7 @@ It is important to note that this will create separate chunks to request. If you
 
 ### `require.ensure`
 
-[require.ensure](https://webpack.github.io/docs/code-splitting.html#commonjs-require-ensure) provides an alternate way:
+[require.ensure](https://webpack.js.org/guides/code-splitting-require/#require-ensure-) provides an alternate way:
 
 ```javascript
 require.ensure(
