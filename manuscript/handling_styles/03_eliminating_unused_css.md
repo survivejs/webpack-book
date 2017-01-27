@@ -153,8 +153,12 @@ The size of our style has decreased significantly. Instead of almost 16k we have
 
 T> PurifyCSS supports [additional options](https://github.com/purifycss/purifycss#the-optional-options-argument) including `minify`. You can enable these through the `purifyOptions` field when instantiating the plugin.
 
+T> Given PurifyCSS might not pick all of the classes you are using, you can use `purifyOptions.whitelist` array to define selectors which it should leave in the result no matter what.
+
 W> Using PurifyCSS will lose CSS sourcemaps even if you have enabled them through loader specific configuration! This has to do with the way it works internally.
 
 ## Conclusion
+
+Using PurifyCSS can lead to a significant decrease in file size. It is particularly useful with static sites that rely on a heavy CSS framework. The more dynamic a site or an application becomes, the harder it becomes to analyze reliably.
 
 The styling portion of our demo is in a good shape. We can make it better by including CSS linting to the project. We'll do that next.
