@@ -1,7 +1,7 @@
 {
   "name": "survivejs-webpack",
   "private": true,
-  "version": "1.6.3",
+  "version": "1.6.4",
   "description": "SurviveJS - Webpack",
   "scripts": {
     "publish:silent": "node ./scripts/silent-publish.js",
