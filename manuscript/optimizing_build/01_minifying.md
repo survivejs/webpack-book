@@ -230,9 +230,11 @@ I've listed a couple of UglifyJS alternatives below:
 
 *css-loader* allows minifying CSS through [cssnano](http://cssnano.co/). Minification needs to be enabled explicitly using the `minimize` option. You can also pass [cssnano specific options](http://cssnano.co/optimisations/) to the query to customize the behavior further.
 
-W> In webpack 1 `minimize` was set on by default if `UglifyJsPlugin` was used. This confusing behavior was fixed in webpack 2 and now you have explicit control over minification.
+[clean-css-loader](https://www.npmjs.com/package/clean-css-loader) allows you to use a popular CSS minifier known as [clean-css](https://www.npmjs.com/package/clean-css).
 
-T> [clean-css-loader](https://www.npmjs.com/package/clean-css-loader) allows you to use a popular CSS minifier known as [clean-css](https://www.npmjs.com/package/clean-css).
+[optimize-css-assets-webpack-plugin](https://www.npmjs.com/package/optimize-css-assets-webpack-plugin) is a plugin based option that applies a chosen minifier on CSS assets. Using *extract-text-webpack-plugin* can lead to duplicated CSS given it only merges text chunks. *optimize-css-assets-webpack-plugin* avoids this problem by operating on the generated result and thus can lead to a better result.
+
+W> In webpack 1 `minimize` was set on by default if `UglifyJsPlugin` was used. This confusing behavior was fixed in webpack 2 and now you have explicit control over minification.
 
 ## Conclusion
 
