@@ -36,12 +36,8 @@ const developmentConfig = {
     // in handy in more complicated setups.
     historyApiFallback: true,
 
-    // Unlike the cli flag, this doesn't set
-    // HotModuleReplacementPlugin!
-    hot: true,
-
     // Don't refresh if hot loading fails. If you want
-    // refresh behavior, set inline: true instead.
+    // refresh behavior, set hot: true instead.
     hotOnly: true,
 
     // Display only errors to reduce the amount of output.
