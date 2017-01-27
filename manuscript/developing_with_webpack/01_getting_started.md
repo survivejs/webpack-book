@@ -102,7 +102,13 @@ To keep things simple to maintain, we'll be using [html-webpack-plugin](https://
 npm i html-webpack-plugin --save-dev
 ```
 
-Here is the configuration to setup the plugin and generate a bundle in our build directory:
+At minimum, it is good to have at least `entry` and `output` fields in your configuration. Often you see a lot more as you will specify how webpack deals with different file types and how it resolves them.
+
+Entries tell webpack where to start parsing the application. In multi-page applications you may have an entry per page. Or you could have a configuration per entry as discussed later in this chapter.
+
+It is good to note that all output related paths that you see in configuration are resolved against `output.path`. This means that if you had an output related option somewhere and wrote `styles/[name].css` to it, webpack would output the `styles` directory below the output path.
+
+To illustrate how to connect `entry` and `output` with *html-webpack-plugin*, consider the code below:
 
 **webpack.config.js**
 
@@ -201,6 +207,28 @@ You can execute these kind of scripts through *npm run*. If you run it as is, it
 T> There are shortcuts like *npm start* and *npm test*. We can run these directly without *npm run* although that will work too. For those in hurry, you can use *npm t* to run your tests.
 
 T> It is possible to execute *npm run* anywhere within the project. It doesn't have to be run in the project root in order to work. npm will figure out the project root for you.
+
+## Running Webpack in Multi-Compiler Mode
+
+Even though most often webpack configuration is written in an object or a function format discussed in the next chapter, webpack also supports something known as the **multi-compiler** mode. The idea is that you can pass an array of configurations to webpack to process. The basic form looks like this:
+
+```javascript
+...
+
+module.exports = [
+  {
+    ... // First configuration
+  },
+  {
+    ... // Second configuration
+  },
+  ...
+];
+```
+
+This can be particularly useful if you want to build multiple separate pages through the same configuration. To avoid unnecessary duplication between the configuration, you can use techniques discussed in the *Composing Configuration* chapter.
+
+T> [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) can be used to speed up the execution of this type of configuration. It will spawn a worker per each configuration and lead to substantial performance benefits. [happypack](https://www.npmjs.com/package/happypack) does something similar on lower level, but it also requires more configuration to work.
 
 ## Useful Development Plugins
 
