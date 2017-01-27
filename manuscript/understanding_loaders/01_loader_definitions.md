@@ -184,6 +184,47 @@ The problem with this approach is that it couples your source with webpack. But 
 },
 ```
 
+## Alternative Ways to Match Files
+
+`test` combined with `include` or `exclude` to constrain the match is the most common way to match files. These accept the data types as listed below:
+
+* `test` - Match against a RegExp, string, function, an object, or an array of conditions like these.
+* `include` - The same.
+* `exclude` - The same, except the output is inverse of `include`.
+
+There are a couple of boolean based fields that can be used to constrain the result further:
+
+* `not` - Do **not** match against a condition like above.
+* `and` - Match against an array of conditions. All must match.
+* `or` - Match against an array while any must match.
+
+Webpack can also match based on the resource path and related information:
+
+* `resource: /inline/` - Match against a resource path including the query. Example matches: `/path/foo.inline.js`, `/path/bar.png?inline`.
+* `issuer: /bar.js/` - Match against a resource requested from the match. Example: `/path/foo.png` would match if it was requested from `/path/bar.js`.
+* `resourcePath: /inline/` - Match against a resource path without its query. Example match: `/path/foo.inline.png`.
+* `resourceQuery: /inline/` - Match against a resource based on its query. Example match: `/path/foo.png?inline`.
+
+The fields above can be combined to apply different loaders based on the context with the `oneOf` field. To handle images differently based on their query, we could apply a rule like this:
+
+```javascript
+{
+  test: /\.css$/,
+  oneOf: [
+    {
+      resourceQuery: /inline/,
+      use: 'url-loader',
+    },
+    {
+      resourceQuery: /external/,
+      use: 'file-loader',
+    },
+  ],
+}
+```
+
+The rule could use `resourcePath` over `resourceQuery` if you wanted to embed the context information to the filename itself.
+
 ## `LoaderOptionsPlugin`
 
 Given webpack 2 forbids arbitrary root level configuration, you have to use `LoaderOptionsPlugin` to manage it. The plugin exists for legacy compatibility and may disappear in a future release. Consider the example below:
