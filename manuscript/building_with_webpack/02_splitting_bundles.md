@@ -237,15 +237,15 @@ In addition to a number and certain other values, `minChunks` accepts a function
 ...
 
 function isVendor(module, count) {
-  const userRequest = module.userRequest;
+  const context = module.context;
 
   // You can perform other similar checks here too.
   // Now we check just node_modules.
-  return userRequest && userRequest.indexOf('node_modules') >= 0;
+  return context && context.indexOf('node_modules') >= 0;
 }
 ```
 
-The `module` parameter of `minChunks` contains a lot of data; you may want to `console.log` it to understand it in greater detail. `userRequest`, if it is set, contains the full path to the module that was imported. Therefore, the check above works.
+The `module` parameter of `minChunks` contains a lot of data; you may want to `console.log` it to understand it in greater detail. `context`, if it is set, contains the full path to the module that was imported. Therefore, the check above works.
 
 Given `minChunks` receives `count` as its second parameter, you could force it to capture chunks based on usage. This is particularly useful in more complex setups where you have split your code multiple times and want more control over the result.
 
