@@ -8,7 +8,7 @@ Webpack provides **placeholders** for this purpose. These strings are used to at
 * `[name]` - Returns the file name.
 * `[ext]` - Returns the extension.
 * `[hash]` - Returns the build hash.
-* `[chunkhash]` - Returns a chunk specific hash.
+* `[chunkhash]` - Returns an entry chunk specific hash.
 * `[contenthash]` - Returns a hash specific to content. This is available for `ExtractTextPlugin` only.
 
 It is preferable to use particularly `hash` and `chunkhash` only for production purposes as hashing won't do much good during development.
@@ -43,7 +43,7 @@ An alternate way to achieve the same result would be to generate static filename
 
 ## Setting Up Hashing
 
-There are a few places in the build we need to tweak to generate proper hashes. The production branch of the main configuration needs a tweak:
+There are a few places in the build we need to tweak to generate proper hashes. The production branch of the main configuration needs a tweak so that the output gets hashed per entry using `chunkhash`:
 
 **webpack.config.js**
 
@@ -70,9 +70,7 @@ leanpub-end-insert
 };
 ```
 
-To make the extracted CSS pick up a hash, we should set `contenthash` for it. We cannot use `chunkhash` given it is derived based on the entry and the CSS of the project belongs to the same entry chunk as the application code.
-
-This means a change made to the application code would invalidate CSS hash as well or vice versa. Instead, relying on a hash generated based on the CSS content is a stable way to go.
+If we used `chunkhash` for the extracted CSS as well, this would lead to problems as our code points to the CSS through JavaScript bringing it to the same entry. That means if the application code or CSS changed, it would validate both. Therefore instead of `chunkhash`, we can use `contenthash` that's generated based on the extracted content:
 
 **webpack.parts.js**
 
