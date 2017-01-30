@@ -12,6 +12,8 @@ Webpack gives control over the inlining process and can defer loading to [file-l
 
 If you use the limit option, you will need to install both *url-loader* and *file-loader* to your project. Assuming you have configured your styles correctly, webpack will resolve any `url()` statements your styling might have. You can of course point to the image assets through your JavaScript code as well.
 
+It is important to note that if the limit option is used, *url-loader* will pass possible additional options to *file-loader* making it possible to configure its behavior further.
+
 In order to load *.jpg* and *.png* files while inlining files below 25kB, we would set up a loader like this:
 
 ```javascript
