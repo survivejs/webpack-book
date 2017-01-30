@@ -154,6 +154,8 @@ export default function () {
 
 T> The `import` could be cleaned up as `import 'font-awesome'` by setting up a `resolve.alias`. The *Consuming Packages* chapter discusses this idea in greater detail.
 
+T> Another option would be to use [font-awesome-loader](https://www.npmjs.com/package/font-awesome-loader). The approach above is more generic and can be used with other libraries as well.
+
 ## Conclusion
 
 Loading fonts is similar to loading other assets. Here we have extra concerns to consider. We need to consider the browsers we want to support and choose the loading strategy based on that.
