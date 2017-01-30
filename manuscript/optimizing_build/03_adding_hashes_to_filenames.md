@@ -7,9 +7,9 @@ Webpack provides **placeholders** for this purpose. These strings are used to at
 * `[path]` - Returns the file path.
 * `[name]` - Returns the file name.
 * `[ext]` - Returns the extension.
-* `[hash]` - Returns the build hash.
-* `[chunkhash]` - Returns an entry chunk specific hash.
-* `[contenthash]` - Returns a hash specific to content. This is available for `ExtractTextPlugin` only.
+* `[hash]` - Returns the build hash. If any portion of the build changes, this will change as well.
+* `[chunkhash]` - Returns an entry chunk specific hash. Each `entry` defined at the configuration receives a hash of own. If any portion of the entry changes, the hash changes as well. This is more granular than `[hash]` by definition.
+* `[contenthash]` - Returns a hash specific to content. This is available for `ExtractTextPlugin` only and is the most specific option available.
 
 It is preferable to use particularly `hash` and `chunkhash` only for production purposes as hashing won't do much good during development.
 
