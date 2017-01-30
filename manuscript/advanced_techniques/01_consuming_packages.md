@@ -12,7 +12,7 @@ Most of the packages out there comply with a versioning scheme known as SemVer. 
 
 The rules are a little different for `0.x` versions. There the rule is `0.<MAJOR>.<MINOR>`. For packages considered stable and suitable for public usage (`1.0.0` and above), the rules is `<MAJOR>.<MINOR>.<PATCH>`. For example, if the current version of a package is `0.1.4` and a breaking change is performed, it should bump to `0.2.0`.
 
-Given SemVer can be a little tricky to manage, some packages use a backwards compatible alternative known as [ComVer](https://github.com/staltz/comver). SemVer can be described as a binary decision `<not compatible>.<compatible>`.
+Given SemVer can be a little tricky to manage, some packages use a backwards compatible alternative known as [ComVer](https://github.com/staltz/comver). ComVer can be described as a binary decision `<not compatible>.<compatible>`.
 
 T> You can understand SemVer much better by studying [the online tool](http://semver.npmjs.com/) and how it behaves.
 
