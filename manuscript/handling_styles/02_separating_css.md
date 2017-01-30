@@ -4,7 +4,9 @@ Even though we have a nice build set up now, where did all the CSS go? As per ou
 
 The current solution doesn't allow us to cache CSS. In some cases, we might suffer from a **Flash of Unstyled Content** (FOUC). FOUC happens because the browser will take a while to load JavaScript and the styles would be applied only then. Separating CSS to a file of its own avoids the problem by letting the browser to manage it separately.
 
-Webpack provides a means to generate a separate CSS bundles using [ExtractTextPlugin](https://www.npmjs.com/package/extract-text-webpack-plugin). It comes with overhead during the compilation phase, and it won't work with Hot Module Replacement (HMR) by design. Given we are using it only for production, that won't be a problem.
+Webpack provides a means to generate a separate CSS bundles using [ExtractTextPlugin](https://www.npmjs.com/package/extract-text-webpack-plugin). It is able to aggregate multiple CSS files into one. For this reason it comes with a loader that handles the extraction process. The plugin then picks up the result aggregated by the loader and emits a separate file.
+
+Due to this process, ExtractTextPlugin comes with overhead during the compilation phase. It won't work with Hot Module Replacement (HMR) by design. Given we are using it only for production, that won't be a problem.
 
 T> This same technique can be used with other assets, like templates, too.
 
