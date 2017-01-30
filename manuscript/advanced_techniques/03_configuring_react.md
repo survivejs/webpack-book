@@ -39,13 +39,13 @@ const common = {
 ...
 ```
 
-The loader configuration is straight-forward as well. Instead of matching only `/\.js$/`, we can expand it to include `.jsx` extension through `/\.(js|jsx)$/`.
+The loader configuration is straight-forward as well. Instead of matching against `/\.js$/`, we can expand it to include `.jsx` extension through `/\.(js|jsx)$/`.
 
 W> In webpack 1 you had to use `extensions: ['', '.js', '.jsx']` to match files without an extension too. This isn't needed in webpack 2.
 
 ### Configuring with Babel
 
-To enable JSX with Babel, an addition preset is required. Install it:
+To enable JSX with Babel, an additional preset is required. Install it:
 
 ```bash
 npm i babel-preset-react --save-dev
