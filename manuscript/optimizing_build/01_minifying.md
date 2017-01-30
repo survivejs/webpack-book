@@ -32,6 +32,62 @@ vendor.js.map     167 kB       2  [emitted]  vendor
 
 141 kB for a vendor bundle is a lot! Minification should bring down the size quite a bit.
 
+## Enabling a Performance Budget
+
+Webpack provides a feature known as a **performance budget**. The idea is that it will give your build size constraint which it has to follow. You can configure it per entry and asset. It can terminate entire build if the budget isn't met and you can also run it in warning mode. Adjust the configuration like this:
+
+**webpack.config.js**
+
+```javascript
+...
+
+module.exports = function(env) {
+  if (env === 'production') {
+    return merge([
+      common,
+leanpub-start-insert
+      {
+        performance: {
+          hints: 'warning', // 'error' or false too
+          maxEntrypointSize: 100000, // in kB
+          maxAssetSize: 50000, // in kB
+        },
+      },
+leanpub-end-insert
+      parts.clean(PATHS.build),
+      ...
+    ]);
+  }
+
+  ...
+};
+```
+
+If you build now (`npm run build`), you should see a warning like this within the output:
+
+```bash
+...
+
+WARNING in asset size limit: The following asset(s) exceed the recommended size limit (50 kB).
+This can impact web performance.
+Assets:
+  vendor.js (136 kB)
+
+WARNING in entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (100 kB). This can impact web performance.
+Entrypoints:
+  app (146 kB)
+     vendor.js
+,      app.js
+,      app.css
+,
+  vendor (141 kB)
+     vendor.js
+
+...
+```
+
+If we do our work right, we will meet the given budget and eliminate this warning as we develop the configuration.
+
 ## Minifying the Code
 
 Ideally, minification will convert our code into a smaller format without losing any meaning. Usually this means some amount of rewriting code through predefined transformations. Good examples of this include renaming variables or even removing entire blocks of code based on the fact that they are unreachable like an `if (false)` statement.

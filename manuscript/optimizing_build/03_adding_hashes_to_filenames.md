@@ -53,14 +53,19 @@ module.exports = function(env) {
   if (env === 'production') {
     return merge([
       common,
-leanpub-start-insert
       {
+        performance: {
+          hints: 'warning', // 'error' or false too
+          maxEntrypointSize: 100000, // in kB
+          maxAssetSize: 50000, // in kB
+        },
+leanpub-start-insert
         output: {
           chunkFilename: 'scripts/[chunkhash].js',
           filename: '[name].[chunkhash].js',
         },
-      },
 leanpub-end-insert
+      },
       parts.clean(PATHS.build),
       ...
     ]);
@@ -141,6 +146,11 @@ module.exports = function(env) {
     return merge([
       common,
       {
+        performance: {
+          hints: 'warning', // 'error' or false too
+          maxEntrypointSize: 100000, // in kB
+          maxAssetSize: 50000, // in kB
+        },
         output: {
           chunkFilename: 'scripts/[chunkhash].js',
           filename: '[name].[chunkhash].js',
@@ -306,6 +316,11 @@ module.exports = function(env) {
     return merge([
       common,
       {
+        performance: {
+          hints: 'warning', // 'error' or false too
+          maxEntrypointSize: 100000, // in kB
+          maxAssetSize: 50000, // in kB
+        },
         output: {
           chunkFilename: 'scripts/[chunkhash].js',
           filename: '[name].[chunkhash].js',
