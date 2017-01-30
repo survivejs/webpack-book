@@ -42,7 +42,7 @@ exports.extractCSS = function(paths) {
           // paths.
           include: paths,
 
-          loader: ExtractTextPlugin.extract({
+          use: ExtractTextPlugin.extract({
             fallbackLoader: 'style-loader',
             loader: 'css-loader',
           }),
@@ -60,7 +60,7 @@ leanpub-end-insert
 
 That `[name]` placeholder will use the the name of the entry where the CSS is referred to. Placeholders and the overall idea are discussed in greater detail in the *Adding Hashes to Filenames* chapter.
 
-It is important to note that if you wanted to extract CSS from a more involved format, like SASS, you would have to pass multiple loaders to the `loader` option. Both `loader` and `fallbackLoader` accept `[{ loader: 'css-loader', query: { ... } }]` (note `query` over `options`!) kind of syntax. They also accept an object (a single loader definition).
+It is important to note that if you wanted to extract CSS from a more involved format, like SASS, you would have to pass multiple loaders to the `loader` option. Both `loader` and `fallbackLoader` a loader (string), a loader definition, or an array of loader definitions.
 
 T> If you wanted to output the resulting file to a specific directory, you could do it like this: `new ExtractTextPlugin('styles/[name].css')`.
 
