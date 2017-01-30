@@ -222,26 +222,6 @@ import { component } from './component';
 leanpub-end-insert
 
 ...
-
-// HMR interface
-if(module.hot) {
-  // Capture hot update
-  module.hot.accept('./component', () => {
-leanpub-start-delete
-    // We have to go through CommonJS here and capture the
-    // default export explicitly!
-    const nextComponent = require('./component').default();
-leanpub-end-delete
-leanpub-start-insert
-    const nextComponent = require('./component').component();
-leanpub-end-insert
-
-    // Replace old content with the hot loaded one
-    document.body.replaceChild(nextComponent, demoComponent);
-
-    demoComponent = nextComponent;
-  });
-}
 ```
 
 If you build the project again (`npm run build`), the vendor bundle should remain exactly the same while the application bundle changes due to the different kind of import. Webpack should pick up the unused code and shake it out of the project.
