@@ -233,6 +233,8 @@ If you use React, the React specific Babel preset does most of the work through 
 
 There's also a Babel plugin known as [babel-plugin-typecheck](https://www.npmjs.com/package/babel-plugin-typecheck) that allows you to perform runtime checks based on your Flow annotations. [flow-runtime](https://codemix.github.io/flow-runtime/) goes a notch further and provides more functionality. These approaches complement Flow static checker and allow you to catch even more issues.
 
+T> [flow-coverage-report](https://www.npmjs.com/package/flow-coverage-report) shows how much of your code is covered by Flow type annotations.
+
 ## Conclusion
 
 Babel has become an indispensable tool for many developers given it bridges the standard with older browsers. Even if you targeted modern browsers, transforming through Babel may be a necessity if you use UglifyJS.
