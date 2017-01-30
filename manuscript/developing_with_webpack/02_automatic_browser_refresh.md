@@ -10,8 +10,6 @@ WDS is a development server running **in-memory**. It refreshes content automati
 
 HMR goes further than simply refreshing browser on change. WDS provides an interface that makes it possible to patch code on the fly. This means you will need to implement it for client-side code. It is trivial for something like CSS by definition (no state), but it's a harder problem with JavaScript frameworks and libraries. Often careful design is needed to allow this. When the feature works, it is beautiful.
 
-W> An IDE feature known as **safe write** can wreak havoc with hot loading. Therefore, it is advisable to turn it off when using an HMR-based setup.
-
 ## Emitting Files from *webpack-dev-server*
 
 Even though it's good that WDS operates in-memory by default, sometimes it can be good to emit files to the file system. This is particularly true if you are integrating with another server that expects to find the files. [webpack-disk-plugin](https://www.npmjs.com/package/webpack-disk-plugin), [write-file-webpack-plugin](https://www.npmjs.com/package/write-file-webpack-plugin), and more specifically [html-webpack-harddisk-plugin](https://www.npmjs.com/package/html-webpack-harddisk-plugin) can achieve this.
