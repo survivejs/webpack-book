@@ -258,7 +258,7 @@ app.581584c83549d8a12e1752ef1aab2cb8.css.map  117 bytes    2, 3  [emitted]  app
 
 This simple change gave us a separate file that contains the manifest. Because we are using *html-webpack-plugin*, we don't have to worry about loading it ourselves as it adds a reference to the manifest to *index.html* for us.
 
-Plugins, such as [inline-manifest-webpack-plugin](https://www.npmjs.com/package/inline-manifest-webpack-plugin) and [html-webpack-inline-chunk-plugin](https://www.npmjs.com/package/html-webpack-inline-chunk-plugin), work with *html-webpack-plugin* and allow you to write the manifest within *index.html* in order to avoid a request.
+Plugins, such as [inline-manifest-webpack-plugin](https://www.npmjs.com/package/inline-manifest-webpack-plugin) and [html-webpack-inline-chunk-plugin](https://www.npmjs.com/package/html-webpack-inline-chunk-plugin), [assets-webpack-plugin](https://www.npmjs.com/package/assets-webpack-plugin), work with *html-webpack-plugin* and allow you to write the manifest within *index.html* in order to avoid a request.
 
 T> To get a better idea of the manifest contents, comment out `parts.minify()` and examine the resulting manifest. You should see something familiar there.
 
