@@ -4,9 +4,9 @@
   "version": "1.6.4",
   "description": "SurviveJS - Webpack",
   "scripts": {
-    "publish:silent": "node ./scripts/silent-publish.js",
-    "preview": "node ./scripts/preview.js",
-    "job-status": "node ./scripts/job-status.js",
+    "publish:silent": "leanpub-cli publish-silent survivejs-webpack",
+    "preview": "leanpub-cli preview survivejs-webpack",
+    "job-status": "leanpub-cli job-status survivejs-webpack",
     "test": "check-markdown-links manuscript"
   },
   "repository": {
@@ -26,6 +26,6 @@
   "dependencies": {},
   "devDependencies": {
     "check-markdown-links": "^0.1.1",
-    "leanpub": "^0.1.4"
+    "leanpub-cli": "^0.2.0"
   }
 }
