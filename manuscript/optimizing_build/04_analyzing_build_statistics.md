@@ -30,7 +30,7 @@ This is the basic setup you'll need, regardless of your webpack configuration. E
 
 W> Given we piggyback on the production target in our current setup, this process will clean the build directory! If you want to avoid that, set up a separate target where you don't clean.
 
-### *stats-webpack-plugin* and *webpack-stats-plugin*
+### `StatsWebpackPlugin` and `WebpackStatsPlugin`
 
 If you want to manage stats through a plugin, check out [stats-webpack-plugin](https://www.npmjs.com/package/stats-webpack-plugin). It gives you a bit more control over the output. You can use it to exclude certain dependencies from the output.
 
