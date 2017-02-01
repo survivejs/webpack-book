@@ -6,6 +6,8 @@ To improve the debuggability of an application, we can set up source maps for bo
 
 One approach is to simply skip source maps during development and rely on browser support of language features. This works particularly if you use ES6 without any extensions and develop using a modern browser. The great advantage of doing this is that you avoid all the problems related to source maps while gaining better performance.
 
+T> If you want to understand the ideas behind source maps in a greater detail, [read Ryan Seddon's introduction to the topic](https://www.html5rocks.com/en/tutorials/developertools/sourcemaps/).
+
 ## Inline Source Maps and Separate Source Maps
 
 Webpack can generate both inline source maps included within bundles or separate source map files. The former are useful during development due to better performance while the latter are handy for production usage as it will keep the bundle size small. In this case, loading source maps becomes optional.
