@@ -187,6 +187,8 @@ The idea is the same with styling, React, Redux, and other technologies. Sometim
 
 T> Check out the *Configuring Hot Module Replacement with React* to learn how to get webpack and React to work together in a nicer manner.
 
+T> That `if(module.hot)` block be eliminated entirely from the production build as minifier picks it up. The *Minifying Build* chapter delves deeper into this topic.
+
 ## HMR on Windows, Ubuntu, and Vagrant
 
 The setup may be problematic on certain versions of Windows, Ubuntu, and Vagrant. We can solve this through polling:
