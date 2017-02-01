@@ -53,7 +53,6 @@ module.exports = function(env) {
 leanpub-start-insert
       parts.clean(PATHS.build),
 leanpub-end-insert
-      parts.loadJavaScript(PATHS.app),
       ...
     ]);
   }

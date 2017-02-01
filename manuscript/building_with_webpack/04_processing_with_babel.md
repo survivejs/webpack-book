@@ -91,7 +91,7 @@ exports.loadJavaScript = function(paths) {
 };
 ```
 
-Next, we need to connect this with the main configuration. I'll process the code through Babel only during production although it would be possible to do it both for development and production usage.
+Next, we need to connect this with the main configuration. If you are using a modern browser for development, you can consider processing only the production code through Babel. To play it safe, I'll use it for both production and development environments in this case.
 
 In addition, I'll constrain webpack to process only our application code through Babel as I don't want it to process files from *node_modules* for example. This helps with performance and it is a good practice with JavaScript files.
 
@@ -100,25 +100,15 @@ In addition, I'll constrain webpack to process only our application code through
 ```javascript
 ...
 
-module.exports = function(env) {
-  if (env === 'production') {
-    return merge([
-      common,
-leanpub-start-insert
-      parts.loadJavaScript(PATHS.app),
-leanpub-end-insert
-      parts.extractBundles([
-        {
-          name: 'vendor',
-          entries: ['react'],
-        },
-      ]),
-      ...
-    ]);
-  }
-
+const common = merge([
+  {
   ...
-};
+leanpub-start-insert
+  parts.loadJavaScript(PATHS.app),
+leanpub-end-insert
+]);
+
+...
 ```
 
 Even though we have Babel installed and set up, we are still missing one bit: Babel configuration. I prefer to handle it using a dotfile known as *.babelrc* as other tooling can pick it up as well.

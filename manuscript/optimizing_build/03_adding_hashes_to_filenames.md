@@ -56,8 +56,8 @@ module.exports = function(env) {
       {
         performance: {
           hints: 'warning', // 'error' or false too
-          maxEntrypointSize: 100000, // in kB
-          maxAssetSize: 50000, // in kB
+          maxEntrypointSize: 200000, // in kB
+          maxAssetSize: 200000, // in kB
         },
 leanpub-start-insert
         output: {

@@ -241,6 +241,8 @@ leanpub-end-insert
 };
 ```
 
+T> You can include `react-dom` entries at `parts.extractBundles` to push it to the vendor bundle assuming you refer to packages by their name.
+
 ### Setting Up Application
 
 Compared to the earlier implementation, the basic idea is the same on application side. This time, however, something known as `AppContainer` provided by *react-hot-loader* has to be used. It performs the patching during development. To attach it to the application, adjust as follows:

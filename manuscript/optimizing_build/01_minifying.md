@@ -133,7 +133,6 @@ module.exports = function(env) {
     return merge([
       common,
       parts.clean(PATHS.build),
-      parts.loadJavaScript(PATHS.app),
 leanpub-start-insert
       parts.minifyJavaScript({ useSourceMap: true }),
 leanpub-end-insert
