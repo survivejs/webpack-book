@@ -144,7 +144,7 @@ In addition to tools that work with webpack output, there are a few that are web
 
 ### source-map-explorer
 
-[source-map-explorer](https://www.npmjs.com/package/source-map-explorer) is a tool independent from webpack. It allows you to get insight into your build by using sourcemaps. It gives a treemap based visualization showing what code contributes to the result.
+[source-map-explorer](https://www.npmjs.com/package/source-map-explorer) is a tool independent from webpack. It allows you to get insight into your build by using source maps. It gives a treemap based visualization showing what code contributes to the result.
 
 ### madge
 

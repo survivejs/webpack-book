@@ -229,7 +229,7 @@ leanpub-start-insert
         },
 leanpub-end-insert
       ]),
-      parts.generateSourcemaps('source-map'),
+      parts.generateSourceMaps('source-map'),
       parts.lintJavaScript({ paths: PATHS.app }),
       parts.extractCSS(),
       parts.purifyCSS(

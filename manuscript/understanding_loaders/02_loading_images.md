@@ -137,7 +137,7 @@ A technique known as spriting allows you to combine multiple smaller images into
 
 Sometimes you might want to load an image dynamically based on some condition. A webpack feature known as `require.context` can come in handy here. It still assumes the images are available within the file system, but if that's the case, then the technique can work. See the *Code Splitting* chapter for further information.
 
-## Images and *css-loader* Sourcemap Gotcha
+## Images and *css-loader* Source Map Gotcha
 
 If you are using images and *css-loader* with the `sourceMap` option enabled, it is important that you will set `output.publicPath` to an absolute value. Otherwise, images won't show up. See [the relevant webpack issue](https://github.com/webpack/style-loader/issues/55) for further explanation.
 

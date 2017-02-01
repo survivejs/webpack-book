@@ -77,7 +77,7 @@ leanpub-start-insert
         },
       },
 leanpub-end-insert
-      parts.generateSourcemaps('source-map'),
+      parts.generateSourceMaps('source-map'),
       ...
     ]);
   }
@@ -183,7 +183,7 @@ leanpub-start-insert
         },
       ]),
 leanpub-end-insert
-      parts.generateSourcemaps('source-map'),
+      parts.generateSourceMaps('source-map'),
       ...
     ]);
   }

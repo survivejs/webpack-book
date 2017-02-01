@@ -170,7 +170,7 @@ Consider the following minimal setup:
 }
 ```
 
-There is also support for Less plugins, sourcemaps, and so on. To understand how those work you should check out the project itself.
+There is also support for Less plugins, source maps, and so on. To understand how those work you should check out the project itself.
 
 ## Loading SASS
 
@@ -315,9 +315,9 @@ The tilde (`~`) tells webpack that it's not a relative import as by default. If 
 
 [resolve-url-loader](https://www.npmjs.com/package/resolve-url-loader) makes it possible to specify `url()`'s relative to the file location. This is particularly useful with *sass-loader*.
 
-## Enabling Sourcemaps
+## Enabling Source Maps
 
-If you want to enable sourcemaps for CSS, you should enable `sourceMap` option for *css-loader* and set `output.publicPath` to an absolute url pointing to your development server. If you have multiple loaders in a chain, you have to enable sourcemaps separately for each. *css-loader* [issue 29](https://github.com/webpack/css-loader/issues/29) discusses this problem further.
+If you want to enable source maps for CSS, you should enable `sourceMap` option for *css-loader* and set `output.publicPath` to an absolute url pointing to your development server. If you have multiple loaders in a chain, you have to enable source maps separately for each. *css-loader* [issue 29](https://github.com/webpack/css-loader/issues/29) discusses this problem further.
 
 ## Using Bootstrap
 

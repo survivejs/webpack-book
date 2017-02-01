@@ -4,7 +4,7 @@ So far, we haven't given thought to our build output and no doubt it's going to 
 
 **Minification** is a process where code is simplified without losing any meaning that matters to the interpreter. As a result, your code will most likely look quite jumbled and it will be hard to read. But that's the point.
 
-T> Even if we minify our build, we can still generate sourcemaps through the `devtool` option we discussed earlier. This will give us better means to debug, even production code if we want.
+T> Even if we minify our build, we can still generate source maps through the `devtool` option we discussed earlier. This will give us better means to debug, even production code if we want.
 
 ## Generating a Baseline Build
 

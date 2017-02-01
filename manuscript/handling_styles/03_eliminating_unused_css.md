@@ -155,7 +155,7 @@ T> PurifyCSS supports [additional options](https://github.com/purifycss/purifycs
 
 T> Given PurifyCSS might not pick all of the classes you are using, you can use `purifyOptions.whitelist` array to define selectors which it should leave in the result no matter what.
 
-W> Using PurifyCSS will lose CSS sourcemaps even if you have enabled them through loader specific configuration! This has to do with the way it works internally.
+W> Using PurifyCSS will lose CSS source maps even if you have enabled them through loader specific configuration! This has to do with the way it works internally.
 
 ### Critical Path Rendering
 
