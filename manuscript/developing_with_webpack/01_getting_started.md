@@ -184,6 +184,8 @@ Examine the output below `build/`. If you look closely, you can see the same ids
 
 T> It can be convenient to use a tool like *serve* (`npm i serve -g`) to serve the build directory. In this case, execute `serve` at the output directory and head to `localhost:3000` at your browser. You can configure the port through the `--port` parameter.
 
+T> If you want webpack to stop execution on first error, set `bail: true` option. Webpack will tolerate errors by default otherwise.
+
 ## Adding a Build Shortcut
 
 Given executing `node_modules/.bin/webpack` is a little verbose, we should do something about it. npm and *package.json* double as a task runner with some configuration. Adjust it as follows:
