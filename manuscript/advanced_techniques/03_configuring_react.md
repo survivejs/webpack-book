@@ -417,7 +417,7 @@ exports.dontParse = function(options) {
   return {
     module: {
       noParse: [
-        options.path,
+        new RegExp(options.path),
       ],
     },
     resolve: {
