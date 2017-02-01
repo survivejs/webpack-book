@@ -56,9 +56,7 @@ module.exports = function(env) {
   return merge([
     common,
     {
-      plugins: [
-        new webpack.NamedModulesPlugin(),
-      ],
+      ...
     },
 leanpub-start-insert
     parts.loadCSS(),

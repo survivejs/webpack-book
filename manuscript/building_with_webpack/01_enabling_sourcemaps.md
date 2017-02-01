@@ -55,19 +55,14 @@ leanpub-start-insert
       parts.generateSourcemaps('source-map'),
 leanpub-end-insert
       parts.lintJavaScript({ paths: PATHS.app }),
-      parts.extractCSS(),
-      parts.purifyCSS(
-        glob.sync(path.join(PATHS.app, '*'))
-      ),
+      ...
     ]);
   }
 
   return merge([
     common,
     {
-      plugins: [
-        new webpack.NamedModulesPlugin(),
-      ],
+      ...
     },
 leanpub-start-insert
     parts.generateSourcemaps('eval-source-map'),
