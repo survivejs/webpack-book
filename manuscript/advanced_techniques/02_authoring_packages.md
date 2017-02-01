@@ -195,7 +195,7 @@ The workflow in this case is straight-forward:
 
 In order to consume the test version, your users will have to use `npm i <your package name>@alpha`.
 
-T> It can be useful to utilize `npm link` during development. That will allow you to use a development version of your library from some other context. Node.js will resolve to the linked version unless local `node_modules` happens to contain a version. If you want to remove the link, use `npm unlink`.
+T> It can be useful to utilize [npm link](https://docs.npmjs.com/cli/link) during development. It allows you to link a package as a globally available symbolic link within your system. Node.js will resolve to the linked version unless local `node_modules` happens to contain a version. If you want to remove the link, you should use `npm unlink` or `npm unlink <package>`.
 
 ### On Naming Packages
 
