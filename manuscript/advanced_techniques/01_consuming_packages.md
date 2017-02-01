@@ -126,6 +126,8 @@ Sometimes modules might depend on globals, like the `$` provided by jQuery. [imp
 {
   module: {
     rules: {
+      // Resolve against package path.
+      // require.resolve returns a path to it.
       test: require.resolve('jquery-plugin'),
       loader: 'imports-loader?$=jquery',
     },
