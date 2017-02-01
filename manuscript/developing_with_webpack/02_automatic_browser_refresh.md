@@ -21,7 +21,7 @@ W> You should use *webpack-dev-server* strictly for development. If you want to 
 To get started with WDS, execute:
 
 ```bash
-npm i webpack-dev-server@beta --save-dev
+npm i webpack-dev-server --save-dev
 ```
 
 As before, this command will generate a command below the `npm bin` directory. You could try running *webpack-dev-server* from there. The quickest way to enable automatic browser refresh for our project is to run `webpack-dev-server`. After that, you have a development server running at `localhost:8080`.
