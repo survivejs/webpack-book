@@ -2,7 +2,7 @@
 
 ![Source maps in Chrome](images/sourcemaps.png)
 
-To improve the debuggability of an application, we can set up source maps for both code and styling. Source maps allow you to see exactly where an error was raised. They map the transformed source to its original form so that you can use browser tooling for debugging. This makes them particularly valuable during development.
+To improve the debuggability of an application, we can set up **source maps** for both code and styling. Source maps allow you to see exactly where an error was raised. They map the transformed source to its original form so that you can use browser tooling for debugging. This makes them particularly valuable during development.
 
 One approach is to simply skip source maps during development and rely on browser support of language features. This works particularly if you use ES6 without any extensions and develop using a modern browser. The great advantage of doing this is that you avoid all the problems related to source maps while gaining better performance.
 
@@ -14,7 +14,7 @@ Webpack can generate both inline source maps included within bundles or separate
 
 You may **not** want to generate a source map for your production bundle as this makes it easy to inspect your application (it depends on whether you want this or not; it is good for staging). Simply skip the `devtool` field then or generate hidden variant. Skipping source maps entirely also speeds up your build a notch as generating source maps at the best quality can be a heavy operation.
 
-Hidden source maps give trace information only. You can connect them with a monitoring service to get traces as the application crashes allowing you to fix the problematic situations. This isn't ideal, but it's better to know about possible problems than not.
+**Hidden source maps** give trace information only. You can connect them with a monitoring service to get traces as the application crashes allowing you to fix the problematic situations. This isn't ideal, but it's better to know about possible problems than not.
 
 T> It is a good idea to study the documentation of the loaders you are using to see loader specific tips. For example, with TypeScript, you may need to set a certain flag to make it work as you expect.
 
@@ -114,27 +114,200 @@ W> If you want to use breakpoints (i.e., a `debugger;` statement or ones set thr
 
 ## Source Map Types Supported by Webpack
 
-The following table adapted from the [documentation](https://webpack.js.org/configuration/devtool/#devtool) contains the supported types arranged based on speed. The lower the quality, the higher build and rebuild speeds are possible. It may take some experimentation to find the options that make the most sense for you.
+Source map types supported by webpack can be split into two categories: inline and separate. The former are useful during development, whereas the latter are suited for production usage. Separate source maps can be used for development as well, but given they come with a greater performance overhead, often inline variants are preferred instead.
 
-|Source map type                 |Quality                       |Notes                                                                                   |
-|-------------------------------|------------------------------|----------------------------------------------------------------------------------------|
-|`eval`                         |Generated code                |Each module is executed with `eval` and `//@ sourceURL`.                                |
-|`cheap-eval-source-map`        |Transformed code (lines only, no column mappings!) |Each module is executed with `eval` and a source map is added as a dataurl to the `eval`.|
-|`cheap-module-eval-` `source-map` |Original source (lines only)  |Same idea, but higher quality with lower performance.                                   |
-|`eval-source-map`              |Original source               |Same idea, but highest quality and lowest performance.                                  |
+## Inline Source Map Types
 
-You can start from `eval-source-map` and move to other options as it starts to feel too slow.
+Webpack provides multiple inline source map variants. Often `eval` is the starting point and [Rico Santa Cruz](https://github.com/rstacruz/webpack-tricks) recommends `cheap-module-eval-source-map` with `output.devtoolModuleFilenameTemplate: 'webpack:///[absolute-resource-path]'` as it's a good compromise between speed and quality while working reliably in Chrome and Firefox browsers.
 
-Webpack can also generate production usage friendly source maps. These will end up in separate files and will be loaded by the browser only when required. This way your users get good performance while it's easier for you to debug the application. I've listed them in a similar way below.
+To get a better idea of the available options, I've listed them below while providing a small example for each. The source code contains only a single `console.log('Hello world')` and `NamedModulesPlugin` is used to keep the output easier to understand. In practice you would see a lot more code to handle the mapping.
 
-|Source map type            |Quality                       |Notes                                                                                  |
-|--------------------------|------------------------------|---------------------------------------------------------------------------------------|
-|`cheap-source-map`        |Transformed code (lines only) |Generated source maps don't have column mappings. Source maps from loaders, such as *css-loader*, are not used. |
-|`cheap-module-source-map` |Original source (lines only)  |Same except source maps from loaders are simplified to a single mapping per line.       |
-|`source-map`              |Original source               |The best quality with the most complete result, but also the slowest.                  |
-|`hidden-source-map`       |Original without a reference | Use this if you don't want to expose source maps to development tools while getting proper stack traces.
+### `devtool: 'eval'`
+
+`eval` generates code in which each module is wrapped within an `eval` function:
+
+```javascript
+webpackJsonp([1, 2], {
+  "./app/index.js": function(module, exports) {
+    eval("console.log('Hello world');\n\n//////////////////\n// WEBPACK FOOTER\n// ./app/index.js\n// module id = ./app/index.js\n// module chunks = 1\n\n//# sourceURL=webpack:///./app/index.js?")
+  }
+}, ["./app/index.js"]);
+```
+
+### `devtool: 'cheap-eval-source-map'`
+
+`cheap-eval-source-map` goes a step further and it includes base64 encoded version of the code as a data url. This includes only line data while losing column mappings.
+
+```javascript
+webpackJsonp([1, 2], {
+  "./app/index.js": function(module, exports) {
+    eval("console.log('Hello world');//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9hcHAvaW5kZXguanMuanMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9hcHAvaW5kZXguanM/MGUwNCJdLCJzb3VyY2VzQ29udGVudCI6WyJjb25zb2xlLmxvZygnSGVsbG8gd29ybGQnKTtcblxuXG4vLy8vLy8vLy8vLy8vLy8vLy9cbi8vIFdFQlBBQ0sgRk9PVEVSXG4vLyAuL2FwcC9pbmRleC5qc1xuLy8gbW9kdWxlIGlkID0gLi9hcHAvaW5kZXguanNcbi8vIG1vZHVsZSBjaHVua3MgPSAxIl0sIm1hcHBpbmdzIjoiQUFBQSIsInNvdXJjZVJvb3QiOiIifQ==")
+  }
+}, ["./app/index.js"]);
+```
+
+If you decode that base64 string, you will get output containing the mapping:
+
+```json
+{
+  "file": "./app/index.js.js",
+  "mappings": "AAAA",
+  "sourceRoot": "",
+  "sources": [
+    "webpack:///./app/index.js?0e04"
+  ],
+  "sourcesContent": [
+    "console.log('Hello world');\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./app/index.js\n// module id = ./app/index.js\n// module chunks = 1"
+  ],
+  "version": 3
+}
+```
+
+### `devtool: 'cheap-module-eval-source-map'`
+
+`cheap-module-eval-source-map` is the same idea, except with higher quality and lower performance:
+
+```javascript
+webpackJsonp([1, 2], {
+  "./app/index.js": function(module, exports) {
+    eval("console.log('Hello world');//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9hcHAvaW5kZXguanMuanMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vYXBwL2luZGV4LmpzPzIwMTgiXSwic291cmNlc0NvbnRlbnQiOlsiY29uc29sZS5sb2coJ0hlbGxvIHdvcmxkJyk7XG5cblxuLy8gV0VCUEFDSyBGT09URVIgLy9cbi8vIGFwcC9pbmRleC5qcyJdLCJtYXBwaW5ncyI6IkFBQUEiLCJzb3VyY2VSb290IjoiIn0=")
+  }
+}, ["./app/index.js"]);
+```
+
+Again, decoding the data reveals more:
+
+```json
+{
+  "file": "./app/index.js.js",
+  "mappings": "AAAA",
+  "sourceRoot": "",
+  "sources": [
+    "webpack:///app/index.js?2018"
+  ],
+  "sourcesContent": [
+    "console.log('Hello world');\n\n\n// WEBPACK FOOTER //\n// app/index.js"
+  ],
+  "version": 3
+}
+```
+
+In this particular case the difference between the options is minimal.
+
+### `devtool: 'eval-source-map'`
+
+`eval-source-map` is the highest quality option of the inline options. It's also the slowest one as it emits the most data:
+
+```javascript
+webpackJsonp([1, 2], {
+  "./app/index.js": function(module, exports) {
+    eval("console.log('Hello world');//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9hcHAvaW5kZXguanM/ZGFkYyJdLCJuYW1lcyI6WyJjb25zb2xlIiwibG9nIl0sIm1hcHBpbmdzIjoiQUFBQUEsUUFBUUMsR0FBUixDQUFZLGFBQVoiLCJmaWxlIjoiLi9hcHAvaW5kZXguanMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJjb25zb2xlLmxvZygnSGVsbG8gd29ybGQnKTtcblxuXG4vLyBXRUJQQUNLIEZPT1RFUiAvL1xuLy8gLi9hcHAvaW5kZXguanMiXSwic291cmNlUm9vdCI6IiJ9")
+  }
+}, ["./app/index.js"]);
+```
+
+This time around there's more mapping data available for the browser:
+
+```json
+{
+  "file": "./app/index.js.js",
+  "mappings": "AAAAA,QAAQC,GAAR,CAAY,aAAZ",
+  "names": [
+    "console",
+    "log"
+  ],
+  "sourceRoot": "",
+  "sources": [
+    "webpack:///./app/index.js?dadc"
+  ],
+  "sourcesContent": [
+    "console.log('Hello world');\n\n\n// WEBPACK FOOTER //\n// ./app/index.js"
+  ],
+  "version": 3
+}
+```
+
+## Separate Source Map Types
+
+Webpack can also generate production usage friendly source maps. These will end up in separate files ending with `.map` extension and will be loaded by the browser only when required. This way your users get good performance while it's easier for you to debug the application.
 
 `source-map` is a good default here. Even though it will take longer to generate the source maps this way, you will get the best quality. If you don't care about production source maps, you can simply skip the setting there and get better performance in return.
+
+### `devtool: 'cheap-source-map'`
+
+`cheap-source-map` is similar to the cheap options above. The result won't have column mappings. In addition, source maps from loaders, such as *css-loader*, won't be used.
+
+Examining the `.map` file reveals the following output in this case:
+
+```json
+{
+  "file": "app.9aff3b1eced1f089ef18.js",
+  "mappings": "AAAA",
+  "sourceRoot": "",
+  "sources": [
+    "webpack:///app.9aff3b1eced1f089ef18.js"
+  ],
+  "sourcesContent": [
+    "webpackJsonp([1,2],{\"./app/index.js\":function(o,n){console.log(\"Hello world\")}},[\"./app/index.js\"]);\n\n\n// WEBPACK FOOTER //\n// app.9aff3b1eced1f089ef18.js"
+  ],
+  "version": 3
+}
+```
+
+The original source maps to this information through a `//# sourceMappingURL=app.9aff3b1eced1f089ef18.js.map` kind of comment at its end.
+
+### `devtool: 'cheap-module-source-map'`
+
+`cheap-module-source-map` is the same as previous except source maps from loaders are simplified to a single mapping per line. It yields the following output in this case:
+
+```json
+{
+  "file": "app.9aff3b1eced1f089ef18.js",
+  "mappings": "AAAA",
+  "sourceRoot": "",
+  "sources": [
+    "webpack:///app.9aff3b1eced1f089ef18.js"
+  ],
+  "version": 3
+}
+```
+
+### `devtool: 'source-map'`
+
+`source-map` provides the best quality with the most complete result, but it is also the slowest option. The output reflect this:
+
+```json
+{
+  "file": "app.9aff3b1eced1f089ef18.js",
+  "mappings": "AAAAA,cAAc,EAAE,IAEVC,iBACA,SAAUC,EAAQC,GCHxBC,QAAQC,IAAI,kBDST",
+  "names": [
+    "webpackJsonp",
+    "./app/index.js",
+    "module",
+    "exports",
+    "console",
+    "log"
+  ],
+  "sourceRoot": "",
+  "sources": [
+    "webpack:///app.9aff3b1eced1f089ef18.js",
+    "webpack:///./app/index.js"
+  ],
+  "sourcesContent": [
+    "webpackJsonp([1,2],{\n\n/***/ \"./app/index.js\":\n/***/ (function(module, exports) {\n\nconsole.log('Hello world');\n\n/***/ })\n\n},[\"./app/index.js\"]);\n\n\n// WEBPACK FOOTER //\n// app.9aff3b1eced1f089ef18.js",
+    "console.log('Hello world');\n\n\n// WEBPACK FOOTER //\n// ./app/index.js"
+  ],
+  "version": 3
+}
+```
+
+### `devtool: 'hidden-source-map'`
+
+`hidden-source-map` is the same as `source-map` except it won't write references to the source maps to the source files. This is useful if you don't want to expose source maps to development tools directly while you want proper stack traces.
+
+T> [The official documentation](https://webpack.js.org/configuration/devtool/#devtool) contains more information about `devtool` options.
+
+## Other Source Map Options
 
 There are a couple of other options that affect source map generation:
 
