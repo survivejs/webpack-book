@@ -47,7 +47,6 @@ Backmatter.txt
 
 10_Appendices.md
 appendices/01_searching_with_react.md
-appendices/02_configuring_hmr_with_react.md
-appendices/03_writing_eslint_plugins.md
-appendices/04_customizing_eslint.md
-appendices/05_deploying.md
+appendices/02_writing_eslint_plugins.md
+appendices/03_customizing_eslint.md
+appendices/04_deploying.md

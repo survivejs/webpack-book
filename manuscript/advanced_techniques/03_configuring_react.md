@@ -2,9 +2,11 @@
 
 Facebook's [React](https://facebook.github.io/react/) is a popular alternative for developing web applications. Even if you don't use it, it can be valuable to understand how to configure it.
 
+I will discuss a couple of common ways first and then show you how to integrate React to the book project. You will also see how to enable hot module replacement with React using *react-hot-loader* 3 then. I will discuss more specific techniques, such as code splitting in React, after that.
+
 ## Get Started Fast with *create-react-app*
 
-[create-react-app](https://www.npmjs.com/package/create-react-app) encapsulates a lot of best practices related to developing React applications. It's particularly useful if you want to get started with a little project fast with minimal setup.
+The fastest way to get started with webpack and React is to use [create-react-app](https://www.npmjs.com/package/create-react-app). It encapsulates a lot of best practices and it is particularly useful if you want to get started with a little project fast with minimal setup.
 
 One of the main attractions of *create-react-app* is a feature known as *ejecting*. This means that instead of treating it as a project dependency, you'll get a full webpack setup out of it.
 
@@ -12,17 +14,17 @@ There's a gotcha, though. After you eject, you cannot go back to the dependency-
 
 ## Setting Up Babel with React
 
-The *Processing with Babel* chapter covers the essentials of using Babel with webpack. There's some React specific setup you can perform, though.
+The *Processing with Babel* chapter covers the essentials of using Babel with webpack. There's some React specific setup you should perform, though. Given most of React projects rely on a format known as [JSX](https://facebook.github.io/jsx/), you will have to enable through Babel.
 
-Most of React projects rely on a format known as [JSX](https://facebook.github.io/jsx/). It is a superset of JavaScript that allows you to mix XMLish syntax with JavaScript. A lot of people find this convenient as they get something that resembles what they know already while they can use the power of JavaScript.
+JSX is a superset of JavaScript that allows you to mix XMLish syntax with JavaScript. A lot of people find this convenient as they get something that resembles what they know already while they can use the power of JavaScript.
 
 Some React developers prefer to attach type annotations to their code using a language extension known as [Flow](http://flowtype.org/). The technology fits React well, but it's not restricted to it. [TypeScript](http://www.typescriptlang.org/) is another viable alternative. Both work with JSX.
 
 ### Configuring with Webpack
 
-Babel allows us to use JSX with React easily. Some people prefer to name their React components containing JSX using the `.jsx` suffix. Webpack can be configured to work with this convention. The benefit of doing this is that then your editor will be able to pick up the right syntax based on the file name.
+Babel allows us to use JSX with React easily. Some people prefer to name their React components containing JSX using the `.jsx` suffix. Webpack can be configured to work with this convention. The benefit of doing this is that then your editor will be able to pick up the right syntax based on the file name alone. Another option is to configure the editor to use JSX syntax for `.js` files as it's a superset of JavaScript.
 
-Webpack provides a field known as [resolve.extensions](https://webpack.js.org/guides/migrating/#resolve-extensions) that can be used for this purpose. If you want to allow imports like `import Button from './Button';` while naming the file as *Button.jsx*, set it up as follows:
+Webpack provides a field known as [resolve.extensions](https://webpack.js.org/guides/migrating/#resolve-extensions) that can be used for configuring its extension lookup. If you want to allow imports like `import Button from './Button';` while naming the file as *Button.jsx*, set it up as follows:
 
 **webpack.config.js**
 
@@ -69,6 +71,45 @@ You also have to connect the preset with Babel configuration. Here's the rough i
 }
 ```
 
+### Configuring with ESLint
+
+Using React with ESLint and JSX requires some extra work as well. [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react) does a part of the work, but also some ESLint configuration is needed.
+
+Install *eslint-plugin-react* to get started:
+
+```bash
+npm i eslint-plugin-react --save-dev
+```
+
+The suggested minimum configuration is as follows:
+
+**.eslintrc.js**
+
+```javascript
+module.exports = {
+  // Enable starter rules
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "allowImportExportEverywhere": true,
+    // Enable JSX
+    "ecmaFeatures": {
+      "jsx": true,
+    },
+  },
+  // Enable eslint-plugin-react
+  "plugins": [
+    "react",
+  ],
+  "rules": {
+    ...
+  },
+};
+```
+
+You can enable more specific rules based on your liking, but the `plugin:react/recommended` gives a good starting point. It is important to remember to enable JSX at the `parseOptions` as well.
+
 ## Rendering a React Application
 
 To get a simple React application running, you'll need to mount it to a DOM element first. [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) can come in handy here. It can be combined with [html-webpack-template](https://www.npmjs.com/package/html-webpack-template) or [html-webpack-template-pug](https://www.npmjs.com/package/html-webpack-template-pug) for more advanced functionality. You can also provide a custom template of your own to it.
@@ -81,12 +122,14 @@ Consider the following example:
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackTemplate = require('html-webpack-template');
 
+...
+
 const common = {
   ...
   plugins: [
     new HtmlWebpackPlugin({
       template: HtmlWebpackTemplate,
-      title: 'Demo app',
+      title: 'Webpack demo',
       appMountId: 'app', // Generate #app where to mount
       mobile: true, // Scale page on mobile
       inject: false, // html-webpack-template requires this to work
@@ -115,13 +158,174 @@ ReactDOM.render(
 
 It would be possible to extend the application from here. Depending on your tastes, you might want to name the file as *index.jsx* instead, but sticking with *index.js* can be acceptable too.
 
-T> Check out the *Configuring Hot Module Replacement with React* appendix to learn how to set up hot loading for React code with webpack and Babel.
+## Connecting React with the Project
+
+Follow the instructions above to attach Babel and ESLint to the project. Especially installing *babel-preset-react*, *eslint-plugin-react*, and altering *.babelrc* and *.eslintrc.js* is important.
+
+Webpack configuration needs some work as well given we need that mounting point for the application. Adjust the configuration as above and make sure you include *html-webpack-template* to the project.
+
+Given the project contains only React, you have to install *react-dom* to it (`npm i react-dom --save`). That will be needed for rendering the application to the DOM.
+
+The application should run the same way as before after these steps and it's ready for further work.
+
+## Configuring Hot Module Replacement with React
+
+Hot module replacement was one of the initial selling points of webpack and React. It relies on a solution known as [react-hot-loader](https://www.npmjs.com/package/react-hot-loader). The simplest way to enable it is to use a now deprecated Babel preset known as [babel-preset-react-hmre](https://www.npmjs.com/package/babel-preset-react-hmre). It works still, but there's another way.
+
+At the time of writing *react-hot-loader* version 3 is in beta. The setup is more complicated than using a preset, but this is the way to go at the moment. It requires changes to three places: Babel configuration, webpack configuration, and application. I'll cover these next.
+
+To get started, install the upcoming version of *react-hot-loader*:
+
+```bash
+npm i react-hot-loader@next --save-dev
+```
+
+### Setting Up Babel
+
+The Babel portion is simple:
+
+**.babelrc**
+
+```json
+{
+leanpub-start-delete
+  "plugins": ["syntax-dynamic-import"],
+leanpub-end-delete
+leanpub-start-insert
+  "plugins": [
+    "syntax-dynamic-import",
+    "react-hot-loader/babel"
+  ],
+leanpub-end-insert
+  "presets": [
+    [
+      "es2015",
+      {
+        "modules": false
+      }
+    ],
+    "react"
+  ]
+}
+```
+
+### Setting Up Webpack
+
+On webpack side, *react-hot-loader* requires an additional entry it uses to patch the running application. It is important the new entry runs first!
+
+**webpack.config.js**
+
+```javascript
+...
+
+module.exports = function(env) {
+  ...
+
+  return merge([
+    common,
+    {
+leanpub-start-insert
+      entry: {
+        // react-hot-loader has to run before app!
+        app: ['react-hot-loader/patch', PATHS.app],
+      },
+leanpub-end-insert
+      plugins: [
+        ...
+      ],
+    },
+    ...
+  ]);
+};
+```
+
+### Setting Up Application
+
+Compared to the earlier implementation, the basic idea is the same on application side. This time, however, something known as `AppContainer` provided by *react-hot-loader* has to be used. It performs the patching during development. To attach it to the application, adjust as follows:
+
+**app/index.js**
+
+```javascript
+import 'purecss';
+import './main.css';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Component from './component';
+import { AppContainer } from 'react-hot-loader';
+
+const render = App => {
+  ReactDOM.render(
+    <AppContainer><App /></AppContainer>,
+    document.getElementById('app')
+  );
+};
+
+render(Component);
+
+if (module.hot) {
+  module.hot.accept('./component', () => render(Component));
+}
+```
+
+To truly test the setup, a component is needed as well. In this case it's going to be a little counter so you can see how the hot replacement mechanism maintains the state:
+
+**app/component.js**
+
+```javascript
+import React from 'react';
+
+class Counter extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { amount: 0 };
+  }
+  render() {
+    return (
+      <div>
+        <spanm>Amount: {this.state.amount}</spanm>
+        <button onClick={() => this.setState(addOne)}>Add one</button>
+      </div>
+    );
+  }
+}
+
+const addOne = ({ amount }) => ({ amount: amount + 1 });
+
+export default Counter;
+```
+
+If you run the application after these changes and modify the aforementioned file, it should pick up changes without a hard refresh while retaining the amount.
 
 ## Babel-Based Optimizations for React
 
 [babel-react-optimize](https://github.com/thejameskyle/babel-react-optimize) implements a variety of React specific optimizations you may want to experiment with.
 
 [babel-plugin-transform-react-remove-prop-types](https://www.npmjs.com/package/babel-plugin-transform-react-remove-prop-types) is handy if you want to remove `propType` related code from your production build. It also allows component authors to generated code that's wrapped so that setting environment at `DefinePlugin` can kick in and give the same effect without the consumers having to use the plugin.
+
+## Configuring HMR with Redux
+
+In order to configure Redux reducers to support hot replacement, we need to implement webpack's hot module replacement protocol as before. To give you a rough implementation, consider the code below:
+
+```javascript
+...
+
+export default function configureStore(initialState) {
+  const store = createStoreWithMiddleware(rootReducer, initialState);
+
+  if(module.hot) {
+    // Enable webpack hot module replacement for reducers
+    module.hot.accept('../reducers', () => store.replaceReducer(reducers));
+  }
+
+  return store;
+}
+```
+
+The code doesn't do that much. It just waits for a change and then patches the code. The feasibility of patching depends on the underlying architecture. For a system like Redux, it is simple as it was designed to be patched. It might be harder to pull off for something else.
+
+T> You can find [a full implementation of the idea online](https://github.com/survivejs-demos/redux-demo).
+
 
 ## Using *react-lite* Instead of React for Production
 
