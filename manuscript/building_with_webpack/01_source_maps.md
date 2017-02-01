@@ -2,7 +2,7 @@
 
 ![Source maps in Chrome](images/sourcemaps.png)
 
-To improve the debuggability of the application, we can set up source maps for both code and styling. Source maps allow you to see exactly where an error was raised. This makes them particularly valuable during development.
+To improve the debuggability of an application, we can set up source maps for both code and styling. Source maps allow you to see exactly where an error was raised. They map the transformed source to its original form so that you can use browser tooling for debugging. This makes them particularly valuable during development.
 
 One approach is to simply skip source maps during development and rely on browser support of language features. This works particularly if you use ES6 without any extensions and develop using a modern browser. The great advantage of doing this is that you avoid all the problems related to source maps while gaining better performance.
 
@@ -18,9 +18,9 @@ T> It is a good idea to study the documentation of the loaders you are using to 
 
 ## Enabling Source Maps
 
-Webpack provides two ways to enable source maps. There's a shortcut field known as `devtool`. There's also a plugin that gives more options to tweak. We'll discuss the plugin briefly in the end of this chapter.
+Webpack provides two ways to enable source maps. There's a shortcut field known as `devtool`. There are also two plugins that give more options to tweak. We'll discuss the plugins briefly in the end of this chapter.
 
-To get started, we can wrap the basic idea within a configuration part. You can convert this to use the plugin later if you want:
+To get started, we can wrap the basic idea within a configuration part. You can convert this to use the plugins later if you want:
 
 **webpack.parts.js**
 
@@ -156,11 +156,13 @@ T> The [official documentation](https://webpack.js.org/configuration/output/#out
 
 W> If you are using any `UglifyJsPlugin` and want source maps, you need to enable `sourceMap: true` for the plugin. Otherwise, the result won't be what you might expect.
 
-## SourceMapDevToolPlugin
+## `SourceMapDevToolPlugin` and `EvalSourceMapDevToolPlugin`
 
-If you want more control over source map generation, it is possible to use the `SourceMapDevToolPlugin` instead. This way you can generate source maps only for the portions of the code you want while having strict control over the result. In case you use the plugin, you can skip `devtool` option altogether.
+If you want more control over source map generation, it is possible to use the `SourceMapDevToolPlugin` or `EvalSourceMapDevToolPlugin` instead. Latter is a more limited alternative, and as stated by its name, it is useful for generating `eval` based source maps.
 
-You could model a configuration part for the plugin like this (adapted from [the official documentation](https://webpack.github.io/docs/list-of-plugins.html#sourcemapdevtoolplugin)):
+Using `SourceMapDevToolPlugin` you can generate source maps only for the portions of the code you want while having strict control over the result. Using these plugins allows you to skip the `devtool` option altogether.
+
+You could model a configuration part using `SourceMapDevToolPlugin` like this (adapted from [the official documentation](https://webpack.github.io/docs/list-of-plugins.html#sourcemapdevtoolplugin)):
 
 ```javascript
 exports.generateSourceMaps = function(options) {
@@ -214,6 +216,8 @@ exports.generateSourceMaps = function(options) {
 ```
 
 Given webpack matches only `.js` and `.css` files by default for source maps, you can use `SourceMapDevToolPlugin` to overcome this issue. This can be achieved by passing a `test` pattern like `/\.(js|jsx|css)($|\?)/i`.
+
+`EvalSourceMapDevToolPlugin` accepts only `module` and `lineToLine` options as described above. Therefore it can be considered as an alias to `devtool: 'eval'` while allowing a notch more flexibility.
 
 ## Using Dependency Source Maps
 
