@@ -254,7 +254,6 @@ module.exports = {
           {
             loader: 'postcss-loader',
             options: {
-              ident: 'postcss',
               plugins: function () {
                 return [
                   require('autoprefixer'),
@@ -274,8 +273,6 @@ For this to work, you will have to remember to include [autoprefixer](https://ww
 
 T> PostCSS supports also *postcss.config.js* based configuration. It relies on [cosmiconfig](https://www.npmjs.com/package/cosmiconfig) internally. This means it can pick up configuration from your *package.json*, JSON or YAML, or that you can even push your configuration below an arbitrary directory. *cosmiconfig* will find it. The problem is that this style is harder to compose than inline configuration.
 
-W> It is important to set the `ident` field for the PostCSS loader options as otherwise it will fail to look up the plugins. This is a webpack related restriction that has to do with function serialization.
-
 ### cssnext
 
 ![cssnext](images/cssnext.jpg)
@@ -287,7 +284,6 @@ W> It is important to set the `ident` field for the PostCSS loader options as ot
 {
   loader: 'postcss-loader',
   options: {
-    ident: 'postcss',
     plugins: function () {
       return [
         require('cssnext'),
