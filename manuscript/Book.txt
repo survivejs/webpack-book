@@ -26,7 +26,7 @@ understanding_loaders/03_loading_fonts.md
 understanding_loaders/04_writing_loaders.md
 
 07_Building_with_Webpack.md
-building_with_webpack/01_enabling_source_maps.md
+building_with_webpack/01_source_maps.md
 building_with_webpack/02_splitting_bundles.md
 building_with_webpack/03_code_splitting.md
 building_with_webpack/04_processing_with_babel.md

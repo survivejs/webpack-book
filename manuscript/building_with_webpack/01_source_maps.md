@@ -1,4 +1,4 @@
-# Enabling Source Maps
+# Source Maps
 
 ![Source maps in Chrome](images/sourcemaps.png)
 
