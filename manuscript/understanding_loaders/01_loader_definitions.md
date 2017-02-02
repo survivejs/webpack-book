@@ -91,19 +91,43 @@ Based on the right to left rule, the example can be split up while keeping it eq
 },
 ```
 
-## Passing Parameters to a Loader
+### Enforcing Order
 
-The query format allows passing parameters as well:
+Even though it would be possible to develop an arbitrary configuration using the rule above, it can be convenient to be able to force certain rules to be applied before or after regular ones. This is where a field known as `enforce` can come in handy. It can be set to either `pre` or `post` to push processing either before or after other loaders.
+
+We used the idea earlier in the *Linting JavaScript* chapter. Linting is a good example as the build should fail before it does anything else. Using `enforce: 'post'` is rarer and it would imply you want to perform a check against the built source. Performing analysis against the built source is one potential example.
+
+To borrow the linting example, the basic syntax goes like this:
 
 ```javascript
 {
+  // Conditions
+  test: /\.js$/,
+  enforce: 'pre',
+
+  // Actions
+  loader: 'eslint-loader',
+},
+```
+
+It would be possible to write the same configuration without `enforce` if you chained the declaration with other loaders related to the `test` carefully. Using `enforce` removes the necessity for that allows you to split loader execution into separate stages that are easier to compose.
+
+## Passing Parameters to a Loader
+
+There's a query format that allows passing parameters to loaders:
+
+```javascript
+{
+  // Conditions
   test: /\.js$/,
   include: PATHS.app,
+
+  // Actions
   use: 'babel-loader?cacheDirectory,presets[]=react,presets[]=es2015',
 },
 ```
 
-This isn't very readable and it takes a while to parse. It is good to note that this style of configuration works in entries and source imports too. Webpack will pick it up. There are special cases where the format may come in handy, but often you are better off using the other alternatives.
+It is good to note that this style of configuration works in entries and source imports too as webpack will pick it up. There are special cases where the format may come in handy, but often you are better off using more readable alternatives.
 
 It is preferable to use the combination of `loader` and `options` fields either like this:
 
@@ -122,7 +146,7 @@ It is preferable to use the combination of `loader` and `options` fields either 
 },
 ```
 
-You can also go through `use` like this:
+Or you can also go through `use` like this:
 
 ```javascript
 {
