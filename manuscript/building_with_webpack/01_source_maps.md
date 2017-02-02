@@ -272,6 +272,8 @@ The original source maps to this information through a `//# sourceMappingURL=app
 }
 ```
 
+W> As you can see from the output, it is missing `sourcesContent`. This is a [bug related to `cheap-module-source-map` and minification](https://github.com/webpack/webpack/issues/4176) and a reason to avoid this option if you want both source maps and minification.
+
 ### `devtool: 'source-map'`
 
 `source-map` provides the best quality with the most complete result, but it is also the slowest option. The output reflect this:
