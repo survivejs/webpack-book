@@ -12,7 +12,7 @@ T> This same technique can be used with other assets, like templates, too.
 
 W> It can be potentially dangerous to use inline styles in production as it represents an attack vector. Favor `ExtractTextPlugin` and similar solutions in production usage. In limited contexts inlining a small amount of CSS can be a viable option to speed up the initial load (less requests).
 
-## Setting Up *extract-text-webpack-plugin*
+## Setting Up `ExtractTextPlugin`
 
 It will take some configuration to make it work. Install the plugin:
 
@@ -20,7 +20,13 @@ It will take some configuration to make it work. Install the plugin:
 npm i extract-text-webpack-plugin@beta --save-dev
 ```
 
-*extract-text-webpack-plugin* includes a loader, `ExtractTextPlugin.extract` that marks the assets to be extracted. Then a plugin will perform its work based on this annotation. The idea looks like this:
+`ExtractTextPlugin` includes a loader, `ExtractTextPlugin.extract` that marks the assets to be extracted. Then a plugin will perform its work based on this annotation.
+
+`ExtractTextPlugin.extract` accepts `loader` and `fallbackLoader` definitions. `ExtractTextPlugin` processes content through `loader` only from **initial chunks** by default and it uses `fallbackLoader` for the rest. This means it won't touch any split bundles unless `allChunks: true` is set true. The *Splitting Bundles* chapter digs into greater detail.
+
+It is important to note that if you wanted to extract CSS from a more involved format, like SASS, you would have to pass multiple loaders to the `loader` option. Both `loader` and `fallbackLoader` a loader (string), a loader definition, or an array of loader definitions.
+
+The idea looks like this:
 
 **webpack.parts.js**
 
@@ -61,8 +67,6 @@ leanpub-end-insert
 ```
 
 That `[name]` placeholder will use the the name of the entry where the CSS is referred to. Placeholders and the overall idea are discussed in greater detail in the *Adding Hashes to Filenames* chapter.
-
-It is important to note that if you wanted to extract CSS from a more involved format, like SASS, you would have to pass multiple loaders to the `loader` option. Both `loader` and `fallbackLoader` a loader (string), a loader definition, or an array of loader definitions.
 
 T> If you wanted to output the resulting file to a specific directory, you could do it like this: `new ExtractTextPlugin('styles/[name].css')`.
 
