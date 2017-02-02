@@ -362,6 +362,7 @@ T> The aforementioned `env` technique can be used to apply Babel presets and plu
 ## Babel-Based Optimizations for React
 
 There are a few Babel-based optimizations for React you may consider enabling especially during production usage:
+
 * [babel-react-optimize](https://github.com/thejameskyle/babel-react-optimize) implements a variety of React specific optimizations you may want to experiment with.
 * [babel-plugin-transform-react-remove-prop-types](https://www.npmjs.com/package/babel-plugin-transform-react-remove-prop-types) allows you to remove `propType` related code from your production build. It also allows component authors to generate code that's wrapped so that setting environment at `DefinePlugin` can kick in as discussed in the book.
 
