@@ -198,6 +198,8 @@ One way to resolve eliminate the warning would be to alias the package to a sour
 
 T> There's a [webpack issue](https://github.com/webpack/webpack/issues/1617) that discusses the problem in greater detail.
 
+W> Disabling warnings like this one should be the last measure as doing it can hide underlying issues. Do this only if you know what you are doing and consider alternatives first.
+
 ## Conclusion
 
 Webpack can consume most npm packages without a hitch. Sometimes, though, some patching might be required. Fortunately, its resolution mechanism is patchable enough and you can modify the way it brings source to your project if needed.
