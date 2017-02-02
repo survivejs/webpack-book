@@ -34,7 +34,11 @@ vendor.js.map     167 kB       2  [emitted]  vendor
 
 ## Enabling a Performance Budget
 
-Webpack provides a feature known as a **performance budget**. The idea is that it will give your build size constraint which it has to follow. You can configure it per entry and asset. It can terminate entire build if the budget isn't met and you can also run it in warning mode. Adjust the configuration like this:
+Webpack provides a feature known as a **performance budget**. The idea is that it will give your build size constraint which it has to follow. The feature is disabled by default, but if enabled it will default to 250 kB limit per entries and assets. Note that the calculation includes extracted chunks to entry calculation.
+
+Performance budget can be configured to provide warnings or errors. If a budget isn't met and it has been configured to emit an error, it would terminate the entire build.
+
+To integrate the feature to the project, adjust the configuration like this:
 
 **webpack.config.js**
 
@@ -48,9 +52,9 @@ module.exports = function(env) {
 leanpub-start-insert
       {
         performance: {
-          hints: 'warning', // 'error' or false too
-          maxEntrypointSize: 100000, // in kB
-          maxAssetSize: 50000, // in kB
+          hints: 'warning', // 'error' or false are valid too
+          maxEntrypointSize: 100000, // in bytes
+          maxAssetSize: 50000, // in bytes
         },
       },
 leanpub-end-insert

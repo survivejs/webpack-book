@@ -55,9 +55,9 @@ module.exports = function(env) {
       common,
       {
         performance: {
-          hints: 'warning', // 'error' or false too
-          maxEntrypointSize: 200000, // in kB
-          maxAssetSize: 200000, // in kB
+          hints: 'warning', // 'error' or false are valid too
+          maxEntrypointSize: 200000, // in bytes
+          maxAssetSize: 200000, // in bytes
         },
 leanpub-start-insert
         output: {
@@ -147,9 +147,9 @@ module.exports = function(env) {
       common,
       {
         performance: {
-          hints: 'warning', // 'error' or false too
-          maxEntrypointSize: 100000, // in kB
-          maxAssetSize: 50000, // in kB
+          hints: 'warning', // 'error' or false are valid too
+          maxEntrypointSize: 100000, // in bytes
+          maxAssetSize: 50000, // in bytes
         },
         output: {
           chunkFilename: 'scripts/[chunkhash].js',
@@ -317,9 +317,9 @@ module.exports = function(env) {
       common,
       {
         performance: {
-          hints: 'warning', // 'error' or false too
-          maxEntrypointSize: 100000, // in kB
-          maxAssetSize: 50000, // in kB
+          hints: 'warning', // 'error' or false are valid too
+          maxEntrypointSize: 100000, // in bytes
+          maxAssetSize: 50000, // in bytes
         },
         output: {
           chunkFilename: 'scripts/[chunkhash].js',
