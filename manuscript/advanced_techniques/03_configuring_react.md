@@ -287,7 +287,7 @@ class Counter extends React.Component {
   render() {
     return (
       <div>
-        <spanm>Amount: {this.state.amount}</spanm>
+        <span>Amount: {this.state.amount}</span>
         <button onClick={() => this.setState(addOne)}>Add one</button>
       </div>
     );
