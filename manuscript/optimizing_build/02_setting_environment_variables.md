@@ -40,7 +40,7 @@ if ('foobar' === 'bar') {
 }
 ```
 
-Further analysis shows that `'bar' === 'bar'` equals `true` so a minifier gives us:
+Further analysis shows that `'foobar' === 'bar'` equals `false` so a minifier gives us:
 
 ```javascript
 var foo;
