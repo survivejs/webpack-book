@@ -6,7 +6,7 @@ Webpack provides **placeholders** for this purpose. These strings are used to at
 
 * `[path]` - Returns the file path.
 * `[name]` - Returns the file name.
-* `[ext]` - Returns the extension.
+* `[ext]` - Returns the extension. This works for most available fields. `ExtractTextPlugin` is a notable exception to this rule.
 * `[hash]` - Returns the build hash. If any portion of the build changes, this will change as well.
 * `[chunkhash]` - Returns an entry chunk specific hash. Each `entry` defined at the configuration receives a hash of own. If any portion of the entry changes, the hash changes as well. This is more granular than `[hash]` by definition.
 * `[contenthash]` - Returns a hash specific to content. This is available for `ExtractTextPlugin` only and is the most specific option available.
