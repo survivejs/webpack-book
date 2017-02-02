@@ -6,7 +6,7 @@ This issue can be resolved either by using a webpack plugin or solving it outsid
 
 I will show you how to solve this issue using webpack next.
 
-## Setting Up *clean-webpack-plugin*
+## Setting Up `CleanWebpackPlugin`
 
 Install the [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin) first:
 
