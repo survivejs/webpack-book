@@ -201,6 +201,29 @@ Perhaps the greatest thing about Babel is that it's possible to extend with pres
 
 T> It is possible to connect Babel with Node.js through [babel-register](https://www.npmjs.com/package/babel-register) or [babel-cli](https://www.npmjs.com/package/babel-cli). These packages can be handy if you want to execute your code through Babel without using webpack.
 
+## Enabling Presets and Plugins per Environment
+
+Given it is not a good idea to enable certain presets and plugins for a production build, Babel provides means to control which presets and plugins are used per environment through its [env option](https://babeljs.io/docs/usage/babelrc/#env-option). `env` checks both `NODE_ENV` and `BABEL_ENV` and functionality to your build based on that. If `BABEL_ENV` is set, it will override any possible `NODE_ENV`. Consider the example below:
+
+```json
+{
+  ...
+  "env": {
+    "development": {
+      "plugins": [
+        "react-hot-loader/babel"
+      ]
+    }
+  }
+}
+```
+
+Note that any shared presets and plugins are available to all targets still. `env` allows you to specialize your Babel configuration further.
+
+T> The way `env` works is subtle. Consider logging `env` and make sure it matches your Babel configuration or otherwise the functionality you expect might not get applied to your build.
+
+T> The technique is used in the *Configuring React* to enable the Babel portion of *react-hot-loader* for development target only.
+
 ## Setting Up TypeScript
 
 Microsoft's [TypeScript](http://www.typescriptlang.org/) is a compiled language that follows a similar setup as Babel. The neat thing is that in addition to JavaScript, it can emit type definitions. A good editor can pick those up and provide enhanced editing experience. Stronger typing is useful for development as it becomes easier to state your type contracts.

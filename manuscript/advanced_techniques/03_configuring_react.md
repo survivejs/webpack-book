@@ -243,7 +243,7 @@ leanpub-end-insert
 
 T> You can include `react-dom` entries at `parts.extractBundles` to push it to the vendor bundle assuming you refer to packages by their name.
 
-### Setting Up Application
+### Setting Up the Application
 
 Compared to the earlier implementation, the basic idea is the same on application side. This time, however, something known as `AppContainer` provided by *react-hot-loader* has to be used. It performs the patching during development. To attach it to the application, adjust as follows:
 
@@ -301,11 +301,69 @@ export default Counter;
 
 If you run the application after these changes and modify the aforementioned file, it should pick up changes without a hard refresh while retaining the amount.
 
+### Removing *react-hot-loader* Related Code from the Production Output
+
+If you build the application (`npm run build`) and examine the output, you might spot references to `__REACT_HOT_LOADER__` there. This is because of the Babel setup. It will use `react-hot-loader/babel` plugin regardless of the build target. In order to overcome this slight annoyance, we should configure babel to apply the plugin only when we are developing.
+
+Babel provides an [env option](https://babeljs.io/docs/usage/babelrc/#env-option) for this purpose. It respects both `NODE_ENV` and `BABEL_ENV` environment variables. If `BABEL_ENV` is set, it will receive precedence. To fix the issue, we can push the problematic Babel plugin behind a development specific `env` while controlling its behavior within webpack configuration by setting `BABEL_ENV`.
+
+The webpack part of the fix is simple. Adjust like this:
+
+**webpack.config.js**
+
+```javascript
+...
+
+module.exports = function(env) {
+leanpub-start-insert
+  process.env.BABEL_ENV = env;
+leanpub-end-insert
+
+  ...
+};
+```
+
+Babel will now receive the target we pass to webpack allowing us to fix the behavior. Tweak Babel setup so it matches the fields below. The key part is in pushing `react-hot-loader/patch` below `env`:
+
+**.babelrc**
+
+```json
+{
+  "plugins": [
+    "syntax-dynamic-import"
+  ],
+  "presets": [
+    [
+      "es2015",
+      {
+        "modules": false
+      }
+    ],
+    "react"
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "react-hot-loader/babel"
+      ]
+    }
+  }
+}
+```
+
+The development setup should work after this change still. If you examine the build output, you should notice it's missing the aforementioned references to `__REACT_HOT_LOADER__`.
+
+There is one more problem still. The source contains some references still. This is a [bug in react-hot-loader](https://github.com/gaearon/react-hot-loader/issues/471) as it has been built so that it loses information that's valuable for a bundler.
+
+It is possible to work around the issue by implementing a module chooser pattern as described in the *Setting Environment Variables* chapter. The idea is that `AppContainer` provided by *react-hot-loader* would be mocked with a dummy implementation during production usage. This is what *react-hot-loader* should so itself.
+
+T> The aforementioned `env` technique can be used to apply Babel presets and plugins per environment. You could enable additional checks and logging during development this way. See the *Processing with Babel* chapter for more information.
+
 ## Babel-Based Optimizations for React
 
-[babel-react-optimize](https://github.com/thejameskyle/babel-react-optimize) implements a variety of React specific optimizations you may want to experiment with.
-
-[babel-plugin-transform-react-remove-prop-types](https://www.npmjs.com/package/babel-plugin-transform-react-remove-prop-types) is handy if you want to remove `propType` related code from your production build. It also allows component authors to generated code that's wrapped so that setting environment at `DefinePlugin` can kick in and give the same effect without the consumers having to use the plugin.
+There are a few Babel-based optimizations for React you may consider enabling especially during production usage:
+* [babel-react-optimize](https://github.com/thejameskyle/babel-react-optimize) implements a variety of React specific optimizations you may want to experiment with.
+* [babel-plugin-transform-react-remove-prop-types](https://www.npmjs.com/package/babel-plugin-transform-react-remove-prop-types) allows you to remove `propType` related code from your production build. It also allows component authors to generate code that's wrapped so that setting environment at `DefinePlugin` can kick in as discussed in the book.
 
 ## Configuring HMR with Redux
 
