@@ -29,7 +29,7 @@ To get started, we can wrap the basic idea within a configuration part. You can 
 ```javascript
 ...
 
-exports.generateSourceMaps = function(type) {
+exports.generateSourceMaps = function({ type }) {
   return {
     devtool: type,
   };
@@ -54,7 +54,7 @@ module.exports = function(env) {
     return merge([
       common,
 leanpub-start-insert
-      parts.generateSourceMaps('source-map'),
+      parts.generateSourceMaps({ type: 'source-map' }),
 leanpub-end-insert
       parts.lintJavaScript({ paths: PATHS.app }),
       ...
@@ -67,7 +67,7 @@ leanpub-end-insert
       ...
     },
 leanpub-start-insert
-    parts.generateSourceMaps('eval-source-map'),
+    parts.generateSourceMaps({ type: 'eval-source-map' }),
 leanpub-end-insert
     parts.devServer({
       // Customize host/port here if needed
@@ -348,12 +348,9 @@ Using `SourceMapDevToolPlugin` you can generate source maps only for the portion
 You could model a configuration part using `SourceMapDevToolPlugin` like this (adapted from [the official documentation](https://webpack.github.io/docs/list-of-plugins.html#sourcemapdevtoolplugin)):
 
 ```javascript
-exports.generateSourceMaps = function(options) {
-  const test = options.test;
-  const include = options.include;
-  const separateSourceMaps = options.separateSourceMaps;
-  const columnMappings = options.columnMappings;
-
+exports.generateSourceMaps = function({
+  test, include, separateSourceMaps, columnMappings
+}) {
   // Enable functionality as you want to expose it
   return {
     plugins: [
