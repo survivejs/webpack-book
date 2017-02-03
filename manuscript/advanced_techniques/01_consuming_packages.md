@@ -200,6 +200,14 @@ T> There's a [webpack issue](https://github.com/webpack/webpack/issues/1617) tha
 
 W> Disabling warnings like this one should be the last measure as doing it can hide underlying issues. Do this only if you know what you are doing and consider alternatives first.
 
+## Getting Insights on Packages
+
+Even though it's easy to consume packages through npm, there are times when it's useful to have more information available. npm provides `npm info <package>` command for basic queries. You can use it to check the metadata associated to packages while figuring out version related information.
+
+A tool known as [package-config-checker](https://www.npmjs.com/package/package-config-checker) goes a step further. It allows you to understand better which packages of your project have updated recently and it provides means to get insight into your dependencies. It can reveal which packages could use download size related improvements for example.
+
+A service known as [npms.io](https://npms.io/) provides a better search for npm. The basic search has been integrated to [npmjs.org](https://www.npmjs.com/), but npms.io can still be interesting especially because they expose their data through [a public API](https://api-docs.npms.io/) you can query programmatically.
+
 ## Conclusion
 
 Webpack can consume most npm packages without a hitch. Sometimes, though, some patching might be required. Fortunately, its resolution mechanism is patchable enough and you can modify the way it brings source to your project if needed.
