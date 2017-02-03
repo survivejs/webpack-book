@@ -23,7 +23,6 @@ handling_styles/04_linting.md
 understanding_loaders/01_loader_definitions.md
 understanding_loaders/02_loading_images.md
 understanding_loaders/03_loading_fonts.md
-understanding_loaders/04_writing_loaders.md
 
 07_Building_with_Webpack.md
 building_with_webpack/01_source_maps.md
@@ -44,9 +43,14 @@ advanced_techniques/01_consuming_packages.md
 advanced_techniques/02_authoring_packages.md
 advanced_techniques/03_configuring_react.md
 
+10_Extending_Webpack.md
+
+extending_webpack/01_loaders.md
+extending_webpack/02_plugins.md
+
 Backmatter.txt
 
-10_Appendices.md
+11_Appendices.md
 appendices/01_searching_with_react.md
 appendices/02_writing_eslint_plugins.md
 appendices/03_customizing_eslint.md
