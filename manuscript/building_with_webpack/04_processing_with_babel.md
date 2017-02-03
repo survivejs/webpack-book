@@ -126,7 +126,7 @@ At a minimum you will need a package known as [babel-preset-es2015](https://www.
 npm i babel-plugin-syntax-dynamic-import babel-preset-es2015 --save-dev
 ```
 
-To make Babel aware of them, we need to write a *.babelrc*. Given webpack supports ES6 modules out of the box, we can tell Babel to skip processing them:
+To make Babel aware of them, we need to write a *.babelrc*. Given webpack supports ES6 modules out of the box, we can tell Babel to skip processing them. Skipping this step would break webpack's HMR mechanism although the production build would still work.
 
 **.babelrc**
 
