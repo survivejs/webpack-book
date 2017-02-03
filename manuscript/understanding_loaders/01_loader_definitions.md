@@ -216,8 +216,8 @@ In the book setup we compose configuration on a higher level. Another option to 
 
     // Do something else in production environment now
     ...
-  }
-}
+  },
+},
 ```
 
 Carefully applied, this technique can be useful and allow different ways of composition.
