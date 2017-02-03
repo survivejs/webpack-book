@@ -102,42 +102,91 @@ Furthermore, it's possible to manipulate `publicPath` and override the default p
 
 ## Using Font Awesome
 
-The ideas above can be wrapped into a configuration part that allows you to work with [Font Awesome](https://www.npmjs.com/package/font-awesome). Here's the idea:
+The ideas above can be applied with [Font Awesome](https://www.npmjs.com/package/font-awesome). It's a collection of high quality font icons you can refer to using a CSS classes. To integrate it to the book project, install it first:
+
+```bash
+npm i font-awesome --save
+```
+
+Given Font Awesome doesn't define a `main` field in its *package.json* file, we'll need to point to it through a direct path instead of package name alone.
+
+Refer to Font Awesome as follows:
+
+**app/index.js**
 
 ```javascript
-exports.loadFonts = function(options) {
-  const name = (options && options.name) || 'fonts/[hash].[ext]';
+leanpub-start-insert
+import 'font-awesome/css/font-awesome.css';
+leanpub-end-insert
 
+...
+```
+
+T> The `import` could be cleaned up as `import 'font-awesome'` by setting up a `resolve.alias`. The *Consuming Packages* chapter discusses this idea in greater detail.
+
+If you run the project now (`npm start`), webpack should give a long list of errors like this:
+
+```bash
+ERROR in ./~/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0
+Module parse failed: .../node_modules/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0 Unexpected character '' (1:4)
+You may need an appropriate loader to handle this file type.
+(Source code omitted for this binary file)
+ @ ./~/css-loader!./~/font-awesome/css/font-awesome.css 6:479-532
+ @ ./~/font-awesome/css/font-awesome.css
+ @ ./app/index.js
+ @ multi (webpack)-dev-server/client?http://localhost:8080 webpack/hot/only-dev-server react-hot-loader/patch ./app
+```
+
+This is expected as we haven't configured loaders for any of Font Awesome fonts yet and webpack doesn't know what to do with the files in question. To match the files and map them through *file-loader*, attach the following snippet to the project:
+
+**webpack.parts.js**
+
+```javascript
+...
+
+exports.loadFonts = function({ include, exclude, options } = {}) {
   return {
     module: {
       rules: [
         {
           // Capture eot, ttf, svg, woff, and woff2
           test: /\.(woff2?|ttf|svg|eot)(\?v=\d+\.\d+\.\d+)?$/,
-          loader: 'file-loader',
-          options: {
-            name: name,
+          include: include,
+          exclude: exclude,
+
+          use: {
+            loader: 'file-loader',
+            options: options,
           },
         },
       ],
     },
   };
 };
-```
-
-To include Font Awesome into your project, install it (`npm i font-awesome -S`) and then refer to it through your code. Given the distribution version is missing *package.json* `main`, you will have to point at *node_modules/font-awesome/css/font-awesome.css*. See the *Consuming Packages* chapter for further techniques.
-
-If we wanted to integrate Font Awesome to our project, we would have to perform the following modifications:
-
-**app/index.js**
-
-```javascript
-leanpub-start-insert
-import '../node_modules/font-awesome/css/font-awesome.css';
-leanpub-end-insert
 
 ...
 ```
+
+The idea is the same as for loading images. This time around we match font files. If you wanted, you could refactor the commonality to a function to share between the two.
+
+We still need to connect the above with the main configuration:
+
+**webpack.config.js**
+
+```javascript
+...
+
+const common = merge([
+  ...
+leanpub-start-insert
+  parts.loadFonts(),
+leanpub-end-insert
+]);
+
+...
+```
+
+If you run the project again (`npm start`), it should run without any errors. To see Font Awesome in action, adjust the application as follows:
 
 **app/component.js**
 
@@ -145,16 +194,14 @@ leanpub-end-insert
 export default function () {
   const element = document.createElement('h1');
 
-  element.className = 'fa fa-spock-o fa-1g';
+  element.className = 'fa fa-hand-spock-o fa-1g';
   element.innerHTML = 'Hello world';
 
   return element;
 }
 ```
 
-T> The `import` could be cleaned up as `import 'font-awesome'` by setting up a `resolve.alias`. The *Consuming Packages* chapter discusses this idea in greater detail.
-
-T> Another option would be to use [font-awesome-loader](https://www.npmjs.com/package/font-awesome-loader). The approach above is more generic and can be used with other libraries as well.
+This isn't the only way to use Font Awesome. [font-awesome-loader](https://www.npmjs.com/package/font-awesome-loader) encapsulates the same ideas and allows customization of Font Awesome. The approach above is more generic and can be used with other libraries as well.
 
 ## Conclusion
 

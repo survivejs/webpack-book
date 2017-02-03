@@ -250,6 +250,7 @@ Compared to the earlier implementation, the basic idea is the same on applicatio
 **app/index.js**
 
 ```javascript
+import 'font-awesome/css/font-awesome.css';
 import 'purecss';
 import './main.css';
 import React from 'react';
@@ -287,7 +288,9 @@ class Counter extends React.Component {
   render() {
     return (
       <div>
-        <span>Amount: {this.state.amount}</span>
+        <span className="fa fa-hand-spock-o fa-1g">
+          Amount: {this.state.amount}
+        </span>
         <button onClick={() => this.setState(addOne)}>Add one</button>
       </div>
     );
