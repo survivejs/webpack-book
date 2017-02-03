@@ -39,7 +39,7 @@ leanpub-end-insert
 ...
 
 leanpub-start-insert
-exports.extractCSS = function({ include, exclude } = {}) {
+exports.extractCSS = function({ include, exclude, loader }) {
   return {
     module: {
       rules: [
@@ -50,7 +50,7 @@ exports.extractCSS = function({ include, exclude } = {}) {
 
           use: ExtractTextPlugin.extract({
             fallbackLoader: 'style-loader',
-            loader: 'css-loader',
+            loader: loader,
           }),
         },
       ],
@@ -83,7 +83,7 @@ module.exports = function(env) {
       common,
       parts.lintJavaScript({ include: PATHS.app }),
 leanpub-start-insert
-      parts.extractCSS(),
+      parts.extractCSS({ loader: 'css-loader' }),
 leanpub-end-insert
     ]);
   }

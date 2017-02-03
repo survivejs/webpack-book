@@ -118,7 +118,7 @@ module.exports = function(env) {
     return merge([
       common,
       parts.lintJavaScript({ include: PATHS.app }),
-      parts.extractCSS(),
+      parts.extractCSS({ loader: 'css-loader' }),
 leanpub-start-insert
       parts.purifyCSS({
         paths: glob.sync(path.join(PATHS.app, '*'))

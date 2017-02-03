@@ -82,7 +82,7 @@ If we used `chunkhash` for the extracted CSS as well, this would lead to problem
 ```javascript
 ...
 
-exports.extractCSS = function({ include, exclude } = {}) {
+exports.extractCSS = function({ include, exclude, loader }) {
   return {
     module: {
       ...
