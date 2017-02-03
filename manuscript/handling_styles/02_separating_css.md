@@ -114,9 +114,93 @@ Now our styling has been pushed to a separate CSS file. Thus, our JavaScript bun
 
 T> If you are getting `Module build failed: CssSyntaxError:` error, make sure your `common` configuration doesn't have a CSS-related section set up.
 
+## Autoprefixing Output
+
+It can be difficult to remember which vendor prefixes you have to use for specific CSS rules to support a large variety of users. This is where a technique known as **autoprefixing** comes in. It can be enabled through PostCSS and the [autoprefixer](https://www.npmjs.com/package/autoprefixer) plugin. *autoprefixer* uses [Can I Use](http://caniuse.com/) service to figure out which rules should be prefixed and its behavior can be tuned further.
+
+Achieving autoprefixing takes a small addition to the current setup. Install *autoprefixer* first:
+
+```bash
+npm i autoprefixer --save-dev
+```
+
+Add a fragment enabling autoprefixing like this:
+
+**webpack.parts.js**
+
+```javascript
+...
+
+exports.autoprefix = function() {
+  return {
+    loader: 'postcss-loader',
+    options: {
+      plugins: function () {
+        return [
+          require('autoprefixer'),
+        ];
+      },
+    },
+  };
+};
+```
+
+To connect the loader with `ExtractTextPlugin`, hook it up as follows:
+
+**webpack.config.js**
+
+```javascript
+...
+
+module.exports = function(env) {
+  if (env === 'production') {
+    return merge([
+      common,
+      parts.lintJavaScript({ include: PATHS.app }),
+leanpub-start-delete
+      parts.extractCSS({ loader: 'css-loader' }),
+leanpub-end-delete
+leanpub-start-insert
+      parts.extractCSS({
+        loader: ['css-loader', parts.autoprefix()],
+      }),
+leanpub-end-insert
+    ]);
+  }
+
+  ...
+};
+```
+
+To confirm that the setup works, we should have something to autoprefix. Adjust the CSS like this:
+
+**app/main.css**
+
+```css
+body {
+  background: cornsilk;
+leanpub-start-insert
+  display: flex;
+leanpub-end-insert
+}
+```
+
+If you build the application now (`npm run build`) and examine the built CSS, you should be able to find a declaration like this there:
+
+```css
+body {
+  background: cornsilk;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+```
+
+As you can see, autoprefixing expands the rules so we don't have to remember to do that.
+
 ## Managing Styles Outside of JavaScript
 
-Even though referring to styling through JavaScript and then bundling is a valid option, it is possible to achieve the same result through an `entry` and [globbinb](https://www.npmjs.com/package/glob). The basic idea goes like this:
+Even though referring to styling through JavaScript and then bundling is a valid option, it is possible to achieve the same result through an `entry` and [globbing](https://www.npmjs.com/package/glob). The basic idea goes like this:
 
 ```javascript
 ...
