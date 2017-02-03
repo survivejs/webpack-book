@@ -79,9 +79,8 @@ I've annotated a part of *package.json* of my [React component boilerplate](http
   /* Entry point (defaults to index.js) */
   "main": "dist-modules",
 
-  /* ES6 entry points for bundlers to pick up */
+  /* ES6 entry point for bundlers to pick up */
   /* This assumes only standard features are used! */
-  "jsnext:main": "./src",
   "module": "./src",
 
   /* Package dependencies needed to use it (peer deps can work too, see below) */
