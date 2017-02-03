@@ -44,6 +44,79 @@ T> If you want to output your images below a specific directory, set it up like 
 
 W> Be careful not to apply both loaders on images at the same time! Use the `include` field for further control if *url-loader* `limit` isn't enough.
 
+## Integrating Images to the Project
+
+The ideas above can be wrapped in a small helper that can be integrated to the book project. To get started, install the dependencies:
+
+```bash
+npm i file-loader url-loader --save-dev
+```
+
+The functionality can be wrapped in a little helper:
+
+**webpack.parts.js**
+
+```javascript
+exports.loadImages = function({ include, exclude, options } = {}) {
+  return {
+    module: {
+      rules: [
+        {
+          test: /\.(png|jpg)$/,
+          include: include,
+          exclude: exclude,
+
+          use: {
+            loader: 'url-loader',
+            options: options,
+          },
+        },
+      ],
+    },
+  };
+};
+```
+
+To attach it to the configuration, adjust as follows:
+
+**webpack.config.js**
+
+```javascript
+...
+
+const common = merge([
+  ...
+leanpub-start-insert
+  parts.loadImages({
+    options: {
+      limit: 15000,
+    },
+  }),
+leanpub-end-insert
+]);
+
+...
+```
+
+To test that the setup works, download an image and refer to it from the project like this:
+
+**app/main.css**
+
+```css
+body {
+  background: cornsilk;
+leanpub-start-insert
+  background-image: url('./logo.png');
+  background-repeat: no-repeat;
+leanpub-end-insert
+  display: flex;
+}
+```
+
+Note how the behavior changes depending on the `limit` you set. Below the limit it should inline the image while above it should emit a separate asset and a path to it.
+
+The CSS lookup works because of *css-loader*. You can also try importing the image from JavaScript code and see what happens.
+
 ## Loading SVGs
 
 Webpack has a [few ways](https://github.com/webpack/webpack/issues/595) to load SVGs. However, the simplest way is through *file-loader* as follows:
