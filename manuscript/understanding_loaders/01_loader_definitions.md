@@ -185,6 +185,43 @@ If we wanted to use more than one loader, we could pass an array to `use` and ex
 },
 ```
 
+## Branching at `use` Using a Function
+
+In the book setup we compose configuration on a higher level. Another option to achieve similar results would be to branch at `use` as webpack's loader definitions accept functions that allow you to branch depending on environment. Consider the example below:
+
+```javascript
+{
+  test: /\.css$/,
+
+  // resource refers to the resource path matched.
+  // resourceQuery contains possible query passed to it (?sourceMap)
+  // issuer tells about match context path
+  use: ({ resource, resourceQuery, issuer }) => {
+    // You have to return either something falsy,
+    // string (i.e., 'style-loader'), or an object
+    // from here.
+    //
+    // Returning an array will fail! To get around that,
+    // it is possible to nest rules.
+    if (env === 'development') {
+      return {
+        // Trigger css-loader first
+        loader: 'css-loader',
+        rules: [
+          // And style-loader after it
+          'style-loader',
+        ],
+      };
+    }
+
+    // Do something else in production environment now
+    ...
+  }
+}
+```
+
+Carefully applied, this technique can be useful and allow different ways of composition.
+
 ## Inline Definitions
 
 Even though configuration level loader definitions are preferable, it is possible to write loader definitions inline like this:
