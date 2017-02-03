@@ -108,6 +108,7 @@ body {
 leanpub-start-insert
   background-image: url('./logo.png');
   background-repeat: no-repeat;
+  background-position: center;
 leanpub-end-insert
   display: flex;
 }
