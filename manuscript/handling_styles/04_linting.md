@@ -85,6 +85,8 @@ See stylelint documentation for a full list of rules. npm lists [possible stylel
 
 T> [stylelint-scss](https://www.npmjs.com/package/stylelint-scss) provides a collection of SCSS specific linting rules.
 
+T> The `enforce` idea is discussed in greater detail at the *Loader Definitions* chapter.
+
 ## *stylelint-webpack-plugin*
 
 [stylelint-webpack-plugin](https://www.npmjs.com/package/stylelint-webpack-plugin) is an alternate way to achieve the same result. Its greatest advantage over the setup above is that it will follow possible `@import` statements you might have in your styling.
