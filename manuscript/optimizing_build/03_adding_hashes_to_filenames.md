@@ -82,7 +82,7 @@ If we used `chunkhash` for the extracted CSS as well, this would lead to problem
 ```javascript
 ...
 
-exports.extractCSS = function(paths) {
+exports.extractCSS = function({ include, exclude } = {}) {
   return {
     module: {
       ...
@@ -218,23 +218,21 @@ module.exports = function(env) {
   if (env === 'production') {
     return merge([
       ...
-      parts.extractBundles([
-        {
-          name: 'vendor',
-          entries: ['react'],
-        },
+      parts.extractBundles({
+        bundles: [
+          {
+            name: 'vendor',
+            entries: ['react'],
+          },
 leanpub-start-insert
-        {
-          name: 'manifest',
-        },
+          {
+            name: 'manifest',
+          },
 leanpub-end-insert
-      ]),
+        ]
+      }),
       parts.generateSourceMaps({ type: 'source-map' }),
-      parts.lintJavaScript({ paths: PATHS.app }),
-      parts.extractCSS(),
-      parts.purifyCSS(
-        glob.sync(path.join(PATHS.app, '*'))
-      ),
+      ...
     ]);
   }
 

@@ -54,12 +54,7 @@ const developmentConfig = {
     port: process.env.PORT, // Defaults to 8080
   },
   plugins: [
-    // Enable multi-pass compilation for enhanced performance
-    // in larger projects. Good default.
-    new webpack.HotModuleReplacementPlugin({
-      // Disabled as this won't work with html-webpack-template yet
-      //multiStep: true,
-    }),
+    new webpack.HotModuleReplacementPlugin(),
   ],
 };
 leanpub-end-insert
@@ -122,12 +117,7 @@ const developmentConfig = {
     ...
   },
   plugins: [
-    // Enable multi-pass compilation for enhanced performance
-    // in larger projects. Good default.
-    new webpack.HotModuleReplacementPlugin({
-      // Disabled as this won't work with html-webpack-template yet
-      //multiStep: true,
-    }),
+    new webpack.HotModuleReplacementPlugin(),
 leanpub-start-insert
     new webpack.NamedModulesPlugin(),
 leanpub-end-insert

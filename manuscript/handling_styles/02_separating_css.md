@@ -39,16 +39,14 @@ leanpub-end-insert
 ...
 
 leanpub-start-insert
-exports.extractCSS = function(paths) {
+exports.extractCSS = function({ include, exclude } = {}) {
   return {
     module: {
       rules: [
-        // Extract CSS during build
         {
           test: /\.css$/,
-          // Restrict extraction process to the given
-          // paths.
-          include: paths,
+          include: include,
+          exclude: exclude,
 
           use: ExtractTextPlugin.extract({
             fallbackLoader: 'style-loader',
@@ -83,7 +81,7 @@ module.exports = function(env) {
   if (env === 'production') {
     return merge([
       common,
-      parts.lintJavaScript({ paths: PATHS.app }),
+      parts.lintJavaScript({ include: PATHS.app }),
 leanpub-start-insert
       parts.extractCSS(),
 leanpub-end-insert

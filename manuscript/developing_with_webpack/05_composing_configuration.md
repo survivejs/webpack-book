@@ -39,7 +39,7 @@ Next, we need to refactor *webpack.config.js* into parts we can consume from the
 ```javascript
 const webpack = require('webpack');
 
-exports.devServer = function(options) {
+exports.devServer = function({ host, port }) {
   return {
     devServer: {
       // Enable history API fallback so HTML5 History API based
@@ -61,27 +61,23 @@ exports.devServer = function(options) {
       //
       // 0.0.0.0 is available to all network devices
       // unlike default `localhost`.
-      host: options.host, // Defaults to `localhost`
-      port: options.port, // Defaults to 8080
+      host: host, // Defaults to `localhost`
+      port: port, // Defaults to 8080
     },
     plugins: [
-      // Enable multi-pass compilation for enhanced performance
-      // in larger projects. Good default.
-      new webpack.HotModuleReplacementPlugin({
-        // Disabled as this won't work with html-webpack-template
-        //multiStep: true
-      }),
+      new webpack.HotModuleReplacementPlugin(),
     ],
   };
 };
 
-exports.lintJavaScript = function({ paths, options }) {
+exports.lintJavaScript = function({ include, exclude, options }) {
   return {
     module: {
       rules: [
         {
           test: /\.js$/,
-          include: paths,
+          include: include,
+          exclude: exclude,
           enforce: 'pre',
 
           loader: 'eslint-loader',
@@ -138,7 +134,7 @@ module.exports = function(env) {
   if (env === 'production') {
     return merge([
       common,
-      parts.lintJavaScript({ paths: PATHS.app }),
+      parts.lintJavaScript({ include: PATHS.app }),
     ]);
   }
 
@@ -155,7 +151,7 @@ module.exports = function(env) {
       port: process.env.PORT,
     }),
     parts.lintJavaScript({
-      paths: PATHS.app,
+      include: PATHS.app,
       options: {
         // Emit warnings over errors to avoid crashing
         // HMR on error.

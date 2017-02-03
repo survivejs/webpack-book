@@ -89,7 +89,7 @@ leanpub-end-insert
 ...
 
 leanpub-start-insert
-exports.purifyCSS = function(paths) {
+exports.purifyCSS = function({ paths }) {
   return {
     plugins: [
       new PurifyCSSPlugin({ paths: paths }),
@@ -117,12 +117,12 @@ module.exports = function(env) {
   if (env === 'production') {
     return merge([
       common,
-      parts.lintJavaScript({ paths: PATHS.app }),
+      parts.lintJavaScript({ include: PATHS.app }),
       parts.extractCSS(),
 leanpub-start-insert
-      parts.purifyCSS(
-        glob.sync(path.join(PATHS.app, '*'))
-      ),
+      parts.purifyCSS({
+        paths: glob.sync(path.join(PATHS.app, '*'))
+      }),
 leanpub-end-insert
     ]);
   }

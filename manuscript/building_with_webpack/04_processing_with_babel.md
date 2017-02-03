@@ -67,13 +67,14 @@ Here's the full loader configuration:
 ```javascript
 ...
 
-exports.loadJavaScript = function(paths) {
+exports.loadJavaScript = function({ include, exclude }) {
   return {
     module: {
       rules: [
         {
           test: /\.js$/,
-          include: paths,
+          include: include,
+          exclude: exclude,
 
           loader: 'babel-loader',
           options: {
@@ -104,7 +105,7 @@ const common = merge([
   {
   ...
 leanpub-start-insert
-  parts.loadJavaScript(PATHS.app),
+  parts.loadJavaScript({ include: PATHS.app }),
 leanpub-end-insert
 ]);
 

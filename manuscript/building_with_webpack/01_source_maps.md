@@ -56,7 +56,7 @@ module.exports = function(env) {
 leanpub-start-insert
       parts.generateSourceMaps({ type: 'source-map' }),
 leanpub-end-insert
-      parts.lintJavaScript({ paths: PATHS.app }),
+      parts.lintJavaScript({ include: PATHS.app }),
       ...
     ]);
   }

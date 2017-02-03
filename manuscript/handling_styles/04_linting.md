@@ -19,13 +19,14 @@ Next, we'll need to integrate it with our configuration. Set up a configuration 
 ```javascript
 ...
 
-exports.lintCSS = function(paths, rules) {
+exports.lintCSS = function({ include, exclude, rules }) {
   return {
     module: {
       rules: [
         {
           test: /\.css$/,
-          include: paths,
+          include: include,
+          exclude: exclude,
           enforce: 'pre',
 
           loader: 'postcss-loader',
@@ -59,12 +60,12 @@ const common = merge([
     ...
   },
 leanpub-start-insert
-  parts.lintCSS(
-    PATHS.app,
-    {
+  parts.lintCSS({
+    include: PATHS.app,
+    rules: {
       'color-hex-case': 'lower',
-    }
-  ),
+    },
+  }),
 leanpub-end-insert
 ]);
 

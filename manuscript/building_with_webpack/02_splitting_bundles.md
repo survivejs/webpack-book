@@ -130,7 +130,7 @@ The following code combines the `entry` idea above with a basic `CommonsChunkPlu
 ...
 
 leanpub-start-insert
-exports.extractBundles = function(bundles, options) {
+exports.extractBundles = function({ bundles, options }) {
   const entry = {};
   const names = [];
 
@@ -176,12 +176,14 @@ leanpub-start-delete
       },
 leanpub-end-delete
 leanpub-start-insert
-      parts.extractBundles([
-        {
-          name: 'vendor',
-          entries: ['react'],
-        },
-      ]),
+      parts.extractBundles({
+        bundles: [
+          {
+            name: 'vendor',
+            entries: ['react'],
+          },
+        ],
+      }),
 leanpub-end-insert
       parts.generateSourceMaps({ type: 'source-map' }),
       ...
