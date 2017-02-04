@@ -155,14 +155,14 @@ T> I like to use `path.join`, but `path.resolve` would be a good alternative. Se
 If you execute `node_modules/.bin/webpack`, you should see output:
 
 ```bash
-Hash: d9b3a26d51481993359e
-Version: webpack 2.2.0
-Time: 375ms
+Hash: 7688419348f2bf706b69
+Version: webpack 2.2.1
+Time: 365ms
      Asset       Size  Chunks             Chunk Names
-    app.js    3.12 kB       0  [emitted]  app
+    app.js    3.11 kB       0  [emitted]  app
 index.html  180 bytes          [emitted]
-   [0] ./app/component.js 135 bytes {0} [built]
-   [1] ./app/index.js 77 bytes {0} [built]
+   [0] ./app/component.js 127 bytes {0} [built]
+   [1] ./app/index.js 76 bytes {0} [built]
 Child html-webpack-plugin for "index.html":
        [0] ./~/lodash/lodash.js 540 kB {0} [built]
        [1] (webpack)/buildin/global.js 509 bytes {0} [built]
@@ -172,12 +172,12 @@ Child html-webpack-plugin for "index.html":
 
 The output tells us a lot. I've annotated it below:
 
-* `Hash: d9b3a26d51481993359e` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. We'll discuss hashing in detail in the *Adding Hashes to Filenames* chapter.
-* `Version: webpack 2.2.0` - Webpack version.
-* `Time: 375ms` - Time it took to execute the build.
-* `app.js    3.12 kB       0  [emitted]  app` - Name of the generated asset, size, the ids of the **chunks** into which it is related, status information telling how it was generated, name of the chunk.
-* `index.html  180 bytes  [emitted]` - Another generated asset that was emitted by the process.
-* `[0] ./app/component.js 135 bytes {0} [built]` - The id of the entry asset, name, size, entry chunk id, the way it was generated.
+* `Hash: 7688419348f2bf706b69` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. We'll discuss hashing in detail in the *Adding Hashes to Filenames* chapter.
+* `Version: webpack 2.2.1` - Webpack version.
+* `Time: 365ms` - Time it took to execute the build.
+* `app.js    3.11 kB       0  [emitted]  app` - Name of the generated asset, size, the ids of the **chunks** into which it is related, status information telling how it was generated, name of the chunk.
+* `index.html  180 bytes          [emitted]` - Another generated asset that was emitted by the process.
+* `[0] ./app/component.js 127 bytes {0} [built]` - The id of the entry asset, name, size, entry chunk id, the way it was generated.
 * `Child html-webpack-plugin for "index.html":` - This is plugin-related output. In this case *html-webpack-plugin* is doing output of its own.
 
 Examine the output below `build/`. If you look closely, you can see the same ids within the source. To see the application running, open the `build/index.html` file directly through a browser. On macOS `open ./build/index.html` works.
