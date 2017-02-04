@@ -22,6 +22,8 @@ T> You can set those `npm init` defaults at *~/.npmrc*.
 
 T> This is a good place to set up version control using [Git](https://git-scm.com/). You can create a commit per step and tag per chapter so it's easier to move back and forth if you want.
 
+T> It is possible to replace most of the npm commands mentioned with [Yarn](https://yarnpkg.com/) equivalents. Yarn is a good alternative to npm as it comes with a few unique benefits including *lockfiles* and better performance.
+
 ## Installing Webpack
 
 Even though webpack can be installed globally (`npm i webpack -g`), I recommend maintaining it as a dependency of your project. This will avoid issues, as then you will have control over the exact version you are running.
