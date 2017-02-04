@@ -14,7 +14,7 @@ webpackJsonp([1],{
 /* harmony default export */ exports["a"] = function () {
   const element = document.createElement('h1');
 
-  element.className = 'pure-button';
+  element.className = 'fa fa-hand-spock-o fa-1g';
   element.innerHTML = 'Hello world';
   element.onclick = () => {
     __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 36)).then((lazy) => {
@@ -156,7 +156,7 @@ webpackJsonp([1],{
 /* harmony default export */ exports["a"] = function () {
   var element = document.createElement('h1');
 
-  element.className = 'pure-button';
+  element.className = 'fa fa-hand-spock-o fa-1g';
   element.innerHTML = 'Hello world';
   element.onclick = function () {
     __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 36)).then(function (lazy) {
