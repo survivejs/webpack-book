@@ -50,14 +50,14 @@ If you run the application (`npm start`), our "Hello world" should look like a b
 Building the application (`npm run build`) should yield output like this:
 
 ```bash
-Hash: a2231eda28272b4c83d5
-Version: webpack 2.2.0
-Time: 1210ms
+Hash: 2d092abb227c6913c794
+Version: webpack 2.2.1
+Time: 1319ms
      Asset       Size  Chunks             Chunk Names
-    app.js    4.25 kB       0  [emitted]  app
+    app.js    4.13 kB       0  [emitted]  app
    app.css    16.5 kB       0  [emitted]  app
 index.html  218 bytes          [emitted]
-   [0] ./app/component.js 172 bytes {0} [built]
+   [0] ./app/component.js 174 bytes {0} [built]
    [1] ./app/main.css 41 bytes {0} [built]
    [2] ./~/purecss/build/pure-min.css 41 bytes {0} [built]
 ...
@@ -123,7 +123,7 @@ module.exports = function(env) {
       }),
 leanpub-start-insert
       parts.purifyCSS({
-        paths: glob.sync(path.join(PATHS.app, '*'))
+        paths: glob.sync(path.join(PATHS.app, '*')),
       }),
 leanpub-end-insert
     ]);
@@ -138,20 +138,20 @@ W> Note that the order matters! CSS extraction has to happen before purifying.
 If you execute `npm run build` now, you should see something like this:
 
 ```bash
-Hash: a2231eda28272b4c83d5
-Version: webpack 2.2.0
-Time: 1310ms
+Hash: 2d092abb227c6913c794
+Version: webpack 2.2.1
+Time: 1388ms
      Asset       Size  Chunks             Chunk Names
-    app.js    4.25 kB       0  [emitted]  app
-   app.css    2.17 kB       0  [emitted]  app
+    app.js    4.13 kB       0  [emitted]  app
+   app.css    2.23 kB       0  [emitted]  app
 index.html  218 bytes          [emitted]
-   [0] ./app/component.js 172 bytes {0} [built]
+   [0] ./app/component.js 174 bytes {0} [built]
    [1] ./app/main.css 41 bytes {0} [built]
    [2] ./~/purecss/build/pure-min.css 41 bytes {0} [built]
 ...
 ```
 
-The size of our style has decreased significantly. Instead of almost 16k we have roughly 2k now. The difference would be even bigger for heavier CSS frameworks.
+The size of our style has decreased significantly. Instead of 16k we have roughly 2k now. The difference would be even bigger for heavier CSS frameworks.
 
 T> PurifyCSS supports [additional options](https://github.com/purifycss/purifycss#the-optional-options-argument) including `minify`. You can enable these through the `purifyOptions` field when instantiating the plugin.
 
