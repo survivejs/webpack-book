@@ -119,7 +119,7 @@ module.exports = function(env) {
       common,
       parts.lintJavaScript({ include: PATHS.app }),
       parts.extractCSS({
-        loader: ['css-loader', parts.autoprefix()],
+        use: ['css-loader', parts.autoprefix()],
       }),
 leanpub-start-insert
       parts.purifyCSS({

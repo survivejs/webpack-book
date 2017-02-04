@@ -39,7 +39,7 @@ leanpub-end-insert
 ...
 
 leanpub-start-insert
-exports.extractCSS = function({ include, exclude, loader }) {
+exports.extractCSS = function({ include, exclude, use }) {
   return {
     module: {
       rules: [
@@ -49,8 +49,8 @@ exports.extractCSS = function({ include, exclude, loader }) {
           exclude: exclude,
 
           use: ExtractTextPlugin.extract({
-            fallbackLoader: 'style-loader',
-            loader: loader,
+            use: use,
+            fallback: 'style-loader',
           }),
         },
       ],
@@ -83,7 +83,7 @@ module.exports = function(env) {
       common,
       parts.lintJavaScript({ include: PATHS.app }),
 leanpub-start-insert
-      parts.extractCSS({ loader: 'css-loader' }),
+      parts.extractCSS({ use: 'css-loader' }),
 leanpub-end-insert
     ]);
   }
@@ -158,11 +158,11 @@ module.exports = function(env) {
       common,
       parts.lintJavaScript({ include: PATHS.app }),
 leanpub-start-delete
-      parts.extractCSS({ loader: 'css-loader' }),
+      parts.extractCSS({ use: 'css-loader' }),
 leanpub-end-delete
 leanpub-start-insert
       parts.extractCSS({
-        loader: ['css-loader', parts.autoprefix()],
+        use: ['css-loader', parts.autoprefix()],
       }),
 leanpub-end-insert
     ]);
