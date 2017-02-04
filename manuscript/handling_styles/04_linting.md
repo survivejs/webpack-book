@@ -9,7 +9,7 @@ As discussed earlier in the *Linting JavaScript* chapter, linting is a technique
 To get started, install the required dependencies:
 
 ```bash
-npm i stylelint postcss-loader --save-dev
+npm i postcss-loader stylelint --save-dev
 ```
 
 Next, we'll need to integrate it with our configuration. Set up a configuration part first:
