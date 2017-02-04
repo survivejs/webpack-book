@@ -64,7 +64,7 @@ exports.extractCSS = function({ include, exclude, use }) {
 leanpub-end-insert
 ```
 
-That `[name]` placeholder will use the the name of the entry where the CSS is referred to. Placeholders and the overall idea are discussed in greater detail in the *Adding Hashes to Filenames* chapter.
+That `[name]` placeholder will use the the name of the entry where the CSS is referred to. Placeholders and the overall idea are discussed in greater detail at the *Adding Hashes to Filenames* chapter.
 
 T> If you wanted to output the resulting file to a specific directory, you could do it like this: `new ExtractTextPlugin('styles/[name].css')`.
 
@@ -77,6 +77,15 @@ Connect the function with our configuration as below:
 ```javascript
 ...
 
+const common = merge([
+  {
+    ...
+  },
+leanpub-start-delete
+  parts.loadCSS(),
+leanpub-end-delete
+]);
+
 module.exports = function(env) {
   if (env === 'production') {
     return merge([
@@ -88,7 +97,13 @@ leanpub-end-insert
     ]);
   }
 
-  ...
+  return merge([
+    common,
+    ...
+leanpub-start-insert
+    parts.loadCSS(),
+leanpub-end-insert
+  ]);
 };
 ```
 
@@ -97,31 +112,31 @@ Using this setup, we can still benefit from the HMR during development. For a pr
 After running `npm run build`, you should see output similar to the following:
 
 ```bash
-Hash: 1e301ee0f91b50d9db5b
-Version: webpack 2.2.0
-Time: 1006ms
+Hash: 959bdc724d7005fba1c9
+Version: webpack 2.2.1
+Time: 956ms
      Asset       Size  Chunks             Chunk Names
-    app.js    3.89 kB       0  [emitted]  app
-   app.css   32 bytes       0  [emitted]  app
+    app.js    3.77 kB       0  [emitted]  app
+   app.css   33 bytes       0  [emitted]  app
 index.html  218 bytes          [emitted]
-   [0] ./app/component.js 135 bytes {0} [built]
+   [0] ./app/component.js 137 bytes {0} [built]
    [1] ./app/main.css 41 bytes {0} [built]
-   [2] ./app/index.js 548 bytes {0} [built]
+   [2] ./app/index.js 430 bytes {0} [built]
 ...
 ```
 
 Now our styling has been pushed to a separate CSS file. Thus, our JavaScript bundle has become slightly smaller. We also avoid the FOUC problem. The browser doesn't have to wait for JavaScript to load to get styling information. Instead, it can process the CSS separately, avoiding the flash.
 
-T> If you are getting `Module build failed: CssSyntaxError:` error, make sure your `common` configuration doesn't have a CSS-related section set up.
+T> If you are getting `Module build failed: CssSyntaxError:` or `Module build failed: Unknown word` error, make sure your `common` configuration doesn't have a CSS-related section set up.
 
 ## Autoprefixing Output
 
 It can be difficult to remember which vendor prefixes you have to use for specific CSS rules to support a large variety of users. This is where a technique known as **autoprefixing** comes in. It can be enabled through PostCSS and the [autoprefixer](https://www.npmjs.com/package/autoprefixer) plugin. *autoprefixer* uses [Can I Use](http://caniuse.com/) service to figure out which rules should be prefixed and its behavior can be tuned further.
 
-Achieving autoprefixing takes a small addition to the current setup. Install *autoprefixer* first:
+Achieving autoprefixing takes a small addition to the current setup. Install *postcss-loader* and *autoprefixer* first:
 
 ```bash
-npm i autoprefixer --save-dev
+npm i postcss-loader autoprefixer --save-dev
 ```
 
 Add a fragment enabling autoprefixing like this:
@@ -155,8 +170,7 @@ To connect the loader with `ExtractTextPlugin`, hook it up as follows:
 module.exports = function(env) {
   if (env === 'production') {
     return merge([
-      common,
-      parts.lintJavaScript({ include: PATHS.app }),
+      ...
 leanpub-start-delete
       parts.extractCSS({ use: 'css-loader' }),
 leanpub-end-delete
