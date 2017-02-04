@@ -54,11 +54,7 @@ module.exports = function(env) {
     return merge([
       common,
       {
-        performance: {
-          hints: 'warning', // 'error' or false are valid too
-          maxEntrypointSize: 200000, // in bytes
-          maxAssetSize: 200000, // in bytes
-        },
+        ...
 leanpub-start-insert
         output: {
           chunkFilename: 'scripts/[chunkhash].js',
@@ -105,22 +101,28 @@ leanpub-end-insert
 If you generate a build now (`npm run build`), you should see something like this:
 
 ```bash
-Hash: b28400513ee1f3cc4b58
-Version: webpack 2.2.0
-Time: 2361ms
-                                       Asset       Size  Chunks             Chunk Names
-             scripts/a3e8b000643b89a4baf0.js  179 bytes       0  [emitted]
-                 app.0463c61541fc45af4e1d.js  612 bytes       1  [emitted]  app
-              vendor.0088a151dee083233d21.js    21.1 kB       2  [emitted]  vendor
-    app.581584c83549d8a12e1752ef1aab2cb8.css    2.23 kB       1  [emitted]  app
-         scripts/a3e8b000643b89a4baf0.js.map  850 bytes       0  [emitted]
-             app.0463c61541fc45af4e1d.js.map    5.31 kB       1  [emitted]  app
-app.581584c83549d8a12e1752ef1aab2cb8.css.map  117 bytes       1  [emitted]  app
-          vendor.0088a151dee083233d21.js.map     261 kB       2  [emitted]  vendor
-                                  index.html  391 bytes          [emitted]
+Hash: 7d69e56e15c0ff4de8e9
+Version: webpack 2.2.1
+Time: 3189ms
+                                       Asset       Size  Chunks                    Chunk Names
+                 app.a91508ab473aa1d86275.js  661 bytes       1  [emitted]         app
+        674f50d287a8c48dc19ba404d20fe713.eot     166 kB          [emitted]  [big]
+        b06871f281fee6b241d60582ae9369b9.ttf     166 kB          [emitted]  [big]
+      af7ae505a9eed503f8b8e6982036873e.woff2    77.2 kB          [emitted]  [big]
+       fee66e712a8a08eef5805a46892932ad.woff      98 kB          [emitted]  [big]
+        9a0d8fb85dedfde24f1ab4cdb568ef2a.png    17.6 kB          [emitted]
+             scripts/a21c703122450f17fd1e.js  179 bytes       0  [emitted]
+        912ec66d7572ff821749319396470bde.svg     444 kB          [emitted]  [big]
+              vendor.c9cd359e613c2baa00f8.js      21 kB       2  [emitted]         vendor
+    app.120a7f7c301f97a38df05725c2b1a453.css    3.53 kB       1  [emitted]         app
+         scripts/a21c703122450f17fd1e.js.map  850 bytes       0  [emitted]
+             app.a91508ab473aa1d86275.js.map    5.68 kB       1  [emitted]         app
+app.120a7f7c301f97a38df05725c2b1a453.css.map  117 bytes       1  [emitted]         app
+          vendor.c9cd359e613c2baa00f8.js.map     261 kB       2  [emitted]         vendor
+                                  index.html  349 bytes          [emitted]
+   [4] ./~/object-assign/index.js 2.11 kB {2} [built]
    [5] ./~/react/react.js 56 bytes {2} [built]
-  [15] ./app/component.js 504 bytes {1} [built]
-  [16] ./app/main.css 41 bytes {1} [built]
+  [15] ./app/component.js 517 bytes {1} [built]
 ...
 ```
 
@@ -146,25 +148,13 @@ module.exports = function(env) {
     return merge([
       common,
       {
-        performance: {
-          hints: 'warning', // 'error' or false are valid too
-          maxEntrypointSize: 100000, // in bytes
-          maxAssetSize: 50000, // in bytes
-        },
-        output: {
-          chunkFilename: 'scripts/[chunkhash].js',
-          filename: '[name].[chunkhash].js',
-        },
+        ...
 leanpub-start-insert
         plugins: [
           new webpack.HashedModuleIdsPlugin(),
         ],
 leanpub-end-insert
       },
-      parts.setFreeVariable(
-        'process.env.NODE_ENV',
-        'production'
-      ),
       ...
     ]);
   }
@@ -176,22 +166,28 @@ leanpub-end-insert
 As you can see in the build output, the difference is negligible.
 
 ```bash
-Hash: b2f4e0352d585455643d
-Version: webpack 2.2.0
-Time: 2407ms
-                                       Asset       Size  Chunks             Chunk Names
+Hash: 51205fe13806e1a8cce1
+Version: webpack 2.2.1
+Time: 3196ms
+                                       Asset       Size  Chunks                    Chunk Names
+                 app.dea407139c1cb7bd9c1f.js  708 bytes       1  [emitted]         app
+        912ec66d7572ff821749319396470bde.svg     444 kB          [emitted]  [big]
+        674f50d287a8c48dc19ba404d20fe713.eot     166 kB          [emitted]  [big]
+       fee66e712a8a08eef5805a46892932ad.woff      98 kB          [emitted]  [big]
+      af7ae505a9eed503f8b8e6982036873e.woff2    77.2 kB          [emitted]  [big]
+        9a0d8fb85dedfde24f1ab4cdb568ef2a.png    17.6 kB          [emitted]
              scripts/ce7751bddf1a96fd3916.js  181 bytes       0  [emitted]
-                 app.a6c5ea36c65dd4a199a2.js  651 bytes       1  [emitted]  app
-              vendor.e4b418854dc5baf0b331.js    21.5 kB       2  [emitted]  vendor
-    app.581584c83549d8a12e1752ef1aab2cb8.css    2.23 kB       1  [emitted]  app
+        b06871f281fee6b241d60582ae9369b9.ttf     166 kB          [emitted]  [big]
+              vendor.3f6cbf6cbd880986491e.js    21.5 kB       2  [emitted]         vendor
+    app.120a7f7c301f97a38df05725c2b1a453.css    3.53 kB       1  [emitted]         app
          scripts/ce7751bddf1a96fd3916.js.map  858 bytes       0  [emitted]
-             app.a6c5ea36c65dd4a199a2.js.map    5.36 kB       1  [emitted]  app
-app.581584c83549d8a12e1752ef1aab2cb8.css.map  117 bytes       1  [emitted]  app
-          vendor.e4b418854dc5baf0b331.js.map     262 kB       2  [emitted]  vendor
-                                  index.html  391 bytes          [emitted]
+             app.dea407139c1cb7bd9c1f.js.map    5.74 kB       1  [emitted]         app
+app.120a7f7c301f97a38df05725c2b1a453.css.map  117 bytes       1  [emitted]         app
+          vendor.3f6cbf6cbd880986491e.js.map     262 kB       2  [emitted]         vendor
+                                  index.html  349 bytes          [emitted]
 [1Q41] ./app/main.css 41 bytes {1} [built]
-[2twT] ./app/index.js 591 bytes {1} [built]
-[3imu] ./~/react/lib/ReactPureComponent.js 1.32 kB {2} [built]
+[2twT] ./app/index.js 516 bytes {1} [built]
+[4has] ./~/react/lib/ReactClass.js 26.5 kB {2} [built]
 ...
 ```
 
