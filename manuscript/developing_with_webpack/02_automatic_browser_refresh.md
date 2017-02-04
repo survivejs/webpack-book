@@ -168,7 +168,7 @@ W> Note that there are [slight differences](https://github.com/webpack/webpack-d
 
 Restarting the development server each time you make a change tends to get boring after a while; therefore, it can be a good idea to let the computer do that for us. As [discussed in GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892), a monitoring tool known as [nodemon](https://www.npmjs.com/package/nodemon) can be used for this purpose.
 
-To get it to work, you will have to install it first through `npm i nodemon --save-dev`. After that, you can make it watch WDS and restart it on change. Here's the script if you want to give it a go:
+To get it to work, you will have to install it first through `npm i nodemon --save-dev`. After that, you can make it watch webpack config and restart WDS on change. Here's the script if you want to give it a go:
 
 **package.json**
 
