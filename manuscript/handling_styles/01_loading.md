@@ -51,25 +51,16 @@ We also need to connect our configuration fragment with the main configuration:
 ```javascript
 ...
 
-module.exports = function(env) {
-  return merge([
-    common,
-    {
-      ...
-    },
+const common = merge([
+  {
+    ...
+  },
 leanpub-start-insert
-    parts.loadCSS(),
+  parts.loadCSS(),
 leanpub-end-insert
-    parts.devServer({
-      // Customize host/port here if needed
-      host: process.env.HOST,
-      port: process.env.PORT,
-    }),
-    parts.lintJavaScript({
-      ...
-    }),
-  ]);
-};
+]);
+
+...
 ```
 
 The configuration we added means that files ending with `.css` should invoke given loaders. `test` matches against a JavaScript style regular expression. The loaders are evaluated from right to left.
