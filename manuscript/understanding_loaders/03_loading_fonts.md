@@ -163,8 +163,6 @@ exports.loadFonts = function({ include, exclude, options } = {}) {
     },
   };
 };
-
-...
 ```
 
 The idea is the same as for loading images. This time around we match font files. If you wanted, you could refactor the commonality to a function to share between the two.
@@ -194,7 +192,12 @@ If you run the project again (`npm start`), it should run without any errors. To
 export default function () {
   const element = document.createElement('h1');
 
+leanpub-start-delete
+  element.className = 'pure-button';
+leanpub-end-delete
+leanpub-start-insert
   element.className = 'fa fa-hand-spock-o fa-1g';
+leanpub-end-insert
   element.innerHTML = 'Hello world';
 
   return element;
