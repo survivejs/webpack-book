@@ -294,9 +294,9 @@ Given JSPM is still a young project, there might be rough spots. That said, it m
 
 ![webpack](images/webpack.png)
 
-You could say [webpack](https://webpack.js.org/) takes a more monolithic approach than Browserify. Whereas Browserify consists of multiple small tools, webpack comes with a core that provides a lot of functionality out of the box. The core can be extended using specific *loaders* and *plugins*.
+You could say [webpack](https://webpack.js.org/) takes a more monolithic approach than Browserify. Whereas Browserify consists of multiple small tools, webpack comes with a core that provides a lot of functionality out of the box.
 
-It gives control over how it *resolves* the modules, making it possible to adapt your build to match-specific situations and work-around packages that don't work perfectly out of the box. It is good to have options, although relying too much on webpack's resolution mechanism isn't recommended.
+Webpack core can be extended using specific *loaders* and *plugins*. It gives control over how it *resolves* the modules, making it possible to adapt your build to match-specific situations and work-around packages that don't work perfectly out of the box.
 
 ## Conclusion
 
