@@ -170,27 +170,6 @@ Later on *webpack.parts.js* could be pushed to npm or outside of the project. Bu
 
 T> Webpack 2 validates the configuration by default. If you make an obvious mistake, it will let you know. Earlier, it was useful to set up a solution known as [webpack-validator](https://www.npmjs.com/package/webpack-validator), but that's not needed anymore.
 
-## Passing `env` from Webpack
-
-Given our setup relies on `env`, we should pass it:
-
-**package.json**
-
-```json
-...
-"scripts": {
-leanpub-start-delete
-  "build": "webpack"
-leanpub-end-delete
-leanpub-start-insert
-  "build": "webpack --env production"
-leanpub-end-insert
-},
-...
-```
-
-To verify that it works, you can drop a temporary `console.log(env)` within your configuration function. It should print out `production`.
-
 ## The Benefits of Composing Configuration
 
 Even though a simple technique, splitting configuration this way makes room for growing your setup. The biggest win is the fact that we can extract commonalities between different targets. We can also identify smaller configuration parts to compose. These configuration parts can be pushed to packages of their own to consume across projects.
