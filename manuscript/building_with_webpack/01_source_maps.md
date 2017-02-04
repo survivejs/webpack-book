@@ -64,10 +64,15 @@ leanpub-end-insert
   return merge([
     common,
     {
+leanpub-start-insert
+      output: {
+        devtoolModuleFilenameTemplate: 'webpack:///[absolute-resource-path]',
+      },
+leanpub-end-insert
       ...
     },
 leanpub-start-insert
-    parts.generateSourceMaps({ type: 'eval-source-map' }),
+    parts.generateSourceMaps({ type: 'cheap-module-eval-source-map' }),
 leanpub-end-insert
     parts.devServer({
       // Customize host/port here if needed
@@ -82,19 +87,25 @@ leanpub-end-insert
 If you build the project now (`npm run build`), you should see something like this:
 
 ```bash
-Hash: a2231eda28272b4c83d5
-Version: webpack 2.2.0
-Time: 1671ms
-      Asset       Size  Chunks             Chunk Names
-     app.js     4.4 kB       0  [emitted]  app
-    app.css     2.2 kB       0  [emitted]  app
- app.js.map    4.21 kB       0  [emitted]  app
-app.css.map   84 bytes       0  [emitted]  app
- index.html  218 bytes          [emitted]
-   [0] ./app/component.js 172 bytes {0} [built]
-   [1] ./app/main.css 41 bytes {0} [built]
-   [2] ./~/purecss/build/pure-min.css 41 bytes {0} [built]
-   [3] ./app/index.js 566 bytes {0} [built]
+Hash: f101a71347b1589fc532
+Version: webpack 2.2.1
+Time: 2308ms
+                                 Asset       Size  Chunks                    Chunk Names
+  9a0d8fb85dedfde24f1ab4cdb568ef2a.png    17.6 kB          [emitted]
+  674f50d287a8c48dc19ba404d20fe713.eot     166 kB          [emitted]
+  b06871f281fee6b241d60582ae9369b9.ttf     166 kB          [emitted]
+af7ae505a9eed503f8b8e6982036873e.woff2    77.2 kB          [emitted]
+ fee66e712a8a08eef5805a46892932ad.woff      98 kB          [emitted]
+  912ec66d7572ff821749319396470bde.svg     444 kB          [emitted]  [big]
+                                app.js     4.7 kB       0  [emitted]         app
+                               app.css     3.5 kB       0  [emitted]         app
+                            app.js.map    4.37 kB       0  [emitted]         app
+                           app.css.map   84 bytes       0  [emitted]         app
+                            index.html  218 bytes          [emitted]
+   [0] ./app/component.js 187 bytes {0} [built]
+   [1] ./~/font-awesome/css/font-awesome.css 41 bytes {0} [built]
+   [2] ./app/main.css 41 bytes {0} [built]
+   [3] ./~/purecss/build/pure-min.css 41 bytes {0} [built]
 ```
 
 Take a good look at those *.map* files. That's where the mapping between the generated and the original source happens. During development, it will write the mapping information within the bundle itself.
