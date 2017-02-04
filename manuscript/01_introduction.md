@@ -28,6 +28,8 @@ This book has been designed to complement [the official documentation of webpack
 
 You will learn to develop composable webpack configuration for both development and production purposes. You will also learn advanced techniques that allow you to benefit from some of the greatest features of webpack.
 
+T> This book has focus on webpack 2. If you want to apply its techniques to webpack 1, you should see [the official migration guide](https://webpack.js.org/guides/migrating/) as it covers the changes made between the major versions.
+
 ## How Is This Book Organized
 
 The book has been split up into smaller parts, each of which discusses a specific topic in greater detail. First, you will develop a basic configuration that's then expanded to work with a variety of formats and different styling approaches. After that, we'll discuss build-related concerns and techniques while developing the configuration further. Finally, we'll discuss a variety of advanced techniques while learning more about npm packages.
