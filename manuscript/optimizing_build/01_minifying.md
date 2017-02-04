@@ -129,8 +129,8 @@ exports.minifyJavaScript = function({ useSourceMap }) {
         compress: {
           warnings: false,
         },
-      })
-    ]
+      }),
+    ],
   };
 };
 leanpub-end-insert
