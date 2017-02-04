@@ -71,6 +71,8 @@ if (foo === 'bar') {
 
 This is the core idea of `DefinePlugin`. We can toggle parts of code using this kind of mechanism. A good minifier is able to perform the analysis for us and enable/disable entire portions of it as we prefer.
 
+T> [babel-plugin-transform-define](https://www.npmjs.com/package/babel-plugin-transform-define) can achieve the same result without webpack.
+
 ## Setting `process.env.NODE_ENV`
 
 Given we are using React in our project and it happens to use the technique, we can try to enable `DefinePlugin` and see what it does to our production build.
