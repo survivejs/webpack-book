@@ -68,7 +68,7 @@ Note that HMR is available in Browserify via [livereactload](https://github.com/
 
 ## Code Splitting
 
-Aside from the HMR feature, webpack's bundling capabilities are extensive. They allow you to split code in various ways. You can even load them dynamically as your application gets executed. This sort of lazy loading comes in handy, especially for larger applications. You can load dependencies as you need them.
+Aside from the HMR feature, webpack's bundling capabilities are extensive. Webpack allows you to split code in various ways. You can even load code dynamically as your application gets executed. This sort of lazy loading comes in handy, especially for larger applications. You can load dependencies as you need them.
 
 Even small applications can benefit from code splitting, as it allows the users to get something useable in their hands faster. Performance is a feature, after all. So, knowing the basic techniques is worthwhile.
 
