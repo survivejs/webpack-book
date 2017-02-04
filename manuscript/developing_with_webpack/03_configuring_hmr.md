@@ -91,13 +91,15 @@ Execute `npm start` and surf to **localhost:8080**. Try modifying *app/component
 
 We get this behavior because we set `hotOnly: true` for WDS. Going with `inline: true` would have swallowed the error and refreshed the page. This behavior is fine, though, as we will implement the HMR interface next to avoid the need for hard refresh. Before that we can do something about those cryptic numbers to get more sensible output.
 
+You should be able to access the application alternately through **localhost:8080/webpack-dev-server/** instead of the root. It will provide status information within the browser itself at the top of the application. If your application relies on WebSockets and you use WDS proxying, you'll need to use this specific url: otherwise, WDS logic will interfere.
+
 W> *webpack-dev-server* can be very particular about paths. If the given `include` paths don't match the system casing exactly, this can cause it to fail to work. Webpack [issue #675](https://github.com/webpack/webpack/issues/675) discusses this in more detail.
 
 W> You should **not** enable HMR for your production configuration. It will likely work, but having the capability enabled there won't do any good and it will make your bundles bigger than they should be.
 
-T> You should be able to access the application alternately through **localhost:8080/webpack-dev-server/** instead of the root. It will provide status information within the browser itself at the top of the application. If your application relies on WebSockets and you use WDS proxying, you'll need to use this specific url: otherwise, WDS logic will interfere.
-
 T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environment variables through a *.env* file. This can be somewhat convenient during development and allows you to control the host and port setting of our setup easily.
+
+T> If you want to open a browser tab directly after running the server, set `devServer.open: true`. You can also achieve the same result through the CLI by using `webpack-dev-server --open`.
 
 ## Making the Module Ids More Debuggable
 
