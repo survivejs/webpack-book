@@ -32,7 +32,6 @@ leanpub-start-insert
 leanpub-end-insert
         ]
       }),
-      parts.generateSourceMaps({ type: 'source-map' }),
       ...
     ]);
   }
@@ -44,24 +43,30 @@ leanpub-end-insert
 If you build the project now (`npm run build`), you should see something like this:
 
 ```bash
-Hash: 0a76a94d8d4b0e5663c1
-Version: webpack 2.2.0
-Time: 2391ms
-                                       Asset       Size  Chunks             Chunk Names
-         scripts/a749f8b7a6c990eff5b2.js.map  865 bytes    0, 3  [emitted]
+Hash: 4ca13abf0dfeaf38daa7
+Version: webpack 2.2.1
+Time: 3209ms
+                                       Asset       Size  Chunks                    Chunk Names
+                 app.de061a38d4efe81f14d9.js  710 bytes    2, 3  [emitted]         app
+        912ec66d7572ff821749319396470bde.svg     444 kB          [emitted]  [big]
+        674f50d287a8c48dc19ba404d20fe713.eot     166 kB          [emitted]  [big]
+       fee66e712a8a08eef5805a46892932ad.woff      98 kB          [emitted]  [big]
+      af7ae505a9eed503f8b8e6982036873e.woff2    77.2 kB          [emitted]  [big]
+        9a0d8fb85dedfde24f1ab4cdb568ef2a.png    17.6 kB          [emitted]
              scripts/a749f8b7a6c990eff5b2.js  183 bytes    0, 3  [emitted]
-                 app.4f0c0cbd6f41c9bb18af.js  653 bytes    2, 3  [emitted]  app
-            manifest.c8e56c8521a89cb22c6f.js    1.53 kB       3  [emitted]  manifest
-    app.581584c83549d8a12e1752ef1aab2cb8.css    2.23 kB    2, 3  [emitted]  app
-              vendor.e9b7f566aa067b34ae88.js    20.1 kB    1, 3  [emitted]  vendor
-          vendor.e9b7f566aa067b34ae88.js.map     249 kB    1, 3  [emitted]  vendor
-             app.4f0c0cbd6f41c9bb18af.js.map    5.36 kB    2, 3  [emitted]  app
-app.581584c83549d8a12e1752ef1aab2cb8.css.map  117 bytes    2, 3  [emitted]  app
-        manifest.c8e56c8521a89cb22c6f.js.map    14.1 kB       3  [emitted]  manifest
-                                  index.html  484 bytes          [emitted]
+              vendor.e9b7f566aa067b34ae88.js    20.1 kB    1, 3  [emitted]         vendor
+        b06871f281fee6b241d60582ae9369b9.ttf     166 kB          [emitted]  [big]
+            manifest.7985df88c95fffcba0a2.js    1.51 kB       3  [emitted]         manifest
+    app.120a7f7c301f97a38df05725c2b1a453.css    3.53 kB    2, 3  [emitted]         app
+         scripts/a749f8b7a6c990eff5b2.js.map  865 bytes    0, 3  [emitted]
+          vendor.e9b7f566aa067b34ae88.js.map     249 kB    1, 3  [emitted]         vendor
+             app.de061a38d4efe81f14d9.js.map    5.75 kB    2, 3  [emitted]         app
+app.120a7f7c301f97a38df05725c2b1a453.css.map  117 bytes    2, 3  [emitted]         app
+        manifest.7985df88c95fffcba0a2.js.map    14.1 kB       3  [emitted]         manifest
+                                  index.html  428 bytes          [emitted]
 [1Q41] ./app/main.css 41 bytes {2} [built]
-[2twT] ./app/index.js 591 bytes {2} [built]
-[3imu] ./~/react/lib/ReactPureComponent.js 1.32 kB {1} [built]
+[2twT] ./app/index.js 516 bytes {2} [built]
+[4has] ./~/react/lib/ReactClass.js 26.5 kB {1} [built]
 ...
 ```
 
@@ -74,24 +79,30 @@ T> To get a better idea of the manifest contents, comment out `parts.minify()` a
 Try adjusting *app/index.js* and see how the hashes change. This time around it should **not** invalidate the vendor bundle, and only the manifest and app bundle names should be different like this:
 
 ```bash
-Hash: a8a9c6cca7360f1c485b
-Version: webpack 2.2.0
-Time: 2546ms
-                                       Asset       Size  Chunks             Chunk Names
-         scripts/a749f8b7a6c990eff5b2.js.map  865 bytes    0, 3  [emitted]
+Hash: 895308ab19f4b99357bd
+Version: webpack 2.2.1
+Time: 3425ms
+                                       Asset       Size  Chunks                    Chunk Names
+                 app.29ecc4e2e587bdf20f54.js  733 bytes    2, 3  [emitted]         app
+        912ec66d7572ff821749319396470bde.svg     444 kB          [emitted]  [big]
+        674f50d287a8c48dc19ba404d20fe713.eot     166 kB          [emitted]  [big]
+       fee66e712a8a08eef5805a46892932ad.woff      98 kB          [emitted]  [big]
+      af7ae505a9eed503f8b8e6982036873e.woff2    77.2 kB          [emitted]  [big]
+        9a0d8fb85dedfde24f1ab4cdb568ef2a.png    17.6 kB          [emitted]
              scripts/a749f8b7a6c990eff5b2.js  183 bytes    0, 3  [emitted]
-                 app.78b72e65a8da23867cd4.js  673 bytes    2, 3  [emitted]  app
-            manifest.263a1718ddc308cec749.js    1.53 kB       3  [emitted]  manifest
-    app.581584c83549d8a12e1752ef1aab2cb8.css    2.23 kB    2, 3  [emitted]  app
-              vendor.e9b7f566aa067b34ae88.js    20.1 kB    1, 3  [emitted]  vendor
-          vendor.e9b7f566aa067b34ae88.js.map     249 kB    1, 3  [emitted]  vendor
-             app.78b72e65a8da23867cd4.js.map    5.44 kB    2, 3  [emitted]  app
-app.581584c83549d8a12e1752ef1aab2cb8.css.map  117 bytes    2, 3  [emitted]  app
-        manifest.263a1718ddc308cec749.js.map    14.1 kB       3  [emitted]  manifest
-                                  index.html  484 bytes          [emitted]
+              vendor.e9b7f566aa067b34ae88.js    20.1 kB    1, 3  [emitted]         vendor
+        b06871f281fee6b241d60582ae9369b9.ttf     166 kB          [emitted]  [big]
+            manifest.339803870e3446a9198d.js    1.51 kB       3  [emitted]         manifest
+    app.120a7f7c301f97a38df05725c2b1a453.css    3.53 kB    2, 3  [emitted]         app
+         scripts/a749f8b7a6c990eff5b2.js.map  865 bytes    0, 3  [emitted]
+          vendor.e9b7f566aa067b34ae88.js.map     249 kB    1, 3  [emitted]         vendor
+             app.29ecc4e2e587bdf20f54.js.map    5.83 kB    2, 3  [emitted]         app
+app.120a7f7c301f97a38df05725c2b1a453.css.map  117 bytes    2, 3  [emitted]         app
+        manifest.339803870e3446a9198d.js.map    14.1 kB       3  [emitted]         manifest
+                                  index.html  428 bytes          [emitted]
 [1Q41] ./app/main.css 41 bytes {2} [built]
-[2twT] ./app/index.js 613 bytes {2} [built]
-[3imu] ./~/react/lib/ReactPureComponent.js 1.32 kB {1} [built]
+[2twT] ./app/index.js 537 bytes {2} [built]
+[4has] ./~/react/lib/ReactClass.js 26.5 kB {1} [built]
 ...
 ```
 
@@ -115,26 +126,11 @@ module.exports = function(env) {
     return merge([
       common,
       {
-        performance: {
-          hints: 'warning', // 'error' or false are valid too
-          maxEntrypointSize: 100000, // in bytes
-          maxAssetSize: 50000, // in bytes
-        },
-        output: {
-          chunkFilename: 'scripts/[chunkhash].js',
-          filename: '[name].[chunkhash].js',
-        },
-        plugins: [
-          new webpack.HashedModuleIdsPlugin(),
-        ],
+        ...
 leanpub-start-insert
         recordsPath: 'records.json',
 leanpub-end-insert
       },
-      parts.setFreeVariable(
-        'process.env.NODE_ENV',
-        'production'
-      ),
       ...
     ]);
   }
