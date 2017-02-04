@@ -11,22 +11,28 @@ T> Even if we minify our build, we can still generate source maps through the `d
 To get started, we should generate a baseline build so we have something to optimize. Execute `npm run build`. You should end up with something like this:
 
 ```bash
-Hash: 68893abb76c6fcca56cc
-Version: webpack 2.2.0
-Time: 2016ms
-        Asset       Size  Chunks             Chunk Names
-         0.js  313 bytes       0  [emitted]
-       app.js    2.34 kB       1  [emitted]  app
-    vendor.js     141 kB       2  [emitted]  vendor
-      app.css     2.2 kB       1  [emitted]  app
-     0.js.map  233 bytes       0  [emitted]
-   app.js.map    2.58 kB       1  [emitted]  app
-  app.css.map   84 bytes       1  [emitted]  app
-vendor.js.map     167 kB       2  [emitted]  vendor
-   index.html  316 bytes          [emitted]
-   [0] ./~/process/browser.js 5.3 kB {2} [built]
+Hash: 9f9739ce8a8c059354ae
+Version: webpack 2.2.1
+Time: 2705ms
+                                 Asset       Size  Chunks                    Chunk Names
+                                app.js    2.64 kB       1  [emitted]         app
+  674f50d287a8c48dc19ba404d20fe713.eot     166 kB          [emitted]
+  b06871f281fee6b241d60582ae9369b9.ttf     166 kB          [emitted]
+af7ae505a9eed503f8b8e6982036873e.woff2    77.2 kB          [emitted]
+ fee66e712a8a08eef5805a46892932ad.woff      98 kB          [emitted]
+  9a0d8fb85dedfde24f1ab4cdb568ef2a.png    17.6 kB          [emitted]
+                                  0.js  313 bytes       0  [emitted]
+  912ec66d7572ff821749319396470bde.svg     444 kB          [emitted]  [big]
+                             vendor.js     141 kB       2  [emitted]         vendor
+                               app.css     3.5 kB       1  [emitted]         app
+                              0.js.map  233 bytes       0  [emitted]
+                            app.js.map    2.72 kB       1  [emitted]         app
+                           app.css.map   84 bytes       1  [emitted]         app
+                         vendor.js.map     167 kB       2  [emitted]         vendor
+                            index.html  274 bytes          [emitted]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {2} [built]
    [7] ./~/react/react.js 56 bytes {2} [built]
+  [19] ./app/component.js 372 bytes {1} [built]
 ...
 ```
 
@@ -75,17 +81,22 @@ If you build now (`npm run build`), you should see a warning like this within th
 WARNING in asset size limit: The following asset(s) exceed the recommended size limit (50 kB).
 This can impact web performance.
 Assets:
-  vendor.js (136 kB)
+  674f50d287a8c48dc19ba404d20fe713.eot (166 kB)
+  912ec66d7572ff821749319396470bde.svg (444 kB)
+  b06871f281fee6b241d60582ae9369b9.ttf (166 kB)
+  af7ae505a9eed503f8b8e6982036873e.woff2 (77.2 kB)
+  fee66e712a8a08eef5805a46892932ad.woff (98 kB)
+  vendor.js (141 kB)
 
 WARNING in entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (100 kB). This can impact web performance.
 Entrypoints:
-  app (146 kB)
-     vendor.js
+  app (148 kB)
+      vendor.js
 ,      app.js
 ,      app.css
 ,
   vendor (141 kB)
-     vendor.js
+      vendor.js
 
 ...
 ```
@@ -151,22 +162,28 @@ leanpub-end-insert
 If you execute `npm run build` now, you should see smaller results:
 
 ```bash
-Hash: 68893abb76c6fcca56cc
-Version: webpack 2.2.0
-Time: 2553ms
-        Asset       Size  Chunks             Chunk Names
-         0.js  160 bytes       0  [emitted]
-       app.js  557 bytes       1  [emitted]  app
-    vendor.js    41.9 kB       2  [emitted]  vendor
-      app.css     2.2 kB       1  [emitted]  app
-     0.js.map  769 bytes       0  [emitted]
-   app.js.map     4.8 kB       1  [emitted]  app
-  app.css.map   84 bytes       1  [emitted]  app
-vendor.js.map     343 kB       2  [emitted]  vendor
-   index.html  316 bytes          [emitted]
-   [0] ./~/process/browser.js 5.3 kB {2} [built]
+Hash: 9f9739ce8a8c059354ae
+Version: webpack 2.2.1
+Time: 3410ms
+                                 Asset       Size  Chunks                    Chunk Names
+                                app.js  606 bytes       1  [emitted]         app
+  674f50d287a8c48dc19ba404d20fe713.eot     166 kB          [emitted]  [big]
+  b06871f281fee6b241d60582ae9369b9.ttf     166 kB          [emitted]  [big]
+af7ae505a9eed503f8b8e6982036873e.woff2    77.2 kB          [emitted]  [big]
+ fee66e712a8a08eef5805a46892932ad.woff      98 kB          [emitted]  [big]
+  9a0d8fb85dedfde24f1ab4cdb568ef2a.png    17.6 kB          [emitted]
+                                  0.js  160 bytes       0  [emitted]
+  912ec66d7572ff821749319396470bde.svg     444 kB          [emitted]  [big]
+                             vendor.js    41.8 kB       2  [emitted]         vendor
+                               app.css     3.5 kB       1  [emitted]         app
+                              0.js.map  769 bytes       0  [emitted]
+                            app.js.map    5.18 kB       1  [emitted]         app
+                           app.css.map   84 bytes       1  [emitted]         app
+                         vendor.js.map     343 kB       2  [emitted]         vendor
+                            index.html  274 bytes          [emitted]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {2} [built]
    [7] ./~/react/react.js 56 bytes {2} [built]
+  [19] ./app/component.js 372 bytes {1} [built]
 ...
 ```
 
