@@ -82,7 +82,7 @@ export default function () {
 }
 ```
 
-Next, we are going to need an entry point for our application. It will simply `require` our component and render it through the DOM:
+Next, we are going to need an entry point for our application. It will simply `import` our component and render it through the DOM:
 
 **app/index.js**
 
