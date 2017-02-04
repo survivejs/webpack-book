@@ -109,13 +109,15 @@ module.exports = function(env) {
   if (env === 'production') {
     return merge([
       common,
+      {
+        ...
+      },
 leanpub-start-insert
       parts.setFreeVariable(
         'process.env.NODE_ENV',
         'production'
       ),
 leanpub-end-insert
-      parts.clean(PATHS.build),
       ...
     ]);
   }
@@ -127,23 +129,34 @@ leanpub-end-insert
 Execute `npm run build` again, and you should see improved results:
 
 ```bash
-Version: webpack 2.2.0-rc.3
-Time: 2435ms
-      Asset       Size  Chunks             Chunk Names
-       0.js  130 bytes       0  [emitted]
-     app.js  525 bytes       1  [emitted]  app
-  vendor.js    21.1 kB       2  [emitted]  vendor
-    app.css    2.18 kB       1  [emitted]  app
-app.css.map   84 bytes       1  [emitted]  app
- index.html  316 bytes          [emitted]
+Hash: 9695368f0432ed1946ad
+Version: webpack 2.2.1
+Time: 3134ms
+                                 Asset       Size  Chunks                    Chunk Names
+                                app.js  640 bytes       1  [emitted]         app
+  674f50d287a8c48dc19ba404d20fe713.eot     166 kB          [emitted]  [big]
+  b06871f281fee6b241d60582ae9369b9.ttf     166 kB          [emitted]  [big]
+af7ae505a9eed503f8b8e6982036873e.woff2    77.2 kB          [emitted]  [big]
+ fee66e712a8a08eef5805a46892932ad.woff      98 kB          [emitted]  [big]
+  9a0d8fb85dedfde24f1ab4cdb568ef2a.png    17.6 kB          [emitted]
+                                  0.js  160 bytes       0  [emitted]
+  912ec66d7572ff821749319396470bde.svg     444 kB          [emitted]  [big]
+                             vendor.js      21 kB       2  [emitted]         vendor
+                               app.css     3.5 kB       1  [emitted]         app
+                              0.js.map  769 bytes       0  [emitted]
+                            app.js.map    5.62 kB       1  [emitted]         app
+                           app.css.map   84 bytes       1  [emitted]         app
+                         vendor.js.map     261 kB       2  [emitted]         vendor
+                            index.html  274 bytes          [emitted]
+   [4] ./~/object-assign/index.js 2.11 kB {2} [built]
    [5] ./~/react/react.js 56 bytes {2} [built]
-  [15] ./app/component.js 360 bytes {1} [built]
-  [16] ./app/main.css 41 bytes {1} [built]
+  [15] ./app/component.js 517 bytes {1} [built]
+...
 ```
 
-We went from 141 kB to 42 kB, and finally, to 21.1 kB. The final build is a little faster than the previous one as well.
+We went from 141 kB to 42 kB, and finally, to 21 kB. The final build is a little faster than the previous one as well.
 
-Given the 21.1 kB can be served gzipped, it is somewhat reasonable. gzipping will drop around another 40% and it is well supported by browsers.
+Given the 21 kB can be served gzipped, it is somewhat reasonable. gzipping will drop around another 40% and it is well supported by browsers.
 
 It is good to remember that we didn't include *react-dom* in this case and that would add around 100 kB to the final result. To get back to these figures, we would have to use a lighter alternative such as Preact or react-lite as discussed in the *Configuring React* chapter.
 
