@@ -67,7 +67,7 @@ W> `require.ensure` relies on `Promise`s internally. If you use `require.ensure`
 
 The example above could be rewritten using a webpack specific function known as `require.include`:
 
-```
+```javascript
 require.ensure(
   [],
   () => {
@@ -148,7 +148,7 @@ We also need to point the application to this file so it knows to load it. A sim
 export default function () {
   const element = document.createElement('h1');
 
-  element.className = 'pure-button';
+  element.className = 'fa fa-hand-spock-o fa-1g';
   element.innerHTML = 'Hello world';
 leanpub-start-insert
   element.onclick = () => {
@@ -171,22 +171,28 @@ If you open up the application (`npm start`) and click the button, you should se
 Perhaps the more interesting thing is to see what the build result looks like. If you run `npm run build`, you should see something like this:
 
 ```bash
-Hash: 230ee0afd5597af17cb1
-Version: webpack 2.2.0
-Time: 1901ms
-        Asset       Size  Chunks             Chunk Names
-         0.js  314 bytes       0  [emitted]
-       app.js    2.32 kB       1  [emitted]  app
-    vendor.js     141 kB       2  [emitted]  vendor
-      app.css     2.2 kB       1  [emitted]  app
-     0.js.map  277 bytes       0  [emitted]
-   app.js.map    1.95 kB       1  [emitted]  app
-  app.css.map   84 bytes       1  [emitted]  app
-vendor.js.map     167 kB       2  [emitted]  vendor
-   index.html  274 bytes          [emitted]
-   [0] ./~/process/browser.js 5.3 kB {2} [built]
+Hash: 9315a5f1fe4ecf603055
+Version: webpack 2.2.1
+Time: 2639ms
+                                 Asset       Size  Chunks                    Chunk Names
+                                app.js    2.62 kB       1  [emitted]         app
+  674f50d287a8c48dc19ba404d20fe713.eot     166 kB          [emitted]
+  b06871f281fee6b241d60582ae9369b9.ttf     166 kB          [emitted]
+af7ae505a9eed503f8b8e6982036873e.woff2    77.2 kB          [emitted]
+ fee66e712a8a08eef5805a46892932ad.woff      98 kB          [emitted]
+  9a0d8fb85dedfde24f1ab4cdb568ef2a.png    17.6 kB          [emitted]
+                                  0.js  314 bytes       0  [emitted]
+  912ec66d7572ff821749319396470bde.svg     444 kB          [emitted]  [big]
+                             vendor.js     141 kB       2  [emitted]         vendor
+                               app.css     3.5 kB       1  [emitted]         app
+                              0.js.map  277 bytes       0  [emitted]
+                            app.js.map    2.11 kB       1  [emitted]         app
+                           app.css.map   84 bytes       1  [emitted]         app
+                         vendor.js.map     167 kB       2  [emitted]         vendor
+                            index.html  274 bytes          [emitted]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {2} [built]
    [7] ./~/react/react.js 56 bytes {2} [built]
+  [19] ./app/component.js 358 bytes {1} [built]
 ...
 ```
 
