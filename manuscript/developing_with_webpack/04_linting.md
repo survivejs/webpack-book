@@ -93,32 +93,16 @@ module.exports = {
     "sourceType": "module",
   },
   "rules": {
-    "comma-dangle": [
-      "error",
-      "always-multiline",
-    ],
-    "indent": [
-      "error",
-      2,
-    ],
-    "linebreak-style": [
-      "error",
-      "unix",
-    ],
-    "quotes": [
-      "error",
-      "single",
-    ],
-    "semi": [
-      "error",
-      "always",
-    ],
-    "no-unused-vars": [
-      "warn",
-    ],
+    "comma-dangle": ["error", "always-multiline"],
+    "indent": ["error", 2],
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "no-unused-vars": ["warn"],
     "no-console": 0,
   },
 };
+
 ```
 
 In addition, we need to tell ESLint to skip linting *node_modules* and *build* directories by setting up ignore patterns:
@@ -177,7 +161,7 @@ leanpub-start-insert
 
         loader: 'eslint-loader',
         options: {
-          emitWarning: true
+          emitWarning: true,
         },
       },
     ],
@@ -215,7 +199,7 @@ Since webpack 2, the configuration schema of webpack has become stricter and it 
           outputReport: {
             filePath: 'checkstyle.xml',
             formatter: require('eslint/lib/formatters/checkstyle'),
-          }
+          },
         },
       },
     }),
