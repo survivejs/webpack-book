@@ -230,9 +230,9 @@ Even though npm CLI wasn't primarily designed to be used as a task runner, it wo
 }
 ```
 
-These scripts can be listed using `npm run` and then executed using `npm run <script>`. There are also shortcuts for common commands, like `npm start` or `npm test` (same as `npm t`). You can also namespace your scripts using a convention like `test:watch`.
+These scripts can be listed using `npm run` and then executed using `npm run <script>`. You can also namespace your scripts using a convention like `test:watch`. The gotcha with this approach is that it takes some care to keep it cross-platform.
 
-The gotcha is that it takes some care to keep it cross-platform. Instead of `rm -rf`, you might want to use a utility like [rimraf](https://www.npmjs.com/package/rimraf) and so on. It's possible to invoke other tasks runners here to hide the fact that you are using one. This way you can refactor your tooling while keeping the interface as the same.
+Instead of `rm -rf`, you might want to use a utility like [rimraf](https://www.npmjs.com/package/rimraf) and so on. It's possible to invoke other tasks runners here to hide the fact that you are using one. This way you can refactor your tooling while keeping the interface as the same.
 
 You also cannot document the tasks given the default JSON format used by npm doesn't support comments. Some tools, such as Babel, support JSON5 that allows commenting. ESLint goes further and supports even YAML and JavaScript based configuration.
 
