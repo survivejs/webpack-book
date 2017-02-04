@@ -53,13 +53,13 @@ If you execute either *npm run start* or *npm start* now, you should see somethi
 
 Project is running at http://localhost:8080/
 webpack output is served from /
-Hash: a6629a1f55a2c758876b
-Version: webpack 2.2.0
-Time: 727ms
-     Asset       Size  Chunks             Chunk Names
-    app.js     247 kB       0  [emitted]  app
+Hash: c1b0a0508a91f4b1ac74
+Version: webpack 2.2.1
+Time: 757ms
+     Asset       Size  Chunks                    Chunk Names
+    app.js     314 kB       0  [emitted]  [big]  app
 index.html  180 bytes          [emitted]
-chunk    {0} app.js (app) 233 kB [entry] [rendered]
+chunk    {0} app.js (app) 300 kB [entry] [rendered]
 ...
 webpack: bundle is now VALID.
 ```
@@ -191,7 +191,7 @@ As webpack plugin ecosystem is quite diverse, there are a lot of plugins that ca
 * [npm-install-webpack-plugin](https://www.npmjs.com/package/npm-install-webpack-plugin) allows webpack to install and wire the installed packages with your *package.json* as you import new packages to your project. It's almost magical this way.
 * [system-bell-webpack-plugin](https://www.npmjs.com/package/system-bell-webpack-plugin) rings the system bell on failure instead of letting webpack fail silently.
 * [friendly-errors-webpack-plugin](https://www.npmjs.com/package/friendly-errors-webpack-plugin) improves on error reporting of webpack. It captures common errors and displays them in a friendlier manner, hence the name.
-* [nyan-progress-webpack-plugin](https://www.npmjs.com/package/nyan-progress-webpack-plugin) can be used to get tidier output during the build process. Take care with Continuous Integration (CI) systems like Travis, though, as they might clobber the output. Webpack provides `webpack.ProgressPlugin` for the same purpose. No nyan there, though.
+* [nyan-progress-webpack-plugin](https://www.npmjs.com/package/nyan-progress-webpack-plugin) can be used to get tidier output during the build process. Take care with Continuous Integration (CI) systems like Travis, though, as they might clobber the output. Webpack provides `ProgressPlugin` for the same purpose. No nyan there, though.
 * [webpack-dashboard](https://www.npmjs.com/package/webpack-dashboard) gives an entire terminal based dashboard over the standard webpack output. If you prefer clear visual output, this one will come in handy.
 
 In addition to plugins like these, it can be worth your while to set up linting to enforce coding standards. The *Linting* chapter digs into that topic in greater detail.
