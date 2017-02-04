@@ -232,9 +232,7 @@ leanpub-start-insert
         app: ['react-hot-loader/patch', PATHS.app],
       },
 leanpub-end-insert
-      plugins: [
-        ...
-      ],
+      ...
     },
     ...
   ]);
@@ -381,7 +379,10 @@ export default function configureStore(initialState) {
 
   if(module.hot) {
     // Enable webpack hot module replacement for reducers
-    module.hot.accept('../reducers', () => store.replaceReducer(reducers));
+    module.hot.accept(
+      '../reducers',
+      () => store.replaceReducer(reducers)
+    );
   }
 
   return store;
