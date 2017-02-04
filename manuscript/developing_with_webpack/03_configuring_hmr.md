@@ -91,7 +91,7 @@ Execute `npm start` and surf to **localhost:8080**. Try modifying *app/component
 
 We get this behavior because we set `hotOnly: true` for WDS. Going with `inline: true` would have swallowed the error and refreshed the page. This behavior is fine, though, as we will implement the HMR interface next to avoid the need for hard refresh. Before that we can do something about those cryptic numbers to get more sensible output.
 
-You should be able to access the application alternately through **localhost:8080/webpack-dev-server/** instead of the root. It will provide status information within the browser itself at the top of the application. If your application relies on WebSockets and you use WDS proxying, you'll need to use this specific url: otherwise, WDS logic will interfere.
+You can access the application alternately through **localhost:8080/webpack-dev-server/** instead of the root. It will provide status information within the browser itself at the top of the application. If your application relies on WebSockets and you use WDS proxying, you'll need to use this specific url: otherwise, WDS logic will interfere.
 
 W> *webpack-dev-server* can be very particular about paths. If the given `include` paths don't match the system casing exactly, this can cause it to fail to work. Webpack [issue #675](https://github.com/webpack/webpack/issues/675) discusses this in more detail.
 
@@ -129,7 +129,7 @@ leanpub-end-insert
 ...
 ```
 
-If you run the development server again (`npm start`), you should see something more familiar:
+If you restart the development server (terminate it and run `npm start`), you should see something more familiar:
 
 ![No refresh, but better output](images/no-refresh2.png)
 
@@ -177,13 +177,13 @@ If you refresh the browser, try to modify *app/component.js* after this change, 
 
 The idea is the same with styling, React, Redux, and other technologies. Sometimes you may not have to implement the interface yourself even as available tooling takes care of that for you.
 
-T> Check out the *Configuring Hot Module Replacement with React* to learn how to get webpack and React to work together in a nicer manner.
+T> Check out the *Configuring React* chapter to learn how to get webpack and React to work together while using HMR.
 
 T> That `if(module.hot)` block be eliminated entirely from the production build as minifier picks it up. The *Minifying Build* chapter delves deeper into this topic.
 
 ## HMR on Windows, Ubuntu, and Vagrant
 
-The setup may be problematic on certain versions of Windows, Ubuntu, and Vagrant. We can solve this through polling:
+The setup may be problematic on older versions of Windows, Ubuntu, and Vagrant. We can solve this through polling:
 
 **webpack.config.js**
 
@@ -217,7 +217,7 @@ leanpub-end-insert
 ...
 ```
 
-Given this setup polls the file system, it is going to be more resource intensive. It's worth giving a go if the default doesn't work, though.
+Given this setup polls the file system, it is more resource intensive. It's worth giving a go if the default doesn't work, though.
 
 T> There are more details in *webpack-dev-server* issue [#155](https://github.com/webpack/webpack-dev-server/issues/155).
 
