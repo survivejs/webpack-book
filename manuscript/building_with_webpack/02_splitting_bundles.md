@@ -30,6 +30,7 @@ Then make the project depend on it:
 leanpub-start-insert
 import 'react';
 leanpub-end-insert
+import 'font-awesome/css/font-awesome.css';
 import 'purecss';
 import './main.css';
 import component from './component';
@@ -40,18 +41,24 @@ import component from './component';
 Execute `npm run build` to get a baseline build. You should end up with something like this:
 
 ```bash
-Hash: 2cfd5a2f0c95a8ae2a88
-Version: webpack 2.2.0
-Time: 1861ms
-      Asset       Size  Chunks             Chunk Names
-     app.js     140 kB       0  [emitted]  app
-    app.css     2.2 kB       0  [emitted]  app
- app.js.map     165 kB       0  [emitted]  app
-app.css.map   84 bytes       0  [emitted]  app
- index.html  218 bytes          [emitted]
+Hash: 3a397bdead95ad6c73b5
+Version: webpack 2.2.1
+Time: 2502ms
+                                 Asset       Size  Chunks                    Chunk Names
+  9a0d8fb85dedfde24f1ab4cdb568ef2a.png    17.6 kB          [emitted]
+  674f50d287a8c48dc19ba404d20fe713.eot     166 kB          [emitted]
+  b06871f281fee6b241d60582ae9369b9.ttf     166 kB          [emitted]
+af7ae505a9eed503f8b8e6982036873e.woff2    77.2 kB          [emitted]
+ fee66e712a8a08eef5805a46892932ad.woff      98 kB          [emitted]
+  912ec66d7572ff821749319396470bde.svg     444 kB          [emitted]  [big]
+                                app.js     140 kB       0  [emitted]         app
+                               app.css     3.5 kB       0  [emitted]         app
+                            app.js.map     165 kB       0  [emitted]         app
+                           app.css.map   84 bytes       0  [emitted]         app
+                            index.html  218 bytes          [emitted]
+   [0] ./~/process/browser.js 5.3 kB {0} [built]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {0} [built]
-   [5] ./~/object-assign/index.js 2.11 kB {0} [built]
-   [9] ./~/react/lib/ReactComponent.js 4.61 kB {0} [built]
+  [18] ./app/component.js 187 bytes {0} [built]
 ...
 ```
 
@@ -77,7 +84,6 @@ leanpub-start-insert
         },
       },
 leanpub-end-insert
-      parts.generateSourceMaps({ type: 'source-map' }),
       ...
     ]);
   }
@@ -89,19 +95,25 @@ leanpub-end-insert
 We have two separate entries, or **entry chunks**, now. `[name].js` of our existing `output.path` configuration will kick in based on the entry name and if you try to generate a build now (`npm run build`), you should see something along this:
 
 ```bash
-Hash: 2d1c23d0a7028ee451f8
-Version: webpack 2.2.0
-Time: 1875ms
-        Asset       Size  Chunks             Chunk Names
-       app.js     140 kB       0  [emitted]  app
-    vendor.js     138 kB       1  [emitted]  vendor
-      app.css     2.2 kB       0  [emitted]  app
-   app.js.map     165 kB       0  [emitted]  app
-  app.css.map   84 bytes       0  [emitted]  app
-vendor.js.map     164 kB       1  [emitted]  vendor
-   index.html  274 bytes          [emitted]
+Hash: 2000c9bcd42c6cf4e8c2
+Version: webpack 2.2.1
+Time: 2636ms
+                                 Asset       Size  Chunks                    Chunk Names
+                                app.js     140 kB       0  [emitted]         app
+  674f50d287a8c48dc19ba404d20fe713.eot     166 kB          [emitted]
+  b06871f281fee6b241d60582ae9369b9.ttf     166 kB          [emitted]
+af7ae505a9eed503f8b8e6982036873e.woff2    77.2 kB          [emitted]
+ fee66e712a8a08eef5805a46892932ad.woff      98 kB          [emitted]
+  9a0d8fb85dedfde24f1ab4cdb568ef2a.png    17.6 kB          [emitted]
+  912ec66d7572ff821749319396470bde.svg     444 kB          [emitted]  [big]
+                             vendor.js     138 kB       1  [emitted]         vendor
+                               app.css     3.5 kB       0  [emitted]         app
+                            app.js.map     165 kB       0  [emitted]         app
+                           app.css.map   84 bytes       0  [emitted]         app
+                         vendor.js.map     164 kB       1  [emitted]         vendor
+                            index.html  274 bytes          [emitted]
+   [0] ./~/process/browser.js 5.3 kB {0} {1} [built]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {0} {1} [built]
-   [5] ./~/object-assign/index.js 2.11 kB {0} {1} [built]
   [18] ./~/react/react.js 56 bytes {0} {1} [built]
 ...
 ```
@@ -130,7 +142,7 @@ The following code combines the `entry` idea above with a basic `CommonsChunkPlu
 ...
 
 leanpub-start-insert
-exports.extractBundles = function({ bundles, options }) {
+exports.extractBundles = function({ bundles, options }) {
   const entry = {};
   const names = [];
 
@@ -150,8 +162,8 @@ exports.extractBundles = function({ bundles, options }) {
       // Extract bundles.
       new webpack.optimize.CommonsChunkPlugin(
         Object.assign({}, options, { names })
-      )
-    ]
+      ),
+    ],
   };
 };
 leanpub-end-insert
@@ -185,7 +197,6 @@ leanpub-start-insert
         ],
       }),
 leanpub-end-insert
-      parts.generateSourceMaps({ type: 'source-map' }),
       ...
     ]);
   }
@@ -197,19 +208,25 @@ leanpub-end-insert
 If you execute the build now using `npm run build`, you should see something along this:
 
 ```bash
-Hash: 57209c1891d4904db640
-Version: webpack 2.2.0
-Time: 1830ms
-        Asset       Size  Chunks             Chunk Names
-       app.js    2.09 kB       0  [emitted]  app
-    vendor.js     141 kB       1  [emitted]  vendor
-      app.css     2.2 kB       0  [emitted]  app
-   app.js.map    1.73 kB       0  [emitted]  app
-  app.css.map   84 bytes       0  [emitted]  app
-vendor.js.map     167 kB       1  [emitted]  vendor
-   index.html  274 bytes          [emitted]
+Hash: 210d25c68d115a439ffc
+Version: webpack 2.2.1
+Time: 2476ms
+                                 Asset       Size  Chunks                    Chunk Names
+                                app.js    2.39 kB       0  [emitted]         app
+  674f50d287a8c48dc19ba404d20fe713.eot     166 kB          [emitted]
+  b06871f281fee6b241d60582ae9369b9.ttf     166 kB          [emitted]
+af7ae505a9eed503f8b8e6982036873e.woff2    77.2 kB          [emitted]
+ fee66e712a8a08eef5805a46892932ad.woff      98 kB          [emitted]
+  9a0d8fb85dedfde24f1ab4cdb568ef2a.png    17.6 kB          [emitted]
+  912ec66d7572ff821749319396470bde.svg     444 kB          [emitted]  [big]
+                             vendor.js     141 kB       1  [emitted]         vendor
+                               app.css     3.5 kB       0  [emitted]         app
+                            app.js.map    1.89 kB       0  [emitted]         app
+                           app.css.map   84 bytes       0  [emitted]         app
+                         vendor.js.map     167 kB       1  [emitted]         vendor
+                            index.html  274 bytes          [emitted]
+   [0] ./~/process/browser.js 5.3 kB {1} [built]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {1} [built]
-   [5] ./~/object-assign/index.js 2.11 kB {1} [built]
    [7] ./~/react/react.js 56 bytes {1} [built]
 ...
 ```
