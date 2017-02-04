@@ -4,7 +4,7 @@ Before getting started, make sure you are using a recent version of [Node.js](ht
 
 The completed configuration is available at [GitHub](https://github.com/survivejs-demos/webpack-demo). If you are unsure of something, refer there.
 
-T> It is possible to get a more controlled environment by using a solution such as [Vagrant](https://www.vagrantup.com/) or [nvm](https://www.npmjs.com/package/nvm). Vagrant comes with a performance penalty as it relies on a virtual machine. Vagrant is particularly useful in a team: each developer will have the same enviromnent, usually very close to production.
+T> It is possible to get a more controlled environment by using a solution such as [Vagrant](https://www.vagrantup.com/) or [nvm](https://www.npmjs.com/package/nvm). Vagrant comes with a performance penalty as it relies on a virtual machine. Vagrant is particularly useful in a team: each developer will have the same environment, usually very close to production.
 
 ## Setting Up the Project
 
