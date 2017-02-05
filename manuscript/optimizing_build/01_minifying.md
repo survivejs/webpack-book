@@ -1,4 +1,4 @@
-# Minifying Build
+# Minifying the Build
 
 So far, we haven't given thought to our build output and no doubt it's going to be a little chunky, especially as we included React in it. We can apply a variety of techniques to bring down the size of the vendor bundle. We can also leverage client level caching and load certain assets lazily as we saw earlier.
 
