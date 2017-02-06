@@ -69,7 +69,7 @@ if (foo === 'bar') {
 // if (false) means the block can be dropped entirely
 ```
 
-This is the core idea of `DefinePlugin`. We can toggle parts of code using this kind of mechanism. A good minifier is able to perform the analysis for us and enable/disable entire portions of it as we prefer.
+This is the core idea of `DefinePlugin`. We can toggle parts of code using this kind of mechanism. A good minifier is able to perform the analysis for us and enable/disable entire portions of the code as we prefer.
 
 T> [babel-plugin-transform-define](https://www.npmjs.com/package/babel-plugin-transform-define) can achieve the same result without webpack.
 
