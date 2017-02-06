@@ -4,3 +4,4 @@ node_js:
 sudo: required
 script:
   - sudo pip install proselint
+  - npm test
