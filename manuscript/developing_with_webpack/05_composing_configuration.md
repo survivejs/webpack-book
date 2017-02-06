@@ -59,8 +59,8 @@ exports.devServer = function({ host, port }) {
       //
       // 0.0.0.0 is available to all network devices
       // unlike default `localhost`.
-      host: host, // Defaults to `localhost`
-      port: port, // Defaults to 8080
+      host, // Defaults to `localhost`
+      port, // Defaults to 8080
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
@@ -74,12 +74,12 @@ exports.lintJavaScript = function({ include, exclude, options }) {
       rules: [
         {
           test: /\.js$/,
-          include: include,
-          exclude: exclude,
+          include,
+          exclude,
           enforce: 'pre',
 
           loader: 'eslint-loader',
-          options: options,
+          options,
         },
       ],
     },

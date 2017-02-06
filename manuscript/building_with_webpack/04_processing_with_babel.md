@@ -73,8 +73,8 @@ exports.loadJavaScript = function({ include, exclude }) {
       rules: [
         {
           test: /\.js$/,
-          include: include,
-          exclude: exclude,
+          include,
+          exclude,
 
           loader: 'babel-loader',
           options: {

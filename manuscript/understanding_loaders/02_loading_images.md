@@ -63,12 +63,12 @@ exports.loadImages = function({ include, exclude, options } = {}) {
       rules: [
         {
           test: /\.(png|jpg)$/,
-          include: include,
-          exclude: exclude,
+          include,
+          exclude,
 
           use: {
             loader: 'url-loader',
-            options: options,
+            options,
           },
         },
       ],

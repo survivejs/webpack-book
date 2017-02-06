@@ -26,14 +26,14 @@ Now let's make sure webpack is aware of them. Configure as follows:
 ...
 
 leanpub-start-insert
-exports.loadCSS = function({ include, exclude} = {}) {
+exports.loadCSS = function({ include, exclude } = {}) {
   return {
     module: {
       rules: [
         {
           test: /\.css$/,
-          include: include,
-          exclude: exclude,
+          include,
+          exclude,
 
           use: ['style-loader', 'css-loader'],
         },

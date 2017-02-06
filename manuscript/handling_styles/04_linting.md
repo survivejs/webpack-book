@@ -75,8 +75,8 @@ exports.lintCSS = function({ include, exclude }) {
       rules: [
         {
           test: /\.css$/,
-          include: include,
-          exclude: exclude,
+          include,
+          exclude,
           enforce: 'pre',
 
           loader: 'postcss-loader',

@@ -47,8 +47,8 @@ exports.extractCSS = function({ include, exclude, use }) {
       rules: [
         {
           test: /\.css$/,
-          include: include,
-          exclude: exclude,
+          include,
+          exclude,
 
           use: ExtractTextPlugin.extract({
             use: use,
