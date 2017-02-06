@@ -69,7 +69,7 @@ As you can see, the size of the CSS file grew quite a bit. This is something we'
 
 Using PurifyCSS can lead to great savings. In their example, they purify and minify Bootstrap (140 kB) in an application using ~40% of its selectors to mere ~35 kB. That's a big difference.
 
-Webpack plugin known as [purifycss-webpack](https://www.npmjs.com/package/purifycss-webpack) allows us to achieve results like this. It is preferable to use the `ExtractTextPlugin` with it for the best results. Install it and a [glob](https://www.npmjs.org/package/glob) helper first:
+Webpack plugin known as [purifycss-webpack](https://www.npmjs.com/package/purifycss-webpack) allows us to achieve results like this. You should use the `ExtractTextPlugin` with it for the best results. Install it and a [glob](https://www.npmjs.org/package/glob) helper first:
 
 ```bash
 npm i glob purifycss-webpack --save-dev
