@@ -71,7 +71,7 @@ leanpub-end-insert
 };
 ```
 
-If we used `chunkhash` for the extracted CSS as well, this would lead to problems as our code points to the CSS through JavaScript bringing it to the same entry. That means if the application code or CSS changed, it would validate both. Therefore instead of `chunkhash`, we can use `contenthash` that's generated based on the extracted content:
+If we used `chunkhash` for the extracted CSS as well, this would lead to problems as our code points to the CSS through JavaScript bringing it to the same entry. That means if the application code or CSS changed, it would invalidate both. Therefore instead of `chunkhash`, we can use `contenthash` that's generated based on the extracted content:
 
 **webpack.parts.js**
 
