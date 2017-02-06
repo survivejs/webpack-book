@@ -379,29 +379,29 @@ Secondly, we'll need the script itself:
 **lib/post_install.js**
 
 ```javascript
-#!/usr/bin/env node
+/* eslint-disable */
 // adapted based on rackt/history (MIT)
-const spawn = require('child_process').spawn;
-const stat = require('fs').stat;
+// Node 4+
+var execSync = require('child_process').execSync;
+var stat = require('fs').stat;
 
-stat('dist-modules', function(error, stat) {
+stat('dist', function(error, stat) {
+  // Skip building on Travis
+  if (process.env.TRAVIS) {
+    return;
+  }
+
   if (error || !stat.isDirectory()) {
-    spawn(
-      'npm',
-      [
-        'i',
-        'babel-cli',
-        'babel-preset-es2015',
-        'babel-preset-react'
-      ],
-      {
-        stdio: [0, 1, 2]
-      }
-    ).on('close', function(exitCode) {
-      spawn('npm', ['run', 'dist-modules'], { stdio: [0, 1, 2] });
-    });
+    exec('npm install --only=dev');
+    exec('npm run build');
   }
 });
+
+function exec(command) {
+  execSync(command, {
+    stdio: [0, 1, 2]
+  });
+}
 ```
 
 The script may need tweaking to fit your purposes. But it's enough to give you a rough idea. If the `dist-modules` directory is missing, we'll generate it here. That's it.
