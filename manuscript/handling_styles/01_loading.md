@@ -141,7 +141,7 @@ Note that `body` remains as a global declaration still. It's that `redButton` th
 
 CSS Modules provides also features like composition to make it even easier to work with your styles. You can also combine it with other loaders as long as you apply them before *css-loader*.
 
-T> The query syntax, `css-loader?modules`, and its alternatives is discussed in greater detail in the *Loader Definitions* chapter. There are multiple ways to achieve the same effect in webpack some of which are clearer than others.
+T> The query syntax, `css-loader?modules`, and its alternatives are discussed in greater detail in the *Loader Definitions* chapter. There are multiple ways to achieve the same effect in webpack some of which are clearer than others.
 
 T> CSS Modules behavior can be modified [as discussed in the official documentation](https://www.npmjs.com/package/css-loader#local-scope). You have control over the names it generates for instance.
 
