@@ -4,7 +4,7 @@ Even though consuming npm packages is simple using webpack, there are certain sp
 
 ## Understanding SemVer
 
-Most of the packages out there comply with a versioning scheme known as SemVer. It's not problematic as sometimes packages may inadvertently break it, but there are ways around this. Roughly, SemVer states that you should not break backwards compatibility, given [certain rules](http://semver.org/) are met:
+Most of the packages out there comply with SemVer. It's not problematic as sometimes packages may inadvertently break it, but there are ways around this. Roughly, SemVer states that you should not break backwards compatibility, given [certain rules](http://semver.org/) are met:
 
 1. The MAJOR version gets incremented when incompatible API changes are made to stable APIs.
 2. The MINOR version gets incremented when backwards-compatible functionality is added.
@@ -12,7 +12,7 @@ Most of the packages out there comply with a versioning scheme known as SemVer. 
 
 The rules are a little different for `0.x` versions. There the rule is `0.<MAJOR>.<MINOR>`. For packages considered stable and suitable for public usage (`1.0.0` and above), the rules is `<MAJOR>.<MINOR>.<PATCH>`. For example, if the current version of a package is `0.1.4` and a breaking change is performed, it should bump to `0.2.0`.
 
-Given SemVer can be a little tricky to manage, some packages use a backwards compatible alternative known as [ComVer](https://github.com/staltz/comver). ComVer can be described as a binary decision `<not compatible>.<compatible>`.
+Given SemVer can be a little tricky to manage, some packages use a backwards compatible alternative [ComVer](https://github.com/staltz/comver). ComVer can be described as a binary decision `<not compatible>.<compatible>`.
 
 T> You can understand SemVer much better by studying [the online tool](http://semver.npmjs.com/) and how it behaves.
 
@@ -30,7 +30,7 @@ On a package level, npm resolves to a file like this:
 2. Get the contents of the `main` field. If it doesn't exist, default to *<package>/index.js*.
 3. Resolve to the `main` file.
 
-The general lookup algorithm respects an environment variable known as `NODE_PATH`. If you want to tweak the resolution further, you can attach specific directories to it. Example: `NODE_PATH=$NODE_PATH:./demo`. A call like this can be included in the beginning of a *package.json* script to patch the runtime environment temporarily, although it's better to avoid this if possible.
+The general lookup algorithm respects an environment variable `NODE_PATH`. If you want to tweak the resolution further, you can attach specific directories to it. Example: `NODE_PATH=$NODE_PATH:./demo`. A call like this can be included in the beginning of a *package.json* script to patch the runtime environment temporarily, although it's better to avoid this if possible.
 
 You can tweak webpack's module resolution through the `resolve.modules` field. Example:
 
@@ -49,7 +49,7 @@ Sometimes it may be beneficial to use these techniques together. Compared to npm
 
 W> Installing packages globally can lead to surprising behavior. If you have a package installed both globally and it a project happens to contain it, executing associated terminal command (say `webpack`) will point to the version of the project. This won't work unless the global package exists.
 
-T> A package known as [app-module-path](https://www.npmjs.com/package/app-module-path) allows you adjust Node.js module lookup within JavaScript. This can be an interesting alternative to patching `NODE_PATH`.
+T> [app-module-path](https://www.npmjs.com/package/app-module-path) allows you adjust Node.js module lookup within JavaScript. This can be an interesting alternative to patching `NODE_PATH`.
 
 ## Version Ranges
 
@@ -68,7 +68,7 @@ Using version ranges can feel a little dangerous as it doesn't take much to brea
 
 [lockdown](https://www.npmjs.com/package/lockdown) goes further and gives guarantees about dependency content, not just version. [shrinkpack](https://www.npmjs.com/package/shrinkpack) is another interesting complementary option.
 
-[Yarn](https://yarnpkg.com/), a npm alternative, goes a step further as it introduces something known as *lockfile*. Yarn is worth a look, as it fixes certain shortcomings of npm.
+[Yarn](https://yarnpkg.com/), a npm alternative, goes a step further as it introduces the idea of a *lockfile*. Yarn is worth a look, as it fixes certain shortcomings of npm.
 
 ## Keeping Dependencies Up to Date
 
@@ -204,9 +204,9 @@ W> Disabling warnings like this one should be the last measure as doing it can h
 
 Even though it's easy to consume packages through npm, there are times when it's useful to have more information available. npm provides `npm info <package>` command for basic queries. You can use it to check the metadata associated to packages while figuring out version related information.
 
-A tool known as [package-config-checker](https://www.npmjs.com/package/package-config-checker) goes a step further. It allows you to understand better which packages of your project have updated recently and it provides means to get insight into your dependencies. It can reveal which packages could use download size related improvements for example.
+[package-config-checker](https://www.npmjs.com/package/package-config-checker) goes a step further. It allows you to understand better which packages of your project have updated recently and it provides means to get insight into your dependencies. It can reveal which packages could use download size related improvements for example.
 
-A service known as [npms.io](https://npms.io/) provides a better search for npm. The basic search has been integrated to [npmjs.org](https://www.npmjs.com/), but npms.io can still be interesting especially because they expose their data through [a public API](https://api-docs.npms.io/) you can query programmatically.
+[npms.io](https://npms.io/) provides a better search for npm. The basic search has been integrated to [npmjs.org](https://www.npmjs.com/), but npms.io can still be interesting especially because they expose their data through [a public API](https://api-docs.npms.io/) you can query programmatically.
 
 ## Conclusion
 

@@ -191,7 +191,7 @@ Sometimes getting only reference to an image isn't enough. [image-size-loader](h
 
 ## Loading Sprites
 
-A technique known as spriting allows you to combine multiple smaller images into a single image. It has been used for games to describe animations and it's useful for web development as well as you avoid request overhead.
+**Spriting** technique allows you to combine multiple smaller images into a single image. It has been used for games to describe animations and it's useful for web development as well as you avoid request overhead.
 
 [webpack-spritesmith](https://www.npmjs.com/package/webpack-spritesmith) converts provided images into a spritesheet and Sass/Less/Stylus mixins. You have to set up a `SpritesmithPlugin`, point it to target images, and set the name of the generated mixin. After that, your styling can pick it up like this:
 
@@ -209,7 +209,9 @@ A technique known as spriting allows you to combine multiple smaller images into
 
 ## Loading Images Dynamically
 
-Sometimes you might want to load an image dynamically based on some condition. A webpack feature known as `require.context` can come in handy here. It still assumes the images are available within the file system, but if that's the case, then the technique can work. See the *Code Splitting* chapter for further information.
+Sometimes you might want to load an image dynamically based on some condition. `require.context` can come in handy here. It still assumes the images are available within the file system, but if that's the case, then the technique can work. See the *Code Splitting* chapter for further information.
+
+T> `require.context` is discussed in greater detail at the *Code Splitting* chapter.
 
 ## Images and *css-loader* Source Map Gotcha
 

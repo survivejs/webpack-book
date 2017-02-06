@@ -18,7 +18,7 @@ This is the approach we'll use in this book to discuss through various technique
 
 ## Composing Configuration by Merging
 
-In order to eliminate the problem of dealing with `Object.assign` and `Array.concat`, I have developed a little tool known as [webpack-merge](https://www.npmjs.org/package/webpack-merge). Effectively it does two things: it concatenates arrays and merges objects instead of overriding them. Even though a simple idea, this allows us to compose configuration and gives us a degree of abstraction.
+In order to eliminate the problem of dealing with `Object.assign` and `Array.concat`, I developed [webpack-merge](https://www.npmjs.org/package/webpack-merge). Effectively it does two things: it concatenates arrays and merges objects instead of overriding them. Even though a simple idea, this allows us to compose configuration and gives us a degree of abstraction.
 
 *webpack-merge* provides even more control through strategies that allow you to control its behavior per field. Strategies allow you to force it to append, prepend, or replace content. Even though *webpack-merge* was designed for the purposes of this book, it has proven to be an invaluable tool beyond it. You can consider it as a learning tool and pick it up in your work if you find it useful.
 
@@ -166,7 +166,7 @@ We can also add more by expanding the *package.json* definition and branching at
 
 Later on *webpack.parts.js* could be pushed to npm or outside of the project. But for the purposes of this book, it's enough to maintain it within the project.
 
-T> Webpack 2 validates the configuration by default. If you make an obvious mistake, it will let you know. Earlier, it was useful to set up a solution known as [webpack-validator](https://www.npmjs.com/package/webpack-validator), but that's not needed anymore.
+T> Webpack 2 validates the configuration by default. If you make an obvious mistake, it will let you know. Earlier, it was useful to set up [webpack-validator](https://www.npmjs.com/package/webpack-validator), but that's not needed anymore.
 
 ## The Benefits of Composing Configuration
 

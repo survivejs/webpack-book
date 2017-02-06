@@ -1,6 +1,6 @@
 # Loader Definitions
 
-Webpack provides multiple ways to set up module loaders. Webpack 2 simplified the situation by introducing a field known as `use`. The legacy options (`loader` and `loaders`) still work, though. I'll discuss all the options for completeness, as you may see them in various configurations out there.
+Webpack provides multiple ways to set up module loaders. Webpack 2 simplified the situation by introducing a the `use` field. The legacy options (`loader` and `loaders`) still work, though. I'll discuss all the options for completeness, as you may see them in various configurations out there.
 
 I recommend maintaining an `include` definition per each JavaScript-related loader definition. This will restrict its search path, improve performance, and make your configuration easier to follow. `include` accepts either a path or an array of paths. Another option would be to use `exclude`. Often you see declarations, like `exclude: /node_modules/`, for this reason.
 
@@ -93,7 +93,7 @@ Based on the right to left rule, the example can be split up while keeping it eq
 
 ### Enforcing Order
 
-Even though it would be possible to develop an arbitrary configuration using the rule above, it can be convenient to be able to force certain rules to be applied before or after regular ones. This is where a field known as `enforce` can come in handy. It can be set to either `pre` or `post` to push processing either before or after other loaders.
+Even though it would be possible to develop an arbitrary configuration using the rule above, it can be convenient to be able to force certain rules to be applied before or after regular ones. This is where a the `enforce` field can come in handy. It can be set to either `pre` or `post` to push processing either before or after other loaders.
 
 We used the idea earlier in the *Linting JavaScript* chapter. Linting is a good example as the build should fail before it does anything else. Using `enforce: 'post'` is rarer and it would imply you want to perform a check against the built source. Performing analysis against the built source is one potential example.
 

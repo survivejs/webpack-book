@@ -36,7 +36,7 @@ Linting does **not** replace proper testing, but it can complement testing appro
 
 [ESLint](http://eslint.org/) is the most versatile linting solution for JavaScript. It builds on top of ideas presented by JSLint and JSHint. More importantly it allows you to develop custom rules. As a result, a nice set of rules have been developed for React in the form of [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react).
 
-T> Since *v1.4.0* ESLint supports a feature known as [autofixing](http://eslint.org/blog/2015/09/eslint-v1.4.0-released/). It allows you to perform certain rule fixes automatically. To activate it, pass the flag `--fix` to the tool. It is also possible to use this feature with webpack, although you should be careful with it. [js-beautify](https://www.npmjs.com/package/js-beautify) can perform a similar operation.
+T> Since *v1.4.0* ESLint supports [autofixing](http://eslint.org/blog/2015/09/eslint-v1.4.0-released/). It allows you to perform certain rule fixes automatically. To activate it, pass the flag `--fix` to the tool. It is also possible to use this feature with webpack, although you should be careful with it. [js-beautify](https://www.npmjs.com/package/js-beautify) can perform a similar operation.
 
 ### Connecting ESlint with *package.json*
 
@@ -110,7 +110,7 @@ build/
 
 T> You can point ESLint to your Git ignores through `--ignore-path .gitignore`. It also accepts individual patterns, through `--ignore-pattern <pattern>`.
 
-If you invoke `npm run test:lint` now, it should execute without any warnings or errors. If you see either, this is a good time to try ESLint feature known as autofixing. You can run it like this: `npm run lint -- --fix`. Running a npm script this way allows you to pass extra parameters to it.
+If you invoke `npm run test:lint` now, it should execute without any warnings or errors. If you see either, this is a good time to try ESLint autofixing. You can run it like this: `npm run lint -- --fix`. Running a npm script this way allows you to pass extra parameters to it.
 
 Another alternative would be to push it behind a *package.json* script. Autofix won't be able to repair each error, but it can fix a lot. And as time goes by and ESLint improves, it is able to perform more work.
 
@@ -130,7 +130,7 @@ W> Note that *eslint-loader* will use a globally installed version of ESLint unl
 
 The loader needs some wiring to work. We'll discuss loaders in greater detail at the *Understanding Loaders* part, but the basic idea is simple. A loader is connected to webpack through a rule that contains preconditions related to it and a reference to the loader itself.
 
-In this case we'll ensure that ESLint gets executed before anything else using a field known as `enforce`. It allows us to guarantee that linting happens before any other processing. The idea is discussed in greater detail at the *Loader Definitions* chapter.
+In this case we'll ensure that ESLint gets executed before anything else using the `enforce` field. It allows us to guarantee that linting happens before any other processing. The idea is discussed in greater detail at the *Loader Definitions* chapter.
 
 To add linting to the project, adjust the configuration as follows:
 
@@ -170,7 +170,7 @@ If you execute `npm start` now and break some linting rule while developing, you
 
 W> Note that the webpack configuration lints only the application code we refer to. If you want to lint webpack configuration itself, execute `npm run test:lint` separately.
 
-T> It can be useful to attach the linting process to Git through a prepush hook. A package known as [git-prepush-hook](https://www.npmjs.com/package/git-prepush-hook) allows you to achieve this easily. This allows you to rebase your commits and fix possible problems before pushing.
+T> It can be useful to attach the linting process to Git through a prepush hook. [git-prepush-hook](https://www.npmjs.com/package/git-prepush-hook) allows you to achieve this easily. This allows you to rebase your commits and fix possible problems before pushing.
 
 ### Configuring ESLint Further
 

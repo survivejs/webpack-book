@@ -40,7 +40,7 @@ af7ae505a9eed503f8b8e6982036873e.woff2    77.2 kB          [emitted]
 
 ## Enabling a Performance Budget
 
-Webpack provides a feature known as a **performance budget**. The idea is that it will give your build size constraint which it has to follow. The feature is disabled by default, but if enabled it will default to 250 kB limit per entries and assets. Note that the calculation includes extracted chunks to entry calculation.
+Webpack allows you to define a **performance budget**. The idea is that it will give your build size constraint which it has to follow. The feature is disabled by default, but if enabled it will default to 250 kB limit per entries and assets. Note that the calculation includes extracted chunks to entry calculation.
 
 Performance budget can be configured to provide warnings or errors. If a budget isn't met and it has been configured to emit an error, it would terminate the entire build.
 
@@ -191,11 +191,11 @@ Given it needs to do more work, it took longer to execute the build. But on the 
 
 T> UglifyJS warnings can help you to understand how it processes the code. Therefore, it may be beneficial to have a peek at the full output every once in a while.
 
-T> There's a standalone version of the plugin known as [uglifyjs-webpack-plugin](https://www.npmjs.com/package/uglifyjs-webpack-plugin). It allows you to control the version of UglifyJS you are using.
+T> There's a standalone version of the plugin packaged as [uglifyjs-webpack-plugin](https://www.npmjs.com/package/uglifyjs-webpack-plugin). It allows you to control the version of UglifyJS you are using.
 
 ## Tree Shaking
 
-Webpack supports a feature enabled by the ES6 module definition known as **tree shaking**. The idea is that given it is possible to analyze the module definition in a static way without running it, webpack can tell which parts of the code are being used and which are not. It is possible to verify this behavior by expanding the application a little and adding code there that should be eliminated.
+**Tree shaking** is a feature enabled by the ES6 module definition. The idea is that given it is possible to analyze the module definition in a static way without running it, webpack can tell which parts of the code are being used and which are not. It is possible to verify this behavior by expanding the application a little and adding code there that should be eliminated.
 
 Adjust the component as follows:
 
@@ -252,7 +252,7 @@ T> If you want to see which parts of the code tree shaking affects, enable warni
 
 ## Controlling UglifyJS through Webpack
 
-An UglifyJS feature known as **mangling** will be enabled by default. The feature will reduce local function and variable names to a minimum, usually to a single character. It can also rewrite properties to a more compact format if configured specifically.
+An UglifyJS feature, **mangling**, will be enabled by default. The feature will reduce local function and variable names to a minimum, usually to a single character. It can also rewrite properties to a more compact format if configured specifically.
 
 Given these transformations can break your code, you must be a little careful. A good example of this is Angular 1 and its dependency injection system. As it relies on strings, you must be careful not to mangle those or else it will fail to work.
 
@@ -306,7 +306,7 @@ I've listed a couple of UglifyJS alternatives below:
 
 *css-loader* allows minifying CSS through [cssnano](http://cssnano.co/). Minification needs to be enabled explicitly using the `minimize` option. You can also pass [cssnano specific options](http://cssnano.co/optimisations/) to the query to customize the behavior further.
 
-[clean-css-loader](https://www.npmjs.com/package/clean-css-loader) allows you to use a popular CSS minifier known as [clean-css](https://www.npmjs.com/package/clean-css).
+[clean-css-loader](https://www.npmjs.com/package/clean-css-loader) allows you to use a popular CSS minifier [clean-css](https://www.npmjs.com/package/clean-css).
 
 [optimize-css-assets-webpack-plugin](https://www.npmjs.com/package/optimize-css-assets-webpack-plugin) is a plugin based option that applies a chosen minifier on CSS assets. Using *extract-text-webpack-plugin* can lead to duplicated CSS given it only merges text chunks. *optimize-css-assets-webpack-plugin* avoids this problem by operating on the generated result and thus can lead to a better result.
 

@@ -2,11 +2,11 @@
 
 Frameworks like [Bootstrap](https://getbootstrap.com/) tend to come with a lot of CSS. Often you use only a small part of it. Normally, you just bundle even the unused CSS. It is possible, however, to eliminate the portions you aren't using.
 
-A tool known as [PurifyCSS](https://github.com/purifycss/purifycss) can achieve this by analyzing files. It walks through your code and figures out which CSS classes are being used. This is enough information for it to strip unused CSS from your project. It also works with single page applications.
+[PurifyCSS](https://github.com/purifycss/purifycss) is a tool that can achieve this by analyzing files. It walks through your code and figures out which CSS classes are being used. This is enough information for it to strip unused CSS from your project. It also works with single page applications.
 
 ## Setting Up Pure.css
 
-To make our demo more realistic, let's install a little CSS framework known as [Pure.css](http://purecss.io/) as well and refer to it from our project so that we can see PurifyCSS in action. These two projects aren't related in any way despite the naming.
+To make our demo more realistic, let's install [Pure.css](http://purecss.io/), a small CSS framework, as well and refer to it from our project so that we can see PurifyCSS in action. These two projects aren't related in any way despite the naming.
 
 ```bash
 npm install purecss --save
@@ -69,7 +69,7 @@ As you can see, the size of the CSS file grew quite a bit. This is something we'
 
 Using PurifyCSS can lead to great savings. In their example, they purify and minify Bootstrap (140 kB) in an application using ~40% of its selectors to mere ~35 kB. That's a big difference.
 
-Webpack plugin known as [purifycss-webpack](https://www.npmjs.com/package/purifycss-webpack) allows us to achieve results like this. You should use the `ExtractTextPlugin` with it for the best results. Install it and a [glob](https://www.npmjs.org/package/glob) helper first:
+[purifycss-webpack](https://www.npmjs.com/package/purifycss-webpack) allows us to achieve results like this. You should use the `ExtractTextPlugin` with it for the best results. Install it and a [glob](https://www.npmjs.org/package/glob) helper first:
 
 ```bash
 npm install glob purifycss-webpack --save-dev

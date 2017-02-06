@@ -4,9 +4,9 @@ Tools, such as [LiveReload](http://livereload.com/) or [BrowserSync](http://www.
 
 ## Webpack `watch` Mode and *webpack-dev-server*
 
-A good first step towards a better development environment is to use webpack in its **watch** mode. You can activate it through `webpack --watch`. Once enabled, it will detect changes made to your files and recompile automatically. A solution known as *webpack-dev-server* (WDS) builds on top of the watch mode and goes even further.
+A good first step towards a better development environment is to use webpack in its **watch** mode. You can activate it through `webpack --watch`. Once enabled, it will detect changes made to your files and recompile automatically. *webpack-dev-server* (WDS) builds on top of the watch mode and goes even further.
 
-WDS is a development server running **in-memory**. It refreshes content automatically in the browser while you develop your application. It also supports an advanced webpack feature known as **Hot Module Replacement** (HMR), which provides a way to patch the browser state without a full refresh. This is particularly powerful with libraries like React.
+WDS is a development server running **in-memory**. It refreshes content automatically in the browser while you develop your application. It also supports an advanced webpack feature, **Hot Module Replacement** (HMR). HMR provides a way to patch the browser state without a full refresh. This is particularly powerful with libraries like React.
 
 HMR goes further than simply refreshing browser on change. WDS provides an interface that makes it possible to patch code on the fly. This means you will need to implement it for client-side code. It is trivial for something like CSS by definition (no state), but it's a harder problem with JavaScript frameworks and libraries. Often careful design is needed to allow this. When the feature works, it is beautiful.
 
@@ -166,7 +166,7 @@ W> Note that there are [slight differences](https://github.com/webpack/webpack-d
 
 ## Making It Faster to Develop Configuration
 
-Restarting the development server each time you make a change tends to get boring after a while; therefore, it can be a good idea to let the computer do that for us. As [discussed in GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892), a monitoring tool known as [nodemon](https://www.npmjs.com/package/nodemon) can be used for this purpose.
+Restarting the development server each time you make a change tends to get boring after a while; therefore, it can be a good idea to let the computer do that for us. As [discussed in GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892), [nodemon](https://www.npmjs.com/package/nodemon) monitoring tool can be used for this purpose.
 
 To get it to work, you will have to install it first through `npm install nodemon --save-dev`. After that, you can make it watch webpack config and restart WDS on change. Here's the script if you want to give it a go:
 
@@ -198,4 +198,4 @@ In addition to plugins like these, it can be worth your while to set up linting 
 
 ## Conclusion
 
-In this chapter, you learned to set up webpack to refresh your browser automatically. We can go a notch further and enable a feature known as Hot Module Replacement. We'll do that in the next chapter.
+In this chapter, you learned to set up webpack to refresh your browser automatically. We can go a notch further and enable Hot Module Replacement. We'll do that in the next chapter.

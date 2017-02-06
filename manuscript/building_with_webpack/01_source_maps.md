@@ -20,7 +20,7 @@ T> It is a good idea to study the documentation of the loaders you are using to 
 
 ## Enabling Source Maps
 
-Webpack provides two ways to enable source maps. There's a shortcut field known as `devtool`. There are also two plugins that give more options to tweak. We'll discuss the plugins briefly in the end of this chapter.
+Webpack provides two ways to enable source maps. There's a `devtool` shortcut field. There are also two plugins that give more options to tweak. We'll discuss the plugins briefly in the end of this chapter.
 
 To get started, we can wrap the basic idea within a configuration part. You can convert this to use the plugins later if you want:
 

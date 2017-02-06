@@ -12,7 +12,7 @@ To give you a simple example, instead of having *app.js* (100 kB), we could end 
 
 Caching comes with its own problems. One of those is cache invalidation. We'll discuss a potential approach related to that in the *Adding Hashes to Filenames* chapter.
 
-Bundle splitting isn't the only way out. In the next chapter, we will discuss a more granular technique known as *code splitting* that allows us to load code on demand.
+Bundle splitting isn't the only way out. In the next chapter, we will discuss the idea of *code splitting* that allows us to load code on demand.
 
 ## Adding Something to Split
 
@@ -124,7 +124,7 @@ If you examine the resulting bundle, you can see that it contains React given th
 
 ![Separate app and vendor bundles](images/bundle_01.png)
 
-A webpack plugin known as `CommonsChunkPlugin` allows us alter this default behavior so that we can get the bundles we might expect.
+`CommonsChunkPlugin` is a webpack plugin that allows us alter this default behavior so that we can get the bundles we might expect.
 
 W> This step can fail on Windows due to letter casing. Instead of `c:\` you may need to force your terminal to read `C:\`. There's more information in the [related webpack issue](https://github.com/webpack/webpack/issues/2362).
 
@@ -333,7 +333,7 @@ The aggressive merging plugin works the inverse way and allows you to combine to
 },
 ```
 
-It is possible to get good caching behavior with these plugins if a webpack feature known as **records** is used. The idea is discussed in greater detail in the *Adding Hashes to Filenames* chapter.
+It is possible to get good caching behavior with these plugins if a webpack **records** are used. The idea is discussed in greater detail in the *Adding Hashes to Filenames* chapter.
 
 T> Tobias Koppers discusses [aggressive merging in greater detail](https://medium.com/webpack/webpack-http-2-7083ec3f3ce6).
 
@@ -341,7 +341,7 @@ T> `webpack.optimize.LimitChunkCountPlugin` and `webpack.optimize.MinChunkSizePl
 
 ## Chunk Types in Webpack
 
-In the example above, we used something known as **entry chunks**. As [discussed in the documentation](https://webpack.github.io/docs/code-splitting.html#chunk-types), internally webpack treats chunks in three types:
+In the example above, we used several types of webpack chunks. As [discussed in the documentation](https://webpack.github.io/docs/code-splitting.html#chunk-types), internally webpack treats chunks in three types:
 
 * **Entry chunks** - Entry chunks contain webpack runtime and modules it then loads. So far, we've been dealing with these.
 * **Normal chunks** - Normal chunks **don't** contain webpack runtime. Instead, these can be loaded dynamically while the application is running. A suitable wrapper (JSONP for example) is generated for these. We'll generate a normal chunk in the next chapter as we set up code splitting.
@@ -349,4 +349,4 @@ In the example above, we used something known as **entry chunks**. As [discussed
 
 ## Conclusion
 
-The situation is better now. Note how small `app` bundle compared to the `vendor` bundle. To really benefit from this split, we will set up caching in the next part of this book. But before that, we can learn about a technique known as *code splitting* to go even more granular.
+The situation is better now. Note how small `app` bundle compared to the `vendor` bundle. To really benefit from this split, we will set up caching in the next part of this book. But before that, we can learn about *code splitting* to go even more granular.

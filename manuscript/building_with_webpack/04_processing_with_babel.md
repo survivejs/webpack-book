@@ -112,7 +112,7 @@ leanpub-end-insert
 ...
 ```
 
-Even though we have Babel installed and set up, we are still missing one bit: Babel configuration. I prefer to handle it using a dotfile known as *.babelrc* as other tooling can pick it up as well.
+Even though we have Babel installed and set up, we are still missing one bit: Babel configuration. I prefer to handle it using a *.babelrc* dotfile as other tooling can pick it up as well.
 
 W> There are times when caching Babel compilation can surprise you. This can happen particularly if your dependencies change in a way that *babel-loader* default caching mechanism doesn't notice. Override `cacheIdentifier` with a string that has been derived based on data that should invalidate the cache for better control. This is where [Node.js crypto API](https://nodejs.org/api/crypto.html) and especially its MD5 related functions can come in handy.
 
@@ -120,7 +120,7 @@ W> If you try to import files **outside** of your configuration root directory a
 
 ### Setting Up *.babelrc*
 
-At a minimum you will need a package known as [babel-preset-es2015](https://www.npmjs.com/package/babel-preset-es2015). Given our project uses dynamic `import`s and the feature isn't in the standard yet, we need a specific plugin known as [babel-plugin-syntax-dynamic-import](https://www.npmjs.com/package/babel-plugin-syntax-dynamic-import) for that. Install them:
+At a minimum you will need [babel-preset-es2015](https://www.npmjs.com/package/babel-preset-es2015). Given our project uses dynamic `import`s and the feature isn't in the standard yet, we need [babel-plugin-syntax-dynamic-import](https://www.npmjs.com/package/babel-plugin-syntax-dynamic-import) for that. Install them:
 
 ```bash
 npm install babel-plugin-syntax-dynamic-import babel-preset-es2015 --save-dev
@@ -186,7 +186,7 @@ Given it's not always enough to transform ES6 code to older format and expect it
 
 Especially in bundle size sensitive environments *babel-polyfill* might not be the best option. If you know well which environment (browser versions, Node.js) you support, [babel-preset-env](https://www.npmjs.com/package/babel-preset-env) provides a more granular way to achieve the same result with smaller size.
 
-It is important to note that *babel-polyfill* pollutes the global scope with objects like `Promise`. Given this can be problematic for library authors, there's an option known as [transform-runtime](https://babeljs.io/docs/plugins/transform-runtime/). It can be enabled as a Babel plugin and it will avoid the problem of globals by rewriting the code in such way that they won't be needed.
+It is important to note that *babel-polyfill* pollutes the global scope with objects like `Promise`. Given this can be problematic for library authors, there's [transform-runtime](https://babeljs.io/docs/plugins/transform-runtime/) option. It can be enabled as a Babel plugin and it will avoid the problem of globals by rewriting the code in such way that they won't be needed.
 
 ## Useful Babel Presets and Plugins
 
@@ -241,11 +241,11 @@ T> There's a [TypeScript parser for ESLint](https://www.npmjs.com/package/typesc
 
 ## Setting Up Flow
 
-[Flow](http://flowtype.org/) performs static analysis based on your code and its type annotations. This means you will install it as a separate tool. You will then run it against your code. There's a webpack plugin known as [flow-status-webpack-plugin](https://www.npmjs.com/package/flow-status-webpack-plugin) that allows you to run it through webpack during development.
+[Flow](http://flowtype.org/) performs static analysis based on your code and its type annotations. This means you will install it as a separate tool. You will then run it against your code. There's [flow-status-webpack-plugin](https://www.npmjs.com/package/flow-status-webpack-plugin) that allows you to run it through webpack during development.
 
 If you use React, the React specific Babel preset does most of the work through [babel-plugin-syntax-flow](https://www.npmjs.com/package/babel-plugin-syntax-flow). It is able to strip Flow annotations and convert your code into a format that is possible to transpile further.
 
-There's also a Babel plugin known as [babel-plugin-typecheck](https://www.npmjs.com/package/babel-plugin-typecheck) that allows you to perform runtime checks based on your Flow annotations. [flow-runtime](https://codemix.github.io/flow-runtime/) goes a notch further and provides more functionality. These approaches complement Flow static checker and allow you to catch even more issues.
+There's also [babel-plugin-typecheck](https://www.npmjs.com/package/babel-plugin-typecheck) that allows you to perform runtime checks based on your Flow annotations. [flow-runtime](https://codemix.github.io/flow-runtime/) goes a notch further and provides more functionality. These approaches complement Flow static checker and allow you to catch even more issues.
 
 T> [flow-coverage-report](https://www.npmjs.com/package/flow-coverage-report) shows how much of your code is covered by Flow type annotations.
 

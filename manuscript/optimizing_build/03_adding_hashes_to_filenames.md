@@ -128,7 +128,7 @@ app.120a7f7c301f97a38df05725c2b1a453.css.map  117 bytes       1  [emitted]      
 
 Our files have neat hashes now. To prove that it works for styling, you could try altering *app/main.css* and see what happens to the hashes when you rebuild.
 
-There's one problem, though. If you change the application code, it will invalidate the vendor file as well! Solving this requires extracting something known as a **manifest**, but before that we can improve the way the production build handles module ids.
+There's one problem, though. If you change the application code, it will invalidate the vendor file as well! Solving this requires extracting a **manifest**, but before that we can improve the way the production build handles module ids.
 
 ## Enabling `HashedModuleIdsPlugin`
 
@@ -195,4 +195,4 @@ Note how the output has changed, though. Instead of numbers, you can see hashes.
 
 ## Conclusion
 
-Even though the project generates hashes now, the output isn't flawless. The problem is that if the application changes, it will invalidate the vendor bundle as well. This happens because of something known as a manifest. The next chapter digs deeper into the topic and shows you how to extract it to resolve the issue.
+Even though the project generates hashes now, the output isn't flawless. The problem is that if the application changes, it will invalidate the vendor bundle as well. The next chapter digs deeper into the topic and shows you how to extract a manifest to resolve the issue.

@@ -2,7 +2,7 @@
 
 Web applications have the tendency to grow big as features are developed. The longer it takes for your application to load, the more frustrating it is to the user. This problem is amplified in a mobile environment where the connections can be slow.
 
-Even though splitting our bundles can help a notch, they are not the only solution and you may still end up having to download a lot of data. Fortunately, it is possible to do better thanks to a technique known as *code splitting*. It allows us to load code lazily as we need it.
+Even though splitting our bundles can help a notch, they are not the only solution and you may still end up having to download a lot of data. Fortunately, it is possible to do better thanks to *code splitting*. It allows us to load code lazily as we need it.
 
 T> Incidentally, it is possible to implement Google's [PRPL pattern](https://developers.google.com/web/fundamentals/performance/prpl-pattern/) using lazy loading. PRPL (Push, Render, Pre-cache, Lazy-load) has been designed with mobile web in mind and can be implemented using webpack.
 
@@ -65,7 +65,7 @@ W> `require.ensure` relies on `Promise`s internally. If you use `require.ensure`
 
 ### `require.include`
 
-The example above could be rewritten using a webpack specific function known as `require.include`:
+The example above could be rewritten using webpack specific `require.include`:
 
 ```javascript
 require.ensure(

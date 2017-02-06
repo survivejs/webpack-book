@@ -139,7 +139,7 @@ T> We will perform a similar trick for production usage later in this book in th
 
 ## Implementing the HMR Interface
 
-Webpack exposes the HMR interface through a global known as `module.hot`. It provides updates through a function known as `module.hot.accept(<path to watch>, <handler>)`. It is that handler portion that is interesting as we need to patch the application there. In this case, it is enough to replace the old DOM node with a newer one as we receive updates.
+Webpack exposes the HMR interface through a global, `module.hot`. It provides updates through `module.hot.accept(<path to watch>, <handler>)` function and we need to patch the application there. In this case, it is enough to replace the old DOM node with a newer one as we receive updates.
 
 The following implementation illustrates the idea:
 

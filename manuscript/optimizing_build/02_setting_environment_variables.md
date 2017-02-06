@@ -188,7 +188,7 @@ if(process.env.NODE_ENV === 'production') {
 
 Webpack is able to pick the right code based on our `DefinePlugin` declaration and this code. It is good to note that we will have to use CommonJS module definition style here as ES6 module definition won't work by definition. ES6 definition doesn't allow dynamic behavior like this by design.
 
-T> A related technique known as **aliasing** is discussed in the *Consuming Packages* chapter. You could alias to development or production specific file depending on the environment. The gotcha is that it will tie your setup to webpack in a tighter way than the solution above.
+T> A related technique, **aliasing**, is discussed in the *Consuming Packages* chapter. You could alias to development or production specific file depending on the environment. The gotcha is that it will tie your setup to webpack in a tighter way than the solution above.
 
 ## Webpack Optimization Plugins
 

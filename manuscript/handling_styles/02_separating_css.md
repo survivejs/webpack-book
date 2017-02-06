@@ -10,7 +10,7 @@ Due to this process, ExtractTextPlugin comes with overhead during the compilatio
 
 T> This same technique can be used with other assets, like templates, too.
 
-W> It can be potentially dangerous to use inline styles in production as it represents an attack vector. A technique discussed at the next chapter known as **critical path rendering** embraces the idea and inlines the critical CSS to the initial HTML payload improving perceived performance of the site.
+W> It can be potentially dangerous to use inline styles within JavaScript in production as it represents an attack vector. **Critical path rendering** embraces the idea and inlines the critical CSS to the initial HTML payload improving perceived performance of the site. It is discussed at the next chapter in greater detail.
 
 In limited contexts inlining a small amount of CSS can be a viable option to speed up the initial load (less requests).
 
@@ -133,7 +133,7 @@ T> If you are getting `Module build failed: CssSyntaxError:` or `Module build fa
 
 ## Autoprefixing Output
 
-It can be difficult to remember which vendor prefixes you have to use for specific CSS rules to support a large variety of users. This is where a technique known as **autoprefixing** comes in. It can be enabled through PostCSS and the [autoprefixer](https://www.npmjs.com/package/autoprefixer) plugin. *autoprefixer* uses [Can I Use](http://caniuse.com/) service to figure out which rules should be prefixed and its behavior can be tuned further.
+It can be difficult to remember which vendor prefixes you have to use for specific CSS rules to support a large variety of users. This is where **autoprefixing** comes in. It can be enabled through PostCSS and the [autoprefixer](https://www.npmjs.com/package/autoprefixer) plugin. *autoprefixer* uses [Can I Use](http://caniuse.com/) service to figure out which rules should be prefixed and its behavior can be tuned further.
 
 Achieving autoprefixing takes a small addition to the current setup. Install *postcss-loader* and *autoprefixer* first:
 

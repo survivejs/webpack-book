@@ -104,7 +104,7 @@ T> An alternate way to load CSS would be to define a separate entry and point to
 
 ## Understanding CSS Scoping and CSS Modules
 
-Perhaps the biggest challenge of CSS is that all rules exist within **global scope**. This has led to specific conventions that work around this feature. A specification known as [CSS Modules](https://github.com/css-modules/css-modules) solves the problem by introducing **local scope** per `import`. As it happens, this makes CSS more bearable to use as you don't have to worry about namespace collisions anymore.
+Perhaps the biggest challenge of CSS is that all rules exist within **global scope**. This has led to specific conventions that work around this feature. The [CSS Modules](https://github.com/css-modules/css-modules) specification solves the problem by introducing **local scope** per `import`. As it happens, this makes CSS more bearable to use as you don't have to worry about namespace collisions anymore.
 
 Enabling CSS Modules in webpack is simple as *css-loader* supports the feature. You can enable it through `css-loader?modules` or set `modules` field `true` through the loader `options`.
 
@@ -185,7 +185,7 @@ T> If you want more performance, especially during development, check out [fast-
 
 ![Stylus](images/stylus.png)
 
-[Stylus](http://stylus-lang.com/) is yet another example of a CSS processor. It works well through [stylus-loader](https://github.com/shama/stylus-loader). There's also a pattern library known as [yeticss](https://www.npmjs.com/package/yeticss) that works well with it. Consider the following configuration:
+[Stylus](http://stylus-lang.com/) is yet another example of a CSS processor. It works well through [stylus-loader](https://github.com/shama/stylus-loader). [yeticss](https://www.npmjs.com/package/yeticss) is a pattern library that works well with it. Consider the following configuration:
 
 **webpack.config.js**
 

@@ -1,6 +1,6 @@
 # Authoring Packages
 
-Even though webpack is useful for bundling applications, it has its uses for package authors as well. You can use it to generate a website for your package and maintain the distribution files using it. It supports a format known as [UMD format](https://github.com/umdjs/umd). UMD is compatible with various environments (CommonJS, AMD, globals) making it good for distribution purposes.
+Even though webpack is useful for bundling applications, it has its uses for package authors as well. You can use it to generate a website for your package and maintain the distribution files using it. It supports the [UMD format](https://github.com/umdjs/umd). UMD is compatible with various environments (CommonJS, AMD, globals) making it good for distribution purposes.
 
 ## Anatomy of an npm Package
 
@@ -146,9 +146,9 @@ Provided you have logged in, creating new packages is just a matter of executing
 
 An alternate way to consume a library is to point at it directly in *package.json*. In that case, you can do `"depName": "<github user>/<project>#<reference>"` where `<reference>` can be either commit hash, tag, or branch. You can point to specific pull requests through `<github user>/<project>#pull/<id>/head`. These techniques can be useful, especially if you need to hack around something quickly and cannot wait for the fix.
 
-T> If you want to see what files will be published to npm, consider using [npm pack](https://docs.npmjs.com/cli/pack) generates a tarball you can examine. A tool known as [irish-pub](https://www.npmjs.com/package/irish-pub) is another option and it will give you a listing to review. You can also use [publish-diff](https://www.npmjs.com/package/publish-diff) to get a better of the changes that are going to be published.
+T> If you want to see what files will be published to npm, consider using [npm pack](https://docs.npmjs.com/cli/pack) generates a tarball you can examine. [irish-pub](https://www.npmjs.com/package/irish-pub) is another option and it will give you a listing to review. You can also use [publish-diff](https://www.npmjs.com/package/publish-diff) to get a better of the changes that are going to be published.
 
-T> A package known as [np](https://www.npmjs.com/package/np) gives an interactive UI for publishing packages. It performs more work by default. [semantic-release](https://www.npmjs.com/package/semantic-release) takes the idea one step further and automates entire process.
+T> [np](https://www.npmjs.com/package/np) gives an interactive UI for publishing packages. It performs more work by default. [semantic-release](https://www.npmjs.com/package/semantic-release) takes the idea one step further and automates entire process.
 
 ### Bumping a Version
 
@@ -164,7 +164,7 @@ Note that in the example above, I've set up `version`-related hooks to make sure
 
 T> Consider using [semantic-release](https://www.npmjs.com/package/semantic-release) if you prefer a more structured approach. It can take some pain out of the release process while automating a part of it. For instance, it is able to detect possible breaking changes and generate changelogs.
 
-T> A tool known as [dont-break](https://www.npmjs.com/package/dont-break) allows you to run the unit tests of dependent projects against your current code to see if it breaks anything. Sometimes it's easy to overlook some use case that might not be a part of the public API even and break a dependency. *dont-break* helps with that particular problem.
+T> [dont-break](https://www.npmjs.com/package/dont-break) allows you to run the unit tests of dependent projects against your current code to see if it breaks anything. Sometimes it's easy to overlook some use case that might not be a part of the public API even and break a dependency. *dont-break* helps with that particular problem.
 
 ### Respect the SemVer
 
@@ -176,7 +176,7 @@ Both these tools rely on commit message annotations. On small projects, you migh
 
 This metadata lets the tooling to figure out the types of the changes you made. It can help even with changelog generation and allow automated releases over manual ones. Annotating your commits well is a good practice in any case as it will make it easier to debug your code later.
 
-Given SemVer can be a little tricky to manage, a backwards compatible alternative known as [ComVer](https://github.com/staltz/comver) has been developed. The versioning scheme can be described as `<not compatible>.<compatible>`. Every time you make a change that's not compatible with an earlier version, you'll bump the first number. Otherwise you will bump the other.
+Given SemVer can be a little tricky to manage, a backwards compatible alternative named [ComVer](https://github.com/staltz/comver) has been developed. The versioning scheme can be described as `<not compatible>.<compatible>`. Every time you make a change that's not compatible with an earlier version, you'll bump the first number. Otherwise you will bump the other.
 
 ### Publishing a Prerelease Version
 
@@ -248,7 +248,7 @@ There are plenty of smaller tricks to learn for advanced usage. Those are better
 
 It is important to note that in npm 3 `prepublish` hook will get triggered also when you run `npm install` on the project locally. Sometimes this can be surprising and counter-productive even.
 
-A solution known as [in-publish](https://www.npmjs.com/package/in-publish) allows you to tune the behavior and skip the installation step. You need to prepend your script with `in-publish && babel ...` kind of line for this to work. npm 4 and the following versions will fix this confusing behavior.
+[in-publish](https://www.npmjs.com/package/in-publish) allows you to tune the behavior and skip the installation step. You need to prepend your script with `in-publish && babel ...` kind of line for this to work. npm 4 and the following versions will fix this confusing behavior.
 
 ## Sharing Authorship
 
@@ -285,7 +285,7 @@ output: {
 
 ### Supporting SystemJS
 
-[SystemJS](https://github.com/systemjs/systemjs) is an emerging standard that's starting to get more attention. A plugin known as [webpack-system-register](https://www.npmjs.com/package/webpack-system-register) allows you to wrap your output in a `System.register` call making it compatible with the scheme.
+[SystemJS](https://github.com/systemjs/systemjs) is an emerging standard that's starting to get more attention. [webpack-system-register](https://www.npmjs.com/package/webpack-system-register) plugin allows you to wrap your output in a `System.register` call making it compatible with the scheme.
 
 If you want to support SystemJS this way, set up another build target where to generate a bundle for it.
 
@@ -416,7 +416,7 @@ You can deprecate a range like this or a whole package by skipping the range. Gi
 
 Given there's no official way to rename packages, deprecation can be useful. You can publish the package under a new name and let the users know of the new name in your deprecation message.
 
-There is a heavier duty option known as [npm unpublish](https://docs.npmjs.com/cli/unpublish). Using `npm unpublish` you can literally pull a package out of the registry. Given this can be potentially dangerous and break code for a lot of people, it has been [restricted to versions that are less than 24 hours old](http://blog.npmjs.org/post/141905368000/changes-to-npms-unpublish-policy). Most likely you don't need the feature at all, but it is good to know it exists.
+There is a heavier duty option in the form of [npm unpublish](https://docs.npmjs.com/cli/unpublish). Using `npm unpublish` you can literally pull a package out of the registry. Given this can be potentially dangerous and break code for a lot of people, it has been [restricted to versions that are less than 24 hours old](http://blog.npmjs.org/post/141905368000/changes-to-npms-unpublish-policy). Most likely you don't need the feature at all, but it is good to know it exists.
 
 ## Conclusion
 

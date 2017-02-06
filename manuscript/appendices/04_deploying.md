@@ -1,6 +1,6 @@
 # Deploying Applications
 
-A project built with webpack can be deployed to a variety of environments easily. A simple, public project that doesn't rely on a back-end can be pushed to GitHub Pages using a package known as *gh-pages*. In addition there are a variety of webpack plugins that can target other environments, such as S3.
+A project built with webpack can be deployed to a variety of environments easily. A simple, public project that doesn't rely on a back-end can be pushed to GitHub Pages using the *gh-pages* package. In addition there are a variety of webpack plugins that can target other environments, such as S3.
 
 ## Deploying with *gh-pages*
 
@@ -33,7 +33,7 @@ leanpub-end-insert
 }
 ```
 
-To make the asset paths work on GitHub Pages, we also need to tweak a webpack setting known as `output.publicPath`. Otherwise they will point at root and that won't work unless you are hosting behind a domain root (say `survivejs.com`) directly.
+To make the asset paths work on GitHub Pages, we also need to tweak the `output.publicPath` field. Otherwise they will point at root and that won't work unless you are hosting behind a domain root (say `survivejs.com`) directly.
 
 `publicPath` gives control over the resulting urls you see at *index.html* for instance. If you are hosting your assets on a CDN, this would be the place to tweak. In this case, it's enough to set it to point the GitHub project like this:
 

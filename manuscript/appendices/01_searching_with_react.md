@@ -8,7 +8,7 @@ The good thing is that we don't need the search index straight from the start. W
 
 This defers the loading and moves it to a place where it's more acceptable. Given the initial search might be slower than the subsequent ones we could display a loading indicator. But that's fine from the user point of view.
 
-Webpack feature known as **code splitting** allows us to do this. See the *Code Splitting* chapter for more detailed discussion and the exact setup required.
+Webpack's **code splitting** feature allows us to do this. See the *Code Splitting* chapter for more detailed discussion and the exact setup required.
 
 ## Implementing Search with Lazy Loading
 

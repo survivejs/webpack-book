@@ -14,17 +14,17 @@ There's a gotcha, though. After you eject, you cannot go back to the dependency-
 
 ## Setting Up Babel with React
 
-The *Processing with Babel* chapter covers the essentials of using Babel with webpack. There's some React specific setup you should perform, though. Given most of React projects rely on a format known as [JSX](https://facebook.github.io/jsx/), you will have to enable through Babel.
+The *Processing with Babel* chapter covers the essentials of using Babel with webpack. There's some React specific setup you should perform, though. Given most of React projects rely on [JSX](https://facebook.github.io/jsx/) format, you will have to enable it through Babel.
 
 JSX is a superset of JavaScript that allows you to mix XMLish syntax with JavaScript. A lot of people find this convenient as they get something that resembles what they know already while they can use the power of JavaScript.
 
-Some React developers prefer to attach type annotations to their code using a language extension known as [Flow](http://flowtype.org/). The technology fits React well, but it's not restricted to it. [TypeScript](http://www.typescriptlang.org/) is another alternative. Both work with JSX.
+Some React developers prefer to attach type annotations to their code using the [Flow](http://flowtype.org/) language extension. The technology fits React well, but it's not restricted to it. [TypeScript](http://www.typescriptlang.org/) is another alternative. Both work with JSX.
 
 ### Configuring with Webpack
 
 Babel allows us to use JSX with React easily. Some people prefer to name their React components containing JSX using the `.jsx` suffix. Webpack can be configured to work with this convention. The benefit of doing this is that then your editor will be able to pick up the right syntax based on the file name alone. Another option is to configure the editor to use JSX syntax for `.js` files as it's a superset of JavaScript.
 
-Webpack provides a field known as [resolve.extensions](https://webpack.js.org/guides/migrating/#resolve-extensions) that can be used for configuring its extension lookup. If you want to allow imports like `import Button from './Button';` while naming the file as *Button.jsx*, set it up as follows:
+Webpack provides [resolve.extensions](https://webpack.js.org/guides/migrating/#resolve-extensions) field that can be used for configuring its extension lookup. If you want to allow imports like `import Button from './Button';` while naming the file as *Button.jsx*, set it up as follows:
 
 **webpack.config.js**
 
@@ -172,7 +172,7 @@ The application should run the same way as before after these steps and it's rea
 
 ## Configuring Hot Module Replacement with React
 
-Hot module replacement was one of the initial selling points of webpack and React. It relies on a solution known as [react-hot-loader](https://www.npmjs.com/package/react-hot-loader). The simplest way to enable it is to use a now deprecated Babel preset known as [babel-preset-react-hmre](https://www.npmjs.com/package/babel-preset-react-hmre). It works still, but there's another way.
+Hot module replacement was one of the initial selling points of webpack and React. It relies on the [react-hot-loader](https://www.npmjs.com/package/react-hot-loader) package. The simplest way to enable it is to use a now deprecated [babel-preset-react-hmre](https://www.npmjs.com/package/babel-preset-react-hmre). It works still, but there's another way.
 
 At the time of writing *react-hot-loader* version 3 is in beta. The setup is more complicated than using a preset, but this is the way to go at the moment. It requires changes to three places: Babel configuration, webpack configuration, and application. I'll cover these next.
 
@@ -243,7 +243,7 @@ T> You can include `react-dom` entries at `parts.extractBundles` to push it to t
 
 ### Setting Up the Application
 
-Compared to the earlier implementation, the basic idea is the same on application side. This time, however, something known as `AppContainer` provided by *react-hot-loader* has to be used. It performs the patching during development. To attach it to the application, adjust as follows:
+Compared to the earlier implementation, the basic idea is the same on application side. This time, however, `AppContainer` provided by *react-hot-loader* has to be used. It performs the patching during development. To attach it to the application, adjust as follows:
 
 **app/index.js**
 
@@ -423,7 +423,7 @@ If you try building your project now, you should notice your bundle is considera
 
 Similar setup works for Preact too. In that case you would point to *preact-compat* instead. See [preact-boilerplate](https://github.com/developit/preact-boilerplate) for the exact setup and more information.
 
-[Inferno](https://www.npmjs.com/package/inferno) is yet another alternative. The setup is the same and you can find *inferno-compat* with a similar idea. I discuss these alternatives in more detail at my slide set known as [React Compatible Alternatives](https://presentations.survivejs.com/react-compatible-alternatives).
+[Inferno](https://www.npmjs.com/package/inferno) is yet another alternative. The setup is the same and you can find *inferno-compat* with a similar idea. I discuss these alternatives in more detail at my slide set [React Compatible Alternatives](https://presentations.survivejs.com/react-compatible-alternatives).
 
 T> If you stick with vanilla React, you can still optimize it for production usage. See the *Setting Environment Variables* chapter to see how to achieve this. The same trick works with preact-compat as well.
 
@@ -464,7 +464,7 @@ We can optimize React's rebundling times during development by pointing the deve
 
 In order to achieve what we want, we can use webpack's `module.noParse` option. It accepts a RegExp or an array of RegExps. We can also pass full paths to it to keep our lives simple.
 
-In addition to telling webpack not to parse the minified file we want to use, we also need to point `react` to it. This can be achieved using a feature known as `resolve.alias` just like we did with *react-lite* above.
+In addition to telling webpack not to parse the minified file we want to use, we also need to point `react` to it. This can be achieved using `resolve.alias` just like we did with *react-lite* above.
 
 We can encapsulate the basic idea within a function like this:
 
@@ -577,7 +577,7 @@ AsyncComponent.propTypes = {
 
 One way to structure React projects is to push components to directories which expose their code through a *index.js* file. Often that's just boilerplate code which you have to add for webpack to resolve correctly. [component-directory-webpack-plugin](https://www.npmjs.com/package/component-directory-webpack-plugin) has been designed to alleviate this problem and it allows you to skip *index.js* while performing lookups based on a naming convention.
 
-A separate tool known as [create-index](https://www.npmjs.com/package/create-index) is a different way to solve the same problem. It literally generates those boilerplate *index.js* files to your project and keeps them up to date.
+[create-index](https://www.npmjs.com/package/create-index) provides a different way to solve the same problem. It literally generates those boilerplate *index.js* files to your project and keeps them up to date.
 
 ## Conclusion
 

@@ -214,7 +214,7 @@ T> It is possible to execute *npm run* anywhere within the project. It doesn't h
 
 ## Running Webpack in Multi-Compiler Mode
 
-Even though most often webpack configuration is written in an object or a function format discussed in the next chapter, webpack also supports something known as the **multi-compiler** mode. The idea is that you can pass an array of configurations to webpack to process. The basic form looks like this:
+Even though most often webpack configuration is written in an object or a function format discussed in the next chapter, webpack also supports a **multi-compiler** mode. The idea is that you can pass an array of configurations to webpack to process. The basic form looks like this:
 
 ```javascript
 ...
