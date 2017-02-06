@@ -1,6 +1,6 @@
 # Code Splitting
 
-Web applications have the tendency to grow big as features are developed. This can be problematic especially for mobile usage. The longer it takes for your application to load, the more frustrating it is to the user. This problem is amplified in a mobile environment where the connections can be slow.
+Web applications have the tendency to grow big as features are developed. The longer it takes for your application to load, the more frustrating it is to the user. This problem is amplified in a mobile environment where the connections can be slow.
 
 Even though splitting our bundles can help a notch, they are not the only solution and you may still end up having to download a lot of data. Fortunately, it is possible to do better thanks to a technique known as *code splitting*. It allows us to load code lazily as we need it.
 
