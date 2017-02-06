@@ -30,12 +30,6 @@ Establishing strong linting can be beneficial, especially in a context where you
 
 Linting does **not** replace proper testing, but it can complement testing approaches. It is one way to harden a codebase and make it a little harder to break. This is particularly important as the size of your project grows and it becomes more challenging to manage.
 
-## Webpack and JSHint
-
-Interestingly, no JSLint loader seems to exist for webpack yet. Fortunately, there's one for JSHint. You could set it up on a legacy project easily. The key is in configuring [jshint-loader](https://www.npmjs.com/package/jshint-loader).
-
-JSHint will look into specific rules to apply from `.jshintrc`. You can also define custom settings within a `jshint` object at your webpack configuration. Exact configuration options have been covered at [the JSHint documentation](http://jshint.com/docs/) in detail.
-
 ## Setting Up ESLint
 
 ![ESLint](images/eslint.png)
@@ -231,6 +225,12 @@ I've collected assorted ESLint tips below. The great thing about ESLint is that 
 * There are useful plugins, such as [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react), [eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise), [eslint-plugin-compat](https://www.npmjs.com/package/eslint-plugin-compat), and [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import), that you might want to consider integrating to your project.
 * Most IDEs and editors have good ESLint integration so you can spot issues as you develop. This applies to other linting tools as well.
 * To learn how to write an ESLint plugin, check out the *Writing ESLint Plugins* appendix for more information. The *Customizing ESLint* appendix digs deeper into customization options and further resources.
+
+## Webpack and JSHint
+
+Interestingly, no JSLint loader seems to exist for webpack yet. Fortunately, there's one for JSHint. You could set it up on a legacy project easily. The key is in configuring [jshint-loader](https://www.npmjs.com/package/jshint-loader).
+
+JSHint will look into specific rules to apply from `.jshintrc`. You can also define custom settings within a `jshint` object at your webpack configuration. Exact configuration options have been covered at [the JSHint documentation](http://jshint.com/docs/) in detail.
 
 ## EditorConfig
 
