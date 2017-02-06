@@ -1,7 +1,5 @@
 language: node_js
 node_js:
   - "6"
-sudo: required
 script:
-  - sudo pip install proselint
   - npm test

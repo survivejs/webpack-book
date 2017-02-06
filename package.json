@@ -7,7 +7,7 @@
     "publish:silent": "leanpub-cli publish-silent survivejs-webpack",
     "preview": "leanpub-cli preview survivejs-webpack",
     "job-status": "leanpub-cli job-status survivejs-webpack",
-    "test": "npm run test:lint && npm run test:links",
+    "test": "npm run test:links",
     "test:lint": "proselintjs \"manuscript/**/*.md\"",
     "test:links": "check-markdown-links manuscript"
   },
