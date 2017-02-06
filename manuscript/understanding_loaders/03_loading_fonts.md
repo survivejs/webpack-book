@@ -63,7 +63,7 @@ Note that the way you write your CSS definition matters. Assuming we are going t
 ```css
 @font-face {
   font-family: 'myfontfamily';
-  src: url('myfontfile.woff') format('woff2'),
+  src: url('myfontfile.woff') format('woff'),
     url('myfontfile.ttf') format('truetype');
     /* Other formats as you see fit */
 }
