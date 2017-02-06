@@ -71,8 +71,6 @@ if (foo === 'bar') {
 
 This is the core idea of `DefinePlugin`. We can toggle parts of code using this kind of mechanism. A good minifier is able to perform the analysis for us and enable/disable entire portions of the code as we prefer.
 
-T> [babel-plugin-transform-define](https://www.npmjs.com/package/babel-plugin-transform-define) can achieve the same result without webpack.
-
 ## Setting `process.env.NODE_ENV`
 
 Given we are using React in our project and it happens to use the technique, we can try to enable `DefinePlugin` and see what it does to our production build.
@@ -160,7 +158,7 @@ Given the 21 kB can be served gzipped, it is somewhat reasonable. gzipping will 
 
 It is good to remember that we didn't include *react-dom* in this case and that would add around 100 kB to the final result. To get back to these figures, we would have to use a lighter alternative such as Preact or react-lite as discussed in the *Configuring React* chapter.
 
-T> [babel-plugin-transform-inline-environment-variables](https://www.npmjs.com/package/babel-plugin-transform-inline-environment-variables) Babel plugin can be used to achieve the same effect. See [the official documentation](https://babeljs.io/docs/plugins/transform-inline-environment-variables/) for details.
+T> [babel-plugin-transform-inline-environment-variables](https://www.npmjs.com/package/babel-plugin-transform-inline-environment-variables) Babel plugin can be used to achieve the same effect. See [the official documentation](https://babeljs.io/docs/plugins/transform-inline-environment-variables/) for details. [babel-plugin-transform-define](https://www.npmjs.com/package/babel-plugin-transform-define) is another option.
 
 T> `webpack.EnvironmentPlugin(['NODE_ENV'])` is a shortcut that allows you to refer to environment variables. It uses `DefinePlugin` internally and can be useful by itself in more limited cases. You can achieve the same effect by passing `process.env.NODE_ENV` to the custom function we made.
 
