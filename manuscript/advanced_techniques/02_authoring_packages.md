@@ -198,7 +198,7 @@ The workflow in this case is straightforward:
 1. `npm version 0.5.0-alpha1` - Update *package.json* as discussed earlier.
 2. `npm publish --tag alpha` - Publish the package under *alpha* tag.
 
-In order to consume the test version, your users will have to use `npm i <your package name>@alpha`.
+In order to consume the test version, your users will have to use `npm install <your package name>@alpha`.
 
 T> It can be useful to utilize [npm link](https://docs.npmjs.com/cli/link) during development. It allows you to link a package as a globally available symbolic link within your system. Node.js will resolve to the linked version unless local `node_modules` happens to contain a version. If you want to remove the link, you should use `npm unlink` or `npm unlink <package>`.
 
@@ -231,7 +231,7 @@ Since we want to avoid having to run the command directly whenever we publish a 
 }
 ```
 
-Make sure you execute `npm i babel-cli --save-dev` to include the tool into your project.
+Make sure you execute `npm install babel-cli --save-dev` to include the tool into your project.
 
 You probably don't want the directory content to end up in your Git repository. In order to avoid this and to keep your `git status` clean, consider this sort of `.gitignore`:
 

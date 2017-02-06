@@ -11,7 +11,7 @@ I will show you how to solve this issue using webpack next.
 Install the [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin) first:
 
 ```bash
-npm i clean-webpack-plugin --save-dev
+npm install clean-webpack-plugin --save-dev
 ```
 
 Next, we need to define a little function to wrap the basic idea. We could use the plugin directly, but this feels like something that could be useful across projects, so it makes sense to push it to our library:

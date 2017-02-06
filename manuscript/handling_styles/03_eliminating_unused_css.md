@@ -9,7 +9,7 @@ A tool known as [PurifyCSS](https://github.com/purifycss/purifycss) can achieve 
 To make our demo more realistic, let's install a little CSS framework known as [Pure.css](http://purecss.io/) as well and refer to it from our project so that we can see PurifyCSS in action. These two projects aren't related in any way despite the naming.
 
 ```bash
-npm i purecss --save
+npm install purecss --save
 ```
 
 To make the project aware of Pure.css, `import` it:
@@ -72,7 +72,7 @@ Using PurifyCSS can lead to great savings. In their example, they purify and min
 Webpack plugin known as [purifycss-webpack](https://www.npmjs.com/package/purifycss-webpack) allows us to achieve results like this. You should use the `ExtractTextPlugin` with it for the best results. Install it and a [glob](https://www.npmjs.org/package/glob) helper first:
 
 ```bash
-npm i glob purifycss-webpack --save-dev
+npm install glob purifycss-webpack --save-dev
 ```
 
 We need one more bit: PurifyCSS configuration. Expand parts like this:

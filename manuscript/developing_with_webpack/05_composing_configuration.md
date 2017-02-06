@@ -27,7 +27,7 @@ In order to eliminate the problem of dealing with `Object.assign` and `Array.con
 To get started, add *webpack-merge* to the project:
 
 ```bash
-npm i webpack-merge --save-dev
+npm install webpack-merge --save-dev
 ```
 
 Next, we need to refactor *webpack.config.js* into parts we can consume from there and then rewrite the file to use the parts. Here are the parts with small function based interfaces extracted from the existing code:

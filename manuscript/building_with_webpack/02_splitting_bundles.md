@@ -19,7 +19,7 @@ Bundle splitting isn't the only way out. In the next chapter, we will discuss a 
 Given there's not much to split into the vendor bundle yet, we should add something there. Add React to the project first:
 
 ```bash
-npm i react --save
+npm install react --save
 ```
 
 Then make the project depend on it:

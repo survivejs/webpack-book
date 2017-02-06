@@ -15,7 +15,7 @@ After *css-loader* has done its part, *style-loader* picks up the output and inj
 To get started, invoke
 
 ```bash
-npm i css-loader style-loader --save-dev
+npm install css-loader style-loader --save-dev
 ```
 
 Now let's make sure webpack is aware of them. Configure as follows:

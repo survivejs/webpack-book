@@ -50,7 +50,7 @@ W> In webpack 1 you had to use `extensions: ['', '.js', '.jsx']` to match files 
 To enable JSX with Babel, an additional preset is required. Install it:
 
 ```bash
-npm i babel-preset-react --save-dev
+npm install babel-preset-react --save-dev
 ```
 
 You also have to connect the preset with Babel configuration. Here's the rough idea:
@@ -78,7 +78,7 @@ Using React with ESLint and JSX requires some extra work as well. [eslint-plugin
 Install *eslint-plugin-react* to get started:
 
 ```bash
-npm i eslint-plugin-react --save-dev
+npm install eslint-plugin-react --save-dev
 ```
 
 The suggested minimum configuration is as follows:
@@ -166,7 +166,7 @@ Follow the instructions above to attach Babel and ESLint to the project. Especia
 
 Webpack configuration needs some work as well given we need that mounting point for the application. Adjust the configuration as above and make sure you include *html-webpack-template* to the project.
 
-Given the project contains only React, you have to install *react-dom* to it (`npm i react-dom --save`). That will be needed for rendering the application to the DOM.
+Given the project contains only React, you have to install *react-dom* to it (`npm install react-dom --save`). That will be needed for rendering the application to the DOM.
 
 The application should run the same way as before after these steps and it's ready for further work.
 
@@ -179,7 +179,7 @@ At the time of writing *react-hot-loader* version 3 is in beta. The setup is mor
 To get started, install the upcoming version of *react-hot-loader*:
 
 ```bash
-npm i react-hot-loader@next --save-dev
+npm install react-hot-loader@next --save-dev
 ```
 
 ### Setting Up Babel
@@ -405,7 +405,7 @@ Using react-lite or Preact in production instead of React can save around 100 kB
 To get started, install react-lite:
 
 ```bash
-npm i react-lite --save-dev
+npm install react-lite --save-dev
 ```
 
 On the webpack side, we can use a `resolve.alias` to point our React imports to react-lite instead. Consider doing this only for your production setup!
@@ -434,7 +434,7 @@ React provides a set of powerful [performance related utilities](https://faceboo
 To get started, install the needed dependencies:
 
 ```bash
-npm i expose-loader react-addons-perf --save-dev
+npm install expose-loader react-addons-perf --save-dev
 ```
 
 Next, we need to expose React to the console through the [expose-loader](https://www.npmjs.com/package/expose-loader). The idea is that we'll bind the React performance utilities to that during development. Here's the webpack loader configuration for exposing React as a global:

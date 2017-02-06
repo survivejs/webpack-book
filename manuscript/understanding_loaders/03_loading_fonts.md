@@ -105,7 +105,7 @@ Furthermore, it's possible to manipulate `publicPath` and override the default p
 The ideas above can be applied with [Font Awesome](https://www.npmjs.com/package/font-awesome). It's a collection of high quality font icons you can refer to using a CSS classes. To integrate it to the book project, install it first:
 
 ```bash
-npm i font-awesome --save
+npm install font-awesome --save
 ```
 
 Given Font Awesome doesn't define a `main` field in its *package.json* file, we'll need to point to it through a direct path instead of package name alone.

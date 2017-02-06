@@ -55,7 +55,7 @@ T> Babel isn't the only option although it is the most popular one. [Bublé](htt
 The first step towards configuring Babel to work with webpack is to set up [babel-loader](https://www.npmjs.com/package/babel-loader). It will take our code and turn it into a format older browsers can understand. Install *babel-loader* and include its peer dependency *babel-core*:
 
 ```bash
-npm i babel-loader babel-core --save-dev
+npm install babel-loader babel-core --save-dev
 ```
 
 As usual, let's define a part for Babel:
@@ -123,7 +123,7 @@ W> If you try to import files **outside** of your configuration root directory a
 At a minimum you will need a package known as [babel-preset-es2015](https://www.npmjs.com/package/babel-preset-es2015). Given our project uses dynamic `import`s and the feature isn't in the standard yet, we need a specific plugin known as [babel-plugin-syntax-dynamic-import](https://www.npmjs.com/package/babel-plugin-syntax-dynamic-import) for that. Install them:
 
 ```bash
-npm i babel-plugin-syntax-dynamic-import babel-preset-es2015 --save-dev
+npm install babel-plugin-syntax-dynamic-import babel-preset-es2015 --save-dev
 ```
 
 To make Babel aware of them, we need to write a *.babelrc*. Given webpack supports ES6 modules out of the box, we can tell Babel to skip processing them. Skipping this step would break webpack's HMR mechanism although the production build would still work.

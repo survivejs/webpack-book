@@ -28,14 +28,14 @@ T> It is possible to replace most of the npm commands mentioned with [Yarn](http
 
 ## Installing Webpack
 
-Even though webpack can be installed globally (`npm i webpack -g`), I recommend maintaining it as a dependency of your project. This will avoid issues, as then you will have control over the exact version you are running.
+Even though webpack can be installed globally (`npm install webpack -g`), I recommend maintaining it as a dependency of your project. This will avoid issues, as then you will have control over the exact version you are running.
 
 The approach works nicely in **Continuous Integration** (CI) setups as well. A CI system can install your local dependencies, compile your project using them, and then push the result to a server.
 
 To add webpack to our project, execute:
 
 ```bash
-npm i webpack --save-dev # or just -D if you want to save typing
+npm install webpack --save-dev # or just -D if you want to save typing
 ```
 
 You should see webpack at your *package.json* `devDependencies` section after this. In addition to installing the package locally below the *node_modules* directory, npm also generates an entry for the executable.
@@ -101,7 +101,7 @@ We'll need to tell webpack how to deal with the assets we just set up. For this 
 To keep things simple to maintain, we'll be using [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) to generate an *index.html* for our application. *html-webpack-plugin* wires up the generated assets with it. Install it to the project:
 
 ```bash
-npm i html-webpack-plugin --save-dev
+npm install html-webpack-plugin --save-dev
 ```
 
 At minimum, it is good to have at least `entry` and `output` fields in your configuration. Often you see a lot more as you will specify how webpack deals with different file types and how it resolves them.
@@ -184,7 +184,7 @@ The output tells us a lot. I've annotated it below:
 
 Examine the output below `build/`. If you look closely, you can see the same ids within the source. To see the application running, open the `build/index.html` file directly through a browser. On macOS `open ./build/index.html` works.
 
-T> It can be convenient to use a tool like *serve* (`npm i serve -g`) to serve the build directory. In this case, execute `serve` at the output directory and head to `localhost:3000` at your browser. You can configure the port through the `--port` parameter.
+T> It can be convenient to use a tool like *serve* (`npm install serve -g`) to serve the build directory. In this case, execute `serve` at the output directory and head to `localhost:3000` at your browser. You can configure the port through the `--port` parameter.
 
 T> If you want webpack to stop execution on first error, set `bail: true` option. Webpack will tolerate errors by default otherwise.
 

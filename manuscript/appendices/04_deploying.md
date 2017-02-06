@@ -13,7 +13,7 @@ Despite its name, the package works with other services that support hosting fro
 To get started, execute
 
 ```bash
-npm i gh-pages --save-dev
+npm install gh-pages --save-dev
 ```
 
 We are also going to need an entry point at *package.json*:

@@ -21,7 +21,7 @@ W> You should use *webpack-dev-server* strictly for development. If you want to 
 To get started with WDS, execute:
 
 ```bash
-npm i webpack-dev-server --save-dev
+npm install webpack-dev-server --save-dev
 ```
 
 As before, this command will generate a command below the `npm bin` directory. You could try running *webpack-dev-server* from there. The quickest way to enable automatic browser refresh for our project is to run `webpack-dev-server`. After that, you have a development server running at `localhost:8080`.
@@ -168,7 +168,7 @@ W> Note that there are [slight differences](https://github.com/webpack/webpack-d
 
 Restarting the development server each time you make a change tends to get boring after a while; therefore, it can be a good idea to let the computer do that for us. As [discussed in GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892), a monitoring tool known as [nodemon](https://www.npmjs.com/package/nodemon) can be used for this purpose.
 
-To get it to work, you will have to install it first through `npm i nodemon --save-dev`. After that, you can make it watch webpack config and restart WDS on change. Here's the script if you want to give it a go:
+To get it to work, you will have to install it first through `npm install nodemon --save-dev`. After that, you can make it watch webpack config and restart WDS on change. Here's the script if you want to give it a go:
 
 **package.json**
 

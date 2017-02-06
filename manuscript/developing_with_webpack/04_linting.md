@@ -43,7 +43,7 @@ T> Since *v1.4.0* ESLint supports a feature known as [autofixing](http://eslint.
 To get started, install ESLint as a development dependency:
 
 ```bash
-npm i eslint --save-dev
+npm install eslint --save-dev
 ```
 
 This will add ESLint as our project development dependency. Next, we'll need to do some configuration so we can run ESLint easily through npm. I am using the `test` namespace to signify it's a testing related task. I am also enabling caching to improve performance on subsequent runs. Add the following:
@@ -123,7 +123,7 @@ T> When ESLint gives errors, npm will show a long `ELIFECYCLE error` error block
 We can make Webpack emit ESLint messages for us by using [eslint-loader](https://www.npmjs.com/package/eslint-loader). As the first step execute
 
 ```bash
-npm i eslint-loader --save-dev
+npm install eslint-loader --save-dev
 ```
 
 W> Note that *eslint-loader* will use a globally installed version of ESLint unless you have one included with the project itself. Make sure you have ESLint as a development dependency to avoid strange behavior.

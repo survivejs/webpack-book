@@ -19,7 +19,7 @@ In limited contexts inlining a small amount of CSS can be a viable option to spe
 It will take some configuration to make it work. Install the plugin:
 
 ```bash
-npm i extract-text-webpack-plugin@beta --save-dev
+npm install extract-text-webpack-plugin@beta --save-dev
 ```
 
 `ExtractTextPlugin` includes a loader, `ExtractTextPlugin.extract` that marks the assets to be extracted. Then a plugin will perform its work based on this annotation.
@@ -138,7 +138,7 @@ It can be difficult to remember which vendor prefixes you have to use for specif
 Achieving autoprefixing takes a small addition to the current setup. Install *postcss-loader* and *autoprefixer* first:
 
 ```bash
-npm i postcss-loader autoprefixer --save-dev
+npm install postcss-loader autoprefixer --save-dev
 ```
 
 Add a fragment enabling autoprefixing like this:
