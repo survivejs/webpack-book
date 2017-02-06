@@ -186,7 +186,7 @@ Examine the output below `build/`. If you look closely, you can see the same ids
 
 T> It can be convenient to use a tool like *serve* (`npm install serve -g`) to serve the build directory. In this case, execute `serve` at the output directory and head to `localhost:3000` at your browser. You can configure the port through the `--port` parameter.
 
-T> If you want webpack to stop execution on first error, set `bail: true` option. Webpack will tolerate errors by default otherwise.
+T> If you want webpack to stop execution on the first error, set `bail: true` option. This kills entire webpack process and it is useful if you are building in a CI environment.
 
 ## Adding a Build Shortcut
 
