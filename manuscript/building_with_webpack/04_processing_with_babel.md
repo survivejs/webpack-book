@@ -116,7 +116,7 @@ Even though we have Babel installed and set up, we are still missing one bit: Ba
 
 W> There are times when caching Babel compilation can surprise you. This can happen particularly if your dependencies change in a way that *babel-loader* default caching mechanism doesn't notice. Override `cacheIdentifier` with a string that has been derived based on data that should invalidate the cache for better control. This is where [Node.js crypto API](https://nodejs.org/api/crypto.html) and especially its MD5 related functions can come in handy.
 
-W> If you try to import files **outside** of your configuration root directory and then process them through *babel-loader*, this will fail! It is [a known issue](https://github.com/babel/babel-loader/issues/313) and there are workarounds including maintaining *.babelrc* at higher level in the project and resolving against Babel presets through `require.resolve` at webpack configuration.
+W> If you try to import files **outside** of your configuration root directory and then process them through *babel-loader*, this will fail. It is [a known issue](https://github.com/babel/babel-loader/issues/313) and there are workarounds including maintaining *.babelrc* at higher level in the project and resolving against Babel presets through `require.resolve` at webpack configuration.
 
 ### Setting Up *.babelrc*
 

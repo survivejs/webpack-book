@@ -213,7 +213,7 @@ leanpub-end-insert
 
 ### Setting Up Webpack
 
-On webpack side, *react-hot-loader* requires an additional entry it uses to patch the running application. It is important the new entry runs first!
+On webpack side, *react-hot-loader* requires an additional entry it uses to patch the running application. It is important the new entry runs first as otherwise the setup will fail to work reliably.
 
 **webpack.config.js**
 

@@ -6,7 +6,7 @@ Even though splitting our bundles can help a notch, they are not the only soluti
 
 T> Incidentally, it is possible to implement Google's [PRPL pattern](https://developers.google.com/web/fundamentals/performance/prpl-pattern/) using lazy loading. PRPL (Push, Render, Pre-cache, Lazy-load) has been designed mobile web in mind and can be implemented using webpack.
 
-![Bundle with a dynamically-loaded normal chunk](images/dynamic.png)
+![Bundle with a dynamically loaded normal chunk](images/dynamic.png)
 
 ## Code Splitting Formats
 
