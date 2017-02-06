@@ -193,7 +193,7 @@ The initial alpha release will allow the users to try out the upcoming functiona
 
 The release candidates (rc) are close to an actual release and won't introduce any new functionality. They are all about refining the release till it's suitable for general consumption.
 
-The workflow in this case is straight-forward:
+The workflow in this case is straightforward:
 
 1. `npm version 0.5.0-alpha1` - Update *package.json* as discussed earlier.
 2. `npm publish --tag alpha` - Publish the package under *alpha* tag.
