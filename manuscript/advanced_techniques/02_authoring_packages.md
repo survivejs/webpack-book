@@ -53,7 +53,8 @@ I've annotated a part of *package.json* of my [React component boilerplate](http
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
-    "test:lint": "eslint . --ext .js --ext .jsx --ignore-path .gitignore --ignore-pattern dist --cache",
+
+    "lint:js": "eslint . --ext .js --ext .jsx --ignore-path .gitignore --ignore-pattern dist --cache",
 
     "gh-pages": "webpack --env gh-pages",
     "gh-pages:deploy": "gh-pages -d gh-pages",
@@ -63,7 +64,7 @@ I've annotated a part of *package.json* of my [React component boilerplate](http
     "dist:min": "webpack --env dist:min",
     "dist:modules": "rm -rf ./dist-modules && babel ./src --out-dir ./dist-modules",
 
-    "pretest": "npm run test:lint",
+    "pretest": "npm run lint:js",
     "preversion": "npm run test && npm run dist && npm run dist:min && git commit --allow-empty -am \"Update dist\"",
     "prepublish": "npm run dist:modules",
     "postpublish": "npm run gh-pages && npm run gh-pages:deploy",

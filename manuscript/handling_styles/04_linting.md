@@ -4,22 +4,72 @@ As discussed earlier in the *Linting JavaScript* chapter, linting is a technique
 
 [stylelint](http://stylelint.io/) is a tool that allows linting. It can be used with webpack through [postcss-loader](https://www.npmjs.com/package/postcss-loader).
 
-## Setting Up Stylelint
+## Connecting Stylelint with *package.json*
 
-To get started, install the required dependencies:
+To get started, install Stylelint as a development dependency:
 
 ```bash
-npm install postcss-loader stylelint --save-dev
+npm install stylelint --save-dev
 ```
 
-Next, we'll need to integrate it with our configuration. Set up a configuration part first:
+To connect Stylelint with npm and make it find our CSS files, adjust as follows:
+
+**package.json**
+
+```json
+...
+"scripts": {
+leanpub-start-insert
+  "lint:style": "stylelint app/**/*.css",
+leanpub-end-insert
+  ...
+},
+...
+```
+
+To have something to test with, we should define a dummy rule:
+
+**.stylelintrc**
+
+```json
+{
+  "rules": {
+    "color-hex-case": "lower"
+  }
+}
+```
+
+If you break the rule at *app/main.css* and run `npm run lint:style`, you should see something like this:
+
+```bash
+...
+
+app/main.css
+ 2:15  ✖  Expected "#FFF" to be "#fff"   color-hex-case
+
+...
+```
+
+To get less verbose output on error, use either `npm run lint:style --silent` or `npm run lint:style -s`.
+
+The same rules can be connected with webpack.
+
+## Connecting Stylelint with Webpack
+
+To get started, install *postcss-loader* unless you have it set up already:
+
+```bash
+npm install postcss-loader --save-dev
+```
+
+Next, to integrate with configuration, set up a part first:
 
 **webpack.parts.js**
 
 ```javascript
 ...
 
-exports.lintCSS = function({ include, exclude, rules }) {
+exports.lintCSS = function({ include, exclude }) {
   return {
     module: {
       rules: [
@@ -34,7 +84,6 @@ exports.lintCSS = function({ include, exclude, rules }) {
             plugins: function () {
               return [
                 require('stylelint')({
-                  rules: rules,
                   // Ignore node_modules CSS
                   ignoreFiles: 'node_modules/**/*.css',
                 }),
@@ -60,12 +109,7 @@ const common = merge([
     ...
   },
 leanpub-start-insert
-  parts.lintCSS({
-    include: PATHS.app,
-    rules: {
-      'color-hex-case': 'lower',
-    },
-  }),
+  parts.lintCSS({ include: PATHS.app }),
 leanpub-end-insert
 ]);
 

@@ -46,7 +46,7 @@ To get started, install ESLint as a development dependency:
 npm install eslint --save-dev
 ```
 
-This will add ESLint as our project development dependency. Next, we'll need to do some configuration so we can run ESLint easily through npm. I am using the `test` namespace to signify it's a testing related task. I am also enabling caching to improve performance on subsequent runs. Add the following:
+Next, we'll need to do some configuration so we can run ESLint easily through npm. I am using the `lint` namespace to signify it's a linting related task. I am also enabling caching to improve performance on subsequent runs. Add the following:
 
 **package.json**
 
@@ -54,10 +54,9 @@ This will add ESLint as our project development dependency. Next, we'll need to 
 ...
 "scripts": {
 leanpub-start-insert
-  "test:lint": "eslint . --cache",
+  "lint:js": "eslint . --cache",
 leanpub-end-insert
-  "start": "webpack-dev-server --env development",
-  "build": "webpack --env production"
+  ...
 },
 ...
 ```
@@ -110,13 +109,13 @@ build/
 
 T> You can point ESLint to your Git ignores through `--ignore-path .gitignore`. It also accepts individual patterns, through `--ignore-pattern <pattern>`.
 
-If you invoke `npm run test:lint` now, it should execute without any warnings or errors. If you see either, this is a good time to try ESLint autofixing. You can run it like this: `npm run lint -- --fix`. Running a npm script this way allows you to pass extra parameters to it.
+If you invoke `npm run lint:js` now, it should execute without any warnings or errors. If you see either, this is a good time to try ESLint autofixing. You can run it like this: `npm run lint -- --fix`. Running a npm script this way allows you to pass extra parameters to it.
 
 Another alternative would be to push it behind a *package.json* script. Autofix won't be able to repair each error, but it can fix a lot. And as time goes by and ESLint improves, it is able to perform more work.
 
 Beyond vanilla JSON, ESLint supports other formats, such as JavaScript or YAML. If you want to use a different format, name the file accordingly. I.e., *.eslintrc.yaml* would expect YAML. See the [documentation](http://eslint.org/docs/user-guide/configuring#configuration-file-formats) for further details.
 
-T> When ESLint gives errors, npm will show a long `ELIFECYCLE error` error block of its own. It is possible to disable that using the `silent` flag like this: `npm run test:lint --silent` or a shortcut `npm run test:lint -s`.
+T> When ESLint gives errors, npm will show a long `ELIFECYCLE error` error block of its own. It is possible to disable that using the `silent` flag like this: `npm run lint:js --silent` or a shortcut `npm run lint:js -s`.
 
 ### Connecting ESLint with Webpack
 
@@ -168,7 +167,7 @@ leanpub-end-insert
 
 If you execute `npm start` now and break some linting rule while developing, you should see that in the terminal output. The same should happen when you build the project.
 
-W> Note that the webpack configuration lints only the application code we refer to. If you want to lint webpack configuration itself, execute `npm run test:lint` separately.
+W> Note that the webpack configuration lints only the application code we refer to. If you want to lint webpack configuration itself, execute `npm run lint:js` separately.
 
 T> It can be useful to attach the linting process to Git through a prepush hook. [git-prepush-hook](https://www.npmjs.com/package/git-prepush-hook) allows you to achieve this easily. This allows you to rebase your commits and fix possible problems before pushing.
 
