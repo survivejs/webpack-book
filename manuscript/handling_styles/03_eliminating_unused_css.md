@@ -123,7 +123,7 @@ module.exports = function(env) {
       }),
 leanpub-start-insert
       parts.purifyCSS({
-        paths: glob.sync(path.join(PATHS.app, '*')),
+        paths: glob.sync(path.join(PATHS.app, '**', '*')),
       }),
 leanpub-end-insert
     ]);
