@@ -36,7 +36,7 @@ One way to work around this problem is to process the code through [Babel](https
 
 T> Given sometimes extending existing presets might not be enough, [modify-babel-preset](https://www.npmjs.com/package/modify-babel-preset) allows you to go a step further and configure the base preset in a more flexible way.
 
-## Using Babel with Webpack
+## Using Babel with Webpack Configuration
 
 Even though Babel can be used standalone, as you can see in the *Authoring Packages* chapter, you can hook it up with webpack as well. During development, we actually might skip processing.
 

@@ -6,6 +6,8 @@ The completed configuration is available at [GitHub](https://github.com/survivej
 
 T> It is possible to get a more controlled environment by using a solution such as [Vagrant](https://www.vagrantup.com/) or [nvm](https://www.npmjs.com/package/nvm). Vagrant comes with a performance penalty as it relies on a virtual machine. Vagrant is particularly useful in a team: each developer will have the same environment, usually close to production.
 
+W> The webpack configuration of the book has been written the language features supported by Node.js 6 in mind. If you are using an older version, you may either have to adapt or process your webpack configuration through Babel as discussed in the *Processing with Babel* chapter.
+
 ## Setting Up the Project
 
 To get a starting point, we should create a directory for our project and set up a *package.json* there. npm uses that to manage project dependencies. Here are the basic commands:
