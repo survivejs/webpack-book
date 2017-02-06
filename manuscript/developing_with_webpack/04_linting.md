@@ -203,8 +203,6 @@ Since webpack 2, the configuration schema of webpack has become stricter and it 
 
 There are more options and [eslint-loader](https://www.npmjs.com/package/eslint-loader) documentation covers those in greater detail.
 
-T> The idea is discussed in greater detail at the *Loader Definitions* chapter.
-
 ## ESLint Tips
 
 I've collected assorted ESLint tips below. The great thing about ESLint is that you can shape it to your purposes. The community around it is strong, and you can find good integration in other tooling as well.
