@@ -20,7 +20,7 @@ Dynamic imports look like this:
 import('./module').then((module) => {...}).catch((error) => {...});
 ```
 
-The `Promise` based interface allows composition and you could load multiple resources in parallel if wanted. `Promise.all` would work for that like this:
+The `Promise` based interface allows composition and you could load multiple resources in parallel like this:
 
 ```javascript
 Promise.all([
