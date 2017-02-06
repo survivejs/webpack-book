@@ -75,7 +75,7 @@ This is the core idea of `DefinePlugin`. We can toggle parts of code using this 
 
 Given we are using React in our project and it happens to use the technique, we can try to enable `DefinePlugin` and see what it does to our production build.
 
-As before, encapsulate this idea to a function. It is important to note that given the way webpack replaces the free variable, we should push it through `JSON.stringify`. We'll end up with a string like `'\"demo\"' and then webpack will insert that into the slots it finds.
+As before, encapsulate this idea to a function. It is important to note that given the way webpack replaces the free variable, we should push it through `JSON.stringify`. We'll end up with a string like `'"demo"'` and then webpack will insert that into the slots it finds.
 
 **webpack.parts.js**
 
