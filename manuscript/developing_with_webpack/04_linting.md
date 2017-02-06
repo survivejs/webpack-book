@@ -10,7 +10,7 @@ The linter that started it all for JavaScript is Douglas Crockford's [JSLint](ht
 
 ### ESLint Is Customizable
 
-ESLint goes to the next level as it allows you to implement custom rules, parsers, and reporters. ESLint works with Babel and JSX syntax making it ideal for React projects. It doesn't support JSX by default, though, so a Babel-specific parser will need to be used. This is also true with custom language features, although ESLint supports ES6 out of the box.
+ESLint goes to the next level as it allows you to implement custom rules, parsers, and reporters. ESLint works with JSX syntax making it a good fit for React projects. You have to use a Babel specific parser with custom language features, although ESLint supports ES6 out of the box.
 
 ESLint rules have been documented well, and you have full control over their severity. These features alone make it a powerful tool. Better yet, there is a large number of rules and presets beyond the core as the community has built on top of it.
 
