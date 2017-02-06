@@ -212,6 +212,16 @@ body {
 
 As you can see, autoprefixing expands the rules so we don't have to remember to do that.
 
+If you know what browsers you support, it is possible to set up a [browserslist](https://www.npmjs.com/package/browserslist) file. Different tools pick up this definition, *autoprefixer* included. Consider the example below where we select only specific browsers:
+
+**browserslist**
+
+```
+> 1% # Browser usage over 1%
+Last 2 versions # Last two versions too
+IE 8 # And IE 8
+```
+
 ## Managing Styles Outside of JavaScript
 
 Even though referring to styling through JavaScript and then bundling is a valid option, it is possible to achieve the same result through an `entry` and [globbing](https://www.npmjs.com/package/glob). The basic idea goes like this:
