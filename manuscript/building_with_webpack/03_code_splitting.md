@@ -4,7 +4,7 @@ Web applications have the tendency to grow big as features are developed. The lo
 
 Even though splitting our bundles can help a notch, they are not the only solution and you may still end up having to download a lot of data. Fortunately, it is possible to do better thanks to a technique known as *code splitting*. It allows us to load code lazily as we need it.
 
-T> Incidentally, it is possible to implement Google's [PRPL pattern](https://developers.google.com/web/fundamentals/performance/prpl-pattern/) using lazy loading. PRPL (Push, Render, Pre-cache, Lazy-load) has been designed mobile web in mind and can be implemented using webpack.
+T> Incidentally, it is possible to implement Google's [PRPL pattern](https://developers.google.com/web/fundamentals/performance/prpl-pattern/) using lazy loading. PRPL (Push, Render, Pre-cache, Lazy-load) has been designed with mobile web in mind and can be implemented using webpack.
 
 ![Bundle with a dynamically loaded normal chunk](images/dynamic.png)
 
