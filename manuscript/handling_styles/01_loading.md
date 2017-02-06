@@ -296,7 +296,7 @@ If you import one LESS/SASS file from another, use the same pattern as anywhere 
 @import "./variables.less";
 ```
 
-You can also load LESS and SASS files directly from your node_modules directory. This is handy with libraries like Twitter Bootstrap:
+You can also load LESS and SASS files directly from your node_modules directory. This is handy with libraries like Bootstrap:
 
 ```less
 @import "~bootstrap/less/bootstrap";
