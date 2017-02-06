@@ -4,7 +4,7 @@ Even though consuming npm packages is simple using webpack, there are certain sp
 
 ## Understanding SemVer
 
-Most of the packages out there comply with SemVer. It's not problematic as sometimes packages may inadvertently break it, but there are ways around this. Roughly, SemVer states that you should not break backwards compatibility, given [certain rules](http://semver.org/) are met:
+Most popular packages out there comply with SemVer. It's problematic as sometimes packages may inadvertently break it, but there are ways around this. Roughly, SemVer states that you should not break backwards compatibility, given [certain rules](http://semver.org/) are met:
 
 1. The MAJOR version gets incremented when incompatible API changes are made to stable APIs.
 2. The MINOR version gets incremented when backwards-compatible functionality is added.
