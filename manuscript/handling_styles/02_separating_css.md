@@ -10,7 +10,9 @@ Due to this process, ExtractTextPlugin comes with overhead during the compilatio
 
 T> This same technique can be used with other assets, like templates, too.
 
-W> It can be potentially dangerous to use inline styles in production as it represents an attack vector. Favor `ExtractTextPlugin` and similar solutions in production usage. In limited contexts inlining a small amount of CSS can be a viable option to speed up the initial load (less requests).
+W> It can be potentially dangerous to use inline styles in production as it represents an attack vector. A technique discussed at the next chapter known as **critical path rendering** embraces the idea and inlines the critical CSS to the initial HTML payload improving perceived performance of the site.
+
+In limited contexts inlining a small amount of CSS can be a viable option to speed up the initial load (less requests).
 
 ## Setting Up `ExtractTextPlugin`
 
