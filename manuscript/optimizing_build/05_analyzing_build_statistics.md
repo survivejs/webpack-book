@@ -134,7 +134,7 @@ $ inspectpack --action=duplicates --bundle=bundle.js
 
 [webpack-unused](https://www.npmjs.com/package/webpack-unused) prints out unused files and can be used to understand which assets are no longer used and can be removed from the project.
 
-### duplicate-package-checker-webpack-plugin
+### `DuplicatePackageCheckerPlugin`
 
 [duplicate-package-checker-webpack-plugin](https://www.npmjs.com/package/duplicate-package-checker-webpack-plugin) warns you if it finds single package multiple times in your build. This situation can be hard to spot otherwise.
 
