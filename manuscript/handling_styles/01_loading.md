@@ -270,6 +270,7 @@ T> PostCSS supports also *postcss.config.js* based configuration. It relies on [
 [cssnext](http://cssnext.io/) is a PostCSS plugin that allows us to experience the future now. There are some restrictions, but it may be worth a go. You can use it through [postcss-cssnext](https://www.npmjs.com/package/postcss-cssnext), and you can enable it as follows:
 
 **webpack.config.js**
+
 ```javascript
 {
   loader: 'postcss-loader',
