@@ -72,16 +72,22 @@ I've annotated a part of *package.json* of my [React component boilerplate](http
     "postinstall": "node lib/post_install.js"
   },
 
-  /* Entry point for terminal (i.e., <package name>) */
+  /* Entry point for terminal (i.e., <package name>). */
   /* Don't set this unless you intend to allow CLI usage */
-  "bin": "./index.js",
+  "bin": "bin/index.js",
 
   /* Entry point (defaults to index.js) */
-  "main": "dist-modules",
+  "main": "dist-modules/",
 
-  /* ES6 entry point for bundlers to pick up */
+  /* ES6 entry point for bundlers to pick up. */
   /* This assumes only standard features are used! */
-  "module": "./src",
+  "module": "dist/",
+
+  /* Files to include to npm distribution. */
+  /* Note that relative patterns like "./src" will fail! */
+  "files": [
+    "dist/"
+  ],
 
   /* Package dependencies needed to use it (peer deps can work too, see below) */
   "dependencies": { ... },
