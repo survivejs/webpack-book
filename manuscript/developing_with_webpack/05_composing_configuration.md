@@ -20,9 +20,7 @@ This is the approach we'll use in this book to discuss through various technique
 
 In order to eliminate the problem of dealing with `Object.assign` and `Array.concat`, I have developed a little tool known as [webpack-merge](https://www.npmjs.org/package/webpack-merge). Effectively it does two things: it concatenates arrays and merges objects instead of overriding them. Even though a simple idea, this allows us to compose configuration and gives us a degree of abstraction.
 
-*webpack-merge* provides even more control through strategies that allow you to control its behavior per field. Strategies allow you to force it to append, prepend, or replace content. *webpack-merge* contains a webpack specific variant known as *smart merge* that folds webpack specific configuration into more compact form, but basic merge is enough for the configuration discussed in this book.
-
-Even though *webpack-merge* was designed for the purposes of this book, it has proven to be an invaluable tool beyond it, as shown by its increasing popularity. You can consider it as a learning tool and pick it up in your work if you find it useful. Given how flexible webpack is, it's only one configuration approach out of many.
+*webpack-merge* provides even more control through strategies that allow you to control its behavior per field. Strategies allow you to force it to append, prepend, or replace content. Even though *webpack-merge* was designed for the purposes of this book, it has proven to be an invaluable tool beyond it. You can consider it as a learning tool and pick it up in your work if you find it useful.
 
 ## Setting Up *webpack-merge*
 
