@@ -145,11 +145,11 @@ T> The query syntax, `css-loader?modules`, and its alternatives are discussed in
 
 T> CSS Modules behavior can be modified [as discussed in the official documentation](https://www.npmjs.com/package/css-loader#local-scope). You have control over the names it generates for instance.
 
-## Loading LESS
+## Loading Less
 
-![LESS](images/less.png)
+![Less](images/less.png)
 
-[LESS](http://lesscss.org/) is a CSS processor that is packed with functionality. Using LESS doesn't take a lot of effort through webpack as [less-loader](https://www.npmjs.com/package/less-loader) deals with the heavy lifting. You should install [less](https://www.npmjs.com/package/less) as well given it's a peer dependency of *less-loader*.
+[Less](http://lesscss.org/) is a CSS processor that is packed with functionality. Using Less doesn't take a lot of effort through webpack as [less-loader](https://www.npmjs.com/package/less-loader) deals with the heavy lifting. You should install [less](https://www.npmjs.com/package/less) as well given it's a peer dependency of *less-loader*.
 
 Consider the following minimal setup:
 
@@ -162,11 +162,11 @@ Consider the following minimal setup:
 
 There is also support for Less plugins, source maps, and so on. To understand how those work you should check out the project itself.
 
-## Loading SASS
+## Loading Sass
 
-![SASS](images/sass.png)
+![Sass](images/sass.png)
 
-[SASS](http://sass-lang.com/) is a widely used CSS preprocessor. You should use [sass-loader](https://www.npmjs.com/package/sass-loader) with it. Remember to install [node-sass](https://www.npmjs.com/package/node-sass) to your project as it's a peer dependency.
+[Sass](http://sass-lang.com/) is a widely used CSS preprocessor. You should use [sass-loader](https://www.npmjs.com/package/sass-loader) with it. Remember to install [node-sass](https://www.npmjs.com/package/node-sass) to your project as it's a peer dependency.
 
 Webpack doesn't take much configuration:
 
@@ -181,7 +181,7 @@ Webpack doesn't take much configuration:
 
 T> If you want more performance, especially during development, check out [fast-sass-loader](https://www.npmjs.com/package/fast-sass-loader).
 
-## Loading Stylus and YETICSS
+## Loading Stylus and Yeticss
 
 ![Stylus](images/stylus.png)
 
@@ -290,13 +290,13 @@ T> Note that cssnext includes autoprefixer! You don't have to configure autopref
 
 ## Understanding Lookups
 
-If you import one LESS/SASS file from another, use the same pattern as anywhere else. Webpack will dig into these files and figure out the dependencies.
+If you import one Less/Sass file from another, use the same pattern as anywhere else. Webpack will dig into these files and figure out the dependencies.
 
 ```less
 @import "./variables.less";
 ```
 
-You can also load LESS and SASS files directly from your node_modules directory. This is handy with libraries like Bootstrap:
+You can also load Less and Sass files directly from your node_modules directory. This is handy with libraries like Bootstrap:
 
 ```less
 @import "~bootstrap/less/bootstrap";
@@ -316,7 +316,7 @@ If you want to enable source maps for CSS, you should enable `sourceMap` option 
 
 There are a couple of ways to use [Bootstrap](https://getbootstrap.com/) through webpack. One option is to point to the [npm version](https://www.npmjs.com/package/bootstrap) and perform loader configuration as above.
 
-The [SASS version](https://www.npmjs.com/package/bootstrap-sass) is another option. In this case, you should set `precision` option of *sass-loader* to at least 8. This is [a known issue](https://www.npmjs.com/package/bootstrap-sass#sass-number-precision) explained at *bootstrap-sass*.
+The [Sass version](https://www.npmjs.com/package/bootstrap-sass) is another option. In this case, you should set `precision` option of *sass-loader* to at least 8. This is [a known issue](https://www.npmjs.com/package/bootstrap-sass#sass-number-precision) explained at *bootstrap-sass*.
 
 The third option is to go through [bootstrap-loader](https://www.npmjs.com/package/bootstrap-loader). It does a lot more but allows customization.
 

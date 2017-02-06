@@ -193,7 +193,7 @@ Sometimes getting only reference to an image isn't enough. [image-size-loader](h
 
 A technique known as spriting allows you to combine multiple smaller images into a single image. It has been used for games to describe animations and it's useful for web development as well as you avoid request overhead.
 
-[webpack-spritesmith](https://www.npmjs.com/package/webpack-spritesmith) converts provided images into a spritesheet and SASS/LESS/Stylus mixins. You have to set up a `SpritesmithPlugin`, point it to target images, and set the name of the generated mixin. After that, your styling can pick it up like this:
+[webpack-spritesmith](https://www.npmjs.com/package/webpack-spritesmith) converts provided images into a spritesheet and Sass/Less/Stylus mixins. You have to set up a `SpritesmithPlugin`, point it to target images, and set the name of the generated mixin. After that, your styling can pick it up like this:
 
 ```sass
 @import '~sprite.sass';
