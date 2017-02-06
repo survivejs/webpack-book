@@ -116,7 +116,7 @@ build/
 
 T> You can point ESLint to your Git ignores through `--ignore-path .gitignore`. It also accepts individual patterns, through `--ignore-pattern <pattern>`.
 
-If you invoke `npm run test:lint` now, it should execute without any warnings or errors. If you see either, this is a good time to try ESLint feature known as autofixing. You can run like this: `node_modules/.bin/eslint . --fix`. Check the exact location of the local ESLint through `npm bin`.
+If you invoke `npm run test:lint` now, it should execute without any warnings or errors. If you see either, this is a good time to try ESLint feature known as autofixing. You can run it like this: `npm run lint -- --fix`. Running a npm script this way allows you to pass extra parameters to it.
 
 Another alternative would be to push it behind a *package.json* script. Autofix won't be able to repair each error, but it can fix a lot. And as time goes by and ESLint improves, it is able to perform more work.
 
