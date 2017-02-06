@@ -288,7 +288,7 @@ function combineContexts(...contexts) {
 
 ## Dynamic Paths with a Dynamic `import`
 
-The same idea works with dynamic `import`. Instead of passing an absolute path, you can pass a partial one. Webpack will set up a context internally. Here's a brief example:
+The same idea works with dynamic `import`. Instead of passing a complete path, you can pass a partial one. Webpack will set up a context internally. Here's a brief example:
 
 ```javascript
 // Set up a target or derive this somehow
