@@ -8,7 +8,7 @@ The popularity of Node.js and [npm](https://www.npmjs.com/), the Node.js package
 
 ## Task Runners and Bundlers
 
-Historically speaking, there have been many build systems. *Make* is perhaps the best known, and it is still a viable option. Specialized *task runners*, such as Grunt, and Gulp were created particularly with JavaScript developers in mind. Plugins available through npm made both task runners powerful and extensible. It is possible to use even npm `scripts` as a task runner. That's common, particularly with webpack.
+Historically speaking, there have been many build systems. *Make* is perhaps the best known, and it is still a viable option. Specialized *task runners*, such as Grunt, and Gulp were created particularly with JavaScript developers in mind. Plugins available through npm made both task runners powerful and extendable. It is possible to use even npm `scripts` as a task runner. That's common, particularly with webpack.
 
 Task runners are great tools on a high level. They allow you to perform operations in a cross-platform manner. The problems begin when you need to splice various assets together and produce bundles. This is the reason we have *bundlers*, such as Browserify, Brunch, or webpack.
 
@@ -19,7 +19,7 @@ There are a couple of developing alternatives as well. I have listed a couple of
 * [JSPM](http://jspm.io/) pushes package management directly to the browser. It relies on [System.js](https://github.com/systemjs/systemjs), a dynamic module loader, and skips the bundling step altogether during development. You can generate a production bundle using it. Glen Maddern goes into good detail on his [video about JSPM](https://www.youtube.com/watch?t=33&v=iukBMY4apvI).
 * [pundle](https://www.npmjs.com/package/pundle) advertises itself as a next generation bundler and notes particularly its performance.
 * [Rollup](https://www.npmjs.com/package/rollup) focuses particularly on bundling ES6 code. A feature known as *tree shaking* is one of its main attractions. It allows you to drop unused code based on usage. Tree shaking is supported by webpack 2 up to a point. You can use Rollup with webpack through [rollup-loader](https://www.npmjs.com/package/rollup-loader).
-* [AssetGraph](https://www.npmjs.com/package/assetgraph) takes an entirely different approach and builds on top of tried and true HTML semantics making it highly useful for tasks like [hyperlink analysis](https://www.npmjs.com/package/hyperlink) or [structural analysis](https://www.npmjs.com/package/assetviz).
+* [AssetGraph](https://www.npmjs.com/package/assetgraph) takes an entirely different approach and builds on top of HTML semantics making it highly useful for tasks like [hyperlink analysis](https://www.npmjs.com/package/hyperlink) or [structural analysis](https://www.npmjs.com/package/assetviz).
 * [FuseBox](https://github.com/fuse-box/fuse-box) is a bundler focusing on speed. It uses a zero-configuration approach and aims to be usable out of the box.
 
 I'll go through the main options next in greater detail.

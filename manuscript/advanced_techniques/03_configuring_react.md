@@ -18,7 +18,7 @@ The *Processing with Babel* chapter covers the essentials of using Babel with we
 
 JSX is a superset of JavaScript that allows you to mix XMLish syntax with JavaScript. A lot of people find this convenient as they get something that resembles what they know already while they can use the power of JavaScript.
 
-Some React developers prefer to attach type annotations to their code using a language extension known as [Flow](http://flowtype.org/). The technology fits React well, but it's not restricted to it. [TypeScript](http://www.typescriptlang.org/) is another viable alternative. Both work with JSX.
+Some React developers prefer to attach type annotations to their code using a language extension known as [Flow](http://flowtype.org/). The technology fits React well, but it's not restricted to it. [TypeScript](http://www.typescriptlang.org/) is another alternative. Both work with JSX.
 
 ### Configuring with Webpack
 

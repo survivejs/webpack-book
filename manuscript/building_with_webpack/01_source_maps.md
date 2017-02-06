@@ -287,7 +287,7 @@ W> As you can see from the output, it is missing `sourcesContent`. This is a [bu
 
 ### `devtool: 'source-map'`
 
-`source-map` provides the best quality with the most complete result, but it is also the slowest option. The output reflect this:
+`source-map` provides the best quality with the complete result, but it is also the slowest option. The output reflect this:
 
 ```json
 {

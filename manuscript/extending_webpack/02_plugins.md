@@ -36,7 +36,7 @@ The PurifyCSS plugin exposes a small interface to the user. Consider the example
 },
 ```
 
-In this case it is very important the plugin is executed **after** `ExtractTextPlugin`. That way there is something sensible to process. The plugin also supports more advanced forms of path input. You could pass an `entry` like object to it to constrain the purifying process per entry instead of relying on the same set of files. This adds some complexity to the implementation, but it's a good feature to support as it provides more control to the user.
+In this case it is important the plugin is executed **after** `ExtractTextPlugin`. That way there is something sensible to process. The plugin also supports more advanced forms of path input. You could pass an `entry` like object to it to constrain the purifying process per entry instead of relying on the same set of files. This adds some complexity to the implementation, but it's a good feature to support as it provides more control to the user.
 
 Given failing fast and loud is a good idea when it comes to user facing interfaces like this, I decided to validate the input carefully. I ended up using JSON Schema for the option definition while validating the input through [ajv](https://www.npmjs.com/package/ajv). This allows me to provide verbose errors related to the input shape and it can capture even typos as it will complain if you try to pass fields that are not supported. Webpack uses a similar solution internally and it has proven to be a good decision.
 

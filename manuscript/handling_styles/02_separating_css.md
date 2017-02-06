@@ -64,7 +64,7 @@ exports.extractCSS = function({ include, exclude, use }) {
 leanpub-end-insert
 ```
 
-That `[name]` placeholder will use the the name of the entry where the CSS is referred to. Placeholders and the overall idea are discussed in greater detail at the *Adding Hashes to Filenames* chapter.
+That `[name]` placeholder will use the name of the entry where the CSS is referred to. Placeholders and the overall idea are discussed in greater detail at the *Adding Hashes to Filenames* chapter.
 
 T> If you wanted to output the resulting file to a specific directory, you could do it like this: `new ExtractTextPlugin('styles/[name].css')`.
 

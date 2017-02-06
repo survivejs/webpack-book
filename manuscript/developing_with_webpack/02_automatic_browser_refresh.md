@@ -70,7 +70,7 @@ The output means that the development server is running. If you open *http://loc
 
 If you try modifying the code, you should see output at your terminal. The browser should also perform a hard refresh on change.
 
-T> WDS will try to run in another port in case the default one is being used. Keep an eye on the terminal output to figure out where it ends up running. You can debug the situation with a command like `netstat -na | grep 8080`. If there's something running in the port 8080, it should display a message. The exact command may depend on the platform.
+T> WDS will try to run in another port in case the default one is being used. See the terminal output to figure out where it ends up running. You can debug the situation with a command like `netstat -na | grep 8080`. If there's something running in the port 8080, it should display a message. The exact command may depend on the platform.
 
 ## Verifying that `--env` Works
 

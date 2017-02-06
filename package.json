@@ -7,7 +7,9 @@
     "publish:silent": "leanpub-cli publish-silent survivejs-webpack",
     "preview": "leanpub-cli preview survivejs-webpack",
     "job-status": "leanpub-cli job-status survivejs-webpack",
-    "test": "check-markdown-links manuscript"
+    "test": "npm run test:lint && npm run test:links",
+    "test:lint": "proselintjs \"manuscript/**/*.md\"",
+    "test:links": "check-markdown-links manuscript"
   },
   "repository": {
     "type": "git",
@@ -26,6 +28,11 @@
   "dependencies": {},
   "devDependencies": {
     "check-markdown-links": "^0.1.1",
-    "leanpub-cli": "^0.2.0"
-  }
+    "git-prepush-hook": "^1.0.1",
+    "leanpub-cli": "^0.2.0",
+    "proselint": "^0.1.4"
+  },
+  "pre-push": [
+    "test"
+  ]
 }

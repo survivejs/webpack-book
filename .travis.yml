@@ -1,4 +1,6 @@
 language: node_js
 node_js:
-  - "5.1"
-
+  - "6"
+sudo: required
+script:
+  - sudo pip install proselint

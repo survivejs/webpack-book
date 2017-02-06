@@ -28,7 +28,7 @@ I'll give you a basic testing setup next and then discuss my loader implementati
 
 ## Writing Tests for a Loader
 
-I settled with [Mocha](https://mochajs.org/) and Node.js [assert](https://nodejs.org/api/assert.html) for this project. Mocha is nice as it provides just enough structure for writing your tests. There's also support for `--watch`. When you run Mocha in the watch mode, it will run the tests as your code evolves. This can be a very effective way to develop code.
+I settled with [Mocha](https://mochajs.org/) and Node.js [assert](https://nodejs.org/api/assert.html) for this project. Mocha is nice as it provides just enough structure for writing your tests. There's also support for `--watch`. When you run Mocha in the watch mode, it will run the tests as your code evolves. This can be an effective way to develop code.
 
 ### Test Setup
 
@@ -194,4 +194,4 @@ module.exports.pitch = function(remainingRequest, precedingRequest, data) {
 
 Writing loaders is fun in sense that they describe transformations from a format to another. Often you can figure out how to achieve something specific by either studying either the API documentation or the existing loaders.
 
-I recommend writing at least basic tests and a small example to document your assumptions. Loader development fits this type of thinking very well.
+I recommend writing at least basic tests and a small example to document your assumptions. Loader development fits this type of thinking well.

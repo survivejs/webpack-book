@@ -310,8 +310,8 @@ Code splitting is one of those features that allows you to push your application
 
 It comes with some extra work as you must figure out what's possible to split. Often, you find good split points within a router. Or you may notice that specific functionality is required only when specific feature is used. Charting is a good example of this.
 
-Just applying `import` or `require.ensure` alone can be very effective. `require.context` has more limited possibilities, but it's a powerful tool especially for tool developers.
+Just applying `import` or `require.ensure` alone can be effective. `require.context` has more limited possibilities, but it's a powerful tool especially for tool developers.
 
-T> There's a more complete example of how to use the code splitting technique in the *Searching with React* appendix. You will see how to set up a static site index that's loaded when the user searches information.
+T> There's a complete example of how to use the code splitting technique in the *Searching with React* appendix. You will see how to set up a static site index that's loaded when the user searches information.
 
 T> [webpack-pwa](https://github.com/webpack/webpack-pwa) illustrates the idea in a larger scale and discusses different shell based approaches.

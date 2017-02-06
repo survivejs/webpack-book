@@ -289,7 +289,7 @@ T> Note that cssnext includes autoprefixer! You don't have to configure autopref
 
 ## Understanding Lookups
 
-If you import one LESS/SASS file from another, use the exact same pattern as anywhere else. Webpack will dig into these files and figure out the dependencies.
+If you import one LESS/SASS file from another, use the same pattern as anywhere else. Webpack will dig into these files and figure out the dependencies.
 
 ```less
 @import "./variables.less";

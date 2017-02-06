@@ -93,7 +93,7 @@ We get this behavior because we set `hotOnly: true` for WDS. Going with `inline:
 
 You can access the application alternately through **localhost:8080/webpack-dev-server/** instead of the root. It will provide status information within the browser itself at the top of the application. If your application relies on WebSockets and you use WDS proxying, you'll need to use this specific url: otherwise, WDS logic will interfere.
 
-W> *webpack-dev-server* can be very picky about paths. If the given `include` paths don't match the system casing exactly, this can cause it to fail to work. Webpack [issue #675](https://github.com/webpack/webpack/issues/675) discusses this in more detail.
+W> *webpack-dev-server* can be picky about paths. If the given `include` paths don't match the system casing exactly, this can cause it to fail to work. Webpack [issue #675](https://github.com/webpack/webpack/issues/675) discusses this in more detail.
 
 W> You should **not** enable HMR for your production configuration. It will likely work, but having the capability enabled there won't do any good and it will make your bundles bigger than they should be.
 
