@@ -2,13 +2,13 @@
 
 Webpack provides multiple ways to set up module loaders. Webpack 2 simplified the situation by introducing a the `use` field. The legacy options (`loader` and `loaders`) still work, though. I'll discuss all the options for completeness, as you may see them in various configurations out there.
 
-I recommend maintaining an `include` definition per each JavaScript-related loader definition. This will restrict its search path, improve performance, and make your configuration easier to follow. `include` accepts either a path or an array of paths. Another option would be to use `exclude`. Often you see declarations, like `exclude: /node_modules/`, for this reason.
-
 It can be a good idea to prefer absolute paths here as they allow you to move configuration without breaking assumptions. The other option is to set `context` field as this gives a similar effect and affects the way entry points and loaders are resolved. It won't affect the output, though, and you still need to use an absolute path or `/` there.
 
 Assuming you set a `include` or `exclude` rule, packages loaded from *node_modules* will still work as the assumption is that they have been compiled in such way that they work out of the box. Sometimes you may come upon a badly packaged one, but often you can work around these by tweaking your loader configuration or setting up a `resolve.alias` against an asset that is included with the offending package.
 
 T> The *Consuming Packages* chapter discusses the aliasing idea in further detail.
+
+T> `include`/`exclude` is particularly useful with *node_modules* as webpack will process and traverse the installed packages by default when you import JavaScript files to your project. Therefore you need to configure it to avoid that behavior. This is less of an issue with the other file types.
 
 ## Anatomy of a Loader
 
