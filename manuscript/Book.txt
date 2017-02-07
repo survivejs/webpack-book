@@ -56,3 +56,4 @@ appendices/01_searching_with_react.md
 appendices/02_writing_eslint_plugins.md
 appendices/03_customizing_eslint.md
 appendices/04_deploying.md
+appendices/05_dynamic_loading.md
