@@ -7,7 +7,7 @@ Analyzing build statistics is a good step towards understanding webpack better. 
 In order to get suitable output, we'll need to do a couple of tweaks to our configuration. We'll need to enable two flags:
 
 * `--profile` to capture timing related information.
-* `--json` to make Webpack output those statistics we want.
+* `--json` to make webpack output those statistics we want.
 
 Here's the line of code we need to pipe the output to a file:
 
@@ -36,9 +36,9 @@ If you want to manage stats through a plugin, check out [stats-webpack-plugin](h
 
 [webpack-stats-plugin](https://www.npmjs.com/package/webpack-stats-plugin) is another option. It allows you to transform the data before outputting it.
 
-### Node.js API
+### Node API
 
-It is possible to capture stats through Node.js. Note that stats can contain errors so it is a good idea to handle that case separately.
+It is possible to capture stats through Node. Note that stats can contain errors so it is a good idea to handle that case separately.
 
 ```javascript
 const webpack = require('webpack');
