@@ -237,7 +237,7 @@ Yet another way to control UglifyJS would be to use the [uglify-loader](https://
 I've listed a couple of UglifyJS alternatives below:
 
 * [webpack-closure-compiler](https://www.npmjs.com/package/webpack-closure-compiler) runs parallel and may give even smaller result than UglifyJS.
-* [babili](https://www.npmjs.com/package/babili) is a Babel specific solution. It can be used either as a CLI tool or through [babili-webpack-plugin](https://www.npmjs.com/package/babili-webpack-plugin).
+* [babili](https://www.npmjs.com/package/babili) is a Babel specific solution. It can be used either as a command line tool or through [babili-webpack-plugin](https://www.npmjs.com/package/babili-webpack-plugin).
 * [optimize-js-plugin](https://www.npmjs.com/package/optimize-js-plugin) complements the other solutions by wrapping eager functions. The benefit of doing this is that it enhances the way your JavaScript code gets parsed initially. This plugin relies on [optimize-js](https://github.com/nolanlawson/optimize-js) by Nolan Lawson. [v8-lazy-parse-webpack-plugin](https://www.npmjs.com/package/v8-lazy-parse-webpack-plugin) is a similar, highly experimental, plugin doing something similar with V8.
 
 ## Minifying CSS

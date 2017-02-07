@@ -4,15 +4,15 @@ As discussed earlier in the *Linting JavaScript* chapter, linting is a technique
 
 [stylelint](http://stylelint.io/) is a tool that allows linting. It can be used with webpack through [postcss-loader](https://www.npmjs.com/package/postcss-loader).
 
-## Connecting Stylelint with *package.json*
+## Connecting stylelint with *package.json*
 
-To get started, install Stylelint as a development dependency:
+To get started, install stylelint as a development dependency:
 
 ```bash
 npm install stylelint --save-dev
 ```
 
-To connect Stylelint with npm and make it find our CSS files, adjust as follows:
+To connect stylelint with npm and make it find our CSS files, adjust as follows:
 
 **package.json**
 
