@@ -105,7 +105,7 @@ T> If you want to open a browser tab directly after running the server, set `dev
 
 When webpack generates a bundle, it needs to tell different modules apart. By default, it uses numbers for this purpose. The problem is that this makes it difficult to debug the code if you must inspect the resulting code. It can also lead to issues with hashing behavior.
 
-To overcome this problem, it is a good idea to use an alternative module id scheme. As it happens, webpack provides a plugin that's ideal for debugging. This plugin, `NamedModulesPlugin`, emits module paths over numeric ids. This information is useful for development.
+To overcome this problem, it is a good idea to use an alternative module ID scheme. As it happens, webpack provides a plugin that's ideal for debugging. This plugin, `NamedModulesPlugin`, emits module paths over numeric IDs. This information is useful for development.
 
 You can enable this better behavior as follows:
 
@@ -223,7 +223,7 @@ T> There are more details in *webpack-dev-server* issue [#155](https://github.co
 
 ## Setting WDS Entry Points Manually
 
-In the setup above, the WDS-related entries were injected automatically. Assuming you are using WDS through Node.js, you would have to set them yourself as the Node.js API doesn't support injecting. The example below illustrates how you might achieve this:
+In the setup above, the WDS-related entries were injected automatically. Assuming you are using WDS through Node, you would have to set them yourself as the Node API doesn't support injecting. The example below illustrates how you might achieve this:
 
 ```javascript
 entry: {

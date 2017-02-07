@@ -1,6 +1,6 @@
 # Searching with React
 
-Let's say we want to implement a rough little search for our application without a proper back-end. We might want to use something like [lunr](http://lunrjs.com/) for generating an index to search against.
+Let's say we want to implement a rough little search for our application without a proper backend. We might want to use something like [lunr](http://lunrjs.com/) for generating an index to search against.
 
 The problem is that the index can be quite big depending on the amount of the content. The dumb way to implement this kind of search would be to include the index required to the application bundle itself and then perform search against that.
 

@@ -46,7 +46,7 @@ You can use Babel with webpack through [babel-loader](https://www.npmjs.com/pack
 
 Connecting Babel with a project allows you to process webpack configuration through it. To achieve this, name your webpack configuration using the *webpack.config.babel.js* convention. This works because of the [interpret](https://www.npmjs.com/package/interpret) package and supports other compilers as well.
 
-T> Given that [Node.js supports the ES6 specification well](http://node.green/) these days, you can use a lot of ES6 features without having to process configuration through Babel.
+T> Given that [Node supports the ES6 specification well](http://node.green/) these days, you can use a lot of ES6 features without having to process configuration through Babel.
 
 T> Babel isn't the only option although it is the most popular one. [Bublé](https://buble.surge.sh) by Rich Harris is another commpiler worth checking out. There's experimental [buble-loader](https://www.npmjs.com/package/buble-loader) that allows you to use it with webpack. Bublé doesn't support ES6 modules, but that's not a problem as webpack provides that functionality.
 
@@ -114,7 +114,7 @@ leanpub-end-insert
 
 Even though we have Babel installed and set up, we are still missing one bit: Babel configuration. I prefer to handle it using a *.babelrc* dotfile as other tooling can pick it up as well.
 
-W> There are times when caching Babel compilation can surprise you. This can happen particularly if your dependencies change in a way that *babel-loader* default caching mechanism doesn't notice. Override `cacheIdentifier` with a string that has been derived based on data that should invalidate the cache for better control. This is where [Node.js crypto API](https://nodejs.org/api/crypto.html) and especially its MD5 related functions can come in handy.
+W> There are times when caching Babel compilation can surprise you. This can happen particularly if your dependencies change in a way that *babel-loader* default caching mechanism doesn't notice. Override `cacheIdentifier` with a string that has been derived based on data that should invalidate the cache for better control. This is where [Node crypto API](https://nodejs.org/api/crypto.html) and especially its MD5 related functions can come in handy.
 
 W> If you try to import files **outside** of your configuration root directory and then process them through *babel-loader*, this will fail. It is [a known issue](https://github.com/babel/babel-loader/issues/313) and there are workarounds including maintaining *.babelrc* at higher level in the project and resolving against Babel presets through `require.resolve` at webpack configuration.
 
@@ -183,7 +183,7 @@ W> Sometimes you might want to use experimental features. Although you can find 
 
 Given it's not always enough to transform ES6 code to older format and expect it to work, polyfilling may be needed. The simplest way to solve this problem is to include [babel-polyfill](https://babeljs.io/docs/usage/polyfill/) to your project. A simple way to achieve that in webpack is to either include it to an entry (`app: ['babel-polyfill', PATHS.app]`) or `import 'babel-polyfill'` from code to get it bundled.
 
-Especially in bundle size sensitive environments *babel-polyfill* might not be the best option. If you know well which environment (browser versions, Node.js) you support, [babel-preset-env](https://www.npmjs.com/package/babel-preset-env) provides a more granular way to achieve the same result with smaller size.
+Especially in bundle size sensitive environments *babel-polyfill* might not be the best option. If you know well which environment (browser versions, Node) you support, [babel-preset-env](https://www.npmjs.com/package/babel-preset-env) provides a more granular way to achieve the same result with smaller size.
 
 It is important to note that *babel-polyfill* pollutes the global scope with objects like `Promise`. Given this can be problematic for library authors, there's [transform-runtime](https://babeljs.io/docs/plugins/transform-runtime/) option. It can be enabled as a Babel plugin and it will avoid the problem of globals by rewriting the code in such way that they won't be needed.
 
@@ -199,7 +199,7 @@ Perhaps the greatest thing about Babel is that it's possible to extend with pres
 * [babel-plugin-webpack-loaders](https://www.npmjs.com/package/babel-plugin-webpack-loaders) allows you to use many webpack loaders through Babel.
 * [babel-plugin-syntax-trailing-function-commas](https://www.npmjs.com/package/babel-plugin-syntax-trailing-function-commas) adds trailing comma support for functions.
 
-T> It is possible to connect Babel with Node.js through [babel-register](https://www.npmjs.com/package/babel-register) or [babel-cli](https://www.npmjs.com/package/babel-cli). These packages can be handy if you want to execute your code through Babel without using webpack.
+T> It is possible to connect Babel with Node through [babel-register](https://www.npmjs.com/package/babel-register) or [babel-cli](https://www.npmjs.com/package/babel-cli). These packages can be handy if you want to execute your code through Babel without using webpack.
 
 ## Enabling Presets and Plugins per Environment
 

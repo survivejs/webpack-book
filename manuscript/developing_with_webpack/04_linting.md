@@ -119,7 +119,7 @@ T> When ESLint gives errors, npm will show a long `ELIFECYCLE error` error block
 
 ### Connecting ESLint with Webpack
 
-We can make Webpack emit ESLint messages for us by using [eslint-loader](https://www.npmjs.com/package/eslint-loader). As the first step execute
+We can make webpack emit ESLint messages for us by using [eslint-loader](https://www.npmjs.com/package/eslint-loader). As the first step execute
 
 ```bash
 npm install eslint-loader --save-dev

@@ -1,6 +1,6 @@
 # Authoring Packages
 
-Even though webpack is useful for bundling applications, it has its uses for package authors as well. You can use it to generate a website for your package and maintain the distribution files using it. It supports the [UMD format](https://github.com/umdjs/umd). UMD is compatible with various environments (CommonJS, AMD, globals) making it good for distribution purposes.
+Even though webpack is useful for bundling applications, it has its uses for package authors as well. You can use it to generate a site for your package and maintain the distribution files using it. It supports the [UMD format](https://github.com/umdjs/umd). UMD is compatible with various environments (CommonJS, AMD, globals) making it good for distribution purposes.
 
 ## Anatomy of an npm Package
 
@@ -74,7 +74,7 @@ I've annotated a part of *package.json* of my [React component boilerplate](http
   },
 
   /* Entry point for terminal (i.e., <package name>). */
-  /* Don't set this unless you intend to allow CLI usage */
+  /* Don't set this unless you intend to allow Command line  usage */
   "bin": "bin/index.js",
 
   /* Entry point (defaults to index.js) */
@@ -201,7 +201,7 @@ The workflow in this case is straightforward:
 
 In order to consume the test version, your users will have to use `npm install <your package name>@alpha`.
 
-T> It can be useful to utilize [npm link](https://docs.npmjs.com/cli/link) during development. It allows you to link a package as a globally available symbolic link within your system. Node.js will resolve to the linked version unless local `node_modules` happens to contain a version. If you want to remove the link, you should use `npm unlink` or `npm unlink <package>`.
+T> It can be useful to utilize [npm link](https://docs.npmjs.com/cli/link) during development. It allows you to link a package as a globally available symbolic link within your system. Node will resolve to the linked version unless local `node_modules` happens to contain a version. If you want to remove the link, you should use `npm unlink` or `npm unlink <package>`.
 
 ### On Naming Packages
 
@@ -215,7 +215,7 @@ T> If you find a good name that appears to be abandoned, contact npm and they'll
 
 npm provides various lifecycle hooks that can be useful. Suppose you are authoring a React component using Babel and some of its goodies. You could let the *package.json* `main` field point at the UMD version as generated above. However, this won't be ideal for those consuming the library through npm.
 
-It is better to generate a ES5 compatible version of the package for npm consumers. This can be achieved using **babel** CLI tool:
+It is better to generate a ES5 compatible version of the package for npm consumers. This can be achieved using **babel** command line tool:
 
 ```bash
 babel ./lib --out-dir ./dist-modules
@@ -263,7 +263,7 @@ See [npm documentation](https://docs.npmjs.com/cli/owner) for the most up to dat
 
 There are a couple of package authoring-related techniques that are good to know. You can set up webpack to generate a UMD build. You can also exclude certain dependencies out of your bundle.
 
-To make it easier to consume your packages, you can also generate a Node.js friendly versions. This technique can be improved further by setting up a script to generate a Node.js friendly version.
+To make it easier to consume your packages, you can also generate a Node friendly versions. This technique can be improved further by setting up a specific script.
 
 ### Setting Up UMD
 
@@ -323,9 +323,9 @@ T> If you want to include all modules in *node_modules* by default, it could be 
 
 T> Given bundling may still be required sometimes, consider using the [bundledDependencies](https://docs.npmjs.com/files/package.json#bundleddependencies) (or just `bundleDependencies`) field. This can be useful if you want to share third-party files not available through npm. There's a great [Stack Overflow answer](http://stackoverflow.com/a/25044361/228885) discussing the topic further.
 
-### Processing Node.js Version through Babel
+### Processing Node Version through Babel
 
-If you are processing your code through Babel, I suggest you process the Node.js version of the package directly through Babel and skip webpack. The advantage of doing this is that it gives you separate modules that are easier to consume one by one if needed. This avoids having to go through a heavy bundle.
+If you are processing your code through Babel, I suggest you process the Node version of the package directly through Babel and skip webpack. The advantage of doing this is that it gives you separate modules that are easier to consume one by one if needed. This avoids having to go through a heavy bundle.
 
 In this case you'll likely want a setup like this:
 
@@ -349,7 +349,7 @@ In this case you'll likely want a setup like this:
     "prepublish": "npm run dist:modules",
     ...
   },
-  /* Point to the Node.js specific version */
+  /* Point to the Node specific version */
   "main": "dist-modules",
   ...
 }

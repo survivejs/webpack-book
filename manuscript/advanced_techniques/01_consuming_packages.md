@@ -49,7 +49,7 @@ Sometimes it may be beneficial to use these techniques together. Compared to npm
 
 W> Installing packages globally can lead to surprising behavior. If you have a package installed both globally and it a project happens to contain it, executing associated terminal command (say `webpack`) will point to the version of the project. This won't work unless the global package exists.
 
-T> [app-module-path](https://www.npmjs.com/package/app-module-path) allows you adjust Node.js module lookup within JavaScript. This can be an interesting alternative to patching `NODE_PATH`.
+T> [app-module-path](https://www.npmjs.com/package/app-module-path) allows you adjust Node module lookup within JavaScript. This can be an interesting alternative to patching `NODE_PATH`.
 
 ## Version Ranges
 

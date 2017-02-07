@@ -22,13 +22,13 @@ I follow the following layout in my loader project:
 └── test.js          - Tests
 ```
 
-This is a fairly standard way to write a small Node.js package. I actually started by developing a basic example first and added tests later. Writing tests first can be a good idea, though, as it gives you a specification which you can use to validate your implementation.
+This is a fairly standard way to write a small Node package. I actually started by developing a basic example first and added tests later. Writing tests first can be a good idea, though, as it gives you a specification which you can use to validate your implementation.
 
 I'll give you a basic testing setup next and then discuss my loader implementation.
 
 ## Writing Tests for a Loader
 
-I settled with [Mocha](https://mochajs.org/) and Node.js [assert](https://nodejs.org/api/assert.html) for this project. Mocha is nice as it provides just enough structure for writing your tests. There's also support for `--watch`. When you run Mocha in the watch mode, it will run the tests as your code evolves. This can be an effective way to develop code.
+I settled with [Mocha](https://mochajs.org/) and Node [assert](https://nodejs.org/api/assert.html) for this project. Mocha is nice as it provides just enough structure for writing your tests. There's also support for `--watch`. When you run Mocha in the watch mode, it will run the tests as your code evolves. This can be an effective way to develop code.
 
 ### Test Setup
 

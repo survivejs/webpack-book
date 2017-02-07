@@ -34,7 +34,7 @@ Note that the rule specific examples assume you have the rules in your configura
 
 ## Setting Environment
 
-Sometimes, you may want to run ESLint in a specific environment, such as Node.js or Mocha. These environments have certain conventions of their own. For instance, Mocha relies on custom keywords (e.g., `describe`, `it`) and it's good if the linter doesn't choke on those.
+Sometimes, you may want to run ESLint in a specific environment, such as Node or Mocha. These environments have certain conventions of their own. For instance, Mocha relies on custom keywords (e.g., `describe`, `it`) and it's good if the linter doesn't choke on those.
 
 ESLint provides two ways to deal with this: local and global. If you want to set it per file, you can use a declaration at the beginning of a file:
 

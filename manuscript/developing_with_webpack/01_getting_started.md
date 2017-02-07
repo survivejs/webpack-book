@@ -1,12 +1,12 @@
 # Getting Started
 
-Before getting started, make sure you are using a recent version of [Node.js](http://nodejs.org/). I recommend using at least the most recent LTS (long-term support) version. Before going further, you should have `node` and `npm` commands available at your terminal.
+Before getting started, make sure you are using a recent version of [Node](http://nodejs.org/). I recommend using at least the most recent LTS (long-term support) version. Before going further, you should have `node` and `npm` commands available at your terminal.
 
 The completed configuration is available at [GitHub](https://github.com/survivejs-demos/webpack-demo). If you are unsure of something, refer there.
 
 T> It is possible to get a more controlled environment by using a solution such as [Docker](https://www.docker.com/), [Vagrant](https://www.vagrantup.com/) or [nvm](https://www.npmjs.com/package/nvm). Vagrant comes with a performance penalty as it relies on a virtual machine. Vagrant is particularly useful in a team: each developer will have the same environment, usually close to production.
 
-W> The webpack configuration of the book has been written the language features supported by Node.js 6 in mind. If you are using an older version, you may either have to adapt or process your webpack configuration through Babel as discussed in the *Processing with Babel* chapter.
+W> The webpack configuration of the book has been written the language features supported by Node 6 in mind. If you are using an older version, you may either have to adapt or process your webpack configuration through Babel as discussed in the *Processing with Babel* chapter.
 
 ## Setting Up the Project
 
@@ -57,7 +57,7 @@ T> We can use `--save` and `--save-dev` to separate application and development 
 
 ## Directory Structure
 
-As projects with just *package.json* are boring, we should set up something more concrete. To get started, we can implement a little website that loads some JavaScript, which we then build using webpack. After we progress a bit, we'll end up with a directory structure like this:
+As projects with just *package.json* are boring, we should set up something more concrete. To get started, we can implement a little site that loads some JavaScript, which we then build using webpack. After we progress a bit, we'll end up with a directory structure like this:
 
 - app/
   - index.js
@@ -128,7 +128,7 @@ module.exports = {
   // We'll be using the latter form given it's
   // convenient with more complex configurations.
   //
-  // Entries have to resolve to files! It relies on Node.js
+  // Entries have to resolve to files! It relies on Node
   // convention by default so if a directory contains *index.js*,
   // it will resolve to that.
   entry: {
@@ -152,7 +152,7 @@ T> I use **trailing commas** in the book examples on purpose as it gives cleaner
 
 T> `[name]` is a placeholder. Placeholders are discussed in greater detail in the *Adding Hashes to Filenames* chapter.
 
-T> I like to use `path.join`, but `path.resolve` would be a good alternative. See the [Node.js path API](https://nodejs.org/api/path.html) for further details.
+T> I like to use `path.join`, but `path.resolve` would be a good alternative. See the [Node path API](https://nodejs.org/api/path.html) for further details.
 
 If you execute `node_modules/.bin/webpack`, you should see output:
 
@@ -177,12 +177,12 @@ The output tells us a lot. I've annotated it below:
 * `Hash: 7688419348f2bf706b69` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. We'll discuss hashing in detail in the *Adding Hashes to Filenames* chapter.
 * `Version: webpack 2.2.1` - Webpack version.
 * `Time: 365ms` - Time it took to execute the build.
-* `app.js    3.11 kB       0  [emitted]  app` - Name of the generated asset, size, the ids of the **chunks** into which it is related, status information telling how it was generated, name of the chunk.
+* `app.js    3.11 kB       0  [emitted]  app` - Name of the generated asset, size, the IDs of the **chunks** into which it is related, status information telling how it was generated, name of the chunk.
 * `index.html  180 bytes          [emitted]` - Another generated asset that was emitted by the process.
-* `[0] ./app/component.js 127 bytes {0} [built]` - The id of the entry asset, name, size, entry chunk id, the way it was generated.
+* `[0] ./app/component.js 127 bytes {0} [built]` - The ID of the entry asset, name, size, entry chunk ID, the way it was generated.
 * `Child html-webpack-plugin for "index.html":` - This is plugin-related output. In this case *html-webpack-plugin* is doing output of its own.
 
-Examine the output below `build/`. If you look closely, you can see the same ids within the source. To see the application running, open the `build/index.html` file directly through a browser. On macOS `open ./build/index.html` works.
+Examine the output below `build/`. If you look closely, you can see the same IDs within the source. To see the application running, open the `build/index.html` file directly through a browser. On macOS `open ./build/index.html` works.
 
 T> It can be convenient to use a tool like *serve* (`npm install serve -g`) to serve the build directory. In this case, execute `serve` at the output directory and head to `http://localhost:3000` at your browser. You can configure the port through the `--port` parameter.
 

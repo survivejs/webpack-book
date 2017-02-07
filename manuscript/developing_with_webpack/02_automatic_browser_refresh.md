@@ -162,7 +162,7 @@ Alternately, we could have set up an Express server of our own and a middleware.
 
 There's also a [Node.js API](https://webpack.github.io/docs/webpack-dev-server.html#api) if you want more control and flexibility.
 
-W> Note that there are [slight differences](https://github.com/webpack/webpack-dev-server/issues/106) between the CLI and the Node.js API. This is the reason why some prefer to solely use the Node.js API.
+W> Note that there are [slight differences](https://github.com/webpack/webpack-dev-server/issues/106) between the CLI and the Node API. This is the reason why some prefer to use the API alone.
 
 ## Making It Faster to Develop Configuration
 
