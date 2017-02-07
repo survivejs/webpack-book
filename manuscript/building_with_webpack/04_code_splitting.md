@@ -92,7 +92,7 @@ T> The formats respect `output.publicPath` option. You can also use `output.chun
 
 To demonstrate the idea of code splitting, we should pick up one of the formats above and integrate it to our project. Dynamic `import` is enough. Before we can implement the webpack side, ESLint needs a slight tweak.
 
-### Tweaking ESLint
+### Configuring ESLint
 
 Given ESLint supports only standard ES6 out of the box, it requires some tweaking to work with dynamic `import`. Install *babel-eslint* parser first:
 
@@ -127,6 +127,29 @@ leanpub-end-insert
 ```
 
 After these changes, ESLint won't complain if we write `import` in the middle of our code.
+
+### Configuring Babel
+
+Given Babel doesn't support the dynamic `import` syntax out of the box, it needs [babel-plugin-syntax-dynamic-import](https://www.npmjs.com/package/babel-plugin-syntax-dynamic-import) in order to work. Install it first:
+
+```bash
+npm install babel-plugin-syntax-dynamic-import --save-dev
+```
+
+To connect it with the project, adjust the configuration as follows:
+
+**.babelrc**
+
+```json
+{
+leanpub-start-insert
+  "plugins": ["syntax-dynamic-import"],
+leanpub-end-insert
+  "presets": [
+    ...
+  ]
+}
+```
 
 ### Defining a Split Point Using a Dynamic `import`
 

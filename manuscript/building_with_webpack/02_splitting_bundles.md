@@ -12,7 +12,7 @@ To give you a simple example, instead of having *app.js* (100 kB), we could end 
 
 Caching comes with its own problems. One of those is cache invalidation. We'll discuss a potential approach related to that in the *Adding Hashes to Filenames* chapter.
 
-Bundle splitting isn't the only way out. In the next chapter, we will discuss the idea of *code splitting* that allows us to load code on demand.
+Bundle splitting isn't the only way out. The *Code Splitting* chapter discusses another, more granular way.
 
 ## Adding Something to Split
 
@@ -345,4 +345,4 @@ In the example above, we used several types of webpack chunks. As [discussed in 
 
 ## Conclusion
 
-The situation is better now. Note how small `app` bundle compared to the `vendor` bundle. To really benefit from this split, we will set up caching in the next part of this book. But before that, we can learn about *code splitting* to go even more granular.
+The situation is better now. Note how small `app` bundle compared to the `vendor` bundle. To really benefit from this split, we will set up caching in the next part of this book.

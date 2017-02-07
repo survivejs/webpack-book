@@ -120,19 +120,18 @@ W> If you try to import files **outside** of your configuration root directory a
 
 ### Setting Up *.babelrc*
 
-At a minimum you will need [babel-preset-es2015](https://www.npmjs.com/package/babel-preset-es2015). Given our project uses dynamic `import`s and the feature isn't in the standard yet, we need [babel-plugin-syntax-dynamic-import](https://www.npmjs.com/package/babel-plugin-syntax-dynamic-import) for that. Install them:
+At a minimum you will need [babel-preset-es2015](https://www.npmjs.com/package/babel-preset-es2015). Install it:
 
 ```bash
-npm install babel-plugin-syntax-dynamic-import babel-preset-es2015 --save-dev
+npm install babel-preset-es2015 --save-dev
 ```
 
-To make Babel aware of them, we need to write a *.babelrc*. Given webpack supports ES6 modules out of the box, we can tell Babel to skip processing them. Skipping this step would break webpack's HMR mechanism although the production build would still work.
+To make Babel aware of the preset, we need to write a *.babelrc*. Given webpack supports ES6 modules out of the box, we can tell Babel to skip processing them. Skipping this step would break webpack's HMR mechanism although the production build would still work.
 
 **.babelrc**
 
 ```json
 {
-  "plugins": ["syntax-dynamic-import"],
   "presets": [
     [
       "es2015",
