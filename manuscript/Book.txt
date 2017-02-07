@@ -31,6 +31,7 @@ building_with_webpack/02_splitting_bundles.md
 building_with_webpack/03_processing_with_babel.md
 building_with_webpack/04_code_splitting.md
 building_with_webpack/05_cleaning_build.md
+building_with_webpack/06_attaching_revision.md
 
 08_Optimizing_Build.md
 optimizing_build/01_minifying.md
