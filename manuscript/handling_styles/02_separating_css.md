@@ -131,7 +131,9 @@ Now our styling has been pushed to a separate CSS file. Thus, our JavaScript bun
 
 T> If you are getting `Module build failed: CssSyntaxError:` or `Module build failed: Unknown word` error, make sure your `common` configuration doesn't have a CSS-related section set up.
 
-## Autoprefixing Output
+T> [extract-loader](https://www.npmjs.com/package/extract-loader) is a light alternative to `ExtractTextPlugin`. It does less, but can be enough for simple extraction needs.
+
+## Autoprefixing the Output
 
 It can be difficult to remember which vendor prefixes you have to use for specific CSS rules to support a large variety of users. This is where **autoprefixing** comes in. It can be enabled through PostCSS and the [autoprefixer](https://www.npmjs.com/package/autoprefixer) plugin. *autoprefixer* uses [Can I Use](http://caniuse.com/) service to figure out which rules should be prefixed and its behavior can be tuned further.
 
