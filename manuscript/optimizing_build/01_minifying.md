@@ -108,7 +108,7 @@ Sometimes minification can break code as it can rewrite pieces of code you inadv
 
 The easiest way to enable minification in webpack is to call `webpack -p`. `-p` is a shortcut for `--optimize-minimize`, you can think it as `-p` for "production". Alternately, we can use a plugin directly as this provides us more control.
 
-### Setting Up Minification
+### Setting Up JavaScript Minification
 
 As earlier, we can define a little function for this purpose and then point to it from our main configuration. By default, UglifyJS will output a lot of warnings and they don't provide value in this case, so we'll be disabling them in our setup. Here's the basic idea:
 
@@ -230,7 +230,7 @@ If you enable mangling, it is a good idea to set `except: ['webpackJsonp']` to a
 
 T> Dropping the `console` statements can be achieved through Babel too by using the [babel-plugin-remove-console](https://www.npmjs.com/package/babel-plugin-remove-console) plugin. Babel is discussed in greater detail in the *Processing with Babel* chapter.
 
-## Other Solutions
+## Other Ways to Minify JavaScript
 
 Yet another way to control UglifyJS would be to use the [uglify-loader](https://www.npmjs.com/package/uglify-loader). That gives yet another way to control minification behavior. [webpack-parallel-uglify-plugin](https://www.npmjs.com/package/webpack-parallel-uglify-plugin) allows you to parallelize the minifying step and may yield extra performance as webpack doesn't run in parallel by default.
 
@@ -246,9 +246,103 @@ I've listed a couple of UglifyJS alternatives below:
 
 [clean-css-loader](https://www.npmjs.com/package/clean-css-loader) allows you to use a popular CSS minifier [clean-css](https://www.npmjs.com/package/clean-css).
 
-[optimize-css-assets-webpack-plugin](https://www.npmjs.com/package/optimize-css-assets-webpack-plugin) is a plugin based option that applies a chosen minifier on CSS assets. Using *extract-text-webpack-plugin* can lead to duplicated CSS given it only merges text chunks. *optimize-css-assets-webpack-plugin* avoids this problem by operating on the generated result and thus can lead to a better result.
+[optimize-css-assets-webpack-plugin](https://www.npmjs.com/package/optimize-css-assets-webpack-plugin) is a plugin based option that applies a chosen minifier on CSS assets. Using `ExtractTextPlugin` can lead to duplicated CSS given it only merges text chunks. `OptimizeCSSAssetsPlugin` avoids this problem by operating on the generated result and thus can lead to a better result.
 
 W> In webpack 1 `minimize` was set on by default if `UglifyJsPlugin` was used. This confusing behavior was fixed in webpack 2 and now you have explicit control over minification.
+
+### Setting Up CSS Minification
+
+Out of the available solutions, `OptimizeCSSAssetsPlugin` composes the best. To attach it to the setup, install it and *cssnano* first:
+
+```bash
+npm install optimize-css-assets-webpack-plugin cssnano --save-dev
+```
+
+Just like for JavaScript, we can wrap the idea within a configuration part:
+
+**webpack.parts.js**
+
+```javascript
+...
+leanpub-start-insert
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const cssnano = require('cssnano');
+leanpub-end-insert
+
+...
+
+leanpub-start-insert
+exports.minifyCSS = function({ options }) {
+  return {
+    plugins: [
+      new OptimizeCSSAssetsPlugin({
+        cssProcessor: cssnano,
+        cssProcessorOptions: options,
+      }),
+    ],
+  };
+};
+leanpub-end-insert
+
+...
+```
+
+Then, connect with main configuration:
+
+**webpack.config.js**
+
+```javascript
+...
+
+function production() {
+  return merge([
+    ...
+    parts.minifyJavaScript({ useSourceMap: true }),
+leanpub-start-insert
+    parts.minifyCSS({
+      options: {
+        discardComments: {
+          removeAll: true,
+        },
+      },
+    }),
+leanpub-end-insert
+    ...
+  ]);
+}
+
+...
+```
+
+If you build the project now (`npm run build`), you should notice that CSS has become smaller:
+
+```bash
+Hash: 9f9739ce8a8c059354ae
+Version: webpack 2.2.1
+Time: 3410ms
+                                 Asset       Size  Chunks                    Chunk Names
+                                app.js  606 bytes       1  [emitted]         app
+  674f50d287a8c48dc19ba404d20fe713.eot     166 kB          [emitted]  [big]
+  b06871f281fee6b241d60582ae9369b9.ttf     166 kB          [emitted]  [big]
+af7ae505a9eed503f8b8e6982036873e.woff2    77.2 kB          [emitted]  [big]
+ fee66e712a8a08eef5805a46892932ad.woff      98 kB          [emitted]  [big]
+  9a0d8fb85dedfde24f1ab4cdb568ef2a.png    17.6 kB          [emitted]
+                                  0.js  160 bytes       0  [emitted]
+  912ec66d7572ff821749319396470bde.svg     444 kB          [emitted]  [big]
+                             vendor.js    41.8 kB       2  [emitted]         vendor
+                               app.css    2.24 kB       1  [emitted]         app
+                              0.js.map  769 bytes       0  [emitted]
+                            app.js.map    5.18 kB       1  [emitted]         app
+                           app.css.map   84 bytes       1  [emitted]         app
+                         vendor.js.map     343 kB       2  [emitted]         vendor
+                            index.html  274 bytes          [emitted]
+   [3] ./~/react/lib/ReactElement.js 11.2 kB {2} [built]
+   [7] ./~/react/react.js 56 bytes {2} [built]
+  [19] ./app/component.js 372 bytes {1} [built]
+...
+```
+
+[cssnano](http://cssnano.co/) has a lot more options to try out. In this case we stripped only comments out of the CSS output.
 
 ## Conclusion
 
