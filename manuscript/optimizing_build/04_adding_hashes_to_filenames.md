@@ -50,6 +50,32 @@ There are a few places in the build we need to tweak to generate proper hashes. 
 ```javascript
 ...
 
+const common = {
+  ...
+  parts.loadImages({
+    options: {
+      limit: 15000,
+leanpub-start-delete
+      name: '[name].[ext]',
+leanpub-end-delete
+leanpub-start-insert
+      name: '[name].[hash].[ext]',
+leanpub-end-insert
+    },
+  }),
+  parts.loadFonts({
+    options: {
+leanpub-start-delete
+      name: '[name].[ext]',
+leanpub-end-delete
+leanpub-start-insert
+      name: '[name].[hash].[ext]',
+leanpub-end-insert
+    },
+  }),
+  ...
+};
+
 function production() {
   return merge([
     common,

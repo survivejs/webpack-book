@@ -90,6 +90,7 @@ leanpub-start-insert
   parts.loadImages({
     options: {
       limit: 15000,
+      name: '[name].[ext]',
     },
   }),
 leanpub-end-insert

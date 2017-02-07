@@ -177,7 +177,11 @@ We still need to connect the above with the main configuration:
 const common = merge([
   ...
 leanpub-start-insert
-  parts.loadFonts(),
+  parts.loadFonts({
+    options: {
+      name: '[name].[ext]',
+    },
+  }),
 leanpub-end-insert
 ]);
 
