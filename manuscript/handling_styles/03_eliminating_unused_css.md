@@ -113,24 +113,19 @@ const parts = require('./webpack.parts');
 
 ...
 
-module.exports = function(env) {
-  if (env === 'production') {
-    return merge([
-      common,
-      parts.lintJavaScript({ include: PATHS.app }),
-      parts.extractCSS({
-        use: ['css-loader', parts.autoprefix()],
-      }),
-leanpub-start-insert
-      parts.purifyCSS({
-        paths: glob.sync(path.join(PATHS.app, '**', '*')),
-      }),
-leanpub-end-insert
-    ]);
-  }
 
-  ...
-};
+function production() {
+  return merge([
+    ...
+leanpub-start-insert
+    parts.purifyCSS({
+      paths: glob.sync(path.join(PATHS.app, '**', '*')),
+    }),
+leanpub-end-insert
+  ]);
+}
+
+...
 ```
 
 W> Note that the order matters. CSS extraction has to happen before purifying.

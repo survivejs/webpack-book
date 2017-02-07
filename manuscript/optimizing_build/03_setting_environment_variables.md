@@ -103,25 +103,23 @@ We can connect this with our configuration like this:
 ```javascript
 ...
 
-module.exports = function(env) {
-  if (env === 'production') {
-    return merge([
-      common,
-      {
-        ...
-      },
-leanpub-start-insert
-      parts.setFreeVariable(
-        'process.env.NODE_ENV',
-        'production'
-      ),
-leanpub-end-insert
+function production() {
+  return merge([
+    common,
+    {
       ...
-    ]);
-  }
+    },
+leanpub-start-insert
+    parts.setFreeVariable(
+      'process.env.NODE_ENV',
+      'production'
+    ),
+leanpub-end-insert
+    ...
+  ]);
+}
 
-  ...
-};
+...
 ```
 
 Execute `npm run build` again, and you should see improved results:

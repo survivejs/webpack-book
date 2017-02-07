@@ -88,25 +88,25 @@ leanpub-start-delete
 leanpub-end-delete
 ]);
 
-module.exports = function(env) {
-  if (env === 'production') {
-    return merge([
-      common,
-      parts.lintJavaScript({ include: PATHS.app }),
-leanpub-start-insert
-      parts.extractCSS({ use: 'css-loader' }),
-leanpub-end-insert
-    ]);
-  }
-
+function production() {
   return merge([
-    common,
+    ...
+leanpub-start-insert
+    parts.extractCSS({ use: 'css-loader' }),
+leanpub-end-insert
+  ]);
+}
+
+function development() {
+  return merge([
     ...
 leanpub-start-insert
     parts.loadCSS(),
 leanpub-end-insert
   ]);
-};
+}
+
+...
 ```
 
 Using this setup, we can still benefit from the HMR during development. For a production build, we generate a separate CSS, though. *html-webpack-plugin* will pick it up automatically and inject it into our `index.html`.
@@ -169,23 +169,21 @@ To connect the loader with `ExtractTextPlugin`, hook it up as follows:
 ```javascript
 ...
 
-module.exports = function(env) {
-  if (env === 'production') {
-    return merge([
-      ...
+function production() {
+  return merge([
+    ...
 leanpub-start-delete
-      parts.extractCSS({ use: 'css-loader' }),
+    parts.extractCSS({ use: 'css-loader' }),
 leanpub-end-delete
 leanpub-start-insert
-      parts.extractCSS({
-        use: ['css-loader', parts.autoprefix()],
-      }),
+    parts.extractCSS({
+      use: ['css-loader', parts.autoprefix()],
+    }),
 leanpub-end-insert
-    ]);
-  }
+  ]);
+}
 
-  ...
-};
+...
 ```
 
 To confirm that the setup works, we should have something to autoprefix. Adjust the CSS like this:

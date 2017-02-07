@@ -49,26 +49,24 @@ There are a few places in the build we need to tweak to generate proper hashes. 
 
 ```javascript
 ...
-module.exports = function(env) {
-  if (env === 'production') {
-    return merge([
-      common,
-      {
-        ...
-leanpub-start-insert
-        output: {
-          chunkFilename: 'scripts/[chunkhash].js',
-          filename: '[name].[chunkhash].js',
-        },
-leanpub-end-insert
-      },
-      parts.clean(PATHS.build),
-      ...
-    ]);
-  }
 
-  ...
-};
+function production() {
+  return merge([
+    common,
+    {
+      ...
+leanpub-start-insert
+      output: {
+        chunkFilename: 'scripts/[chunkhash].js',
+        filename: '[name].[chunkhash].js',
+      },
+leanpub-end-insert
+    },
+    ...
+  ]);
+}
+
+...
 ```
 
 If we used `chunkhash` for the extracted CSS as well, this would lead to problems as our code points to the CSS through JavaScript bringing it to the same entry. That means if the application code or CSS changed, it would invalidate both. Therefore instead of `chunkhash`, we can use `contenthash` that's generated based on the extracted content:
@@ -143,24 +141,22 @@ The change required is simple. Tweak the configuration as follows:
 ```javascript
 ...
 
-module.exports = function(env) {
-  if (env === 'production') {
-    return merge([
-      common,
-      {
-        ...
-leanpub-start-insert
-        plugins: [
-          new webpack.HashedModuleIdsPlugin(),
-        ],
-leanpub-end-insert
-      },
+function production() {
+  return merge([
+    common,
+    {
       ...
-    ]);
-  }
+leanpub-start-insert
+      plugins: [
+        new webpack.HashedModuleIdsPlugin(),
+      ],
+leanpub-end-insert
+    },
+    ...
+  ]);
+}
 
-  ...
-};
+...
 ```
 
 As you can see in the build output, the difference is negligible.

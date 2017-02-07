@@ -51,26 +51,23 @@ To integrate the feature to the project, adjust the configuration like this:
 ```javascript
 ...
 
-module.exports = function(env) {
-  if (env === 'production') {
-    return merge([
-      common,
+function production() {
+  return merge([
+    common,
 leanpub-start-insert
-      {
-        performance: {
-          hints: 'warning', // 'error' or false are valid too
-          maxEntrypointSize: 100000, // in bytes
-          maxAssetSize: 50000, // in bytes
-        },
+    {
+      performance: {
+        hints: 'warning', // 'error' or false are valid too
+        maxEntrypointSize: 100000, // in bytes
+        maxAssetSize: 50000, // in bytes
       },
+    },
 leanpub-end-insert
-      parts.clean(PATHS.build),
-      ...
-    ]);
-  }
+    ...
+  ]);
+}
 
-  ...
-};
+...
 ```
 
 If you build now (`npm run build`), you should see a warning like this within the output:
@@ -143,20 +140,18 @@ Now we can hook it up with our configuration:
 ```javascript
 ...
 
-module.exports = function(env) {
-  if (env === 'production') {
-    return merge([
-      common,
-      parts.clean(PATHS.build),
+function production() {
+  return merge([
+    ...
+    parts.clean(PATHS.build),
 leanpub-start-insert
-      parts.minifyJavaScript({ useSourceMap: true }),
+    parts.minifyJavaScript({ useSourceMap: true }),
 leanpub-end-insert
-      ...
-    ]);
-  }
+    ...
+  ]);
+}
 
-  ...
-};
+...
 ```
 
 If you execute `npm run build` now, you should see smaller results:

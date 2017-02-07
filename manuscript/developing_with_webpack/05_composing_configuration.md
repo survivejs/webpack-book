@@ -128,14 +128,14 @@ const common = merge([
   },
 ]);
 
-module.exports = function(env) {
-  if (env === 'production') {
-    return merge([
-      common,
-      parts.lintJavaScript({ include: PATHS.app }),
-    ]);
-  }
+function production() {
+  return merge([
+    common,
+    parts.lintJavaScript({ include: PATHS.app }),
+  ]);
+}
 
+function development() {
   return merge([
     common,
     {
@@ -157,6 +157,14 @@ module.exports = function(env) {
       },
     }),
   ]);
+}
+
+module.exports = function(env) {
+  if (env === 'production') {
+    return production();
+  }
+
+  return development();
 };
 ```
 

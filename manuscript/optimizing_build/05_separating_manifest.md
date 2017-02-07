@@ -15,29 +15,27 @@ We have done most of the work already when we set up `extractBundles`. To extrac
 ```javascript
 ...
 
-module.exports = function(env) {
-  if (env === 'production') {
-    return merge([
-      ...
-      parts.extractBundles({
-        bundles: [
-          {
-            name: 'vendor',
-            entries: ['react'],
-          },
+function production() {
+  return merge([
+    ...
+    parts.extractBundles({
+      bundles: [
+        {
+          name: 'vendor',
+          entries: ['react'],
+        },
 leanpub-start-insert
-          {
-            name: 'manifest',
-          },
+        {
+          name: 'manifest',
+        },
 leanpub-end-insert
-        ]
-      }),
-      ...
-    ]);
-  }
+      ]
+    }),
+    ...
+  ]);
+}
 
-  ...
-};
+...
 ```
 
 If you build the project now (`npm run build`), you should see something like this:
@@ -121,22 +119,20 @@ To generate a *records.json* file, adjust the configuration as follows:
 ```javascript
 ...
 
-module.exports = function(env) {
-  if (env === 'production') {
-    return merge([
-      common,
-      {
-        ...
-leanpub-start-insert
-        recordsPath: 'records.json',
-leanpub-end-insert
-      },
+function production() {
+  return merge([
+    common,
+    {
       ...
-    ]);
-  }
+leanpub-start-insert
+      recordsPath: 'records.json',
+leanpub-end-insert
+    },
+    ...
+  ]);
+}
 
-  ...
-};
+...
 ```
 
 If you build the project (`npm run build`), you should see a new file, *records.json*, at the project root. The next time webpack builds, it will pick up the information and rewrite the file if it has changed.

@@ -73,23 +73,21 @@ To improve the situation, we can define a `vendor` entry containing React. This 
 ```javascript
 ...
 
-module.exports = function(env) {
-  if (env === 'production') {
-    return merge([
-      common,
+function production() {
+  return merge([
+    common,
 leanpub-start-insert
-      {
-        entry: {
-          vendor: ['react'],
-        },
+    {
+      entry: {
+        vendor: ['react'],
       },
+    },
 leanpub-end-insert
-      ...
-    ]);
-  }
+    ...
+  ]);
+}
 
-  ...
-};
+...
 ```
 
 We have two separate entries, or **entry chunks**, now. `[name].js` of our existing `output.path` configuration will kick in based on the entry name and if you try to generate a build now (`npm run build`), you should see something along this:
@@ -176,33 +174,31 @@ Given the function handles the entry for us, we can drop our `vendor`-related co
 ```javascript
 ...
 
-module.exports = function(env) {
-  if (env === 'production') {
-    return merge([
-      common,
+function production() {
+  return merge([
+    common,
 leanpub-start-delete
-      {
-        entry: {
-          vendor: ['react'],
-        },
+    {
+      entry: {
+        vendor: ['react'],
       },
+    },
 leanpub-end-delete
 leanpub-start-insert
-      parts.extractBundles({
-        bundles: [
-          {
-            name: 'vendor',
-            entries: ['react'],
-          },
-        ],
-      }),
+    parts.extractBundles({
+      bundles: [
+        {
+          name: 'vendor',
+          entries: ['react'],
+        },
+      ],
+    }),
 leanpub-end-insert
-      ...
-    ]);
-  }
+    ...
+  ]);
+}
 
-  ...
-};
+...
 ```
 
 If you execute the build now using `npm run build`, you should see something along this:

@@ -245,7 +245,7 @@ The problem with this approach is that it couples your source with webpack. But 
 },
 ```
 
-## Alternative Ways to Match Files
+## Alternate Ways to Match Files
 
 `test` combined with `include` or `exclude` to constrain the match is the most common way to match files. These accept the data types as listed below:
 

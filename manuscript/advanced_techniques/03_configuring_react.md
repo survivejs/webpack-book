@@ -139,6 +139,8 @@ const common = {
   ],
 };
 
+...
+
 module.exports = function(env) {
   ...
 };
@@ -220,9 +222,7 @@ On webpack side, *react-hot-loader* requires an additional entry it uses to patc
 ```javascript
 ...
 
-module.exports = function(env) {
-  ...
-
+function development() {
   return merge([
     common,
     {
@@ -236,7 +236,9 @@ leanpub-end-insert
     },
     ...
   ]);
-};
+}
+
+...
 ```
 
 T> You can include `react-dom` entries at `parts.extractBundles` to push it to the vendor bundle assuming you refer to packages by their name.

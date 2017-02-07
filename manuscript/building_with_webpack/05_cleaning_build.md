@@ -46,19 +46,17 @@ Connect it with our project like this:
 ```javascript
 ...
 
-module.exports = function(env) {
-  if (env === 'production') {
-    return merge([
-      common,
+function production() {
+  return merge([
+    common,
 leanpub-start-insert
-      parts.clean(PATHS.build),
+    parts.clean(PATHS.build),
 leanpub-end-insert
-      ...
-    ]);
-  }
+    ...
+  ]);
+}
 
-  ...
-};
+...
 ```
 
 After this change, our `build` directory should remain nice and tidy while building. You can verify this by building the project and making sure no old files remained in the output directory.

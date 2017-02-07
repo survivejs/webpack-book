@@ -49,18 +49,17 @@ You can set these up as follows:
 ```javascript
 ...
 
-module.exports = function(env) {
-  if (env === 'production') {
-    return merge([
-      common,
+function production() {
+  return merge([
+    common,
 leanpub-start-insert
-      parts.generateSourceMaps({ type: 'source-map' }),
+    parts.generateSourceMaps({ type: 'source-map' }),
 leanpub-end-insert
-      parts.lintJavaScript({ include: PATHS.app }),
-      ...
-    ]);
-  }
+    ...
+  ]);
+}
 
+function development() {
   return merge([
     common,
     {
@@ -74,14 +73,11 @@ leanpub-end-insert
 leanpub-start-insert
     parts.generateSourceMaps({ type: 'cheap-module-eval-source-map' }),
 leanpub-end-insert
-    parts.devServer({
-      // Customize host/port here if needed
-      host: process.env.HOST,
-      port: process.env.PORT,
-    }),
     ...
   ]);
-};
+}
+
+...
 ```
 
 If you build the project now (`npm run build`), you should see something like this:
