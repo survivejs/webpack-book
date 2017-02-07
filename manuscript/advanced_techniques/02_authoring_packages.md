@@ -151,6 +151,16 @@ T> If you want to see what files will be published to npm, consider using [npm p
 
 T> [np](https://www.npmjs.com/package/np) gives an interactive UI for publishing packages. It performs more work by default. [semantic-release](https://www.npmjs.com/package/semantic-release) takes the idea one step further and automates entire process.
 
+### What Files to Publish to npm?
+
+Even though a project can contain a lot of files, not all of them should be published. Besides wasting bandwidth, this can leak personal files to a public registry. This is the reason why it is an excellent idea to maintain a [files](https://docs.npmjs.com/files/package.json#files) array at *package.json* and enumerate which files and directories you want to publish.
+
+There is on official recommendation on what files to publish. That said, there are some points to consider as [discussed in Stack Overflow](https://stackoverflow.com/questions/25124844/should-i-npmignore-my-tests).
+
+At minimum you should distribute the source code needed to run the package. If you have code written using the ES6 standard, you should remember to set the `module` field to point to it. You can point package `main` to a compiled version if you want to support specific older platforms.
+
+In addition to the source, you can consider distributing package *README.md* and *LICENSE*. Any metadata that's required by third party systems, like Travis, can be safely skipped. Full documentation of the package doesn't have to be included as you can point to the package homepage through its metadata instead.
+
 ### Bumping a Version
 
 In order to bump your package version, you'll just need to invoke one of these commands:
