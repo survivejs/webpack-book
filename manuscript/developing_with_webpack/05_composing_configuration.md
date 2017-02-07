@@ -188,6 +188,49 @@ Perhaps the biggest problem is that with composition you need to know what you a
 
 T> If you have to support both webpack 1 and 2, you can perform branching based on version using `require('webpack/package.json').version` kind of code to detect it. After that you have to set specific branches for each and merge. You can still extract the commonality as you see the best.
 
+## Configuration Layouts
+
+In the book project we'll push all of our configuration to two files: *webpack.config.js* and *webpack.parts*. The former contains higher level configuration while the latter lower level. It isolates us from some details of webpack, but it can also grow quite big.
+
+The chose approach allows more layouts and you can evolve it further. Consider the following directions.
+
+### Split per Configuration Target
+
+If you split the configuration per target, you could end up with a file structure like this:
+
+```bash
+.
+└── config
+    ├── webpack.common.js
+    ├── webpack.development.js
+    ├── webpack.parts.js
+    └── webpack.production.js
+```
+
+In this case you would point to the targets through webpack `--config` parameter and `merge` common configuration at target through `module.exports = merge(common, config);` kind of calls.
+
+### Split Parts per Purpose
+
+To add hierarchy to the way configuration parts are managed, you could decompose *webpack.parts.js* per category like this:
+
+```bash
+.
+└── config
+    ├── parts
+    │   ├── devserver.js
+    │   ├── fonts.js
+    │   ├── images.js
+    │   ├── index.js
+    │   └── javascript.js
+    └── ...
+```
+
+This arrangement would make it faster to find category related configuration. A good option would be to arrange the parts within a single file and use comments to split it up.
+
+### Pushing Parts to Packages
+
+Given all configuration is JavaScript, nothing prevents us from consuming it as a package or packages. It would be possible to package the shared configuration so that you can consume it across multiple projects. See the *Authoring Packages* chapter on further information on how to achieve this.
+
 ## Conclusion
 
 Even though the configuration is technically the same as before, now we have room to grow it. The next parts of this book will cover various techniques and *webpack.parts.js* will see a lot of action as a result. The changes to *webpack.config.js* will fortunately remain minimal.
