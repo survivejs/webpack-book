@@ -208,7 +208,29 @@ leanpub-end-insert
 }
 ```
 
-This isn't the only way to use Font Awesome. [font-awesome-loader](https://www.npmjs.com/package/font-awesome-loader) encapsulates the same ideas and allows customization of Font Awesome. The approach above is more generic and can be used with other libraries as well.
+If you build the application (`npm run build`), you should see that it processed as expected while Font Awesome assets were included:
+
+```bash
+Hash: 2c5db72dfa7e206817d5
+Version: webpack 2.2.1
+Time: 2346ms
+                    Asset       Size  Chunks                    Chunk Names
+  fontawesome-webfont.eot     166 kB          [emitted]
+  fontawesome-webfont.svg     444 kB          [emitted]  [big]
+  fontawesome-webfont.ttf     166 kB          [emitted]
+fontawesome-webfont.woff2    77.2 kB          [emitted]
+ fontawesome-webfont.woff      98 kB          [emitted]
+                 logo.png      77 kB          [emitted]
+                   app.js    4.55 kB       0  [emitted]         app
+                  app.css    3.85 kB       0  [emitted]         app
+               index.html  218 bytes          [emitted]
+   [0] ./app/component.js 186 bytes {0} [built]
+   [1] ./~/font-awesome/css/font-awesome.css 41 bytes {0} [built]
+   [2] ./app/main.css 41 bytes {0} [built]
+...
+```
+
+It is good to note that Font Awesome included a lot of fonts you might not end up using. This is why [font-awesome-loader](https://www.npmjs.com/package/font-awesome-loader) exists. It encapsulates the same ideas and allows customization of Font Awesome. The approach above is more generic and can be used with other libraries as well.
 
 ## Conclusion
 
