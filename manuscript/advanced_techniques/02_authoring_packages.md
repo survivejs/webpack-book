@@ -380,27 +380,30 @@ Secondly, we'll need the script itself:
 **lib/post_install.js**
 
 ```javascript
-/* eslint-disable */
-// adapted based on rackt/history (MIT)
+// Based on rackt/history (MIT)
 // Node 4+
 var execSync = require('child_process').execSync;
 var stat = require('fs').stat;
 
-stat('dist', function(error, stat) {
+stat('dist-modules', function(err, stats) {
   // Skip building on Travis
   if (process.env.TRAVIS) {
     return;
   }
 
-  if (error || !stat.isDirectory()) {
+  // If dist-modules directory does not exist
+  if (err || !stats.isDirectory()) {
+    // Install devDependencies
     exec('npm install --only=dev');
-    exec('npm run build');
+    // Build ES5 modules
+    exec('npm run dist:modules');
   }
 });
 
 function exec(command) {
   execSync(command, {
-    stdio: [0, 1, 2]
+    // Print stdin/stdout/stderr
+    stdio: 'inherit'
   });
 }
 ```
