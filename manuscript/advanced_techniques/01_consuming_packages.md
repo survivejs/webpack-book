@@ -200,6 +200,19 @@ T> There's a [webpack issue](https://github.com/webpack/webpack/issues/1617) tha
 
 W> Disabling warnings like this one should be the last measure as doing it can hide underlying issues. Do this only if you know what you are doing and consider alternatives first.
 
+## Exposing Globals to the Browser
+
+Sometimes you may have to expose packages to third party scripts. This is possible by using [expose-loader](https://www.npmjs.com/package/expose-loader). Configure as follows:
+
+```javascript
+{
+  test: require.resolve('react'),
+  use: 'expose-loader?React',
+},
+```
+
+We'll use this technique in the *Configuring React* chapter to enable React performance utilities.
+
 ## Getting Insights on Packages
 
 Even though it's easy to consume packages through npm, there are times when it's useful to have more information available. npm provides `npm info <package>` command for basic queries. You can use it to check the metadata associated to packages while figuring out version related information.

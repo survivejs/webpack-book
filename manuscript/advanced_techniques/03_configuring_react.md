@@ -451,7 +451,7 @@ Next, we need to expose React to the console through the [expose-loader](https:/
 After this, you should be able to access `React` through a console. To make it possible to access the performance utilities, we need to do one more step. Add the following to the entry point of your application to enable `React.Perf` during development:
 
 ```javascript
-if(process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== 'production') {
   React.Perf = require('react-addons-perf');
 }
 ```
