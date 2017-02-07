@@ -220,6 +220,22 @@ Given it is not a good idea to enable certain presets and plugins for a producti
 
 Note that any shared presets and plugins are available to all targets still. `env` allows you to specialize your Babel configuration further.
 
+It is possible to pass webpack environment to Babel with a tweak like this:
+
+**webpack.config.js**
+
+```javascript
+...
+
+module.exports = function(env) {
+leanpub-start-insert
+  process.env.BABEL_ENV = env;
+leanpub-end-insert
+
+  ...
+};
+```
+
 T> The way `env` works is subtle. Consider logging `env` and make sure it matches your Babel configuration or otherwise the functionality you expect might not get applied to your build.
 
 T> The technique is used in the *Configuring React* to enable the Babel portion of *react-hot-loader* for development target only.
