@@ -95,7 +95,6 @@ module.exports = {
     "no-console": 0,
   },
 };
-
 ```
 
 In addition, we need to tell ESLint to skip linting *node_modules* and *build* directories by setting up ignore patterns:
@@ -138,29 +137,34 @@ To add linting to the project, adjust the configuration as follows:
 ```javascript
 ...
 
-const developmentConfig = {
-  devServer: {
-    ...
-  },
-  plugins: [
-    ...
-  ],
-leanpub-start-insert
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        enforce: 'pre',
 
-        loader: 'eslint-loader',
-        options: {
-          emitWarning: true,
+function development() {
+  const config = {
+    devServer: {
+      ...
+    },
+leanpub-start-insert
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          enforce: 'pre',
+
+          loader: 'eslint-loader',
+          options: {
+            emitWarning: true,
+          },
         },
-      },
-    ],
-  },
+      ],
+    },
 leanpub-end-insert
-};
+    plugins: [
+      ...
+    ],
+  };
+
+  ...
+}
 
 ...
 ```
