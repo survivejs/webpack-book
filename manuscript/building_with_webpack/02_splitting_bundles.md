@@ -30,10 +30,6 @@ Then make the project depend on it:
 leanpub-start-insert
 import 'react';
 leanpub-end-insert
-import 'font-awesome/css/font-awesome.css';
-import 'purecss';
-import './main.css';
-import component from './component';
 
 ...
 ```
@@ -41,24 +37,24 @@ import component from './component';
 Execute `npm run build` to get a baseline build. You should end up with something like this:
 
 ```bash
-Hash: 3a397bdead95ad6c73b5
+Hash: fbad0385e4573d3b6186
 Version: webpack 2.2.1
-Time: 2502ms
-                                 Asset       Size  Chunks                    Chunk Names
-  9a0d8fb85dedfde24f1ab4cdb568ef2a.png    17.6 kB          [emitted]
-  674f50d287a8c48dc19ba404d20fe713.eot     166 kB          [emitted]
-  b06871f281fee6b241d60582ae9369b9.ttf     166 kB          [emitted]
-af7ae505a9eed503f8b8e6982036873e.woff2    77.2 kB          [emitted]
- fee66e712a8a08eef5805a46892932ad.woff      98 kB          [emitted]
-  912ec66d7572ff821749319396470bde.svg     444 kB          [emitted]  [big]
-                                app.js     140 kB       0  [emitted]         app
-                               app.css     3.5 kB       0  [emitted]         app
-                            app.js.map     165 kB       0  [emitted]         app
-                           app.css.map   84 bytes       0  [emitted]         app
-                            index.html  218 bytes          [emitted]
+Time: 2636ms
+                    Asset       Size  Chunks                    Chunk Names
+                 logo.png      77 kB          [emitted]
+  fontawesome-webfont.eot     166 kB          [emitted]
+  fontawesome-webfont.ttf     166 kB          [emitted]
+fontawesome-webfont.woff2    77.2 kB          [emitted]
+ fontawesome-webfont.woff      98 kB          [emitted]
+  fontawesome-webfont.svg     444 kB          [emitted]  [big]
+                   app.js     140 kB       0  [emitted]         app
+                  app.css    3.89 kB       0  [emitted]         app
+               app.js.map     165 kB       0  [emitted]         app
+              app.css.map   84 bytes       0  [emitted]         app
+               index.html  218 bytes          [emitted]
    [0] ./~/process/browser.js 5.3 kB {0} [built]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {0} [built]
-  [18] ./app/component.js 187 bytes {0} [built]
+  [18] ./app/component.js 186 bytes {0} [built]
 ...
 ```
 
@@ -93,23 +89,23 @@ leanpub-end-insert
 We have two separate entries, or **entry chunks**, now. `[name].js` of our existing `output.path` configuration will kick in based on the entry name and if you try to generate a build now (`npm run build`), you should see something along this:
 
 ```bash
-Hash: 2000c9bcd42c6cf4e8c2
+Hash: b7b138f2cee711ffd2c9
 Version: webpack 2.2.1
-Time: 2636ms
-                                 Asset       Size  Chunks                    Chunk Names
-                                app.js     140 kB       0  [emitted]         app
-  674f50d287a8c48dc19ba404d20fe713.eot     166 kB          [emitted]
-  b06871f281fee6b241d60582ae9369b9.ttf     166 kB          [emitted]
-af7ae505a9eed503f8b8e6982036873e.woff2    77.2 kB          [emitted]
- fee66e712a8a08eef5805a46892932ad.woff      98 kB          [emitted]
-  9a0d8fb85dedfde24f1ab4cdb568ef2a.png    17.6 kB          [emitted]
-  912ec66d7572ff821749319396470bde.svg     444 kB          [emitted]  [big]
-                             vendor.js     138 kB       1  [emitted]         vendor
-                               app.css     3.5 kB       0  [emitted]         app
-                            app.js.map     165 kB       0  [emitted]         app
-                           app.css.map   84 bytes       0  [emitted]         app
-                         vendor.js.map     164 kB       1  [emitted]         vendor
-                            index.html  274 bytes          [emitted]
+Time: 2609ms
+                    Asset       Size  Chunks                    Chunk Names
+                   app.js     140 kB       0  [emitted]         app
+  fontawesome-webfont.eot     166 kB          [emitted]
+  fontawesome-webfont.ttf     166 kB          [emitted]
+fontawesome-webfont.woff2    77.2 kB          [emitted]
+ fontawesome-webfont.woff      98 kB          [emitted]
+                 logo.png      77 kB          [emitted]
+  fontawesome-webfont.svg     444 kB          [emitted]  [big]
+                vendor.js     138 kB       1  [emitted]         vendor
+                  app.css    3.89 kB       0  [emitted]         app
+               app.js.map     165 kB       0  [emitted]         app
+              app.css.map   84 bytes       0  [emitted]         app
+            vendor.js.map     164 kB       1  [emitted]         vendor
+               index.html  274 bytes          [emitted]
    [0] ./~/process/browser.js 5.3 kB {0} {1} [built]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {0} {1} [built]
   [18] ./~/react/react.js 56 bytes {0} {1} [built]
@@ -204,23 +200,23 @@ leanpub-end-insert
 If you execute the build now using `npm run build`, you should see something along this:
 
 ```bash
-Hash: 210d25c68d115a439ffc
+Hash: 1c93174413f4f57662f8
 Version: webpack 2.2.1
-Time: 2476ms
-                                 Asset       Size  Chunks                    Chunk Names
-                                app.js    2.39 kB       0  [emitted]         app
-  674f50d287a8c48dc19ba404d20fe713.eot     166 kB          [emitted]
-  b06871f281fee6b241d60582ae9369b9.ttf     166 kB          [emitted]
-af7ae505a9eed503f8b8e6982036873e.woff2    77.2 kB          [emitted]
- fee66e712a8a08eef5805a46892932ad.woff      98 kB          [emitted]
-  9a0d8fb85dedfde24f1ab4cdb568ef2a.png    17.6 kB          [emitted]
-  912ec66d7572ff821749319396470bde.svg     444 kB          [emitted]  [big]
-                             vendor.js     141 kB       1  [emitted]         vendor
-                               app.css     3.5 kB       0  [emitted]         app
-                            app.js.map    1.89 kB       0  [emitted]         app
-                           app.css.map   84 bytes       0  [emitted]         app
-                         vendor.js.map     167 kB       1  [emitted]         vendor
-                            index.html  274 bytes          [emitted]
+Time: 2594ms
+                    Asset       Size  Chunks                    Chunk Names
+                   app.js    2.39 kB       0  [emitted]         app
+  fontawesome-webfont.eot     166 kB          [emitted]
+  fontawesome-webfont.ttf     166 kB          [emitted]
+fontawesome-webfont.woff2    77.2 kB          [emitted]
+ fontawesome-webfont.woff      98 kB          [emitted]
+                 logo.png      77 kB          [emitted]
+  fontawesome-webfont.svg     444 kB          [emitted]  [big]
+                vendor.js     141 kB       1  [emitted]         vendor
+                  app.css    3.89 kB       0  [emitted]         app
+               app.js.map     1.9 kB       0  [emitted]         app
+              app.css.map   84 bytes       0  [emitted]         app
+            vendor.js.map     167 kB       1  [emitted]         vendor
+               index.html  274 bytes          [emitted]
    [0] ./~/process/browser.js 5.3 kB {1} [built]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {1} [built]
    [7] ./~/react/react.js 56 bytes {1} [built]
