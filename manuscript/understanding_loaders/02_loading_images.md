@@ -57,6 +57,8 @@ The functionality can be wrapped in a little helper:
 **webpack.parts.js**
 
 ```javascript
+...
+
 exports.loadImages = function({ include, exclude, options } = {}) {
   return {
     module: {
