@@ -161,6 +161,8 @@ At minimum you should distribute the source code needed to run the package. If y
 
 In addition to the source, you can consider distributing package *README.md* and *LICENSE*. Any metadata that's required by third party systems, like Travis, can be safely skipped. Full documentation of the package doesn't have to be included as you can point to the package homepage through its metadata instead.
 
+T> As [noted by Gleb Bahmutov](https://glebbahmutov.com/blog/smaller-published-NPM-modules/), it's possible to tell npm what to exclude from `files` through `!src/*.test.js` kind of definitions. This is useful if you prefer to co-locate tests with code, but want to avoid distributing them.
+
 ### Bumping a Version
 
 In order to bump your package version, you'll just need to invoke one of these commands:
