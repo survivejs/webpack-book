@@ -35,7 +35,7 @@ The approach works nicely in **Continuous Integration** (CI) setups as well. A C
 To add webpack to our project, execute:
 
 ```bash
-npm install webpack --save-dev # or just -D if you want to save typing
+npm install webpack --save-dev # -D if you want to save typing
 ```
 
 You should see webpack at your *package.json* `devDependencies` section after this. In addition to installing the package locally below the *node_modules* directory, npm also generates an entry for the executable.
@@ -157,14 +157,14 @@ T> I like to use `path.join`, but `path.resolve` would be a good alternative. Se
 If you execute `node_modules/.bin/webpack`, you should see output:
 
 ```bash
-Hash: 7688419348f2bf706b69
+Hash: d9b3a26d51481993359e
 Version: webpack 2.2.1
-Time: 365ms
+Time: 377ms
      Asset       Size  Chunks             Chunk Names
-    app.js    3.11 kB       0  [emitted]  app
+    app.js    3.12 kB       0  [emitted]  app
 index.html  180 bytes          [emitted]
-   [0] ./app/component.js 127 bytes {0} [built]
-   [1] ./app/index.js 76 bytes {0} [built]
+   [0] ./app/component.js 135 bytes {0} [built]
+   [1] ./app/index.js 77 bytes {0} [built]
 Child html-webpack-plugin for "index.html":
        [0] ./~/lodash/lodash.js 540 kB {0} [built]
        [1] (webpack)/buildin/global.js 509 bytes {0} [built]
@@ -174,10 +174,10 @@ Child html-webpack-plugin for "index.html":
 
 The output tells us a lot. I've annotated it below:
 
-* `Hash: 7688419348f2bf706b69` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. We'll discuss hashing in detail in the *Adding Hashes to Filenames* chapter.
+* `Hash: d9b3a26d51481993359e` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. We'll discuss hashing in detail in the *Adding Hashes to Filenames* chapter.
 * `Version: webpack 2.2.1` - Webpack version.
-* `Time: 365ms` - Time it took to execute the build.
-* `app.js    3.11 kB       0  [emitted]  app` - Name of the generated asset, size, the IDs of the **chunks** into which it is related, status information telling how it was generated, name of the chunk.
+* `Time: 377ms` - Time it took to execute the build.
+* `app.js    3.12 kB       0  [emitted]  app` - Name of the generated asset, size, the IDs of the **chunks** into which it is related, status information telling how it was generated, name of the chunk.
 * `index.html  180 bytes          [emitted]` - Another generated asset that was emitted by the process.
 * `[0] ./app/component.js 127 bytes {0} [built]` - The ID of the entry asset, name, size, entry chunk ID, the way it was generated.
 * `Child html-webpack-plugin for "index.html":` - This is plugin-related output. In this case *html-webpack-plugin* is doing output of its own.

@@ -29,34 +29,49 @@ const common = {
 };
 
 leanpub-start-insert
-const developmentConfig = {
-  devServer: {
-    // Enable history API fallback so HTML5 History API based
-    // routing works. This is a good default that will come
-    // in handy in more complicated setups.
-    historyApiFallback: true,
+function production() {
+  return common;
+}
 
-    // Don't refresh if hot loading fails. If you want
-    // refresh behavior, set hot: true instead.
-    hotOnly: true,
+function development() {
+  const config = {
+    devServer: {
+      // Enable history API fallback so HTML5 History API based
+      // routing works. This is a good default that will come
+      // in handy in more complicated setups.
+      historyApiFallback: true,
 
-    // Display only errors to reduce the amount of output.
-    stats: 'errors-only',
+      // Don't refresh if hot loading fails. If you want
+      // refresh behavior, set hot: true instead.
+      hotOnly: true,
 
-    // Parse host and port from env to allow customization.
-    //
-    // If you use Docker, Vagrant or Cloud9, set
-    // host: options.host || '0.0.0.0';
-    //
-    // 0.0.0.0 is available to all network devices
-    // unlike default `localhost`.
-    host: process.env.HOST, // Defaults to `localhost`
-    port: process.env.PORT, // Defaults to 8080
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-  ],
-};
+      // Display only errors to reduce the amount of output.
+      stats: 'errors-only',
+
+      // Parse host and port from env to allow customization.
+      //
+      // If you use Docker, Vagrant or Cloud9, set
+      // host: options.host || '0.0.0.0';
+      //
+      // 0.0.0.0 is available to all network devices
+      // unlike default `localhost`.
+      host: process.env.HOST, // Defaults to `localhost`
+      port: process.env.PORT, // Defaults to 8080
+    },
+    plugins: [
+      new webpack.HotModuleReplacementPlugin(),
+    ],
+  };
+
+  return Object.assign(
+    {},
+    common,
+    config,
+    {
+      plugins: common.plugins.concat(config.plugins),
+    }
+  );
+}
 leanpub-end-insert
 
 module.exports = function(env) {
@@ -67,17 +82,10 @@ leanpub-start-delete
 leanpub-end-delete
 leanpub-start-insert
   if (env === 'production') {
-    return common;
+    return production();
   }
 
-  return Object.assign(
-    {},
-    common,
-    developmentConfig,
-    {
-      plugins: common.plugins.concat(developmentConfig.plugins),
-    }
-  );
+  return development();
 leanpub-end-insert
 };
 
@@ -114,17 +122,21 @@ You can enable this better behavior as follows:
 ```javascript
 ...
 
-const developmentConfig = {
-  devServer: {
-    ...
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
+function development() {
+  const config = {
+    devServer: {
+      ...
+    },
+    plugins: [
+      new webpack.HotModuleReplacementPlugin(),
 leanpub-start-insert
-    new webpack.NamedModulesPlugin(),
+      new webpack.NamedModulesPlugin(),
 leanpub-end-insert
-  ],
-};
+    ],
+  };
+
+  ...
+}
 
 ...
 ```
@@ -190,29 +202,33 @@ The setup may be problematic on older versions of Windows, Ubuntu, and Vagrant. 
 ```javascript
 ...
 
+function development() {
+  const config = {
+    devServer: {
+      ...
 
-const developmentConfig = {
-  devServer: {
 leanpub-start-insert
-    watchOptions: {
-      // Delay the rebuild after the first change
-      aggregateTimeout: 300,
-      // Poll using interval (in ms, accepts boolean too)
-      poll: 1000,
+      watchOptions: {
+        // Delay the rebuild after the first change
+        aggregateTimeout: 300,
+        // Poll using interval (in ms, accepts boolean too)
+        poll: 1000,
+      },
+leanpub-end-insert
     },
-leanpub-end-insert
-    ...
-  },
-  plugins: [
+    plugins: [
+      ...
 leanpub-start-insert
-    // ignore node_modules so CPU usage with poll watching drops significantly
-    new webpack.WatchIgnorePlugin([
-      path.join(__dirname, 'node_modules')
-    ]),
+      // ignore node_modules so CPU usage with poll watching drops significantly
+      new webpack.WatchIgnorePlugin([
+        path.join(__dirname, 'node_modules')
+      ]),
 leanpub-end-insert
-    ...
-  ],
-};
+    ],
+  };
+
+  ...
+}
 
 ...
 ```
