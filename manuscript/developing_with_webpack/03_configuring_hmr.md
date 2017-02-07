@@ -2,7 +2,7 @@
 
 **Hot Module Replacement** (HMR) builds on top the WDS. It enables an interface that makes it possible to swap modules live. For example, *style-loader* can update your CSS without forcing a refresh. It is easy to perform HMR with CSS, as it doesn't contain any application state.
 
-HMR is possible with JavaScript too, but due to the state we have in our applications, it's harder. In the *Configuring Hot Module Replacement for React* appendix, we discuss how to set it up with React. You can use the same idea elsewhere as well.
+HMR is possible with JavaScript too, but due to the state we have in our applications, it's harder. In the *Configuring Hot Module Replacement for React* appendix, we discuss how to set it up with React. You can use the same idea elsewhere as well. Vue and [vue-hot-reload-api](https://www.npmjs.com/package/vue-hot-reload-api) is a good example.
 
 We could use `webpack-dev-server --hot` to achieve this from the CLI. `--hot` enables the HMR portion from webpack through a specific plugin designed for this purpose and writes an entry pointing to a JavaScript file related to it. Another option is to go through webpack configuration as that provides more flexibility.
 
