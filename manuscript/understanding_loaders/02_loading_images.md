@@ -162,7 +162,7 @@ Compression is particularly useful for production builds as it will decrease the
 
 Webpack can pick up images from stylesheets through `@import` and `url()` assuming *css-loader* has been configured. You can also refer to your images within code. In this case, you'll have to import the files explicitly:
 
-```jsx
+```javascript
 const src = require('./avatar.png');
 
 // Use the image in your code somehow now
@@ -173,7 +173,7 @@ const Profile = () => (
 
 If you are using React, then you use [babel-plugin-transform-react-jsx-img-import](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-img-import) to generate the `require` automatically. In that case, you would end up with code like this:
 
-```jsx
+```javascript
 const Profile = () => (
   <img src="avatar.png" />
 );
