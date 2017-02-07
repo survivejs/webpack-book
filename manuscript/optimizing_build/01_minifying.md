@@ -100,7 +100,7 @@ Entrypoints:
 
 If we do our work right, we will meet the given budget and eliminate this warning as we develop the configuration.
 
-## Minifying Code
+## Minifying JavaScript
 
 Ideally, minification will convert our code into a smaller format without losing any meaning. Usually this means some amount of rewriting code through predefined transformations. Good examples of this include renaming variables or even removing entire blocks of code based on the fact that they are unreachable like an `if (false)` statement.
 
