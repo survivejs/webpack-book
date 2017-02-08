@@ -186,7 +186,7 @@ Critical dependencies:
 
 This can happen if a package happens to point at a pre-built (i.e., minified and already processed) file. Webpack detects this case and warns against it.
 
-One way to resolve eliminate the warning would be to alias the package to a source version as discussed above. Given sometimes the source might not be available, another option is to tell webpack to skip parsing the files through `module.noParse`. It accepts either a RegExp or an array of RegExps and can be configured as below:
+One way to eliminate the warning would be to alias the package to a source version as discussed above. Given sometimes the source might not be available, another option is to tell webpack to skip parsing the files through `module.noParse`. It accepts either a RegExp or an array of RegExps and can be configured as below:
 
 ```javascript
 {
