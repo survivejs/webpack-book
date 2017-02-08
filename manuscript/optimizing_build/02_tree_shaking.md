@@ -4,54 +4,41 @@
 
 ## Demonstrating Tree Shaking
 
-Adjust the component as follows:
+To shake code, we need to define a module and use only a part of its code. Set one up like this:
 
-**app/component.js**
+**app/shake.js**
 
 ```javascript
-leanpub-start-delete
-export default function () {
-leanpub-end-delete
-leanpub-start-insert
-const component = function () {
-leanpub-end-insert
-  ...
-leanpub-start-delete
-}
-leanpub-end-delete
-leanpub-start-insert
+const shake = function() {
+  console.log('shake');
 };
 
-const treeShakingDemo = function () {
-  return 'this should get shaken out';
+const bake = function () {
+  console.log('bake');
 };
 
 export {
-  component,
-  treeShakingDemo,
+  shake,
+  bake,
 };
-leanpub-end-insert
 ```
 
-The application entry point needs a slight change as well given the module definition changed:
+To make sure we use a part of the code, alter the application entry point:
 
 **app/index.js**
 
 ```javascript
-import 'react';
-import 'purecss';
-import './main.css';
-leanpub-start-delete
-import component from './component';
-leanpub-end-delete
-leanpub-start-insert
-import { component } from './component';
+...
+leanpub-end-insert
+import { bake } from './shake';
+
+bake();
 leanpub-end-insert
 
 ...
 ```
 
-If you build the project again (`npm run build`), the vendor bundle should remain exactly the same while the application bundle changes due to the different kind of import. Webpack should pick up the unused code and shake it out of the project.
+If you build the project again (`npm run build`) and examine the build result (*build/app.js*), it should contain `console.log('bake')`, but miss `console.log('shake')`. That's tree shaking in action.
 
 The same idea works with dependencies that use the ES6 module definition. Given the related packaging standards are still emerging, it is possible you may have to be careful when consuming such packages. Webpack will try to resolve *package.json* `module` field for this purpose. See the *Consuming Packages* chapter for related techniques.
 
