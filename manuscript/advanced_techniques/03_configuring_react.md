@@ -2,8 +2,6 @@
 
 Facebook's [React](https://facebook.github.io/react/) is a popular alternative for developing web applications. Even if you don't use it, it can be valuable to understand how to configure it.
 
-I will discuss a couple of common ways first and then show you how to integrate React to the book project. You will also see how to enable hot module replacement with React using *react-hot-loader* 3 then. I will discuss more specific techniques after that.
-
 ## Get Started Fast with *create-react-app*
 
 The fastest way to get started with webpack and React is to use [create-react-app](https://www.npmjs.com/package/create-react-app). It encapsulates a lot of best practices and it is particularly useful if you want to get started with a little project fast with minimal setup.
@@ -16,62 +14,34 @@ There's a gotcha, though. After you eject, you cannot go back to the dependency-
 
 The *Processing with Babel* chapter covers the essentials of using Babel with webpack. There's some React specific setup you should perform, though. Given most of React projects rely on [JSX](https://facebook.github.io/jsx/) format, you will have to enable it through Babel.
 
-JSX is a superset of JavaScript that allows you to mix XMLish syntax with JavaScript. A lot of people find this convenient as they get something that resembles what they know already while they can use the power of JavaScript.
-
-Some React developers prefer to attach type annotations to their code using the [Flow](http://flowtype.org/) language extension. The technology fits React well, but it's not restricted to it. [TypeScript](http://www.typescriptlang.org/) is another alternative. Both work with JSX.
-
-### Configuring with Webpack
-
-Babel allows us to use JSX with React easily. Some people prefer to name their React components containing JSX using the `.jsx` suffix. Webpack can be configured to work with this convention. The benefit of doing this is that then your editor will be able to pick up the right syntax based on the file name alone. Another option is to configure the editor to use JSX syntax for `.js` files as it's a superset of JavaScript.
-
-Webpack provides [resolve.extensions](https://webpack.js.org/guides/migrating/#resolve-extensions) field that can be used for configuring its extension lookup. If you want to allow imports like `import Button from './Button';` while naming the file as *Button.jsx*, set it up as follows:
-
-**webpack.config.js**
-
-```javascript
-...
-
-const common = {
-  ...
-  resolve: {
-    extensions: ['.js', '.jsx'],
-  },
-};
-
-...
-```
-
-The loader configuration is straightforward as well. Instead of matching against `/\.js$/`, we can expand it to include `.jsx` extension through `/\.(js|jsx)$/`.
-
-W> In webpack 1 you had to use `extensions: ['', '.js', '.jsx']` to match files without an extension too. This isn't needed in webpack 2.
-
-### Configuring with Babel
-
-To enable JSX with Babel, an additional preset is required. Install it:
+To get React, and particularly JSX, work with Babel, you should set up the preset:
 
 ```bash
 npm install babel-preset-react --save-dev
 ```
 
-You also have to connect the preset with Babel configuration. Here's the rough idea:
+You also have to connect the preset with Babel configuration:
 
 **.babelrc**
 
 ```json
 {
+  "plugins": ["syntax-dynamic-import"],
   "presets": [
+leanpub-start-insert
+    "react",
+leanpub-end-insert
     [
       "es2015",
       {
         "modules": false
       }
-    ],
-    "react"
+    ]
   ]
 }
 ```
 
-### Configuring with ESLint
+## Configuring React with ESLint
 
 Using React with ESLint and JSX requires some extra work as well. [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react) does a part of the work, but also some ESLint configuration is needed.
 
@@ -87,68 +57,175 @@ The suggested minimum configuration is as follows:
 
 ```javascript
 module.exports = {
-  // Enable starter rules
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true,
+  },
+leanpub-start-delete
+  "extends": "eslint:recommended",
+leanpub-end-delete
+leanpub-start-insert
   "extends": ["eslint:recommended", "plugin:react/recommended"],
-  // Enable babel-eslint if you rely on custom Babel features.
-  // Not needed if you rely on standard ES6 features alone.
+leanpub-end-insert
   "parser": "babel-eslint",
   "parserOptions": {
     "sourceType": "module",
     "allowImportExportEverywhere": true,
+leanpub-start-insert
     // Enable JSX
     "ecmaFeatures": {
       "jsx": true,
     },
+leanpub-end-insert
   },
-  // Enable eslint-plugin-react
+leanpub-start-insert
   "plugins": [
     "react",
   ],
+leanpub-end-insert
   "rules": {
-    ...
+    "comma-dangle": ["error", "always-multiline"],
+    "indent": ["error", 2],
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "no-unused-vars": ["warn"],
+    "no-console": 0,
   },
 };
 ```
 
-You can enable more specific rules based on your liking, but the `plugin:react/recommended` gives a good starting point. It is important to remember to enable JSX at the `parseOptions` as well.
+You can enable more specific rules based on your liking, but the `plugin:react/recommended` gives a good starting point. It is important to remember to enable JSX at the `parserOptions` as well.
 
-## Rendering a React Application
+## Setting Up a Stub for React Demo
 
 To get a simple React application running, you'll need to mount it to a DOM element first. [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) can come in handy here. It can be combined with [html-webpack-template](https://www.npmjs.com/package/html-webpack-template) or [html-webpack-template-pug](https://www.npmjs.com/package/html-webpack-template-pug) for more advanced functionality. You can also provide a custom template of your own to it.
 
-Consider the following example:
+Install the template first:
+
+```bash
+npm install html-webpack-template --save-dev
+```
+
+To retain the existing demonstration in place, it is possible to generate a page for both the original demonstration and the new one. This is possible by running webpack in *multi-compiler mode* and splitting up the configuration per page. Adjust as follows:
 
 **webpack.config.js**
 
 ```javascript
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+...
+leanpub-start-insert
 const HtmlWebpackTemplate = require('html-webpack-template');
+leanpub-end-insert
 
 ...
 
-const common = {
-  ...
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: HtmlWebpackTemplate,
-      title: 'Webpack demo',
-      appMountId: 'app', // Generate #app where to mount
-      mobile: true, // Scale page on mobile
-      inject: false, // html-webpack-template requires this to work
-    }),
-  ],
+const PATHS = {
+  app: path.join(__dirname, 'app'),
+leanpub-start-insert
+  reactDemo: path.join(__dirname, 'app', 'react'),
+leanpub-end-insert
+  build: path.join(__dirname, 'build'),
 };
 
+const common = merge([
+  {
+leanpub-start-delete
+    plugins: [
+      new HtmlWebpackPlugin({
+        title: 'Webpack demo',
+      }),
+    ],
+leanpub-end-delete
+  },
+  ...
+]);
+
 ...
 
+leanpub-start-insert
+function app() {
+  return {
+    entry: {
+      app: PATHS.app,
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        title: 'Webpack demo',
+      }),
+    ],
+  };
+}
+
+function react() {
+  return {
+    entry: {
+      react: PATHS.reactDemo,
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: HtmlWebpackTemplate,
+        title: 'React demo',
+        filename: 'react/index.html',
+        appMountId: 'app', // Generate #app where to mount
+        mobile: true, // Scale page on mobile
+        inject: false, // html-webpack-template needs this to work
+      }),
+    ],
+  };
+}
+leanpub-end-insert
+
+leanpub-start-delete
 module.exports = function(env) {
-  ...
+  if (env === 'production') {
+    return production();
+  }
+
+  return development();
 };
+leanpub-end-delete
+leanpub-start-insert
+module.exports = function(env) {
+  if (env === 'production') {
+    return [
+      merge(production(), app()),
+      merge(production(), react()),
+    ];
+  }
+
+  return [
+    merge(development(), app()),
+    merge(development(), react()),
+  ];
+};
+leanpub-end-insert
 ```
 
-Now that there's a template and a DOM element for where to render, React needs to be told to render there:
+The new entry will look up for *app/react.js*. To prove that the setup works, write a stub file like this:
 
-**app/index.js**
+**app/react.js**
+
+```javascript
+console.log('react demo');
+```
+
+If you run the application now (`npm start`) and navigate to `http://localhost:8080/react`, you should see a blank page and corresponding message at the browser console.
+
+![A stub for React demo](images/react-stub.png)
+
+## Connecting React with the Project
+
+To make sure the project has the dependencies in place, install React and [react-dom](https://www.npmjs.com/package/react-dom). The latter package is needed to render the application to the DOM.
+
+```bash
+npm install react react-dom --save
+```
+
+Everything should be set up for rendering dummy data now:
+
+**app/react.js**
 
 ```javascript
 import React from 'react';
@@ -160,17 +237,9 @@ ReactDOM.render(
 );
 ```
 
-It would be possible to extend the application from here. Depending on your tastes, you might want to name the file as *index.jsx* instead, but sticking with *index.js* can be acceptable too.
+Even though we have a basic React application running now, it's a little difficult to develop. If you try to modify the code, you will notice that webpack will give a warning familiar from the *Configuring Hot Module Replacement* chapter. To improve the developer experience, we have to implement the hot replacement interface.
 
-## Connecting React with the Project
-
-Follow the instructions above to attach Babel and ESLint to the project. Especially installing *babel-preset-react*, *eslint-plugin-react*, and altering *.babelrc* and *.eslintrc.js* is important.
-
-Webpack configuration needs some work as well given we need that mounting point for the application. Adjust the configuration as above and make sure you include *html-webpack-template* to the project.
-
-Given the project contains only React, you have to install *react-dom* to it (`npm install react-dom --save`). That will be needed for rendering the application to the DOM.
-
-The application should run the same way as before after these steps and it's ready for further work.
+T> If you get a linting warning like `warning  'React' is defined but never used  no-unused-vars`, make sure the ESLint React plugin has been enabled and its default preset is in use.
 
 ## Configuring Hot Module Replacement with React
 
@@ -201,15 +270,7 @@ leanpub-start-insert
     "react-hot-loader/babel"
   ],
 leanpub-end-insert
-  "presets": [
-    [
-      "es2015",
-      {
-        "modules": false
-      }
-    ],
-    "react"
-  ]
+  ...
 }
 ```
 
@@ -222,24 +283,38 @@ On webpack side, *react-hot-loader* requires an additional entry it uses to patc
 ```javascript
 ...
 
-function development() {
-  return merge([
-    common,
-    {
 leanpub-start-insert
-      entry: {
-        // react-hot-loader has to run before app!
-        app: ['react-hot-loader/patch', PATHS.app],
-      },
-leanpub-end-insert
-      ...
+function reactDevelopment() {
+  return {
+    entry: {
+      // react-hot-loader has to run before demo!
+      react: ['react-hot-loader/patch', PATHS.reactDemo],
     },
-    ...
-  ]);
+  };
 }
+leanpub-end-insert
 
-...
+module.exports = function(env) {
+  if (env === 'production') {
+    return [
+      merge(production(), app()),
+      merge(production(), react()),
+    ];
+  }
+
+  return [
+    merge(development(), app()),
+leanpub-start-delete
+    merge(development(), react()),
+leanpub-end-delete
+leanpub-start-insert
+    merge(development(), react(), reactDevelopment()),
+leanpub-end-insert
+  ];
+};
 ```
+
+There is still patching to do as we have to make the application side aware of hot loading.
 
 T> You can include `react-dom` entries at `parts.extractBundles` to push it to the vendor bundle assuming you refer to packages by their name.
 
@@ -247,15 +322,12 @@ T> You can include `react-dom` entries at `parts.extractBundles` to push it to t
 
 Compared to the earlier implementation, the basic idea is the same on application side. This time, however, `AppContainer` provided by *react-hot-loader* has to be used. It performs the patching during development. To attach it to the application, adjust as follows:
 
-**app/index.js**
+**app/react.js**
 
 ```javascript
-import 'font-awesome/css/font-awesome.css';
-import 'purecss';
-import './main.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Component from './component';
+import Counter from './counter';
 import { AppContainer } from 'react-hot-loader';
 
 const render = App => {
@@ -265,16 +337,16 @@ const render = App => {
   );
 };
 
-render(Component);
+render(Counter);
 
 if (module.hot) {
-  module.hot.accept('./component', () => render(Component));
+  module.hot.accept('./counter', () => render(Counter));
 }
 ```
 
 To truly test the setup, a component is needed as well. In this case it's going to be a little counter so you can see how the hot replacement mechanism maintains the state:
 
-**app/component.js**
+**app/counter.js**
 
 ```javascript
 import React from 'react';
@@ -495,6 +567,31 @@ T> `module.noParse` also accepts a regular expression. If we wanted to ignore al
 T> Note that aliasing works also with loaders through [resolveLoader.alias](https://webpack.js.org/configuration/resolve/#resolveloader).
 
 W> Not all modules support `module.noParse`, the files included by deps array should have no call to `require`, `define` or similar, or you will get an error when the app runs: `Uncaught ReferenceError: require is not defined`.
+
+## Configuring Webpack to Work with JSX
+
+Some people prefer to name their React components containing JSX using the `.jsx` suffix. Webpack can be configured to work with this convention. The benefit of doing this is that then your editor will be able to pick up the right syntax based on the file name alone. Another option is to configure the editor to use JSX syntax for `.js` files as it's a superset of JavaScript.
+
+Webpack provides [resolve.extensions](https://webpack.js.org/guides/migrating/#resolve-extensions) field that can be used for configuring its extension lookup. If you want to allow imports like `import Button from './Button';` while naming the file as *Button.jsx*, set it up as follows:
+
+**webpack.config.js**
+
+```javascript
+...
+
+const common = {
+  ...
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
+};
+
+...
+```
+
+The loader configuration is straightforward as well. Instead of matching against `/\.js$/`, we can expand it to include `.jsx` extension through `/\.(js|jsx)$/`. Another option would be to write `/\.jsx?$/`, but I find the explicit alternative more readable.
+
+W> In webpack 1 you had to use `extensions: ['', '.js', '.jsx']` to match files without an extension too. This isn't needed in webpack 2.
 
 ## Maintaining Components
 
