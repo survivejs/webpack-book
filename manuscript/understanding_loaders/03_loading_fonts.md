@@ -232,6 +232,8 @@ fontawesome-webfont.woff2    77.2 kB          [emitted]
 
 It is good to note that Font Awesome included a lot of fonts you might not end up using. This is why [font-awesome-loader](https://www.npmjs.com/package/font-awesome-loader) exists. It encapsulates the same ideas and allows customization of Font Awesome. The approach above is more generic and can be used with other libraries as well.
 
+W> You might notice that the Font Awesome related output is big for a single icon. This is because all icons of it get loaded by default. [Font Awesome wiki](https://github.com/FortAwesome/Font-Awesome/wiki/Customize-Font-Awesome) points to a few services that can be used to customize the selection. Font Awesome 5 will contain a better solution and allow you to achieve the same without an external service.
+
 ## Conclusion
 
 Loading fonts is similar to loading other assets. Here we have extra concerns to consider. We need to consider the browsers we want to support and choose the loading strategy based on that.
