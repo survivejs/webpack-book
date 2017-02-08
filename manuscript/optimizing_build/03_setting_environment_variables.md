@@ -150,7 +150,7 @@ af7ae505a9eed503f8b8e6982036873e.woff2    77.2 kB          [emitted]  [big]
 ...
 ```
 
-We went from 141 kB to 42 kB, and finally, to 21 kB. The final build is a little faster than the previous one as well.
+We went from 142 kB to 42 kB, and finally, to 21 kB. The final build is a little faster than the previous one as well.
 
 Given the 21 kB can be served gzipped, it is somewhat reasonable. gzipping will drop around another 40% and it is well supported by browsers.
 
