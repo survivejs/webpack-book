@@ -197,30 +197,20 @@ Beyond mangling, it is possible to control all other [UglifyJS features](http://
 
 ```javascript
 new webpack.optimize.UglifyJsPlugin({
-  // Don't beautify output (enable for neater output)
-  beautify: false,
-
-  // Eliminate comments
-  comments: false,
+  beautify: false, // Don't beautify output (uglier to read)
+  comments: false, // Eliminate comments
 
   // Compression specific options
   compress: {
     warnings: false,
-
-    // Drop `console` statements
-    drop_console: true
+    drop_console: true, // Drop `console` statements
   },
 
   // Mangling specific options
   mangle: {
-    // Don't mangle $
-    except: ['$'],
-
-    // Don't care about IE8
-    screw_ie8 : true,
-
-    // Don't mangle function names
-    keep_fnames: true,
+    except: ['$'], // Don't mangle $
+    screw_ie8 : true, // Don't care about IE8
+    keep_fnames: true, // Don't mangle function names
   }
 });
 ```
