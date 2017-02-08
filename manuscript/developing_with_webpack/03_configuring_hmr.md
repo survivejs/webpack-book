@@ -259,6 +259,30 @@ entry: {
 }
 ```
 
+## Configuring HMR with Redux
+
+[Redux](http://redux.js.org/) is a popular state management library designed HMR in mind. To configure Redux reducers to support HMR, you have to implement the protocol as above:
+
+```javascript
+...
+
+export default function configureStore(initialState) {
+  const store = createStoreWithMiddleware(rootReducer, initialState);
+
+  if(module.hot) {
+    // Enable webpack hot module replacement for reducers
+    module.hot.accept(
+      '../reducers',
+      () => store.replaceReducer(reducers)
+    );
+  }
+
+  return store;
+}
+```
+
+T> You can find [a full implementation of the idea online](https://github.com/survivejs-demos/redux-demo).
+
 ## Other Features of *webpack-dev-server*
 
 WDS provides quite a bit of functionality beyond what was covered above. There are two important fields that you should be aware of:

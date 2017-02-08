@@ -369,33 +369,6 @@ There are a few Babel-based optimizations for React you may consider enabling es
 * [babel-react-optimize](https://github.com/thejameskyle/babel-react-optimize) implements a variety of React specific optimizations you may want to experiment with.
 * [babel-plugin-transform-react-remove-prop-types](https://www.npmjs.com/package/babel-plugin-transform-react-remove-prop-types) allows you to remove `propType` related code from your production build. It also allows component authors to generate code that's wrapped so that setting environment at `DefinePlugin` can kick in as discussed in the book.
 
-## Configuring HMR with Redux
-
-In order to configure Redux reducers to support hot replacement, we need to implement webpack's hot module replacement protocol as before. To give you a rough implementation, consider the code below:
-
-```javascript
-...
-
-export default function configureStore(initialState) {
-  const store = createStoreWithMiddleware(rootReducer, initialState);
-
-  if(module.hot) {
-    // Enable webpack hot module replacement for reducers
-    module.hot.accept(
-      '../reducers',
-      () => store.replaceReducer(reducers)
-    );
-  }
-
-  return store;
-}
-```
-
-The code doesn't do that much. It just waits for a change and then patches the code. The feasibility of patching depends on the underlying architecture. For a system like Redux, it is simple as it was designed to be patched. It might be harder to pull off for something else.
-
-T> You can find [a full implementation of the idea online](https://github.com/survivejs-demos/redux-demo).
-
-
 ## Using *react-lite* Instead of React for Production
 
 React is quite heavy library even though the API is quite small considering. There are light alternatives, such as [Preact](https://www.npmjs.com/package/preact) and [react-lite](https://www.npmjs.com/package/react-lite). react-lite implements React's API apart from features like `propTypes` and server side rendering.
