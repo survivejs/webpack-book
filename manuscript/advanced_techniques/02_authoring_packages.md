@@ -41,7 +41,7 @@ I've annotated a part of *package.json* of my [React component boilerplate](http
   "description": "Boilerplate for React.js components",
 
   /* Who is the author + optional email + optional site */
-  "author": "Juho Vepsäläinen <email goes here> (site goes here)",
+  "author": "Juho Vepsalainen <email goes here> (site goes here)",
 
   /* Version of the package */
   "version": "0.0.0",
@@ -58,23 +58,23 @@ I've annotated a part of *package.json* of my [React component boilerplate](http
 
     "gh-pages": "webpack --env gh-pages",
     "gh-pages:deploy": "gh-pages -d gh-pages",
-    "gh-pages:stats": "webpack --env gh-pages --profile --json > stats.json",
+    "gh-pages:stats": "webpack --env gh-pages --json > stats.json",
 
-    "dist": "webpack" --env dist",
+    "dist": "webpack --env dist",
     "dist:min": "webpack --env dist:min",
-    "dist:modules": "rm -rf ./dist-modules && babel ./src --out-dir ./dist-modules",
+    "dist:modules": "rimraf ./dist-modules && babel ./src --out-dir ./dist-modules",
 
     "pretest": "npm run lint:js",
     "preversion": "npm run test && npm run dist && npm run dist:min && git commit --allow-empty -am \"Update dist\"",
     "prepublish": "npm run dist:modules",
     "postpublish": "npm run gh-pages && npm run gh-pages:deploy",
 
-    /* If your library is installed through Git, you may want to transpile it */
+    /* If your library is installed through Git, transpile it */
     "postinstall": "node lib/post_install.js"
   },
 
   /* Entry point for terminal (i.e., <package name>). */
-  /* Don't set this unless you intend to allow Command line  usage */
+  /* Don't set this unless you intend to allow Command line usage */
   "bin": "bin/index.js",
 
   /* Entry point (defaults to index.js) */
@@ -90,17 +90,18 @@ I've annotated a part of *package.json* of my [React component boilerplate](http
     "dist/"
   ],
 
-  /* Package dependencies needed to use it (peer deps can work too, see below) */
+  /* Package dependencies needed to use it. */
+  /* Peer dependencies can work too, see below. */
   "dependencies": { ... },
 
   /* Package development dependencies needed to develop/compile it */
   "devDependencies": { ... },
 
-  /* Package peer dependencies. The consumer will fix exact versions. */
-  /* In npm3 these won't get installed automatically and it's up to the */
-  /* user to define which versions to use. */
-  /* If you want to include RC versions to the range, consider using */
-  /* a pattern such as ^4.0.0-0 */
+  /* Package peer dependencies. The consumer will fix versions. */
+  /* In npm3 these won't get installed automatically and it's */
+  /* up to the user to define which versions to use. */
+  /* If you want to include RC versions to the range, consider */
+  /* using a pattern such as ^4.0.0-0 */
   "peerDependencies": {
     "lodash": ">= 3.5.0 < 4.0.0",
     "react": ">= 0.11.2 < 16.0.0"
