@@ -40,6 +40,7 @@ optimizing_build/03_setting_environment_variables.md
 optimizing_build/04_adding_hashes_to_filenames.md
 optimizing_build/05_separating_manifest.md
 optimizing_build/06_analyzing_build_statistics.md
+optimizing_build/07_performance.md
 
 09_Advanced_Techniques.md
 advanced_techniques/01_consuming_packages.md
