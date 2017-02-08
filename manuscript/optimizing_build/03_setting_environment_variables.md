@@ -82,7 +82,6 @@ As before, encapsulate this idea to a function. It is important to note that giv
 ```javascript
 ...
 
-leanpub-start-insert
 exports.setFreeVariable = function(key, value) {
   const env = {};
   env[key] = JSON.stringify(value);
@@ -93,7 +92,6 @@ exports.setFreeVariable = function(key, value) {
     ],
   };
 };
-leanpub-end-insert
 ```
 
 We can connect this with our configuration like this:
@@ -105,17 +103,13 @@ We can connect this with our configuration like this:
 
 function production() {
   return merge([
-    common,
-    {
-      ...
-    },
+    ...
 leanpub-start-insert
     parts.setFreeVariable(
       'process.env.NODE_ENV',
       'production'
     ),
 leanpub-end-insert
-    ...
   ]);
 }
 
@@ -125,28 +119,28 @@ leanpub-end-insert
 Execute `npm run build` again, and you should see improved results:
 
 ```bash
-Hash: 9695368f0432ed1946ad
+Hash: f1339ba5174d13221f4b
 Version: webpack 2.2.1
-Time: 3134ms
-                                 Asset       Size  Chunks                    Chunk Names
-                                app.js  640 bytes       1  [emitted]         app
-  674f50d287a8c48dc19ba404d20fe713.eot     166 kB          [emitted]  [big]
-  b06871f281fee6b241d60582ae9369b9.ttf     166 kB          [emitted]  [big]
-af7ae505a9eed503f8b8e6982036873e.woff2    77.2 kB          [emitted]  [big]
- fee66e712a8a08eef5805a46892932ad.woff      98 kB          [emitted]  [big]
-  9a0d8fb85dedfde24f1ab4cdb568ef2a.png    17.6 kB          [emitted]
-                                  0.js  160 bytes       0  [emitted]
-  912ec66d7572ff821749319396470bde.svg     444 kB          [emitted]  [big]
-                             vendor.js      21 kB       2  [emitted]         vendor
-                               app.css     3.5 kB       1  [emitted]         app
-                              0.js.map  769 bytes       0  [emitted]
-                            app.js.map    5.62 kB       1  [emitted]         app
-                           app.css.map   84 bytes       1  [emitted]         app
-                         vendor.js.map     261 kB       2  [emitted]         vendor
-                            index.html  274 bytes          [emitted]
-   [4] ./~/object-assign/index.js 2.11 kB {2} [built]
+Time: 3826ms
+                    Asset       Size  Chunks                    Chunk Names
+                   app.js  747 bytes       1  [emitted]         app
+  fontawesome-webfont.eot     166 kB          [emitted]  [big]
+  fontawesome-webfont.ttf     166 kB          [emitted]  [big]
+fontawesome-webfont.woff2    77.2 kB          [emitted]  [big]
+ fontawesome-webfont.woff      98 kB          [emitted]  [big]
+                 logo.png      77 kB          [emitted]  [big]
+                     0.js  175 bytes       0  [emitted]
+  fontawesome-webfont.svg     444 kB          [emitted]  [big]
+                vendor.js      21 kB       2  [emitted]         vendor
+                  app.css    2.19 kB       1  [emitted]         app
+                 0.js.map  768 bytes       0  [emitted]
+               app.js.map    6.25 kB       1  [emitted]         app
+              app.css.map   84 bytes       1  [emitted]         app
+            vendor.js.map     261 kB       2  [emitted]         vendor
+               index.html  274 bytes          [emitted]
    [5] ./~/react/react.js 56 bytes {2} [built]
-  [15] ./app/component.js 517 bytes {1} [built]
+  [15] ./app/component.js 372 bytes {1} [built]
+  [16] ./app/shake.js 138 bytes {1} [built]
 ...
 ```
 
@@ -160,7 +154,7 @@ T> [babel-plugin-transform-inline-environment-variables](https://www.npmjs.com/p
 
 T> `webpack.EnvironmentPlugin(['NODE_ENV'])` is a shortcut that allows you to refer to environment variables. It uses `DefinePlugin` internally and can be useful by itself in more limited cases. You can achieve the same effect by passing `process.env.NODE_ENV` to the custom function we made.
 
-## Choosing Which Module to Use Based on Environment
+## Choosing Which Module to Use Based on the Environment
 
 The techniques discussed in this chapter can be useful for choosing entire modules depending on the environment. As seen above, `DefinePlugin` based splitting allows us to choose which branch of code to use and which to discard. This idea can be used to implement branching on module level. Consider the file structure below:
 
