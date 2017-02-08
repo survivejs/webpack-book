@@ -163,7 +163,7 @@ export default 'Hello from lazy';
 
 In practice, you could have a lot more code here and additional split points. This is a good place to extend the demonstration.
 
-We also need to point the application to this file so it knows to load it. A simple way to do this is to bind the loading process to click. Whenever the user happens to click the button, we'll trigger the loading process and replace the button content.
+We also need to point the application to this file so it knows to load it. A simple way to do this is to bind the loading process to click. Whenever the user happens to click the button, we'll trigger the loading process and replace the content.
 
 **app/component.js**
 
@@ -189,7 +189,7 @@ leanpub-end-insert
 
 If you open up the application (`npm start`) and click the button, you should see the new text in the button.
 
-![Lazy loaded button content](images/lazy.png)
+![Lazy loaded content](images/lazy.png)
 
 Perhaps the more interesting thing is to see what the build result looks like. If you run `npm run build`, you should see something like this:
 
