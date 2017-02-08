@@ -245,6 +245,58 @@ T> [bundle-loader](https://www.npmjs.com/package/bundle-loader) gives similar re
 
 T> The *Dynamic Loading* appendix covers a few other techniques that come in handy when you have to deal with more dynamic splits.
 
+## Code Splitting in React
+
+The splitting pattern can be wrapped into a React component. Airbnb uses the following solution [as described by Joe Lencioni](https://gist.github.com/lencioni/643a78712337d255f5c031bfc81ca4cf):
+
+```jsx
+import React from 'react';
+
+...
+
+// Somewhere in code
+<AsyncComponent loader={() => import('./SomeComponent')} />
+
+...
+
+// React wrapper for loading
+class AsyncComponent extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      Component: null,
+    };
+  }
+
+  componentDidMount() {
+    // Load the component now
+    this.props.loader().then(Component => {
+      this.setState({ Component });
+    });
+  }
+
+  render() {
+    const { Component } = this.state;
+    const { Placeholder } = this.props;
+
+    if (Component) {
+      return <Component {...this.props} />;
+    }
+
+    return <Placeholder>
+  }
+}
+
+AsyncComponent.propTypes = {
+  // A loader is a function that should return a Promise.
+  loader: PropTypes.func.isRequired,
+
+  // A placeholder to render while waiting completion.
+  Placeholder: PropTypes.node.isRequired
+};
+```
+
 ## Conclusion
 
 Code splitting is one of those features that allows you to push your application a notch further. You can load code when you need it. This gives faster initial load times and helps to improve user experience especially in a mobile context where bandwidth is limited.

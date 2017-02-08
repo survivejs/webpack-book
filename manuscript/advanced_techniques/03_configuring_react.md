@@ -2,7 +2,7 @@
 
 Facebook's [React](https://facebook.github.io/react/) is a popular alternative for developing web applications. Even if you don't use it, it can be valuable to understand how to configure it.
 
-I will discuss a couple of common ways first and then show you how to integrate React to the book project. You will also see how to enable hot module replacement with React using *react-hot-loader* 3 then. I will discuss more specific techniques, such as code splitting in React, after that.
+I will discuss a couple of common ways first and then show you how to integrate React to the book project. You will also see how to enable hot module replacement with React using *react-hot-loader* 3 then. I will discuss more specific techniques after that.
 
 ## Get Started Fast with *create-react-app*
 
@@ -522,58 +522,6 @@ T> `module.noParse` also accepts a regular expression. If we wanted to ignore al
 T> Note that aliasing works also with loaders through [resolveLoader.alias](https://webpack.js.org/configuration/resolve/#resolveloader).
 
 W> Not all modules support `module.noParse`, the files included by deps array should have no call to `require`, `define` or similar, or you will get an error when the app runs: `Uncaught ReferenceError: require is not defined`.
-
-## Code Splitting with React
-
-The splitting pattern discussed in the *Code Splitting* chapter can be wrapped into a React component. Airbnb uses the following solution [as described by Joe Lencioni](https://gist.github.com/lencioni/643a78712337d255f5c031bfc81ca4cf):
-
-```jsx
-import React from 'react';
-
-...
-
-// Somewhere in code
-<AsyncComponent loader={() => import('./SomeComponent')} />
-
-...
-
-// React wrapper for loading
-class AsyncComponent extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      Component: null,
-    };
-  }
-
-  componentDidMount() {
-    // Load the component now
-    this.props.loader().then(Component => {
-      this.setState({ Component });
-    });
-  }
-
-  render() {
-    const { Component } = this.state;
-    const { Placeholder } = this.props;
-
-    if (Component) {
-      return <Component {...this.props} />;
-    }
-
-    return <Placeholder>
-  }
-}
-
-AsyncComponent.propTypes = {
-  // A loader is a function that should return a Promise.
-  loader: PropTypes.func.isRequired,
-
-  // A placeholder to render while waiting completion.
-  Placeholder: PropTypes.node.isRequired
-};
-```
 
 ## Maintaining Components
 
