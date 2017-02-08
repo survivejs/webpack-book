@@ -124,8 +124,6 @@ To keep this discussion simple, I'll give you a subset of the implementation to 
 ...
 const hl = require('highlight.js');
 const loaderUtils = require('loader-utils');
-const highlightAuto = hl.highlightAuto;
-const highlight = hl.highlight;
 
 module.exports = function(input = '') {
   // Mark the loader as cacheable (same result for same input).
