@@ -1,7 +1,7 @@
 {
   "name": "survivejs-webpack",
   "private": true,
-  "version": "1.7.1",
+  "version": "1.7.2",
   "description": "SurviveJS - Webpack",
   "scripts": {
     "publish:silent": "leanpub-cli publish-silent survivejs-webpack",
