@@ -97,13 +97,12 @@ module.exports = {
 };
 ```
 
-In addition, we need to tell ESLint to skip linting *node_modules* and *build* directories by setting up ignore patterns:
+In addition, we need to tell ESLint to skip linting the *build* directory by setting up ignore patterns. The *node_modules* directory is ignored by default.
 
 **.eslintignore**
 
 ```bash
-node_modules/
-build/
+build/*
 ```
 
 T> You can point ESLint to your Git ignores through `--ignore-path .gitignore`. It also accepts individual patterns, through `--ignore-pattern <pattern>`.
