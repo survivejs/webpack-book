@@ -33,8 +33,6 @@ exports.attachRevision = function() {
   };
 };
 leanpub-end-insert
-
-...
 ```
 
 And connect it to the main configuration:
@@ -58,9 +56,11 @@ leanpub-end-insert
 ...
 ```
 
-If you build the project (`npm run build`), you should notice the built files contain comments like `/*! v1.7.0-9-g5f82fe8 */` in the beginning.
+If you build the project (`npm run build`), you should notice the built files contain comments like `/*! 0b5bb05 */` or `/*! v1.7.0-9-g5f82fe8 */` in the beginning.
 
 The output can be customized further by adjusting the banner. You can also pass revision information to the application using `webpack.DefinePlugin`. This technique is discussed in greater detail at the *Setting Environments Chapter*.
+
+W> The code expects you run it within a Git repository! Otherwise you will get a `fatal: Not a git repository (or any of the parent directories): .git` error. If you are not using Git, you can replace the banner with some other data.
 
 ## Copying Files
 
