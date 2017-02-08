@@ -41,30 +41,30 @@ leanpub-end-insert
 If you build the project now (`npm run build`), you should see something like this:
 
 ```bash
-Hash: 4ca13abf0dfeaf38daa7
+Hash: 3d4e3eda67109636826b
 Version: webpack 2.2.1
-Time: 3209ms
-                                       Asset       Size  Chunks                    Chunk Names
-                 app.de061a38d4efe81f14d9.js  710 bytes    2, 3  [emitted]         app
-        912ec66d7572ff821749319396470bde.svg     444 kB          [emitted]  [big]
-        674f50d287a8c48dc19ba404d20fe713.eot     166 kB          [emitted]  [big]
-       fee66e712a8a08eef5805a46892932ad.woff      98 kB          [emitted]  [big]
-      af7ae505a9eed503f8b8e6982036873e.woff2    77.2 kB          [emitted]  [big]
-        9a0d8fb85dedfde24f1ab4cdb568ef2a.png    17.6 kB          [emitted]
-             scripts/a749f8b7a6c990eff5b2.js  183 bytes    0, 3  [emitted]
-              vendor.e9b7f566aa067b34ae88.js    20.1 kB    1, 3  [emitted]         vendor
-        b06871f281fee6b241d60582ae9369b9.ttf     166 kB          [emitted]  [big]
-            manifest.7985df88c95fffcba0a2.js    1.51 kB       3  [emitted]         manifest
-    app.120a7f7c301f97a38df05725c2b1a453.css    3.53 kB    2, 3  [emitted]         app
-         scripts/a749f8b7a6c990eff5b2.js.map  865 bytes    0, 3  [emitted]
-          vendor.e9b7f566aa067b34ae88.js.map     249 kB    1, 3  [emitted]         vendor
-             app.de061a38d4efe81f14d9.js.map    5.75 kB    2, 3  [emitted]         app
-app.120a7f7c301f97a38df05725c2b1a453.css.map  117 bytes    2, 3  [emitted]         app
-        manifest.7985df88c95fffcba0a2.js.map    14.1 kB       3  [emitted]         manifest
-                                  index.html  428 bytes          [emitted]
+Time: 3768ms
+                              Asset       Size  Chunks                    Chunk Names
+                    app.57e8c83b.js  811 bytes    2, 3  [emitted]         app
+   fontawesome-webfont.912ec66d.svg     444 kB          [emitted]  [big]
+   fontawesome-webfont.674f50d2.eot     166 kB          [emitted]  [big]
+  fontawesome-webfont.fee66e71.woff      98 kB          [emitted]  [big]
+ fontawesome-webfont.af7ae505.woff2    77.2 kB          [emitted]  [big]
+                  logo.85011118.png      77 kB          [emitted]  [big]
+    scripts/a749f8b7a6c990eff5b2.js  198 bytes    0, 3  [emitted]
+                 vendor.e9b7f566.js    20.1 kB    1, 3  [emitted]         vendor
+   fontawesome-webfont.b06871f2.ttf     166 kB          [emitted]  [big]
+               manifest.696ccd34.js    1.52 kB       3  [emitted]         manifest
+                   app.c1d1325d.css    2.26 kB    2, 3  [emitted]         app
+scripts/a749f8b7a6c990eff5b2.js.map  864 bytes    0, 3  [emitted]
+             vendor.e9b7f566.js.map     248 kB    1, 3  [emitted]         vendor
+                app.57e8c83b.js.map    6.35 kB    2, 3  [emitted]         app
+               app.c1d1325d.css.map   93 bytes    2, 3  [emitted]         app
+           manifest.696ccd34.js.map    14.1 kB       3  [emitted]         manifest
+                         index.html  368 bytes          [emitted]
 [1Q41] ./app/main.css 41 bytes {2} [built]
-[2twT] ./app/index.js 516 bytes {2} [built]
-[4has] ./~/react/lib/ReactClass.js 26.5 kB {1} [built]
+[2twT] ./app/index.js 557 bytes {2} [built]
+[5W1q] ./~/font-awesome/css/font-awesome.css 41 bytes {2} [built]
 ...
 ```
 
@@ -77,30 +77,30 @@ T> To get a better idea of the manifest contents, comment out `parts.minify()` a
 Try adjusting *app/index.js* and see how the hashes change. This time around it should **not** invalidate the vendor bundle, and only the manifest and app bundle names should be different like this:
 
 ```bash
-Hash: 895308ab19f4b99357bd
+Hash: 339ba11c09571b4d4b7d
 Version: webpack 2.2.1
-Time: 3425ms
-                                       Asset       Size  Chunks                    Chunk Names
-                 app.29ecc4e2e587bdf20f54.js  733 bytes    2, 3  [emitted]         app
-        912ec66d7572ff821749319396470bde.svg     444 kB          [emitted]  [big]
-        674f50d287a8c48dc19ba404d20fe713.eot     166 kB          [emitted]  [big]
-       fee66e712a8a08eef5805a46892932ad.woff      98 kB          [emitted]  [big]
-      af7ae505a9eed503f8b8e6982036873e.woff2    77.2 kB          [emitted]  [big]
-        9a0d8fb85dedfde24f1ab4cdb568ef2a.png    17.6 kB          [emitted]
-             scripts/a749f8b7a6c990eff5b2.js  183 bytes    0, 3  [emitted]
-              vendor.e9b7f566aa067b34ae88.js    20.1 kB    1, 3  [emitted]         vendor
-        b06871f281fee6b241d60582ae9369b9.ttf     166 kB          [emitted]  [big]
-            manifest.339803870e3446a9198d.js    1.51 kB       3  [emitted]         manifest
-    app.120a7f7c301f97a38df05725c2b1a453.css    3.53 kB    2, 3  [emitted]         app
-         scripts/a749f8b7a6c990eff5b2.js.map  865 bytes    0, 3  [emitted]
-          vendor.e9b7f566aa067b34ae88.js.map     249 kB    1, 3  [emitted]         vendor
-             app.29ecc4e2e587bdf20f54.js.map    5.83 kB    2, 3  [emitted]         app
-app.120a7f7c301f97a38df05725c2b1a453.css.map  117 bytes    2, 3  [emitted]         app
-        manifest.339803870e3446a9198d.js.map    14.1 kB       3  [emitted]         manifest
-                                  index.html  428 bytes          [emitted]
+Time: 3426ms
+                              Asset       Size  Chunks                    Chunk Names
+                    app.54890b9b.js  830 bytes    2, 3  [emitted]         app
+   fontawesome-webfont.912ec66d.svg     444 kB          [emitted]  [big]
+   fontawesome-webfont.674f50d2.eot     166 kB          [emitted]  [big]
+  fontawesome-webfont.fee66e71.woff      98 kB          [emitted]  [big]
+ fontawesome-webfont.af7ae505.woff2    77.2 kB          [emitted]  [big]
+                  logo.85011118.png      77 kB          [emitted]  [big]
+    scripts/a749f8b7a6c990eff5b2.js  198 bytes    0, 3  [emitted]
+                 vendor.e9b7f566.js    20.1 kB    1, 3  [emitted]         vendor
+   fontawesome-webfont.b06871f2.ttf     166 kB          [emitted]  [big]
+               manifest.db83b1fb.js    1.52 kB       3  [emitted]         manifest
+                   app.c1d1325d.css    2.26 kB    2, 3  [emitted]         app
+scripts/a749f8b7a6c990eff5b2.js.map  864 bytes    0, 3  [emitted]
+             vendor.e9b7f566.js.map     248 kB    1, 3  [emitted]         vendor
+                app.54890b9b.js.map    6.42 kB    2, 3  [emitted]         app
+               app.c1d1325d.css.map   93 bytes    2, 3  [emitted]         app
+           manifest.db83b1fb.js.map    14.1 kB       3  [emitted]         manifest
+                         index.html  368 bytes          [emitted]
 [1Q41] ./app/main.css 41 bytes {2} [built]
-[2twT] ./app/index.js 537 bytes {2} [built]
-[4has] ./~/react/lib/ReactClass.js 26.5 kB {1} [built]
+[2twT] ./app/index.js 578 bytes {2} [built]
+[5W1q] ./~/font-awesome/css/font-awesome.css 41 bytes {2} [built]
 ...
 ```
 
