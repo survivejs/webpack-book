@@ -1,6 +1,6 @@
 # Performance
 
-Webpack's performance out of the box is often enough for small projects. That said, it begins to hit limits as your project grows in scale. It is a common topic in webpack's issue tracker. [Issue 1905](https://github.com/webpack/webpack/issues/1905) is a good example. There are several directions where you can look when performance becomes a concern.
+Webpack's performance out of the box is often enough for small projects. That said, it begins to hit limits as your project grows in scale. It is a common topic in webpack's issue tracker. [Issue 1905](https://github.com/webpack/webpack/issues/1905) is a good example. You can look into several directions when performance becomes a concern.
 
 There are a few basic rules when it comes to optimization:
 
@@ -82,7 +82,7 @@ Perhaps the problem with HappyPack is that it couples your configuration with it
 
 ## Low Level Optimizations
 
-There are a series of lower level optimizations that can become useful. The key is to allow webpack to perform less work. We've already implemented some of these, but it's a good idea to enumerate them:
+Certain lower level optimizations that can become useful. The key is to allow webpack to perform less work. We've already implemented some of these, but it's a good idea to enumerate them:
 
 * Consider using faster source map variants during development or skip them. Particularly skipping is possible if you don't process the code in any way.
 * Use [babel-preset-env](https://www.npmjs.com/package/babel-preset-env) during development instead of source maps to transpile less features for modern browsers and make code more readable and easier to debug.
@@ -165,4 +165,4 @@ W> Not all modules support `module.noParse`, the files included by deps array sh
 
 ## Conclusion
 
-There are many ways to optimize webpack's performance. Often it's a good idea to start with easier techniques before moving to more involved ones. The exact techniques you have to apply depend on the project.
+You can optimize webpack's performance in many ways. Often it's a good idea to start with easier techniques before moving to more involved ones. The exact techniques you have to apply depend on the project.

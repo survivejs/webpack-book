@@ -1,0 +1,51 @@
+{
+  "rules": {
+    "terminology": {
+      "defaultTerms": false,
+      "skip": ["Blockquote", "Header", "Link", "Emphasis", "Strong"],
+      "terms": [
+        // Brands
+        "ESLint",
+        "JavaScript",
+        "Lodash",
+        "Markdown",
+        "npm",
+        "Sass",
+        ["Node[ .]js", "Node"], // Official is Node.js, but it’s way too complicated
+        ["React[ .]js", "React"],
+
+        "pre-release",
+
+        // ECMAScript
+        "ECMAScript",
+        // ["ES2015", "ES6"],
+        // ["ES7", "ES2016"],
+
+        // Words and phrases
+        "ID", // http://stackoverflow.com/questions/1151338/id-or-id-on-user-interface
+        ["id['’]?s", "IDs"],
+        ["back[- ]end(\\w*)", "backend$1"],
+        ["front[- ]end(\\w*)", "frontend$1"],
+        ["hot[- ]key", "hotkey"],
+        ["build system(s?)", "build tool$1"],
+        ["CLI tool(s?)", "command line tool$1"],
+        ["web[- ]?site(s?)", "site$1"],
+        ["repo\\b", "repository"],
+        ["style-?guide(s?)", "style guide$1"],
+        ["change-?log(s?)", "change log$1"],
+        ["source-?map(s?)", "source map$1"],
+
+        // Starts from a lower case letter in the middle of a sentence
+        ["(\\w+[^.?!]\\)? )internet", "$1internet"],
+        ["(\\w+[^.?!]\\)? )stylelint", "$1stylelint"],
+        // ["(\\w+[^.?!]\\)? )webpack", "$1webpack"]
+      ]
+    },
+    "common-misspellings": true,
+    "write-good": {
+      "adverb": false,
+      "passive": false,
+      "tooWordy": false
+    }
+  }
+}

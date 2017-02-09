@@ -15,7 +15,7 @@ In larger projects, you may find the following:
 
 * *CONTRIBUTING.md* - A guide for potential contributors describing how the code should be developed.
 * *CHANGELOG.md* - This document describes major changes per version. If you do major API changes, it can be a good idea to cover them here. It is possible to generate the file based on Git commit history, provided you write nice enough commits.
-* *.travis.yml* - [Travis CI](https://travis-ci.org/) is a popular continuous integration platform that is free for open source projects. You can run the tests of your package over multiple systems using it. There are other alternatives of course, but Travis is popular.
+* *.travis.yml* - [Travis CI](https://travis-ci.org/) is a popular continuous integration platform that is free for open source projects. You can run the tests of your package over multiple systems using it.
 * *.gitignore* - Ignore patterns for Git, i.e., which files shouldn't go under version control. It can be useful to ignore npm distribution files here so they don't clutter your repository.
 * *.npmignore* - Ignore patterns for npm. This describes which files shouldn't go to your distribution version. A good alternative is to use the [files](https://docs.npmjs.com/files/package.json#files) field at *package.json*. It allows you to maintain a whitelist of files to include into your distribution version.
 * *.eslintignore* - Ignore patterns for ESLint. Again, tool specific.
@@ -154,7 +154,7 @@ T> [np](https://www.npmjs.com/package/np) gives an interactive UI for publishing
 
 Even though a project can contain a lot of files, not all of them should be published. Besides wasting bandwidth, this can leak personal files to a public registry. This is the reason why it is an excellent idea to maintain a [files](https://docs.npmjs.com/files/package.json#files) array at *package.json* and enumerate which files and directories you want to publish.
 
-There is on official recommendation on what files to publish. That said, there are some points to consider as [discussed in Stack Overflow](https://stackoverflow.com/questions/25124844/should-i-npmignore-my-tests).
+You can't find an official recommendation on what files to publish. That said, there are some points to consider as [discussed in Stack Overflow](https://stackoverflow.com/questions/25124844/should-i-npmignore-my-tests).
 
 At minimum you should distribute the source code needed to run the package. If you have code written using the ES6 standard, you should remember to set the `module` field to point to it. You can point package `main` to a compiled version if you want to support specific older platforms.
 
@@ -190,9 +190,9 @@ This metadata lets the tooling to figure out the types of the changes you made. 
 
 T> The *Consuming Packages* explains the idea of SemVer in greater detail.
 
-### Publishing a Prerelease Version
+### Publishing a Pre-Release Version
 
-Sometimes, you might want to publish something preliminary for other people to test. There are certain conventions for this. You rarely see *alpha* releases at npm. *beta* and *rc* (release candidate) are common, though. For example, a package might have versions like this:
+Sometimes, you might want to publish something preliminary for other people to test. This is possible by tagging your release as a pre-release version. For example, a package might have versions like this:
 
 * v0.5.0-alpha1
 * v0.5.0-beta1
@@ -254,7 +254,7 @@ dist-modules/
 
 Besides `prepublish`, npm provides a set of other hooks. The naming is always the same and follows the pattern `pre<hook>`, `<hook>`, `post<hook>` where `<hook>` can be `publish`, `install`, `test`, `stop`, `start`, `restart`, or `version`. Even though npm will trigger scripts bound to these automatically, you can trigger them explicitly through `npm run` for testing (i.e., `npm run prepublish`).
 
-There are plenty of smaller tricks to learn for advanced usage. Those are better covered by [the official documentation](https://docs.npmjs.com/misc/scripts). Often all you need is just a `prepublish` script for build automation.
+The [the official documentation](https://docs.npmjs.com/misc/scripts) covers a lot of smaller tips related to these hooks. However, often all you need is just a `prepublish` script for build automation.
 
 ### Working Around `prepublish` in npm 3
 
@@ -272,9 +272,7 @@ See [npm documentation](https://docs.npmjs.com/cli/owner) for the most up to dat
 
 ## Package Authoring Techniques
 
-There are a couple of package authoring-related techniques that are good to know. You can set up webpack to generate a UMD build. You can also exclude certain dependencies out of your bundle.
-
-To make it easier to consume your packages, you can also generate a Node friendly versions. This technique can be improved further by setting up a specific script.
+A couple of certain package authoring-related techniques are good to know. For example, to make it easier to consume your packages, you can generate a Node friendly versions. This technique can be improved further by setting up a specific script.
 
 ### Setting Up UMD
 
@@ -366,7 +364,7 @@ In this case you'll likely want a setup like this:
 }
 ```
 
-There is one problem, though. What if someone points to a development version of your package directly through GitHub? It simply won't work as the `dist-modules` directory will be missing. This can be fixed using a hook that will generate the needed source.
+What if someone points to a development version of your package directly through GitHub, though? It simply won't work as the `dist-modules` directory will be missing. This can be fixed using a hook that will generate the needed source.
 
 ### Generating a Distribution for Development Usage
 

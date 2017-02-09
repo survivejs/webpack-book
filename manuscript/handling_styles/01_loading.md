@@ -141,7 +141,7 @@ Note that `body` remains as a global declaration still. It's that `redButton` th
 
 CSS Modules provides also features like composition to make it even easier to work with your styles. You can also combine it with other loaders as long as you apply them before *css-loader*.
 
-T> The query syntax, `css-loader?modules`, and its alternatives are discussed in greater detail in the *Loader Definitions* chapter. There are multiple ways to achieve the same effect in webpack some of which are clearer than others.
+T> The query syntax, `css-loader?modules`, and its alternatives are discussed in greater detail in the *Loader Definitions* chapter. You can achieve the same effect multiple ways in webpack, some of which are clearer than others.
 
 T> CSS Modules behavior can be modified [as discussed in the official documentation](https://www.npmjs.com/package/css-loader#local-scope). You have control over the names it generates for instance.
 
@@ -160,7 +160,7 @@ Consider the following minimal setup:
 }
 ```
 
-There is also support for Less plugins, source maps, and so on. To understand how those work you should check out the project itself.
+The loader supports Less plugins, source maps, and so on. To understand how those work you should check out the project itself.
 
 ## Loading Sass
 
@@ -267,7 +267,7 @@ T> PostCSS supports also *postcss.config.js* based configuration. It relies on [
 
 ![cssnext](images/cssnext.jpg)
 
-[cssnext](http://cssnext.io/) is a PostCSS plugin that allows us to experience the future now. There are some restrictions, but it may be worth a go. You can use it through [postcss-cssnext](https://www.npmjs.com/package/postcss-cssnext), and you can enable it as follows:
+[cssnext](http://cssnext.io/) is a PostCSS plugin that allows us to experience the future now. It comes with some restrictions as it's not possible to adapt to each future feature, but it may be worth a go. You can use it through [postcss-cssnext](https://www.npmjs.com/package/postcss-cssnext), and you can enable it as follows:
 
 **webpack.config.js**
 

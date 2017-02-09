@@ -2,7 +2,7 @@
 
 Even though we haven't done a lot with webpack yet, the amount of configuration is starting to feel substantial. In addition, we have to be careful about the way we compose it as we have separate production and development targets. This can only get worse as we want to add more functionality to our project.
 
-As the needs of your project grow, you'll need to figure out means to manage webpack configuration. There are a couple of ways to approach this problem.
+As the needs of your project grow, you'll need to figure out means to manage webpack configuration. You can approach this problem in a couple of ways.
 
 ## Possible Ways to Manage Configuration
 

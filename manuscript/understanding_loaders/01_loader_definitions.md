@@ -127,7 +127,7 @@ There's a query format that allows passing parameters to loaders:
 },
 ```
 
-It is good to note that this style of configuration works in entries and source imports too as webpack will pick it up. There are special cases where the format may come in handy, but often you are better off using more readable alternatives.
+It is good to note that this style of configuration works in entries and source imports too as webpack will pick it up. The format may come in handy in certain special cases, but often you are better off using more readable alternatives.
 
 It is preferable to use the combination of `loader` and `options` fields either like this:
 

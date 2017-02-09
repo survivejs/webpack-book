@@ -43,7 +43,7 @@ An alternate way to achieve the same result would be to generate static filename
 
 ## Setting Up Hashing
 
-There are a few places in the build we need to tweak to generate proper hashes. The production branch of the main configuration needs a tweak so that the output gets hashed per entry using `chunkhash`:
+The build needs tweaking in order to generate proper hashes. Images and fonts should receive `hash` while chunks should use `chunkhash` in their names to invalidate them correctly:
 
 **webpack.config.js**
 

@@ -1,6 +1,6 @@
 # Loading Fonts
 
-Loading fonts is a surprisingly tough problem. There are typically four font formats to worry about, each for a certain browser. Inlining all formats at once wouldn't be a particularly good idea. It is acceptable, and even preferable, during development. That said, there are a couple of production-specific strategies we can consider.
+Loading fonts is a surprisingly tough problem. Normally you have up to four font formats to worry about, each for a certain browser. You have a few strategies to consider.
 
 ## Choosing One Format
 
