@@ -4,7 +4,7 @@ Even though webpack is useful for bundling applications, it has its uses for pac
 
 ## Anatomy of an npm Package
 
-Most of the available npm packages are small and include just a select few files:
+Most of the available npm packages are small and include just a few files:
 
 * *index.js* - On small projects, it's enough to have the code at the root. On larger ones, you may want to start splitting it up further.
 * *package.json* - npm metadata in JSON format
