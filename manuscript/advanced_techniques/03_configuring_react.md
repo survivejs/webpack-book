@@ -372,7 +372,7 @@ If you run the application after these changes and modify the aforementioned fil
 
 ### Removing *react-hot-loader* Related Code from the Production Output
 
-If you build the application (`npm run build`) and examine the output, you might spot references to `__REACT_HOT_LOADER__` there. This is because of the Babel setup. It will use `react-hot-loader/babel` plugin regardless of the build target. In order to overcome this slight annoyance, we should configure babel to apply the plugin only when we are developing.
+If you build the application (`npm run build`) and examine the output, you might spot references to `__REACT_HOT_LOADER__` there. This is because of the Babel setup. It will use `react-hot-loader/babel` plugin regardless of the build target. In order to overcome this slight annoyance, we should configure Babel to apply the plugin only when we are developing.
 
 Babel provides an [env option](https://babeljs.io/docs/usage/babelrc/#env-option) for this purpose. It respects both `NODE_ENV` and `BABEL_ENV` environment variables. If `BABEL_ENV` is set, it will receive precedence. To fix the issue, we can push the problematic Babel plugin behind a development specific `env` while controlling its behavior within webpack configuration by setting `BABEL_ENV`.
 
