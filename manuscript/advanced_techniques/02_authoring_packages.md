@@ -232,7 +232,7 @@ It is better to generate a ES5 compatible version of the package for npm consume
 babel ./lib --out-dir ./dist-modules
 ```
 
-This will walk through the `./lib` directory and output a processed file for each library it encounters to `./dist-modules`.
+This will walk through the `./lib` directory and output to `./dist-modules` a processed file for each module it encounters.
 
 Since we want to avoid having to run the command directly whenever we publish a new version, we can connect it to `prepublish` hook like this:
 
