@@ -136,7 +136,7 @@ Even though `--env` allows us to pass strings to configuration, it can do a bit 
 "scripts": {
   "start": "webpack-dev-server --env development",
   "build": "webpack --env.target production"
-}
+},
 ...
 ```
 
