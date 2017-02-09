@@ -85,6 +85,7 @@ Perhaps the problem with HappyPack is that it couples your configuration with it
 There are a series of lower level optimizations that can become useful. The key is to allow webpack to perform less work. We've already implemented some of these, but it's a good idea to enumerate them:
 
 * Consider using faster source map variants during development or skip them. Particularly skipping is possible if you don't process the code in any way.
+* Use [babel-preset-env](https://www.npmjs.com/package/babel-preset-env) during development instead of source maps to transpile less features for modern browsers and make code more readable and easier to debug.
 * Skip polyfills during development. Attaching a package, such as [babel-polyfill](https://www.npmjs.com/package/babel-polyfill), to the development version of an application adds to the overhead.
 * Disable the portions of the application you don't need during development. It can be a valid idea to compile only a small portion you are working on as then you will have less to bundle.
 * Push bundles that change less to **Dynamically Loaded Libraries** (DLL) to avoid unnecessary processing. It's one more thing to worry about, but can lead to speed increases as there is less to bundle. The [official webpack example](https://github.com/webpack/webpack/tree/master/examples/dll-user) gets to the point while [Rob Knight's blog post](https://robertknight.github.io/posts/webpack-dll-plugins/) explains the idea further.
