@@ -101,7 +101,7 @@ const parts = require('./webpack.parts');
 
 const PATHS = {
   app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'build'),
+  build: path.join(__dirname, 'build')
 };
 
 const common = merge([
@@ -114,24 +114,24 @@ const common = merge([
     // convention by default so if a directory contains *index.js*,
     // it will resolve to that.
     entry: {
-      app: PATHS.app,
+      app: PATHS.app
     },
     output: {
       path: PATHS.build,
-      filename: '[name].js',
+      filename: '[name].js'
     },
     plugins: [
       new HtmlWebpackPlugin({
-        title: 'Webpack demo',
-      }),
-    ],
-  },
+        title: 'Webpack demo'
+      })
+    ]
+  }
 ]);
 
 function production() {
   return merge([
     common,
-    parts.lintJavaScript({ include: PATHS.app }),
+    parts.lintJavaScript({ include: PATHS.app })
   ]);
 }
 
@@ -141,21 +141,21 @@ function development() {
     {
       plugins: [
         new webpack.NamedModulesPlugin(),
-      ],
+      ]
     },
     parts.devServer({
       // Customize host/port here if needed
       host: process.env.HOST,
-      port: process.env.PORT,
+      port: process.env.PORT
     }),
     parts.lintJavaScript({
       include: PATHS.app,
       options: {
         // Emit warnings over errors to avoid crashing
         // HMR on error.
-        emitWarning: true,
-      },
-    }),
+        emitWarning: true
+      }
+    })
   ]);
 }
 

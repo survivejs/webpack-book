@@ -28,33 +28,33 @@ const webpack = require('webpack');
 module.exports = {
   // Where to start bundling
   entry: {
-    main: './entry.js',
+    main: './entry.js'
   },
   // Where to output
   output: {
     // Output to the same directory
     path: __dirname,
     // Capture name from the entry using a pattern.
-    filename: '[name].js',
+    filename: '[name].js'
   },
   // How to resolve encountered imports
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-      },
-    ],
+        use: ['style-loader', 'css-loader']
+      }
+    ]
   },
   // What extra processing to perform
   plugins: [
-    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.UglifyJsPlugin()
   ],
   // How to adjust module resolution
   resolve: {
     // This would be a good place to monkeypatch packages
-    alias: { ... },
-  },
+    alias: { ... }
+  }
 };
 ```
 
