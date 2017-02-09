@@ -220,7 +220,7 @@ Before starting to develop, it can be a good idea to spend a little bit of time 
 
 As of npm 2.7.0 it is possible to create [scoped packages](https://docs.npmjs.com/getting-started/scoped-packages). They follow format `@username/project-name`. Simply follow that when naming your project. This is a good way to grow packages.
 
-T> If you find a good name that appears to be abandoned, contact npm and they'll likely give it you if you ask nicely.
+T> If you find a good name that appears to be abandoned, contact npm and they'll likely give it if you ask nicely.
 
 ## npm Lifecycle Hooks
 
