@@ -2,14 +2,6 @@
 
 Facebook's [React](https://facebook.github.io/react/) is a popular alternative for developing web applications. Even if you don't use it, it can be valuable to understand how to configure it.
 
-## Get Started Fast with *create-react-app*
-
-The fastest way to get started with webpack and React is to use [create-react-app](https://www.npmjs.com/package/create-react-app). It encapsulates a lot of best practices and it is particularly useful if you want to get started with a little project fast with minimal setup.
-
-One of the main attractions of *create-react-app* is a feature known as *ejecting*. This means that instead of treating it as a project dependency, you'll get a full webpack setup out of it.
-
-There's a gotcha, though. After you eject, you cannot go back to the dependency-based model, and you will have to maintain the resulting setup yourself.
-
 ## Setting Up Babel with React
 
 The *Processing with Babel* chapter covers the essentials of using Babel with webpack. There's some React specific setup you should perform, though. Given most of React projects rely on [JSX](https://facebook.github.io/jsx/) format, you will have to enable it through Babel.
@@ -539,6 +531,14 @@ W> In webpack 1 you had to use `extensions: ['', '.js', '.jsx']` to match files 
 One way to structure React projects is to push components to directories which expose their code through a *index.js* file. Often that's just boilerplate code which you have to add for webpack to resolve correctly. [component-directory-webpack-plugin](https://www.npmjs.com/package/component-directory-webpack-plugin) has been designed to alleviate this problem and it allows you to skip *index.js* while performing lookups based on a naming convention.
 
 [create-index](https://www.npmjs.com/package/create-index) provides a different way to solve the same problem. It literally generates those boilerplate *index.js* files to your project and keeps them up to date.
+
+## Get Started Fast with *create-react-app*
+
+The fastest way to get started with webpack and React is to use [create-react-app](https://www.npmjs.com/package/create-react-app). It encapsulates a lot of best practices and it is particularly useful if you want to get started with a little project fast with minimal setup.
+
+One of the main attractions of *create-react-app* is a feature known as *ejecting*. This means that instead of treating it as a project dependency, you'll get a full webpack setup out of it.
+
+There's a gotcha, though. After you eject, you cannot go back to the dependency-based model, and you will have to maintain the resulting setup yourself.
 
 ## Conclusion
 
