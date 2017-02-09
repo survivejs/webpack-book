@@ -64,7 +64,7 @@ You can set the default range using `npm config set save-prefix='^'` in case you
 
 ## Shrinkwrapping Versions
 
-Using version ranges can feel a little dangerous as it doesn't take much to break an application. A single change in the wrong place is enough. [npm shrinkwrap](https://docs.npmjs.com/cli/shrinkwrap) allows you to fix your dependency versions and have stricter control over the versions you are using in a production environment.
+Using version ranges can feel a little dangerous as it doesn't take much to break an application. A single change in the wrong place is enough. [npm shrinkwrap](https://docs.npmjs.com/cli/shrinkwrap) allows you to fix your dependency versions and have stricter control over the versions you are using in a production environment. Most importantly it fixes the dependencies of your dependencies avoiding accidental breakage due to version changes and SemVer.
 
 [lockdown](https://www.npmjs.com/package/lockdown) goes further and gives guarantees about dependency content, not just version. [shrinkpack](https://www.npmjs.com/package/shrinkpack) is another interesting complementary option.
 
@@ -218,6 +218,10 @@ We'll use this technique in the *Configuring React* chapter to enable React perf
 Even though it's easy to consume packages through npm, there are times when it's useful to have more information available. npm provides `npm info <package>` command for basic queries. You can use it to check the metadata associated to packages while figuring out version related information.
 
 [package-config-checker](https://www.npmjs.com/package/package-config-checker) goes a step further. It allows you to understand better which packages of your project have updated recently and it provides means to get insight into your dependencies. It can reveal which packages could use download size related improvements for example.
+
+[slow-deps](https://www.npmjs.com/package/slow-deps) can reveal which dependencies of a project are the slowest to install.
+
+[weigh](https://www.npmjs.com/package/weigh) can be used figure out the approximate size of a package when it's served to a browser in various ways (uncompressed, minified, gzipped).
 
 [npms.io](https://npms.io/) provides a better search for npm. The basic search has been integrated to [npmjs.org](https://www.npmjs.com/), but npms.io can still be interesting especially because they expose their data through [a public API](https://api-docs.npms.io/) you can query programmatically.
 
