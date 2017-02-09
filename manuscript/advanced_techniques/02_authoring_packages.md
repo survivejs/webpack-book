@@ -81,7 +81,7 @@ I've annotated a part of *package.json* of my [React component boilerplate](http
   "main": "dist-modules/",
 
   /* ES6 entry point for bundlers to pick up. */
-  /* This assumes only standard features are used! */
+  /* This assumes only standard ES6 features are used! */
   "module": "dist/",
 
   /* Files to include to npm distribution. */
