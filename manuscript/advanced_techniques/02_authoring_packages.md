@@ -425,7 +425,7 @@ W> Relying on `postinstall` scripts can be [potentially dangerous](http://blog.n
 
 ### Deprecating, Unpublishing, and Renaming Packages
 
-It is possible that at some point in time your package reaches end of its life. Another package might replace it or it simply might become obsolete. For this purpose npm provides [npm deprecate](https://docs.npmjs.com/cli/deprecate) command. You can state `npm deprecate foo@"< 0.4.0" "Use bar package instead"`.
+It is possible that your package reaches end of its life. Another package might replace it or it simply might become obsolete. For this purpose npm provides [npm deprecate](https://docs.npmjs.com/cli/deprecate) command. You can state `npm deprecate foo@"< 0.4.0" "Use bar package instead"`.
 
 You can deprecate a range like this or a whole package by skipping the range. Given mistakes happen, you can undeprecate a package by providing an empty message.
 
