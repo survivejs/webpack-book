@@ -188,7 +188,7 @@ Both these tools rely on commit message annotations. On small projects, you migh
 
 This metadata lets the tooling to figure out the types of the changes you made. It can help even with changelog generation and allow automated releases over manual ones. Annotating your commits well is a good practice in any case as it will make it easier to debug your code later.
 
-Given SemVer can be a little tricky to manage, a backwards compatible alternative named [ComVer](https://github.com/staltz/comver) has been developed. The versioning scheme can be described as `<not compatible>.<compatible>`. Every time you make a change that's not compatible with an earlier version, you'll bump the first number. Otherwise you will bump the other.
+T> The *Consuming Packages* explains the idea of SemVer in greater detail.
 
 ### Publishing a Prerelease Version
 
