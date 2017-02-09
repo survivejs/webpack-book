@@ -127,7 +127,7 @@ module.exports = function PurifyPlugin(options) {
 };
 ```
 
-Even though this is a simple plugin, it took quite a bit of code to achieve a basic implementation. It would be possible to decompose the plugin logic further although it is currently in a quite manageable shape. There are a few additional notes that are good to make based on the implementation:
+Even though this is a simple plugin, it took a lot of effort to achieve a basic implementation. It would be possible to decompose the plugin logic further although it is currently in a manageable shape. There are additional observations that are good to make based on the implementation:
 
 * The plugin output has been wrapped in callbacks. This way output related logic is performed only if output (the `verbose` flag) has been enabled. It is possible webpack will receive better logging facilities of its own in the future. For now, you can log warnings and errors through `compilation.warnings.push(new Error(...))` and `compilation.errors.push(...)` interface.
 * The plugin has been written in functional style as much as possible. The individual helper functions have been tested thoroughly and written in a test driven manner.

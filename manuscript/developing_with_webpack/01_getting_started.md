@@ -18,13 +18,13 @@ cd webpack-demo
 npm init -y # -y generates *package.json*, skip for more control
 ```
 
-You can tweak the generated *package.json* manually to make further changes to it. We'll be doing some changes through *npm* tool, but manual tweaks are acceptable. The official documentation explains various [package.json options](https://docs.npmjs.com/files/package.json) in more detail.
+You can tweak the generated *package.json* manually to make further changes to it. We'll be doing some changes through *npm* tool, but manual tweaks are acceptable. The official documentation explains [package.json options](https://docs.npmjs.com/files/package.json) in more detail.
 
 T> You can set those `npm init` defaults at *~/.npmrc*.
 
 T> This is a good place to set up version control using [Git](https://git-scm.com/). You can create a commit per step and tag per chapter so it's easier to move back and forth if you want.
 
-T> It is possible to replace most of the npm commands mentioned with [Yarn](https://yarnpkg.com/) equivalents. Yarn is a good alternative to npm as it comes with a few unique benefits including *lockfiles* and better performance.
+T> It is possible to replace most of the npm commands mentioned with [Yarn](https://yarnpkg.com/) equivalents. Yarn is a good alternative to npm as it comes with unique benefits including *lockfiles* and better performance.
 
 ## Installing Webpack
 
@@ -238,7 +238,7 @@ T> [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) can be use
 
 [html-webpack-template](https://www.npmjs.com/package/html-webpack-template) or [html-webpack-template-pug](https://www.npmjs.com/package/html-webpack-template-pug) complement *html-webpack-plugin* and provide more powerful templates to use with it.
 
-There are also specific plugins that extend *html-webpack-plugin*'s functionality. I've listed a few of these below:
+There are also specific plugins that extend *html-webpack-plugin*'s functionality. I've listed examples of these below:
 
 * [favicons-webpack-plugin](https://www.npmjs.com/package/favicons-webpack-plugin) is able to generate favicons.
 * [script-ext-html-webpack-plugin](https://www.npmjs.com/package/script-ext-html-webpack-plugin) gives you more control over script tags and allows you to tune script loading further.

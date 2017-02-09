@@ -63,7 +63,7 @@ index.html  218 bytes          [emitted]
 ...
 ```
 
-As you can see, the size of the CSS file grew quite a bit. This is something we'll fix next with PurifyCSS.
+As you can see, the size of the CSS file grew. This is something we'll fix next with PurifyCSS.
 
 ## Enabling PurifyCSS
 
@@ -146,7 +146,7 @@ index.html  218 bytes          [emitted]
 ...
 ```
 
-The size of our style has decreased significantly. Instead of 16k we have roughly 2k now. The difference would be even bigger for heavier CSS frameworks.
+The size of our style has decreased noticeably. Instead of 16k we have roughly 2k now. The difference would be even bigger for heavier CSS frameworks.
 
 T> PurifyCSS supports [additional options](https://github.com/purifycss/purifycss#the-optional-options-argument) including `minify`. You can enable these through the `purifyOptions` field when instantiating the plugin.
 

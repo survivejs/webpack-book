@@ -2,7 +2,7 @@
 
 As we've seen so far, loaders are one of the building blocks of webpack. If you want to load an asset, you'll most likely need to set up a matching loader definition. Even though there are a lot of [available loaders](https://webpack.js.org/loaders/), it is possible you are missing one fitting your purposes.
 
-The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API fairly well. To give you a concrete example, I'm going to discuss a subset of a loader I have developed. [highlight-loader](https://github.com/bebraw/highlight-loader) accepts HTML and then applies [highlight.js](https://highlightjs.org/) on it. Even though the transformation itself is quite simple, the loader implementation isn't trivial.
+The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API well. To give you a concrete example, I'm going to discuss a subset of a loader I have developed. [highlight-loader](https://github.com/bebraw/highlight-loader) accepts HTML and then applies [highlight.js](https://highlightjs.org/) on it. Even though the transformation itself is simple, the loader implementation isn't trivial.
 
 ## Setting Up a Loader Project
 
@@ -22,7 +22,7 @@ I follow the following layout in my loader project:
 └── test.js          - Tests
 ```
 
-This is a fairly standard way to write a small Node package. I actually started by developing a basic example first and added tests later. Writing tests first can be a good idea, though, as it gives you a specification which you can use to validate your implementation.
+This is a standard way to write a small Node package. I actually started by developing a basic example first and added tests later. Writing tests first can be a good idea, though, as it gives you a specification which you can use to validate your implementation.
 
 I'll give you a basic testing setup next and then discuss my loader implementation.
 

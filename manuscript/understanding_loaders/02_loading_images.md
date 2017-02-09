@@ -1,6 +1,6 @@
 # Loading Images
 
-The easiest way to make your application slow is to load a lot of small assets. Each request comes with an overhead. HTTP/2 will help in this regard and change the situation somewhat drastically. Till then we are stuck with different approaches. Webpack allows a few of these. They are particularly relevant for loading images.
+The easiest way to make your application slow is to load a lot of small assets. Each request comes with an overhead. HTTP/2 will help in this regard and change the situation somewhat drastically. Till then we are stuck with different approaches. Webpack allows a couple of these. They are particularly relevant for loading images.
 
 Webpack allows you to inline assets by using [url-loader](https://www.npmjs.com/package/url-loader). It will output your images as base64 strings within your JavaScript bundles. This will decrease the number of requests needed while growing the bundle size. It is enough to use *url-loader* during development. You may want to consider other alternatives for the production build, though.
 
@@ -123,7 +123,7 @@ The CSS lookup works because of *css-loader*. You can also try importing the ima
 
 ## Loading SVGs
 
-Webpack has a [few ways](https://github.com/webpack/webpack/issues/595) to load SVGs. However, the simplest way is through *file-loader* as follows:
+Webpack allows a [couple ways](https://github.com/webpack/webpack/issues/595) to load SVGs. However, the simplest way is through *file-loader* as follows:
 
 ```javascript
 {

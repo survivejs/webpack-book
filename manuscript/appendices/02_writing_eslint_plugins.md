@@ -10,7 +10,7 @@ T> [Codemod](https://github.com/facebook/codemod) allows you to perform large sc
 
 ## Writing a Plugin
 
-In ESLint's case we just want to check the structure and report in case something is wrong. Getting a simple rule done is surprisingly simple:
+In ESLint's case we just want to check the structure and report in case something is wrong. Getting a simple rule done is simple:
 
 1. Set up a new project named `eslint-plugin-custom`. You can replace `custom` with whatever you want. ESLint follows this naming convention.
 2. Execute `npm init -y` to create a dummy *package.json*

@@ -1,8 +1,8 @@
 # Performance
 
-Webpack's performance out of the box is often enough for small projects. That said, it begins to hit limits as your project grows in scale. It is a common topic in webpack's issue tracker. [Issue 1905](https://github.com/webpack/webpack/issues/1905) is a good example. You can look into several directions when performance becomes a concern.
+Webpack's performance out of the box is often enough for small projects. That said, it begins to hit limits as your project grows in scale. It is a common topic in webpack's issue tracker. [Issue 1905](https://github.com/webpack/webpack/issues/1905) is a good example.
 
-There are a few basic rules when it comes to optimization:
+There are a couple of basic rules when it comes to optimization:
 
 1. Know what to optimize.
 2. Perform easy tweaks first.
@@ -165,4 +165,4 @@ W> Not all modules support `module.noParse`, the files included by deps array sh
 
 ## Conclusion
 
-You can optimize webpack's performance in many ways. Often it's a good idea to start with easier techniques before moving to more involved ones. The exact techniques you have to apply depend on the project.
+You can optimize webpack's performance in multiple ways. Often it's a good idea to start with easier techniques before moving to more involved ones. The exact techniques you have to apply depend on the project.

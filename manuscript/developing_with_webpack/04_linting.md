@@ -14,7 +14,7 @@ ESLint goes to the next level as it allows you to implement custom rules, parser
 
 ESLint rules have been documented well, and you have full control over their severity. These features alone make it a powerful tool. Better yet, there is a large number of rules and presets beyond the core as the community has built on top of it.
 
-T> It is quite telling that a competing project, JSCS, [decided to merge its efforts with ESLint](http://eslint.org/blog/2016/04/welcoming-jscs-to-eslint). JSCS reached the end of its life with its 3.0.0 release and the core team joined with ESLint.
+T> It is telling that a competing project, JSCS, [decided to merge its efforts with ESLint](http://eslint.org/blog/2016/04/welcoming-jscs-to-eslint). JSCS reached the end of its life with its 3.0.0 release and the core team joined with ESLint.
 
 ### eslint-config-airbnb
 
@@ -228,7 +228,7 @@ I've collected assorted ESLint tips below. The great thing about ESLint is that 
 
 ## Webpack and JSHint
 
-Interestingly, no JSLint loader seems to exist for webpack yet. Fortunately, there's one for JSHint. You could set it up on a legacy project easily. The key is in configuring [jshint-loader](https://www.npmjs.com/package/jshint-loader).
+No JSLint specific loader exists for webpack yet. Fortunately, there's one for JSHint. You could set it up on a legacy project easily. The key is in configuring [jshint-loader](https://www.npmjs.com/package/jshint-loader).
 
 JSHint will look into specific rules to apply from `.jshintrc`. You can also define custom settings within a `jshint` object at your webpack configuration. Exact configuration options have been covered at [the JSHint documentation](http://jshint.com/docs/) in detail.
 
@@ -265,6 +265,6 @@ T> [Danger](https://github.com/danger/danger-js) operates on a higher level than
 
 ## Conclusion
 
-In this chapter, you learned how to lint your code using webpack in various ways. It is one of those techniques that yields benefits over the long term. You can fix possible problems before they become actual issues.
+In this chapter, you learned how to lint your code using webpack in different ways. It is one of those techniques that yields benefits over the long term. You can fix possible problems before they become actual issues.
 
 Given webpack configuration of our project is starting to get a little messy, and it won't get any easier should we extend it, it is a good time to discuss how to compose configuration and improve the situation further. We'll do that in the next chapter.

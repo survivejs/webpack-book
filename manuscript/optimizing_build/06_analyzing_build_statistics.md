@@ -61,7 +61,7 @@ This technique can be useful if you want to do further processing on stats altho
 
 ## Available Analysis Tools
 
-Even though having a look at the file itself gives you some idea of what's going on, often it's preferable to use a specific tool for that. I've listed a few alternatives below.
+Even though having a look at the file itself gives you some idea of what's going on, often it's preferable to use a specific tool for that. I've listed alternatives below.
 
 ### The Official Analyse Tool
 
@@ -140,7 +140,7 @@ $ inspectpack --action=duplicates --bundle=bundle.js
 
 ## Independent Tools
 
-In addition to tools that work with webpack output, there are a few that are webpack agnostic and worth a mention.
+In addition to tools that work with webpack output, there are a couple that are webpack agnostic and worth a mention.
 
 ### source-map-explorer
 

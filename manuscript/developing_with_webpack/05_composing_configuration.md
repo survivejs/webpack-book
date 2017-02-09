@@ -14,7 +14,7 @@ You can manage webpack configuration in the following ways:
 
 These approaches can be combined. You can end up with a higher level configuration that's then composed from smaller parts. Those parts could go to a library which you then consume through npm. This would allow consuming the same configuration across multiple projects.
 
-This is the approach we'll use in this book to discuss through various techniques. *webpack.config.js* will maintain higher level configuration while *webpack.parts.js* will contain the building blocks.
+This is the approach we'll use in this book to discuss through different techniques. *webpack.config.js* will maintain higher level configuration while *webpack.parts.js* will contain the building blocks.
 
 ## Composing Configuration by Merging
 
@@ -182,7 +182,7 @@ Even though a simple technique, splitting configuration this way makes room for 
 
 This is one way to decrease the amount of boilerplate fatigue. Instead of duplicating similar configuration across multiple projects, you can manage configuration as a dependency. This means that as you figure out better ways to perform tasks, all your projects will receive the improvements.
 
-Each approach comes with its pros and cons. I am comfortable with the composition-based approach myself, although I can see merit in others as well. In addition to composition, it gives me a fairly limited amount of code to scan through, but it's a good idea to check out how other people do it too. You'll find something that works the best based on your tastes.
+Each approach comes with its pros and cons. I am comfortable with the composition-based approach myself, although I can see merit in others as well. In addition to composition, it gives me a limited amount of code to scan through, but it's a good idea to check out how other people do it too. You'll find something that works the best based on your tastes.
 
 Perhaps the biggest problem is that with composition you need to know what you are doing, and it is possible you won't get the composition right the first time around. But that's a software engineering problem that goes beyond webpack. You can always iterate on the interfaces and find better ones.
 
@@ -190,9 +190,7 @@ T> If you have to support both webpack 1 and 2, you can perform branching based 
 
 ## Configuration Layouts
 
-In the book project we'll push all of our configuration to two files: *webpack.config.js* and *webpack.parts*. The former contains higher level configuration while the latter lower level. It isolates us from some details of webpack, but it can also grow quite big.
-
-The chose approach allows more layouts and you can evolve it further. Consider the following directions.
+In the book project we'll push all of our configuration to two files: *webpack.config.js* and *webpack.parts*. The former contains higher level configuration while the latter lower level. It isolates us from some details of webpack, but it can also grow big. Fortunately the chosen approach allows more layouts and you can evolve it further. Consider the following directions.
 
 ### Split per Configuration Target
 
@@ -233,4 +231,4 @@ Given all configuration is JavaScript, nothing prevents us from consuming it as 
 
 ## Conclusion
 
-Even though the configuration is technically the same as before, now we have room to grow it. The next parts of this book will cover various techniques and *webpack.parts.js* will see a lot of action as a result. The changes to *webpack.config.js* will fortunately remain minimal.
+Even though the configuration is technically the same as before, now we have room to grow it. The next parts of this book will cover different techniques and *webpack.parts.js* will see a lot of action as a result. The changes to *webpack.config.js* will fortunately remain minimal.

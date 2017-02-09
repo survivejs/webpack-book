@@ -4,7 +4,7 @@ Sometimes a part of your code should execute only during development. Or you mig
 
 As JavaScript minifiers can remove dead code (`if (false)`), we can build on top of this idea and write code that gets transformed into this form. Webpack's `DefinePlugin` enables replacing **free variables** so that we can convert `if (process.env.NODE_ENV === 'development')` kind of code to `if (true)` or `if (false)` depending on the environment.
 
-Many packages rely on this behavior. React is perhaps the most known example of an early adopter of the technique. Using `DefinePlugin` can bring down the size of your React production build somewhat as a result and you may see a similar effect with other packages as well.
+You can find packages that rely on this behavior. React is perhaps the most known example of an early adopter of the technique. Using `DefinePlugin` can bring down the size of your React production build somewhat as a result and you may see a similar effect with other packages as well.
 
 ## The Basic Idea of `DefinePlugin`
 
@@ -182,7 +182,7 @@ T> A related technique, **aliasing**, is discussed in the *Consuming Packages* c
 
 ## Webpack Optimization Plugins
 
-Webpack includes a collection of optimization related plugins, some of which we'll cover in greater detail in this book. In addition there are a few outside the core. I've listed the most important ones below:
+Webpack includes a collection of optimization related plugins, some of which we'll cover in greater detail in this book. In addition there are some outside the core. I've listed the most important ones below:
 
 * [compression-webpack-plugin](https://www.npmjs.com/package/compression-webpack-plugin) allows you to push the problem of generating compressed files to webpack. This can potentially save processing time on the server.
 * `webpack.optimize.UglifyJsPlugin` allows you to minify output using different heuristics. Some of them might break code unless you are careful.

@@ -160,7 +160,7 @@ T> The length of hashes has been clamped to eight characters to fit the output t
 
 As you might remember, webpack uses number based IDs for the module code it generates. The problem is that they are difficult to work with and can lead to difficult to debug issues particularly with hashing. Just as we did with the development setup earlier, we can perform a simplification here as well.
 
-Webpack provides `HashedModuleIdsPlugin` that is like `NamedModulesPlugin` except it hashes the result and hides the path information. This keeps module IDs stable as they aren't derived based on order. We sacrifice a few bytes for a cleaner setup, but the trade-off is well worth it.
+Webpack provides `HashedModuleIdsPlugin` that is like `NamedModulesPlugin` except it hashes the result and hides the path information. This keeps module IDs stable as they aren't derived based on order. We sacrifice a couple of bytes for a cleaner setup, but the trade-off is well worth it.
 
 The change required is simple. Tweak the configuration as follows:
 

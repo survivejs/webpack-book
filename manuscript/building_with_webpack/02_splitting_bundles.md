@@ -58,7 +58,7 @@ fontawesome-webfont.woff2    77.2 kB          [emitted]
 ...
 ```
 
-As you can see, *app.js* is quite big. This is exactly what we wanted. We must do something about this next.
+As you can see, *app.js* is big. This is exactly what we wanted. We must do something about this next.
 
 ## Setting Up a `vendor` Bundle
 
@@ -112,7 +112,7 @@ fontawesome-webfont.woff2    77.2 kB          [emitted]
 ...
 ```
 
-*app.js* and *vendor.js* have separate chunk IDs right now given they are entry chunks of their own. The output size is a little off, though. *app.js* should be significantly smaller to attain our goal with this build.
+*app.js* and *vendor.js* have separate chunk IDs right now given they are entry chunks of their own. The output size is a little off, though. Intuitively *app.js* should be smaller to attain our goal with this build.
 
 If you examine the resulting bundle, you can see that it contains React given that's how the default definition works. Webpack pulls the related dependencies to a bundle by default as illustrated by the image below:
 
@@ -297,7 +297,7 @@ Sometimes having only an app and a vendor bundle isn't enough. Especially as you
 
 Webpack provides more control over the generated chunks by providing two plugins: `AggressiveSplittingPlugin` and `AggressiveMergingPlugin`. The former is particularly interesting as it allows you to emit more and smaller bundles. This is especially useful with HTTP/2 due to the way the new standard works.
 
-There's a trade-off involved as you'll lose out in caching if you split to many small bundles. You also get request overhead in HTTP/1 environment. For now, the approach doesn't work when `HtmlWebpackPlugin` is enabled due to [a bug in the plugin](https://github.com/ampedandwired/html-webpack-plugin/issues/446).
+There's a trade-off involved as you'll lose out in caching if you split to multiple small bundles. You also get request overhead in HTTP/1 environment. For now, the approach doesn't work when `HtmlWebpackPlugin` is enabled due to [a bug in the plugin](https://github.com/ampedandwired/html-webpack-plugin/issues/446).
 
 Here's the basic idea of aggressive splitting:
 
@@ -333,7 +333,7 @@ T> `webpack.optimize.LimitChunkCountPlugin` and `webpack.optimize.MinChunkSizePl
 
 ## Chunk Types in Webpack
 
-In the example above, we used several types of webpack chunks. As [discussed in the documentation](https://webpack.github.io/docs/code-splitting.html#chunk-types), internally webpack treats chunks in three types:
+In the example above, we used different types of webpack chunks. As [discussed in the documentation](https://webpack.github.io/docs/code-splitting.html#chunk-types), internally webpack treats chunks in three types:
 
 * **Entry chunks** - Entry chunks contain webpack runtime and modules it then loads.
 * **Normal chunks** - Normal chunks **don't** contain webpack runtime. Instead, these can be loaded dynamically while the application is running. A suitable wrapper (JSONP for example) is generated for these. We'll generate a normal chunk in the next chapter as we set up code splitting.

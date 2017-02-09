@@ -2,7 +2,7 @@
 
 We haven't given thought to our build output yet and no doubt it's going to be a little chunky, especially as we included React in it. We can apply a variety of techniques to bring down the size of the vendor bundle. We can also leverage client level caching and load certain assets lazily as we saw earlier.
 
-**Minification** is a process where code is simplified without losing any meaning that matters to the interpreter. As a result, your code will most likely look quite jumbled and it will be hard to read. But that's the point.
+**Minification** is a process where code is simplified without losing any meaning that matters to the interpreter. As a result, your code will most likely look jumbled and it will be hard to read. But that's the point.
 
 T> Even if we minify our build, we can still generate source maps through the `devtool` option we discussed earlier. This will give us better means to debug, even production code if we want.
 
@@ -36,7 +36,7 @@ fontawesome-webfont.woff2    77.2 kB          [emitted]
 ...
 ```
 
-142 kB for a vendor bundle is a lot! Minification should bring down the size quite a bit.
+142 kB for a vendor bundle is a lot! Minification should bring the size down.
 
 ## Enabling a Performance Budget
 
@@ -181,7 +181,7 @@ fontawesome-webfont.woff2    77.2 kB          [emitted]  [big]
 ...
 ```
 
-Given it needs to do more work, it took longer to execute the build. But on the plus side the build is significantly smaller now and our vendor build went from 141 kB to roughly 42 kB.
+Given it needs to do more work, it took longer to execute the build. But on the plus side the build is now smaller and our vendor build went from 141 kB to roughly 42 kB.
 
 T> UglifyJS warnings can help you to understand how it processes the code. Therefore, it may be beneficial to have a peek at the full output every once in a while.
 
@@ -333,4 +333,4 @@ fontawesome-webfont.woff2    77.2 kB          [emitted]  [big]
 
 ## Conclusion
 
-Minification is the simplest step you can take to make your build smaller. However, there are a few more tricks we can perform.
+Minification is the simplest step you can take to make your build smaller. However, there are more tricks we can perform.

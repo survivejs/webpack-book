@@ -1,6 +1,6 @@
 # Loader Definitions
 
-Webpack provides multiple ways to set up module loaders. Webpack 2 simplified the situation by introducing a the `use` field. The legacy options (`loader` and `loaders`) still work, though. I'll discuss all the options for completeness, as you may see them in various configurations out there.
+Webpack provides multiple ways to set up module loaders. Webpack 2 simplified the situation by introducing a the `use` field. The legacy options (`loader` and `loaders`) still work, though. I'll discuss all the options for completeness, as you may see them in existing configurations.
 
 It can be a good idea to prefer absolute paths here as they allow you to move configuration without breaking assumptions. The other option is to set `context` field as this gives a similar effect and affects the way entry points and loaders are resolved. It won't affect the output, though, and you still need to use an absolute path or `/` there.
 

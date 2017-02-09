@@ -243,7 +243,7 @@ export default function () {
 
 T> [bundle-loader](https://www.npmjs.com/package/bundle-loader) gives similar results, but through a loader interface.
 
-T> The *Dynamic Loading* appendix covers a few other techniques that come in handy when you have to deal with more dynamic splits.
+T> The *Dynamic Loading* appendix covers other techniques that come in handy when you have to deal with more dynamic splits.
 
 ## Code Splitting in React
 

@@ -72,7 +72,7 @@ Using version ranges can feel a little dangerous as it doesn't take much to brea
 
 ## Keeping Dependencies Up to Date
 
-An important part of maintaining a project is keeping their dependencies up to date. How to do this depends a lot on the maturity of your project. Ideally, you have a nice set of tests covering the functionality. If not, things can get a little hairier. There are a few ways to approach dependency updates:
+An important part of maintaining a project is keeping their dependencies up to date. How to do this depends a lot on the maturity of your project. Ideally, you have a nice set of tests covering the functionality. If not, things can get a little hairier. You can consider the following approaches:
 
 * You can update all dependencies at once and hope for the best. Tools, such as [npm-check-updates](https://www.npmjs.com/package/npm-check-updates), [npm-check](https://www.npmjs.com/package/npm-check), [npm-upgrade](https://www.npmjs.com/package/npm-upgrade), or [updtr](https://www.npmjs.com/package/updtr), can do this for you.
 * Install the newest version of some specific dependency, e.g., `npm install lodash@* --save`. This is a more controlled way to approach the problem.
@@ -84,7 +84,7 @@ T> `npm ls`, and more specifically `npm ls <package name>`, allow you to figure 
 
 ## Tracking Dependencies
 
-There are a few services that can help you to keep track of your dependencies:
+There are certain services that can help you to keep track of your dependencies:
 
 * [David](https://david-dm.org/)
 * [versioneye](https://www.versioneye.com/)
@@ -221,7 +221,7 @@ Even though it's easy to consume packages through npm, there are times when it's
 
 [slow-deps](https://www.npmjs.com/package/slow-deps) can reveal which dependencies of a project are the slowest to install.
 
-[weigh](https://www.npmjs.com/package/weigh) can be used figure out the approximate size of a package when it's served to a browser in various ways (uncompressed, minified, gzipped).
+[weigh](https://www.npmjs.com/package/weigh) can be used figure out the approximate size of a package when it's served to a browser in different ways (uncompressed, minified, gzipped).
 
 [npms.io](https://npms.io/) provides a better search for npm. The basic search has been integrated to [npmjs.org](https://www.npmjs.com/), but npms.io can still be interesting especially because they expose their data through [a public API](https://api-docs.npms.io/) you can query programmatically.
 

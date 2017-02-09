@@ -1,10 +1,10 @@
 # Authoring Packages
 
-Even though webpack is useful for bundling applications, it has its uses for package authors as well. You can use it to generate a site for your package and maintain the distribution files using it. It supports the [UMD format](https://github.com/umdjs/umd). UMD is compatible with various environments (CommonJS, AMD, globals) making it good for distribution purposes.
+Even though webpack is useful for bundling applications, it has its uses for package authors as well. You can use it to generate a site for your package and maintain the distribution files using it. It supports the [UMD format](https://github.com/umdjs/umd). UMD is compatible with multiple environments (CommonJS, AMD, globals) making it good for distribution purposes.
 
 ## Anatomy of an npm Package
 
-Most of the available npm packages are small and include just a few files:
+Most of the available npm packages are small and include only a couple of files:
 
 * *index.js* - On small projects, it's enough to have the code at the root. On larger ones, you may want to start splitting it up further.
 * *package.json* - npm metadata in JSON format
@@ -22,13 +22,13 @@ In larger projects, you may find the following:
 * *.eslintrc* - Linting rules. You can use *.jshintrc* and such based on your preferences.
 * *webpack.config.js* - If you are using a simple setup, you might as well have the configuration at project root.
 
-In addition, you'll likely have various directories for source, tests, demos, documentation, and so on.
+In addition, you'll likely have separate directories for source, tests, demos, documentation, and so on.
 
 T> If you want to decrease the size of your dependencies, consider using a tool like [package-config-checker](https://www.npmjs.com/package/package-config-checker). It can pinpoint packages not using the `files` field correctly. Once you know which ones haven't set it, you can consider making Pull Requests (PRs) to those projects.
 
 ## Understanding *package.json*
 
-All packages come with a *package.json* that describes metadata related to them. This includes information about the author, various links, dependencies, and so on. The [official documentation](https://docs.npmjs.com/files/package.json) covers them in detail.
+All packages come with a *package.json* that describes metadata related to them. This includes information about the author, links, dependencies, and so on. The [official documentation](https://docs.npmjs.com/files/package.json) covers them in detail.
 
 I've annotated a part of *package.json* of my [React component boilerplate](https://github.com/survivejs/react-component-boilerplate) below:
 
@@ -136,7 +136,7 @@ T> JSON doesn't support comments even though I'm using them above. There are ext
 
 ## npm Workflow
 
-Working with npm is surprisingly simple. To get started, you will need to use [npm adduser](https://docs.npmjs.com/cli/adduser). It allows you to set up an account. After this process has completed, it will create *~/.npmrc* and use that data for authentication. There's also [npm logout](https://docs.npmjs.com/cli/logout) that will clear the credentials.
+Working with npm is simple. To get started, you will need to use [npm adduser](https://docs.npmjs.com/cli/adduser). It allows you to set up an account. After this process has completed, it will create *~/.npmrc* and use that data for authentication. There's also [npm logout](https://docs.npmjs.com/cli/logout) that will clear the credentials.
 
 T> When creating a project, `npm init` respects the values set at *~/.npmrc*. Hence, it may be worth your while to set reasonable defaults there to save some time. If you want to limit your package to a specific scope, use `npm init --scope=<scope>`. As a result, you will get `@<scope>/<package>`. This is handy, especially for personal packages since the default namespace of npm is so crowded.
 
@@ -152,7 +152,7 @@ T> [np](https://www.npmjs.com/package/np) gives an interactive UI for publishing
 
 ### What Files to Publish to npm?
 
-Even though a project can contain a lot of files, not all of them should be published. Besides wasting bandwidth, this can leak personal files to a public registry. This is the reason why it is an excellent idea to maintain a [files](https://docs.npmjs.com/files/package.json#files) array at *package.json* and enumerate which files and directories you want to publish.
+Even though a project can contain a lot of files, not all of them should be published. Besides wasting bandwidth, this can leak personal files to a public registry. This is the reason why it is a good idea to maintain a [files](https://docs.npmjs.com/files/package.json#files) array at *package.json* and enumerate which files and directories you want to publish.
 
 You can't find an official recommendation on what files to publish. That said, there are some points to consider as [discussed in Stack Overflow](https://stackoverflow.com/questions/25124844/should-i-npmignore-my-tests).
 
@@ -216,7 +216,7 @@ T> It can be useful to utilize [npm link](https://docs.npmjs.com/cli/link) durin
 
 ### On Naming Packages
 
-Before starting to develop, it can be a good idea to spend a little bit of time on figuring out a good name for your package. It's not very fun to write a great package just to notice the name has been taken. A good name is easy to find through a search engine, and most importantly, is available at npm.
+Before starting to develop, it can be a good idea to spend a little bit of time on figuring out a good name for your package. It's not fun to write a great package just to notice the name has been taken. A good name is easy to find through a search engine, and most importantly, is available at npm.
 
 As of npm 2.7.0 it is possible to create [scoped packages](https://docs.npmjs.com/getting-started/scoped-packages). They follow format `@username/project-name`. Simply follow that when naming your project. This is a good way to grow packages.
 
@@ -224,7 +224,7 @@ T> If you find a good name that appears to be abandoned, contact npm and they'll
 
 ## npm Lifecycle Hooks
 
-npm provides various lifecycle hooks that can be useful. Suppose you are authoring a React component using Babel and some of its goodies. You could let the *package.json* `main` field point at the UMD version as generated above. However, this won't be ideal for those consuming the library through npm.
+npm provides a collection of lifecycle hooks that can be useful. Suppose you are authoring a React component using Babel and some of its goodies. You could let the *package.json* `main` field point at the UMD version as generated above. However, this won't be ideal for those consuming the library through npm.
 
 It is better to generate a ES5 compatible version of the package for npm consumers. This can be achieved using **babel** command line tool:
 
@@ -266,7 +266,7 @@ It is important to note that in npm 3 `prepublish` hook will get triggered also 
 
 As packages evolve, you may want to start developing with others. You could become the new maintainer of some project, or pass the torch to someone else. These things happen as packages evolve.
 
-npm provides a few commands for these purposes. It's all behind `npm owner` namespace. More specifically, you'll find `npm owner ls <package name>`, `npm owner add <user> <package name>` and `npm owner rm <user> <package name>` there. That's about it.
+npm provides certain commands for these purposes. It's all behind `npm owner` namespace. More specifically, you'll find `npm owner ls <package name>`, `npm owner add <user> <package name>` and `npm owner rm <user> <package name>` there. That's about it.
 
 See [npm documentation](https://docs.npmjs.com/cli/owner) for the most up to date information about the topic.
 

@@ -185,7 +185,7 @@ It is possible WDS [will support the functionality](https://github.com/webpack/w
 
 ## Useful Development Plugins
 
-As webpack plugin ecosystem is quite diverse, there are a lot of plugins that can help specifically with development. I've listed a few of these below to give you a better idea of what's available:
+As webpack plugin ecosystem is diverse, there are a lot of plugins that can help specifically with development. I've listed some of these below to give you a better idea of what's available:
 
 * [case-sensitive-paths-webpack-plugin](https://www.npmjs.com/package/case-sensitive-paths-webpack-plugin) can be handy when you are developing on case-insensitive environment like macOS or Windows but using case-sensitive environment like Linux for production.
 * [npm-install-webpack-plugin](https://www.npmjs.com/package/npm-install-webpack-plugin) allows webpack to install and wire the installed packages with your *package.json* as you import new packages to your project. It's almost magical this way.
