@@ -120,7 +120,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const PATHS = {
   app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'build'),
+  build: path.join(__dirname, 'build')
 };
 
 module.exports = {
@@ -132,17 +132,17 @@ module.exports = {
   // convention by default so if a directory contains *index.js*,
   // it will resolve to that.
   entry: {
-    app: PATHS.app,
+    app: PATHS.app
   },
   output: {
     path: PATHS.build,
-    filename: '[name].js',
+    filename: '[name].js'
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Webpack demo',
-    }),
-  ],
+      title: 'Webpack demo'
+    })
+  ]
 };
 ```
 

@@ -101,17 +101,17 @@ leanpub-end-insert
   // convention by default so if a directory contains *index.js*,
   // it will resolve to that.
   entry: {
-    app: PATHS.app,
+    app: PATHS.app
   },
   output: {
     path: PATHS.build,
-    filename: '[name].js',
+    filename: '[name].js'
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Webpack demo',
-    }),
-  ],
+      title: 'Webpack demo'
+    })
+  ]
 };
 
 leanpub-start-insert
