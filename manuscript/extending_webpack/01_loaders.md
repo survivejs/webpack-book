@@ -62,8 +62,8 @@ const loader = require('./');
 // during testing. Alternately, we could code defensively
 // and protect against the missing data.
 const webpackContext = {
-  cacheable: noop,
-  exec: noop,
+  cacheable: () => {},
+  exec: () => {},
 };
 // Bind the context. After this we can run the loader in our
 // tests.
@@ -101,8 +101,6 @@ describe('highlight-loader', function () {
 
   ...
 });
-
-function noop() {}
 ```
 
 Even though I'm not a great fan of mocking, it works well enough for a case like this. The biggest fear is that webpack API changes at some point. This would mean my test code would break, and I would have to rewrite a large part of it.
