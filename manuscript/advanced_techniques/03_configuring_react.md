@@ -534,7 +534,7 @@ One way to structure React projects is to push components to directories which e
 
 ## Get Started Fast with *create-react-app*
 
-The fastest way to get started with webpack and React is to use [create-react-app](https://www.npmjs.com/package/create-react-app). It encapsulates a lot of best practices and it is particularly useful if you want to get started with a little project fast with minimal setup.
+The fastest way to get started with webpack and React is to use [create-react-app](https://www.npmjs.com/package/create-react-app). It is a zero configuration approach that encapsulates a lot of best practices and it is particularly useful if you want to get started with a little project fast with minimal setup.
 
 One of the main attractions of *create-react-app* is a feature known as *ejecting*. This means that instead of treating it as a project dependency, you'll get a full webpack setup out of it.
 
