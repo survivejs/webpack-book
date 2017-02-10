@@ -101,7 +101,7 @@ In addition, I'll constrain webpack to process only our application code through
 ```javascript
 ...
 
-const common = merge([
+const commonConfig = merge([
   {
   ...
 leanpub-start-insert

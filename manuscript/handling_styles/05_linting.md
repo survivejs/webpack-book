@@ -81,14 +81,12 @@ exports.lintCSS = function({ include, exclude }) {
 
           loader: 'postcss-loader',
           options: {
-            plugins: function () {
-              return [
-                require('stylelint')({
-                  // Ignore node_modules CSS
-                  ignoreFiles: 'node_modules/**/*.css',
-                }),
-              ];
-            },
+            plugins: () => ([
+              require('stylelint')({
+                // Ignore node_modules CSS
+                ignoreFiles: 'node_modules/**/*.css',
+              }),
+            ]),
           },
         },
       ],
@@ -97,14 +95,14 @@ exports.lintCSS = function({ include, exclude }) {
 };
 ```
 
-Then add it to the `common` configuration:
+Then add it to the common configuration:
 
 **webpack.config.js**
 
 ```javascript
 ...
 
-const common = merge([
+const commonConfig = merge([
   {
     ...
   },

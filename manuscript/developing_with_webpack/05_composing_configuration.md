@@ -104,7 +104,7 @@ const PATHS = {
   build: path.join(__dirname, 'build'),
 };
 
-const common = merge([
+const commonConfig = merge([
   {
     // Entry accepts a path or an object of entries.
     // We'll be using the latter form given it's
@@ -128,43 +128,37 @@ const common = merge([
   },
 ]);
 
-function production() {
-  return merge([
-    common,
-    parts.lintJavaScript({ include: PATHS.app }),
-  ]);
-}
+const productionConfig = merge([
+  parts.lintJavaScript({ include: PATHS.app }),
+]);
 
-function development() {
-  return merge([
-    common,
-    {
-      plugins: [
-        new webpack.NamedModulesPlugin(),
-      ],
+const developmentConfig = merge([
+  {
+    plugins: [
+      new webpack.NamedModulesPlugin(),
+    ],
+  },
+  parts.devServer({
+    // Customize host/port here if needed
+    host: process.env.HOST,
+    port: process.env.PORT,
+  }),
+  parts.lintJavaScript({
+    include: PATHS.app,
+    options: {
+      // Emit warnings over errors to avoid crashing
+      // HMR on error.
+      emitWarning: true,
     },
-    parts.devServer({
-      // Customize host/port here if needed
-      host: process.env.HOST,
-      port: process.env.PORT,
-    }),
-    parts.lintJavaScript({
-      include: PATHS.app,
-      options: {
-        // Emit warnings over errors to avoid crashing
-        // HMR on error.
-        emitWarning: true,
-      },
-    }),
-  ]);
-}
+  }),
+]);
 
 module.exports = function(env) {
   if (env === 'production') {
-    return production();
+    return merge(commonConfig, productionConfig);
   }
 
-  return development();
+  return merge(commonConfig, developmentConfig);
 };
 ```
 

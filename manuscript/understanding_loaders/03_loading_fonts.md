@@ -174,7 +174,7 @@ We still need to connect the above with the main configuration:
 ```javascript
 ...
 
-const common = merge([
+const commonConfig = merge([
   ...
 leanpub-start-insert
   parts.loadFonts({

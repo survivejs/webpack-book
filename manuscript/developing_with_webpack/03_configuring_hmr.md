@@ -24,16 +24,16 @@ const PATHS = {
   build: path.join(__dirname, 'build'),
 };
 
-const common = {
+const commonConfig = {
   ...
 };
 
 leanpub-start-insert
-function production() {
-  return common;
+function productionConfig() {
+  return commonConfig;
 }
 
-function development() {
+function developmentConfig() {
   const config = {
     devServer: {
       // Enable history API fallback so HTML5 History API based
@@ -65,10 +65,10 @@ function development() {
 
   return Object.assign(
     {},
-    common,
+    commonConfig,
     config,
     {
-      plugins: common.plugins.concat(config.plugins),
+      plugins: commonConfig.plugins.concat(config.plugins),
     }
   );
 }
@@ -78,14 +78,14 @@ module.exports = function(env) {
 leanpub-start-delete
   console.log('env', env);
 
-  return common;
+  return commonConfig;
 leanpub-end-delete
 leanpub-start-insert
   if (env === 'production') {
-    return production();
+    return productionConfig();
   }
 
-  return development();
+  return developmentConfig();
 leanpub-end-insert
 };
 
@@ -122,7 +122,7 @@ You can enable this better behavior as follows:
 ```javascript
 ...
 
-function development() {
+function developmentConfig() {
   const config = {
     devServer: {
       ...
@@ -202,7 +202,7 @@ The setup may be problematic on older versions of Windows, Ubuntu, and Vagrant. 
 ```javascript
 ...
 
-function development() {
+function developmentConfig() {
   const config = {
     devServer: {
       ...

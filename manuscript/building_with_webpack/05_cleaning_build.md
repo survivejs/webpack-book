@@ -46,15 +46,12 @@ Connect it with our project like this:
 ```javascript
 ...
 
-function production() {
-  return merge([
-    common,
+const productionConfig = merge([
 leanpub-start-insert
-    parts.clean(PATHS.build),
+  parts.clean(PATHS.build),
 leanpub-end-insert
-    ...
-  ]);
-}
+  ...
+]);
 
 ...
 ```

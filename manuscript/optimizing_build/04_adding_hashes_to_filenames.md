@@ -50,7 +50,7 @@ The build needs tweaking in order to generate proper hashes. Images and fonts sh
 ```javascript
 ...
 
-const common = {
+const commonConfig = {
   ...
   parts.loadImages({
     options: {
@@ -76,21 +76,18 @@ leanpub-end-insert
   ...
 };
 
-function production() {
-  return merge([
-    common,
-    {
-      ...
-leanpub-start-insert
-      output: {
-        chunkFilename: 'scripts/[chunkhash:8].js',
-        filename: '[name].[chunkhash:8].js',
-      },
-leanpub-end-insert
-    },
+const productionConfig = merge([
+  {
     ...
-  ]);
-}
+leanpub-start-insert
+    output: {
+      chunkFilename: 'scripts/[chunkhash:8].js',
+      filename: '[name].[chunkhash:8].js',
+    },
+leanpub-end-insert
+  },
+  ...
+]);
 
 ...
 ```
@@ -169,20 +166,17 @@ The change required is simple. Tweak the configuration as follows:
 ```javascript
 ...
 
-function production() {
-  return merge([
-    common,
-    {
-      ...
-leanpub-start-insert
-      plugins: [
-        new webpack.HashedModuleIdsPlugin(),
-      ],
-leanpub-end-insert
-    },
+const productionConfig = merge([
+  {
     ...
-  ]);
-}
+leanpub-start-insert
+    plugins: [
+      new webpack.HashedModuleIdsPlugin(),
+    ],
+leanpub-end-insert
+  },
+  ...
+]);
 
 ...
 ```

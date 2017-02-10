@@ -51,7 +51,7 @@ We also need to connect our configuration fragment with the main configuration:
 ```javascript
 ...
 
-const common = merge([
+const commonConfig = merge([
   {
     ...
   },
@@ -157,7 +157,7 @@ Consider the following minimal setup:
 {
   test: /\.less$/,
   use: ['style-loader', 'css-loader', 'less-loader'],
-}
+},
 ```
 
 The loader supports Less plugins, source maps, and so on. To understand how those work you should check out the project itself.
@@ -170,13 +170,11 @@ The loader supports Less plugins, source maps, and so on. To understand how thos
 
 Webpack doesn't take much configuration:
 
-**webpack.config.js**
-
 ```javascript
 {
   test: /\.scss$/,
   use: ['style-loader', 'css-loader', 'sass-loader'],
-}
+},
 ```
 
 T> If you want more performance, especially during development, check out [fast-sass-loader](https://www.npmjs.com/package/fast-sass-loader).
@@ -187,10 +185,9 @@ T> If you want more performance, especially during development, check out [fast-
 
 [Stylus](http://stylus-lang.com/) is yet another example of a CSS processor. It works well through [stylus-loader](https://github.com/shama/stylus-loader). [yeticss](https://www.npmjs.com/package/yeticss) is a pattern library that works well with it. Consider the following configuration:
 
-**webpack.config.js**
 
 ```javascript
-const common = {
+{
   ...
   module: {
     rules: [
@@ -210,7 +207,7 @@ const common = {
       },
     }),
   ],
-};
+},
 ```
 
 To start using yeticss with Stylus, you must import it to one of your app's .styl files:
@@ -230,33 +227,23 @@ To start using yeticss with Stylus, you must import it to one of your app's .sty
 
 The example below illustrates how to set up autoprefixing using it. It also sets up [precss](https://www.npmjs.com/package/precss), a PostCSS plugin that allows you to use Sass-like markup in your CSS. You can mix this technique with other loaders to allow autoprefixing there.
 
-**webpack.config.js**
-
 ```javascript
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: function () {
-                return [
-                  require('autoprefixer'),
-                  require('precss'),
-                ];
-              },
-            },
-          },
-        ],
+{
+  test: /\.css$/,
+  use: [
+    'style-loader',
+    'css-loader',
+    {
+      loader: 'postcss-loader',
+      options: {
+        plugins: () => ([
+          require('autoprefixer'),
+          require('precss'),
+        ]),
       },
-    ],
-  },
-};
+    },
+  ],
+},
 ```
 
 For this to work, you will have to remember to include [autoprefixer](https://www.npmjs.com/package/autoprefixer) and [precss](https://www.npmjs.com/package/precss) to your project. The technique is discussed in greater detail at the *Autoprefixing* chapter.
@@ -269,19 +256,22 @@ T> PostCSS supports also *postcss.config.js* based configuration. It relies on [
 
 [cssnext](http://cssnext.io/) is a PostCSS plugin that allows us to experience the future now. It comes with some restrictions as it's not possible to adapt to each future feature, but it may be worth a go. You can use it through [postcss-cssnext](https://www.npmjs.com/package/postcss-cssnext), and you can enable it as follows:
 
-**webpack.config.js**
-
 ```javascript
 {
-  loader: 'postcss-loader',
-  options: {
-    plugins: function () {
-      return [
-        require('cssnext'),
-      ];
+  test: /\.css$/,
+  use: [
+    'style-loader',
+    'css-loader',
+    {
+      loader: 'postcss-loader',
+      options: {
+        plugins: () => ([
+          require('cssnext'),
+        ]),
+      },
     },
-  },
-}
+  ],
+},
 ```
 
 See [the usage documentation](http://cssnext.io/usage/) for available options.

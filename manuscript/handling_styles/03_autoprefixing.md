@@ -21,11 +21,9 @@ exports.autoprefix = function() {
   return {
     loader: 'postcss-loader',
     options: {
-      plugins: function () {
-        return [
-          require('autoprefixer'),
-        ];
-      },
+      plugins: () => ([
+        require('autoprefixer'),
+      ]),
     },
   };
 };
@@ -38,19 +36,17 @@ To connect the loader with `ExtractTextPlugin`, hook it up as follows:
 ```javascript
 ...
 
-function production() {
-  return merge([
-    ...
+const productionConfig = merge([
+  ...
 leanpub-start-delete
-    parts.extractCSS({ use: 'css-loader' }),
+  parts.extractCSS({ use: 'css-loader' }),
 leanpub-end-delete
 leanpub-start-insert
-    parts.extractCSS({
-      use: ['css-loader', parts.autoprefix()],
-    }),
+  parts.extractCSS({
+    use: ['css-loader', parts.autoprefix()],
+  }),
 leanpub-end-insert
-  ]);
-}
+]);
 
 ...
 ```
@@ -108,7 +104,7 @@ const PATHS = {
 
 ...
 
-const common = merge([
+const commonConfig = merge([
   {
     entry: {
       app: PATHS.app,

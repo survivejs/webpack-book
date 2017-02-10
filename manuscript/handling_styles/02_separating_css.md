@@ -79,7 +79,7 @@ Connect the function with our configuration as below:
 ```javascript
 ...
 
-const common = merge([
+const commonConfig = merge([
   {
     ...
   },
@@ -88,23 +88,19 @@ leanpub-start-delete
 leanpub-end-delete
 ]);
 
-function production() {
-  return merge([
-    ...
+const productionConfig = merge([
+  ...
 leanpub-start-insert
-    parts.extractCSS({ use: 'css-loader' }),
+  parts.extractCSS({ use: 'css-loader' }),
 leanpub-end-insert
-  ]);
-}
+]);
 
-function development() {
-  return merge([
-    ...
+const developmentConfig = merge([
+  ...
 leanpub-start-insert
-    parts.loadCSS(),
+  parts.loadCSS(),
 leanpub-end-insert
-  ]);
-}
+]);
 
 ...
 ```

@@ -15,25 +15,23 @@ We have done most of the work already when we set up `extractBundles`. To extrac
 ```javascript
 ...
 
-function production() {
-  return merge([
-    ...
-    parts.extractBundles({
-      bundles: [
-        {
-          name: 'vendor',
-          entries: ['react'],
-        },
+const productionConfig = merge([
+  ...
+  parts.extractBundles({
+    bundles: [
+      {
+        name: 'vendor',
+        entries: ['react'],
+      },
 leanpub-start-insert
-        {
-          name: 'manifest',
-        },
+      {
+        name: 'manifest',
+      },
 leanpub-end-insert
-      ]
-    }),
-    ...
-  ]);
-}
+    ]
+  }),
+  ...
+]);
 
 ...
 ```
@@ -116,21 +114,20 @@ Records are used for storing module IDs across separate builds. The gotcha is th
 
 To generate a *records.json* file, adjust the configuration as follows:
 
+**webpack.config.js**
+
 ```javascript
 ...
 
-function production() {
-  return merge([
-    common,
-    {
-      ...
-leanpub-start-insert
-      recordsPath: 'records.json',
-leanpub-end-insert
-    },
+const productionConfig = merge([
+  {
     ...
-  ]);
-}
+leanpub-start-insert
+    recordsPath: 'records.json',
+leanpub-end-insert
+  },
+  ...
+]);
 
 ...
 ```

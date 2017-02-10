@@ -66,22 +66,21 @@ So far our project has only a single entry named as `app`. As you might remember
 
 To improve the situation, we can define a `vendor` entry containing React. This is done by matching the dependency name. It is possible to generate this information automatically as discussed in the end of this chapter, but I'll go with a static array here to illustrate the basic idea. Change the code like this:
 
+**webpack.config.js**
+
 ```javascript
 ...
 
-function production() {
-  return merge([
-    common,
+const productionConfig = merge([
 leanpub-start-insert
-    {
-      entry: {
-        vendor: ['react'],
-      },
+  {
+    entry: {
+      vendor: ['react'],
     },
+  },
 leanpub-end-insert
-    ...
-  ]);
-}
+  ...
+]);
 
 ...
 ```
@@ -170,29 +169,26 @@ Given the function handles the entry for us, we can drop our `vendor`-related co
 ```javascript
 ...
 
-function production() {
-  return merge([
-    common,
+const productionConfig = merge([
 leanpub-start-delete
-    {
-      entry: {
-        vendor: ['react'],
-      },
+  {
+    entry: {
+      vendor: ['react'],
     },
+  },
 leanpub-end-delete
 leanpub-start-insert
-    parts.extractBundles({
-      bundles: [
-        {
-          name: 'vendor',
-          entries: ['react'],
-        },
-      ],
-    }),
+  parts.extractBundles({
+    bundles: [
+      {
+        name: 'vendor',
+        entries: ['react'],
+      },
+    ],
+  }),
 leanpub-end-insert
-    ...
-  ]);
-}
+  ...
+]);
 
 ...
 ```

@@ -101,17 +101,15 @@ We can connect this with our configuration like this:
 ```javascript
 ...
 
-function production() {
-  return merge([
-    ...
+const productionConfig = merge([
+  ...
 leanpub-start-insert
-    parts.setFreeVariable(
-      'process.env.NODE_ENV',
-      'production'
-    ),
+  parts.setFreeVariable(
+    'process.env.NODE_ENV',
+    'production'
+  ),
 leanpub-end-insert
-  ]);
-}
+]);
 
 ...
 ```

@@ -51,21 +51,18 @@ To integrate the feature to the project, adjust the configuration like this:
 ```javascript
 ...
 
-function production() {
-  return merge([
-    common,
+const productionConfig = merge([
 leanpub-start-insert
-    {
-      performance: {
-        hints: 'warning', // 'error' or false are valid too
-        maxEntrypointSize: 100000, // in bytes
-        maxAssetSize: 50000, // in bytes
-      },
+  {
+    performance: {
+      hints: 'warning', // 'error' or false are valid too
+      maxEntrypointSize: 100000, // in bytes
+      maxAssetSize: 50000, // in bytes
     },
+  },
 leanpub-end-insert
-    ...
-  ]);
-}
+  ...
+]);
 
 ...
 ```
@@ -139,16 +136,14 @@ Now we can hook it up with our configuration:
 ```javascript
 ...
 
-function production() {
-  return merge([
-    ...
-    parts.clean(PATHS.build),
+const productionConfig = merge([
+  ...
+  parts.clean(PATHS.build),
 leanpub-start-insert
-    parts.minifyJavaScript({ useSourceMap: true }),
+  parts.minifyJavaScript({ useSourceMap: true }),
 leanpub-end-insert
-    ...
-  ]);
-}
+  ...
+]);
 
 ...
 ```
@@ -281,22 +276,20 @@ Then, connect with main configuration:
 ```javascript
 ...
 
-function production() {
-  return merge([
-    ...
-    parts.minifyJavaScript({ useSourceMap: true }),
+const productionConfig = merge([
+  ...
+  parts.minifyJavaScript({ useSourceMap: true }),
 leanpub-start-insert
-    parts.minifyCSS({
-      options: {
-        discardComments: {
-          removeAll: true,
-        },
+  parts.minifyCSS({
+    options: {
+      discardComments: {
+        removeAll: true,
       },
-    }),
+    },
+  }),
 leanpub-end-insert
-    ...
-  ]);
-}
+  ...
+]);
 
 ...
 ```

@@ -121,7 +121,7 @@ leanpub-end-insert
   build: path.join(__dirname, 'build'),
 };
 
-const common = merge([
+const commonConfig = merge([
   {
 leanpub-start-delete
     plugins: [
@@ -137,59 +137,55 @@ leanpub-end-delete
 ...
 
 leanpub-start-insert
-function app() {
-  return {
-    entry: {
-      app: PATHS.app,
-    },
-    plugins: [
-      new HtmlWebpackPlugin({
-        title: 'Webpack demo',
-      }),
-    ],
-  };
-}
+const appConfig = {
+  entry: {
+    app: PATHS.app,
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Webpack demo',
+    }),
+  ],
+};
 
-function react() {
-  return {
-    entry: {
-      react: PATHS.reactDemo,
-    },
-    plugins: [
-      new HtmlWebpackPlugin({
-        template: HtmlWebpackTemplate,
-        title: 'React demo',
-        filename: 'react/index.html',
-        appMountId: 'app', // Generate #app where to mount
-        mobile: true, // Scale page on mobile
-        inject: false, // html-webpack-template needs this to work
-      }),
-    ],
-  };
-}
+const reactConfig = {
+  entry: {
+    react: PATHS.reactDemo,
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: HtmlWebpackTemplate,
+      title: 'React demo',
+      filename: 'react/index.html',
+      appMountId: 'app', // Generate #app where to mount
+      mobile: true, // Scale page on mobile
+      inject: false, // html-webpack-template needs this to work
+    }),
+  ],
+};
 leanpub-end-insert
 
 leanpub-start-delete
 module.exports = function(env) {
   if (env === 'production') {
-    return production();
+    return merge(commonConfig, productionConfig);
   }
 
-  return development();
+  return merge(commonConfig, developmentConfig);
 };
 leanpub-end-delete
 leanpub-start-insert
 module.exports = function(env) {
   if (env === 'production') {
     return [
-      merge(production(), app()),
-      merge(production(), react()),
+      merge(commonConfig, productionConfig, appConfig),
+      merge(commonConfig, productionConfig, reactConfig),
     ];
   }
 
   return [
-    merge(development(), app()),
-    merge(development(), react()),
+    merge(commonConfig, developmentConfig, appConfig),
+    merge(commonConfig, developmentConfig, reactConfig),
   ];
 };
 leanpub-end-insert
@@ -276,31 +272,24 @@ On webpack side, *react-hot-loader* requires an additional entry it uses to patc
 ...
 
 leanpub-start-insert
-function reactDevelopment() {
-  return {
-    entry: {
-      // react-hot-loader has to run before demo!
-      react: ['react-hot-loader/patch', PATHS.reactDemo],
-    },
-  };
-}
+const reactDevelopmentConfig = {
+  entry: {
+    // react-hot-loader has to run before demo!
+    react: ['react-hot-loader/patch', PATHS.reactDemo],
+  },
+};
 leanpub-end-insert
 
 module.exports = function(env) {
-  if (env === 'production') {
-    return [
-      merge(production(), app()),
-      merge(production(), react()),
-    ];
-  }
+  ...
 
   return [
-    merge(development(), app()),
+    merge(commonConfig, developmentConfig, appConfig),
 leanpub-start-delete
-    merge(development(), react()),
+    merge(commonConfig, developmentConfig, reactConfig),
 leanpub-end-delete
 leanpub-start-insert
-    merge(development(), react(), reactDevelopment()),
+    merge(commonConfig, developmentConfig, reactConfig, reactDevelopmentConfig),
 leanpub-end-insert
   ];
 };
@@ -507,19 +496,12 @@ Some people prefer to name their React components containing JSX using the `.jsx
 
 Webpack provides [resolve.extensions](https://webpack.js.org/guides/migrating/#resolve-extensions) field that can be used for configuring its extension lookup. If you want to allow imports like `import Button from './Button';` while naming the file as *Button.jsx*, set it up as follows:
 
-**webpack.config.js**
-
 ```javascript
-...
-
-const common = {
-  ...
+{
   resolve: {
     extensions: ['.js', '.jsx'],
   },
-};
-
-...
+},
 ```
 
 The loader configuration is straightforward as well. Instead of matching against `/\.js$/`, we can expand it to include `.jsx` extension through `/\.(js|jsx)$/`. Another option would be to write `/\.jsx?$/`, but I find the explicit alternative more readable.

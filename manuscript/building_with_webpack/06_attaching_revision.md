@@ -42,16 +42,13 @@ And connect it to the main configuration:
 ```javascript
 ...
 
-function production() {
-  return merge([
-    common,
-    parts.clean(PATHS.build),
+const productionConfig = merge([
+  parts.clean(PATHS.build),
 leanpub-start-insert
-    parts.attachRevision(),
+  parts.attachRevision(),
 leanpub-end-insert
-    ...
-  ]);
-}
+  ...
+]);
 
 ...
 ```

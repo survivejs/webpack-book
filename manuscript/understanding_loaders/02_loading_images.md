@@ -86,7 +86,7 @@ To attach it to the configuration, adjust as follows:
 ```javascript
 ...
 
-const common = merge([
+const commonConfig = merge([
   ...
 leanpub-start-insert
   parts.loadImages({

@@ -114,16 +114,14 @@ const parts = require('./webpack.parts');
 ...
 
 
-function production() {
-  return merge([
-    ...
+const productionConfig = merge([
+  ...
 leanpub-start-insert
-    parts.purifyCSS({
-      paths: glob.sync(path.join(PATHS.app, '**', '*')),
-    }),
+  parts.purifyCSS({
+    paths: glob.sync(path.join(PATHS.app, '**', '*')),
+  }),
 leanpub-end-insert
-  ]);
-}
+]);
 
 ...
 ```

@@ -49,33 +49,27 @@ You can set these up as follows:
 ```javascript
 ...
 
-function production() {
-  return merge([
-    common,
+const productionConfig = merge([
 leanpub-start-insert
-    parts.generateSourceMaps({ type: 'source-map' }),
+  parts.generateSourceMaps({ type: 'source-map' }),
 leanpub-end-insert
-    ...
-  ]);
-}
+  ...
+]);
 
-function development() {
-  return merge([
-    common,
-    {
+const developmentConfig = merge([
+  {
 leanpub-start-insert
-      output: {
-        devtoolModuleFilenameTemplate: 'webpack:///[absolute-resource-path]',
-      },
-leanpub-end-insert
-      ...
+    output: {
+      devtoolModuleFilenameTemplate: 'webpack:///[absolute-resource-path]',
     },
-leanpub-start-insert
-    parts.generateSourceMaps({ type: 'cheap-module-eval-source-map' }),
 leanpub-end-insert
     ...
-  ]);
-}
+  },
+leanpub-start-insert
+  parts.generateSourceMaps({ type: 'cheap-module-eval-source-map' }),
+leanpub-end-insert
+  ...
+]);
 
 ...
 ```
