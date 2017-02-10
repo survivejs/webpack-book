@@ -253,7 +253,7 @@ Examining the `.map` file reveals the following output in this case:
 }
 ```
 
-The original source maps to this information through a `//# sourceMappingURL=app.9aff3b1eced1f089ef18.js.map` kind of comment at its end.
+The original source contains `//# sourceMappingURL=app.9a...18.js.map` kind of comment at its end in order to map to this file.
 
 ### `devtool: 'cheap-module-source-map'`
 
