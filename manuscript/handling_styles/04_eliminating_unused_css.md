@@ -20,8 +20,6 @@ To make the project aware of Pure.css, `import` it:
 leanpub-start-insert
 import 'purecss';
 leanpub-end-insert
-import './main.css';
-import component from './component';
 
 ...
 ```
