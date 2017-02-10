@@ -388,7 +388,7 @@ exports.generateSourceMaps = function({
         // lineToLine: bool | {test, include, exclude},
 
         // Remove source content from source maps. This is useful
-        // especially if your source maps are very big (over 10 MB)
+        // especially if your source maps are big (over 10 MB)
         // as browsers can struggle with those.
         // See https://github.com/webpack/webpack/issues/2669.
         // noSources: bool,
