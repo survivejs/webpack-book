@@ -139,7 +139,7 @@ To add linting to the project, adjust the configuration as follows:
 ...
 
 
-function development() {
+function developmentConfig() {
   const config = {
     devServer: {
       ...
