@@ -134,30 +134,25 @@ The following code combines the `entry` idea above with a basic `CommonsChunkPlu
 ```javascript
 ...
 
-exports.extractBundles = function({ bundles, options }) {
+exports.extractBundles = function(bundles) {
   const entry = {};
-  const names = [];
+  const plugins = [];
 
-  // Set up entries and names.
-  bundles.forEach(({ name, entries }) => {
+  bundles.forEach((bundle) => {
+    const { name, entries } = bundle;
+
     if (entries) {
       entry[name] = entries;
     }
 
-    names.push(name);
+    plugins.push(
+      new webpack.optimize.CommonsChunkPlugin(bundle)
+    );
   });
 
-  return {
-    // Define an entry point needed for splitting.
-    entry,
-    plugins: [
-      // Extract bundles.
-      new webpack.optimize.CommonsChunkPlugin(
-        Object.assign({}, options, { names })
-      ),
-    ],
-  };
+  return { entry, plugins };
 };
+
 ```
 
 Given the function handles the entry for us, we can drop our `vendor`-related configuration and use the function instead:
@@ -196,7 +191,7 @@ If you execute the build now using `npm run build`, you should see something alo
 ```bash
 Hash: 0d803bd35e80972d1264
 Version: webpack 2.2.1
-Time: 2585ms
+Time: 2572ms
                     Asset       Size  Chunks             Chunk Names
                    app.js    2.39 kB       0  [emitted]  app
   fontawesome-webfont.eot     166 kB          [emitted]
@@ -225,36 +220,38 @@ It is good to note that if the vendor entry contained extra dependencies (white 
 
 ## Loading `dependencies` to a `vendor` Bundle Automatically
 
-In addition to a number and certain other values, `minChunks` accepts a function. This makes it possible to deduce which modules are used by the project. To adapt Rafael De Leon's solution from [Stack Overflow](http://stackoverflow.com/a/38733864/228885), you could end up with code like this:
+In addition to a number and certain other values, `minChunks` accepts a function. This makes it possible to deduce which modules are used by the project. To adapt Rafael De Leon's solution from [Stack Overflow](http://stackoverflow.com/a/38733864/228885), we can check for which modules are used like this:
+
+**webpack.config.js**
 
 ```javascript
-{
-  ...
-  plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: isVendor,
-    }),
-  ],
-  ...
-};
-
 ...
 
-function isVendor(module, count) {
-  const context = module.context;
+const productionConfig = merge([
+  parts.extractBundles([
+    {
+      name: 'vendor',
+leanpub-start-delete
+      entries: ['react'],
+leanpub-end-delete
+leanpub-start-insert
+      minChunks: ({ context }) => (
+        context && context.indexOf('node_modules') >= 0
+      ),
+leanpub-end-insert
+    },
+  ]),
+  ...
+]);
 
-  // You can perform other similar checks here too.
-  // Now we check just node_modules.
-  return context && context.indexOf('node_modules') >= 0;
-}
+...
 ```
 
-The `module` parameter of `minChunks` contains a lot of data; you may want to `console.log` it to understand it in greater detail. `context`, if it is set, contains the full path to the module that was imported. Therefore, the check above works.
+The build result should remain the same. This time, however, webpack will pull only dependencies we are using in the project and we don't have to maintain the list anymore.
+
+The first parameter of the `minChunks` function contains a lot of information about the current `module`; you may want to `console.log` it to understand it in greater detail. The check above works because `context`contains the full path to the module that was imported.
 
 Given `minChunks` receives `count` as its second parameter, you could force it to capture chunks based on usage. This is particularly useful in more complex setups where you have split your code multiple times and want more control over the result.
-
-If you want to try out this technique, you can pass a custom `minChunks` check to `extractBundles` like above. The advantage of this approach is that it will use **only** dependencies you refer to in your application and you can eliminate the array.
 
 ## Performing a More Granular Split
 
