@@ -285,25 +285,21 @@ leanpub-start-insert
     include: /font-awesome/,
   }),
 leanpub-end-insert
-  parts.loadFonts({
-    options: {
-      name: '[name].[ext]',
-    },
-  }),
 ]);
 ```
 
 If you build the project (`npm run build`), the output should be a little tidier:
 
 ```bash
-Hash: fc4339a11b1f2d34ffcd
+Hash: 8632133d62690bae7e69
 Version: webpack 2.2.1
-Time: 2208ms
+Time: 2407ms
                     Asset       Size  Chunks             Chunk Names
   fontawesome-webfont.eot     166 kB          [emitted]
   fontawesome-webfont.ttf     166 kB          [emitted]
 fontawesome-webfont.woff2    77.2 kB          [emitted]
  fontawesome-webfont.woff      98 kB          [emitted]
+  fontawesome-webfont.svg   22 bytes          [emitted]
                  logo.png      77 kB          [emitted]
                    app.js    4.55 kB       0  [emitted]  app
                   app.css    3.85 kB       0  [emitted]  app
@@ -311,8 +307,11 @@ fontawesome-webfont.woff2    77.2 kB          [emitted]
    [0] ./app/component.js 185 bytes {0} [built]
    [1] ./~/font-awesome/css/font-awesome.css 41 bytes {0} [built]
    [2] ./app/main.css 41 bytes {0} [built]
+   [3] ./~/purecss/build/pure-min.css 41 by
 ...
 ```
+
+If you examine *fontawesome-webfont.svg*, it should `// empty (null-loader)` kind of comment. It is important that the `ignore` part gets evaluated before the font definition. Reverse order would break the font loading.
 
 The solution above is generic and it should work with other libraries as well. The problematic aspect about the approach is that Font Awesome still included fonts you are not using. [font-awesome-loader](https://www.npmjs.com/package/font-awesome-loader) allows more customization.
 
