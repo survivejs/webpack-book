@@ -37,24 +37,24 @@ leanpub-end-insert
 Execute `npm run build` to get a baseline build. You should end up with something like this:
 
 ```bash
-Hash: fbad0385e4573d3b6186
+Hash: 5eaa85e989a5407d6376
 Version: webpack 2.2.1
 Time: 2636ms
-                    Asset       Size  Chunks                    Chunk Names
+                    Asset       Size  Chunks             Chunk Names
                  logo.png      77 kB          [emitted]
   fontawesome-webfont.eot     166 kB          [emitted]
-  fontawesome-webfont.ttf     166 kB          [emitted]
 fontawesome-webfont.woff2    77.2 kB          [emitted]
  fontawesome-webfont.woff      98 kB          [emitted]
-  fontawesome-webfont.svg     444 kB          [emitted]  [big]
-                   app.js     140 kB       0  [emitted]         app
-                  app.css    3.89 kB       0  [emitted]         app
-               app.js.map     165 kB       0  [emitted]         app
-              app.css.map   84 bytes       0  [emitted]         app
+  fontawesome-webfont.svg   22 bytes          [emitted]
+  fontawesome-webfont.ttf     166 kB          [emitted]
+                   app.js     140 kB       0  [emitted]  app
+                  app.css    3.89 kB       0  [emitted]  app
+               app.js.map     165 kB       0  [emitted]  app
+              app.css.map   84 bytes       0  [emitted]  app
                index.html  218 bytes          [emitted]
    [0] ./~/process/browser.js 5.3 kB {0} [built]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {0} [built]
-  [18] ./app/component.js 186 bytes {0} [built]
+  [18] ./app/component.js 185 bytes {0} [built]
 ...
 ```
 
@@ -88,22 +88,22 @@ leanpub-end-insert
 We have two separate entries, or **entry chunks**, now. `[name].js` of our existing `output.path` configuration will kick in based on the entry name and if you try to generate a build now (`npm run build`), you should see something along this:
 
 ```bash
-Hash: b7b138f2cee711ffd2c9
+Hash: 374763232044c7eacfad
 Version: webpack 2.2.1
-Time: 2609ms
-                    Asset       Size  Chunks                    Chunk Names
-                   app.js     140 kB       0  [emitted]         app
+Time: 2768ms
+                    Asset       Size  Chunks             Chunk Names
+                   app.js     140 kB       0  [emitted]  app
   fontawesome-webfont.eot     166 kB          [emitted]
-  fontawesome-webfont.ttf     166 kB          [emitted]
 fontawesome-webfont.woff2    77.2 kB          [emitted]
  fontawesome-webfont.woff      98 kB          [emitted]
+  fontawesome-webfont.svg   22 bytes          [emitted]
                  logo.png      77 kB          [emitted]
-  fontawesome-webfont.svg     444 kB          [emitted]  [big]
-                vendor.js     138 kB       1  [emitted]         vendor
-                  app.css    3.89 kB       0  [emitted]         app
-               app.js.map     165 kB       0  [emitted]         app
-              app.css.map   84 bytes       0  [emitted]         app
-            vendor.js.map     164 kB       1  [emitted]         vendor
+  fontawesome-webfont.ttf     166 kB          [emitted]
+                vendor.js     138 kB       1  [emitted]  vendor
+                  app.css    3.89 kB       0  [emitted]  app
+               app.js.map     165 kB       0  [emitted]  app
+              app.css.map   84 bytes       0  [emitted]  app
+            vendor.js.map     164 kB       1  [emitted]  vendor
                index.html  274 bytes          [emitted]
    [0] ./~/process/browser.js 5.3 kB {0} {1} [built]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {0} {1} [built]
@@ -134,7 +134,6 @@ The following code combines the `entry` idea above with a basic `CommonsChunkPlu
 ```javascript
 ...
 
-leanpub-start-insert
 exports.extractBundles = function({ bundles, options }) {
   const entry = {};
   const names = [];
@@ -159,7 +158,6 @@ exports.extractBundles = function({ bundles, options }) {
     ],
   };
 };
-leanpub-end-insert
 ```
 
 Given the function handles the entry for us, we can drop our `vendor`-related configuration and use the function instead:
@@ -196,22 +194,22 @@ leanpub-end-insert
 If you execute the build now using `npm run build`, you should see something along this:
 
 ```bash
-Hash: 1c93174413f4f57662f8
+Hash: 0d803bd35e80972d1264
 Version: webpack 2.2.1
-Time: 2594ms
-                    Asset       Size  Chunks                    Chunk Names
-                   app.js    2.39 kB       0  [emitted]         app
+Time: 2585ms
+                    Asset       Size  Chunks             Chunk Names
+                   app.js    2.39 kB       0  [emitted]  app
   fontawesome-webfont.eot     166 kB          [emitted]
-  fontawesome-webfont.ttf     166 kB          [emitted]
 fontawesome-webfont.woff2    77.2 kB          [emitted]
  fontawesome-webfont.woff      98 kB          [emitted]
+  fontawesome-webfont.svg   22 bytes          [emitted]
                  logo.png      77 kB          [emitted]
-  fontawesome-webfont.svg     444 kB          [emitted]  [big]
-                vendor.js     141 kB       1  [emitted]         vendor
-                  app.css    3.89 kB       0  [emitted]         app
-               app.js.map     1.9 kB       0  [emitted]         app
-              app.css.map   84 bytes       0  [emitted]         app
-            vendor.js.map     167 kB       1  [emitted]         vendor
+  fontawesome-webfont.ttf     166 kB          [emitted]
+                vendor.js     141 kB       1  [emitted]  vendor
+                  app.css    3.89 kB       0  [emitted]  app
+               app.js.map     1.9 kB       0  [emitted]  app
+              app.css.map   84 bytes       0  [emitted]  app
+            vendor.js.map     167 kB       1  [emitted]  vendor
                index.html  274 bytes          [emitted]
    [0] ./~/process/browser.js 5.3 kB {1} [built]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {1} [built]
