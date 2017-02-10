@@ -114,31 +114,33 @@ leanpub-end-insert
 ...
 ```
 
-Execute `npm run build` again, and you should see improved results:
+Execute `npm run build` and you should see improved results:
 
 ```bash
-Hash: f1339ba5174d13221f4b
+Hash: 1b25adf55d82690edb46
 Version: webpack 2.2.1
-Time: 3826ms
-                    Asset       Size  Chunks                    Chunk Names
-                   app.js  747 bytes       1  [emitted]         app
-  fontawesome-webfont.eot     166 kB          [emitted]  [big]
-  fontawesome-webfont.ttf     166 kB          [emitted]  [big]
-fontawesome-webfont.woff2    77.2 kB          [emitted]  [big]
- fontawesome-webfont.woff      98 kB          [emitted]  [big]
-                 logo.png      77 kB          [emitted]  [big]
+Time: 3257ms
+                    Asset       Size  Chunks             Chunk Names
+                vendor.js      21 kB       2  [emitted]  vendor
+  fontawesome-webfont.eot     166 kB          [emitted]
+fontawesome-webfont.woff2    77.2 kB          [emitted]
+ fontawesome-webfont.woff      98 kB          [emitted]
+  fontawesome-webfont.svg   22 bytes          [emitted]
+                 logo.png      77 kB          [emitted]
                      0.js  175 bytes       0  [emitted]
-  fontawesome-webfont.svg     444 kB          [emitted]  [big]
-                vendor.js      21 kB       2  [emitted]         vendor
-                  app.css    2.19 kB       1  [emitted]         app
-                 0.js.map  768 bytes       0  [emitted]
-               app.js.map    6.25 kB       1  [emitted]         app
-              app.css.map   84 bytes       1  [emitted]         app
-            vendor.js.map     261 kB       2  [emitted]         vendor
-               index.html  274 bytes          [emitted]
-   [5] ./~/react/react.js 56 bytes {2} [built]
-  [15] ./app/component.js 372 bytes {1} [built]
-  [16] ./app/shake.js 138 bytes {1} [built]
+                   app.js  710 bytes       1  [emitted]  app
+  fontawesome-webfont.ttf     166 kB          [emitted]
+                  app.css  160 bytes       1  [emitted]  app
+               vendor.css    2.04 kB       2  [emitted]  vendor
+                 0.js.map  772 bytes       0  [emitted]
+               app.js.map    5.97 kB       1  [emitted]  app
+              app.css.map   84 bytes       1  [emitted]  app
+            vendor.js.map     261 kB       2  [emitted]  vendor
+           vendor.css.map   87 bytes       2  [emitted]  vendor
+               index.html  315 bytes          [emitted]
+   [4] ./~/object-assign/index.js 2.11 kB {2} [built]
+  [14] ./app/component.js 372 bytes {1} [built]
+  [15] ./app/shake.js 138 bytes {1} [built]
 ...
 ```
 
