@@ -143,6 +143,8 @@ To make Babel aware of the preset, we need to write a *.babelrc*. Given webpack 
 }
 ```
 
+T> This is the Babel setup you would use if you want to support tree shaking at a package level. See the *Tree Shaking* chapter for more information.
+
 If you execute `npm run build` now and examine *app.js*, you should see something a little different:
 
 ```javascript
@@ -173,12 +175,6 @@ webpackJsonp([1],{
 
 Note especially how the function was transformed. This code should work in older browsers now. It would be also possible to push it through UglifyJS without any errors due to parsing.
 
-T> There are other possible [.babelrc options](https://babeljs.io/docs/usage/options/) beyond the ones covered here.
-
-T> Just like ESLint, Babel supports [JSON5](https://www.npmjs.com/package/json5) as its configuration format. This means you can include comments in your source, use single quoted strings, and so on.
-
-W> Sometimes you might want to use experimental features. Although you can find a lot of them within so called stage presets, I recommend enabling them one by one and even organizing them to a preset of their own unless you are working on a throwaway project. If you expect your project to live a long time, it's better to document the features you are using well.
-
 ## Polyfilling Features
 
 Given it's not always enough to transform ES6 code to older format and expect it to work, polyfilling may be needed. The simplest way to solve this problem is to include [babel-polyfill](https://babeljs.io/docs/usage/polyfill/) to your project. A simple way to achieve that in webpack is to either include it to an entry (`app: ['babel-polyfill', PATHS.app]`) or `import 'babel-polyfill'` from code to get it bundled.
@@ -186,6 +182,12 @@ Given it's not always enough to transform ES6 code to older format and expect it
 Especially in bundle size sensitive environments *babel-polyfill* might not be the best option. If you know well which environment (browser versions, Node) you support, [babel-preset-env](https://www.npmjs.com/package/babel-preset-env) provides a more granular way to achieve the same result with smaller size.
 
 It is important to note that *babel-polyfill* pollutes the global scope with objects like `Promise`. Given this can be problematic for library authors, there's [transform-runtime](https://babeljs.io/docs/plugins/transform-runtime/) option. It can be enabled as a Babel plugin and it will avoid the problem of globals by rewriting the code in such way that they won't be needed.
+
+## Babel Tips
+
+There are other possible [.babelrc options](https://babeljs.io/docs/usage/options/) beyond the ones covered here. Just like ESLint, *.babelrc* supports [JSON5](https://www.npmjs.com/package/json5) as its configuration format. This means you can include comments in your source, use single quoted strings, and so on.
+
+Sometimes you might want to use experimental features. Although you can find a lot of them within so called stage presets, I recommend enabling them one by one and even organizing them to a preset of their own unless you are working on a throwaway project. If you expect your project to live a long time, it's better to document the features you are using well.
 
 ## Useful Babel Presets and Plugins
 

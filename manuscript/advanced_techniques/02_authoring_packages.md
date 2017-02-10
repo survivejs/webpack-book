@@ -156,7 +156,9 @@ Even though a project can contain a lot of files, not all of them should be publ
 
 You can't find an official recommendation on what files to publish. That said, there are some points to consider as [discussed in Stack Overflow](https://stackoverflow.com/questions/25124844/should-i-npmignore-my-tests).
 
-At minimum you should distribute the source code needed to run the package. If you have code written using the ES6 standard, you should remember to set the `module` field to point to it. You can point package `main` to a compiled version if you want to support specific older platforms.
+At minimum you should distribute the source code needed to run the package. If you have code written using the ES6 standard, you should transpile the code so that it does not lose the ES6 module definitions while everything else is converted to ES5. For the tooling to pick it up, you should point to this version of code through *package.json* `module` field. See the *Processing with Babel* chapter for the Babel setup.
+
+You should point package `main` to a fully compiled version that's compatible with Node.
 
 In addition to the source, you can consider distributing package *README.md* and *LICENSE*. Any metadata that's required by third party systems, like Travis, can be safely skipped. Full documentation of the package doesn't have to be included as you can point to the package homepage through its metadata instead.
 
