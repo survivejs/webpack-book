@@ -196,28 +196,30 @@ If you open up the application (`npm start`) and click the button, you should se
 Perhaps the more interesting thing is to see what the build result looks like. If you run `npm run build`, you should see something like this:
 
 ```bash
-Hash: aad82a96db8096c8bbe9
+Hash: 60cb132200bce915e81d
 Version: webpack 2.2.1
-Time: 3672ms
-                    Asset       Size  Chunks                    Chunk Names
-                   app.js    2.65 kB       1  [emitted]         app
+Time: 2812ms
+                    Asset       Size  Chunks             Chunk Names
+                vendor.js     141 kB       2  [emitted]  vendor
   fontawesome-webfont.eot     166 kB          [emitted]
-  fontawesome-webfont.ttf     166 kB          [emitted]
 fontawesome-webfont.woff2    77.2 kB          [emitted]
  fontawesome-webfont.woff      98 kB          [emitted]
+  fontawesome-webfont.svg   22 bytes          [emitted]
                  logo.png      77 kB          [emitted]
                      0.js  313 bytes       0  [emitted]
-  fontawesome-webfont.svg     444 kB          [emitted]  [big]
-                vendor.js     141 kB       2  [emitted]         vendor
-                  app.css    3.89 kB       1  [emitted]         app
-                 0.js.map  231 bytes       0  [emitted]
-               app.js.map    2.73 kB       1  [emitted]         app
-              app.css.map   84 bytes       1  [emitted]         app
-            vendor.js.map     167 kB       2  [emitted]         vendor
-               index.html  274 bytes          [emitted]
+                   app.js    2.45 kB       1  [emitted]  app
+  fontawesome-webfont.ttf     166 kB          [emitted]
+                  app.css  230 bytes       1  [emitted]  app
+               vendor.css    3.69 kB       2  [emitted]  vendor
+                 0.js.map  235 bytes       0  [emitted]
+               app.js.map    2.27 kB       1  [emitted]  app
+              app.css.map   84 bytes       1  [emitted]  app
+            vendor.js.map     167 kB       2  [emitted]  vendor
+           vendor.css.map   87 bytes       2  [emitted]  vendor
+               index.html  315 bytes          [emitted]
+   [0] ./~/process/browser.js 5.3 kB {2} [built]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {2} [built]
-   [7] ./~/react/react.js 56 bytes {2} [built]
-  [19] ./app/component.js 372 bytes {1} [built]
+  [18] ./app/component.js 372 bytes {1} [built]
 ...
 ```
 
