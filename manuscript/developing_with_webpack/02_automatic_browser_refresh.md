@@ -72,6 +72,8 @@ If you try modifying the code, you should see output at your terminal. The brows
 
 T> WDS will try to run in another port in case the default one is being used. See the terminal output to figure out where it ends up running. You can debug the situation with a command like `netstat -na | grep 8080`. If there's something running in the port 8080, it should display a message. The exact command may depend on the platform.
 
+T> If you want to open a browser tab directly after running the server, set `devServer.open: true`. You can also achieve the same result through the CLI by using `webpack-dev-server --open`.
+
 ## Verifying that `--env` Works
 
 Webpack configuration receives the result of `--env` if it exposes a function. To verify that the correct environment is passed, adjust the configuration as follows:
