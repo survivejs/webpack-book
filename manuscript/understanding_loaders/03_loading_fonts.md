@@ -102,7 +102,11 @@ Furthermore, it's possible to manipulate `publicPath` and override the default p
 
 ## Using Font Awesome
 
-The ideas above can be applied with [Font Awesome](https://www.npmjs.com/package/font-awesome). It's a collection of high quality font icons you can refer to using a CSS classes. To integrate it to the book project, install it first:
+The ideas above can be applied with [Font Awesome](https://www.npmjs.com/package/font-awesome). It's a collection of high quality font icons you can refer to using a CSS classes.
+
+### Integrating Font Awesome to the Project
+
+To integrate Font Awesome to the book project, install it first:
 
 ```bash
 npm install font-awesome --save
@@ -136,6 +140,8 @@ You may need an appropriate loader to handle this file type.
  @ ./app/index.js
  @ multi (webpack)-dev-server/client?http://localhost:8080 webpack/hot/only-dev-server react-hot-loader/patch ./app
 ```
+
+### Implementing Webpack Configuration
 
 This is expected as we haven't configured loaders for any of Font Awesome fonts yet and webpack doesn't know what to do with the files in question. To match the files and map them through *file-loader*, attach the following snippet to the project:
 
@@ -208,7 +214,7 @@ leanpub-end-insert
 }
 ```
 
-If you build the application (`npm run build`), you should see that it processed as expected while Font Awesome assets were included:
+If you build the application (`npm run build`), you should see that it processed as expected while Font Awesome assets were included.
 
 ```bash
 Hash: 2c5db72dfa7e206817d5
@@ -230,9 +236,87 @@ fontawesome-webfont.woff2    77.2 kB          [emitted]
 ...
 ```
 
-It is good to note that Font Awesome included a lot of fonts you might not end up using. This is why [font-awesome-loader](https://www.npmjs.com/package/font-awesome-loader) exists. It encapsulates the same ideas and allows customization of Font Awesome. The approach above is more generic and can be used with other libraries as well.
+Note that the SVG file included in Font Awesome has been marked as `[big]`. It is beyond the performance budget defaults set by webpack. The topic is discussed in greater detail at the *Minifying the Build* chapter.
 
-W> You might notice that the Font Awesome related output is big for a single icon. This is because all icons of it get loaded by default. [Font Awesome wiki](https://github.com/FortAwesome/Font-Awesome/wiki/Customize-Font-Awesome) points to services that can be used to customize the selection. Font Awesome 5 will contain a better solution and allow you to achieve the same without an external service.
+### Disabling SVG Loading
+
+In order to drop the big SVG file and disable SVG loading, it is possible to capture SVG `import` and then rewrite the module as a `null` by using the [null-loader](https://www.npmjs.com/package/null-loader). This will get rid of the big file. To get started, install the loader first:
+
+```bash
+npm install null-loader --save-dev
+```
+
+Then, to disable SVG loading, capture it first through a `test` and push the match through the *null-loader*. Here's the idea:
+
+**webpack.parts.js**
+
+```javascript
+...
+
+exports.ignore = function({ test, include, exclude }) {
+  return {
+    module: {
+      rules: [
+        {
+          test,
+          include,
+          exclude,
+
+          use: 'null-loader',
+        },
+      ],
+    },
+  };
+};
+```
+
+To connect this with the configuration, adjust as follows:
+
+**webpack.config.js**
+
+```javascript
+...
+
+const commonConfig = merge([
+  ...
+leanpub-start-insert
+  parts.ignore({
+    test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+    include: /font-awesome/,
+  }),
+leanpub-end-insert
+  parts.loadFonts({
+    options: {
+      name: '[name].[ext]',
+    },
+  }),
+]);
+```
+
+If you build the project (`npm run build`), the output should be a little tidier:
+
+```bash
+Hash: fc4339a11b1f2d34ffcd
+Version: webpack 2.2.1
+Time: 2208ms
+                    Asset       Size  Chunks             Chunk Names
+  fontawesome-webfont.eot     166 kB          [emitted]
+  fontawesome-webfont.ttf     166 kB          [emitted]
+fontawesome-webfont.woff2    77.2 kB          [emitted]
+ fontawesome-webfont.woff      98 kB          [emitted]
+                 logo.png      77 kB          [emitted]
+                   app.js    4.55 kB       0  [emitted]  app
+                  app.css    3.85 kB       0  [emitted]  app
+               index.html  218 bytes          [emitted]
+   [0] ./app/component.js 185 bytes {0} [built]
+   [1] ./~/font-awesome/css/font-awesome.css 41 bytes {0} [built]
+   [2] ./app/main.css 41 bytes {0} [built]
+...
+```
+
+The solution above is generic and it should work with other libraries as well. The problematic aspect about the approach is that Font Awesome still included fonts you are not using. [font-awesome-loader](https://www.npmjs.com/package/font-awesome-loader) allows more customization.
+
+Font Awesome 5 will improve the situation further. If you want full control over which fonts you are using, [Font Awesome wiki](https://github.com/FortAwesome/Font-Awesome/wiki/Customize-Font-Awesome) points to available online services.
 
 ## Conclusion
 

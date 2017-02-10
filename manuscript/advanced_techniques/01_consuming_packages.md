@@ -173,6 +173,8 @@ To bring specific locales to your project, you should use `ContextReplacementPlu
 
 T> There's a [Stack Overflow question](https://stackoverflow.com/questions/25384360/how-to-prevent-moment-js-from-loading-locales-with-webpack/25426019) that covers these ideas in greater detail.
 
+T> [null-loader](https://www.npmjs.com/package/null-loader) discussed in the *Loading Fonts* chapter can be used to achieve a similar effect.
+
 ## Managing Pre-built Dependencies
 
 It is possible webpack will give the following warning with certain dependencies:
