@@ -80,8 +80,8 @@ I've annotated a part of *package.json* of my [React component boilerplate](http
   /* Entry point (defaults to index.js) */
   "main": "dist-modules/",
 
-  /* ES6 entry point for bundlers to pick up. */
-  /* This assumes only standard ES6 features are used! */
+  /* ES6 module based entry point for tree shaking bundlers to pick up. */
+  /* Apart from the module format, the code should use ES5 otherwise. */
   "module": "dist/",
 
   /* Files to include to npm distribution. */
