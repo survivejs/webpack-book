@@ -21,6 +21,7 @@ There are a couple of developing alternatives as well. I have listed a couple of
 * [Rollup](https://www.npmjs.com/package/rollup) focuses particularly on bundling ES6 code. A feature known as *tree shaking* is one of its main attractions. It allows you to drop unused code based on usage. Tree shaking is supported by webpack 2 up to a point. You can use Rollup with webpack through [rollup-loader](https://www.npmjs.com/package/rollup-loader).
 * [AssetGraph](https://www.npmjs.com/package/assetgraph) takes an entirely different approach and builds on top of HTML semantics making it highly useful for tasks like [hyperlink analysis](https://www.npmjs.com/package/hyperlink) or [structural analysis](https://www.npmjs.com/package/assetviz).
 * [FuseBox](https://github.com/fuse-box/fuse-box) is a bundler focusing on speed. It uses a zero-configuration approach and aims to be usable out of the box.
+* [StealJS](https://stealjs.com/) is a dependency loader and a build tool which has focus on performance and ease of use.
 
 I'll go through the main options next in greater detail.
 
