@@ -4,7 +4,7 @@ Linting is one of those techniques that can help you make less mistakes while co
 
 Despite this, it is a good idea to set them up with webpack or at least in a separate task that gets run regularly. That allows you to cancel a production build that might not be up to your standards while enforcing teamwide standards.
 
-## Brief History of Linting in JavaScript
+## Brief Introduction to ESLint
 
 The linter that started it all for JavaScript is Douglas Crockford's [JSLint](http://www.jslint.com/). JSLint is known to be opinionated like the man himself. The next step in evolution was [JSHint](http://jshint.com/), which took the opinionated edge out of JSLint and allowed for more customization. [ESLint](http://eslint.org/) is the newest tool in vogue, and it goes even further.
 
