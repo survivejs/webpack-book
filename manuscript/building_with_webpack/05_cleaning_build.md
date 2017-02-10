@@ -19,9 +19,7 @@ Next, we need to define a little function to wrap the basic idea. We could use t
 **webpack.parts.js**
 
 ```javascript
-const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const PurifyCSSPlugin = require('purifycss-webpack-plugin');
+...
 leanpub-start-insert
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 leanpub-end-insert
