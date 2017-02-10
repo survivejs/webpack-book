@@ -210,7 +210,7 @@ T> If you want more performance, especially during development, check out [fast-
 },
 ```
 
-To start using yeticss with Stylus, you must import it to one of your app's .styl files:
+To start using yeticss with Stylus, you must import it to one of your app's *.styl* files:
 
 ```javascript
 @import 'yeticss'
