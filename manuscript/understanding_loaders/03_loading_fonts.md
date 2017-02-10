@@ -238,7 +238,7 @@ fontawesome-webfont.woff2    77.2 kB          [emitted]
 
 Note that the SVG file included in Font Awesome has been marked as `[big]`. It is beyond the performance budget defaults set by webpack. The topic is discussed in greater detail at the *Minifying the Build* chapter.
 
-### Disabling SVG Loading
+### Disabling SVG Font Loading
 
 In order to drop the big SVG file and disable SVG loading, it is possible to capture SVG `import` and then rewrite the module as a `null` by using the [null-loader](https://www.npmjs.com/package/null-loader). This will get rid of the big file. To get started, install the loader first:
 
