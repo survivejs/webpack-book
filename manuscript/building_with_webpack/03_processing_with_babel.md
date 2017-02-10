@@ -7,22 +7,15 @@ Webpack processes ES6 module definitions by default and transforms them into cod
 ```javascript
 webpackJsonp([1],{
 
-/***/ 19:
-/***/ function(module, exports, __webpack_require__) {
+/***/ 18:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ exports["a"] = function () {
+/* harmony default export */ __webpack_exports__["a"] = function () {
   const element = document.createElement('h1');
 
   element.className = 'fa fa-hand-spock-o fa-1g';
   element.innerHTML = 'Hello world';
-  element.onclick = () => {
-    __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 36)).then((lazy) => {
-      element.textContent = lazy.default;
-    }).catch((err) => {
-      console.error(err);
-    });
-  };
 
   return element;
 };
@@ -30,7 +23,7 @@ webpackJsonp([1],{
 ...
 ```
 
-It is important to note that it does **not** transform ES6 specific syntax, such as `(lazy) => {` in the example, to ES5. This can be a problem especially on older browsers. It is also problematic if you minify your code through UglifyJS as it doesn't support ES6 syntax yet and will raise an error when it encounters the syntax it doesn't understand.
+It is important to note that it does **not** transform ES6 specific syntax, such as `const` in the example, to ES5. This can be a problem especially on older browsers. It is also problematic if you minify your code through UglifyJS as it doesn't support ES6 syntax yet and will raise an error when it encounters the syntax it doesn't understand.
 
 One way to work around this problem is to process the code through [Babel](https://babeljs.io/), a popular JavaScript compiler that supports ES6 features and more. It resembles ESLint in that it is built on top of presets and plugins. Presets are collections of plugins and you can define your own as well.
 
@@ -145,27 +138,22 @@ To make Babel aware of the preset, we need to write a *.babelrc*. Given webpack 
 
 T> This is the Babel setup you would use if you want to support tree shaking at a package level. See the *Tree Shaking* chapter for more information.
 
-If you execute `npm run build` now and examine *app.js*, you should see something a little different:
+If you execute `npm run build` now and examine *build/app.js*, you should see something a little different:
+
+**build/app.js**
 
 ```javascript
 webpackJsonp([1],{
 
-/***/ 19:
-/***/ function(module, exports, __webpack_require__) {
+/***/ 18:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ exports["a"] = function () {
+/* harmony default export */ __webpack_exports__["a"] = function () {
   var element = document.createElement('h1');
 
   element.className = 'fa fa-hand-spock-o fa-1g';
   element.innerHTML = 'Hello world';
-  element.onclick = function () {
-    __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 36)).then(function (lazy) {
-      element.textContent = lazy.default;
-    }).catch(function (err) {
-      console.error(err);
-    });
-  };
 
   return element;
 };
