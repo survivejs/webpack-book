@@ -185,7 +185,7 @@ leanpub-end-insert
 ...
 ```
 
-As you can see in the build output, the difference is negligible.
+As you can see in the build output, the difference is negligible:
 
 ```bash
 Hash: c6097a798690e8355b47
