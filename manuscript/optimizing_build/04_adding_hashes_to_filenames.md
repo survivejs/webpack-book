@@ -59,7 +59,7 @@ leanpub-start-delete
       name: '[name].[ext]',
 leanpub-end-delete
 leanpub-start-insert
-      name: '[name].[hash:8].[ext]',
+      name: '[hash:8].[ext]',
 leanpub-end-insert
     },
   }),
@@ -69,7 +69,7 @@ leanpub-start-delete
       name: '[name].[ext]',
 leanpub-end-delete
 leanpub-start-insert
-      name: '[name].[hash:8].[ext]',
+      name: '[hash:8].[ext]',
 leanpub-end-insert
     },
   }),
@@ -82,7 +82,7 @@ const productionConfig = merge([
 leanpub-start-insert
     output: {
       chunkFilename: 'scripts/[chunkhash:8].js',
-      filename: '[name].[chunkhash:8].js',
+      filename: '[chunkhash:8].js',
     },
 leanpub-end-insert
   },
@@ -110,7 +110,7 @@ leanpub-start-delete
       new ExtractTextPlugin('[name].css'),
 leanpub-end-delete
 leanpub-start-insert
-      new ExtractTextPlugin('[name].[contenthash:8].css'),
+      new ExtractTextPlugin('[contenthash:8].css'),
 leanpub-end-insert
     ],
   };
@@ -119,30 +119,32 @@ leanpub-end-insert
 ...
 ```
 
+W> `[name]` pattern has been omitted to fit the terminal output better to the book. In practice it could be a good idea to include it to make it easier to find the files you want.
+
 If you generate a build now (`npm run build`), you should see something like this:
 
 ```bash
-Hash: e44112498d9e48db253f
+Hash: c031493b7c7c8c847316
 Version: webpack 2.2.1
-Time: 3291ms
-                             Asset       Size  Chunks             Chunk Names
-                vendor.93a47e51.js      21 kB       2  [emitted]  vendor
-  fontawesome-webfont.674f50d2.eot     166 kB          [emitted]
-fontawesome-webfont.af7ae505.woff2    77.2 kB          [emitted]
- fontawesome-webfont.fee66e71.woff      98 kB          [emitted]
-  fontawesome-webfont.11ec0064.svg   22 bytes          [emitted]
-                 logo.85011118.png      77 kB          [emitted]
-               scripts/a21c7031.js  182 bytes       0  [emitted]
-                   app.337f1e2d.js  719 bytes       1  [emitted]  app
-  fontawesome-webfont.b06871f2.ttf     166 kB          [emitted]
-                  app.b15414fd.css  169 bytes       1  [emitted]  app
-               vendor.9d040a84.css    2.09 kB       2  [emitted]  vendor
-           scripts/a21c7031.js.map  817 bytes       0  [emitted]
-               app.337f1e2d.js.map       6 kB       1  [emitted]  app
-              app.b15414fd.css.map   93 bytes       1  [emitted]  app
-            vendor.93a47e51.js.map     261 kB       2  [emitted]  vendor
-           vendor.9d040a84.css.map   96 bytes       2  [emitted]  vendor
-                        index.html  351 bytes          [emitted]
+Time: 4033ms
+                  Asset       Size  Chunks             Chunk Names
+            07db3937.js      21 kB       2  [emitted]  vendor
+           674f50d2.eot     166 kB          [emitted]
+         af7ae505.woff2    77.2 kB          [emitted]
+          fee66e71.woff      98 kB          [emitted]
+           11ec0064.svg   22 bytes          [emitted]
+           85011118.png      77 kB          [emitted]
+    scripts/a21c7031.js  182 bytes       0  [emitted]
+            337f1e2d.js  715 bytes       1  [emitted]  app
+           b06871f2.ttf     166 kB          [emitted]
+           03d7fa6d.css  164 bytes       1  [emitted]  app
+           9c2469e8.css    46.6 kB       2  [emitted]  vendor
+scripts/a21c7031.js.map  817 bytes       0  [emitted]
+        337f1e2d.js.map    5.98 kB       1  [emitted]  app
+       03d7fa6d.css.map   89 bytes       1  [emitted]  app
+        07db3937.js.map     261 kB       2  [emitted]  vendor
+       9c2469e8.css.map   89 bytes       2  [emitted]  vendor
+             index.html  329 bytes          [emitted]
    [4] ./~/object-assign/index.js 2.11 kB {2} [built]
   [14] ./app/component.js 372 bytes {1} [built]
   [15] ./app/shake.js 138 bytes {1} [built]
@@ -186,27 +188,27 @@ leanpub-end-insert
 As you can see in the build output, the difference is negligible.
 
 ```bash
-Hash: 7c14a0694e8d2a427fee
+Hash: c6097a798690e8355b47
 Version: webpack 2.2.1
-Time: 3306ms
-                             Asset       Size  Chunks             Chunk Names
-                vendor.41599ee4.js    21.4 kB       2  [emitted]  vendor
-  fontawesome-webfont.11ec0064.svg   22 bytes          [emitted]
-  fontawesome-webfont.674f50d2.eot     166 kB          [emitted]
- fontawesome-webfont.fee66e71.woff      98 kB          [emitted]
-fontawesome-webfont.af7ae505.woff2    77.2 kB          [emitted]
-                 logo.85011118.png      77 kB          [emitted]
-               scripts/ce7751bd.js  184 bytes       0  [emitted]
-                   app.bed7c790.js  763 bytes       1  [emitted]  app
-  fontawesome-webfont.b06871f2.ttf     166 kB          [emitted]
-                  app.b15414fd.css  169 bytes       1  [emitted]  app
-               vendor.9d040a84.css    2.09 kB       2  [emitted]  vendor
-           scripts/ce7751bd.js.map  825 bytes       0  [emitted]
-               app.bed7c790.js.map    6.05 kB       1  [emitted]  app
-              app.b15414fd.css.map   93 bytes       1  [emitted]  app
-            vendor.41599ee4.js.map     262 kB       2  [emitted]  vendor
-           vendor.9d040a84.css.map   96 bytes       2  [emitted]  vendor
-                        index.html  351 bytes          [emitted]
+Time: 3923ms
+                  Asset       Size  Chunks             Chunk Names
+            f4a39706.js    21.4 kB       2  [emitted]  vendor
+           11ec0064.svg   22 bytes          [emitted]
+           674f50d2.eot     166 kB          [emitted]
+          fee66e71.woff      98 kB          [emitted]
+         af7ae505.woff2    77.2 kB          [emitted]
+           85011118.png      77 kB          [emitted]
+    scripts/ce7751bd.js  184 bytes       0  [emitted]
+            bed7c790.js  759 bytes       1  [emitted]  app
+           b06871f2.ttf     166 kB          [emitted]
+           03d7fa6d.css  164 bytes       1  [emitted]  app
+           9c2469e8.css    46.6 kB       2  [emitted]  vendor
+scripts/ce7751bd.js.map  825 bytes       0  [emitted]
+        bed7c790.js.map    6.04 kB       1  [emitted]  app
+       03d7fa6d.css.map   89 bytes       1  [emitted]  app
+        f4a39706.js.map     262 kB       2  [emitted]  vendor
+       9c2469e8.css.map   89 bytes       2  [emitted]  vendor
+             index.html  329 bytes          [emitted]
 [1Q41] ./app/main.css 41 bytes {1} [built]
 [2twT] ./app/index.js 557 bytes {1} [built]
 [5W1q] ./~/font-awesome/css/font-awesome.css 41 bytes {2} [built]
