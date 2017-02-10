@@ -6,11 +6,13 @@ Even though splitting our bundles can help a notch, they are not the only soluti
 
 T> Incidentally, it is possible to implement Google's [PRPL pattern](https://developers.google.com/web/fundamentals/performance/prpl-pattern/) using lazy loading. PRPL (Push, Render, Pre-cache, Lazy-load) has been designed with mobile web in mind and can be implemented using webpack.
 
-![Bundle with a dynamically loaded normal chunk](images/dynamic.png)
-
 ## Code Splitting Formats
 
-Code splitting can be done in two primary ways in webpack: through a [dynamic import](https://github.com/tc39/proposal-dynamic-import) or `require.ensure` syntax. We'll be using the former in this demo. The syntax isn't in the official specification yet so it will require minor tweaks especially at ESLint and Babel too if you are using that.
+Code splitting can be done in two primary ways in webpack: through a [dynamic import](https://github.com/tc39/proposal-dynamic-import) or `require.ensure` syntax. We'll be using the former in this project. The syntax isn't in the official specification yet so it will require minor tweaks especially at ESLint and Babel too if you are using that.
+
+The goal is to end up with a split point that will get loaded on demand. There can be splits inside splits and you can structure an entire application based on splits.
+
+![Bundle with a dynamically loaded normal chunk](images/dynamic.png)
 
 ### Dynamic `import`
 
