@@ -398,6 +398,8 @@ function exec(command) {
 
 The script may need tweaking to fit your purposes. But it's enough to give you a rough idea. If the `dist-modules` directory is missing, we'll generate it here. That's it.
 
+For the build script to work, you have to remember to include the original source of the package to the distribution version. Remember to tweak *package.json* `files` field accordingly.
+
 W> Relying on `postinstall` scripts can be [potentially dangerous](http://blog.npmjs.org/post/141702881055/package-install-scripts-vulnerability). Security minded developers may want to use `npm install --ignore-scripts`. You can set that default through `npm config set ignore-scripts true` if you want. Being a little cautious might not hurt.
 
 ### Deprecating, Unpublishing, and Renaming Packages
