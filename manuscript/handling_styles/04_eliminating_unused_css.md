@@ -50,14 +50,14 @@ If you run the application (`npm start`), our "Hello world" should look like a b
 Building the application (`npm run build`) should yield output like this:
 
 ```bash
-Hash: 55790ed54906ac817d64
+Hash: c632512d61228409ede0
 Version: webpack 2.2.1
 Time: 1357ms
      Asset       Size  Chunks             Chunk Names
-    app.js    4.14 kB       0  [emitted]  app
+    app.js    4.13 kB       0  [emitted]  app
    app.css    16.5 kB       0  [emitted]  app
 index.html  218 bytes          [emitted]
-   [0] ./app/component.js 173 bytes {0} [built]
+   [0] ./app/component.js 172 bytes {0} [built]
    [1] ./app/main.css 41 bytes {0} [built]
    [2] ./~/purecss/build/pure-min.css 41 bytes {0} [built]
 ...
@@ -131,14 +131,14 @@ W> Note that the order matters. CSS extraction has to happen before purifying.
 If you execute `npm run build` now, you should see something like this:
 
 ```bash
-Hash: 55790ed54906ac817d64
+Hash: c632512d61228409ede0
 Version: webpack 2.2.1
 Time: 1510ms
      Asset       Size  Chunks             Chunk Names
-    app.js    4.14 kB       0  [emitted]  app
+    app.js    4.13 kB       0  [emitted]  app
    app.css    2.23 kB       0  [emitted]  app
 index.html  218 bytes          [emitted]
-   [0] ./app/component.js 173 bytes {0} [built]
+   [0] ./app/component.js 172 bytes {0} [built]
    [1] ./app/main.css 41 bytes {0} [built]
    [2] ./~/purecss/build/pure-min.css 41 bytes {0} [built]
 ...

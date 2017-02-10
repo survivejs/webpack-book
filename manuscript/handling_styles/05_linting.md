@@ -103,9 +103,7 @@ Then add it to the common configuration:
 ...
 
 const commonConfig = merge([
-  {
-    ...
-  },
+  ...
 leanpub-start-insert
   parts.lintCSS({ include: PATHS.app }),
 leanpub-end-insert
