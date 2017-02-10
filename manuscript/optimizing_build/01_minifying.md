@@ -56,8 +56,8 @@ leanpub-start-insert
   {
     performance: {
       hints: 'warning', // 'error' or false are valid too
-      maxEntrypointSize: 100000, // in bytes
-      maxAssetSize: 50000, // in bytes
+      maxEntrypointSize: 200000, // in bytes
+      maxAssetSize: 200000, // in bytes
     },
   },
 leanpub-end-insert
