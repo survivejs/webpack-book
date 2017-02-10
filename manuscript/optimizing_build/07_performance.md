@@ -37,7 +37,7 @@ const HappyPack = require('happypack');
 
 ...
 
-const common = merge([{
+const commonConfig = merge([{
   {
     plugins: [
       new HappyPack({
@@ -137,7 +137,7 @@ To use the function, you would call it like this:
 ```javascript
 ...
 
-const common = merge([
+const commonConfig = merge([
   {
     ...
 leanpub-start-insert
