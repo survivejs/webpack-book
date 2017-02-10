@@ -253,7 +253,7 @@ T> The *Dynamic Loading* appendix covers other techniques that come in handy whe
 
 The splitting pattern can be wrapped into a React component. Airbnb uses the following solution [as described by Joe Lencioni](https://gist.github.com/lencioni/643a78712337d255f5c031bfc81ca4cf):
 
-```jsx
+```javascript
 import React from 'react';
 
 ...
