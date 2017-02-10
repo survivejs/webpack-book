@@ -164,7 +164,7 @@ You should point package `main` to a fully compiled version that's compatible wi
 
 In addition to the source, you can consider distributing package *README.md* and *LICENSE*. Any metadata that's required by third party systems, like Travis, can be safely skipped. Full documentation of the package doesn't have to be included as you can point to the package homepage through its metadata instead.
 
-T> As [noted by Gleb Bahmutov](https://glebbahmutov.com/blog/smaller-published-NPM-modules/), it's possible to tell npm what to exclude from `files` through `!src/*.test.js` kind of definitions. This is useful if you prefer to co-locate tests with code, but want to avoid distributing them.
+W> Even though it's possible to tell npm what to exclude from `files` through `!src/*.test.js` kind of definitions, [using negation patterns is not recommended](https://github.com/npm/npm/wiki/Files-and-Ignores#details). Instead, you should use *.npmignore* and include `src/*.test.js` kind of pattern there.
 
 ### Bumping a Version
 
