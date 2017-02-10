@@ -1,6 +1,8 @@
 # Authoring Packages
 
-Even though webpack is useful for bundling applications, it has its uses for package authors as well. You can use it to generate a site for your package and maintain the distribution files using it. It supports the [UMD format](https://github.com/umdjs/umd). UMD is compatible with multiple environments (CommonJS, AMD, globals) making it good for distribution purposes.
+Even though webpack is useful for bundling applications, it has its uses for package authors as well. It allows you to generate the distribution bundles required by npm. You can also generate the package site through webpack.
+
+In this chapter I will cover basic ideas behind authoring npm packages and discuss a couple of webpack specific techniques.
 
 ## Anatomy of an npm Package
 
@@ -275,31 +277,6 @@ See [npm documentation](https://docs.npmjs.com/cli/owner) for the most up to dat
 ## Package Authoring Techniques
 
 A couple of certain package authoring-related techniques are good to know. For example, to make it easier to consume your packages, you can generate a Node friendly versions. This technique can be improved further by setting up a specific script.
-
-### Setting Up UMD
-
-Allowing webpack to output your bundle in the UMD format is simple. Webpack allows you to control the output format using [output.libraryTarget](https://webpack.js.org/configuration/output/#output-librarytarget) field. It defaults to `var`. This means it will set your bundle to a variable defined using the `output.library` field.
-
-There are other options too, but the one we are interested in is `output.libraryTarget: 'umd'`. Consider the example below:
-
-**webpack.config.js**
-
-```javascript
-output: {
-  path: PATHS.dist,
-  libraryTarget: 'umd', // !!
-  // Name of the generated global.
-  library: 'MyLibrary',
-  // Optional name for the generated AMD module.
-  umdNamedDefine: 'my_library'
-}
-```
-
-### Supporting SystemJS
-
-[SystemJS](https://github.com/systemjs/systemjs) is an emerging standard that's starting to get more attention. [webpack-system-register](https://www.npmjs.com/package/webpack-system-register) plugin allows you to wrap your output in a `System.register` call making it compatible with the scheme.
-
-If you want to support SystemJS this way, set up another build target where to generate a bundle for it.
 
 ### Avoiding Bundling Dependencies
 

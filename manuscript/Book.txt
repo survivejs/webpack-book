@@ -42,19 +42,24 @@ optimizing_build/05_separating_manifest.md
 optimizing_build/06_analyzing_build_statistics.md
 optimizing_build/07_performance.md
 
-09_Advanced_Techniques.md
+09_Output.md
+output/01_formats.md
+output/02_multiple_pages.md
+output/03_electron.md
+
+10_Advanced_Techniques.md
 advanced_techniques/01_consuming_packages.md
 advanced_techniques/02_authoring_packages.md
 advanced_techniques/03_configuring_react.md
 
-10_Extending_Webpack.md
+11_Extending_Webpack.md
 
 extending_webpack/01_loaders.md
 extending_webpack/02_plugins.md
 
 Backmatter.txt
 
-11_Appendices.md
+12_Appendices.md
 appendices/01_searching_with_react.md
 appendices/02_writing_eslint_plugins.md
 appendices/03_customizing_eslint.md
