@@ -17,19 +17,19 @@ We have done most of the work already when we set up `extractBundles`. To extrac
 
 const productionConfig = merge([
   ...
-  parts.extractBundles({
-    bundles: [
+  parts.extractBundles({[
       {
         name: 'vendor',
-        entries: ['react'],
+        minChunks: ({ context }) => (
+          context && context.indexOf('node_modules') >= 0
+        ),
       },
 leanpub-start-insert
       {
         name: 'manifest',
       },
 leanpub-end-insert
-    ]
-  }),
+  ]),
   ...
 ]);
 
@@ -39,34 +39,36 @@ leanpub-end-insert
 If you build the project now (`npm run build`), you should see something like this:
 
 ```bash
-Hash: 3d4e3eda67109636826b
+Hash: 940612921489b7d36dc2
 Version: webpack 2.2.1
-Time: 3768ms
-                              Asset       Size  Chunks                    Chunk Names
-                    app.57e8c83b.js  811 bytes    2, 3  [emitted]         app
-   fontawesome-webfont.912ec66d.svg     444 kB          [emitted]  [big]
-   fontawesome-webfont.674f50d2.eot     166 kB          [emitted]  [big]
-  fontawesome-webfont.fee66e71.woff      98 kB          [emitted]  [big]
- fontawesome-webfont.af7ae505.woff2    77.2 kB          [emitted]  [big]
-                  logo.85011118.png      77 kB          [emitted]  [big]
-    scripts/a749f8b7a6c990eff5b2.js  198 bytes    0, 3  [emitted]
-                 vendor.e9b7f566.js    20.1 kB    1, 3  [emitted]         vendor
-   fontawesome-webfont.b06871f2.ttf     166 kB          [emitted]  [big]
-               manifest.696ccd34.js    1.52 kB       3  [emitted]         manifest
-                   app.c1d1325d.css    2.26 kB    2, 3  [emitted]         app
-scripts/a749f8b7a6c990eff5b2.js.map  864 bytes    0, 3  [emitted]
-             vendor.e9b7f566.js.map     248 kB    1, 3  [emitted]         vendor
-                app.57e8c83b.js.map    6.35 kB    2, 3  [emitted]         app
-               app.c1d1325d.css.map   93 bytes    2, 3  [emitted]         app
-           manifest.696ccd34.js.map    14.1 kB       3  [emitted]         manifest
-                         index.html  368 bytes          [emitted]
-[1Q41] ./app/main.css 41 bytes {2} [built]
-[2twT] ./app/index.js 557 bytes {2} [built]
-[5W1q] ./~/font-awesome/css/font-awesome.css 41 bytes {2} [built]
+Time: 4227ms
+                  Asset       Size  Chunks             Chunk Names
+            136bdd5b.js    1.47 kB       3  [emitted]  manifest
+           674f50d2.eot     166 kB          [emitted]
+         af7ae505.woff2    77.2 kB          [emitted]
+          fee66e71.woff      98 kB          [emitted]
+           11ec0064.svg   22 bytes          [emitted]
+           85011118.png      77 kB          [emitted]
+    scripts/2ef8cb5e.js  184 bytes    0, 3  [emitted]
+            4f2ad811.js    19.6 kB    1, 3  [emitted]  vendor
+            3a05df06.js  717 bytes    2, 3  [emitted]  app
+           b06871f2.ttf     166 kB          [emitted]
+           03d7fa6d.css  164 bytes    2, 3  [emitted]  app
+           9c2469e8.css    46.6 kB    1, 3  [emitted]  vendor
+scripts/2ef8cb5e.js.map  824 bytes    0, 3  [emitted]
+        4f2ad811.js.map     247 kB    1, 3  [emitted]  vendor
+       9c2469e8.css.map   89 bytes    1, 3  [emitted]  vendor
+        3a05df06.js.map    5.99 kB    2, 3  [emitted]  app
+       03d7fa6d.css.map   89 bytes    2, 3  [emitted]  app
+        136bdd5b.js.map      14 kB       3  [emitted]  manifest
+             index.html  387 bytes          [emitted]
+   [4] ./~/object-assign/index.js 2.11 kB {1} [built]
+  [14] ./app/component.js 372 bytes {2} [built]
+  [15] ./app/shake.js 138 bytes {2} [built]
 ...
 ```
 
-This simple change gave us a separate file that contains the manifest. Because we are using *html-webpack-plugin*, we don't have to worry about loading it ourselves as it adds a reference to the manifest to *index.html* for us.
+This simple change gave us a separate file that contains the manifest. In the output above it has been marked with `manifest` chunk name. Because we are using *html-webpack-plugin*, we don't have to worry about loading the manifest ourselves as the plugin adds a reference to *index.html* for us.
 
 Plugins, such as [inline-manifest-webpack-plugin](https://www.npmjs.com/package/inline-manifest-webpack-plugin) and [html-webpack-inline-chunk-plugin](https://www.npmjs.com/package/html-webpack-inline-chunk-plugin), [assets-webpack-plugin](https://www.npmjs.com/package/assets-webpack-plugin), work with *html-webpack-plugin* and allow you to write the manifest within *index.html* in order to avoid a request.
 
@@ -75,30 +77,32 @@ T> To get a better idea of the manifest contents, comment out `parts.minify()` a
 Try adjusting *app/index.js* and see how the hashes change. This time around it should **not** invalidate the vendor bundle, and only the manifest and app bundle names should be different like this:
 
 ```bash
-Hash: 339ba11c09571b4d4b7d
+Hash: e30a9f69eec18c5fe1c8
 Version: webpack 2.2.1
-Time: 3426ms
-                              Asset       Size  Chunks                    Chunk Names
-                    app.54890b9b.js  830 bytes    2, 3  [emitted]         app
-   fontawesome-webfont.912ec66d.svg     444 kB          [emitted]  [big]
-   fontawesome-webfont.674f50d2.eot     166 kB          [emitted]  [big]
-  fontawesome-webfont.fee66e71.woff      98 kB          [emitted]  [big]
- fontawesome-webfont.af7ae505.woff2    77.2 kB          [emitted]  [big]
-                  logo.85011118.png      77 kB          [emitted]  [big]
-    scripts/a749f8b7a6c990eff5b2.js  198 bytes    0, 3  [emitted]
-                 vendor.e9b7f566.js    20.1 kB    1, 3  [emitted]         vendor
-   fontawesome-webfont.b06871f2.ttf     166 kB          [emitted]  [big]
-               manifest.db83b1fb.js    1.52 kB       3  [emitted]         manifest
-                   app.c1d1325d.css    2.26 kB    2, 3  [emitted]         app
-scripts/a749f8b7a6c990eff5b2.js.map  864 bytes    0, 3  [emitted]
-             vendor.e9b7f566.js.map     248 kB    1, 3  [emitted]         vendor
-                app.54890b9b.js.map    6.42 kB    2, 3  [emitted]         app
-               app.c1d1325d.css.map   93 bytes    2, 3  [emitted]         app
-           manifest.db83b1fb.js.map    14.1 kB       3  [emitted]         manifest
-                         index.html  368 bytes          [emitted]
-[1Q41] ./app/main.css 41 bytes {2} [built]
-[2twT] ./app/index.js 578 bytes {2} [built]
-[5W1q] ./~/font-awesome/css/font-awesome.css 41 bytes {2} [built]
+Time: 3849ms
+                  Asset       Size  Chunks             Chunk Names
+            3df3e08c.js    1.47 kB       3  [emitted]  manifest
+           674f50d2.eot     166 kB          [emitted]
+         af7ae505.woff2    77.2 kB          [emitted]
+          fee66e71.woff      98 kB          [emitted]
+           11ec0064.svg   22 bytes          [emitted]
+           85011118.png      77 kB          [emitted]
+    scripts/2ef8cb5e.js  184 bytes    0, 3  [emitted]
+            4f2ad811.js    19.6 kB    1, 3  [emitted]  vendor
+            67a40f61.js  737 bytes    2, 3  [emitted]  app
+           b06871f2.ttf     166 kB          [emitted]
+           03d7fa6d.css  164 bytes    2, 3  [emitted]  app
+           9c2469e8.css    46.6 kB    1, 3  [emitted]  vendor
+scripts/2ef8cb5e.js.map  824 bytes    0, 3  [emitted]
+        4f2ad811.js.map     247 kB    1, 3  [emitted]  vendor
+       9c2469e8.css.map   89 bytes    1, 3  [emitted]  vendor
+        67a40f61.js.map    6.06 kB    2, 3  [emitted]  app
+       03d7fa6d.css.map   89 bytes    2, 3  [emitted]  app
+        3df3e08c.js.map      14 kB       3  [emitted]  manifest
+             index.html  387 bytes          [emitted]
+   [4] ./~/object-assign/index.js 2.11 kB {1} [built]
+  [14] ./app/component.js 372 bytes {2} [built]
+  [15] ./app/shake.js 138 bytes {2} [built]
 ...
 ```
 
