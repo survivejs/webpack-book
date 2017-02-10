@@ -129,6 +129,39 @@ T> If you are getting `Module build failed: CssSyntaxError:` or `Module build fa
 
 T> [extract-loader](https://www.npmjs.com/package/extract-loader) is a light alternative to `ExtractTextPlugin`. It does less, but can be enough for simple extraction needs.
 
+## Managing Styles Outside of JavaScript
+
+Even though referring to styling through JavaScript and then bundling is a valid option, it is possible to achieve the same result through an `entry` and [globbing](https://www.npmjs.com/package/glob). The basic idea goes like this:
+
+```javascript
+...
+const glob = require('glob');
+
+// Glob CSS files as an array of CSS files
+const PATHS = {
+  app: path.join(__dirname, 'app'),
+  build: path.join(__dirname, 'build'),
+  style: glob.sync('./app/**/*.css'),
+};
+
+...
+
+const commonConfig = merge([
+  {
+    entry: {
+      app: PATHS.app,
+      style: PATHS.style,
+    },
+    ...
+  },
+  ...
+]);
+```
+
+After this type of change, you would not have to refer to styling from your application code. It also means that CSS Modules won't work anymore. As a result, you should get both *style.css* and *style.js*. The latter file will contain roughly content like `webpackJsonp([1,3],[function(n,c){}]);` and it doesn't do anything useful. This is [a known limitation](https://github.com/webpack/webpack/issues/1967) in webpack.
+
+The approach can be useful if you have to port a legacy project relying on CSS concatenation. If you want strict control over the ordering, you can set up a single CSS entry and then use `@import` to bring the rest to the project through it. Another option would be to set up a JavaScript entry and go through `import` to get the same effect.
+
 ## Conclusion
 
 Our current setup separates styling from JavaScript neatly. Even though the technique is most useful with CSS, it can be used for extracting HTML templates or any other files types you might consume. The difficult part about `ExtractTextPlugin` has to do with its setup, but the complexity can be hidden behind abstraction.

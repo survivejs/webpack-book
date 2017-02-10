@@ -87,39 +87,6 @@ Last 2 versions # Last two versions too
 IE 8 # And IE 8
 ```
 
-## Managing Styles Outside of JavaScript
-
-Even though referring to styling through JavaScript and then bundling is a valid option, it is possible to achieve the same result through an `entry` and [globbing](https://www.npmjs.com/package/glob). The basic idea goes like this:
-
-```javascript
-...
-const glob = require('glob');
-
-// Glob CSS files as an array of CSS files
-const PATHS = {
-  app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'build'),
-  style: glob.sync('./app/**/*.css'),
-};
-
-...
-
-const commonConfig = merge([
-  {
-    entry: {
-      app: PATHS.app,
-      style: PATHS.style,
-    },
-    ...
-  },
-  ...
-]);
-```
-
-After this type of change, you would not have to refer to styling from your application code. It also means that CSS Modules won't work anymore. As a result, you should get both *style.css* and *style.js*. The latter file will contain roughly content like `webpackJsonp([1,3],[function(n,c){}]);` and it doesn't do anything useful. This is [a known limitation](https://github.com/webpack/webpack/issues/1967) in webpack.
-
-The approach can be useful if you have to port a legacy project relying on CSS concatenation. If you want strict control over the ordering, you can set up a single CSS entry and then use `@import` to bring the rest to the project through it. Another option would be to set up a JavaScript entry and go through `import` to get the same effect.
-
 ## Conclusion
 
 Autoprefixing is a handy technique as it decreases the amount of work needed while crafting CSS. You can maintain minimum browser requirements within a *browserslist* file. The tooling can then use that information to generate optimal output.
