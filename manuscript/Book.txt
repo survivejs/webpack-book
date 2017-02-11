@@ -53,7 +53,6 @@ advanced_techniques/02_authoring_packages.md
 advanced_techniques/03_configuring_react.md
 
 11_Extending_Webpack.md
-
 extending_webpack/01_loaders.md
 extending_webpack/02_plugins.md
 
