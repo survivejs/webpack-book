@@ -55,7 +55,7 @@ Given this book receives a fair amount of maintenance and improvements due to th
 Examining the GitHub repository may be beneficial. I recommend using the GitHub *compare* tool for this purpose. Example:
 
 ```
-https://github.com/survivejs/webpack/compare/v1.6.0...v1.7.2
+https://github.com/survivejs/webpack-book/compare/v1.6.0...v1.7.2
 ```
 
 The page will show you the individual commits that went to the project between the given version range. You can also see the lines that have changed in the book.
@@ -70,7 +70,7 @@ A part of the profit goes towards funding the development of the tool itself. Mo
 
 As no book is perfect, you will likely come by issues and might have some questions related to the content. There are a couple of options to deal with this:
 
-* Contact me through [GitHub Issue Tracker](https://github.com/survivejs/webpack/issues)
+* Contact me through [GitHub Issue Tracker](https://github.com/survivejs/webpack-book/issues)
 * Join me at [Gitter Chat](https://gitter.im/survivejs/webpack)
 * Follow [@survivejs](https://twitter.com/survivejs) on Twitter for official news or poke me through [@bebraw](https://twitter.com/bebraw) directly
 * Send me email at [info@survivejs.com](mailto:info@survivejs.com)
