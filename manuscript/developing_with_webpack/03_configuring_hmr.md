@@ -147,6 +147,8 @@ The message tells us that even though the HMR interface notified the client port
 
 T> We will perform a similar trick for production usage later in this book in the *Adding Hashes to Filenames* chapter.
 
+T> A similar effect can be achieved by setting `output.pathInfo = true`. It will still use number based indices while emitting the path to the module within a comment. This should be used for development purposes only.
+
 ## Implementing the HMR Interface
 
 Webpack exposes the HMR interface through a global, `module.hot`. It provides updates through `module.hot.accept(<path to watch>, <handler>)` function and we need to patch the application there. In this case, it is enough to replace the old DOM node with a newer one as we receive updates.
