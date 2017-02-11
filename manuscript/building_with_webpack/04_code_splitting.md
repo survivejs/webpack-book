@@ -301,6 +301,8 @@ AsyncComponent.propTypes = {
 };
 ```
 
+T> [react-async-component](https://www.npmjs.com/package/react-async-component) wraps the pattern in a `createAsyncComponent` call and provides server side rendering specific functionality.
+
 ## Conclusion
 
 Code splitting is one of those features that allows you to push your application a notch further. You can load code when you need it. This gives faster initial load times and helps to improve user experience especially in a mobile context where bandwidth is limited.
