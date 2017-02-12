@@ -43,7 +43,7 @@ optimizing_build/06_analyzing_build_statistics.md
 optimizing_build/07_performance.md
 
 09_Output.md
-output/01_formats.md
+output/01_targets.md
 output/02_multiple_pages.md
 output/03_electron.md
 output/04_server_side_rendering.md
@@ -65,3 +65,4 @@ appendices/02_writing_eslint_plugins.md
 appendices/03_customizing_eslint.md
 appendices/04_deploying.md
 appendices/05_dynamic_loading.md
+appendices/06_using_webworkers.md
