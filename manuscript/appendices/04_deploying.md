@@ -16,7 +16,7 @@ To get started, execute
 npm install gh-pages --save-dev
 ```
 
-We are also going to need an entry point at *package.json*:
+We are also going to need a script in *package.json*:
 
 **package.json**
 
