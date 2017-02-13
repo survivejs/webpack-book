@@ -33,7 +33,7 @@ There are desktop shells, such as [NW.js](https://nwjs.io/) (previously *node-we
 
 The *Electron* chapter discusses the topic in further detail.
 
-## Library Targets
+## Bundling Libraries with Webpack
 
 To understand webpack's library targets better, we can set up a small library to bundle. The idea is to end up with a non-minified, a minified version, and a version compatible with *package.json* `module` field. The first two can be useful for standalone consumption. You can also point to the non-minified version through *package.json* `main`.
 
