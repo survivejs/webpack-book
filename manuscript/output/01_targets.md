@@ -307,6 +307,6 @@ When distributing the library, you should point to that *./dist-modules* directo
 
 ## Conclusion
 
-This isn't all there is to authoring packages using webpack. If you try to import *./dist/lib.js* through Node, you will notice it will output `{}`. This has to do with the output type we chose. To understand better which output to use and why, we should go through them and the related options in detail.
+This isn't all there is to authoring packages using webpack. If you try to import *./dist/lib.js* through Node, you will notice it will output `{}`. This has to do with the output type we chose. To understand better which output to use and why, we will go through them and the related options in the next chapter.
 
 T> The *Authoring Packages* chapter discusses npm specific techniques in detail and it complements these chapters well.
