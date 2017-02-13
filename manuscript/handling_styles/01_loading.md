@@ -106,7 +106,16 @@ T> An alternate way to load CSS would be to define a separate entry and point to
 
 Perhaps the biggest challenge of CSS is that all rules exist within **global scope**. This has led to specific conventions that work around this feature. The [CSS Modules](https://github.com/css-modules/css-modules) specification solves the problem by introducing **local scope** per `import`. As it happens, this makes CSS more bearable to use as you don't have to worry about namespace collisions anymore.
 
-Enabling CSS Modules in webpack is simple as *css-loader* supports the feature. You can enable it through `css-loader?modules` or set `modules` field `true` through the loader `options`.
+Enabling CSS Modules in webpack is simple as *css-loader* supports the feature. You can enable it through a loader definition like this:
+
+```javascript
+{
+  loader: 'css-loader',
+  options: {
+    modules: true,
+  },
+},
+```
 
 After this change, your class definitions will remain local to the files. In case you want global class definitions, you'll need to wrap them within `:global(.redButton) { ... }` kind of declarations.
 

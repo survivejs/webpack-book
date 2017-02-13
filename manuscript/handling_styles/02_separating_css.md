@@ -107,6 +107,8 @@ leanpub-end-insert
 
 Using this setup, we can still benefit from the HMR during development. For a production build, we generate a separate CSS, though. *html-webpack-plugin* will pick it up automatically and inject it into our `index.html`.
 
+T> If you are using CSS Modules, remember to tweak `use` accordingly as discussed in the *Loading Styles* chapter.
+
 After running `npm run build`, you should see output similar to the following:
 
 ```bash
