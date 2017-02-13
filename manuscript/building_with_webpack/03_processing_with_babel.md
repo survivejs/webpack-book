@@ -12,7 +12,7 @@ webpackJsonp([1],{
 
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = function () {
-  const element = document.createElement('h1');
+  const element = document.createElement('div');
 
   element.className = 'fa fa-hand-spock-o fa-1g';
   element.innerHTML = 'Hello world';
@@ -150,7 +150,7 @@ webpackJsonp([1],{
 
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = function () {
-  var element = document.createElement('h1');
+  var element = document.createElement('div');
 
   element.className = 'fa fa-hand-spock-o fa-1g';
   element.innerHTML = 'Hello world';

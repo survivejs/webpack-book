@@ -76,7 +76,7 @@ As you never get tired of `Hello world`, we might as well model a variant of tha
 
 ```javascript
 export default function () {
-  const element = document.createElement('h1');
+  const element = document.createElement('div');
 
   element.innerHTML = 'Hello world';
 

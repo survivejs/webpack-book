@@ -200,7 +200,7 @@ If you run the project again (`npm start`), it should run without any errors. To
 
 ```javascript
 export default function () {
-  const element = document.createElement('h1');
+  const element = document.createElement('div');
 
 leanpub-start-delete
   element.className = 'pure-button';

@@ -171,7 +171,7 @@ We also need to point the application to this file so it knows to load it. A sim
 
 ```javascript
 export default function () {
-  const element = document.createElement('h1');
+  const element = document.createElement('div');
 
   element.className = 'fa fa-hand-spock-o fa-1g';
   element.innerHTML = 'Hello world';
@@ -231,7 +231,7 @@ It is possible to achieve the same with `require.ensure`. Consider the full exam
 
 ```javascript
 export default function () {
-  const element = document.createElement('h1');
+  const element = document.createElement('div');
 
   element.className = 'pure-button';
   element.innerHTML = 'Hello world';
