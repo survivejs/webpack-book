@@ -6,7 +6,7 @@ A project built with webpack can be deployed to a variety of environments easily
 
 [gh-pages](https://www.npmjs.com/package/gh-pages) allows you to host stand-alone applications on GitHub Pages easily. It has to be pointed to a build directory first. It will then pick up the contents and push them to the `gh-pages` branch.
 
-Despite its name, the package works with other services that support hosting from a Git repository as well. But given GitHub is so popular, we can use it to demonstrate the idea. In practice, you would likely have more complicated setup in place that would push the result to some other service through a Continuous Environment (CI) system.
+Despite its name, the package works with other services that support hosting from a Git repository as well. But given GitHub is so popular, we can use it to demonstrate the idea. In practice, you would likely have more complicated setup in place that would push the result to some other service through a Continuous Integration system.
 
 ## Setting Up *gh-pages*
 
