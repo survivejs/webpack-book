@@ -44,9 +44,10 @@ optimizing_build/07_performance.md
 
 09_Output.md
 output/01_targets.md
-output/02_multiple_pages.md
-output/03_electron.md
-output/04_server_side_rendering.md
+output/02_library_output.md
+output/03_multiple_pages.md
+output/04_electron.md
+output/05_server_side_rendering.md
 
 10_Advanced_Techniques.md
 advanced_techniques/01_consuming_packages.md
