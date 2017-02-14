@@ -124,7 +124,7 @@ exports.dontParse = function(options) {
       ],
     },
     resolve: {
-      alias: alias,
+      alias,
     },
   };
 };
