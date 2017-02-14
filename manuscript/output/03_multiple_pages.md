@@ -91,7 +91,9 @@ leanpub-start-insert
     parts.page({ title: 'Webpack demo' }),
     parts.page({ title: 'Another demo', path: 'another' }),
   ];
-  const config = env === 'production' ? productionConfig : developmentConfig;
+  const config = env === 'production' ?
+    productionConfig :
+    developmentConfig;
 
   return pages.map(page => merge(commonConfig, config, page));
 leanpub-end-insert
@@ -167,7 +169,9 @@ leanpub-start-insert
     }),
   ];
 leanpub-end-insert
-  const config = env === 'production' ? productionConfig : developmentConfig;
+  const config = env === 'production' ?
+    productionConfig :
+    developmentConfig;
 
   return pages.map(page => merge(commonConfig, config, page));
 };
@@ -247,7 +251,9 @@ leanpub-start-insert
 leanpub-end-insert
     }),
   ];
-  const config = env === 'production' ? productionConfig : developmentConfig;
+  const config = env === 'production' ?
+    productionConfig :
+    developmentConfig;
 
 leanpub-start-delete
   return pages.map(page => merge(commonConfig, config, page));
@@ -310,7 +316,8 @@ leanpub-start-delete
 leanpub-end-delete
 leanpub-start-insert
       minChunks: ({ context }, count) => (
-        count === 2 && context && context.indexOf('node_modules') >= 0
+        count === 2 &&
+        context && context.indexOf('node_modules') >= 0
       ),
 leanpub-end-insert
     },
