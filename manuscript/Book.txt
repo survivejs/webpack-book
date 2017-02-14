@@ -51,7 +51,6 @@ output/04_server_side_rendering.md
 10_Advanced_Techniques.md
 advanced_techniques/01_consuming_packages.md
 advanced_techniques/02_authoring_packages.md
-advanced_techniques/03_configuring_react.md
 
 11_Extending_Webpack.md
 extending_webpack/01_loaders.md

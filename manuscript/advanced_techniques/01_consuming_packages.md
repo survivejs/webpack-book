@@ -116,6 +116,19 @@ Sometimes packages might not follow the standard rules and their *package.json* 
 
 The idea is that if webpack resolver matches `demo` in the beginning, it will resolve from the target. You can constrain the process to an exact name by using a pattern like `demo$`.
 
+The technique is useful with React too. Light alternatives, such as [Preact](https://www.npmjs.com/package/preact), [react-lite](https://www.npmjs.com/package/react-lite), or [Inferno](https://www.npmjs.com/package/inferno), offer smaller size while trading off some functionality like `propTypes` and synthetic event handling. Replacing React with a lighter alternative can save a significant amount of space, but you should test well if you do this. The setup looks like this for *react-lite*. The idea is the same for others:
+
+```javascript
+{
+  resolve: {
+    alias: {
+      'react': 'react-lite',
+      'react-dom': 'react-lite',
+    },
+  },
+  },
+```
+
 T> The same technique works with loaders too. You can use `resolveLoader.alias` in the same way to alias a loader elsewhere. This can be particularly useful if you have to adapt a RequireJS project to work with webpack.
 
 ## Dealing with Globals
@@ -213,7 +226,15 @@ Sometimes you may have to expose packages to third party scripts. This is possib
 },
 ```
 
-We'll use this technique in the *Configuring React* chapter to enable React performance utilities.
+With small extra tweak, the technique can be used to expose React performance utilities to the browser through `React.Perf` global. You have to insert the following code to your application entry point for this to work:
+
+```javascript
+if (process.env.NODE_ENV !== 'production') {
+  React.Perf = require('react-addons-perf');
+}
+```
+
+T> It can be a good idea to install [React Developer Tools](https://github.com/facebook/react-devtools) to Chrome for even more information. This allows you to inspect *props* and *state* of your application.
 
 ## Getting Insights on Packages
 
