@@ -81,13 +81,7 @@ Webpack configuration receives the result of `--env` if it exposes a function. T
 **webpack.config.js**
 
 ```javascript
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-
-const PATHS = {
-  app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'build'),
-};
+...
 
 leanpub-start-delete
 module.exports = {
