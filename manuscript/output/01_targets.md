@@ -55,7 +55,7 @@ export {
 };
 ```
 
-The idea is that this file will become the entry point of the entire library. You could push its functionality to separate files and it through this interface. If you want to support both CommonJS and ES6, it can be a good idea to use the CommonJS module definition here. If you go with ES6 `export default`, using such an export in a CommonJS environment often requires extra effort.
+The idea is that this file will become the entry point of the entire library and represents the API exposed to the consumers. If you want to support both CommonJS and ES6, it can be a good idea to use the CommonJS module definition here. If you go with ES6 `export default`, using such an export in a CommonJS environment often requires extra effort.
 
 ### Setting Up an npm Script
 
@@ -76,7 +76,7 @@ leanpub-end-insert
 
 ### Setting Up Webpack
 
-Webpack configuration itself can be adapted from the one we built. This time, however, we have to generate two files - a non-minified version and a minified one. This is possible by running webpack in so called *multi-compiler mode*. It means you can expose an array of configurations from webpack and it will execute each.
+Webpack configuration itself can be adapted from the one we built. This time, however, we have to generate two files - a non-minified version and a minified one. This is possible by running webpack in so called *multi-compiler mode*. It means you can expose an array of configurations for webpack and it will execute each.
 
 **webpack.lib.js**
 
@@ -153,7 +153,7 @@ Child
        [0] ./lib/index.js 55 bytes {0} [built]
 ```
 
-Webpack ran twice as you might have expected. It could be argued it would be smarter to minify the initial result separately, but here the overhead is so small it's not worth the effort.
+Webpack ran twice as you might have expected. It can be argued that it would be smarter to minify the initial result separately. In this case the overhead is so small that it's not worth the extra setup.
 
 Examining the build output reveals more:
 
@@ -183,22 +183,6 @@ function add(a, b) {
 ```
 
 You can see some familiar code there and more. Webpack's bootstrap script is in place and it starts the entire execution process. It takes majority of space for a small library like this, but that's not a problem as the library begins to grow.
-
-### Setting Up ESLint
-
-To keep ESLint from linting the new build output, adjust its ignore rules as follows so it matches all *dist* related files:
-
-**.eslintignore**
-
-```bash
-build/*
-leanpub-start-insert
-dist/*
-dist-modules/*
-leanpub-end-insert
-```
-
-If you are using Git, a neater way to handle the ignore rules would be to manage them through *.gitignore* and point ESLint to it instead. The *Linting JavaScript* chapter covers the idea in a greater detail.
 
 ### Cleaning and Linting Before Building
 
@@ -246,13 +230,31 @@ leanpub-end-insert
 ...
 ```
 
-If either process fails, npm won't proceed to the `lib` script. You can verify this by breaking a linting rule and seeing what happens when you build (`npm run build:lib`). Instead, it will give you an error. To get cleaner error output, run either `npm run build:lib --silent` or `npm run build:lib -s`.
+If either process fails, npm won't proceed to the `lib` script. You can verify this by breaking a linting rule and seeing what happens when you build (`npm run build:lib`). Instead, it will give you an error.
+
+T> To get cleaner error output, run either `npm run build:lib --silent` or `npm run build:lib -s`.
 
 T> The same idea is useful for post-processes, such as deployment. For example, you could set up a `postpublish` script to deploy the library site after you have published it to npm.
 
+### Setting Up ESLint
+
+To keep ESLint from linting the new build output, adjust its ignore rules as follows so it matches all *dist* related files:
+
+**.eslintignore**
+
+```bash
+build/*
+leanpub-start-insert
+dist/*
+dist-modules/*
+leanpub-end-insert
+```
+
+If you are using Git, a neater way to handle the ignore rules would be to manage them through *.gitignore* and point ESLint to it instead. The *Linting JavaScript* chapter covers the idea in a greater detail.
+
 ### Generating `module` Field Compatible Output
 
-In order to generate *package.json* `module` field compatible output to enable tree shaking for the consumers, the source should be consumed so that it does not lose ES6 module definitions. It is better to solve this problem outside of webpack by passing the source through Babel instead. Adjust as follows:
+In order to generate *package.json* `module` field compatible output to enable tree shaking for the consumers, the source should be processed so that it does not lose ES6 module definitions. It is better to solve this problem outside of webpack by passing the source through Babel instead. Adjust as follows:
 
 **package.json**
 

@@ -112,4 +112,4 @@ When you compile, webpack picks up `__webpack_public_path__` and rewrites it so 
 
 ## Conclusion
 
-The same idea works with other environments too. You can set up *gh-pages* to push into a branch you want. After this step, we have a complete development and production setup.
+You can deploy your webpack application in multiple ways. The problem can be pushed outside of webpack or you can use a specific plugin to handle it.
