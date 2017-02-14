@@ -60,8 +60,7 @@ Backmatter.txt
 
 12_Appendices.md
 appendices/01_searching_with_react.md
-appendices/02_writing_eslint_plugins.md
-appendices/03_customizing_eslint.md
-appendices/04_deploying.md
-appendices/05_dynamic_loading.md
-appendices/06_using_webworkers.md
+appendices/02_customizing_eslint.md
+appendices/03_deploying.md
+appendices/04_dynamic_loading.md
+appendices/05_using_webworkers.md

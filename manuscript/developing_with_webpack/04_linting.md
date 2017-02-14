@@ -226,7 +226,7 @@ I've collected assorted ESLint tips below. The great thing about ESLint is that 
 * ESLint supports ES6 features through configuration. You will have to specify the features to use through the [ecmaFeatures](http://eslint.org/docs/user-guide/configuring.html#specifying-language-options) property.
 * There are useful plugins, such as [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react), [eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise), [eslint-plugin-compat](https://www.npmjs.com/package/eslint-plugin-compat), and [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import), that you might want to consider integrating to your project.
 * Most IDEs and editors have good ESLint integration so you can spot issues as you develop. This applies to other linting tools as well.
-* To learn how to write an ESLint plugin, check out the *Writing ESLint Plugins* appendix for more information. The *Customizing ESLint* appendix digs deeper into customization options and further resources.
+* To learn about ESLint customizations options and how to write an ESLint plugin, check out the *Customizing ESLint* appendix.
 
 ## Webpack and JSHint
 
