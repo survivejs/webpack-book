@@ -226,7 +226,7 @@ const libraryConfig = merge([
 
 T> There's [a proposal to improve the situation](https://github.com/webpack/webpack/issues/4271) by introducing the concepts of pre- and post-processing to webpack.
 
-Another, and in this case more fitting, way would be to handle the problem through a npm script. As discussing in the *Authoring Packages* chapter, npm provides pre- and post-script hooks. To keep this solution cross-platform, install [rimraf](https://www.npmjs.com/package/rimraf) first:
+Another, and in this case more fitting, way would be to handle the problem through an npm script. As discussing in the *Authoring Packages* chapter, npm provides pre- and post-script hooks. To keep this solution cross-platform, install [rimraf](https://www.npmjs.com/package/rimraf) first:
 
 ```bash
 npm install rimraf --save-dev

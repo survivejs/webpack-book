@@ -109,7 +109,7 @@ T> You can point ESLint to your Git ignores through `--ignore-path .gitignore`. 
 
 W> If you try a pattern like `build`, it will match files like *build.js* too! Remember to use a slash at the end to signify a directory.
 
-If you invoke `npm run lint:js` now, it should execute without any warnings or errors. If you see either, this is a good time to try ESLint autofixing. You can run it like this: `npm run lint -- --fix`. Running a npm script this way allows you to pass extra parameters to it.
+If you invoke `npm run lint:js` now, it should execute without any warnings or errors. If you see either, this is a good time to try ESLint autofixing. You can run it like this: `npm run lint -- --fix`. Running an npm script this way allows you to pass extra parameters to it.
 
 Another alternative would be to push it behind a *package.json* script. Autofix won't be able to repair each error, but it can fix a lot. And as time goes by and ESLint improves, it is able to perform more work.
 

@@ -2,7 +2,7 @@
 
 Our current setup doesn't clean the *build* directory between builds. As a result, it will keep on accumulating files as our project changes. Given this can get annoying, we should clean it up in between.
 
-This issue can be resolved either by using a webpack plugin or solving it outside of it. You could trigger `rm -rf ./build && webpack` or `rimraf ./build && webpack` in a npm script to keep it cross-platform. A task runner could work for this purpose as well.
+This issue can be resolved either by using a webpack plugin or solving it outside of it. You could trigger `rm -rf ./build && webpack` or `rimraf ./build && webpack` in an npm script to keep it cross-platform. A task runner could work for this purpose as well.
 
 I will show you how to solve this issue using webpack next.
 

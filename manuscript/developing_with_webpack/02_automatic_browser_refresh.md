@@ -28,7 +28,7 @@ As before, this command will generate a command below the `npm bin` directory. Y
 
 ## Attaching *webpack-dev-server* to the Project
 
-To integrate WDS to our project, we should define a npm script for it. To follow npm conventions, we can call it as *start*. To tell our targets apart, we should pass information about the environment to webpack configuration. This will allow us specialize the configuration as needed:
+To integrate WDS to our project, we should define an npm script for it. To follow npm conventions, we can call it as *start*. To tell our targets apart, we should pass information about the environment to webpack configuration. This will allow us specialize the configuration as needed:
 
 **package.json**
 
