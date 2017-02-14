@@ -193,7 +193,8 @@ To keep ESLint from linting the new build output, adjust its ignore rules as fol
 ```bash
 build/*
 leanpub-start-insert
-dist*
+dist/*
+dist-modules/*
 leanpub-end-insert
 ```
 
