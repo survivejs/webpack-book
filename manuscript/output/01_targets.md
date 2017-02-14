@@ -200,8 +200,6 @@ leanpub-end-insert
 
 If you are using Git, a neater way to handle the ignore rules would be to manage them through *.gitignore* and point ESLint to it instead. The *Linting JavaScript* chapter covers the idea in a greater detail.
 
-T> It would be possible to use a more specific rule here. Later in the chapter we will write *./dist-modules* as well so the rule will pay off there.
-
 ### Cleaning and Linting Before Building
 
 It might be a good idea to clean the build directory and lint the code before building the library. You could expand webpack configuration like this:
