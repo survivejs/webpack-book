@@ -1,5 +1,0 @@
-# Isomorphic React
-
-TODO
-
-## Conclusion
