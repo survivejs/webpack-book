@@ -57,7 +57,7 @@ export {
 
 The idea is that this file will become the entry point of the entire library. You could push its functionality to separate files and it through this interface. If you want to support both CommonJS and ES6, it can be a good idea to use the CommonJS module definition here. If you go with ES6 `export default`, using such an export in a CommonJS environment often requires extra effort.
 
-### Setting Up a npm Script
+### Setting Up an npm Script
 
 Given the `build` target of the project has been taken already by the main application, we should set up a separate one for generating the library. It will point to a library specific configuration file to keep things nice and tidy.
 
