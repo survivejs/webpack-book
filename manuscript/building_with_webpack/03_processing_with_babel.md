@@ -230,7 +230,7 @@ leanpub-end-insert
 
 T> The way `env` works is subtle. Consider logging `env` and make sure it matches your Babel configuration or otherwise the functionality you expect might not get applied to your build.
 
-T> The technique is used in the *Configuring React* to enable the Babel portion of *react-hot-loader* for development target only.
+T> The technique is used in the *Server Side Rendering* chapter to enable the Babel portion of *react-hot-loader* for development target only.
 
 ## Setting Up TypeScript
 

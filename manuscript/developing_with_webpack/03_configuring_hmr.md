@@ -189,7 +189,7 @@ If you refresh the browser, try to modify *app/component.js* after this change, 
 
 The idea is the same with styling, React, Redux, and other technologies. Sometimes you may not have to implement the interface yourself even as available tooling takes care of that for you.
 
-T> Check out the *Configuring React* chapter to learn how to get webpack and React to work together while using HMR.
+T> Check out the *Server Side Rendering* chapter to learn how to get webpack and React to work together while using HMR.
 
 T> That `if(module.hot)` block will be eliminated entirely from the production build as minifier picks it up. The *Minifying Build* chapter delves deeper into this topic.
 
