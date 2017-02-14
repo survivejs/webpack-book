@@ -199,7 +199,7 @@ If you run the project again (`npm start`), it should run without any errors. To
 **app/component.js**
 
 ```javascript
-export default function () {
+export default function (text = 'Hello world') {
   const element = document.createElement('div');
 
 leanpub-start-delete
@@ -208,7 +208,7 @@ leanpub-end-delete
 leanpub-start-insert
   element.className = 'fa fa-hand-spock-o fa-1g';
 leanpub-end-insert
-  element.innerHTML = 'Hello world';
+  element.innerHTML = text;
 
   return element;
 }

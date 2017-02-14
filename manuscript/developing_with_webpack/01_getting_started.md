@@ -75,10 +75,10 @@ As you never get tired of `Hello world`, we might as well model a variant of tha
 **app/component.js**
 
 ```javascript
-export default function () {
+export default function (text = 'Hello world') {
   const element = document.createElement('div');
 
-  element.innerHTML = 'Hello world';
+  element.innerHTML = text;
 
   return element;
 }
