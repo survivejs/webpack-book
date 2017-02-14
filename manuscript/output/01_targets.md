@@ -247,7 +247,7 @@ leanpub-end-insert
 ...
 ```
 
-If either process fails, npm won't process to the `lib` script. You can verify this by breaking a linting rule and seeing what happens when you build (`npm run build:lib`). Instead, it will give you an error. To get cleaner error output, run either `npm run build:lib --silent` or `npm run build:lib -s`.
+If either process fails, npm won't proceed to the `lib` script. You can verify this by breaking a linting rule and seeing what happens when you build (`npm run build:lib`). Instead, it will give you an error. To get cleaner error output, run either `npm run build:lib --silent` or `npm run build:lib -s`.
 
 T> The same idea is useful for post-processes, such as deployment. For example, you could set up a `postpublish` script to deploy the library site after you have published it to npm.
 
