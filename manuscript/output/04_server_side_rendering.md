@@ -1,8 +1,10 @@
 # Server Side Rendering
 
-**Server Side Rendering** (SSR) is a technique that allows you to serve an initial payload with HTML, JavaScript, CSS, and even application state. It is a more complicated than serving a **Single Page Application** (SPA) as you have to take care with the markup. SSR can yield benefits related to performance and Search Engine Optimization (SEO) while coming with a technical cost.
+**Server Side Rendering** (SSR) is a technique that allows you to serve an initial payload with HTML, JavaScript, CSS, and even application state. Unlike in a **Single Page Application** (SPA), this time around you will serve a fully rendered HTML page that would make sense even without JavaScript enabled. In addition to providing potential performance benefits, this can help with Search Engine Optimization (SEO).
 
-Webpack allows you to use SSR in a couple of ways. Often you see it used with Facebook's [React](https://facebook.github.io/react/) that helped to popularize the approach. I'll show you next how to configure React with webpack and then discuss how to handle SSR with these technologies.
+Even though the idea sounds simple, there is a technical cost involved and you can find sharp corners. The approach was popularized by React. Since then frameworks encapsulating the tricky bits, such as [Next.js](https://github.com/zeit/next.js), have appeared. [isomorphic-webpack](https://www.npmjs.com/package/isomorphic-webpack) is a good example of a solution designed on top of webpack.
+
+I'll show you next how to configure React with webpack and then discuss how to handle SSR with these technologies. First we'll do SSR the hard way and then move the setup to *isomorphic-webpack* to see the difference.
 
 ## Setting Up Babel with React
 
@@ -25,12 +27,7 @@ Connect the preset with Babel configuration as follows:
 leanpub-start-insert
     "react",
 leanpub-end-insert
-    [
-      "es2015",
-      {
-        "modules": false
-      }
-    ]
+    ...
   ]
 }
 ```
@@ -52,10 +49,7 @@ The suggested minimum configuration is as follows:
 ```javascript
 module.exports = {
   "env": {
-    "browser": true,
-    "commonjs": true,
-    "es6": true,
-    "node": true,
+    ...
   },
 leanpub-start-delete
   "extends": "eslint:recommended",
@@ -80,13 +74,7 @@ leanpub-start-insert
   ],
 leanpub-end-insert
   "rules": {
-    "comma-dangle": ["error", "always-multiline"],
-    "indent": ["error", 2],
-    "linebreak-style": ["error", "unix"],
-    "quotes": ["error", "single"],
-    "semi": ["error", "always"],
-    "no-unused-vars": ["warn"],
-    "no-console": 0,
+    ...
   },
 };
 ```
