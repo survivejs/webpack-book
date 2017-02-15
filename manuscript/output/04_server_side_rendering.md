@@ -22,7 +22,7 @@ Connect the preset with Babel configuration as follows:
 
 ```json
 {
-  "plugins": ["syntax-dynamic-import"],
+  ...
   "presets": [
 leanpub-start-insert
     "react",
@@ -48,9 +48,7 @@ The suggested minimum configuration is as follows:
 
 ```javascript
 module.exports = {
-  "env": {
-    ...
-  },
+  ...
 leanpub-start-delete
   "extends": "eslint:recommended",
 leanpub-end-delete
@@ -73,9 +71,7 @@ leanpub-start-insert
     "react",
   ],
 leanpub-end-insert
-  "rules": {
-    ...
-  },
+  ...
 };
 ```
 
@@ -307,18 +303,17 @@ Babel will now receive the target we pass to webpack allowing us to fix the beha
 
 ```json
 {
+leanpub-start-delete
   "plugins": [
-    "syntax-dynamic-import"
+    "syntax-dynamic-import",
+    "react-hot-loader/babel"
   ],
-  "presets": [
-    [
-      "es2015",
-      {
-        "modules": false
-      }
-    ],
-    "react"
-  ],
+leanpub-end-delete
+leanpub-start-insert
+  "plugins": ["syntax-dynamic-import"],
+leanpub-end-insert
+  ...
+leanpub-start-insert
   "env": {
     "development": {
       "plugins": [
@@ -326,6 +321,7 @@ Babel will now receive the target we pass to webpack allowing us to fix the beha
       ]
     }
   }
+leanpub-end-insert
 }
 ```
 
