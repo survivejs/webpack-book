@@ -166,9 +166,7 @@ T> If you get a linting warning like `warning  'React' is defined but never used
 
 ## Configuring Hot Module Replacement with React
 
-Hot module replacement was one of the initial selling points of webpack and React. It relies on the [react-hot-loader](https://www.npmjs.com/package/react-hot-loader) package. The simplest way to enable it is to use a now deprecated [babel-preset-react-hmre](https://www.npmjs.com/package/babel-preset-react-hmre). It works still, but there's another way.
-
-At the time of writing *react-hot-loader* version 3 is in beta. The setup is more complicated than using a preset, but this is the way to go at the moment. It requires changes to three places: Babel configuration, webpack configuration, and application. I'll cover these next.
+Hot module replacement was one of the initial selling points of webpack and React. It relies on the [react-hot-loader](https://www.npmjs.com/package/react-hot-loader) package. At the time of writing, version 3 of *react-hot-loader* is in beta. It requires changes to three places: Babel configuration, webpack configuration, and application. I'll cover these next.
 
 To get started, install the upcoming version of *react-hot-loader*:
 
