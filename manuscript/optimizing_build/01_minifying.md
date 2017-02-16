@@ -184,7 +184,13 @@ Beyond mangling, it is possible to control all other [UglifyJS features](http://
 ```javascript
 new webpack.optimize.UglifyJsPlugin({
   beautify: false, // Don't beautify output (uglier to read)
-  comments: false, // Eliminate comments
+
+  // Preserve comments
+  comments: false,
+
+  // Extract comments to a separate file. This works only
+  // if comments is set to true above.
+  extractComments: false,
 
   // Compression specific options
   compress: {
@@ -201,7 +207,7 @@ new webpack.optimize.UglifyJsPlugin({
 });
 ```
 
-If you enable mangling, it is a good idea to set `except: ['webpackJsonp']` to avoid mangling the webpack runtime.
+Some of the options support further customization as discussed by the official documentation. If you enable mangling, it is a good idea to set `except: ['webpackJsonp']` to avoid mangling the webpack runtime.
 
 T> Dropping the `console` statements can be achieved through Babel too by using the [babel-plugin-remove-console](https://www.npmjs.com/package/babel-plugin-remove-console) plugin. Babel is discussed in greater detail in the *Processing with Babel* chapter.
 
