@@ -207,6 +207,32 @@ export default function configureStore(initialState) {
 
 T> You can find [a full implementation of the idea online](https://github.com/survivejs-demos/redux-demo).
 
+## Configuring Webpack to Work with JSX
+
+Some people prefer to name their React components containing JSX using the `.jsx` suffix. Webpack can be configured to work with this convention. The benefit of doing this is that then your editor will be able to pick up the right syntax based on the file name alone. Another option is to configure the editor to use JSX syntax for `.js` files as it's a superset of JavaScript.
+
+Webpack provides [resolve.extensions](https://webpack.js.org/guides/migrating/#resolve-extensions) field that can be used for configuring its extension lookup. If you want to allow imports like `import Button from './Button';` while naming the file as *Button.jsx*, set it up as follows:
+
+```javascript
+{
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
+},
+```
+
+The loader configuration is straightforward as well. Instead of matching against `/\.js$/`, we can expand it to include `.jsx` extension through `/\.(js|jsx)$/`. Another option would be to write `/\.jsx?$/`, but I find the explicit alternative more readable.
+
+W> In webpack 1 you had to use `extensions: ['', '.js', '.jsx']` to match files without an extension too. This isn't needed in webpack 2.
+
+## Get Started Fast with *create-react-app*
+
+The fastest way to get started with webpack and React is to use [create-react-app](https://www.npmjs.com/package/create-react-app). It is a zero configuration approach that encapsulates a lot of best practices and it is particularly useful if you want to get started with a little project fast with minimal setup.
+
+One of the main attractions of *create-react-app* is a feature known as *ejecting*. This means that instead of treating it as a project dependency, you'll get a full webpack setup out of it.
+
+There's a gotcha, though. After you eject, you cannot go back to the dependency-based model, and you will have to maintain the resulting setup yourself.
+
 ## Conclusion
 
 *react-hot-loader* allows you to set up HMR with webpack. It was one of the initial selling points of both and is still a good technique. The setup takes some care, but after you have it running, it's cool.
