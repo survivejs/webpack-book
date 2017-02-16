@@ -150,7 +150,7 @@ T> You can still use *url-loader* and the aforementioned tips with SVGs too.
 
 ## Compressing Images
 
-In case you want to compress your images, use [image-webpack-loader](https://www.npmjs.com/package/image-webpack-loader) or [svgo-loader](https://github.com/pozadi/svgo-loader) (SVG specific). This type of loader should be applied first to the data, so remember to place it as the last within `use` listing.
+In case you want to compress your images, use [image-webpack-loader](https://www.npmjs.com/package/image-webpack-loader), [svgo-loader](https://github.com/pozadi/svgo-loader) (SVG specific), or [imagemin-webpack-plugin](https://www.npmjs.com/package/imagemin-webpack-plugin). This type of loader should be applied first to the data, so remember to place it as the last within `use` listing.
 
 Compression is particularly useful for production builds as it will decrease the amount of bandwidth required to download your image assets and speed up your site or application as a result.
 
