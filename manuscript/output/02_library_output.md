@@ -201,9 +201,11 @@ The output can be modified further by setting `output.umdNamedDefine: false`:
 ...
 ```
 
+In order to understand `umd2` option, you have to understand *optional externals* first.
+
 ### Optional Externals
 
-In order to understand `umd2` option, the idea of *optional externals* is needed. In webpack terms externals are dependencies that are resolved outside of webpack and will be available through the environment. Optional externals are dependencies that can exist in the environment, but if they don't, they will get skipped instead of failing hard.
+In webpack terms, externals are dependencies that are resolved outside of webpack and will be available through the environment. Optional externals are dependencies that can exist in the environment, but if they don't, they will get skipped instead of failing hard.
 
 Consider the following example where we try to load jQuery if it exists:
 
