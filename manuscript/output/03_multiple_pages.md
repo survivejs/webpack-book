@@ -331,6 +331,8 @@ leanpub-end-insert
 
 The solution could be improved with further abstraction. If we separated page specific configuration to a file of its own, it would be easy to figure out the amount of pages automatically instead of relying on a magic number.
 
+An alternative way would be to skip extracting CSS to a commons chunk by checking against the file extension. In that case the check would include a test such as `context.match(/\.js$/)` to make sure only JavaScript files are included to the commons chunk.
+
 If you generate a build (`npm run build`), you should notice that something is a little different compared to the first multiple page build we did. Instead of two manifest files, you can find only one. If you examine it, you will notice it contains references to all files that were generated.
 
 Studying the entry specific files in detail reveals more. You can see that they point to different parts of the manifest. The manifest will run different code depending on the entry. Multiple separate manifests are not needed.
