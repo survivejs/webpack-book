@@ -71,7 +71,7 @@ T> If you want to disable *css-loader* `url` parsing, set `url: false`. The same
 
 ## Setting Up the Initial CSS
 
-We are missing just one bit: the actual CSS itself:
+We are missing one bit: the actual CSS itself:
 
 **app/main.css**
 

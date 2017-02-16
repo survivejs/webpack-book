@@ -144,7 +144,7 @@ T> When creating a project, `npm init` respects the values set at *~/.npmrc*. He
 
 ### Publishing a Package
 
-Provided you have logged in, creating new packages is just a matter of executing `npm publish`. Given that the package name is still available and everything goes fine, you should have something out there! After this, you can install your package through `npm install` or `npm i`.
+Provided you have logged in, creating new packages is only `npm publish` away. Given that the package name is still available and everything goes fine, you should have something out there! After this, you can install your package through `npm install` or `npm i`.
 
 An alternate way to consume a library is to point at it directly in *package.json*. In that case, you can do `"depName": "<github user>/<project>#<reference>"` where `<reference>` can be either commit hash, tag, or branch. You can point to specific pull requests through `<github user>/<project>#pull/<id>/head`. These techniques can be useful, especially if you need to hack around something quickly and cannot wait for the fix.
 
@@ -168,7 +168,7 @@ W> Even though it's possible to tell npm what to exclude from `files` through `!
 
 ### Bumping a Version
 
-In order to bump your package version, you'll just need to invoke one of these commands:
+In order to bump your package version, you'll need to invoke one of these commands:
 
 * `npm version <x.y.z>` - Define version yourself.
 * `npm version <major|minor|patch>` - Let npm bump the version for you based on SemVer.
@@ -176,7 +176,7 @@ In order to bump your package version, you'll just need to invoke one of these c
 
 Invoking any of these will update *package.json* and create a version commit to git automatically. If you execute `npm publish` after doing this, you should have something new out there.
 
-Note that in the example above, I've set up `version`-related hooks to make sure a version will contain a fresh version of a distribution build. I also run tests just in case. It's better to catch potential issues early on after all.
+Note that in the example above, I've set up `version`-related hooks to make sure a version will contain a fresh version of a distribution build. I also run tests as it is better to catch potential issues early on.
 
 T> Consider using [semantic-release](https://www.npmjs.com/package/semantic-release) if you prefer a more structured approach. It can take some pain out of the release process while automating a part of it. For instance, it is able to detect possible breaking changes and generate change logs.
 
@@ -220,7 +220,7 @@ T> [npm link](https://docs.npmjs.com/cli/link) can be useful during development.
 
 ### On Naming Packages
 
-Before starting to develop, it can be a good idea to spend a little bit of time on figuring out a good name for your package. It's not fun to write a great package just to notice the name has been taken. A good name is easy to find through a search engine, and most importantly, is available at npm.
+Before starting to develop, it can be a good idea to spend a little bit of time on figuring out a good name for your package. It's not fun to write a great package only to notice the name has been taken. A good name is easy to find through a search engine, and most importantly, is available at npm.
 
 As of npm 2.7.0 it is possible to create [scoped packages](https://docs.npmjs.com/getting-started/scoped-packages). They follow format `@username/project-name`. Simply follow that when naming your project. This is a good way to grow packages.
 
@@ -258,7 +258,7 @@ dist-modules/
 
 Besides `prepublish`, npm provides a set of other hooks. The naming is always the same and follows the pattern `pre<hook>`, `<hook>`, `post<hook>` where `<hook>` can be `publish`, `install`, `test`, `stop`, `start`, `restart`, or `version`. Even though npm will trigger scripts bound to these automatically, you can trigger them explicitly through `npm run` for testing (i.e., `npm run prepublish`).
 
-The [the official documentation](https://docs.npmjs.com/misc/scripts) covers a lot of smaller tips related to these hooks. However, often all you need is just a `prepublish` script for build automation.
+The [the official documentation](https://docs.npmjs.com/misc/scripts) covers a lot of smaller tips related to these hooks. However, often all you need is a `prepublish` script for build automation.
 
 ### Working Around `prepublish` in npm 3
 
@@ -308,7 +308,7 @@ externals: {
 
 If you want to include all modules in *node_modules* by default, it is possible use [webpack-node-externals](https://www.npmjs.com/package/webpack-node-externals) instead. In this case would end up with `externals: [nodeExternals()]` kind of declaration. If you don't need to adapt to different environments, this is a neat way to go.
 
-T> Given bundling may still be required sometimes, consider using the [bundledDependencies](https://docs.npmjs.com/files/package.json#bundleddependencies) (or just `bundleDependencies`) field. This can be useful if you want to share third-party files not available through npm. There's a great [Stack Overflow answer](http://stackoverflow.com/a/25044361/228885) discussing the topic further.
+T> Given bundling may still be required sometimes, consider using the [bundledDependencies](https://docs.npmjs.com/files/package.json#bundleddependencies) field. This can be useful if you want to share third-party files not available through npm. There's a great [Stack Overflow answer](http://stackoverflow.com/a/25044361/228885) discussing the topic further.
 
 ### Processing Node Version through Babel
 
@@ -413,6 +413,4 @@ There is a heavier duty option in the form of [npm unpublish](https://docs.npmjs
 
 ## Conclusion
 
-You should now have a basic idea of how to author npm packages. Webpack can help you a lot here. Just picking up `output.libraryTarget` and `externals` help you a lot.
-
-These options are useful beyond package authoring. Particularly `externals` comes in handy when you want to exclude certain dependencies outside of your bundles and load them using some other way.
+You should now have a basic idea of how to author npm packages. Webpack can help you a lot here. The covered options are useful beyond package authoring. Particularly `externals` comes in handy when you want to exclude certain dependencies outside of your bundles and load them using some other way.

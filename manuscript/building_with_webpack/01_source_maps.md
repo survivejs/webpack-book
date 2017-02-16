@@ -356,7 +356,7 @@ exports.generateSourceMaps = function({
   return {
     plugins: [
       new webpack.SourceMapDevToolPlugin({
-        // Match assets just like for loaders. This is
+        // Match assets like for loaders. This is
         // convenient if you want to match against multiple
         // file types.
         test: test, // string | RegExp | Array,

@@ -57,7 +57,7 @@ T> We can use `--save` and `--save-dev` to separate application and development 
 
 ## Directory Structure
 
-As projects with just *package.json* are boring, we should set up something more concrete. To get started, we can implement a little site that loads some JavaScript, which we then build using webpack. After we progress a bit, we'll end up with a directory structure like this:
+To get started, we can implement a little site that loads some JavaScript, which we then build using webpack. After we progress a bit, we'll end up with a directory structure like this:
 
 - app/
   - index.js
@@ -96,7 +96,7 @@ document.body.appendChild(component());
 
 ## Setting Up Webpack Configuration
 
-We'll need to tell webpack how to deal with the assets we just set up. For this purpose, we'll develop a *webpack.config.js* file. Webpack and its development server will be able to discover this file through convention.
+We'll need to tell webpack how to deal with the assets we set up. For this purpose, we'll develop a *webpack.config.js* file. Webpack and its development server will be able to discover this file through convention.
 
 To keep things simple to maintain, we'll be using [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) to generate an *index.html* for our application. *html-webpack-plugin* wires up the generated assets with it. Install it to the project:
 
@@ -204,7 +204,7 @@ Given executing `node_modules/.bin/webpack` is a little verbose, we should do so
 
 Run `npm run build`. You should see the same output as before.
 
-This works because npm adds *node_modules/.bin* temporarily to the path. As a result, rather than having to write `"build": "node_modules/.bin/webpack"`, we can do just `"build": "webpack"`.
+This works because npm adds *node_modules/.bin* temporarily to the path. As a result, rather than having to write `"build": "node_modules/.bin/webpack"`, we can do `"build": "webpack"`.
 
 You can execute these kind of scripts through *npm run*. If you run it as is, it will give you the listing of available scripts.
 

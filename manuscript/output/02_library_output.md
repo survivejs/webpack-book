@@ -160,7 +160,7 @@ In other words webpack has generated a named AMD module. The result won't work f
 
 ## UMD
 
-[Universal Module Definition](https://github.com/umdjs/umd) (UMD) was developed to solve the problem of consuming the same code from different environments. Just like for CommonJS, webpack implements two output variants: `umd` and `umd2`. To understand the idea better, let's see what happens when the options are used.
+[Universal Module Definition](https://github.com/umdjs/umd) (UMD) was developed to solve the problem of consuming the same code from different environments. Webpack implements two output variants: `umd` and `umd2`. To understand the idea better, let's see what happens when the options are used.
 
 ### `umd`
 

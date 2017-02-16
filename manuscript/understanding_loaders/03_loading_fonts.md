@@ -6,7 +6,7 @@ Loading fonts is a tough problem. Normally you have up to four font formats to w
 
 Depending on your project requirements, you might be able to get away with less formats. If you exclude Opera Mini, all browsers support the *.woff* format. The render result may differ depending on the browser so you might want to experiment here.
 
-If we go with just one format, we can use a similar setup as for images and rely on both *file-loader* and *url-loader* while using the limit option:
+If we go with one format, we can use a similar setup as for images and rely on both *file-loader* and *url-loader* while using the limit option:
 
 ```javascript
 {
@@ -35,7 +35,7 @@ A more elaborate way to achieve a similar result would be to use:
 
 ## Supporting Multiple Formats
 
-In case we want to make sure our site looks good on a maximum amount of browsers, we might as well use just *file-loader* and forget about inlining. Again, it's a trade-off as we get extra requests, but perhaps it's the right move. Here we could end up with a loader configuration like this:
+In case we want to make sure our site looks good on a maximum amount of browsers, we might as well use *file-loader* and forget about inlining. Again, it's a trade-off as we get extra requests, but perhaps it's the right move. Here we could end up with a loader configuration like this:
 
 ```javascript
 {

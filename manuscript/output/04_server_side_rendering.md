@@ -158,7 +158,7 @@ If you build the SSR demo (`npm run build:ssr`), you should see a new file at *.
 
 ## Setting Up a Server
 
-To keep things simple, we can set up a standalone Express server that picks up the bundle we just generated and renders it following the SSR principle. Install Express first:
+To keep things simple, we can set up a standalone Express server that picks up the bundle we generated and renders it following the SSR principle. Install Express first:
 
 ```bash
 npm install express --save-dev
@@ -270,7 +270,7 @@ To prove that SSR works, check out the browser inspector. You should see somethi
 
 ![SSR output](images/ssr.png)
 
-Instead of just a `div` where to mount an application, you can see all related HTML there. It's not much in this particular case, but it's enough to showcase the approach.
+Instead of a `div` where to mount an application, you can see all related HTML there. It's not much in this particular case, but it's enough to showcase the approach.
 
 T> The current implementation could be refined further by implementing a production mode for the server that would skip injecting the browser refresh script at minimum.
 

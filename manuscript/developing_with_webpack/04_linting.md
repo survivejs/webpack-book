@@ -22,7 +22,7 @@ T> It is telling that a competing project, JSCS, [decided to merge its efforts w
 
 T> [eslint-config-cleanjs](https://www.npmjs.com/package/eslint-config-cleanjs) is a good example of how you can use ESLint to restrict JavaScript to a purely functional subset. This tells a lot about the power of ESLint.
 
-## Linting Is about More than Just Catching Issues
+## Linting Is about More than Catching Issues
 
 Besides linting for issues, it can be useful to manage the code style on some level. Nothing is more annoying than having to work with source code that has mixed tabs and spaces. Stylistically consistent code reads better and is easier to work with. Linting tools allow you to do this.
 

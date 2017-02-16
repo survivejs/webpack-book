@@ -70,7 +70,7 @@ T> [Codemod](https://github.com/facebook/codemod) allows you to perform large sc
 
 ### Writing a Plugin
 
-In ESLint's case we just want to check the structure and report in case something is wrong. Getting a simple rule done is simple:
+In ESLint's case, we want to check the structure and report in case something is wrong. Getting a simple rule done is simple:
 
 1. Set up a new project named `eslint-plugin-custom`. You can replace `custom` with whatever you want. ESLint follows this naming convention.
 2. Execute `npm init -y` to create a dummy *package.json*
@@ -105,7 +105,7 @@ module.exports = {
 };
 ```
 
-In this case, we just report for every identifier found. In practice, you'll likely want to do something more complex than this, but this is a good starting point.
+In this case, we report for every identifier found. In practice, you'll likely want to do something more complex than this, but this is a good starting point.
 
 Next, you need to execute `npm link` within `eslint-plugin-custom`. This will make your plugin visible within your system. `npm link` allows you to easily consume a development version of a library you are developing. To reverse the link you can execute `npm unlink` when you feel like it.
 
@@ -149,4 +149,4 @@ Besides the official documentation available at [eslint.org](http://eslint.org/)
 * [Understanding the Real Advantages of Using ESLint](http://rangle.io/blog/understanding-the-real-advantages-of-using-eslint/) - Evan Schultz's post digs into details.
 * [eslint-plugin-smells](https://github.com/elijahmanor/eslint-plugin-smells) - This plugin by Elijah Manor allows you to lint against JavaScript smells. Recommended.
 
-If you just want a starting point, you can pick one of [eslint-config- packages](https://www.npmjs.com/search?q=eslint-config) or go with the [standard](https://www.npmjs.com/package/standard) style.
+If you want a starting point, you can pick one of [eslint-config- packages](https://www.npmjs.com/search?q=eslint-config) or go with the [standard](https://www.npmjs.com/package/standard) style.

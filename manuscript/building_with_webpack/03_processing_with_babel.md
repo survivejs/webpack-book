@@ -173,7 +173,7 @@ It is important to note that *babel-polyfill* pollutes the global scope with obj
 
 ## Babel Tips
 
-There are other possible [.babelrc options](https://babeljs.io/docs/usage/options/) beyond the ones covered here. Just like ESLint, *.babelrc* supports [JSON5](https://www.npmjs.com/package/json5) as its configuration format. This means you can include comments in your source, use single quoted strings, and so on.
+There are other possible [.babelrc options](https://babeljs.io/docs/usage/options/) beyond the ones covered here. Like ESLint, *.babelrc* supports [JSON5](https://www.npmjs.com/package/json5) as its configuration format. This means you can include comments in your source, use single quoted strings, and so on.
 
 Sometimes you might want to use experimental features. Although you can find a lot of them within so called stage presets, I recommend enabling them one by one and even organizing them to a preset of their own unless you are working on a throwaway project. If you expect your project to live a long time, it's better to document the features you are using well.
 

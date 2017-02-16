@@ -1,6 +1,6 @@
 # Webpack Compared
 
-You can understand better why webpack's approach is powerful by putting it into a historical context. Back in the day, it was enough just to concatenate some scripts together. Times have changed, though, and now distributing your JavaScript code can be a complex endeavor.
+You can understand better why webpack's approach is powerful by putting it into a historical context. Back in the day, it was enough to concatenate some scripts together. Times have changed, though, and now distributing your JavaScript code can be a complex endeavor.
 
 This problem has escalated with the rise of single page applications (SPAs). They tend to rely on numerous hefty libraries. There are multiple strategies on how to deal with loading them. You could load them all at once. You could also consider loading libraries as you need them. These are examples of strategies you can apply, and webpack supports many of them.
 
@@ -170,7 +170,7 @@ const paths = {
 };
 
 // Not all tasks need to use streams.
-// A gulpfile is just another node program
+// A gulpfile is another node program
 // and you can use all packages available on npm.
 gulp.task(
   'clean',
@@ -207,7 +207,7 @@ gulp.task(
 );
 ```
 
-Given the configuration is code, you can always just hack it if you run into troubles. You can wrap existing Node.js packages as Gulp plugins, and so on. Compared to Grunt, you have a clearer idea of what's going on. You still end up writing a lot of boilerplate for casual tasks, though. That is where some newer approaches come in.
+Given the configuration is code, you can always hack it if you run into troubles. You can wrap existing Node.js packages as Gulp plugins, and so on. Compared to Grunt, you have a clearer idea of what's going on. You still end up writing a lot of boilerplate for casual tasks, though. That is where some newer approaches come in.
 
 T> [webpack-stream](https://www.npmjs.com/package/webpack-stream) allows you to use webpack in a Gulp environment.
 
@@ -240,8 +240,6 @@ Instead of `rm -rf`, you might want to use a utility like [rimraf](https://www.n
 ![Browserify](images/browserify.png)
 
 Dealing with JavaScript modules has always been a bit of a problem. The language itself didn't have the concept of modules till ES6. Ergo, we have been stuck in the '90s when it comes to browser environments. Various solutions, including [AMD](http://requirejs.org/docs/whyamd.html), have been proposed.
-
-In practice, it can be useful just to use CommonJS, the Node.js format, and let the tooling deal with the rest. The advantage is that you can often hook into npm and avoid reinventing the wheel.
 
 [Browserify](http://browserify.org/) is one solution to the module problem. It provides a way to bundle CommonJS modules together. You can hook it up with Gulp. There are smaller transformation tools that allow you to move beyond the basic usage. For example, [watchify](https://www.npmjs.com/package/watchify) provides a file watcher that creates bundles for you during development. This will save some effort and no doubt is a good solution up to a point.
 
