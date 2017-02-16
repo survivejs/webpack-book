@@ -284,4 +284,4 @@ Even though the demo illustrates the basic idea of SSR, it still leaves some ope
 * How to deal with anything else than JavaScript? If the server side is processed through webpack, this is less of an issue as you can patch it at webpack.
 * How to run the server through something else than Node? One option would be to wrap the Node instance in a service you then run through your host environment. Ideally the results would be cached and you can find more specific solutions for this particular per platform.
 
-Questions like these are the reason why solutions such as [isomorphic-webpack](https://www.npmjs.com/package/isomorphic-webpack) or [next.js](https://github.com/zeit/next.js) exist. They have been designed to solve SSR specific problems like these.
+Questions like these are the reason why solutions such as [isomorphic-webpack](https://www.npmjs.com/package/isomorphic-webpack) or [Next.js](https://github.com/zeit/next.js) exist. They have been designed to solve SSR specific problems like these.
