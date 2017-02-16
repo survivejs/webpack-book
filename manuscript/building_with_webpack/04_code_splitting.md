@@ -38,6 +38,8 @@ Promise.all([
 
 It is important to note that this will create separate chunks to request. If you wanted only one, you would have to define an intermediate module to `import`.
 
+W> The syntax works only with JavaScript after configured the right way. If you use other environment, you will have to use alternatives covered in the following sections.
+
 ### `require.ensure`
 
 [require.ensure](https://webpack.js.org/guides/code-splitting-require/#require-ensure-) provides an alternate way:
