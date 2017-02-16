@@ -220,7 +220,7 @@ It is good to note that if the vendor entry contained extra dependencies (white 
 
 ## Loading `dependencies` to a `vendor` Bundle Automatically
 
-In addition to a number and certain other values, `minChunks` accepts a function with a signature `(module, count)`. The first parameter contains a lot of information about the matches module and allows us to deduce which modules are used by the project. The second one tells how many times a specific module is imported to the project and can be used for filtering as well.
+In addition to a number and certain other values, `minChunks` accepts a function with a signature `(module, count)`. The first parameter contains a lot of information about the matches module and allows us to deduce which modules are used by the project. The second one tells how many times a specific module has been imported to the project.
 
 To adapt Rafael De Leon's solution from [Stack Overflow](http://stackoverflow.com/a/38733864/228885), we can check for which modules are used like this:
 
