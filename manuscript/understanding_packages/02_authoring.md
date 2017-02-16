@@ -302,12 +302,11 @@ externals: {
     amd: 'React',
     root: 'React',
   },
+  'jquery': 'jquery',
 },
 ```
 
-These two fields help you a lot as a package author but there's more to it.
-
-T> If you want to include all modules in *node_modules* by default, it could be interesting to use [webpack-node-externals](https://www.npmjs.com/package/webpack-node-externals) instead. Then you would end up with `externals: [nodeExternals()]` kind of declaration. If you don't need to adapt to different environments, this could be a neat way to go.
+If you want to include all modules in *node_modules* by default, it is possible use [webpack-node-externals](https://www.npmjs.com/package/webpack-node-externals) instead. In this case would end up with `externals: [nodeExternals()]` kind of declaration. If you don't need to adapt to different environments, this is a neat way to go.
 
 T> Given bundling may still be required sometimes, consider using the [bundledDependencies](https://docs.npmjs.com/files/package.json#bundleddependencies) (or just `bundleDependencies`) field. This can be useful if you want to share third-party files not available through npm. There's a great [Stack Overflow answer](http://stackoverflow.com/a/25044361/228885) discussing the topic further.
 
