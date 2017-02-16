@@ -264,7 +264,7 @@ The first change tells the client that we are online and ready to go. The latter
 
 Run `node_modules/.bin/browser-refresh ./server.js` in another terminal and open the browser at `http://localhost:8080` as earlier to test the setup. Remember to have webpack running in the watch mode at another terminal. If everything went right, any change you make to the demo client script (*app/ssr.js*) should show up in the browser or cause a failure at the server.
 
-If the server crashes, it will bring the browser down with it! You will have to force a refresh in the browser then. If we managed the server through webpack as well, we could avoid this problem.
+If the server crashes, it will lose the WebSocket connection. You will have to force a refresh in the browser in this case. If we managed the server through webpack as well, we could avoid this problem.
 
 To prove that SSR works, check out the browser inspector. You should see something familiar there:
 
