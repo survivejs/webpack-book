@@ -46,7 +46,8 @@
     "write-good": {
       "adverb": false,
       "passive": false,
-      "tooWordy": false
+      "tooWordy": false,
+      "weasel": false
     }
   }
 }
