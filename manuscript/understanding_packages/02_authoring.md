@@ -62,12 +62,13 @@ I've annotated a part of *package.json* of my [React component boilerplate](http
     "gh-pages:deploy": "gh-pages -d gh-pages",
     "gh-pages:stats": "webpack --env gh-pages --json > stats.json",
 
+    "dist:all": "npm run dist && npm run dist:min",
     "dist": "webpack --env dist",
     "dist:min": "webpack --env dist:min",
     "dist:modules": "rimraf ./dist-modules && babel ./src --out-dir ./dist-modules",
 
     "pretest": "npm run lint:js",
-    "preversion": "npm run test && npm run dist && npm run dist:min && git commit --allow-empty -am \"Update dist\"",
+    "preversion": "npm run test && npm run dist:all && git commit --allow-empty -am \"Update dist\"",
     "prepublish": "npm run dist:modules",
     "postpublish": "npm run gh-pages && npm run gh-pages:deploy",
 
@@ -332,7 +333,7 @@ In this case you'll likely want a setup like this:
 
     ...
 
-    "preversion": "npm run test && npm run dist && npm run dist:min && git commit --allow-empty -am \"Update dist\"",
+    "preversion": "npm run test && npm run dist:all && git commit --allow-empty -am \"Update dist\"",
     "prepublish": "npm run dist:modules",
     ...
   },
