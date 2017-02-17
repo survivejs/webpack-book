@@ -1,7 +1,78 @@
 # Using Web Workers
 
-[Web Workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API)
+[Web workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) provide a way to push work outside of main execution thread of JavaScript. This makes them convenient for long running computations and background work.
+
+Moving data between the main thread and the worker comes with communication related overhead. The split provides isolation that forces workers to focus on logic only as they cannot manipulate the user interface directly.
+
+The idea of workers is useful on a more general level. [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) uses [worker-farm](https://www.npmjs.com/package/worker-farm) underneath to parallelize webpack execution.
+
+As discussed in the *Build Targets* chapter, webpack allows you to build your application as a worker itself. To get the idea of web workers better, I'll show you how to build a small worker using [worker-loader](https://www.npmjs.com/package/worker-loader).
+
+## Setting Up Worker Loader
+
+To get started, install *worker-loader* to the project:
+
+```bash
+npm install worker-loader --save-dev
+```
+
+To keep it simple, we'll tell webpack which files should be treated as loaders through inline loader definitions. Another option would be to push it to webpack configuration as discussed in the *Loader Definitions* chapter.
+
+In that case you have to filter the files somehow. One option would be to rely on a naming convention so that you name each worker with a `.worker.js` suffix. You could also push them to a directory as that's enough context information too.
+
+## Setting Up a Worker
+
+A worker has to do two things: listen to messages and respond. Between those two actions it can perform computation. In this case we'll accept text data, append it to itself, and send the result.
+
+**app/worker.js**
+
+```javascript
+self.onmessage = ({ data: { text } }) => {
+  // Append the given text to itself to prove
+  // the worker does its thing.
+  self.postMessage({ text: text + text });
+};
+```
+
+## Setting Up a Host
+
+The host has to instantiate the worker and the communicate with it. The idea is almost the same except the host has control:
+
+**app/component.js**
+
+```javascript
+import Worker from 'worker-loader!./worker';
+
+export default function () {
+  const element = document.createElement('h1');
+
+  const worker = new Worker();
+  const state = {
+    text: 'foo',
+  };
+
+  worker.addEventListener(
+    'message',
+    ({ data: { text } }) => {
+      state.text = text;
+
+      element.innerHTML = text;
+    }
+  );
+
+  element.innerHTML = state.text;
+  element.onclick = () => {
+    worker.postMessage({ text: state.text });
+  };
+
+  return element;
+}
+```
+
+After you have these two set up, it should work. As you click the text, it should mutate the application state as the worker completes its execution. To demonstrate the asynchronous nature of workers, you could try adding delay to the answer and see what happens.
 
 ## Conclusion
 
-TODO
+The important thing to note is that the worker cannot access the DOM. You can perform computation and queries in a worker, but it cannot manipulate the user interface directly.
+
+T> [webworkify-webpack](https://www.npmjs.com/package/webworkify-webpack) is an alternative to *worker-loader*. The API allows you to use the worker as a regular JavaScript module as well given you avoid the `self` requirement visible in the example solution.
