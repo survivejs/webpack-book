@@ -63,4 +63,4 @@ appendices/02_hmr_with_react.md
 appendices/03_customizing_eslint.md
 appendices/04_deploying.md
 appendices/05_dynamic_loading.md
-appendices/06_using_webworkers.md
+appendices/06_using_web_workers.md

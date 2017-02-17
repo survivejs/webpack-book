@@ -8,14 +8,14 @@ Webpack's output target is controlled through the `target` field. I'll go throug
 
 Webpack uses the *web* target by default. This is ideal for web application like the one we have developed in this book. Webpack will bootstrap the application and load its modules. The initial list of modules to load is maintained in a manifest and then the modules can load each other as defined.
 
-### WebWorkers
+### Web Workers
 
-The *webworker* target will wrap your application as a [WebWorker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API). Using WebWorkers is useful if you want to execute computation outside of the main thread of the application without slowing down the user interface. There are a couple of limitations you should be aware of:
+The *webworker* target will wrap your application as a [web worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API). Using web workers is useful if you want to execute computation outside of the main thread of the application without slowing down the user interface. There are a couple of limitations you should be aware of:
 
 * You cannot use webpack's hashing features when the *webworker* target is used.
-* You cannot manipulate the DOM from a WebWorker. If you wrapped the book project as a worker, it would not display anything.
+* You cannot manipulate the DOM from a web worker. If you wrapped the book project as a worker, it would not display anything.
 
-T> WebWorkers and their usage is discussed in greater detail at the *Using WebWorkers* appendix.
+T> Web workers and their usage is discussed in greater detail at the *Using Web Workers* appendix.
 
 ## Node Targets
 
