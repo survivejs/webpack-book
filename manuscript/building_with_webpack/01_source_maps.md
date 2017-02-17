@@ -346,7 +346,7 @@ If you want more control over source map generation, it is possible to use the `
 
 Using `SourceMapDevToolPlugin` you can generate source maps only for the portions of the code you want while having strict control over the result. Using these plugins allows you to skip the `devtool` option altogether.
 
-You could model a configuration part using `SourceMapDevToolPlugin` like this (adapted from [the official documentation](https://webpack.github.io/docs/list-of-plugins.html#sourcemapdevtoolplugin)):
+You could model a configuration part using `SourceMapDevToolPlugin` like this (adapted from [the official documentation](https://webpack.js.org/plugins/source-map-dev-tool-plugin/)):
 
 ```javascript
 exports.generateSourceMaps = function({

@@ -324,7 +324,7 @@ T> `webpack.optimize.LimitChunkCountPlugin` and `webpack.optimize.MinChunkSizePl
 
 ## Chunk Types in Webpack
 
-In the example above, we used different types of webpack chunks. As [discussed in the documentation](https://webpack.github.io/docs/code-splitting.html#chunk-types), internally webpack treats chunks in three types:
+In the example above, we used different types of webpack chunks. Webpack treats chunks in three types:
 
 * **Entry chunks** - Entry chunks contain webpack runtime and modules it then loads.
 * **Normal chunks** - Normal chunks **don't** contain webpack runtime. Instead, these can be loaded dynamically while the application is running. A suitable wrapper (JSONP for example) is generated for these. We'll generate a normal chunk in the next chapter as we set up code splitting.

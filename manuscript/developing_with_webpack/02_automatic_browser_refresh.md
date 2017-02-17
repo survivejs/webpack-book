@@ -156,7 +156,7 @@ Alternately, we could have set up an Express server of our own and a middleware.
 * [webpack-hot-middleware](https://www.npmjs.com/package/webpack-hot-middleware)
 * [webpack-universal-middleware](https://www.npmjs.com/package/webpack-universal-middleware)
 
-There's also a [Node.js API](https://webpack.github.io/docs/webpack-dev-server.html#api) if you want more control and flexibility.
+There's also a [Node.js API](https://webpack.js.org/configuration/dev-server/) if you want more control and flexibility.
 
 W> Note that there are [slight differences](https://github.com/webpack/webpack-dev-server/issues/106) between the CLI and the Node API. This is the reason why some prefer to use the API alone.
 
