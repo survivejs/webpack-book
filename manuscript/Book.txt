@@ -30,8 +30,7 @@ loading_assets/04_javascript.md
 building_with_webpack/01_source_maps.md
 building_with_webpack/02_splitting_bundles.md
 building_with_webpack/03_code_splitting.md
-building_with_webpack/04_cleaning_build.md
-building_with_webpack/05_attaching_revision.md
+building_with_webpack/04_tidying_up.md
 
 08_Optimizing_Build.md
 optimizing_build/01_minifying.md
