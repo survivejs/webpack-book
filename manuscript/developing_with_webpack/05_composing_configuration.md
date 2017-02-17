@@ -22,6 +22,8 @@ In order to eliminate the problem of dealing with `Object.assign` and `Array.con
 
 *webpack-merge* provides even more control through strategies that allow you to control its behavior per field. Strategies allow you to force it to append, prepend, or replace content. Even though *webpack-merge* was designed for the purposes of this book, it has proven to be an invaluable tool beyond it. You can consider it as a learning tool and pick it up in your work if you find it useful.
 
+T> [webpack-chain](https://www.npmjs.com/package/webpack-chain) provides a fluent API for configuring webpack. This allows you to avoid configuration shape related problems while allowing composition.
+
 ## Setting Up *webpack-merge*
 
 To get started, add *webpack-merge* to the project:
