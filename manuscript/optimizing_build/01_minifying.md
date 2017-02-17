@@ -282,6 +282,9 @@ leanpub-start-insert
       discardComments: {
         removeAll: true,
       },
+      // Run cssnano in safe mode to avoid
+      // potentially unsafe ones.
+      safe: true,
     },
   }),
 leanpub-end-insert
@@ -321,7 +324,7 @@ fontawesome-webfont.woff2    77.2 kB          [emitted]
 ...
 ```
 
-[cssnano](http://cssnano.co/) has a lot more options to try out. In this case we stripped only comments out of the CSS output.
+[cssnano](http://cssnano.co/) has a lot more options to try out.
 
 ## Minifying HTML
 
