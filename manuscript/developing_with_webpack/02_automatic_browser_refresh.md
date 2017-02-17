@@ -85,10 +85,6 @@ Webpack configuration receives the result of `--env` if it exposes a function. T
 
 leanpub-start-delete
 module.exports = {
-leanpub-end-delete
-leanpub-start-insert
-const commonConfig = {
-leanpub-end-insert
   // Entry accepts a path or an object of entries.
   // We'll be using the latter form given it's
   // convenient with more complex configurations.
@@ -96,6 +92,10 @@ leanpub-end-insert
   // Entries have to resolve to files! It relies on Node.js
   // convention by default so if a directory contains *index.js*,
   // it will resolve to that.
+leanpub-end-delete
+leanpub-start-insert
+const commonConfig = {
+leanpub-end-insert
   entry: {
     app: PATHS.app,
   },

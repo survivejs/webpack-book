@@ -108,13 +108,6 @@ const PATHS = {
 
 const commonConfig = merge([
   {
-    // Entry accepts a path or an object of entries.
-    // We'll be using the latter form given it's
-    // convenient with more complex configurations.
-    //
-    // Entries have to resolve to files! It relies on Node.js
-    // convention by default so if a directory contains *index.js*,
-    // it will resolve to that.
     entry: {
       app: PATHS.app,
     },
