@@ -188,7 +188,7 @@ T> It can be convenient to use a tool like *serve* (`npm install serve -g`) to s
 
 T> If you want webpack to stop execution on the first error, set `bail: true` option. This kills entire webpack process and it is useful if you are building in a CI environment.
 
-T> In addition to a configuration object, webpack accepts an array of configurations as discussed in the *Compilation Targets* chapter. You can also return a `Promise` and eventually `resolve` to a configuration. This is useful if you have to fetch configuration related values before returning it.
+T> In addition to a configuration object, webpack accepts an array of configurations as discussed in the *Build Targets* chapter. You can also return a `Promise` and eventually `resolve` to a configuration. This is useful if you have to fetch configuration related values before returning it.
 
 ## Adding a Build Shortcut
 
