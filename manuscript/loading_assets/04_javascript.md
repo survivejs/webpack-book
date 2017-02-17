@@ -1,4 +1,4 @@
-# Processing with Babel
+# Loading JavaScript
 
 Webpack processes ES6 module definitions by default and transforms them into code that looks roughly like this:
 
