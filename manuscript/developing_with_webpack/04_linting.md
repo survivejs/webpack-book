@@ -261,7 +261,7 @@ indent_style = space
 indent_size = 2
 ```
 
-T> [Prettier](https://www.npmjs.com/package/prettier) goes one step further and is able to format your code automatically according to your coding style.
+T> [Prettier](https://www.npmjs.com/package/prettier) goes one step further and is able to format your code automatically according to your coding style. If you want to use Prettier with ESLint, you should use [eslint-config-prettier](https://www.npmjs.com/package/eslint-config-prettier) to disable ESLint rules that conflict with Prettier.
 
 T> [Danger](https://github.com/danger/danger-js) operates on a higher level than the tools discussed. For example, it can check that the project change log was updated before a release is pushed to the public. You can also force pull requests of your project to comply specific standards.
 
