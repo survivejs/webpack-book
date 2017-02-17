@@ -1,4 +1,4 @@
-# Targets
+# Compilation Targets
 
 Even though webpack is used most commonly for bundling web applications, it can do more. You can use it to target Node or desktop environments, such as Electron. Webpack can also bundle as a library while writing an appropriate output wrapper making it possible to consume the library.
 
