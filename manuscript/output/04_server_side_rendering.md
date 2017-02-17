@@ -276,7 +276,7 @@ T> The current implementation could be refined further by implementing a product
 
 T> The server could inject initial data payload to the generated HTML. Doing this would avoid queries on the client-side.
 
-## Conclusion
+## Open Questions
 
 Even though the demo illustrates the basic idea of SSR, it still leaves some open questions:
 
@@ -285,3 +285,11 @@ Even though the demo illustrates the basic idea of SSR, it still leaves some ope
 * How to run the server through something else than Node? One option would be to wrap the Node instance in a service you then run through your host environment. Ideally the results would be cached and you can find more specific solutions for this particular per platform.
 
 Questions like these are the reason why solutions such as [isomorphic-webpack](https://www.npmjs.com/package/isomorphic-webpack) or [Next.js](https://github.com/zeit/next.js) exist. They have been designed to solve SSR specific problems like these.
+
+T> Routing is a big problem of its own solved by frameworks like Next.js. Patrick Hund [discusses how to solve it with React and React Router 4](https://ebaytech.berlin/universal-web-apps-with-react-router-4-15002bb30ccb).
+
+## Conclusion
+
+SSR is a big topic on its own. It comes with technical challenge and for this reason specific solutions have appeared around it. Webpack is a good fit for SSR setups. The idea can be adapted to other purposes.
+
+T> With little effort, you could render a web page as a PDF on server-side using web code and technologies like React. [generate-invoice](https://github.com/bebraw/generate-invoice) illustrates this.
