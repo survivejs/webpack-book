@@ -20,10 +20,10 @@ handling_styles/03_autoprefixing.md
 handling_styles/04_eliminating_unused_css.md
 handling_styles/05_linting.md
 
-06_Understanding_Loaders.md
-understanding_loaders/01_loader_definitions.md
-understanding_loaders/02_loading_images.md
-understanding_loaders/03_loading_fonts.md
+06_Loading_Assets.md
+loading_assets/01_loader_definitions.md
+loading_assets/02_images.md
+loading_assets/03_fonts.md
 
 07_Building_with_Webpack.md
 building_with_webpack/01_source_maps.md
