@@ -33,7 +33,9 @@ leanpub-end-insert
 leanpub-start-insert
 exports.page = function({
   path = '',
-  template = require.resolve('html-webpack-plugin/default_index.ejs'),
+  template = require.resolve(
+    'html-webpack-plugin/default_index.ejs'
+  ),
   title,
 } = {}) {
   return {
@@ -301,10 +303,9 @@ Compared to the earlier approach, something was gained, but also lost:
 
 The idea can be pushed further if you combine it with code splitting and smart routing. This is what PWAs are about. Webpack is well suited to the approach as illustrated by the [webpack-pwa](https://github.com/webpack/webpack-pwa) example.
 
-Compared to the current setup it goes a couple of steps further:
+The PWA example implements client side routing. When you go from a page to another, it loads the functionality needed using a dynamic `import`. It implements two approaches - app shell and page shell.
 
-* It implements client side routing. When you go from a page to another, it loads the functionality needed using a dynamic `import`.
-* It provides two approaches - app shell and page shell. App shell is loaded initially and it manages the whole application including its routing. Page shells are more granular and more are loaded as you use the application. Total size of the application is larger in this case, but conversely you can load initial content faster.
+App shell is loaded initially and it manages the whole application including its routing. Page shells are more granular and more are loaded as you use the application. Total size of the application is larger in this case, but conversely you can load initial content faster.
 
 The approach combines well with plugins like [offline-plugin](https://www.npmjs.com/package/offline-plugin) and [sw-precache-webpack-plugin](https://www.npmjs.com/package/sw-precache-webpack-plugin). This way you can benefit from [Service Workers](https://developer.mozilla.org/en/docs/Web/API/Service_Worker_API) and improve offline experience.
 
