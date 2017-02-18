@@ -1,7 +1,7 @@
 Frontmatter.txt
 
 01_introduction.md
-02_webpack_compared.md
+02_compared.md
 03_why_webpack.md
 
 Mainmatter.txt
