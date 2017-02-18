@@ -117,36 +117,34 @@ leanpub-end-insert
 Execute `npm run build` and you should see improved results:
 
 ```bash
-Hash: 1b25adf55d82690edb46
+Hash: 6157a17dba9cb0452e20
 Version: webpack 2.2.1
-Time: 3257ms
+Time: 3213ms
                     Asset       Size  Chunks             Chunk Names
-                vendor.js      21 kB       2  [emitted]  vendor
+                   app.js  808 bytes       1  [emitted]  app
   fontawesome-webfont.eot     166 kB          [emitted]
 fontawesome-webfont.woff2    77.2 kB          [emitted]
  fontawesome-webfont.woff      98 kB          [emitted]
   fontawesome-webfont.svg   22 bytes          [emitted]
                  logo.png      77 kB          [emitted]
                      0.js  175 bytes       0  [emitted]
-                   app.js  710 bytes       1  [emitted]  app
   fontawesome-webfont.ttf     166 kB          [emitted]
-                  app.css  160 bytes       1  [emitted]  app
-               vendor.css    2.04 kB       2  [emitted]  vendor
-                 0.js.map  772 bytes       0  [emitted]
-               app.js.map    5.97 kB       1  [emitted]  app
+                vendor.js    24.6 kB       2  [emitted]  vendor
+                  app.css    2.48 kB       1  [emitted]  app
+                 0.js.map  768 bytes       0  [emitted]
+               app.js.map    6.45 kB       1  [emitted]  app
               app.css.map   84 bytes       1  [emitted]  app
-            vendor.js.map     261 kB       2  [emitted]  vendor
-           vendor.css.map   87 bytes       2  [emitted]  vendor
-               index.html  315 bytes          [emitted]
-   [4] ./~/object-assign/index.js 2.11 kB {2} [built]
-  [14] ./app/component.js 372 bytes {1} [built]
+            vendor.js.map     286 kB       2  [emitted]  vendor
+               index.html  274 bytes          [emitted]
+  [14] ./app/component.js 461 bytes {1} [built]
   [15] ./app/shake.js 138 bytes {1} [built]
+  [16] ./~/font-awesome/css/font-awesome.css 41 bytes {1} [built]
 ...
 ```
 
-We went from 150 kB to 45 kB, and finally, to 21 kB. The final build is a little faster than the previous one as well.
+We went from 150 kB to 45 kB, and finally, to 25 kB. The final build is a little faster than the previous one as well.
 
-Given the 21 kB can be served gzipped, it is somewhat reasonable. gzipping will drop around another 40% and it is well supported by browsers.
+Given the 25 kB can be served gzipped, it is somewhat reasonable. gzipping will drop around another 40% and it is well supported by browsers.
 
 It is good to remember that we didn't include *react-dom* in this case and that would add around 100 kB to the final result. To get back to these figures, we would have to use a lighter alternative such as Preact or react-lite as discussed in the *Consuming Packages* chapter.
 
