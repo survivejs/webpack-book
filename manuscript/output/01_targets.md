@@ -37,7 +37,7 @@ There are desktop shells, such as [NW.js](https://nwjs.io/) (previously *node-we
 
 To understand webpack's library targets better, we can set up a small library to bundle. The idea is to end up with a non-minified, a minified version, and a version compatible with *package.json* `module` field. The first two can be useful for standalone consumption. You can also point to the non-minified version through *package.json* `main`.
 
-T> The *Authoring Packages* discusses the fields and more in greater detail.
+T> The *Authoring Packages* chapter discusses the fields and more in greater detail.
 
 ### Setting Up a Library
 
