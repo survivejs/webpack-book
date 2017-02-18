@@ -6,12 +6,12 @@ Frontmatter.txt
 
 Mainmatter.txt
 
-04_Developing_with_Webpack.md
-developing_with_webpack/01_getting_started.md
-developing_with_webpack/02_automatic_browser_refresh.md
-developing_with_webpack/03_configuring_hmr.md
-developing_with_webpack/04_linting.md
-developing_with_webpack/05_composing_configuration.md
+04_Developing.md
+developing/01_getting_started.md
+developing/02_automatic_browser_refresh.md
+developing/03_configuring_hmr.md
+developing/04_linting.md
+developing/05_composing_configuration.md
 
 05_Styling.md
 styling/01_loading.md
