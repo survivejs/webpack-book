@@ -47,9 +47,9 @@ output/02_library_output.md
 output/03_multiple_pages.md
 output/04_server_side_rendering.md
 
-10_Understanding_Packages.md
-understanding_packages/01_consuming.md
-understanding_packages/02_authoring.md
+10_Packages.md
+packages/01_consuming.md
+packages/02_authoring.md
 
 11_Extending_Webpack.md
 extending_webpack/01_loaders.md
