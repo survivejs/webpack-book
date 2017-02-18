@@ -13,16 +13,13 @@ If you set up WDS through webpack configuration, you have to attach WDS specific
 **webpack.config.js**
 
 ```javascript
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+...
 leanpub-start-insert
 const webpack = require('webpack');
 leanpub-end-insert
 
-const PATHS = {
-  app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'build'),
-};
+...
+
 
 const commonConfig = {
   ...
@@ -88,7 +85,6 @@ leanpub-start-insert
   return developmentConfig();
 leanpub-end-insert
 };
-
 ```
 
 It's plenty of code. Especially the `Object.assign` portion looks knotty. We'll fix that up in the *Splitting Configuration* chapter as we discuss configuration composition in greater detail.
@@ -122,9 +118,7 @@ You can enable this better behavior as follows:
 
 function developmentConfig() {
   const config = {
-    devServer: {
-      ...
-    },
+    ...
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
 leanpub-start-insert
@@ -256,7 +250,7 @@ entry: {
   ],
   // The rest of the entries
   ...
-}
+},
 ```
 
 ## Other Features of *webpack-dev-server*
