@@ -123,7 +123,7 @@ There's a query format that allows passing parameters to loaders:
   include: PATHS.app,
 
   // Actions
-  use: 'babel-loader?cacheDirectory,presets[]=react,presets[]=es2015',
+  use: 'babel-loader?cacheDirectory,presets[]=es2015',
 },
 ```
 
