@@ -170,7 +170,7 @@ leanpub-end-insert
 ...
 ```
 
-If you execute `npm start` now and break some linting rule while developing, you should see that in the terminal output. The same should happen when you build the project.
+If you execute `npm start` now and break some linting rule while developing, you should see that in the terminal output.
 
 W> Note that the webpack configuration lints only the application code we refer to. If you want to lint webpack configuration itself, execute `npm run lint:js` separately.
 
