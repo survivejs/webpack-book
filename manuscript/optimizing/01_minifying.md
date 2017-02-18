@@ -11,34 +11,32 @@ T> Even if we minify our build, we can still generate source maps through the `d
 To get started, we should generate a baseline build so we have something to optimize. Execute `npm run build`. You should end up with something like this:
 
 ```bash
-Hash: 60cb132200bce915e81d
+Hash: 4f6f78b2fd2c38e8200d
 Version: webpack 2.2.1
-Time: 2808ms
+Time: 2574ms
                     Asset       Size  Chunks             Chunk Names
-                vendor.js     141 kB       2  [emitted]  vendor
+                   app.js    2.75 kB       1  [emitted]  app
   fontawesome-webfont.eot     166 kB          [emitted]
 fontawesome-webfont.woff2    77.2 kB          [emitted]
  fontawesome-webfont.woff      98 kB          [emitted]
   fontawesome-webfont.svg   22 bytes          [emitted]
                  logo.png      77 kB          [emitted]
                      0.js  328 bytes       0  [emitted]
-                   app.js    2.46 kB       1  [emitted]  app
   fontawesome-webfont.ttf     166 kB          [emitted]
-                  app.css  245 bytes       1  [emitted]  app
-               vendor.css    3.71 kB       2  [emitted]  vendor
-                 0.js.map  236 bytes       0  [emitted]
-               app.js.map    2.27 kB       1  [emitted]  app
+                vendor.js     150 kB       2  [emitted]  vendor
+                  app.css     3.9 kB       1  [emitted]  app
+                 0.js.map  232 bytes       0  [emitted]
+               app.js.map    2.78 kB       1  [emitted]  app
               app.css.map   84 bytes       1  [emitted]  app
-            vendor.js.map     167 kB       2  [emitted]  vendor
-           vendor.css.map   87 bytes       2  [emitted]  vendor
-               index.html  315 bytes          [emitted]
+            vendor.js.map     179 kB       2  [emitted]  vendor
+               index.html  274 bytes          [emitted]
    [0] ./~/process/browser.js 5.3 kB {2} [built]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {2} [built]
-  [18] ./app/component.js 372 bytes {1} [built]
+  [18] ./app/component.js 461 bytes {1} [built]
 ...
 ```
 
-141 kB for a vendor bundle is a lot! Minification should bring the size down.
+150 kB for a vendor bundle is a lot! Minification should bring the size down.
 
 ## Enabling a Performance Budget
 
@@ -76,9 +74,8 @@ If you build now (`npm run build`), you should see a warning like this within th
 
 WARNING in entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (100 kB). This can impact web performance.
 Entrypoints:
-  app (148 kB)
+  app (157 kB)
       vendor.js
-,      vendor.css
 ,      app.js
 ,      app.css
 
@@ -140,34 +137,32 @@ leanpub-end-insert
 If you execute `npm run build` now, you should see smaller results:
 
 ```bash
-Hash: 60cb132200bce915e81d
+Hash: 4f6f78b2fd2c38e8200d
 Version: webpack 2.2.1
-Time: 3532ms
+Time: 3313ms
                     Asset       Size  Chunks             Chunk Names
-                vendor.js    41.8 kB       2  [emitted]  vendor
+                   app.js  682 bytes       1  [emitted]  app
   fontawesome-webfont.eot     166 kB          [emitted]
 fontawesome-webfont.woff2    77.2 kB          [emitted]
  fontawesome-webfont.woff      98 kB          [emitted]
   fontawesome-webfont.svg   22 bytes          [emitted]
                  logo.png      77 kB          [emitted]
                      0.js  175 bytes       0  [emitted]
-                   app.js  584 bytes       1  [emitted]  app
   fontawesome-webfont.ttf     166 kB          [emitted]
-                  app.css  245 bytes       1  [emitted]  app
-               vendor.css    3.71 kB       2  [emitted]  vendor
-                 0.js.map  772 bytes       0  [emitted]
-               app.js.map    4.92 kB       1  [emitted]  app
+                vendor.js    45.4 kB       2  [emitted]  vendor
+                  app.css     3.9 kB       1  [emitted]  app
+                 0.js.map  768 bytes       0  [emitted]
+               app.js.map     5.4 kB       1  [emitted]  app
               app.css.map   84 bytes       1  [emitted]  app
-            vendor.js.map     343 kB       2  [emitted]  vendor
-           vendor.css.map   87 bytes       2  [emitted]  vendor
-               index.html  315 bytes          [emitted]
+            vendor.js.map     368 kB       2  [emitted]  vendor
+               index.html  274 bytes          [emitted]
    [0] ./~/process/browser.js 5.3 kB {2} [built]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {2} [built]
-  [18] ./app/component.js 372 bytes {1} [built]
+  [18] ./app/component.js 461 bytes {1} [built]
 ...
 ```
 
-Given it needs to do more work, it took longer to execute the build. But on the plus side the build is now smaller and our vendor build went from 141 kB to roughly 42 kB.
+Given it needs to do more work, it took longer to execute the build. But on the plus side the build is now smaller and our vendor build went from 150 kB to roughly 45 kB.
 
 T> UglifyJS warnings can help you to understand how it processes the code. Therefore, it may be beneficial to have a peek at the full output every once in a while.
 
@@ -297,30 +292,28 @@ leanpub-end-insert
 If you build the project now (`npm run build`), you should notice that CSS has become smaller as it is missing comments:
 
 ```bash
-Hash: 60cb132200bce915e81d
+Hash: 4f6f78b2fd2c38e8200d
 Version: webpack 2.2.1
-Time: 3546ms
+Time: 3303ms
                     Asset       Size  Chunks             Chunk Names
-                vendor.js    41.8 kB       2  [emitted]  vendor
+                   app.js  682 bytes       1  [emitted]  app
   fontawesome-webfont.eot     166 kB          [emitted]
 fontawesome-webfont.woff2    77.2 kB          [emitted]
  fontawesome-webfont.woff      98 kB          [emitted]
   fontawesome-webfont.svg   22 bytes          [emitted]
                  logo.png      77 kB          [emitted]
                      0.js  175 bytes       0  [emitted]
-                   app.js  584 bytes       1  [emitted]  app
   fontawesome-webfont.ttf     166 kB          [emitted]
-                  app.css  160 bytes       1  [emitted]  app
-               vendor.css    2.04 kB       2  [emitted]  vendor
-                 0.js.map  772 bytes       0  [emitted]
-               app.js.map    4.92 kB       1  [emitted]  app
+                vendor.js    45.4 kB       2  [emitted]  vendor
+                  app.css    2.48 kB       1  [emitted]  app
+                 0.js.map  768 bytes       0  [emitted]
+               app.js.map     5.4 kB       1  [emitted]  app
               app.css.map   84 bytes       1  [emitted]  app
-            vendor.js.map     343 kB       2  [emitted]  vendor
-           vendor.css.map   87 bytes       2  [emitted]  vendor
-               index.html  315 bytes          [emitted]
+            vendor.js.map     368 kB       2  [emitted]  vendor
+               index.html  274 bytes          [emitted]
    [0] ./~/process/browser.js 5.3 kB {2} [built]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {2} [built]
-  [18] ./app/component.js 372 bytes {1} [built]
+  [18] ./app/component.js 461 bytes {1} [built]
 ...
 ```
 
