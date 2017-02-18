@@ -51,9 +51,9 @@ output/04_server_side_rendering.md
 packages/01_consuming.md
 packages/02_authoring.md
 
-11_Extending_Webpack.md
-extending_webpack/01_loaders.md
-extending_webpack/02_plugins.md
+11_Extending.md
+extending/01_loaders.md
+extending/02_plugins.md
 
 Backmatter.txt
 
