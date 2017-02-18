@@ -25,7 +25,6 @@ Now let's make sure webpack is aware of them. Configure as follows:
 ```javascript
 ...
 
-leanpub-start-insert
 exports.loadCSS = function({ include, exclude } = {}) {
   return {
     module: {
@@ -41,7 +40,6 @@ exports.loadCSS = function({ include, exclude } = {}) {
     },
   };
 };
-leanpub-end-insert
 ```
 
 We also need to connect our configuration fragment with the main configuration:
@@ -89,8 +87,6 @@ Also, we'll need to make webpack aware of it. Without having an entry pointing a
 leanpub-start-insert
 import './main.css';
 leanpub-end-insert
-import component from './component';
-
 ...
 ```
 
