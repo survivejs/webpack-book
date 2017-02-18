@@ -179,7 +179,10 @@ To bring specific locales to your project, you should use `ContextReplacementPlu
 ```javascript
 {
   plugins: [
-    new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /de|fi/),
+    new webpack.ContextReplacementPlugin(
+      /moment[\/\\]locale$/,
+      /de|fi/
+    ),
   ],
 },
 ```
