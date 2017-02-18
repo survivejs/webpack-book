@@ -81,7 +81,7 @@ const productionConfig = merge([
     ...
 leanpub-start-insert
     output: {
-      chunkFilename: 'scripts/[chunkhash:8].js',
+      chunkFilename: '[chunkhash:8].js',
       filename: '[chunkhash:8].js',
     },
 leanpub-end-insert
@@ -186,28 +186,30 @@ leanpub-end-insert
 As you can see in the build output, the difference is negligible:
 
 ```bash
-Hash: e6f5b23a3f60d026cabc
+Hash: a73700b38a4a39740a12
 Version: webpack 2.2.1
-Time: 3678ms
-                  Asset       Size  Chunks             Chunk Names
-            4330d101.js  865 bytes       1  [emitted]  app
-           11ec0064.svg   22 bytes          [emitted]
-           674f50d2.eot     166 kB          [emitted]
-          fee66e71.woff      98 kB          [emitted]
-         af7ae505.woff2    77.2 kB          [emitted]
-           85011118.png      77 kB          [emitted]
-    scripts/ce7751bd.js  184 bytes       0  [emitted]
-           b06871f2.ttf     166 kB          [emitted]
-            04c743a4.js      25 kB       2  [emitted]  vendor
-           eae1155e.css    46.8 kB       1  [emitted]  app
-scripts/ce7751bd.js.map  821 bytes       0  [emitted]
-        4330d101.js.map    6.54 kB       1  [emitted]  app
-       eae1155e.css.map   89 bytes       1  [emitted]  app
-        04c743a4.js.map     287 kB       2  [emitted]  vendor
-             index.html  286 bytes          [emitted]
-[1Q41] ./app/main.css 41 bytes {1} [built]
-[2twT] ./app/index.js 557 bytes {1} [built]
-[5W1q] ./~/font-awesome/css/font-awesome.css 41 bytes {1} [built]
+Time: 3908ms
+           Asset       Size  Chunks             Chunk Names
+     801b7672.js  867 bytes    2, 3  [emitted]  app
+    674f50d2.eot     166 kB          [emitted]
+  af7ae505.woff2    77.2 kB          [emitted]
+   fee66e71.woff      98 kB          [emitted]
+    11ec0064.svg   22 bytes          [emitted]
+    85011118.png      77 kB          [emitted]
+     a749f8b7.js  186 bytes    0, 3  [emitted]
+     f80a9a7b.js    23.7 kB    1, 3  [emitted]  vendor
+    b06871f2.ttf     166 kB          [emitted]
+     7734db60.js    1.46 kB       3  [emitted]  manifest
+    eae1155e.css    46.8 kB    2, 3  [emitted]  app
+ a749f8b7.js.map  804 bytes    0, 3  [emitted]
+ f80a9a7b.js.map     274 kB    1, 3  [emitted]  vendor
+ 801b7672.js.map    6.54 kB    2, 3  [emitted]  app
+eae1155e.css.map   89 bytes    2, 3  [emitted]  app
+ 7734db60.js.map      14 kB       3  [emitted]  manifest
+      index.html  344 bytes          [emitted]
+[1Q41] ./app/main.css 41 bytes {2} [built]
+[2twT] ./app/index.js 557 bytes {2} [built]
+[5W1q] ./~/font-awesome/css/font-awesome.css 41 bytes {2} [built]
 ...
 ```
 

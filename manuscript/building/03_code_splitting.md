@@ -90,7 +90,7 @@ require.ensure(
 
 If you had nested `require.ensure` definitions, you could pull a module to the parent chunk using either syntax.
 
-T> The formats respect `output.publicPath` option. You can also use `output.chunkFilename` to shape where they output. Example: `chunkFilename: 'scripts/[name].js'`.
+T> The formats respect `output.publicPath` option. You can also use `output.chunkFilename` to shape where they output. Example: `chunkFilename: '[name].js'`.
 
 ## Setting Up Code Splitting
 
