@@ -124,30 +124,28 @@ W> `[name]` pattern has been omitted to fit the terminal output better to the bo
 If you generate a build now (`npm run build`), you should see something like this:
 
 ```bash
-Hash: c031493b7c7c8c847316
+Hash: babf2c487b57511aa790
 Version: webpack 2.2.1
-Time: 4033ms
+Time: 3576ms
                   Asset       Size  Chunks             Chunk Names
-            07db3937.js      21 kB       2  [emitted]  vendor
+            e0f59512.js  813 bytes       1  [emitted]  app
            674f50d2.eot     166 kB          [emitted]
          af7ae505.woff2    77.2 kB          [emitted]
           fee66e71.woff      98 kB          [emitted]
            11ec0064.svg   22 bytes          [emitted]
            85011118.png      77 kB          [emitted]
     scripts/a21c7031.js  182 bytes       0  [emitted]
-            337f1e2d.js  715 bytes       1  [emitted]  app
            b06871f2.ttf     166 kB          [emitted]
-           03d7fa6d.css  164 bytes       1  [emitted]  app
-           9c2469e8.css    46.6 kB       2  [emitted]  vendor
-scripts/a21c7031.js.map  817 bytes       0  [emitted]
-        337f1e2d.js.map    5.98 kB       1  [emitted]  app
-       03d7fa6d.css.map   89 bytes       1  [emitted]  app
-        07db3937.js.map     261 kB       2  [emitted]  vendor
-       9c2469e8.css.map   89 bytes       2  [emitted]  vendor
-             index.html  329 bytes          [emitted]
-   [4] ./~/object-assign/index.js 2.11 kB {2} [built]
-  [14] ./app/component.js 372 bytes {1} [built]
+            a0e64b11.js    24.6 kB       2  [emitted]  vendor
+           eae1155e.css    46.8 kB       1  [emitted]  app
+scripts/a21c7031.js.map  813 bytes       0  [emitted]
+        e0f59512.js.map    6.46 kB       1  [emitted]  app
+       eae1155e.css.map   89 bytes       1  [emitted]  app
+        a0e64b11.js.map     286 kB       2  [emitted]  vendor
+             index.html  286 bytes          [emitted]
+  [14] ./app/component.js 461 bytes {1} [built]
   [15] ./app/shake.js 138 bytes {1} [built]
+  [16] ./~/font-awesome/css/font-awesome.css 41 bytes {1} [built]
 ...
 ```
 
@@ -188,30 +186,28 @@ leanpub-end-insert
 As you can see in the build output, the difference is negligible:
 
 ```bash
-Hash: c6097a798690e8355b47
+Hash: e6f5b23a3f60d026cabc
 Version: webpack 2.2.1
-Time: 3923ms
+Time: 3678ms
                   Asset       Size  Chunks             Chunk Names
-            f4a39706.js    21.4 kB       2  [emitted]  vendor
+            4330d101.js  865 bytes       1  [emitted]  app
            11ec0064.svg   22 bytes          [emitted]
            674f50d2.eot     166 kB          [emitted]
           fee66e71.woff      98 kB          [emitted]
          af7ae505.woff2    77.2 kB          [emitted]
            85011118.png      77 kB          [emitted]
     scripts/ce7751bd.js  184 bytes       0  [emitted]
-            bed7c790.js  759 bytes       1  [emitted]  app
            b06871f2.ttf     166 kB          [emitted]
-           03d7fa6d.css  164 bytes       1  [emitted]  app
-           9c2469e8.css    46.6 kB       2  [emitted]  vendor
-scripts/ce7751bd.js.map  825 bytes       0  [emitted]
-        bed7c790.js.map    6.04 kB       1  [emitted]  app
-       03d7fa6d.css.map   89 bytes       1  [emitted]  app
-        f4a39706.js.map     262 kB       2  [emitted]  vendor
-       9c2469e8.css.map   89 bytes       2  [emitted]  vendor
-             index.html  329 bytes          [emitted]
+            04c743a4.js      25 kB       2  [emitted]  vendor
+           eae1155e.css    46.8 kB       1  [emitted]  app
+scripts/ce7751bd.js.map  821 bytes       0  [emitted]
+        4330d101.js.map    6.54 kB       1  [emitted]  app
+       eae1155e.css.map   89 bytes       1  [emitted]  app
+        04c743a4.js.map     287 kB       2  [emitted]  vendor
+             index.html  286 bytes          [emitted]
 [1Q41] ./app/main.css 41 bytes {1} [built]
 [2twT] ./app/index.js 557 bytes {1} [built]
-[5W1q] ./~/font-awesome/css/font-awesome.css 41 bytes {2} [built]
+[5W1q] ./~/font-awesome/css/font-awesome.css 41 bytes {1} [built]
 ...
 ```
 
