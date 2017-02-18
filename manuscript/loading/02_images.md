@@ -101,7 +101,7 @@ leanpub-end-insert
 ...
 ```
 
-To test that the setup works, download an image and refer to it from the project like this:
+To test that the setup works, download an image or generate it (`convert -size 100x100 gradient:blue logo.png`) and refer to it from the project like this:
 
 **app/main.css**
 
