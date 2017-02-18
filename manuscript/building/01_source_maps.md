@@ -77,9 +77,9 @@ leanpub-end-insert
 If you build the project now (`npm run build`), you should see source maps in the output:
 
 ```bash
-Hash: 8632133d62690bae7e69
+Hash: aa6558af11ff99d062bf
 Version: webpack 2.2.1
-Time: 2435ms
+Time: 2605ms
                     Asset       Size  Chunks             Chunk Names
                  logo.png      77 kB          [emitted]
   fontawesome-webfont.eot     166 kB          [emitted]
@@ -87,12 +87,12 @@ fontawesome-webfont.woff2    77.2 kB          [emitted]
  fontawesome-webfont.woff      98 kB          [emitted]
   fontawesome-webfont.svg   22 bytes          [emitted]
   fontawesome-webfont.ttf     166 kB          [emitted]
-                   app.js     4.7 kB       0  [emitted]  app
+                   app.js    4.79 kB       0  [emitted]  app
                   app.css    3.89 kB       0  [emitted]  app
-               app.js.map    4.38 kB       0  [emitted]  app
+               app.js.map     4.8 kB       0  [emitted]  app
               app.css.map   84 bytes       0  [emitted]  app
                index.html  218 bytes          [emitted]
-   [0] ./app/component.js 185 bytes {0} [built]
+   [0] ./app/component.js 272 bytes {0} [built]
    [1] ./~/font-awesome/css/font-awesome.css 41 bytes {0} [built]
    [2] ./app/main.css 41 bytes {0} [built]
 ...
