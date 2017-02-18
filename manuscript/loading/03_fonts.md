@@ -309,7 +309,7 @@ fontawesome-webfont.woff2    77.2 kB          [emitted]
 ...
 ```
 
-If you examine *fontawesome-webfont.svg*, it should `// empty (null-loader)` kind of comment. It is important that the `ignore` part gets evaluated before the font definition. Reverse order would break the font loading.
+If you examine *fontawesome-webfont.svg*, it should contain `// empty (null-loader)` kind of comment. It is important that the `ignore` part gets evaluated before the font definition. Reverse order would break the font loading.
 
 The solution above is generic and it should work with other libraries as well. The problematic aspect about the approach is that Font Awesome still included fonts you are not using. [font-awesome-loader](https://www.npmjs.com/package/font-awesome-loader) allows more customization.
 
