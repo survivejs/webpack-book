@@ -20,7 +20,6 @@ To make the project aware of Pure.css, `import` it:
 leanpub-start-insert
 import 'purecss';
 leanpub-end-insert
-
 ...
 ```
 
@@ -48,14 +47,14 @@ If you run the application (`npm start`), our "Hello world" should look like a b
 Building the application (`npm run build`) should yield output like this:
 
 ```bash
-Hash: c632512d61228409ede0
+Hash: e8601af01b5c5a5e722c
 Version: webpack 2.2.1
-Time: 1357ms
+Time: 1255ms
      Asset       Size  Chunks             Chunk Names
-    app.js    4.13 kB       0  [emitted]  app
+    app.js    4.15 kB       0  [emitted]  app
    app.css    16.5 kB       0  [emitted]  app
 index.html  218 bytes          [emitted]
-   [0] ./app/component.js 172 bytes {0} [built]
+   [0] ./app/component.js 185 bytes {0} [built]
    [1] ./app/main.css 41 bytes {0} [built]
    [2] ./~/purecss/build/pure-min.css 41 bytes {0} [built]
 ...
@@ -78,8 +77,7 @@ We need one more bit: PurifyCSS configuration. Expand parts like this:
 **webpack.parts.js**
 
 ```javascript
-const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+...
 leanpub-start-insert
 const PurifyCSSPlugin = require('purifycss-webpack');
 leanpub-end-insert
@@ -129,14 +127,14 @@ W> Note that the order matters. CSS extraction has to happen before purifying.
 If you execute `npm run build` now, you should see something like this:
 
 ```bash
-Hash: c632512d61228409ede0
+Hash: e8601af01b5c5a5e722c
 Version: webpack 2.2.1
-Time: 1510ms
+Time: 1363ms
      Asset       Size  Chunks             Chunk Names
-    app.js    4.13 kB       0  [emitted]  app
-   app.css    2.23 kB       0  [emitted]  app
+    app.js    4.15 kB       0  [emitted]  app
+   app.css    2.19 kB       0  [emitted]  app
 index.html  218 bytes          [emitted]
-   [0] ./app/component.js 172 bytes {0} [built]
+   [0] ./app/component.js 185 bytes {0} [built]
    [1] ./app/main.css 41 bytes {0} [built]
    [2] ./~/purecss/build/pure-min.css 41 bytes {0} [built]
 ...
@@ -144,9 +142,7 @@ index.html  218 bytes          [emitted]
 
 The size of our style has decreased noticeably. Instead of 16k we have roughly 2k now. The difference would be even bigger for heavier CSS frameworks.
 
-T> PurifyCSS supports [additional options](https://github.com/purifycss/purifycss#the-optional-options-argument) including `minify`. You can enable these through the `purifyOptions` field when instantiating the plugin.
-
-T> Given PurifyCSS might not pick all of the classes you are using, you can use `purifyOptions.whitelist` array to define selectors which it should leave in the result no matter what.
+PurifyCSS supports [additional options](https://github.com/purifycss/purifycss#the-optional-options-argument) including `minify`. You can enable these through the `purifyOptions` field when instantiating the plugin. Given PurifyCSS might not pick all of the classes you are using, you should use `purifyOptions.whitelist` array to define selectors which it should leave in the result no matter what.
 
 W> Using PurifyCSS will lose CSS source maps even if you have enabled them through loader specific configuration! This has to do with the way it works internally.
 
