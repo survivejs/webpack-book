@@ -122,7 +122,6 @@ Refer to Font Awesome as follows:
 leanpub-start-insert
 import 'font-awesome/css/font-awesome.css';
 leanpub-end-insert
-
 ...
 ```
 
@@ -217,9 +216,9 @@ leanpub-end-insert
 If you build the application (`npm run build`), you should see that it processed as expected while Font Awesome assets were included.
 
 ```bash
-Hash: 2c5db72dfa7e206817d5
+Hash: 540d34dcccc83368dabf
 Version: webpack 2.2.1
-Time: 2346ms
+Time: 2481ms
                     Asset       Size  Chunks                    Chunk Names
   fontawesome-webfont.eot     166 kB          [emitted]
   fontawesome-webfont.svg     444 kB          [emitted]  [big]
@@ -227,10 +226,10 @@ Time: 2346ms
 fontawesome-webfont.woff2    77.2 kB          [emitted]
  fontawesome-webfont.woff      98 kB          [emitted]
                  logo.png      77 kB          [emitted]
-                   app.js    4.55 kB       0  [emitted]         app
+                   app.js    4.56 kB       0  [emitted]         app
                   app.css    3.85 kB       0  [emitted]         app
                index.html  218 bytes          [emitted]
-   [0] ./app/component.js 186 bytes {0} [built]
+   [0] ./app/component.js 198 bytes {0} [built]
    [1] ./~/font-awesome/css/font-awesome.css 41 bytes {0} [built]
    [2] ./app/main.css 41 bytes {0} [built]
 ...
@@ -291,9 +290,9 @@ leanpub-end-insert
 If you build the project (`npm run build`), the output should be a little tidier:
 
 ```bash
-Hash: 8632133d62690bae7e69
+Hash: 71169d0797a7271e19ba
 Version: webpack 2.2.1
-Time: 2407ms
+Time: 2301ms
                     Asset       Size  Chunks             Chunk Names
   fontawesome-webfont.eot     166 kB          [emitted]
   fontawesome-webfont.ttf     166 kB          [emitted]
@@ -301,13 +300,12 @@ fontawesome-webfont.woff2    77.2 kB          [emitted]
  fontawesome-webfont.woff      98 kB          [emitted]
   fontawesome-webfont.svg   22 bytes          [emitted]
                  logo.png      77 kB          [emitted]
-                   app.js    4.55 kB       0  [emitted]  app
+                   app.js    4.56 kB       0  [emitted]  app
                   app.css    3.85 kB       0  [emitted]  app
                index.html  218 bytes          [emitted]
-   [0] ./app/component.js 185 bytes {0} [built]
+   [0] ./app/component.js 198 bytes {0} [built]
    [1] ./~/font-awesome/css/font-awesome.css 41 bytes {0} [built]
    [2] ./app/main.css 41 bytes {0} [built]
-   [3] ./~/purecss/build/pure-min.css 41 by
 ...
 ```
 
