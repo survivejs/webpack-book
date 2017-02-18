@@ -32,14 +32,14 @@ building/02_splitting_bundles.md
 building/03_code_splitting.md
 building/04_tidying_up.md
 
-08_Optimizing_Build.md
-optimizing_build/01_minifying.md
-optimizing_build/02_tree_shaking.md
-optimizing_build/03_setting_environment_variables.md
-optimizing_build/04_adding_hashes_to_filenames.md
-optimizing_build/05_separating_manifest.md
-optimizing_build/06_analyzing_build_statistics.md
-optimizing_build/07_performance.md
+08_Optimizing.md
+optimizing/01_minifying.md
+optimizing/02_tree_shaking.md
+optimizing/03_setting_environment_variables.md
+optimizing/04_adding_hashes_to_filenames.md
+optimizing/05_separating_manifest.md
+optimizing/06_analyzing_build_statistics.md
+optimizing/07_performance.md
 
 09_Output.md
 output/01_targets.md
