@@ -258,4 +258,4 @@ T> [flow-coverage-report](https://www.npmjs.com/package/flow-coverage-report) sh
 
 ## Conclusion
 
-Babel has become an indispensable tool for developers given it bridges the standard with older browsers. Even if you targeted modern browsers, transforming through Babel may be a necessity if you use UglifyJS.
+Babel has become an indispensable tool for developers given it bridges the standard with older browsers. Even if you targeted modern browsers, transforming through Babel may be useful.
