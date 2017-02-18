@@ -110,13 +110,7 @@ Tweak ESLint configuration as follows:
 
 ```javascript
 module.exports = {
-  "env": {
-    "browser": true,
-    "commonjs": true,
-    "es6": true,
-    "node": true,
-  },
-  "extends": "eslint:recommended",
+  ...
 leanpub-start-insert
   "parser": "babel-eslint",
 leanpub-end-insert
@@ -198,30 +192,28 @@ If you open up the application (`npm start`) and click the button, you should se
 Perhaps the more interesting thing is to see what the build result looks like. If you run `npm run build`, you should see something like this:
 
 ```bash
-Hash: 60cb132200bce915e81d
+Hash: 4f6f78b2fd2c38e8200d
 Version: webpack 2.2.1
-Time: 2812ms
+Time: 2606ms
                     Asset       Size  Chunks             Chunk Names
-                vendor.js     141 kB       2  [emitted]  vendor
+                   app.js    2.74 kB       1  [emitted]  app
   fontawesome-webfont.eot     166 kB          [emitted]
 fontawesome-webfont.woff2    77.2 kB          [emitted]
  fontawesome-webfont.woff      98 kB          [emitted]
   fontawesome-webfont.svg   22 bytes          [emitted]
                  logo.png      77 kB          [emitted]
                      0.js  313 bytes       0  [emitted]
-                   app.js    2.45 kB       1  [emitted]  app
   fontawesome-webfont.ttf     166 kB          [emitted]
-                  app.css  230 bytes       1  [emitted]  app
-               vendor.css    3.69 kB       2  [emitted]  vendor
-                 0.js.map  235 bytes       0  [emitted]
-               app.js.map    2.27 kB       1  [emitted]  app
+                vendor.js     150 kB       2  [emitted]  vendor
+                  app.css    3.89 kB       1  [emitted]  app
+                 0.js.map  231 bytes       0  [emitted]
+               app.js.map    2.78 kB       1  [emitted]  app
               app.css.map   84 bytes       1  [emitted]  app
-            vendor.js.map     167 kB       2  [emitted]  vendor
-           vendor.css.map   87 bytes       2  [emitted]  vendor
-               index.html  315 bytes          [emitted]
+            vendor.js.map     179 kB       2  [emitted]  vendor
+               index.html  274 bytes          [emitted]
    [0] ./~/process/browser.js 5.3 kB {2} [built]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {2} [built]
-  [18] ./app/component.js 372 bytes {1} [built]
+  [18] ./app/component.js 461 bytes {1} [built]
 ...
 ```
 
@@ -315,4 +307,4 @@ Just applying `import` or `require.ensure` alone can be effective. `require.cont
 
 T> There's a complete example of how to use the code splitting technique in the *Searching with React* appendix. You will see how to set up a static site index that's loaded when the user searches information.
 
-T> [webpack-pwa](https://github.com/webpack/webpack-pwa) illustrates the idea in a larger scale and discusses different shell based approaches.
+T> [webpack-pwa](https://github.com/webpack/webpack-pwa) illustrates the idea in a larger scale and discusses different shell based approaches. We'll get back to this topic at the *Multiple Pages* chapter.
