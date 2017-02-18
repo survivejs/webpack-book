@@ -20,11 +20,11 @@ handling_styles/03_autoprefixing.md
 handling_styles/04_eliminating_unused_css.md
 handling_styles/05_linting.md
 
-06_Loading_Assets.md
-loading_assets/01_loader_definitions.md
-loading_assets/02_images.md
-loading_assets/03_fonts.md
-loading_assets/04_javascript.md
+06_Loading.md
+loading/01_loader_definitions.md
+loading/02_images.md
+loading/03_fonts.md
+loading/04_javascript.md
 
 07_Building.md
 building/01_source_maps.md
