@@ -30,16 +30,15 @@ Then make the project depend on it:
 leanpub-start-insert
 import 'react';
 leanpub-end-insert
-
 ...
 ```
 
 Execute `npm run build` to get a baseline build. You should end up with something like this:
 
 ```bash
-Hash: 5eaa85e989a5407d6376
+Hash: 909ea27e159183e169ca
 Version: webpack 2.2.1
-Time: 2636ms
+Time: 2689ms
                     Asset       Size  Chunks             Chunk Names
                  logo.png      77 kB          [emitted]
   fontawesome-webfont.eot     166 kB          [emitted]
@@ -49,12 +48,12 @@ fontawesome-webfont.woff2    77.2 kB          [emitted]
   fontawesome-webfont.ttf     166 kB          [emitted]
                    app.js     140 kB       0  [emitted]  app
                   app.css    3.89 kB       0  [emitted]  app
-               app.js.map     165 kB       0  [emitted]  app
+               app.js.map     166 kB       0  [emitted]  app
               app.css.map   84 bytes       0  [emitted]  app
                index.html  218 bytes          [emitted]
    [0] ./~/process/browser.js 5.3 kB {0} [built]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {0} [built]
-  [18] ./app/component.js 185 bytes {0} [built]
+  [18] ./app/component.js 272 bytes {0} [built]
 ...
 ```
 
@@ -88,9 +87,9 @@ leanpub-end-insert
 We have two separate entries, or **entry chunks**, now. `[name].js` of our existing `output.path` configuration will kick in based on the entry name and if you try to generate a build now (`npm run build`), you should see something along this:
 
 ```bash
-Hash: 374763232044c7eacfad
+Hash: 826dae8d1f861ff05cb8
 Version: webpack 2.2.1
-Time: 2768ms
+Time: 2611ms
                     Asset       Size  Chunks             Chunk Names
                    app.js     140 kB       0  [emitted]  app
   fontawesome-webfont.eot     166 kB          [emitted]
@@ -101,7 +100,7 @@ fontawesome-webfont.woff2    77.2 kB          [emitted]
   fontawesome-webfont.ttf     166 kB          [emitted]
                 vendor.js     138 kB       1  [emitted]  vendor
                   app.css    3.89 kB       0  [emitted]  app
-               app.js.map     165 kB       0  [emitted]  app
+               app.js.map     166 kB       0  [emitted]  app
               app.css.map   84 bytes       0  [emitted]  app
             vendor.js.map     164 kB       1  [emitted]  vendor
                index.html  274 bytes          [emitted]
@@ -152,7 +151,6 @@ exports.extractBundles = function(bundles) {
 
   return { entry, plugins };
 };
-
 ```
 
 Given the function handles the entry for us, we can drop our `vendor`-related configuration and use the function instead:
@@ -171,14 +169,12 @@ leanpub-start-delete
   },
 leanpub-end-delete
 leanpub-start-insert
-  parts.extractBundles({
-    bundles: [
-      {
-        name: 'vendor',
-        entries: ['react'],
-      },
-    ],
-  }),
+  parts.extractBundles([
+    {
+      name: 'vendor',
+      entries: ['react'],
+    },
+  ]),
 leanpub-end-insert
   ...
 ]);
@@ -189,11 +185,11 @@ leanpub-end-insert
 If you execute the build now using `npm run build`, you should see something along this:
 
 ```bash
-Hash: 0d803bd35e80972d1264
+Hash: 9e99171a301a171aefaf
 Version: webpack 2.2.1
-Time: 2572ms
+Time: 2628ms
                     Asset       Size  Chunks             Chunk Names
-                   app.js    2.39 kB       0  [emitted]  app
+                   app.js    2.48 kB       0  [emitted]  app
   fontawesome-webfont.eot     166 kB          [emitted]
 fontawesome-webfont.woff2    77.2 kB          [emitted]
  fontawesome-webfont.woff      98 kB          [emitted]
@@ -202,7 +198,7 @@ fontawesome-webfont.woff2    77.2 kB          [emitted]
   fontawesome-webfont.ttf     166 kB          [emitted]
                 vendor.js     141 kB       1  [emitted]  vendor
                   app.css    3.89 kB       0  [emitted]  app
-               app.js.map     1.9 kB       0  [emitted]  app
+               app.js.map    2.32 kB       0  [emitted]  app
               app.css.map   84 bytes       0  [emitted]  app
             vendor.js.map     167 kB       1  [emitted]  vendor
                index.html  274 bytes          [emitted]
@@ -222,7 +218,7 @@ It is good to note that if the vendor entry contained extra dependencies (white 
 
 In addition to a number and certain other values, `minChunks` accepts a function with a signature `(module, count)`. The first parameter contains a lot of information about the matches module and allows us to deduce which modules are used by the project. The second one tells how many times a specific module has been imported to the project.
 
-To adapt Rafael De Leon's solution from [Stack Overflow](http://stackoverflow.com/a/38733864/228885), we can check for which modules are used like this:
+To capture only JavaScript files from *node_modules*, we should perform a check against each request:
 
 **webpack.config.js**
 
@@ -237,8 +233,10 @@ leanpub-start-delete
       entries: ['react'],
 leanpub-end-delete
 leanpub-start-insert
-      minChunks: ({ context }) => (
-        context && context.indexOf('node_modules') >= 0
+      minChunks: ({ userRequest }) => (
+        userRequest &&
+        userRequest.indexOf('node_modules') >= 0 &&
+        userRequest.match(/\.js$/)
       ),
 leanpub-end-insert
     },

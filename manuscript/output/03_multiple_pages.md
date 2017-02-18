@@ -284,48 +284,6 @@ leanpub-end-insert
 };
 ```
 
-If you run the project (`npm start`), it should look exactly the same as before. If you build the project (`npm run build`) and check out `/another`, you might see something weird. If you compare the page to the development version, you should notice it contains additional styling.
-
-### Fixing Styling
-
-The problem has to do with `CommonsChunkPlugin` and the way it works. In our current setup it extracts any module that we refer from the code and is within *node_modules*. This applies to CSS too. To fix the issue, the process has to be constrained so that only modules that are used within the both pages become extracted to a vendor bundle through `CommonsChunkPlugin`.
-
-Based on this background the fix is simple. We have to add an extra check against the usage count of modules to make sure they are used on the each page of the application:
-
-**webpack.config.js**
-
-```javascript
-...
-
-const productionConfig = merge([
-  ...
-  parts.extractBundles([
-    {
-      name: 'vendor',
-leanpub-start-delete
-      minChunks: ({ context }) => (
-        context && context.indexOf('node_modules') >= 0
-      ),
-leanpub-end-delete
-leanpub-start-insert
-      minChunks: ({ context }, count) => (
-        count === 2 &&
-        context && context.indexOf('node_modules') >= 0
-      ),
-leanpub-end-insert
-    },
-    ...
-  ]),
-  ...
-]);
-
-...
-```
-
-The solution could be improved with further abstraction. If we separated page specific configuration to a file of its own, it would be easy to figure out the amount of pages automatically instead of relying on a magic number.
-
-An alternative way would be to skip extracting CSS to a commons chunk by checking against the file extension. In that case we would have to check against `userRequest` instead of `context` as it includes the whole path and perform an additional check such as `userRequest.match(/\.js$/)` to make sure only JavaScript files are included to the commons chunk.
-
 If you generate a build (`npm run build`), you should notice that something is a little different compared to the first multiple page build we did. Instead of two manifest files, you can find only one. If you examine it, you will notice it contains references to all files that were generated.
 
 Studying the entry specific files in detail reveals more. You can see that they point to different parts of the manifest. The manifest will run different code depending on the entry. Multiple separate manifests are not needed.
