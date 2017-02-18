@@ -13,12 +13,12 @@ developing_with_webpack/03_configuring_hmr.md
 developing_with_webpack/04_linting.md
 developing_with_webpack/05_composing_configuration.md
 
-05_Handling_Styles.md
-handling_styles/01_loading.md
-handling_styles/02_separating_css.md
-handling_styles/03_autoprefixing.md
-handling_styles/04_eliminating_unused_css.md
-handling_styles/05_linting.md
+05_Styling.md
+styling/01_loading.md
+styling/02_separating_css.md
+styling/03_autoprefixing.md
+styling/04_eliminating_unused_css.md
+styling/05_linting.md
 
 06_Loading.md
 loading/01_loader_definitions.md
