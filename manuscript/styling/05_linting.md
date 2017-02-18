@@ -45,7 +45,7 @@ If you break the rule at *app/main.css* and run `npm run lint:style`, you should
 ...
 
 app/main.css
- 2:15  ✖  Expected "#FFF" to be "#fff"   color-hex-case
+ 2:15  Expected "#FFF" to be "#fff"   color-hex-case
 
 ...
 ```
