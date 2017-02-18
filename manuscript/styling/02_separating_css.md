@@ -112,14 +112,14 @@ T> If you are using CSS Modules, remember to tweak `use` accordingly as discusse
 After running `npm run build`, you should see output similar to the following:
 
 ```bash
-Hash: 739300cfd36e2c84d539
+Hash: 57e54590377069688806
 Version: webpack 2.2.1
-Time: 965ms
+Time: 952ms
      Asset       Size  Chunks             Chunk Names
-    app.js    3.78 kB       0  [emitted]  app
+    app.js    3.79 kB       0  [emitted]  app
    app.css   32 bytes       0  [emitted]  app
 index.html  218 bytes          [emitted]
-   [0] ./app/component.js 135 bytes {0} [built]
+   [0] ./app/component.js 148 bytes {0} [built]
    [1] ./app/main.css 41 bytes {0} [built]
    [2] ./app/index.js 434 bytes {0} [built]
 ...
