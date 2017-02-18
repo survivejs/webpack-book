@@ -113,14 +113,14 @@ It is possible to encapsulate the basic idea within a function like this:
 ```javascript
 ...
 
-exports.dontParse = function(options) {
+exports.dontParse = function({ name, path }) {
   const alias = {};
-  alias[options.name] = options.path;
+  alias[name] = path;
 
   return {
     module: {
       noParse: [
-        new RegExp(options.path),
+        new RegExp(path),
       ],
     },
     resolve: {
