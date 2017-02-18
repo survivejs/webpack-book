@@ -17,12 +17,9 @@ We have done most of the work already when we set up `extractBundles`. To extrac
 
 const productionConfig = merge([
   ...
-  parts.extractBundles({[
+  parts.extractBundles([
       {
-        name: 'vendor',
-        minChunks: ({ context }) => (
-          context && context.indexOf('node_modules') >= 0
-        ),
+        ...
       },
 leanpub-start-insert
       {
@@ -39,32 +36,30 @@ leanpub-end-insert
 If you build the project now (`npm run build`), you should see something like this:
 
 ```bash
-Hash: 940612921489b7d36dc2
+Hash: 72c500cbb46f60119837
 Version: webpack 2.2.1
-Time: 4227ms
+Time: 3699ms
                   Asset       Size  Chunks             Chunk Names
-            136bdd5b.js    1.47 kB       3  [emitted]  manifest
-           674f50d2.eot     166 kB          [emitted]
-         af7ae505.woff2    77.2 kB          [emitted]
-          fee66e71.woff      98 kB          [emitted]
+            801b7672.js  867 bytes    2, 3  [emitted]  app
            11ec0064.svg   22 bytes          [emitted]
+           674f50d2.eot     166 kB          [emitted]
+          fee66e71.woff      98 kB          [emitted]
+         af7ae505.woff2    77.2 kB          [emitted]
            85011118.png      77 kB          [emitted]
-    scripts/2ef8cb5e.js  184 bytes    0, 3  [emitted]
-            4f2ad811.js    19.6 kB    1, 3  [emitted]  vendor
-            3a05df06.js  717 bytes    2, 3  [emitted]  app
+    scripts/a749f8b7.js  186 bytes    0, 3  [emitted]
+            f80a9a7b.js    23.7 kB    1, 3  [emitted]  vendor
            b06871f2.ttf     166 kB          [emitted]
-           03d7fa6d.css  164 bytes    2, 3  [emitted]  app
-           9c2469e8.css    46.6 kB    1, 3  [emitted]  vendor
-scripts/2ef8cb5e.js.map  824 bytes    0, 3  [emitted]
-        4f2ad811.js.map     247 kB    1, 3  [emitted]  vendor
-       9c2469e8.css.map   89 bytes    1, 3  [emitted]  vendor
-        3a05df06.js.map    5.99 kB    2, 3  [emitted]  app
-       03d7fa6d.css.map   89 bytes    2, 3  [emitted]  app
-        136bdd5b.js.map      14 kB       3  [emitted]  manifest
-             index.html  387 bytes          [emitted]
-   [4] ./~/object-assign/index.js 2.11 kB {1} [built]
-  [14] ./app/component.js 372 bytes {2} [built]
-  [15] ./app/shake.js 138 bytes {2} [built]
+            83bffe89.js    1.47 kB       3  [emitted]  manifest
+           eae1155e.css    46.8 kB    2, 3  [emitted]  app
+scripts/a749f8b7.js.map  828 bytes    0, 3  [emitted]
+        f80a9a7b.js.map     274 kB    1, 3  [emitted]  vendor
+        801b7672.js.map    6.54 kB    2, 3  [emitted]  app
+       eae1155e.css.map   89 bytes    2, 3  [emitted]  app
+        83bffe89.js.map      14 kB       3  [emitted]  manifest
+             index.html  344 bytes          [emitted]
+[1Q41] ./app/main.css 41 bytes {2} [built]
+[2twT] ./app/index.js 557 bytes {2} [built]
+[5W1q] ./~/font-awesome/css/font-awesome.css 41 bytes {2} [built]
 ...
 ```
 
@@ -77,32 +72,34 @@ T> To get a better idea of the manifest contents, comment out `parts.minify()` a
 Try adjusting *app/index.js* and see how the hashes change. This time around it should **not** invalidate the vendor bundle, and only the manifest and app bundle names should be different like this:
 
 ```bash
-Hash: e30a9f69eec18c5fe1c8
+Hash: bcb73bb8da8f58612c78
 Version: webpack 2.2.1
-Time: 3849ms
+Time: 3692ms
                   Asset       Size  Chunks             Chunk Names
-            3df3e08c.js    1.47 kB       3  [emitted]  manifest
-           674f50d2.eot     166 kB          [emitted]
-         af7ae505.woff2    77.2 kB          [emitted]
-          fee66e71.woff      98 kB          [emitted]
+leanpub-start-insert
+            de009ca0.js  889 bytes    2, 3  [emitted]  app
+leanpub-end-insert
            11ec0064.svg   22 bytes          [emitted]
+           674f50d2.eot     166 kB          [emitted]
+          fee66e71.woff      98 kB          [emitted]
+         af7ae505.woff2    77.2 kB          [emitted]
            85011118.png      77 kB          [emitted]
-    scripts/2ef8cb5e.js  184 bytes    0, 3  [emitted]
-            4f2ad811.js    19.6 kB    1, 3  [emitted]  vendor
-            67a40f61.js  737 bytes    2, 3  [emitted]  app
+    scripts/a749f8b7.js  186 bytes    0, 3  [emitted]
+            f80a9a7b.js    23.7 kB    1, 3  [emitted]  vendor
            b06871f2.ttf     166 kB          [emitted]
-           03d7fa6d.css  164 bytes    2, 3  [emitted]  app
-           9c2469e8.css    46.6 kB    1, 3  [emitted]  vendor
-scripts/2ef8cb5e.js.map  824 bytes    0, 3  [emitted]
-        4f2ad811.js.map     247 kB    1, 3  [emitted]  vendor
-       9c2469e8.css.map   89 bytes    1, 3  [emitted]  vendor
-        67a40f61.js.map    6.06 kB    2, 3  [emitted]  app
-       03d7fa6d.css.map   89 bytes    2, 3  [emitted]  app
-        3df3e08c.js.map      14 kB       3  [emitted]  manifest
-             index.html  387 bytes          [emitted]
-   [4] ./~/object-assign/index.js 2.11 kB {1} [built]
-  [14] ./app/component.js 372 bytes {2} [built]
-  [15] ./app/shake.js 138 bytes {2} [built]
+leanpub-start-insert
+            7a73c611.js    1.47 kB       3  [emitted]  manifest
+leanpub-end-insert
+           eae1155e.css    46.8 kB    2, 3  [emitted]  app
+scripts/a749f8b7.js.map  828 bytes    0, 3  [emitted]
+        f80a9a7b.js.map     274 kB    1, 3  [emitted]  vendor
+        de009ca0.js.map    6.62 kB    2, 3  [emitted]  app
+       eae1155e.css.map   89 bytes    2, 3  [emitted]  app
+        7a73c611.js.map      14 kB       3  [emitted]  manifest
+             index.html  344 bytes          [emitted]
+[1Q41] ./app/main.css 41 bytes {2} [built]
+[2twT] ./app/index.js 581 bytes {2} [built]
+[5W1q] ./~/font-awesome/css/font-awesome.css 41 bytes {2} [built]
 ...
 ```
 
