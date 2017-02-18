@@ -93,7 +93,9 @@ leanpub-end-insert
     eae1155e.css    46.8 kB    2, 3  [emitted]  app
  a749f8b7.js.map  804 bytes    0, 3  [emitted]
  f80a9a7b.js.map     274 kB    1, 3  [emitted]  vendor
+leanpub-start-insert
  de009ca0.js.map    6.62 kB    2, 3  [emitted]  app
+leanpub-end-insert
 eae1155e.css.map   89 bytes    2, 3  [emitted]  app
  1993b0fe.js.map      14 kB       3  [emitted]  manifest
       index.html  344 bytes          [emitted]
