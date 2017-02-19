@@ -54,6 +54,12 @@ function developmentConfig() {
       // unlike default `localhost`.
       host: process.env.HOST, // Defaults to `localhost`
       port: process.env.PORT, // Defaults to 8080
+
+      // Enable error/warning overlay
+      overlay: {
+        errors: true,
+        warnings: true,
+      },
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),

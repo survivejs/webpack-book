@@ -47,6 +47,10 @@ exports.devServer = function({ host, port }) {
       stats: 'errors-only',
       host, // Defaults to `localhost`
       port, // Defaults to 8080
+      overlay: {
+        errors: true,
+        warnings: true,
+      },
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
@@ -105,10 +109,10 @@ const commonConfig = merge([
       }),
     ],
   },
+  parts.lintJavaScript({ include: PATHS.app }),
 ]);
 
 const productionConfig = merge([
-  parts.lintJavaScript({ include: PATHS.app }),
 ]);
 
 const developmentConfig = merge([
@@ -121,14 +125,6 @@ const developmentConfig = merge([
     // Customize host/port here if needed
     host: process.env.HOST,
     port: process.env.PORT,
-  }),
-  parts.lintJavaScript({
-    include: PATHS.app,
-    options: {
-      // Emit warnings over errors to avoid crashing
-      // HMR on error.
-      emitWarning: true,
-    },
   }),
 ]);
 

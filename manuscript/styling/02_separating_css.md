@@ -89,7 +89,6 @@ leanpub-end-delete
 ]);
 
 const productionConfig = merge([
-  ...
 leanpub-start-insert
   parts.extractCSS({ use: 'css-loader' }),
 leanpub-end-insert
