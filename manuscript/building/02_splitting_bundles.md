@@ -124,9 +124,68 @@ W> Webpack doesn't allow referring to entry files within entries. If you inadver
 
 ## Setting Up `CommonsChunkPlugin`
 
-[CommonsChunkPlugin](https://webpack.js.org/guides/code-splitting-libraries/#commonschunkplugin) is a powerful and complex plugin. The use case we are covering here is a basic yet useful one. As before, we can define a function that wraps the basic idea.
+[CommonsChunkPlugin](https://webpack.js.org/guides/code-splitting-libraries/#commonschunkplugin) is a powerful and complex plugin. In this case, the target is clear. We have to tell it to extract vendor related code to a bundle of its own. Before abstraction, implement it like this:
 
-The following code combines the `entry` idea above with a basic `CommonsChunkPlugin` setup. It has been designed so that it is possible to access advanced features of `CommonsChunkPlugin` while allowing you to define multiple splits through it.
+**webpack.config.js**
+
+```javascript
+...
+
+const productionConfig = merge([
+  {
+    entry: {
+      vendor: ['react'],
+    },
+leanpub-start-insert
+    plugins: [
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'vendor',
+        entries: ['react'],
+      }),
+    ],
+leanpub-end-insert
+  },
+  ...
+]);
+
+...
+```
+
+This tells the plugin to extract React to a bundle named `vendor`. If you execute the build now using `npm run build`, you should see something along this:
+
+```bash
+Hash: 9e99171a301a171aefaf
+Version: webpack 2.2.1
+Time: 2628ms
+                    Asset       Size  Chunks             Chunk Names
+                   app.js    2.48 kB       0  [emitted]  app
+  fontawesome-webfont.eot     166 kB          [emitted]
+fontawesome-webfont.woff2    77.2 kB          [emitted]
+ fontawesome-webfont.woff      98 kB          [emitted]
+  fontawesome-webfont.svg   22 bytes          [emitted]
+                 logo.png      77 kB          [emitted]
+  fontawesome-webfont.ttf     166 kB          [emitted]
+                vendor.js     141 kB       1  [emitted]  vendor
+                  app.css    3.89 kB       0  [emitted]  app
+               app.js.map    2.32 kB       0  [emitted]  app
+              app.css.map   84 bytes       0  [emitted]  app
+            vendor.js.map     167 kB       1  [emitted]  vendor
+               index.html  274 bytes          [emitted]
+   [0] ./~/process/browser.js 5.3 kB {1} [built]
+   [3] ./~/react/lib/ReactElement.js 11.2 kB {1} [built]
+   [7] ./~/react/react.js 56 bytes {1} [built]
+...
+```
+
+Now our bundles look the way we want. The image below illustrates the current situation.
+
+![App and vendor bundles after applying `CommonsChunkPlugin`](images/bundle_02.png)
+
+It is good to note that if the vendor entry contained extra dependencies (white on the image), the setup would pull those into the project as well. Resolving this problem is possible by examining which packages are being used in the project using the `minChunks` parameter of the `CommonsChunksPlugin`. But before that, let's abstract the solution a bit.
+
+## Abstracting Bundle Extraction
+
+The following code combines the `entry` idea above with a basic `CommonsChunkPlugin` setup. It has been designed so that it is possible to access advanced features of `CommonsChunkPlugin` while allowing you to define multiple splits through it:
 
 **webpack.parts.js**
 
@@ -166,6 +225,12 @@ leanpub-start-delete
     entry: {
       vendor: ['react'],
     },
+    plugins: [
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'vendor',
+        entries: ['react'],
+      }),
+    ],
   },
 leanpub-end-delete
 leanpub-start-insert
@@ -182,41 +247,13 @@ leanpub-end-insert
 ...
 ```
 
-If you execute the build now using `npm run build`, you should see something along this:
+Everything should work the same way as earlier. This time around, however, it is more convenient to work with the plugin. We still have access to its functionality as before, but with a smaller amount of code.
 
-```bash
-Hash: 9e99171a301a171aefaf
-Version: webpack 2.2.1
-Time: 2628ms
-                    Asset       Size  Chunks             Chunk Names
-                   app.js    2.48 kB       0  [emitted]  app
-  fontawesome-webfont.eot     166 kB          [emitted]
-fontawesome-webfont.woff2    77.2 kB          [emitted]
- fontawesome-webfont.woff      98 kB          [emitted]
-  fontawesome-webfont.svg   22 bytes          [emitted]
-                 logo.png      77 kB          [emitted]
-  fontawesome-webfont.ttf     166 kB          [emitted]
-                vendor.js     141 kB       1  [emitted]  vendor
-                  app.css    3.89 kB       0  [emitted]  app
-               app.js.map    2.32 kB       0  [emitted]  app
-              app.css.map   84 bytes       0  [emitted]  app
-            vendor.js.map     167 kB       1  [emitted]  vendor
-               index.html  274 bytes          [emitted]
-   [0] ./~/process/browser.js 5.3 kB {1} [built]
-   [3] ./~/react/lib/ReactElement.js 11.2 kB {1} [built]
-   [7] ./~/react/react.js 56 bytes {1} [built]
-...
-```
-
-Now our bundles look the way we want. The image below illustrates the current situation.
-
-![App and vendor bundles after applying `CommonsChunkPlugin`](images/bundle_02.png)
-
-It is good to note that if the vendor entry contained extra dependencies (white on the image), the setup would pull those into the project as well. Resolving this problem is possible by examining which packages are being used in the project using the `minChunks` parameter of the `CommonsChunksPlugin`.
+To pick React to the vendor build automatically based on usage, we have to drop the `entries` option and adjust the setup so that it picks up JavaScript files from *node_modules* to the vendor bundle.
 
 ## Loading `dependencies` to a `vendor` Bundle Automatically
 
-In addition to a number and certain other values, `minChunks` accepts a function with a signature `(module, count)`. The first parameter contains a lot of information about the matches module and allows us to deduce which modules are used by the project. The second one tells how many times a specific module has been imported to the project.
+`CommonsChunkPlugin` gives control over its behavior through its `minChunks` options. In addition to a number and certain other values, `minChunks` accepts a function with a signature `(module, count)`. The first parameter contains a lot of information about the matches module and allows us to deduce which modules are used by the project. The second one tells how many times a specific module has been imported to the project.
 
 To capture only JavaScript files from *node_modules*, we should perform a check against each request:
 
