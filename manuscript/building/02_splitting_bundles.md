@@ -359,6 +359,8 @@ T> Note that the `chunks` option refers to the entry chunks of your configuratio
 * `children` - If `children` is set to `true`, webpack will detect which modules are the same in the resulting bundles and push them to the parent bundle.
 * `async` - The idea is the same if `async` is set to `true`. In this case webpack will generate a separate bundle with the commonalities and load it asynchronously from the parent.
 
+The image below shows the difference compared to the default. The top circles represent the parent bundles. The way `B` is treated depends on the chosen option:
+
 ![`CommonsChunkPlugin` children and async](images/commonschunk.png)
 
 ## Splitting and Merging Chunks
