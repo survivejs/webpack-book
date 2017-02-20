@@ -314,9 +314,9 @@ The aggressive merging plugin works the inverse way and allows you to combine to
 },
 ```
 
-It is possible to get good caching behavior with these plugins if a webpack **records** are used. The idea is discussed in greater detail in the *Adding Hashes to Filenames* chapter.
+It is possible to get good caching behavior with these plugins if a webpack **records** are used. The idea is discussed in detail in the *Adding Hashes to Filenames* chapter.
 
-T> Tobias Koppers discusses [aggressive merging in greater detail at the official blog of webpack](https://medium.com/webpack/webpack-http-2-7083ec3f3ce6).
+T> Tobias Koppers discusses [aggressive merging in detail at the official blog of webpack](https://medium.com/webpack/webpack-http-2-7083ec3f3ce6).
 
 T> `webpack.optimize.LimitChunkCountPlugin` and `webpack.optimize.MinChunkSizePlugin` give further control over chunk size.
 

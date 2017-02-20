@@ -10,7 +10,7 @@ Due to this process, ExtractTextPlugin comes with overhead during the compilatio
 
 T> This same technique can be used with other assets, like templates, too.
 
-W> It can be potentially dangerous to use inline styles within JavaScript in production as it represents an attack vector. **Critical path rendering** embraces the idea and inlines the critical CSS to the initial HTML payload improving perceived performance of the site. It is discussed at the next chapter in greater detail.
+W> It can be potentially dangerous to use inline styles within JavaScript in production as it represents an attack vector. **Critical path rendering** embraces the idea and inlines the critical CSS to the initial HTML payload improving perceived performance of the site. It is discussed at the next chapter in detail.
 
 In limited contexts inlining a small amount of CSS can be a viable option to speed up the initial load (less requests).
 
@@ -66,7 +66,7 @@ exports.extractCSS = function({ include, exclude, use }) {
 leanpub-end-insert
 ```
 
-That `[name]` placeholder will use the name of the entry where the CSS is referred to. Placeholders and the overall idea are discussed in greater detail at the *Adding Hashes to Filenames* chapter.
+That `[name]` placeholder will use the name of the entry where the CSS is referred to. Placeholders and the overall idea are discussed in detail at the *Adding Hashes to Filenames* chapter.
 
 T> If you wanted to output the resulting file to a specific directory, you could do it like this: `new ExtractTextPlugin('styles/[name].css')`.
 

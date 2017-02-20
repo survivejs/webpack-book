@@ -15,7 +15,7 @@ The *webworker* target will wrap your application as a [web worker](https://deve
 * You cannot use webpack's hashing features when the *webworker* target is used.
 * You cannot manipulate the DOM from a web worker. If you wrapped the book project as a worker, it would not display anything.
 
-T> Web workers and their usage is discussed in greater detail at the *Using Web Workers* appendix.
+T> Web workers and their usage is discussed in detail at the *Using Web Workers* appendix.
 
 ## Node Targets
 
@@ -37,7 +37,7 @@ There are desktop shells, such as [NW.js](https://nwjs.io/) (previously *node-we
 
 To understand webpack's library targets better, we can set up a small library to bundle. The idea is to end up with a non-minified, a minified version, and a version compatible with *package.json* `module` field. The first two can be useful for standalone consumption. You can also point to the non-minified version through *package.json* `main`.
 
-T> The *Authoring Packages* chapter discusses the fields and more in greater detail.
+T> The *Authoring Packages* chapter discusses the fields and more in detail.
 
 ### Setting Up a Library
 

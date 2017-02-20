@@ -187,7 +187,7 @@ To bring specific locales to your project, you should use `ContextReplacementPlu
 },
 ```
 
-T> There's a [Stack Overflow question](https://stackoverflow.com/questions/25384360/how-to-prevent-moment-js-from-loading-locales-with-webpack/25426019) that covers these ideas in greater detail.
+T> There's a [Stack Overflow question](https://stackoverflow.com/questions/25384360/how-to-prevent-moment-js-from-loading-locales-with-webpack/25426019) that covers these ideas in detail.
 
 T> [null-loader](https://www.npmjs.com/package/null-loader) discussed in the *Loading Fonts* chapter can be used to achieve a similar effect.
 
@@ -214,7 +214,7 @@ One way to eliminate the warning would be to alias the package to a source versi
 },
 ```
 
-T> There's a [webpack issue](https://github.com/webpack/webpack/issues/1617) that discusses the problem in greater detail.
+T> There's a [webpack issue](https://github.com/webpack/webpack/issues/1617) that discusses the problem in detail.
 
 W> Disabling warnings like this one should be the last measure as doing it can hide underlying issues. Do this only if you know what you are doing and consider alternatives first.
 

@@ -193,7 +193,7 @@ Both these tools rely on commit message annotations. On small projects, you migh
 
 This metadata lets the tooling to figure out the types of the changes you made. It can help even with change log generation and allow automated releases over manual ones. Annotating your commits well is a good practice in any case as it will make it easier to debug your code later.
 
-T> The *Consuming Packages* explains the idea of SemVer in greater detail.
+T> The *Consuming Packages* explains the idea of SemVer in detail.
 
 ### Publishing a Pre-Release Version
 

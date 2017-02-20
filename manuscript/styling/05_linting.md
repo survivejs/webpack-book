@@ -125,7 +125,7 @@ See stylelint documentation for a full list of rules. npm lists [possible stylel
 
 T> [stylelint-scss](https://www.npmjs.com/package/stylelint-scss) provides a collection of SCSS specific linting rules.
 
-T> The `enforce` idea is discussed in greater detail at the *Loader Definitions* chapter.
+T> The `enforce` idea is discussed in detail at the *Loader Definitions* chapter.
 
 W> If you get `Module build failed: Error: No configuration provided for ...` kind of error, check your *.stylelintrc*.
 

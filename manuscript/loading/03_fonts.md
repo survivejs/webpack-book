@@ -71,7 +71,7 @@ Note that the way you write your CSS definition matters. Assuming we are going t
 
 This way the browser will try to consume the inlined font before loading remote alternatives.
 
-T> [MDN discusses the font-family rule](https://developer.mozilla.org/en/docs/Web/CSS/@font-face) in greater detail.
+T> [MDN discusses the font-family rule](https://developer.mozilla.org/en/docs/Web/CSS/@font-face) in detail.
 
 ## Generating Font Files Based on SVGs
 
@@ -127,7 +127,7 @@ leanpub-end-insert
 ...
 ```
 
-T> The `import` could be cleaned up as `import 'font-awesome'` by setting up a `resolve.alias`. The *Consuming Packages* chapter discusses this idea in greater detail.
+T> The `import` could be cleaned up as `import 'font-awesome'` by setting up a `resolve.alias`. The *Consuming Packages* chapter discusses this idea in detail.
 
 If you run the project now (`npm start`), webpack should give a long list of errors like this:
 
@@ -237,7 +237,7 @@ fontawesome-webfont.woff2    77.2 kB          [emitted]
 ...
 ```
 
-Note that the SVG file included in Font Awesome has been marked as `[big]`. It is beyond the performance budget defaults set by webpack. The topic is discussed in greater detail at the *Minifying the Build* chapter.
+Note that the SVG file included in Font Awesome has been marked as `[big]`. It is beyond the performance budget defaults set by webpack. The topic is discussed in detail at the *Minifying the Build* chapter.
 
 ### Disabling SVG Font Loading
 

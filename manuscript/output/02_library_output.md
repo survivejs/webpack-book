@@ -1,6 +1,6 @@
 # Library Output
 
-To continue on the example of the previous chapter, there's enough configuration to study webpack's library output options in greater detail.
+To continue on the example of the previous chapter, there's enough configuration to study webpack's library output options in detail.
 
 The library target is controlled through the `output.libraryTarget` field. `output.library` will come into play as well and certain targets have extra fields related to them.
 

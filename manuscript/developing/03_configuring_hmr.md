@@ -93,7 +93,7 @@ leanpub-end-insert
 };
 ```
 
-It's plenty of code. Especially the `Object.assign` portion looks knotty. We'll fix that up in the *Splitting Configuration* chapter as we discuss configuration composition in greater detail.
+It's plenty of code. Especially the `Object.assign` portion looks knotty. We'll fix that up in the *Splitting Configuration* chapter as we discuss configuration composition in detail.
 
 Execute `npm start` and surf to **http://localhost:8080**. Try modifying *app/component.js*. Note how it fails to refresh.
 

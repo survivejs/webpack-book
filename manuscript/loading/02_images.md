@@ -186,7 +186,7 @@ const Profile = () => (
 );
 ```
 
-It is also possible to set up dynamic imports. This actually uses a feature known `require.context` internally. It is covered in greater detail in the *Code Splitting* chapter. Here's a small example:
+It is also possible to set up dynamic imports. This actually uses a feature known `require.context` internally. It is covered in detail in the *Code Splitting* chapter. Here's a small example:
 
 ```javascript
 // The name of the avatar is received from somewhere
@@ -221,7 +221,7 @@ Sometimes getting only reference to an image isn't enough. [image-size-loader](h
 
 Sometimes you might want to load an image dynamically based on some condition. `require.context` can come in handy here. It still assumes the images are available within the file system, but if that's the case, then the technique can work. See the *Code Splitting* chapter for further information.
 
-T> `require.context` is discussed in greater detail at the *Dynamic Loading* appendix.
+T> `require.context` is discussed in detail at the *Dynamic Loading* appendix.
 
 ## Images and *css-loader* Source Map Gotcha
 

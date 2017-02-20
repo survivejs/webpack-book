@@ -42,7 +42,7 @@ Given failing fast and loud is a good idea when it comes to user facing interfac
 
 Most of the complexity of the plugin has to do with figuring out which data to pass to PurifyCSS. The process has to capture assets from the application hierarchy and perform a lookup against them. Writing the data is the simplest step. To add output, you have to use `compilation.assets['demo.css'] = 'demo';` kind of an API.
 
-The source below walks through the main ideas of the plugin in greater detail. Some of the logic, such as input validation, parsing, and searching, have been pushed behind modules of their own as they have little to do with the main flow of the plugin.
+The source below walks through the main ideas of the plugin in detail. Some of the logic, such as input validation, parsing, and searching, have been pushed behind modules of their own as they have little to do with the main flow of the plugin.
 
 ```javascript
 import purify from 'purify-css';
@@ -135,7 +135,7 @@ Even though this is a simple plugin, it took a lot of effort to achieve a basic 
 
 ## Plugins Can Have Plugins
 
-Sometimes it can make sense for a plugin to provide hooks of its own. This way you can write plugins for plugins to extend their functionality. [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) is a good example of that. Example plugins are discussed in greater detail in the *Getting Started* chapter.
+Sometimes it can make sense for a plugin to provide hooks of its own. This way you can write plugins for plugins to extend their functionality. [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) is a good example of that. Example plugins are discussed in detail in the *Getting Started* chapter.
 
 ## Conclusion
 

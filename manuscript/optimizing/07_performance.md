@@ -159,7 +159,7 @@ After this change the application should be at least a little faster to rebuild.
 
 T> Given `module.noParse` accepts a regular expression if we wanted to ignore all `*.min.js` files, we could set it to `/\.min\.js/`. That can be a more generic way to solve the problem sometimes.
 
-T> The aliasing idea is discussed in greater detail at the *Consuming Packages* chapter.
+T> The aliasing idea is discussed in detail at the *Consuming Packages* chapter.
 
 W> Not all modules support `module.noParse`, the files included by deps array should have no call to `require`, `define` or similar, or you will get an error when the app runs: `Uncaught ReferenceError: require is not defined`.
 
