@@ -338,7 +338,7 @@ W> If you are using any `UglifyJsPlugin` and want source maps, you need to enabl
 
 If you want to enable source maps for styling files, you can achieve this by enabling the `sourceMap` option. This works with style loaders such as *css-loader*, *sass-loader*, and *less-loader*.
 
-This isn't without gotchas. The *css-loader* documentation notes that relative paths within CSS declarations are known to be buggy and suggests using setting an absolute public path (`output.publicPath`) resolving to the server url.
+The *css-loader* is [known to have issues](https://github.com/webpack-contrib/css-loader/issues/232) when you are using relative paths in imports. To overcome this problem, you should set an absolute public path (`output.publicPath`) resolving to the server url.
 
 ## `SourceMapDevToolPlugin` and `EvalSourceMapDevToolPlugin`
 
