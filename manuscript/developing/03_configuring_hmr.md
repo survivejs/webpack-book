@@ -261,10 +261,11 @@ entry: {
 
 ## Other Features of *webpack-dev-server*
 
-WDS provides functionality beyond what was covered above. There are two important fields that you should be aware of:
+WDS provides functionality beyond what was covered above. There are a couple of important fields that you should be aware of:
 
 * `devServer.contentBase` - Assuming you don't generate *index.html* dynamically like in this setup and rather prefer to maintain it yourself in some directory, you'll need to point WDS to it. `contentBase` accepts either a path (e.g., `'build'`) or an array of paths (e.g., `['build', 'images']`). This defaults to the project root.
 * `devServer.proxy` - If you are using multiple servers, you may have to proxy WDS to them. The proxy setting accepts an object of proxy mappings (e.g., `{ '/api': 'http://localhost:3000/api' }`) that allow WDS to resolve matching queries to another server. Proxy settings are disabled by default.
+* `devServer.headers` - If you want to attach custom headers to your requests, this is the place to do it.
 
 T> [The official documentation](https://webpack.js.org/configuration/dev-server/) covers more options.
 
