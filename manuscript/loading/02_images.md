@@ -79,22 +79,29 @@ exports.loadImages = function({ include, exclude, options } = {}) {
 };
 ```
 
-To attach it to the configuration, adjust as follows:
+To attach it to the configuration, adjust as follows. We'll default to *url-loader* during development and use both *url-loader* and *file-loader* in production to maintain smaller bundle sizes:
 
 **webpack.config.js**
 
 ```javascript
 ...
 
-const commonConfig = merge([
+const productionConfig = merge([
   ...
 leanpub-start-insert
   parts.loadImages({
     options: {
       limit: 15000,
-      name: '[name].[ext]',
+      name: '[hash:8].[ext]',
     },
   }),
+leanpub-end-insert
+]);
+
+const developmentConfig = merge([
+  ...
+leanpub-start-insert
+  parts.loadImages(),
 leanpub-end-insert
 ]);
 

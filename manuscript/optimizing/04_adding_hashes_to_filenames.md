@@ -52,17 +52,6 @@ The build needs tweaking in order to generate proper hashes. Images and fonts sh
 
 const commonConfig = {
   ...
-  parts.loadImages({
-    options: {
-      limit: 15000,
-leanpub-start-delete
-      name: '[name].[ext]',
-leanpub-end-delete
-leanpub-start-insert
-      name: '[hash:8].[ext]',
-leanpub-end-insert
-    },
-  }),
   parts.loadFonts({
     options: {
 leanpub-start-delete
@@ -87,12 +76,24 @@ leanpub-start-insert
 leanpub-end-insert
   },
   ...
+  parts.loadImages({
+    options: {
+      limit: 15000,
+leanpub-start-delete
+      name: '[name].[ext]',
+leanpub-end-delete
+leanpub-start-insert
+      name: '[hash:8].[ext]',
+leanpub-end-insert
+    },
+  }),
+  ...
 ]);
 
 ...
 ```
 
-If we used `chunkhash` for the extracted CSS as well, this would lead to problems as our code points to the CSS through JavaScript bringing it to the same entry. That means if the application code or CSS changed, it would invalidate both. Therefore instead of `chunkhash`, we can use `contenthash` that's generated based on the extracted content:
+If we used `chunkhash` for the extracted CSS as well, this would lead to problems as our code points to the CSS through JavaScript bringing it to the same entry. That means if the application code or CSS changed, it would invalidate both. Therefore, instead of `chunkhash`, we can use `contenthash` that's generated based on the extracted content:
 
 **webpack.parts.js**
 
