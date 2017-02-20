@@ -32,7 +32,20 @@ T> This book has focus on webpack 2. If you want to apply its techniques to webp
 
 ## How Is This Book Organized
 
-The book has been split up into smaller parts, each of which discusses a specific topic in greater detail. First, you will develop a basic configuration that's then expanded to work with a variety of formats and different styling approaches. After that, we'll discuss build-related concerns and techniques while developing the configuration further. Finally, we'll discuss a variety of advanced techniques while learning more about npm packages.
+The book starts with a couple of chapters that provide background information and explain what webpack is. After that you will find multiple parts, each of which discusses webpack from a different direction. While going through those chapters you will develop webpack configuration. They also double as reference material.
+
+The book has been split into the following parts:
+
+* **Developing** part gets you up and running with webpack. This part gives goes through features such as Hot Module Replacement and explains how to compose your configuration so that it remains maintainable.
+* **Styling** part puts heavy emphasis on styling related topics. You will learn how to load styles with webpack and how to introduce techniques such as autoprefixing to your setup.
+* **Loading** part explains webpack's loader definitions in detail and shows you how to load assets such as images, fonts, and JavaScript.
+* **Building** part introduces source maps and the ideas of bundle and code splitting. You will also learn to tidy up your build.
+* **Optimizing** part pushes your build to production quality level and introduces multiple smaller tweaks to make it smaller. You will also learn to tune webpack for performance.
+* **Output** part discusses webpack's output options. Despite its name it's not only for web. You will see how to manage multiple page setups with webpack and pick up the basic idea of Server Side Rendering.
+* **Packages** part has heavy focus on npm and webpack related techniques. You will learn both to consume and author npm packages in an efficient way.
+* **Extending** part shows how to extend webpack with your own loaders and plugins.
+
+The appendices the end of the book cover secondary topics and sometimes dig deeper into the main ones. You can approach them in any order you want depending on your interest.
 
 ## Who Is This Book For
 
