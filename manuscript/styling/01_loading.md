@@ -289,7 +289,7 @@ To get most out of *css-loader*, you should understand how it performs its looku
 
 [copy-webpack-plugin](https://www.npmjs.com/package/copy-webpack-plugin) works for this purpose, but you can also copy the files outside of webpack. The benefit of the former approach is that webpack-dev-server is able to pick that up.
 
-T> [resolve-url-loader](https://www.npmjs.com/package/resolve-url-loader) will come in handy if you use Sass and *sass-loader*. It adds support for relative imports to the environment.
+T> [resolve-url-loader](https://www.npmjs.com/package/resolve-url-loader) will come in handy if you use Sass or Less. It adds support for relative imports to the environments.
 
 ### Processing *css-loader* Imports
 
