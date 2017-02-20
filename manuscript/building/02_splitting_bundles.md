@@ -351,12 +351,15 @@ parts.extractBundles([
 ]),
 ```
 
+T> Note that the `chunks` option refers to the entry chunks of your configuration.
+
+
 `CommonsChunkPlugin` provides more control through `children` and `async` flags:
 
 * `children` - If `children` is set to `true`, webpack will detect which modules are the same in the resulting bundles and push them to the parent bundle.
 * `async` - The idea is the same if `async` is set to `true`. In this case webpack will generate a separate bundle with the commonalities and load it asynchronously from the parent.
 
-T> Note that the `chunks` option refers to the entry chunks of your configuration.
+![`CommonsChunkPlugin` children and async](images/commonschunk.png)
 
 ## Splitting and Merging Chunks
 
