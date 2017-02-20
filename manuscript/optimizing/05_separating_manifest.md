@@ -24,6 +24,7 @@ const productionConfig = merge([
 leanpub-start-insert
       {
         name: 'manifest',
+        minChunks: Infinity,
       },
 leanpub-end-insert
   ]),
@@ -32,6 +33,8 @@ leanpub-end-insert
 
 ...
 ```
+
+T> `minChunks` is optional in this case. Passing `Infinity` to it tells webpack **not** to move any modules to the resulting bundle.
 
 If you build the project now (`npm run build`), you should see something like this:
 
