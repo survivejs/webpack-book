@@ -344,9 +344,9 @@ parts.extractBundles([
   {
     name: 'common',
     chunks: ['login', 'app'],
-    minChunks: (module, count) => {
-      return count >= 2 && isVendor(module);
-    },
+    minChunks: (module, count) => (
+      count >= 2 && isVendor(module),
+    ),
   },
 ]),
 ```
