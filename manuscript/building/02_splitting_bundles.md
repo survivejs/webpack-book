@@ -256,7 +256,7 @@ The first `module` parameter contains a more than `context`. If you wanted to fi
 Sometimes having only an app and a vendor bundle isn't enough. Especially as your application grows and gains more entry points, you may want to split the vendor bundle into multiples ones per each entry. The `minChunks` idea above can be combined with more granular control by specifying `chunks` which to process. Consider [the example adapted from a GitHub comment](https://github.com/webpack/webpack/issues/2855#issuecomment-239606760) below:
 
 ```javascript
-{
+const config = {
   ...
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
@@ -280,7 +280,41 @@ Sometimes having only an app and a vendor bundle isn't enough. Especially as you
   ],
   ...
 };
+
+...
+
+const isVendor = ({ userRequest }) => (
+  userRequest &&
+  userRequest.indexOf('node_modules') >= 0 &&
+  userRequest.match(/\.js$/)
+);
 ```
+
+The same code would look like this in terms of `parts.extractBundles` abstraction:
+
+```javascript
+parts.extractBundles([
+  {
+    name: 'login',
+    chunks: ['login'],
+    minChunks: isVendor,
+  },
+  {
+    name: 'vendor',
+    chunks: ['app'],
+    minChunks: isVendor,
+  },
+  {
+    name: 'common',
+    chunks: ['login', 'app'],
+    minChunks: (module, count) => {
+      return count >= 2 && isVendor(module);
+    },
+  },
+]),
+```
+
+T> Note that the `chunks` option refers to the entry chunks of your configuration.
 
 ## Splitting and Merging Chunks
 
