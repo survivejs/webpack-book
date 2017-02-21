@@ -363,6 +363,8 @@ The image below shows the difference compared to the default. The top circles re
 
 ![`CommonsChunkPlugin` children and async](images/commonschunk.png)
 
+W> Note that the `children` behavior applies only to immediate children. The algorithm is not applied recursively. [Webpack issue 3981](https://github.com/webpack/webpack/issues/3981) explains this in detail.
+
 ## Splitting and Merging Chunks
 
 Webpack provides more control over the generated chunks by providing two plugins: `AggressiveSplittingPlugin` and `AggressiveMergingPlugin`. The former is particularly interesting as it allows you to emit more and smaller bundles. This is especially useful with HTTP/2 due to the way the new standard works.
