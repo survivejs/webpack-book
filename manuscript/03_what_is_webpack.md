@@ -14,7 +14,7 @@ Webpack supports ES6, CommonJS, and AMD module formats out of the box. The loade
 
 ## Modules Are Evaluated Through Loaders
 
-When webpack encounters a module, it will try to perform several things:
+When webpack encounters a **module**, it will try to perform several things:
 
 1. It will **resolve** the module. Webpack provides configuration for adjusting this behavior. Especially the *Consuming Packages* chapter covers techniques related to this. If a module failed to resolve, webpack will give a runtime error.
 2. Assuming a module was resolved correctly, webpack will try to pass it through **loaders** in your configuration. Each loader definition contains a condition based on which it should be executed. If a loader was matched, webpack will try to resolve it in a similar way as a module.
@@ -31,6 +31,10 @@ There is more to the bundling process. For example, you can define specific **sp
 Although loaders are useful, they don't provide enough power for more advanced tasks. This is where **plugins** come in. They allow you to intercept **runtime events** provided by webpack. A good example is bundle extraction performed by `ExtractTextPlugin`.
 
 The plugin works in tandem with a loader that captures files to extract out of the bundle and into a file of its own. This is useful for extracting CSS as otherwise it would end up within the resulting JavaScript. The *Separating CSS* chapter discusses this idea in detail.
+
+The image below recaps the main concepts discussed above and shows how they relate to each other:
+
+![Webpack process](images/webpack-process.png)
 
 ## Webpack Is Configuration Driven
 
