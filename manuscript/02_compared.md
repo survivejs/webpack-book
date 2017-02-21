@@ -303,4 +303,4 @@ Compared to the other tools, webpack might come with some initial complexity, bu
 
 Webpack solves a fair share of common web development problems. If you know it well, it will save a great deal of time although it will take some time to learn to use it. Instead of jumping to a complex webpack based boilerplate, consider spending time with simpler setups first and developing your own. The setups will make more sense after that.
 
-The next chapter explains what webpack is in greater detail. That provides a good basis on delving deeper.
+The next chapter explains what webpack is in greater detail. That provides a good basis for delving deeper.
