@@ -14,7 +14,7 @@ If you think about the simplest project you could bundle with webpack, you'll en
 
 When you bundle a project through webpack, it will traverse through imports. As a result webpack constructs a **dependency graph** of a project and then generates the **output** based on the configuration. It will output everything into a single **bundle** by default, but it can be configured to output more.
 
-Webpack supports ES6, CommonJS, and AMD module formats out of the box. The loader mechanism works for CSS as well and `@import` and `@url` are supported through *css-loader*. You can also find plugins for specific tasks, such as minification, localization, hot loading, and so on.
+Webpack supports ES6, CommonJS, and AMD module formats out of the box. The loader mechanism works for CSS as well and `@import` and `@url` are supported through *css-loader*. You can also find plugins for specific tasks, such as minification, internationalization, HMR, and so on.
 
 ## Modules Are Evaluated Through Loaders
 
@@ -30,7 +30,7 @@ The last step can differ based on the build target you are using. This is the de
 
 There is more to the bundling process. For example, you can define specific **split points** where webpack will generate separate bundles that are loaded based on application logic. The idea is discussed at the *Code Splitting* chapter.
 
-## Plugins Are Used for Control
+## Plugins Are Used for Additional Control
 
 Although loaders are useful, they don't provide enough power for more advanced tasks. This is where **plugins** come in. They allow you to intercept **runtime events** provided by webpack. A good example is bundle extraction performed by `ExtractTextPlugin`.
 
@@ -104,8 +104,27 @@ All these smaller features add up. Surprisingly, you can get many things done ou
 
 Webpack comes with a significant learning curve. Even still, it's a tool worth learning, given it saves so much time and effort over the long term. To get a better idea how it compares to some other tools, check out [the official comparison](https://webpack.js.org/get-started/why-webpack/#comparison).
 
+## Glossary
+
+Given webpack comes with specific nomenclature, I've gathered the main terms and their explanations below:
+
+* **Entry** - Entry refers to a file where you point from webpack's `entry` configuration.
+* **Module** - Module can be an entry, but it can be also a file where an entry points. Modules can point to other modules.
+* **Target** - Even though webpack is used mainly with the web, it can target other platforms as well. Target configuration is used to alter this behavior.
+* **Output** - Output refers to files emitted by webpack. More specifically, webpack will emit **bundles** and **assets** based on the output settings.
+* **Bundle** - When webpack runs successfully, it will generate output files which we call bundles.
+* **Asset** - Asset is a general term for media and source files of a project and webpack can emit them as a build result. They can also be handled outside of webpack and copied to the output separately.
+* **Bundle splitting** - Bundle splitting is a specific technique that allows us to generate multiple bundles based on a condition.
+* **Code splitting** - Code splitting is a more granular way to generate bundles. The term refers to bundle splitting that is performed within source code using specific syntax.
+* **Chunk** - Chunk is a webpack specific term that is used internally to manage the bundling process. Webpack composes bundles out of chunks and there are several types of those.
+* **Loader** - Loader is a transformation that accepts source and returns transformed source. It can also skip transforming and perform a check against the input instead.
+* **Plugin** - Plugins connect to webpack's event system and can inject functionality to it. They provide the most powerful way to extend webpack and can be combined with loaders for maximum control.
+* **Resolving** - When webpack encounters a module or a loader, it will try to resolve it based on its resolution rules. Resolving is the generic term describing this process.
+* **Dependency graph** - When webpack traverses through the source through modules, it will construct a **dependency graph** of modules to describe how they relate to each other.
+* **Hot module replacement** - Hot module replacement refers to a specific technique that allows you to patch code while it is running in the browser.
+
 ## Conclusion
 
-In the following chapters, we'll examine webpack in more detail as you will learn to develop a basic development and build configuration. The later chapters delve into more advanced topics. You can use these building blocks you can use to develop your own setup.
-
 You can use webpack with some other tools. It won't solve everything. It does solve the difficult problem of bundling, however. That's one less worry during development. Using *package.json*, `scripts`, and webpack alone takes you far, as we will see soon.
+
+In the following chapters, we'll examine webpack in more detail as you will learn to develop a basic development and build configuration. The later chapters delve into more advanced topics. You can use these building blocks you can use to develop your own setup.
