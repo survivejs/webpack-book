@@ -4,8 +4,6 @@
 
 It isn't the easiest tool to learn due to its configuration-driven approach. The purpose of this guide is to help you get started with webpack and then to go beyond the basics.
 
-W> There are known issues with Node.js 7 and webpack. Please use Node.js 4-6 for now to avoid problems.
-
 ## What Is Webpack?
 
 Web browsers have been designed to consume HTML, JavaScript, and CSS. The simplest way to develop is simply to write files that the browser understands directly. The problem is that this eventually becomes unwieldy. This is particularly true when you are developing web applications.
@@ -49,7 +47,7 @@ The appendices the end of the book cover secondary topics and sometimes dig deep
 
 ## Who Is This Book For
 
-I expect that you have a basic knowledge of JavaScript and Node.js. You should be able to use npm on an elementary level. If you know something about webpack, that's great. By reading this book, you will deepen your understanding of these tools.
+I expect that you have a basic knowledge of JavaScript and Node. You should be able to use npm on an elementary level. If you know something about webpack, that's great. By reading this book, you will deepen your understanding of these tools.
 
 If you happen to know webpack well, there still might be something in the book for you. Skim through it and see if you can pick up some techniques. I've done my best to cover even some of the knottier parts of the tool.
 

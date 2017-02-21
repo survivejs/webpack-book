@@ -4,7 +4,7 @@ You can understand better why webpack's approach is powerful by putting it into 
 
 This problem has escalated with the rise of single page applications (SPAs). They tend to rely on numerous hefty libraries. There are multiple strategies on how to deal with loading them. You could load them all at once. You could also consider loading libraries as you need them. These are examples of strategies you can apply, and webpack supports many of them.
 
-The popularity of Node.js and [npm](https://www.npmjs.com/), the Node.js package manager, provide more context. Before npm became popular, it was difficult to consume dependencies. There was a period of time when people developed front-end specific package managers, but npm won in the end. Now dependency management is easier than before, although there are still challenges to overcome.
+The popularity of Node and [npm](https://www.npmjs.com/), its package manager, provide more context. Before npm became popular, it was difficult to consume dependencies. There was a period of time when people developed front-end specific package managers, but npm won in the end. Now dependency management is easier than before, although there are still challenges to overcome.
 
 ## Task Runners and Bundlers
 
@@ -207,7 +207,7 @@ gulp.task(
 );
 ```
 
-Given the configuration is code, you can always hack it if you run into troubles. You can wrap existing Node.js packages as Gulp plugins, and so on. Compared to Grunt, you have a clearer idea of what's going on. You still end up writing a lot of boilerplate for casual tasks, though. That is where some newer approaches come in.
+Given the configuration is code, you can always hack it if you run into troubles. You can wrap existing Node packages as Gulp plugins, and so on. Compared to Grunt, you have a clearer idea of what's going on. You still end up writing a lot of boilerplate for casual tasks, though. That is where some newer approaches come in.
 
 T> [webpack-stream](https://www.npmjs.com/package/webpack-stream) allows you to use webpack in a Gulp environment.
 
