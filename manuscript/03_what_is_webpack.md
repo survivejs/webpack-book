@@ -2,17 +2,13 @@
 
 Webpack is a module bundler. You can use it with task runners while leaving bundling to it. The line between task runners and webpack has become blurred, though, as the community has developed a large amount of plugins for it. Sometimes these plugins are used to perform tasks that are usually done outside of webpack. Cleaning the build directory or deploying the result are examples of this.
 
-Commonly people use webpack through npm scripts and invoke it through various ways through them. This is a good starting point although you have to take special care to support multiple different platforms. Often you have to use specific cross-platform packages to hide the differences. Copying or removing files are good examples of operations of where small packages can save effort.
-
-Due to its nature, webpack can be too complex for simple projects: I consider it as a power tool. It begins to shine as the project complexity grows and you begin to need its advanced bundle and code splitting functionality in addition to other features.
-
 Webpack became particularly popular with React due to Hot Module Replacement (HMR). That helped to popularize webpack to a large extent. This has lead to usage in other environments. Despite its name, webpack has not been meant for web alone. It can bundle for other targets as well as discussed in the *Build Targets* chapter.
 
 ## Webpack Relies on Modules
 
 If you think about the simplest project you could bundle with webpack, you'll end up with input and output. In webpack terms inputs are known as **entries**. Entries themselves are **modules** and can point to other modules through **imports**.
 
-When you bundle a project through webpack, it will traverse through imports. As a result webpack constructs a **dependency graph** of a project and then generates the **output** based on the configuration. It will output everything into a single **bundle** by default, but it can be configured to output more.
+When you bundle a project through webpack, it will traverse through imports. As a result webpack constructs a **dependency graph** of the project and then generates the **output** based on the configuration. It will output everything into a single **bundle** by default, but it can be configured to output more.
 
 Webpack supports ES6, CommonJS, and AMD module formats out of the box. The loader mechanism works for CSS as well and `@import` and `@url` are supported through *css-loader*. You can also find plugins for specific tasks, such as minification, internationalization, HMR, and so on.
 
