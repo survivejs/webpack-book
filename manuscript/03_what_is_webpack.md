@@ -23,7 +23,7 @@ When webpack encounters a module, it will try to perform several things:
 1. It will **resolve** the module. Webpack provides configuration for adjusting this behavior. Especially the *Consuming Packages* chapter covers techniques related to this. If a module failed to resolve, webpack will give a runtime error.
 2. Assuming a module was resolved correctly, webpack will try to pass it through **loaders** in your configuration. Each loader definition contains a condition based on which it should be executed. If a loader was matched, webpack will try to resolve it in a similar way as a module.
 3. If all the loaders were found, webpack will evaluate the matched loaders from bottom to up and right to left (`styleLoader(cssLoader('./main.css'))`). The *Loader Definitions* chapter covers the topic in detail.
-4. If loader evaluation completed wtihout a runtime error, webpack will include the source to the final bundle. **Plugins** can intercept this behavior and alter the way bundling happens.
+4. If loader evaluation completed without a runtime error, webpack will include the source to the final bundle. **Plugins** can intercept this behavior and alter the way bundling happens.
 5. After all modules have been evaluated, webpack will write a bootstrap script including a manifest that describes how to begin evaluating the result in the browser.
 
 The last step can differ based on the build target you are using. This is the default behavior, though.
