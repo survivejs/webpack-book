@@ -297,6 +297,10 @@ You could say [webpack](https://webpack.js.org/) takes a more monolithic approac
 
 Webpack core can be extended using specific *loaders* and *plugins*. It gives control over how it *resolves* the modules, making it possible to adapt your build to match-specific situations and work-around packages that don't work perfectly out of the box.
 
+Compared to the other tools, webpack might come with some initial complexity, but it makes up for this through its broad feature set. It is an advanced tool that requires patience. But once you understand the basic ideas behind it, webpack becomes powerful.
+
 ## Conclusion
 
 Webpack solves a fair share of common web development problems. If you know it well, it will save a great deal of time although it will take some time to learn to use it. Instead of jumping to a complex webpack based boilerplate, consider spending time with simpler setups first and developing your own. The setups will make more sense after that.
+
+The next chapter explains what webpack is in greater detail. That provides a good basis on delving deeper.
