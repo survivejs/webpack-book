@@ -48,8 +48,9 @@ const webpack = require('webpack');
 module.exports = {
   // Where to start bundling
   entry: {
-    main: './entry.js',
+    app: './entry.js',
   },
+
   // Where to output
   output: {
     // Output to the same directory
@@ -58,6 +59,7 @@ module.exports = {
     // Capture name from the entry using a pattern.
     filename: '[name].js',
   },
+
   // How to resolve encountered imports
   module: {
     rules: [
@@ -65,12 +67,18 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.js$/,
+        use: 'babel-loader',
+      },
     ],
   },
+
   // What extra processing to perform
   plugins: [
     new webpack.optimize.UglifyJsPlugin(),
   ],
+
   // Adjust resolution algorithm
   resolve: {
     alias: { ... },
