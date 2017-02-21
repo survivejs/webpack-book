@@ -38,7 +38,7 @@ The image below recaps the main concepts discussed above and shows how they rela
 
 ## Webpack Is Configuration Driven
 
-Webpack relies on configuration to describe the flow above. Here is a sample configuration adapted from [the official webpack tutorial](https://webpack.js.org/get-started/) that shows how the main ideas go together:
+To connect everything together, webpack relies on configuration. Here is a sample adapted from [the official webpack tutorial](https://webpack.js.org/get-started/) that shows how the main ideas go together:
 
 **webpack.config.js**
 
