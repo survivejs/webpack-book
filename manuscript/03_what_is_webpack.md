@@ -118,6 +118,7 @@ Given webpack comes with specific nomenclature, I've gathered the main terms and
 * **Resolving** - When webpack encounters a module or a loader, it will try to resolve it based on its resolution rules. Resolving is the generic term describing this process.
 * **Dependency graph** - When webpack traverses through the source through modules, it will construct a **dependency graph** of modules to describe how they relate to each other.
 * **Hot module replacement** - Hot module replacement refers to a specific technique that allows you to patch code while it is running in the browser.
+* **Hashing** - Hashing refers to the process of generating a hash that is attached to the asset/bundle path to invalidate it on the client. Example of a hashed bundle name: *app.f6f78b2fd2c38e8200d.js*.
 
 ## Conclusion
 
