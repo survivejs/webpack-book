@@ -2,19 +2,19 @@
 
 You can understand better why webpack's approach is powerful by putting it into a historical context. Back in the day, it was enough to concatenate some scripts together. Times have changed, though, and now distributing your JavaScript code can be a complex endeavor.
 
-This problem has escalated with the rise of single page applications (SPAs). They tend to rely on numerous hefty libraries. There are multiple strategies on how to deal with loading them. You could load them all at once. You could also consider loading libraries as you need them. These are examples of strategies you can apply, and webpack supports many of them.
+This problem has escalated with the rise of single page applications (SPAs). They tend to rely on numerous hefty libraries. For this reason, there are multiple strategies on how to load them. You could load them all at once or consider loading libraries as you need them. Webpack supports many of these sort of strategies.
 
-The popularity of Node and [npm](https://www.npmjs.com/), its package manager, provide more context. Before npm became popular, it was difficult to consume dependencies. There was a period of time when people developed front-end specific package managers, but npm won in the end. Now dependency management is easier than before, although there are still challenges to overcome.
+The popularity of Node and [npm](https://www.npmjs.com/), its package manager, provide more context. Before npm became popular, it was difficult to consume dependencies. There was a period of time when people developed frontend specific package managers, but npm won in the end. Now dependency management is easier than before, although there are still challenges to overcome.
 
 ## Task Runners and Bundlers
 
-Historically speaking, there have been many build systems. *Make* is perhaps the best known, and it is still a viable option. Specialized *task runners*, such as Grunt, and Gulp were created particularly with JavaScript developers in mind. Plugins available through npm made both task runners powerful and extendable. It is possible to use even npm `scripts` as a task runner. That's common, particularly with webpack.
+Historically speaking, there have been many build tools. *Make* is perhaps the best known, and it is still a viable option. Specialized *task runners*, such as Grunt, and Gulp were created particularly with JavaScript developers in mind. Plugins available through npm made both task runners powerful and extendable. It is possible to use even npm `scripts` as a task runner. That's common, particularly with webpack.
 
 Task runners are great tools on a high level. They allow you to perform operations in a cross-platform manner. The problems begin when you need to splice various assets together and produce bundles. This is the reason we have *bundlers*, such as Browserify, Brunch, or webpack.
 
 For a while, a solution known as [RequireJS](http://requirejs.org/) was popular. The idea was to provide an asynchronous module definition and build on top of that. The format, AMD, is covered in greater detail later in this chapter. Fortunately, the standards have caught up, and RequireJS seems more like a curiosity now.
 
-There are a couple of developing alternatives as well. I have listed a couple of these below:
+I have listed a couple of upcoming alternatives below:
 
 * [JSPM](http://jspm.io/) pushes package management directly to the browser. It relies on [System.js](https://github.com/systemjs/systemjs), a dynamic module loader, and skips the bundling step altogether during development. You can generate a production bundle using it. Glen Maddern goes into good detail on his [video about JSPM](https://www.youtube.com/watch?t=33&v=iukBMY4apvI).
 * [pundle](https://www.npmjs.com/package/pundle) advertises itself as a next generation bundler and notes particularly its performance.
@@ -107,7 +107,7 @@ T> Webpack can generate UMD wrappers for you (`output.libraryTarget: 'umd'`). Th
 
 ![Grunt](images/grunt.png)
 
-[Grunt](http://gruntjs.com/) was the first popular task runner for front-end developers. Its plugin architecture contributed towards its popularity. Plugins are often complex by themselves. As a result, when configuration grows, it can become difficult to understand what's going on.
+[Grunt](http://gruntjs.com/) was the first popular task runner for frontend developers. Its plugin architecture contributed towards its popularity. Plugins are often complex by themselves. As a result, when configuration grows, it can become difficult to understand what's going on.
 
 Here's an example from [Grunt documentation](http://gruntjs.com/sample-gruntfile). In this configuration, we define a linting and a watcher task. When the *watch* task is run, it will trigger the *lint* task as well. This way, as we run Grunt, we'll get warnings in real-time in our terminal as we edit our source code.
 
@@ -241,7 +241,7 @@ Instead of `rm -rf`, you might want to use a utility like [rimraf](https://www.n
 
 Dealing with JavaScript modules has always been a bit of a problem. The language itself didn't have the concept of modules till ES6. Ergo, we have been stuck in the '90s when it comes to browser environments. Various solutions, including [AMD](http://requirejs.org/docs/whyamd.html), have been proposed.
 
-[Browserify](http://browserify.org/) is one solution to the module problem. It provides a way to bundle CommonJS modules together. You can hook it up with Gulp. There are smaller transformation tools that allow you to move beyond the basic usage. For example, [watchify](https://www.npmjs.com/package/watchify) provides a file watcher that creates bundles for you during development. This will save some effort and no doubt is a good solution up to a point.
+[Browserify](http://browserify.org/) is one solution to the module problem. It provides a way to bundle CommonJS modules together. You can hook it up with Gulp and you can find smaller transformation tools that allow you to move beyond the basic usage. For example, [watchify](https://www.npmjs.com/package/watchify) provides a file watcher that creates bundles for you during development. This will save some effort and no doubt is a good solution up to a point.
 
 The Browserify ecosystem is composed of a lot of small modules. In this way, Browserify adheres to the Unix philosophy. Browserify is a little easier to adopt than webpack, and is, in fact, a good alternative to it.
 
@@ -285,9 +285,9 @@ T> There is an experimental [Hot Module Reloading runtime](https://github.com/br
 
 ![JSPM](images/jspm.png)
 
-Using JSPM is quite different than earlier tools. It comes with a little CLI tool of its own that is used to install new packages to the project, create a production bundle, and so on. It supports [SystemJS plugins](https://github.com/systemjs/systemjs#plugins) that allow you to load various formats to your project.
+Using JSPM is quite different than earlier tools. It comes with a little command line tool of its own that is used to install new packages to the project, create a production bundle, and so on. It supports [SystemJS plugins](https://github.com/systemjs/systemjs#plugins) that allow you to load various formats to your project.
 
-Given JSPM is still a young project, there might be rough spots. That said, it may be worth a look if you are adventurous. As you know by now, tooling tends to change quite often in front-end development, and JSPM is definitely a worthy contender.
+Given JSPM is still a young project, there might be rough spots. That said, it may be worth a look if you are adventurous. As you know by now, tooling tends to change quite often in frontend development, and JSPM is definitely a worthy contender.
 
 ## Webpack
 

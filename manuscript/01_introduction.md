@@ -87,7 +87,7 @@ As no book is perfect, you will likely come by issues and might have some questi
 * Send me email at [info@survivejs.com](mailto:info@survivejs.com)
 * Ask me anything about webpack or React at [SurviveJS AmA](https://github.com/survivejs/ama/issues)
 
-If you post questions to Stack Overflow, tag them using **survivejs** so I will get notified of them. You can use the hashtag **#survivejs** on Twitter for the same result.
+If you post questions to Stack Overflow, tag them using **survivejs**. You can use the hashtag **#survivejs** on Twitter for the same result.
 
 ## Announcements
 
@@ -103,7 +103,7 @@ Feel free to subscribe.
 
 Big thanks to [Christian Alfoni](http://www.christianalfoni.com/) for helping me craft the first version of this book. That inspired the whole SurviveJS effort. The version you see now has been heavily revised.
 
-The book wouldn't be half as good as it is without patient editing and feedback by my editor [Jesús Rodríguez Rodríguez](https://github.com/Foxandxss). Thank you.
+The book wouldn't be half as good as it is without patient editing and feedback by my editor [Jesús Rodríguez](https://github.com/Foxandxss). Thank you.
 
 This book wouldn't have been possible without the original "SurviveJS - Webpack and React" effort. Anyone who contributed to that, deserves my thanks. You can check that book for more specific attributions.
 

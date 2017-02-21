@@ -24,7 +24,7 @@ When webpack encounters a **module**, it will try to perform several things:
 
 The last step can differ based on the build target you are using. This is the default behavior, though.
 
-There is more to the bundling process. For example, you can define specific **split points** where webpack will generate separate bundles that are loaded based on application logic. The idea is discussed at the *Code Splitting* chapter.
+That's not all there is to the bundling process. For example, you can define specific **split points** where webpack will generate separate bundles that are loaded based on application logic. The idea is discussed at the *Code Splitting* chapter.
 
 ## Plugins Are Used for Additional Control
 
@@ -100,7 +100,7 @@ Note that HMR is available in Browserify via [livereactload](https://github.com/
 
 Aside from the HMR feature, webpack's bundling capabilities are extensive. Webpack allows you to split code in various ways. You can even load code dynamically as your application gets executed. This sort of lazy loading comes in handy, especially for larger applications. You can load dependencies as you need them.
 
-Even small applications can benefit from code splitting, as it allows the users to get something useable in their hands faster. Performance is a feature, after all. So, knowing the basic techniques is worthwhile.
+Even small applications can benefit from code splitting, as it allows the users to get something useable in their hands faster. Performance is a feature, after all. Knowing the basic techniques is worthwhile.
 
 ## Asset Hashing
 
@@ -141,7 +141,7 @@ Given webpack comes with specific nomenclature, I've gathered the main terms and
 
 ### Optimizing
 
-* **Minifying** - Minifying, or minification, is an optimization technique in which code is written in a more compact form without losing meaning. There are also destructive transformations that may break code if you are not careful.
+* **Minifying** - Minifying, or minification, is an optimization technique in which code is written in a more compact form without losing meaning. Certain destructive transformations may break code if you are not careful.
 * **Tree shaking** - Tree shaking is the process of dropping unused code based on static analysis. A good ES6 module definition allows this process as it is possible to analyze in this particular manner.
 * **Hashing** - Hashing refers to the process of generating a hash that is attached to the asset/bundle path to invalidate it on the client. Example of a hashed bundle name: *app.f6f78b2fd2c38e8200d.js*.
 * **Dependency graph** - When webpack traverses through the source through modules, it will construct a **dependency graph** of modules to describe how they relate to each other.
