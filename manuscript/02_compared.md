@@ -287,8 +287,6 @@ T> There is an experimental [Hot Module Reloading runtime](https://github.com/br
 
 Using JSPM is quite different than earlier tools. It comes with a little command line tool of its own that is used to install new packages to the project, create a production bundle, and so on. It supports [SystemJS plugins](https://github.com/systemjs/systemjs#plugins) that allow you to load various formats to your project.
 
-Given JSPM is still a young project, there might be rough spots. That said, it may be worth a look if you are adventurous. As you know by now, tooling tends to change quite often in frontend development, and JSPM is definitely a worthy contender.
-
 ## Webpack
 
 ![webpack](images/webpack.png)
