@@ -2,15 +2,16 @@
 
 Using webpack can lead to a variety of runtime warnings or errors. Often some specific part of the build fails for a reason or another. A basic process can be used to figure out these problems:
 
-1. Study the origin of the error carefully. Sometimes you can infer what's wrong by context. If webpack fails to parse a module, it's likely not passing it through a loader you expect for example.
-2. Remove code until the error goes away and add code back till it appears again. Simplify as much as possible to isolate the problem. This will help in the later steps.
-3. If the code worked in another project, figure out what's different. It is possible the dependencies between the projects vary or the setup differs somehow. It takes only one subtle difference. At the worst case a package you rely upon has gained a regression. In that case you will have to fix the package version carefully. Using a Yarn *lockfile* is a good idea for this reason.
-4. Study the related packages carefully. Sometimes looking into the package *package.json* can yield insight. It's possible the package you are using does not resolve the way you might expect.
-5. Search for the error online. Perhaps someone else has run into it. This may lead to a fast solution. [Stack Overflow](https://stackoverflow.com/questions/tagged/webpack) and [the official issue tracker](https://github.com/webpack/webpack/issues) are good starting points.
-6. Enable `stats: 'verbose'` to get more information out of webpack. The [official documentation covers more flags](https://webpack.js.org/configuration/stats/).
-7. Add a temporary `console.log` near the error to get more insight to the problem. A heavier option is to [debug webpack through Chrome Dev Tools](https://medium.com/webpack/webpack-bits-learn-and-debug-webpack-with-chrome-dev-tools-da1c5b19554).
-8. [Ask a question at Stack Overflow](https://stackoverflow.com/questions/tagged/webpack) or [use the official Gitter channel](https://gitter.im/webpack/webpack) to get more ideas.
-9. If everything fails and you are convinced you have found a bug, [report an issue at the official issue tracker](https://github.com/webpack/webpack/issues) or at other appropriate place if it is an issue in a dependency. Follow the issue template carefully. This is where a minimal runnable example will come in handy as it will help to resolve the problem.
+1. Pass `--display-error-details` flag to webpack to get a more specific error to study. Example: `npm run build -- --display-error-details`.
+2. Study the origin of the error carefully. Sometimes you can infer what's wrong by context. If webpack fails to parse a module, it's likely not passing it through a loader you expect for example.
+3. Remove code until the error goes away and add code back till it appears again. Simplify as much as possible to isolate the problem. This will help in the later steps.
+4. If the code worked in another project, figure out what's different. It is possible the dependencies between the projects vary or the setup differs somehow. It takes only one subtle difference. At the worst case a package you rely upon has gained a regression. In that case you will have to fix the package version carefully. Using a Yarn *lockfile* is a good idea for this reason.
+5. Study the related packages carefully. Sometimes looking into the package *package.json* can yield insight. It's possible the package you are using does not resolve the way you might expect.
+6. Search for the error online. Perhaps someone else has run into it. This may lead to a fast solution. [Stack Overflow](https://stackoverflow.com/questions/tagged/webpack) and [the official issue tracker](https://github.com/webpack/webpack/issues) are good starting points.
+7. Enable `stats: 'verbose'` to get more information out of webpack. The [official documentation covers more flags](https://webpack.js.org/configuration/stats/).
+8. Add a temporary `console.log` near the error to get more insight to the problem. A heavier option is to [debug webpack through Chrome Dev Tools](https://medium.com/webpack/webpack-bits-learn-and-debug-webpack-with-chrome-dev-tools-da1c5b19554).
+9. [Ask a question at Stack Overflow](https://stackoverflow.com/questions/tagged/webpack) or [use the official Gitter channel](https://gitter.im/webpack/webpack) to get more ideas.
+10. If everything fails and you are convinced you have found a bug, [report an issue at the official issue tracker](https://github.com/webpack/webpack/issues) or at other appropriate place if it is an issue in a dependency. Follow the issue template carefully. This is where a minimal runnable example will come in handy as it will help to resolve the problem.
 
 Sometimes it is fastest to drop the error to a search engine and gain an answer that way. Other than that this is a good debugging order. If your setup worked in the past, you can also consider using commands like [git bisect](https://git-scm.com/docs/git-bisect) to figure out what has changed between the known working state and the current broken one.
 
