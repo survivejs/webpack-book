@@ -95,13 +95,13 @@ leanpub-end-insert
 
 It's plenty of code. Especially the `Object.assign` portion looks knotty. We'll fix that up in the *Splitting Configuration* chapter as we discuss configuration composition in detail.
 
-Execute `npm start` and surf to **http://localhost:8080**. Try modifying *app/component.js*. Note how it fails to refresh.
+Execute `npm start` and surf to `http://localhost:8080`. Try modifying *app/component.js*. Note how it fails to refresh.
 
 ![No refresh](images/no-refresh.png)
 
 We get this behavior because we set `hotOnly: true` for WDS. Going with `inline: true` would have swallowed the error and refreshed the page. This behavior is fine, though, as we will implement the HMR interface next to avoid the need for hard refresh. Before that we can do something about those cryptic numbers to get more sensible output.
 
-You can access the application alternately through **http://localhost:8080/webpack-dev-server/** instead of the root. It will provide status information within the browser itself at the top of the application. If your application relies on WebSockets and you use WDS proxying, you'll need to use this specific url: otherwise, WDS logic will interfere.
+You can access the application alternately through `http://localhost:8080/webpack-dev-server/` instead of the root. It will provide status information within the browser itself at the top of the application. If your application relies on WebSockets and you use WDS proxying, you'll need to use this specific url: otherwise, WDS logic will interfere.
 
 W> *webpack-dev-server* can be picky about paths. If the given `include` paths don't match the system casing exactly, this can cause it to fail to work. Webpack [issue #675](https://github.com/webpack/webpack/issues/675) discusses the problem in more detail.
 

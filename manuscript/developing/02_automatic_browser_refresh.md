@@ -64,7 +64,7 @@ chunk    {0} app.js (app) 300 kB [entry] [rendered]
 webpack: bundle is now VALID.
 ```
 
-The output means that the development server is running. If you open *http://localhost:8080/* at your browser, you should see something familiar.
+The output means that the development server is running. If you open `http://localhost:8080/` at your browser, you should see something familiar:
 
 ![Hello world](images/hello_01.png)
 
