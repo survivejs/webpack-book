@@ -39,7 +39,7 @@ Next, we need to refactor *webpack.config.js* into parts we can consume from the
 ```javascript
 const webpack = require('webpack');
 
-exports.devServer = function({ host, port }) {
+exports.devServer = function({ host, port } = {}) {
   return {
     devServer: {
       historyApiFallback: true,
