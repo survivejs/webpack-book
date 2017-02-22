@@ -68,3 +68,4 @@ Backmatter.txt
 appendices/01_searching_with_react.md
 appendices/02_hmr_with_react.md
 appendices/03_customizing_eslint.md
+appendices/04_troubleshooting.md
