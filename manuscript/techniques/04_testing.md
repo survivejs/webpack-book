@@ -8,7 +8,7 @@ You can find a lot of testing tools for JavaScript. The most popular options wor
 
 ## Mocha
 
-![Mocha](images/mocha.png)
+![Mocha](../images/mocha.png)
 
 [Mocha](https://mochajs.org/) is a popular test framework for Node. While Mocha provides test infrastructure, you will have to bring your own asserts to it. Even though [Node assert](https://nodejs.org/api/assert.html) can be enough, there are good alternatives such as [power-assert](https://www.npmjs.com/package/power-assert), [Chai](http://chaijs.com/), or [Unexpected](http://unexpected.js.org/).
 
