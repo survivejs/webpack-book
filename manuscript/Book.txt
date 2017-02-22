@@ -47,21 +47,24 @@ output/02_library_output.md
 output/03_multiple_pages.md
 output/04_server_side_rendering.md
 
-10_Packages.md
+10_Techniques.md
+
+techniques/01_dynamic_loading.md
+techniques/02_using_web_workers.md
+techniques/03_i18n.md
+techniques/04_deploying.md
+
+11_Packages.md
 packages/01_consuming.md
 packages/02_authoring.md
 
-11_Extending.md
+12_Extending.md
 extending/01_loaders.md
 extending/02_plugins.md
 
 Backmatter.txt
 
-12_Appendices.md
+13_Appendices.md
 appendices/01_searching_with_react.md
 appendices/02_hmr_with_react.md
 appendices/03_customizing_eslint.md
-appendices/04_deploying.md
-appendices/05_dynamic_loading.md
-appendices/06_using_web_workers.md
-appendices/07_i18n.md
