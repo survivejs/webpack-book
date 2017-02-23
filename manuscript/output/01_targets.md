@@ -2,11 +2,11 @@
 
 Even though webpack is used most commonly for bundling web applications, it can do more. You can use it to target Node or desktop environments, such as Electron. Webpack can also bundle as a library while writing an appropriate output wrapper making it possible to consume the library.
 
-Webpack's output target is controlled through the `target` field. I'll go through the main targets next and dig into library specific options after that.
+Webpack's output target is controlled by the `target` field. I'll go through the main targets next and dig into library specific options after that.
 
 ## Web Targets
 
-Webpack uses the *web* target by default. This is ideal for web application like the one we have developed in this book. Webpack will bootstrap the application and load its modules. The initial list of modules to load is maintained in a manifest and then the modules can load each other as defined.
+Webpack uses the *web* target by default. This is ideal for a web application like the one we have developed in this book. Webpack will bootstrap the application and load its modules. The initial list of modules to load is maintained in a manifest, and then the modules can load each other as defined.
 
 ### Web Workers
 
@@ -15,11 +15,11 @@ The *webworker* target will wrap your application as a [web worker](https://deve
 * You cannot use webpack's hashing features when the *webworker* target is used.
 * You cannot manipulate the DOM from a web worker. If you wrapped the book project as a worker, it would not display anything.
 
-T> Web workers and their usage is discussed in detail at the *Using Web Workers* chapter.
+T> Web workers and their usage are discussed in detail at the *Using Web Workers* chapter.
 
 ## Node Targets
 
-Webpack provides two Node specific targets: `node` and `async-node`. It will use standard Node `require` to load chunks unless async mode is used. In that case it will wrap modules so that they are loaded asynchronously through Node `fs` and `vm` modules.
+Webpack provides two Node-specific targets: `node` and `async-node`. It will use standard Node `require` to load chunks unless async mode is used. In that case, it will wrap modules so that they are loaded asynchronously through Node `fs` and `vm` modules.
 
 The main use case for using the Node target is *Server Side Rendering* (SSR). The idea is discussed in the *Server Side Rendering* chapter.
 
@@ -41,7 +41,7 @@ T> The *Authoring Packages* chapter discusses the fields and more in detail.
 
 ### Setting Up a Library
 
-In order to have something to build, set up a module as follows:
+To have something to build, set up a module as follows:
 
 **lib/index.js**
 
@@ -55,7 +55,7 @@ export {
 };
 ```
 
-The idea is that this file will become the entry point of the entire library and represents the API exposed to the consumers. If you want to support both CommonJS and ES6, it can be a good idea to use the CommonJS module definition here. If you go with ES6 `export default`, using such an export in a CommonJS environment often requires extra effort.
+The idea is that this file will become the entry point for the entire library and represents the API exposed to the consumers. If you want to support both CommonJS and ES6, it can be a good idea to use the CommonJS module definition here. If you go with ES6 `export default`, using such an export in a CommonJS environment often requires extra effort.
 
 ### Setting Up an npm Script
 
@@ -76,7 +76,7 @@ leanpub-end-insert
 
 ### Setting Up Webpack
 
-Webpack configuration itself can be adapted from the one we built. This time, however, we have to generate two files - a non-minified version and a minified one. This is possible by running webpack in so called *multi-compiler mode*. It means you can expose an array of configurations for webpack and it will execute each.
+Webpack configuration itself can be adapted from the one we built. This time, however, we have to generate two files - a non-minified version and a minified one. We can achieve this by running webpack in so called *multi-compiler mode*. It means you can expose an array of configurations for webpack and it will execute each.
 
 **webpack.lib.js**
 
@@ -153,7 +153,7 @@ Child
        [0] ./lib/index.js 55 bytes {0} [built]
 ```
 
-Webpack ran twice as you might have expected. It can be argued that it would be smarter to minify the initial result separately. In this case the overhead is so small that it's not worth the extra setup.
+Webpack ran twice as you might have expected. It can be argued that it would be smarter to minify the initial result separately. In this case, the overhead is so small that it's not worth the extra setup.
 
 Examining the build output reveals more:
 
@@ -182,7 +182,7 @@ function add(a, b) {
 //# sourceMappingURL=lib.js.map
 ```
 
-You can see some familiar code there and more. Webpack's bootstrap script is in place and it starts the entire execution process. It takes majority of space for a small library like this, but that's not a problem as the library begins to grow.
+You can see some familiar code there and more. Webpack's bootstrap script is in place, and it starts the entire execution process. It takes the majority of space for a small library like this, but that's not a problem as the library begins to grow.
 
 ### Cleaning and Linting Before Building
 
@@ -211,7 +211,7 @@ T> There's [a proposal to improve the situation](https://github.com/webpack/webp
 
 ### Cleaning and Linting Through npm
 
-Another, and in this case more fitting, way would be to handle the problem through an npm script. As discussing in the *Authoring Packages* chapter, npm provides pre- and post-script hooks. To keep this solution cross-platform, install [rimraf](https://www.npmjs.com/package/rimraf) first:
+Another, and in this case a more fitting, way would be to handle the problem through an npm script. As discussing in the *Authoring Packages* chapter, npm provides pre- and post-script hooks. To keep this solution cross-platform, install [rimraf](https://www.npmjs.com/package/rimraf) first:
 
 ```bash
 npm install rimraf --save-dev
@@ -240,7 +240,7 @@ T> The same idea is useful for post-processes, such as deployment. For example, 
 
 ### Setting Up ESLint
 
-To keep ESLint from linting the new build output, adjust its ignore rules as follows so it matches all *dist* related files:
+To keep ESLint from linting the new build output, adjust its ignore rules as follows, so it matches all *dist* related files:
 
 **.eslintignore**
 
@@ -252,7 +252,7 @@ dist-modules/*
 leanpub-end-insert
 ```
 
-If you are using Git, a neater way to handle the ignore rules would be to manage them through *.gitignore* and point ESLint to it instead. The *Linting JavaScript* chapter covers the idea in a greater detail.
+If you are using Git, a neater way to handle the ignore rules would be to manage them through *.gitignore* and point ESLint to it instead. The *Linting JavaScript* chapter covers the idea in greater detail.
 
 ### Generating `module` Field Compatible Output
 
@@ -310,6 +310,6 @@ When distributing the library, you should point to that *./dist-modules* directo
 
 ## Conclusion
 
-This isn't all there is to authoring packages using webpack. If you try to import *./dist/lib.js* through Node, you will notice it will output `{}`. This has to do with the output type we chose. To understand better which output to use and why, we will go through them and the related options in the next chapter.
+If you try to import *./dist/lib.js* through Node, you will notice it will output `{}`. The problem has to do with the output type we chose. To understand better which output to use and why we will go through them and the related options in the next chapter.
 
-T> The *Authoring Packages* chapter discusses npm specific techniques in detail and it complements these chapters well.
+T> The *Authoring Packages* chapter discusses npm specific techniques in detail, and it complements these chapters well.
