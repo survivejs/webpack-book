@@ -1,8 +1,8 @@
 # Library Output
 
-To continue on the example of the previous chapter, there's enough configuration to study webpack's library output options in detail.
+The example of the previous chapter can be expanded further to study webpack's library output options in detail.
 
-The library target is controlled through the `output.libraryTarget` field. `output.library` will come into play as well and certain targets have extra fields related to them.
+The library target is controlled through the `output.libraryTarget` field. `output.library` will come into play as well and individual targets have additional fields related to them.
 
 ## `var`
 
@@ -44,7 +44,7 @@ var Demo =
 //# sourceMappingURL=lib.js.map
 ```
 
-This tells us it will generate `var <output.library> = <webpack bootstrap>` kind of code. This explains why importing the code from Node does not give us access to any functionality.
+This tells us it will generate `var <output.library> = <webpack bootstrap>` kind of code and also explains why importing the code from Node does not give us access to any functionality.
 
 ## `assign`
 
@@ -79,7 +79,7 @@ $ node
 >
 ```
 
-The code works through convention, but there are better ways later in the chapter.
+The code works through a convention, but there are better ways later in the chapter.
 
 T> You can try running the other examples through Node like this. Or you can set up a little standalone script to execute through it to reach the same results.
 
@@ -143,7 +143,7 @@ Note that `Demo`, the library name, isn't used anywhere. As a result importing t
 { add: [Getter] }
 ```
 
-This is a big difference. You lose the extra wrapping in the second option.
+You lose the extra wrapping in the second option.
 
 ## AMD
 
@@ -156,7 +156,7 @@ define("Demo", [], function() { return /******/ (function(modules) { // webpackB
 ...
 ```
 
-In other words webpack has generated a named AMD module. The result won't work from Node as it does not support AMD.
+In other words, webpack has generated a named AMD module. The result won't work from Node as it does not support AMD.
 
 ## UMD
 
@@ -181,7 +181,7 @@ Basic UMD output looks like this:
 })(this, function() {
 ```
 
-There's a lot to digest, but essentially the code performs checks based on the environment and figures out what kind of an export to use. The first case covers Node, the second is for AMD, the third one for Node again, while the last one covers a global environment.
+There's a lot to digest, but primarily the code performs checks based on the environment and figures out what kind of export to use. The first case covers Node, the second is for AMD, the third one for Node again, while the last one includes a global environment.
 
 The output can be modified further by setting `output.umdNamedDefine: false`:
 
@@ -201,7 +201,7 @@ The output can be modified further by setting `output.umdNamedDefine: false`:
 ...
 ```
 
-In order to understand `umd2` option, you have to understand *optional externals* first.
+To understand `umd2` option, you have to understand *optional externals* first.
 
 ### Optional Externals
 
@@ -296,7 +296,7 @@ To understand what the `umd2` option does, consider the following output:
 return /******/ (function(modules) { // webpackBootstrap
 ```
 
-You can see one important difference: the AMD block contains more code. This follows non-standard Knockout.js convention as [discussed in the related pull request](https://github.com/webpack/webpack/pull/362).
+You can see one important difference: the AMD block contains more code than earlier. The output follows non-standard Knockout.js convention as [discussed in the related pull request](https://github.com/webpack/webpack/pull/362).
 
 In most of the cases using `output.libraryTarget: 'umd'` is enough as optional dependencies and AMD tend to be a rare configuration especially if you use modern technologies.
 
@@ -311,7 +311,7 @@ Demo(/******/ (function(modules) { // webpackBootstrap
 ...
 ```
 
-In short, `output.library` maps to the JSONP function name. The idea is that you could load a file like this across domains and have it call the named function. Certain APIs implement the pattern although there is no official standard for it.
+In short, `output.library` maps to the JSONP function name. The idea is that you could load a file like this across domains and have it call the named function. Specific APIs implement the pattern although there is no official standard for it.
 
 ## SystemJS
 
@@ -321,6 +321,6 @@ If you want to support SystemJS this way, set up another build target where to g
 
 ## Conclusion
 
-Webpack supports a large variety of library output formats. `umd` is the most useful for a package author. The rest are more specialized and require specific use cases in order to be valuable.
+Webpack supports a large variety of library output formats. `umd` is the most useful for a package author. The rest are more specialized and require specific use cases to be valuable.
 
-In the next chapter I will discuss the idea of managing multi-page setups as more pages are needed for additional demonstrations.
+In the next chapter, I will discuss the idea of managing multi-page setups.
