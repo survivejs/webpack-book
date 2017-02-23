@@ -198,7 +198,7 @@ new webpack.optimize.UglifyJsPlugin({
     except: ['$'], // Don't mangle $
     screw_ie8 : true, // Don't care about IE8
     keep_fnames: true, // Don't mangle function names
-  }
+  },
 });
 ```
 
