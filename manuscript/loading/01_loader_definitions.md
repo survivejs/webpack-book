@@ -1,18 +1,18 @@
 # Loader Definitions
 
-Webpack provides multiple ways to set up module loaders. Webpack 2 simplified the situation by introducing a the `use` field. The legacy options (`loader` and `loaders`) still work, though. I'll discuss all the options for completeness, as you may see them in existing configurations.
+Webpack provides multiple ways to set up module loaders. Webpack 2 simplified the situation by introducing the `use` field. The legacy options (`loader` and `loaders`) still work, though. I'll discuss all the options for completeness, as you may see them in existing configurations.
 
-It can be a good idea to prefer absolute paths here as they allow you to move configuration without breaking assumptions. The other option is to set `context` field as this gives a similar effect and affects the way entry points and loaders are resolved. It won't affect the output, though, and you still need to use an absolute path or `/` there.
+It can be a good idea to prefer absolute paths here as they allow you to move configuration without breaking assumptions. The other option is to set `context` field as this gives a similar effect and affects the way entry points and loaders are resolved. It won't have an impact on the output, though, and you still need to use an absolute path or `/` there.
 
-Assuming you set a `include` or `exclude` rule, packages loaded from *node_modules* will still work as the assumption is that they have been compiled in such way that they work out of the box. Sometimes you may come upon a badly packaged one, but often you can work around these by tweaking your loader configuration or setting up a `resolve.alias` against an asset that is included with the offending package.
+Assuming you set an `include` or `exclude` rule, packages loaded from *node_modules* will still work as the assumption is that they have been compiled in such way that they work out of the box. Sometimes you may come upon a poorly packaged one, but often you can work around these by tweaking your loader configuration or setting up a `resolve.alias` against an asset that is included in the offending package.
 
 T> The *Consuming Packages* chapter discusses the aliasing idea in further detail.
 
-T> `include`/`exclude` is particularly useful with *node_modules* as webpack will process and traverse the installed packages by default when you import JavaScript files to your project. Therefore you need to configure it to avoid that behavior. This is less of an issue with the other file types.
+T> `include`/`exclude` is particularly useful with *node_modules* as webpack will process and traverse the installed packages by default when you import JavaScript files to your project. Therefore you need to configure it to avoid that behavior. Other file types don't suffer from this issue.
 
 ## Anatomy of a Loader
 
-Webpack supports a large variety of formats through *loaders*. In addition, it supports a couple of JavaScript module formats out of the box. Generally, the idea is the same. You always set up a loader, or loaders, and connect those with your directory structure.
+Webpack supports a large variety of formats through *loaders*. Also, it supports a couple of JavaScript module formats out of the box. The idea is the same. You always set up a loader, or loaders, and connect those with your directory structure.
 
 Consider the example below where webpack is set to process JavaScript through Babel:
 
@@ -67,7 +67,7 @@ T> Babel is discussed in detail in the *Processing with Babel* chapter. We'll at
 
 ## Loader Evaluation Order
 
-It is good to keep in mind that webpack's `loaders` are always evaluated from right to left and from bottom to top (separate definitions). The right-to-left rule is easier to remember when you think about it in terms of functions. You can read definition `use: ['style-loader', 'css-loader']` as `style(css(input))` based on this rule.
+It is good to keep in mind that webpack's `loaders` are always evaluated from right to left and from bottom to top (separate definitions). The right-to-left rule is easier to remember when you think about as functions. You can read definition `use: ['style-loader', 'css-loader']` as `style(css(input))` based on this rule.
 
 To see the rule in action, consider the example below:
 
@@ -93,11 +93,11 @@ Based on the right to left rule, the example can be split up while keeping it eq
 
 ### Enforcing Order
 
-Even though it would be possible to develop an arbitrary configuration using the rule above, it can be convenient to be able to force certain rules to be applied before or after regular ones. This is where a the `enforce` field can come in handy. It can be set to either `pre` or `post` to push processing either before or after other loaders.
+Even though it would be possible to develop an arbitrary configuration using the rule above, it can be convenient to be able to force certain rules to be applied before or after regular ones. The `enforce` field can come in handy here. It can be set to either `pre` or `post` to push processing either before or after other loaders.
 
 We used the idea earlier in the *Linting JavaScript* chapter. Linting is a good example as the build should fail before it does anything else. Using `enforce: 'post'` is rarer and it would imply you want to perform a check against the built source. Performing analysis against the built source is one potential example.
 
-To borrow the linting example, the basic syntax goes like this:
+The basic syntax goes like this:
 
 ```javascript
 {
@@ -127,7 +127,7 @@ There's a query format that allows passing parameters to loaders:
 },
 ```
 
-It is good to note that this style of configuration works in entries and source imports too as webpack will pick it up. The format may come in handy in certain special cases, but often you are better off using more readable alternatives.
+It is good to note that this style of configuration works in entries and source imports too as webpack will pick it up. The format may come in handy in certain individual cases, but often you are better off using more readable alternatives.
 
 It is preferable to use the combination of `loader` and `options` fields either like this:
 
@@ -187,7 +187,7 @@ If we wanted to use more than one loader, we could pass an array to `use` and ex
 
 ## Branching at `use` Using a Function
 
-In the book setup we compose configuration on a higher level. Another option to achieve similar results would be to branch at `use` as webpack's loader definitions accept functions that allow you to branch depending on environment. Consider the example below:
+In the book setup, we compose configuration on a higher level. Another option to achieve similar results would be to branch at `use` as webpack's loader definitions accept functions that allow you to branch depending on the environment. Consider the example below:
 
 ```javascript
 {
@@ -235,7 +235,7 @@ import 'url-loader!./foo.png';
 import '!!url-loader!./bar.png';
 ```
 
-The problem with this approach is that it couples your source with webpack. But it is a good form to know still. Given configuration entries go through the same mechanism, the forms work there as well:
+The problem with this approach is that it couples your source with webpack. But it is a good form to know still. Since configuration entries go through the same mechanism, the same forms work there as well:
 
 ```javascript
 {
@@ -251,7 +251,7 @@ The problem with this approach is that it couples your source with webpack. But 
 
 * `test` - Match against a RegExp, string, function, an object, or an array of conditions like these.
 * `include` - The same.
-* `exclude` - The same, except the output is inverse of `include`.
+* `exclude` - The same, except the output is the inverse of `include`.
 
 There are a couple of boolean based fields that can be used to constrain the result further:
 
@@ -284,7 +284,7 @@ The fields above can be combined to apply different loaders based on the context
 }
 ```
 
-The rule could use `resourcePath` over `resourceQuery` if you wanted to embed the context information to the filename itself.
+If you wanted to embed the context information to the filename, the rule could use `resourcePath` over `resourceQuery`.
 
 ## `LoaderOptionsPlugin`
 
