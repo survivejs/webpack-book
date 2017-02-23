@@ -2,13 +2,13 @@
 
 When webpack writes bundles, it maintains a **manifest** as well. You can find it in the generated *vendor* bundle in this project. The manifest describes what files webpack should load. It is possible to extract it and start loading the files of our project faster instead of having to wait for the *vendor* bundle to be loaded.
 
-This is the root of our problem. If the hashes webpack generates change, then the manifest will change as well. As a result, the contents of the vendor bundle will change and it will become invalidated. The problem can be eliminated by extracting the manifest to a file of its own or by writing it inline to the *index.html* of the project.
+If the hashes webpack generates change, then the manifest will change as well. As a result, the contents of the vendor bundle will change, and it will become invalidated. The problem can be eliminated by extracting the manifest to a file of its own or by writing it inline to the *index.html* of the project.
 
 T> To understand how a manifest is generated in detail, [read the technical explanation at Stack Overflow](https://stackoverflow.com/questions/39548175/can-someone-explain-webpacks-commonschunkplugin/39600793).
 
 ## Extracting a Manifest
 
-We have done most of the work already when we set up `extractBundles`. To extract the manifest, a single change is required:
+We have done most of the work already when we set up `extractBundles`. In order to extract the manifest, a single change is required:
 
 **webpack.config.js**
 
@@ -118,7 +118,7 @@ T> One more way to improve the build further would be to load popular dependenci
 
 As mentioned in the *Splitting Bundles* chapter, plugins such as `AggressiveSplittingPlugin` use **records** to implement caching. The approaches discussed above are still valid, but records go one step further.
 
-Records are used for storing module IDs across separate builds. The gotcha is that you need to store this file some way. If you build locally, one option is to include it to your version control.
+Records are used for storing module IDs across separate builds. The problem is that you need to store this file some way. If you build locally, one option is to include it to your version control.
 
 To generate a *records.json* file, adjust the configuration as follows:
 
@@ -142,11 +142,11 @@ leanpub-end-insert
 
 If you build the project (`npm run build`), you should see a new file, *records.json*, at the project root. The next time webpack builds, it will pick up the information and rewrite the file if it has changed.
 
-Records are particularly useful if you have a complex setup with code splitting and want to make sure the split parts gain correct caching behavior. The biggest problem is maintaining the record file.
+Records are particularly useful if you have a complicated setup with code splitting and want to make sure the split parts gain correct caching behavior. The biggest problem is maintaining the record file.
 
 T> `recordsInputPath` and `recordsOutputPath` give more granular control over input and output, but often setting only `recordsPath` is enough.
 
-W> If you change the way webpack handles module IDs (i.e., remove `HashedModuleIdsPlugin`), possible existing records will still taken into account! If you want to use the new module ID scheme, you will have to remove your records file as well.
+W> If you change the way webpack handles module IDs (i.e., remove `HashedModuleIdsPlugin`), possible existing records will still be taken into account! If you want to use the new module ID scheme, you will have to remove your records file as well.
 
 ## Conclusion
 
