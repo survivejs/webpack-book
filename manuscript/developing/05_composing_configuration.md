@@ -43,7 +43,7 @@ exports.devServer = function({ host, port } = {}) {
   return {
     devServer: {
       historyApiFallback: true,
-      hotOnly: true,
+      hot: true,
       stats: 'errors-only',
       host, // Defaults to `localhost`
       port, // Defaults to 8080
@@ -76,6 +76,8 @@ exports.lintJavaScript = function({ include, exclude, options }) {
   };
 };
 ```
+
+T> I changed the configuration to use `hot: true` over `hotOnly: true` as I want the browser to refresh regardless of a possible error during processing. The latter option is good for debugging HMR when you are implementing the client side interface.
 
 To benefit from these configuration parts, we need to connect them with *webpack.config.js* as in the complete code example below:
 
