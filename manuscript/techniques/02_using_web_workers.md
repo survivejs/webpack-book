@@ -1,8 +1,8 @@
 # Using Web Workers
 
-[Web workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) provide a way to push work outside of main execution thread of JavaScript. This makes them convenient for long running computations and background work.
+[Web workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) provide a way to push work outside of main execution thread of JavaScript making them convenient for long running computations and background work.
 
-Moving data between the main thread and the worker comes with communication related overhead. The split provides isolation that forces workers to focus on logic only as they cannot manipulate the user interface directly.
+Moving data between the main thread and the worker comes with communication-related overhead. The split provides isolation that forces workers to focus on logic only as they cannot manipulate the user interface directly.
 
 The idea of workers is useful on a more general level. [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) uses [worker-farm](https://www.npmjs.com/package/worker-farm) underneath to parallelize webpack execution.
 
@@ -18,11 +18,11 @@ npm install worker-loader --save-dev
 
 To keep it simple, we'll tell webpack which files should be treated as loaders through inline loader definitions. Another option would be to push it to webpack configuration as discussed in the *Loader Definitions* chapter.
 
-In that case you have to filter the files somehow. One option would be to rely on a naming convention so that you name each worker with a `.worker.js` suffix. You could also push them to a directory as that's enough context information too.
+In that case, you have to filter the files somehow. One option would be to rely on a naming convention so that you name each worker with a `.worker.js` suffix. You could also push them to a directory as that's enough context information too.
 
 ## Setting Up a Worker
 
-A worker has to do two things: listen to messages and respond. Between those two actions it can perform computation. In this case we'll accept text data, append it to itself, and send the result.
+A worker has to do two things: listen to messages and respond. Between those two actions, it can perform a computation. In this case, we'll accept text data, append it to itself, and send the result.
 
 **app/worker.js**
 
@@ -36,7 +36,7 @@ self.onmessage = ({ data: { text } }) => {
 
 ## Setting Up a Host
 
-The host has to instantiate the worker and the communicate with it. The idea is almost the same except the host has control:
+The host has to instantiate the worker and the communicate with it. The idea is almost the same except the host has the control:
 
 **app/component.js**
 
