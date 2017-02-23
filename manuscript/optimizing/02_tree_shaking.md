@@ -42,7 +42,7 @@ If you build the project again (`npm run build`) and examine the build result (*
 
 T> If you want to see which parts of the code tree shaking affects, enable warnings at the `UglifyJsPlugin`. In addition to other messages, you should see lines like `Dropping unused variable treeShakingDemo [./app/component.js:17,6]`.
 
-T> There's a CSS Modules related tree shaking proof of concept at [dead-css-loader](https://github.com/simlrh/dead-css-loader). The technique becomes like more useful in the future as projects like this become stable.
+T> There is a CSS Modules related tree shaking proof of concept at [dead-css-loader](https://github.com/simlrh/dead-css-loader). The technique becomes like more useful in the future as projects like this become stable.
 
 ## Tree Shaking on Package Level
 
@@ -54,4 +54,4 @@ The *Consuming Packages* and *Authoring Packages* chapters contain further techn
 
 ## Conclusion
 
-Tree shaking is a potentially powerful technique. To truly benefit from it, npm packages would have to be implemented using the ES6 module syntax and they would have to expose the ES6 version through *package.json* `module` field tools like webpack can pick up.
+Tree shaking is a potentially powerful technique. To benefit from tree shaking, npm packages have to be implemented using the ES6 module syntax, and they have to expose the ES6 version through *package.json* `module` field tools like webpack can pick up.
