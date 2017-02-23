@@ -417,7 +417,7 @@ leanpub-end-insert
 }
 ```
 
-Now you have to new commands: one to run tests once and other to run them in a watch mode. In order to capture coverage information, you have to set `"collectCoverage": true` at `"jest"` settings in *package.json*. It emits the coverage reports below *coverage* directory by default.
+Now you have two new commands: one to run tests once and other to run them in a watch mode. In order to capture coverage information, you have to set `"collectCoverage": true` at `"jest"` settings in *package.json*. It emits the coverage reports below *coverage* directory by default.
 
 Porting a webpack setup to Jest may require more effort especially if you rely on webpack specific features. [The official guide](https://facebook.github.io/jest/docs/webpack.html) covers quite a few of the common gotchas. You can also configure Jest to use Babel through [babel-jest](https://www.npmjs.com/package/babel-jest). This allows you to use Babel plugins like [babel-plugin-module-resolver](https://www.npmjs.com/package/babel-plugin-module-resolver) to match webpack's functionality.
 
@@ -433,7 +433,7 @@ The main idea is to run both webpack and ava in watch mode. This pushes the prob
 
 Mocking is a technique that allows you to replace test objects. I've listed series of tools that allow you to mock with webpack:
 
-* [Sinon](https://www.npmjs.com/package/sinon) provides mocks, stubs, and spies. It is good to note that its `@next` version has been designed webpack in mind. 1.x version of Sinon might work with careful configuration as discussed in [webpack issue #304](https://github.com/webpack/webpack/issues/304).
+* [Sinon](https://www.npmjs.com/package/sinon) provides mocks, stubs, and spies. It is good to note that its `@next` version has been designed with webpack in mind. 1.x version of Sinon might work with careful configuration as discussed in [webpack issue #304](https://github.com/webpack/webpack/issues/304).
 * [inject-loader](https://www.npmjs.com/package/inject-loader) allows you to inject code to modules through their dependencies. This is useful for mocking.
 * [rewire-webpack](https://www.npmjs.com/package/rewire-webpack) allows mocking and overriding module globals. [babel-plugin-rewire](https://www.npmjs.com/package/babel-plugin-rewire) implements [rewire](https://www.npmjs.com/package/rewire) for Babel.
 
