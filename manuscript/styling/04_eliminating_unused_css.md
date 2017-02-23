@@ -1,8 +1,8 @@
 # Eliminating Unused CSS
 
-Frameworks like [Bootstrap](https://getbootstrap.com/) tend to come with a lot of CSS. Often you use only a small part of it. Normally, you bundle even the unused CSS. It is possible, however, to eliminate the portions you aren't using.
+Frameworks like [Bootstrap](https://getbootstrap.com/) tend to come with a lot of CSS. Often you use only a small part of it. Typically, you bundle even the unused CSS. It is possible, however, to eliminate the portions you aren't using.
 
-[PurifyCSS](https://github.com/purifycss/purifycss) is a tool that can achieve this by analyzing files. It walks through your code and figures out which CSS classes are being used. This is enough information for it to strip unused CSS from your project. It also works with single page applications.
+[PurifyCSS](https://github.com/purifycss/purifycss) is a tool that can achieve this by analyzing files. It walks through your code and figures out which CSS classes are being used. Often there is enough information for it to strip unused CSS from your project. It also works with single page applications to an extent.
 
 ## Setting Up Pure.css
 
@@ -23,7 +23,7 @@ leanpub-end-insert
 ...
 ```
 
-We should also make our demo component use a Pure.css class so we have something to work with:
+We should also make our demo component use a Pure.css class, so we have something to work with:
 
 **app/component.js**
 
@@ -60,11 +60,11 @@ index.html  218 bytes          [emitted]
 ...
 ```
 
-As you can see, the size of the CSS file grew. This is something we'll fix next with PurifyCSS.
+As you can see, the size of the CSS file grew. We'll fix next with PurifyCSS.
 
 ## Enabling PurifyCSS
 
-Using PurifyCSS can lead to great savings. In their example, they purify and minify Bootstrap (140 kB) in an application using ~40% of its selectors to mere ~35 kB. That's a big difference.
+Using PurifyCSS can lead to significant savings. In their example, they purify and minify Bootstrap (140 kB) in an application using ~40% of its selectors to mere ~35 kB. That's a big difference.
 
 [purifycss-webpack](https://www.npmjs.com/package/purifycss-webpack) allows us to achieve results like this. You should use the `ExtractTextPlugin` with it for the best results. Install it and a [glob](https://www.npmjs.org/package/glob) helper first:
 
@@ -95,7 +95,7 @@ exports.purifyCSS = function({ paths }) {
 leanpub-end-insert
 ```
 
-Next, we have to connect this part to our configuration. It is important the plugin is used *after* the `ExtractTextPlugin`; otherwise it won't work:
+Next, we have to connect this part to our configuration. It is important the plugin is used *after* the `ExtractTextPlugin`; otherwise, it won't work:
 
 **webpack.config.js**
 
@@ -140,20 +140,20 @@ index.html  218 bytes          [emitted]
 ...
 ```
 
-The size of our style has decreased noticeably. Instead of 16k we have roughly 2k now. The difference would be even bigger for heavier CSS frameworks.
+The size of our style has decreased noticeably. Instead of 16k, we have roughly 2k now. The difference would be even bigger for heavier CSS frameworks.
 
 PurifyCSS supports [additional options](https://github.com/purifycss/purifycss#the-optional-options-argument) including `minify`. You can enable these through the `purifyOptions` field when instantiating the plugin. Given PurifyCSS might not pick all of the classes you are using, you should use `purifyOptions.whitelist` array to define selectors which it should leave in the result no matter what.
 
-W> Using PurifyCSS will lose CSS source maps even if you have enabled them through loader specific configuration! This has to do with the way it works internally.
+W> Using PurifyCSS will lose CSS source maps even if you have enabled them through loader specific configuration due to the way it works.
 
 ### Critical Path Rendering
 
-The idea of [critical path rendering](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/) takes a look at CSS performance from a different angle. Instead of optimizing for size, it optimized for render order and puts emphasis on **above-the-fold** CSS.
+The idea of [critical path rendering](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/) takes a look at CSS performance from a different angle. Instead of optimizing for size, it optimizes for render order and puts emphasis on **above-the-fold** CSS.
 
 [isomorphic-style-loader](https://www.npmjs.com/package/isomorphic-style-loader) achieves this using webpack and React. [critical-path-css-tools](https://github.com/addyosmani/critical-path-css-tools) listing by Addy Osmani lists other related tools.
 
 ## Conclusion
 
-Using PurifyCSS can lead to a significant decrease in file size. It is particularly useful with static sites that rely on a heavy CSS framework. The more dynamic a site or an application becomes, the harder it becomes to analyze reliably.
+Using PurifyCSS can lead to a significant decrease in file size. It is particularly useful for static sites that rely on a heavy CSS framework. The more dynamic a site or an application becomes, the harder it becomes to analyze reliably.
 
-The styling portion of our demo is in a good shape. We can make it better by including CSS linting to the project. We'll do that next.
+The styling portion of our demo is in good shape. We can make it better by including CSS linting to the project. We'll do that next.
