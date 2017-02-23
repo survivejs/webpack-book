@@ -1,18 +1,18 @@
 # Searching with React
 
-Let's say we want to implement a rough little search for our application without a proper backend. We might want to use something like [lunr](http://lunrjs.com/) for generating an index to search against.
+Let's say we want to implement a rough little search for our application without a proper backend. We might want to use something like [lunr](http://lunrjs.com/) for generating an index to search.
 
-The problem is that the index can be sizable depending on the amount of the content. The dumb way to implement this kind of search would be to include the index required to the application bundle itself and then perform search against that.
+The problem is that the index can be sizable depending on the amount of the content. The dumb way to implement this kind of search would be to include the index required to the application bundle itself and then perform a search against that.
 
 The good thing is that we don't need the search index straight from the start. We can do something cleverer. We can start loading the index when the user selects our search field.
 
-This defers the loading and moves it to a place where it's more acceptable. Given the initial search might be slower than the subsequent ones we could display a loading indicator. But that's fine from the user point of view.
+Doing this defers the loading and moves it to a place where it's more acceptable for performance. Given the initial search might be slower than the subsequent ones we could display a loading indicator. But that's fine from the user point of view.
 
 Webpack's **code splitting** feature allows us to do this. See the *Code Splitting* chapter for more detailed discussion and the exact setup required.
 
 ## Implementing Search with Lazy Loading
 
-Implementing lazy loading is straightforward. First you will need to decide where to put the split point, put it there, and then handle the `Promise`. The basic `import` looks like `import('./asset').then(asset => ...).catch(err => ...)`.
+Implementing lazy loading is straightforward. First, you will need to decide where to put the split point, put it there, and then handle the `Promise`. The basic `import` looks like `import('./asset').then(asset => ...).catch(err => ...)`.
 
 The nice thing is that this gives us error handling in case something goes wrong (network is down etc.) and gives us a chance to recover. We can also use `Promise` based utilities like `Promise.all` for composing more complicated queries.
 
@@ -132,10 +132,10 @@ function loadIndex() {
 }
 ```
 
-In the example, webpack detects the `import` statically. It is able to generate a separate bundle based on this split point. Given it relies on static analysis, you cannot generalize `loadIndex` in this case and pass the search index path as a parameter.
+In the example, webpack detects the `import` statically. It can generate a separate bundle based on this split point. Given it relies on static analysis, you cannot generalize `loadIndex` in this case and pass the search index path as a parameter.
 
 ## Conclusion
 
-Beyond search, the approach is useful with routers too. As the user enters some route, you can load the dependencies the resulting view needs. Alternately, you can start loading dependencies as the user scrolls a page and gets near parts with actual functionality. `import` provides a lot of power and allows you to keep your application lean.
+Beyond search, the approach is useful with routers too. As the user enters some route, you can load the dependencies the resulting view needs. Alternately, you can start loading dependencies as the user scrolls a page and gets adjacent parts with actual functionality. `import` provides a lot of power and allows you to keep your application lean.
 
 You can find a [full example](https://github.com/survivejs-demos/lunr-demo) showing how it all goes together with lunr, React, and webpack. The basic idea is the same, but there's more setup in place.
