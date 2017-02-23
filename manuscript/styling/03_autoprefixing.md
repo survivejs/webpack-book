@@ -1,6 +1,6 @@
 # Autoprefixing
 
-It can be difficult to remember which vendor prefixes you have to use for specific CSS rules to support a large variety of users. This is where **autoprefixing** comes in. It can be enabled through PostCSS and the [autoprefixer](https://www.npmjs.com/package/autoprefixer) plugin. *autoprefixer* uses [Can I Use](http://caniuse.com/) service to figure out which rules should be prefixed and its behavior can be tuned further.
+It can be difficult to remember which vendor prefixes you have to use for specific CSS rules to support a large variety of users. **Autoprefixing** solves this problem. It can be enabled through PostCSS and the [autoprefixer](https://www.npmjs.com/package/autoprefixer) plugin. *autoprefixer* uses [Can I Use](http://caniuse.com/) service to figure out which rules should be prefixed and its behavior can be tuned further.
 
 ## Setting Up Autoprefixing
 
@@ -75,7 +75,7 @@ body {
 }
 ```
 
-As you can see, autoprefixing expands the rules so we don't have to remember to do that.
+As you can see, autoprefixing expands the rules, so we don't have to remember to do that.
 
 If you know what browsers you support, it is possible to set up a [browserslist](https://www.npmjs.com/package/browserslist) file. Different tools pick up this definition, *autoprefixer* included. Consider the example below where we select only specific browsers:
 
@@ -89,4 +89,4 @@ IE 8 # And IE 8
 
 ## Conclusion
 
-Autoprefixing is a handy technique as it decreases the amount of work needed while crafting CSS. You can maintain minimum browser requirements within a *browserslist* file. The tooling can then use that information to generate optimal output.
+Autoprefixing is a convenient technique as it decreases the amount of work needed while crafting CSS. You can maintain minimum browser requirements within a *browserslist* file. The tooling can then use that information to generate optimal output.
