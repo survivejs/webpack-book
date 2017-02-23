@@ -1,4 +1,4 @@
-# Extending Webpack with Loaders
+# Extending with Loaders
 
 As we've seen so far, loaders are one of the building blocks of webpack. If you want to load an asset, you'll most likely need to set up a matching loader definition. Even though there are a lot of [available loaders](https://webpack.js.org/loaders/), it is possible you are missing one fitting your purposes.
 

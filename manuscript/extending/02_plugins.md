@@ -1,4 +1,4 @@
-# Extending Webpack with Plugins
+# Extending with Plugins
 
 Compared to loaders, plugins are a more flexible way to extend webpack. As `ExtractTextPlugin` shows, sometimes it can make sense to use loaders and plugins together. The great thing about plugins is that they allow you to intercept webpack's execution through many hooks and then extend it as you see fit. Internally webpack consists of an extensive collection of plugins so understanding the basic idea can be valuable if you want to delve into it.
 
