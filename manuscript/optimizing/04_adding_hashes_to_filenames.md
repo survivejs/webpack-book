@@ -6,20 +6,20 @@ Webpack provides **placeholders** for this purpose. These strings are used to at
 
 * `[path]` - Returns the file path.
 * `[name]` - Returns the file name.
-* `[ext]` - Returns the extension. This works for most available fields. `ExtractTextPlugin` is a notable exception to this rule.
+* `[ext]` - Returns the extension. `[ext]` works for most available fields. `ExtractTextPlugin` is a notable exception to this rule.
 * `[hash]` - Returns the build hash. If any portion of the build changes, this will change as well.
-* `[chunkhash]` - Returns an entry chunk specific hash. Each `entry` defined at the configuration receives a hash of own. If any portion of the entry changes, the hash changes as well. This is more granular than `[hash]` by definition.
-* `[contenthash]` - Returns a hash specific to content. This is available for `ExtractTextPlugin` only and is the most specific option available.
+* `[chunkhash]` - Returns an entry chunk-specific hash. Each `entry` defined at the configuration receives a hash of own. If any portion of the entry changes, the hash will change as well. `[chunkhash]` is more granular than `[hash]` by definition.
+* `[contenthash]` - Returns a hash specific to content. `[contenthash]` is available for `ExtractTextPlugin` only and is the most specific option available.
 
 It is preferable to use particularly `hash` and `chunkhash` only for production purposes as hashing won't do much good during development.
 
-T> If you want shorter hashes, it is possible to slice `hash` and `chunkhash` using syntax like this: `[chunkhash:8]`. Instead of a hash like `8c4cbfdb91ff93f3f3c5` this would yield `8c4cbfdb`.
+T> It is possible to slice `hash` and `chunkhash` using syntax like this: `[chunkhash:8]`. Instead of a hash like `8c4cbfdb91ff93f3f3c5` this would yield `8c4cbfdb`.
 
-T> There are more options available and you can even modify the hashing and digest type as discussed at [loader-utils](https://www.npmjs.com/package/loader-utils#interpolatename) documentation.
+T> There are more options available, and you can even modify the hashing and digest type as discussed at [loader-utils](https://www.npmjs.com/package/loader-utils#interpolatename) documentation.
 
 ## Using Placeholders
 
-Assuming we have configuration like this:
+Assuming we have a configuration like this:
 
 ```javascript
 {
@@ -37,13 +37,13 @@ app.d587bbd6e38337f5accd.js
 vendor.dc746a5db4ed650296e1.js
 ```
 
-If the file contents related to a chunk are different, the hash will change as well, thus invalidating the cache. More accurately, the browser will send a new request for the new file. This means if only `app` bundle gets updated, only that file needs to be requested again.
+If the file contents related to a chunk are different, the hash will change as well, thus invalidating the cache. More accurately, the browser will send a new request for the new file. If only `app` bundle gets updated, only that file needs to be requested again.
 
 An alternate way to achieve the same result would be to generate static filenames and invalidate the cache through a querystring (i.e., `app.js?d587bbd6e38337f5accd`). The part behind the question mark will invalidate the cache. According to [Steve Souders](http://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/), attaching the hash to the filename is the more performant way to go.
 
 ## Setting Up Hashing
 
-The build needs tweaking in order to generate proper hashes. Images and fonts should receive `hash` while chunks should use `chunkhash` in their names to invalidate them correctly:
+The build needs tweaking to generate proper hashes. Images and fonts should receive `hash` while chunks should use `chunkhash` in their names to invalidate them correctly:
 
 **webpack.config.js**
 
@@ -120,7 +120,7 @@ leanpub-end-insert
 ...
 ```
 
-W> The hashes have been sliced to make the output fit better in the book. In practice you can skip slicing them.
+W> The hashes have been sliced to make the output fit better in the book. In practice, you can skip slicing them.
 
 If you generate a build now (`npm run build`), you should see something like this:
 
@@ -152,15 +152,15 @@ vendor.a22e887d.js.map     287 kB       2  [emitted]  vendor
 
 Our files have neat hashes now. To prove that it works for styling, you could try altering *app/main.css* and see what happens to the hashes when you rebuild.
 
-There's one problem, though. If you change the application code, it will invalidate the vendor file as well! Solving this requires extracting a **manifest**, but before that we can improve the way the production build handles module IDs.
+There's one problem, though. If you change the application code, it will invalidate the vendor file as well! Solving this requires extracting a **manifest**, but before that, we can improve the way the production build handles module IDs.
 
-T> The length of hashes has been clamped to eight characters to fit the output to the book better. In practice you could avoid it and skip using `:8`.
+T> The length of hashes has been clamped to eight characters to fit the output to the book better. In practice, you could avoid it and skip using `:8`.
 
 ## Enabling `HashedModuleIdsPlugin`
 
-As you might remember, webpack uses number based IDs for the module code it generates. The problem is that they are difficult to work with and can lead to difficult to debug issues particularly with hashing. Like we did with the development setup earlier, we can perform a simplification here as well.
+As you might remember, webpack uses number based IDs for the module code it generates. The problem is that they are difficult to work with and can lead to difficult to debug issues, particularly with hashing. Like we did with the development setup earlier, we can perform a simplification here as well.
 
-Webpack provides `HashedModuleIdsPlugin` that is like `NamedModulesPlugin` except it hashes the result and hides the path information. This keeps module IDs stable as they aren't derived based on order. We sacrifice a couple of bytes for a cleaner setup, but the trade-off is well worth it.
+Webpack provides `HashedModuleIdsPlugin` that is like `NamedModulesPlugin` except it hashes the result and hides the path information. The process keeps module IDs stable as they aren't derived based on order. We sacrifice a couple of bytes for a cleaner setup, but the trade-off is well worth it.
 
 The change required is simple. Tweak the configuration as follows:
 
