@@ -1,10 +1,10 @@
 # Customizing ESLint
 
-Even though you can get far with vanilla ESLint, there are certain techniques you should be aware of. For instance, sometimes you might want to skip some rules per file. You might even want to implement rules of your own. We'll cover these cases briefly next.
+Even though you can get far with vanilla ESLint, there are certain techniques you should know. For instance, sometimes you might want to skip some rules per file. You might even want to implement rules of your own. We'll cover these cases briefly next.
 
 ## Skipping ESLint Rules
 
-Sometimes, you'll want to skip certain rules per file or per line. This can be useful when you happen to have some exceptional case in your code where some rule doesn't make sense. As usual, exception confirms the rule. Consider the following examples:
+Sometimes, you'll want to skip certain rules per file or line as you might have some exceptional case in your code where some rule doesn't make sense. As usual, exception confirms the rule. Consider the following examples:
 
 ```javascript
 // everything
@@ -66,7 +66,7 @@ ESLint plugins rely on Abstract Syntax Tree (AST) definition of JavaScript. It i
 
 To get a better idea of how AST works and what it looks like, you can check [Esprima online JavaScript AST visualization](http://esprima.org/demo/parse.html) or [AST Explorer by Felix Kling](http://astexplorer.net/). Alternately, you can install `recast` and examine the output it gives. That is the structure we'll be working with for ESLint rules.
 
-T> [Codemod](https://github.com/facebook/codemod) allows you to perform large scale changes to your codebase through AST based transformations.
+T> [Codemod](https://github.com/facebook/codemod) allows you to perform large-scale changes to your codebase through AST based transformations.
 
 ### Writing a Plugin
 
@@ -107,7 +107,7 @@ module.exports = {
 
 In this case, we report for every identifier found. In practice, you'll likely want to do something more complex than this, but this is a good starting point.
 
-Next, you need to execute `npm link` within `eslint-plugin-custom`. This will make your plugin visible within your system. `npm link` allows you to easily consume a development version of a library you are developing. To reverse the link you can execute `npm unlink` when you feel like it.
+Next, you need to execute `npm link` within `eslint-plugin-custom` to make your plugin visible to your system. `npm link` allows you to consume a development version of a library you are developing. To reverse the link, you can execute `npm unlink` when you feel like it.
 
 T> If you want to do something serious, you should point to your plugin through *package.json*.
 
