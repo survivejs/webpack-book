@@ -234,7 +234,7 @@ Out of the available solutions, `OptimizeCSSAssetsPlugin` composes the best. To 
 npm install optimize-css-assets-webpack-plugin cssnano --save-dev
 ```
 
-Just like for JavaScript, we can wrap the idea within a configuration part:
+Like for JavaScript, we can wrap the idea within a configuration part:
 
 **webpack.parts.js**
 

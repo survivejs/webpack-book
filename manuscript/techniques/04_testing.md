@@ -173,7 +173,7 @@ To get started, install Karma, *karma-mocha* reporter, and *karma-webpack*:
 npm install karma karma-mocha karma-webpack --save-dev
 ```
 
-Just like webpack, Karma relies on configuration as well. Set up a file as follows to make it pick up the tests:
+Like webpack, Karma relies on configuration as well. Set up a file as follows to make it pick up the tests:
 
 **karma.conf.js**
 

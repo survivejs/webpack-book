@@ -45,6 +45,6 @@ This is another error for the same category. An easy way to get this error is to
 
 ## Conclusion
 
-These are just examples of errors. Some of the errors happen on the webpack side, but some come from the packages it uses through loaders and plugins. It will take some amount of care to trace down the problems.
+These are only examples of errors. Some of the errors happen on the webpack side, but some come from the packages it uses through loaders and plugins. It will take some amount of care to trace down the problems.
 
 Simplifying your project is a good step as that will make it easier to understand where the error stems from. In most cases the errors are straightforward to solve if you know where to look, but in the worst case you have come upon a bug to fix in the tooling. In that case you should provide a high quality report to the project and help to resolve it.
