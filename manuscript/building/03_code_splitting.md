@@ -143,9 +143,7 @@ To connect it with the project, adjust the configuration as follows:
 leanpub-start-insert
   "plugins": ["syntax-dynamic-import"],
 leanpub-end-insert
-  "presets": [
-    ...
-  ]
+  ...
 }
 ```
 
