@@ -135,6 +135,8 @@ module.exports = merge([
 ]);
 ```
 
+T> See the *Composing Configuration* chapter for the full `devServer` setup. The page setup is explained in the *Multiple Pages* chapter.
+
 Add a helper script to make it easy to run:
 
 **package.json**
