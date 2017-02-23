@@ -413,4 +413,4 @@ In the example above, we used different types of webpack chunks. Webpack treats 
 
 ## Conclusion
 
-The situation is better now. Note how small `app` bundle compared to the `vendor` bundle. To really benefit from this split, we will set up caching in the next part of this book.
+The situation is better now. Note how small `app` bundle compared to the `vendor` bundle. To benefit from this split, we will set up caching in the next part of this book.
