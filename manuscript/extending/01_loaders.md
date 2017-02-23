@@ -22,13 +22,13 @@ I follow the following layout in my loader project:
 └── test.js          - Tests
 ```
 
-This is a standard way to write a small Node package. I actually started by developing a basic example first and added tests later. Writing tests first can be a good idea, though, as it gives you a specification which you can use to validate your implementation.
+I started by developing a basic example first and added tests later. Writing tests first can be a good idea, though, as it gives you a specification which you can use to validate your implementation.
 
 I'll give you a basic testing setup next and then discuss my loader implementation.
 
 ## Writing Tests for a Loader
 
-I settled with [Mocha](https://mochajs.org/) and Node [assert](https://nodejs.org/api/assert.html) for this project. Mocha is nice as it provides enough structure for writing your tests. There's also support for `--watch`. When you run Mocha in the watch mode, it will run the tests as your code evolves. This can be an effective way to develop code.
+I settled with [Mocha](https://mochajs.org/) and Node [assert](https://nodejs.org/api/assert.html) for this project. Mocha is nice as it provides enough structure for writing your tests. There's also support for `--watch`. When you run Mocha in the watch mode, it will run the tests as your code evolves.
 
 ### Test Setup
 
@@ -45,11 +45,11 @@ Here's the relevant *package.json* portion:
 ...
 ```
 
-To run tests, you can simply invoke `npm test`. To run the test setup in the watch mode, you can use `npm run test:watch`.
+To run tests, you can invoke `npm test`. To run the test setup in the watch mode, you can use `npm run test:watch`.
 
 ### Test Structure
 
-Given this project is so small, I ended up writing all my tests into a single file. The following excerpt should give you a better idea of what they look like. There are a couple of webpack loader specific tweaks in place to make it easier to test them:
+I ended up writing all my tests into a single file in this project. The following excerpt should give you a better idea of the tests. There are a couple of webpack loader specific tweaks in place to make it easier to test them:
 
 **test.js**
 
@@ -58,7 +58,7 @@ const assert = require('assert');
 const loader = require('./');
 
 // Mock loader context (`this`) so that we have an environment
-// that's close enough to Webpack in order to avoid crashes
+// that's close enough to Webpack to avoid crashes
 // during testing. Alternately, we could code defensively
 // and protect against the missing data.
 const webpackContext = {
@@ -103,11 +103,11 @@ describe('highlight-loader', function () {
 });
 ```
 
-Even though I'm not a great fan of mocking, it works well enough for a case like this. The biggest fear is that webpack API changes at some point. This would mean my test code would break, and I would have to rewrite a large part of it.
+Even though I'm not a great fan of mocking, it works well enough for a case like this. The biggest fear is that webpack API changes at some point as this would mean my test code would break, and I would have to rewrite a large part of it.
 
-It could be interesting to run the tests through webpack itself to avoid mocking. In this approach, you wouldn't have to worry about the test facing parts so much and it would be more about capturing output for the given input.
+It could be interesting to run the tests through webpack itself to avoid mocking. In this approach, you wouldn't have to worry about the test facing parts so much, and it would be more about capturing output for the given input.
 
-The problem is that this would add a significant overhead to the tests and bring problems of its own as you would have to figure out more effective ways to execute them.
+The problem is that this would add a significant overhead to the tests and bring problems of its own as you would have to figure out more efficient ways to execute them.
 
 T> Webpack loaders can be run standalone through [loader-runner](https://www.npmjs.com/package/loader-runner). Using *loader-runner* would be one way to avoid mocking.
 
@@ -131,7 +131,7 @@ module.exports = function(input = '') {
   const query = loaderUtils.parseQuery(this.query);
 
   // Check against a custom parameter and apply custom logic
-  // related to it. In this case we execute against the parameter
+  // related to it. In this case, we execute against the parameter
   // itself and tweak `input` based on the result.
   if(query.exec) {
     // `this.resource` refers to the resource we are trying to load
@@ -151,7 +151,7 @@ module.exports = function(input = '') {
 ...
 ```
 
-This is an example of a synchronous loader. Sometimes you might want to perform asynchronous operations instead. That's when you could do something like this in your loader code:
+The above is an example of a synchronous loader. Sometimes you might want to perform asynchronous operations instead. That's when you could do something like this in your loader code:
 
 ```javascript
 const callback = this.async();
@@ -167,7 +167,7 @@ asyncOp(callback);
 
 ## Pitch Loaders
 
-Webpack evaluates loaders in two phases: pitching and running. The pitching process is performed first and it goes from left to right. In the running phase it goes back right to left. Pitching allows you to intercept a query or modify it. A pitch loader could inject parameters to a following loader for example or terminate execution given a condition is met.
+Webpack evaluates loaders in two phases: pitching and running. The pitching process is performed first, and it goes from left to right. In the running phase, it goes back right to left. Pitching allows you to intercept a query or modify it. A pitch loader could inject parameters to the following loader for example or terminate execution given a condition is met.
 
 The following example [adapted from the documentation](https://webpack.js.org/api/loaders/#pitching-loader) illustrates how to attach a pitch handler to a loader:
 
@@ -188,6 +188,6 @@ module.exports.pitch = function(remainingRequest, precedingRequest, data) {
 
 ## Conclusion
 
-Writing loaders is fun in sense that they describe transformations from a format to another. Often you can figure out how to achieve something specific by either studying either the API documentation or the existing loaders.
+Writing loaders is fun in the sense that they describe transformations from a format to another. Often you can figure out how to achieve something specific by either studying either the API documentation or the existing loaders.
 
-I recommend writing at least basic tests and a small example to document your assumptions. Loader development fits this type of thinking well.
+I recommend writing at least basic tests and a small example to document your assumptions. Loader development fits this thinking well.
