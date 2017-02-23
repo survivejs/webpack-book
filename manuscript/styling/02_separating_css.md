@@ -4,15 +4,15 @@ Even though we have a nice build set up now, where did all the CSS go? As per ou
 
 The current solution doesn't allow us to cache CSS. In some cases, we might suffer from a **Flash of Unstyled Content** (FOUC). FOUC happens because the browser will take a while to load JavaScript and the styles would be applied only then. Separating CSS to a file of its own avoids the problem by letting the browser to manage it separately.
 
-Webpack provides a means to generate a separate CSS bundles using [ExtractTextPlugin](https://www.npmjs.com/package/extract-text-webpack-plugin). It is able to aggregate multiple CSS files into one. For this reason it comes with a loader that handles the extraction process. The plugin then picks up the result aggregated by the loader and emits a separate file.
+Webpack provides a means to generate a separate CSS bundles using [ExtractTextPlugin](https://www.npmjs.com/package/extract-text-webpack-plugin). It can aggregate multiple CSS files into one. For this reason, it comes with a loader that handles the extraction process. The plugin then picks up the result aggregated by the loader and emits a separate file.
 
 Due to this process, ExtractTextPlugin comes with overhead during the compilation phase. It won't work with Hot Module Replacement (HMR) by design. Given we are using it only for production, that won't be a problem.
 
-T> This same technique can be used with other assets, like templates, too.
+T> This same technique can be employed with other assets, like templates, too.
 
-W> It can be potentially dangerous to use inline styles within JavaScript in production as it represents an attack vector. **Critical path rendering** embraces the idea and inlines the critical CSS to the initial HTML payload improving perceived performance of the site. It is discussed at the next chapter in detail.
+W> It can be potentially dangerous to use inline styles within JavaScript in production as it represents an attack vector. **Critical path rendering** embraces the idea and inlines the critical CSS to the initial HTML payload improving perceived performance of the site. It is discussed in the next chapter in detail.
 
-In limited contexts inlining a small amount of CSS can be a viable option to speed up the initial load (less requests).
+In limited contexts inlining a small amount of CSS can be a viable option to speed up the initial load (fewer requests).
 
 ## Setting Up `ExtractTextPlugin`
 
@@ -24,7 +24,7 @@ npm install extract-text-webpack-plugin@beta --save-dev
 
 `ExtractTextPlugin` includes a loader, `ExtractTextPlugin.extract` that marks the assets to be extracted. Then a plugin will perform its work based on this annotation.
 
-`ExtractTextPlugin.extract` accepts `use` and `fallback` definitions. `ExtractTextPlugin` processes content through `use` only from **initial chunks** by default and it uses `fallback` for the rest. This means it won't touch any split bundles unless `allChunks: true` is set true. The *Splitting Bundles* chapter digs into greater detail.
+`ExtractTextPlugin.extract` accepts `use` and `fallback` definitions. `ExtractTextPlugin` processes content through `use` only from **initial chunks** by default and it uses `fallback` for the rest. It won't touch any split bundles unless `allChunks: true` is set true. The *Splitting Bundles* chapter digs into greater detail.
 
 It is important to note that if you wanted to extract CSS from a more involved format, like Sass, you would have to pass multiple loaders to the `use` option. Both `use` and `fallback` accept a loader (string), a loader definition, or an array of loader definitions.
 
@@ -66,7 +66,7 @@ exports.extractCSS = function({ include, exclude, use }) {
 leanpub-end-insert
 ```
 
-That `[name]` placeholder will use the name of the entry where the CSS is referred to. Placeholders and the overall idea are discussed in detail at the *Adding Hashes to Filenames* chapter.
+That `[name]` placeholder will use the name of the entry where the CSS is referred. Placeholders and the overall idea are discussed in detail at the *Adding Hashes to Filenames* chapter.
 
 T> If you wanted to output the resulting file to a specific directory, you could do it like this: `new ExtractTextPlugin('styles/[name].css')`.
 
@@ -159,10 +159,10 @@ const commonConfig = merge([
 ]);
 ```
 
-After this type of change, you would not have to refer to styling from your application code. It also means that CSS Modules won't work anymore. As a result, you should get both *style.css* and *style.js*. The latter file will contain roughly content like `webpackJsonp([1,3],[function(n,c){}]);` and it doesn't do anything useful. This is [a known limitation](https://github.com/webpack/webpack/issues/1967) in webpack.
+After this type of change, you would not have to refer to styling from your application code. It also means that CSS Modules won't work anymore. As a result, you should get both *style.css* and *style.js*. The latter file will contain roughly content like `webpackJsonp([1,3],[function(n,c){}]);` and it doesn't do anything useful as discussed in [webpack issue 1967](https://github.com/webpack/webpack/issues/1967).
 
 The approach can be useful if you have to port a legacy project relying on CSS concatenation. If you want strict control over the ordering, you can set up a single CSS entry and then use `@import` to bring the rest to the project through it. Another option would be to set up a JavaScript entry and go through `import` to get the same effect.
 
 ## Conclusion
 
-Our current setup separates styling from JavaScript neatly. Even though the technique is most useful with CSS, it can be used for extracting HTML templates or any other files types you might consume. The difficult part about `ExtractTextPlugin` has to do with its setup, but the complexity can be hidden behind abstraction.
+Our current setup separates styling from JavaScript neatly. Even though the technique is most useful with CSS, it can be used to extract HTML templates or any other files types you might consume. The hard part about `ExtractTextPlugin` has to do with its setup, but the complexity can be hidden behind an abstraction.
