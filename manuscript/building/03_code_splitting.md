@@ -12,7 +12,7 @@ Code splitting can be done in two primary ways in webpack: through a [dynamic im
 
 The goal is to end up with a split point that will get loaded on demand. There can be splits inside splits and you can structure an entire application based on splits.
 
-![Bundle with a dynamically loaded normal chunk](images/dynamic.png)
+![Code splitting](images/dynamic.png)
 
 ### Dynamic `import`
 
