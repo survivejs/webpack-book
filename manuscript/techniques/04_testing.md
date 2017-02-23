@@ -244,7 +244,6 @@ To make Karma run tests through Phantom, adjust its configuration as follows:
 
 **karma.conf.js**
 
-
 ```javascript
 module.exports = function(config) {
   ...
@@ -304,23 +303,44 @@ Install the dependencies first:
 npm install babel-plugin-istanbul karma-coverage --save-dev
 ```
 
-Connect the Babel plugin:
+Connect the Babel plugin so that the instrumentation happens only when Karma is run:
 
 **.babelrc**
 
 ```json
 {
-  "plugins": [
-leanpub-start-insert
-    "istanbul",
-leanpub-end-insert
-    ...
-  ],
   ...
+leanpub-start-insert
+  "env": {
+    "karma": {
+      "plugins": [
+        "istanbul"
+      ]
+    }
+  }
+leanpub-end-insert
 }
 ```
 
-W> To make sure instrumentation doesn't end up in your production build, take care to use Babel's `env` field as discussed in the *Loading JavaScript* chapter.
+Make sure to set Babel environment so it picks up the plugin:
+
+**karma.conf.js**
+
+```javascript
+module.exports = function(config) {
+  ...
+
+leanpub-start-insert
+  process.env.BABEL_ENV = 'karma';
+leanpub-end-insert
+
+  config.set({
+    ...
+  });
+};
+```
+
+T> If you want to understand the `env` idea, see the *Loading JavaScript* chapter.
 
 On Karma side we have to set up reporting and connect Karma configuration with webpack. *karma-webpack* provides two fields for this purpose: `webpack` and `webpackMiddleware`. We'll use the former in this case to make sure the code gets processed through Babel. This would be a good place to do more webpack specific tweaks as discussed above.
 
@@ -343,14 +363,8 @@ leanpub-start-insert
     coverageReporter: {
       dir: 'build',
       reporters: [
-        {
-          type: 'html',
-          subdir: 'coverage',
-        },
-        {
-          type: 'lcov',
-          subdir: 'lcov',
-        },
+        { type: 'html' },
+        { type: 'lcov' },
       ],
     },
 leanpub-end-insert
@@ -358,7 +372,9 @@ leanpub-end-insert
 };
 ```
 
-If you execute karma now (`npm run test:karma`), you should see new directories containing coverage reports. The HTML report can be examined through the browser and it should look something like this:
+T> If you want to emit the reports to specific directories below `dir`, set `subdir` per each report.
+
+If you execute karma now (`npm run test:karma`), you should see a new directory containing coverage reports. The HTML report can be examined through the browser and it should look something like this:
 
 ![Coverage in browser](images/coverage.png)
 
