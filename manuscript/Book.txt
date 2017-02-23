@@ -50,7 +50,7 @@ output/04_server_side_rendering.md
 10_Techniques.md
 
 techniques/01_dynamic_loading.md
-techniques/02_using_web_workers.md
+techniques/02_web_workers.md
 techniques/03_i18n.md
 techniques/04_testing.md
 techniques/05_deploying.md

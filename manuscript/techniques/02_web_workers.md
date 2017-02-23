@@ -1,4 +1,4 @@
-# Using Web Workers
+# Web Workers
 
 [Web workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) provide a way to push work outside of main execution thread of JavaScript making them convenient for long running computations and background work.
 
