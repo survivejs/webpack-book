@@ -15,6 +15,9 @@
         ["a npm", "an npm"],
         "npm",
 
+        ["really", ""],
+        ["just", ""],
+
         "pre-release",
 
         // ECMAScript
