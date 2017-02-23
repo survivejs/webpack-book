@@ -4,7 +4,7 @@ Sometimes a part of your code should execute only during development. Or you mig
 
 As JavaScript minifiers can remove dead code (`if (false)`), we can build on top of this idea and write code that gets transformed into this form. Webpack's `DefinePlugin` enables replacing **free variables** so that we can convert `if (process.env.NODE_ENV === 'development')` kind of code to `if (true)` or `if (false)` depending on the environment.
 
-You can find packages that rely on this behavior. React is perhaps the most known example of an early adopter of the technique. Using `DefinePlugin` can bring down the size of your React production build somewhat as a result and you may see a similar effect with other packages as well.
+You can find packages that rely on this behavior. React is perhaps the most known example of an early adopter of the technique. Using `DefinePlugin` can bring down the size of your React production build somewhat as a result, and you may see a similar effect with other packages as well.
 
 ## The Basic Idea of `DefinePlugin`
 
@@ -69,7 +69,7 @@ if (foo === 'bar') {
 // if (false) means the block can be dropped entirely
 ```
 
-This is the core idea of `DefinePlugin`. We can toggle parts of code using this kind of mechanism. A good minifier is able to perform the analysis for us and enable/disable entire portions of the code as we prefer.
+Elimination is the core idea of `DefinePlugin`. We can toggle parts of code using this kind of mechanism. A good minifier can perform the analysis for us and enable/disable entire portions of the code as we prefer.
 
 ## Setting `process.env.NODE_ENV`
 
@@ -144,7 +144,7 @@ fontawesome-webfont.woff2    77.2 kB          [emitted]
 
 We went from 150 kB to 45 kB, and finally, to 25 kB. The final build is a little faster than the previous one as well.
 
-Given the 25 kB can be served gzipped, it is somewhat reasonable. gzipping will drop around another 40% and it is well supported by browsers.
+Given the 25 kB can be served gzipped, it is somewhat reasonable. gzipping will drop around another 40%, and it is well supported by browsers.
 
 It is good to remember that we didn't include *react-dom* in this case and that would add around 100 kB to the final result. To get back to these figures, we would have to use a lighter alternative such as Preact or react-lite as discussed at the *Consuming Packages* chapter.
 
@@ -174,23 +174,23 @@ if(process.env.NODE_ENV === 'production') {
 }
 ```
 
-Webpack is able to pick the right code based on our `DefinePlugin` declaration and this code. It is good to note that we will have to use CommonJS module definition style here: ES6 `import`s don't allow dynamic behavior like this by design.
+Webpack can pick the right code based on our `DefinePlugin` declaration and this code. It is good to note that we will have to use CommonJS module definition style here: ES6 `import`s don't allow dynamic behavior like this by design.
 
-T> A related technique, **aliasing**, is discussed at the *Consuming Packages* chapter. You could alias to development or production specific file depending on the environment. The gotcha is that it will tie your setup to webpack in a tighter way than the solution above.
+T> A related technique, **aliasing**, is discussed at the *Consuming Packages* chapter. You could alias to development or production particular file depending on the environment. The problem is that it will tie your setup to webpack in a tighter way than the solution above.
 
 ## Webpack Optimization Plugins
 
-Webpack includes a collection of optimization related plugins, some of which we'll cover in detail in this book. In addition there are some outside the core. I've listed the most important ones below:
+Webpack includes a collection of optimization related plugins, some of which we'll cover in detail in this book. Also, there are some outside the core. I've listed the most important ones below:
 
-* [compression-webpack-plugin](https://www.npmjs.com/package/compression-webpack-plugin) allows you to push the problem of generating compressed files to webpack. This can potentially save processing time on the server.
+* [compression-webpack-plugin](https://www.npmjs.com/package/compression-webpack-plugin) allows you to push the problem of generating compressed files to webpack to potentially save processing time on the server.
 * `webpack.optimize.UglifyJsPlugin` allows you to minify output using different heuristics. Some of them might break code unless you are careful.
-* `webpack.optimize.AggressiveSplittingPlugin` allows you to split code into smaller bundles as discussed at the *Splitting Bundles* chapter. This can be particularly useful in HTTP/2 environment.
+* `webpack.optimize.AggressiveSplittingPlugin` allows you to split code into smaller bundles as discussed at the *Splitting Bundles* chapter. The result can be particularly useful in a HTTP/2 environment.
 * `webpack.optimize.CommonsChunkPlugin` makes it possible to extract common dependencies into bundles of their own.
 * `webpack.DefinePlugin` allows you to use feature flags in your code and eliminate the redundant code as discussed in this chapter.
 * [lodash-webpack-plugin](https://www.npmjs.com/package/lodash-webpack-plugin) creates smaller Lodash builds by replacing feature sets with smaller alternatives leading to more compact builds.
 
 ## Conclusion
 
-Even though simply setting `process.env.NODE_ENV` the right way can help a lot especially with React-related code, we can do better. Currently our build doesn't benefit on client level cache invalidation.
+Even though simply setting `process.env.NODE_ENV` the right way can help a lot especially with React-related code, we can do better. Currently, our build doesn't benefit on client level cache invalidation.
 
-To achieve this, the build requires placeholders in which webpack can insert hashes that invalidate the files as we update the application.
+To achieve this result, the build requires placeholders in which webpack can insert hashes that invalidate the files as we update the application.
