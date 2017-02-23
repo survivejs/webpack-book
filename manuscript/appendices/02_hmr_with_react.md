@@ -31,7 +31,7 @@ leanpub-end-insert
 
 ## Setting Up Webpack
 
-On webpack side, *react-hot-loader* requires an additional entry it uses to patch the running application. It is important the new entry runs first as otherwise the setup will fail to work reliably:
+On the webpack side, *react-hot-loader* requires an additional entry it uses to patch the running application. It is important the new entry runs first as otherwise, the setup will fail to work reliably:
 
 **webpack.config.js**
 
@@ -91,7 +91,7 @@ if (module.hot) {
 }
 ```
 
-To test the setup, a component is needed as well. In this case it's going to be a little counter so you can see how the hot replacement mechanism maintains the state:
+In order to test the setup, a component is needed as well. In this case, it's going to be a little counter so you can see how the hot replacement mechanism maintains the state:
 
 **app/counter.js**
 
@@ -123,11 +123,11 @@ const addOne = ({ amount }) => ({ amount: amount + 1 });
 export default Counter;
 ```
 
-If you run the application after these changes and modify the aforementioned file, it should pick up changes without a hard refresh while retaining the amount.
+If you run the application after these changes and modify the file above, it should pick up changes without a hard refresh while retaining the amount.
 
 ## Removing *react-hot-loader* Related Code from the Production Output
 
-If you build the application (`npm run build`) and examine the output, you might spot references to `__REACT_HOT_LOADER__` there. This is because of the Babel setup. It will use `react-hot-loader/babel` plugin regardless of the build target. In order to overcome this slight annoyance, we should configure Babel to apply the plugin only when we are developing.
+If you build the application (`npm run build`) and examine the output, you might spot references to `__REACT_HOT_LOADER__` there due to the Babel setup. It will use `react-hot-loader/babel` plugin regardless of the build target. To overcome this slight annoyance, we should configure Babel to apply the plugin only when we are developing.
 
 Babel provides an [env option](https://babeljs.io/docs/usage/babelrc/#env-option) for this purpose. It respects both `NODE_ENV` and `BABEL_ENV` environment variables. If `BABEL_ENV` is set, it will receive precedence. To fix the issue, we can push the problematic Babel plugin behind a development specific `env` while controlling its behavior within webpack configuration by setting `BABEL_ENV`.
 
@@ -147,7 +147,7 @@ leanpub-end-insert
 };
 ```
 
-Babel will now receive the target we pass to webpack allowing us to fix the behavior. Tweak Babel setup so it matches the fields below. The key part is in pushing `react-hot-loader/patch` below `env`:
+Babel will now receive the target we pass to webpack allowing us to fix the behavior. Tweak Babel setup, so it matches the fields below. The key part is in pushing `react-hot-loader/patch` below `env`:
 
 **.babelrc**
 
@@ -175,9 +175,9 @@ leanpub-end-insert
 }
 ```
 
-The development setup should work after this change still. If you examine the build output, you should notice it's missing the aforementioned references to `__REACT_HOT_LOADER__`.
+The development setup should work after this change still. If you examine the build output, you should notice it's missing references to `__REACT_HOT_LOADER__`.
 
-Even after this change the source contains some references still. This is a [bug in react-hot-loader](https://github.com/gaearon/react-hot-loader/issues/471) as it has been built so that it loses information that's valuable for a bundler.
+Even after this change, the source might contain some references still due to a [bug in react-hot-loader](https://github.com/gaearon/react-hot-loader/issues/471) as it has been built so that it loses information that's valuable for a bundler.
 
 It is possible to work around the issue by implementing a module chooser pattern as described in the *Setting Environment Variables* chapter. The idea is that `AppContainer` provided by *react-hot-loader* would be mocked with a dummy implementation during production usage.
 
@@ -227,11 +227,9 @@ W> In webpack 1 you had to use `extensions: ['', '.js', '.jsx']` to match files 
 
 ## Get Started Fast with *create-react-app*
 
-The fastest way to get started with webpack and React is to use [create-react-app](https://www.npmjs.com/package/create-react-app). It is a zero configuration approach that encapsulates a lot of best practices and it is particularly useful if you want to get started with a little project fast with minimal setup.
+The fastest way to get started with webpack and React is to use [create-react-app](https://www.npmjs.com/package/create-react-app). It is a zero configuration approach that encapsulates a lot of best practices, and it is particularly useful if you want to get started with a little project fast with minimal setup.
 
-One of the main attractions of *create-react-app* is a feature known as *ejecting*. This means that instead of treating it as a project dependency, you'll get a full webpack setup out of it.
-
-There's a gotcha, though. After you eject, you cannot go back to the dependency-based model, and you will have to maintain the resulting setup yourself.
+One of the main attractions of *create-react-app* is a feature known as *ejecting* that allows you to extract a full-blown webpack setup out of it. There's a problem, though. After you eject, you cannot go back to the dependency-based model, and you will have to maintain the resulting setup yourself.
 
 ## Conclusion
 
