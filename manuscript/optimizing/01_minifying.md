@@ -1,4 +1,4 @@
-# Minifying the Build
+# Minifying Build
 
 We haven't given thought to our build output yet and no doubt it's going to be a little chunky, especially as we included React in it. We can apply a variety of techniques to bring down the size of the vendor bundle. We can also leverage client level caching and load certain assets lazily as we saw earlier.
 
@@ -166,7 +166,7 @@ Given it needs to do more work, it took longer to execute the build. But on the 
 
 T> UglifyJS warnings can help you to understand how it processes the code. Therefore, it may be beneficial to have a peek at the full output every once in a while.
 
-T> There's a standalone version of the plugin packaged as [uglifyjs-webpack-plugin](https://www.npmjs.com/package/uglifyjs-webpack-plugin). It allows you to control the version of UglifyJS you are using.
+W> UglifyJS does not support ES6 features yet. If your code contains any, Uglify will fail! Therefore you should preprocess your code before passing it to Uglify or use some other solution. [uglifyjs-webpack-plugin](https://www.npmjs.com/package/uglifyjs-webpack-plugin) allows you to try out an experimental version of UglifyJS that provides better support for ES6. More alternatives are listed later in this chapter.
 
 ## Controlling UglifyJS through Webpack
 

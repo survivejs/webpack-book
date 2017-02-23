@@ -237,7 +237,7 @@ fontawesome-webfont.woff2    77.2 kB          [emitted]
 ...
 ```
 
-Note that the SVG file included in Font Awesome has been marked as `[big]`. It is beyond the performance budget defaults set by webpack. The topic is discussed in detail at the *Minifying the Build* chapter.
+Note that the SVG file included in Font Awesome has been marked as `[big]`. It is beyond the performance budget defaults set by webpack. The topic is discussed in detail at the *Minifying Build* chapter.
 
 ### Disabling SVG Font Loading
 

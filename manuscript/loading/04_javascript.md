@@ -167,9 +167,15 @@ Note especially how the function was transformed. This code should work in older
 
 Given it's not always enough to transform ES6 code to older format and expect it to work, polyfilling may be needed. The simplest way to solve this problem is to include [babel-polyfill](https://babeljs.io/docs/usage/polyfill/) to your project. A simple way to achieve that in webpack is to either include it to an entry (`app: ['babel-polyfill', PATHS.app]`) or `import 'babel-polyfill'` from code to get it bundled.
 
+It is important to note that *babel-polyfill* pollutes the global scope with objects like `Promise`. Given this can be problematic for library authors, there's [transform-runtime](https://babeljs.io/docs/plugins/transform-runtime/) option. It can be enabled as a Babel plugin and it will avoid the problem of globals by rewriting the code in such way that they won't be needed.
+
+## Babel Preset Based on Environment
+
 Especially in bundle size sensitive environments *babel-polyfill* might not be the best option. If you know well which environment (browser versions, Node) you support, [babel-preset-env](https://www.npmjs.com/package/babel-preset-env) provides a more granular way to achieve the same result with smaller size.
 
-It is important to note that *babel-polyfill* pollutes the global scope with objects like `Promise`. Given this can be problematic for library authors, there's [transform-runtime](https://babeljs.io/docs/plugins/transform-runtime/) option. It can be enabled as a Babel plugin and it will avoid the problem of globals by rewriting the code in such way that they won't be needed.
+*babel-preset-env* is a forward looking option. The advantage of using it is that then you don't have to worry about enabling specific language extensions specifically as it handles the work for you based on your target definition.
+
+The gotcha is that if you want to minify your code, then you have to use tooling that supports ES6 as well. [babili](https://www.npmjs.com/package/babili) is a good option for that. The topic is discussed in detail at the **Minifying Build** chapter.
 
 ## Babel Tips
 
