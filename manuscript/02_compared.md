@@ -1,16 +1,16 @@
 # Webpack Compared
 
-You can understand better why webpack's approach is powerful by putting it into a historical context. Back in the day, it was enough to concatenate some scripts together. Times have changed, though, and now distributing your JavaScript code can be a complex endeavor.
+You can understand better why webpack's approach is powerful by putting it into a historical context. Back in the day, it was enough to concatenate some scripts together. Times have changed, though, and now distributing your JavaScript code can be a complicated endeavor.
 
-This problem has escalated with the rise of single page applications (SPAs). They tend to rely on numerous hefty libraries. For this reason, there are multiple strategies on how to load them. You could load them all at once or consider loading libraries as you need them. Webpack supports many of these sort of strategies.
+This problem has escalated with the rise of single page applications (SPAs). They tend to rely on many hefty libraries. For this reason, there are multiple strategies on how to load them. You could load them all at once or consider loading libraries as you need them. Webpack supports many of these sorts of strategies.
 
-The popularity of Node and [npm](https://www.npmjs.com/), its package manager, provide more context. Before npm became popular, it was difficult to consume dependencies. There was a period of time when people developed frontend specific package managers, but npm won in the end. Now dependency management is easier than before, although there are still challenges to overcome.
+The popularity of Node and [npm](https://www.npmjs.com/), its package manager, provide more context. Before npm became popular, it was hard to consume dependencies. There was a period when people developed frontend specific package managers, but npm won in the end. Now dependency management is easier than before, although there are still challenges to overcome.
 
 ## Task Runners and Bundlers
 
-Historically speaking, there have been many build tools. *Make* is perhaps the best known, and it is still a viable option. Specialized *task runners*, such as Grunt, and Gulp were created particularly with JavaScript developers in mind. Plugins available through npm made both task runners powerful and extendable. It is possible to use even npm `scripts` as a task runner. That's common, particularly with webpack.
+Historically speaking, there have been many build tools. *Make* is perhaps the best known, and it is still a viable option. Specialized *task runners*, such as Grunt and Gulp were created particularly with JavaScript developers in mind. Plugins available through npm made both task runners powerful and extendable. It is possible to use even npm `scripts` as a task runner. That's common, particularly with webpack.
 
-Task runners are great tools on a high level. They allow you to perform operations in a cross-platform manner. The problems begin when you need to splice various assets together and produce bundles. This is the reason we have *bundlers*, such as Browserify, Brunch, or webpack.
+Task runners are great tools on a high level. They allow you to perform operations in a cross-platform manner. The problems begin when you need to splice various assets together and produce bundles. *bundlers*, such as Browserify, Brunch, or webpack, exist for this reason.
 
 For a while, a solution known as [RequireJS](http://requirejs.org/) was popular. The idea was to provide an asynchronous module definition and build on top of that. The format, AMD, is covered in greater detail later in this chapter. Fortunately, the standards have caught up, and RequireJS seems more like a curiosity now.
 
@@ -18,16 +18,16 @@ I have listed a couple of upcoming alternatives below:
 
 * [JSPM](http://jspm.io/) pushes package management directly to the browser. It relies on [System.js](https://github.com/systemjs/systemjs), a dynamic module loader, and skips the bundling step altogether during development. You can generate a production bundle using it. Glen Maddern goes into good detail on his [video about JSPM](https://www.youtube.com/watch?t=33&v=iukBMY4apvI).
 * [pundle](https://www.npmjs.com/package/pundle) advertises itself as a next generation bundler and notes particularly its performance.
-* [Rollup](https://www.npmjs.com/package/rollup) focuses particularly on bundling ES6 code. A feature known as *tree shaking* is one of its main attractions. It allows you to drop unused code based on usage. Tree shaking is supported by webpack 2 up to a point. You can use Rollup with webpack through [rollup-loader](https://www.npmjs.com/package/rollup-loader).
+* [Rollup](https://www.npmjs.com/package/rollup) focuses particularly on bundling ES6 code. A feature known as *tree shaking* is one of its attractions. It allows you to drop unused code based on usage. Tree shaking is supported by webpack 2 up to a point. You can use Rollup with webpack through [rollup-loader](https://www.npmjs.com/package/rollup-loader).
 * [AssetGraph](https://www.npmjs.com/package/assetgraph) takes an entirely different approach and builds on top of HTML semantics making it highly useful for tasks like [hyperlink analysis](https://www.npmjs.com/package/hyperlink) or [structural analysis](https://www.npmjs.com/package/assetviz). [webpack-assetgraph-plugin](https://www.npmjs.com/package/webpack-assetgraph-plugin) bridges webpack and AssetGraph together.
 * [FuseBox](https://github.com/fuse-box/fuse-box) is a bundler focusing on speed. It uses a zero-configuration approach and aims to be usable out of the box.
-* [StealJS](https://stealjs.com/) is a dependency loader and a build tool which has focus on performance and ease of use.
+* [StealJS](https://stealjs.com/) is a dependency loader and a build tool which has focused on performance and ease of use.
 
 I'll go through the main options next in greater detail.
 
 ## Make
 
-[Make](https://en.wikipedia.org/wiki/Make_%28software%29) goes way back, as it was initially released in 1977. Even though it's an old tool, it has remained relevant. Make allows you to write separate tasks for various purposes. For instance, you might have separate tasks for creating a production build, minifying your JavaScript or running tests. You can find the same idea in many other tools.
+[Make](https://en.wikipedia.org/wiki/Make_%28software%29) goes way back, as it was initially released in 1977. Even though it's an old tool, it has remained relevant. Make allows you to write separate tasks for various purposes. For instance, you might have different tasks for creating a production build, minifying your JavaScript or running tests. You can find the same idea in many other tools.
 
 Even though Make is mostly used with C projects, it's not tied to it in any way. James Coglan discusses in detail [how to use Make with JavaScript](https://blog.jcoglan.com/2014/02/05/building-javascript-projects-with-make/). Consider the abbreviated code based on James' post below:
 
@@ -62,11 +62,11 @@ clean:
     rm -rf build
 ```
 
-With Make, you model your tasks using Make-specific syntax and terminal commands. This allows it to integrate easily with webpack.
+With Make, you model your tasks using Make-specific syntax and terminal commands making it easy to integrate with webpack.
 
 ## RequireJS
 
-[RequireJS](http://requirejs.org/) was perhaps the first script loader that became truly popular. It gave us the first proper look of what modular JavaScript at the web could be. Its greatest attraction was AMD. It introduced a `define` wrapper:
+[RequireJS](http://requirejs.org/) was perhaps the first script loader that became genuinely popular. It gave us the first proper look at what modular JavaScript on the web could be. Its greatest attraction was AMD. It introduced a `define` wrapper:
 
 ```javascript
 define(['./MyModule.js'], function (MyModule) {
@@ -93,15 +93,15 @@ define(['require'], function (require) {
 });
 ```
 
-This latter approach definitely eliminates some of the clutter. You will still end up with some code that might feel redundant. Given there's ES6 now, it probably doesn't make much sense to use AMD anymore unless you must due to legacy reasons.
+This latter approach eliminates some of the clutter. You will still end up with some code that might feel redundant. Given there's ES6 now, it probably doesn't make much sense to use AMD anymore unless you have to due to legacy reasons.
 
-T> Jamund Ferguson has written a nice blog series on how to port from [RequireJS to webpack](https://gist.github.com/xjamundx/b1c800e9282e16a6a18e).
+T> Jamund Ferguson has written an excellent blog series on how to port from [RequireJS to webpack](https://gist.github.com/xjamundx/b1c800e9282e16a6a18e).
 
 ### UMD
 
 UMD, universal module definition, takes it all to the next level. It is a monster of a format that aims to make the various formats compatible with each other. Check out [the official definitions](https://github.com/umdjs/umd) to understand it in greater detail.
 
-T> Webpack can generate UMD wrappers for you (`output.libraryTarget: 'umd'`). This is particularly useful for package authors. We'll get back to this later in the *Authoring Packages* chapter.
+T> Webpack can generate UMD wrappers for you (`output.libraryTarget: 'umd'`). We'll get back to this later in the *Authoring Packages* chapter.
 
 ## Grunt
 
@@ -109,7 +109,7 @@ T> Webpack can generate UMD wrappers for you (`output.libraryTarget: 'umd'`). Th
 
 [Grunt](http://gruntjs.com/) was the first popular task runner for frontend developers. Its plugin architecture contributed towards its popularity. Plugins are often complex by themselves. As a result, when configuration grows, it can become difficult to understand what's going on.
 
-Here's an example from [Grunt documentation](http://gruntjs.com/sample-gruntfile). In this configuration, we define a linting and a watcher task. When the *watch* task is run, it will trigger the *lint* task as well. This way, as we run Grunt, we'll get warnings in real-time in our terminal as we edit our source code.
+Here's an example from [Grunt documentation](http://gruntjs.com/sample-gruntfile). In this configuration, we define a linting and a watcher task. When the *watch* task gets run, it will trigger the *lint* task as well. This way, as we run Grunt, we'll get warnings in real-time in our terminal as we edit our source code.
 
 **Gruntfile.js**
 
@@ -139,9 +139,9 @@ module.exports = function(grunt) {
 
 In practice, you would have many small tasks like this for specific purposes, such as building the project. An important part of the power of Grunt is that it hides a lot of the wiring from you.
 
-Taken too far, this can get problematic. It can become hard to thoroughly understand what's going on under the hood. That's the architectural lesson to take from Grunt.
+Taken too far, this can get problematic. It can become hard to understand what's going on under the hood. That's the architectural lesson to take from Grunt.
 
-T> Note that the [grunt-webpack](https://www.npmjs.com/package/grunt-webpack) plugin allows you to use webpack in a Grunt environment while allowing you to leave the heavy lifting to webpack.
+T> Note that the [grunt-webpack](https://www.npmjs.com/package/grunt-webpack) plugin allows you to use webpack in a Grunt environment while you leave the heavy lifting to webpack.
 
 ## Gulp
 
@@ -231,7 +231,7 @@ Even though npm CLI wasn't primarily designed to be used as a task runner, it wo
 }
 ```
 
-These scripts can be listed using `npm run` and then executed using `npm run <script>`. You can also namespace your scripts using a convention like `test:watch`. The gotcha with this approach is that it takes some care to keep it cross-platform.
+These scripts can be listed using `npm run` and then executed using `npm run <script>`. You can also namespace your scripts using a convention like `test:watch`. The problem with this approach is that it takes some care to keep it cross-platform.
 
 Instead of `rm -rf`, you might want to use a utility like [rimraf](https://www.npmjs.com/package/rimraf) and so on. It's possible to invoke other tasks runners here to hide the fact that you are using one. This way you can refactor your tooling while keeping the interface as the same.
 
@@ -241,7 +241,7 @@ Instead of `rm -rf`, you might want to use a utility like [rimraf](https://www.n
 
 Dealing with JavaScript modules has always been a bit of a problem. The language itself didn't have the concept of modules till ES6. Ergo, we have been stuck in the '90s when it comes to browser environments. Various solutions, including [AMD](http://requirejs.org/docs/whyamd.html), have been proposed.
 
-[Browserify](http://browserify.org/) is one solution to the module problem. It provides a way to bundle CommonJS modules together. You can hook it up with Gulp and you can find smaller transformation tools that allow you to move beyond the basic usage. For example, [watchify](https://www.npmjs.com/package/watchify) provides a file watcher that creates bundles for you during development. This will save some effort and no doubt is a good solution up to a point.
+[Browserify](http://browserify.org/) is one solution to the module problem. It provides a way to bundle CommonJS modules together. You can hook it up with Gulp, and you can find smaller transformation tools that allow you to move beyond the basic usage. For example, [watchify](https://www.npmjs.com/package/watchify) provides a file watcher that creates bundles for you during development saving effort.
 
 The Browserify ecosystem is composed of a lot of small modules. In this way, Browserify adheres to the Unix philosophy. Browserify is a little easier to adopt than webpack, and is, in fact, a good alternative to it.
 
@@ -285,7 +285,7 @@ T> There is an experimental [Hot Module Reloading runtime](https://github.com/br
 
 ![JSPM](images/jspm.png)
 
-Using JSPM is quite different than earlier tools. It comes with a little command line tool of its own that is used to install new packages to the project, create a production bundle, and so on. It supports [SystemJS plugins](https://github.com/systemjs/systemjs#plugins) that allow you to load various formats to your project.
+Using JSPM is quite different than previous tools. It comes with a little command line tool of its own that is used to install new packages to the project, create a production bundle, and so on. It supports [SystemJS plugins](https://github.com/systemjs/systemjs#plugins) that allow you to load various formats to your project.
 
 ## Webpack
 
@@ -293,12 +293,12 @@ Using JSPM is quite different than earlier tools. It comes with a little command
 
 You could say [webpack](https://webpack.js.org/) takes a more monolithic approach than Browserify. Whereas Browserify consists of multiple small tools, webpack comes with a core that provides a lot of functionality out of the box.
 
-Webpack core can be extended using specific *loaders* and *plugins*. It gives control over how it *resolves* the modules, making it possible to adapt your build to match-specific situations and work-around packages that don't work perfectly out of the box.
+Webpack core can be extended using specific *loaders* and *plugins*. It gives control over how it *resolves* the modules, making it possible to adapt your build to match specific situations and workaround packages that don't work correctly out of the box.
 
 Compared to the other tools, webpack might come with some initial complexity, but it makes up for this through its broad feature set. It is an advanced tool that requires patience. But once you understand the basic ideas behind it, webpack becomes powerful.
 
 ## Conclusion
 
-Webpack solves a fair share of common web development problems. If you know it well, it will save a great deal of time although it will take some time to learn to use it. Instead of jumping to a complex webpack based boilerplate, consider spending time with simpler setups first and developing your own. The setups will make more sense after that.
+Webpack solves a fair share of common web development problems. If you know it well, it will save lots of time although it will take some time to learn to use it. Instead of jumping to a complex webpack based boilerplate, consider spending time with simpler setups first and developing your own. The configuration will make more sense after that.
 
-The next chapter explains what webpack is in greater detail. That provides a good basis for delving deeper.
+The next chapter explains what webpack is in greater detail. That provides a suitable basis for delving deeper.
