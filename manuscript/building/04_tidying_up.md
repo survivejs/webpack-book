@@ -2,7 +2,7 @@
 
 The current setup doesn't clean the *build* directory between builds. As a result, it will keep on accumulating files as our project changes. Given this can get annoying, we should clean it up in between.
 
-Another nice touch would be to include information about the build itself to the generated bundles. This could be a small comment at the top of each file including version information at least.
+Another nice touch would be to include information about the build itself to the generated bundles as a small comment at the top of each file including version information at least.
 
 ## Cleaning the Build Directory
 
@@ -60,7 +60,7 @@ After this change, our `build` directory should remain nice and tidy while build
 
 ## Attaching a Revision to the Build
 
-It can be useful to attach information about the current build revision to the build files themselves. This can be achieved using [webpack.BannerPlugin](https://webpack.js.org/plugins/banner-plugin/). It can be used in combination with [git-revision-webpack-plugin](https://www.npmjs.com/package/git-revision-webpack-plugin) to generate a small comment at the beginning of the generated files.
+It can be useful to attach information about the current build revision to the build files themselves. The desired result can be achieved using [webpack.BannerPlugin](https://webpack.js.org/plugins/banner-plugin/). It can be used in combination with [git-revision-webpack-plugin](https://www.npmjs.com/package/git-revision-webpack-plugin) to generate a small comment at the beginning of the generated files.
 
 ### Setting Up `BannerPlugin` and `GitRevisionPlugin`
 
@@ -117,7 +117,7 @@ If you build the project (`npm run build`), you should notice the built files co
 
 The output can be customized further by adjusting the banner. You can also pass revision information to the application using `webpack.DefinePlugin`. This technique is discussed in detail at the *Setting Environments Chapter*.
 
-W> The code expects you run it within a Git repository! Otherwise you will get a `fatal: Not a git repository (or any of the parent directories): .git` error. If you are not using Git, you can replace the banner with some other data.
+W> The code expects you run it within a Git repository! Otherwise, you will get a `fatal: Not a git repository (or any of the parent directories): .git` error. If you are not using Git, you can replace the banner with some other data.
 
 ## Copying Files
 
@@ -127,4 +127,4 @@ Copying files is another common operation you can handle with webpack. [copy-web
 
 ## Conclusion
 
-Often, you work with webpack like this: First, you identify a problem and then find a plugin to tackle it. It is entirely fine to solve these types of issues outside of webpack, but webpack can often handle them as well.
+Often, you work with webpack like this: First, you identify a problem and then find a plugin to tackle it. It is entirely acceptable to solve these types of issues outside of webpack, but webpack can often handle them as well.
