@@ -39,30 +39,30 @@ T> `minChunks` is optional in this case. Passing `Infinity` to it tells webpack 
 If you build the project now (`npm run build`), you should see something like this:
 
 ```bash
-Hash: bbb0533fcf122aa76e63
+Hash: 02314843647ee4f50d46
 Version: webpack 2.2.1
-Time: 3791ms
-           Asset       Size  Chunks             Chunk Names
-     a6811631.js  815 bytes    2, 3  [emitted]  app
-    674f50d2.eot     166 kB          [emitted]
-  af7ae505.woff2    77.2 kB          [emitted]
-   fee66e71.woff      98 kB          [emitted]
-    11ec0064.svg   22 bytes          [emitted]
-    85011118.png      77 kB          [emitted]
-     2ef8cb5e.js  184 bytes    0, 3  [emitted]
-     ef8343c2.js    23.2 kB    1, 3  [emitted]  vendor
-    b06871f2.ttf     166 kB          [emitted]
-     81e0620a.js    1.46 kB       3  [emitted]  manifest
-    eae1155e.css    46.8 kB    2, 3  [emitted]  app
- 2ef8cb5e.js.map  796 bytes    0, 3  [emitted]
- ef8343c2.js.map     273 kB    1, 3  [emitted]  vendor
- a6811631.js.map    6.47 kB    2, 3  [emitted]  app
-eae1155e.css.map   89 bytes    2, 3  [emitted]  app
- 81e0620a.js.map      14 kB       3  [emitted]  manifest
-      index.html  344 bytes          [emitted]
-  [14] ./app/component.js 461 bytes {2} [built]
-  [15] ./app/shake.js 138 bytes {2} [built]
-  [16] ./~/font-awesome/css/font-awesome.css 41 bytes {2} [built]
+Time: 3628ms
+                   Asset       Size  Chunks             Chunk Names
+         app.801b7672.js  882 bytes    2, 3  [emitted]  app
+    ...font.11ec0064.svg   22 bytes          [emitted]
+    ...font.674f50d2.eot     166 kB          [emitted]
+   ...font.fee66e71.woff      98 kB          [emitted]
+  ...font.af7ae505.woff2    77.2 kB          [emitted]
+       logo.9a0d8fb8.png    17.6 kB          [emitted]
+           0.a749f8b7.js  199 bytes    0, 3  [emitted]
+      vendor.f80a9a7b.js    23.7 kB    1, 3  [emitted]  vendor
+    ...font.b06871f2.ttf     166 kB          [emitted]
+    manifest.fddd3c23.js    1.52 kB       3  [emitted]  manifest
+        app.4d491c24.css    1.88 kB    2, 3  [emitted]  app
+       0.a749f8b7.js.map  812 bytes    0, 3  [emitted]
+  vendor.f80a9a7b.js.map     274 kB    1, 3  [emitted]  vendor
+     app.801b7672.js.map    6.56 kB    2, 3  [emitted]  app
+    app.4d491c24.css.map   93 bytes    2, 3  [emitted]  app
+manifest.fddd3c23.js.map    14.2 kB       3  [emitted]  manifest
+                        index.html  368 bytes          [emitted]
+[1Q41] ./app/main.css 41 bytes {2} [built]
+[2twT] ./app/index.js 557 bytes {2} [built]
+[5W1q] ./~/font-awesome/css/font-awesome.css 41 bytes {2} [built]
 ...
 ```
 
@@ -75,35 +75,37 @@ T> To get a better idea of the manifest contents, comment out `parts.minify()` a
 Try adjusting *app/index.js* and see how the hashes change. This time around it should **not** invalidate the vendor bundle, and only the manifest and app bundle names should be different like this:
 
 ```bash
-Hash: f7e0e907f63c71aea416
+Hash: 3c7635d30cf399aa8e12
 Version: webpack 2.2.1
-Time: 3615ms
-           Asset       Size  Chunks             Chunk Names
+Time: 3783ms
+                   Asset       Size  Chunks             Chunk Names
 leanpub-start-insert
-     de009ca0.js  889 bytes    2, 3  [emitted]  app
+         app.48532ac8.js  901 bytes    2, 3  [emitted]  app
 leanpub-end-insert
-    11ec0064.svg   22 bytes          [emitted]
-    674f50d2.eot     166 kB          [emitted]
-   fee66e71.woff      98 kB          [emitted]
-  af7ae505.woff2    77.2 kB          [emitted]
-    85011118.png      77 kB          [emitted]
-     a749f8b7.js  186 bytes    0, 3  [emitted]
-     f80a9a7b.js    23.7 kB    1, 3  [emitted]  vendor
-    b06871f2.ttf     166 kB          [emitted]
+    ...font.11ec0064.svg   22 bytes          [emitted]
+    ...font.674f50d2.eot     166 kB          [emitted]
+   ...font.fee66e71.woff      98 kB          [emitted]
+  ...font.af7ae505.woff2    77.2 kB          [emitted]
+       logo.9a0d8fb8.png    17.6 kB          [emitted]
+           0.a749f8b7.js  199 bytes    0, 3  [emitted]
+      vendor.f80a9a7b.js    23.7 kB    1, 3  [emitted]  vendor
+    ...font.b06871f2.ttf     166 kB          [emitted]
 leanpub-start-insert
-     1993b0fe.js    1.46 kB       3  [emitted]  manifest
+    manifest.03cc5a22.js    1.52 kB       3  [emitted]  manifest
 leanpub-end-insert
-    eae1155e.css    46.8 kB    2, 3  [emitted]  app
- a749f8b7.js.map  804 bytes    0, 3  [emitted]
- f80a9a7b.js.map     274 kB    1, 3  [emitted]  vendor
+        app.4d491c24.css    1.88 kB    2, 3  [emitted]  app
+       0.a749f8b7.js.map  812 bytes    0, 3  [emitted]
+  vendor.f80a9a7b.js.map     274 kB    1, 3  [emitted]  vendor
 leanpub-start-insert
- de009ca0.js.map    6.62 kB    2, 3  [emitted]  app
+     app.48532ac8.js.map    6.62 kB    2, 3  [emitted]  app
 leanpub-end-insert
-eae1155e.css.map   89 bytes    2, 3  [emitted]  app
- 1993b0fe.js.map      14 kB       3  [emitted]  manifest
-      index.html  344 bytes          [emitted]
+    app.4d491c24.css.map   93 bytes    2, 3  [emitted]  app
+leanpub-start-insert
+manifest.03cc5a22.js.map    14.2 kB       3  [emitted]  manifest
+leanpub-end-insert
+            index.html  368 bytes          [emitted]
 [1Q41] ./app/main.css 41 bytes {2} [built]
-[2twT] ./app/index.js 581 bytes {2} [built]
+[2twT] ./app/index.js 578 bytes {2} [built]
 [5W1q] ./~/font-awesome/css/font-awesome.css 41 bytes {2} [built]
 ...
 ```
