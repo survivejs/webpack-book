@@ -150,3 +150,7 @@ Besides the official documentation available at [eslint.org](http://eslint.org/)
 * [eslint-plugin-smells](https://github.com/elijahmanor/eslint-plugin-smells) - This plugin by Elijah Manor allows you to lint against JavaScript smells. Recommended.
 
 If you want a starting point, you can pick one of [eslint-config- packages](https://www.npmjs.com/search?q=eslint-config) or go with the [standard](https://www.npmjs.com/package/standard) style.
+
+## Conclusion
+
+Especially the fact that you can customize ESLint to various purposes makes it a powerful tool. Thanks to its vibrant ecosystem, it is likely you'll find rules that are close to your purposes. Those make excellent starting points for your own development.
