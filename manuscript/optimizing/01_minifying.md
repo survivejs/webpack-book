@@ -1,14 +1,14 @@
 # Minifying Build
 
-We haven't given thought to our build output yet and no doubt it's going to be a little chunky, especially as we included React in it. We can apply a variety of techniques to bring down the size of the vendor bundle. We can also leverage client level caching and load certain assets lazily as we saw earlier.
+We haven't given thought to our build output yet and no doubt it's going to be a little chunky, especially as we included React in it. We can apply a variety of techniques to bring down the size of the vendor bundle. We can also leverage client level caching and load individual assets lazily as we saw earlier.
 
-**Minification** is a process where code is simplified without losing any meaning that matters to the interpreter. As a result, your code will most likely look jumbled and it will be hard to read. But that's the point.
+**Minification** is a process where the code is simplified without losing any meaning that matters to the interpreter. As a result, your code will most likely look jumbled, and it will be hard to read. But that's the point.
 
-T> Even if we minify our build, we can still generate source maps through the `devtool` option we discussed earlier. This will give us better means to debug, even production code if we want.
+T> Even if we minify our build, we can still generate source maps through the `devtool` option we discussed earlier to gain a better debugging experience, even production code if we want.
 
 ## Generating a Baseline Build
 
-To get started, we should generate a baseline build so we have something to optimize. Execute `npm run build`. You should end up with something like this:
+To get started, we should generate a baseline build, so we have something to optimize. Execute `npm run build`. You should end up with something like this:
 
 ```bash
 Hash: 4f6f78b2fd2c38e8200d
@@ -44,7 +44,7 @@ Webpack allows you to define a **performance budget**. The idea is that it will 
 
 Performance budget can be configured to provide warnings or errors. If a budget isn't met and it has been configured to emit an error, it would terminate the entire build.
 
-To integrate the feature to the project, adjust the configuration like this:
+To integrate the feature into the project, adjust the configuration like this:
 
 **webpack.config.js**
 
@@ -86,15 +86,15 @@ If we do our work right, we will meet the given budget and eliminate this warnin
 
 ## Minifying JavaScript
 
-Ideally, minification will convert our code into a smaller format without losing any meaning. Usually this means some amount of rewriting code through predefined transformations. Good examples of this include renaming variables or even removing entire blocks of code based on the fact that they are unreachable like an `if (false)` statement.
+Ideally, minification will convert our code into a smaller format without losing any meaning. Usually, this means some amount of rewriting code through predefined transformations. Good examples of this include renaming variables or even removing entire blocks of code based on the fact that they are unreachable like an `if (false)` statement.
 
-Sometimes minification can break code as it can rewrite pieces of code you inadvertently depend upon. Angular 1 was an example of this as it relied on a specific function parameter naming and rewriting the parameters could break code unless you took precautions against it.
+Sometimes minification can break code as it can rewrite pieces of code. Angular 1 was an example of this as it relied on a specific function parameter naming and rewriting the parameters could break code unless you took precautions against it.
 
 The easiest way to enable minification in webpack is to call `webpack -p`. `-p` is a shortcut for `--optimize-minimize`, you can think it as `-p` for "production". Alternately, we can use a plugin directly as this provides us more control. Relying on the flag comes with its problems. If you want to override minification settings, you will have to drop it and rewrite the configuration yourself to avoid minifying twice.
 
 ### Setting Up JavaScript Minification
 
-As earlier, we can define a little function for this purpose and then point to it from our main configuration. By default, UglifyJS will output a lot of warnings and they don't provide value in this case, so we'll be disabling them in our setup. Here's the basic idea:
+As earlier, we can define a little function for this purpose and then point to it from our main configuration. By default, UglifyJS will output a lot of warnings, and they don't provide value, so we'll be disabling them in our setup. Here's the basic idea:
 
 **webpack.parts.js**
 
@@ -162,7 +162,7 @@ fontawesome-webfont.woff2    77.2 kB          [emitted]
 ...
 ```
 
-Given it needs to do more work, it took longer to execute the build. But on the plus side the build is now smaller and our vendor build went from 150 kB to roughly 45 kB.
+Given it needs to do more work, it took longer to execute the build. But on the plus side, the build is now smaller, and our vendor build went from 150 kB to roughly 45 kB.
 
 T> UglifyJS warnings can help you to understand how it processes the code. Therefore, it may be beneficial to have a peek at the full output every once in a while.
 
@@ -170,7 +170,7 @@ W> UglifyJS does not support ES6 features yet. If your code contains any, Uglify
 
 ## Controlling UglifyJS through Webpack
 
-An UglifyJS feature, **mangling**, will be enabled by default. The feature will reduce local function and variable names to a minimum, usually to a single character. It can also rewrite properties to a more compact format if configured specifically.
+An UglifyJS feature, **mangling**, will be enabled by default. The feature will reduce local function and variable names to a minimum, usually to a single character. It can also rewrite properties to a more compact format if configured correctly.
 
 Given these transformations can break your code, you must be a little careful. A good example of this is Angular 1 and its dependency injection system. As it relies on strings, you must be careful not to mangle those or else it will fail to work.
 
@@ -208,13 +208,13 @@ T> Dropping the `console` statements can be achieved through Babel too by using 
 
 ## Other Ways to Minify JavaScript
 
-Yet another way to control UglifyJS would be to use the [uglify-loader](https://www.npmjs.com/package/uglify-loader). That gives yet another way to control minification behavior. [webpack-parallel-uglify-plugin](https://www.npmjs.com/package/webpack-parallel-uglify-plugin) allows you to parallelize the minifying step and may yield extra performance as webpack doesn't run in parallel by default.
+Another way to control UglifyJS would be to use the [uglify-loader](https://www.npmjs.com/package/uglify-loader). That gives yet another way to control minification behavior. [webpack-parallel-uglify-plugin](https://www.npmjs.com/package/webpack-parallel-uglify-plugin) allows you to parallelize the minifying step and may yield extra performance as webpack doesn't run in parallel by default.
 
 I've listed a couple of UglifyJS alternatives below:
 
 * [webpack-closure-compiler](https://www.npmjs.com/package/webpack-closure-compiler) runs parallel and may give even smaller result than UglifyJS.
 * [babili](https://www.npmjs.com/package/babili) is a Babel specific solution. It can be used either as a command line tool or through [babili-webpack-plugin](https://www.npmjs.com/package/babili-webpack-plugin).
-* [optimize-js-plugin](https://www.npmjs.com/package/optimize-js-plugin) complements the other solutions by wrapping eager functions. The benefit of doing this is that it enhances the way your JavaScript code gets parsed initially. This plugin relies on [optimize-js](https://github.com/nolanlawson/optimize-js) by Nolan Lawson. [v8-lazy-parse-webpack-plugin](https://www.npmjs.com/package/v8-lazy-parse-webpack-plugin) is a similar, highly experimental, plugin doing something similar with V8.
+* [optimize-js-plugin](https://www.npmjs.com/package/optimize-js-plugin) complements the other solutions by wrapping eager functions. The benefit of doing this is that it enhances the way your JavaScript code gets parsed initially. This plugin relies on [optimize-js](https://github.com/nolanlawson/optimize-js) by Nolan Lawson. [v8-lazy-parse-webpack-plugin](https://www.npmjs.com/package/v8-lazy-parse-webpack-plugin) is a similar experimental plugin doing something similar with V8.
 
 ## Minifying CSS
 
@@ -224,7 +224,7 @@ I've listed a couple of UglifyJS alternatives below:
 
 [optimize-css-assets-webpack-plugin](https://www.npmjs.com/package/optimize-css-assets-webpack-plugin) is a plugin based option that applies a chosen minifier on CSS assets. Using `ExtractTextPlugin` can lead to duplicated CSS given it only merges text chunks. `OptimizeCSSAssetsPlugin` avoids this problem by operating on the generated result and thus can lead to a better result.
 
-W> In webpack 1 `minimize` was set on by default if `UglifyJsPlugin` was used. This confusing behavior was fixed in webpack 2 and now you have explicit control over minification.
+W> In webpack 1 `minimize` was set on by default if `UglifyJsPlugin` was used. This confusing behavior was fixed in webpack 2, and now you have explicit control over minification.
 
 ### Setting Up CSS Minification
 
@@ -234,7 +234,7 @@ Out of the available solutions, `OptimizeCSSAssetsPlugin` composes the best. To 
 npm install optimize-css-assets-webpack-plugin cssnano --save-dev
 ```
 
-Like for JavaScript, we can wrap the idea within a configuration part:
+Like for JavaScript, we can wrap the idea in a configuration part:
 
 **webpack.parts.js**
 
