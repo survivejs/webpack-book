@@ -1,10 +1,10 @@
 # Loading Fonts
 
-Loading fonts is a tough problem. Normally you have up to four font formats to worry about, each for a certain browser. You have a couple of strategies to consider.
+Loading fonts is problematic. Normally you have up to four font formats to worry about, each for a particular browser. You have a couple of strategies to consider.
 
 ## Choosing One Format
 
-Depending on your project requirements, you might be able to get away with less formats. If you exclude Opera Mini, all browsers support the *.woff* format. The render result may differ depending on the browser so you might want to experiment here.
+Depending on your project requirements, you might be able to get away with fewer formats. If you exclude Opera Mini, all browsers support the *.woff* format. The rendered result may differ depending on the browser so you might want to experiment here.
 
 If we go with one format, we can use a similar setup as for images and rely on both *file-loader* and *url-loader* while using the limit option:
 
@@ -104,7 +104,7 @@ Furthermore, it's possible to manipulate `publicPath` and override the default p
 
 ## Using Font Awesome
 
-The ideas above can be applied with [Font Awesome](https://www.npmjs.com/package/font-awesome). It's a collection of high quality font icons you can refer to using a CSS classes.
+The ideas above can be applied with [Font Awesome](https://www.npmjs.com/package/font-awesome). It's a collection of high-quality font icons you can refer to using CSS classes.
 
 ### Integrating Font Awesome to the Project
 
@@ -144,7 +144,7 @@ You may need an appropriate loader to handle this file type.
 
 ### Implementing Webpack Configuration
 
-This is expected as we haven't configured loaders for any of Font Awesome fonts yet and webpack doesn't know what to do with the files in question. To match the files and map them through *file-loader*, attach the following snippet to the project:
+The result is expected as we haven't configured loaders for any of Font Awesome fonts yet and webpack doesn't know what to do with the files in question. To match the files and map them through *file-loader*, attach the following snippet to the project:
 
 **webpack.parts.js**
 
@@ -237,11 +237,11 @@ fontawesome-webfont.woff2    77.2 kB          [emitted]
 ...
 ```
 
-Note that the SVG file included in Font Awesome has been marked as `[big]`. It is beyond the performance budget defaults set by webpack. The topic is discussed in detail at the *Minifying Build* chapter.
+Note that the SVG file included in Font Awesome has been marked as `[big]`. It is beyond the performance budget defaults set by webpack. The topic is discussed in detail in the *Minifying Build* chapter.
 
 ### Disabling SVG Font Loading
 
-In order to drop the big SVG file and disable SVG loading, it is possible to capture SVG `import` and then rewrite the module as a `null` by using the [null-loader](https://www.npmjs.com/package/null-loader). This will get rid of the big file. To get started, install the loader first:
+To drop the big SVG file and disable SVG loading, it is possible to capture SVG `import` and then rewrite the module as a `null` by using the [null-loader](https://www.npmjs.com/package/null-loader) to get rid of the big file. To get started, install the loader first:
 
 ```bash
 npm install null-loader --save-dev
@@ -313,10 +313,10 @@ fontawesome-webfont.woff2    77.2 kB          [emitted]
 
 If you examine *fontawesome-webfont.svg*, it should contain `// empty (null-loader)` kind of comment. It is important that the `ignore` part gets evaluated before the font definition. Reverse order would break the font loading.
 
-The solution above is generic and it should work with other libraries as well. The problematic aspect about the approach is that Font Awesome still included fonts you are not using. [font-awesome-loader](https://www.npmjs.com/package/font-awesome-loader) allows more customization.
+The solution above is generic, and it should work with other libraries as well. The problematic aspect of the approach is that Font Awesome still included fonts you are not using. [font-awesome-loader](https://www.npmjs.com/package/font-awesome-loader) allows more customization.
 
 Font Awesome 5 will improve the situation further. If you want full control over which fonts you are using, [Font Awesome wiki](https://github.com/FortAwesome/Font-Awesome/wiki/Customize-Font-Awesome) points to available online services.
 
 ## Conclusion
 
-Loading fonts is similar to loading other assets. Here we have extra concerns to consider. We need to consider the browsers we want to support and choose the loading strategy based on that.
+Loading fonts is similar to loading other assets. Here we have additional concerns to consider. We need to consider the browsers we want to support and choose the loading strategy based on that.
