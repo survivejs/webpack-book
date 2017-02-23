@@ -1,6 +1,6 @@
 # Splitting Bundles
 
-Currently, the production version of our application is a single JavaScript file. This isn't ideal. If we change the application, the client must download vendor dependencies as well.
+Currently, the production version of our application is a single JavaScript file. If we change the application, the client must download vendor dependencies as well.
 
 It would be better to download only the changed portion. If the vendor dependencies change, then the client should fetch only the vendor dependencies. The same goes for actual application code. This technique is known as **bundle splitting**.
 
@@ -10,7 +10,7 @@ Using bundle splitting, we can push the vendor dependencies to a bundle of their
 
 To give you a simple example, instead of having *app.js* (100 kB), we could end up with *app.js* (10 kB) and *vendor.js* (90 kB). Now changes made to the application are cheap for the clients that have already used the application earlier.
 
-Caching comes with its own problems. One of those is cache invalidation. We'll discuss a potential approach related to that in the *Adding Hashes to Filenames* chapter.
+Caching comes with its problems. One of those is cache invalidation. We'll discuss a potential approach related to that in the *Adding Hashes to Filenames* chapter.
 
 Bundle splitting isn't the only way out. The *Code Splitting* chapter discusses another, more granular way.
 
@@ -57,13 +57,13 @@ fontawesome-webfont.woff2    77.2 kB          [emitted]
 ...
 ```
 
-As you can see, *app.js* is big. This is exactly what we wanted. We must do something about this next.
+As you can see, *app.js* is big. We must do something about this next.
 
 ## Setting Up a `vendor` Bundle
 
 So far our project has only a single entry named as `app`. As you might remember, our configuration tells webpack to traverse dependencies starting from the `app` entry directory and then to output the resulting bundle below our `build` directory using the entry name and `.js` extension.
 
-To improve the situation, we can define a `vendor` entry containing React. This is done by matching the dependency name. It is possible to generate this information automatically as discussed in the end of this chapter, but I'll go with a static array here to illustrate the basic idea. Change the code like this:
+To improve the situation, we can define a `vendor` entry containing React by matching the dependency name. It is possible to generate this information automatically as discussed at the end of this chapter, but I'll go with a static array here to illustrate the basic idea. Change the code like this:
 
 **webpack.config.js**
 
@@ -84,7 +84,7 @@ leanpub-end-insert
 ...
 ```
 
-We have two separate entries, or **entry chunks**, now. `[name].js` of our existing `output.path` configuration will kick in based on the entry name and if you try to generate a build now (`npm run build`), you should see something along this:
+We have two separate entries, or **entry chunks**, now. `[name].js` of our existing `output.path` the configuration will kick in based on the entry name. If you try to generate a build now (`npm run build`), you should see something along this:
 
 ```bash
 Hash: 826dae8d1f861ff05cb8
@@ -116,7 +116,7 @@ If you examine the resulting bundle, you can see that it contains React given th
 
 ![Separate app and vendor bundles](images/bundle_01.png)
 
-`CommonsChunkPlugin` is a webpack plugin that allows us alter this default behavior so that we can get the bundles we might expect.
+`CommonsChunkPlugin` is a webpack plugin that allows us to alter this default behavior so that we can get the bundles we might expect.
 
 W> This step can fail on Windows due to letter casing. Instead of `c:\` you may need to force your terminal to read `C:\`. There's more information in the [related webpack issue](https://github.com/webpack/webpack/issues/2362).
 
@@ -151,7 +151,7 @@ leanpub-end-insert
 ...
 ```
 
-This tells the plugin to extract React to a bundle named `vendor`. If you execute the build now using `npm run build`, you should see something along this:
+The configuration tells the plugin to extract React to a bundle named `vendor`. If you execute the build now using `npm run build`, you should see something along this:
 
 ```bash
 Hash: 9e99171a301a171aefaf
@@ -253,7 +253,7 @@ To pick React to the vendor build automatically based on usage, we have to drop 
 
 ## Loading `dependencies` to a `vendor` Bundle Automatically
 
-`CommonsChunkPlugin` gives control over its behavior through its `minChunks` options. In addition to a number and certain other values, `minChunks` accepts a function with a signature `(module, count)`. The first parameter contains a lot of information about the matches module and allows us to deduce which modules are used by the project. The second one tells how many times a specific module has been imported to the project.
+`CommonsChunkPlugin` gives control over its behavior through its `minChunks` options. In addition to a number and certain other values, `minChunks` accepts a function with a signature `(module, count)`. The first parameter contains a lot of information about the matches module and allows us to deduce which modules are used by the project. The second one tells how many times a particular module has been imported into the project.
 
 To capture only JavaScript files from *node_modules*, we should perform a check against each request:
 
@@ -284,13 +284,13 @@ leanpub-end-insert
 ...
 ```
 
-The build result should remain the same. This time, however, webpack will pull only dependencies we are using in the project and we don't have to maintain the list anymore. The check above works because `context`contains the full path to the module that was imported.
+The build result should remain the same. This time, however, webpack will pull only dependencies we are using in the project, and we don't have to maintain the list anymore. The check above works because `context` contains the full path to the module that was imported.
 
-The first `module` parameter contains a more than `context`. If you wanted to figure out how many times a specific module is included in the chunks generated by webpack, you could check `module.chunks.length`. This is useful especially if you want more control when code splitting is used.
+The first `module` parameter contains a more than `context`. If you wanted to figure out how many times a particular module is included in the chunks generated by webpack, you could check `module.chunks.length`. If you want more control when code splitting is used, this will be useful.
 
 ## Performing a More Granular Split
 
-Sometimes having only an app and a vendor bundle isn't enough. Especially as your application grows and gains more entry points, you may want to split the vendor bundle into multiples ones per each entry. The `minChunks` idea above can be combined with more granular control by specifying `chunks` which to process. Consider [the example adapted from a GitHub comment](https://github.com/webpack/webpack/issues/2855#issuecomment-239606760) below:
+Sometimes having only an app and a vendor bundle isn't enough. Especially when your application grows and gains more entry points, you may want to split the vendor bundle into multiples ones per each entry. The `minChunks` idea above can be combined with more granular control by specifying `chunks` which to process. Consider [the example adapted from a GitHub comment](https://github.com/webpack/webpack/issues/2855#issuecomment-239606760) below:
 
 ```javascript
 const config = {
@@ -327,7 +327,7 @@ const isVendor = ({ userRequest }) => (
 );
 ```
 
-The same code would look like this in terms of `parts.extractBundles` abstraction:
+The same code would look like this using the `parts.extractBundles` abstraction:
 
 ```javascript
 parts.extractBundles([
@@ -357,7 +357,7 @@ T> Note that the `chunks` option refers to the entry chunks of your configuratio
 `CommonsChunkPlugin` provides more control through `children` and `async` flags:
 
 * `children` - If `children` is set to `true`, webpack will detect which modules are the same in the resulting bundles and push them to the parent bundle.
-* `async` - The idea is the same if `async` is set to `true`. In this case webpack will generate a separate bundle with the commonalities and load it asynchronously from the parent.
+* `async` - The idea is the same if `async` is set to `true`. In this case, webpack will generate a separate bundle with the commonalities and load it asynchronously from the parent.
 
 The image below shows the difference compared to the default. The top circles represent the parent bundles. The way `B` is treated depends on the chosen option:
 
@@ -367,7 +367,7 @@ W> Note that the `children` behavior applies only to immediate children. The alg
 
 ## Splitting and Merging Chunks
 
-Webpack provides more control over the generated chunks by providing two plugins: `AggressiveSplittingPlugin` and `AggressiveMergingPlugin`. The former is particularly interesting as it allows you to emit more and smaller bundles. This is especially useful with HTTP/2 due to the way the new standard works.
+Webpack provides more control over the generated chunks by providing two plugins: `AggressiveSplittingPlugin` and `AggressiveMergingPlugin`. The former is particularly interesting as it allows you to emit more and smaller bundles. The behavior is especially useful with HTTP/2 due to the way the new standard works.
 
 There's a trade-off involved as you'll lose out in caching if you split to multiple small bundles. You also get request overhead in HTTP/1 environment. For now, the approach doesn't work when `HtmlWebpackPlugin` is enabled due to [a bug in the plugin](https://github.com/ampedandwired/html-webpack-plugin/issues/446).
 
@@ -384,7 +384,7 @@ Here's the basic idea of aggressive splitting:
 },
 ```
 
-The aggressive merging plugin works the inverse way and allows you to combine too small bundles into bigger ones:
+The aggressive merging plugin works the opposite way and allows you to combine too small bundles into bigger ones:
 
 ```javascript
 {
@@ -409,8 +409,8 @@ In the example above, we used different types of webpack chunks. Webpack treats 
 
 * **Entry chunks** - Entry chunks contain webpack runtime and modules it then loads.
 * **Normal chunks** - Normal chunks **don't** contain webpack runtime. Instead, these can be loaded dynamically while the application is running. A suitable wrapper (JSONP for example) is generated for these. We'll generate a normal chunk in the next chapter as we set up code splitting.
-* **Initial chunks** - Initial chunks are normal chunks that count towards initial loading time of the application and are generated by the `CommonsChunkPlugin`. As a user, you don't have to care about these. It's the split between entry chunks and normal chunks that's important.
+* **Initial chunks** - Initial chunks are normal chunks that count towards initial loading time of the application and are generated by the `CommonsChunkPlugin`. As a user, you don't have to care about these. It is the split between entry chunks and normal chunks that is important.
 
 ## Conclusion
 
-The situation is better now. Note how small `app` bundle compared to the `vendor` bundle. To benefit from this split, we will set up caching in the next part of this book.
+The situation is better now compared to the earlier. Note how small `app` bundle compared to the `vendor` bundle. To benefit from this split, we will set up caching in the next part of this book.
