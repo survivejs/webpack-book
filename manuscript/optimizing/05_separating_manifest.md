@@ -146,6 +146,8 @@ Records are particularly useful if you have a complex setup with code splitting 
 
 T> `recordsInputPath` and `recordsOutputPath` give more granular control over input and output, but often setting only `recordsPath` is enough.
 
+W> If you change the way webpack handles module IDs (i.e., remove `HashedModuleIdsPlugin`), possible existing records will still taken into account! If you want to use the new module ID scheme, you will have to remove your records file as well.
+
 ## Conclusion
 
 Our project has basic caching behavior now. If you try to modify *app.js* or *component.js*, the vendor bundle should remain the same. But what's contained in the build? You can figure that out by *Analyzing Build Statistics*, as we'll do in the next chapter.
