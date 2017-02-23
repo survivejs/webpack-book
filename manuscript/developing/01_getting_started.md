@@ -1,6 +1,6 @@
 # Getting Started
 
-Before getting started, make sure you are using a recent version of [Node](http://nodejs.org/). I recommend using at least the most recent LTS (long-term support) version. Before going further, you should have `node` and `npm` commands available at your terminal.
+Before getting started, make sure you are using a recent version of [Node](http://nodejs.org/). I recommend using at least the most current LTS (long-term support) version. Before going further, you should have `node` and `npm` commands available at your terminal.
 
 The completed configuration is available at [GitHub](https://github.com/survivejs-demos/webpack-demo). If you are unsure of something, refer there.
 
@@ -22,13 +22,13 @@ You can tweak the generated *package.json* manually to make further changes to i
 
 T> You can set those `npm init` defaults at *~/.npmrc*.
 
-T> This is a good place to set up version control using [Git](https://git-scm.com/). You can create a commit per step and tag per chapter so it's easier to move back and forth if you want.
+T> This is a good place to set up version control using [Git](https://git-scm.com/). You can create a commit per step and tag per chapter, so it's easier to move back and forth if you want.
 
 T> It is possible to replace most of the npm commands mentioned with [Yarn](https://yarnpkg.com/) equivalents. Yarn is a good alternative to npm as it comes with unique benefits including *lockfiles* and better performance.
 
 ## Installing Webpack
 
-Even though webpack can be installed globally (`npm install webpack -g`), I recommend maintaining it as a dependency of your project. This will avoid issues, as then you will have control over the exact version you are running.
+Even though webpack can be installed globally (`npm install webpack -g`), I recommend maintaining it as a dependency of your project to avoid issues, as then you will have control over the exact version you are running.
 
 The approach works nicely in **Continuous Integration** (CI) setups as well. A CI system can install your local dependencies, compile your project using them, and then push the result to a server.
 
@@ -42,9 +42,9 @@ You should see webpack at your *package.json* `devDependencies` section after th
 
 ## Executing Webpack
 
-You can display the exact path of the executables using `npm bin`. Most likely it points at *./node_modules/.bin*. Try executing webpack from there through terminal using `node_modules/.bin/webpack` or a similar command.
+You can display the exact path of the executables using `npm bin`. Most likely it points at *./node_modules/.bin*. Try running webpack from there through the terminal using `node_modules/.bin/webpack` or a similar command.
 
-After executing, you should see a version, a link to the command line interface guide and a long list of options. We won't be using most of those, but it's good to know that this tool is packed with functionality, if nothing else.
+After running, you should see a version, a link to the command line interface guide and an extensive list of options. We won't be using most of those, but it's good to know that this tool is packed with functionality if nothing else.
 
 ```bash
 webpack-demo $ node_modules/.bin/webpack
@@ -84,7 +84,7 @@ export default function (text = 'Hello world') {
 }
 ```
 
-Next, we are going to need an entry point for our application. It will simply `require` our component and render it through the DOM:
+Next, we are going to need an entry point for our application. It will `require` our component and render it through the DOM:
 
 **app/index.js**
 
@@ -96,7 +96,7 @@ document.body.appendChild(component());
 
 ## Setting Up Webpack Configuration
 
-We'll need to tell webpack how to deal with the assets we set up. For this purpose, we'll develop a *webpack.config.js* file. Webpack and its development server will be able to discover this file through convention.
+We'll need to tell webpack how to deal with the assets we set up. For this purpose, we'll develop a *webpack.config.js* file. Webpack and its development server will be able to discover this file through a convention.
 
 To keep things simple to maintain, we'll be using [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) to generate an *index.html* for our application. *html-webpack-plugin* wires up the generated assets with it. Install it to the project:
 
@@ -104,11 +104,11 @@ To keep things simple to maintain, we'll be using [html-webpack-plugin](https://
 npm install html-webpack-plugin --save-dev
 ```
 
-At minimum, it is good to have at least `entry` and `output` fields in your configuration. Often you see a lot more as you will specify how webpack deals with different file types and how it resolves them.
+At a minimum, it is nice to have at least `entry` and `output` fields in your configuration. Often you see a lot more as you will specify how webpack deals with different file types and how it resolves them.
 
-Entries tell webpack where to start parsing the application. In multi-page applications you may have an entry per page. Or you could have a configuration per entry as discussed later in this chapter.
+Entries tell webpack where to start parsing the application. In multi-page applications, you may have an entry per page. Or you could have a configuration per entry as discussed later in this chapter.
 
-It is good to note that all output related paths that you see in configuration are resolved against `output.path`. This means that if you had an output related option somewhere and wrote `styles/[name].css` to it, webpack would output the `styles` directory below the output path.
+It is good to note that all output related paths that you see in the configuration are resolved against `output.path` meaning that if you had an output related option somewhere and wrote `styles/[name].css` to it, webpack would output the `styles` directory below the output path.
 
 To illustrate how to connect `entry` and `output` with *html-webpack-plugin*, consider the code below:
 
@@ -177,18 +177,18 @@ The output tells us a lot. I've annotated it below:
 * `Hash: 3f76ae042ff0f2d98f35` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. We'll discuss hashing in detail at the *Adding Hashes to Filenames* chapter.
 * `Version: webpack 2.2.1` - Webpack version.
 * `Time: 377ms` - Time it took to execute the build.
-* `app.js    3.13 kB       0  [emitted]  app` - Name of the generated asset, size, the IDs of the **chunks** into which it is related, status information telling how it was generated, name of the chunk.
+* `app.js    3.13 kB       0  [emitted]  app` - Name of the generated asset, size, the IDs of the **chunks** into which it is related, status information telling how it was generated, the name of the chunk.
 * `index.html  180 bytes          [emitted]` - Another generated asset that was emitted by the process.
 * `[0] ./app/component.js 148 bytes {0} [built]` - The ID of the entry asset, name, size, entry chunk ID, the way it was generated.
-* `Child html-webpack-plugin for "index.html":` - This is plugin-related output. In this case *html-webpack-plugin* is doing output of its own.
+* `Child html-webpack-plugin for "index.html":` - This is plugin-related output. In this case *html-webpack-plugin* is doing the output of its own.
 
 Examine the output below `build/`. If you look closely, you can see the same IDs within the source. To see the application running, open the `build/index.html` file directly through a browser. On macOS `open ./build/index.html` works.
 
 T> It can be convenient to use a tool like *serve* (`npm install serve -g`) to serve the build directory. In this case, execute `serve` at the output directory and head to `http://localhost:3000` at your browser. You can configure the port through the `--port` parameter.
 
-T> If you want webpack to stop execution on the first error, set `bail: true` option. This kills entire webpack process and it is useful if you are building in a CI environment.
+T> If you want webpack to stop execution on the first error, set `bail: true` option. Setting it kills the entire webpack process and it is useful if you are building in a CI environment.
 
-T> In addition to a configuration object, webpack accepts an array of configurations as discussed at the *Build Targets* chapter. You can also return a `Promise` and eventually `resolve` to a configuration. This is useful if you have to fetch configuration related values before returning it.
+T> In addition to a configuration object, webpack accepts an array of configurations as discussed at the *Build Targets* chapter. You can also return a `Promise` and eventually `resolve` to a configuration. If you have to fetch configuration related values before returning it, this can be useful.
 
 ## Adding a Build Shortcut
 
@@ -208,11 +208,11 @@ Run `npm run build`. You should see the same output as before.
 
 This works because npm adds *node_modules/.bin* temporarily to the path. As a result, rather than having to write `"build": "node_modules/.bin/webpack"`, we can do `"build": "webpack"`.
 
-You can execute these kind of scripts through *npm run*. If you run it as is, it will give you the listing of available scripts.
+You can execute this kind of scripts through *npm run*. If you run it as is, it will give you the listing of available scripts.
 
-T> There are shortcuts like *npm start* and *npm test*. We can run these directly without *npm run* although that will work too. For those in hurry, you can use *npm t* to run your tests.
+T> There are shortcuts like *npm start* and *npm test*. We can run these directly without *npm run* although that will work too. For those in a hurry, you can use *npm t* to run your tests.
 
-T> It is possible to execute *npm run* anywhere within the project. It doesn't have to be run in the project root in order to work. npm will figure out the project root for you.
+T> It is possible to execute *npm run* anywhere within the project. It doesn't have to be run in the project root to work. npm will figure out the project root for you.
 
 ## Useful *html-webpack-plugin* Extensions
 
@@ -229,4 +229,4 @@ There are also specific plugins that extend *html-webpack-plugin*'s functionalit
 
 ## Conclusion
 
-Even though we've managed to get webpack up and running, it's not that much yet. Developing against it would be painful. Each time we wanted to check out our application, we would have to build it manually using `npm run build` and then refresh the browser. That's where webpack's more advanced features come in and we'll look into enabling automatic browser refresh in the next chapter.
+Even though we've managed to get webpack up and running, it's not that much yet. Developing against it would be painful. Each time we wanted to check out our application, we would have to build it manually using `npm run build` and then refresh the browser. That's where webpack's more advanced features come in. We'll look into enabling automatic browser refresh in the next chapter.
