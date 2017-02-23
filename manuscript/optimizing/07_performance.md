@@ -2,18 +2,18 @@
 
 Webpack's performance out of the box is often enough for small projects. That said, it begins to hit limits as your project grows in scale. It is a common topic in webpack's issue tracker. [Issue 1905](https://github.com/webpack/webpack/issues/1905) is a good example.
 
-There are a couple of basic rules when it comes to optimization:
+There are a couple of ground rules when it comes to optimization:
 
 1. Know what to optimize.
 2. Perform easy tweaks first.
 3. Perform hard tweaks after.
 4. Measure impact.
 
-Sometimes optimizations come with a cost. They might make your configuration more difficult to understand or tie it to a specific solution. Often the best optimization is to do less work or do it in a smarter way. I'll go through basic directions in the next sections so you know where to look when it's time to work on build performance.
+Sometimes optimizations come with a cost. They might make your configuration harder to understand or tie it to a particular solution. Often the best optimization is to do less work or do it in a smarter way. I'll go through basic directions in the next sections, so you know where to look when it's time to work on build performance.
 
-## High Level Optimizations
+## High-Level Optimizations
 
-It is good to understand that webpack uses only a single instance by default. This means you won't be able to benefit from a multi-core processor without extra effort. This where third party solutions, such as [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) and [HappyPack](https://www.npmjs.com/package/happypack) come in.
+Webpack uses only a single instance by default meaning you won't be able to benefit from a multi-core processor without extra effort. This where third party solutions, such as [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) and [HappyPack](https://www.npmjs.com/package/happypack) come in.
 
 ### parallel-webpack - Run Multiple Webpack's in Parallel
 
@@ -76,16 +76,16 @@ leanpub-end-insert
 };
 ```
 
-This is enough information for webpack to run the given loader parallel. HappyPack comes with more advanced options, but applying this simple idea is enough to get started.
+The example above contains enough information for webpack to run the given loader parallel. HappyPack comes with more advanced options, but applying this simple idea is enough to get started.
 
 Perhaps the problem with HappyPack is that it couples your configuration with it. It would be possible to overcome this issue by design and make it easier to inject. One interesting option would be to build a higher level abstraction that can perform the replacement on top of vanilla configuration.
 
-## Low Level Optimizations
+## Low-Level Optimizations
 
-Certain lower level optimizations that can become useful. The key is to allow webpack to perform less work. We've already implemented some of these, but it's a good idea to enumerate them:
+Certain lower-level optimizations can become useful. The key is to allow webpack to perform less work. We've already implemented some of these, but it's a good idea to enumerate them:
 
-* Consider using faster source map variants during development or skip them. Particularly skipping is possible if you don't process the code in any way.
-* Use [babel-preset-env](https://www.npmjs.com/package/babel-preset-env) during development instead of source maps to transpile less features for modern browsers and make code more readable and easier to debug.
+* Consider using faster source map variants during development or skip them. Skipping is possible if you don't process the code in any way.
+* Use [babel-preset-env](https://www.npmjs.com/package/babel-preset-env) during development instead of source maps to transpile fewer features for modern browsers and make the code more readable and easier to debug.
 * Skip polyfills during development. Attaching a package, such as [babel-polyfill](https://www.npmjs.com/package/babel-polyfill), to the development version of an application adds to the overhead.
 * Disable the portions of the application you don't need during development. It can be a valid idea to compile only a small portion you are working on as then you will have less to bundle.
 * Push bundles that change less to **Dynamically Loaded Libraries** (DLL) to avoid unnecessary processing. It's one more thing to worry about, but can lead to speed increases as there is less to bundle. The [official webpack example](https://github.com/webpack/webpack/tree/master/examples/dll-user) gets to the point while [Rob Knight's blog post](https://robertknight.github.io/posts/webpack-dll-plugins/) explains the idea further.
@@ -96,17 +96,17 @@ There are a series of loader and plugin specific optimizations to consider:
 
 * Perform less processing by skipping loaders during development. Especially if you are using a modern browser, you may be able to skip using *babel-loader* or equivalent altogether.
 * Use either `include` or `exclude` with JavaScript specific loaders. Webpack will traverse *node_modules* by default and execute *babel-loader* over the files unless it has been configured correctly.
-* Utilize caching through plugins like [hard-source-webpack-plugin](https://www.npmjs.com/package/hard-source-webpack-plugin). This is one way to avoid unnecessary work. The caching idea applies to loaders as well. For example, you might want to enable cache on *babel-loader*.
+* Utilize caching through plugins like [hard-source-webpack-plugin](https://www.npmjs.com/package/hard-source-webpack-plugin) to avoid unnecessary work. The caching idea applies to loaders as well. For example, you might want to enable cache on *babel-loader*.
 * Use equivalent, but lighter alternatives, of plugins and loaders during development. Replacing `HtmlWebpackPlugin` with a [HtmlPlugin](https://gist.github.com/bebraw/5bd5ebbb2a06936e052886f5eb1e6874) that does far less is one direction.
 * Consider using parallel variants of plugins if they are available. [webpack-uglify-parallel](https://www.npmjs.com/package/webpack-uglify-parallel) is one example.
 
 ## Optimizing Rebundling Speed During Development
 
-It is possible to optimize rebundling times during development by pointing the development setup to a minified version of a library, such as React. In React's case we will lose `propType`-based validation. But if speed is more important, this technique may be worth a go.
+It is possible to optimize rebundling times during development by pointing the development setup to a minified version of a library, such as React. In React's case, we will lose `propType`-based validation. But if speed is more important, this technique may be worth a go.
 
-In order to achieve what we want, it is possible to use `module.noParse` option. It accepts a RegExp or an array of RegExps. In addition to telling webpack not to parse the minified file we want to use, we also need to point `react` to it. This can be achieved using `resolve.alias`.
+To achieve what we want, it is possible to use `module.noParse` option. It accepts a RegExp or an array of RegExps. In addition to telling webpack not to parse the minified file we want to use, we also need to point `react` to it by using `resolve.alias`.
 
-It is possible to encapsulate the basic idea within a function like this:
+It is possible to encapsulate the core idea within a function like this:
 
 **webpack.parts.js**
 
@@ -155,14 +155,14 @@ leanpub-end-insert
 ...
 ```
 
-After this change the application should be at least a little faster to rebuild. The amount of impact depends on the underlying implementation. The technique can also be applied during production usage.
+After this change, the application should be at least a little faster to rebuild. The amount of impact depends on the underlying implementation. The technique can also be applied during production usage.
 
 T> Given `module.noParse` accepts a regular expression if we wanted to ignore all `*.min.js` files, we could set it to `/\.min\.js/`. That can be a more generic way to solve the problem sometimes.
 
 T> The aliasing idea is discussed in detail at the *Consuming Packages* chapter.
 
-W> Not all modules support `module.noParse`, the files included by deps array should have no call to `require`, `define` or similar, or you will get an error when the app runs: `Uncaught ReferenceError: require is not defined`.
+W> Not all modules support `module.noParse`. They should not have a reference to `require`, `define`, or similar, as that will lead to an `Uncaught ReferenceError: require is not defined` error.
 
 ## Conclusion
 
-You can optimize webpack's performance in multiple ways. Often it's a good idea to start with easier techniques before moving to more involved ones. The exact techniques you have to apply depend on the project.
+You can optimize webpack's performance in multiple ways. Often it's a good idea to start with easier techniques before moving to more involved ones. The exact techniques you have to use depend on the project.
