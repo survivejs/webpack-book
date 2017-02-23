@@ -2,15 +2,15 @@
 
 Web applications have the tendency to grow big as features are developed. The longer it takes for your application to load, the more frustrating it is to the user. This problem is amplified in a mobile environment where the connections can be slow.
 
-Even though splitting our bundles can help a notch, they are not the only solution and you may still end up having to download a lot of data. Fortunately, it is possible to do better thanks to *code splitting*. It allows us to load code lazily as we need it.
+Even though splitting our bundles can help a notch, they are not the only solution, and you may still end up having to download a lot of data. Fortunately, it is possible to do better thanks to *code splitting*. It allows us to load code lazily as we need it.
 
 T> Incidentally, it is possible to implement Google's [PRPL pattern](https://developers.google.com/web/fundamentals/performance/prpl-pattern/) using lazy loading. PRPL (Push, Render, Pre-cache, Lazy-load) has been designed with mobile web in mind and can be implemented using webpack.
 
 ## Code Splitting Formats
 
-Code splitting can be done in two primary ways in webpack: through a [dynamic import](https://github.com/tc39/proposal-dynamic-import) or `require.ensure` syntax. We'll be using the former in this project. The syntax isn't in the official specification yet so it will require minor tweaks especially at ESLint and Babel too if you are using that.
+Code splitting can be done in two primary ways in webpack: through a [dynamic import](https://github.com/tc39/proposal-dynamic-import) or `require.ensure` syntax. We'll be using the former in this project. The syntax isn't in the official specification yet, so it will require minor tweaks especially at ESLint and Babel too if you are using that.
 
-The goal is to end up with a split point that will get loaded on demand. There can be splits inside splits and you can structure an entire application based on splits.
+The goal is to end up with a split point that will get loaded on demand. There can be splits inside splits, and you can structure an entire application based on splits.
 
 ![Code splitting](images/dynamic.png)
 
@@ -22,7 +22,7 @@ Dynamic imports look like this:
 import('./module').then((module) => {...}).catch((error) => {...});
 ```
 
-The `Promise` based interface allows composition and you could load multiple resources in parallel like this:
+The `Promise` based interface allows composition, and you could load multiple resources in parallel like this:
 
 ```javascript
 Promise.all([
@@ -36,9 +36,9 @@ Promise.all([
 });
 ```
 
-It is important to note that this will create separate chunks to request. If you wanted only one, you would have to define an intermediate module to `import`.
+It is important to note that this will create separate chunks to a request. If you wanted only one, you would have to define an intermediate module to `import`.
 
-W> The syntax works only with JavaScript after configured the right way. If you use other environment, you will have to use alternatives covered in the following sections.
+W> The syntax works only with JavaScript after configured the right way. If you use another environment, you will have to use alternatives covered in the following sections.
 
 ### `require.ensure`
 
@@ -61,7 +61,7 @@ require.ensure(
 );
 ```
 
-As you can see, `require.ensure` definition is more powerful. The gotcha is that it doesn't support error handling. Often you can achieve what you want through a dynamic `import`, but it's good to know this form exists as well.
+As you can see, `require.ensure` definition is more powerful. The problem is that it doesn't support error handling. Often you can achieve what you want through a dynamic `import`, but it's good to know this form exists as well.
 
 T> `require.ensure` supports naming. `require.ensure` blocks that have the same name will be pulled into the same output chunk as showcased by [an official example](https://github.com/webpack/webpack/tree/master/examples/named-chunks).
 
@@ -69,7 +69,7 @@ W> `require.ensure` relies on `Promise`s internally. If you use `require.ensure`
 
 ### `require.include`
 
-The example above could be rewritten using webpack specific `require.include`:
+The example above could be rewritten using webpack particular `require.include`:
 
 ```javascript
 require.ensure(
@@ -94,7 +94,7 @@ T> The formats respect `output.publicPath` option. You can also use `output.chun
 
 ## Setting Up Code Splitting
 
-To demonstrate the idea of code splitting, we should pick up one of the formats above and integrate it to our project. Dynamic `import` is enough. Before we can implement the webpack side, ESLint needs a slight tweak.
+To demonstrate the idea of code splitting, we should pick up one of the formats above and integrate it into our project. Dynamic `import` is enough. Before we can implement the webpack side, ESLint needs a slight tweak.
 
 ### Configuring ESLint
 
@@ -128,7 +128,7 @@ After these changes, ESLint won't complain if we write `import` in the middle of
 
 ### Configuring Babel
 
-Given Babel doesn't support the dynamic `import` syntax out of the box, it needs [babel-plugin-syntax-dynamic-import](https://www.npmjs.com/package/babel-plugin-syntax-dynamic-import) in order to work. Install it first:
+Given Babel doesn't support the dynamic `import` syntax out of the box, it needs [babel-plugin-syntax-dynamic-import](https://www.npmjs.com/package/babel-plugin-syntax-dynamic-import) to work. Install it first:
 
 ```bash
 npm install babel-plugin-syntax-dynamic-import --save-dev
@@ -157,9 +157,7 @@ A simple way to illustrate the idea might be to set up a module that contains a 
 export default 'Hello from lazy';
 ```
 
-In practice, you could have a lot more code here and additional split points. This is a good place to extend the demonstration.
-
-We also need to point the application to this file so it knows to load it. A simple way to do this is to bind the loading process to click. Whenever the user happens to click the button, we'll trigger the loading process and replace the content.
+We also need to point the application to this file, so the application knows to load it. An easy way to do this is to bind the loading process to click. Whenever the user happens to click the button, we'll trigger the loading process and replace the content.
 
 **app/component.js**
 
@@ -187,7 +185,7 @@ If you open up the application (`npm start`) and click the button, you should se
 
 ![Lazy loaded content](images/lazy.png)
 
-Perhaps the more interesting thing is to see what the build result looks like. If you run `npm run build`, you should see something like this:
+The build result is the more interesting part. If you run `npm run build`, you should see something like this:
 
 ```bash
 Hash: 4f6f78b2fd2c38e8200d
@@ -297,12 +295,12 @@ T> [react-async-component](https://www.npmjs.com/package/react-async-component) 
 
 ## Conclusion
 
-Code splitting is one of those features that allows you to push your application a notch further. You can load code when you need it. This gives faster initial load times and helps to improve user experience especially in a mobile context where bandwidth is limited.
+Code splitting is one of those features that allows you to push your application a notch further. You can load code when you need it to gain faster initial load times and improved user experience especially in a mobile context where bandwidth is limited.
 
-It comes with some extra work as you must figure out what's possible to split. Often, you find good split points within a router. Or you may notice that specific functionality is required only when specific feature is used. Charting is a good example of this.
+It comes with some extra work as you must figure out what's possible to split. Often, you find good split points within a router. Or you may notice that specific functionality is required only when a particular feature is used. Charting is a good example of this.
 
 Applying `import` or `require.ensure` alone can be effective. `require.context` has more limited possibilities, but it's a powerful tool especially for tool developers.
 
 T> There's a complete example of how to use the code splitting technique in the *Searching with React* appendix. You will see how to set up a static site index that's loaded when the user searches information.
 
-T> [webpack-pwa](https://github.com/webpack/webpack-pwa) illustrates the idea in a larger scale and discusses different shell based approaches. We'll get back to this topic at the *Multiple Pages* chapter.
+T> [webpack-pwa](https://github.com/webpack/webpack-pwa) illustrates the idea on a larger scale and discusses different shell based approaches. We'll get back to this topic at the *Multiple Pages* chapter.
