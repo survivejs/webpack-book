@@ -10,7 +10,7 @@ To load CSS, we'll need to use [css-loader](https://www.npmjs.com/package/css-lo
 
 This process allows us to rely on other loaders, such as [file-loader](https://www.npmjs.com/package/file-loader) or [url-loader](https://www.npmjs.com/package/url-loader). If an `@import` points to an external resource, *css-loader* will skip it. Only internal resources get processed further by webpack.
 
-After *css-loader* has done its part, *style-loader* picks up the output and injects the CSS into the resulting bundle. This will be inlined JavaScript by default, and it implements the HMR interface. As inlining isn't a good idea for production usage, it makes sense to use `ExtractTextPlugin` to generate a separate CSS file. We'll do this in the next chapter.
+After *css-loader* has done its part, *style-loader* picks up the output and injects the CSS into the resulting bundle. The CSS be inlined JavaScript by default, and it implements the HMR interface. As inlining isn't a good idea for production usage, it makes sense to use `ExtractTextPlugin` to generate a separate CSS file. We'll do this in the next chapter.
 
 To get started, invoke
 
@@ -61,7 +61,7 @@ leanpub-end-insert
 ...
 ```
 
-The configuration we added means that files ending with `.css` should invoke given loaders. `test` matches against a JavaScript style regular expression. The loaders are evaluated from right to left.
+The configuration we added means that files ending with `.css` should invoke given loaders. `test` matches against a JavaScript-style regular expression. The loaders are evaluated from right to left.
 
 T> Loaders are transformations that are applied to source files, and return the new source. Loaders can be chained together, like using a pipe in Unix. `loaders: ['style-loader', 'css-loader']` can be read as `styleLoader(cssLoader(input))`.
 
@@ -79,7 +79,7 @@ body {
 }
 ```
 
-Also, we'll need to make webpack aware of it. Without having an entry pointing at it somehow, webpack won't be able to find the file:
+Also, we'll need to make webpack aware of it. Without having an entry pointing to it somehow, webpack won't be able to find the file:
 
 **app/index.js**
 
@@ -96,11 +96,11 @@ We'll continue from here in the next chapter. Before that, though, I will discus
 
 ![Hello cornsilk world](images/hello_02.png)
 
-T> An alternate way to load CSS would be to define a separate entry and point to the CSS there. Coupling styling to application code can be a nice way to handle it, though, as then you can see which styling is related to what file. This also enables the usage of CSS Modules with a bit of extra effort.
+T> An alternate way to load CSS would be to define a separate entry and point to the CSS there. Coupling styling to application code can be a nice way to handle it, though, as then you can see which styling is related to what file.
 
 ## Understanding CSS Scoping and CSS Modules
 
-Perhaps the biggest challenge of CSS is that all rules exist within **global scope**. This has led to specific conventions that work around this feature. The [CSS Modules](https://github.com/css-modules/css-modules) specification solves the problem by introducing **local scope** per `import`. As it happens, this makes CSS more bearable to use as you don't have to worry about namespace collisions anymore.
+Perhaps the biggest challenge of CSS is that all rules exist within **global scope**. Due to this reason, specific conventions that work around this feature have been developed. The [CSS Modules](https://github.com/css-modules/css-modules) specification solves the problem by introducing **local scope** per `import`. As it happens, this makes CSS more bearable to use as you don't have to worry about namespace collisions anymore.
 
 Enabling CSS Modules in webpack is simple as *css-loader* supports the feature. You can enable it through a loader definition like this:
 
@@ -115,7 +115,7 @@ Enabling CSS Modules in webpack is simple as *css-loader* supports the feature. 
 
 After this change, your class definitions will remain local to the files. In case you want global class definitions, you'll need to wrap them within `:global(.redButton) { ... }` kind of declarations.
 
-In this case, the `import` statement will give you the local classes you can then bind to elements. Assuming we had styling like this:
+In this case, the `import` statement will give you the local classes you can then bind to elements. Assume we had CSS like this:
 
 **app/main.css**
 
@@ -154,7 +154,7 @@ T> [eslint-plugin-css-modules](https://www.npmjs.com/package/eslint-plugin-css-m
 
 ![Less](images/less.png)
 
-[Less](http://lesscss.org/) is a CSS processor that is packed with functionality. Using Less doesn't take a lot of effort through webpack as [less-loader](https://www.npmjs.com/package/less-loader) deals with the heavy lifting. You should install [less](https://www.npmjs.com/package/less) as well given it's a peer dependency of *less-loader*.
+[Less](http://lesscss.org/) is a CSS processor packed with functionality. Using Less doesn't take a lot of effort through webpack as [less-loader](https://www.npmjs.com/package/less-loader) deals with the heavy lifting. You should install [less](https://www.npmjs.com/package/less) as well given it's a peer dependency of *less-loader*.
 
 Consider the following minimal setup:
 
@@ -228,9 +228,9 @@ To start using yeticss with Stylus, you must import it to one of your app's *.st
 
 ![PostCSS](images/postcss.png)
 
-[PostCSS](http://postcss.org/) allows you to perform transformations over CSS through JavaScript plugins. You can even find plugins that provide you Sass-like features. PostCSS can be thought as the equivalent of Babel for styling. It can be used through [postcss-loader](https://www.npmjs.com/package/postcss-loader) with webpack.
+[PostCSS](http://postcss.org/) allows you to perform transformations over CSS through JavaScript plugins. You can even find plugins that provide you Sass-like features. PostCSS is the equivalent of Babel for styling. [postcss-loader](https://www.npmjs.com/package/postcss-loader) allows using it with webpack.
 
-The example below illustrates how to set up autoprefixing using it. It also sets up [precss](https://www.npmjs.com/package/precss), a PostCSS plugin that allows you to use Sass-like markup in your CSS. You can mix this technique with other loaders to allow autoprefixing there.
+The example below illustrates how to set up autoprefixing using PostCSS. It also sets up [precss](https://www.npmjs.com/package/precss), a PostCSS plugin that allows you to use Sass-like markup in your CSS. You can mix this technique with other loaders to allow autoprefixing there.
 
 ```javascript
 {
@@ -251,15 +251,15 @@ The example below illustrates how to set up autoprefixing using it. It also sets
 },
 ```
 
-For this to work, you will have to remember to include [autoprefixer](https://www.npmjs.com/package/autoprefixer) and [precss](https://www.npmjs.com/package/precss) to your project. The technique is discussed in detail at the *Autoprefixing* chapter.
+For this to work, you will have to remember to include [autoprefixer](https://www.npmjs.com/package/autoprefixer) and [precss](https://www.npmjs.com/package/precss) to your project. The technique is discussed in detail in the *Autoprefixing* chapter.
 
-T> PostCSS supports also *postcss.config.js* based configuration. It relies on [cosmiconfig](https://www.npmjs.com/package/cosmiconfig) internally. This means it can pick up configuration from your *package.json*, JSON or YAML, or that you can even push your configuration below an arbitrary directory. *cosmiconfig* will find it. The problem is that this style is harder to compose than inline configuration.
+T> PostCSS supports also *postcss.config.js* based configuration. It relies on [cosmiconfig](https://www.npmjs.com/package/cosmiconfig) internally. It can pick up configuration from your *package.json*, JSON or YAML, or that you can even push your configuration below an arbitrary directory. *cosmiconfig* will find it. The problem is that this style is harder to compose than inline configuration.
 
 ### cssnext
 
 ![cssnext](images/cssnext.jpg)
 
-[cssnext](http://cssnext.io/) is a PostCSS plugin that allows us to experience the future now. It comes with some restrictions as it's not possible to adapt to each future feature, but it may be worth a go. You can use it through [postcss-cssnext](https://www.npmjs.com/package/postcss-cssnext), and you can enable it as follows:
+[cssnext](http://cssnext.io/) is a PostCSS plugin that allows us to experience the future now. It comes with some restrictions as it's not possible to adapt to each feature, but it may be worth a go. You can use it through [postcss-cssnext](https://www.npmjs.com/package/postcss-cssnext), and you can enable it as follows:
 
 ```javascript
 {
@@ -287,13 +287,13 @@ T> Note that cssnext includes autoprefixer! You don't have to configure autopref
 
 To get most out of *css-loader*, you should understand how it performs its lookups. Even though *css-loader* handles relative imports by default, it won't touch absolute imports (`url("/static/img/demo.png")`). If you rely on imports like this, you will have to copy the files to your project.
 
-[copy-webpack-plugin](https://www.npmjs.com/package/copy-webpack-plugin) works for this purpose, but you can also copy the files outside of webpack. The benefit of the former approach is that webpack-dev-server is able to pick that up.
+[copy-webpack-plugin](https://www.npmjs.com/package/copy-webpack-plugin) works for this purpose, but you can also copy the files outside of webpack. The benefit of the former approach is that webpack-dev-server can pick that up.
 
 T> [resolve-url-loader](https://www.npmjs.com/package/resolve-url-loader) will come in handy if you use Sass or Less. It adds support for relative imports to the environments.
 
 ### Processing *css-loader* Imports
 
-If you want to process *css-loader* imports in a specific way, you should set up `importLoaders` option to a number that tells the loader how many loaders after the *css-loader* should be executed against the imports found. This is particularly useful if you import other CSS files from your CSS through the `@import` statement and want to process the imports through specific loaders.
+If you want to process *css-loader* imports in a specific way, you should set up `importLoaders` option to a number that tells the loader how many loaders after the *css-loader* should be executed against the imports found. If you import other CSS files from your CSS through the `@import` statement and want to process the imports through specific loaders, this is particularly useful.
 
 Consider the following import from a CSS file:
 
@@ -301,7 +301,7 @@ Consider the following import from a CSS file:
 @import "./variables.sass";
 ```
 
-In order to process the Sass file, you would have to write configuration like this:
+To process the Sass file, you would have to write configuration like this:
 
 ```javascript
 {
@@ -323,7 +323,7 @@ If you added more loaders, such as *postcss-loader*, to the chain, you would hav
 
 ### Loading from *node_modules* Directory
 
-You can load files directly from your node_modules directory. This is handy with libraries like Bootstrap:
+You can load files directly from your node_modules directory. Consider Bootstrap and its usage for example:
 
 ```less
 @import "~bootstrap/less/bootstrap";
@@ -331,7 +331,7 @@ You can load files directly from your node_modules directory. This is handy with
 
 The tilde (`~`) tells webpack that it's not a relative import as by default. If tilde is included, it will perform a lookup against `node_modules` (default setting) although this is configurable through the [resolve.modules](https://webpack.js.org/configuration/resolve/#resolve-modules) field.
 
-W> If you are using *postcss-loader*, you can skip using `~` as discussed in [postcss-loader issue tracker](https://github.com/postcss/postcss-loader/issues/166). *postcss-loader* is able to resolve the imports without a tilde.
+W> If you are using *postcss-loader*, you can skip using `~` as discussed in [postcss-loader issue tracker](https://github.com/postcss/postcss-loader/issues/166). *postcss-loader* can resolve the imports without a tilde.
 
 ## Enabling Source Maps
 
