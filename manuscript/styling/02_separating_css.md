@@ -19,7 +19,7 @@ In limited contexts inlining a small amount of CSS can be a viable option to spe
 It will take some configuration to make it work. Install the plugin:
 
 ```bash
-npm install extract-text-webpack-plugin@beta --save-dev
+npm install extract-text-webpack-plugin --save-dev
 ```
 
 `ExtractTextPlugin` includes a loader, `ExtractTextPlugin.extract` that marks the assets to be extracted. Then a plugin will perform its work based on this annotation.
