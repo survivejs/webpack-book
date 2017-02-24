@@ -53,11 +53,17 @@ A configuration file could be named 'webpack.config.js' in the current directory
 Use --help to display the CLI options.
 ```
 
+To get a quick idea of webpack output, try this:
+
+1. Set up *app/index.js* so that it contains `console.log('Hello world');`.
+2. Execute `node_modules/.bin/webpack app/index.js build/index.js`.
+3. Examine *build/index.js*. You should see webpack bootstrap code that begins executing the code. Below the bootstrap you should find something familiar.
+
 T> We can use `--save` and `--save-dev` to separate application and development dependencies. The former will install and write to *package.json* `dependencies` field whereas the latter will write to `devDependencies` instead.
 
 ## Directory Structure
 
-To get started, we can implement a little site that loads some JavaScript, which we then build using webpack. After we progress a bit, we'll end up with a directory structure like this:
+To move further, we can implement a little site that loads some JavaScript, which we then build using webpack. After we progress a bit, we'll end up with a directory structure like this:
 
 - app/
   - index.js
