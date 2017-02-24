@@ -10,7 +10,7 @@ If you think about the simplest project you could bundle with webpack, you'll en
 
 When you bundle a project through webpack, it will traverse through imports. As a result, webpack constructs a **dependency graph** of the project and then generates the **output** based on the configuration. It will output everything into a single **bundle** by default, but it can be configured to output more.
 
-Webpack supports ES6, CommonJS, and AMD module formats out of the box. The loader mechanism works for CSS as well, and `@import` and `@url` are supported through *css-loader*. You can also find plugins for specific tasks, such as minification, internationalization, HMR, and so on.
+Webpack supports ES6, CommonJS, and AMD module formats out of the box. The loader mechanism works for CSS as well, and `@import` and `url()` are supported through *css-loader*. You can also find plugins for specific tasks, such as minification, internationalization, HMR, and so on.
 
 ## Loaders Evaluate Modules
 
