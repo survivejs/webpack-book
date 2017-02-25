@@ -140,7 +140,7 @@ leanpub-start-insert
     plugins: [
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor',
-        entries: ['react'],
+        chunks: ['vendor'],
       }),
     ],
 leanpub-end-insert
@@ -193,22 +193,11 @@ The following code combines the `entry` idea above with a basic `CommonsChunkPlu
 ...
 
 exports.extractBundles = function(bundles) {
-  const entry = {};
-  const plugins = [];
-
-  bundles.forEach((bundle) => {
-    const { name, entries } = bundle;
-
-    if (entries) {
-      entry[name] = entries;
-    }
-
-    plugins.push(
+  return {
+    plugins: bundles.map((bundle) => (
       new webpack.optimize.CommonsChunkPlugin(bundle)
-    );
-  });
-
-  return { entry, plugins };
+    )),
+  };
 };
 ```
 
@@ -220,24 +209,22 @@ Given the function handles the entry for us, we can drop our `vendor`-related co
 ...
 
 const productionConfig = merge([
-leanpub-start-delete
   {
     entry: {
       vendor: ['react'],
     },
+leanpub-start-delete
     plugins: [
       new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor',
-        entries: ['react'],
+        chunks: ['vendor'],
       }),
     ],
-  },
 leanpub-end-delete
+  },
 leanpub-start-insert
   parts.extractBundles([
     {
-      name: 'vendor',
-      entries: ['react'],
+      chunks: ['vendor'],
     },
   ]),
 leanpub-end-insert
@@ -263,13 +250,20 @@ To capture only JavaScript files from *node_modules*, we should perform a check 
 ...
 
 const productionConfig = merge([
+leanpub-start-delete
+  {
+    entry: {
+      vendor: ['react'],
+    },
+  },
+leanpub-end-delete
   parts.extractBundles([
     {
-      name: 'vendor',
 leanpub-start-delete
-      entries: ['react'],
+      chunks: ['vendor'],
 leanpub-end-delete
 leanpub-start-insert
+      name: 'vendor',
       minChunks: ({ userRequest }) => (
         userRequest &&
         userRequest.indexOf('node_modules') >= 0 &&
