@@ -121,7 +121,13 @@ module.exports = function(env) {
 leanpub-end-insert
 ```
 
-If you run the npm commands now, you should see a different terminal output depending on which one you trigger.
+If you run the npm commands now, you should see a different terminal output depending on which one you trigger:
+
+```bash
+> webpack-dev-server --env development
+env development
+...
+```
 
 ## Understanding `--env`
 
