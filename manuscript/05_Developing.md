@@ -1,5 +1,3 @@
 -# Developing
 
-Webpack is driven by configuration, normally named as *webpack.config.js*. That's the heart of it all. The configuration defines the inputs and the outputs of your project. Most importantly, it describes the types of transformations you perform. These transformations are defined using **loaders** and **plugins**, each of which serves a purpose of its own.
-
-In this part, I will show you how to configure a basic development setup based on webpack. You will learn a bit about the underlying concepts as well.
+In this part, I will show you how to get up and running with webpack. You will learn to configure webpack-dev-server, Hot Module Replacement and, linting. Finally, you will compose the configuration so that it is easy to expand in the following parts of the book.
