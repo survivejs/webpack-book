@@ -102,12 +102,14 @@ If we used `chunkhash` for the extracted CSS as well, this would lead to problem
 
 exports.extractCSS = function({ include, exclude, use }) {
   // Output extracted CSS to a file
+  const plugin = new ExtractTextPlugin({
 leanpub-start-delete
-  const plugin = new ExtractTextPlugin('[name].css');
+    filename: '[name].css',
 leanpub-end-delete
 leanpub-start-insert
-  const plugin = new ExtractTextPlugin('[name].[contenthash:8].css');
+    filename: '[name].[contenthash:8].css',
 leanpub-end-insert
+  });
 
   ...
 };

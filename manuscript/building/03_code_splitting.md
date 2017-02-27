@@ -215,6 +215,32 @@ fontawesome-webfont.woff2    77.2 kB          [emitted]
 
 That *0.js* is our split point. Examining the file reveals that webpack has wrapped the code in a `webpackJsonp` block and processed the code bit.
 
+### Lazy Loading Styles
+
+Lazy loading can be applied to styling as well. Expand the definition like this:
+
+**app/lazy.js**
+
+```javascript
+leanpub-start-insert
+import './lazy.css';
+leanpub-end-insert
+
+export default 'Hello from lazy';
+```
+
+And to have a style definition to load, set up a rule:
+
+**app/lazy.css**
+
+```css
+body {
+  color: blue;
+}
+```
+
+The idea is that after *lazy.js* gets loaded, *lazy.css* is applied as well. You can confirm this by running the application (`npm run start`). The same behavior is visible if you build the application (`npm run build`) and examine the output (`0.js`). This is due to our `ExtractTextPlugin` definition.
+
 ### Defining a Split Point Using `require.ensure`
 
 It is possible to achieve the same with `require.ensure`. Consider the full example below:
