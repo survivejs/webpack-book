@@ -44,6 +44,8 @@ The book has been split into the following parts:
 * **Packages** part has a heavy focus on npm and webpack related techniques. You will learn both to consume and author npm packages in an efficient way.
 * **Extending** part shows how to extend webpack with your loaders and plugins.
 
+There's a short conclusion chapter after the main content that recaps the main points of the book. It contains checklists that allow you to go through your projects against the book techniques.
+
 The appendices the end of the book cover secondary topics and sometimes dig deeper into the main ones. You can approach them in any order you want depending on your interest. There's a *Troubleshooting* appendix at the end in case you want to understand how to debug webpack errors.
 
 ## Who Is This Book For
