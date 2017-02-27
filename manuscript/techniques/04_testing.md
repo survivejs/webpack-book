@@ -417,7 +417,9 @@ leanpub-end-insert
 }
 ```
 
-Now you have two new commands: one to run tests once and other to run them in a watch mode. In order to capture coverage information, you have to set `"collectCoverage": true` at `"jest"` settings in *package.json*. It emits the coverage reports below *coverage* directory by default.
+Now you have two new commands: one to run tests once and other to run them in a watch mode. In order to capture coverage information, you have to set `"collectCoverage": true` at `"jest"` settings in *package.json* or pass `--coverage` flag to Jest. It emits the coverage reports below *coverage* directory by default.
+
+Given generating coverage reports comes with a performance overhead, enabling the behavior through the flag can be a good idea. This way you can control exactly when to capture the information.
 
 Porting a webpack setup to Jest may require more effort especially if you rely on webpack specific features. [The official guide](https://facebook.github.io/jest/docs/webpack.html) covers quite a few of the common problems. You can also configure Jest to use Babel through [babel-jest](https://www.npmjs.com/package/babel-jest) as it allows you to use Babel plugins like [babel-plugin-module-resolver](https://www.npmjs.com/package/babel-plugin-module-resolver) to match webpack's functionality.
 
