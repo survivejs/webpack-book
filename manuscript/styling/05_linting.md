@@ -135,6 +135,17 @@ W> If you get `Module build failed: Error: No configuration provided for ...` ki
 
 T> [stylelint-bare-webpack-plugin](https://www.npmjs.com/package/stylelint-bare-webpack-plugin) is a variant of *stylelint-webpack-plugin* that allows you to control the version of stylelint you are using.
 
+## csslint
+
+[csslint](http://csslint.net/) is another option to *stylelint*. It can be used through [csslint-loader](https://www.npmjs.com/package/csslint-loader) and follows a normal loader setup.
+
 ## Conclusion
 
 After these changes, we have linting for our styling in place. Now you can catch at least the most obvious CSS-related problems.
+
+To recap:
+
+* It is possible to lint CSS through *stylelint*
+* Linting CSS allows you to capture common CSS-related problems and disallow problematic patterns.
+* *stylelint* can be treated as a PostCSS plugin, but it can also be used through *stylelint-webpack-plugin*.
+* *csslint* is an option to *stylelint*. It possible [the projects will merge](https://github.com/CSSLint/csslint/issues/668), though.
