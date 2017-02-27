@@ -329,7 +329,7 @@ You can load files directly from your node_modules directory. Consider Bootstrap
 @import "~bootstrap/less/bootstrap";
 ```
 
-The tilde (`~`) tells webpack that it's not a relative import as by default. If tilde is included, it will perform a lookup against `node_modules` (default setting) although this is configurable through the [resolve.modules](https://webpack.js.org/configuration/resolve/#resolve-modules) field.
+The tilde character (`~`) tells webpack that it's not a relative import as by default. If tilde is included, it will perform a lookup against `node_modules` (default setting) although this is configurable through the [resolve.modules](https://webpack.js.org/configuration/resolve/#resolve-modules) field.
 
 W> If you are using *postcss-loader*, you can skip using `~` as discussed in [postcss-loader issue tracker](https://github.com/postcss/postcss-loader/issues/166). *postcss-loader* can resolve the imports without a tilde.
 
@@ -351,4 +351,16 @@ Especially with Angular 2, it can be useful if you can get CSS in a string forma
 
 ## Conclusion
 
-Loading style files through webpack is straightforward. It even supports advanced specifications like [CSS Modules](https://github.com/css-modules/webpack-demo). The approaches covered here inline the styling by default. Although that's enough for development purposes, it's not ideal for production usage. We'll cover how to handle this problem in the next chapter.
+Loading styles through webpack is straightforward. It even supports advanced specifications like [CSS Modules](https://github.com/css-modules/webpack-demo). The approaches covered here inline the styling by default.
+
+To recap:
+
+* *css-loader* evaluates the `@import` and `url()` definitions of your styling. *style-loader* converts it to JavaScript and implements webpack's Hot Module Replacement interface.
+* *css-loader* supports the CSS Modules specification. CSS Modules allow you maintain CSS in a local scope by default solving the biggest issue of CSS.
+* Webpack supports a large variety of formats compiling to CSS through loaders. These include Sass, Less, and Stylus.
+* PostCSS allows you to inject functionality to CSS in through its plugin system. cssnext is an example of a collection of plugins for PostCSS that implements future features of CSS.
+* *css-loader* won't touch absolute imports by default. It allows customization of loading behavior through the `importLoaders` option. You can perform lookups against *node_modules* by prefixing your imports with a tilde (`~`) character.
+* To use source maps, you have to enable `sourceMap` boolean through each style loader you are using except for *style-loader*. You should also set `output.publicPath` to an absolute url that points to your development server.
+* Using Bootstrap with webpack requires special care. You can either go through generic loaders or a bootstrap specific loader for more customization options.
+
+Although the loading approach covered here is enough for development purposes, it's not ideal for production as it inlines the styling to the JavaScript bundles. We'll cover this problem in the next chapter as we learn to separate CSS.
