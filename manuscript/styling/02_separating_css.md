@@ -42,6 +42,9 @@ leanpub-end-insert
 
 leanpub-start-insert
 exports.extractCSS = function({ include, exclude, use }) {
+  // Output extracted CSS to a file
+  const plugin = new ExtractTextPlugin('[name].[contenthash:8].css');
+
   return {
     module: {
       rules: [
@@ -50,17 +53,14 @@ exports.extractCSS = function({ include, exclude, use }) {
           include,
           exclude,
 
-          use: ExtractTextPlugin.extract({
-            use: use,
+          use: plugin.extract({
+            use,
             fallback: 'style-loader',
           }),
         },
       ],
     },
-    plugins: [
-      // Output extracted CSS to a file
-      new ExtractTextPlugin('[name].css'),
-    ],
+    plugins: [ plugin ],
   };
 };
 leanpub-end-insert
