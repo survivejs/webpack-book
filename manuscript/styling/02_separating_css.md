@@ -138,7 +138,9 @@ Even though referring to styling through JavaScript and then bundling is a valid
 ...
 const glob = require('glob');
 
-// Glob CSS files as an array of CSS files
+// Glob CSS files as an array of CSS files. This can be
+// potentially problematic due to CSS rule ordering so
+// be careful!
 const PATHS = {
   app: path.join(__dirname, 'app'),
   build: path.join(__dirname, 'build'),
