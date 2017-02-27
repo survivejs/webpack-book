@@ -1,12 +1,12 @@
 # Getting Started
 
-Before getting started, make sure you are using a recent version of [Node](http://nodejs.org/). I recommend using at least the most current LTS (long-term support) version. Before going further, you should have `node` and `npm` commands available at your terminal.
+Before getting started, make sure you are using a recent version of [Node](http://nodejs.org/). I recommend using at least the most current LTS (long-term support) version. The configuration of the book has been written Node 6 features in mind. Before going further, you should have `node` and `npm` commands available at your terminal.
 
 The completed configuration is available at [GitHub](https://github.com/survivejs-demos/webpack-demo). If you are unsure of something, refer there.
 
 T> It is possible to get a more controlled environment by using a solution such as [Docker](https://www.docker.com/), [Vagrant](https://www.vagrantup.com/) or [nvm](https://www.npmjs.com/package/nvm). Vagrant comes with a performance penalty as it relies on a virtual machine. Vagrant is particularly useful in a team: each developer will have the same environment, usually close to production.
 
-W> The webpack configuration of the book has been written the language features supported by Node 6 in mind. If you are using an older version, you may either have to adapt or process your webpack configuration through Babel as discussed at the *Loading JavaScript* chapter.
+W> If you are using an older version than Node 6, you may either have to adapt the code or process your webpack configuration through Babel as discussed at the *Loading JavaScript* chapter.
 
 ## Setting Up the Project
 
@@ -235,4 +235,14 @@ There are also specific plugins that extend *html-webpack-plugin*'s functionalit
 
 ## Conclusion
 
-Even though we've managed to get webpack up and running, it's not that much yet. Developing against it would be painful. Each time we wanted to check out our application, we would have to build it manually using `npm run build` and then refresh the browser. That's where webpack's more advanced features come in. We'll look into enabling automatic browser refresh in the next chapter.
+Even though we've managed to get webpack up and running, it's not that much yet. Developing against it would be painful. Each time we wanted to check out our application, we would have to build it manually using `npm run build` and then refresh the browser. That's where webpack's more advanced features come in.
+
+To recap:
+
+* It is a good idea to use a locally installed version of webpack over a globally installed one. This way you can be sure of what version you are using. The local dependency works also in a Continuous Integration environment.
+* Webpack provides a command line interface. You can use it even without configuration, but then you are limited by the options it provides.
+* To write more complicated setups, you will most likely have to write a separate *webpack.config.js* file.
+* *html-webpack-plugin* is useful for generating an HTML entry point to your application. Later in the book, you will see how to generate multiple separate pages using. The *Multiple Pages* chapter covers that.
+* It is handy to use npm *package.json* scripts to manage webpack. You can use it as a light task runner and use system features outside of webpack.
+
+ We'll look into enabling automatic browser refresh in the next chapter to make the development experience of our setup nicer.
