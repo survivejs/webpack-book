@@ -287,6 +287,7 @@ You can find more alternatives as listed below:
 * [AssetGraph](https://www.npmjs.com/package/assetgraph) takes an entirely different approach and builds on top of HTML semantics making it highly useful for tasks like [hyperlink analysis](https://www.npmjs.com/package/hyperlink) or [structural analysis](https://www.npmjs.com/package/assetviz). [webpack-assetgraph-plugin](https://www.npmjs.com/package/webpack-assetgraph-plugin) bridges webpack and AssetGraph together.
 * [FuseBox](https://github.com/fuse-box/fuse-box) is a bundler focusing on speed. It uses a zero-configuration approach and aims to be usable out of the box.
 * [StealJS](https://stealjs.com/) is a dependency loader and a build tool which has focused on performance and ease of use.
+* [Flipbox](https://github.com/flip-box/flipbox) wraps multiple bundlers behind a uniform interface.
 
 ## Webpack
 
