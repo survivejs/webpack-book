@@ -203,4 +203,11 @@ In addition to plugins like these, it can be worth your while to set up linting 
 
 ## Conclusion
 
+To recap:
+
+* Webpack's `watch` mode is the first step towards a better development experience. You can have webpack compile bundles as you edit your source.
+* Webpack's `--env` parameter allows you to control configuration target through terminal. You receive the passed `env` through a function interface.
+* webpack-dev-server can refresh the browser on change. It also implements Hot Module Replacement.
+* webpack-dev-server can be integrated to an existing Node server using a middleware. This gives you more control than relying on the command line interface.
+
 In this chapter, you learned to set up webpack to refresh your browser automatically. We can go a notch further and enable Hot Module Replacement. We'll do that in the next chapter.
