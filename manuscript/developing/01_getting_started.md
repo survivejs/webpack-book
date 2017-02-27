@@ -6,7 +6,7 @@ The completed configuration is available at [GitHub](https://github.com/survivej
 
 T> It is possible to get a more controlled environment by using a solution such as [Docker](https://www.docker.com/), [Vagrant](https://www.vagrantup.com/) or [nvm](https://www.npmjs.com/package/nvm). Vagrant comes with a performance penalty as it relies on a virtual machine. Vagrant is particularly useful in a team: each developer will have the same environment, usually close to production.
 
-W> The webpack configuration of the book has been written the language features supported by Node 6 in mind. If you are using an older version, you may either have to adapt or process your webpack configuration through Babel as discussed at the *Processing with Babel* chapter.
+W> The webpack configuration of the book has been written the language features supported by Node 6 in mind. If you are using an older version, you may either have to adapt or process your webpack configuration through Babel as discussed at the *Loading JavaScript* chapter.
 
 ## Setting Up the Project
 

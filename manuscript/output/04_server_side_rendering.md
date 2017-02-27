@@ -8,7 +8,7 @@ I'll show you next how to set up SSR with webpack and React. The idea is that we
 
 ## Setting Up Babel with React
 
-The *Processing with Babel* chapter covers the essentials of using Babel with webpack. There's some setup that is particular to React you should perform, though. Given most of React projects rely on [JSX](https://facebook.github.io/jsx/) format, you will have to enable it through Babel.
+The *Loading JavaScript* chapter covers the essentials of using Babel with webpack. There's some setup that is particular to React you should perform, though. Given most of React projects rely on [JSX](https://facebook.github.io/jsx/) format, you will have to enable it through Babel.
 
 To get React, and particularly JSX, work with Babel, install the preset first:
 

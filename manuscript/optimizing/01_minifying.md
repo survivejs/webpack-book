@@ -204,7 +204,7 @@ new webpack.optimize.UglifyJsPlugin({
 
 Some of the options support further customization as discussed by the official documentation. If you enable mangling, it is a good idea to set `except: ['webpackJsonp']` to avoid mangling the webpack runtime.
 
-T> Dropping the `console` statements can be achieved through Babel too by using the [babel-plugin-remove-console](https://www.npmjs.com/package/babel-plugin-remove-console) plugin. Babel is discussed in detail in the *Processing with Babel* chapter.
+T> Dropping the `console` statements can be achieved through Babel too by using the [babel-plugin-remove-console](https://www.npmjs.com/package/babel-plugin-remove-console) plugin. Babel is discussed in detail in the *Loading JavaScript* chapter.
 
 ## Other Ways to Minify JavaScript
 
