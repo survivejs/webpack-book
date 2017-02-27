@@ -74,3 +74,4 @@ appendices/02_searching_with_react.md
 appendices/03_hmr_with_react.md
 appendices/04_customizing_eslint.md
 appendices/05_troubleshooting.md
+appendices/06_glossary.md

@@ -48,6 +48,8 @@ There's a short conclusion chapter after the main content that recaps the main p
 
 The appendices the end of the book cover secondary topics and sometimes dig deeper into the main ones. You can approach them in any order you want depending on your interest. There's a *Troubleshooting* appendix at the end in case you want to understand how to debug webpack errors.
 
+T> If you are unsure of some term and its meaning, see the *Glossary* at the end of the book.
+
 ## Who Is This Book For
 
 I expect that you have a basic knowledge of JavaScript and Node. You should be able to use npm on an elementary level. If you know something about webpack, that's great. By reading this book, you will deepen your understanding of these tools.
