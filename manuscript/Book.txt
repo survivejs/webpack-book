@@ -64,9 +64,11 @@ packages/02_authoring.md
 extending/01_loaders.md
 extending/02_plugins.md
 
+14_Conclusion.md
+
 Backmatter.txt
 
-14_Appendices.md
+15_Appendices.md
 appendices/01_comparison.md
 appendices/02_searching_with_react.md
 appendices/03_hmr_with_react.md
