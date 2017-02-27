@@ -32,7 +32,7 @@ T> This book has focused on webpack 2. If you want to apply its techniques to we
 
 The book starts by explaining what webpack is. After that, you will find multiple parts, each of which discusses webpack from a different direction. While going through those chapters, you will develop webpack configuration. They also double as reference material.
 
-The book is split into the following parts:
+The book has been split into the following parts:
 
 * **Developing** part gets you up and running with webpack. This part goes through features such as Hot Module Replacement and explains how to compose your configuration so that it remains maintainable.
 * **Styling** part puts heavy emphasis on styling related topics. You will learn how to load styles with webpack and how to introduce techniques such as autoprefixing to your setup.
