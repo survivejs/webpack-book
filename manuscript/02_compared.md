@@ -14,15 +14,6 @@ Task runners are great tools on a high level. They allow you to perform operatio
 
 For a while, a solution known as [RequireJS](http://requirejs.org/) was popular. The idea was to provide an asynchronous module definition and build on top of that. The format, AMD, is covered in greater detail later in this chapter. Fortunately, the standards have caught up, and RequireJS seems more like a curiosity now.
 
-I have listed a couple of upcoming alternatives below:
-
-* [JSPM](http://jspm.io/) pushes package management directly to the browser. It relies on [System.js](https://github.com/systemjs/systemjs), a dynamic module loader, and skips the bundling step altogether during development. You can generate a production bundle using it. Glen Maddern goes into good detail on his [video about JSPM](https://www.youtube.com/watch?t=33&v=iukBMY4apvI).
-* [pundle](https://www.npmjs.com/package/pundle) advertises itself as a next generation bundler and notes particularly its performance.
-* [Rollup](https://www.npmjs.com/package/rollup) focuses particularly on bundling ES6 code. A feature known as *tree shaking* is one of its attractions. It allows you to drop unused code based on usage. Tree shaking is supported by webpack 2 up to a point. You can use Rollup with webpack through [rollup-loader](https://www.npmjs.com/package/rollup-loader).
-* [AssetGraph](https://www.npmjs.com/package/assetgraph) takes an entirely different approach and builds on top of HTML semantics making it highly useful for tasks like [hyperlink analysis](https://www.npmjs.com/package/hyperlink) or [structural analysis](https://www.npmjs.com/package/assetviz). [webpack-assetgraph-plugin](https://www.npmjs.com/package/webpack-assetgraph-plugin) bridges webpack and AssetGraph together.
-* [FuseBox](https://github.com/fuse-box/fuse-box) is a bundler focusing on speed. It uses a zero-configuration approach and aims to be usable out of the box.
-* [StealJS](https://stealjs.com/) is a dependency loader and a build tool which has focused on performance and ease of use.
-
 I'll go through the main options next in greater detail.
 
 ## Make
@@ -286,6 +277,16 @@ T> There is an experimental [Hot Module Reloading runtime](https://github.com/br
 ![JSPM](images/jspm.png)
 
 Using JSPM is quite different than previous tools. It comes with a little command line tool of its own that is used to install new packages to the project, create a production bundle, and so on. It supports [SystemJS plugins](https://github.com/systemjs/systemjs#plugins) that allow you to load various formats to your project.
+
+## Other Options
+
+You can find more alternatives as listed below:
+
+* [pundle](https://www.npmjs.com/package/pundle) advertises itself as a next generation bundler and notes particularly its performance.
+* [Rollup](https://www.npmjs.com/package/rollup) focuses particularly on bundling ES6 code. A feature known as *tree shaking* is one of its attractions. It allows you to drop unused code based on usage. Tree shaking is supported by webpack 2 up to a point. You can use Rollup with webpack through [rollup-loader](https://www.npmjs.com/package/rollup-loader).
+* [AssetGraph](https://www.npmjs.com/package/assetgraph) takes an entirely different approach and builds on top of HTML semantics making it highly useful for tasks like [hyperlink analysis](https://www.npmjs.com/package/hyperlink) or [structural analysis](https://www.npmjs.com/package/assetviz). [webpack-assetgraph-plugin](https://www.npmjs.com/package/webpack-assetgraph-plugin) bridges webpack and AssetGraph together.
+* [FuseBox](https://github.com/fuse-box/fuse-box) is a bundler focusing on speed. It uses a zero-configuration approach and aims to be usable out of the box.
+* [StealJS](https://stealjs.com/) is a dependency loader and a build tool which has focused on performance and ease of use.
 
 ## Webpack
 
