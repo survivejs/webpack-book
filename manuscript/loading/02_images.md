@@ -79,7 +79,7 @@ exports.loadImages = function({ include, exclude, options } = {}) {
 };
 ```
 
-To attach it to the configuration, adjust as follows. We'll default to *url-loader* during development and use both *url-loader* and *file-loader* in production to maintain smaller bundle sizes:
+To attach it to the configuration, adjust as follows. We'll default to *url-loader* during development and use both *url-loader* and *file-loader* in production to maintain smaller bundle sizes. *url-loader* uses *file-loader* implicitly when `limit` is set and both have to be installed for the setup to work.
 
 **webpack.config.js**
 
