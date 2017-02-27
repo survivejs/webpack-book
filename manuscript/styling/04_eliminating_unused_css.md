@@ -156,4 +156,11 @@ The idea of [critical path rendering](https://developers.google.com/web/fundamen
 
 Using PurifyCSS can lead to a significant decrease in file size. It is particularly useful for static sites that rely on a heavy CSS framework. The more dynamic a site or an application becomes, the harder it becomes to analyze reliably.
 
-The styling portion of our demo is in good shape. We can make it better by including CSS linting to the project. We'll do that next.
+To recap:
+
+* Eliminating unused CSS is possible using PurifyCSS. It performs static analysis against the source.
+* The functionality can be enabled through *purifycss-webpack* and the plugin should be applied *after* `ExtractTextPlugin`.
+* At best, PurifyCSS can eliminate most, if not all, unused CSS rules.
+* Critical path rendering is another CSS technique that puts emphasis on rendering the above-the-fold CSS first. The idea is to render something as fast as possible instead of waiting for all CSS to load.
+
+The styling portion of our demo is in good shape. We can make it easier to develop by including CSS linting to the project. We'll do that next.
