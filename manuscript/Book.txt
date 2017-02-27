@@ -64,9 +64,9 @@ packages/02_authoring.md
 extending/01_loaders.md
 extending/02_plugins.md
 
-14_Conclusion.md
-
 Backmatter.txt
+
+14_Conclusion.md
 
 15_Appendices.md
 appendices/01_comparison.md
