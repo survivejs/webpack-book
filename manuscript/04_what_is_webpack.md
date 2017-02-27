@@ -14,6 +14,8 @@ When you bundle a project through webpack, it will traverse through imports. As 
 
 Webpack supports ES6, CommonJS, and AMD module formats out of the box. The loader mechanism works for CSS as well, and `@import` and `url()` are supported through *css-loader*. You can also find plugins for specific tasks, such as minification, internationalization, HMR, and so on.
 
+T> A dependency graph describes is a directed graph that describes how nodes relate to each other. In this case the graph definition is defined through references (`require`, `import`) between files. Webpack can traverse this information in a static manner without executing the source to generate the graph it needs in order to create bundles.
+
 ## Loaders Evaluate Modules
 
 When webpack encounters a **module**, it will try to perform several things:
@@ -106,8 +108,6 @@ Even small applications can benefit from code splitting, as it allows the users 
 
 With webpack, you can inject a hash to each bundle name (e.g., *app.d587bbd6.js*) to invalidate bundles on the client side as changes are made. Bundle-splitting allows the client to reload only a small part of the data in the ideal case.
 
-Unfortunately, this isn't as easy as I would like, but it's manageable assuming you understand the possible setups well enough.
-
 ## Loaders and Plugins
 
 All these smaller features add up. Surprisingly, you can get many things done out of the box. If you are missing something, there are loaders and plugins available that allow you to go further.
@@ -118,4 +118,13 @@ Webpack comes with a significant learning curve. Even still, it's a tool worth l
 
 You can use webpack with some other tools. It won't solve everything. It does solve the problem of bundling, however. That's one less worry during development. Using *package.json*, `scripts`, and webpack alone takes you far, as we will see soon.
 
-In the following chapters, we'll examine webpack in more detail as you will learn to develop a basic development and build configuration. The later chapters delve into more advanced topics. You can use these building blocks you can use to develop your setup.
+To summarize:
+
+* Webpack is a **module bundler**, but you can also use it for simple tasks as well.
+* **Hot Module Replacement** (HMR) helped to popularize webpack. It is a feature that can enhance development experience.
+* Webpack relies on a **dependency graph** underneath. Webpack will traverse through the source to construct the graph and it uses this information and configuration to generate bundles.
+* Webpack's **configuration** describes how to transform assets of the graphs and what kind of output it should generate. A part of this information may be included in the source itself if features like code splitting are used.
+* Webpack can generate **hashes** for filenames allowing you to invalidate bundles as their contents change.
+* Webpack's logic is contained within **loaders** and **plugins**. These are called through webpack's configuration.
+
+In the following chapters, we'll examine webpack in more detail as you will learn to develop a basic development and build configuration. The later chapters continue further and delve into more advanced topics.

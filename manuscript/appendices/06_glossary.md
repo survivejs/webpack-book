@@ -28,7 +28,6 @@ Given webpack comes with specific nomenclature, I've gathered the main terms and
 * **Minifying** - Minifying, or minification, is an optimization technique in which code is written in a more compact form without losing meaning. Certain destructive transformations may break code if you are not careful.
 * **Tree shaking** - Tree shaking is the process of dropping unused code based on static analysis. A good ES6 module definition allows this process as it is possible to analyze in this particular manner.
 * **Hashing** - Hashing refers to the process of generating a hash that is attached to the asset/bundle path to invalidate it on the client. Example of a hashed bundle name: *app.f6f78b2fd2c38e8200d.js*.
-* **Dependency graph** - When webpack traverses through the source through modules, it will construct a **dependency graph** of modules to describe how they relate to each other.
 
 ## Output
 
