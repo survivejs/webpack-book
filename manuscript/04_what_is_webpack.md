@@ -56,7 +56,7 @@ module.exports = {
     // Output to the same directory
     path: __dirname,
 
-    // Capture name from the entry using a pattern.
+    // Capture name from the entry using a pattern
     filename: '[name].js',
   },
 
