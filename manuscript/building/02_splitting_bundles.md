@@ -140,7 +140,6 @@ leanpub-start-insert
     plugins: [
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor',
-        chunks: ['vendor'],
       }),
     ],
 leanpub-end-insert
@@ -216,7 +215,7 @@ const productionConfig = merge([
 leanpub-start-delete
     plugins: [
       new webpack.optimize.CommonsChunkPlugin({
-        chunks: ['vendor'],
+        name: 'vendor',
       }),
     ],
 leanpub-end-delete
@@ -224,7 +223,7 @@ leanpub-end-delete
 leanpub-start-insert
   parts.extractBundles([
     {
-      chunks: ['vendor'],
+      name: 'vendor',
     },
   ]),
 leanpub-end-insert
@@ -259,11 +258,8 @@ leanpub-start-delete
 leanpub-end-delete
   parts.extractBundles([
     {
-leanpub-start-delete
-      chunks: ['vendor'],
-leanpub-end-delete
-leanpub-start-insert
       name: 'vendor',
+leanpub-start-insert
       minChunks: ({ userRequest }) => (
         userRequest &&
         userRequest.indexOf('node_modules') >= 0 &&
@@ -284,7 +280,9 @@ The first `module` parameter contains a more than `context`. If you wanted to fi
 
 ## Performing a More Granular Split
 
-Sometimes having only an app and a vendor bundle isn't enough. Especially when your application grows and gains more entry points, you may want to split the vendor bundle into multiples ones per each entry. The `minChunks` idea above can be combined with more granular control by specifying `chunks` which to process. Consider [the example adapted from a GitHub comment](https://github.com/webpack/webpack/issues/2855#issuecomment-239606760) below:
+Sometimes having only an app and a vendor bundle isn't enough. Especially when your application grows and gains more entry points, you may want to split the vendor bundle into multiples ones per each entry. `CommonsChunkPlugin` operates against all entry chunks by default. This behavior can be constrained through the `chunks` option for more granular control.
+
+Consider [the example adapted from a GitHub comment](https://github.com/webpack/webpack/issues/2855#issuecomment-239606760) below where chunks are extracted from `login` and `app` entries:
 
 ```javascript
 const config = {
