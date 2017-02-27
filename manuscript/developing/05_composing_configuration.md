@@ -202,4 +202,12 @@ Given all configuration is JavaScript, nothing prevents us from consuming it as 
 
 ## Conclusion
 
-Even though the configuration is technically the same as before, now we have room to grow it. The next parts of this book will cover different techniques, and *webpack.parts.js* will see a lot of action as a result. The changes to *webpack.config.js* will fortunately remain minimal.
+Even though the configuration is technically the same as before, now we have room to grow it.
+
+To recap:
+
+* Given webpack configuration is JavaScript code underneath, there are many ways to manage it.
+* You should choose a way to compose configuration that makes the most sense to you. [webpack-merge](https://www.npmjs.com/package/webpack-merge) was developed to provide a light way to compose, but you will find many other options in the wild.
+* Composition can enable configuration sharing. Instead of having to maintain a custom configuration per repository, you can share it across repositories this way. Using npm packages enables this. Developing configuration is close to developing any other code. This time, however, you will codify your practices as packages.
+
+The next parts of this book will cover different techniques, and *webpack.parts.js* will see a lot of action as a result. The changes to *webpack.config.js* will fortunately remain minimal.
