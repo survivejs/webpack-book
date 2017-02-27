@@ -273,8 +273,15 @@ T> [The official documentation](https://webpack.js.org/configuration/dev-server/
 
 ## Conclusion
 
-HMR is one of those aspects of webpack that makes it attractive for developers. Even though other tools have similar functionality, webpack has taken its implementation far. To get the most out of it, you must implement the HMR interface or use solutions that implement it.
+HMR is one of those aspects of webpack that makes it attractive for developers. Even though other tools have similar functionality, webpack has taken its implementation far.
 
-In the next chapter, we'll make it harder to make mistakes by introducing linting to our project.
+To recap:
+
+* To work, HMR requires both client and server side support. For this purpose, webpack-dev-server provides both. Often you have to implement the client side interface although loaders like *style-loader* implement it for you.
+* It is a good idea to use the `NamedModulesPlugin` during development as that gives you better debug information.
+* The default HMR setup may be problematic on certain systems. For this reason, you may have to enable more resource intensive polling instead of relying on system level hook based options.
+* WDS does far more than refreshing and HMR. For example proxying allows you to connect it to other servers.
+
+In the next chapter, we'll make it harder to make mistakes by introducing JavaScript linting to our project.
 
 T> The *Hot Module Replacement with React* appendix discusses HMR specifics related to React.
