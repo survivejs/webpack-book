@@ -269,4 +269,11 @@ T> [Danger](https://github.com/danger/danger-js) operates on a higher level than
 
 In this chapter, you learned how to lint your code using webpack in different ways. It is one of those techniques that yields benefits over the long term. You can fix possible problems before they become actual issues.
 
+To recap:
+
+* ESLint is the most versatile of the current options. You can expand it to fit your exact use case.
+* ESLint can be run through webpack. It can terminate your build and even prevent it from getting deployed if your build does not pass the linting rules.
+* EditorConfig complements ESLint by allowing you to define a project-level coding style. Editors integrate with EditorConfig making it easier to keep a project consistent regardless of the development platform.
+* Prettier is an upcoming solution that can format your code automatically. Danger operates on repository level and can perform higher level tasks related to the development process.
+
 Given the webpack configuration of our project is starting to get a little messy, and it won't get any easier should we extend it, it is a good time to discuss how to compose configuration and improve the situation further. We'll do that in the next chapter.
