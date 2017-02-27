@@ -90,3 +90,11 @@ IE 8 # And IE 8
 ## Conclusion
 
 Autoprefixing is a convenient technique as it decreases the amount of work needed while crafting CSS. You can maintain minimum browser requirements within a *browserslist* file. The tooling can then use that information to generate optimal output.
+
+To recap:
+
+* Autoprefixing can be enabled through the *autoprefixer* PostCSS plugin.
+* Autoprefixing will write missing CSS definitions based on your minimum browser definition.
+* *browserslist* is a standard file that works with tooling beyond *autoprefixer*
+
+In the next chapter, we will learn to eliminate unused CSS from the project.
