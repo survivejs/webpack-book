@@ -30,7 +30,7 @@ T> This book has focused on webpack 2. If you want to apply its techniques to we
 
 ## How Is This Book Organized
 
-The book starts with a couple of chapters that provide background information and explain what webpack is. After that, you will find multiple parts, each of which discusses webpack from a different direction. While going through those chapters, you will develop webpack configuration. They also double as reference material.
+The book starts by explaining what webpack is. After that, you will find multiple parts, each of which discusses webpack from a different direction. While going through those chapters, you will develop webpack configuration. They also double as reference material.
 
 The book is split into the following parts:
 

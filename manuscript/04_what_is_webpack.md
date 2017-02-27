@@ -4,6 +4,8 @@ Webpack is a module bundler. You can use it with task runners while leaving bund
 
 Webpack became particularly popular with React due to Hot Module Replacement (HMR). That helped to popularize webpack to a large extent and lead to usage in other environments. Despite its name, webpack has not been meant for web alone. It can bundle for other targets as well as discussed in the *Build Targets* chapter.
 
+T> If you want to understand build tools and their history in a better detail, check out the *Comparison of Build Tools* appendix.
+
 ## Webpack Relies on Modules
 
 If you think about the simplest project you could bundle with webpack, you'll end up with input and output. In webpack terms, the bundling process begins from user defined **entries**. Entries themselves are **modules** and can point to other modules through **imports**.

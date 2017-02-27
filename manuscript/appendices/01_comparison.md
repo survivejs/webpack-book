@@ -1,8 +1,8 @@
-# Webpack Compared
+# Comparison of Build Tools
 
-You can understand better why webpack's approach is powerful by putting it into a historical context. Back in the day, it was enough to concatenate some scripts together. Times have changed, though, and now distributing your JavaScript code can be a complicated endeavor.
+Back in the day, it was enough to concatenate some scripts together. Times have changed, though, and now distributing your JavaScript code can be a complicated endeavor. This problem has escalated with the rise of single page applications (SPAs). They tend to rely on many hefty libraries.
 
-This problem has escalated with the rise of single page applications (SPAs). They tend to rely on many hefty libraries. For this reason, there are multiple strategies on how to load them. You could load them all at once or consider loading libraries as you need them. Webpack supports many of these sorts of strategies.
+For this reason, there are multiple strategies on how to load them. You could load them all at once or consider loading libraries as you need them. Webpack supports many of these sorts of strategies.
 
 The popularity of Node and [npm](https://www.npmjs.com/), its package manager, provide more context. Before npm became popular, it was hard to consume dependencies. There was a period when people developed frontend specific package managers, but npm won in the end. Now dependency management is easier than before, although there are still challenges to overcome.
 
@@ -278,6 +278,16 @@ T> There is an experimental [Hot Module Reloading runtime](https://github.com/br
 
 Using JSPM is quite different than previous tools. It comes with a little command line tool of its own that is used to install new packages to the project, create a production bundle, and so on. It supports [SystemJS plugins](https://github.com/systemjs/systemjs#plugins) that allow you to load various formats to your project.
 
+## Webpack
+
+![webpack](images/webpack.png)
+
+You could say [webpack](https://webpack.js.org/) takes a more monolithic approach than Browserify. Whereas Browserify consists of multiple small tools, webpack comes with a core that provides a lot of functionality out of the box.
+
+Webpack core can be extended using specific *loaders* and *plugins*. It gives control over how it *resolves* the modules, making it possible to adapt your build to match specific situations and workaround packages that don't work correctly out of the box.
+
+Compared to the other tools, webpack might come with some initial complexity, but it makes up for this through its broad feature set. It is an advanced tool that requires patience. But once you understand the basic ideas behind it, webpack becomes powerful.
+
 ## Other Options
 
 You can find more alternatives as listed below:
@@ -289,18 +299,6 @@ You can find more alternatives as listed below:
 * [StealJS](https://stealjs.com/) is a dependency loader and a build tool which has focused on performance and ease of use.
 * [Flipbox](https://github.com/flip-box/flipbox) wraps multiple bundlers behind a uniform interface.
 
-## Webpack
-
-![webpack](images/webpack.png)
-
-You could say [webpack](https://webpack.js.org/) takes a more monolithic approach than Browserify. Whereas Browserify consists of multiple small tools, webpack comes with a core that provides a lot of functionality out of the box.
-
-Webpack core can be extended using specific *loaders* and *plugins*. It gives control over how it *resolves* the modules, making it possible to adapt your build to match specific situations and workaround packages that don't work correctly out of the box.
-
-Compared to the other tools, webpack might come with some initial complexity, but it makes up for this through its broad feature set. It is an advanced tool that requires patience. But once you understand the basic ideas behind it, webpack becomes powerful.
-
 ## Conclusion
 
-Webpack solves a fair share of common web development problems. If you know it well, it will save lots of time although it will take some time to learn to use it. Instead of jumping to a complex webpack based boilerplate, consider spending time with simpler setups first and developing your own. The configuration will make more sense after that.
-
-The next chapter explains what webpack is in greater detail. That provides a suitable basis for delving deeper.
+Historically there have been a lot of build tools for JavaScript. Each has tried to solve a specific problem in its own way. The standards have begun to catch up and less effort is required around basic semantics. Instead, tools can compete on a higher level and push towards better user experience. Often you can use a couple of separate solutions together.
