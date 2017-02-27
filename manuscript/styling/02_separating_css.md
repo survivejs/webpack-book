@@ -6,13 +6,11 @@ The current solution doesn't allow us to cache CSS. In some cases, we might suff
 
 Webpack provides a means to generate a separate CSS bundles using [ExtractTextPlugin](https://www.npmjs.com/package/extract-text-webpack-plugin). It can aggregate multiple CSS files into one. For this reason, it comes with a loader that handles the extraction process. The plugin then picks up the result aggregated by the loader and emits a separate file.
 
-Due to this process, ExtractTextPlugin comes with overhead during the compilation phase. It won't work with Hot Module Replacement (HMR) by design. Given we are using it only for production, that won't be a problem.
+Due to this process, `ExtractTextPlugin` comes with overhead during the compilation phase. It won't work with Hot Module Replacement (HMR) by design. Given we are using it only for production, that won't be a problem.
 
 T> This same technique can be employed with other assets, like templates, too.
 
-W> It can be potentially dangerous to use inline styles within JavaScript in production as it represents an attack vector. **Critical path rendering** embraces the idea and inlines the critical CSS to the initial HTML payload improving perceived performance of the site. It is discussed in the next chapter in detail.
-
-In limited contexts inlining a small amount of CSS can be a viable option to speed up the initial load (fewer requests).
+W> It can be potentially dangerous to use inline styles within JavaScript in production as it represents an attack vector. **Critical path rendering** embraces the idea and inlines the critical CSS to the initial HTML payload improving perceived performance of the site. It is discussed in the next chapter in detail. In limited contexts inlining a small amount of CSS can be a viable option to speed up the initial load (fewer requests).
 
 ## Setting Up `ExtractTextPlugin`
 
@@ -108,7 +106,7 @@ leanpub-end-insert
 
 Using this setup, we can still benefit from the HMR during development. For a production build, we generate a separate CSS, though. *html-webpack-plugin* will pick it up automatically and inject it into our `index.html`.
 
-T> If you are using CSS Modules, remember to tweak `use` accordingly as discussed in the *Loading Styles* chapter.
+T> If you are using CSS Modules, remember to tweak `use` accordingly as discussed in the *Loading Styles* chapter. You may also want to maintain separate setups for normal CSS and CSS Modules so that they get loaded through separate logic.
 
 After running `npm run build`, you should see output similar to the following:
 
@@ -170,3 +168,11 @@ The approach can be useful if you have to port a legacy project relying on CSS c
 ## Conclusion
 
 Our current setup separates styling from JavaScript neatly. Even though the technique is most useful with CSS, it can be used to extract HTML templates or any other files types you might consume. The hard part about `ExtractTextPlugin` has to do with its setup, but the complexity can be hidden behind an abstraction.
+
+To recap:
+
+* Using `ExtractTextPlugin` with styling solves the problem of Flash of Unstyled Content (FOUC). Separating CSS from JavaScript also improves caching behavior and removes a potential attack vector.
+* `ExtractTextPlugin` is not the only way to handle the problem. *extract-loader* can give the same result in more limited contexts.
+* If you don't prefer to maintain references to styling through JavaScript, an alternative is to handle them through an entry. You will have to be careful with style ordering in this case, though.
+
+In the next chapter, we will discuss a technique known as **autoprefixing**. Enabling the feature will make it more convenient to develop complex CSS setups that work with older browsers as well.
