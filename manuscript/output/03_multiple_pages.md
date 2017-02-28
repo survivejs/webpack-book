@@ -312,3 +312,11 @@ The approach combines well with plugins like [offline-plugin](https://www.npmjs.
 ## Conclusion
 
 Webpack allows you to manage multiple page setups with some thought. Especially the PWA approach is interesting as it allows loading the application in a progressive manner based on usage. It is more flexible than a more traditional single page application approach, and webpack's functionality enables it well.
+
+To recap:
+
+* Webpack can be used to generate separate pages either through its multi-compiler mode or by including all the page configuration into one.
+* The multi-compiler configuration can run in parallel using external solutions, but it is harder to apply techniques such as bundle splitting against it.
+* A multi-page setup can lead to a **Progressive Web Application**. In this case you'll use various webpack techniques to come up with an application that is fast to load and that fetches functionality as required. Both two flavors of this technique have their own merits.
+
+I will discuss the idea of Server Side Rendering in the next chapter.
