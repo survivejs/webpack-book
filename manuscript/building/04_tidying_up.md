@@ -128,3 +128,10 @@ Copying files is another common operation you can handle with webpack. [copy-web
 ## Conclusion
 
 Often, you work with webpack like this: First, you identify a problem and then find a plugin to tackle it. It is entirely acceptable to solve these types of issues outside of webpack, but webpack can often handle them as well.
+
+To recap:
+
+* You can find many small plugins that work as tasks and push webpack closer to a task runner.
+* These tasks include cleaning the build and deployment. The *Deploying Applications* chapter discusses the latter topic in detail.
+* It can be a good idea to include small comments to the production build to tell what version has been deployed. This way you can debug potential issues faster.
+* Secondary tasks like these can be performed outside of webpack. If you are using a multi-page setup as discussed in the *Multiple Pages* chapter, this will become a necessity.
