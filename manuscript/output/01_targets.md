@@ -184,6 +184,8 @@ function add(a, b) {
 
 You can see some familiar code there and more. Webpack's bootstrap script is in place, and it starts the entire execution process. It takes the majority of space for a small library like this, but that's not a problem as the library begins to grow.
 
+T> Instead of using the multi-compiler mode, it would be possible to define two targets. One of them would generate the non-minified version while the other would generate the minified one. The other npm script could be called as `build:lib:dist` and you could define a `build:lib:all` script to build both.
+
 ### Cleaning and Linting Before Building
 
 It might be a good idea to clean the build directory and lint the code before building the library. You could expand webpack configuration like this:
@@ -309,6 +311,15 @@ If you build the project (`npm run build:lib`), it should generate a *./dist-mod
 When distributing the library, you should point to that *./dist-modules* directory from *package.json* `module` field.
 
 ## Conclusion
+
+Webpack supports targets beyond the web. It can be useful for bundling desktop applications, Node servers, and web workers. npm package authors can be find it handy too.
+
+To recap:
+
+* Webpack's output target can be controlled through the `target` field. It defaults to `web`, but accepts other options too.
+* If you bundle libraries with it, you should set the `output` options carefully to get the result you want.
+* Webpack can generate both a non-minified and a minified version of a library through its **multi-compiler** mode. It is possible to minify also as a post-process using an external tool.
+* Performing tasks, such as cleaning and linting JavaScript, while using the multi-compiler mode is problematic at the moment. Instead, it can be a good idea to handle these tasks outside of webpack or run multiple webpack instances separately.
 
 If you try to import *./dist/lib.js* through Node, you will notice it will output `{}`. The problem has to do with the output type we chose. To understand better which output to use and why we will go through them and the related options in the next chapter.
 
