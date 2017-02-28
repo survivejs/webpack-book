@@ -70,6 +70,8 @@ That `[name]` placeholder will use the name of the entry where the CSS is referr
 
 T> If you wanted to output the resulting file to a specific directory, you could do it like this: `new ExtractTextPlugin('styles/[name].css')`.
 
+T> If you extract multiple CSS files from separate entries, you can use [merge-files-webpack-plugin](https://www.npmjs.com/package/merge-files-webpack-plugin) to concatenate them into one file.
+
 ### Connecting with Configuration
 
 Connect the function with our configuration as below:
