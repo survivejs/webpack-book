@@ -165,4 +165,11 @@ W> Not all modules support `module.noParse`. They should not have a reference to
 
 ## Conclusion
 
-You can optimize webpack's performance in multiple ways. Often it's a good idea to start with easier techniques before moving to more involved ones. The exact techniques you have to use depend on the project.
+You can optimize webpack's performance in multiple ways. Often it's a good idea to start with easier techniques before moving to more involved ones. The exact methods you have to use, depend on the project.
+
+To recap:
+
+* Start with higher level techniques that are easy first.
+* Lower level techniques are more involved but may come with their wins.
+* Given webpack runs using a single instance by default, finding ways to parallelize its execution can lead to big wins.
+* Sometimes the best optimization is to skip work. Especially during development, cheating can be the way to go thanks to modern browsers.
