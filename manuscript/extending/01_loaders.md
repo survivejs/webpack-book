@@ -2,7 +2,7 @@
 
 As we've seen so far, loaders are one of the building blocks of webpack. If you want to load an asset, you'll most likely need to set up a matching loader definition. Even though there are a lot of [available loaders](https://webpack.js.org/loaders/), it is possible you are missing one fitting your purposes.
 
-The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API well. To give you a concrete example, I'm going to discuss a subset of a loader I have developed. [highlight-loader](https://github.com/bebraw/highlight-loader) accepts HTML and then applies [highlight.js](https://highlightjs.org/) on it. Even though the transformation itself is simple, the loader implementation isn't trivial.
+The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API well. To give you a concrete example, I'm going to discuss a subset of a loader I have developed. [highlight-loader](https://github.com/bebraw/highlight-loader) accepts HTML and then applies [highlight.js](https://highlightjs.org/) on it. Even though the transformation itself is easy, the loader implementation isn't trivial.
 
 ## Setting Up a Loader Project
 
@@ -13,7 +13,7 @@ I follow the following layout in my loader project:
 ├── LICENSE          - License terms of the project
 ├── README.md        - Basic description of the project
 ├── examples         - Examples against webpack
-│   ├── app          - Simple app to run
+│   ├── app          - Demo app to run
 │   │   ├── index.js - Entry for webpack
 │   │   └── input.md - Data to process
 │   └── run.js       - Webpack configuration
@@ -115,7 +115,7 @@ T> Webpack loaders can be run standalone through [loader-runner](https://www.npm
 
 The loader implementation isn't entirely trivial due to the amount of functionality within it. I ended up using [cheerio](https://www.npmjs.org/package/cheerio) to apply *highlight.js* on the code portions of the passed HTML. Cheerio provides an API resembling jQuery making it ideal for small tasks, such as this.
 
-To keep this discussion simple, I'll give you a subset of the implementation to show you the key parts:
+To keep this discussion focused, I'll give you a subset of the implementation to show you the key parts:
 
 ```javascript
 'use strict';

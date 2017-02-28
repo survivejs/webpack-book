@@ -149,7 +149,7 @@ leanpub-end-insert
 
 ### Defining a Split Point Using a Dynamic `import`
 
-A simple way to illustrate the idea might be to set up a module that contains a string that will replace the text of our demo button. Set up a file as follows:
+A quick way to illustrate the idea might be to set up a module that contains a string that will replace the text of our demo button. Set up a file as follows:
 
 **app/lazy.js**
 

@@ -18,7 +18,7 @@ We will use this approach in the book to discuss different techniques. *webpack.
 
 ## Composing Configuration by Merging
 
-To eliminate the problem of dealing with `Object.assign` and `Array.concat`, I developed [webpack-merge](https://www.npmjs.org/package/webpack-merge). Effectively it does two things: it concatenates arrays and merges objects instead of overriding them. Even though a simple idea, this allows us to compose configuration and gives us a degree of abstraction.
+To eliminate the problem of dealing with `Object.assign` and `Array.concat`, I developed [webpack-merge](https://www.npmjs.org/package/webpack-merge). Effectively it does two things: it concatenates arrays and merges objects instead of overriding them. Even though a basic idea, this allows us to compose configuration and gives us a degree of abstraction.
 
 *webpack-merge* provides even more control through strategies that enable you to control its behavior per field. Strategies allow you to force it to append, prepend, or replace content. Even though *webpack-merge* was designed for this book, it has proven to be an invaluable tool beyond it. You can consider it as a learning tool and pick it up in your work if you find it useful.
 
@@ -149,7 +149,7 @@ T> Webpack 2 validates the configuration by default. If you make an obvious mist
 
 ## The Benefits of Composing Configuration
 
-Even though a simple technique, splitting configuration allows you to keep on expanding the setup. The biggest win is the fact that we can extract commonalities between different targets. We can also identify smaller configuration parts to compose. These configuration parts can be pushed to packages of their own to consume across projects.
+Splitting configuration allows you to keep on expanding the setup. The biggest win is the fact that we can extract commonalities between different targets. We can also identify smaller configuration parts to compose. These configuration parts can be pushed to packages of their own to consume across projects.
 
 Instead of duplicating similar configuration across multiple projects, you can manage configuration as a dependency now. As you figure out better ways to perform tasks, all your projects will receive the improvements.
 

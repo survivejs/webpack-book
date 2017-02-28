@@ -10,7 +10,7 @@ T> To invalidate the bundles properly, we'll attach hashes to the generated bund
 
 With bundle splitting, we can push the vendor dependencies to a bundle of their own and benefit from client level caching. We can do this in such a way that the whole size of the application remains the same. Given there are more requests to perform, there's a slight overhead. But the benefit of caching makes up for this cost.
 
-To give you a simple example, instead of having *app.js* (100 kB), we could end up with *app.js* (10 kB) and *vendor.js* (90 kB). Now changes made to the application are cheap for the clients that have already used the application earlier.
+To give you a quick example, instead of having *app.js* (100 kB), we could end up with *app.js* (10 kB) and *vendor.js* (90 kB). Now changes made to the application are cheap for the clients that have already used the application earlier.
 
 Caching comes with its problems. One of those is cache invalidation. We'll discuss a potential approach related to that in the *Adding Hashes to Filenames* chapter.
 
@@ -420,7 +420,7 @@ The situation is better now compared to the earlier. Note how small `app` bundle
 To recap:
 
 * Webpack allows you to split bundles from configuration entries through the `CommonsChunkPlugin`.
-* The simplest use case for `CommonsChunkPlugin` is to extract so-called **vendor bundle**.
+* The most basic use case for `CommonsChunkPlugin` is to extract so-called **vendor bundle**.
 * A vendor bundle contains the third party code of your project. The vendor dependencies can be detected by inspecting where the modules are imported. If they come from the *node_modules* directory, they can be split automatically through a `minChunks` rule.
 * `CommonsChunkPlugin` provides control over the splitting process. You can control the position of shared modules through its `async` and `children` options. `async` extracts shared modules to an asynchronously loaded bundle while `children` pushes the shared modules to the parent bundle.
 * The `chunks` option of `CommonsChunkPlugin` allows you to control where the plugin is performing splitting. The option gives more granular control, especially in more complex setups.

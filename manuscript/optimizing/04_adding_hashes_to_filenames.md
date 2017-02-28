@@ -161,7 +161,7 @@ As you might remember, webpack uses number based IDs for the module code it gene
 
 Webpack provides `HashedModuleIdsPlugin` that is like `NamedModulesPlugin` except it hashes the result and hides the path information. The process keeps module IDs stable as they aren't derived based on order. We sacrifice a couple of bytes for a cleaner setup, but the trade-off is well worth it.
 
-The change required is simple. Tweak the configuration as follows:
+The change required is tiny. Tweak the configuration as follows:
 
 **webpack.config.js**
 

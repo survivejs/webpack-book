@@ -104,7 +104,7 @@ document.body.appendChild(component());
 
 We'll need to tell webpack how to deal with the assets we set up. For this purpose, we'll develop a *webpack.config.js* file. Webpack and its development server will be able to discover this file through a convention.
 
-To keep things simple to maintain, we'll be using [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) to generate an *index.html* for our application. *html-webpack-plugin* wires up the generated assets with it. Install it to the project:
+To keep things easy to maintain, we'll be using [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) to generate an *index.html* for our application. *html-webpack-plugin* wires up the generated assets with it. Install it to the project:
 
 ```bash
 npm install html-webpack-plugin --save-dev
@@ -152,7 +152,7 @@ module.exports = {
 };
 ```
 
-The `entry` path could be given as a relative one. The [context](https://webpack.js.org/configuration/entry-context/#context) field can be used to configure that lookup. Given plenty of places expect absolute paths, I prefer to use absolute paths everywhere to avoid confusion and keep it simple.
+The `entry` path could be given as a relative one. The [context](https://webpack.js.org/configuration/entry-context/#context) field can be used to configure that lookup. Given plenty of places expect absolute paths, I prefer to use absolute paths everywhere to avoid confusion.
 
 T> I use **trailing commas** in the book examples on purpose as it gives cleaner diffs for the code examples. I will show you how to enforce this rule at the *Linting JavaScript* chapter.
 

@@ -6,7 +6,7 @@ It isn't the easiest tool to learn due to its configuration-driven approach. The
 
 ## What Is Webpack?
 
-Web browsers have been designed to consume HTML, JavaScript, and CSS. The simplest way to develop is simply to write files that the browser understands directly. The problem is that this eventually becomes unwieldy and this is particularly the case when you are developing web applications.
+Web browsers have been designed to consume HTML, JavaScript, and CSS. The quickest way to develop is simply to write files that the browser understands directly. The problem is that this eventually becomes unwieldy and this is particularly the case when you are developing web applications.
 
 The naïve way to load JavaScript is simply to bundle it all into a single file. Eventually, this won't be enough as the size of your single bundle grows too big to load. You will need other strategies. One common way is to start splitting it up and then benefit from caching. You can even begin to load dependencies dynamically as you need them.
 

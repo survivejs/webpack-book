@@ -130,7 +130,7 @@ The CSS lookup works because of *css-loader*. You can also try importing the ima
 
 ## Loading SVGs
 
-Webpack allows a [couple ways](https://github.com/webpack/webpack/issues/595) to load SVGs. However, the simplest way is through *file-loader* as follows:
+Webpack allows a [couple ways](https://github.com/webpack/webpack/issues/595) to load SVGs. However, the easiest way is through *file-loader* as follows:
 
 ```javascript
 {

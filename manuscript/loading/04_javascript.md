@@ -165,7 +165,7 @@ Note especially how the function was transformed. This code should work in older
 
 ## Polyfilling Features
 
-Given it's not always enough to transform ES6 code to an older format and expect it to work, polyfilling may be needed. The simplest way to solve this problem is to include [babel-polyfill](https://babeljs.io/docs/usage/polyfill/) to your project. A simple way to achieve that in webpack is to either include it to entry (`app: ['babel-polyfill', PATHS.app]`) or `import 'babel-polyfill'` from code to get it bundled.
+Given it's not always enough to transform ES6 code to an older format and expect it to work, polyfilling may be needed. The easiest way to solve this problem is to include [babel-polyfill](https://babeljs.io/docs/usage/polyfill/) to your project through an entry (`app: ['babel-polyfill', PATHS.app]`) or `import 'babel-polyfill'` from code to get it bundled.
 
 It is important to note that *babel-polyfill* pollutes the global scope with objects like `Promise`. Given this can be problematic for library authors, there's [transform-runtime](https://babeljs.io/docs/plugins/transform-runtime/) option. It can be enabled as a Babel plugin, and it will avoid the problem of globals by rewriting the code in such way that they won't be needed.
 

@@ -1,6 +1,6 @@
 # Deploying Applications
 
-A project built with webpack can be deployed to a variety of environments. A simple, public project that doesn't rely on a backend can be pushed to GitHub Pages using the *gh-pages* package. Also, there are a variety of webpack plugins that can target other environments, such as S3.
+A project built with webpack can be deployed to a variety of environments. A public project that doesn't rely on a backend can be pushed to GitHub Pages using the *gh-pages* package. Also, there are a variety of webpack plugins that can target other environments, such as S3.
 
 ## Deploying with *gh-pages*
 
@@ -63,7 +63,7 @@ leanpub-end-insert
 
 After building (`npm run build`) and deploying (`npm run deploy`), you should have your application from the `build/` directory hosted through GitHub Pages. You should find it at `https://<name>.github.io/<project>` (`github.com/<name>/<project>` at GitHub) assuming everything went fine.
 
-T> If you need a more elaborate setup, use the Node API that *gh-pages* provides. The default command line tool it provides is enough for simple purposes, though.
+T> If you need a more elaborate setup, use the Node API that *gh-pages* provides. The default command line tool it provides is enough for basic purposes, though.
 
 T> GitHub Pages allows you to choose the branch where you deploy. It is possible to use the `master` branch even as it is enough for minimal sites that don't need bundling. You can also point below the *./docs* directory within your `master` branch and maintain your site. That is useful for small projects.
 

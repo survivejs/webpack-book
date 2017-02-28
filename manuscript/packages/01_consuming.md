@@ -162,7 +162,7 @@ Webpack's `ProvidePlugin` can be used for a similar purpose. It allows webpack t
 
 ## Removing Unused Modules
 
-Even though packages might work well out of the box, they might bring too much code to your project by default. [Moment.js](https://www.npmjs.com/package/moment) is a popular example. It brings locale data to your project by default. The simplest way to disable that behavior is to use `IgnorePlugin` to ignore locales like this:
+Even though packages might work well out of the box, they might bring too much code to your project by default. [Moment.js](https://www.npmjs.com/package/moment) is a popular example. It brings locale data to your project by default. The easiest way to disable that behavior is to use `IgnorePlugin` to ignore locales like this:
 
 ```javascript
 {

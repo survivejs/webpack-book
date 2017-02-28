@@ -10,7 +10,7 @@ npm install react-hot-loader@next --save-dev
 
 ## Setting Up Babel
 
-The Babel portion is simple. Babel needs to become aware of the *react-hot-loader* plugin:
+To connect Babel with *react-hot-loader*, it needs to become aware of its plugin portion:
 
 **.babelrc**
 
@@ -131,7 +131,7 @@ If you build the application (`npm run build`) and examine the output, you might
 
 Babel provides an [env option](https://babeljs.io/docs/usage/babelrc/#env-option) for this purpose. It respects both `NODE_ENV` and `BABEL_ENV` environment variables. If `BABEL_ENV` is set, it will receive precedence. To fix the issue, we can push the problematic Babel plugin behind a development specific `env` while controlling its behavior within webpack configuration by setting `BABEL_ENV`.
 
-The webpack part of the fix is simple. Adjust like this:
+The webpack part should be adjusted like this:
 
 **webpack.config.js**
 

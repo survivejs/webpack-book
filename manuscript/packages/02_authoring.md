@@ -10,7 +10,7 @@ Most of the available npm packages are small and include only a couple of files:
 
 * *index.js* - On small projects, it's enough to have the code at the root. On larger ones, you may want to start splitting it up further.
 * *package.json* - npm metadata in JSON format
-* *README.md* - README is the most important document of your project. It is written in Markdown format and provides an overview. For simple projects, the full documentation can fit there. It will be shown on the package page at *npmjs.com*.
+* *README.md* - README is the most important document of your project. It is written in Markdown format and provides an overview. For smallest projects, the full documentation can fit there. It will be shown on the package page at *npmjs.com*.
 * *LICENSE* - You can include licensing information within your project. You should refer to the license by name from *package.json* as otherwise, npm will give a warning. If you are using a custom license, you can link to it instead. In commercial projects, you may want to set `"private": true` to avoid pushing your work to public inadvertently.
 
 In larger projects, you may find the following:
@@ -22,7 +22,7 @@ In larger projects, you may find the following:
 * *.npmignore* - Ignore patterns for npm describe which files shouldn't go to your distribution version. A good alternative is to use the [files](https://docs.npmjs.com/files/package.json#files) field at *package.json*. It allows you to maintain a whitelist of files to include into your distribution version.
 * *.eslintignore* - Ignore patterns for ESLint. Again, tool specific.
 * *.eslintrc* - Linting rules. You can use *.jshintrc* and such based on your preferences.
-* *webpack.config.js* - If you are using a simple setup, you might as well have the configuration at project root.
+* *webpack.config.js* - If you are using a basic setup, you might as well have the configuration at project root.
 
 Also, you'll likely have separate directories for the source, tests, demos, documentation, and so on.
 
@@ -139,7 +139,7 @@ T> JSON doesn't support comments even though I'm using them above. There are ext
 
 ## npm Workflow
 
-Working with npm is simple. To get started, you will need to use [npm adduser](https://docs.npmjs.com/cli/adduser). It allows you to set up an account. After this process has completed, it will create *~/.npmrc* and use that data for authentication. There's also [npm logout](https://docs.npmjs.com/cli/logout) that will clear the credentials.
+Working with npm is easy. To get started, you will need to use [npm adduser](https://docs.npmjs.com/cli/adduser). It allows you to set up an account. After this process has completed, it will create *~/.npmrc* and use that data for authentication. There's also [npm logout](https://docs.npmjs.com/cli/logout) that will clear the credentials.
 
 T> When creating a project, `npm init` respects the values set at *~/.npmrc*. Hence, it may be worth your while to set reasonable defaults there to save some time. If you want to limit your package to a particular scope, use `npm init --scope=<scope>`. As a result, you will get `@<scope>/<package>` which is handy especially for personal packages since the default namespace of npm is so crowded.
 
@@ -185,7 +185,7 @@ T> [dont-break](https://www.npmjs.com/package/dont-break) allows you to run the 
 
 ### Respect the SemVer
 
-Even though it is simple to publish new versions out there, it is important to respect the SemVer. Roughly, it states that you should not break backward compatibility, given certain rules are met. The exact rules were covered in the previous chapter so that I won't cover them again here.
+Even though it is easy to publish new versions out there, it is important to respect the SemVer. Roughly, it states that you should not break backward compatibility, given certain rules are met. The exact rules were covered in the previous chapter so that I won't cover them again here.
 
 To make it easier to comply with SemVer, [next-ver](https://www.npmjs.com/package/next-ver) can compute the next version you should use and update it for you. [commitizen](https://www.npmjs.com/package/commitizen) goes further and allows change log generation and automated releases.
 
@@ -419,7 +419,7 @@ You should now have a basic idea of how to author npm packages. Webpack can help
 To recap:
 
 * It is good to understand what kind of metadata packages may contain. They will give you insight on their licensing, guidelines, and even quality.
-* Publishing npm packages is simple. Remember to respect the SemVer or an equivalent scheme, though, as that will keep your consumers happy.
+* Publishing npm packages is easy. Remember to respect the SemVer or an equivalent scheme, though, as that will keep your consumers happy.
 * Document the main changes made to your packages using a change log. Documentation will come in handy later as you have to understand when some specific feature was introduced. It will also make it easier to upgrade projects to the most recent features.
 * Consider publishing differently packaged versions of the source to account for different usage patterns. Packaged right, your consumers can benefit from features, such as **tree shaking**.
 * To make it easy to consume a work in progress package, implement an npm `postinstall` script that builds the project if a distribution version does not exist in the source.

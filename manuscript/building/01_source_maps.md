@@ -384,7 +384,7 @@ exports.generateSourceMaps = function({
         // If false, column mappings are ignored.
         columns: columnMappings,
 
-        // Use simpler line to line mappings for the matched modules.
+        // Use plain line to line mappings for the matched modules.
         // lineToLine: bool | {test, include, exclude},
 
         // Remove source content from source maps. This is useful

@@ -23,7 +23,7 @@ Using variants would be a good way to generate both production and development b
 
 The underlying idea can be implemented using a [worker-farm](https://www.npmjs.com/package/worker-farm). In fact, *parallel-webpack* relies on *worker-farm* underneath.
 
-The simplest way to use *parallel-webpack* is to install it to your project as a development dependency and then replace `webpack` command with `parallel-webpack`.
+The easiest way to use *parallel-webpack* is to install it to your project as a development dependency and then replace `webpack` command with `parallel-webpack`.
 
 ### HappyPack - File Level Parallelism
 
@@ -76,7 +76,7 @@ leanpub-end-insert
 };
 ```
 
-The example above contains enough information for webpack to run the given loader parallel. HappyPack comes with more advanced options, but applying this simple idea is enough to get started.
+The example above contains enough information for webpack to run the given loader parallel. HappyPack comes with more advanced options, but applying this idea is enough to get started.
 
 Perhaps the problem with HappyPack is that it couples your configuration with it. It would be possible to overcome this issue by design and make it easier to inject. One interesting option would be to build a higher level abstraction that can perform the replacement on top of vanilla configuration.
 

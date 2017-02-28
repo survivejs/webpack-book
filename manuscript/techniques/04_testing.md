@@ -274,7 +274,7 @@ Given running tests after the change can get boring after a while, Karma provide
 
 ### Watch Mode with Karma
 
-Accessing Karma's watch mode is simple. Add a script as follows:
+Accessing Karma's watch mode is easy. Add a script as follows:
 
 **package.json**
 

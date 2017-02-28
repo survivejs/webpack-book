@@ -8,7 +8,7 @@ T> If you want to understand build tools and their history in a better detail, c
 
 ## Webpack Relies on Modules
 
-If you think about the simplest project you could bundle with webpack, you'll end up with input and output. In webpack terms, the bundling process begins from user defined **entries**. Entries themselves are **modules** and can point to other modules through **imports**.
+If you think about the smallest project you could bundle with webpack, you'll end up with input and output. In webpack terms, the bundling process begins from user defined **entries**. Entries themselves are **modules** and can point to other modules through **imports**.
 
 When you bundle a project through webpack, it will traverse through imports. As a result, webpack constructs a **dependency graph** of the project and then generates the **output** based on the configuration. It will output everything into a single **bundle** by default, but it can be configured to output more.
 
@@ -94,7 +94,7 @@ T> To understand webpack on source code level, check out [the artsy webpack tour
 
 ## Hot Module Replacement
 
-You might be familiar with tools, such as [LiveReload](http://livereload.com/) or [BrowserSync](http://www.browsersync.io/), already. These tools refresh the browser automatically as you make changes. HMR takes things one step further. In the case of React, it allows the application to maintain its state without forcing a refresh. While sounding simple, it makes a big difference in practice.
+You might be familiar with tools, such as [LiveReload](http://livereload.com/) or [BrowserSync](http://www.browsersync.io/), already. These tools refresh the browser automatically as you make changes. HMR takes things one step further. In the case of React, it allows the application to maintain its state without forcing a refresh. While this does not sound that special, it makes a big difference in practice.
 
 Note that HMR is available in Browserify via [livereactload](https://github.com/milankinen/livereactload), so it's not a feature that's exclusive to webpack.
 
@@ -120,7 +120,7 @@ You can use webpack with some other tools. It won't solve everything. It does so
 
 To summarize:
 
-* Webpack is a **module bundler**, but you can also use it for simple tasks as well.
+* Webpack is a **module bundler**, but you can also use it for tasks as well.
 * **Hot Module Replacement** (HMR) helped to popularize webpack. It is a feature that can enhance development experience.
 * Webpack relies on a **dependency graph** underneath. Webpack will traverse through the source to construct the graph and it uses this information and configuration to generate bundles.
 * Webpack's **configuration** describes how to transform assets of the graphs and what kind of output it should generate. A part of this information may be included in the source itself if features like code splitting are used.

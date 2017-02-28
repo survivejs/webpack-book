@@ -154,7 +154,7 @@ In addition to tools that work with webpack output, there are a couple that are 
 
 ## Conclusion
 
-When you are optimizing the size of your bundle output, these tools are invaluable. The official tool has the most functionality, but even a simple visualization can reveal problem spots. You can use the same technique with old projects to understand their composition.
+When you are optimizing the size of your bundle output, these tools are invaluable. The official tool has the most functionality, but even a basic visualization can reveal problem spots. You can use the same technique with old projects to understand their composition.
 
 To recap:
 

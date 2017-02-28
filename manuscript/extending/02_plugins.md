@@ -40,7 +40,7 @@ In this case it is important the plugin is executed **after** `ExtractTextPlugin
 
 Given failing fast and loud is a good idea when it comes to user-facing interfaces like this, I decided to validate the input carefully. I ended up using JSON Schema for the option definition while validating the input through [ajv](https://www.npmjs.com/package/ajv) as this allows me to provide verbose errors related to the input shape and it can capture even typos as it will complain if you try to pass fields that are not supported. Webpack uses a similar solution internally, and it has proven to be a good decision.
 
-Most of the complexity of the plugin has to do with figuring out which data to pass to PurifyCSS. The process has to capture assets from the application hierarchy and perform a lookup against them. Writing the data is the simplest step. To add output, you have to use `compilation.assets['demo.css'] = 'demo';` kind of an API.
+Most of the complexity of the plugin has to do with figuring out which data to pass to PurifyCSS. The process has to capture assets from the application hierarchy and perform a lookup against them. Writing the data is the easiest step. To add output, you have to use `compilation.assets['demo.css'] = 'demo';` kind of an API.
 
 The source below walks through the main ideas of the plugin in detail. Some of the logic, such as input validation, parsing, and searching, have been pushed behind modules of their own as they have little to do with the main flow of the plugin.
 
@@ -131,7 +131,7 @@ module.exports = function PurifyPlugin(options) {
 };
 ```
 
-Even though this is a simple plugin, it took a lot of effort to achieve a basic implementation. It would be possible to decompose the plugin logic further although it is currently in a manageable shape. There are additional observations that are useful to make based on the implementation:
+Even though this is a humble plugin, it took a lot of effort to achieve a basic implementation. It would be possible to decompose the plugin logic further although it is currently in a manageable shape. There are additional observations that are useful to make based on the implementation:
 
 * The plugin output has been wrapped in callbacks. This way output related logic is performed only if the output (the `verbose` flag) has been enabled. It is possible webpack will receive better logging facilities of its own in the future. For now, you can log warnings and errors through `compilation.warnings.push(new Error(...))` and `compilation.errors.push(...)` interface.
 * The plugin has been written in a functional style as much as possible. The individual helper functions have been tested thoroughly and written in a test driven manner.

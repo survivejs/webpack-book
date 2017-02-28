@@ -128,7 +128,7 @@ Now our styling has been pushed to a separate CSS file. Thus, our JavaScript bun
 
 T> If you are getting `Module build failed: CssSyntaxError:` or `Module build failed: Unknown word` error, make sure your `common` configuration doesn't have a CSS-related section set up.
 
-T> [extract-loader](https://www.npmjs.com/package/extract-loader) is a light alternative to `ExtractTextPlugin`. It does less, but can be enough for simple extraction needs.
+T> [extract-loader](https://www.npmjs.com/package/extract-loader) is a light alternative to `ExtractTextPlugin`. It does less, but can be enough for basic extraction needs.
 
 ## Managing Styles Outside of JavaScript
 
