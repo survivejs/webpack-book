@@ -415,7 +415,7 @@ To recap:
 * **Source maps** can be helpful both during development and production. They provide more accurate information about what's going on and make it faster to debug possible problems.
 * Webpack supports a large variety of source map variants. They can be split into inline and separate source maps based on where they are generated. Inline source maps are useful during development due to their speed. Separate source maps work for production as then loading them becomes optional.
 * `devtool: 'source-map'` is the highest quality option making it useful for production.
-* `cheap-module-eval-source-map` configured with `output.devtoolModuleFilenameTemplate: 'webpack:///[absolute-resource-path]'` is a good starting point for development.
+* `cheap-module-eval-source-map` is a good starting point for development.
 * If you want to get only stack traces during production, use `devtool: 'hidden-source-map'`. You can capture the output and send it to a third party service for you to examine. This way you can capture errors and fix them.
 * Enabling source maps for styling requires additional effort. You will have to enable `sourceMap` option per styling related loader you are using.
 * `SourceMapDevToolPlugin` and `EvalSourceMapDevToolPlugin` provide more control over the result than the `devtool` shortcut.
