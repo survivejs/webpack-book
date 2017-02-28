@@ -1,6 +1,8 @@
 # Loading JavaScript
 
-Webpack processes ES6 module definitions by default and transforms them into code that looks roughly like this:
+Webpack processes ES6 module definitions by default and transforms them into code. It does **not** transform ES6 specific syntax apart, such as `const`. The resulting code can be problematic especially in the older browsers. It is also troublesome if you minify your code through UglifyJS as it doesn't support the ES6 syntax yet.
+
+To get a better idea of the default transform, consider the example output below:
 
 **build/app.js**
 
@@ -22,8 +24,6 @@ webpackJsonp([1],{
 
 ...
 ```
-
-It is important to note that it does **not** transform ES6 specific syntax, such as `const` in the example, to ES5. The resulting code can be problematic especially in older browsers. It is also troublesome if you minify your code through UglifyJS as it doesn't support ES6 syntax yet.
 
 One way to work around this problem is to process the code through [Babel](https://babeljs.io/), a popular JavaScript compiler that supports ES6 features and more. It resembles ESLint in that it is built on top of presets and plugins. Presets are collections of plugins, and you can define your own as well.
 
@@ -268,3 +268,10 @@ T> [flow-coverage-report](https://www.npmjs.com/package/flow-coverage-report) sh
 ## Conclusion
 
 Babel has become an indispensable tool for developers given it bridges the standard with older browsers. Even if you targeted modern browsers, transforming through Babel may be useful.
+
+To recap:
+
+* Babel gives you control over what browsers to support. It can compile ES6 features to a form the older browser understand.
+* Babel allows you to use experimental language features. You can find numerous plugins that improve development experience and the production build through optimizations.
+* Babel functionality can be enabled per development target. This way you can be sure you are using the correct plugins at the right place.
+* Besides Babel, webpack supports other solutions like TypeScript of Flow. Flow can complement Babel while TypeScript represents an entire language compiling to JavaScript.
