@@ -71,8 +71,17 @@ export default function () {
 
 After you have these two set up, it should work. As you click the text, it should mutate the application state as the worker completes its execution. To demonstrate the asynchronous nature of workers, you could try adding delay to the answer and see what happens.
 
+T> [webworkify-webpack](https://www.npmjs.com/package/webworkify-webpack) is an alternative to *worker-loader*. The API allows you to use the worker as a regular JavaScript module as well given you avoid the `self` requirement visible in the example solution.
+
 ## Conclusion
 
 The important thing to note is that the worker cannot access the DOM. You can perform computation and queries in a worker, but it cannot manipulate the user interface directly.
 
-T> [webworkify-webpack](https://www.npmjs.com/package/webworkify-webpack) is an alternative to *worker-loader*. The API allows you to use the worker as a regular JavaScript module as well given you avoid the `self` requirement visible in the example solution.
+To recap:
+
+* Web workers allow you to push work out of the main thread of the browser. This separation is useful especially if performance is an issue.
+* Web workers cannot manipulate the DOM. Instead, it is best to use them for long running computations and requests.
+* The isolation provided by web workers can be used for architectural benefit. It will force the programmers to stay within a specific sandbox.
+* Communicating with web workers comes with an overhead that may make them less useful. As the specification evolves, this may change.
+
+I will discuss the topic of internationalization in the next chapter.
