@@ -255,4 +255,11 @@ Even though it's easy to consume packages through npm, there are times when it's
 
 Webpack can consume most npm packages without a hitch. Sometimes, though, some patching might be required. Fortunately, its resolution mechanism is patchable enough, and you can modify the way it brings the source to your project if needed.
 
-In the next chapter, we'll discuss how to author your npm packages. It's the other side of the same coin and worth understanding if you won't end up authoring packages of your own.
+To recap:
+
+* To consume packages effectively, you should understand SemVer. To keep your build repeatable, consider using technologies like shrinkwrapping or Yarn lockfiles.
+* Use webpack's access to module resolution to your benefit. Sometimes you can work around issues by tweaking resolution. Often it is a good idea to try to push improvements upstream to the projects themselves, though.
+* Webpack allows you to patch resolved modules in many ways. Given some dependencies expect globals, you can use webpack to inject them. You can also expose modules as globals. This is necessary for certain development tooling to work.
+* To understand your dependencies better, consider using available tooling and service to study them. Knowing them well can pay off later if problems arise.
+
+In the next chapter, I'll show you how to author npm packages. It's the other side of the same coin and worth understanding even if you won't end up authoring packages of your own.
