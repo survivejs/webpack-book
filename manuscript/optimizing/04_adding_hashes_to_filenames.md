@@ -2,6 +2,8 @@
 
 Even though our build generates fine now, the naming it uses is a little problematic. It doesn't allow us to leverage client level cache effectively as there's no easy way to tell whether or not a file has changed. Cache invalidation can be achieved by including a hash to filenames.
 
+## Placeholders
+
 Webpack provides **placeholders** for this purpose. These strings are used to attach specific information to webpack output. The most useful ones are:
 
 * `[path]` - Returns the file path.
@@ -17,7 +19,7 @@ T> It is possible to slice `hash` and `chunkhash` using syntax like this: `[chun
 
 T> There are more options available, and you can even modify the hashing and digest type as discussed at [loader-utils](https://www.npmjs.com/package/loader-utils#interpolatename) documentation.
 
-## Using Placeholders
+### Example Placeholders
 
 Assuming we have a configuration like this:
 
@@ -213,4 +215,13 @@ Note how the output has changed, though. Instead of numbers, you can see hashes.
 
 ## Conclusion
 
-Even though the project generates hashes now, the output isn't flawless. The problem is that if the application changes, it will invalidate the vendor bundle as well. The next chapter digs deeper into the topic and shows you how to extract a manifest to resolve the issue.
+Including hashes related to the file, contents is a good way to invalidate them on the client side. If a hash has changed, the client will be forced to download the asset again.
+
+To recap:
+
+* Webpack's **placeholders** allow you to shape filenames and enable you to include hashes to them.
+* The most useful placeholders are `[name]`, `[chunkhash]`, and `[ext]`. `chunkhash` is derived based on the entry in which the asset belongs.
+* If you are using `ExtractTextPlugin`, you should use `[contenthash]`. This way extracted assets won't become invalidated even if the entries from which they were extracted change.
+* `HashedModuleIdsPlugin` provides a way to generate module IDs based on module paths. This is more stable than relying on the default order based numeric module IDs.
+
+Even though the project generates hashes now, the output isn't flawless. The problem is that if the application changes, it will invalidate the vendor bundle as well. The next chapter digs deeper into the topic and shows you how to extract a **manifest** to resolve the issue.
