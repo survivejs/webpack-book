@@ -325,4 +325,10 @@ If you consume HTML templates through your code using [html-loader](https://www.
 
 ## Conclusion
 
-Minification is the simplest step you can take to make your build smaller. However, there are more tricks we can perform.
+Minification is the simplest step you can take to make your build smaller. To recap:
+
+* **Minification** process analyzes your source code and turns it into a smaller form with the same meaning if you use safe transformations. Certain unsafe transformations allow you to reach even smaller results while potentially breaking code that relies for example exact parameter naming.
+* Webpack includes `UglifyJsPlugin` for minification. Other solutions, such as Babili, provide similar functionality with costs of their own. While Babili supports ES6, it is also less performant that UglifyJS.
+* Besides JavaScript, it is possible to minify other assets, such as CSS and HTML, too. Minifying these requires specific technologies that have to be applied through loaders and plugins of their own.
+
+I will discuss the idea of **tree shaking** in the next chapter. It is another way to make your bundles smaller.
