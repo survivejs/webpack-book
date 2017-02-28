@@ -142,3 +142,9 @@ Sometimes it can make sense for a plugin to provide hooks of its own. This way y
 Writing webpack plugins can be challenging at first due to the sheer size of the API webpack provides and it is the most powerful way you can extend webpack, though. When you begin to design a plugin, it is a good idea to spend some time studying existing plugins that are close enough to what you are going to implement as this can generate insight on which hooks you should use and how.
 
 It is a good idea to develop a plugin piece-wise so that you validate one piece of it at a time. The ultimate way to understand webpack plugins in great detail is to delve into webpack source itself as it is a big collection of plugins.
+
+To recap:
+
+* **Plugins** can intercept webpack's execution and extend it making them more flexible than loaders.
+* Plugins can be combined with loaders. `ExtractTextPlugin` is a good example of a plugin that works this way. In that case, loaders are used to mark assets to extract.
+* Most importantly plugins can emit new assets and shape existing assets. `CommonsChunkPlugin` is an example of a plugin that shapes the way webpack generates bundles.
