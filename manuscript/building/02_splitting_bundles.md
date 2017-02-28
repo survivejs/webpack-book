@@ -247,7 +247,7 @@ I've listed most important `module` properties below. These assume an import lik
 
 * `resource` represents the path of the full path of the resource being imported. Example: `.../webpack-demo/node_modules/purecss/build/pure-min.css`.
 * `context` returns the directory in which the resource exists. Example: `.../webpack-demo/node_modules/purecss/build`.
-* `rawRequest` contains the unresolved request. Example: `!!../../css-loader/index.js!.../index.js??ref--5-3!./pure-min.css`.
+* `rawRequest` contains the unresolved request. Example: `!!../../css-loader/index.js!.../pure-min.css`.
 * `userRequest` is a version of the request that has been resolved to a query. Example: `.../node_modules/css-loader/index.js!.../pure-min.css`.
 * `chunks` tells in which chunks the module is contained. Check `chunks.length` to tell how many times webpack has included it. This is useful for control on the chunk level.
 
