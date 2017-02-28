@@ -1,6 +1,6 @@
 # Consuming Packages
 
-Even though consuming npm packages is straightforward using webpack, there are certain special considerations to take into account. Sometimes the packages might not play with you nicely, or they might require special tweaking to work properly. At the core of this is the concept of SemVer.
+Even though consuming npm packages is easy using webpack, there are certain special considerations to take into account. Sometimes the packages might not play with you nicely, or they might require special tweaking to work properly. At the core of this is the concept of SemVer.
 
 ## Understanding SemVer
 

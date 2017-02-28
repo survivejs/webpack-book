@@ -12,7 +12,7 @@ Webpack's **code splitting** feature allows us to do this. See the *Code Splitti
 
 ## Implementing Search with Lazy Loading
 
-Implementing lazy loading is straightforward. First, you will need to decide where to put the split point, put it there, and then handle the `Promise`. The basic `import` looks like `import('./asset').then(asset => ...).catch(err => ...)`.
+To implement lazy loading, you will need to decide where to put the split point, put it there, and then handle the `Promise`. The basic `import` looks like `import('./asset').then(asset => ...).catch(err => ...)`.
 
 The nice thing is that this gives us error handling in case something goes wrong (network is down etc.) and gives us a chance to recover. We can also use `Promise` based utilities like `Promise.all` for composing more complicated queries.
 

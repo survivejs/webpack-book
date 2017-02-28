@@ -47,4 +47,4 @@ This error fits the same category. Parsing the file succeeded, but there was the
 
 These are only examples of errors. Some of the errors happen on the webpack side, but some come from the packages it uses through loaders and plugins. It will take some amount of care to trace down the problems.
 
-Simplifying your project is a good step as that will make it easier to understand where the error happens. In most cases, the errors are straightforward to solve if you know where to look, but in the worst case, you have come upon a bug to fix in the tooling. In that case, you should provide a high-quality report to the project and help to resolve it.
+Simplifying your project is a good step as that will make it easier to understand where the error happens. In most cases, the errors are fast to solve if you know where to look, but in the worst case, you have come upon a bug to fix in the tooling. In that case, you should provide a high-quality report to the project and help to resolve it.

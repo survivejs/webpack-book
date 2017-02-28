@@ -351,7 +351,7 @@ Especially with Angular 2, it can be useful if you can get CSS in a string forma
 
 ## Conclusion
 
-Loading styles through webpack is straightforward. It even supports advanced specifications like [CSS Modules](https://github.com/css-modules/webpack-demo). The approaches covered here inline the styling by default.
+Loading styles through webpack is easy. It even supports advanced specifications like [CSS Modules](https://github.com/css-modules/webpack-demo). The approaches covered here inline the styling by default.
 
 To recap:
 
