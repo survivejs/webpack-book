@@ -91,9 +91,13 @@ module.exports = function PurifyPlugin(options) {
               ]);
 
               assetsToPurify.forEach(({ name, asset }) => {
-                const filesToSearch = parse.entries(entryPaths, chunkName).concat(
+                const filesToSearch = parse.entries(
+                  entryPaths, chunkName
+                ).concat(
                   search.files(
-                    modules, options.moduleExtensions || [], file => file.resource
+                    modules,
+                    options.moduleExtensions || [],
+                    file => file.resource
                   )
                 );
 
