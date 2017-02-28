@@ -4,6 +4,8 @@ Currently, the production version of our application is a single JavaScript file
 
 It would be better to download only the changed portion. If the vendor dependencies change, then the client should fetch only the vendor dependencies. The same goes for actual application code. This technique is known as **bundle splitting** and it can be achieved using `CommonsChunkPlugin`.
 
+T> To invalidate the bundles properly, we'll attach hashes to the generated bundles in the *Adding Hashes to Filenames* chapter.
+
 ## The Idea of Bundle Splitting
 
 With bundle splitting, we can push the vendor dependencies to a bundle of their own and benefit from client level caching. We can do this in such a way that the whole size of the application remains the same. Given there are more requests to perform, there's a slight overhead. But the benefit of caching makes up for this cost.
@@ -413,4 +415,16 @@ In the example above, we used different types of webpack chunks. Webpack treats 
 
 ## Conclusion
 
-The situation is better now compared to the earlier. Note how small `app` bundle compared to the `vendor` bundle. To benefit from this split, we will set up caching in the next part of this book.
+The situation is better now compared to the earlier. Note how small `app` bundle compared to the `vendor` bundle. To benefit from this split, we will set up caching in the next part of this book in the *Adding Hashes to Filenames* chapter.
+
+To recap:
+
+* Webpack allows you to split bundles from configuration entries through the `CommonsChunkPlugin`.
+* The simplest use case for `CommonsChunkPlugin` is to extract so-called **vendor bundle**.
+* A vendor bundle contains the third party code of your project. The vendor dependencies can be detected by inspecting where the modules are imported. If they come from the *node_modules* directory, they can be split automatically through a `minChunks` rule.
+* `CommonsChunkPlugin` provides control over the splitting process. You can control the position of shared modules through its `async` and `children` options. `async` extracts shared modules to an asynchronously loaded bundle while `children` pushes the shared modules to the parent bundle.
+* The `chunks` option of `CommonsChunkPlugin` allows you to control where the plugin is performing splitting. The option gives more granular control, especially in more complex setups.
+* Webpack offers more control over chunking through specific plugins, such as `AggressiveSplittingPlugin` and `AggressiveMergingPlugin`. Particularly the splitting plugin can be useful in HTTP/2 oriented setups.
+* Internally webpack relies on three chunk types: entry, normal, and initial chunks. `CommonsChunkPlugin` flags modules using these types.
+
+In the next chapter, I will discuss code splitting and show how to load code on demand using webpack.
