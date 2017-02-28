@@ -191,6 +191,14 @@ Webpack includes a collection of optimization related plugins, some of which we'
 
 ## Conclusion
 
-Even though simply setting `process.env.NODE_ENV` the right way can help a lot especially with React-related code, we can do better. Currently, our build doesn't benefit on client level cache invalidation.
+Setting environment variables is a technique that allows you to control which paths of the source are included in the build. The process enables production specific optimizations and feature flags.
 
-To achieve this result, the build requires placeholders in which webpack can insert hashes that invalidate the files as we update the application.
+To recap:
+
+* Webpack allows you to set environment variables through `DefinePlugin` and `EnvironmentPlugin`. Latter is a wrapper for `DefinePlugin` that maps system level environment variables to the source.
+* `DefinePlugin` operates based on **free variables** and it will replace them as webpack analyzes the source code.
+* Given minifiers eliminate dead code, using the plugins allows you to remove the code from the resulting build.
+* The plugins enable module level patterns. By implementing a wrapper, you can choose which file webpack will include to the resulting build.
+* In addition to these plugins, you can find other optimization related plugins that allow you to control the build result in many ways.
+
+To ensure the build has good cache invalidation behavior, we'll include hashes to the generated filenames in the next chapter. This way the client will notice if assets have changed and can fetch the updated versions.
