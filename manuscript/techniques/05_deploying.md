@@ -112,4 +112,9 @@ When you compile, webpack picks up `__webpack_public_path__` and rewrites it so 
 
 ## Conclusion
 
-You can deploy your webpack application in multiple ways. The problem can be pushed outside of webpack, or you can use a specific plugin to handle it.
+Even though webpack isn't a deployment tool, you can find plugins for it.
+
+To recap:
+
+* It is also possible to handle the problem of deployment outside of webpack. You can achieve this in an npm script for example.
+* It is possible to configure webpack's `output.publicPath` dynamically. This technique is useful if you don't know it compile-time and want to decide it later. This is possible through the `__webpack_public_path__ ` global.
