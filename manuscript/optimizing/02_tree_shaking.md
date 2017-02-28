@@ -54,4 +54,13 @@ The *Consuming Packages* and *Authoring Packages* chapters contain further techn
 
 ## Conclusion
 
-Tree shaking is a potentially powerful technique. To benefit from tree shaking, npm packages have to be implemented using the ES6 module syntax, and they have to expose the ES6 version through *package.json* `module` field tools like webpack can pick up.
+Tree shaking is a potentially powerful technique. For the source to benefit from tree shaking, npm packages have to be implemented using the ES6 module syntax, and they have to expose the ES6 version through *package.json* `module` field tools like webpack can pick up.
+
+To recap:
+
+* **Tree shaking** drops unused pieces of code based on static code analysis. Webpack will perform this process for you as it traverses the dependency graph.
+* To benefit from tree shaking, you have to use ES6 module definition.
+* As a package author, you can provide a version of your package that contains ES6 modules, while the rest has been transpiled to ES5.
+* It is possible the idea will be applied against other assets, such as CSS, in the future.
+
+I will show you how to set environment variables using webpack in the next chapter. This technique allows you to enable production specific optimizations and to implement feature flags.
