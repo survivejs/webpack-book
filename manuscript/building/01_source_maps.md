@@ -273,7 +273,7 @@ The original source contains `//# sourceMappingURL=app.9a...18.js.map` kind of c
 }
 ```
 
-W> As you can see from the output, it is missing `sourcesContent`. The [bug is related to `cheap-module-source-map` and minification](https://github.com/webpack/webpack/issues/4176) and it is a good reason to avoid this option if you want both source maps and minification.
+W> `cheap-module-source-map` is [currently broken if minification is used](https://github.com/webpack/webpack/issues/4176) and this is a good reason to avoid the option for now.
 
 ### `devtool: 'source-map'`
 
