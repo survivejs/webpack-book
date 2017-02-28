@@ -322,3 +322,11 @@ Font Awesome 5 will improve the situation further. If you want full control over
 ## Conclusion
 
 Loading fonts is similar to loading other assets. Here we have additional concerns to consider. We need to consider the browsers we want to support and choose the loading strategy based on that.
+
+To recap:
+
+* When loading fonts, the same techniques as for images apply. You can choose to inline small fonts while bigger ones will be served as separate assets.
+* Using larger font collections, such as Font Awesome, may be problematic especially if you want to avoid loading additional rules. The problem is dependent on the packages in question and can be solved with webpack to an extent.
+* It is possible to work around the problem by disabling specific fonts you don't want to include from a collection like Font Awesome by routing the assets through a *null-loader*.
+
+In the next chapter, I will show you how to load JavaScript using webpack. It loads JavaScript by default, but there's more to the topic as you have to consider what browsers you want to support.
