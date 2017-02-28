@@ -155,3 +155,12 @@ In addition to tools that work with webpack output, there are a couple that are 
 ## Conclusion
 
 When you are optimizing the size of your bundle output, these tools are invaluable. The official tool has the most functionality, but even a simple visualization can reveal problem spots. You can use the same technique with old projects to understand their composition.
+
+To recap:
+
+* Webpack allows you to extract a JSON file containing information about the build. The information can include the build composition and timing.
+* The generated information can be analyzed using various tools that give insight into aspects such as the bundle composition.
+* Understanding the bundles is the key to insights on how to optimize the overall size, what to load and when. It can also reveal bigger issues, such as redundant data.
+* You can find third party tools that don't depend on webpack but are still useful for analysis.
+
+To help you understand how to tune webpack, I will discuss performance in the next chapter.
