@@ -320,4 +320,4 @@ To recap:
 * Webpack 2 provides multiple ways to match and alter loader behavior. You can, for example, match based on a **resource query** after a loader has been matched and route the loader to specific actions.
 * `LoaderOptionsPlugin` exists for legacy purposes and allows you to get around the strict configuration schema of webpack 2 to work with older plugins and loaders.
 
-I will discuss specific assets types and how to load them using webpack next.
+In the next chapter, I will show you how to load images using webpack.

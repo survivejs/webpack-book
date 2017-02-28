@@ -1,6 +1,6 @@
 # Loading Images
 
-The easiest way to make your application slow is to load a lot of small assets. Each request comes with an overhead. HTTP/2 will help in this regard and change the situation somewhat drastically. Till then we are stuck with different approaches. Webpack allows a couple of these. They are particularly relevant for loading images.
+The easiest way to make HTTP/1 application slow is to load a lot of small assets. Each request comes with an overhead. HTTP/2 will help in this regard and change the situation somewhat drastically. Till then we are stuck with different approaches. Webpack allows a couple of these. They are particularly relevant for loading images.
 
 Webpack allows you to inline assets by using [url-loader](https://www.npmjs.com/package/url-loader). It will output your images as base64 strings within your JavaScript bundles. The process will decrease the number of requests needed while growing the bundle size. It is enough to use *url-loader* during development. You may want to consider other alternatives for the production build, though.
 
@@ -203,7 +203,7 @@ Sometimes getting the only reference to an image isn't enough. [image-size-loade
 
 **Spriting** technique allows you to combine multiple smaller images into a single image. It has been used for games to describe animations and it's useful for web development as well as you avoid request overhead.
 
-[webpack-spritesmith](https://www.npmjs.com/package/webpack-spritesmith) converts provided images into a spritesheet and Sass/Less/Stylus mixins. You have to set up a `SpritesmithPlugin`, point it to target images, and set the name of the generated mixin. After that, your styling can pick it up like this:
+[webpack-spritesmith](https://www.npmjs.com/package/webpack-spritesmith) converts provided images into a sprite sheet and Sass/Less/Stylus mixins. You have to set up a `SpritesmithPlugin`, point it to target images, and set the name of the generated mixin. After that, your styling can pick it up like this:
 
 ```sass
 @import '~sprite.sass';
@@ -219,14 +219,23 @@ Sometimes getting the only reference to an image isn't enough. [image-size-loade
 
 ## Loading Images Dynamically
 
-Sometimes you might want to load an image dynamically based on some condition. `require.context` can come in handy here. It still assumes the images are available within the file system, but if that's the case, then the technique can work. See the *Code Splitting* chapter for further information.
-
-T> `require.context` is discussed in detail at the *Dynamic Loading* chapter.
+Sometimes you might want to load an image dynamically based on a condition. This is where code splitting techniques can come in handy. They still assume the files exist in the file system. See the *Code Splitting* chapter for further information.
 
 ## Images and *css-loader* Source Map Gotcha
 
-If you are using images and *css-loader* with the `sourceMap` option enabled, it is important that you will set `output.publicPath` to an absolute value. Otherwise, images won't show up. See [the relevant webpack issue](https://github.com/webpack/style-loader/issues/55) for further explanation.
+If you are using images and *css-loader* with the `sourceMap` option enabled, it is important that you will set `output.publicPath` to an absolute value pointing to your development server. Otherwise, images won't show up. See [the relevant webpack issue](https://github.com/webpack/style-loader/issues/55) for further explanation.
 
 ## Conclusion
 
 Webpack allows you to inline images within your bundles when needed. Figuring out proper inlining limits for your images might take some experimentation. You have to balance between bundle sizes and the number of requests.
+
+To recap:
+
+* *url-loader* inlines the assets within JavaScript. It comes with a `limit` option that allows you to defer assets above it to *file-loader*.
+* *file-loader* emits image assets and returns paths to them to the code. It allows hashing the asset names.
+* You can find image optimization related loaders and plugins that allow you to optimize their size further.
+* It is possible to generate **sprite sheets** out of smaller images to combine them into a single request.
+* Webpack allows you to load images dynamically based on a given condition.
+* If you are using source maps, you should remember to set `output.publicPath` to an absolute value for the images to show up.
+
+I will explain how to load fonts using webpack in the next chapter.
