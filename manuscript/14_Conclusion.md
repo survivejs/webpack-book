@@ -38,7 +38,7 @@ As this book has demonstrated, webpack is a versatile tool. To make it easier to
 
 ### Optimization
 
-* Use ES6 module definition to leverage **tree shaking**. It allows webpack to eliminate unused code paths through static analysis. The technique may become useful with CSS in the future. See the *Tree Shaking* chapter for the idea.
+* Use ES6 module definition to leverage **tree shaking**. It allows webpack to eliminate unused code paths through static analysis. See the *Tree Shaking* chapter for the idea.
 * Set application specific environment variables to compile it production mode. You can implement feature flags this way. See the *Setting Environment Variables* chapter to recap the technique.
 * Analyze build statistics to learn what to improve. The *Analyzing Build Statistics* chapter shows how to do this against multiple available tools.
 * Push a part of the computation to web workers. The *Web Workers* chapter covers how to achieve this.
