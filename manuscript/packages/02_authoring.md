@@ -414,4 +414,15 @@ There is a heavier duty option in the form of [npm unpublish](https://docs.npmjs
 
 ## Conclusion
 
-You should now have a basic idea of how to author npm packages. Webpack can help you a lot here. The covered options are useful beyond package authoring. Mainly `externals` comes in handy when you want to exclude certain dependencies outside of your bundles and load them using some other way.
+You should now have a basic idea of how to author npm packages. Webpack can help you a lot here.
+
+To recap:
+
+* It is good to understand what kind of metadata packages may contain. They will give you insight on their licensing, guidelines, and even quality.
+* Publishing npm packages is simple. Remember to respect the SemVer or an equivalent scheme, though, as that will keep your consumers happy.
+* Document the main changes made to your packages using a change log. Documentation will come in handy later as you have to understand when some specific feature was introduced. It will also make it easier to upgrade projects to the most recent features.
+* Consider publishing differently packaged versions of the source to account for different usage patterns. Packaged right, your consumers can benefit from features, such as **tree shaking**.
+* To make it easy to consume a work in progress package, implement an npm `postinstall` script that builds the project if a distribution version does not exist in the source.
+* If a package becomes obsolete, consider deprecating it and let your users know how to upgrade to another solution.
+
+The covered options are useful beyond package authoring. Mainly `externals` comes in handy when you want to exclude certain dependencies outside of your bundles and load them using some other way.
