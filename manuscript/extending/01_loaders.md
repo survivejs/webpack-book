@@ -191,3 +191,10 @@ module.exports.pitch = function(remainingRequest, precedingRequest, data) {
 Writing loaders is fun in the sense that they describe transformations from a format to another. Often you can figure out how to achieve something specific by either studying either the API documentation or the existing loaders.
 
 I recommend writing at least basic tests and a small example to document your assumptions. Loader development fits this thinking well.
+
+To recap:
+
+* Webpack **loaders** accept input and produce output based on it. They can also perform analysis and not touch the source at all.
+* Loaders can also access metadata or terminate execution at pitching phase. Pitch loaders are rarer for this reason.
+
+I will show you how to write plugins in the next chapter. Plugins allow you to intercept webpack's execution process and they can be combined with loaders to develop more advanced functionality.
