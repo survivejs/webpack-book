@@ -26,6 +26,8 @@ module.exports = {
   module: {
     rules: [
       {
+        // Conditions
+
         // Match files against RegExp. This accepts
         // a function too.
         test: /\.js$/,
@@ -48,6 +50,8 @@ module.exports = {
           return path.match(/node_modules/);
         },
         */
+
+        // Actions
 
         // Apply loaders the matched files. These need to
         // be installed separately. In this case our
@@ -306,4 +310,14 @@ Given webpack 2 forbids arbitrary root level configuration, you have to use `Loa
 
 ## Conclusion
 
-Webpack provides multiple ways to set up loaders, but sticking with `use` is enough in webpack 2. You should be careful, especially with loader ordering, as this is a common source of problems. I will discuss specific assets types and how to load them using webpack next.
+Webpack provides multiple ways to set up loaders, but sticking with `use` is enough in webpack 2. You should be careful, especially with loader ordering, as this is a common source of problems.
+
+To recap:
+
+* **Loaders** allow you determine what should happen when webpack's module resolution mechanism encounters a file.
+* A loader definition consists of **conditions** based on which to match and **actions** that should be performed when a match happens.
+* Webpack 2 introduced the `use` field. It combines the ideas of old `loader` and `loaders` fields into a single construct.
+* Webpack 2 provides multiple ways to match and alter loader behavior. You can, for example, match based on a **resource query** after a loader has been matched and route the loader to specific actions.
+* `LoaderOptionsPlugin` exists for legacy purposes and allows you to get around the strict configuration schema of webpack 2 to work with older plugins and loaders.
+
+I will discuss specific assets types and how to load them using webpack next.
