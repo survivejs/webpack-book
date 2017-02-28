@@ -150,4 +150,14 @@ W> If you change the way webpack handles module IDs (i.e., remove `HashedModuleI
 
 ## Conclusion
 
-Our project has basic caching behavior now. If you try to modify *app.js* or *component.js*, the vendor bundle should remain the same. But what's contained in the build? You can figure that out by *Analyzing Build Statistics*, as we'll do in the next chapter.
+Our project has basic caching behavior now. If you try to modify *app.js* or *component.js*, the vendor bundle should remain the same.
+
+To recap:
+
+* Webpack maintains a **manifest** containing information needed to run the application.
+* If the manifest changes, the change will invalidate the containing bundle.
+* To overcome this problem, the manifest can be extracted to a bundle of its own using the `CommonsChunkPlugin`.
+* Certain plugins allow you to write the manifest to the generated *index.html*. It is also possible to extract the information to a JSON file. The JSON is useful with *Server Side Rendering*.
+* **Records** allow you to store module IDs across builds. The approach is useful if you rely on code splitting approaches. As a downside you have to track the records file somehow.
+
+I will show you how to analyze the build statistics in the next chapter. This analysis is essential for figuring out how to improve the build result.
