@@ -67,7 +67,7 @@ Even though having a look at the file itself gives you some idea of what's going
 
 ![The Official Analyse Tool](images/analyse.png)
 
-[The official analyse tool](https://github.com/webpack/analyse) gives you recommendations and a good idea of your application dependency graph. It can be run locally as well.
+[The official analyse tool](https://github.com/webpack/analyse) gives you recommendations and a good idea of your application's dependency graph. It can be run locally as well.
 
 ### Webpack Visualizer
 
