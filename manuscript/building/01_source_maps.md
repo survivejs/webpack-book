@@ -409,3 +409,16 @@ Assuming you are using a package that uses inline source maps in its distributio
 ## Conclusion
 
 Source maps can be convenient during development. They provide us with better means to debug our applications as we can still examine the original code over a generated one. They can be useful even for production usage and allow you to debug issues while serving a client-friendly version of your application.
+
+To recap:
+
+* **Source maps** can be helpful both during development and production. They provide more accurate information about what's going on and make it faster to debug possible problems.
+* Webpack supports a large variety of source map variants. They can be split into inline and separate source maps based on where they are generated. Inline source maps are useful during development due to their speed. Separate source maps work for production as then loading them becomes optional.
+* `devtool: 'source-map'` is the highest quality option making it useful for production.
+* `cheap-module-eval-source-map` configured with `output.devtoolModuleFilenameTemplate: 'webpack:///[absolute-resource-path]'` is a good starting point for development.
+* If you want to get only stack traces during production, use `devtool: 'hidden-source-map'`. You can capture the output and send it to a third party service for you to examine. This way you can capture errors and fix them.
+* Enabling source maps for styling requires additional effort. You will have to enable `sourceMap` option per styling related loader you are using.
+* `SourceMapDevToolPlugin` and `EvalSourceMapDevToolPlugin` provide more control over the result than the `devtool` shortcut.
+* *source-map-loader* can come in handy if your dependencies provide source maps.
+
+In the next chapter, I will show you how to split bundles and separate the current bundle into application and vendor bundles that may both be cached.
