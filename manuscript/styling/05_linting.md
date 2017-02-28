@@ -141,7 +141,7 @@ T> [stylelint-bare-webpack-plugin](https://www.npmjs.com/package/stylelint-bare-
 
 ## Conclusion
 
-After these changes, we have linting for our styling in place. Now you can catch at least the most obvious CSS-related problems.
+After these changes, we have linting for our styling in place. Now you can catch CSS-related problems.
 
 To recap:
 

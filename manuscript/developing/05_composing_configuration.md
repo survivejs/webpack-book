@@ -145,7 +145,7 @@ We can also add more by expanding the *package.json* definition and branching at
 
 Later on, *webpack.parts.js* could be pushed to npm or outside of the project. But for this book, it's enough to maintain it within the project.
 
-T> Webpack 2 validates the configuration by default. If you make an obvious mistake, it will let you know. Earlier, it was useful to set up [webpack-validator](https://www.npmjs.com/package/webpack-validator), but that's not needed anymore.
+T> Webpack 2 validates the configuration by default. If you make an easy mistake like a typo, it will let you know. Earlier, it was useful to set up [webpack-validator](https://www.npmjs.com/package/webpack-validator), but that's not needed anymore.
 
 ## The Benefits of Composing Configuration
 
