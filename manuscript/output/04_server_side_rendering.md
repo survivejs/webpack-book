@@ -294,4 +294,11 @@ T> Routing is a big problem of its own solved by frameworks like Next.js. Patric
 
 SSR is a big topic on its own. It comes with a technical challenge, and for this reason, specific solutions have appeared around it. Webpack is a good fit for SSR setups. The idea can be adapted to other purposes.
 
+To recap:
+
+* The idea of **Server Side Rendering** is to provide more for the browser to render initially. Instead of waiting for the JavaScript to load, it can display markup instantly.
+* Server Side Rendering also allows you to pass initial payload of data to the client. This can help you to avoid unnecessary queries to the server.
+* Webpack can manage the client side portion of the problem. It can be used to generate the server as well if more integrated solution is required. Abstractions, such as Next.js, hide these details.
+* Server Side Rendering does not come without a cost. It leads to new problems as you need better approaches for dealing with aspects, such as styling or routing. The server and the client environment differ in important manners, so code has to be written so that it does not rely on platform-specific features too much.
+
 T> With a little effort, you could render a web page as a PDF on server-side using web code and technologies like React. [generate-invoice](https://github.com/bebraw/generate-invoice) illustrates this.
