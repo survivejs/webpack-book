@@ -2,7 +2,7 @@
 
 Web applications have the tendency to grow big as features are developed. The longer it takes for your application to load, the more frustrating it is to the user. This problem is amplified in a mobile environment where the connections can be slow.
 
-Even though splitting our bundles can help a notch, they are not the only solution, and you may still end up having to download a lot of data. Fortunately, it is possible to do better thanks to *code splitting*. It allows us to load code lazily as we need it.
+Even though splitting our bundles can help a notch, they are not the only solution, and you may still end up having to download a lot of data. Fortunately, it is possible to do better thanks to **code splitting**. It allows us to load code lazily as we need it.
 
 T> Incidentally, it is possible to implement Google's [PRPL pattern](https://developers.google.com/web/fundamentals/performance/prpl-pattern/) using lazy loading. PRPL (Push, Render, Pre-cache, Lazy-load) has been designed with mobile web in mind and can be implemented using webpack.
 
@@ -323,10 +323,15 @@ T> [react-async-component](https://www.npmjs.com/package/react-async-component) 
 
 Code splitting is one of those features that allows you to push your application a notch further. You can load code when you need it to gain faster initial load times and improved user experience especially in a mobile context where bandwidth is limited.
 
-It comes with some extra work as you must figure out what's possible to split. Often, you find good split points within a router. Or you may notice that specific functionality is required only when a particular feature is used. Charting is a good example of this.
+To recap:
 
-Applying `import` or `require.ensure` alone can be effective. `require.context` has more limited possibilities, but it's a powerful tool especially for tool developers.
+* **Code splitting** comes with extra effort as you have to decide what to split and where. Often, you find good split points within a router. Or you may notice that specific functionality is required only when a particular feature is used. Charting is a good example of this.
+* In order to use dynamic `import` syntax, both Babel and ESLint require careful tweaks. Webpack supports the syntax ouf of the box.
+* Dynamic `import` provides less functionality than `require.ensure`. While it's possible to handle errors with it, features like naming are available for `require.ensure` only.
+* The techniques can be used within modern frameworks and libraries like React. You can wrap related logic to a specific component that handles the loading process in a user-friendly manner.
 
-T> There's a complete example of how to use the code splitting technique in the *Searching with React* appendix. You will see how to set up a static site index that's loaded when the user searches information.
+I will show you how to tidy up the build in the next chapter.
+
+T> The *Searching with React* appendix contains a complete example of code splitting. It shows how to set up a static site index that's loaded when the user searches information.
 
 T> [webpack-pwa](https://github.com/webpack/webpack-pwa) illustrates the idea on a larger scale and discusses different shell based approaches. We'll get back to this topic at the *Multiple Pages* chapter.
