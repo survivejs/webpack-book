@@ -442,3 +442,11 @@ Mocking is a technique that allows you to replace test objects. I've listed seri
 ## Conclusion
 
 Webpack can be configured to work with a large variety of testing tools. Each tool has its sweet spots, but they also have quite a bit of common ground.
+
+To recap:
+
+* Running testing tools allows you to benefit from webpack's module resolution mechanism.
+* Sometimes the test setup might be quite involved. Tools like Jest remove most of the boilerplate and allow you to develop tests with minimal setup.
+* You can find multiple mocking tools for webpack. They allow you to shape test environment. Sometimes you can avoid mocking through design, though.
+
+I will show you how to deploy applications using webpack in the next chapter.
