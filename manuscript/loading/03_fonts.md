@@ -63,9 +63,10 @@ Note that the way you write your CSS definition matters. Assuming we are going t
 ```css
 @font-face {
   font-family: 'myfontfamily';
-  src: url('myfontfile.woff') format('woff'),
+  src: url('myfontfile.woff2') format('woff2'),
+    url('myfontfile.woff') format('woff'),
     url('myfontfile.ttf') format('truetype');
-    /* Other formats as you see fit */
+    /* Add other formats as you see fit */
 }
 ```
 
