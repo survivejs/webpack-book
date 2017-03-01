@@ -8,9 +8,9 @@
 Mainmatter.txt
 
 * [05_Developing](manuscript/developing/05_Developing.md)
-* [](manuscript/developing/01_getting_started.md)
-* [](manuscript/developing/02_automatic_browser_refresh.md)
-* [](manuscript/developing/03_configuring_hmr.md)
+* [01_getting_started](manuscript/developing/01_getting_started.md)
+* [02_automatic_browser_refresh](manuscript/developing/02_automatic_browser_refresh.md)
+* [03_configuring_hmr](manuscript/developing/03_configuring_hmr.md)
 * [](manuscript/developing/04_linting.md)
 * [](manuscript/developing/developing/05_composing_configuration.md)
 
