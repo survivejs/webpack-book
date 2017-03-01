@@ -1,8 +1,9 @@
 01\_foreword.md  
 02\_preface.md
 
-* \(manuscript/03\_introduction.md\)
-  04\_what\_is\_webpack.md
+\*03\_introduction.md \(manuscript/03\_introduction.md\)
+
+04\_what\_is\_webpack.md
 
 Mainmatter.txt
 
