@@ -1,0 +1,6 @@
+{
+  "checks": {
+    "phrasal_adjectives.ly": false,
+    "typography.exclamation": false
+  }
+}
