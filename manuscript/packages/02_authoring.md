@@ -43,7 +43,7 @@ I've annotated a part of *package.json* of my [React component boilerplate](http
   "description": "Boilerplate for React.js components",
 
   /* Who is the author + optional email + optional site */
-  "author": "Juho Vepsalainen <email goes here> (site goes here)",
+  "author": "Juho Vepsäläinen <email goes here> (site goes here)",
 
   /* Version of the package */
   "version": "0.0.0",
