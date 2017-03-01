@@ -1,78 +1,78 @@
-01\_foreword.md  
-02\_preface.md
+01_foreword.md  
+02_preface.md
 
-* [3_introduction.md](manuscript/03_introduction.md)
+* [introduction.md](manuscript/03_introduction.md)
 
-04\_what\_is\_webpack.md
+* [04_what_is_webpack](manuscript/developing/04_what_is_webpack.md)
 
 Mainmatter.txt
 
-05\_Developing.md  
-developing/01\_getting\_started.md  
-developing/02\_automatic\_browser\_refresh.md  
-developing/03\_configuring\_hmr.md  
-developing/04\_linting.md  
-developing/05\_composing\_configuration.md
+* [05_Developing](manuscript/developing/05_Developing.md)
+* [](manuscript/developing/01_getting_started.md)
+* [](manuscript/developing/02_automatic_browser_refresh.md)
+* [](manuscript/developing/03_configuring_hmr.md)
+* [](manuscript/developing/04_linting.md)
+* [](manuscript/developing/developing/05_composing_configuration.md)
 
-06\_Styling.md  
-styling/01\_loading.md  
-styling/02\_separating\_css.md  
-styling/03\_autoprefixing.md  
-styling/04\_eliminating\_unused\_css.md  
-styling/05\_linting.md
+* [](manuscript/developing/06_Styling.md)
+* [](manuscript/developing/styling/01_loading.md)
+* [](manuscript/developing/styling/02_separating_css.md)
+* [](manuscript/developing/styling/03_autoprefixing.md)
+* [](manuscript/developing/styling/04_eliminating_unused_css.md)
+* [](manuscript/developing/styling/05_linting.md)
 
-07\_Loading.md  
-loading/01\_loader\_definitions.md  
-loading/02\_images.md  
-loading/03\_fonts.md  
-loading/04\_javascript.md
+* [](manuscript/developing/07_Loading.md)
+* [](manuscript/developing/loading/01_loader_definitions.md)
+* [](manuscript/developing/loading/02_images.md)
+* [](manuscript/developing/loading/03_fonts.md)
+* [](manuscript/developing/loading/04_javascript.md)
 
-08\_Building.md  
-building/01\_source\_maps.md  
-building/02\_splitting\_bundles.md  
-building/03\_code\_splitting.md  
-building/04\_tidying\_up.md
+* [](manuscript/developing/08_Building.md)
+* [](manuscript/developing/building/01_source_maps.md)
+* [](manuscript/developing/building/02_splitting_bundles.md)
+* [](manuscript/developing/building/03_code_splitting.md)
+* [](manuscript/developing/building/04_tidying_up.md)
 
-09\_Optimizing.md  
-optimizing/01\_minifying.md  
-optimizing/02\_tree\_shaking.md  
-optimizing/03\_setting\_environment\_variables.md  
-optimizing/04\_adding\_hashes\_to\_filenames.md  
-optimizing/05\_separating\_manifest.md  
-optimizing/06\_analyzing\_build\_statistics.md  
-optimizing/07\_performance.md
+* [](manuscript/developing/09_Optimizing.md)
+* [](manuscript/developing/optimizing/01_minifying.md)
+* [](manuscript/developing/optimizing/02_tree_shaking.md)
+* [](manuscript/developing/optimizing/03_setting_environment_variables.md)
+* [](manuscript/developing/optimizing/04_adding_hashes_to_filenames.md)
+* [](manuscript/developing/optimizing/05_separating_manifest.md)
+* [](manuscript/developing/optimizing/06_analyzing_build_statistics.md)
+* [](manuscript/developing/optimizing/07_performance.md)
 
-10\_Output.md  
-output/01\_targets.md  
-output/02\_library\_output.md  
-output/03\_multiple\_pages.md  
-output/04\_server\_side\_rendering.md
+* [](manuscript/developing/10_Output.md)
+* [](manuscript/developing/output/01_targets.md)
+* [](manuscript/developing/output/02_library_output.md)
+* [](manuscript/developing/output/03_multiple_pages.md)
+* [](manuscript/developing/output/04_server_side_rendering.md)
 
-11\_Techniques.md
+11_Techniques.md
 
-techniques/01\_dynamic\_loading.md  
-techniques/02\_web\_workers.md  
-techniques/03\_i18n.md  
-techniques/04\_testing.md  
-techniques/05\_deploying.md
+* [](manuscript/developing/techniques/01_dynamic_loading.md)
+* [](manuscript/developing/techniques/02_web_workers.md)
+* [](manuscript/developing/techniques/03_i18n.md)
+* [](manuscript/developing/techniques/04_testing.md)
+* [](manuscript/developing/techniques/05_deploying.md)
 
-12\_Packages.md  
-packages/01\_consuming.md  
-packages/02\_authoring.md
+* [](manuscript/developing/12_Packages.md)
+* [](manuscript/developing/packages/01_consuming.md)
+* [](manuscript/developing/packages/02_authoring.md)
 
-13\_Extending.md  
-extending/01\_loaders.md  
-extending/02\_plugins.md
+* [](manuscript/developing/13_Extending.md)
+* [](manuscript/developing/extending/01_loaders.md)
+* [](manuscript/developing/extending/02_plugins.md)
 
 Backmatter.txt
 
-14\_Conclusion.md
+* [](manuscript/developing/14_Conclusion.md)
 
-15\_Appendices.md  
-appendices/01\_comparison.md  
-appendices/02\_searching\_with\_react.md  
-appendices/03\_hmr\_with\_react.md  
-appendices/04\_customizing\_eslint.md  
-appendices/05\_troubleshooting.md  
-appendices/06\_glossary.md
+* [](manuscript/developing/15_Appendices.md)
+* [](manuscript/developing/appendices/01_comparison.md)
+* [](manuscript/developing/appendices/02_searching_with_react.md)
+* [](manuscript/developing/appendices/03_hmr_with_react.md)
+* [](manuscript/developing/appendices/04_customizing_eslint.md)
+* [](manuscript/developing/appendices/05_troubleshooting.md)
+* [](manuscript/developing/appendices/06_glossary.md)
 
