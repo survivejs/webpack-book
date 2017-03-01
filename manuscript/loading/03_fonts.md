@@ -40,7 +40,7 @@ In case we want to make sure our site looks good on a maximum amount of browsers
 ```javascript
 {
   test: /\.woff2?$/,
-  // Inline small woff files and output them below font/.
+  // Inline small woff files and output them below fonts/.
   // Set mimetype just in case.
   loader: 'url-loader',
   options: {
