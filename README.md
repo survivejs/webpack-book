@@ -1,45 +1,75 @@
-[![build status](https://secure.travis-ci.org/survivejs/webpack-book.svg)](http://travis-ci.org/survivejs/webpack-book) [![Join the chat at https://gitter.im/survivejs/webpack](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/survivejs/webpack)
+01_foreword.md
+02_preface.md
+* (manuscript/03_introduction.md)
+04_what_is_webpack.md
 
-# SurviveJS - Webpack
+Mainmatter.txt
 
-<img align="right" width="255" height="329" src="manuscript/images/title_page_small.png" />
+05_Developing.md
+developing/01_getting_started.md
+developing/02_automatic_browser_refresh.md
+developing/03_configuring_hmr.md
+developing/04_linting.md
+developing/05_composing_configuration.md
 
-> **IMPORTANT!** If you want to support the development of this book, you can [purchase a copy at Leanpub](https://leanpub.com/survivejs-webpack). A part (~30%) of the proceedings will go directly to the author of webpack to support its development.
+06_Styling.md
+styling/01_loading.md
+styling/02_separating_css.md
+styling/03_autoprefixing.md
+styling/04_eliminating_unused_css.md
+styling/05_linting.md
 
-Webpack, a module bundler, solves a significant problem for web developers. It can be daunting to learn but once you grok it, life gets easier. The purpose of this book is to make it easier to pick up the tool while learning more advanced techniques as well. You can [read the book online](http://survivejs.com/webpack/introduction/).
+07_Loading.md
+loading/01_loader_definitions.md
+loading/02_images.md
+loading/03_fonts.md
+loading/04_javascript.md
 
-## How to Use This Repository?
+08_Building.md
+building/01_source_maps.md
+building/02_splitting_bundles.md
+building/03_code_splitting.md
+building/04_tidying_up.md
 
-You can read the content easily through [the book site](http://survivejs.com/webpack/introduction/). It is also available within the `manuscript` directory of the repository.
+09_Optimizing.md
+optimizing/01_minifying.md
+optimizing/02_tree_shaking.md
+optimizing/03_setting_environment_variables.md
+optimizing/04_adding_hashes_to_filenames.md
+optimizing/05_separating_manifest.md
+optimizing/06_analyzing_build_statistics.md
+optimizing/07_performance.md
 
-Please note that the repository defaults to the `dev` branch of the book. `master` contains the source of the most recent version. Each version has been tagged so that it's easy for you to find the source matching to the version of the book you are reading.
+10_Output.md
+output/01_targets.md
+output/02_library_output.md
+output/03_multiple_pages.md
+output/04_server_side_rendering.md
 
-## Getting Support
+11_Techniques.md
 
-As no book is perfect, you will likely come by issues and might have some questions related to the content. There are a couple of options to deal with this:
+techniques/01_dynamic_loading.md
+techniques/02_web_workers.md
+techniques/03_i18n.md
+techniques/04_testing.md
+techniques/05_deploying.md
 
-* Contact me through [GitHub Issue Tracker](https://github.com/survivejs/webpack/issues)
-* Join me at [Gitter Chat](https://gitter.im/survivejs/webpack)
-* Follow [@survivejs](https://twitter.com/survivejs) at Twitter for official news or poke me through [@bebraw](https://twitter.com/bebraw) directly
-* Send me email at [info@survivejs.com](mailto:info@survivejs.com)
-* Ask me anything about webpack or React at [SurviveJS AmA](https://github.com/survivejs/ama/issues)
+12_Packages.md
+packages/01_consuming.md
+packages/02_authoring.md
 
-If you post questions to [Stack Overflow](http://stackoverflow.com/search?q=survivejs), tag them using [**survivejs**](https://stackoverflow.com/questions/tagged/survivejs) so I will get notified of them. You can also use the hashtag **#survivejs** at Twitter.
+13_Extending.md
+extending/01_loaders.md
+extending/02_plugins.md
 
-## Announcements
+Backmatter.txt
 
-I announce SurviveJS related news through a couple of channels:
+14_Conclusion.md
 
-* [Mailing list](http://eepurl.com/bth1v5)
-* [Twitter](https://twitter.com/survivejs)
-* [Blog RSS](http://survivejs.com/atom.xml)
-
-Feel free to subscribe.
-
-## Contributing
-
-Feedback and PRs are welcome! See *CONTRIBUTING.md* for more information.
-
-## License
-
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png" /></a>
+15_Appendices.md
+appendices/01_comparison.md
+appendices/02_searching_with_react.md
+appendices/03_hmr_with_react.md
+appendices/04_customizing_eslint.md
+appendices/05_troubleshooting.md
+appendices/06_glossary.md
