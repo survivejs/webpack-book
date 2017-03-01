@@ -261,7 +261,7 @@ export default function () {
 }
 ```
 
-T> [bundle-loader](https://www.npmjs.com/package/bundle-loader) gives similar results, but through a loader interface.
+T> [bundle-loader](https://www.npmjs.com/package/bundle-loader) gives similar results, but through a loader interface. It supports bundle naming through its `name` option.
 
 T> The *Dynamic Loading* chapter covers other techniques that come in handy when you have to deal with more dynamic splits.
 
