@@ -50,7 +50,7 @@ In case we want to make sure our site looks good on a maximum amount of browsers
   },
 },
 {
-  test: /\.(ttf|svg|eot)$/,
+  test: /\.(ttf|eot)$/,
   loader: 'file-loader',
   options: {
     name: 'fonts/[hash].[ext]',
@@ -159,8 +159,8 @@ exports.loadFonts = function({ include, exclude, options } = {}) {
     module: {
       rules: [
         {
-          // Capture eot, ttf, svg, woff, and woff2
-          test: /\.(woff2?|ttf|svg|eot)(\?v=\d+\.\d+\.\d+)?$/,
+          // Capture eot, ttf, woff, and woff2
+          test: /\.(woff2?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
           include,
           exclude,
 
