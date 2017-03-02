@@ -42,7 +42,7 @@ leanpub-start-insert
 exports.extractCSS = function({ include, exclude, use }) {
   // Output extracted CSS to a file
   const plugin = new ExtractTextPlugin({
-    filename: '[name].[contenthash:8].css',
+    filename: '[name].css',
   });
 
   return {
