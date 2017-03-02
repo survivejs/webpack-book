@@ -127,9 +127,9 @@ npm install eslint-loader --save-dev
 
 W> Note that *eslint-loader* will use a globally installed version of ESLint unless you have one included in the project itself. Make sure you have ESLint as a development dependency to avoid the strange behavior.
 
-The loader needs some wiring to work. We'll discuss loaders in detail at the *Understanding Loaders* part, but the basic idea is fast to understand. A loader is connected to webpack through a rule that contains preconditions related to it and a reference to the loader itself.
+The loader needs some wiring to work. We'll discuss loaders in detail in the *Loading* part of this book, but the basic idea is fast to understand. A loader is connected to webpack through a rule that contains preconditions related to it and a reference to the loader itself.
 
-In this case, we'll ensure that ESLint gets executed before anything else using the `enforce` field. It allows us to guarantee that linting happens before any other processing. The idea is discussed in detail at the *Loader Definitions* chapter.
+In this case, we'll ensure that ESLint gets executed before anything else using the `enforce` field. It allows us to guarantee that linting happens before any other processing. The idea is discussed in detail in the *Loader Definitions* chapter.
 
 To add linting to the project, adjust the configuration as follows:
 

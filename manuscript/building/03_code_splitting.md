@@ -334,4 +334,4 @@ I will show you how to tidy up the build in the next chapter.
 
 T> The *Searching with React* appendix contains a complete example of code splitting. It shows how to set up a static site index that's loaded when the user searches information.
 
-T> [webpack-pwa](https://github.com/webpack/webpack-pwa) illustrates the idea on a larger scale and discusses different shell based approaches. We'll get back to this topic at the *Multiple Pages* chapter.
+T> [webpack-pwa](https://github.com/webpack/webpack-pwa) illustrates the idea on a larger scale and discusses different shell based approaches. We'll get back to this topic in the *Multiple Pages* chapter.

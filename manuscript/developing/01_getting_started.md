@@ -6,7 +6,7 @@ The completed configuration is available at [GitHub](https://github.com/survivej
 
 T> It is possible to get a more controlled environment by using a solution such as [Docker](https://www.docker.com/), [Vagrant](https://www.vagrantup.com/) or [nvm](https://www.npmjs.com/package/nvm). Vagrant comes with a performance penalty as it relies on a virtual machine. Vagrant is particularly useful in a team: each developer will have the same environment, usually close to production.
 
-W> If you are using an older version than Node 6, you may either have to adapt the code or process your webpack configuration through Babel as discussed at the *Loading JavaScript* chapter.
+W> If you are using an older version than Node 6, you may either have to adapt the code or process your webpack configuration through Babel as discussed in the *Loading JavaScript* chapter.
 
 ## Setting Up the Project
 
@@ -154,9 +154,9 @@ module.exports = {
 
 The `entry` path could be given as a relative one. The [context](https://webpack.js.org/configuration/entry-context/#context) field can be used to configure that lookup. Given plenty of places expect absolute paths, I prefer to use absolute paths everywhere to avoid confusion.
 
-T> I use **trailing commas** in the book examples on purpose as it gives cleaner diffs for the code examples. I will show you how to enforce this rule at the *Linting JavaScript* chapter.
+T> I use **trailing commas** in the book examples on purpose as it gives cleaner diffs for the code examples. I will show you how to enforce this rule in the *Linting JavaScript* chapter.
 
-T> `[name]` is a placeholder. Placeholders are discussed in detail at the *Adding Hashes to Filenames* chapter.
+T> `[name]` is a placeholder. Placeholders are discussed in detail in the *Adding Hashes to Filenames* chapter.
 
 T> I like to use `path.join`, but `path.resolve` would be a good alternative. See the [Node path API](https://nodejs.org/api/path.html) for further details.
 
@@ -180,7 +180,7 @@ Child html-webpack-plugin for "index.html":
 
 The output tells us a lot. I've annotated it below:
 
-* `Hash: 3f76ae042ff0f2d98f35` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. We'll discuss hashing in detail at the *Adding Hashes to Filenames* chapter.
+* `Hash: 3f76ae042ff0f2d98f35` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. We'll discuss hashing in detail in the *Adding Hashes to Filenames* chapter.
 * `Version: webpack 2.2.1` - Webpack version.
 * `Time: 377ms` - Time it took to execute the build.
 * `app.js    3.13 kB       0  [emitted]  app` - Name of the generated asset, size, the IDs of the **chunks** into which it is related, status information telling how it was generated, the name of the chunk.
@@ -194,7 +194,7 @@ T> It can be convenient to use a tool like *serve* (`npm install serve -g`) to s
 
 T> If you want webpack to stop execution on the first error, set `bail: true` option. Setting it kills the entire webpack process and it is useful if you are building in a CI environment.
 
-T> In addition to a configuration object, webpack accepts an array of configurations as discussed at the *Build Targets* chapter. You can also return a `Promise` and eventually `resolve` to a configuration. If you have to fetch configuration related values before returning it, this can be useful.
+T> In addition to a configuration object, webpack accepts an array of configurations as discussed in the *Build Targets* chapter. You can also return a `Promise` and eventually `resolve` to a configuration. If you have to fetch configuration related values before returning it, this can be useful.
 
 ## Adding a Build Shortcut
 
@@ -231,7 +231,7 @@ There are also specific plugins that extend *html-webpack-plugin*'s functionalit
 * [html-webpack-cdn-plugin](https://www.npmjs.com/package/html-webpack-cdn-plugin) makes it easier to use popular open source CDNs with it.
 * [multipage-webpack-plugin](https://www.npmjs.com/package/multipage-webpack-plugin) builds on top of *html-webpack-plugin* and makes it easier to manage multi-page configurations.
 * [resource-hints-webpack-plugin](https://www.npmjs.com/package/resource-hints-webpack-plugin) adds [resource hints](https://www.w3.org/TR/resource-hints/) to your HTML files to speed up loading time.
-* [preload-webpack-plugin](https://www.npmjs.com/package/preload-webpack-plugin) enables `rel=preload` capabilities for scripts. This helps with lazy loading and it combines well with techniques discussed at the *Building with Webpack* part of this book.
+* [preload-webpack-plugin](https://www.npmjs.com/package/preload-webpack-plugin) enables `rel=preload` capabilities for scripts. This helps with lazy loading and it combines well with techniques discussed in the *Building* part of this book.
 
 ## Conclusion
 

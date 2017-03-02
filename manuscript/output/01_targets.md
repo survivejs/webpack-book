@@ -15,7 +15,7 @@ The *webworker* target will wrap your application as a [web worker](https://deve
 * You cannot use webpack's hashing features when the *webworker* target is used.
 * You cannot manipulate the DOM from a web worker. If you wrapped the book project as a worker, it would not display anything.
 
-T> Web workers and their usage are discussed in detail at the *Using Web Workers* chapter.
+T> Web workers and their usage are discussed in detail in the *Using Web Workers* chapter.
 
 ## Node Targets
 
