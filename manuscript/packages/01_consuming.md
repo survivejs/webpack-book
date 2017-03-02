@@ -239,6 +239,56 @@ if (process.env.NODE_ENV !== 'production') {
 
 T> It can be a good idea to install [React Developer Tools](https://github.com/facebook/react-devtools) to Chrome for even more information as it allows you to inspect *props* and *state* of your application.
 
+### Disabling Asset Loading
+
+Sometimes you might be consuming a package that has formats you are not interested in. A good example of this might be a font framework. They often provide fonts in all formats, but you might need only a few if you support modern browsers.
+
+[null-loader](https://www.npmjs.com/package/null-loader) is useful in these situations. You can tell webpack to pipe certain assets through it.
+
+You can model an `ignore` part using *null-loader* like this:
+
+**webpack.parts.js**
+
+```javascript
+...
+
+exports.ignore = function({ test, include, exclude }) {
+  return {
+    module: {
+      rules: [
+        {
+          test,
+          include,
+          exclude,
+
+          use: 'null-loader',
+        },
+      ],
+    },
+  };
+};
+```
+
+To ignore all Font Awesome SVGs, you could have a definition like this:
+
+**webpack.config.js**
+
+```javascript
+...
+
+const commonConfig = merge([
+  ...
+leanpub-start-insert
+  parts.ignore({
+    test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+    include: /font-awesome/,
+  }),
+leanpub-end-insert
+]);
+```
+
+As a result you should get `// empty (null-loader)` for the matched SVG files.
+
 ## Getting Insights on Packages
 
 Even though it's easy to consume packages through npm, there are times when it's useful to have more information available. npm provides `npm info <package>` command for basic queries. You can use it to check the metadata associated with packages while figuring out version related information.

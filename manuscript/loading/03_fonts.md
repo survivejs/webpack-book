@@ -242,83 +242,9 @@ fontawesome-webfont.woff2    77.2 kB          [emitted]
 
 Note that the SVG file included in Font Awesome has been marked as `[big]`. It is beyond the performance budget defaults set by webpack. The topic is discussed in detail in the *Minifying Build* chapter.
 
-### Disabling SVG Font Loading
+T> [font-awesome-loader](https://www.npmjs.com/package/font-awesome-loader) allows more customization. Font Awesome 5 will improve the situation further. See also the *Consuming Packages* chapter to see how to disable asset loading. You could explicitly disable SVGs in this case.
 
-To drop the big SVG file and disable SVG loading, it is possible to capture SVG `import` and then rewrite the module as a `null` by using the [null-loader](https://www.npmjs.com/package/null-loader) to get rid of the big file. To get started, install the loader first:
-
-```bash
-npm install null-loader --save-dev
-```
-
-Then, to disable SVG loading, capture it first through a `test` and push the match through the *null-loader*. Here's the idea:
-
-**webpack.parts.js**
-
-```javascript
-...
-
-exports.ignore = function({ test, include, exclude }) {
-  return {
-    module: {
-      rules: [
-        {
-          test,
-          include,
-          exclude,
-
-          use: 'null-loader',
-        },
-      ],
-    },
-  };
-};
-```
-
-To connect this with the configuration, adjust as follows:
-
-**webpack.config.js**
-
-```javascript
-...
-
-const commonConfig = merge([
-  ...
-leanpub-start-insert
-  parts.ignore({
-    test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-    include: /font-awesome/,
-  }),
-leanpub-end-insert
-]);
-```
-
-If you build the project (`npm run build`), the output should be a little tidier:
-
-```bash
-Hash: 71169d0797a7271e19ba
-Version: webpack 2.2.1
-Time: 2301ms
-                    Asset       Size  Chunks             Chunk Names
-  fontawesome-webfont.eot     166 kB          [emitted]
-  fontawesome-webfont.ttf     166 kB          [emitted]
-fontawesome-webfont.woff2    77.2 kB          [emitted]
- fontawesome-webfont.woff      98 kB          [emitted]
-  fontawesome-webfont.svg   22 bytes          [emitted]
-                 logo.png      77 kB          [emitted]
-                   app.js    4.56 kB       0  [emitted]  app
-                  app.css    3.85 kB       0  [emitted]  app
-               index.html  218 bytes          [emitted]
-   [0] ./app/component.js 198 bytes {0} [built]
-   [1] ./~/font-awesome/css/font-awesome.css 41 bytes {0} [built]
-   [2] ./app/main.css 41 bytes {0} [built]
-...
-```
-
-If you examine *fontawesome-webfont.svg*, it should contain `// empty (null-loader)` kind of comment. It is important that the `ignore` part gets evaluated before the font definition. Reverse order would break the font loading.
-
-The solution above is generic, and it should work with other libraries as well. The problematic aspect of the approach is that Font Awesome still included fonts you are not using. [font-awesome-loader](https://www.npmjs.com/package/font-awesome-loader) allows more customization.
-
-Font Awesome 5 will improve the situation further. If you want full control over which fonts you are using, [Font Awesome wiki](https://github.com/FortAwesome/Font-Awesome/wiki/Customize-Font-Awesome) points to available online services.
+T> If you want full control over which fonts you are using, [Font Awesome wiki](https://github.com/FortAwesome/Font-Awesome/wiki/Customize-Font-Awesome) points to available online services.
 
 ## Conclusion
 
@@ -328,6 +254,5 @@ To recap:
 
 * When loading fonts, the same techniques as for images apply. You can choose to inline small fonts while bigger ones will be served as separate assets.
 * Using larger font collections, such as Font Awesome, may be problematic especially if you want to avoid loading additional rules. The problem is dependent on the packages in question and can be solved with webpack to an extent.
-* It is possible to work around the problem by disabling specific fonts you don't want to include from a collection like Font Awesome by routing the assets through a *null-loader*.
 
 In the next chapter, I will show you how to load JavaScript using webpack. It loads JavaScript by default, but there's more to the topic as you have to consider what browsers you want to support.
