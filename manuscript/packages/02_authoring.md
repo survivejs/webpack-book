@@ -368,23 +368,24 @@ Secondly, we'll need the script itself:
 **lib/post_install.js**
 
 ```javascript
-// Based on rackt/history (MIT)
+/* eslint-disable */
+// adapted based on rackt/history (MIT)
 // Node 4+
-var execSync = require('child_process').execSync;
-var stat = require('fs').stat;
+const execSync = require('child_process').execSync;
+const fs = require('fs');
 
-stat('dist-modules', function(err, stats) {
+fs.stat('dist', function(error, stat) {
   // Skip building on Travis
   if (process.env.TRAVIS) {
     return;
   }
 
-  // If dist-modules directory does not exist
-  if (err || !stats.isDirectory()) {
-    // Install devDependencies
+  if (error || !stat.isDirectory()) {
+    // Create a directory to avoid getting stuck
+    // in postinstall loop
+    fs.mkdirSync('dist');
     exec('npm install --only=dev');
-    // Build ES5 modules
-    exec('npm run dist:modules');
+    exec('npm run build');
   }
 });
 
