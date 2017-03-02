@@ -229,7 +229,7 @@ W> In webpack 1 you had to use `extensions: ['', '.js', '.jsx']` to match files 
 
 The fastest way to get started with webpack and React is to use [create-react-app](https://www.npmjs.com/package/create-react-app). It is a zero configuration approach that encapsulates a lot of best practices, and it is particularly useful if you want to get started with a little project fast with minimal setup.
 
-One of the main attractions of *create-react-app* is a feature known as *ejecting* that allows you to extract a full-blown webpack setup out of it. There's a problem, though. After you eject, you cannot go back to the dependency-based model, and you will have to maintain the resulting setup yourself.
+*create-react-app* allows you to extract a full-blown webpack setup by **ejecting**. There's a problem, though. After you eject, you cannot go back to the dependency-based model, and you will have to maintain the resulting setup yourself.
 
 ## Conclusion
 

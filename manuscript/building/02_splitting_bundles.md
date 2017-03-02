@@ -2,7 +2,7 @@
 
 Currently, the production version of our application is a single JavaScript file. If we change the application, the client must download vendor dependencies as well.
 
-It would be better to download only the changed portion. If the vendor dependencies change, then the client should fetch only the vendor dependencies. The same goes for actual application code. This technique is known as **bundle splitting** and it can be achieved using `CommonsChunkPlugin`.
+It would be better to download only the changed portion. If the vendor dependencies change, then the client should fetch only the vendor dependencies. The same goes for actual application code. **Bundle splitting** like this can be achieved using `CommonsChunkPlugin`.
 
 T> To invalidate the bundles properly, we'll attach hashes to the generated bundles in the *Adding Hashes to Filenames* chapter.
 

@@ -1,6 +1,6 @@
 # Dynamic Loading
 
-Even though you can get far with webpack's code splitting features covered in the *Code Splitting* chapter, there's more to it. Webpack provides more dynamic ways to deal with code through a feature known as `require.context`.
+Even though you can get far with webpack's code splitting features covered in the *Code Splitting* chapter, there's more to it. Webpack provides more dynamic ways to deal with code through `require.context`.
 
 ## Dynamic Loading with `require.context`
 
