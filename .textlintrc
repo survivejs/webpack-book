@@ -5,6 +5,7 @@
       "skip": ["Blockquote", "Header", "Link", "Emphasis", "Strong"],
       "terms": [
         // Brands
+        "Browsersync",
         "ESLint",
         "JavaScript",
         "Lodash",
