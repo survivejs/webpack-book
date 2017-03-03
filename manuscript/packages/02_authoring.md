@@ -229,22 +229,26 @@ T> If you find a good name that appears to be abandoned, contact npm, and they�
 
 ## npm Lifecycle Hooks
 
-npm provides a collection of lifecycle hooks that can be useful. Suppose you are authoring a React component using Babel and some of its goodies. You could let the *package.json* `main` field point at the UMD version as generated above. However, this won’t be ideal for those consuming the library through npm.
-
-It is better to generate a ES5 compatible version of the package for npm consumers. You can achieve this using **babel** command line tool:
+npm provides a collection of lifecycle hooks that can be useful. Suppose you are authoring a React component using Babel and some of its goodies. In that case, you should generate an ES5 compatible version of the package for npm consumers and point to it through *package.json* `main`. You can achieve this using **babel** command line tool:
 
 ```bash
 babel ./lib --out-dir ./dist-modules
 ```
 
-This will walk through the `./lib` directory and output to `./dist-modules` a processed file for each module it encounters.
+The command will walk through the `./lib` directory and output to `./dist-modules` a processed file for each module it encounters.
 
 Since we want to avoid having to run the command directly whenever we publish a new version, we can connect it to `prepublish` hook like this:
 
 ```json
-"scripts": {
+{
   ...
-  "prepublish": "babel ./lib --out-dir ./dist-modules"
+  "scripts": {
+    ...
+    "prepublish": "babel ./lib --out-dir ./dist-modules"
+  },
+  ...
+  "main": "dist-modules/",
+  ...
 }
 ```
 
@@ -374,7 +378,10 @@ Secondly, we’ll need the script itself:
 const execSync = require('child_process').execSync;
 const fs = require('fs');
 
-fs.stat('dist', function(error, stat) {
+// This could be read from package.json
+const distDirectory = 'dist-modules';
+
+fs.stat(distDirectory, function(error, stat) {
   // Skip building on Travis
   if (process.env.TRAVIS) {
     return;
@@ -383,7 +390,7 @@ fs.stat('dist', function(error, stat) {
   if (error || !stat.isDirectory()) {
     // Create a directory to avoid getting stuck
     // in postinstall loop
-    fs.mkdirSync('dist');
+    fs.mkdirSync(distDirectory);
     exec('npm install --only=dev');
     exec('npm run build');
   }
@@ -397,7 +404,7 @@ function exec(command) {
 }
 ```
 
-The script may need tweaking to fit your purposes. But it’s enough to give you a rough idea. If the `dist-modules` directory is missing, we’ll generate it here. That’s it.
+The script may need tweaking to fit your purposes. But it’s enough to give you a rough idea. If the `dist-modules` directory is missing, we’ll generate it here.
 
 For the build script to work, you have to remember to include the source of the package to the distribution version and to tweak *package.json* `files` field accordingly.
 
