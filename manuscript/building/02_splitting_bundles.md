@@ -38,21 +38,23 @@ leanpub-end-insert
 Execute `npm run build` to get a baseline build. You should end up with something like this:
 
 ```bash
-Hash: 909ea27e159183e169ca
+Hash: 2db5a05e02ac73897fd4
 Version: webpack 2.2.1
-Time: 2689ms
-                    Asset       Size  Chunks             Chunk Names
-                 logo.png      77 kB          [emitted]
-  fontawesome-webfont.eot     166 kB          [emitted]
-fontawesome-webfont.woff2    77.2 kB          [emitted]
- fontawesome-webfont.woff      98 kB          [emitted]
-  fontawesome-webfont.svg   22 bytes          [emitted]
-  fontawesome-webfont.ttf     166 kB          [emitted]
-                   app.js     140 kB       0  [emitted]  app
-                  app.css    3.89 kB       0  [emitted]  app
-               app.js.map     166 kB       0  [emitted]  app
-              app.css.map   84 bytes       0  [emitted]  app
-               index.html  218 bytes          [emitted]
+Time: 2864ms
+        Asset       Size  Chunks                    Chunk Names
+     logo.png      77 kB          [emitted]
+  ...font.eot     166 kB          [emitted]
+...font.woff2    77.2 kB          [emitted]
+ ...font.woff      98 kB          [emitted]
+  ...font.svg     444 kB          [emitted]  [big]
+  ...font.ttf     166 kB          [emitted]
+leanpub-start-insert
+       app.js     140 kB       0  [emitted]         app
+leanpub-end-insert
+      app.css    3.89 kB       0  [emitted]         app
+   app.js.map     165 kB       0  [emitted]         app
+  app.css.map   84 bytes       0  [emitted]         app
+   index.html  218 bytes          [emitted]
    [0] ./~/process/browser.js 5.3 kB {0} [built]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {0} [built]
   [18] ./app/component.js 272 bytes {0} [built]
@@ -89,26 +91,30 @@ leanpub-end-insert
 We have two separate entries, or **entry chunks**, now. `[name].js` of our existing `output.path` the configuration will kick in based on the entry name. If you try to generate a build now (`npm run build`), you should see something along this:
 
 ```bash
-Hash: 826dae8d1f861ff05cb8
+Hash: ebf1b976090ff95e4fcd
 Version: webpack 2.2.1
-Time: 2611ms
-                    Asset       Size  Chunks             Chunk Names
-                   app.js     140 kB       0  [emitted]  app
-  fontawesome-webfont.eot     166 kB          [emitted]
-fontawesome-webfont.woff2    77.2 kB          [emitted]
- fontawesome-webfont.woff      98 kB          [emitted]
-  fontawesome-webfont.svg   22 bytes          [emitted]
-                 logo.png      77 kB          [emitted]
-  fontawesome-webfont.ttf     166 kB          [emitted]
-                vendor.js     138 kB       1  [emitted]  vendor
-                  app.css    3.89 kB       0  [emitted]  app
-               app.js.map     166 kB       0  [emitted]  app
-              app.css.map   84 bytes       0  [emitted]  app
-            vendor.js.map     164 kB       1  [emitted]  vendor
-               index.html  274 bytes          [emitted]
-   [0] ./~/process/browser.js 5.3 kB {0} {1} [built]
+Time: 2814ms
+        Asset       Size  Chunks                    Chunk Names
+leanpub-start-insert
+       app.js     140 kB       0  [emitted]         app
+leanpub-end-insert
+  ...font.eot     166 kB          [emitted]
+...font.woff2    77.2 kB          [emitted]
+ ...font.woff      98 kB          [emitted]
+  ...font.svg     444 kB          [emitted]  [big]
+     logo.png      77 kB          [emitted]
+  ...font.ttf     166 kB          [emitted]
+leanpub-start-insert
+    vendor.js     138 kB       1  [emitted]         vendor
+leanpub-end-insert
+      app.css    3.89 kB       0  [emitted]         app
+   app.js.map     165 kB       0  [emitted]         app
+  app.css.map   84 bytes       0  [emitted]         app
+vendor.js.map     164 kB       1  [emitted]         vendor
+   index.html  274 bytes          [emitted]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {0} {1} [built]
   [18] ./~/react/react.js 56 bytes {0} {1} [built]
+  [21] ./~/react/lib/React.js 2.69 kB {0} {1} [built]
 ...
 ```
 
@@ -155,23 +161,27 @@ leanpub-end-insert
 The configuration tells the plugin to extract React to a bundle named `vendor`. If you execute the build now using `npm run build`, you should see something along this:
 
 ```bash
-Hash: 9e99171a301a171aefaf
+Hash: af634c8857c0ffb5c5e0
 Version: webpack 2.2.1
-Time: 2628ms
-                    Asset       Size  Chunks             Chunk Names
-                   app.js    2.48 kB       0  [emitted]  app
-  fontawesome-webfont.eot     166 kB          [emitted]
-fontawesome-webfont.woff2    77.2 kB          [emitted]
- fontawesome-webfont.woff      98 kB          [emitted]
-  fontawesome-webfont.svg   22 bytes          [emitted]
-                 logo.png      77 kB          [emitted]
-  fontawesome-webfont.ttf     166 kB          [emitted]
-                vendor.js     141 kB       1  [emitted]  vendor
-                  app.css    3.89 kB       0  [emitted]  app
-               app.js.map    2.32 kB       0  [emitted]  app
-              app.css.map   84 bytes       0  [emitted]  app
-            vendor.js.map     167 kB       1  [emitted]  vendor
-               index.html  274 bytes          [emitted]
+Time: 2790ms
+        Asset       Size  Chunks                    Chunk Names
+leanpub-start-insert
+       app.js    2.15 kB       0  [emitted]         app
+leanpub-end-insert
+  ...font.eot     166 kB          [emitted]
+...font.woff2    77.2 kB          [emitted]
+ ...font.woff      98 kB          [emitted]
+  ...font.svg     444 kB          [emitted]  [big]
+     logo.png      77 kB          [emitted]
+  ...font.ttf     166 kB          [emitted]
+leanpub-start-insert
+    vendor.js     141 kB       1  [emitted]         vendor
+leanpub-end-insert
+      app.css    3.89 kB       0  [emitted]         app
+   app.js.map    1.67 kB       0  [emitted]         app
+  app.css.map   84 bytes       0  [emitted]         app
+vendor.js.map     167 kB       1  [emitted]         vendor
+   index.html  274 bytes          [emitted]
    [0] ./~/process/browser.js 5.3 kB {1} [built]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {1} [built]
    [7] ./~/react/react.js 56 bytes {1} [built]
@@ -322,11 +332,11 @@ const config = {
 
 ...
 
-const isVendor = ({ resource }) => (
-  resource &&
-  resource.indexOf('node_modules') >= 0 &&
-  resource.match(/\.js$/)
-);
+function isVendor({ resource }) {
+  return resource &&
+    resource.indexOf('node_modules') >= 0 &&
+    resource.match(/\.js$/);
+}
 ```
 
 The same code would look like this using the `parts.extractBundles` abstraction:
@@ -355,6 +365,7 @@ parts.extractBundles([
 
 T> Note that the `chunks` option refers to the entry chunks of your configuration.
 
+## `CommonsChunkPlugin` `children` and `async` Flags
 
 `CommonsChunkPlugin` provides more control through `children` and `async` flags:
 
@@ -422,7 +433,7 @@ To recap:
 * Webpack allows you to split bundles from configuration entries through the `CommonsChunkPlugin`.
 * The most basic use case for `CommonsChunkPlugin` is to extract so-called **vendor bundle**.
 * A vendor bundle contains the third party code of your project. The vendor dependencies can be detected by inspecting where the modules are imported. If they come from the *node_modules* directory, they can be split automatically through a `minChunks` rule.
-* `CommonsChunkPlugin` provides control over the splitting process. You can control the position of shared modules through its `async` and `children` options. `async` extracts shared modules to an asynchronously loaded bundle while `children` pushes the shared modules to the parent bundle.
+* `CommonsChunkPlugin` provides control over the splitting process. You can control the position of shared modules through its `async` and `children` flags. `async` extracts shared modules to an asynchronously loaded bundle while `children` pushes the shared modules to the parent bundle.
 * The `chunks` option of `CommonsChunkPlugin` allows you to control where the plugin is performing splitting. The option gives more granular control, especially in more complex setups.
 * Webpack offers more control over chunking through specific plugins, such as `AggressiveSplittingPlugin` and `AggressiveMergingPlugin`. Particularly the splitting plugin can be useful in HTTP/2 oriented setups.
 * Internally webpack relies on three chunk types: entry, normal, and initial chunks. `CommonsChunkPlugin` flags modules using these types.
