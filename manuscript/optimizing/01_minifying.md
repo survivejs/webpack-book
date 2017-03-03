@@ -92,11 +92,7 @@ Ideally, minification will convert our code into a smaller format without losing
 
 Sometimes minification can break code as it can rewrite pieces of code. Angular 1 was an example of this as it relied on a specific function parameter naming and rewriting the parameters could break code unless you took precautions against it.
 
-The easiest way to enable minification in webpack is to call `webpack -p`. `-p` is a shortcut for `--optimize-minimize`, you can think it as `-p` for "production". This enables webpack's `UglifyJsPlugin`. The problem is that UglifyJS doesn't support ES6 syntax yet making it problematic if Babel and *babel-preset-env* is used.
-
-Using `UglifyJsPlugin` provides us more control as relying on the flag comes with its problems. If you went with flags and wanted to customize the result, you would have to drop the flags and rewrite the configuration entirely to avoid minifying twice.
-
-T> [uglifyjs-webpack-plugin](https://www.npmjs.com/package/uglifyjs-webpack-plugin) allows you to try out an experimental version of UglifyJS that provides better support for ES6. More alternatives are listed later in this chapter.
+The easiest way to enable minification in webpack is to call `webpack -p` (same as `--optimize-minimize`). This enables webpack's `UglifyJsPlugin`. The problem is that UglifyJS doesn't support ES6 syntax yet making it problematic if Babel and *babel-preset-env* are used so we have to go other route in this case.
 
 ### Setting Up JavaScript Minification
 
@@ -194,6 +190,7 @@ Although Babili works for our use case, there are more options you can consider:
 
 * [webpack-closure-compiler](https://www.npmjs.com/package/webpack-closure-compiler) runs parallel and may give even smaller result than UglifyJS.
 * [optimize-js-plugin](https://www.npmjs.com/package/optimize-js-plugin) complements the other solutions by wrapping eager functions and it enhances the way your JavaScript code gets parsed initially. The plugin relies on [optimize-js](https://github.com/nolanlawson/optimize-js) by Nolan Lawson.
+* [uglifyjs-webpack-plugin](https://www.npmjs.com/package/uglifyjs-webpack-plugin) allows you to try out an experimental version of UglifyJS that provides better support for ES6 than the stable version.
 * [uglify-loader](https://www.npmjs.com/package/uglify-loader) gives more granular control than webpack's `UglifyJsPlugin` in case you prefer to use UglifyJS.
 * [webpack-parallel-uglify-plugin](https://www.npmjs.com/package/webpack-parallel-uglify-plugin) allows you to parallelize the minifying step and may yield extra performance as webpack doesn't run in parallel by default.
 
