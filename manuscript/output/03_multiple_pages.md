@@ -16,7 +16,7 @@ In practice, you may find more dimensions. For example, you have to generate i18
 
 To generate multiple separate pages, they should be initialized somehow. We should also be able to return a configuration for each page, so webpack will pick them up and process them through the multi-compiler mode.
 
-### Modeling a Configuration Part
+### Abstracting Pages
 
 To initialize a page, it should receive page title, output path, and an optional template at least. Each page should receive optional output path, and a template for customization. The idea can be modeled as a configuration part like this:
 
@@ -51,7 +51,7 @@ exports.page = function({
 leanpub-end-insert
 ```
 
-### Integrating to Main Configuration
+### Integrating to Configuration
 
 To incorporate the idea to the configuration, the way it is composed has to change. Also, a page definition is required. To get started, let's reuse the same JavaScript logic for each page for now:
 
