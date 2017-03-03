@@ -4,25 +4,27 @@ Web applications have the tendency to grow big as features are developed. The lo
 
 Even though splitting our bundles can help a notch, they are not the only solution, and you may still end up having to download a lot of data. Fortunately, it is possible to do better thanks to **code splitting**. It allows us to load code lazily as we need it.
 
-T> Incidentally, it is possible to implement Google's [PRPL pattern](https://developers.google.com/web/fundamentals/performance/prpl-pattern/) using lazy loading. PRPL (Push, Render, Pre-cache, Lazy-load) has been designed with mobile web in mind and can be implemented using webpack.
+T> Incidentally, it is possible to implement Google's [PRPL pattern](https://developers.google.com/web/fundamentals/performance/prpl-pattern/) using webpack's lazy loading. PRPL (Push, Render, Pre-cache, Lazy-load) has been designed with mobile web in mind.
 
 ## Code Splitting Formats
 
-Code splitting can be done in two primary ways in webpack: through a [dynamic import](https://github.com/tc39/proposal-dynamic-import) or `require.ensure` syntax. We'll be using the former in this project. The syntax isn't in the official specification yet, so it will require minor tweaks especially at ESLint and Babel too if you are using that.
+Code splitting can be done in two primary ways in webpack: through a dynamic `import` or `require.ensure` syntax. We'll be using the former in this project.
 
-The goal is to end up with a split point that will get loaded on demand. There can be splits inside splits, and you can structure an entire application based on splits.
+The goal is to end up with a split point that will get loaded on demand. There can be splits inside splits, and you can structure an entire application based on splits. The advantage of doing this is that then the initial payload of your application can be smaller than it would be otherwise.
 
 ![Code splitting](images/dynamic.png)
 
 ### Dynamic `import`
 
-Dynamic imports look like this:
+The [dynamic `import` syntax](https://github.com/tc39/proposal-dynamic-import) isn't in the official language specification yet. To use it, minor tweaks are needed especially at ESLint and Babel. Certain editors and IDEs might not support the syntax either.
+
+Dynamic imports are defined as `Promise`s and look like this:
 
 ```javascript
 import('./module').then((module) => {...}).catch((error) => {...});
 ```
 
-The `Promise` based interface allows composition, and you could load multiple resources in parallel like this:
+The interface allows composition, and you could load multiple resources in parallel like this:
 
 ```javascript
 Promise.all([
@@ -63,7 +65,7 @@ require.ensure(
 
 As you can see, `require.ensure` definition is more powerful. The problem is that it doesn't support error handling. Often you can achieve what you want through a dynamic `import`, but it's good to know this form exists as well.
 
-T> `require.ensure` supports naming. `require.ensure` blocks that have the same name will be pulled into the same output chunk as showcased by [an official example](https://github.com/webpack/webpack/tree/master/examples/named-chunks).
+`require.ensure` supports naming. The point is that `require.ensure` blocks that have the same name will be pulled into the same output chunk giving you more control over the result. [The official example](https://github.com/webpack/webpack/tree/master/examples/named-chunks) shows the output in detail.
 
 W> `require.ensure` relies on `Promise`s internally. If you use `require.ensure` with older browsers, remember to shim `Promise` using a polyfill such as [es6-promise](https://www.npmjs.com/package/es6-promise).
 
@@ -88,13 +90,13 @@ require.ensure(
 );
 ```
 
-If you had nested `require.ensure` definitions, you could pull a module to the parent chunk using either syntax.
+If you had nested `require.ensure` definitions, you could pull a module to the parent chunk using either syntax. It is a similar idea as we saw in the *Splitting Bundles* chapter.
 
 T> The formats respect `output.publicPath` option. You can also use `output.chunkFilename` to shape where they output. Example: `chunkFilename: '[name].js'`.
 
 ## Setting Up Code Splitting
 
-To demonstrate the idea of code splitting, we should pick up one of the formats above and integrate it into our project. Dynamic `import` is enough. Before we can implement the webpack side, ESLint needs a slight tweak.
+To demonstrate the idea of code splitting, we'll use dynamic `import`. Both ESLint and Babel setup of our project needs additions to make the syntax work.
 
 ### Configuring ESLint
 
@@ -188,25 +190,29 @@ If you open up the application (`npm start`) and click the button, you should se
 The build result is the more interesting part. If you run `npm run build`, you should see something like this:
 
 ```bash
-Hash: 4f6f78b2fd2c38e8200d
+Hash: e61343b53de634da8aac
 Version: webpack 2.2.1
-Time: 2606ms
-                    Asset       Size  Chunks             Chunk Names
-                   app.js    2.74 kB       1  [emitted]  app
-  fontawesome-webfont.eot     166 kB          [emitted]
-fontawesome-webfont.woff2    77.2 kB          [emitted]
- fontawesome-webfont.woff      98 kB          [emitted]
-  fontawesome-webfont.svg   22 bytes          [emitted]
-                 logo.png      77 kB          [emitted]
-                     0.js  313 bytes       0  [emitted]
-  fontawesome-webfont.ttf     166 kB          [emitted]
-                vendor.js     150 kB       2  [emitted]  vendor
-                  app.css    3.89 kB       1  [emitted]  app
-                 0.js.map  231 bytes       0  [emitted]
-               app.js.map    2.78 kB       1  [emitted]  app
-              app.css.map   84 bytes       1  [emitted]  app
-            vendor.js.map     179 kB       2  [emitted]  vendor
-               index.html  274 bytes          [emitted]
+Time: 2890ms
+        Asset       Size  Chunks                    Chunk Names
+       app.js     2.4 kB       1  [emitted]         app
+  ...font.eot     166 kB          [emitted]
+...font.woff2    77.2 kB          [emitted]
+ ...font.woff      98 kB          [emitted]
+  ...font.svg     444 kB          [emitted]  [big]
+     logo.png      77 kB          [emitted]
+leanpub-start-insert
+         0.js  313 bytes       0  [emitted]
+leanpub-end-insert
+  ...font.ttf     166 kB          [emitted]
+    vendor.js     150 kB       2  [emitted]         vendor
+      app.css    3.89 kB       1  [emitted]         app
+leanpub-start-insert
+     0.js.map  233 bytes       0  [emitted]
+leanpub-end-insert
+   app.js.map    2.13 kB       1  [emitted]         app
+  app.css.map   84 bytes       1  [emitted]         app
+vendor.js.map     178 kB       2  [emitted]         vendor
+   index.html  274 bytes          [emitted]
    [0] ./~/process/browser.js 5.3 kB {2} [built]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {2} [built]
   [18] ./app/component.js 461 bytes {1} [built]
@@ -239,7 +245,7 @@ body {
 }
 ```
 
-The idea is that after *lazy.js* gets loaded, *lazy.css* is applied as well. You can confirm this by running the application (`npm run start`). The same behavior is visible if you build the application (`npm run build`) and examine the output (`0.js`). This is due to our `ExtractTextPlugin` definition.
+The idea is that after *lazy.js* gets loaded, *lazy.css* is applied as well. You can confirm this by running the application (`npm start`). The same behavior is visible if you build the application (`npm run build`) and examine the output (`0.js`). This is due to our `ExtractTextPlugin` definition.
 
 ### Defining a Split Point Using `require.ensure`
 
@@ -260,6 +266,8 @@ export default function () {
   return element;
 }
 ```
+
+You could name the split point as outlined above. If you add another split point and give it the same name, the splits should end up in the same bundle.
 
 T> [bundle-loader](https://www.npmjs.com/package/bundle-loader) gives similar results, but through a loader interface. It supports bundle naming through its `name` option.
 
