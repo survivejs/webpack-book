@@ -160,6 +160,8 @@ Webpack’s `ProvidePlugin` can be used for a similar purpose. It allows webpack
 },
 ```
 
+T> [script-loader](https://www.npmjs.com/package/script-loader) allows you to execute scripts in a global context. You may have to do this if the scripts you are using rely on a global registration setup.
+
 ## Removing Unused Modules
 
 Even though packages might work well out of the box, they might bring too much code to your project by default. [Moment.js](https://www.npmjs.com/package/moment) is a popular example. It brings locale data to your project by default. The easiest way to disable that behavior is to use `IgnorePlugin` to ignore locales like this:
