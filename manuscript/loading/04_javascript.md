@@ -1,6 +1,6 @@
 # Loading JavaScript
 
-Webpack processes ES6 module definitions by default and transforms them into code. It does **not** transform ES6 specific syntax apart, such as `const`. The resulting code can be problematic especially in the older browsers. It is also troublesome if you minify your code through UglifyJS as it doesn't support the ES6 syntax yet.
+Webpack processes ES6 module definitions by default and transforms them into code. It does **not** transform ES6 specific syntax apart, such as `const`. The resulting code can be problematic especially in the older browsers.
 
 To get a better idea of the default transform, consider the example output below:
 
@@ -9,15 +9,15 @@ To get a better idea of the default transform, consider the example output below
 ```javascript
 webpackJsonp([1],{
 
-/***/ 18:
+/* 0 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = function () {
+/* harmony default export */ __webpack_exports__["a"] = function (text = 'Hello world') {
   const element = document.createElement('div');
 
   element.className = 'fa fa-hand-spock-o fa-1g';
-  element.innerHTML = 'Hello world';
+  element.innerHTML = text;
 
   return element;
 };
@@ -113,13 +113,17 @@ W> If you try to import files **outside** of your configuration root directory a
 
 ### Setting Up *.babelrc*
 
-At a minimum, you will need [babel-preset-es2015](https://www.npmjs.com/package/babel-preset-es2015). Install it:
+At a minimum, you will need [babel-preset-env](https://www.npmjs.com/package/babel-preset-env). It is a Babel preset that enables the needed plugins based on the environment definition you pass to it. It follows the **browserslist** definition discussed in the *Autoprefixing* chapter.
+
+Install the preset first:
 
 ```bash
-npm install babel-preset-es2015 --save-dev
+npm install babel-preset-env --save-dev
 ```
 
-To make Babel aware of the preset, we need to write a *.babelrc*. Given webpack supports ES6 modules out of the box, we can tell Babel to skip processing them. Skipping this step would break webpack's HMR mechanism although the production build would still work.
+To make Babel aware of the preset, we need to write a *.babelrc*. Given webpack supports ES6 modules out of the box, we can tell Babel to skip processing them. Skipping this step would break webpack's HMR mechanism although the production build would still work. We can also constrain the build output to work only in recent versions of Chrome.
+
+Adjust the target definition as you like. As long as you follow [browserslist](https://www.npmjs.com/package/browserslist), it should work. Here's a sample configuration.
 
 **.babelrc**
 
@@ -127,33 +131,40 @@ To make Babel aware of the preset, we need to write a *.babelrc*. Given webpack 
 {
   "presets": [
     [
-      "es2015",
+      "env",
       {
-        "modules": false
+        "modules": false,
+        "targets": {
+          "browsers": ["last 2 Chrome versions"]
+        }
       }
     ]
   ]
 }
 ```
 
-T> This is the Babel setup you would use if you want to support tree shaking at a package level. See the *Tree Shaking* chapter for more information.
+W> **babel-preset-env** does **not** support *browserslist* file yet. [See issue #26](https://github.com/babel/babel-preset-env/issues/26) for more information.
 
-If you execute `npm run build` now and examine *build/app.js*, you should see something a little different:
+If you execute `npm run build` now and examine *build/app.js*, the result should be similar to the earlier since it supports the features we are using in our code.
+
+To see that the target definition works, change it to work such as `"browsers": ["IE 8"]`. Since IE 8 doesn't support `const`s, the code should change. If you build (`npm run build`), now, you should see something a little different:
 
 **build/app.js**
 
 ```javascript
 webpackJsonp([1],{
 
-/***/ 18:
+/* 0 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = function () {
+  var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Hello world';
+
   var element = document.createElement('div');
 
   element.className = 'fa fa-hand-spock-o fa-1g';
-  element.innerHTML = 'Hello world';
+  element.innerHTML = text;
 
   return element;
 };
@@ -161,25 +172,17 @@ webpackJsonp([1],{
 ...
 ```
 
-Note especially how the function was transformed. This code should work in older browsers now. It would also be possible to push it through UglifyJS without any errors due to parsing.
+Note especially how the function was transformed. You can try out different browser definitions and language features to see how the output changes based on the selection.
 
 ## Polyfilling Features
 
-Given it's not always enough to transform ES6 code to an older format and expect it to work, polyfilling may be needed. The easiest way to solve this problem is to include [babel-polyfill](https://babeljs.io/docs/usage/polyfill/) to your project through an entry (`app: ['babel-polyfill', PATHS.app]`) or `import 'babel-polyfill'` from code to get it bundled.
+*babel-preset-env* allows you to polyfill certain language features for older browsers. For this to work, you should enable its `useBuiltIns` option (`"useBuiltIns": true`) and install [babel-polyfill](https://babeljs.io/docs/usage/polyfill/). You also have to perform either `import "babel-polyfill";` in your code or manage it through an entry such as `app: ['babel-polyfill', PATHS.app]`. *babel-preset-env* will rewrite the import based on your browser definition and load only the polyfills that are needed.
 
 It is important to note that *babel-polyfill* pollutes the global scope with objects like `Promise`. Given this can be problematic for library authors, there's [transform-runtime](https://babeljs.io/docs/plugins/transform-runtime/) option. It can be enabled as a Babel plugin, and it will avoid the problem of globals by rewriting the code in such way that they won't be needed.
 
-## Babel Preset Based on Environment
-
-Especially in bundle size sensitive environments *babel-polyfill* might not be the best option. If you know well which environment (browser versions, Node) you support, [babel-preset-env](https://www.npmjs.com/package/babel-preset-env) provides a more granular way to achieve the same result with a smaller size.
-
-*babel-preset-env* is a forward-looking option. The advantage of using it is that then you don't have to worry about enabling specific language extensions specifically as it handles the work for you based on your target definition.
-
-The problem is that if you want to minify your code, then you have to use tooling that supports ES6 as well. [babili](https://www.npmjs.com/package/babili) is a good option for that. The topic is discussed in detail in the **Minifying Build** chapter.
-
 ## Babel Tips
 
-There are other possible [.babelrc options](https://babeljs.io/docs/usage/options/) beyond the ones covered here. Like ESLint, *.babelrc* supports [JSON5](https://www.npmjs.com/package/json5) as its configuration format meaning you can include comments in your source, use single quoted strings, and so on.
+There are other possible [*.babelrc* options](https://babeljs.io/docs/usage/options/) beyond the ones covered here. Like ESLint, *.babelrc* supports [JSON5](https://www.npmjs.com/package/json5) as its configuration format meaning you can include comments in your source, use single quoted strings, and so on.
 
 Sometimes you might want to use experimental features. Although you can find a lot of them within so-called stage presets, I recommend enabling them one by one and even organizing them to a preset of their own unless you are working on a throwaway project. If you expect your project to live a long time, it's better to document the features you are using well.
 
@@ -271,7 +274,7 @@ Babel has become an indispensable tool for developers given it bridges the stand
 
 To recap:
 
-* Babel gives you control over what browsers to support. It can compile ES6 features to a form the older browser understand.
+* Babel gives you control over what browsers to support. It can compile ES6 features to a form the older browser understand. *babel-preset-env* is particularly useful as it can choose which features to compile and which polyfills to enable based on your browser definition.
 * Babel allows you to use experimental language features. You can find numerous plugins that improve development experience and the production build through optimizations.
 * Babel functionality can be enabled per development target. This way you can be sure you are using the correct plugins at the right place.
 * Besides Babel, webpack supports other solutions like TypeScript of Flow. Flow can complement Babel while TypeScript represents an entire language compiling to JavaScript.
