@@ -167,7 +167,10 @@ Even though packages might work well out of the box, they might bring too much c
 ```javascript
 {
   plugins: [
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new webpack.IgnorePlugin(
+      /^\.\/locale$/,
+      /moment$/
+    ),
   ],
 },
 ```
