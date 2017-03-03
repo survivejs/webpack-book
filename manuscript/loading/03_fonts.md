@@ -40,7 +40,7 @@ A more elaborate way to achieve a similar result that includes *.woff2* and more
     mimetype: 'application/font-woff',
 
     // Output below fonts directory
-    name: './fonts/[name].[hash].[ext]',
+    name: './fonts/[name].[ext]',
   },
 },
 ```
@@ -54,7 +54,7 @@ In case we want to make sure our site looks good on a maximum amount of browsers
   test: /\.(ttf|eot|woff|woff2)$/,
   loader: 'file-loader',
   options: {
-    name: 'fonts/[name].[hash].[ext]',
+    name: 'fonts/[name].[ext]',
   },
 },
 ```
@@ -96,7 +96,7 @@ Furthermore, it's possible to manipulate `publicPath` and override the default p
     mimetype: 'application/font-woff',
 
     // Output below the fonts directory
-    name: './fonts/[name].[hash].[ext]',
+    name: './fonts/[name].[ext]',
 
     // Tweak publicPath to fix CSS lookups to take
     // the directory into account.
@@ -130,6 +130,8 @@ leanpub-end-insert
 ...
 ```
 
+Font Awesome includes Sass and Less versions as well, but given we have not set up either, this definition is enough.
+
 T> The `import` could be cleaned up as `import 'font-awesome'` by setting up a `resolve.alias`. The *Consuming Packages* chapter discusses this idea in detail.
 
 W> If you are using CSS Modules in your project, you should process normal CSS like this through a separate loader definition without `modules` option of *css-loader* enabled. Otherwise it will rewrite the class names and Font Awesome will not work as you expect.
@@ -162,7 +164,7 @@ exports.loadFonts = function({ include, exclude, options } = {}) {
       rules: [
         {
           // Capture eot, ttf, woff, and woff2
-          test: /\.(woff2?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+          test: /\.(eot|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
           include,
           exclude,
 
@@ -223,20 +225,20 @@ leanpub-end-insert
 If you build the application (`npm run build`), you should see that it processed as expected while Font Awesome assets were included.
 
 ```bash
-Hash: 540d34dcccc83368dabf
+Hash: e379b2c5a9f46663f367
 Version: webpack 2.2.1
-Time: 2481ms
+Time: 2547ms
                     Asset       Size  Chunks                    Chunk Names
   fontawesome-webfont.eot     166 kB          [emitted]
-  fontawesome-webfont.svg     444 kB          [emitted]  [big]
   fontawesome-webfont.ttf     166 kB          [emitted]
 fontawesome-webfont.woff2    77.2 kB          [emitted]
  fontawesome-webfont.woff      98 kB          [emitted]
+  fontawesome-webfont.svg     444 kB          [emitted]  [big]
                  logo.png      77 kB          [emitted]
-                   app.js    4.56 kB       0  [emitted]         app
-                  app.css    3.85 kB       0  [emitted]         app
-               index.html  218 bytes          [emitted]
-   [0] ./app/component.js 198 bytes {0} [built]
+                   app.js    4.22 kB       0  [emitted]         app
+         app.da4cc4a5.css    7.72 kB       0  [emitted]         app
+               index.html  227 bytes          [emitted]
+   [0] ./app/component.js 185 bytes {0} [built]
    [1] ./~/font-awesome/css/font-awesome.css 41 bytes {0} [built]
    [2] ./app/main.css 41 bytes {0} [built]
 ...
@@ -244,9 +246,9 @@ fontawesome-webfont.woff2    77.2 kB          [emitted]
 
 Note that the SVG file included in Font Awesome has been marked as `[big]`. It is beyond the performance budget defaults set by webpack. The topic is discussed in detail in the *Minifying Build* chapter.
 
-T> [font-awesome-loader](https://www.npmjs.com/package/font-awesome-loader) allows more customization. Font Awesome 5 will improve the situation further. See also the *Consuming Packages* chapter to see how to disable asset loading. You could explicitly disable SVGs in this case.
+To skip certain Font Awesome fonts, you could disable specific formats as discussed in the *Consuming Packages* chapter. Due to the way Font Awesome CSS has been setup, you will still have to capture the files, but instead of emitting the original content, you can replace it with empty content.
 
-T> If you want full control over which fonts you are using, [Font Awesome wiki](https://github.com/FortAwesome/Font-Awesome/wiki/Customize-Font-Awesome) points to available online services.
+T> [font-awesome-loader](https://www.npmjs.com/package/font-awesome-loader) allows more customization. Font Awesome 5 will improve the situation further and make it easier to decide what fonts to consume. [Font Awesome wiki](https://github.com/FortAwesome/Font-Awesome/wiki/Customize-Font-Awesome) points to available online services that allow you to select specific fonts from Font Awesome collection.
 
 ## Conclusion
 
@@ -255,6 +257,7 @@ Loading fonts is similar to loading other assets. Here we have additional concer
 To recap:
 
 * When loading fonts, the same techniques as for images apply. You can choose to inline small fonts while bigger ones will be served as separate assets.
+* If you decide to provide first class support to only modern browsers, you can select only a font format or two and let the older browsers to use system level fonts.
 * Using larger font collections, such as Font Awesome, may be problematic especially if you want to avoid loading additional rules. The problem is dependent on the packages in question and can be solved with webpack to an extent.
 
 In the next chapter, I will show you how to load JavaScript using webpack. It loads JavaScript by default, but there's more to the topic as you have to consider what browsers you want to support.
