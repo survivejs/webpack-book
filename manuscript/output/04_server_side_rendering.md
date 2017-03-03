@@ -59,6 +59,7 @@ leanpub-end-insert
   "parserOptions": {
     "sourceType": "module",
     "allowImportExportEverywhere": true,
+
 leanpub-start-insert
     // Enable JSX
     "ecmaFeatures": {
@@ -300,5 +301,3 @@ To recap:
 * Server Side Rendering also allows you to pass initial payload of data to the client. This can help you to avoid unnecessary queries to the server.
 * Webpack can manage the client side portion of the problem. It can be used to generate the server as well if more integrated solution is required. Abstractions, such as Next.js, hide these details.
 * Server Side Rendering does not come without a cost. It leads to new problems as you need better approaches for dealing with aspects, such as styling or routing. The server and the client environment differ in important manners, so code has to be written so that it does not rely on platform-specific features too much.
-
-T> With a little effort, you could render a web page as a PDF on server-side using web code and technologies like React. [generate-invoice](https://github.com/bebraw/generate-invoice) illustrates this.
