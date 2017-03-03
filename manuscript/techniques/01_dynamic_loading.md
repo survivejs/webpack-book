@@ -20,6 +20,8 @@ const req = require.context(
 );
 ```
 
+T> The loader definition could be pushed to webpack configuration. I am using the inline form here to keep the example simple.
+
 `require.context` returns us a function to `require` against. It also knows its module `id` and it provides a `keys()` method for figuring out the contents of the context. To give you a better example, consider the code below:
 
 ```javascript
@@ -34,8 +36,6 @@ const demoPage = req('./demo.md');
 This information is enough for generating an entire site. And this is what I've done with [Antwar](https://github.com/antwarjs/antwar). You can find a more elaborate example in that static site generator.
 
 The technique can be useful for other purposes, such as testing or adding files for webpack to watch. In that case, you would set up a `require.context` within a file which you then point to through a webpack `entry`.
-
-T> Note that webpack will also turn statements written in the form `require('./pages/' + pageName + '.md')` into the `require.context` format!
 
 ## Combining Multiple `require.context`s
 
@@ -77,6 +77,8 @@ const target = 'demo.json';
 // Elsewhere in code
 import(`indexes/${target}`).then(...).catch(...);
 ```
+
+The same idea works with `require` as long as webpack can analyze the situation statically.
 
 ## Dealing with Dynamic Paths
 
