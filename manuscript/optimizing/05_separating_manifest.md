@@ -39,27 +39,31 @@ T> `minChunks` is optional in this case. Passing `Infinity` to it tells webpack 
 If you build the project now (`npm run build`), you should see something like this:
 
 ```bash
-Hash: 02314843647ee4f50d46
+Hash: 73f8c0d53361c3a81ea6
 Version: webpack 2.2.1
-Time: 3628ms
+Time: 4071ms
                    Asset       Size  Chunks             Chunk Names
-         app.801b7672.js  882 bytes    2, 3  [emitted]  app
-    ...font.11ec0064.svg   22 bytes          [emitted]
+         app.801b7672.js  865 bytes    2, 3  [emitted]  app
+    ...font.912ec66d.svg     444 kB          [emitted]
     ...font.674f50d2.eot     166 kB          [emitted]
    ...font.fee66e71.woff      98 kB          [emitted]
   ...font.af7ae505.woff2    77.2 kB          [emitted]
-       logo.9a0d8fb8.png    17.6 kB          [emitted]
-           0.a749f8b7.js  199 bytes    0, 3  [emitted]
-      vendor.f80a9a7b.js    23.7 kB    1, 3  [emitted]  vendor
+       logo.85011118.png      77 kB          [emitted]
+           0.e7c9bce9.js  432 bytes    0, 3  [emitted]
+      vendor.c4ac6d53.js    23.4 kB    1, 3  [emitted]  vendor
     ...font.b06871f2.ttf     166 kB          [emitted]
-    manifest.fddd3c23.js    1.52 kB       3  [emitted]  manifest
-        app.4d491c24.css    1.88 kB    2, 3  [emitted]  app
-       0.a749f8b7.js.map  812 bytes    0, 3  [emitted]
-  vendor.f80a9a7b.js.map     274 kB    1, 3  [emitted]  vendor
-     app.801b7672.js.map    6.56 kB    2, 3  [emitted]  app
-    app.4d491c24.css.map   93 bytes    2, 3  [emitted]  app
-manifest.fddd3c23.js.map    14.2 kB       3  [emitted]  manifest
-                        index.html  368 bytes          [emitted]
+leanpub-start-insert
+    manifest.95266dc7.js    1.51 kB       3  [emitted]  manifest
+leanpub-end-insert
+        app.bf4d156d.css    2.54 kB    2, 3  [emitted]  app
+       0.e7c9bce9.js.map    2.08 kB    0, 3  [emitted]
+  vendor.c4ac6d53.js.map     129 kB    1, 3  [emitted]  vendor
+     app.801b7672.js.map    2.34 kB    2, 3  [emitted]  app
+    app.bf4d156d.css.map   93 bytes    2, 3  [emitted]  app
+leanpub-start-insert
+manifest.95266dc7.js.map    5.77 kB       3  [emitted]  manifest
+leanpub-end-insert
+              index.html  368 bytes          [emitted]
 [1Q41] ./app/main.css 41 bytes {2} [built]
 [2twT] ./app/index.js 557 bytes {2} [built]
 [5W1q] ./~/font-awesome/css/font-awesome.css 41 bytes {2} [built]
@@ -72,43 +76,7 @@ Plugins, such as [inline-manifest-webpack-plugin](https://www.npmjs.com/package/
 
 T> To get a better idea of the manifest contents, comment out `parts.minify()` and examine the resulting manifest. You should see something familiar there.
 
-Try adjusting *app/index.js* and see how the hashes change. This time around it should **not** invalidate the vendor bundle, and only the manifest and app bundle names should be different like this:
-
-```bash
-Hash: 3c7635d30cf399aa8e12
-Version: webpack 2.2.1
-Time: 3783ms
-                   Asset       Size  Chunks             Chunk Names
-leanpub-start-insert
-         app.48532ac8.js  901 bytes    2, 3  [emitted]  app
-leanpub-end-insert
-    ...font.11ec0064.svg   22 bytes          [emitted]
-    ...font.674f50d2.eot     166 kB          [emitted]
-   ...font.fee66e71.woff      98 kB          [emitted]
-  ...font.af7ae505.woff2    77.2 kB          [emitted]
-       logo.9a0d8fb8.png    17.6 kB          [emitted]
-           0.a749f8b7.js  199 bytes    0, 3  [emitted]
-      vendor.f80a9a7b.js    23.7 kB    1, 3  [emitted]  vendor
-    ...font.b06871f2.ttf     166 kB          [emitted]
-leanpub-start-insert
-    manifest.03cc5a22.js    1.52 kB       3  [emitted]  manifest
-leanpub-end-insert
-        app.4d491c24.css    1.88 kB    2, 3  [emitted]  app
-       0.a749f8b7.js.map  812 bytes    0, 3  [emitted]
-  vendor.f80a9a7b.js.map     274 kB    1, 3  [emitted]  vendor
-leanpub-start-insert
-     app.48532ac8.js.map    6.62 kB    2, 3  [emitted]  app
-leanpub-end-insert
-    app.4d491c24.css.map   93 bytes    2, 3  [emitted]  app
-leanpub-start-insert
-manifest.03cc5a22.js.map    14.2 kB       3  [emitted]  manifest
-leanpub-end-insert
-            index.html  368 bytes          [emitted]
-[1Q41] ./app/main.css 41 bytes {2} [built]
-[2twT] ./app/index.js 578 bytes {2} [built]
-[5W1q] ./~/font-awesome/css/font-awesome.css 41 bytes {2} [built]
-...
-```
+Try adjusting *app/index.js* and see how the hashes change. This time around it should **not** invalidate the vendor bundle, and only the manifest and app bundle names should become different.
 
 T> In order to integrate with asset pipelines, you can consider using plugins like [chunk-manifest-webpack-plugin](https://www.npmjs.com/package/chunk-manifest-webpack-plugin), [webpack-manifest-plugin](https://www.npmjs.com/package/webpack-manifest-plugin), [webpack-assets-manifest](https://www.npmjs.com/package/webpack-assets-manifest), or [webpack-rails-manifest-plugin](https://www.npmjs.com/package/webpack-rails-manifest-plugin). These solutions emit JSON that maps the original asset path to the new one.
 
