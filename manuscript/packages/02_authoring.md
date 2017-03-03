@@ -8,7 +8,7 @@ In this chapter, I will cover basic ideas behind authoring npm packages and disc
 
 Most of the available npm packages are small and include only a couple of files:
 
-* *index.js* - On small projects, it's enough to have the code at the root. On larger ones, you may want to start splitting it up further.
+* *index.js* - On small projects, it’s enough to have the code at the root. On larger ones, you may want to start splitting it up further.
 * *package.json* - npm metadata in JSON format
 * *README.md* - README is the most important document of your project. It is written in Markdown format and provides an overview. For smallest projects, the full documentation can fit there. It will be shown on the package page at *npmjs.com*.
 * *LICENSE* - You can include licensing information within your project. You should refer to the license by name from *package.json* as otherwise, npm will give a warning. If you are using a custom license, you can link to it instead. In commercial projects, you may want to set `"private": true` to avoid pushing your work to public inadvertently.
@@ -18,21 +18,21 @@ In larger projects, you may find the following:
 * *CONTRIBUTING.md* - A guide for potential contributors describing how the code should be developed.
 * *CHANGELOG.md* - This document describes major changes per version. If you do significant API changes, it can be a good idea to cover them here. It is possible to generate the file based on Git commit history, provided you write nice enough commits.
 * *.travis.yml* - [Travis CI](https://travis-ci.org/) is a popular continuous integration platform that is free for open source projects. You can run the tests of your package over multiple systems using it.
-* *.gitignore* - Ignore patterns for Git, i.e., which files shouldn't go under version control. It can be useful to ignore npm distribution files here, so they don't clutter your repository.
-* *.npmignore* - Ignore patterns for npm describe which files shouldn't go to your distribution version. A good alternative is to use the [files](https://docs.npmjs.com/files/package.json#files) field at *package.json*. It allows you to maintain a whitelist of files to include into your distribution version.
+* *.gitignore* - Ignore patterns for Git, i.e., which files shouldn’t go under version control. It can be useful to ignore npm distribution files here, so they don’t clutter your repository.
+* *.npmignore* - Ignore patterns for npm describe which files shouldn’t go to your distribution version. A good alternative is to use the [files](https://docs.npmjs.com/files/package.json#files) field at *package.json*. It allows you to maintain a whitelist of files to include into your distribution version.
 * *.eslintignore* - Ignore patterns for ESLint. Again, tool specific.
 * *.eslintrc* - Linting rules. You can use *.jshintrc* and such based on your preferences.
 * *webpack.config.js* - If you are using a basic setup, you might as well have the configuration at project root.
 
-Also, you'll likely have separate directories for the source, tests, demos, documentation, and so on.
+Also, you’ll likely have separate directories for the source, tests, demos, documentation, and so on.
 
-T> If you want to decrease the size of your dependencies, consider using a tool like [package-config-checker](https://www.npmjs.com/package/package-config-checker). It can pinpoint packages not using the `files` field correctly. Once you know which ones haven't set it, you can consider making Pull Requests (PRs) to those projects.
+T> If you want to decrease the size of your dependencies, consider using a tool like [package-config-checker](https://www.npmjs.com/package/package-config-checker). It can pinpoint packages not using the `files` field correctly. Once you know which ones haven’t set it, you can consider making Pull Requests (PRs) to those projects.
 
 ## Understanding *package.json*
 
 All packages come with a *package.json* that describes metadata related to them and includes information about the author, links, dependencies, and so on. The [official documentation](https://docs.npmjs.com/files/package.json) covers them in detail.
 
-I've annotated a part of *package.json* of my [React component boilerplate](https://github.com/survivejs/react-component-boilerplate) below:
+I’ve annotated a part of *package.json* of my [React component boilerplate](https://github.com/survivejs/react-component-boilerplate) below:
 
 ```json
 {
@@ -135,11 +135,11 @@ I've annotated a part of *package.json* of my [React component boilerplate](http
 
 As you can see, *package.json* can contain a lot of information. You can attach non-npm specific metadata there that can be used by tooling. Given this can bloat *package.json*, it may be preferable to keep metadata in files of their own.
 
-T> JSON doesn't support comments even though I'm using them above. There are extended notations, such as [Hjson](http://hjson.org/), that do.
+T> JSON doesn’t support comments even though I’m using them above. There are extended notations, such as [Hjson](http://hjson.org/), that do.
 
 ## npm Workflow
 
-Working with npm is easy. To get started, you will need to use [npm adduser](https://docs.npmjs.com/cli/adduser). It allows you to set up an account. After this process has completed, it will create *~/.npmrc* and use that data for authentication. There's also [npm logout](https://docs.npmjs.com/cli/logout) that will clear the credentials.
+Working with npm is easy. To get started, you will need to use [npm adduser](https://docs.npmjs.com/cli/adduser). It allows you to set up an account. After this process has completed, it will create *~/.npmrc* and use that data for authentication. There’s also [npm logout](https://docs.npmjs.com/cli/logout) that will clear the credentials.
 
 T> When creating a project, `npm init` respects the values set at *~/.npmrc*. Hence, it may be worth your while to set reasonable defaults there to save some time. If you want to limit your package to a particular scope, use `npm init --scope=<scope>`. As a result, you will get `@<scope>/<package>` which is handy especially for personal packages since the default namespace of npm is so crowded.
 
@@ -157,19 +157,19 @@ T> [np](https://www.npmjs.com/package/np) gives an interactive UI for publishing
 
 Even though a project can contain a lot of files, not all of them should be published. Besides wasting bandwidth, this can leak personal files to a public registry and is the reason why it is a good idea to maintain a [files](https://docs.npmjs.com/files/package.json#files) array at *package.json* and enumerate which files and directories you want to publish.
 
-You can't find an official recommendation on what files to publish. That said, there are some points to consider as [discussed in Stack Overflow](https://stackoverflow.com/questions/25124844/should-i-npmignore-my-tests).
+You can’t find an official recommendation on what files to publish. That said, there are some points to consider as [discussed in Stack Overflow](https://stackoverflow.com/questions/25124844/should-i-npmignore-my-tests).
 
 At a minimum, you should distribute the source code needed to run the package. If you have code written using the ES6 standard, you should transpile the code so that it does not lose the ES6 module definitions while everything else is converted to ES5. For the tooling to pick it up, you should point to this version of code through *package.json* `module` field. See the *Loading JavaScript* chapter for the Babel setup.
 
-You should point package `main` to a fully compiled version that's compatible with Node.
+You should point package `main` to a fully compiled version that’s compatible with Node.
 
-In addition to the source, you can consider distributing package *README.md* and *LICENSE*. Any metadata that's required by third-party systems, like Travis, can be safely skipped. Full documentation of the package doesn't have to be included as you can point to the package homepage through its metadata instead.
+In addition to the source, you can consider distributing package *README.md* and *LICENSE*. Any metadata that’s required by third-party systems, like Travis, can be safely skipped. Full documentation of the package doesn’t have to be included as you can point to the package homepage through its metadata instead.
 
-W> Even though it's possible to tell npm what to exclude from `files` through `!src/*.test.js` kind of definitions, [using negation patterns is not recommended](https://github.com/npm/npm/wiki/Files-and-Ignores#details). Instead, you should use *.npmignore* and include `src/*.test.js` kind of pattern there.
+W> Even though it’s possible to tell npm what to exclude from `files` through `!src/*.test.js` kind of definitions, [using negation patterns is not recommended](https://github.com/npm/npm/wiki/Files-and-Ignores#details). Instead, you should use *.npmignore* and include `src/*.test.js` kind of pattern there.
 
 ### Bumping a Version
 
-In order to bump your package version, you'll need to invoke one of these commands:
+In order to bump your package version, you’ll need to invoke one of these commands:
 
 * `npm version <x.y.z>` - Define version yourself.
 * `npm version <major|minor|patch>` - Let npm bump the version for you based on SemVer.
@@ -177,15 +177,15 @@ In order to bump your package version, you'll need to invoke one of these comman
 
 Invoking any of these will update *package.json* and create a version commit to git automatically. If you execute `npm publish` after doing this, you should have something new out there.
 
-Note that in the example above, I've set up `version`-related hooks to make sure a version will contain a fresh version of a distribution build. I also run tests as it is better to catch potential issues early on.
+Note that in the example above, I’ve set up `version`-related hooks to make sure a version will contain a fresh version of a distribution build. I also run tests as it is better to catch potential issues early on.
 
 T> Consider using [semantic-release](https://www.npmjs.com/package/semantic-release) if you prefer a more structured approach. It can take some pain out of the release process while automating a part of it. For instance, it can detect possible breaking changes and generate change logs.
 
-T> [dont-break](https://www.npmjs.com/package/dont-break) allows you to run the unit tests of dependent projects against your current code to see if it breaks anything. Sometimes it's easy to overlook some use case that might not be a part of the public API even and break a dependency. *dont-break* helps with that particular problem.
+T> [dont-break](https://www.npmjs.com/package/dont-break) allows you to run the unit tests of dependent projects against your current code to see if it breaks anything. Sometimes it’s easy to overlook some use case that might not be a part of the public API even and break a dependency. *dont-break* helps with that particular problem.
 
 ### Respect the SemVer
 
-Even though it is easy to publish new versions out there, it is important to respect the SemVer. Roughly, it states that you should not break backward compatibility, given certain rules are met. The exact rules were covered in the previous chapter so that I won't cover them again here.
+Even though it is easy to publish new versions out there, it is important to respect the SemVer. Roughly, it states that you should not break backward compatibility, given certain rules are met. The exact rules were covered in the previous chapter so that I won’t cover them again here.
 
 To make it easier to comply with SemVer, [next-ver](https://www.npmjs.com/package/next-ver) can compute the next version you should use and update it for you. [commitizen](https://www.npmjs.com/package/commitizen) goes further and allows change log generation and automated releases.
 
@@ -208,7 +208,7 @@ Sometimes, you might want to publish something preliminary for other people to t
 
 The initial alpha release will allow the users to try out the upcoming functionality and provide feedback. The beta releases can be considered more stable.
 
-The release candidates (RC) are close to an actual release and won't introduce any new functionality. They are all about refining the release till it's suitable for general consumption.
+The release candidates (RC) are close to an actual release and won’t introduce any new functionality. They are all about refining the release till it’s suitable for general consumption.
 
 The workflow in this case goes like this:
 
@@ -221,15 +221,15 @@ T> [npm link](https://docs.npmjs.com/cli/link) can be useful during development.
 
 ### On Naming Packages
 
-Before starting to develop, it can be a good idea to spend a little bit of time on figuring out a good name for your package. It's not fun to write an excellent package only to notice the name has been taken. A good name is easy to find through a search engine, and most importantly, is available at npm.
+Before starting to develop, it can be a good idea to spend a little bit of time on figuring out a good name for your package. It’s not fun to write an excellent package only to notice the name has been taken. A good name is easy to find through a search engine, and most importantly, is available at npm.
 
 As of npm 2.7.0, it is possible to create [scoped packages](https://docs.npmjs.com/getting-started/scoped-packages). They follow format `@username/project-name`. Simply follow that when naming your project.
 
-T> If you find a good name that appears to be abandoned, contact npm, and they'll likely give it if you ask nicely.
+T> If you find a good name that appears to be abandoned, contact npm, and they’ll likely give it if you ask nicely.
 
 ## npm Lifecycle Hooks
 
-npm provides a collection of lifecycle hooks that can be useful. Suppose you are authoring a React component using Babel and some of its goodies. You could let the *package.json* `main` field point at the UMD version as generated above. However, this won't be ideal for those consuming the library through npm.
+npm provides a collection of lifecycle hooks that can be useful. Suppose you are authoring a React component using Babel and some of its goodies. You could let the *package.json* `main` field point at the UMD version as generated above. However, this won’t be ideal for those consuming the library through npm.
 
 It is better to generate a ES5 compatible version of the package for npm consumers. You can achieve this using **babel** command line tool:
 
@@ -250,7 +250,7 @@ Since we want to avoid having to run the command directly whenever we publish a 
 
 Make sure you execute `npm install babel-cli --save-dev` to include the tool into your project.
 
-You probably don't want the directory content to end up in your Git repository. To avoid this and to keep your `git status` clean, consider this sort of `.gitignore`:
+You probably don’t want the directory content to end up in your Git repository. To avoid this and to keep your `git status` clean, consider this sort of `.gitignore`:
 
 ```bash
 dist-modules/
@@ -271,7 +271,7 @@ It is important to note that in npm 3 `prepublish` hook will get also triggered 
 
 As packages evolve, you may want to start developing with others. You could become the new maintainer of some project, or pass the torch to someone else. These things happen as packages evolve.
 
-npm provides certain commands for these purposes. It's all behind `npm owner` namespace. More specifically, you'll find `npm owner ls <package name>`, `npm owner add <user> <package name>` and `npm owner rm <user> <package name>` there. That's about it.
+npm provides certain commands for these purposes. It’s all behind `npm owner` namespace. More specifically, you’ll find `npm owner ls <package name>`, `npm owner add <user> <package name>` and `npm owner rm <user> <package name>` there. That’s about it.
 
 See [npm documentation](https://docs.npmjs.com/cli/owner) for the most up to date information about the topic.
 
@@ -281,7 +281,7 @@ A couple of certain package authoring-related techniques are good to know. For e
 
 ### Avoiding Bundling Dependencies
 
-Since it's not a good idea to bundle your package dependencies, such as React, within the distribution bundle itself, you should let the user inject them. You can configure external dependencies using the `externals` configuration. You can control it like this:
+Since it’s not a good idea to bundle your package dependencies, such as React, within the distribution bundle itself, you should let the user inject them. You can configure external dependencies using the `externals` configuration. You can control it like this:
 
 **webpack.config.js**
 
@@ -307,15 +307,15 @@ externals: {
 },
 ```
 
-If you want to include all modules in *node_modules* by default, it is possible to use [webpack-node-externals](https://www.npmjs.com/package/webpack-node-externals) instead. In this case would end up with `externals: [nodeExternals()]` kind of declaration. If you don't need to adapt to different environments, this is a neat way to go.
+If you want to include all modules in *node_modules* by default, it is possible to use [webpack-node-externals](https://www.npmjs.com/package/webpack-node-externals) instead. In this case would end up with `externals: [nodeExternals()]` kind of declaration. If you don’t need to adapt to different environments, this is a neat way to go.
 
-T> Given bundling may still be required sometimes, consider using the [bundledDependencies](https://docs.npmjs.com/files/package.json#bundleddependencies) field. The field can be useful if you want to share third-party files not available through npm. There's a great [Stack Overflow answer](http://stackoverflow.com/a/25044361/228885) discussing the topic further.
+T> Given bundling may still be required sometimes, consider using the [bundledDependencies](https://docs.npmjs.com/files/package.json#bundleddependencies) field. The field can be useful if you want to share third-party files not available through npm. There’s a great [Stack Overflow answer](http://stackoverflow.com/a/25044361/228885) discussing the topic further.
 
 ### Processing Node Version through Babel
 
 If you are processing your code through Babel, I suggest you process the Node version of the package directly through Babel and skip webpack. The advantage of doing this is that it gives you separate modules that are easier to consume one by one if needed.
 
-In this case, you'll likely want a setup like this:
+In this case, you’ll likely want a setup like this:
 
 **package.json**
 
@@ -343,7 +343,7 @@ In this case, you'll likely want a setup like this:
 }
 ```
 
-What if someone points to a development version of your package directly through GitHub, though? It won't work as the `dist-modules` directory will be missing. The problem can be fixed using a hook that will generate the needed source.
+What if someone points to a development version of your package directly through GitHub, though? It won’t work as the `dist-modules` directory will be missing. The problem can be fixed using a hook that will generate the needed source.
 
 ### Generating a Distribution for Development Usage
 
@@ -363,7 +363,7 @@ To solve the development distribution problem, we need to hook up a custom scrip
 }
 ```
 
-Secondly, we'll need the script itself:
+Secondly, we’ll need the script itself:
 
 **lib/post_install.js**
 
@@ -397,7 +397,7 @@ function exec(command) {
 }
 ```
 
-The script may need tweaking to fit your purposes. But it's enough to give you a rough idea. If the `dist-modules` directory is missing, we'll generate it here. That's it.
+The script may need tweaking to fit your purposes. But it’s enough to give you a rough idea. If the `dist-modules` directory is missing, we’ll generate it here. That’s it.
 
 For the build script to work, you have to remember to include the source of the package to the distribution version and to tweak *package.json* `files` field accordingly.
 
@@ -409,9 +409,9 @@ It is possible that your package reaches the end of its life. Another package mi
 
 You can deprecate a range like this or a whole package by skipping the range. Given mistakes happen, you can undeprecate a package by providing an empty message.
 
-Given there's no official way to rename packages, deprecation can be useful. You can publish the package under a new name and let the users know of the new name in your deprecation message.
+Given there’s no official way to rename packages, deprecation can be useful. You can publish the package under a new name and let the users know of the new name in your deprecation message.
 
-There is a heavier duty option in the form of [npm unpublish](https://docs.npmjs.com/cli/unpublish). Using `npm unpublish` you can pull a package out of the registry. Given this can be potentially dangerous and break the code for a lot of people, it has been [restricted to versions that are less than 24 hours old](http://blog.npmjs.org/post/141905368000/changes-to-npms-unpublish-policy). Most likely you don't need the feature at all, but it is nice to know it exists.
+There is a heavier duty option in the form of [npm unpublish](https://docs.npmjs.com/cli/unpublish). Using `npm unpublish` you can pull a package out of the registry. Given this can be potentially dangerous and break the code for a lot of people, it has been [restricted to versions that are less than 24 hours old](http://blog.npmjs.org/post/141905368000/changes-to-npms-unpublish-policy). Most likely you don’t need the feature at all, but it is nice to know it exists.
 
 ## Conclusion
 

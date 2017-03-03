@@ -8,7 +8,7 @@ T> If you want to understand build tools and their history in a better detail, c
 
 ## Webpack Relies on Modules
 
-If you think about the smallest project you could bundle with webpack, you'll end up with input and output. In webpack terms, the bundling process begins from user defined **entries**. Entries themselves are **modules** and can point to other modules through **imports**.
+If you think about the smallest project you could bundle with webpack, you’ll end up with input and output. In webpack terms, the bundling process begins from user defined **entries**. Entries themselves are **modules** and can point to other modules through **imports**.
 
 When you bundle a project through webpack, it will traverse through imports. As a result, webpack constructs a **dependency graph** of the project and then generates the **output** based on the configuration. It will output everything into a single **bundle** by default, but it can be configured to output more.
 
@@ -26,11 +26,11 @@ When webpack encounters a **module**, it will try to perform several things:
 4. If loader evaluation completed without a runtime error, webpack will include the source to the last bundle. **Plugins** can intercept this behavior and alter the way bundling happens.
 5. After each module has been evaluated, webpack will write a bootstrap script including a manifest that describes how to begin executing the result in the browser. This last step can differ based on the build target you are using.
 
-That's not all there is to the bundling process. For example, you can define specific **split points** where webpack will generate separate bundles that are loaded based on application logic. The idea is discussed in the *Code Splitting* chapter.
+That’s not all there is to the bundling process. For example, you can define specific **split points** where webpack will generate separate bundles that are loaded based on application logic. The idea is discussed in the *Code Splitting* chapter.
 
 ## Additional Control Through Plugins
 
-Although loaders are useful, they don't provide enough power for more advanced tasks. **Plugins** allow you to intercept **runtime events** provided by webpack. A good example is bundle extraction performed by `ExtractTextPlugin`.
+Although loaders are useful, they don’t provide enough power for more advanced tasks. **Plugins** allow you to intercept **runtime events** provided by webpack. A good example is bundle extraction performed by `ExtractTextPlugin`.
 
 The plugin works in tandem with a loader that captures files to extract out of the bundle and into a file of its own. Otherwise the CSS would end up in the resulting JavaScript. The *Separating CSS* chapter discusses this idea in detail.
 
@@ -88,7 +88,7 @@ module.exports = {
 };
 ```
 
-Given the configuration is written in JavaScript, it's quite malleable. The model may make webpack feel a bit opaque at times, as it can be difficult to understand what it's doing especially in more complicated cases. Covering those is one of the main reasons why this book exists.
+Given the configuration is written in JavaScript, it’s quite malleable. The model may make webpack feel a bit opaque at times, as it can be difficult to understand what it’s doing especially in more complicated cases. Covering those is one of the main reasons why this book exists.
 
 T> To understand webpack on source code level, check out [the artsy webpack tour](https://github.com/TheLarkInn/artsy-webpack-tour).
 
@@ -96,11 +96,11 @@ T> To understand webpack on source code level, check out [the artsy webpack tour
 
 You might be familiar with tools, such as [LiveReload](http://livereload.com/) or [BrowserSync](http://www.browsersync.io/), already. These tools refresh the browser automatically as you make changes. HMR takes things one step further. In the case of React, it allows the application to maintain its state without forcing a refresh. While this does not sound that special, it makes a big difference in practice.
 
-Note that HMR is available in Browserify via [livereactload](https://github.com/milankinen/livereactload), so it's not a feature that's exclusive to webpack.
+Note that HMR is available in Browserify via [livereactload](https://github.com/milankinen/livereactload), so it’s not a feature that’s exclusive to webpack.
 
 ## Code Splitting
 
-Aside from the HMR feature, webpack's bundling capabilities are extensive. Webpack allows you to split code in various ways. You can even load code dynamically as your application gets executed. This sort of lazy loading comes in handy, especially for larger applications. You can load dependencies as you need them.
+Aside from the HMR feature, webpack’s bundling capabilities are extensive. Webpack allows you to split code in various ways. You can even load code dynamically as your application gets executed. This sort of lazy loading comes in handy, especially for larger applications. You can load dependencies as you need them.
 
 Even small applications can benefit from code splitting, as it allows the users to get something useable in their hands faster. Performance is a feature, after all. Knowing the basic techniques is worthwhile.
 
@@ -112,19 +112,19 @@ With webpack, you can inject a hash to each bundle name (e.g., *app.d587bbd6.js*
 
 All these smaller features add up. Surprisingly, you can get many things done out of the box. If you are missing something, there are loaders and plugins available that allow you to go further.
 
-Webpack comes with a significant learning curve. Even still, it's a tool worth learning, given it saves so much time and effort over the long term. To get a better idea how it compares to some other tools, check out [the official comparison](https://webpack.js.org/get-started/why-webpack/#comparison).
+Webpack comes with a significant learning curve. Even still, it’s a tool worth learning, given it saves so much time and effort over the long term. To get a better idea how it compares to some other tools, check out [the official comparison](https://webpack.js.org/get-started/why-webpack/#comparison).
 
 ## Conclusion
 
-You can use webpack with some other tools. It won't solve everything. It does solve the problem of bundling, however. That's one less worry during development. Using *package.json*, `scripts`, and webpack alone takes you far, as we will see soon.
+You can use webpack with some other tools. It won’t solve everything. It does solve the problem of bundling, however. That’s one less worry during development. Using *package.json*, `scripts`, and webpack alone takes you far, as we will see soon.
 
 To summarize:
 
 * Webpack is a **module bundler**, but you can also use it for tasks as well.
 * **Hot Module Replacement** (HMR) helped to popularize webpack. It is a feature that can enhance development experience.
 * Webpack relies on a **dependency graph** underneath. Webpack will traverse through the source to construct the graph and it uses this information and configuration to generate bundles.
-* Webpack's **configuration** describes how to transform assets of the graphs and what kind of output it should generate. A part of this information may be included in the source itself if features like code splitting are used.
+* Webpack’s **configuration** describes how to transform assets of the graphs and what kind of output it should generate. A part of this information may be included in the source itself if features like code splitting are used.
 * Webpack can generate **hashes** for filenames allowing you to invalidate bundles as their contents change.
-* Webpack's logic is contained within **loaders** and **plugins**. These are called through webpack's configuration.
+* Webpack’s logic is contained within **loaders** and **plugins**. These are called through webpack’s configuration.
 
-In the following chapters, we'll examine webpack in more detail as you will learn to develop a basic development and build configuration. The later chapters continue further and delve into more advanced topics.
+In the following chapters, we’ll examine webpack in more detail as you will learn to develop a basic development and build configuration. The later chapters continue further and delve into more advanced topics.

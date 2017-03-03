@@ -1,6 +1,6 @@
 -# Conclusion
 
-As this book has demonstrated, webpack is a versatile tool. To make it easier to recap the content and techniques, I've compiled checklists you can use to refresh your knowledge.
+As this book has demonstrated, webpack is a versatile tool. To make it easier to recap the content and techniques, I’ve compiled checklists you can use to refresh your knowledge.
 
 ## General Checklist
 
@@ -8,7 +8,7 @@ As this book has demonstrated, webpack is a versatile tool. To make it easier to
 * To keep your builds fast, consider optimizing. The *Performance* chapter discusses a variety of strategies you can use to achieve this.
 * to keep your configuration maintainable, consider composing it. As webpack configuration is JavaScript code, it can be arranged in many ways. Find a way you are comfortable with and apply it. The *Composing Configuration* chapter discusses the topic.
 * The way webpack consumes packages can be customized. The *Consuming Packages* chapter covers specific techniques related to this.
-* Sometimes you might have to extend webpack. The *Extending with Loaders* and *Extending with Plugins* chapters show how to achieve this. You can also work on top of webpack's configuration definition and implement an abstraction of your own for it to suit your purposes.
+* Sometimes you might have to extend webpack. The *Extending with Loaders* and *Extending with Plugins* chapters show how to achieve this. You can also work on top of webpack’s configuration definition and implement an abstraction of your own for it to suit your purposes.
 
 ## Development Checklist
 
@@ -33,7 +33,7 @@ As this book has demonstrated, webpack is a versatile tool. To make it easier to
 ### Caching
 
 * To benefit from client caching, split a vendor bundle out of your application. This way the client has less to download in the ideal case. The *Splitting Bundles* chapter discusses the topic. The *Adding Hashes to Filenames* chapter shows how to achieve cache invalidation on top of that.
-* Use webpack's **code splitting** functionality to load code on demand. The technique is useful if you don't need all the code at once and instead can push it behind a logical trigger such as clicking a user interface element. The *Code Splitting* chapter covers the technique in detail. The *Dynamic Loading* chapter shows how to handle more advanced scenarios.
+* Use webpack’s **code splitting** functionality to load code on demand. The technique is useful if you don’t need all the code at once and instead can push it behind a logical trigger such as clicking a user interface element. The *Code Splitting* chapter covers the technique in detail. The *Dynamic Loading* chapter shows how to handle more advanced scenarios.
 * Add hashes to filenames as covered in the *Adding Hashes to Filenames* chapter to benefit from caching and separate a manifest to improve the solution further as discussed in the *Separating Manifest* chapter.
 
 ### Optimization
@@ -50,4 +50,4 @@ As this book has demonstrated, webpack is a versatile tool. To make it easier to
 
 ## Conclusion
 
-Webpack allows you to use a lot of different techniques to splice up your build. It supports multiple output formats as discussed in the *Output* part of the book. Despite its name, it's not only for the web. That's where most people use it, but the tool does far more than that.
+Webpack allows you to use a lot of different techniques to splice up your build. It supports multiple output formats as discussed in the *Output* part of the book. Despite its name, it’s not only for the web. That’s where most people use it, but the tool does far more than that.

@@ -1,12 +1,12 @@
 # Glossary
 
-Given webpack comes with specific nomenclature, I've gathered the main terms and their explanations below based on the book part where they are discussed.
+Given webpack comes with specific nomenclature, I’ve gathered the main terms and their explanations below based on the book part where they are discussed.
 
 ## Developing
 
-* **Entry** - Entry refers to a file where you point from webpack's `entry` configuration.
+* **Entry** - Entry refers to a file where you point from webpack’s `entry` configuration.
 * **Module** - Module can be an entry, but it can also be a file where an entry points. Modules can point to other modules.
-* **Plugin** - Plugins connect to webpack's event system and can inject functionality into it. They provide the most powerful way to extend webpack and can be combined with loaders for maximum control.
+* **Plugin** - Plugins connect to webpack’s event system and can inject functionality into it. They provide the most powerful way to extend webpack and can be combined with loaders for maximum control.
 * **Hot module replacement** - Hot module replacement refers to a particular technique that allows you to patch code while it is running in the browser.
 * **Linting** - Linting relates to the process in which code is statically examined for specific faults. A linter will alert if any of these faults are found. It is a way to improve code quality.
 

@@ -1,8 +1,8 @@
 # Extending with Loaders
 
-As we've seen so far, loaders are one of the building blocks of webpack. If you want to load an asset, you'll most likely need to set up a matching loader definition. Even though there are a lot of [available loaders](https://webpack.js.org/loaders/), it is possible you are missing one fitting your purposes.
+As we’ve seen so far, loaders are one of the building blocks of webpack. If you want to load an asset, you’ll most likely need to set up a matching loader definition. Even though there are a lot of [available loaders](https://webpack.js.org/loaders/), it is possible you are missing one fitting your purposes.
 
-The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API well. To give you a concrete example, I'm going to discuss a subset of a loader I have developed. [highlight-loader](https://github.com/bebraw/highlight-loader) accepts HTML and then applies [highlight.js](https://highlightjs.org/) on it. Even though the transformation itself is easy, the loader implementation isn't trivial.
+The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API well. To give you a concrete example, I’m going to discuss a subset of a loader I have developed. [highlight-loader](https://github.com/bebraw/highlight-loader) accepts HTML and then applies [highlight.js](https://highlightjs.org/) on it. Even though the transformation itself is easy, the loader implementation isn’t trivial.
 
 ## Setting Up a Loader Project
 
@@ -24,15 +24,15 @@ I follow the following layout in my loader project:
 
 I started by developing a basic example first and added tests later. Writing tests first can be a good idea, though, as it gives you a specification which you can use to validate your implementation.
 
-I'll give you a basic testing setup next and then discuss my loader implementation.
+I’ll give you a basic testing setup next and then discuss my loader implementation.
 
 ## Writing Tests for a Loader
 
-I settled with [Mocha](https://mochajs.org/) and Node [assert](https://nodejs.org/api/assert.html) for this project. Mocha is nice as it provides enough structure for writing your tests. There's also support for `--watch`. When you run Mocha in the watch mode, it will run the tests as your code evolves.
+I settled with [Mocha](https://mochajs.org/) and Node [assert](https://nodejs.org/api/assert.html) for this project. Mocha is nice as it provides enough structure for writing your tests. There’s also support for `--watch`. When you run Mocha in the watch mode, it will run the tests as your code evolves.
 
 ### Test Setup
 
-Here's the relevant *package.json* portion:
+Here’s the relevant *package.json* portion:
 
 **package.json**
 
@@ -103,9 +103,9 @@ describe('highlight-loader', function () {
 });
 ```
 
-Even though I'm not a great fan of mocking, it works well enough for a case like this. The biggest fear is that webpack API changes at some point as this would mean my test code would break, and I would have to rewrite a large part of it.
+Even though I’m not a great fan of mocking, it works well enough for a case like this. The biggest fear is that webpack API changes at some point as this would mean my test code would break, and I would have to rewrite a large part of it.
 
-It could be interesting to run the tests through webpack itself to avoid mocking. In this approach, you wouldn't have to worry about the test facing parts so much, and it would be more about capturing output for the given input.
+It could be interesting to run the tests through webpack itself to avoid mocking. In this approach, you wouldn’t have to worry about the test facing parts so much, and it would be more about capturing output for the given input.
 
 The problem is that this would add a significant overhead to the tests and bring problems of its own as you would have to figure out more efficient ways to execute them.
 
@@ -113,9 +113,9 @@ T> Webpack loaders can be run standalone through [loader-runner](https://www.npm
 
 ## Implementing a Loader
 
-The loader implementation isn't entirely trivial due to the amount of functionality within it. I ended up using [cheerio](https://www.npmjs.org/package/cheerio) to apply *highlight.js* on the code portions of the passed HTML. Cheerio provides an API resembling jQuery making it ideal for small tasks, such as this.
+The loader implementation isn’t entirely trivial due to the amount of functionality within it. I ended up using [cheerio](https://www.npmjs.org/package/cheerio) to apply *highlight.js* on the code portions of the passed HTML. Cheerio provides an API resembling jQuery making it ideal for small tasks, such as this.
 
-To keep this discussion focused, I'll give you a subset of the implementation to show you the key parts:
+To keep this discussion focused, I’ll give you a subset of the implementation to show you the key parts:
 
 ```javascript
 'use strict';
@@ -151,7 +151,7 @@ module.exports = function(input = '') {
 ...
 ```
 
-The above is an example of a synchronous loader. Sometimes you might want to perform asynchronous operations instead. That's when you could do something like this in your loader code:
+The above is an example of a synchronous loader. Sometimes you might want to perform asynchronous operations instead. That’s when you could do something like this in your loader code:
 
 ```javascript
 const callback = this.async();
@@ -197,4 +197,4 @@ To recap:
 * Webpack **loaders** accept input and produce output based on it. They can also perform analysis and not touch the source at all.
 * Loaders can also access metadata or terminate execution at pitching phase. Pitch loaders are rarer for this reason.
 
-I will show you how to write plugins in the next chapter. Plugins allow you to intercept webpack's execution process and they can be combined with loaders to develop more advanced functionality.
+I will show you how to write plugins in the next chapter. Plugins allow you to intercept webpack’s execution process and they can be combined with loaders to develop more advanced functionality.

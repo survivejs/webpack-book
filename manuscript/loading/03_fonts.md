@@ -47,7 +47,7 @@ A more elaborate way to achieve a similar result that includes *.woff2* and more
 
 ## Supporting Multiple Formats
 
-In case we want to make sure our site looks good on a maximum amount of browsers, we might as well use *file-loader* and forget about inlining. Again, it's a trade-off as we get extra requests, but perhaps it's the right move. Here we could end up with a loader configuration like this:
+In case we want to make sure our site looks good on a maximum amount of browsers, we might as well use *file-loader* and forget about inlining. Again, it’s a trade-off as we get extra requests, but perhaps it’s the right move. Here we could end up with a loader configuration like this:
 
 ```javascript
 {
@@ -84,7 +84,7 @@ W> Take care with SVGs if you have SVG specific image setup in place already. If
 
 As discussed above and in [webpack issue tracker](https://github.com/webpack/file-loader/issues/32#issuecomment-250622904), *file-loader* allows shaping the output. This way you can output your fonts below `fonts/`, images below `images/`, and so on over using the root.
 
-Furthermore, it's possible to manipulate `publicPath` and override the default per loader definition. The following example illustrates these techniques together:
+Furthermore, it’s possible to manipulate `publicPath` and override the default per loader definition. The following example illustrates these techniques together:
 
 ```javascript
 {
@@ -107,7 +107,7 @@ Furthermore, it's possible to manipulate `publicPath` and override the default p
 
 ## Using Font Awesome
 
-The ideas above can be applied with [Font Awesome](https://www.npmjs.com/package/font-awesome). It's a collection of high-quality font icons you can refer to using CSS classes.
+The ideas above can be applied with [Font Awesome](https://www.npmjs.com/package/font-awesome). It’s a collection of high-quality font icons you can refer to using CSS classes.
 
 ### Integrating Font Awesome to the Project
 
@@ -117,7 +117,7 @@ To integrate Font Awesome to the book project, install it first:
 npm install font-awesome --save
 ```
 
-Given Font Awesome doesn't define a `main` field in its *package.json* file, we'll need to point to it through a direct path instead of package name alone.
+Given Font Awesome doesn’t define a `main` field in its *package.json* file, we’ll need to point to it through a direct path instead of package name alone.
 
 Refer to Font Awesome as follows:
 
@@ -151,7 +151,7 @@ You may need an appropriate loader to handle this file type.
 
 ### Implementing Webpack Configuration
 
-The result is expected as we haven't configured loaders for any of Font Awesome fonts yet and webpack doesn't know what to do with the files in question. To match the files and map them through *file-loader*, attach the following snippet to the project:
+The result is expected as we haven’t configured loaders for any of Font Awesome fonts yet and webpack doesn’t know what to do with the files in question. To match the files and map them through *file-loader*, attach the following snippet to the project:
 
 **webpack.parts.js**
 
@@ -260,4 +260,4 @@ To recap:
 * If you decide to provide first class support to only modern browsers, you can select only a font format or two and let the older browsers to use system level fonts.
 * Using larger font collections, such as Font Awesome, may be problematic especially if you want to avoid loading additional rules. The problem is dependent on the packages in question and can be solved with webpack to an extent.
 
-In the next chapter, I will show you how to load JavaScript using webpack. It loads JavaScript by default, but there's more to the topic as you have to consider what browsers you want to support.
+In the next chapter, I will show you how to load JavaScript using webpack. It loads JavaScript by default, but there’s more to the topic as you have to consider what browsers you want to support.

@@ -1,14 +1,14 @@
 # Configuring Hot Module Replacement
 
-**Hot Module Replacement** (HMR) builds on top the WDS. It enables an interface that makes it possible to swap modules live. For example, *style-loader* can update your CSS without forcing a refresh. It is easy to perform HMR with CSS, as it doesn't contain any application state.
+**Hot Module Replacement** (HMR) builds on top the WDS. It enables an interface that makes it possible to swap modules live. For example, *style-loader* can update your CSS without forcing a refresh. It is easy to perform HMR with CSS, as it doesn’t contain any application state.
 
-HMR is possible with JavaScript too, but due to the state we have in our applications, it's harder. In the *Hot Module Replacement with React* appendix, we discuss how to set it up with React. You can use the same idea elsewhere as well. Vue and [vue-hot-reload-api](https://www.npmjs.com/package/vue-hot-reload-api) is a good example.
+HMR is possible with JavaScript too, but due to the state we have in our applications, it’s harder. In the *Hot Module Replacement with React* appendix, we discuss how to set it up with React. You can use the same idea elsewhere as well. Vue and [vue-hot-reload-api](https://www.npmjs.com/package/vue-hot-reload-api) is a good example.
 
 We could use `webpack-dev-server --hot` to achieve this from the CLI. `--hot` enables the HMR portion from webpack through a particular plugin designed for this purpose and writes an entry pointing to a JavaScript file related to it. Another option is to go through webpack configuration as that provides more flexibility.
 
 ## Defining Configuration for HMR
 
-If you set up WDS through webpack configuration, you have to attach WDS specific options to a `devServer` field and enable `HotModuleReplacementPlugin`. Also, we need to combine the new configuration with the old one so that it doesn't get applied to the production build as HMR doesn't have any value there.
+If you set up WDS through webpack configuration, you have to attach WDS specific options to a `devServer` field and enable `HotModuleReplacementPlugin`. Also, we need to combine the new configuration with the old one so that it doesn’t get applied to the production build as HMR doesn’t have any value there.
 
 Consider the basic setup below:
 
@@ -95,7 +95,7 @@ leanpub-end-insert
 };
 ```
 
-It's plenty of code. Especially the `Object.assign` portion looks knotty. We'll fix that up in the *Splitting Configuration* chapter as we discuss configuration composition in detail.
+It’s plenty of code. Especially the `Object.assign` portion looks knotty. We’ll fix that up in the *Splitting Configuration* chapter as we discuss configuration composition in detail.
 
 Execute `npm start` and surf to `http://localhost:8080`. Try modifying *app/component.js*. Note how it fails to refresh.
 
@@ -103,11 +103,11 @@ Execute `npm start` and surf to `http://localhost:8080`. Try modifying *app/comp
 
 We get this behavior because we set `hotOnly: true` for WDS. Going with `inline: true` would have swallowed the error and refreshed the page. This behavior is okay, though, as we will implement the HMR interface next to avoid the need for the hard refresh. Before that, we can do something about those cryptic numbers to get more sensible output.
 
-You can access the application alternately through `http://localhost:8080/webpack-dev-server/` instead of the root. It will provide status information at the top of the application. If your application relies on WebSockets and you use WDS proxying, you'll need to use this particular url: otherwise, WDS logic will interfere.
+You can access the application alternately through `http://localhost:8080/webpack-dev-server/` instead of the root. It will provide status information at the top of the application. If your application relies on WebSockets and you use WDS proxying, you’ll need to use this particular url: otherwise, WDS logic will interfere.
 
-W> *webpack-dev-server* can be picky about paths. If the given `include` paths don't match the system casing precisely, this can cause it to fail to work. Webpack [issue #675](https://github.com/webpack/webpack/issues/675) discusses the problem in more detail.
+W> *webpack-dev-server* can be picky about paths. If the given `include` paths don’t match the system casing precisely, this can cause it to fail to work. Webpack [issue #675](https://github.com/webpack/webpack/issues/675) discusses the problem in more detail.
 
-W> You should **not** enable HMR for your production configuration. It will likely work, but having the capability enabled there won't do any good, and it will make your bundles bigger than they should be.
+W> You should **not** enable HMR for your production configuration. It will likely work, but having the capability enabled there won’t do any good, and it will make your bundles bigger than they should be.
 
 T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environment variables through a *.env* file. *dotenv* allows you to control the host and port setting of our setup quickly making it useful for development purposes.
 
@@ -115,7 +115,7 @@ T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environme
 
 When webpack generates a bundle, it needs to tell different modules apart. By default, it uses numbers for this purpose. The problem is that this makes it difficult to debug the code if you must inspect the resulting code. It can also lead to issues with hashing behavior.
 
-To overcome this problem, it is a good idea to use an alternative module ID scheme. As it happens, webpack provides a plugin that's ideal for debugging. This plugin, `NamedModulesPlugin`, emits module paths over numeric IDs. This information is useful for development.
+To overcome this problem, it is a good idea to use an alternative module ID scheme. As it happens, webpack provides a plugin that’s ideal for debugging. This plugin, `NamedModulesPlugin`, emits module paths over numeric IDs. This information is useful for development.
 
 You can enable this better behavior as follows:
 
@@ -235,13 +235,13 @@ leanpub-end-insert
 ...
 ```
 
-Given this setup polls the file system, it is more resource intensive. It's worth giving a go if the default doesn't work, though.
+Given this setup polls the file system, it is more resource intensive. It’s worth giving a go if the default doesn’t work, though.
 
 T> There are more details in *webpack-dev-server* issue [#155](https://github.com/webpack/webpack-dev-server/issues/155).
 
 ## Setting WDS Entry Points Manually
 
-In the setup above, the WDS-related entries were injected automatically. Assuming you are using WDS through Node, you would have to set them yourself as the Node API doesn't support injecting. The example below illustrates how you might achieve this:
+In the setup above, the WDS-related entries were injected automatically. Assuming you are using WDS through Node, you would have to set them yourself as the Node API doesn’t support injecting. The example below illustrates how you might achieve this:
 
 ```javascript
 entry: {
@@ -265,7 +265,7 @@ entry: {
 
 WDS provides functionality beyond what was covered above. There are a couple of relevant fields that you should be aware of:
 
-* `devServer.contentBase` - Assuming you don't generate *index.html* dynamically like in this setup and rather prefer to maintain it yourself in some directory, you'll need to point WDS to it. `contentBase` accepts either a path (e.g., `'build'`) or an array of paths (e.g., `['build', 'images']`). The default for this value is the project root.
+* `devServer.contentBase` - Assuming you don’t generate *index.html* dynamically like in this setup and rather prefer to maintain it yourself in some directory, you’ll need to point WDS to it. `contentBase` accepts either a path (e.g., `'build'`) or an array of paths (e.g., `['build', 'images']`). The default for this value is the project root.
 * `devServer.proxy` - If you are using multiple servers, you may have to proxy WDS to them. The proxy setting accepts an object of proxy mappings (e.g., `{ '/api': 'http://localhost:3000/api' }`) that allow WDS to resolve matching queries to another server. Proxy settings are disabled by default.
 * `devServer.headers` - If you want to attach custom headers to your requests, this is the place to do it.
 
@@ -282,6 +282,6 @@ To recap:
 * The default HMR setup may be problematic on certain systems. For this reason, you may have to enable more resource intensive polling instead of relying on system level hook based options.
 * WDS does far more than refreshing and HMR. For example proxying allows you to connect it to other servers.
 
-In the next chapter, we'll make it harder to make mistakes by introducing JavaScript linting to our project.
+In the next chapter, we’ll make it harder to make mistakes by introducing JavaScript linting to our project.
 
 T> The *Hot Module Replacement with React* appendix discusses HMR specifics related to React.

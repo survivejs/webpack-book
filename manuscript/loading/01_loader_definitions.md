@@ -1,14 +1,14 @@
 # Loader Definitions
 
-Webpack provides multiple ways to set up module loaders. Webpack 2 simplified the situation by introducing the `use` field. The legacy options (`loader` and `loaders`) still work, though. I'll discuss all the options for completeness, as you may see them in existing configurations.
+Webpack provides multiple ways to set up module loaders. Webpack 2 simplified the situation by introducing the `use` field. The legacy options (`loader` and `loaders`) still work, though. I’ll discuss all the options for completeness, as you may see them in existing configurations.
 
-It can be a good idea to prefer absolute paths here as they allow you to move configuration without breaking assumptions. The other option is to set `context` field as this gives a similar effect and affects the way entry points and loaders are resolved. It won't have an impact on the output, though, and you still need to use an absolute path or `/` there.
+It can be a good idea to prefer absolute paths here as they allow you to move configuration without breaking assumptions. The other option is to set `context` field as this gives a similar effect and affects the way entry points and loaders are resolved. It won’t have an impact on the output, though, and you still need to use an absolute path or `/` there.
 
 Assuming you set an `include` or `exclude` rule, packages loaded from *node_modules* will still work as the assumption is that they have been compiled in such way that they work out of the box. Sometimes you may come upon a poorly packaged one, but often you can work around these by tweaking your loader configuration or setting up a `resolve.alias` against an asset that is included in the offending package.
 
 T> The *Consuming Packages* chapter discusses the aliasing idea in further detail.
 
-T> `include`/`exclude` is particularly useful with *node_modules* as webpack will process and traverse the installed packages by default when you import JavaScript files to your project. Therefore you need to configure it to avoid that behavior. Other file types don't suffer from this issue.
+T> `include`/`exclude` is particularly useful with *node_modules* as webpack will process and traverse the installed packages by default when you import JavaScript files to your project. Therefore you need to configure it to avoid that behavior. Other file types don’t suffer from this issue.
 
 ## Anatomy of a Loader
 
@@ -67,11 +67,11 @@ module.exports = {
 
 T> If you are not sure how a particular RegExp matches, consider using an online tool, such as [regex101](https://regex101.com/) or [RegExr](http://regexr.com/).
 
-T> Babel is discussed in detail in the *Loading JavaScript* chapter. We'll attach it to the book project there.
+T> Babel is discussed in detail in the *Loading JavaScript* chapter. We’ll attach it to the book project there.
 
 ## Loader Evaluation Order
 
-It is good to keep in mind that webpack's `loaders` are always evaluated from right to left and from bottom to top (separate definitions). The right-to-left rule is easier to remember when you think about as functions. You can read definition `use: ['style-loader', 'css-loader']` as `style(css(input))` based on this rule.
+It is good to keep in mind that webpack’s `loaders` are always evaluated from right to left and from bottom to top (separate definitions). The right-to-left rule is easier to remember when you think about as functions. You can read definition `use: ['style-loader', 'css-loader']` as `style(css(input))` based on this rule.
 
 To see the rule in action, consider the example below:
 
@@ -118,7 +118,7 @@ It would be possible to write the same configuration without `enforce` if you ch
 
 ## Passing Parameters to a Loader
 
-There's a query format that allows passing parameters to loaders:
+There’s a query format that allows passing parameters to loaders:
 
 ```javascript
 {
@@ -191,7 +191,7 @@ If we wanted to use more than one loader, we could pass an array to `use` and ex
 
 ## Branching at `use` Using a Function
 
-In the book setup, we compose configuration on a higher level. Another option to achieve similar results would be to branch at `use` as webpack's loader definitions accept functions that allow you to branch depending on the environment. Consider the example below:
+In the book setup, we compose configuration on a higher level. Another option to achieve similar results would be to branch at `use` as webpack’s loader definitions accept functions that allow you to branch depending on the environment. Consider the example below:
 
 ```javascript
 {
@@ -314,7 +314,7 @@ Webpack provides multiple ways to set up loaders, but sticking with `use` is eno
 
 To recap:
 
-* **Loaders** allow you determine what should happen when webpack's module resolution mechanism encounters a file.
+* **Loaders** allow you determine what should happen when webpack’s module resolution mechanism encounters a file.
 * A loader definition consists of **conditions** based on which to match and **actions** that should be performed when a match happens.
 * Webpack 2 introduced the `use` field. It combines the ideas of old `loader` and `loaders` fields into a single construct.
 * Webpack 2 provides multiple ways to match and alter loader behavior. You can, for example, match based on a **resource query** after a loader has been matched and route the loader to specific actions.

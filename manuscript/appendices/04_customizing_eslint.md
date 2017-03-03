@@ -1,10 +1,10 @@
 # Customizing ESLint
 
-Even though you can get far with vanilla ESLint, there are certain techniques you should know. For instance, sometimes you might want to skip some rules per file. You might even want to implement rules of your own. We'll cover these cases briefly next.
+Even though you can get far with vanilla ESLint, there are certain techniques you should know. For instance, sometimes you might want to skip some rules per file. You might even want to implement rules of your own. We’ll cover these cases briefly next.
 
 ## Skipping ESLint Rules
 
-Sometimes, you'll want to skip certain rules per file or line as you might have some exceptional case in your code where some rule doesn't make sense. As usual, exception confirms the rule. Consider the following examples:
+Sometimes, you’ll want to skip certain rules per file or line as you might have some exceptional case in your code where some rule doesn’t make sense. As usual, exception confirms the rule. Consider the following examples:
 
 ```javascript
 // everything
@@ -34,7 +34,7 @@ Note that the rule specific examples assume you have the rules in your configura
 
 ## Setting Environment
 
-Sometimes, you may want to run ESLint in a specific environment, such as Node or Mocha. These environments have certain conventions of their own. For instance, Mocha relies on custom keywords (e.g., `describe`, `it`) and it's good if the linter doesn't choke on those.
+Sometimes, you may want to run ESLint in a specific environment, such as Node or Mocha. These environments have certain conventions of their own. For instance, Mocha relies on custom keywords (e.g., `describe`, `it`) and it’s good if the linter doesn’t choke on those.
 
 ESLint provides two ways to deal with this: local and global. If you want to set it per file, you can use a declaration at the beginning of a file:
 
@@ -64,13 +64,13 @@ ESLint plugins rely on Abstract Syntax Tree (AST) definition of JavaScript. It i
 
 ### Understanding AST
 
-To get a better idea of how AST works and what it looks like, you can check [Esprima online JavaScript AST visualization](http://esprima.org/demo/parse.html) or [AST Explorer by Felix Kling](http://astexplorer.net/). Alternately, you can install `recast` and examine the output it gives. That is the structure we'll be working with for ESLint rules.
+To get a better idea of how AST works and what it looks like, you can check [Esprima online JavaScript AST visualization](http://esprima.org/demo/parse.html) or [AST Explorer by Felix Kling](http://astexplorer.net/). Alternately, you can install `recast` and examine the output it gives. That is the structure we’ll be working with for ESLint rules.
 
 T> [Codemod](https://github.com/facebook/codemod) allows you to perform large-scale changes to your codebase through AST based transformations.
 
 ### Writing a Plugin
 
-In ESLint's case, we want to check the structure and report in case something is wrong. Getting a rule done is easy:
+In ESLint’s case, we want to check the structure and report in case something is wrong. Getting a rule done is easy:
 
 1. Set up a new project named `eslint-plugin-custom`. You can replace `custom` with whatever you want. ESLint follows this naming convention.
 2. Execute `npm init -y` to create a dummy *package.json*
@@ -105,7 +105,7 @@ module.exports = {
 };
 ```
 
-In this case, we report for every identifier found. In practice, you'll likely want to do something more complex than this, but this is a good starting point.
+In this case, we report for every identifier found. In practice, you’ll likely want to do something more complex than this, but this is a good starting point.
 
 Next, you need to execute `npm link` within `eslint-plugin-custom` to make your plugin visible to your system. `npm link` allows you to consume a development version of a library you are developing. To reverse the link, you can execute `npm unlink` when you feel like it.
 
@@ -136,7 +136,7 @@ leanpub-end-insert
 }
 ```
 
-If you invoke ESLint now, you should see a bunch of warnings. Of course, the rule doesn't do anything useful yet. To move forward, I recommend checking out the official documentation about [plugins](http://eslint.org/docs/developer-guide/working-with-plugins.html) and [rules](http://eslint.org/docs/developer-guide/working-with-rules.html).
+If you invoke ESLint now, you should see a bunch of warnings. Of course, the rule doesn’t do anything useful yet. To move forward, I recommend checking out the official documentation about [plugins](http://eslint.org/docs/developer-guide/working-with-plugins.html) and [rules](http://eslint.org/docs/developer-guide/working-with-rules.html).
 
 You can also check out some of the existing rules and plugins for inspiration to see how they achieve certain things. ESLint allows you to [extend these rulesets](http://eslint.org/docs/user-guide/configuring.html#extending-configuration-files) through `extends` property. It accepts either a path to it (`"extends": "./node_modules/coding-standard/.eslintrc"`) or an array of paths. The entries are applied in the given order, and later ones override the former.
 
@@ -145,11 +145,11 @@ You can also check out some of the existing rules and plugins for inspiration to
 Besides the official documentation available at [eslint.org](http://eslint.org/), you should check out the following blog posts:
 
 * [Detect Problems in JavaScript Automatically with ESLint](http://davidwalsh.name/eslint) - A good tutorial on the topic.
-* [Understanding the Real Advantages of Using ESLint](http://rangle.io/blog/understanding-the-real-advantages-of-using-eslint/) - Evan Schultz's post digs into details.
+* [Understanding the Real Advantages of Using ESLint](http://rangle.io/blog/understanding-the-real-advantages-of-using-eslint/) - Evan Schultz’s post digs into details.
 * [eslint-plugin-smells](https://github.com/elijahmanor/eslint-plugin-smells) - This plugin by Elijah Manor allows you to lint against JavaScript smells. Recommended.
 
 If you want a starting point, you can pick one of [eslint-config- packages](https://www.npmjs.com/search?q=eslint-config) or go with the [standard](https://www.npmjs.com/package/standard) style.
 
 ## Conclusion
 
-Especially the fact that you can customize ESLint to various purposes makes it a powerful tool. Thanks to its vibrant ecosystem, it is likely you'll find rules that are close to your purposes. Those make excellent starting points for your own development.
+Especially the fact that you can customize ESLint to various purposes makes it a powerful tool. Thanks to its vibrant ecosystem, it is likely you’ll find rules that are close to your purposes. Those make excellent starting points for your own development.

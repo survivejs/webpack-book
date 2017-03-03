@@ -75,7 +75,7 @@ body {
 }
 ```
 
-As you can see, autoprefixing expands the rules, so we don't have to remember to do that.
+As you can see, autoprefixing expands the rules, so we don’t have to remember to do that.
 
 If you know what browsers you support, it is possible to set up a [browserslist](https://www.npmjs.com/package/browserslist) file. Different tools pick up this definition, *autoprefixer* included. Consider the example below where we select only specific browsers:
 

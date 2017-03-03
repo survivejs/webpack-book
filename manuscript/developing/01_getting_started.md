@@ -18,11 +18,11 @@ cd webpack-demo
 npm init -y # -y generates *package.json*, skip for more control
 ```
 
-You can tweak the generated *package.json* manually to make further changes to it. We'll be doing some changes through *npm* tool, but manual tweaks are acceptable. The official documentation explains [package.json options](https://docs.npmjs.com/files/package.json) in more detail.
+You can tweak the generated *package.json* manually to make further changes to it. We’ll be doing some changes through *npm* tool, but manual tweaks are acceptable. The official documentation explains [package.json options](https://docs.npmjs.com/files/package.json) in more detail.
 
 T> You can set those `npm init` defaults at *~/.npmrc*.
 
-T> This is a good place to set up version control using [Git](https://git-scm.com/). You can create a commit per step and tag per chapter, so it's easier to move back and forth if you want.
+T> This is a good place to set up version control using [Git](https://git-scm.com/). You can create a commit per step and tag per chapter, so it’s easier to move back and forth if you want.
 
 T> It is possible to replace most of the npm commands mentioned with [Yarn](https://yarnpkg.com/) equivalents. Yarn is a good alternative to npm as it comes with unique benefits including *lockfiles* and better performance.
 
@@ -44,7 +44,7 @@ You should see webpack at your *package.json* `devDependencies` section after th
 
 You can display the exact path of the executables using `npm bin`. Most likely it points at *./node_modules/.bin*. Try running webpack from there through the terminal using `node_modules/.bin/webpack` or a similar command.
 
-After running, you should see a version, a link to the command line interface guide and an extensive list of options. We won't be using most of those, but it's good to know that this tool is packed with functionality if nothing else.
+After running, you should see a version, a link to the command line interface guide and an extensive list of options. We won’t be using most of those, but it’s good to know that this tool is packed with functionality if nothing else.
 
 ```bash
 webpack-demo $ node_modules/.bin/webpack
@@ -63,7 +63,7 @@ T> We can use `--save` and `--save-dev` to separate application and development 
 
 ## Directory Structure
 
-To move further, we can implement a little site that loads some JavaScript, which we then build using webpack. After we progress a bit, we'll end up with a directory structure like this:
+To move further, we can implement a little site that loads some JavaScript, which we then build using webpack. After we progress a bit, we’ll end up with a directory structure like this:
 
 - app/
   - index.js
@@ -72,7 +72,7 @@ To move further, we can implement a little site that loads some JavaScript, whic
 - package.json
 - webpack.config.js
 
-The idea is that we'll transform that *app/* to as a bundle below *build/*. To make this possible, we should set up the assets needed and *webpack.config.js*.
+The idea is that we’ll transform that *app/* to as a bundle below *build/*. To make this possible, we should set up the assets needed and *webpack.config.js*.
 
 ## Setting Up Assets
 
@@ -102,9 +102,9 @@ document.body.appendChild(component());
 
 ## Setting Up Webpack Configuration
 
-We'll need to tell webpack how to deal with the assets we set up. For this purpose, we'll develop a *webpack.config.js* file. Webpack and its development server will be able to discover this file through a convention.
+We’ll need to tell webpack how to deal with the assets we set up. For this purpose, we’ll develop a *webpack.config.js* file. Webpack and its development server will be able to discover this file through a convention.
 
-To keep things easy to maintain, we'll be using [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) to generate an *index.html* for our application. *html-webpack-plugin* wires up the generated assets with it. Install it to the project:
+To keep things easy to maintain, we’ll be using [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) to generate an *index.html* for our application. *html-webpack-plugin* wires up the generated assets with it. Install it to the project:
 
 ```bash
 npm install html-webpack-plugin --save-dev
@@ -178,9 +178,9 @@ Child html-webpack-plugin for "index.html":
        [3] ./~/html-webpack-plugin/lib/loader.js!./~/html-webpack-plugin/default_index.ejs 540 bytes {0} [built]
 ```
 
-The output tells us a lot. I've annotated it below:
+The output tells us a lot. I’ve annotated it below:
 
-* `Hash: 3f76ae042ff0f2d98f35` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. We'll discuss hashing in detail in the *Adding Hashes to Filenames* chapter.
+* `Hash: 3f76ae042ff0f2d98f35` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. We’ll discuss hashing in detail in the *Adding Hashes to Filenames* chapter.
 * `Version: webpack 2.2.1` - Webpack version.
 * `Time: 377ms` - Time it took to execute the build.
 * `app.js    3.13 kB       0  [emitted]  app` - Name of the generated asset, size, the IDs of the **chunks** into which it is related, status information telling how it was generated, the name of the chunk.
@@ -218,13 +218,13 @@ You can execute this kind of scripts through *npm run*. If you run it as is, it 
 
 T> There are shortcuts like *npm start* and *npm test*. We can run these directly without *npm run* although that will work too. For those in a hurry, you can use *npm t* to run your tests.
 
-T> It is possible to execute *npm run* anywhere within the project. It doesn't have to be run in the project root to work. npm will figure out the project root for you.
+T> It is possible to execute *npm run* anywhere within the project. It doesn’t have to be run in the project root to work. npm will figure out the project root for you.
 
 ## Useful *html-webpack-plugin* Extensions
 
 [html-webpack-template](https://www.npmjs.com/package/html-webpack-template) or [html-webpack-template-pug](https://www.npmjs.com/package/html-webpack-template-pug) complement *html-webpack-plugin* and provide more powerful templates to use with it.
 
-There are also specific plugins that extend *html-webpack-plugin*'s functionality. I've listed examples of these below:
+There are also specific plugins that extend *html-webpack-plugin*'s functionality. I’ve listed examples of these below:
 
 * [favicons-webpack-plugin](https://www.npmjs.com/package/favicons-webpack-plugin) is able to generate favicons.
 * [script-ext-html-webpack-plugin](https://www.npmjs.com/package/script-ext-html-webpack-plugin) gives you more control over script tags and allows you to tune script loading further.
@@ -235,7 +235,7 @@ There are also specific plugins that extend *html-webpack-plugin*'s functionalit
 
 ## Conclusion
 
-Even though we've managed to get webpack up and running, it's not that much yet. Developing against it would be painful. Each time we wanted to check out our application, we would have to build it manually using `npm run build` and then refresh the browser. That's where webpack's more advanced features come in.
+Even though we’ve managed to get webpack up and running, it’s not that much yet. Developing against it would be painful. Each time we wanted to check out our application, we would have to build it manually using `npm run build` and then refresh the browser. That’s where webpack’s more advanced features come in.
 
 To recap:
 
@@ -245,4 +245,4 @@ To recap:
 * *html-webpack-plugin* is useful for generating an HTML entry point to your application. Later in the book, you will see how to generate multiple separate pages using. The *Multiple Pages* chapter covers that.
 * It is handy to use npm *package.json* scripts to manage webpack. You can use it as a light task runner and use system features outside of webpack.
 
- We'll look into enabling automatic browser refresh in the next chapter to make the development experience of our setup nicer.
+ We’ll look into enabling automatic browser refresh in the next chapter to make the development experience of our setup nicer.

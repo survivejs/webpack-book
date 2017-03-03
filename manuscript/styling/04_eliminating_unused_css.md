@@ -1,12 +1,12 @@
 # Eliminating Unused CSS
 
-Frameworks like [Bootstrap](https://getbootstrap.com/) tend to come with a lot of CSS. Often you use only a small part of it. Typically, you bundle even the unused CSS. It is possible, however, to eliminate the portions you aren't using.
+Frameworks like [Bootstrap](https://getbootstrap.com/) tend to come with a lot of CSS. Often you use only a small part of it. Typically, you bundle even the unused CSS. It is possible, however, to eliminate the portions you aren’t using.
 
 [PurifyCSS](https://github.com/purifycss/purifycss) is a tool that can achieve this by analyzing files. It walks through your code and figures out which CSS classes are being used. Often there is enough information for it to strip unused CSS from your project. It also works with single page applications to an extent.
 
 ## Setting Up Pure.css
 
-To make our demo more realistic, let's install [Pure.css](http://purecss.io/), a small CSS framework, as well and refer to it from our project so that we can see PurifyCSS in action. These two projects aren't related in any way despite the naming.
+To make our demo more realistic, let’s install [Pure.css](http://purecss.io/), a small CSS framework, as well and refer to it from our project so that we can see PurifyCSS in action. These two projects aren’t related in any way despite the naming.
 
 ```bash
 npm install purecss --save
@@ -60,11 +60,11 @@ index.html  218 bytes          [emitted]
 ...
 ```
 
-As you can see, the size of the CSS file grew. We'll fix next with PurifyCSS.
+As you can see, the size of the CSS file grew. We’ll fix next with PurifyCSS.
 
 ## Enabling PurifyCSS
 
-Using PurifyCSS can lead to significant savings. In their example, they purify and minify Bootstrap (140 kB) in an application using ~40% of its selectors to mere ~35 kB. That's a big difference.
+Using PurifyCSS can lead to significant savings. In their example, they purify and minify Bootstrap (140 kB) in an application using ~40% of its selectors to mere ~35 kB. That’s a big difference.
 
 [purifycss-webpack](https://www.npmjs.com/package/purifycss-webpack) allows us to achieve results like this. You should use the `ExtractTextPlugin` with it for the best results. Install it and a [glob](https://www.npmjs.org/package/glob) helper first:
 
@@ -95,7 +95,7 @@ exports.purifyCSS = function({ paths }) {
 leanpub-end-insert
 ```
 
-Next, we have to connect this part to our configuration. It is important the plugin is used *after* the `ExtractTextPlugin`; otherwise, it won't work:
+Next, we have to connect this part to our configuration. It is important the plugin is used *after* the `ExtractTextPlugin`; otherwise, it won’t work:
 
 **webpack.config.js**
 
@@ -163,4 +163,4 @@ To recap:
 * At best, PurifyCSS can eliminate most, if not all, unused CSS rules.
 * Critical path rendering is another CSS technique that puts emphasis on rendering the above-the-fold CSS first. The idea is to render something as fast as possible instead of waiting for all CSS to load.
 
-The styling portion of our demo is in good shape. We can make it easier to develop by including CSS linting to the project. We'll do that next.
+The styling portion of our demo is in good shape. We can make it easier to develop by including CSS linting to the project. We’ll do that next.

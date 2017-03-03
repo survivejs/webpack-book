@@ -4,21 +4,21 @@ Currently, the production version of our application is a single JavaScript file
 
 It would be better to download only the changed portion. If the vendor dependencies change, then the client should fetch only the vendor dependencies. The same goes for actual application code. **Bundle splitting** like this can be achieved using `CommonsChunkPlugin`.
 
-T> To invalidate the bundles properly, we'll attach hashes to the generated bundles in the *Adding Hashes to Filenames* chapter.
+T> To invalidate the bundles properly, we’ll attach hashes to the generated bundles in the *Adding Hashes to Filenames* chapter.
 
 ## The Idea of Bundle Splitting
 
-With bundle splitting, we can push the vendor dependencies to a bundle of their own and benefit from client level caching. We can do this in such a way that the whole size of the application remains the same. Given there are more requests to perform, there's a slight overhead. But the benefit of caching makes up for this cost.
+With bundle splitting, we can push the vendor dependencies to a bundle of their own and benefit from client level caching. We can do this in such a way that the whole size of the application remains the same. Given there are more requests to perform, there’s a slight overhead. But the benefit of caching makes up for this cost.
 
 To give you a quick example, instead of having *app.js* (100 kB), we could end up with *app.js* (10 kB) and *vendor.js* (90 kB). Now changes made to the application are cheap for the clients that have already used the application earlier.
 
-Caching comes with its problems. One of those is cache invalidation. We'll discuss a potential approach related to that in the *Adding Hashes to Filenames* chapter.
+Caching comes with its problems. One of those is cache invalidation. We’ll discuss a potential approach related to that in the *Adding Hashes to Filenames* chapter.
 
-Bundle splitting isn't the only way out. The *Code Splitting* chapter discusses another, more granular way.
+Bundle splitting isn’t the only way out. The *Code Splitting* chapter discusses another, more granular way.
 
 ## Adding Something to Split
 
-Given there's not much to split into the vendor bundle yet, we should add something there. Add React to the project first:
+Given there’s not much to split into the vendor bundle yet, we should add something there. Add React to the project first:
 
 ```bash
 npm install react --save
@@ -67,7 +67,7 @@ As you can see, *app.js* is big. We must do something about this next.
 
 So far our project has only a single entry named as `app`. As you might remember, our configuration tells webpack to traverse dependencies starting from the `app` entry directory and then to output the resulting bundle below our `build` directory using the entry name and `.js` extension.
 
-To improve the situation, we can define a `vendor` entry containing React by matching the dependency name. It is possible to generate this information automatically as discussed at the end of this chapter, but I'll go with a static array here to illustrate the basic idea. Change the code like this:
+To improve the situation, we can define a `vendor` entry containing React by matching the dependency name. It is possible to generate this information automatically as discussed at the end of this chapter, but I’ll go with a static array here to illustrate the basic idea. Change the code like this:
 
 **webpack.config.js**
 
@@ -120,15 +120,15 @@ vendor.js.map     164 kB       1  [emitted]         vendor
 
 *app.js* and *vendor.js* have separate chunk IDs right now given they are entry chunks of their own. The output size is a little off, though. Intuitively *app.js* should be smaller to attain our goal with this build.
 
-If you examine the resulting bundle, you can see that it contains React given that's how the default definition works. Webpack pulls the related dependencies to a bundle by default as illustrated by the image below:
+If you examine the resulting bundle, you can see that it contains React given that’s how the default definition works. Webpack pulls the related dependencies to a bundle by default as illustrated by the image below:
 
 ![Separate app and vendor bundles](images/bundle_01.png)
 
 `CommonsChunkPlugin` is a webpack plugin that allows us to alter this default behavior so that we can get the bundles we might expect.
 
-W> This step can fail on Windows due to letter casing. Instead of `c:\` you may need to force your terminal to read `C:\`. There's more information in the [related webpack issue](https://github.com/webpack/webpack/issues/2362).
+W> This step can fail on Windows due to letter casing. Instead of `c:\` you may need to force your terminal to read `C:\`. There’s more information in the [related webpack issue](https://github.com/webpack/webpack/issues/2362).
 
-W> Webpack doesn't allow referring to entry files within entries. If you inadvertently do this, webpack will complain loudly. If you end up in a case like this, consider refactoring the module structure of your code to eliminate the situation.
+W> Webpack doesn’t allow referring to entry files within entries. If you inadvertently do this, webpack will complain loudly. If you end up in a case like this, consider refactoring the module structure of your code to eliminate the situation.
 
 ## Setting Up `CommonsChunkPlugin`
 
@@ -192,7 +192,7 @@ Now our bundles look the way we want. The image below illustrates the current si
 
 ![App and vendor bundles after applying `CommonsChunkPlugin`](images/bundle_02.png)
 
-It is good to note that if the vendor entry contained extra dependencies (white on the image), the setup would pull those into the project as well. Resolving this problem is possible by examining which packages are being used in the project using the `minChunks` parameter of the `CommonsChunksPlugin`. But before that, let's abstract the solution a bit.
+It is good to note that if the vendor entry contained extra dependencies (white on the image), the setup would pull those into the project as well. Resolving this problem is possible by examining which packages are being used in the project using the `minChunks` parameter of the `CommonsChunksPlugin`. But before that, let’s abstract the solution a bit.
 
 ## Abstracting Bundle Extraction
 
@@ -253,7 +253,7 @@ To pick React to the vendor build automatically based on usage, we have to drop 
 
 `CommonsChunkPlugin` gives control over its behavior through its `minChunks` options. In addition to a number and certain other values, `minChunks` accepts a function with a signature `(module, count)`. The first parameter contains a lot of information about the matches module and allows us to deduce which modules are used by the project. The second one tells how many times a particular module has been imported into the project.
 
-I've listed most important `module` properties below. These assume an import like `import 'purecss';` and `ExtractTextPlugin`:
+I’ve listed most important `module` properties below. These assume an import like `import 'purecss';` and `ExtractTextPlugin`:
 
 * `resource` represents the path of the full path of the resource being imported. Example: `.../webpack-demo/node_modules/purecss/build/pure-min.css`.
 * `context` returns the path to the directory in which the resource is. Example: `.../webpack-demo/node_modules/purecss/build`.
@@ -261,7 +261,7 @@ I've listed most important `module` properties below. These assume an import lik
 * `userRequest` is a version of the request that has been resolved to a query. Example: `.../node_modules/css-loader/index.js!.../pure-min.css`.
 * `chunks` tells in which chunks the module is contained. Check `chunks.length` to tell how many times webpack has included it. This is useful for control on the chunk level.
 
-Particularly `resource` and `userRequest` can return the same value if you are operating with imports that aren't being processed in any way. In the example above, `ExtractTextPlugin` caused a difference between the values.
+Particularly `resource` and `userRequest` can return the same value if you are operating with imports that aren’t being processed in any way. In the example above, `ExtractTextPlugin` caused a difference between the values.
 
 To capture only JavaScript files from *node_modules*, we should perform a check against each request using the `resource` since it contains the information we need:
 
@@ -296,11 +296,11 @@ leanpub-end-insert
 ...
 ```
 
-The build result should remain the same. This time, however, webpack will pull only dependencies we are using in the project, and we don't have to maintain the list anymore.
+The build result should remain the same. This time, however, webpack will pull only dependencies we are using in the project, and we don’t have to maintain the list anymore.
 
 ## Performing a More Granular Split
 
-Sometimes having only an app and a vendor bundle isn't enough. Especially when your application grows and gains more entry points, you may want to split the vendor bundle into multiples ones per each entry. `CommonsChunkPlugin` operates against all entry chunks by default. This behavior can be constrained through the `chunks` option for more granular control.
+Sometimes having only an app and a vendor bundle isn’t enough. Especially when your application grows and gains more entry points, you may want to split the vendor bundle into multiples ones per each entry. `CommonsChunkPlugin` operates against all entry chunks by default. This behavior can be constrained through the `chunks` option for more granular control.
 
 Consider [the example adapted from a GitHub comment](https://github.com/webpack/webpack/issues/2855#issuecomment-239606760) below where chunks are extracted from `login` and `app` entries:
 
@@ -382,9 +382,9 @@ W> Note that the `children` behavior applies only to immediate children. The alg
 
 Webpack provides more control over the generated chunks by providing two plugins: `AggressiveSplittingPlugin` and `AggressiveMergingPlugin`. The former is particularly interesting as it allows you to emit more and smaller bundles. The behavior is especially useful with HTTP/2 due to the way the new standard works.
 
-There's a trade-off involved as you'll lose out in caching if you split to multiple small bundles. You also get request overhead in HTTP/1 environment. For now, the approach doesn't work when `HtmlWebpackPlugin` is enabled due to [a bug in the plugin](https://github.com/ampedandwired/html-webpack-plugin/issues/446).
+There’s a trade-off involved as you’ll lose out in caching if you split to multiple small bundles. You also get request overhead in HTTP/1 environment. For now, the approach doesn’t work when `HtmlWebpackPlugin` is enabled due to [a bug in the plugin](https://github.com/ampedandwired/html-webpack-plugin/issues/446).
 
-Here's the basic idea of aggressive splitting:
+Here’s the basic idea of aggressive splitting:
 
 ```javascript
 {
@@ -421,8 +421,8 @@ T> `webpack.optimize.LimitChunkCountPlugin` and `webpack.optimize.MinChunkSizePl
 In the example above, we used different types of webpack chunks. Webpack treats chunks in three types:
 
 * **Entry chunks** - Entry chunks contain webpack runtime and modules it then loads.
-* **Normal chunks** - Normal chunks **don't** contain webpack runtime. Instead, these can be loaded dynamically while the application is running. A suitable wrapper (JSONP for example) is generated for these. We'll generate a normal chunk in the next chapter as we set up code splitting.
-* **Initial chunks** - Initial chunks are normal chunks that count towards initial loading time of the application and are generated by the `CommonsChunkPlugin`. As a user, you don't have to care about these. It is the split between entry chunks and normal chunks that is important.
+* **Normal chunks** - Normal chunks **don’t** contain webpack runtime. Instead, these can be loaded dynamically while the application is running. A suitable wrapper (JSONP for example) is generated for these. We’ll generate a normal chunk in the next chapter as we set up code splitting.
+* **Initial chunks** - Initial chunks are normal chunks that count towards initial loading time of the application and are generated by the `CommonsChunkPlugin`. As a user, you don’t have to care about these. It is the split between entry chunks and normal chunks that is important.
 
 ## Conclusion
 

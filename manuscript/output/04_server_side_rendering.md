@@ -4,11 +4,11 @@
 
 Even though the idea does not sound that special, there is a technical cost involved, and you can find sharp corners. The approach was popularized by React. Since then frameworks encapsulating the tricky bits, such as [Next.js](https://github.com/zeit/next.js), have appeared. [isomorphic-webpack](https://www.npmjs.com/package/isomorphic-webpack) is a good example of a solution designed on top of webpack.
 
-I'll show you next how to set up SSR with webpack and React. The idea is that webpack will compile a client-side build that then gets picked up by a server that renders it using React following the SSR idea. Demonstration like this is enough to understand how it works and also where the problems begin.
+I’ll show you next how to set up SSR with webpack and React. The idea is that webpack will compile a client-side build that then gets picked up by a server that renders it using React following the SSR idea. Demonstration like this is enough to understand how it works and also where the problems begin.
 
 ## Setting Up Babel with React
 
-The *Loading JavaScript* chapter covers the essentials of using Babel with webpack. There's some setup that is particular to React you should perform, though. Given most of React projects rely on [JSX](https://facebook.github.io/jsx/) format, you will have to enable it through Babel.
+The *Loading JavaScript* chapter covers the essentials of using Babel with webpack. There’s some setup that is particular to React you should perform, though. Given most of React projects rely on [JSX](https://facebook.github.io/jsx/) format, you will have to enable it through Babel.
 
 To get React, and particularly JSX, work with Babel, install the preset first:
 
@@ -209,7 +209,7 @@ If you run the server now (`node ./server.js`) and navigate below `http://localh
 
 ![Hello world](images/hello_01.png)
 
-Even though we have a basic React application running now, it's a little difficult to develop. If you try to modify the code, nothing will happen. One way to solve this would be to run webpack in a multi-compiler mode as earlier in this book and let webpack deal with it. Another option is to run webpack in **watch mode** against the current configuration and set up a watcher for the server. I'll show you how to achieve the latter setup next.
+Even though we have a basic React application running now, it’s a little difficult to develop. If you try to modify the code, nothing will happen. One way to solve this would be to run webpack in a multi-compiler mode as earlier in this book and let webpack deal with it. Another option is to run webpack in **watch mode** against the current configuration and set up a watcher for the server. I’ll show you how to achieve the latter setup next.
 
 T> If you want to debug output from the server, set `export DEBUG=express:application`.
 
@@ -273,7 +273,7 @@ To prove that SSR works, check out the browser inspector. You should see somethi
 
 ![SSR output](images/ssr.png)
 
-Instead of a `div` where to mount an application, you can see all related HTML there. It's not much in this particular case, but it's enough to showcase the approach.
+Instead of a `div` where to mount an application, you can see all related HTML there. It’s not much in this particular case, but it’s enough to showcase the approach.
 
 T> The current implementation could be refined further by implementing a production mode for the server that would skip injecting the browser refresh script at a minimum.
 
@@ -283,7 +283,7 @@ T> The server could inject initial data payload to the generated HTML. Doing thi
 
 Even though the demo illustrates the basic idea of SSR, it still leaves some open questions:
 
-* How to deal with styles? Handling JavaScript is easy in both environments, but vanilla Node doesn't understand CSS related imports.
+* How to deal with styles? Handling JavaScript is easy in both environments, but vanilla Node doesn’t understand CSS related imports.
 * How to deal with anything else than JavaScript? If the server side is processed through webpack, this is less of an issue as you can patch it at webpack.
 * How to run the server through something else than Node? One option would be to wrap the Node instance in a service you then run through your host environment. Ideally, the results would be cached, and you can find more specific solutions for this particular per platform.
 

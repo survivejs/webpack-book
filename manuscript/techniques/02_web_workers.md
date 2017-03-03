@@ -6,7 +6,7 @@ Moving data between the main thread and the worker comes with communication-rela
 
 The idea of workers is useful on a more general level. [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) uses [worker-farm](https://www.npmjs.com/package/worker-farm) underneath to parallelize webpack execution.
 
-As discussed in the *Build Targets* chapter, webpack allows you to build your application as a worker itself. To get the idea of web workers better, I'll show you how to build a small worker using [worker-loader](https://www.npmjs.com/package/worker-loader).
+As discussed in the *Build Targets* chapter, webpack allows you to build your application as a worker itself. To get the idea of web workers better, I’ll show you how to build a small worker using [worker-loader](https://www.npmjs.com/package/worker-loader).
 
 ## Setting Up Worker Loader
 
@@ -16,13 +16,13 @@ To get started, install *worker-loader* to the project:
 npm install worker-loader --save-dev
 ```
 
-To keep it easy to implement, we'll tell webpack which files should be treated as loaders through inline loader definitions. Another option would be to push it to webpack configuration as discussed in the *Loader Definitions* chapter.
+To keep it easy to implement, we’ll tell webpack which files should be treated as loaders through inline loader definitions. Another option would be to push it to webpack configuration as discussed in the *Loader Definitions* chapter.
 
-In that case, you have to filter the files somehow. One option would be to rely on a naming convention so that you name each worker with a `.worker.js` suffix. You could also push them to a directory as that's enough context information too.
+In that case, you have to filter the files somehow. One option would be to rely on a naming convention so that you name each worker with a `.worker.js` suffix. You could also push them to a directory as that’s enough context information too.
 
 ## Setting Up a Worker
 
-A worker has to do two things: listen to messages and respond. Between those two actions, it can perform a computation. In this case, we'll accept text data, append it to itself, and send the result.
+A worker has to do two things: listen to messages and respond. Between those two actions, it can perform a computation. In this case, we’ll accept text data, append it to itself, and send the result.
 
 **app/worker.js**
 

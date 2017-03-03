@@ -1,16 +1,16 @@
 # Loading Styles
 
-Webpack doesn't handle styling out of the box. Instead, you must configure loaders and plugins to get the setup you need.
+Webpack doesn’t handle styling out of the box. Instead, you must configure loaders and plugins to get the setup you need.
 
-In this chapter, we'll set up CSS with our project and see how it works out with automatic browser refreshing. The neat thing is that in this case, webpack doesn't have to force a full refresh. Instead, it can do something smarter as we'll see soon.
+In this chapter, we’ll set up CSS with our project and see how it works out with automatic browser refreshing. The neat thing is that in this case, webpack doesn’t have to force a full refresh. Instead, it can do something smarter as we’ll see soon.
 
 ## Loading CSS
 
-To load CSS, we'll need to use [css-loader](https://www.npmjs.com/package/css-loader) and [style-loader](https://www.npmjs.com/package/style-loader). *css-loader* goes through possible `@import` and `url()` lookups within the matched files and treats them as a regular ES6 `import`.
+To load CSS, we’ll need to use [css-loader](https://www.npmjs.com/package/css-loader) and [style-loader](https://www.npmjs.com/package/style-loader). *css-loader* goes through possible `@import` and `url()` lookups within the matched files and treats them as a regular ES6 `import`.
 
 This process allows us to rely on other loaders, such as [file-loader](https://www.npmjs.com/package/file-loader) or [url-loader](https://www.npmjs.com/package/url-loader). If an `@import` points to an external resource, *css-loader* will skip it. Only internal resources get processed further by webpack.
 
-After *css-loader* has done its part, *style-loader* picks up the output and injects the CSS into the resulting bundle. The CSS be inlined JavaScript by default, and it implements the HMR interface. As inlining isn't a good idea for production usage, it makes sense to use `ExtractTextPlugin` to generate a separate CSS file. We'll do this in the next chapter.
+After *css-loader* has done its part, *style-loader* picks up the output and injects the CSS into the resulting bundle. The CSS be inlined JavaScript by default, and it implements the HMR interface. As inlining isn’t a good idea for production usage, it makes sense to use `ExtractTextPlugin` to generate a separate CSS file. We’ll do this in the next chapter.
 
 To get started, invoke
 
@@ -18,7 +18,7 @@ To get started, invoke
 npm install css-loader style-loader --save-dev
 ```
 
-Now let's make sure webpack is aware of them. Configure as follows:
+Now let’s make sure webpack is aware of them. Configure as follows:
 
 **webpack.parts.js**
 
@@ -79,7 +79,7 @@ body {
 }
 ```
 
-Also, we'll need to make webpack aware of it. Without having an entry pointing to it somehow, webpack won't be able to find the file:
+Also, we’ll need to make webpack aware of it. Without having an entry pointing to it somehow, webpack won’t be able to find the file:
 
 **app/index.js**
 
@@ -92,7 +92,7 @@ leanpub-end-insert
 
 Execute `npm start` now. Browse to `http://localhost:8080` if you are using the default port and open up *main.css* and change the background color to something like `lime` (`background: lime`). Develop styles as needed to make it look a little nicer. Note that it does **not** perform a hard refresh on the browser since we have HMR setup in place.
 
-We'll continue from here in the next chapter. Before that, though, I will discuss styling-related techniques you may find useful. If you want, integrate some of them to your project.
+We’ll continue from here in the next chapter. Before that, though, I will discuss styling-related techniques you may find useful. If you want, integrate some of them to your project.
 
 ![Hello cornsilk world](images/hello_02.png)
 
@@ -100,9 +100,9 @@ T> An alternate way to load CSS would be to define a separate entry and point to
 
 ## Understanding CSS Scoping and CSS Modules
 
-Perhaps the biggest challenge of CSS is that all rules exist within **global scope**. Due to this reason, specific conventions that work around this feature have been developed. The [CSS Modules](https://github.com/css-modules/css-modules) specification solves the problem by introducing **local scope** per `import`. As it happens, this makes CSS more bearable to use as you don't have to worry about namespace collisions anymore.
+Perhaps the biggest challenge of CSS is that all rules exist within **global scope**. Due to this reason, specific conventions that work around this feature have been developed. The [CSS Modules](https://github.com/css-modules/css-modules) specification solves the problem by introducing **local scope** per `import`. As it happens, this makes CSS more bearable to use as you don’t have to worry about namespace collisions anymore.
 
-Webpack's *css-loader* supports CSS Modules. You can enable it through a loader definition like this:
+Webpack’s *css-loader* supports CSS Modules. You can enable it through a loader definition like this:
 
 ```javascript
 {
@@ -113,7 +113,7 @@ Webpack's *css-loader* supports CSS Modules. You can enable it through a loader 
 },
 ```
 
-After this change, your class definitions will remain local to the files. In case you want global class definitions, you'll need to wrap them within `:global(.redButton) { ... }` kind of declarations.
+After this change, your class definitions will remain local to the files. In case you want global class definitions, you’ll need to wrap them within `:global(.redButton) { ... }` kind of declarations.
 
 In this case, the `import` statement will give you the local classes you can then bind to elements. Assume we had CSS like this:
 
@@ -142,7 +142,7 @@ import styles from './main.css';
 element.className = styles.redButton;
 ```
 
-Note that `body` remains as a global declaration still. It's that `redButton` that makes the difference. You can build component-specific styles that don't leak elsewhere this way.
+Note that `body` remains as a global declaration still. It’s that `redButton` that makes the difference. You can build component-specific styles that don’t leak elsewhere this way.
 
 CSS Modules provides also features like composition to make it even easier to work with your styles. You can also combine it with other loaders as long as you apply them before *css-loader*.
 
@@ -154,7 +154,7 @@ T> [eslint-plugin-css-modules](https://www.npmjs.com/package/eslint-plugin-css-m
 
 ![Less](images/less.png)
 
-[Less](http://lesscss.org/) is a CSS processor packed with functionality. Using Less doesn't take a lot of effort through webpack as [less-loader](https://www.npmjs.com/package/less-loader) deals with the heavy lifting. You should install [less](https://www.npmjs.com/package/less) as well given it's a peer dependency of *less-loader*.
+[Less](http://lesscss.org/) is a CSS processor packed with functionality. Using Less doesn’t take a lot of effort through webpack as [less-loader](https://www.npmjs.com/package/less-loader) deals with the heavy lifting. You should install [less](https://www.npmjs.com/package/less) as well given it’s a peer dependency of *less-loader*.
 
 Consider the following minimal setup:
 
@@ -171,9 +171,9 @@ The loader supports Less plugins, source maps, and so on. To understand how thos
 
 ![Sass](images/sass.png)
 
-[Sass](http://sass-lang.com/) is a widely used CSS preprocessor. You should use [sass-loader](https://www.npmjs.com/package/sass-loader) with it. Remember to install [node-sass](https://www.npmjs.com/package/node-sass) to your project as it's a peer dependency.
+[Sass](http://sass-lang.com/) is a widely used CSS preprocessor. You should use [sass-loader](https://www.npmjs.com/package/sass-loader) with it. Remember to install [node-sass](https://www.npmjs.com/package/node-sass) to your project as it’s a peer dependency.
 
-Webpack doesn't take much configuration:
+Webpack doesn’t take much configuration:
 
 ```javascript
 {
@@ -215,7 +215,7 @@ T> If you want more performance, especially during development, check out [fast-
 },
 ```
 
-To start using yeticss with Stylus, you must import it to one of your app's *.styl* files:
+To start using yeticss with Stylus, you must import it to one of your app’s *.styl* files:
 
 ```javascript
 @import 'yeticss'
@@ -259,7 +259,7 @@ T> PostCSS supports also *postcss.config.js* based configuration. It relies on [
 
 ![cssnext](images/cssnext.jpg)
 
-[cssnext](http://cssnext.io/) is a PostCSS plugin that allows us to experience the future now. It comes with some restrictions as it's not possible to adapt to each feature, but it may be worth a go. You can use it through [postcss-cssnext](https://www.npmjs.com/package/postcss-cssnext), and you can enable it as follows:
+[cssnext](http://cssnext.io/) is a PostCSS plugin that allows us to experience the future now. It comes with some restrictions as it’s not possible to adapt to each feature, but it may be worth a go. You can use it through [postcss-cssnext](https://www.npmjs.com/package/postcss-cssnext), and you can enable it as follows:
 
 ```javascript
 {
@@ -281,11 +281,11 @@ T> PostCSS supports also *postcss.config.js* based configuration. It relies on [
 
 See [the usage documentation](http://cssnext.io/usage/) for available options.
 
-T> Note that cssnext includes autoprefixer! You don't have to configure autoprefixing separately for it to work in this case.
+T> Note that cssnext includes autoprefixer! You don’t have to configure autoprefixing separately for it to work in this case.
 
 ## Understanding Lookups
 
-To get most out of *css-loader*, you should understand how it performs its lookups. Even though *css-loader* handles relative imports by default, it won't touch absolute imports (`url("/static/img/demo.png")`). If you rely on imports like this, you will have to copy the files to your project.
+To get most out of *css-loader*, you should understand how it performs its lookups. Even though *css-loader* handles relative imports by default, it won’t touch absolute imports (`url("/static/img/demo.png")`). If you rely on imports like this, you will have to copy the files to your project.
 
 [copy-webpack-plugin](https://www.npmjs.com/package/copy-webpack-plugin) works for this purpose, but you can also copy the files outside of webpack. The benefit of the former approach is that webpack-dev-server can pick that up.
 
@@ -329,7 +329,7 @@ You can load files directly from your node_modules directory. Consider Bootstrap
 @import "~bootstrap/less/bootstrap";
 ```
 
-The tilde character (`~`) tells webpack that it's not a relative import as by default. If tilde is included, it will perform a lookup against `node_modules` (default setting) although this is configurable through the [resolve.modules](https://webpack.js.org/configuration/resolve/#resolve-modules) field.
+The tilde character (`~`) tells webpack that it’s not a relative import as by default. If tilde is included, it will perform a lookup against `node_modules` (default setting) although this is configurable through the [resolve.modules](https://webpack.js.org/configuration/resolve/#resolve-modules) field.
 
 W> If you are using *postcss-loader*, you can skip using `~` as discussed in [postcss-loader issue tracker](https://github.com/postcss/postcss-loader/issues/166). *postcss-loader* can resolve the imports without a tilde.
 
@@ -355,12 +355,12 @@ Loading styles through webpack is easy. It even supports advanced specifications
 
 To recap:
 
-* *css-loader* evaluates the `@import` and `url()` definitions of your styling. *style-loader* converts it to JavaScript and implements webpack's Hot Module Replacement interface.
+* *css-loader* evaluates the `@import` and `url()` definitions of your styling. *style-loader* converts it to JavaScript and implements webpack’s Hot Module Replacement interface.
 * *css-loader* supports the CSS Modules specification. CSS Modules allow you maintain CSS in a local scope by default solving the biggest issue of CSS.
 * Webpack supports a large variety of formats compiling to CSS through loaders. These include Sass, Less, and Stylus.
 * PostCSS allows you to inject functionality to CSS in through its plugin system. cssnext is an example of a collection of plugins for PostCSS that implements future features of CSS.
-* *css-loader* won't touch absolute imports by default. It allows customization of loading behavior through the `importLoaders` option. You can perform lookups against *node_modules* by prefixing your imports with a tilde (`~`) character.
+* *css-loader* won’t touch absolute imports by default. It allows customization of loading behavior through the `importLoaders` option. You can perform lookups against *node_modules* by prefixing your imports with a tilde (`~`) character.
 * To use source maps, you have to enable `sourceMap` boolean through each style loader you are using except for *style-loader*. You should also set `output.publicPath` to an absolute url that points to your development server.
 * Using Bootstrap with webpack requires special care. You can either go through generic loaders or a bootstrap specific loader for more customization options.
 
-Although the loading approach covered here is enough for development purposes, it's not ideal for production as it inlines the styling to the JavaScript bundles. We'll cover this problem in the next chapter as we learn to separate CSS.
+Although the loading approach covered here is enough for development purposes, it’s not ideal for production as it inlines the styling to the JavaScript bundles. We’ll cover this problem in the next chapter as we learn to separate CSS.

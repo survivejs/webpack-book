@@ -38,7 +38,7 @@ leanpub-end-insert
 ...
 ```
 
-If you build the project again (`npm run build`) and examine the build result (*build/app.js*), it should contain `console.log('bake')`, but miss `console.log('shake')`. That's tree shaking in action.
+If you build the project again (`npm run build`) and examine the build result (*build/app.js*), it should contain `console.log('bake')`, but miss `console.log('shake')`. That’s tree shaking in action.
 
 T> If you want to see which parts of the code tree shaking affects, enable warnings at the `UglifyJsPlugin`. In addition to other messages, you should see lines like `Dropping unused variable treeShakingDemo [./app/component.js:17,6]`.
 

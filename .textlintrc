@@ -1,5 +1,6 @@
 {
   "rules": {
+    "apostrophe": true,
     "terminology": {
       "defaultTerms": false,
       "skip": ["Blockquote", "Header", "Link", "Emphasis", "Strong"],
