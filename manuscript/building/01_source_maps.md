@@ -77,21 +77,21 @@ leanpub-end-insert
 If you build the project now (`npm run build`), you should see source maps in the output:
 
 ```bash
-Hash: aa6558af11ff99d062bf
+Hash: 79905cd66e14d3455b7d
 Version: webpack 2.2.1
-Time: 2605ms
-                    Asset       Size  Chunks             Chunk Names
-                 logo.png      77 kB          [emitted]
-  fontawesome-webfont.eot     166 kB          [emitted]
-fontawesome-webfont.woff2    77.2 kB          [emitted]
- fontawesome-webfont.woff      98 kB          [emitted]
-  fontawesome-webfont.svg   22 bytes          [emitted]
-  fontawesome-webfont.ttf     166 kB          [emitted]
-                   app.js    4.79 kB       0  [emitted]  app
-                  app.css    3.89 kB       0  [emitted]  app
-               app.js.map     4.8 kB       0  [emitted]  app
-              app.css.map   84 bytes       0  [emitted]  app
-               index.html  218 bytes          [emitted]
+Time: 2817ms
+        Asset       Size  Chunks                    Chunk Names
+     logo.png      77 kB          [emitted]
+  ...font.eot     166 kB          [emitted]
+...font.woff2    77.2 kB          [emitted]
+ ...font.woff      98 kB          [emitted]
+  ...font.svg     444 kB          [emitted]  [big]
+  ...font.ttf     166 kB          [emitted]
+       app.js    4.46 kB       0  [emitted]         app
+      app.css    3.89 kB       0  [emitted]         app
+   app.js.map    4.15 kB       0  [emitted]         app
+  app.css.map   84 bytes       0  [emitted]         app
+   index.html  218 bytes          [emitted]
    [0] ./app/component.js 272 bytes {0} [built]
    [1] ./~/font-awesome/css/font-awesome.css 41 bytes {0} [built]
    [2] ./app/main.css 41 bytes {0} [built]
@@ -334,12 +334,6 @@ T> The [official documentation](https://webpack.js.org/configuration/output/#out
 
 W> If you are using any `UglifyJsPlugin` and want source maps, you need to enable `sourceMap: true` for the plugin. Otherwise, the result won't be what you might expect. You have to do this with other plugins and loaders that emit source maps as well. *css-loader* is a good example.
 
-## Source Maps for Styling
-
-If you want to enable source maps for styling files, you can achieve this by enabling the `sourceMap` option. The same idea works with style loaders such as *css-loader*, *sass-loader*, and *less-loader*.
-
-The *css-loader* is [known to have issues](https://github.com/webpack-contrib/css-loader/issues/232) when you are using relative paths in imports. To overcome this problem, you should set an absolute public path (`output.publicPath`) that resolves to the server url.
-
 ## `SourceMapDevToolPlugin` and `EvalSourceMapDevToolPlugin`
 
 If you want more control over source map generation, it is possible to use the `SourceMapDevToolPlugin` or `EvalSourceMapDevToolPlugin` instead. The latter is a more limited alternative, and as stated by its name, it is useful for generating `eval` based source maps.
@@ -406,6 +400,12 @@ Given webpack matches only `.js` and `.css` files by default for source maps, yo
 
 Assuming you are using a package that uses inline source maps in its distribution, you can use [source-map-loader](https://www.npmjs.com/package/source-map-loader) to make webpack aware of them. Without setting it up against the package, you will get minified debug output. Often you can skip this step as it is a special case.
 
+## Source Maps for Styling
+
+If you want to enable source maps for styling files, you can achieve this by enabling the `sourceMap` option. The same idea works with style loaders such as *css-loader*, *sass-loader*, and *less-loader*.
+
+The *css-loader* is [known to have issues](https://github.com/webpack-contrib/css-loader/issues/232) when you are using relative paths in imports. To overcome this problem, you should set an absolute public path (`output.publicPath`) that resolves to the server url.
+
 ## Conclusion
 
 Source maps can be convenient during development. They provide us with better means to debug our applications as we can still examine the original code over a generated one. They can be useful even for production usage and allow you to debug issues while serving a client-friendly version of your application.
@@ -417,8 +417,8 @@ To recap:
 * `devtool: 'source-map'` is the highest quality option making it useful for production.
 * `cheap-module-eval-source-map` is a good starting point for development.
 * If you want to get only stack traces during production, use `devtool: 'hidden-source-map'`. You can capture the output and send it to a third party service for you to examine. This way you can capture errors and fix them.
-* Enabling source maps for styling requires additional effort. You will have to enable `sourceMap` option per styling related loader you are using.
 * `SourceMapDevToolPlugin` and `EvalSourceMapDevToolPlugin` provide more control over the result than the `devtool` shortcut.
 * *source-map-loader* can come in handy if your dependencies provide source maps.
+* Enabling source maps for styling requires additional effort. You will have to enable `sourceMap` option per styling related loader you are using.
 
 In the next chapter, I will show you how to split bundles and separate the current bundle into application and vendor bundles that may both be cached.
