@@ -1,6 +1,6 @@
 # Getting Started
 
-Before getting started, make sure you are using a recent version of [Node](http://nodejs.org/). I recommend using at least the most current LTS (long-term support) version. The configuration of the book has been written Node 6 features in mind. Before going further, you should have `node` and `npm` commands available at your terminal.
+Before getting started, make sure you are using a recent version of [Node](http://nodejs.org/). I recommend using at least the most current LTS (long-term support) version. The configuration of the book has been written Node 6 features in mind. You should have `node` and `npm` commands available at your terminal. [Yarn](https://yarnpkg.com/) is a good alternative to npm and will work for the tutorial as well.
 
 The completed configuration is available at [GitHub](https://github.com/survivejs-demos/webpack-demo). If you are unsure of something, refer there.
 
@@ -23,8 +23,6 @@ You can tweak the generated *package.json* manually to make further changes to i
 T> You can set those `npm init` defaults at *~/.npmrc*.
 
 T> This is a good place to set up version control using [Git](https://git-scm.com/). You can create a commit per step and tag per chapter, so it’s easier to move back and forth if you want.
-
-T> It is possible to replace most of the npm commands mentioned with [Yarn](https://yarnpkg.com/) equivalents. Yarn is a good alternative to npm as it comes with unique benefits including *lockfiles* and better performance.
 
 ## Installing Webpack
 
