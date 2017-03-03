@@ -228,16 +228,16 @@ If you build the application (`npm run build`), you should see that it processed
 Hash: e379b2c5a9f46663f367
 Version: webpack 2.2.1
 Time: 2547ms
-                    Asset       Size  Chunks                    Chunk Names
-  fontawesome-webfont.eot     166 kB          [emitted]
-  fontawesome-webfont.ttf     166 kB          [emitted]
-fontawesome-webfont.woff2    77.2 kB          [emitted]
- fontawesome-webfont.woff      98 kB          [emitted]
-  fontawesome-webfont.svg     444 kB          [emitted]  [big]
-                 logo.png      77 kB          [emitted]
-                   app.js    4.22 kB       0  [emitted]         app
-         app.da4cc4a5.css    7.72 kB       0  [emitted]         app
-               index.html  227 bytes          [emitted]
+        Asset       Size  Chunks                    Chunk Names
+  ...font.eot     166 kB          [emitted]
+  ...font.ttf     166 kB          [emitted]
+...font.woff2    77.2 kB          [emitted]
+ ...font.woff      98 kB          [emitted]
+  ...font.svg     444 kB          [emitted]  [big]
+     logo.png      77 kB          [emitted]
+       app.js    4.22 kB       0  [emitted]         app
+      app.css    7.72 kB       0  [emitted]         app
+   index.html  227 bytes          [emitted]
    [0] ./app/component.js 185 bytes {0} [built]
    [1] ./~/font-awesome/css/font-awesome.css 41 bytes {0} [built]
    [2] ./app/main.css 41 bytes {0} [built]
