@@ -92,7 +92,7 @@ leanpub-start-insert
   parts.loadImages({
     options: {
       limit: 15000,
-      name: '[hash:8].[ext]',
+      name: '[name].[ext]',
     },
   }),
 leanpub-end-insert
