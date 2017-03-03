@@ -11,8 +11,8 @@ Each of these files would have a YAML frontmatter for their metadata. The url of
 ```javascript
 // Process pages through `yaml-frontmatter-loader` and `json-loader`.
 // The first one extracts the frontmatter and the body and the latter
-// converts it into a JSON structure we can use later. Markdown hasn't
-// been processed yet.
+// converts it into a JSON structure we can use later. Markdown
+// hasn't been processed yet.
 const req = require.context(
   'json-loader!yaml-frontmatter-loader!./pages',
   true, // Load files recursively. Pass false to skip recursion.
