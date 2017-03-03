@@ -1,10 +1,16 @@
 # Loading Fonts
 
-Loading fonts is problematic. Normally you have up to four font formats to worry about, each for a particular browser. You have a couple of strategies to consider.
+Loading fonts is similar to loading images. It does come with special challenges, though. How to know what font formats to support? There can be up to four font formats to worry about if you want to provide first class support to each browser.
+
+One way to solve this problem is to decide a set of browsers and platforms that should receive first class service. The rest will use system fonts.
+
+You can approach the problem in several ways through webpack. You can still use *url-loader* and *file-loader* as with images. Font `test` patterns tend to be more complicated, though, and you may have to worry about font file related lookups.
+
+T> [canifont](https://www.npmjs.com/package/canifont) helps you to figure out which font formats you should support. It accepts a **browserslist** definition and then checks font support of each browser based on the definition.
 
 ## Choosing One Format
 
-Depending on your project requirements, you might be able to get away with fewer formats. If you exclude Opera Mini, all browsers support the *.woff* format. The rendered result may differ depending on the browser so you might want to experiment here.
+If you exclude Opera Mini, all browsers support the *.woff* format. If you go only with modern browsers, its newer version, *.woff2*, can be enough.
 
 If we go with one format, we can use a similar setup as for images and rely on both *file-loader* and *url-loader* while using the limit option:
 
@@ -18,17 +24,23 @@ If we go with one format, we can use a similar setup as for images and rely on b
 },
 ```
 
-A more elaborate way to achieve a similar result would be to use:
+A more elaborate way to achieve a similar result that includes *.woff2* and more complicated patterns, would be to end up with code like this:
 
 ```javascript
 {
   // Match woff2 in addition to patterns like .woff?v=1.1.1.
-  test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/,
+  test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
   loader: 'url-loader',
   options: {
+    // Limit at 50k. Above that it will emit separate files
     limit: 50000,
+
+    // url-loader will set mimetype if it is passed.
+    // Without this it will derive it from file extension
     mimetype: 'application/font-woff',
-    name: './fonts/[hash].[ext]',
+
+    // Output below fonts directory
+    name: './fonts/[name].[hash].[ext]',
   },
 },
 ```
@@ -39,38 +51,26 @@ In case we want to make sure our site looks good on a maximum amount of browsers
 
 ```javascript
 {
-  test: /\.woff2?$/,
-  // Inline small woff files and output them below fonts/.
-  // Set mimetype just in case.
-  loader: 'url-loader',
-  options: {
-    name: 'fonts/[hash].[ext]',
-    limit: 50000,
-    mimetype: 'application/font-woff',
-  },
-},
-{
-  test: /\.(ttf|eot)$/,
+  test: /\.(ttf|eot|woff|woff2)$/,
   loader: 'file-loader',
   options: {
-    name: 'fonts/[hash].[ext]',
+    name: 'fonts/[name].[hash].[ext]',
   },
 },
 ```
 
-Note that the way you write your CSS definition matters. Assuming we are going to inline the WOFF format, we should have it first like this in your CSS:
+The way you write your CSS definition matters. To make sure you are getting the benefit from the newer formats, they should become first in the definition. This way the browser will pick them up.
 
 ```css
 @font-face {
   font-family: 'myfontfamily';
-  src: url('myfontfile.woff2') format('woff2'),
-    url('myfontfile.woff') format('woff'),
-    url('myfontfile.ttf') format('truetype');
+  src: url('./fonts/myfontfile.woff2') format('woff2'),
+    url('./fonts/myfontfile.woff') format('woff'),
+    url('./fonts/myfontfile.eot') format('embedded-opentype'),
+    url('./fonts/myfontfile.ttf') format('truetype');
     /* Add other formats as you see fit */
 }
 ```
-
-This way the browser will try to consume the inlined font before loading remote alternatives.
 
 T> [MDN discusses the font-family rule](https://developer.mozilla.org/en/docs/Web/CSS/@font-face) in detail.
 
@@ -94,8 +94,10 @@ Furthermore, it's possible to manipulate `publicPath` and override the default p
   options: {
     limit: 50000,
     mimetype: 'application/font-woff',
+
     // Output below the fonts directory
-    name: './fonts/[hash].[ext]',
+    name: './fonts/[name].[hash].[ext]',
+
     // Tweak publicPath to fix CSS lookups to take
     // the directory into account.
     publicPath: '../',
