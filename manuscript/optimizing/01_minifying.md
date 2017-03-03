@@ -186,7 +186,8 @@ You should check *babili-webpack-plugin* and Babili documentation for more optio
 
 Although Babili works for our use case, there are more options you can consider:
 
-* [webpack-closure-compiler](https://www.npmjs.com/package/webpack-closure-compiler) runs parallel and may give even smaller result than UglifyJS.
+* [webpack.optimize.UglifyJsPlugin](https://webpack.js.org/plugins/uglifyjs-webpack-plugin/) is an official UglifyJS plugin but it doesn’t support ES6 yet.
+* [webpack-closure-compiler](https://www.npmjs.com/package/webpack-closure-compiler) runs parallel and may give even smaller result than Babili.
 * [optimize-js-plugin](https://www.npmjs.com/package/optimize-js-plugin) complements the other solutions by wrapping eager functions and it enhances the way your JavaScript code gets parsed initially. The plugin relies on [optimize-js](https://github.com/nolanlawson/optimize-js) by Nolan Lawson.
 * [uglifyjs-webpack-plugin](https://www.npmjs.com/package/uglifyjs-webpack-plugin) allows you to try out an experimental version of UglifyJS that provides better support for ES6 than the stable version.
 * [uglify-loader](https://www.npmjs.com/package/uglify-loader) gives more granular control than webpack’s `UglifyJsPlugin` in case you prefer to use UglifyJS.
