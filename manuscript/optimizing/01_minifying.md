@@ -117,12 +117,10 @@ leanpub-end-insert
 ...
 
 leanpub-start-insert
-exports.minifyJavaScript = function({ useSourceMap }) {
+exports.minifyJavaScript = function() {
   return {
     plugins: [
-      new BabiliPlugin({
-        sourceMap: useSourceMap,
-      }),
+      new BabiliPlugin(),
     ],
   };
 };
@@ -140,7 +138,7 @@ const productionConfig = merge([
   ...
   parts.clean(PATHS.build),
 leanpub-start-insert
-  parts.minifyJavaScript({ useSourceMap: true }),
+  parts.minifyJavaScript(),
 leanpub-end-insert
   ...
 ]);
