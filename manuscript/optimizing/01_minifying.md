@@ -11,28 +11,30 @@ T> Even if we minify our build, we can still generate source maps through the `d
 To get started, we should generate a baseline build, so we have something to optimize. Execute `npm run build`. You should end up with something like this:
 
 ```bash
-Hash: 4f6f78b2fd2c38e8200d
+Hash: 12aec469d54202150429
 Version: webpack 2.2.1
-Time: 2574ms
-                    Asset       Size  Chunks             Chunk Names
-                   app.js    2.75 kB       1  [emitted]  app
-  fontawesome-webfont.eot     166 kB          [emitted]
-fontawesome-webfont.woff2    77.2 kB          [emitted]
- fontawesome-webfont.woff      98 kB          [emitted]
-  fontawesome-webfont.svg   22 bytes          [emitted]
-                 logo.png      77 kB          [emitted]
-                     0.js  328 bytes       0  [emitted]
-  fontawesome-webfont.ttf     166 kB          [emitted]
-                vendor.js     150 kB       2  [emitted]  vendor
-                  app.css     3.9 kB       1  [emitted]  app
-                 0.js.map  232 bytes       0  [emitted]
-               app.js.map    2.78 kB       1  [emitted]  app
-              app.css.map   84 bytes       1  [emitted]  app
-            vendor.js.map     179 kB       2  [emitted]  vendor
-               index.html  274 bytes          [emitted]
-   [0] ./~/process/browser.js 5.3 kB {2} [built]
+Time: 2863ms
+        Asset       Size  Chunks                    Chunk Names
+       app.js    2.42 kB       1  [emitted]         app
+  ...font.eot     166 kB          [emitted]
+...font.woff2    77.2 kB          [emitted]
+ ...font.woff      98 kB          [emitted]
+  ...font.svg     444 kB          [emitted]  [big]
+     logo.png      77 kB          [emitted]
+         0.js    1.89 kB       0  [emitted]
+  ...font.ttf     166 kB          [emitted]
+leanpub-start-insert
+    vendor.js     150 kB       2  [emitted]         vendor
+leanpub-end-insert
+      app.css     3.9 kB       1  [emitted]         app
+     0.js.map    2.22 kB       0  [emitted]
+   app.js.map    2.13 kB       1  [emitted]         app
+  app.css.map   84 bytes       1  [emitted]         app
+vendor.js.map     178 kB       2  [emitted]         vendor
+   index.html  274 bytes          [emitted]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {2} [built]
   [18] ./app/component.js 461 bytes {1} [built]
+  [19] ./~/font-awesome/css/font-awesome.css 41 bytes {1} [built]
 ...
 ```
 
@@ -57,7 +59,7 @@ leanpub-start-insert
     performance: {
       hints: 'warning', // 'error' or false are valid too
       maxEntrypointSize: 100000, // in bytes
-      maxAssetSize: 200000, // in bytes
+      maxAssetSize: 450000, // in bytes
     },
   },
 leanpub-end-insert
@@ -67,14 +69,14 @@ leanpub-end-insert
 ...
 ```
 
-If you build now (`npm run build`), you should see a warning like this within the output:
+In practice you might want to maintain lower limits. The current ones are enough for this demonstration. If you build now (`npm run build`), you should see a warning like this within the output:
 
 ```bash
 ...
 
 WARNING in entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (100 kB). This can impact web performance.
 Entrypoints:
-  app (157 kB)
+  app (156 kB)
       vendor.js
 ,      app.js
 ,      app.css
@@ -90,32 +92,48 @@ Ideally, minification will convert our code into a smaller format without losing
 
 Sometimes minification can break code as it can rewrite pieces of code. Angular 1 was an example of this as it relied on a specific function parameter naming and rewriting the parameters could break code unless you took precautions against it.
 
-The easiest way to enable minification in webpack is to call `webpack -p`. `-p` is a shortcut for `--optimize-minimize`, you can think it as `-p` for "production". Alternately, we can use a plugin directly as this provides us more control. Relying on the flag comes with its problems. If you want to override minification settings, you will have to drop it and rewrite the configuration yourself to avoid minifying twice.
+The easiest way to enable minification in webpack is to call `webpack -p`. `-p` is a shortcut for `--optimize-minimize`, you can think it as `-p` for "production". This enables webpack's `UglifyJsPlugin`. The problem is that UglifyJS doesn't support ES6 syntax yet making it problematic if Babel and *babel-preset-env* is used.
+
+Using `UglifyJsPlugin` provides us more control as relying on the flag comes with its problems. If you went with flags and wanted to customize the result, you would have to drop the flags and rewrite the configuration entirely to avoid minifying twice.
+
+T> [uglifyjs-webpack-plugin](https://www.npmjs.com/package/uglifyjs-webpack-plugin) allows you to try out an experimental version of UglifyJS that provides better support for ES6. More alternatives are listed later in this chapter.
 
 ### Setting Up JavaScript Minification
 
-As earlier, we can define a little function for this purpose and then point to it from our main configuration. By default, UglifyJS will output a lot of warnings, and they don't provide value, so we'll be disabling them in our setup. Here's the basic idea:
+A good way to minify code generated by Babel is to use [babili](https://www.npmjs.com/package/babili). It is a JavaScript minifier maintained by the Babel team and it provides support for ES6 and newer features. [babili-webpack-plugin](https://www.npmjs.com/package/babili-webpack-plugin) makes it possible to use it through webpack.
+
+To get started, include the plugin to the project:
+
+```bash
+npm install babili-webpack-plugin --save-dev
+```
+
+To attach it to our configuration, define a part for it first:
 
 **webpack.parts.js**
 
 ```javascript
 ...
+leanpub-start-insert
+const BabiliPlugin = require('babili-webpack-plugin');
+leanpub-end-insert
 
+...
+
+leanpub-start-insert
 exports.minifyJavaScript = function({ useSourceMap }) {
   return {
     plugins: [
-      new webpack.optimize.UglifyJsPlugin({
+      new BabiliPlugin({
         sourceMap: useSourceMap,
-        compress: {
-          warnings: false,
-        },
       }),
     ],
   };
 };
+leanpub-end-insert
 ```
 
-Now we can hook it up with our configuration:
+The plugin exposes more functionality, but having the possibility of toggling source maps is enough for our purposes. Hook it up with our configuration:
 
 **webpack.config.js**
 
@@ -137,40 +155,51 @@ leanpub-end-insert
 If you execute `npm run build` now, you should see smaller results:
 
 ```bash
-Hash: 4f6f78b2fd2c38e8200d
+Hash: 12aec469d54202150429
 Version: webpack 2.2.1
-Time: 3313ms
-                    Asset       Size  Chunks             Chunk Names
-                   app.js  682 bytes       1  [emitted]  app
-  fontawesome-webfont.eot     166 kB          [emitted]
-fontawesome-webfont.woff2    77.2 kB          [emitted]
- fontawesome-webfont.woff      98 kB          [emitted]
-  fontawesome-webfont.svg   22 bytes          [emitted]
-                 logo.png      77 kB          [emitted]
-                     0.js  175 bytes       0  [emitted]
-  fontawesome-webfont.ttf     166 kB          [emitted]
-                vendor.js    45.4 kB       2  [emitted]  vendor
-                  app.css     3.9 kB       1  [emitted]  app
-                 0.js.map  768 bytes       0  [emitted]
-               app.js.map     5.4 kB       1  [emitted]  app
-              app.css.map   84 bytes       1  [emitted]  app
-            vendor.js.map     368 kB       2  [emitted]  vendor
-               index.html  274 bytes          [emitted]
-   [0] ./~/process/browser.js 5.3 kB {2} [built]
+Time: 5265ms
+        Asset       Size  Chunks             Chunk Names
+       app.js  669 bytes       1  [emitted]  app
+  ...font.eot     166 kB          [emitted]
+...font.woff2    77.2 kB          [emitted]
+ ...font.woff      98 kB          [emitted]
+  ...font.svg     444 kB          [emitted]
+     logo.png      77 kB          [emitted]
+         0.js  399 bytes       0  [emitted]
+  ...font.ttf     166 kB          [emitted]
+leanpub-start-insert
+    vendor.js    45.2 kB       2  [emitted]  vendor
+leanpub-end-insert
+      app.css     3.9 kB       1  [emitted]  app
+     0.js.map    2.07 kB       0  [emitted]
+   app.js.map    1.64 kB       1  [emitted]  app
+  app.css.map   84 bytes       1  [emitted]  app
+leanpub-start-insert
+vendor.js.map     169 kB       2  [emitted]  vendor
+leanpub-end-insert
+   index.html  274 bytes          [emitted]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {2} [built]
   [18] ./app/component.js 461 bytes {1} [built]
+  [19] ./~/font-awesome/css/font-awesome.css 41 bytes {1} [built]
 ...
 ```
 
-Given it needs to do more work, it took longer to execute the build. But on the plus side, the build is now smaller, and our vendor build went from 150 kB to roughly 45 kB.
+Given it needs to do more work, it took longer to execute the build. But on the plus side, the build is now smaller, the size limit warning disappeared, and our vendor build went from 150 kB to roughly 45 kB.
 
-T> UglifyJS warnings can help you to understand how it processes the code. Therefore, it may be beneficial to have a peek at the full output every once in a while.
+You should check *babili-webpack-plugin* and Babili documentation for more options. Babili gives you control over how to handle code comments for example.
 
-W> UglifyJS does not support ES6 features yet. If your code contains any, Uglify will fail! Therefore you should preprocess your code before passing it to Uglify or use some other solution. [uglifyjs-webpack-plugin](https://www.npmjs.com/package/uglifyjs-webpack-plugin) allows you to try out an experimental version of UglifyJS that provides better support for ES6. More alternatives are listed later in this chapter.
+## Other Ways to Minify JavaScript
+
+Although Babili works for our use case, there are more options you can consider:
+
+* [webpack-closure-compiler](https://www.npmjs.com/package/webpack-closure-compiler) runs parallel and may give even smaller result than UglifyJS.
+* [optimize-js-plugin](https://www.npmjs.com/package/optimize-js-plugin) complements the other solutions by wrapping eager functions and it enhances the way your JavaScript code gets parsed initially. The plugin relies on [optimize-js](https://github.com/nolanlawson/optimize-js) by Nolan Lawson.
+* [uglify-loader](https://www.npmjs.com/package/uglify-loader) gives more granular control than webpack's `UglifyJsPlugin` in case you prefer to use UglifyJS.
+* [webpack-parallel-uglify-plugin](https://www.npmjs.com/package/webpack-parallel-uglify-plugin) allows you to parallelize the minifying step and may yield extra performance as webpack doesn't run in parallel by default.
 
 ## Controlling UglifyJS through Webpack
 
-An UglifyJS feature, **mangling**, will be enabled by default. The feature will reduce local function and variable names to a minimum, usually to a single character. It can also rewrite properties to a more compact format if configured correctly.
+If you use UglifyJS, **mangling**, will be enabled by default. The feature will reduce local function and variable names to a minimum, usually to a single character. It can also rewrite properties to a more compact format if configured correctly.
 
 Given these transformations can break your code, you must be a little careful. A good example of this is Angular 1 and its dependency injection system. As it relies on strings, you must be careful not to mangle those or else it will fail to work.
 
@@ -205,16 +234,6 @@ new webpack.optimize.UglifyJsPlugin({
 Some of the options support further customization as discussed by the official documentation. If you enable mangling, it is a good idea to set `except: ['webpackJsonp']` to avoid mangling the webpack runtime.
 
 T> Dropping the `console` statements can be achieved through Babel too by using the [babel-plugin-remove-console](https://www.npmjs.com/package/babel-plugin-remove-console) plugin. Babel is discussed in detail in the *Loading JavaScript* chapter.
-
-## Other Ways to Minify JavaScript
-
-Another way to control UglifyJS would be to use the [uglify-loader](https://www.npmjs.com/package/uglify-loader). That gives yet another way to control minification behavior. [webpack-parallel-uglify-plugin](https://www.npmjs.com/package/webpack-parallel-uglify-plugin) allows you to parallelize the minifying step and may yield extra performance as webpack doesn't run in parallel by default.
-
-I've listed a couple of UglifyJS alternatives below:
-
-* [webpack-closure-compiler](https://www.npmjs.com/package/webpack-closure-compiler) runs parallel and may give even smaller result than UglifyJS.
-* [babili](https://www.npmjs.com/package/babili) is a Babel specific solution. It can be used either as a command line tool or through [babili-webpack-plugin](https://www.npmjs.com/package/babili-webpack-plugin).
-* [optimize-js-plugin](https://www.npmjs.com/package/optimize-js-plugin) complements the other solutions by wrapping eager functions. The benefit of doing this is that it enhances the way your JavaScript code gets parsed initially. This plugin relies on [optimize-js](https://github.com/nolanlawson/optimize-js) by Nolan Lawson. [v8-lazy-parse-webpack-plugin](https://www.npmjs.com/package/v8-lazy-parse-webpack-plugin) is a similar experimental plugin doing something similar with V8.
 
 ## Minifying CSS
 
@@ -292,28 +311,30 @@ leanpub-end-insert
 If you build the project now (`npm run build`), you should notice that CSS has become smaller as it is missing comments:
 
 ```bash
-Hash: 4f6f78b2fd2c38e8200d
+Hash: 12aec469d54202150429
 Version: webpack 2.2.1
-Time: 3303ms
-                    Asset       Size  Chunks             Chunk Names
-                   app.js  682 bytes       1  [emitted]  app
-  fontawesome-webfont.eot     166 kB          [emitted]
-fontawesome-webfont.woff2    77.2 kB          [emitted]
- fontawesome-webfont.woff      98 kB          [emitted]
-  fontawesome-webfont.svg   22 bytes          [emitted]
-                 logo.png      77 kB          [emitted]
-                     0.js  175 bytes       0  [emitted]
-  fontawesome-webfont.ttf     166 kB          [emitted]
-                vendor.js    45.4 kB       2  [emitted]  vendor
-                  app.css    2.48 kB       1  [emitted]  app
-                 0.js.map  768 bytes       0  [emitted]
-               app.js.map     5.4 kB       1  [emitted]  app
-              app.css.map   84 bytes       1  [emitted]  app
-            vendor.js.map     368 kB       2  [emitted]  vendor
-               index.html  274 bytes          [emitted]
-   [0] ./~/process/browser.js 5.3 kB {2} [built]
+Time: 4764ms
+        Asset       Size  Chunks             Chunk Names
+       app.js  669 bytes       1  [emitted]  app
+  ...font.eot     166 kB          [emitted]
+...font.woff2    77.2 kB          [emitted]
+ ...font.woff      98 kB          [emitted]
+  ...font.svg     444 kB          [emitted]
+     logo.png      77 kB          [emitted]
+         0.js  399 bytes       0  [emitted]
+  ...font.ttf     166 kB          [emitted]
+    vendor.js    45.2 kB       2  [emitted]  vendor
+leanpub-start-insert
+      app.css    2.48 kB       1  [emitted]  app
+leanpub-end-insert
+     0.js.map    2.07 kB       0  [emitted]
+   app.js.map    1.64 kB       1  [emitted]  app
+  app.css.map   84 bytes       1  [emitted]  app
+vendor.js.map     169 kB       2  [emitted]  vendor
+   index.html  274 bytes          [emitted]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {2} [built]
   [18] ./app/component.js 461 bytes {1} [built]
+  [19] ./~/font-awesome/css/font-awesome.css 41 bytes {1} [built]
 ...
 ```
 
@@ -329,7 +350,7 @@ Minification is the easiest step you can take to make your build smaller. To rec
 
 * **Minification** process analyzes your source code and turns it into a smaller form with the same meaning if you use safe transformations. Certain unsafe transformations allow you to reach even smaller results while potentially breaking code that relies, for example, on exact parameter naming.
 * **Performance budget** allows you to set limits to the build size. Maintaining a budget can keep developers more conscious of the size of the generated bundles.
-* Webpack includes `UglifyJsPlugin` for minification. Other solutions, such as Babili, provide similar functionality with costs of their own. While Babili supports ES6, it is also less performant that UglifyJS.
+* Webpack includes `UglifyJsPlugin` for minification. Other solutions, such as Babili, provide similar functionality with costs of their own. While Babili supports ES6, it can be less performant that UglifyJS.
 * Besides JavaScript, it is possible to minify other assets, such as CSS and HTML, too. Minifying these requires specific technologies that have to be applied through loaders and plugins of their own.
 
 I will discuss the idea of **tree shaking** in the next chapter. It is another way to make your bundles smaller.
