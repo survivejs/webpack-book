@@ -124,36 +124,34 @@ W> The hashes have been sliced to make the output fit better in the book. In pra
 If you generate a build now (`npm run build`), you should see something like this:
 
 ```bash
-Hash: f40d1407c03baa2d1645
+Hash: 16b92fddd41e579e77ba
 Version: webpack 2.2.1
-Time: 3586ms
+Time: 4258ms
                  Asset       Size  Chunks             Chunk Names
-       app.e0f59512.js  828 bytes       1  [emitted]  app
+       app.e0f59512.js  811 bytes       1  [emitted]  app
   ...font.674f50d2.eot     166 kB          [emitted]
 ...font.af7ae505.woff2    77.2 kB          [emitted]
  ...font.fee66e71.woff      98 kB          [emitted]
-  ...font.11ec0064.svg   22 bytes          [emitted]
-     logo.9a0d8fb8.png    17.6 kB          [emitted]
-         0.a21c7031.js  195 bytes       0  [emitted]
+  ...font.912ec66d.svg     444 kB          [emitted]
+     logo.85011118.png      77 kB          [emitted]
+         0.470796d5.js  408 bytes       0  [emitted]
   ...font.b06871f2.ttf     166 kB          [emitted]
-    vendor.a22e887d.js    24.6 kB       2  [emitted]  vendor
-      app.4d491c24.css    1.88 kB       1  [emitted]  app
-     0.a21c7031.js.map  797 bytes       0  [emitted]
-   app.e0f59512.js.map    6.48 kB       1  [emitted]  app
-  app.4d491c24.css.map   93 bytes       1  [emitted]  app
-vendor.a22e887d.js.map     287 kB       2  [emitted]  vendor
+    vendor.f897ca59.js    24.4 kB       2  [emitted]  vendor
+      app.bf4d156d.css    2.54 kB       1  [emitted]  app
+     0.470796d5.js.map    2.08 kB       0  [emitted]
+   app.e0f59512.js.map    2.33 kB       1  [emitted]  app
+  app.bf4d156d.css.map   93 bytes       1  [emitted]  app
+vendor.f897ca59.js.map     135 kB       2  [emitted]  vendor
             index.html  301 bytes          [emitted]
+   [4] ./~/object-assign/index.js 2.11 kB {2} [built]
   [14] ./app/component.js 461 bytes {1} [built]
   [15] ./app/shake.js 138 bytes {1} [built]
-  [16] ./~/font-awesome/css/font-awesome.css 41 bytes {1} [built]
 ...
 ```
 
 Our files have neat hashes now. To prove that it works for styling, you could try altering *app/main.css* and see what happens to the hashes when you rebuild.
 
 There's one problem, though. If you change the application code, it will invalidate the vendor file as well! Solving this requires extracting a **manifest**, but before that, we can improve the way the production build handles module IDs.
-
-T> The length of hashes has been clamped to eight characters to fit the output to the book better. In practice, you could avoid it and skip using `:8`.
 
 ## Enabling `HashedModuleIdsPlugin`
 
@@ -186,24 +184,24 @@ leanpub-end-insert
 As you can see in the build output, the difference is negligible:
 
 ```bash
-Hash: d562072500259356d88b
+Hash: 11891d736f3749fb9f8f
 Version: webpack 2.2.1
-Time: 3443ms
+Time: 4115ms
                  Asset       Size  Chunks             Chunk Names
-       app.4330d101.js  880 bytes       1  [emitted]  app
-  ...font.11ec0064.svg   22 bytes          [emitted]
+       app.4330d101.js  863 bytes       1  [emitted]  app
+  ...font.912ec66d.svg     444 kB          [emitted]
   ...font.674f50d2.eot     166 kB          [emitted]
  ...font.fee66e71.woff      98 kB          [emitted]
 ...font.af7ae505.woff2    77.2 kB          [emitted]
-     logo.9a0d8fb8.png    17.6 kB          [emitted]
-         0.ce7751bd.js  197 bytes       0  [emitted]
+     logo.85011118.png      77 kB          [emitted]
+         0.b2a1fec0.js  430 bytes       0  [emitted]
   ...font.b06871f2.ttf     166 kB          [emitted]
-    vendor.eb0d37b6.js    25.1 kB       2  [emitted]  vendor
-      app.4d491c24.css    1.88 kB       1  [emitted]  app
-     0.ce7751bd.js.map  805 bytes       0  [emitted]
-   app.4330d101.js.map    6.55 kB       1  [emitted]  app
-  app.4d491c24.css.map   93 bytes       1  [emitted]  app
-vendor.eb0d37b6.js.map     288 kB       2  [emitted]  vendor
+    vendor.3c78d233.js    24.8 kB       2  [emitted]  vendor
+      app.bf4d156d.css    2.54 kB       1  [emitted]  app
+     0.b2a1fec0.js.map    2.08 kB       0  [emitted]
+   app.4330d101.js.map    2.34 kB       1  [emitted]  app
+  app.bf4d156d.css.map   93 bytes       1  [emitted]  app
+vendor.3c78d233.js.map     135 kB       2  [emitted]  vendor
             index.html  301 bytes          [emitted]
 [1Q41] ./app/main.css 41 bytes {1} [built]
 [2twT] ./app/index.js 557 bytes {1} [built]
