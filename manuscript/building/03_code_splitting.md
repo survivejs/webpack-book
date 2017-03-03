@@ -247,6 +247,8 @@ body {
 
 The idea is that after *lazy.js* gets loaded, *lazy.css* is applied as well. You can confirm this by running the application (`npm start`). The same behavior is visible if you build the application (`npm run build`) and examine the output (`0.js`). This is due to our `ExtractTextPlugin` definition.
 
+![Lazy styled content](images/lazy-styled.png)
+
 ### Defining a Split Point Using `require.ensure`
 
 It is possible to achieve the same with `require.ensure`. Consider the full example below:
