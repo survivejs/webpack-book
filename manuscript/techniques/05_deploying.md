@@ -37,28 +37,26 @@ To make the asset paths work on GitHub Pages, we also need to tweak the `output.
 
 `publicPath` gives control over the resulting urls you see at *index.html* for instance. If you are hosting your assets on a CDN, this would be the place to tweak. In this case, it’s enough to set it to point the GitHub project like this:
 
+**webpack.config.js**
+
 ```javascript
 ...
 
-module.exports = function(env) {
-  if (env === 'production') {
-    return merge([
-      common,
-leanpub-start-insert
-      {
-        output: {
-          // Tweak this to match your GitHub project name
-          publicPath: '/webpack-demo/',
-        },
-      },
-leanpub-end-insert
-      parts.clean(PATHS.build),
+const productionConfig = merge([
+  {
+    ...
+    output: {
       ...
-    ]);
-  }
-
+leanpub-start-insert
+      // Tweak this to match your GitHub project name
+      publicPath: '/webpack-demo/',
+leanpub-end-insert
+    },
+  },
   ...
-};
+]);
+
+...
 ```
 
 After building (`npm run build`) and deploying (`npm run deploy`), you should have your application from the `build/` directory hosted through GitHub Pages. You should find it at `https://<name>.github.io/<project>` (`github.com/<name>/<project>` at GitHub) assuming everything went fine.
