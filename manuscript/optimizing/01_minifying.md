@@ -186,50 +186,12 @@ You should check *babili-webpack-plugin* and Babili documentation for more optio
 
 Although Babili works for our use case, there are more options you can consider:
 
-* [webpack.optimize.UglifyJsPlugin](https://webpack.js.org/plugins/uglifyjs-webpack-plugin/) is an official UglifyJS plugin but it doesn’t support ES6 yet.
 * [webpack-closure-compiler](https://www.npmjs.com/package/webpack-closure-compiler) runs parallel and may give even smaller result than Babili.
 * [optimize-js-plugin](https://www.npmjs.com/package/optimize-js-plugin) complements the other solutions by wrapping eager functions and it enhances the way your JavaScript code gets parsed initially. The plugin relies on [optimize-js](https://github.com/nolanlawson/optimize-js) by Nolan Lawson.
+* [webpack.optimize.UglifyJsPlugin](https://webpack.js.org/plugins/uglifyjs-webpack-plugin/) is the official UglifyJS plugin for webpack. It doesn’t support ES6 yet.
 * [uglifyjs-webpack-plugin](https://www.npmjs.com/package/uglifyjs-webpack-plugin) allows you to try out an experimental version of UglifyJS that provides better support for ES6 than the stable version.
 * [uglify-loader](https://www.npmjs.com/package/uglify-loader) gives more granular control than webpack’s `UglifyJsPlugin` in case you prefer to use UglifyJS.
 * [webpack-parallel-uglify-plugin](https://www.npmjs.com/package/webpack-parallel-uglify-plugin) allows you to parallelize the minifying step and may yield extra performance as webpack doesn’t run in parallel by default.
-
-## Controlling UglifyJS through Webpack
-
-If you use UglifyJS, **mangling**, will be enabled by default. The feature will reduce local function and variable names to a minimum, usually to a single character. It can also rewrite properties to a more compact format if configured correctly.
-
-Given these transformations can break your code, you must be a little careful. A good example of this is Angular 1 and its dependency injection system. As it relies on strings, you must be careful not to mangle those or else it will fail to work.
-
-Beyond mangling, it is possible to control all other [UglifyJS features](http://lisperator.net/uglifyjs/) through webpack as illustrated below:
-
-```javascript
-new webpack.optimize.UglifyJsPlugin({
-  beautify: false, // Don't beautify output (uglier to read)
-
-  // Preserve comments
-  comments: false,
-
-  // Extract comments to a separate file. This works only
-  // if comments is set to true above.
-  extractComments: false,
-
-  // Compression specific options
-  compress: {
-    warnings: false,
-    drop_console: true, // Drop `console` statements
-  },
-
-  // Mangling specific options
-  mangle: {
-    except: ['$'], // Don't mangle $
-    screw_ie8 : true, // Don't care about IE8
-    keep_fnames: true, // Don't mangle function names
-  },
-});
-```
-
-Some of the options support further customization as discussed by the official documentation. If you enable mangling, it is a good idea to set `except: ['webpackJsonp']` to avoid mangling the webpack runtime.
-
-T> Dropping the `console` statements can be achieved through Babel too by using the [babel-plugin-remove-console](https://www.npmjs.com/package/babel-plugin-remove-console) plugin. Babel is discussed in detail in the *Loading JavaScript* chapter.
 
 ## Minifying CSS
 
