@@ -109,7 +109,6 @@ const parts = require('./webpack.parts');
 
 ...
 
-
 const productionConfig = merge([
   ...
 leanpub-start-insert
