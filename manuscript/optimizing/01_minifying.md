@@ -88,11 +88,11 @@ If we do our work right, we will meet the given budget and eliminate this warnin
 
 ## Minifying JavaScript
 
-Ideally, minification will convert our code into a smaller format without losing any meaning. Usually, this means some amount of rewriting code through predefined transformations. Good examples of this include renaming variables or even removing entire blocks of code based on the fact that they are unreachable like an `if (false)` statement.
+The point of **minification** is to convert our code into a smaller form. Safe **transformations** do this without losing any meaning by rewriting code. Good examples of this include renaming variables or even removing entire blocks of code based on the fact that they are unreachable (`if (false)`).
 
-Sometimes minification can break code as it can rewrite pieces of code. Angular 1 was an example of this as it relied on a specific function parameter naming and rewriting the parameters could break code unless you took precautions against it.
+Unsafe transformations can break code as they can lose something implicit the underlying code relies upon. For example, Angular 1 expects specific function parameter naming when using modules. Rewriting the parameters breaks code unless you take precautions against it in this case.
 
-The easiest way to enable minification in webpack is to call `webpack -p` (same as `--optimize-minimize`). This enables webpack’s `UglifyJsPlugin`. The problem is that UglifyJS doesn’t support ES6 syntax yet making it problematic if Babel and *babel-preset-env* are used so we have to go other route in this case.
+The easiest way to enable minification in webpack is to call `webpack -p` (same as `--optimize-minimize`). This enables webpack’s `UglifyJsPlugin`. The problem is that UglifyJS doesn’t support ES6 syntax yet making it problematic if Babel and *babel-preset-env* are used while targeting specific browsers. We have to go another route in this case for this reason.
 
 ### Setting Up JavaScript Minification
 
