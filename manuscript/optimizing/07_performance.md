@@ -19,7 +19,7 @@ Webpack uses only a single instance by default meaning you won’t be able to be
 
 *parallel-webpack* allows you to parallelize webpack configuration in two ways. Assuming you have defined your webpack configuration as an array, it can run the configurations in parallel. In addition to this, *parallel-webpack* can generate builds based on given **variants**.
 
-Using variants would be a good way to generate both production and development builds at once. Variants would also allow you to generate bundles with different targets to make them easier to consume depending on the environment.
+Using variants would be a good way to generate both production and development builds at once. Variants also allow you to generate bundles with different targets to make them easier to consume depending on the environment. Variants can be used to implement feature flags when combined with `DefinePlugin` as discussed in the *Setting Environment Variables* chapter.
 
 The underlying idea can be implemented using a [worker-farm](https://www.npmjs.com/package/worker-farm). In fact, *parallel-webpack* relies on *worker-farm* underneath.
 
