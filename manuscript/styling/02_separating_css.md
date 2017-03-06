@@ -68,9 +68,9 @@ leanpub-end-insert
 
 That `[name]` placeholder will use the name of the entry where the CSS is referred. Placeholders and the overall idea are discussed in detail in the *Adding Hashes to Filenames* chapter.
 
-T> If you wanted to output the resulting file to a specific directory, you could do it like this: `new ExtractTextPlugin('styles/[name].css')`.
+It would be possible to have multiple `plugin.extract` calls against different file types. This would allow you to aggregate them to a single CSS file. Another option would be to extract multiple CSS files through separate plugin definitions and then concatenate them using [merge-files-webpack-plugin](https://www.npmjs.com/package/merge-files-webpack-plugin).
 
-T> If you extract multiple CSS files from separate entries, you can use [merge-files-webpack-plugin](https://www.npmjs.com/package/merge-files-webpack-plugin) to concatenate them into one file.
+T> If you wanted to output the resulting file to a specific directory, you could do it by passing a path to `filename` like this: `filename: 'styles/[name].css'`.
 
 ### Connecting with Configuration
 
