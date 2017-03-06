@@ -114,7 +114,7 @@ const productionConfig = merge([
   ...
 leanpub-start-insert
   parts.purifyCSS({
-    paths: glob.sync(path.join(PATHS.app, '**', '*')),
+    paths: glob.sync(path.join(PATHS.app, '**', '*'), { nodir: true }),
   }),
 leanpub-end-insert
 ]);
