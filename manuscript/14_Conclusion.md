@@ -28,7 +28,7 @@ As this book has demonstrated, webpack is a versatile tool. To make it easier to
 
 * When loading images through webpack, optimize them, so the users have less to download. The *Loading Images* chapter shows how to do this.
 * Load only the fonts you need based on the browsers you have to support. The *Loading Fonts* chapter discusses the topic.
-* Minify your source files to make sure the browser to decrease the payload the client has to download. The *Minifying Build* chapter shows how to achieve this.
+* Minify your source files to make sure the browser to decrease the payload the client has to download. The *Minifying* chapter shows how to achieve this.
 
 ### Caching
 
