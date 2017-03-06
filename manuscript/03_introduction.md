@@ -4,7 +4,7 @@
 
 It isn’t the easiest tool to learn due to its configuration-driven approach. The purpose of this guide is to help you get started with webpack and then to go beyond the basics.
 
-## What Is Webpack?
+## What Is Webpack
 
 Web browsers have been designed to consume HTML, JavaScript, and CSS. The quickest way to develop is simply to write files that the browser understands directly. The problem is that this eventually becomes unwieldy and this is particularly the case when you are developing web applications.
 
