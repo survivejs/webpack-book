@@ -35,7 +35,7 @@ Even though Babel can be used standalone, as you can see in the *Authoring Packa
 
 Skipping processing is a good option especially if you don’t rely on any custom language features and work using a modern browser. Processing through Babel becomes almost a necessity when you compile your code for production, though.
 
-You can use Babel with webpack through [babel-loader](https://www.npmjs.com/package/babel-loader). It can pick up project level Babel configuration or you can configure it at the webpack loader itself. [babel-webpack-plugin](https://www.npmjs.com/package/babel-webpack-plugin) is another option, but we'll opt for the loader in this project as it is the more established alternative.
+You can use Babel with webpack through [babel-loader](https://www.npmjs.com/package/babel-loader). It can pick up project level Babel configuration or you can configure it at the webpack loader itself. [babel-webpack-plugin](https://www.npmjs.com/package/babel-webpack-plugin) is another option, but we’ll opt for the loader in this project as it is the more established alternative.
 
 Connecting Babel with a project allows you to process webpack configuration through it. To achieve this, name your webpack configuration using the *webpack.config.babel.js* convention. [interpret](https://www.npmjs.com/package/interpret) package enables this and it supports other compilers as well.
 
@@ -182,7 +182,7 @@ Note especially how the function was transformed. You can try out different brow
 
 It is important to note that *babel-polyfill* pollutes the global scope with objects like `Promise`. Given this can be problematic for library authors, there’s [transform-runtime](https://babeljs.io/docs/plugins/transform-runtime/) option. It can be enabled as a Babel plugin, and it will avoid the problem of globals by rewriting the code in such way that they won’t be needed.
 
-W> Certain webpack features, such as *Code Splitting*, write `Promise` based code to webpack's bootstrap code after webpack has processed loaders. The easiest way to solve this problem is to use a browser level polyfill for `Promise` as webpack's bootstrap code cannot be processed through Babel.
+W> Certain webpack features, such as *Code Splitting*, write `Promise` based code to webpack’s bootstrap code after webpack has processed loaders. The easiest way to solve this problem is to use a browser level polyfill for `Promise` as webpack’s bootstrap code cannot be processed through Babel.
 
 ## Babel Tips
 
