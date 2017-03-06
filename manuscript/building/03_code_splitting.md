@@ -42,6 +42,8 @@ Promise.all([
 
 It is important to note that this will create separate chunks to a request. If you wanted only one, you would have to define an intermediate module to `import`.
 
+T> Webpack provided support for `System.import` in the early versions of webpack 2 and it still does. The functionality has been deprecated and will be removed in webpack 3. Until then, you can use the functionality interchangeably.
+
 W> The syntax works only with JavaScript after configured the right way. If you use another environment, you will have to use alternatives covered in the following sections.
 
 ### `require.ensure`
