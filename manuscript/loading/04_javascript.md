@@ -180,6 +180,8 @@ Note especially how the function was transformed. You can try out different brow
 
 It is important to note that *babel-polyfill* pollutes the global scope with objects like `Promise`. Given this can be problematic for library authors, there’s [transform-runtime](https://babeljs.io/docs/plugins/transform-runtime/) option. It can be enabled as a Babel plugin, and it will avoid the problem of globals by rewriting the code in such way that they won’t be needed.
 
+W> Certain webpack features, such as *Code Splitting*, write `Promise` based code to webpack's bootstrap code after webpack has processed loaders. The easiest way to solve this problem is to use a browser level polyfill for `Promise` as webpack's bootstrap code cannot be processed through Babel.
+
 ## Babel Tips
 
 There are other possible [*.babelrc* options](https://babeljs.io/docs/usage/options/) beyond the ones covered here. Like ESLint, *.babelrc* supports [JSON5](https://www.npmjs.com/package/json5) as its configuration format meaning you can include comments in your source, use single quoted strings, and so on.
