@@ -5,8 +5,10 @@ Hot module replacement was one of the initial selling points of webpack and Reac
 To get started, install the upcoming version of *react-hot-loader*:
 
 ```bash
-npm install react-hot-loader@next --save-dev
+npm install react-hot-loader@next --save
 ```
+
+T> I included *react-hot-loader* as a normal dependency as it comes with a small application level tweak. Your mileage may vary.
 
 ## Setting Up Babel
 
@@ -49,7 +51,8 @@ leanpub-start-delete
         react: reactDemo,
 leanpub-end-delete
 leanpub-start-insert
-        react: env === 'production' ? PATHS.reactDemo :
+        react: env === 'production' ?
+          PATHS.reactDemo :
           ['react-hot-loader/patch', PATHS.reactDemo],
 leanpub-end-insert
       },
@@ -61,6 +64,8 @@ leanpub-end-insert
 ```
 
 Patching is needed still as we have to make the application side aware of hot loading.
+
+T> This tweak may not be needed in the future as *react-hot-loader* evolves. It is possible to inject an empty module for `'react-hot-loader/patch'` if it detects that production environment is used. For now, this extra tweak is needed.
 
 ## Setting Up the Application
 
@@ -191,7 +196,10 @@ T> The aforementioned `env` technique can be used to apply Babel presets and plu
 ...
 
 export default function configureStore(initialState) {
-  const store = createStoreWithMiddleware(rootReducer, initialState);
+  const store = createStoreWithMiddleware(
+    rootReducer,
+    initialState
+  );
 
   if(module.hot) {
     // Enable webpack hot module replacement for reducers
