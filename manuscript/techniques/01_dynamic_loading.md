@@ -72,13 +72,15 @@ The same idea works with dynamic `import`. Instead of passing a complete path, y
 
 ```javascript
 // Set up a target or derive this somehow
-const target = 'demo.json';
+const target = 'demo';
 
 // Elsewhere in code
-import(`indexes/${target}`).then(...).catch(...);
+import(`indexes/${target}.json`).then(...).catch(...);
 ```
 
 The same idea works with `require` as long as webpack can analyze the situation statically.
+
+T> Any time you are using dynamic imports like this, it is a good idea to specify file extension in the path as that will help with performance by keeping the context smaller than otherwise.
 
 ## Dealing with Dynamic Paths
 
