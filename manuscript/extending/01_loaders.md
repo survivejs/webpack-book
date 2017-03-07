@@ -232,6 +232,7 @@ To recap:
 * *loader-runner* is a valuable tool for understanding how loaders work. Use it for debugging how loaders work.
 * Webpack **loaders** accept input and produce output based on it.
 * Loaders can be either synchronous or asynchronous. In the latter case, you should use `this.async()` webpack API to capture the callback exposed by webpack.
+* If you want to generate code dynamically for webpack entries, that’s where loaders can come in handy. A loader does not have to accept input. It is acceptable that it returns only output in this case.
 * Use **loader-utils** to parse possible options passed to a loader and consider validating them using **schema-utils**.
 * Pitching stage complements the default behavior allowing you to intercept and to attach metadata.
 
