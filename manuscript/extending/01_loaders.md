@@ -2,7 +2,7 @@
 
 As we’ve seen so far, loaders are one of the building blocks of webpack. If you want to load an asset, you’ll most likely need to set up a matching loader definition. Even though there are a lot of [available loaders](https://webpack.js.org/loaders/), it is possible you are missing one fitting your purposes.
 
-The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API well. To give you a concrete example, I’m going to discuss a subset of a loader I have developed. [highlight-loader](https://github.com/bebraw/highlight-loader) accepts HTML and then applies [highlight.js](https://highlightjs.org/) on it. Even though the transformation itself is easy, the loader implementation isn’t trivial.
+The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API well. To give you a concrete example, I’m going to discuss a subset of a loader I have developed. [highlight-loader](https://www.npmjs.com/package/highlight-loader) accepts HTML and then applies [highlight.js](https://highlightjs.org/) on it. Even though the transformation itself is easy, the loader implementation isn’t trivial.
 
 ## Setting Up a Loader Project
 

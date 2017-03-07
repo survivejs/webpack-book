@@ -9,7 +9,7 @@ As the needs of your project grow, you’ll need to figure out means to manage w
 You can manage webpack configuration in the following ways:
 
 * Maintain configuration in multiple files and point webpack to each through the `--config` parameter. Share configuration through module imports. You can see this approach in action at [webpack/react-starter](https://github.com/webpack/react-starter).
-* Push configuration to a library, which you then consume. Example: [HenrikJoreteg/hjs-webpack](https://github.com/HenrikJoreteg/hjs-webpack).
+* Push configuration to a library, which you then consume. Example: [HenrikJoreteg/hjs-webpack](https://www.npmjs.com/package/hjs-webpack).
 * Maintain configuration within a single file and branch there and by relying on the `--env` parameter.
 
 These approaches can be combined. You can end up with a higher level configuration that’s then composed of smaller parts. Those parts could go to a library which you then use through npm making it easy to consume the same configuration across multiple projects.

@@ -146,7 +146,7 @@ Besides the official documentation available at [eslint.org](http://eslint.org/)
 
 * [Detect Problems in JavaScript Automatically with ESLint](http://davidwalsh.name/eslint) - A good tutorial on the topic.
 * [Understanding the Real Advantages of Using ESLint](http://rangle.io/blog/understanding-the-real-advantages-of-using-eslint/) - Evan Schultz’s post digs into details.
-* [eslint-plugin-smells](https://github.com/elijahmanor/eslint-plugin-smells) - This plugin by Elijah Manor allows you to lint against JavaScript smells. Recommended.
+* [eslint-plugin-smells](https://www.npmjs.com/package/eslint-plugin-smells) - This plugin by Elijah Manor allows you to lint against JavaScript smells. Recommended.
 
 If you want a starting point, you can pick one of [eslint-config- packages](https://www.npmjs.com/search?q=eslint-config) or go with the [standard](https://www.npmjs.com/package/standard) style.
 

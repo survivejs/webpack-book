@@ -86,7 +86,7 @@ T> Any time you are using dynamic imports like this, it is a good idea to specif
 
 Given the approaches discussed here rely on static analysis and webpack has to find the files in question, it doesn’t work for every possible case. If the files you need are on another server or have to be accessed through a particular end-point, then webpack isn’t enough.
 
-Consider using browser-side loaders like [$script.js](https://github.com/ded/script.js/) or [little-loader](https://github.com/walmartlabs/little-loader) on top of webpack in this case.
+Consider using browser-side loaders like [$script.js](https://www.npmjs.com/package/scriptjs) or [little-loader](https://www.npmjs.com/package/little-loader) on top of webpack in this case.
 
 ## Conclusion
 

@@ -2,7 +2,7 @@
 
 **Server Side Rendering** (SSR) is a technique that allows you to serve an initial payload with HTML, JavaScript, CSS, and even application state. You will serve a fully rendered HTML page that would make sense even without JavaScript enabled. In addition to providing potential performance benefits, this can help with Search Engine Optimization (SEO).
 
-Even though the idea does not sound that special, there is a technical cost involved, and you can find sharp corners. The approach was popularized by React. Since then frameworks encapsulating the tricky bits, such as [Next.js](https://github.com/zeit/next.js), have appeared. [isomorphic-webpack](https://www.npmjs.com/package/isomorphic-webpack) is a good example of a solution designed on top of webpack.
+Even though the idea does not sound that special, there is a technical cost involved, and you can find sharp corners. The approach was popularized by React. Since then frameworks encapsulating the tricky bits, such as [Next.js](https://www.npmjs.com/package/next), have appeared. [isomorphic-webpack](https://www.npmjs.com/package/isomorphic-webpack) is a good example of a solution designed on top of webpack.
 
 I’ll show you next how to set up SSR with webpack and React. The idea is that webpack will compile a client-side build that then gets picked up by a server that renders it using React following the SSR idea. Demonstration like this is enough to understand how it works and also where the problems begin.
 

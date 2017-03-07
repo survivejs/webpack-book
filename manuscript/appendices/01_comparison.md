@@ -202,7 +202,7 @@ Given the configuration is code, you can always hack it if you run into troubles
 
 T> [webpack-stream](https://www.npmjs.com/package/webpack-stream) allows you to use webpack in a Gulp environment.
 
-T> [Fly](https://github.com/bucaran/fly) is a similar tool as Gulp. It relies on ES6 generators instead.
+T> [Fly](https://www.npmjs.com/package/fly) is a similar tool as Gulp. It relies on ES6 generators instead.
 
 ## npm `scripts` as a Task Runner
 
@@ -236,7 +236,7 @@ Dealing with JavaScript modules has always been a bit of a problem. The language
 
 The Browserify ecosystem is composed of a lot of small modules. In this way, Browserify adheres to the Unix philosophy. Browserify is a little easier to adopt than webpack, and is, in fact, a good alternative to it.
 
-T> [Splittable](https://github.com/cramforce/splittable) is a Browserify wrapper that allows code splitting, supports ES6 out of the box, tree shaking, and more.
+T> [Splittable](https://www.npmjs.com/package/splittable) is a Browserify wrapper that allows code splitting, supports ES6 out of the box, tree shaking, and more.
 
 ## Brunch
 
@@ -270,7 +270,7 @@ module.exports = {
 
 Brunch comes with commands like `brunch new`, `brunch watch --server`, and `brunch build --production`. It contains a lot out of the box and can be extended using plugins.
 
-T> There is an experimental [Hot Module Reloading runtime](https://github.com/brunch/hmr-brunch) for Brunch.
+T> There is an experimental [Hot Module Reloading runtime](https://www.npmjs.com/package/hmr-brunch) for Brunch.
 
 ## JSPM
 
@@ -295,9 +295,9 @@ You can find more alternatives as listed below:
 * [pundle](https://www.npmjs.com/package/pundle) advertises itself as a next generation bundler and notes particularly its performance.
 * [Rollup](https://www.npmjs.com/package/rollup) focuses particularly on bundling ES6 code. *Tree shaking* is one of its selling points. You can use Rollup with webpack through [rollup-loader](https://www.npmjs.com/package/rollup-loader).
 * [AssetGraph](https://www.npmjs.com/package/assetgraph) takes an entirely different approach and builds on top of HTML semantics making it highly useful for tasks like [hyperlink analysis](https://www.npmjs.com/package/hyperlink) or [structural analysis](https://www.npmjs.com/package/assetviz). [webpack-assetgraph-plugin](https://www.npmjs.com/package/webpack-assetgraph-plugin) bridges webpack and AssetGraph together.
-* [FuseBox](https://github.com/fuse-box/fuse-box) is a bundler focusing on speed. It uses a zero-configuration approach and aims to be usable out of the box.
+* [FuseBox](https://www.npmjs.com/package/fuse-box) is a bundler focusing on speed. It uses a zero-configuration approach and aims to be usable out of the box.
 * [StealJS](https://stealjs.com/) is a dependency loader and a build tool which has focused on performance and ease of use.
-* [Flipbox](https://github.com/flip-box/flipbox) wraps multiple bundlers behind a uniform interface.
+* [Flipbox](https://www.npmjs.com/package/flipbox) wraps multiple bundlers behind a uniform interface.
 
 ## Conclusion
 
