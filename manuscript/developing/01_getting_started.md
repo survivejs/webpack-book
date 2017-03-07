@@ -18,7 +18,7 @@ cd webpack-demo
 npm init -y # -y generates *package.json*, skip for more control
 ```
 
-You can tweak the generated *package.json* manually to make further changes to it. We’ll be doing some changes through *npm* tool, but manual tweaks are acceptable. The official documentation explains [package.json options](https://docs.npmjs.com/files/package.json) in more detail.
+You can tweak the generated *package.json* manually to make further changes to it. We’ll be doing changes through *npm* tool, but manual tweaks are acceptable. The official documentation explains [package.json options](https://docs.npmjs.com/files/package.json) in more detail.
 
 T> You can set those `npm init` defaults at *~/.npmrc*.
 
@@ -61,7 +61,7 @@ T> We can use `--save` and `--save-dev` to separate application and development 
 
 ## Directory Structure
 
-To move further, we can implement a little site that loads some JavaScript, which we then build using webpack. After we progress a bit, we’ll end up with a directory structure like this:
+To move further, we can implement a little site that loads JavaScript, which we then build using webpack. After we progress a bit, we’ll end up with a directory structure like this:
 
 - app/
   - index.js
@@ -196,7 +196,7 @@ T> In addition to a configuration object, webpack accepts an array of configurat
 
 ## Adding a Build Shortcut
 
-Given executing `node_modules/.bin/webpack` is a little verbose, we should do something about it. npm and *package.json* double as a task runner with some configuration. Adjust it as follows:
+Given executing `node_modules/.bin/webpack` is a little verbose, we should do something about it. npm and *package.json* double as a task runner through configuration. Adjust it as follows:
 
 **package.json**
 

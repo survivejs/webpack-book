@@ -2,7 +2,7 @@
 
 Even though we have a nice build set up now, where did all the CSS go? As per our configuration, it has been inlined to JavaScript! Even though this can be convenient during development, it doesn’t sound ideal.
 
-The current solution doesn’t allow us to cache CSS. In some cases, we might suffer from a **Flash of Unstyled Content** (FOUC). FOUC happens because the browser will take a while to load JavaScript and the styles would be applied only then. Separating CSS to a file of its own avoids the problem by letting the browser to manage it separately.
+The current solution doesn’t allow us to cache CSS. Sometimes, we might suffer from a **Flash of Unstyled Content** (FOUC). FOUC happens because the browser will take a while to load JavaScript and the styles would be applied only then. Separating CSS to a file of its own avoids the problem by letting the browser to manage it separately.
 
 Webpack provides a means to generate a separate CSS bundles using [ExtractTextPlugin](https://www.npmjs.com/package/extract-text-webpack-plugin). It can aggregate multiple CSS files into one. For this reason, it comes with a loader that handles the extraction process. The plugin then picks up the result aggregated by the loader and emits a separate file.
 
@@ -14,7 +14,7 @@ W> It can be potentially dangerous to use inline styles within JavaScript in pro
 
 ## Setting Up `ExtractTextPlugin`
 
-It will take some configuration to make it work. Install the plugin:
+It will require configuration to make it work. Install the plugin:
 
 ```bash
 npm install extract-text-webpack-plugin --save-dev

@@ -70,7 +70,7 @@ The output means that the development server is running. If you open `http://loc
 
 ![Hello world](images/hello_01.png)
 
-If you try modifying the code, you should see some output in your terminal. The browser should also perform a hard refresh on change.
+If you try modifying the code, you should see output in your terminal. The browser should also perform a hard refresh on change.
 
 T> WDS will try to run in another port in case the default one is being used. See the terminal output to figure out where it ends up running. You can debug the situation with a command like `netstat -na | grep 8080`. If something is running on the port 8080, it should display a message. The exact command may depend on the platform.
 
@@ -150,7 +150,7 @@ W> Webpack 2 changed argument behavior compared to webpack 1. You are not allowe
 
 ## Accessing the Development Server from Network
 
-It is possible to customize host and port settings through the environment in our setup (i.e., `export PORT=3000` on Unix or `SET PORT=3000` on Windows). If you want to access your server using some other device within the same network, this can be useful. The default settings are enough on most platforms.
+It is possible to customize host and port settings through the environment in our setup (i.e., `export PORT=3000` on Unix or `SET PORT=3000` on Windows). If you want to access your server using another device within the same network, this can be useful. The default settings are enough on most platforms.
 
 To access your server, you’ll need to figure out the ip of your machine. On Unix, this can be achieved using `ifconfig | grep inet`. On Windows, `ipconfig` can be utilized. An npm package, such as [node-ip](https://www.npmjs.com/package/node-ip) may come in handy as well. Especially on Windows, you may need to set your `HOST` to match your ip to make it accessible.
 
@@ -166,7 +166,7 @@ Alternately, we could have set up an Express server of our own and use a middlew
 
 There’s also a [Node.js API](https://webpack.js.org/configuration/dev-server/) if you want more control and flexibility.
 
-W> Note that there are [slight differences](https://github.com/webpack/webpack-dev-server/issues/106) between the CLI and the Node API. Some prefer to use the API alone for this reason.
+W> Note that there are [slight differences](https://github.com/webpack/webpack-dev-server/issues/106) between the CLI and the Node API.
 
 ## Making It Faster to Develop Configuration
 
@@ -189,7 +189,7 @@ It is possible WDS [will support the functionality](https://github.com/webpack/w
 
 ## Useful Development Plugins
 
-As webpack plugin ecosystem is diverse, there are a lot of plugins that can help specifically with development. I’ve listed some of these below to give you a better idea of what’s available:
+As webpack plugin ecosystem is diverse, there are a lot of plugins that can help specifically with development. I’ve listed certain of these below to give you a better idea of what’s available:
 
 * [case-sensitive-paths-webpack-plugin](https://www.npmjs.com/package/case-sensitive-paths-webpack-plugin) can be handy when you are developing on a case-insensitive environments like macOS or Windows but using case-sensitive environment like Linux for production.
 * [npm-install-webpack-plugin](https://www.npmjs.com/package/npm-install-webpack-plugin) allows webpack to install and wire the installed packages with your *package.json* as you import new packages to your project. It’s almost magical this way.

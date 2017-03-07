@@ -18,6 +18,7 @@
         ["a npm", "an npm"],
         "npm",
 
+        ["some", ""],
         ["probably", ""],
         ["known as", ""],
         ["really", ""],

@@ -18,15 +18,15 @@ T> It is telling that a competing project, JSCS, [decided to merge its efforts w
 
 ### eslint-config-airbnb
 
-[eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb) is a good example of a popular preset. Often it is enough to find a preset you like, tweak it a little bit to your liking with some local rules or by deriving a preset of your own based on it, and then using that. This way you don’t have to worry so much about all the available functionality.
+[eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb) is a good example of a popular preset. Often it is enough to find a preset you like, tweak it a little bit to your liking with local rules or by deriving a preset of your own based on it, and then using that. This way you don’t have to worry so much about all the available functionality.
 
 T> [eslint-config-cleanjs](https://www.npmjs.com/package/eslint-config-cleanjs) is a good example of how you can use ESLint to restrict JavaScript to a purely functional subset.
 
 ## Linting Is about More than Catching Issues
 
-Besides linting for issues, it can be useful to manage the code style on some level. Nothing is more annoying than having to work with source code that has mixed tabs and spaces. Stylistically consistent code reads better. Linting tools allow you to do this.
+Besides linting for issues, it can be useful to manage the code style. Nothing is more annoying than having to work with source code that has mixed tabs and spaces. Stylistically consistent code reads better. Linting tools allow you to do this.
 
-Establishing strong linting can be beneficial, especially in a context where you need to collaborate with others. Even when working alone you will benefit from linting as it can catch issues you might otherwise neglect. JavaScript as a language allows a lot of usages some of which, while valid, may not be the clearest to understand or may even be incorrect.
+Establishing strong linting can be beneficial, especially in a context where you need to collaborate with others. Even when working alone you will benefit from linting as it can catch issues you might otherwise neglect. JavaScript as a language allows usage which, while valid, may not be the clearest to understand or may even be incorrect.
 
 Linting does **not** replace proper testing, but it can complement testing approaches. It is one way to harden a codebase and make it a little harder to break. As the size of your project grows, and it becomes more challenging to manage, this becomes particularly important.
 
@@ -46,7 +46,7 @@ To get started, install ESLint as a development dependency:
 npm install eslint --save-dev
 ```
 
-Next, we’ll need to do some configuration so we can run ESLint smoothly through npm. I am using the `lint` namespace to signify it’s a linting related task. I am also enabling caching to improve performance on subsequent runs. Add the following:
+Next, we’ll need to do configuration so we can run ESLint smoothly through npm. I am using the `lint` namespace to signify it’s a linting related task. I am also enabling caching to improve performance on subsequent runs. Add the following:
 
 **package.json**
 
@@ -61,13 +61,13 @@ leanpub-end-insert
 ...
 ```
 
-Given ESLint expects configuration to work, we need to define some. It relies on rules that tell what to lint and how to react if the rule isn’t obeyed. The severity of an individual rule is defined by a number as follows:
+Given ESLint expects configuration to work, we need to define rules to describe what to lint and how to react if the rules aren’t obeyed. The severity of an individual rule is defined by a number as follows:
 
 * 0 - The rule has been disabled.
 * 1 - The rule will emit a warning.
 * 2 - The rule will emit an error.
 
-Some rules, such as `quotes`, accept an array instead allowing you to pass extra parameters to them. Refer to the [ESLint rules documentation](http://eslint.org/docs/rules/) for specifics.
+Rules, such as `quotes`, accept an array instead allowing you to pass extra parameters to them. Refer to the [ESLint rules documentation](http://eslint.org/docs/rules/) for specifics.
 
 Here’s a starting point that will work with our project:
 
@@ -127,7 +127,7 @@ npm install eslint-loader --save-dev
 
 W> Note that *eslint-loader* will use a globally installed version of ESLint unless you have one included in the project itself. Make sure you have ESLint as a development dependency to avoid the strange behavior.
 
-The loader needs some wiring to work. We’ll discuss loaders in detail in the *Loading* part of this book, but the basic idea is fast to understand. A loader is connected to webpack through a rule that contains preconditions related to it and a reference to the loader itself.
+The loader needs wiring to work. We’ll discuss loaders in detail in the *Loading* part of this book, but the basic idea is fast to understand. A loader is connected to webpack through a rule that contains preconditions related to it and a reference to the loader itself.
 
 In this case, we’ll ensure that ESLint gets executed before anything else using the `enforce` field. It allows us to guarantee that linting happens before any other processing. The idea is discussed in detail in the *Loader Definitions* chapter.
 
@@ -170,7 +170,7 @@ leanpub-end-insert
 ...
 ```
 
-If you execute `npm start` now and break some linting rule while developing, you should see that in the terminal output.
+If you execute `npm start` now and break a linting rule while developing, you should see that in the terminal output.
 
 W> Note that the webpack configuration lints only the application code we refer. If you want to lint webpack configuration itself, execute `npm run lint:js` separately.
 
@@ -213,7 +213,7 @@ I’ve collected different ESLint tips below. The great thing about ESLint is th
 
 ### Usability Tips
 
-* Sometimes you might want to rely on some existing preset or set up custom configuration. That’s where `--init` can come in handy. You can run it from `npm bin` and you’ll end up with a call like `node_modules/.bin/eslint --init`
+* Sometimes you might want to rely on an existing preset or set up custom configuration. That’s where `--init` can come in handy. You can run it from `npm bin` and you’ll end up with a call like `node_modules/.bin/eslint --init`
 * ESLint supports custom formatters through `--format` parameter. [eslint-friendly-formatter](https://www.npmjs.com/package/eslint-friendly-formatter) is an example of a formatter that provides terminal-friendly output. This way you can jump conveniently straight to the warnings and errors from there.
 
 ### Performance Tips
@@ -236,7 +236,7 @@ JSHint will look into specific rules to apply from `.jshintrc`. You can also def
 
 ## EditorConfig
 
-[EditorConfig](http://editorconfig.org/) allows you to maintain a consistent coding style across different IDEs and editors. Some even come with built-in support. For others, you should install a separate plugin. Also, you’ll need to set up a file like this:
+[EditorConfig](http://editorconfig.org/) allows you to maintain a consistent coding style across different IDEs and editors. Certain even come with built-in support. For others, you should install a separate plugin. Also, you’ll need to set up a file like this:
 
 **.editorconfig**
 

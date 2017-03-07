@@ -1,6 +1,6 @@
 # Troubleshooting
 
-Using webpack can lead to a variety of runtime warnings or errors. Often some particular part of the build fails for a reason or another. A basic process can be used to figure out these problems:
+Using webpack can lead to a variety of runtime warnings or errors. Often a particular part of the build fails for a reason or another. A basic process can be used to figure out these problems:
 
 1. Pass `--display-error-details` flag to webpack to get a more accurate error to study. Example: `npm run build -- --display-error-details`.
 2. Study the origin of the error carefully. Sometimes you can infer what’s wrong by context. If webpack fails to parse a module, it’s likely not passing it through a loader you expect for example.
@@ -15,7 +15,7 @@ Using webpack can lead to a variety of runtime warnings or errors. Often some pa
 
 Sometimes it is fastest to drop the error to a search engine and gain an answer that way. Other than that this is a good debugging order. If your setup worked in the past, you could also consider using commands like [git bisect](https://git-scm.com/docs/git-bisect) to figure out what has changed between the known working state and the current broken one.
 
-I will show you some of the most common errors next and explain how to deal with them.
+I will show you of the most common errors next and explain how to deal with them.
 
 ## ERROR in Entry module not found
 
@@ -45,6 +45,6 @@ This error fits the same category. Parsing the file succeeded, but there was the
 
 ## Conclusion
 
-These are only examples of errors. Some of the errors happen on the webpack side, but some come from the packages it uses through loaders and plugins. It will take some amount of care to trace down the problems.
+These are only examples of errors. Certain errors happen on the webpack side, but the rest come from the packages it uses through loaders and plugins. Simplifying your project is a good step as that will make it easier to understand where the error happens.
 
-Simplifying your project is a good step as that will make it easier to understand where the error happens. In most cases, the errors are fast to solve if you know where to look, but in the worst case, you have come upon a bug to fix in the tooling. In that case, you should provide a high-quality report to the project and help to resolve it.
+In most cases, the errors are fast to solve if you know where to look, but in the worst case, you have come upon a bug to fix in the tooling. In that case, you should provide a high-quality report to the project and help to resolve it.

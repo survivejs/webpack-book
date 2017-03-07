@@ -117,7 +117,7 @@ If you build the project (`npm run build`), you should notice the built files co
 
 The output can be customized further by adjusting the banner. You can also pass revision information to the application using `webpack.DefinePlugin`. This technique is discussed in detail in the *Setting Environments Chapter*.
 
-W> The code expects you run it within a Git repository! Otherwise, you will get a `fatal: Not a git repository (or any of the parent directories): .git` error. If you are not using Git, you can replace the banner with some other data.
+W> The code expects you run it within a Git repository! Otherwise, you will get a `fatal: Not a git repository (or any of the parent directories): .git` error. If you are not using Git, you can replace the banner with other data.
 
 ## Copying Files
 

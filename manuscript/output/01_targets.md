@@ -182,7 +182,7 @@ function add(a, b) {
 //# sourceMappingURL=lib.js.map
 ```
 
-You can see some familiar code there and more. Webpack’s bootstrap script is in place, and it starts the entire execution process. It takes the majority of space for a small library like this, but that’s not a problem as the library begins to grow.
+You can see familiar code there and more. Webpack’s bootstrap script is in place, and it starts the entire execution process. It takes the majority of space for a small library like this, but that’s not a problem as the library begins to grow.
 
 T> Instead of using the multi-compiler mode, it would be possible to define two targets. One of them would generate the non-minified version while the other would generate the minified one. The other npm script could be called as `build:lib:dist` and you could define a `build:lib:all` script to build both.
 

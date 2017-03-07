@@ -182,7 +182,7 @@ leanpub-end-insert
 
 The development setup should work after this change still. If you examine the build output, you should notice it’s missing references to `__REACT_HOT_LOADER__`.
 
-Even after this change, the source might contain some references still due to a [bug in react-hot-loader](https://github.com/gaearon/react-hot-loader/issues/471) as it has been built so that it loses information that’s valuable for a bundler.
+Even after this change, the source might contain references still due to a [bug in react-hot-loader](https://github.com/gaearon/react-hot-loader/issues/471) as it has been built so that it loses information that’s valuable for a bundler.
 
 It is possible to work around the issue by implementing a module chooser pattern as described in the *Setting Environment Variables* chapter. The idea is that `AppContainer` provided by *react-hot-loader* would be mocked with a dummy implementation during production usage.
 
@@ -217,7 +217,7 @@ T> You can find [a full implementation of the idea online](https://github.com/su
 
 ## Configuring Webpack to Work with JSX
 
-Some people prefer to name their React components containing JSX using the `.jsx` suffix. Webpack can be configured to work with this convention. The benefit of doing this is that then your editor will be able to pick up the right syntax based on the file name alone. Another option is to configure the editor to use JSX syntax for `.js` files as it’s a superset of JavaScript.
+Sometimes people prefer to name their React components containing JSX using the `.jsx` suffix. Webpack can be configured to work with this convention. The benefit of doing this is that then your editor will be able to pick up the right syntax based on the file name alone. Another option is to configure the editor to use JSX syntax for `.js` files as it’s a superset of JavaScript.
 
 Webpack provides [resolve.extensions](https://webpack.js.org/guides/migrating/#resolve-extensions) field that can be used for configuring its extension lookup. If you want to allow imports like `import Button from './Button';` while naming the file as *Button.jsx*, set it up as follows:
 
@@ -241,4 +241,4 @@ The fastest way to get started with webpack and React is to use [create-react-ap
 
 ## Conclusion
 
-*react-hot-loader* allows you to set up HMR with webpack. It was one of the initial selling points of both and is still a good technique. The setup takes some care, but after you have it running, it’s cool.
+*react-hot-loader* allows you to set up HMR with webpack. It was one of the initial selling points of both and is still a good technique. The setup takes care, but after you have it running, it’s nice.

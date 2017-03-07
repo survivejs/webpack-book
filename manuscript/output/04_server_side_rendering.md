@@ -8,7 +8,7 @@ I’ll show you next how to set up SSR with webpack and React. The idea is that 
 
 ## Setting Up Babel with React
 
-The *Loading JavaScript* chapter covers the essentials of using Babel with webpack. There’s some setup that is particular to React you should perform, though. Given most of React projects rely on [JSX](https://facebook.github.io/jsx/) format, you will have to enable it through Babel.
+The *Loading JavaScript* chapter covers the essentials of using Babel with webpack. There’s setup that is particular to React you should perform, though. Given most of React projects rely on [JSX](https://facebook.github.io/jsx/) format, you will have to enable it through Babel.
 
 To get React, and particularly JSX, work with Babel, install the preset first:
 
@@ -34,7 +34,7 @@ leanpub-end-insert
 
 ## Configuring React with ESLint
 
-Using React with ESLint and JSX requires some extra work as well. [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react) does a part of the work, but also some ESLint configuration is needed.
+Using React with ESLint and JSX requires extra work as well. [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react) does a part of the work, but also ESLint configuration is needed.
 
 Install *eslint-plugin-react* to get started:
 
@@ -281,7 +281,7 @@ T> The server could inject initial data payload to the generated HTML. Doing thi
 
 ## Open Questions
 
-Even though the demo illustrates the basic idea of SSR, it still leaves some open questions:
+Even though the demo illustrates the basic idea of SSR, it still leaves open questions:
 
 * How to deal with styles? Handling JavaScript is easy in both environments, but vanilla Node doesn’t understand CSS related imports.
 * How to deal with anything else than JavaScript? If the server side is processed through webpack, this is less of an issue as you can patch it at webpack.

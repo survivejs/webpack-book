@@ -61,7 +61,7 @@ This technique can be useful if you want to do further processing on stats altho
 
 ## Available Analysis Tools
 
-Even though having a look at the file itself gives you some idea of what’s going on, often it’s preferable to use a particular tool for that. I’ve listed alternatives below.
+Even though having a look at the file itself gives you idea of what’s going on, often it’s preferable to use a particular tool for that. I’ve listed alternatives below.
 
 ### The Official Analyse Tool
 

@@ -227,7 +227,7 @@ If you are using images and *css-loader* with the `sourceMap` option enabled, it
 
 ## Conclusion
 
-Webpack allows you to inline images within your bundles when needed. Figuring out proper inlining limits for your images might take some experimentation. You have to balance between bundle sizes and the number of requests.
+Webpack allows you to inline images within your bundles when needed. Figuring out proper inlining limits for your images might take experimentation. You have to balance between bundle sizes and the number of requests.
 
 To recap:
 

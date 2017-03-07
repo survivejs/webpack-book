@@ -112,11 +112,11 @@ With webpack, you can inject a hash to each bundle name (e.g., *app.d587bbd6.js*
 
 All these smaller features add up. Surprisingly, you can get many things done out of the box. If you are missing something, there are loaders and plugins available that allow you to go further.
 
-Webpack comes with a significant learning curve. Even still, it’s a tool worth learning, given it saves so much time and effort over the long term. To get a better idea how it compares to some other tools, check out [the official comparison](https://webpack.js.org/get-started/why-webpack/#comparison).
+Webpack comes with a significant learning curve. Even still, it’s a tool worth learning, given it saves so much time and effort over the long term. To get a better idea how it compares to other tools, check out [the official comparison](https://webpack.js.org/get-started/why-webpack/#comparison).
 
 ## Conclusion
 
-You can use webpack with some other tools. It won’t solve everything. It does solve the problem of bundling, however. That’s one less worry during development. Using *package.json*, `scripts`, and webpack alone takes you far, as we will see soon.
+You can use webpack with other tools. It won’t solve everything. It does solve the problem of bundling, however. That’s one less worry during development. Using *package.json*, `scripts`, and webpack alone takes you far, as we will see soon.
 
 To summarize:
 

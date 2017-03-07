@@ -141,7 +141,7 @@ T> JSON doesn’t support comments even though I’m using them above. There are
 
 Working with npm is easy. To get started, you will need to use [npm adduser](https://docs.npmjs.com/cli/adduser). It allows you to set up an account. After this process has completed, it will create *~/.npmrc* and use that data for authentication. There’s also [npm logout](https://docs.npmjs.com/cli/logout) that will clear the credentials.
 
-T> When creating a project, `npm init` respects the values set at *~/.npmrc*. Hence, it may be worth your while to set reasonable defaults there to save some time. If you want to limit your package to a particular scope, use `npm init --scope=<scope>`. As a result, you will get `@<scope>/<package>` which is handy especially for personal packages since the default namespace of npm is so crowded.
+T> When creating a project, `npm init` respects the values set at *~/.npmrc*. Hence, it may be worth your while to set reasonable defaults there to save time. If you want to limit your package to a particular scope, use `npm init --scope=<scope>`. As a result, you will get `@<scope>/<package>` which is handy especially for personal packages since the default namespace of npm is so crowded.
 
 ### Publishing a Package
 
@@ -157,7 +157,7 @@ T> [np](https://www.npmjs.com/package/np) gives an interactive UI for publishing
 
 Even though a project can contain a lot of files, not all of them should be published. Besides wasting bandwidth, this can leak personal files to a public registry and is the reason why it is a good idea to maintain a [files](https://docs.npmjs.com/files/package.json#files) array at *package.json* and enumerate which files and directories you want to publish.
 
-You can’t find an official recommendation on what files to publish. That said, there are some points to consider as [discussed in Stack Overflow](https://stackoverflow.com/questions/25124844/should-i-npmignore-my-tests).
+You can’t find an official recommendation on what files to publish. That said, there are points to consider as [discussed in Stack Overflow](https://stackoverflow.com/questions/25124844/should-i-npmignore-my-tests).
 
 At a minimum, you should distribute the source code needed to run the package. If you have code written using the ES6 standard, you should transpile the code so that it does not lose the ES6 module definitions while everything else is converted to ES5. For the tooling to pick it up, you should point to this version of code through *package.json* `module` field. See the *Loading JavaScript* chapter for the Babel setup.
 
@@ -179,9 +179,9 @@ Invoking any of these will update *package.json* and create a version commit to 
 
 Note that in the example above, I’ve set up `version`-related hooks to make sure a version will contain a fresh version of a distribution build. I also run tests as it is better to catch potential issues early on.
 
-T> Consider using [semantic-release](https://www.npmjs.com/package/semantic-release) if you prefer a more structured approach. It can take some pain out of the release process while automating a part of it. For instance, it can detect possible breaking changes and generate change logs.
+T> Consider using [semantic-release](https://www.npmjs.com/package/semantic-release) if you prefer a more structured approach. It can take pain out of the release process while automating a part of it. For instance, it can detect possible breaking changes and generate change logs.
 
-T> [dont-break](https://www.npmjs.com/package/dont-break) allows you to run the unit tests of dependent projects against your current code to see if it breaks anything. Sometimes it’s easy to overlook some use case that might not be a part of the public API even and break a dependency. *dont-break* helps with that particular problem.
+T> [dont-break](https://www.npmjs.com/package/dont-break) allows you to run the unit tests of dependent projects against your current code to see if it breaks anything. Sometimes it’s easy to overlook a use case that might not be a part of the public API even and break a dependency. *dont-break* helps with that particular problem.
 
 ### Respect the SemVer
 
@@ -229,7 +229,7 @@ T> If you find a good name that appears to be abandoned, contact npm, and they�
 
 ## npm Lifecycle Hooks
 
-npm provides a collection of lifecycle hooks that can be useful. Suppose you are authoring a React component using Babel and some of its goodies. In that case, you should generate an ES5 compatible version of the package for npm consumers and point to it through *package.json* `main`. You can achieve this using **babel** command line tool:
+npm provides a collection of lifecycle hooks that can be useful. Suppose you are authoring a React component using Babel. In that case, you should generate an ES5 compatible version of the package for npm consumers and point to it through *package.json* `main`. You can achieve this using **babel** command line tool:
 
 ```bash
 babel ./lib --out-dir ./dist-modules
@@ -273,7 +273,7 @@ It is important to note that in npm 3 `prepublish` hook will get also triggered 
 
 ## Sharing Authorship
 
-As packages evolve, you may want to start developing with others. You could become the new maintainer of some project, or pass the torch to someone else. These things happen as packages evolve.
+As packages evolve, you may want to start developing with others. You could become the new maintainer of a project, or pass the torch to someone else. These things happen as packages evolve.
 
 npm provides certain commands for these purposes. It’s all behind `npm owner` namespace. More specifically, you’ll find `npm owner ls <package name>`, `npm owner add <user> <package name>` and `npm owner rm <user> <package name>` there. That’s about it.
 
@@ -428,9 +428,9 @@ To recap:
 
 * It is good to understand what kind of metadata packages may contain. They will give you insight on their licensing, guidelines, and even quality.
 * Publishing npm packages is easy. Remember to respect the SemVer or an equivalent scheme, though, as that will keep your consumers happy.
-* Document the main changes made to your packages using a change log. Documentation will come in handy later as you have to understand when some specific feature was introduced. It will also make it easier to upgrade projects to the most recent features.
+* Document the main changes made to your packages using a change log. Documentation will come in handy later as you have to understand when a specific feature was introduced. It will also make it easier to upgrade projects to the most recent features.
 * Consider publishing differently packaged versions of the source to account for different usage patterns. Packaged right, your consumers can benefit from features, such as **tree shaking**.
 * To make it easy to consume a work in progress package, implement an npm `postinstall` script that builds the project if a distribution version does not exist in the source.
 * If a package becomes obsolete, consider deprecating it and let your users know how to upgrade to another solution.
 
-The covered options are useful beyond package authoring. Mainly `externals` comes in handy when you want to exclude certain dependencies outside of your bundles and load them using some other way.
+The covered options are useful beyond package authoring. Mainly `externals` comes in handy when you want to exclude certain dependencies outside of your bundles and load them using another way.

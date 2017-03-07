@@ -104,7 +104,7 @@ To demonstrate the idea of code splitting, we’ll use dynamic `import`. Both ES
 
 ### Configuring ESLint
 
-Given ESLint supports only standard ES6 out of the box, it requires some tweaking to work with dynamic `import`. Install *babel-eslint* parser first:
+Given ESLint supports only standard ES6 out of the box, it requires tweaking to work with dynamic `import`. Install *babel-eslint* parser first:
 
 ```bash
 npm install babel-eslint --save-dev

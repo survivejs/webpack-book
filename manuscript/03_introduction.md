@@ -24,7 +24,7 @@ Webpack does all the preprocessing for you and gives you the bundles you specify
 
 This book has been designed to complement [the official documentation of webpack](https://webpack.js.org/). The official documentation goes deeper in many aspects, and this book can be considered a companion to it. This book is more like a quick walkthrough that eases the initial learning curve while giving food for thought to more advanced users.
 
-You will learn to develop a composable webpack configuration for both development and production purposes. You will also learn advanced techniques that allow you to benefit from some of the greatest features of webpack.
+You will learn to develop a composable webpack configuration for both development and production purposes. You will also learn advanced techniques that allow you to benefit from the greatest features of webpack.
 
 T> This book has focused on webpack 2. If you want to apply its techniques to webpack 1, you should see [the official migration guide](https://webpack.js.org/guides/migrating/) as it covers the changes made between the major versions. There are also [codemods at the webpack-cli repository](https://github.com/webpack/webpack-cli) for migrating from webpack 1 to 2.
 
@@ -48,13 +48,13 @@ There’s a short conclusion chapter after the main content that recaps the main
 
 The appendices the end of the book cover secondary topics and sometimes dig deeper into the main ones. You can approach them in any order you want depending on your interest. There’s a *Troubleshooting* appendix at the end in case you want to understand how to debug webpack errors.
 
-T> If you are unsure of some term and its meaning, see the *Glossary* at the end of the book.
+T> If you are unsure of a term and its meaning, see the *Glossary* at the end of the book.
 
 ## Who Is This Book For
 
 I expect that you have a basic knowledge of JavaScript and Node. You should be able to use npm on an elementary level. If you know something about webpack, that’s great. By reading this book, you will deepen your understanding of these tools.
 
-If you happen to know webpack well, there still might be something in the book for you. Skim through it and see if you can pick up some techniques. I’ve done my best to cover even some of the knottier parts of the tool.
+If you happen to know webpack well, there still might be something in the book for you. Skim through it and see if you can pick up techniques. Read especially the summaries at the end of the chapters and the conclusion chapter. I’ve done my best to cover even the knottier parts of the tool.
 
 If you find yourself struggling, consider seeking help from the community around the book. In case you are stuck or don’t understand something, we are here to help. Any comments you might have will go towards improving the content.
 
@@ -84,7 +84,7 @@ A part of the profit goes towards funding the development of the tool itself. Mo
 
 ## Getting Support
 
-As no book is perfect, you will likely come by issues and might have some questions related to the content. There are a couple of options to deal with this:
+As no book is perfect, you will likely come by issues and might have questions related to the content. There are a couple of options to deal with this:
 
 * Contact me through [GitHub Issue Tracker](https://github.com/survivejs/webpack-book/issues)
 * Join me at [Gitter Chat](https://gitter.im/survivejs/webpack)

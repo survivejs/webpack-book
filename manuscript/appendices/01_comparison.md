@@ -1,6 +1,6 @@
 # Comparison of Build Tools
 
-Back in the day, it was enough to concatenate some scripts together. Times have changed, though, and now distributing your JavaScript code can be a complicated endeavor. This problem has escalated with the rise of single page applications (SPAs). They tend to rely on many hefty libraries.
+Back in the day, it was enough to concatenate scripts together. Times have changed, though, and now distributing your JavaScript code can be a complicated endeavor. This problem has escalated with the rise of single page applications (SPAs). They tend to rely on many hefty libraries.
 
 For this reason, there are multiple strategies on how to load them. You could load them all at once or consider loading libraries as you need them. Webpack supports many of these sorts of strategies.
 
@@ -84,7 +84,7 @@ define(['require'], function (require) {
 });
 ```
 
-This latter approach eliminates some of the clutter. You will still end up with some code that might feel redundant. Given there’s ES6 now, it doesn’t make sense to use AMD unless you forced due to legacy reasons.
+This latter approach eliminates a part of the clutter. You will still end up with code that might feel redundant. Given there’s ES6 now, it doesn’t make sense to use AMD unless you forced due to legacy reasons.
 
 T> Jamund Ferguson has written an excellent blog series on how to port from [RequireJS to webpack](https://gist.github.com/xjamundx/b1c800e9282e16a6a18e).
 
@@ -198,7 +198,7 @@ gulp.task(
 );
 ```
 
-Given the configuration is code, you can always hack it if you run into troubles. You can wrap existing Node packages as Gulp plugins, and so on. Compared to Grunt, you have a clearer idea of what’s going on. You still end up writing a lot of boilerplate for casual tasks, though. That is where some newer approaches come in.
+Given the configuration is code, you can always hack it if you run into troubles. You can wrap existing Node packages as Gulp plugins, and so on. Compared to Grunt, you have a clearer idea of what’s going on. You still end up writing a lot of boilerplate for casual tasks, though. That is where newer approaches come in.
 
 T> [webpack-stream](https://www.npmjs.com/package/webpack-stream) allows you to use webpack in a Gulp environment.
 
@@ -222,7 +222,7 @@ Even though npm CLI wasn’t primarily designed to be used as a task runner, it 
 }
 ```
 
-These scripts can be listed using `npm run` and then executed using `npm run <script>`. You can also namespace your scripts using a convention like `test:watch`. The problem with this approach is that it takes some care to keep it cross-platform.
+These scripts can be listed using `npm run` and then executed using `npm run <script>`. You can also namespace your scripts using a convention like `test:watch`. The problem with this approach is that it takes care to keep it cross-platform.
 
 Instead of `rm -rf`, you might want to use a utility like [rimraf](https://www.npmjs.com/package/rimraf) and so on. It’s possible to invoke other tasks runners here to hide the fact that you are using one. This way you can refactor your tooling while keeping the interface as the same.
 
@@ -286,7 +286,7 @@ You could say [webpack](https://webpack.js.org/) takes a more monolithic approac
 
 Webpack core can be extended using specific *loaders* and *plugins*. It gives control over how it *resolves* the modules, making it possible to adapt your build to match specific situations and workaround packages that don’t work correctly out of the box.
 
-Compared to the other tools, webpack might come with some initial complexity, but it makes up for this through its broad feature set. It is an advanced tool that requires patience. But once you understand the basic ideas behind it, webpack becomes powerful.
+Compared to the other tools, webpack might come with initial complexity, but it makes up for this through its broad feature set. It is an advanced tool that requires patience. But once you understand the basic ideas behind it, webpack becomes powerful.
 
 ## Other Options
 

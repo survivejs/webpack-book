@@ -12,7 +12,7 @@ Most popular packages out there comply with SemVer. It’s problematic as someti
 
 The rules are a little different for `0.x` versions. There the rule is `0.<MAJOR>.<MINOR>`. For packages considered stable and suitable for public usage (`1.0.0` and above), the rule is `<MAJOR>.<MINOR>.<PATCH>`. For example, if the current version of a package is `0.1.4` and a breaking change is performed, it should bump to `0.2.0`.
 
-Given SemVer can be a little tricky to manage, some packages use a backward compatible alternative [ComVer](https://github.com/staltz/comver). ComVer can be described as a binary decision `<not compatible>.<compatible>`.
+Given SemVer can be a little tricky to manage, [ComVer](https://github.com/staltz/comver) exists as an alternative. ComVer can be described as a binary decision `<not compatible>.<compatible>`.
 
 T> You can understand SemVer much better by studying [the online tool](http://semver.npmjs.com/) and how it behaves.
 
@@ -60,7 +60,7 @@ npm supports multiple version ranges. I’ve listed the common ones below:
 * `*` - Asterisk matches major releases, and it is the most dangerous of the ranges. Using this recklessly can easily break your project in the future, and I would advise against using it.
 * `>= 1.3.0 < 2.0.0` - Ranges between versions can be particularly useful if you are using `peerDependencies`.
 
-You can set the default range using `npm config set save-prefix='^'` in case you prefer something else than caret. Alternately, you can modify *~/.npmrc* directly. Especially defaulting to tilde can be a good idea that can help you to avoid some trouble with dependencies, although it won’t remove potential problems entirely. That’s where shrinkwrapping comes in.
+You can set the default range using `npm config set save-prefix='^'` in case you prefer something else than caret. Alternately, you can modify *~/.npmrc* directly. Especially defaulting to tilde can be a good idea that can help you to avoid trouble with dependencies, although it won’t remove potential problems entirely. That’s where shrinkwrapping comes in.
 
 ## Shrinkwrapping Versions
 
@@ -75,7 +75,7 @@ Using version ranges can feel a little dangerous as it doesn’t take much to br
 An important part of maintaining a project is keeping their dependencies up to date. How to do this depends a lot of on the maturity of your project. Ideally, you have an excellent set of tests covering the functionality. If not, things can get a little hairier. You can consider the following approaches:
 
 * You can update all dependencies at once and hope for the best. Tools, such as [npm-check-updates](https://www.npmjs.com/package/npm-check-updates), [npm-check](https://www.npmjs.com/package/npm-check), [npm-upgrade](https://www.npmjs.com/package/npm-upgrade), or [updtr](https://www.npmjs.com/package/updtr), can do this for you.
-* Install the newest version of some specific dependency, e.g., `npm install lodash@* --save` as a more controlled way to approach the problem.
+* Install the newest version of a specific dependency, e.g., `npm install lodash@* --save` as a more controlled way to approach the problem.
 * Patch version information by hand by modifying *package.json* directly.
 
 It is important to remember that your dependencies may introduce backward incompatible changes. It can be useful to remember how SemVer works and study release notes of dependencies. They might not always exist, so you may have to go through the project commit history.
@@ -116,7 +116,7 @@ Sometimes packages might not follow the standard rules and their *package.json* 
 
 The idea is that if webpack resolver matches `demo` in the beginning, it will resolve from the target. You can constrain the process to an exact name by using a pattern like `demo$`.
 
-The technique is useful with React too. Light alternatives, such as [Preact](https://www.npmjs.com/package/preact), [react-lite](https://www.npmjs.com/package/react-lite), or [Inferno](https://www.npmjs.com/package/inferno), offer smaller size while trading off some functionality like `propTypes` and synthetic event handling. Replacing React with a lighter alternative can save a significant amount of space, but you should test well if you do this. The setup looks like this for *react-lite*. The idea is the same for others:
+The technique is useful with React too. Light alternatives, such as [Preact](https://www.npmjs.com/package/preact), [react-lite](https://www.npmjs.com/package/react-lite), or [Inferno](https://www.npmjs.com/package/inferno), offer smaller size while trading off functionality like `propTypes` and synthetic event handling. Replacing React with a lighter alternative can save a significant amount of space, but you should test well if you do this. The setup looks like this for *react-lite*. The idea is the same for others:
 
 ```javascript
 {
@@ -308,13 +308,13 @@ Even though it’s easy to consume packages through npm, there are times when it
 
 ## Conclusion
 
-Webpack can consume most npm packages without a hitch. Sometimes, though, some patching might be required. Fortunately, its resolution mechanism is patchable enough, and you can modify the way it brings the source to your project if needed.
+Webpack can consume most npm packages without a hitch. Sometimes, though, patching is required. Fortunately, its resolution mechanism is patchable enough, and you can modify the way it brings the source to your project if needed.
 
 To recap:
 
 * To consume packages effectively, you should understand SemVer. To keep your build repeatable, consider using technologies like shrinkwrapping or Yarn lockfiles.
 * Use webpack’s access to module resolution to your benefit. Sometimes you can work around issues by tweaking resolution. Often it is a good idea to try to push improvements upstream to the projects themselves, though.
-* Webpack allows you to patch resolved modules in many ways. Given some dependencies expect globals, you can use webpack to inject them. You can also expose modules as globals. This is necessary for certain development tooling to work.
+* Webpack allows you to patch resolved modules in many ways. Given certain dependencies expect globals, you can use webpack to inject them. You can also expose modules as globals. This is necessary for certain development tooling to work.
 * To understand your dependencies better, consider using available tooling and service to study them. Knowing them well can pay off later if problems arise.
 
 In the next chapter, I’ll show you how to author npm packages. It’s the other side of the same coin and worth understanding even if you won’t end up authoring packages of your own.

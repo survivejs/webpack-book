@@ -192,7 +192,7 @@ Sometimes you might want to use experimental features. Although you can find a l
 
 ## Useful Babel Presets and Plugins
 
-Perhaps the greatest thing about Babel is that it’s possible to extend with presets and plugins. I’ve listed some interesting ones below:
+Perhaps the greatest thing about Babel is that it’s possible to extend with presets and plugins. I’ve listed a collection below:
 
 * [babel-preset-es2015](https://www.npmjs.org/package/babel-preset-es2015) includes ES2015 features.
 * [babel-preset-es2016](https://www.npmjs.org/package/babel-preset-es2016) includes **only** ES2016 features. Remember to include the previous preset as well if you want both!

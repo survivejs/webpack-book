@@ -36,13 +36,13 @@ The PurifyCSS plugin exposes a small interface to the user. Consider the example
 },
 ```
 
-In this case it is important the plugin is executed **after** `ExtractTextPlugin`. That way there is something sensible to process. The plugin also supports more advanced forms of path input. You could pass an `entry` like object to it to constrain the purifying process per entry instead of relying on the same set of files. This adds some complexity to the implementation, but it’s a good feature to support as it provides more control to the user.
+In this case it is important the plugin is executed **after** `ExtractTextPlugin`. That way there is something sensible to process. The plugin also supports more advanced forms of path input. You could pass an `entry` like object to it to constrain the purifying process per entry instead of relying on the same set of files. This adds complexity to the implementation, but it’s a good feature to support as it provides more control to the user.
 
 Given failing fast and loud is a good idea when it comes to user-facing interfaces like this, I decided to validate the input carefully. I ended up using JSON Schema for the option definition while validating the input through [ajv](https://www.npmjs.com/package/ajv) as this allows me to provide verbose errors related to the input shape and it can capture even typos as it will complain if you try to pass fields that are not supported. Webpack uses a similar solution internally, and it has proven to be a good decision.
 
 Most of the complexity of the plugin has to do with figuring out which data to pass to PurifyCSS. The process has to capture assets from the application hierarchy and perform a lookup against them. Writing the data is the easiest step. To add output, you have to use `compilation.assets['demo.css'] = 'demo';` kind of an API.
 
-The source below walks through the main ideas of the plugin in detail. Some of the logic, such as input validation, parsing, and searching, have been pushed behind modules of their own as they have little to do with the main flow of the plugin.
+The source below walks through the main ideas of the plugin in detail. Logic, such as input validation, parsing, and searching, has been pushed behind modules of their own as they have little to do with the main flow of the plugin.
 
 ```javascript
 import purify from 'purify-css';
@@ -143,7 +143,7 @@ Sometimes it can make sense for a plugin to provide hooks of its own. This way y
 
 ## Conclusion
 
-Writing webpack plugins can be challenging at first due to the sheer size of the API webpack provides and it is the most powerful way you can extend webpack, though. When you begin to design a plugin, it is a good idea to spend some time studying existing plugins that are close enough to what you are going to implement as this can generate insight on which hooks you should use and how.
+Writing webpack plugins can be challenging at first due to the sheer size of the API webpack provides and it is the most powerful way you can extend webpack, though. When you begin to design a plugin, it is a good idea to spend time studying existing plugins that are close enough to what you are going to implement as this can generate insight on which hooks you should use and how.
 
 It is a good idea to develop a plugin piece-wise so that you validate one piece of it at a time. The ultimate way to understand webpack plugins in great detail is to delve into webpack source itself as it is a big collection of plugins.
 
