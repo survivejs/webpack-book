@@ -26,6 +26,10 @@
         ["simple", ""],
         ["obvious", ""],
         ["straightforward", ""],
+        ["very", ""],
+        ["basically", ""],
+        ["actually", ""],
+        ["pretty", ""],
 
         "pre-release",
 
