@@ -308,6 +308,52 @@ Given webpack 2 forbids arbitrary root level configuration, you have to use `Loa
 },
 ```
 
+## Debugging Loaders with *loader-runner*
+
+A good way to debug and understand how loaders work is to execute them through [loader-runner](https://www.npmjs.com/package/loader-runner). Since loaders are an important part of webpack, understanding *loader-runner* is valuable.
+
+Consider the following example that takes input from *demo.txt* and passes it through [raw-loader](https://www.npmjs.com/package/raw-loader):
+
+```javascript
+const fs = require('fs');
+const { runLoaders } = require('loader-runner');
+
+runLoaders({
+    resource: './demo.txt',
+    loaders: ['raw-loader'],
+    readResource: fs.readFile.bind(fs)
+  },
+  function(err, result) {
+    if(err) {
+      return console.error(err);
+    }
+
+    console.log(result);
+
+    fs.writeFileSync(
+      './output.txt',
+      result.result
+    );
+  }
+);
+```
+
+Assuming *loader-runner* and *raw-loader* have been installed and *demo.txt* contains `foobar` string, running the script should give output similar to this:
+
+```javascript
+{ result: [ 'module.exports = "foobar\\n"' ],
+  resourceBuffer: <Buffer 66 6f 6f 62 61 72 0a>,
+  cacheable: true,
+  fileDependencies: [ './demo.txt' ],
+  contextDependencies: [] }
+```
+
+The most important part of the output is the `result`. `resourceBuffer` contains a reference to the original resource to process and the rest fields are metadata related to the processing.
+
+If you examine *output.txt*, you might see a line like `module.exports = "foobar\n"`. The result means that the input was processed through *raw-loader* and code was injected to the file.
+
+T> If you want to resolve against local loaders instead of npm packages, you have to resolve to them through a full path like this: `loaders: [path.resolve(__dirname, './demo-loader')]`.
+
 ## Conclusion
 
 Webpack provides multiple ways to set up loaders, but sticking with `use` is enough in webpack 2. You should be careful, especially with loader ordering, as this is a common source of problems.
@@ -319,5 +365,6 @@ To recap:
 * Webpack 2 introduced the `use` field. It combines the ideas of old `loader` and `loaders` fields into a single construct.
 * Webpack 2 provides multiple ways to match and alter loader behavior. You can, for example, match based on a **resource query** after a loader has been matched and route the loader to specific actions.
 * `LoaderOptionsPlugin` exists for legacy purposes and allows you to get around the strict configuration schema of webpack 2 to work with older plugins and loaders.
+* *loader-runner* is a valuable tool for understanding how loaders work. Use it for debugging how loaders work.
 
 In the next chapter, I will show you how to load images using webpack.
