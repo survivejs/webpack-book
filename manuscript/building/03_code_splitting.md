@@ -340,7 +340,7 @@ Code splitting is one of those features that allows you to push your application
 To recap:
 
 * **Code splitting** comes with extra effort as you have to decide what to split and where. Often, you find good split points within a router. Or you may notice that specific functionality is required only when a particular feature is used. Charting is a good example of this.
-* In order to use dynamic `import` syntax, both Babel and ESLint require careful tweaks. Webpack supports the syntax ouf of the box.
+* To use dynamic `import` syntax, both Babel and ESLint require careful tweaks. Webpack supports the syntax ouf of the box.
 * Dynamic `import` provides less functionality than `require.ensure`. While it’s possible to handle errors with it, features like naming are available for `require.ensure` only.
 * The techniques can be used within modern frameworks and libraries like React. You can wrap related logic to a specific component that handles the loading process in a user-friendly manner.
 

@@ -258,7 +258,7 @@ T> If you are using Git, ignore rules can be managed through *.gitignore*. You c
 
 ### Generating `module` Field Compatible Output
 
-In order to generate *package.json* `module` field compatible output to enable tree shaking for the consumers, the source should be processed so that it does not lose ES6 module definitions. It is better to solve this problem outside of webpack by passing the source through Babel instead. Adjust as follows:
+To generate *package.json* `module` field compatible output to enable tree shaking for the consumers, the source should be processed so that it does not lose ES6 module definitions. It is better to solve this problem outside of webpack by passing the source through Babel instead. Adjust as follows:
 
 **package.json**
 

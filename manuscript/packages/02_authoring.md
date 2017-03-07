@@ -169,7 +169,7 @@ W> Even though it’s possible to tell npm what to exclude from `files` through 
 
 ### Bumping a Version
 
-In order to bump your package version, you’ll need to invoke one of these commands:
+To bump your package version, you’ll need to invoke one of these commands:
 
 * `npm version <x.y.z>` - Define version yourself.
 * `npm version <major|minor|patch>` - Let npm bump the version for you based on SemVer.

@@ -121,7 +121,7 @@ But what’s the point? You can pass to loaders through webpack entries. Instead
 
 ## Passing Options to Loaders
 
-In order to control loader behavior, often you want to pass specific options to a loader. To demonstrate this, the runner needs a small tweak:
+To control loader behavior, often you want to pass specific options to a loader. To demonstrate this, the runner needs a small tweak:
 
 **run-loader.js**
 
