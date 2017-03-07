@@ -254,7 +254,7 @@ Since we want to avoid having to run the command directly whenever we publish a 
 
 Make sure you execute `npm install babel-cli --save-dev` to include the tool into your project.
 
-You probably don’t want the directory content to end up in your Git repository. To avoid this and to keep your `git status` clean, consider this sort of `.gitignore`:
+To avoid versioning the directory and to keep your `git status` clean, consider this sort of `.gitignore`:
 
 ```bash
 dist-modules/

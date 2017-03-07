@@ -84,7 +84,7 @@ define(['require'], function (require) {
 });
 ```
 
-This latter approach eliminates some of the clutter. You will still end up with some code that might feel redundant. Given there’s ES6 now, it probably doesn’t make much sense to use AMD anymore unless you have to due to legacy reasons.
+This latter approach eliminates some of the clutter. You will still end up with some code that might feel redundant. Given there’s ES6 now, it doesn’t make sense to use AMD unless you forced due to legacy reasons.
 
 T> Jamund Ferguson has written an excellent blog series on how to port from [RequireJS to webpack](https://gist.github.com/xjamundx/b1c800e9282e16a6a18e).
 
