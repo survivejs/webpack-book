@@ -311,7 +311,7 @@ The approach combines well with plugins like [offline-plugin](https://www.npmjs.
 
 ## Conclusion
 
-Webpack allows you to manage multiple page setups. Especially the PWA approach is interesting as it allows loading the application in a progressive manner based on usage. It is more flexible than a more traditional single page application approach, and webpack’s functionality enables it well.
+Webpack allows you to manage multiple page setups. Especially the PWA approach is valuable as it allows loading the application in a progressive manner based on usage. It is more flexible than a more traditional single page application approach, and webpack’s functionality enables it well.
 
 To recap:
 

@@ -107,7 +107,7 @@ global["Demo"] =
 
 ## CommonJS
 
-The CommonJS specific targets are interesting when it comes to Node. There are two options: `commonjs` and `commonjs2`. These refer to different interpretations of the [CommonJS specification](http://wiki.commonjs.org/wiki/CommonJS). Let’s explore the difference.
+The CommonJS specific targets are handy when it comes to Node. There are two options: `commonjs` and `commonjs2`. These refer to different interpretations of the [CommonJS specification](http://wiki.commonjs.org/wiki/CommonJS). Let’s explore the difference.
 
 ### `commonjs`
 

@@ -78,7 +78,7 @@ leanpub-end-insert
 
 The example above contains enough information for webpack to run the given loader parallel. HappyPack comes with more advanced options, but applying this idea is enough to get started.
 
-Perhaps the problem with HappyPack is that it couples your configuration with it. It would be possible to overcome this issue by design and make it easier to inject. One interesting option would be to build a higher level abstraction that can perform the replacement on top of vanilla configuration.
+Perhaps the problem with HappyPack is that it couples your configuration with it. It would be possible to overcome this issue by design and make it easier to inject. One option would be to build a higher level abstraction that can perform the replacement on top of vanilla configuration.
 
 ## Low-Level Optimizations
 

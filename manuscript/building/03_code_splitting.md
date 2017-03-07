@@ -191,7 +191,7 @@ If you open up the application (`npm start`) and click the button, you should se
 
 ![Lazy loaded content](images/lazy.png)
 
-The build result is the more interesting part. If you run `npm run build`, you should see something like this:
+If you run `npm run build`, you should see something like this:
 
 ```bash
 Hash: e61343b53de634da8aac

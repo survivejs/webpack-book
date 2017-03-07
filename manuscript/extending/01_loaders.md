@@ -69,7 +69,7 @@ If you run the script now (`node run-loader.js`), you should see output like thi
   contextDependencies: [] }
 ```
 
-The output tells the `result` of the processing, the resource that was processed as a buffer, and other meta information that’s less interesting in this case. This is enough to develop more complicated loaders.
+The output tells the `result` of the processing, the resource that was processed as a buffer, and other meta information. This is enough to develop more complicated loaders.
 
 T> If you want to capture the output to a file, use either `fs.writeFileSync('./output.txt', result.result)` or its asynchronous version as discussed in [Node documentation](https://nodejs.org/api/fs.html).
 

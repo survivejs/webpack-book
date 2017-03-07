@@ -47,9 +47,9 @@ You can tweak webpack’s module resolution through the `resolve.modules` field.
 
 Sometimes it may be beneficial to use these techniques together. Compared to npm environment, webpack provides more flexibility, although you can mimic a lot of webpack’s functionality using terminal based tricks.
 
-W> Installing global packages can lead to surprising behavior. If you have a package installed both globally and it a project happens to contain it, executing associated terminal command (say `webpack`) will point to the version of the project. The interesting thing is that it won’t work unless the global package exists.
+W> Installing global packages can lead to surprising behavior. If you have a package installed both globally and it a project happens to contain it, executing associated terminal command (say `webpack`) will point to the version of the project. It won’t work unless the global package exists.
 
-T> [app-module-path](https://www.npmjs.com/package/app-module-path) allows you adjust Node module lookup within JavaScript and this can be an interesting alternative to patching `NODE_PATH`.
+T> [app-module-path](https://www.npmjs.com/package/app-module-path) allows you adjust Node module lookup within JavaScript and this can be an alternative to patching `NODE_PATH`.
 
 ## Version Ranges
 
@@ -66,7 +66,7 @@ You can set the default range using `npm config set save-prefix='^'` in case you
 
 Using version ranges can feel a little dangerous as it doesn’t take much to break an application. A single change in the wrong place is enough. [npm shrinkwrap](https://docs.npmjs.com/cli/shrinkwrap) allows you to fix your dependency versions and have stricter control over the versions you are using in a production environment. Most importantly it fixes the dependencies of your dependencies avoiding accidental breakage due to version changes and SemVer.
 
-[lockdown](https://www.npmjs.com/package/lockdown) goes further and gives guarantees about dependency content, not version alone. [shrinkpack](https://www.npmjs.com/package/shrinkpack) is another interesting complementary option.
+[lockdown](https://www.npmjs.com/package/lockdown) goes further and gives guarantees about dependency content, not version alone. [shrinkpack](https://www.npmjs.com/package/shrinkpack) is another complementary option.
 
 [Yarn](https://yarnpkg.com/), an npm alternative, goes a step further as it introduces the idea of a *lockfile*. Yarn is worth a look, as it fixes certain shortcomings of npm.
 
@@ -303,8 +303,6 @@ To get more information about packages, npm provides `npm info <package>` comman
 [slow-deps](https://www.npmjs.com/package/slow-deps) can reveal which dependencies of a project are the slowest to install.
 
 [weigh](https://www.npmjs.com/package/weigh) can be used figure out the approximate size of a package when it’s served to a browser in different ways (uncompressed, minified, gzipped).
-
-[npms.io](https://npms.io/) provides a better search for npm. The basic search has been integrated to [npmjs.org](https://www.npmjs.com/), but npms.io can still be interesting especially because they expose their data through [a public API](https://api-docs.npms.io/) you can query programmatically.
 
 ## Conclusion
 
