@@ -147,7 +147,7 @@ Assuming you have set up your styling correctly, you can refer to your SVG files
 }
 ```
 
-If you want the raw SVG content, you can use the [raw-loader](https://www.npmjs.com/package/raw-loader) for this purpose. [svg-inline-loader](https://www.npmjs.com/package/svg-inline-loader) goes a step further and eliminates unnecessary markup from your SVGs. These loaders can be useful if you want to inject the SVG content to directly to JavaScript or HTML markup.
+If you want the raw SVG content, you can use the [raw-loader](https://www.npmjs.com/package/raw-loader) for this purpose. [svg-inline-loader](https://www.npmjs.com/package/svg-inline-loader) goes a step further and eliminates unnecessary markup from your SVGs. These loaders can be valuable if you want to inject the SVG content to directly to JavaScript or HTML markup.
 
 [svg-sprite-loader](https://www.npmjs.com/package/svg-sprite-loader) can merge separate SVG files into a single sprite, making it potentially more efficient to load as you avoid request overhead. It supports raster images (*.jpg*, *.png*) as well.
 
@@ -159,11 +159,11 @@ T> You can still use *url-loader* and the tips above with SVGs too.
 
 In case you want to compress your images, use [image-webpack-loader](https://www.npmjs.com/package/image-webpack-loader), [svgo-loader](https://www.npmjs.com/package/svgo-loader) (SVG specific), or [imagemin-webpack-plugin](https://www.npmjs.com/package/imagemin-webpack-plugin). This type of loader should be applied first to the data, so remember to place it as the last within `use` listing.
 
-Compression is particularly useful for production builds as it will decrease the amount of bandwidth required to download your image assets and speed up your site or application as a result.
+Compression is particularly valuable for production builds as it will decrease the amount of bandwidth required to download your image assets and speed up your site or application as a result.
 
 ## Utilizing `srcset`
 
-[resize-image-loader](https://www.npmjs.com/package/resize-image-loader) and [responsive-loader](https://www.npmjs.com/package/responsive-loader) allow you to generate `srcset` compatible collections of images making them useful with modern browsers. `srcset` gives more control to the browsers over what images to load and when resulting in higher performance.
+[resize-image-loader](https://www.npmjs.com/package/resize-image-loader) and [responsive-loader](https://www.npmjs.com/package/responsive-loader) allow you to generate `srcset` compatible collections of images for modern browsers. `srcset` gives more control to the browsers over what images to load and when resulting in higher performance.
 
 ## Referencing to Images
 
@@ -201,7 +201,7 @@ Sometimes getting the only reference to an image isn’t enough. [image-size-loa
 
 ## Loading Sprites
 
-**Spriting** technique allows you to combine multiple smaller images into a single image. It has been used for games to describe animations and it’s useful for web development as well as you avoid request overhead.
+**Spriting** technique allows you to combine multiple smaller images into a single image. It has been used for games to describe animations and it’s valuable for web development as well as you avoid request overhead.
 
 [webpack-spritesmith](https://www.npmjs.com/package/webpack-spritesmith) converts provided images into a sprite sheet and Sass/Less/Stylus mixins. You have to set up a `SpritesmithPlugin`, point it to target images, and set the name of the generated mixin. After that, your styling can pick it up like this:
 

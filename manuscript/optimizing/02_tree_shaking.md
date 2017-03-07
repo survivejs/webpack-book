@@ -42,7 +42,7 @@ If you build the project again (`npm run build`) and examine the build result (*
 
 T> If you want to see which parts of the code tree shaking affects, enable warnings at the `UglifyJsPlugin`. In addition to other messages, you should see lines like `Dropping unused variable treeShakingDemo [./app/component.js:17,6]`.
 
-T> There is a CSS Modules related tree shaking proof of concept at [dead-css-loader](https://github.com/simlrh/dead-css-loader). The technique becomes like more useful in the future as projects like this become stable.
+T> There is a CSS Modules related tree shaking proof of concept at [dead-css-loader](https://github.com/simlrh/dead-css-loader).
 
 ## Tree Shaking on Package Level
 

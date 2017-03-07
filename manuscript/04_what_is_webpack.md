@@ -30,7 +30,7 @@ That’s not all there is to the bundling process. For example, you can define s
 
 ## Additional Control Through Plugins
 
-Although loaders are useful, they don’t provide enough power for more advanced tasks. **Plugins** allow you to intercept **runtime events** provided by webpack. A good example is bundle extraction performed by `ExtractTextPlugin`.
+Although loaders can do a lot, they don’t provide enough power for more advanced tasks. **Plugins** allow you to intercept **runtime events** provided by webpack. A good example is bundle extraction performed by `ExtractTextPlugin`.
 
 The plugin works in tandem with a loader that captures files to extract out of the bundle and into a file of its own. Otherwise the CSS would end up in the resulting JavaScript. The *Separating CSS* chapter discusses this idea in detail.
 

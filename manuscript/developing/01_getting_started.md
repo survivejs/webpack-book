@@ -4,7 +4,7 @@ Before getting started, make sure you are using a recent version of [Node](http:
 
 The completed configuration is available at [GitHub](https://github.com/survivejs-demos/webpack-demo). If you are unsure of something, refer there.
 
-T> It is possible to get a more controlled environment by using a solution such as [Docker](https://www.docker.com/), [Vagrant](https://www.vagrantup.com/) or [nvm](https://www.npmjs.com/package/nvm). Vagrant comes with a performance penalty as it relies on a virtual machine. Vagrant is particularly useful in a team: each developer will have the same environment, usually close to production.
+T> It is possible to get a more controlled environment by using a solution such as [Docker](https://www.docker.com/), [Vagrant](https://www.vagrantup.com/) or [nvm](https://www.npmjs.com/package/nvm). Vagrant comes with a performance penalty as it relies on a virtual machine. Vagrant is valuable in a team: each developer will have the same environment, usually close to production.
 
 W> If you are using an older version than Node 6, you may either have to adapt the code or process your webpack configuration through Babel as discussed in the *Loading JavaScript* chapter.
 
@@ -190,9 +190,9 @@ Examine the output below `build/`. If you look closely, you can see the same IDs
 
 T> It can be convenient to use a tool like *serve* (`npm install serve -g`) to serve the build directory. In this case, execute `serve` at the output directory and head to `http://localhost:3000` at your browser. You can configure the port through the `--port` parameter.
 
-T> If you want webpack to stop execution on the first error, set `bail: true` option. Setting it kills the entire webpack process and it is useful if you are building in a CI environment.
+T> If you want webpack to stop execution on the first error, set `bail: true` option. Setting it kills the entire webpack process. The behavior is desirable if you are building in a CI environment.
 
-T> In addition to a configuration object, webpack accepts an array of configurations as discussed in the *Build Targets* chapter. You can also return a `Promise` and eventually `resolve` to a configuration. If you have to fetch configuration related values before returning it, this can be useful.
+T> In addition to a configuration object, webpack accepts an array of configurations as discussed in the *Build Targets* chapter. You can also return a `Promise` and eventually `resolve` to a configuration. If you have to fetch configuration related values before returning it, this can be valuable.
 
 ## Adding a Build Shortcut
 
@@ -218,7 +218,7 @@ T> There are shortcuts like *npm start* and *npm test*. We can run these directl
 
 T> It is possible to execute *npm run* anywhere within the project. It doesn’t have to be run in the project root to work. npm will figure out the project root for you.
 
-## Useful *html-webpack-plugin* Extensions
+## *html-webpack-plugin* Extensions
 
 [html-webpack-template](https://www.npmjs.com/package/html-webpack-template) or [html-webpack-template-pug](https://www.npmjs.com/package/html-webpack-template-pug) complement *html-webpack-plugin* and provide more powerful templates to use with it.
 
@@ -240,7 +240,7 @@ To recap:
 * It is a good idea to use a locally installed version of webpack over a globally installed one. This way you can be sure of what version you are using. The local dependency works also in a Continuous Integration environment.
 * Webpack provides a command line interface. You can use it even without configuration, but then you are limited by the options it provides.
 * To write more complicated setups, you will most likely have to write a separate *webpack.config.js* file.
-* *html-webpack-plugin* is useful for generating an HTML entry point to your application. Later in the book, you will see how to generate multiple separate pages using. The *Multiple Pages* chapter covers that.
+* *html-webpack-plugin* can be used to generate an HTML entry point to your application. Later in the book, you will see how to generate multiple separate pages using. The *Multiple Pages* chapter covers that.
 * It is handy to use npm *package.json* scripts to manage webpack. You can use it as a light task runner and use system features outside of webpack.
 
  We’ll look into enabling automatic browser refresh in the next chapter to make the development experience of our setup nicer.

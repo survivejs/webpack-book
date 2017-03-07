@@ -57,7 +57,7 @@ webpack(config, (err, stats) => {
 });
 ```
 
-This technique can be useful if you want to do further processing on stats although often the other solutions are enough.
+This technique can be valuable if you want to do further processing on stats although often the other solutions are enough.
 
 ## Available Analysis Tools
 
@@ -124,7 +124,7 @@ $ inspectpack --action=duplicates --bundle=bundle.js
     * Pct of Bundle Size:  15 %
 ```
 
-[inspectpack](https://www.npmjs.com/package/inspectpack) is useful for figuring out specific places of code to improve.
+[inspectpack](https://www.npmjs.com/package/inspectpack) can be used for figuring out specific places of code to improve.
 
 ### webpack-bundle-tracker
 
@@ -150,7 +150,7 @@ In addition to tools that work with webpack output, there are a couple that are 
 
 ![madge](images/madge.png)
 
-[madge](https://www.npmjs.com/package/madge) is another independent tool that can output a graph based on module input. The graph output is useful if you want to understand the dependencies of your project in greater detail.
+[madge](https://www.npmjs.com/package/madge) is another independent tool that can output a graph based on module input. The graph output allows you to understand the dependencies of your project in greater detail.
 
 ## Conclusion
 
@@ -161,6 +161,6 @@ To recap:
 * Webpack allows you to extract a JSON file containing information about the build. The information can include the build composition and timing.
 * The generated information can be analyzed using various tools that give insight into aspects such as the bundle composition.
 * Understanding the bundles is the key to insights on how to optimize the overall size, what to load and when. It can also reveal bigger issues, such as redundant data.
-* You can find third party tools that don’t depend on webpack but are still useful for analysis.
+* You can find third party tools that don’t depend on webpack but are still valuable for analysis.
 
 To help you understand how to tune webpack, I will discuss performance in the next chapter.

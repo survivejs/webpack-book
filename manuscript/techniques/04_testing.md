@@ -90,7 +90,7 @@ Demo
 
 Mocha also provides a watch mode which you can activate through `npm run test:mocha -- --watch`. It will run the test suite as you modify the code.
 
-T> `--grep <pattern>` is useful for constraining the behavior if you want to focus only on a particular set of tests.
+T> `--grep <pattern>` can be used for constraining the behavior if you want to focus only on a particular set of tests.
 
 ### Configuring Webpack
 
@@ -384,7 +384,7 @@ LCOV requires specific tooling to work. You can find editor plugins such as [lco
 
 ![Jest](images/jest.png)
 
-Facebook’s [Jest](https://facebook.github.io/jest/) is an opinionated alternative that encapsulates functionality, including coverage and mocking, with minimal setup. It can capture snapshots of data making it useful for projects where you have the behavior you would like to record and retain.
+Facebook’s [Jest](https://facebook.github.io/jest/) is an opinionated alternative that encapsulates functionality, including coverage and mocking, with minimal setup. It can capture snapshots of data making it valuable for projects where you have the behavior you would like to record and retain.
 
 Jest tests follow [Jasmine](https://www.npmjs.com/package/jasmine) test framework semantics, and it supports Jasmine-style assertions out of the box. Especially the suite definition is close enough to Mocha so that our current test should work without any adjustments to the test code itself. Jest provides [jest-codemods](https://www.npmjs.com/package/jest-codemods) for migrating more complex projects to Jest semantics.
 
@@ -436,7 +436,7 @@ The main idea is to run both webpack and AVA in watch mode to push the problem o
 Mocking is a technique that allows you to replace test objects. I’ve listed series of tools that allow you to mock with webpack:
 
 * [Sinon](https://www.npmjs.com/package/sinon) provides mocks, stubs, and spies. It is good to note that its `@next` version has been designed with webpack in mind. 1.x version of Sinon might work with as discussed in [webpack issue #304](https://github.com/webpack/webpack/issues/304).
-* [inject-loader](https://www.npmjs.com/package/inject-loader) allows you to inject code to modules through their dependencies making it useful for mocking.
+* [inject-loader](https://www.npmjs.com/package/inject-loader) allows you to inject code to modules through their dependencies making it valuable for mocking.
 * [rewire-webpack](https://www.npmjs.com/package/rewire-webpack) allows mocking and overriding module globals. [babel-plugin-rewire](https://www.npmjs.com/package/babel-plugin-rewire) implements [rewire](https://www.npmjs.com/package/rewire) for Babel.
 
 ## Conclusion

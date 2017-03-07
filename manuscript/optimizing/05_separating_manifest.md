@@ -110,7 +110,7 @@ leanpub-end-insert
 
 If you build the project (`npm run build`), you should see a new file, *records.json*, at the project root. The next time webpack builds, it will pick up the information and rewrite the file if it has changed.
 
-Records are particularly useful if you have a complicated setup with code splitting and want to make sure the split parts gain correct caching behavior. The biggest problem is maintaining the record file.
+Records are particularly valuable if you have a complicated setup with code splitting and want to make sure the split parts gain correct caching behavior. The biggest problem is maintaining the record file.
 
 T> `recordsInputPath` and `recordsOutputPath` give more granular control over input and output, but often setting only `recordsPath` is enough.
 
@@ -125,7 +125,7 @@ To recap:
 * Webpack maintains a **manifest** containing information needed to run the application.
 * If the manifest changes, the change will invalidate the containing bundle.
 * To overcome this problem, the manifest can be extracted to a bundle of its own using the `CommonsChunkPlugin`.
-* Certain plugins allow you to write the manifest to the generated *index.html*. It is also possible to extract the information to a JSON file. The JSON is useful with *Server Side Rendering*.
-* **Records** allow you to store module IDs across builds. The approach is useful if you rely on code splitting approaches. As a downside you have to track the records file somehow.
+* Certain plugins allow you to write the manifest to the generated *index.html*. It is also possible to extract the information to a JSON file. The JSON comes in handy with *Server Side Rendering*.
+* **Records** allow you to store module IDs across builds. The approach becomes essential if you rely on code splitting approaches. As a downside you have to track the records file somehow.
 
 I will show you how to analyze the build statistics in the next chapter. This analysis is essential for figuring out how to improve the build result.

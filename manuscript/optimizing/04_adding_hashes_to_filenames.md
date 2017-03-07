@@ -4,7 +4,7 @@ Even though our build generates fine now, the naming it uses is a little problem
 
 ## Placeholders
 
-Webpack provides **placeholders** for this purpose. These strings are used to attach specific information to webpack output. The most useful ones are:
+Webpack provides **placeholders** for this purpose. These strings are used to attach specific information to webpack output. The most valuable ones are:
 
 * `[path]` - Returns the file path.
 * `[name]` - Returns the file name.
@@ -218,7 +218,7 @@ Including hashes related to the file, contents is a good way to invalidate them 
 To recap:
 
 * Webpack’s **placeholders** allow you to shape filenames and enable you to include hashes to them.
-* The most useful placeholders are `[name]`, `[chunkhash]`, and `[ext]`. `chunkhash` is derived based on the entry in which the asset belongs.
+* The most valuable placeholders are `[name]`, `[chunkhash]`, and `[ext]`. `chunkhash` is derived based on the entry in which the asset belongs.
 * If you are using `ExtractTextPlugin`, you should use `[contenthash]`. This way extracted assets won’t become invalidated even if the entries from which they were extracted change.
 * `HashedModuleIdsPlugin` provides a way to generate module IDs based on module paths. This is more stable than relying on the default order based numeric module IDs.
 

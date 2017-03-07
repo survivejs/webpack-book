@@ -20,7 +20,7 @@ We will use this approach in the book to discuss different techniques. *webpack.
 
 To eliminate the problem of dealing with `Object.assign` and `Array.concat`, I developed [webpack-merge](https://www.npmjs.org/package/webpack-merge). Effectively it does two things: it concatenates arrays and merges objects instead of overriding them. Even though a basic idea, this allows us to compose configuration and gives us a degree of abstraction.
 
-*webpack-merge* provides even more control through strategies that enable you to control its behavior per field. Strategies allow you to force it to append, prepend, or replace content. Even though *webpack-merge* was designed for this book, it has proven to be an invaluable tool beyond it. You can consider it as a learning tool and pick it up in your work if you find it useful.
+*webpack-merge* provides even more control through strategies that enable you to control its behavior per field. Strategies allow you to force it to append, prepend, or replace content. Even though *webpack-merge* was designed for this book, it has proven to be an invaluable tool beyond it. You can consider it as a learning tool and pick it up in your work if you find it handy.
 
 T> [webpack-chain](https://www.npmjs.com/package/webpack-chain) provides a fluent API for configuring webpack allowing you to avoid configuration shape-related problems while enabling composition.
 
@@ -77,7 +77,7 @@ exports.lintJavaScript = function({ include, exclude, options }) {
 };
 ```
 
-T> I changed the configuration to use `hot: true` over `hotOnly: true` as I want the browser to refresh regardless of a possible error during processing. The latter option is useful for debugging HMR when you are implementing the client side interface.
+T> I changed the configuration to use `hot: true` over `hotOnly: true` as I want the browser to refresh regardless of a possible error during processing. The latter option is valuable for debugging HMR when you are implementing the client side interface.
 
 To benefit from these configuration parts, we need to connect them with *webpack.config.js* as in the complete code example below:
 
@@ -145,7 +145,7 @@ We can also add more by expanding the *package.json* definition and branching at
 
 Later on, *webpack.parts.js* could be pushed to npm or outside of the project. But for this book, it’s enough to maintain it within the project.
 
-T> Webpack 2 validates the configuration by default. If you make a mistake like a typo, it will let you know. Earlier, it was useful to set up [webpack-validator](https://www.npmjs.com/package/webpack-validator), but that’s not needed anymore.
+T> Webpack 2 validates the configuration by default. If you make a mistake like a typo, it will let you know.
 
 ## The Benefits of Composing Configuration
 

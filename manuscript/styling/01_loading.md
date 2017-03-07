@@ -92,7 +92,7 @@ leanpub-end-insert
 
 Execute `npm start` now. Browse to `http://localhost:8080` if you are using the default port and open up *main.css* and change the background color to something like `lime` (`background: lime`). Develop styles as needed to make it look a little nicer. Note that it does **not** perform a hard refresh on the browser since we have HMR setup in place.
 
-We’ll continue from here in the next chapter. Before that, though, I will discuss styling-related techniques you may find useful.
+We’ll continue from here in the next chapter. Before that, though, I will discuss styling-related techniques.
 
 ![Hello cornsilk world](images/hello_02.png)
 
@@ -148,7 +148,7 @@ CSS Modules provides also features like composition to make it even easier to wo
 
 T> CSS Modules behavior can be modified [as discussed in the official documentation](https://www.npmjs.com/package/css-loader#local-scope). You have control over the names it generates for instance.
 
-T> [eslint-plugin-css-modules](https://www.npmjs.com/package/eslint-plugin-css-modules) is useful for tracking CSS Modules related problems.
+T> [eslint-plugin-css-modules](https://www.npmjs.com/package/eslint-plugin-css-modules) is handy for tracking CSS Modules related problems.
 
 ## Loading Less
 
@@ -293,7 +293,7 @@ T> [resolve-url-loader](https://www.npmjs.com/package/resolve-url-loader) will c
 
 ### Processing *css-loader* Imports
 
-If you want to process *css-loader* imports in a specific way, you should set up `importLoaders` option to a number that tells the loader how many loaders after the *css-loader* should be executed against the imports found. If you import other CSS files from your CSS through the `@import` statement and want to process the imports through specific loaders, this is particularly useful.
+If you want to process *css-loader* imports in a specific way, you should set up `importLoaders` option to a number that tells the loader how many loaders after the *css-loader* should be executed against the imports found. If you import other CSS files from your CSS through the `@import` statement and want to process the imports through specific loaders, you will find this technique essential.
 
 Consider the following import from a CSS file:
 
@@ -347,7 +347,7 @@ The third option is to go through [bootstrap-loader](https://www.npmjs.com/packa
 
 ## Converting CSS to Strings
 
-Especially with Angular 2, it can be useful if you can get CSS in a string format that can be pushed to components. [css-to-string-loader](https://www.npmjs.com/package/css-to-string-loader) achieves exactly this.
+Especially with Angular 2, it can be convenient if you can get CSS in a string format that can be pushed to components. [css-to-string-loader](https://www.npmjs.com/package/css-to-string-loader) achieves exactly this.
 
 ## Conclusion
 

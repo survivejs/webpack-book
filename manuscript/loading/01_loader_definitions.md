@@ -8,7 +8,7 @@ Assuming you set an `include` or `exclude` rule, packages loaded from *node_modu
 
 T> The *Consuming Packages* chapter discusses the aliasing idea in further detail.
 
-T> `include`/`exclude` is particularly useful with *node_modules* as webpack will process and traverse the installed packages by default when you import JavaScript files to your project. Therefore you need to configure it to avoid that behavior. Other file types don’t suffer from this issue.
+T> `include`/`exclude` is handy with *node_modules* as webpack will process and traverse the installed packages by default when you import JavaScript files to your project. Therefore you need to configure it to avoid that behavior. Other file types don’t suffer from this issue.
 
 ## Anatomy of a Loader
 
@@ -224,7 +224,7 @@ In the book setup, we compose configuration on a higher level. Another option to
 },
 ```
 
-Carefully applied, this technique can be useful and allow different ways of composition.
+Carefully applied, this technique allows different means of composition.
 
 ## Inline Definitions
 

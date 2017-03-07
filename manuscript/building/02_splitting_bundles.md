@@ -259,7 +259,7 @@ I’ve listed most important `module` properties below. These assume an import l
 * `context` returns the path to the directory in which the resource is. Example: `.../webpack-demo/node_modules/purecss/build`.
 * `rawRequest` contains the whole unresolved request. Example: `!!../../css-loader/index.js!.../pure-min.css`.
 * `userRequest` is a version of the request that has been resolved to a query. Example: `.../node_modules/css-loader/index.js!.../pure-min.css`.
-* `chunks` tells in which chunks the module is contained. Check `chunks.length` to tell how many times webpack has included it. This is useful for control on the chunk level.
+* `chunks` tells in which chunks the module is contained. Check `chunks.length` to tell how many times webpack has included it to control output on the chunk level.
 
 Particularly `resource` and `userRequest` can return the same value if you are operating with imports that aren’t being processed in any way. In the example above, `ExtractTextPlugin` caused a difference between the values.
 
@@ -380,7 +380,7 @@ W> Note that the `children` behavior applies only to immediate children. The alg
 
 ## Splitting and Merging Chunks
 
-Webpack provides more control over the generated chunks by providing two plugins: `AggressiveSplittingPlugin` and `AggressiveMergingPlugin`. The former is particularly interesting as it allows you to emit more and smaller bundles. The behavior is especially useful with HTTP/2 due to the way the new standard works.
+Webpack provides more control over the generated chunks by providing two plugins: `AggressiveSplittingPlugin` and `AggressiveMergingPlugin`. The former is particularly interesting as it allows you to emit more and smaller bundles. The behavior is handy with HTTP/2 due to the way the new standard works.
 
 There’s a trade-off involved as you’ll lose out in caching if you split to multiple small bundles. You also get request overhead in HTTP/1 environment. For now, the approach doesn’t work when `HtmlWebpackPlugin` is enabled due to [a bug in the plugin](https://github.com/ampedandwired/html-webpack-plugin/issues/446).
 
@@ -435,7 +435,7 @@ To recap:
 * A vendor bundle contains the third party code of your project. The vendor dependencies can be detected by inspecting where the modules are imported. If they come from the *node_modules* directory, they can be split automatically through a `minChunks` rule.
 * `CommonsChunkPlugin` provides control over the splitting process. You can control the position of shared modules through its `async` and `children` flags. `async` extracts shared modules to an asynchronously loaded bundle while `children` pushes the shared modules to the parent bundle.
 * The `chunks` option of `CommonsChunkPlugin` allows you to control where the plugin is performing splitting. The option gives more granular control, especially in more complex setups.
-* Webpack offers more control over chunking through specific plugins, such as `AggressiveSplittingPlugin` and `AggressiveMergingPlugin`. Particularly the splitting plugin can be useful in HTTP/2 oriented setups.
+* Webpack offers more control over chunking through specific plugins, such as `AggressiveSplittingPlugin` and `AggressiveMergingPlugin`. Particularly the splitting plugin can be handy in HTTP/2 oriented setups.
 * Internally webpack relies on three chunk types: entry, normal, and initial chunks. `CommonsChunkPlugin` flags modules using these types.
 
 In the next chapter, I will discuss code splitting and show how to load code on demand using webpack.

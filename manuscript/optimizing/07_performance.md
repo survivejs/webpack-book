@@ -82,7 +82,7 @@ Perhaps the problem with HappyPack is that it couples your configuration with it
 
 ## Low-Level Optimizations
 
-Certain lower-level optimizations can become useful. The key is to allow webpack to perform less work. We’ve already implemented a couple of these, but it’s a good idea to enumerate them:
+Certain lower-level optimizations can be good to know. The key is to allow webpack to perform less work. We’ve already implemented a couple of these, but it’s a good idea to enumerate them:
 
 * Consider using faster source map variants during development or skip them. Skipping is possible if you don’t process the code in any way.
 * Use [babel-preset-env](https://www.npmjs.com/package/babel-preset-env) during development instead of source maps to transpile fewer features for modern browsers and make the code more readable and easier to debug.

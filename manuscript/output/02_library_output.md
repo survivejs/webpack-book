@@ -321,12 +321,12 @@ If you want to support SystemJS this way, set up another build target where to g
 
 ## Conclusion
 
-Webpack supports a large variety of library output formats. `umd` is the most useful for a package author. The rest are more specialized and require specific use cases to be valuable.
+Webpack supports a large variety of library output formats. `umd` is the most valuable for a package author. The rest are more specialized and require specific use cases to be valuable.
 
 To recap:
 
 * Most often `umd` is all you need. The other library targets exist more specialized usage in mind.
-* The CommonJS variants are useful if you target only Node or consume the output through bundlers alone. UMD implements support for CommonJS, AMD, and globals.
+* The CommonJS variants are handy if you target only Node or consume the output through bundlers alone. UMD implements support for CommonJS, AMD, and globals.
 * It is possible to target SystemJS through a plugin. Webpack does not support it out of the box.
 
 In the next chapter, I will discuss the idea of managing multi-page setups.

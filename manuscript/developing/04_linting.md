@@ -24,7 +24,7 @@ T> [eslint-config-cleanjs](https://www.npmjs.com/package/eslint-config-cleanjs) 
 
 ## Linting Is about More than Catching Issues
 
-Besides linting for issues, it can be useful to manage the code style. Nothing is more annoying than having to work with source code that has mixed tabs and spaces. Stylistically consistent code reads better. Linting tools allow you to do this.
+Besides linting for issues, it can be valuable to manage the code style. Nothing is more annoying than having to work with source code that has mixed tabs and spaces. Stylistically consistent code reads better. Linting tools allow you to do this.
 
 Establishing strong linting can be beneficial, especially in a context where you need to collaborate with others. Even when working alone you will benefit from linting as it can catch issues you might otherwise neglect. JavaScript as a language allows usage which, while valid, may not be the clearest to understand or may even be incorrect.
 
@@ -174,7 +174,7 @@ If you execute `npm start` now and break a linting rule while developing, you sh
 
 W> Note that the webpack configuration lints only the application code we refer. If you want to lint webpack configuration itself, execute `npm run lint:js` separately.
 
-T> It can be useful to attach the linting process to Git through a prepush hook. [pre-git](https://www.npmjs.com/package/pre-git) allows you to achieve this quickly. This way you can rebase your commits and fix possible problems before pushing.
+T> Attaching the linting process to Git through a prepush hook allows you to catch problems earlier. [pre-git](https://www.npmjs.com/package/pre-git) allows you to achieve this quickly. Doing this allows you to rebase your commits and fix possible problems early.
 
 ### Configuring ESLint Further
 
@@ -224,7 +224,7 @@ I’ve collected different ESLint tips below. The great thing about ESLint is th
 ### Extension Tips
 
 * ESLint supports ES6 features through configuration. You will have to specify the features to use through the [ecmaFeatures](http://eslint.org/docs/user-guide/configuring.html#specifying-language-options) property.
-* There are useful plugins, such as [eslint-plugin-node](https://www.npmjs.com/package/eslint-plugin-node), [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react), [eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise), [eslint-plugin-compat](https://www.npmjs.com/package/eslint-plugin-compat), and [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import), that you might want to consider integrating to your project.
+* Plugins, such as [eslint-plugin-node](https://www.npmjs.com/package/eslint-plugin-node), [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react), [eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise), [eslint-plugin-compat](https://www.npmjs.com/package/eslint-plugin-compat), and [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import), are worth studying.
 * Most IDEs and editors have good linter integration so you can spot issues as you develop.
 * To learn about ESLint customizations options and how to write an ESLint plugin, check out the *Customizing ESLint* appendix.
 

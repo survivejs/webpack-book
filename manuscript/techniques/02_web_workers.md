@@ -4,7 +4,7 @@
 
 Moving data between the main thread and the worker comes with communication-related overhead. The split provides isolation that forces workers to focus on logic only as they cannot manipulate the user interface directly.
 
-The idea of workers is useful on a more general level. [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) uses [worker-farm](https://www.npmjs.com/package/worker-farm) underneath to parallelize webpack execution.
+The idea of workers is valuable on a more general level. [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) uses [worker-farm](https://www.npmjs.com/package/worker-farm) underneath to parallelize webpack execution.
 
 As discussed in the *Build Targets* chapter, webpack allows you to build your application as a worker itself. To get the idea of web workers better, I’ll show you how to build a small worker using [worker-loader](https://www.npmjs.com/package/worker-loader).
 
@@ -77,9 +77,9 @@ The important thing to note is that the worker cannot access the DOM. You can pe
 
 To recap:
 
-* Web workers allow you to push work out of the main thread of the browser. This separation is useful especially if performance is an issue.
+* Web workers allow you to push work out of the main thread of the browser. This separation is valuable especially if performance is an issue.
 * Web workers cannot manipulate the DOM. Instead, it is best to use them for long running computations and requests.
 * The isolation provided by web workers can be used for architectural benefit. It will force the programmers to stay within a specific sandbox.
-* Communicating with web workers comes with an overhead that may make them less useful. As the specification evolves, this may change.
+* Communicating with web workers comes with an overhead that makes them less practical. As the specification evolves, this may change.
 
 I will discuss the topic of internationalization in the next chapter.

@@ -16,7 +16,7 @@ Install the [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-p
 npm install clean-webpack-plugin --save-dev
 ```
 
-Next, we need to define a little function to wrap the basic idea. We could use the plugin directly, but this feels like something that could be useful across projects, so it makes sense to push it to our library:
+Next, we need to define a little function to wrap the basic idea. We could use the plugin directly, but this feels like something that could be used across projects, so it makes sense to push it to our library:
 
 **webpack.parts.js**
 
@@ -60,7 +60,7 @@ After this change, our `build` directory should remain nice and tidy while build
 
 ## Attaching a Revision to the Build
 
-It can be useful to attach information about the current build revision to the build files themselves. The desired result can be achieved using [webpack.BannerPlugin](https://webpack.js.org/plugins/banner-plugin/). It can be used in combination with [git-revision-webpack-plugin](https://www.npmjs.com/package/git-revision-webpack-plugin) to generate a small comment at the beginning of the generated files.
+Attaching information related to the current build revision to the build files themselves can be used for debugging. [webpack.BannerPlugin](https://webpack.js.org/plugins/banner-plugin/) allows you to achieve this. It can be used in combination with [git-revision-webpack-plugin](https://www.npmjs.com/package/git-revision-webpack-plugin) to generate a small comment at the beginning of the generated files.
 
 ### Setting Up `BannerPlugin` and `GitRevisionPlugin`
 

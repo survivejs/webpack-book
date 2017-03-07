@@ -1,6 +1,6 @@
 # Authoring Packages
 
-Even though webpack is useful for bundling applications, it has its uses for package authors as well. It allows you to generate the distribution bundles required by npm. You can also generate the package site through webpack.
+Even though webpack is handy for bundling applications, it has its uses for package authors as well. It allows you to generate the distribution bundles required by npm. You can also generate the package site through webpack.
 
 In this chapter, I will cover basic ideas behind authoring npm packages and discuss a couple of webpack specific techniques.
 
@@ -18,7 +18,7 @@ In larger projects, you may find the following:
 * *CONTRIBUTING.md* - A guide for potential contributors describing how the code should be developed.
 * *CHANGELOG.md* - This document describes major changes per version. If you do significant API changes, it can be a good idea to cover them here. It is possible to generate the file based on Git commit history, provided you write nice enough commits.
 * *.travis.yml* - [Travis CI](https://travis-ci.org/) is a popular continuous integration platform that is free for open source projects. You can run the tests of your package over multiple systems using it.
-* *.gitignore* - Ignore patterns for Git, i.e., which files shouldn’t go under version control. It can be useful to ignore npm distribution files here, so they don’t clutter your repository.
+* *.gitignore* - Ignore patterns for Git, i.e., which files shouldn’t go under version control. You can ignore npm distribution files here, so they don’t clutter your repository.
 * *.npmignore* - Ignore patterns for npm describe which files shouldn’t go to your distribution version. A good alternative is to use the [files](https://docs.npmjs.com/files/package.json#files) field at *package.json*. It allows you to maintain a whitelist of files to include into your distribution version.
 * *.eslintignore* - Ignore patterns for ESLint. Again, tool specific.
 * *.eslintrc* - Linting rules. You can use *.jshintrc* and such based on your preferences.
@@ -147,7 +147,7 @@ T> When creating a project, `npm init` respects the values set at *~/.npmrc*. He
 
 Provided you have logged in, creating new packages is only `npm publish` away. Given that the package name is still available and everything goes fine, you should have something out there! After this, you can install your package through `npm install` or `npm i`.
 
-An alternate way to consume a library is to point at it directly in *package.json*. In that case, you can do `"depName": "<github user>/<project>#<reference>"` where `<reference>` can be either commit hash, tag, or branch. You can point to specific pull requests through `<github user>/<project>#pull/<id>/head`. These techniques can be useful, especially if you need to hack around something quickly and cannot wait for the fix.
+An alternate way to consume a library is to point at it directly in *package.json*. In that case, you can do `"depName": "<github user>/<project>#<reference>"` where `<reference>` can be either commit hash, tag, or branch. You can point to specific pull requests through `<github user>/<project>#pull/<id>/head`.
 
 T> If you want to see what files will be published to npm, consider using [npm pack](https://docs.npmjs.com/cli/pack) generates a tarball you can examine. [irish-pub](https://www.npmjs.com/package/irish-pub) is another option, and it will give you a listing to review. You can also use [publish-diff](https://www.npmjs.com/package/publish-diff) to get a better of the changes that are going to be published.
 
@@ -217,7 +217,7 @@ The workflow in this case goes like this:
 
 To consume the test version, your users will have to use `npm install <your package name>@alpha`.
 
-T> [npm link](https://docs.npmjs.com/cli/link) can be useful during development. It allows you to link a package as a globally available symbolic link within your system. Node will resolve to the linked version unless local `node_modules` happens to contain a version. If you want to remove the link, you should use `npm unlink` or `npm unlink <package>`.
+T> [npm link](https://docs.npmjs.com/cli/link) allows you to link a package as a globally available symbolic link within your system. Node will resolve to the linked version unless local `node_modules` happens to contain a version. If you want to remove the link, you should use `npm unlink` or `npm unlink <package>`.
 
 ### On Naming Packages
 
@@ -229,7 +229,7 @@ T> If you find a good name that appears to be abandoned, contact npm, and they�
 
 ## npm Lifecycle Hooks
 
-npm provides a collection of lifecycle hooks that can be useful. Suppose you are authoring a React component using Babel. In that case, you should generate an ES5 compatible version of the package for npm consumers and point to it through *package.json* `main`. You can achieve this using **babel** command line tool:
+npm provides a collection of lifecycle hooks. Suppose you are authoring a React component using Babel. In that case, you should generate an ES5 compatible version of the package for npm consumers and point to it through *package.json* `main`. You can achieve this using **babel** command line tool:
 
 ```bash
 babel ./lib --out-dir ./dist-modules
@@ -313,7 +313,7 @@ externals: {
 
 If you want to include all modules in *node_modules* by default, it is possible to use [webpack-node-externals](https://www.npmjs.com/package/webpack-node-externals) instead. In this case would end up with `externals: [nodeExternals()]` kind of declaration. If you don’t need to adapt to different environments, this is a neat way to go.
 
-T> Given bundling may still be required sometimes, consider using the [bundledDependencies](https://docs.npmjs.com/files/package.json#bundleddependencies) field. The field can be useful if you want to share third-party files not available through npm. There’s a great [Stack Overflow answer](http://stackoverflow.com/a/25044361/228885) discussing the topic further.
+T> Given bundling may still be required sometimes, consider using the [bundledDependencies](https://docs.npmjs.com/files/package.json#bundleddependencies) field for sharing third-party files not available through npm. There’s a great [Stack Overflow answer](http://stackoverflow.com/a/25044361/228885) discussing the topic further.
 
 ### Processing Node Version through Babel
 
@@ -416,7 +416,7 @@ It is possible that your package reaches the end of its life. Another package mi
 
 You can deprecate a range like this or a whole package by skipping the range. Given mistakes happen, you can undeprecate a package by providing an empty message.
 
-Given there’s no official way to rename packages, deprecation can be useful. You can publish the package under a new name and let the users know of the new name in your deprecation message.
+Given there’s no official way to rename packages, deprecation can be handy. You can publish the package under a new name and let the users know of the new name in your deprecation message.
 
 There is a heavier duty option in the form of [npm unpublish](https://docs.npmjs.com/cli/unpublish). Using `npm unpublish` you can pull a package out of the registry. Given this can be potentially dangerous and break the code for a lot of people, it has been [restricted to versions that are less than 24 hours old](http://blog.npmjs.org/post/141905368000/changes-to-npms-unpublish-policy). Most likely you don’t need the feature at all, but it is nice to know it exists.
 
@@ -433,4 +433,4 @@ To recap:
 * To make it possible to consume a work in progress package, implement an npm `postinstall` script that builds the project if a distribution version does not exist in the source.
 * If a package becomes obsolete, consider deprecating it and let your users know how to upgrade to another solution.
 
-The covered options are useful beyond package authoring. Mainly `externals` comes in handy when you want to exclude certain dependencies outside of your bundles and load them using another way.
+The covered options are valuable beyond package authoring. Mainly `externals` comes in handy when you want to exclude certain dependencies outside of your bundles and load them using another way.

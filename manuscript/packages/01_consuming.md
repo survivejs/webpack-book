@@ -58,7 +58,7 @@ npm supports multiple version ranges. I’ve listed the common ones below:
 * `~` - Tilde matches only patch versions. For example, `~1.2` would be equal to `1.2.x`.
 * `^` - Caret is the default you get using `--save` or `--save-dev`. It matches minor versions, and this means `^0.2.0` would be equal to `0.2.x`.
 * `*` - Asterisk matches major releases, and it is the most dangerous of the ranges. Using this recklessly can easily break your project in the future, and I would advise against using it.
-* `>= 1.3.0 < 2.0.0` - Ranges between versions can be particularly useful if you are using `peerDependencies`.
+* `>= 1.3.0 < 2.0.0` - Ranges between versions come in handy with `peerDependencies`.
 
 You can set the default range using `npm config set save-prefix='^'` in case you prefer something else than caret. Alternately, you can modify *~/.npmrc* directly. Especially defaulting to tilde can be a good idea that can help you to avoid trouble with dependencies, although it won’t remove potential problems entirely. That’s where shrinkwrapping comes in.
 
@@ -78,7 +78,7 @@ An important part of maintaining a project is keeping their dependencies up to d
 * Install the newest version of a specific dependency, e.g., `npm install lodash@* --save` as a more controlled way to approach the problem.
 * Patch version information by hand by modifying *package.json* directly.
 
-It is important to remember that your dependencies may introduce backward incompatible changes. It can be useful to remember how SemVer works and study release notes of dependencies. They might not always exist, so you may have to go through the project commit history.
+It is important to remember that your dependencies may introduce backward incompatible changes. Temember how SemVer works and study release notes of dependencies. They might not always exist, so you may have to go through the project commit history.
 
 T> `npm ls`, and more specifically `npm ls <package name>`, allow you to figure out which versions you have installed. `npm ls -g` performs a similar lookup against the globally installed packages.
 
@@ -94,7 +94,7 @@ These services provide badges you can integrate into your project *README.md*, a
 
 For testing your project, you can consider solutions, such as [Travis CI](https://travis-ci.org/) or [SauceLabs](https://saucelabs.com/). They can test your project against different environments and browsers. The advantage of doing this is that it allows you to detect regressions. If you accept pull requests to your project, these services can help to keep their quality higher as it forces the authors to maintain their code on a higher level.
 
-[Codecov](https://codecov.io/) and [Coveralls](https://coveralls.io/) provide code coverage information and a badge to include in your README which is useful for figuring out which portions of the source to test better. It is a part of improving the quality of your pull requests as they should maintain the current coverage at a minimum and ideally improve it.
+[Codecov](https://codecov.io/) and [Coveralls](https://coveralls.io/) provide code coverage information and a badge to include in your README. It is a part of improving the quality of your pull requests as they should maintain the current coverage at a minimum and ideally improve it.
 
 T> [shields.io](http://shields.io/) lists a large number of available badges. [NodeICO](https://nodei.co/) provides badges that aggregate package related information.
 
@@ -116,7 +116,7 @@ Sometimes packages might not follow the standard rules and their *package.json* 
 
 The idea is that if webpack resolver matches `demo` in the beginning, it will resolve from the target. You can constrain the process to an exact name by using a pattern like `demo$`.
 
-The technique is useful with React too. Light alternatives, such as [Preact](https://www.npmjs.com/package/preact), [react-lite](https://www.npmjs.com/package/react-lite), or [Inferno](https://www.npmjs.com/package/inferno), offer smaller size while trading off functionality like `propTypes` and synthetic event handling. Replacing React with a lighter alternative can save a significant amount of space, but you should test well if you do this. The setup looks like this for *react-lite*. The idea is the same for others:
+Light React alternatives, such as [Preact](https://www.npmjs.com/package/preact), [react-lite](https://www.npmjs.com/package/react-lite), or [Inferno](https://www.npmjs.com/package/inferno), offer smaller size while trading off functionality like `propTypes` and synthetic event handling. Replacing React with a lighter alternative can save a significant amount of space, but you should test well if you do this. The setup looks like this for *react-lite*. The idea is the same for others:
 
 ```javascript
 {
@@ -129,7 +129,7 @@ The technique is useful with React too. Light alternatives, such as [Preact](htt
   },
 ```
 
-T> The same technique works with loaders too. You can use `resolveLoader.alias` in the same way to alias a loader elsewhere. The technique can be useful if you have to adapt a RequireJS project to work with webpack.
+T> The same technique works with loaders too. You can use `resolveLoader.alias` in the same way to alias a loader elsewhere. You can use the technique to adapt a RequireJS project to work with webpack.
 
 ## Dealing with Globals
 
@@ -248,7 +248,7 @@ T> It can be a good idea to install [React Developer Tools](https://github.com/f
 
 Sometimes you might be consuming a package that has formats you are not interested in. A good example of this might be a font framework. They often provide fonts in all formats, but you might need only a few if you support modern browsers.
 
-[null-loader](https://www.npmjs.com/package/null-loader) is useful in these situations. You can tell webpack to pipe certain assets through it.
+[null-loader](https://www.npmjs.com/package/null-loader) fits the use case. You can tell webpack to pipe certain assets through it.
 
 You can model an `ignore` part using *null-loader* like this:
 

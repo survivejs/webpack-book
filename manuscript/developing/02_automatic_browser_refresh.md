@@ -6,7 +6,7 @@ Tools, such as [LiveReload](http://livereload.com/) or [Browsersync](http://www.
 
 A good first step towards a better development environment is to use webpack in its **watch** mode. You can activate it through `webpack --watch`. Once enabled, it will detect changes made to your files and recompile automatically. *webpack-dev-server* (WDS) builds on top of the watch mode and goes even further.
 
-WDS is a development server running **in-memory**. It refreshes content automatically in the browser while you develop your application. It also supports an advanced webpack feature, **Hot Module Replacement** (HMR). HMR provides a way to patch the browser state without a full refresh making it particularly useful with libraries like React.
+WDS is a development server running **in-memory**. It refreshes content automatically in the browser while you develop your application. It also supports an advanced webpack feature, **Hot Module Replacement** (HMR). HMR provides a way to patch the browser state without a full refresh making it handy with libraries like React.
 
 HMR goes further than refreshing browser on change. WDS provides an interface that makes it possible to patch code on the fly. For this to work, you have to implement it for the client-side code. It is trivial for something like CSS by definition (no state), but it’s a harder problem with JavaScript frameworks and libraries. Often careful design is needed to allow this. When the feature works, it is beautiful.
 
@@ -150,7 +150,7 @@ W> Webpack 2 changed argument behavior compared to webpack 1. You are not allowe
 
 ## Accessing the Development Server from Network
 
-It is possible to customize host and port settings through the environment in our setup (i.e., `export PORT=3000` on Unix or `SET PORT=3000` on Windows). If you want to access your server using another device within the same network, this can be useful. The default settings are enough on most platforms.
+It is possible to customize host and port settings through the environment in our setup (i.e., `export PORT=3000` on Unix or `SET PORT=3000` on Windows). The default settings are enough on most platforms.
 
 To access your server, you’ll need to figure out the ip of your machine. On Unix, this can be achieved using `ifconfig | grep inet`. On Windows, `ipconfig` can be utilized. An npm package, such as [node-ip](https://www.npmjs.com/package/node-ip) may come in handy as well. Especially on Windows, you may need to set your `HOST` to match your ip to make it accessible.
 
@@ -187,7 +187,7 @@ To get it to work, you will have to install it first through `npm install nodemo
 
 It is possible WDS [will support the functionality](https://github.com/webpack/webpack/issues/3153) itself in the future. If you want to make it reload itself on change, you should implement a little workaround like this for now.
 
-## Useful Development Plugins
+## Development Plugins
 
 As webpack plugin ecosystem is diverse, there are a lot of plugins that can help specifically with development. I’ve listed certain of these below to give you a better idea of what’s available:
 
@@ -196,7 +196,7 @@ As webpack plugin ecosystem is diverse, there are a lot of plugins that can help
 * [system-bell-webpack-plugin](https://www.npmjs.com/package/system-bell-webpack-plugin) rings the system bell on failure instead of letting webpack fail silently.
 * [friendly-errors-webpack-plugin](https://www.npmjs.com/package/friendly-errors-webpack-plugin) improves on error reporting of webpack. It captures common errors and displays them in a friendlier manner, hence the name.
 * [nyan-progress-webpack-plugin](https://www.npmjs.com/package/nyan-progress-webpack-plugin) can be used to get tidier output during the build process. Take care if you are using Continuous Integration (CI) systems like Travis, though, as they might clobber the output. Webpack provides `ProgressPlugin` for the same purpose. No nyan there, though.
-* [react-dev-utils](https://www.npmjs.com/package/react-dev-utils) contains webpack utilities developed for [Create React App](https://www.npmjs.com/package/create-react-app). Despite its name, they are useful beyond React.
+* [react-dev-utils](https://www.npmjs.com/package/react-dev-utils) contains webpack utilities developed for [Create React App](https://www.npmjs.com/package/create-react-app). Despite its name, they can find use beyond React.
 * [webpack-dashboard](https://www.npmjs.com/package/webpack-dashboard) gives an entire terminal based dashboard over the standard webpack output. If you prefer clear visual output, this one will come in handy.
 
 In addition to plugins like these, it can be worth your while to set up linting to enforce coding standards. The *Linting JavaScript* chapter digs into that topic in detail.

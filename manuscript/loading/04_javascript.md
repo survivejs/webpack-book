@@ -143,7 +143,7 @@ Adjust the target definition as you like. As long as you follow [browserslist](h
 }
 ```
 
-T> If you omit the `targets` definition, *babel-preset-env* will compile to ES5 compatible code. This is useful if you are using UglifyJS as it does not support ES6. See the *Minifying* chapter for more information.
+T> If you omit the `targets` definition, *babel-preset-env* will compile to ES5 compatible code. If you are using UglifyJS, see the *Minifying* chapter for more information on why this is required.
 
 W> **babel-preset-env** does **not** support *browserslist* file yet. [See issue #26](https://github.com/babel/babel-preset-env/issues/26) for more information.
 
@@ -190,7 +190,7 @@ There are other possible [*.babelrc* options](https://babeljs.io/docs/usage/opti
 
 Sometimes you might want to use experimental features. Although you can find a lot of them within so-called stage presets, I recommend enabling them one by one and even organizing them to a preset of their own unless you are working on a throwaway project. If you expect your project to live a long time, it’s better to document the features you are using well.
 
-## Useful Babel Presets and Plugins
+## Babel Presets and Plugins
 
 Perhaps the greatest thing about Babel is that it’s possible to extend with presets and plugins. I’ve listed a collection below:
 
@@ -250,7 +250,7 @@ T> The technique is used in the *Server Side Rendering* chapter to enable the Ba
 
 ## Setting Up TypeScript
 
-Microsoft’s [TypeScript](http://www.typescriptlang.org/) is a compiled language that follows a similar setup as Babel. The neat thing is that in addition to JavaScript, it can emit type definitions. A good editor can pick those up and provide enhanced editing experience. Stronger typing is useful for development as it becomes easier to state your type contracts.
+Microsoft’s [TypeScript](http://www.typescriptlang.org/) is a compiled language that follows a similar setup as Babel. The neat thing is that in addition to JavaScript, it can emit type definitions. A good editor can pick those up and provide enhanced editing experience. Stronger typing is valuable for development as it becomes easier to state your type contracts.
 
 Compared to Facebook’s type checker Flow, TypeScript is a more established option. As a result, you will find more premade type definitions for it, and overall, the quality of support should be better.
 
@@ -274,11 +274,11 @@ T> [flow-coverage-report](https://www.npmjs.com/package/flow-coverage-report) sh
 
 ## Conclusion
 
-Babel has become an indispensable tool for developers given it bridges the standard with older browsers. Even if you targeted modern browsers, transforming through Babel may be useful.
+Babel has become an indispensable tool for developers given it bridges the standard with older browsers. Even if you targeted modern browsers, transforming through Babel is an option.
 
 To recap:
 
-* Babel gives you control over what browsers to support. It can compile ES6 features to a form the older browser understand. *babel-preset-env* is particularly useful as it can choose which features to compile and which polyfills to enable based on your browser definition.
+* Babel gives you control over what browsers to support. It can compile ES6 features to a form the older browser understand. *babel-preset-env* is valuable as it can choose which features to compile and which polyfills to enable based on your browser definition.
 * Babel allows you to use experimental language features. You can find numerous plugins that improve development experience and the production build through optimizations.
 * Babel functionality can be enabled per development target. This way you can be sure you are using the correct plugins at the right place.
 * Besides Babel, webpack supports other solutions like TypeScript of Flow. Flow can complement Babel while TypeScript represents an entire language compiling to JavaScript.

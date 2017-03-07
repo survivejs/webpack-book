@@ -10,7 +10,7 @@ Webpack uses the *web* target by default. This is ideal for a web application li
 
 ### Web Workers
 
-The *webworker* target will wrap your application as a [web worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API). Using web workers is useful if you want to execute computation outside of the main thread of the application without slowing down the user interface. There are a couple of limitations you should be aware of:
+The *webworker* target will wrap your application as a [web worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API). Using web workers is valuable if you want to execute computation outside of the main thread of the application without slowing down the user interface. There are a couple of limitations you should be aware of:
 
 * You cannot use webpack’s hashing features when the *webworker* target is used.
 * You cannot manipulate the DOM from a web worker. If you wrapped the book project as a worker, it would not display anything.
@@ -35,7 +35,7 @@ There are desktop shells, such as [NW.js](https://nwjs.io/) (previously *node-we
 
 ## Bundling Libraries with Webpack
 
-To understand webpack’s library targets better, we can set up a small library to bundle. The idea is to end up with a non-minified, a minified version, and a version compatible with *package.json* `module` field. The first two can be useful for standalone consumption. You can also point to the non-minified version through *package.json* `main`.
+To understand webpack’s library targets better, we can set up a small library to bundle. The idea is to end up with a non-minified, a minified version, and a version compatible with *package.json* `module` field. The first two can be used for standalone consumption. You can also point to the non-minified version through *package.json* `main`.
 
 T> The *Authoring Packages* chapter discusses the fields and more in detail.
 
@@ -238,7 +238,7 @@ If either process fails, npm won’t proceed to the `lib` script. You can verify
 
 T> To get cleaner error output, run either `npm run build:lib --silent` or `npm run build:lib -s`.
 
-T> The same idea is useful for post-processes, such as deployment. For example, you could set up a `postpublish` script to deploy the library site after you have published it to npm.
+T> The same idea can be used for post-processes, such as deployment. For example, you could set up a `postpublish` script to deploy the library site after you have published it to npm.
 
 ### Setting Up ESLint
 
@@ -312,7 +312,7 @@ When distributing the library, you should point to that *./dist-modules* directo
 
 ## Conclusion
 
-Webpack supports targets beyond the web. It can be useful for bundling desktop applications, Node servers, and web workers. npm package authors can be find it handy too.
+Webpack supports targets beyond the web. You can bundle desktop applications, Node servers, and web workers through it. npm package authors can be find it handy too.
 
 To recap:
 

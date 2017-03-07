@@ -156,7 +156,7 @@ The idea of [critical path rendering](https://developers.google.com/web/fundamen
 
 ## Conclusion
 
-Using PurifyCSS can lead to a significant decrease in file size. It is particularly useful for static sites that rely on a heavy CSS framework. The more dynamic a site or an application becomes, the harder it becomes to analyze reliably.
+Using PurifyCSS can lead to a significant decrease in file size. It is particularly valuable for static sites that rely on a heavy CSS framework. The more dynamic a site or an application becomes, the harder it becomes to analyze reliably.
 
 To recap:
 

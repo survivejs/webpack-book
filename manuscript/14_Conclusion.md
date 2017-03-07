@@ -14,7 +14,7 @@ As this book has demonstrated, webpack is a versatile tool. To make it easier to
 
 * To get most out of webpack during development, use [webpack-dev-server](https://www.npmjs.com/package/webpack-dev-server) (WDS). You can also find middlewares which you can attach to your Node server during development. The *Automatic Browser Refresh* chapter covers WDS in greater detail.
 * Webpack implements **Hot Module Replacement** (HMR). It allows you to replace modules without forcing a browser refresh while your application is running. The *Configuring Hot Module Replacement* chapter covers the topic in detail. If you are using React, read the *Hot Module Replacement with React* appendix.
-* **Linting** is a technique that allows you to detect code related issue through static analysis. You can disallow certain kind of usage while enforcing coding style using linting tools. Particularly [ESLint](http://eslint.org/) is a popular option for JavaScript code. [stylelint](https://www.npmjs.com/package/stylelint) is useful with CSS. The *Linting JavaScript* and *Linting CSS* chapters cover the topic in detail. See also the *Customizing ESLint* appendix to learn how to expand ESLint.
+* **Linting** is a technique that allows you to detect code related issue through static analysis. You can disallow certain kind of usage while enforcing coding style using linting tools. Particularly [ESLint](http://eslint.org/) is a popular option for JavaScript code. [stylelint](https://www.npmjs.com/package/stylelint) can be used with CSS. The *Linting JavaScript* and *Linting CSS* chapters cover the topic in detail. See also the *Customizing ESLint* appendix to learn how to expand ESLint.
 
 ## Production Checklist
 
@@ -33,7 +33,7 @@ As this book has demonstrated, webpack is a versatile tool. To make it easier to
 ### Caching
 
 * To benefit from client caching, split a vendor bundle out of your application. This way the client has less to download in the ideal case. The *Splitting Bundles* chapter discusses the topic. The *Adding Hashes to Filenames* chapter shows how to achieve cache invalidation on top of that.
-* Use webpack’s **code splitting** functionality to load code on demand. The technique is useful if you don’t need all the code at once and instead can push it behind a logical trigger such as clicking a user interface element. The *Code Splitting* chapter covers the technique in detail. The *Dynamic Loading* chapter shows how to handle more advanced scenarios.
+* Use webpack’s **code splitting** functionality to load code on demand. The technique is handy if you don’t need all the code at once and instead can push it behind a logical trigger such as clicking a user interface element. The *Code Splitting* chapter covers the technique in detail. The *Dynamic Loading* chapter shows how to handle more advanced scenarios.
 * Add hashes to filenames as covered in the *Adding Hashes to Filenames* chapter to benefit from caching and separate a manifest to improve the solution further as discussed in the *Separating Manifest* chapter.
 
 ### Optimization

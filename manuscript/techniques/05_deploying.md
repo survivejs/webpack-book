@@ -63,11 +63,11 @@ After building (`npm run build`) and deploying (`npm run deploy`), you should ha
 
 T> If you need a more elaborate setup, use the Node API that *gh-pages* provides. The default command line tool it provides is enough for basic purposes, though.
 
-T> GitHub Pages allows you to choose the branch where you deploy. It is possible to use the `master` branch even as it is enough for minimal sites that don’t need bundling. You can also point below the *./docs* directory within your `master` branch and maintain your site. That is useful for small projects.
+T> GitHub Pages allows you to choose the branch where you deploy. It is possible to use the `master` branch even as it is enough for minimal sites that don’t need bundling. You can also point below the *./docs* directory within your `master` branch and maintain your site.
 
 ## Archiving Old Versions
 
-*gh-pages* provides an `add` option that is useful for archival purposes useful especially for documentation sites. The idea goes as follows:
+*gh-pages* provides an `add` option for archival purposes. The idea goes as follows:
 
 1. Copy the old version of the site in a temporary directory and remove *archive* directory from it. You can name the archival directory as you want.
 2. Clean and build the project.
@@ -115,4 +115,4 @@ Even though webpack isn’t a deployment tool, you can find plugins for it.
 To recap:
 
 * It is also possible to handle the problem of deployment outside of webpack. You can achieve this in an npm script for example.
-* It is possible to configure webpack’s `output.publicPath` dynamically. This technique is useful if you don’t know it compile-time and want to decide it later. This is possible through the `__webpack_public_path__ ` global.
+* It is possible to configure webpack’s `output.publicPath` dynamically. This technique is valuable if you don’t know it compile-time and want to decide it later. This is possible through the `__webpack_public_path__ ` global.

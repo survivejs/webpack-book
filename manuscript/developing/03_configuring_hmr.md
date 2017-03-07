@@ -109,13 +109,13 @@ W> *webpack-dev-server* can be picky about paths. If the given `include` paths d
 
 W> You should **not** enable HMR for your production configuration. It will likely work, but having the capability enabled there won’t do any good, and it will make your bundles bigger than they should be.
 
-T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environment variables through a *.env* file. *dotenv* allows you to control the host and port setting of our setup quickly making it useful for development purposes.
+T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environment variables through a *.env* file. *dotenv* allows you to control the host and port setting of our setup quickly.
 
 ## Making the Module Ids More Debuggable
 
 When webpack generates a bundle, it needs to tell different modules apart. By default, it uses numbers for this purpose. The problem is that this makes it difficult to debug the code if you must inspect the resulting code. It can also lead to issues with hashing behavior.
 
-To overcome this problem, it is a good idea to use an alternative module ID scheme. As it happens, webpack provides a plugin that’s ideal for debugging. This plugin, `NamedModulesPlugin`, emits module paths over numeric IDs. This information is useful for development.
+To overcome this problem, it is a good idea to use an alternative module ID scheme. As it happens, webpack provides a plugin that’s ideal for debugging. This plugin, `NamedModulesPlugin`, emits module paths over numeric IDs to make the output easier to understand.
 
 You can enable this better behavior as follows:
 
