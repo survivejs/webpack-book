@@ -107,7 +107,7 @@ The result should contain `Error: Demo error` with a stack trace showing where t
 
 ## Returning Only Output
 
-One way to use loaders is to use them to output code. You could have implementation like this:
+Loaders can be used to output code. You could have implementation like this:
 
 **loaders/demo-loader.js**
 

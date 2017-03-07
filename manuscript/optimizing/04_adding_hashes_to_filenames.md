@@ -1,6 +1,6 @@
 # Adding Hashes to Filenames
 
-Even though our build generates fine now, the naming it uses is a little problematic. It doesn’t allow us to leverage client level cache effectively as there’s no clear way to tell whether or not a file has changed. Cache invalidation can be achieved by including a hash to filenames.
+Even though our build generates fine now, the naming it uses is a little problematic. It doesn’t allow us to leverage client level cache effectively as there’s no way tell whether or not a file has changed. Cache invalidation can be achieved by including a hash to filenames.
 
 ## Placeholders
 
@@ -41,7 +41,7 @@ vendor.dc746a5db4ed650296e1.js
 
 If the file contents related to a chunk are different, the hash will change as well, thus invalidating the cache. More accurately, the browser will send a new request for the new file. If only `app` bundle gets updated, only that file needs to be requested again.
 
-An alternate way to achieve the same result would be to generate static filenames and invalidate the cache through a querystring (i.e., `app.js?d587bbd6e38337f5accd`). The part behind the question mark will invalidate the cache. According to [Steve Souders](http://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/), attaching the hash to the filename is the more performant way to go.
+The same result can be achieved by generating static filenames and invalidating the cache through a querystring (i.e., `app.js?d587bbd6e38337f5accd`). The part behind the question mark will invalidate the cache. According to [Steve Souders](http://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/), attaching the hash to the filename is the more performant.
 
 ## Setting Up Hashing
 
@@ -213,13 +213,13 @@ Note how the output has changed, though. Instead of numbers, you can see hashes.
 
 ## Conclusion
 
-Including hashes related to the file, contents is a good way to invalidate them on the client side. If a hash has changed, the client will be forced to download the asset again.
+Including hashes related to the file contents to their names allows to invalidate them on the client side. If a hash has changed, the client will be forced to download the asset again.
 
 To recap:
 
 * Webpack’s **placeholders** allow you to shape filenames and enable you to include hashes to them.
 * The most valuable placeholders are `[name]`, `[chunkhash]`, and `[ext]`. `chunkhash` is derived based on the entry in which the asset belongs.
 * If you are using `ExtractTextPlugin`, you should use `[contenthash]`. This way extracted assets won’t become invalidated even if the entries from which they were extracted change.
-* `HashedModuleIdsPlugin` provides a way to generate module IDs based on module paths. This is more stable than relying on the default order based numeric module IDs.
+* `HashedModuleIdsPlugin` generates module IDs based on module paths. This is more stable than relying on the default order based numeric module IDs.
 
 Even though the project generates hashes now, the output isn’t flawless. The problem is that if the application changes, it will invalidate the vendor bundle as well. The next chapter digs deeper into the topic and shows you how to extract a **manifest** to resolve the issue.

@@ -19,11 +19,11 @@ Webpack uses only a single instance by default meaning you won’t be able to be
 
 *parallel-webpack* allows you to parallelize webpack configuration in two ways. Assuming you have defined your webpack configuration as an array, it can run the configurations in parallel. In addition to this, *parallel-webpack* can generate builds based on given **variants**.
 
-Using variants would be a good way to generate both production and development builds at once. Variants also allow you to generate bundles with different targets to make them easier to consume depending on the environment. Variants can be used to implement feature flags when combined with `DefinePlugin` as discussed in the *Setting Environment Variables* chapter.
+Using variants allows you to generate both production and development builds at once. Variants also allow you to generate bundles with different targets to make them easier to consume depending on the environment. Variants can be used to implement feature flags when combined with `DefinePlugin` as discussed in the *Setting Environment Variables* chapter.
 
 The underlying idea can be implemented using a [worker-farm](https://www.npmjs.com/package/worker-farm). In fact, *parallel-webpack* relies on *worker-farm* underneath.
 
-The easiest way to use *parallel-webpack* is to install it to your project as a development dependency and then replace `webpack` command with `parallel-webpack`.
+*parallel-webpack* can be used by installing it to your project as a development dependency and then replacing `webpack` command with `parallel-webpack`.
 
 ### HappyPack - File Level Parallelism
 
@@ -157,7 +157,7 @@ leanpub-end-insert
 
 After this change, the application should be at least a little faster to rebuild. The amount of impact depends on the underlying implementation. The technique can also be applied during production usage.
 
-T> Given `module.noParse` accepts a regular expression if we wanted to ignore all `*.min.js` files, we could set it to `/\.min\.js/`. That can be a more generic way to solve the problem sometimes.
+T> Given `module.noParse` accepts a regular expression if we wanted to ignore all `*.min.js` files, we could set it to `/\.min\.js/`. That can be a more generic approach.
 
 T> The aliasing idea is discussed in detail in the *Consuming Packages* chapter.
 
@@ -172,4 +172,4 @@ To recap:
 * Start with higher level techniques that are fast to implement first.
 * Lower level techniques are more involved but may come with their wins.
 * Given webpack runs using a single instance by default, finding ways to parallelize its execution can lead to big wins.
-* Sometimes the best optimization is to skip work. Especially during development, cheating can be the way to go thanks to modern browsers.
+* Sometimes the best optimization is to skip work. Especially during development, cheating can be acceptable thanks to modern browsers.

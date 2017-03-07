@@ -209,7 +209,7 @@ If you run the server now (`node ./server.js`) and navigate below `http://localh
 
 ![Hello world](images/hello_01.png)
 
-Even though we have a basic React application running now, it’s a little difficult to develop. If you try to modify the code, nothing will happen. One way to solve this would be to run webpack in a multi-compiler mode as earlier in this book and let webpack deal with it. Another option is to run webpack in **watch mode** against the current configuration and set up a watcher for the server. I’ll show you how to achieve the latter setup next.
+Even though we have a basic React application running now, it’s a little difficult to develop. If you try to modify the code, nothing will happen. This can be solved running webpack in a multi-compiler mode as earlier in this book. Another option is to run webpack in **watch mode** against the current configuration and set up a watcher for the server. I’ll show you how to achieve the latter setup next.
 
 T> If you want to debug output from the server, set `export DEBUG=express:application`.
 

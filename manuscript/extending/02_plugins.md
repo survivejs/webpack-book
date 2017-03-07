@@ -1,6 +1,6 @@
 # Extending with Plugins
 
-Compared to loaders, plugins are a more flexible way to extend webpack. As `ExtractTextPlugin` shows, sometimes it can make sense to use loaders and plugins together. The great thing about plugins is that they allow you to intercept webpack’s execution through many hooks and then extend it as you see fit. Internally webpack consists of an extensive collection of plugins so understanding the basic idea can be valuable if you want to delve into it.
+Compared to loaders, plugins are a more flexible means to extend webpack. As `ExtractTextPlugin` shows, sometimes it can make sense to use loaders and plugins together. The great thing about plugins is that they allow you to intercept webpack’s execution through many hooks and then extend it as you see fit. Internally webpack consists of an extensive collection of plugins so understanding the basic idea can be valuable if you want to delve into it.
 
 To show you how a plugin works, I will discuss [purifycss-webpack](https://www.npmjs.com/package/purifycss-webpack). We already used it in this book, so diving into its internals doesn’t hurt. The plugin itself doesn’t do much. It figures out what files to pass to PurifyCSS, lets it process the data, captures the output, and writes it to an asset.
 
@@ -145,7 +145,7 @@ Sometimes it can make sense for a plugin to provide hooks of its own. This way y
 
 Writing webpack plugins can be challenging at first due to the sheer size of the API webpack provides and it is the most powerful way you can extend webpack, though. When you begin to design a plugin, it is a good idea to spend time studying existing plugins that are close enough to what you are going to implement as this can generate insight on which hooks you should use and how.
 
-It is a good idea to develop a plugin piece-wise so that you validate one piece of it at a time. The ultimate way to understand webpack plugins in great detail is to delve into webpack source itself as it is a big collection of plugins.
+It is a good idea to develop a plugin piece-wise so that you validate one piece of it at a time. The ultimate approach for understanding webpack plugins in great detail is to delve into webpack source itself as it is a big collection of plugins.
 
 To recap:
 

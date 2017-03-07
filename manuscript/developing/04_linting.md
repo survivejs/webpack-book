@@ -28,7 +28,7 @@ Besides linting for issues, it can be valuable to manage the code style. Nothing
 
 Establishing strong linting can be beneficial, especially in a context where you need to collaborate with others. Even when working alone you will benefit from linting as it can catch issues you might otherwise neglect. JavaScript as a language allows usage which, while valid, may not be the clearest to understand or may even be incorrect.
 
-Linting does **not** replace proper testing, but it can complement testing approaches. It is one way to harden a codebase and make it a little harder to break. As the size of your project grows, and it becomes more challenging to manage, this becomes particularly important.
+Linting does **not** replace proper testing, but it can complement testing approaches. It allows you to harden a codebase and make it a little harder to break. As the size of your project grows, and it becomes more challenging to manage, this becomes particularly important.
 
 ## Setting Up ESLint
 

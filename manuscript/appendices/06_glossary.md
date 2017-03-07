@@ -6,9 +6,9 @@ Given webpack comes with specific nomenclature, I’ve gathered the main terms a
 
 * **Entry** - Entry refers to a file where you point from webpack’s `entry` configuration.
 * **Module** - Module can be an entry, but it can also be a file where an entry points. Modules can point to other modules.
-* **Plugin** - Plugins connect to webpack’s event system and can inject functionality into it. They provide the most powerful way to extend webpack and can be combined with loaders for maximum control.
+* **Plugin** - Plugins connect to webpack’s event system and can inject functionality into it. They allow you to extend webpack and can be combined with loaders for maximum control.
 * **Hot module replacement** - Hot module replacement refers to a particular technique that allows you to patch code while it is running in the browser.
-* **Linting** - Linting relates to the process in which code is statically examined for specific faults. A linter will alert if any of these faults are found. It is a way to improve code quality.
+* **Linting** - Linting relates to the process in which code is statically examined for specific faults. A linter will alert if any of these faults are found. It helps to improve code quality.
 
 ## Loading
 
@@ -20,7 +20,7 @@ Given webpack comes with specific nomenclature, I’ve gathered the main terms a
 * **Source map** - Source maps describe the mapping between the original source and the generated source allowing browsers to provide a better debugging experience.
 * **Bundle** - When webpack runs successfully, it will create output files which we call bundles.
 * **Bundle splitting** - Bundle splitting is a particular technique that allows us to generate multiple bundles based on a condition.
-* **Code splitting** - Code splitting is a more granular way to produce bundles. The term refers to bundle splitting that is performed within source code using specific syntax.
+* **Code splitting** - Code splitting produces more granular bundles. The term refers to bundle splitting that is performed within source code using specific syntax.
 * **Chunk** - Chunk is a webpack specific term that is used internally to manage the bundling process. Webpack composes bundles out of chunks, and there are several types of those.
 
 ## Optimizing

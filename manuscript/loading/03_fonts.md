@@ -2,7 +2,7 @@
 
 Loading fonts is similar to loading images. It does come with special challenges, though. How to know what font formats to support? There can be up to four font formats to worry about if you want to provide first class support to each browser.
 
-One way to solve this problem is to decide a set of browsers and platforms that should receive first class service. The rest will use system fonts.
+The problem can be solved by deciding a set of browsers and platforms that should receive first class service. The rest will use system fonts.
 
 You can approach the problem in several ways through webpack. You can still use *url-loader* and *file-loader* as with images. Font `test` patterns tend to be more complicated, though, and you may have to worry about font file related lookups.
 
@@ -24,7 +24,7 @@ If we go with one format, we can use a similar setup as for images and rely on b
 },
 ```
 
-A more elaborate way to achieve a similar result that includes *.woff2* and more complicated patterns, would be to end up with code like this:
+A more elaborate approach to achieve a similar result that includes *.woff2* and more complicated patterns, would be to end up with code like this:
 
 ```javascript
 {

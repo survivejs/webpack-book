@@ -251,7 +251,7 @@ The problem with this approach is that it couples your source with webpack. But 
 
 ## Alternate Ways to Match Files
 
-`test` combined with `include` or `exclude` to constrain the match is the most common way to match files. These accept the data types as listed below:
+`test` combined with `include` or `exclude` to constrain the match is the most common approach to match files. These accept the data types as listed below:
 
 * `test` - Match against a RegExp, string, function, an object, or an array of conditions like these.
 * `include` - The same.

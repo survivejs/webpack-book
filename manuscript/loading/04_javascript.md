@@ -25,7 +25,7 @@ webpackJsonp([1],{
 ...
 ```
 
-One way to work around this problem is to process the code through [Babel](https://babeljs.io/), a popular JavaScript compiler that supports ES6 features and more. It resembles ESLint in that it is built on top of presets and plugins. Presets are collections of plugins, and you can define your own as well.
+The problem can be worked around by processing the code through [Babel](https://babeljs.io/), a popular JavaScript compiler that supports ES6 features and more. It resembles ESLint in that it is built on top of presets and plugins. Presets are collections of plugins, and you can define your own as well.
 
 T> Given sometimes extending existing presets might not be enough, [modify-babel-preset](https://www.npmjs.com/package/modify-babel-preset) allows you to go a step further and configure the base preset in a more flexible way.
 
@@ -182,7 +182,7 @@ Note especially how the function was transformed. You can try out different brow
 
 It is important to note that *babel-polyfill* pollutes the global scope with objects like `Promise`. Given this can be problematic for library authors, there’s [transform-runtime](https://babeljs.io/docs/plugins/transform-runtime/) option. It can be enabled as a Babel plugin, and it will avoid the problem of globals by rewriting the code in such way that they won’t be needed.
 
-W> Certain webpack features, such as *Code Splitting*, write `Promise` based code to webpack’s bootstrap code after webpack has processed loaders. The easiest way to solve this problem is to use a browser level polyfill for `Promise` as webpack’s bootstrap code cannot be processed through Babel.
+W> Certain webpack features, such as *Code Splitting*, write `Promise` based code to webpack’s bootstrap code after webpack has processed loaders. The problem can be solved by using a browser level polyfill for `Promise` as webpack’s bootstrap code cannot be processed through Babel.
 
 ## Babel Tips
 

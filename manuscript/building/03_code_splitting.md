@@ -4,7 +4,7 @@ Web applications have the tendency to grow big as features are developed. The lo
 
 Even though splitting our bundles can help a notch, they are not the only solution, and you may still end up having to download a lot of data. Fortunately, it is possible to do better thanks to **code splitting**. It allows us to load code lazily as we need it.
 
-One way to do it is to load more code as the user enters a new view of the application. You can also tie loading to a specific action like scrolling or clicking a button. You could also try to predict what the user is trying to do next and load code based on your guess. This way the functionality would be already there as the user tries to access it.
+You can load more code as the user enters a new view of the application. You can also tie loading to a specific action like scrolling or clicking a button. You could also try to predict what the user is trying to do next and load code based on your guess. This way the functionality would be already there as the user tries to access it.
 
 T> Incidentally, it is possible to implement Google’s [PRPL pattern](https://developers.google.com/web/fundamentals/performance/prpl-pattern/) using webpack’s lazy loading. PRPL (Push, Render, Pre-cache, Lazy-load) has been designed with mobile web in mind.
 
@@ -155,7 +155,7 @@ leanpub-end-insert
 
 ### Defining a Split Point Using a Dynamic `import`
 
-A quick way to illustrate the idea might be to set up a module that contains a string that will replace the text of our demo button. Set up a file as follows:
+The idea can be demonstrated by setting up a module that contains a string that will replace the text of our demo button:
 
 **app/lazy.js**
 
@@ -163,7 +163,7 @@ A quick way to illustrate the idea might be to set up a module that contains a s
 export default 'Hello from lazy';
 ```
 
-We also need to point the application to this file, so the application knows to load it. One way to do this is to bind the loading process to click. Whenever the user happens to click the button, we’ll trigger the loading process and replace the content.
+We also need to point the application to this file, so the application knows to load it. This can be done by binding the loading process to click. Whenever the user happens to click the button, we’ll trigger the loading process and replace the content:
 
 **app/component.js**
 

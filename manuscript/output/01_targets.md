@@ -31,7 +31,7 @@ There are desktop shells, such as [NW.js](https://nwjs.io/) (previously *node-we
 * `atom`, `electron`, `electron-main` - Targets [Electron main process](https://github.com/electron/electron/blob/master/docs/tutorial/quick-start.md).
 * `electron-renderer` - Targets Electron renderer process.
 
-[electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate) is a good starting point if you want hot loading webpack setup for Electron and React based development. [electron-compile](https://github.com/electron/electron-compile) skips webpack entirely and can be a lighter alternative for compiling JavaScript and CSS for Electron. The fastest way to get started is to use [the official quick start for Electron](https://github.com/electron/electron-quick-start).
+[electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate) is a good starting point if you want hot loading webpack setup for Electron and React based development. [electron-compile](https://github.com/electron/electron-compile) skips webpack entirely and can be a lighter alternative for compiling JavaScript and CSS for Electron. Using [the official quick start for Electron](https://github.com/electron/electron-quick-start) is one way.
 
 ## Bundling Libraries with Webpack
 
@@ -254,7 +254,7 @@ dist-modules/*
 leanpub-end-insert
 ```
 
-If you are using Git, a neater way to handle the ignore rules would be to manage them through *.gitignore* and point ESLint to it instead. The *Linting JavaScript* chapter covers the idea in greater detail.
+T> If you are using Git, ignore rules can be managed through *.gitignore*. You can point ESLint to it instead. The *Linting JavaScript* chapter covers the idea in greater detail.
 
 ### Generating `module` Field Compatible Output
 

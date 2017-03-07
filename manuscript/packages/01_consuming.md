@@ -75,7 +75,7 @@ Using version ranges can feel a little dangerous as it doesn’t take much to br
 An important part of maintaining a project is keeping their dependencies up to date. How to do this depends a lot of on the maturity of your project. Ideally, you have an excellent set of tests covering the functionality. If not, things can get a little hairier. You can consider the following approaches:
 
 * You can update all dependencies at once and hope for the best. Tools, such as [npm-check-updates](https://www.npmjs.com/package/npm-check-updates), [npm-check](https://www.npmjs.com/package/npm-check), [npm-upgrade](https://www.npmjs.com/package/npm-upgrade), or [updtr](https://www.npmjs.com/package/updtr), can do this for you.
-* Install the newest version of a specific dependency, e.g., `npm install lodash@* --save` as a more controlled way to approach the problem.
+* Install the newest version of a specific dependency, e.g., `npm install lodash@* --save` as a more controlled approach.
 * Patch version information by hand by modifying *package.json* directly.
 
 It is important to remember that your dependencies may introduce backward incompatible changes. Temember how SemVer works and study release notes of dependencies. They might not always exist, so you may have to go through the project commit history.
@@ -129,7 +129,7 @@ Light React alternatives, such as [Preact](https://www.npmjs.com/package/preact)
   },
 ```
 
-T> The same technique works with loaders too. You can use `resolveLoader.alias` in the same way to alias a loader elsewhere. You can use the technique to adapt a RequireJS project to work with webpack.
+T> The same technique works with loaders too. You can use `resolveLoader.alias` similarly. You can use the technique to adapt a RequireJS project to work with webpack.
 
 ## Dealing with Globals
 
@@ -164,7 +164,7 @@ T> [script-loader](https://www.npmjs.com/package/script-loader) allows you to ex
 
 ## Removing Unused Modules
 
-Even though packages might work well out of the box, they might bring too much code to your project by default. [Moment.js](https://www.npmjs.com/package/moment) is a popular example. It brings locale data to your project by default. The easiest way to disable that behavior is to use `IgnorePlugin` to ignore locales like this:
+Even though packages might work well out of the box, they might bring too much code to your project by default. [Moment.js](https://www.npmjs.com/package/moment) is a popular example. It brings locale data to your project by default. The easiest method to disable that behavior is to use `IgnorePlugin` to ignore locales like this:
 
 ```javascript
 {
@@ -209,7 +209,7 @@ Critical dependencies:
 
 The warning can happen if a package points at a pre-built (i.e., minified and already processed) file. Webpack detects this case and warns against it.
 
-One way to eliminate the warning would be to alias the package to a source version as discussed above. Given sometimes the source might not be available, another option is to tell webpack to skip parsing the files through `module.noParse`. It accepts either a RegExp or an array of RegExps and can be configured as below:
+The warning can be eliminated by aliasing the package to a source version as discussed above. Given sometimes the source might not be available, another option is to tell webpack to skip parsing the files through `module.noParse`. It accepts either a RegExp or an array of RegExps and can be configured as below:
 
 ```javascript
 {

@@ -2,9 +2,7 @@
 
 Let’s say we want to implement a rough little search for our application without a proper backend. We might want to use something like [lunr](http://lunrjs.com/) for generating an index to search.
 
-The problem is that the index can be sizable depending on the amount of the content. The dumb way to implement this kind of search would be to include the index required to the application bundle itself and then perform a search against that.
-
-The good thing is that we don’t need the search index straight from the start. We can do something cleverer. We can start loading the index when the user selects our search field.
+The problem is that the index can be sizable depending on the amount of the content. The good thing is that we don’t need the search index straight from the start. We can do something smarter. We can start loading the index when the user selects our search field.
 
 Doing this defers the loading and moves it to a place where it’s more acceptable for performance. Given the initial search might be slower than the subsequent ones we could display a loading indicator. But that’s fine from the user point of view.
 

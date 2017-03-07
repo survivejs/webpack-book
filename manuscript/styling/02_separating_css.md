@@ -174,7 +174,7 @@ Our current setup separates styling from JavaScript neatly. Even though the tech
 To recap:
 
 * Using `ExtractTextPlugin` with styling solves the problem of Flash of Unstyled Content (FOUC). Separating CSS from JavaScript also improves caching behavior and removes a potential attack vector.
-* `ExtractTextPlugin` is not the only way to handle the problem. *extract-loader* can give the same result in more limited contexts.
+* `ExtractTextPlugin` is not the only solution. *extract-loader* can give the same result in more limited contexts.
 * If you don’t prefer to maintain references to styling through JavaScript, an alternative is to handle them through an entry. You will have to be careful with style ordering in this case, though.
 
 In the next chapter, we will discuss **autoprefixing**. Enabling the feature will make it more convenient to develop complex CSS setups that work with older browsers as well.

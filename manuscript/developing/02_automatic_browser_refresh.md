@@ -6,7 +6,7 @@ Tools, such as [LiveReload](http://livereload.com/) or [Browsersync](http://www.
 
 A good first step towards a better development environment is to use webpack in its **watch** mode. You can activate it through `webpack --watch`. Once enabled, it will detect changes made to your files and recompile automatically. *webpack-dev-server* (WDS) builds on top of the watch mode and goes even further.
 
-WDS is a development server running **in-memory**. It refreshes content automatically in the browser while you develop your application. It also supports an advanced webpack feature, **Hot Module Replacement** (HMR). HMR provides a way to patch the browser state without a full refresh making it handy with libraries like React.
+WDS is a development server running **in-memory**. It refreshes content automatically in the browser while you develop your application. It also supports an advanced webpack feature, **Hot Module Replacement** (HMR). HMR allows patching the browser state without a full refresh making it handy with libraries like React.
 
 HMR goes further than refreshing browser on change. WDS provides an interface that makes it possible to patch code on the fly. For this to work, you have to implement it for the client-side code. It is trivial for something like CSS by definition (no state), but it’s a harder problem with JavaScript frameworks and libraries. Often careful design is needed to allow this. When the feature works, it is beautiful.
 
@@ -24,7 +24,7 @@ To get started with WDS, execute:
 npm install webpack-dev-server --save-dev
 ```
 
-As before, this command will generate a command below the `npm bin` directory. You could try running *webpack-dev-server* from there. The quickest way to enable automatic browser refresh for our project is to run `webpack-dev-server`. After that, you have a development server running at `http://localhost:8080`.
+As before, this command will generate a command below the `npm bin` directory. You could try running *webpack-dev-server* from there. After running the WDS, you have a development server running at `http://localhost:8080`. Automatic browser refresh is in place now, although at a rough level.
 
 W> If you are using an IDE, consider enabling **save write** from its settings. This way WDS will be able to detect changes made to the files correctly.
 

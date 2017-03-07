@@ -96,8 +96,6 @@ We’ll continue from here in the next chapter. Before that, though, I will disc
 
 ![Hello cornsilk world](images/hello_02.png)
 
-T> An alternate way to load CSS would be to define a separate entry and point to the CSS there. Coupling styling to application code can be a nice way to handle it, though, as then you can see which styling is related to what file.
-
 ## Understanding CSS Scoping and CSS Modules
 
 Perhaps the biggest challenge of CSS is that all rules exist within **global scope**. Due to this reason, specific conventions that work around this feature have been developed. The [CSS Modules](https://github.com/css-modules/css-modules) specification solves the problem by introducing **local scope** per `import`. As it happens, this makes CSS more bearable to use as you don’t have to worry about namespace collisions anymore.

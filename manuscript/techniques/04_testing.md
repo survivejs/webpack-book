@@ -12,7 +12,7 @@ You can find a lot of testing tools for JavaScript. The most popular options wor
 
 [Mocha](https://mochajs.org/) is a popular test framework for Node. While Mocha provides test infrastructure, you will have to bring your asserts to it. Even though [Node assert](https://nodejs.org/api/assert.html) can be enough, there are good alternatives such as [power-assert](https://www.npmjs.com/package/power-assert), [Chai](http://chaijs.com/), or [Unexpected](http://unexpected.js.org/).
 
-[mocha-loader](https://www.npmjs.com/package/mocha-loader) is the official way to run Mocha tests through webpack. [mocha-webpack](https://www.npmjs.com/package/mocha-webpack) is another option that aims to provide more functionality. I’ll cover the basic *mocha-loader* setup next.
+[mocha-loader](https://www.npmjs.com/package/mocha-loader) allows running Mocha tests through webpack. [mocha-webpack](https://www.npmjs.com/package/mocha-webpack) is another option that aims to provide more functionality. I’ll cover the basic *mocha-loader* setup next.
 
 ### Configuring *mocha-loader* with Webpack
 
@@ -152,14 +152,14 @@ If you execute the server now and navigate to `http://localhost:8080/`, you shou
 
 ![Mocha in browser](images/mocha-browser.png)
 
-Adjusting either the test or the code should lead to a change in the browser, and this is a good way to develop as you can grow your specification or refactor the code while seeing the status of the tests.
+Adjusting either the test or the code should lead to a change in the browser. You can grow your specification or refactor the code while seeing the status of the tests.
 
 Compared to the vanilla Mocha setup, configuring Mocha through webpack comes with a couple of advantages:
 
 * It is possible to adjust module resolution. Webpack aliasing and other techniques work now, but this would also tie the code to webpack.
 * You can use webpack’s processing to compile your code as you wish. With vanilla Mocha that would imply more setup outside of it.
 
-On the downside, now you need a browser to examine the tests. *mocha-loader* is at its best as a development helper. One way to solve this problem is to run the tests through a headless browser.
+On the downside, now you need a browser to examine the tests. *mocha-loader* is at its best as a development helper. The problem can be solved by running the tests through a headless browser.
 
 ## Karma and Mocha
 
@@ -291,7 +291,7 @@ If you execute `npm run test:karma:watch` now, you should see watch behavior.
 
 ### Generating Coverage Reports
 
-To know how much of our code the tests cover, it can be a good idea to generate coverage reports. Doing this requires code-level instrumentation. Also, the added information has to be reported. A good way to do this is to output HTML and LCOV reports.
+To know how much of our code the tests cover, it can be a good idea to generate coverage reports. Doing this requires code-level instrumentation. Also, the added information has to be reported. This can be done through HTML and LCOV reports.
 
 T> LCOV integrates well with visualization services. You can send coverage information to an external service through a continuous integration environment and track the status in one place.
 

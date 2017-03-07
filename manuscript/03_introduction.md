@@ -6,13 +6,11 @@ It isn’t the easiest tool to learn due to its configuration-driven approach. T
 
 ## What Is Webpack
 
-Web browsers have been designed to consume HTML, JavaScript, and CSS. The quickest way to develop is simply to write files that the browser understands directly. The problem is that this eventually becomes unwieldy and this is particularly the case when you are developing web applications.
-
-The naïve way to load JavaScript is simply to bundle it all into a single file. Eventually, this won’t be enough as the size of your single bundle grows too big to load. You will need other strategies. One common way is to start splitting it up and then benefit from caching. You can even begin to load dependencies dynamically as you need them.
+Web browsers have been designed to consume HTML, JavaScript, and CSS. You can simply to write files that the browser understands directly. The problem is that this eventually becomes unwieldy and this is particularly the case when you are developing web applications as you have to deal with multiple different formats.
 
 As an application develops, the complexity of handling it grows as well. Webpack was designed to counter this problem. It manages the problems mentioned above through static analysis. This process gets most of the work done. It is one of the fundamental issues of web development currently, and solving the problem well can help you a lot.
 
-Webpack isn’t the only way to handle this problem, and a collection of different tools have emerged. Task runners, such as Grunt and Gulp, are good examples of higher level tools. Often the problem is that need to write the workflows by hand. Pushing that issue to a bundler, such as webpack, is a step forward.
+Webpack isn’t the only solution for this problem, and a collection of different tools have emerged. Task runners, such as Grunt and Gulp, are good examples of higher level tools. Often the problem is that need to write the workflows by hand. Pushing that issue to a bundler, such as webpack, is a step forward.
 
 ### How Webpack Changes the Situation
 

@@ -147,7 +147,7 @@ T> When creating a project, `npm init` respects the values set at *~/.npmrc*. He
 
 Provided you have logged in, creating new packages is only `npm publish` away. Given that the package name is still available and everything goes fine, you should have something out there! After this, you can install your package through `npm install` or `npm i`.
 
-An alternate way to consume a library is to point at it directly in *package.json*. In that case, you can do `"depName": "<github user>/<project>#<reference>"` where `<reference>` can be either commit hash, tag, or branch. You can point to specific pull requests through `<github user>/<project>#pull/<id>/head`.
+Instead of referring to a package by a name, it can be consumed by pointing to it directly in *package.json*. In that case, you can do `"depName": "<github user>/<project>#<reference>"` where `<reference>` can be either commit hash, tag, or branch. You can point to specific pull requests through `<github user>/<project>#pull/<id>/head`.
 
 T> If you want to see what files will be published to npm, consider using [npm pack](https://docs.npmjs.com/cli/pack) generates a tarball you can examine. [irish-pub](https://www.npmjs.com/package/irish-pub) is another option, and it will give you a listing to review. You can also use [publish-diff](https://www.npmjs.com/package/publish-diff) to get a better of the changes that are going to be published.
 
@@ -311,7 +311,7 @@ externals: {
 },
 ```
 
-If you want to include all modules in *node_modules* by default, it is possible to use [webpack-node-externals](https://www.npmjs.com/package/webpack-node-externals) instead. In this case would end up with `externals: [nodeExternals()]` kind of declaration. If you don’t need to adapt to different environments, this is a neat way to go.
+If you want to include all modules in *node_modules* by default, it is possible to use [webpack-node-externals](https://www.npmjs.com/package/webpack-node-externals) instead. In this case would end up with `externals: [nodeExternals()]` kind of declaration.
 
 T> Given bundling may still be required sometimes, consider using the [bundledDependencies](https://docs.npmjs.com/files/package.json#bundleddependencies) field for sharing third-party files not available through npm. There’s a great [Stack Overflow answer](http://stackoverflow.com/a/25044361/228885) discussing the topic further.
 
@@ -416,7 +416,7 @@ It is possible that your package reaches the end of its life. Another package mi
 
 You can deprecate a range like this or a whole package by skipping the range. Given mistakes happen, you can undeprecate a package by providing an empty message.
 
-Given there’s no official way to rename packages, deprecation can be handy. You can publish the package under a new name and let the users know of the new name in your deprecation message.
+Deprecation can be handy if you have to rename a package. You can publish the package under a new name and let the users know of the new name in your deprecation message.
 
 There is a heavier duty option in the form of [npm unpublish](https://docs.npmjs.com/cli/unpublish). Using `npm unpublish` you can pull a package out of the registry. Given this can be potentially dangerous and break the code for a lot of people, it has been [restricted to versions that are less than 24 hours old](http://blog.npmjs.org/post/141905368000/changes-to-npms-unpublish-policy). Most likely you don’t need the feature at all, but it is nice to know it exists.
 

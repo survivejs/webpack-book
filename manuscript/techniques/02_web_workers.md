@@ -1,6 +1,6 @@
 # Web Workers
 
-[Web workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) provide a way to push work outside of main execution thread of JavaScript making them convenient for long running computations and background work.
+[Web workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) allow you to push work outside of main execution thread of JavaScript making them convenient for long running computations and background work.
 
 Moving data between the main thread and the worker comes with communication-related overhead. The split provides isolation that forces workers to focus on logic only as they cannot manipulate the user interface directly.
 

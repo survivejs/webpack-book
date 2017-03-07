@@ -1,6 +1,6 @@
 # Loading Images
 
-The easiest way to make HTTP/1 application slow is to load a lot of small assets. Each request comes with an overhead. HTTP/2 will help in this regard and change the situation somewhat drastically. Till then we are stuck with different approaches. Webpack allows a couple of these. They are particularly relevant for loading images.
+HTTP/1 application can be made slow by loading a lot of small assets. Each request comes with an overhead. HTTP/2 will help in this regard and change the situation somewhat drastically. Till then we are stuck with different approaches. Webpack allows a couple of these. They are particularly relevant for loading images.
 
 Webpack allows you to inline assets by using [url-loader](https://www.npmjs.com/package/url-loader). It will output your images as base64 strings within your JavaScript bundles. The process will decrease the number of requests needed while growing the bundle size. It is enough to use *url-loader* during development. You may want to consider other alternatives for the production build, though.
 

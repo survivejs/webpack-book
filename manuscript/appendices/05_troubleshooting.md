@@ -19,7 +19,7 @@ I will show you of the most common errors next and explain how to deal with them
 
 ## ERROR in Entry module not found
 
-The easiest way to end up with this error is to make an entry path point at a place that does not exist. The error message is clear in this case and tells you what path webpack fails to find.
+You can end up with this error if you make an entry path point at a place that does not exist. The error message is clear in this case and tells you what path webpack fails to find.
 
 ## ERROR ... Module not found
 
@@ -27,7 +27,7 @@ You can get an error like this by either breaking a loader definition so that it
 
 ## Loader Not Found
 
-There’s another subtle loader related error. If a package matching to a loader name that does not implement the loader interface exists, webpack will match to that and give a runtime error that says the package is not a loader. One way to make this mistake is to write `loader: 'eslint'` over `loader: 'eslint-loader'`.
+There’s another subtle loader related error. If a package matching to a loader name that does not implement the loader interface exists, webpack will match to that and give a runtime error that says the package is not a loader. This mistake can be made by writing `loader: 'eslint'` over `loader: 'eslint-loader'`.
 
 W> A loader definition like this was valid in webpack 1. It has been disallowed in webpack 2. The behavior can be enabled again through `resolveLoader.moduleExtensions` array.
 
@@ -41,7 +41,7 @@ This error fits the same category. Parsing the file succeeded, but there was the
 
 ## SyntaxError: Unexpected token
 
-`SyntaxError` is another error for the same category. One way to get this error is to use ES6 syntax with UglifyJS as it does not support it yet. As it encounters a syntax construct it does not recognize, it will raise an error like this.
+`SyntaxError` is another error for the same category. This error is possible if you use ES6 syntax with UglifyJS. As it encounters a syntax construct it does not recognize, it will raise an error like this.
 
 ## Conclusion
 
