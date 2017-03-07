@@ -1,6 +1,6 @@
 # Consuming Packages
 
-Even though consuming npm packages is easy using webpack, there are certain special considerations to take into account. Sometimes the packages might not play with you nicely, or they might require special tweaking to work properly. At the core of this is the concept of SemVer.
+Consuming npm packages through webpack is often convenient but there are certain special considerations to take into account. Sometimes the packages might not play with you nicely, or they might require special tweaking to work properly. At the core of this is the concept of SemVer.
 
 ## Understanding SemVer
 
@@ -296,7 +296,7 @@ As a result you should get `// empty (null-loader)` for the matched SVG files.
 
 ## Getting Insights on Packages
 
-Even though it’s easy to consume packages through npm, there are times when it’s useful to have more information available. npm provides `npm info <package>` command for basic queries. You can use it to check the metadata associated with packages while figuring out version related information.
+To get more information about packages, npm provides `npm info <package>` command for basic queries. You can use it to check the metadata associated with packages while figuring out version related information.
 
 [package-config-checker](https://www.npmjs.com/package/package-config-checker) goes a step further. It allows you to understand better which packages of your project have updated recently and it provides means to get insight into your dependencies. It can reveal which packages could use download size related improvements for example.
 

@@ -159,7 +159,7 @@ If you build the SSR demo (`npm run build:ssr`), you should see a new file at *.
 
 ## Setting Up a Server
 
-To keep things easy to understand, we can set up a standalone Express server that picks up the bundle we generated and renders it following the SSR principle. Install Express first:
+To keep things clear to understand, we can set up a standalone Express server that picks up the bundle we generated and renders it following the SSR principle. Install Express first:
 
 ```bash
 npm install express --save-dev
@@ -283,7 +283,7 @@ T> The server could inject initial data payload to the generated HTML. Doing thi
 
 Even though the demo illustrates the basic idea of SSR, it still leaves open questions:
 
-* How to deal with styles? Handling JavaScript is easy in both environments, but vanilla Node doesn’t understand CSS related imports.
+* How to deal with styles? Vanilla Node doesn’t understand CSS related imports although your frontend code going through webpack might.
 * How to deal with anything else than JavaScript? If the server side is processed through webpack, this is less of an issue as you can patch it at webpack.
 * How to run the server through something else than Node? One option would be to wrap the Node instance in a service you then run through your host environment. Ideally, the results would be cached, and you can find more specific solutions for this particular per platform.
 

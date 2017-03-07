@@ -163,7 +163,7 @@ A quick way to illustrate the idea might be to set up a module that contains a s
 export default 'Hello from lazy';
 ```
 
-We also need to point the application to this file, so the application knows to load it. An easy way to do this is to bind the loading process to click. Whenever the user happens to click the button, we’ll trigger the loading process and replace the content.
+We also need to point the application to this file, so the application knows to load it. One way to do this is to bind the loading process to click. Whenever the user happens to click the button, we’ll trigger the loading process and replace the content.
 
 **app/component.js**
 

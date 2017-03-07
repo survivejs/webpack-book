@@ -53,7 +53,7 @@ clean:
     rm -rf build
 ```
 
-With Make, you model your tasks using Make-specific syntax and terminal commands making it easy to integrate with webpack.
+With Make, you model your tasks using Make-specific syntax and terminal commands making it possible to integrate with webpack.
 
 ## RequireJS
 

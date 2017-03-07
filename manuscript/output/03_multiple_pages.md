@@ -202,7 +202,7 @@ After these changes `/another` should show something familiar:
 
 If you build the application (`npm run build`), you should find *another/index.html*. Based on the generated code, we can make the following observations:
 
-* It is easy to add more pages to the setup.
+* It is clear how to add more pages to the setup.
 * The generated assets are directly below the build root. The pages are an exception as those are handled by `HtmlWebpackPlugin`, but they still point to the assets below the root. It would be possible to add more abstraction in the form of *webpack.page.js* and manage the paths by exposing a function that accepts page configuration.
 * Records should be written separately per each page in files of their own. Currently, the configuration that writes the last, wins. The above solution would allow solving this.
 * Processes like linting and cleaning run twice currently. The *Targets* chapter discussed potential solutions to that problem.

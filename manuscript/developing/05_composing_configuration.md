@@ -12,7 +12,7 @@ You can manage webpack configuration in the following ways:
 * Push configuration to a library, which you then consume. Example: [HenrikJoreteg/hjs-webpack](https://www.npmjs.com/package/hjs-webpack).
 * Maintain configuration within a single file and branch there and by relying on the `--env` parameter.
 
-These approaches can be combined. You can end up with a higher level configuration that’s then composed of smaller parts. Those parts could go to a library which you then use through npm making it easy to consume the same configuration across multiple projects.
+These approaches can be combined. You can end up with a higher level configuration that’s then composed of smaller parts. Those parts could go to a library which you then use through npm making it possible to consume the same configuration across multiple projects.
 
 We will use this approach in the book to discuss different techniques. *webpack.config.js* will maintain higher level configuration while *webpack.parts.js* will contain the building blocks.
 
@@ -145,7 +145,7 @@ We can also add more by expanding the *package.json* definition and branching at
 
 Later on, *webpack.parts.js* could be pushed to npm or outside of the project. But for this book, it’s enough to maintain it within the project.
 
-T> Webpack 2 validates the configuration by default. If you make an easy mistake like a typo, it will let you know. Earlier, it was useful to set up [webpack-validator](https://www.npmjs.com/package/webpack-validator), but that’s not needed anymore.
+T> Webpack 2 validates the configuration by default. If you make a mistake like a typo, it will let you know. Earlier, it was useful to set up [webpack-validator](https://www.npmjs.com/package/webpack-validator), but that’s not needed anymore.
 
 ## The Benefits of Composing Configuration
 

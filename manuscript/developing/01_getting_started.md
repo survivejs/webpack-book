@@ -102,7 +102,7 @@ document.body.appendChild(component());
 
 We’ll need to tell webpack how to deal with the assets we set up. For this purpose, we’ll develop a *webpack.config.js* file. Webpack and its development server will be able to discover this file through a convention.
 
-To keep things easy to maintain, we’ll be using [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) to generate an *index.html* for our application. *html-webpack-plugin* wires up the generated assets with it. Install it to the project:
+To keep things convenient to maintain, we’ll be using [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) to generate an *index.html* for our application. *html-webpack-plugin* wires up the generated assets with it. Install it to the project:
 
 ```bash
 npm install html-webpack-plugin --save-dev

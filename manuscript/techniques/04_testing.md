@@ -137,7 +137,7 @@ module.exports = merge([
 
 T> See the *Composing Configuration* chapter for the full `devServer` setup. The page setup is explained in the *Multiple Pages* chapter.
 
-Add a helper script to make it easy to run:
+Add a helper script to make it convenient to run:
 
 **package.json**
 
@@ -274,7 +274,7 @@ Given running tests after the change can get boring after a while, Karma provide
 
 ### Watch Mode with Karma
 
-Accessing Karma’s watch mode is easy. Add a script as follows:
+Accessing Karma’s watch mode is possible as follows:
 
 **package.json**
 

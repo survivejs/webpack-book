@@ -139,7 +139,7 @@ T> JSON doesn’t support comments even though I’m using them above. There are
 
 ## npm Workflow
 
-Working with npm is easy. To get started, you will need to use [npm adduser](https://docs.npmjs.com/cli/adduser). It allows you to set up an account. After this process has completed, it will create *~/.npmrc* and use that data for authentication. There’s also [npm logout](https://docs.npmjs.com/cli/logout) that will clear the credentials.
+To get started, you will need to use [npm adduser](https://docs.npmjs.com/cli/adduser). It allows you to set up an account. After this process has completed, it will create *~/.npmrc* and use that data for authentication. There’s also [npm logout](https://docs.npmjs.com/cli/logout) that will clear the credentials.
 
 T> When creating a project, `npm init` respects the values set at *~/.npmrc*. Hence, it may be worth your while to set reasonable defaults there to save time. If you want to limit your package to a particular scope, use `npm init --scope=<scope>`. As a result, you will get `@<scope>/<package>` which is handy especially for personal packages since the default namespace of npm is so crowded.
 
@@ -181,11 +181,11 @@ Note that in the example above, I’ve set up `version`-related hooks to make su
 
 T> Consider using [semantic-release](https://www.npmjs.com/package/semantic-release) if you prefer a more structured approach. It can take pain out of the release process while automating a part of it. For instance, it can detect possible breaking changes and generate change logs.
 
-T> [dont-break](https://www.npmjs.com/package/dont-break) allows you to run the unit tests of dependent projects against your current code to see if it breaks anything. Sometimes it’s easy to overlook a use case that might not be a part of the public API even and break a dependency. *dont-break* helps with that particular problem.
+T> [dont-break](https://www.npmjs.com/package/dont-break) allows you to run the unit tests of dependent projects against your current code to see if it breaks anything. Sometimes it’s possible to overlook a use case that might not be a part of the public API even and break a dependency. *dont-break* helps with that particular problem.
 
 ### Respect the SemVer
 
-Even though it is easy to publish new versions out there, it is important to respect the SemVer. Roughly, it states that you should not break backward compatibility, given certain rules are met. The exact rules were covered in the previous chapter so that I won’t cover them again here.
+When publishing new versions, it is important to respect the SemVer. Roughly, it states that you should not break backward compatibility, given certain rules are met. The exact rules were covered in the previous chapter so that I won’t cover them again here.
 
 To make it easier to comply with SemVer, [next-ver](https://www.npmjs.com/package/next-ver) can compute the next version you should use and update it for you. [commitizen](https://www.npmjs.com/package/commitizen) goes further and allows change log generation and automated releases.
 
@@ -221,7 +221,7 @@ T> [npm link](https://docs.npmjs.com/cli/link) can be useful during development.
 
 ### On Naming Packages
 
-Before starting to develop, it can be a good idea to spend a little bit of time on figuring out a good name for your package. It’s not fun to write an excellent package only to notice the name has been taken. A good name is easy to find through a search engine, and most importantly, is available at npm.
+Before starting to develop, it can be a good idea to spend a little bit of time on figuring out a good name for your package. It’s not fun to write an excellent package only to notice the name has been taken. A good name is possible to find through a search engine, and most importantly, is available at npm.
 
 As of npm 2.7.0, it is possible to create [scoped packages](https://docs.npmjs.com/getting-started/scoped-packages). They follow format `@username/project-name`. Simply follow that when naming your project.
 
@@ -427,10 +427,10 @@ You should now have a basic idea of how to author npm packages. Webpack can help
 To recap:
 
 * It is good to understand what kind of metadata packages may contain. They will give you insight on their licensing, guidelines, and even quality.
-* Publishing npm packages is easy. Remember to respect the SemVer or an equivalent scheme, though, as that will keep your consumers happy.
+* When publishing packages to npm, remember to respect the SemVer or an equivalent scheme to keep your consumers happy.
 * Document the main changes made to your packages using a change log. Documentation will come in handy later as you have to understand when a specific feature was introduced. It will also make it easier to upgrade projects to the most recent features.
 * Consider publishing differently packaged versions of the source to account for different usage patterns. Packaged right, your consumers can benefit from features, such as **tree shaking**.
-* To make it easy to consume a work in progress package, implement an npm `postinstall` script that builds the project if a distribution version does not exist in the source.
+* To make it possible to consume a work in progress package, implement an npm `postinstall` script that builds the project if a distribution version does not exist in the source.
 * If a package becomes obsolete, consider deprecating it and let your users know how to upgrade to another solution.
 
 The covered options are useful beyond package authoring. Mainly `externals` comes in handy when you want to exclude certain dependencies outside of your bundles and load them using another way.

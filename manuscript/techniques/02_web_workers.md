@@ -16,9 +16,7 @@ To get started, install *worker-loader* to the project:
 npm install worker-loader --save-dev
 ```
 
-To keep it easy to implement, we’ll tell webpack which files should be treated as loaders through inline loader definitions. Another option would be to push it to webpack configuration as discussed in the *Loader Definitions* chapter.
-
-In that case, you have to filter the files somehow. One option would be to rely on a naming convention so that you name each worker with a `.worker.js` suffix. You could also push them to a directory as that’s enough context information too.
+Instead of pushing the loader definition to webpack configuration, I will use inline loader definitions in this case. See the *Loader Definitions* chapter for more information about the alternatives.
 
 ## Setting Up a Worker
 

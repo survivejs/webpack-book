@@ -12,7 +12,7 @@ T> If you want to understand the ideas behind source maps in greater detail, [re
 
 Webpack can generate both inline source maps included within bundles or separate source map files. The former are useful during development due to better performance while the latter are handy for production usage as it will keep the bundle size small. In this case, loading source maps is optional.
 
-You may **not** want to generate a source map for your production bundle as this makes it easy to inspect your application (it depends on whether you want this or not; it is useful for staging). Skip the `devtool` field then or generate a hidden variant. Skipping source maps entirely also speeds up your build a notch as generating source maps at the best quality can be a big operation.
+You may **not** want to generate a source map for your production bundle as this makes it effortless to inspect your application (it depends on whether you want this or not; it is useful for staging). Skip the `devtool` field then or generate a hidden variant. Skipping source maps entirely also speeds up your build a notch as generating source maps at the best quality can be a big operation.
 
 **Hidden source maps** give stack trace information only. You can connect them with a monitoring service to get traces as the application crashes allowing you to fix the problematic situations. While this isn’t ideal, it is better to know about possible problems than not.
 

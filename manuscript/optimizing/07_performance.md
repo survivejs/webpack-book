@@ -5,8 +5,8 @@ Webpack’s performance out of the box is often enough for small projects. That 
 There are a couple of ground rules when it comes to optimization:
 
 1. Know what to optimize.
-2. Perform easy tweaks first.
-3. Perform hard tweaks after.
+2. Perform fast to implement tweaks first.
+3. Perform more involved tweaks after.
 4. Measure impact.
 
 Sometimes optimizations come with a cost. They might make your configuration harder to understand or tie it to a particular solution. Often the best optimization is to do less work or do it in a smarter way. I’ll go through basic directions in the next sections, so you know where to look when it’s time to work on build performance.
@@ -169,7 +169,7 @@ You can optimize webpack’s performance in multiple ways. Often it’s a good i
 
 To recap:
 
-* Start with higher level techniques that are easy first.
+* Start with higher level techniques that are fast to implement first.
 * Lower level techniques are more involved but may come with their wins.
 * Given webpack runs using a single instance by default, finding ways to parallelize its execution can lead to big wins.
 * Sometimes the best optimization is to skip work. Especially during development, cheating can be the way to go thanks to modern browsers.
