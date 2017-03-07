@@ -2,199 +2,237 @@
 
 As we’ve seen so far, loaders are one of the building blocks of webpack. If you want to load an asset, you’ll most likely need to set up a matching loader definition. Even though there are a lot of [available loaders](https://webpack.js.org/loaders/), it is possible you are missing one fitting your purposes.
 
-The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API well. To give you a concrete example, I’m going to discuss a subset of a loader I have developed. [highlight-loader](https://www.npmjs.com/package/highlight-loader) accepts HTML and then applies [highlight.js](https://highlightjs.org/) on it. Even though the transformation itself is easy, the loader implementation isn’t trivial.
+I will show you next how to develop a couple of small loaders. But before that we’ll discuss how to debug them in isolation.
 
-## Setting Up a Loader Project
+T> The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API in detail.
 
-I follow the following layout in my loader project:
+T> If you want a good starting point for a standalone loader or plugin project, consider using [webpack-defaults](https://github.com/webpack-contrib/webpack-defaults). It provides an opinionated starting point that comes with linting, testing, and other goodies.
+
+## Debugging Loaders with *loader-runner*
+
+[loader-runner](https://www.npmjs.com/package/loader-runner) allows you to run loaders without webpack making it a good tool for learning more about loader development. Install it first:
 
 ```bash
-.
-├── LICENSE          - License terms of the project
-├── README.md        - Basic description of the project
-├── examples         - Examples against webpack
-│   ├── app          - Demo app to run
-│   │   ├── index.js - Entry for webpack
-│   │   └── input.md - Data to process
-│   └── run.js       - Webpack configuration
-├── index.js         - Loader source
-├── package.json     - npm metadata
-└── test.js          - Tests
+npm install loader-runner --save-dev
 ```
 
-I started by developing a basic example first and added tests later. Writing tests first can be a good idea, though, as it gives you a specification which you can use to validate your implementation.
+To have something to test with, set up a loader that returns twice what’s passed to it like this:
 
-I’ll give you a basic testing setup next and then discuss my loader implementation.
-
-## Writing Tests for a Loader
-
-I settled with [Mocha](https://mochajs.org/) and Node [assert](https://nodejs.org/api/assert.html) for this project. Mocha is nice as it provides enough structure for writing your tests. There’s also support for `--watch`. When you run Mocha in the watch mode, it will run the tests as your code evolves.
-
-### Test Setup
-
-Here’s the relevant *package.json* portion:
-
-**package.json**
-
-```json
-...
-"scripts": {
-  "test": "mocha ./test",
-  "test:watch": "mocha ./test --watch"
-},
-...
-```
-
-To run tests, you can invoke `npm test`. To run the test setup in the watch mode, you can use `npm run test:watch`.
-
-### Test Structure
-
-I ended up writing all my tests into a single file in this project. The following excerpt should give you a better idea of the tests. There are a couple of webpack loader specific tweaks in place to make it easier to test them:
-
-**test.js**
+**loaders/demo-loader.js**
 
 ```javascript
-const assert = require('assert');
-const loader = require('./');
-
-// Mock loader context (`this`) so that we have an environment
-// that's close enough to Webpack to avoid crashes
-// during testing. Alternately, we could code defensively
-// and protect against the missing data.
-const webpackContext = {
-  cacheable: () => {},
-  exec: () => {},
+module.exports = function(input) {
+  return input + input;
 };
-// Bind the context. After this we can run the loader in our
-// tests.
-const highlight = loader.bind(webpackContext);
-
-// Here's the actual test suite split into smaller units.
-describe('highlight-loader', function () {
-  it('should highlight code', function () {
-    const code = '<code>run &lt;script&gt;</code>';
-    const given = highlight(code);
-    const expected = '<code>run &lt;script&gt;</code>';
-
-    assert.equal(given, expected);
-  });
-
-  ...
-
-  it('should support raw output with lang', function () {
-    const code = 'a = 4';
-    // Pass custom query to the loader. In order to do this
-    // we need to tweak the context (`this`).
-    const given = loader.call(
-      Object.assign({}, webpackContext, {
-        query: '?raw=true&lang=python',
-      }),
-      code
-    );
-    const expected = (
-      'module.exports = ' +
-      '"a = <span class=\\"hljs-number\\">4</span>"'
-    );
-
-    assert.equal(given, expected);
-  });
-
-  ...
-});
 ```
 
-Even though I’m not a great fan of mocking, it works well enough for a case like this. The biggest fear is that webpack API changes at some point as this would mean my test code would break, and I would have to rewrite a large part of it.
+Set up a file to process:
 
-It could be interesting to run the tests through webpack itself to avoid mocking. In this approach, you wouldn’t have to worry about the test facing parts so much, and it would be more about capturing output for the given input.
+**demo.txt**
 
-The problem is that this would add a significant overhead to the tests and bring problems of its own as you would have to figure out more efficient ways to execute them.
+```
+foobar
+```
 
-T> Webpack loaders can be run standalone through [loader-runner](https://www.npmjs.com/package/loader-runner). Using *loader-runner* would be one way to avoid mocking.
+There’s nothing webpack specific in the code yet. The next step is to run the loader through *loader-runner*:
 
-## Implementing a Loader
-
-The loader implementation isn’t entirely trivial due to the amount of functionality within it. I ended up using [cheerio](https://www.npmjs.org/package/cheerio) to apply *highlight.js* on the code portions of the passed HTML. Cheerio provides an API resembling jQuery making it ideal for small tasks, such as this.
-
-To keep this discussion focused, I’ll give you a subset of the implementation to show you the key parts:
+**run-loader.js**
 
 ```javascript
-'use strict';
+const fs = require('fs');
+const { runLoaders } = require('loader-runner');
+
+runLoaders({
+    resource: './demo.txt',
+    loaders: [
+      path.resolve(__dirname, './loaders/demo-loader')
+    ]
+    readResource: fs.readFile.bind(fs)
+  },
+  function(err, result) {
+    if(err) {
+      return console.error(err);
+    }
+
+    console.log(result);
+  }
+);
+```
+
+If you run the script now (`node run-loader.js`), you should see output like this:
+
+```javascript
+{ result: [ 'foobar\nfoobar\n' ],
+  resourceBuffer: <Buffer 66 6f 6f 62 61 72 0a>,
+  cacheable: true,
+  fileDependencies: [ './demo.txt' ],
+  contextDependencies: [] }
+```
+
+The output tells the `result` of the processing, the resource that was processed as a buffer, and other meta information that’s less interesting in this case. This is enough to develop more complicated loaders.
+
+T> If you want to capture the output to a file, use either `fs.writeFileSync('./output.txt', result.result)` or its asynchronous version as discussed in [Node documentation](https://nodejs.org/api/fs.html).
+
+T> It is possible to refer to loaders installed to the local project by name instead of resolving a full path to them. Example: `loaders: ['raw-loader']`.
+
+## Implementing an Asynchronous Loader
+
+Even though you can implement a lot of loaders using the synchronous interface, there are times when asynchronous calculation is required. You might be integrating a third party package for example.
+
+The example above can be adapted to asynchronous form by using webpack specific API through `this.async()`. Webpack sets this and the function returns a callback following Node conventions (error first, result second). Tweak as follows:
+
+**loaders/demo-loader.js**
+
+```javascript
+module.exports = function(input) {
+  const callback = this.async();
+
+  callback(null, input + input);
+};
+```
+
+Running the demo script (`node run-loader.js`) again should give exactly the same result as before. To raise an error during execution, try the following:
+
+**loaders/demo-loader.js**
+
+```javascript
+module.exports = function(input) {
+  const callback = this.async();
+
+  callback(new Error('Demo error'));
+};
+```
+
+The result should contain `Error: Demo error` with a stack trace showing where the error originates.
+
+## Returning Only Output
+
+One way to use loaders is to use them to output code. You could have implementation like this:
+
+**loaders/demo-loader.js**
+
+```javascript
+module.exports = function() {
+  return 'foobar';
+};
+```
+
+But what’s the point? You can pass to loaders through webpack entries. Instead of pointint to pre-existing files as you would in majority of the cases, you could pass to a loader that generates code dynamically. Even though a special case, it is good to be aware of the technique.
+
+## Passing Options to Loaders
+
+In order to control loader behavior, often you want to pass specific options to a loader. To demonstrate this, the runner needs a small tweak:
+
+**run-loader.js**
+
+```javascript
 ...
-const hl = require('highlight.js');
+
+runLoaders({
+    resource: './demo.txt',
+    loaders: [
+leanpub-start-delete
+      path.resolve(__dirname, './loaders/demo-loader')
+leanpub-end-delete
+leanpub-start-insert
+      {
+        loader: path.resolve(__dirname, './loaders/demo-loader'),
+        options: {
+          text: 'demo',
+        },
+      },
+leanpub-end-insert
+    ]
+    readResource: fs.readFile.bind(fs)
+  },
+  ...
+);
+```
+
+To capture the option, we need to use [loader-utils](https://www.npmjs.com/package/loader-utils). It has been designed to parse loader options and queries. Install it:
+
+```bash
+npm install loader-utils --save-dev
+```
+
+To connect it the loader, set it to concatenate the passed input and the `text` option:
+
+**loaders/demo-loader.js**
+
+```javascript
 const loaderUtils = require('loader-utils');
 
-module.exports = function(input = '') {
-  // Mark the loader as cacheable (same result for same input).
-  this.cacheable();
+module.exports = function(input) {
+  const { text } = loaderUtils.getOptions(this);
 
-  // Parse custom query parameters.
-  const query = loaderUtils.parseQuery(this.query);
-
-  // Check against a custom parameter and apply custom logic
-  // related to it. In this case, we execute against the parameter
-  // itself and tweak `input` based on the result.
-  if(query.exec) {
-    // `this.resource` refers to the resource we are trying to load
-    // while including the query parameter.
-    input = this.exec(input, this.resource);
-  }
-
-  ...
-
-  // Cheerio logic goes here.
-  ...
-
-  // Return a result after the transformation has been done.
-  return $.html();
+  return input + text;
 };
-
-...
 ```
 
-The above is an example of a synchronous loader. Sometimes you might want to perform asynchronous operations instead. That’s when you could do something like this in your loader code:
+After running (`node ./run-loader.js`), you should see something like this:
 
 ```javascript
-const callback = this.async();
-
-if(!callback) {
-  // Synchronous fallback.
-  return syncOp();
-}
-
-// Perform the asynchronous operation.
-asyncOp(callback);
+{ result: [ 'foobar\ndemo' ],
+  resourceBuffer: <Buffer 66 6f 6f 62 61 72 0a>,
+  cacheable: true,
+  fileDependencies: [ './demo.txt' ],
+  contextDependencies: [] }
 ```
+
+The result is as expected. You can try to pass more options to the loader or use query parameters to see what happens with different combinations.
+
+T> It is a good idea to validate options and rather fail hard than silently if the options aren’t what you expect. [schema-utils](https://www.npmjs.com/package/schema-utils) has been designed for this purpose.
 
 ## Pitch Loaders
 
-Webpack evaluates loaders in two phases: pitching and running. The pitching process is performed first, and it goes from left to right. In the running phase, it goes back right to left. Pitching allows you to intercept a query or modify it. A pitch loader could inject parameters to the following loader for example or terminate execution given a condition is met.
+Webpack evaluates loaders in two phases: pitching and running. If you are used to web event semantics, these map to capturing and bubbling. The idea is that webpack allows you to intercept execution during the pitching (capturing) phase. It goes through the loaders left to right first like this and after that it executes them from right to left.
 
-The following example [adapted from the documentation](https://webpack.js.org/api/loaders/#pitching-loader) illustrates how to attach a pitch handler to a loader:
+A pitch loader allows you shape the request and even terminate it. To show how termination works. Adjust the example as follows:
+
+**loaders/demo-loader.js**
 
 ```javascript
-module.exports = function(content) {
-  ...
-};
-module.exports.pitch = function(remainingRequest, precedingRequest, data) {
-  if(... condition ...) {
-    // Either adjust metadata or terminate execution here by returning
-    return `module.exports = 'demo';`;
-  }
+const loaderUtils = require('loader-utils');
 
-  // You can set metadata to access later in the running phase.
-  data.value = 42;
+module.exports = function(input) {
+  const { text } = loaderUtils.getOptions(this);
+
+  return input + text;
+};
+module.exports.pitch = function(remainingRequest, precedingRequest, input) {
+  console.log(
+    'remaining request', remainingRequest,
+    'preceding request', precedingRequest,
+    'input', input
+  );
+
+  return 'pitched';
 };
 ```
+
+If you run (`node ./run-loader.js`) now, the pitch loader should log intermediate data and intercept the execution:
+
+```javascript
+remaining request ./demo.txt preceding request  input {}
+{ result: [ 'pitched' ],
+  resourceBuffer: null,
+  cacheable: true,
+  fileDependencies: [],
+  contextDependencies: [] }
+```
+
+Besides intercepting, this would have been a good chance to attach metadata to the input. Often the pitching stage isn’t required, but it is good to be aware of it as you will see it in existing loaders.
 
 ## Conclusion
 
 Writing loaders is fun in the sense that they describe transformations from a format to another. Often you can figure out how to achieve something specific by either studying either the API documentation or the existing loaders.
 
-I recommend writing at least basic tests and a small example to document your assumptions. Loader development fits this thinking well.
-
 To recap:
 
-* Webpack **loaders** accept input and produce output based on it. They can also perform analysis and not touch the source at all.
-* Loaders can also access metadata or terminate execution at pitching phase. Pitch loaders are rarer for this reason.
+* *loader-runner* is a valuable tool for understanding how loaders work. Use it for debugging how loaders work.
+* Webpack **loaders** accept input and produce output based on it.
+* Loaders can be either synchronous or asynchronous. In the latter case, you should use `this.async()` webpack API to capture the callback exposed by webpack.
+* Use **loader-utils** to parse possible options passed to a loader and consider validating them using **schema-utils**.
+* Pitching stage complements the default behavior allowing you to intercept and to attach metadata.
 
 I will show you how to write plugins in the next chapter. Plugins allow you to intercept webpack’s execution process and they can be combined with loaders to develop more advanced functionality.
