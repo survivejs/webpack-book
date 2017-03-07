@@ -155,9 +155,9 @@ If you want the raw SVG content, you can use the [raw-loader](https://www.npmjs.
 
 T> You can still use *url-loader* and the tips above with SVGs too.
 
-## Compressing Images
+## Optimizing Images
 
-In case you want to compress your images, use [image-webpack-loader](https://www.npmjs.com/package/image-webpack-loader), [svgo-loader](https://github.com/pozadi/svgo-loader) (SVG specific), or [imagemin-webpack-plugin](https://www.npmjs.com/package/imagemin-webpack-plugin). This type of loader should be applied first to the data, so remember to place it as the last within `use` listing.
+In case you want to compress your images, use [image-webpack-loader](https://www.npmjs.com/package/image-webpack-loader), [svgo-loader](https://www.npmjs.com/package/svgo-loader) (SVG specific), or [imagemin-webpack-plugin](https://www.npmjs.com/package/imagemin-webpack-plugin). This type of loader should be applied first to the data, so remember to place it as the last within `use` listing.
 
 Compression is particularly useful for production builds as it will decrease the amount of bandwidth required to download your image assets and speed up your site or application as a result.
 
@@ -233,7 +233,7 @@ To recap:
 
 * *url-loader* inlines the assets within JavaScript. It comes with a `limit` option that allows you to defer assets above it to *file-loader*.
 * *file-loader* emits image assets and returns paths to them to the code. It allows hashing the asset names.
-* You can find image optimization related loaders and plugins that allow you to optimize their size further.
+* You can find image optimization related loaders and plugins that allow you to tune their size further.
 * It is possible to generate **sprite sheets** out of smaller images to combine them into a single request.
 * Webpack allows you to load images dynamically based on a given condition.
 * If you are using source maps, you should remember to set `output.publicPath` to an absolute value for the images to show up.
