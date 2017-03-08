@@ -18,7 +18,7 @@ The goal is to end up with a split point that will get loaded on demand. There c
 
 ### Dynamic `import`
 
-The [dynamic `import` syntax](https://github.com/tc39/proposal-dynamic-import) isn’t in the official language specification yet. To use it, minor tweaks are needed especially at ESLint and Babel. Certain editors and IDEs might not support the syntax either.
+The [dynamic `import` syntax](https://github.com/tc39/proposal-dynamic-import) isn’t in the official language specification yet. To use it, minor tweaks are needed especially at ESLint and Babel. Certain editors and IDEs may not support the syntax either.
 
 Dynamic imports are defined as `Promise`s and look like this:
 

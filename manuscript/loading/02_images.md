@@ -10,7 +10,7 @@ Webpack gives control over the inlining process and can defer loading to [file-l
 
 *url-loader* is a good starting point and it’s the perfect option for development purposes, as you don’t have to care about the size of the resulting bundle. It comes with a *limit* option that can be used to defer image generation to *file-loader* after a certain limit is reached. This way you can inline small files to your JavaScript bundles while generating separate files for the bigger ones.
 
-If you use the limit option, you will need to install both *url-loader* and *file-loader* to your project. Assuming you have configured your styles correctly, webpack will resolve any `url()` statements your styling might have. You can point to the image assets through your JavaScript code as well.
+If you use the limit option, you will need to install both *url-loader* and *file-loader* to your project. Assuming you have configured your styles correctly, webpack will resolve any `url()` statements your styling contains. You can point to the image assets through your JavaScript code as well.
 
 It is important to note that if the limit option is used, *url-loader* will pass possible additional options to *file-loader* making it possible to configure its behavior further.
 
@@ -219,7 +219,7 @@ Sometimes getting the only reference to an image isn’t enough. [image-size-loa
 
 ## Loading Images Dynamically
 
-Sometimes you might want to load an image dynamically based on a condition. This is where code splitting techniques can come in handy. They still assume the files exist in the file system. See the *Code Splitting* chapter for further information.
+Webpack allows you to load images dynamically based on a condition. The techniques covered in the *Code Splitting* chapter are enough for this purpose. Doing this can save bandwidth and load images only when you need them or preload them while you have time.
 
 ## Images and *css-loader* Source Map Gotcha
 
@@ -227,7 +227,7 @@ If you are using images and *css-loader* with the `sourceMap` option enabled, it
 
 ## Conclusion
 
-Webpack allows you to inline images within your bundles when needed. Figuring out proper inlining limits for your images might take experimentation. You have to balance between bundle sizes and the number of requests.
+Webpack allows you to inline images within your bundles when needed. Figuring out proper inlining limits for your images requires experimentation. You have to balance between bundle sizes and the number of requests.
 
 To recap:
 

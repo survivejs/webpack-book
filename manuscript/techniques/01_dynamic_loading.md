@@ -39,7 +39,7 @@ The technique can be valuable for other purposes, such as testing or adding file
 
 ## Combining Multiple `require.context`s
 
-Sometimes you might need to combine multiple separate `require.context`s into one by wrapping them behind a similar API like this:
+Multiple separate `require.context`s can be combined into one by wrapping them behind a function like this:
 
 ```javascript
 const { concat, uniq } from 'lodash';

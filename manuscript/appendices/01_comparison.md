@@ -18,7 +18,7 @@ I’ll go through the main options next in greater detail.
 
 ## Make
 
-[Make](https://en.wikipedia.org/wiki/Make_%28software%29) goes way back, as it was initially released in 1977. Even though it’s an old tool, it has remained relevant. Make allows you to write separate tasks for various purposes. For instance, you might have different tasks for creating a production build, minifying your JavaScript or running tests. You can find the same idea in many other tools.
+[Make](https://en.wikipedia.org/wiki/Make_%28software%29) goes way back, as it was initially released in 1977. Even though it’s an old tool, it has remained relevant. Make allows you to write separate tasks for various purposes. For instance, you could have different tasks for creating a production build, minifying your JavaScript or running tests. You can find the same idea in many other tools.
 
 Even though Make is mostly used with C projects, it’s not tied to it in any way. James Coglan discusses in detail [how to use Make with JavaScript](https://blog.jcoglan.com/2014/02/05/building-javascript-projects-with-make/). Consider the abbreviated code based on James’ post below:
 
@@ -84,7 +84,7 @@ define(['require'], function (require) {
 });
 ```
 
-This latter approach eliminates a part of the clutter. You will still end up with code that might feel redundant. Given there’s ES6 now, it doesn’t make sense to use AMD unless you forced due to legacy reasons.
+This latter approach eliminates a part of the clutter. You will still end up with code that may feel redundant. Given there’s ES6 now, it doesn’t make sense to use AMD unless you forced due to legacy reasons.
 
 T> Jamund Ferguson has written an excellent blog series on how to port from [RequireJS to webpack](https://gist.github.com/xjamundx/b1c800e9282e16a6a18e).
 
@@ -224,7 +224,7 @@ Even though npm CLI wasn’t primarily designed to be used as a task runner, it 
 
 These scripts can be listed using `npm run` and then executed using `npm run <script>`. You can also namespace your scripts using a convention like `test:watch`. The problem with this approach is that it takes care to keep it cross-platform.
 
-Instead of `rm -rf`, you might want to use a utility like [rimraf](https://www.npmjs.com/package/rimraf) and so on. It’s possible to invoke other tasks runners here to hide the fact that you are using one. This way you can refactor your tooling while keeping the interface as the same.
+Instead of `rm -rf`, you likely want to use utilities such as [rimraf](https://www.npmjs.com/package/rimraf) and so on. It’s possible to invoke other tasks runners here to hide the fact that you are using one. This way you can refactor your tooling while keeping the interface as the same.
 
 ## Browserify
 
@@ -286,7 +286,7 @@ You could say [webpack](https://webpack.js.org/) takes a more monolithic approac
 
 Webpack core can be extended using specific *loaders* and *plugins*. It gives control over how it *resolves* the modules, making it possible to adapt your build to match specific situations and workaround packages that don’t work correctly out of the box.
 
-Compared to the other tools, webpack might come with initial complexity, but it makes up for this through its broad feature set. It is an advanced tool that requires patience. But once you understand the basic ideas behind it, webpack becomes powerful.
+Compared to the other tools, webpack comes with initial complexity, but it makes up for this through its broad feature set. It is an advanced tool that requires patience. But once you understand the basic ideas behind it, webpack becomes powerful.
 
 ## Other Options
 

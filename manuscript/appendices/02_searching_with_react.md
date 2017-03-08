@@ -1,10 +1,10 @@
 # Searching with React
 
-Let’s say we want to implement a rough little search for our application without a proper backend. We might want to use something like [lunr](http://lunrjs.com/) for generating an index to search.
+Let’s say we want to implement a rough little search for our application without a proper backend. You could do it through [lunr](http://lunrjs.com/) and generate a static search index to serve.
 
 The problem is that the index can be sizable depending on the amount of the content. The good thing is that we don’t need the search index straight from the start. We can do something smarter. We can start loading the index when the user selects our search field.
 
-Doing this defers the loading and moves it to a place where it’s more acceptable for performance. Given the initial search might be slower than the subsequent ones we could display a loading indicator. But that’s fine from the user point of view.
+Doing this defers the loading and moves it to a place where it’s more acceptable for performance. Given the initial search will be slower than the subsequent ones we should display a loading indicator. But that’s fine from the user point of view.
 
 Webpack’s **code splitting** feature allows us to do this. See the *Code Splitting* chapter for more detailed discussion and the exact setup required.
 

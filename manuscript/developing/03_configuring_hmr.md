@@ -241,7 +241,7 @@ T> There are more details in *webpack-dev-server* issue [#155](https://github.co
 
 ## Setting WDS Entry Points Manually
 
-In the setup above, the WDS-related entries were injected automatically. Assuming you are using WDS through Node, you would have to set them yourself as the Node API doesn’t support injecting. The example below illustrates how you might achieve this:
+In the setup above, the WDS-related entries were injected automatically. Assuming you are using WDS through Node, you would have to set them yourself as the Node API doesn’t support injecting. The example below illustrates how to achieve this:
 
 ```javascript
 entry: {

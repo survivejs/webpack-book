@@ -147,7 +147,7 @@ You lose the extra wrapping in the second option.
 
 ## AMD
 
-If you remember [RequireJS](http://requirejs.org/), you might remember the AMD format it uses. In case we use the `amd` target, we’ll get output like this:
+If you remember [RequireJS](http://requirejs.org/), you may recognize the AMD format it uses. In case we use the `amd` target, we’ll get output like this:
 
 **dist/lib.js**
 

@@ -8,7 +8,7 @@ As this book has demonstrated, webpack is a versatile tool. To make it easier to
 * To keep your builds fast, consider optimizing. The *Performance* chapter discusses a variety of strategies you can use to achieve this.
 * to keep your configuration maintainable, consider composing it. As webpack configuration is JavaScript code, it can be arranged in many ways. Find a way you are comfortable with and apply it. The *Composing Configuration* chapter discusses the topic.
 * The way webpack consumes packages can be customized. The *Consuming Packages* chapter covers specific techniques related to this.
-* Sometimes you might have to extend webpack. The *Extending with Loaders* and *Extending with Plugins* chapters show how to achieve this. You can also work on top of webpack’s configuration definition and implement an abstraction of your own for it to suit your purposes.
+* Sometimes you may have to extend webpack. The *Extending with Loaders* and *Extending with Plugins* chapters show how to achieve this. You can also work on top of webpack’s configuration definition and implement an abstraction of your own for it to suit your purposes.
 
 ## Development Checklist
 

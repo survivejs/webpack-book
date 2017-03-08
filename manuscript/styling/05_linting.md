@@ -131,7 +131,7 @@ W> If you get `Module build failed: Error: No configuration provided for ...` ki
 
 ## *stylelint-webpack-plugin*
 
-[stylelint-webpack-plugin](https://www.npmjs.com/package/stylelint-webpack-plugin) allows you to reach the same result. Its greatest advantage over the setup above is that it will follow possible `@import` statements you might have in your styling.
+[stylelint-webpack-plugin](https://www.npmjs.com/package/stylelint-webpack-plugin) allows you to reach the same result. Its greatest advantage over the setup above is that it will follow possible `@import` statements you have in your styling.
 
 T> [stylelint-bare-webpack-plugin](https://www.npmjs.com/package/stylelint-bare-webpack-plugin) is a variant of *stylelint-webpack-plugin* that allows you to control the version of stylelint you are using.
 

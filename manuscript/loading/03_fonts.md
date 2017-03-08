@@ -47,7 +47,7 @@ A more elaborate approach to achieve a similar result that includes *.woff2* and
 
 ## Supporting Multiple Formats
 
-In case we want to make sure our site looks good on a maximum amount of browsers, we might as well use *file-loader* and forget about inlining. Again, it’s a trade-off as we get extra requests, but perhaps it’s the right move. Here we could end up with a loader configuration like this:
+In case we want to make sure our site looks good on a maximum amount of browsers, we can use *file-loader* and forget about inlining. Again, it’s a trade-off as we get extra requests, but perhaps it’s the right move. Here we could end up with a loader configuration like this:
 
 ```javascript
 {
@@ -76,7 +76,7 @@ T> [MDN discusses the font-family rule](https://developer.mozilla.org/en/docs/We
 
 ## Generating Font Files Based on SVGs
 
-Sometimes you might have a bunch of SVG files that would be nice to bundle as font files of their own. The setup is a little involved, but [fontgen-loader](https://www.npmjs.com/package/fontgen-loader) achieves this.
+If you prefer to use SVG based fonts, they can be bundled as a single font file by using [fontgen-loader](https://www.npmjs.com/package/fontgen-loader).
 
 W> Take care with SVGs if you have SVG specific image setup in place already. If you want to process font SVGs differently, set their definitions carefully. The *Loader Definitions* chapter covers alternatives.
 

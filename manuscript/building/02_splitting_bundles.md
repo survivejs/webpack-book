@@ -65,7 +65,7 @@ As you can see, *app.js* is big. We must do something about this next.
 
 ## Setting Up a `vendor` Bundle
 
-So far our project has only a single entry named as `app`. As you might remember, our configuration tells webpack to traverse dependencies starting from the `app` entry directory and then to output the resulting bundle below our `build` directory using the entry name and `.js` extension.
+So far our project has only a single entry named as `app`. Our configuration tells webpack to traverse dependencies starting from the `app` entry directory and then to output the resulting bundle below our `build` directory using the entry name and `.js` extension.
 
 To improve the situation, we can define a `vendor` entry containing React by matching the dependency name. It is possible to generate this information automatically as discussed at the end of this chapter, but I’ll go with a static array here to illustrate the basic idea. Change the code like this:
 
@@ -124,7 +124,7 @@ If you examine the resulting bundle, you can see that it contains React given th
 
 ![Separate app and vendor bundles](images/bundle_01.png)
 
-`CommonsChunkPlugin` is a webpack plugin that allows us to alter this default behavior so that we can get the bundles we might expect.
+`CommonsChunkPlugin` is a webpack plugin that allows us to alter this default behavior.
 
 W> This step can fail on Windows due to letter casing. Instead of `c:\` you may need to force your terminal to read `C:\`. There’s more information in the [related webpack issue](https://github.com/webpack/webpack/issues/2362).
 

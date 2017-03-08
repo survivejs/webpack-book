@@ -283,7 +283,7 @@ T> The server could inject initial data payload to the generated HTML. Doing thi
 
 Even though the demo illustrates the basic idea of SSR, it still leaves open questions:
 
-* How to deal with styles? Vanilla Node doesn’t understand CSS related imports although your frontend code going through webpack might.
+* How to deal with styles? Vanilla Node doesn’t understand CSS related imports although your frontend code going through webpack will.
 * How to deal with anything else than JavaScript? If the server side is processed through webpack, this is less of an issue as you can patch it at webpack.
 * How to run the server through something else than Node? One option would be to wrap the Node instance in a service you then run through your host environment. Ideally, the results would be cached, and you can find more specific solutions for this particular per platform.
 

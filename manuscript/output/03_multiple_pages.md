@@ -213,7 +213,7 @@ The approach can be pushed to another direction by dropping the multi-compiler m
 
 Our current configuration shares code by coincidence already due to the usage patterns. Only a small part of the code differs, and as a result only the page manifests, and the bundles mapping to their entries differ.
 
-In a more complicated application, you might want to apply techniques covered in the *Splitting Bundles* chapter across the pages. Dropping the multi-compiler mode can be worthwhile then.
+In a more complicated application, you should apply techniques covered in the *Splitting Bundles* chapter across the pages. Dropping the multi-compiler mode can be worthwhile then.
 
 ### Adjusting Configuration
 

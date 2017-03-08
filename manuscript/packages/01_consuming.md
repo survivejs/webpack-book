@@ -1,6 +1,6 @@
 # Consuming Packages
 
-Consuming npm packages through webpack is often convenient but there are certain special considerations to take into account. Sometimes the packages might not play with you nicely, or they might require special tweaking to work properly. At the core of this is the concept of SemVer.
+Consuming npm packages through webpack is often convenient but there are certain special considerations to take into account. Sometimes the packages may not play with you nicely, or they can require special tweaking to work properly. At the core of this is the concept of SemVer.
 
 ## Understanding SemVer
 
@@ -78,7 +78,7 @@ An important part of maintaining a project is keeping their dependencies up to d
 * Install the newest version of a specific dependency, e.g., `npm install lodash@* --save` as a more controlled approach.
 * Patch version information by hand by modifying *package.json* directly.
 
-It is important to remember that your dependencies may introduce backward incompatible changes. Temember how SemVer works and study release notes of dependencies. They might not always exist, so you may have to go through the project commit history.
+It is important to remember that your dependencies may introduce backward incompatible changes. Remember how SemVer works and study the release notes of dependencies. They won’t exist always, so you may have to go through the project commit history.
 
 T> `npm ls`, and more specifically `npm ls <package name>`, allow you to figure out which versions you have installed. `npm ls -g` performs a similar lookup against the globally installed packages.
 
@@ -102,7 +102,7 @@ T> There’s a [Codecov extension](https://chrome.google.com/webstore/detail/cod
 
 ## Tweaking Module Resolution
 
-Sometimes packages might not follow the standard rules and their *package.json* might have a faulty `main` field or it might be missing altogether and this is where setting up a `resolve.alias` can come in handy. Consider the example below:
+Sometimes packages do not follow the standard rules and their *package.json* contains a faulty `main` field. It can be missing altogether. `resolve.alias` is the field to use here as in the example below:
 
 ```javascript
 {
@@ -133,7 +133,7 @@ T> The same technique works with loaders too. You can use `resolveLoader.alias` 
 
 ## Dealing with Globals
 
-Sometimes modules might depend on globals, like the `$` provided by jQuery. [imports-loader](https://www.npmjs.com/package/imports-loader) allows you to inject them as below:
+Sometimes modules depend on globals. `$` provided by jQuery is a good example. [imports-loader](https://www.npmjs.com/package/imports-loader) allows you to inject them as below:
 
 ```javascript
 {
@@ -164,7 +164,7 @@ T> [script-loader](https://www.npmjs.com/package/script-loader) allows you to ex
 
 ## Removing Unused Modules
 
-Even though packages might work well out of the box, they might bring too much code to your project by default. [Moment.js](https://www.npmjs.com/package/moment) is a popular example. It brings locale data to your project by default. The easiest method to disable that behavior is to use `IgnorePlugin` to ignore locales like this:
+Even though packages can work well out of the box, they bring too much code to your project sometimes. [Moment.js](https://www.npmjs.com/package/moment) is a popular example. It brings locale data to your project by default. The easiest method to disable that behavior is to use `IgnorePlugin` to ignore locales like this:
 
 ```javascript
 {
@@ -209,7 +209,7 @@ Critical dependencies:
 
 The warning can happen if a package points at a pre-built (i.e., minified and already processed) file. Webpack detects this case and warns against it.
 
-The warning can be eliminated by aliasing the package to a source version as discussed above. Given sometimes the source might not be available, another option is to tell webpack to skip parsing the files through `module.noParse`. It accepts either a RegExp or an array of RegExps and can be configured as below:
+The warning can be eliminated by aliasing the package to a source version as discussed above. Given sometimes the source may not be available, another option is to tell webpack to skip parsing the files through `module.noParse`. It accepts either a RegExp or an array of RegExps and can be configured as below:
 
 ```javascript
 {
@@ -246,7 +246,7 @@ T> It can be a good idea to install [React Developer Tools](https://github.com/f
 
 ### Disabling Asset Loading
 
-Sometimes you might be consuming a package that has formats you are not interested in. A good example of this might be a font framework. They often provide fonts in all formats, but you might need only a few if you support modern browsers.
+It is possible a package comes with formats you are not interested in. A good example of this is a font framework. They often provide fonts in all formats, but you may need only a few if you support modern browsers.
 
 [null-loader](https://www.npmjs.com/package/null-loader) fits the use case. You can tell webpack to pipe certain assets through it.
 

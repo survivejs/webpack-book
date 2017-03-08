@@ -74,7 +74,7 @@ The idea is that we’ll transform that *app/* to as a bundle below *build/*. To
 
 ## Setting Up Assets
 
-As you never get tired of `Hello world`, we might as well model a variant of that. Set up a component like this:
+As you never get tired of `Hello world`, we can model a variant of that. Set up a component like this:
 
 **app/component.js**
 

@@ -69,7 +69,7 @@ leanpub-end-insert
 ...
 ```
 
-In practice you might want to maintain lower limits. The current ones are enough for this demonstration. If you build now (`npm run build`), you should see a warning like this within the output:
+In practice you will want to maintain lower limits. The current ones are enough for this demonstration. If you build now (`npm run build`), you should see a warning like this within the output:
 
 ```bash
 ...

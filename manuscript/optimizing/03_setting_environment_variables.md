@@ -1,6 +1,6 @@
 # Setting Environment Variables
 
-Sometimes a part of your code should execute only during development. Or you might have experimental features in your build that are not ready for production yet. This code should not end up in the production build.
+Sometimes a part of your code should execute only during development. Or you could have experimental features in your build that are not ready for production yet. This code should not end up in the production build.
 
 As JavaScript minifiers can remove dead code (`if (false)`), we can build on top of this idea and write code that gets transformed into this form. Webpack’s `DefinePlugin` enables replacing **free variables** so that we can convert `if (process.env.NODE_ENV === 'development')` kind of code to `if (true)` or `if (false)` depending on the environment.
 
@@ -189,7 +189,7 @@ T> A related technique, **aliasing**, is discussed in the *Consuming Packages* c
 Webpack includes a collection of optimization related plugins. I’ve listed the most important ones below:
 
 * [compression-webpack-plugin](https://www.npmjs.com/package/compression-webpack-plugin) allows you to push the problem of generating compressed files to webpack to potentially save processing time on the server.
-* `webpack.optimize.UglifyJsPlugin` allows you to minify output using different heuristics. Certain of them might break code unless you are careful.
+* `webpack.optimize.UglifyJsPlugin` allows you to minify output using different heuristics. Certain of them break code unless you are careful.
 * `webpack.optimize.AggressiveSplittingPlugin` allows you to split code into smaller bundles as discussed in the *Splitting Bundles* chapter. The result is ideal for a HTTP/2 environment.
 * `webpack.optimize.CommonsChunkPlugin` makes it possible to extract common dependencies into bundles of their own.
 * `webpack.DefinePlugin` allows you to use feature flags in your code and eliminate the redundant code as discussed in this chapter.

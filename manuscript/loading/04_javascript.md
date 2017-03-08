@@ -27,11 +27,11 @@ webpackJsonp([1],{
 
 The problem can be worked around by processing the code through [Babel](https://babeljs.io/), a popular JavaScript compiler that supports ES6 features and more. It resembles ESLint in that it is built on top of presets and plugins. Presets are collections of plugins, and you can define your own as well.
 
-T> Given sometimes extending existing presets might not be enough, [modify-babel-preset](https://www.npmjs.com/package/modify-babel-preset) allows you to go a step further and configure the base preset in a more flexible way.
+T> Given sometimes extending existing presets is not be enough, [modify-babel-preset](https://www.npmjs.com/package/modify-babel-preset) allows you to go a step further and configure the base preset in a more flexible way.
 
 ## Using Babel with Webpack Configuration
 
-Even though Babel can be used standalone, as you can see in the *Authoring Packages* chapter, you can hook it up with webpack as well. During development, we might skip processing.
+Even though Babel can be used standalone, as you can see in the *Authoring Packages* chapter, you can hook it up with webpack as well. During development, it can make sense to skip processing if you are using language features supported by your browser.
 
 Skipping processing is a good option especially if you don’t rely on any custom language features and work using a modern browser. Processing through Babel becomes almost a necessity when you compile your code for production, though.
 
@@ -188,7 +188,7 @@ W> Certain webpack features, such as *Code Splitting*, write `Promise` based cod
 
 There are other possible [*.babelrc* options](https://babeljs.io/docs/usage/options/) beyond the ones covered here. Like ESLint, *.babelrc* supports [JSON5](https://www.npmjs.com/package/json5) as its configuration format meaning you can include comments in your source, use single quoted strings, and so on.
 
-Sometimes you might want to use experimental features. Although you can find a lot of them within so-called stage presets, I recommend enabling them one by one and even organizing them to a preset of their own unless you are working on a throwaway project. If you expect your project to live a long time, it’s better to document the features you are using well.
+Sometimes you may want to use experimental features. Although you can find a lot of them within so-called stage presets, I recommend enabling them one by one and even organizing them to a preset of their own unless you are working on a throwaway project. If you expect your project to live a long time, it’s better to document the features you are using well.
 
 ## Babel Presets and Plugins
 
@@ -244,7 +244,7 @@ leanpub-end-insert
 };
 ```
 
-T> The way `env` works is subtle. Consider logging `env` and make sure it matches your Babel configuration or otherwise the functionality you expect might not get applied to your build.
+T> The way `env` works is subtle. Consider logging `env` and make sure it matches your Babel configuration or otherwise the functionality you expect will not get applied to your build.
 
 T> The technique is used in the *Server Side Rendering* chapter to enable the Babel portion of *react-hot-loader* for development target only.
 

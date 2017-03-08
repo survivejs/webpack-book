@@ -12,11 +12,11 @@ A webpack plugin is expected to expose an `apply` method. The way you do that is
 
 Regardless of your approach, you should capture possible options passed by a user, preferably validate them, and then make sure your `apply` method is ready to go. When webpack runs the plugin, it will pass a `compiler` object to it. This object exposes webpack’s plugin API and allows you to connect into the hooks it provides. [The official reference](https://webpack.js.org/pluginsapi/compiler/) lists all the available hooks.
 
-In this case, we need to intercept only a `this-compilation` hook that is emitted before `compilation` event itself. It happens to be the right hook for this particular purpose although it can take a bit of experimentation to figure out which hooks you might need.
+In this case, we need to intercept only a `this-compilation` hook that is emitted before `compilation` event itself. It happens to be the right hook for this particular purpose although it can take a bit of experimentation to figure out which hooks you need.
 
 The hook will receive a `compilation` object that gives access to the build. It comes with a series of hooks of its own. In this case using the `additional-assets` hook is enough as we can go through the compiled chunks there and perform our logic.
 
-T> Loaders have a dirty access to `compiler` and `compilation` through underscore (`this._compiler`/`this._compilation`). You could write arbitrary files through them and make them do things that might be left to plugins.
+T> Loaders have a dirty access to `compiler` and `compilation` through underscore (`this._compiler`/`this._compilation`). You could write arbitrary files through them.
 
 ## Understanding `PurifyCSSPlugin` in Detail
 

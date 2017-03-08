@@ -22,7 +22,7 @@ In larger projects, you may find the following:
 * *.npmignore* - Ignore patterns for npm describe which files shouldn’t go to your distribution version. A good alternative is to use the [files](https://docs.npmjs.com/files/package.json#files) field at *package.json*. It allows you to maintain a whitelist of files to include into your distribution version.
 * *.eslintignore* - Ignore patterns for ESLint. Again, tool specific.
 * *.eslintrc* - Linting rules. You can use *.jshintrc* and such based on your preferences.
-* *webpack.config.js* - If you are using a basic setup, you might as well have the configuration at project root.
+* *webpack.config.js* - If you are using a basic setup, you can have the configuration at project root.
 
 Also, you’ll likely have separate directories for the source, tests, demos, documentation, and so on.
 
@@ -181,7 +181,7 @@ Note that in the example above, I’ve set up `version`-related hooks to make su
 
 T> Consider using [semantic-release](https://www.npmjs.com/package/semantic-release) if you prefer a more structured approach. It can take pain out of the release process while automating a part of it. For instance, it can detect possible breaking changes and generate change logs.
 
-T> [dont-break](https://www.npmjs.com/package/dont-break) allows you to run the unit tests of dependent projects against your current code to see if it breaks anything. Sometimes it’s possible to overlook a use case that might not be a part of the public API even and break a dependency. *dont-break* helps with that particular problem.
+T> [dont-break](https://www.npmjs.com/package/dont-break) allows you to run the unit tests of dependent projects against your current code to see if it breaks anything. Sometimes it’s possible to overlook a use case that may not be a part of the public API even and break a dependency. *dont-break* helps with that particular problem.
 
 ### Respect the SemVer
 
@@ -189,7 +189,7 @@ When publishing new versions, it is important to respect the SemVer. Roughly, it
 
 To make it easier to comply with SemVer, [next-ver](https://www.npmjs.com/package/next-ver) can compute the next version you should use and update it for you. [commitizen](https://www.npmjs.com/package/commitizen) goes further and allows change log generation and automated releases.
 
-Both these tools rely on commit message annotations. On small projects, you might have `fix` or `feat` prefix at your commit titles (e.g., `fix - Allow doodad to work with zero`). You can also communicate the context using `chore(docs)` kind of style to document which part of the project was touched.
+Both these tools rely on commit message annotations. On small projects, you can have `fix` or `feat` prefix at your commit titles (e.g., `fix - Allow doodad to work with zero`). You can also communicate the context using `chore(docs)` kind of style to document which part of the project was touched.
 
 This metadata lets the tooling to figure out the types of the changes you made. It can help even with change log generation and allow automated releases over manual ones. Annotating your commits well is a good practice in any case as it will make it easier to debug your code later.
 
@@ -197,7 +197,7 @@ T> The *Consuming Packages* explains the idea of SemVer in detail.
 
 ### Publishing a Pre-Release Version
 
-Sometimes, you might want to publish something preliminary for other people to test. You can do this by tagging your release as a pre-release version. For example, a package might have versions like this:
+Sometimes, you may want to publish something preliminary for other people to test. You can do this by tagging your release as a pre-release version. For example, a package can have versions like this:
 
 * v0.5.0-alpha1
 * v0.5.0-beta1
@@ -408,11 +408,11 @@ The script may need tweaking to fit your purposes. But it’s enough to give you
 
 For the build script to work, you have to remember to include the source of the package to the distribution version and to tweak *package.json* `files` field accordingly.
 
-W> Relying on `postinstall` scripts can be [potentially dangerous](http://blog.npmjs.org/post/141702881055/package-install-scripts-vulnerability). Security-minded developers may want to use `npm install --ignore-scripts`. You can set that default through `npm config set ignore-scripts true` if you want. Being a little cautious might not hurt.
+W> Relying on `postinstall` scripts can be [potentially dangerous](http://blog.npmjs.org/post/141702881055/package-install-scripts-vulnerability). Security-minded developers may want to use `npm install --ignore-scripts`. You can set that default through `npm config set ignore-scripts true` if you want. Being a little cautious does not hurt.
 
 ### Deprecating, Unpublishing, and Renaming Packages
 
-It is possible that your package reaches the end of its life. Another package might replace it, or it simply might become obsolete. For this purpose, npm provides [npm deprecate](https://docs.npmjs.com/cli/deprecate) command. You can state `npm deprecate foo@"< 0.4.0" "Use bar package instead"`.
+It is possible that your package reaches the end of its life. Another package could replace it, or it can become obsolete. For this purpose, npm provides [npm deprecate](https://docs.npmjs.com/cli/deprecate) command. You can state `npm deprecate foo@"< 0.4.0" "Use bar package instead"`.
 
 You can deprecate a range like this or a whole package by skipping the range. Given mistakes happen, you can undeprecate a package by providing an empty message.
 

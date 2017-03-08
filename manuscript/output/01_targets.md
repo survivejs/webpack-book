@@ -153,7 +153,7 @@ Child
        [0] ./lib/index.js 55 bytes {0} [built]
 ```
 
-Webpack ran twice as you might have expected. It can be argued that it would be smarter to minify the initial result separately. In this case, the overhead is so small that it’s not worth the extra setup.
+Webpack ran twice in this case. It can be argued that it would be smarter to minify the initial result separately. In this case, the overhead is so small that it’s not worth the extra setup.
 
 Examining the build output reveals more:
 
@@ -188,7 +188,7 @@ T> Instead of using the multi-compiler mode, it would be possible to define two 
 
 ### Cleaning and Linting Before Building
 
-It might be a good idea to clean the build directory and lint the code before building the library. You could expand webpack configuration like this:
+It is a good idea to clean the build directory and lint the code before building the library. You could expand webpack configuration like this:
 
 ```javascript
 ...

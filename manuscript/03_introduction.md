@@ -52,9 +52,9 @@ T> If you are unsure of a term and its meaning, see the *Glossary* at the end of
 
 I expect that you have a basic knowledge of JavaScript and Node. You should be able to use npm on an elementary level. If you know something about webpack, that’s great. By reading this book, you will deepen your understanding of these tools.
 
-If you happen to know webpack well, there still might be something in the book for you. Skim through it and see if you can pick up techniques. Read especially the summaries at the end of the chapters and the conclusion chapter. I’ve done my best to cover even the knottier parts of the tool.
+If you happen to know webpack well, there is still something in the book for you. Skim through it and see if you can pick up techniques. Read especially the summaries at the end of the chapters and the conclusion chapter. I’ve done my best to cover even the knottier parts of the tool.
 
-If you find yourself struggling, consider seeking help from the community around the book. In case you are stuck or don’t understand something, we are here to help. Any comments you might have will go towards improving the content.
+If you find yourself struggling, consider seeking help from the community around the book. In case you are stuck or don’t understand something, we are here to help. Any comments you have will go towards improving the content.
 
 ## How to Approach the Book
 
@@ -82,13 +82,13 @@ A part of the profit goes towards funding the development of the tool itself. Mo
 
 ## Getting Support
 
-As no book is perfect, you will likely come by issues and might have questions related to the content. There are a couple of options to deal with this:
+As no book is perfect, you will likely come by issues and have questions related to the content. Consider the following options:
 
-* Contact me through [GitHub Issue Tracker](https://github.com/survivejs/webpack-book/issues)
-* Join me at [Gitter Chat](https://gitter.im/survivejs/webpack)
-* Follow [@survivejs](https://twitter.com/survivejs) on Twitter for official news or poke me through [@bebraw](https://twitter.com/bebraw) directly
-* Send me email at [info@survivejs.com](mailto:info@survivejs.com)
-* Ask me anything about webpack or React at [SurviveJS AmA](https://github.com/survivejs/ama/issues)
+* Contact me through [GitHub Issue Tracker](https://github.com/survivejs/webpack-book/issues).
+* Join me at [Gitter Chat](https://gitter.im/survivejs/webpack).
+* Follow [@survivejs](https://twitter.com/survivejs) on Twitter for official news or poke me through [@bebraw](https://twitter.com/bebraw) directly.
+* Send me email at [info@survivejs.com](mailto:info@survivejs.com).
+* Ask me anything about webpack or React at [SurviveJS AmA](https://github.com/survivejs/ama/issues).
 
 If you post questions to Stack Overflow, tag them using **survivejs**. You can use the hashtag **#survivejs** on Twitter for the same result.
 

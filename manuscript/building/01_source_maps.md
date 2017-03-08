@@ -109,7 +109,7 @@ To use source maps on browsers, you may need to enable source maps explicitly. I
 * [IE Edge](https://developer.microsoft.com/en-us/microsoft-edge/platform/documentation/f12-devtools-guide/debugger/#source-maps)
 * [Safari](https://developer.apple.com/library/safari/documentation/AppleApplications/Conceptual/Safari_Developer_Guide/ResourcesandtheDOM/ResourcesandtheDOM.html#//apple_ref/doc/uid/TP40007874-CH3-SW2)
 
-W> Sometimes source maps [might not update in Chrome inspector](https://github.com/webpack/webpack/issues/2478). For now, the temporary fix is to force the inspector to reload itself by using *alt-r*.
+W> Sometimes source maps [will not update in Chrome inspector](https://github.com/webpack/webpack/issues/2478). For now, the temporary fix is to force the inspector to reload itself by using *alt-r*.
 
 W> If you want to use breakpoints (i.e., a `debugger;` statement or ones set through the browser), the `eval`-based options won’t work in Chrome!
 
@@ -332,7 +332,7 @@ There are a couple of other options that affect source map generation:
 
 T> The [official documentation](https://webpack.js.org/configuration/output/#output-sourcemapfilename) digs into `output` specifics.
 
-W> If you are using any `UglifyJsPlugin` and want source maps, you need to enable `sourceMap: true` for the plugin. Otherwise, the result won’t be what you might expect. You have to do this with other plugins and loaders that emit source maps as well. *css-loader* is a good example.
+W> If you are using any `UglifyJsPlugin` and want source maps, you need to enable `sourceMap: true` for the plugin. Otherwise, the result won’t be what you expect. You have to do this with other plugins and loaders that emit source maps as well. *css-loader* is a good example.
 
 ## `SourceMapDevToolPlugin` and `EvalSourceMapDevToolPlugin`
 
