@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/survivejs/webpack.git"
+    "url": "https://github.com/survivejs/webpack-book.git"
   },
   "keywords": [
     "react",
@@ -23,9 +23,9 @@
   "author": "",
   "license": "CC BY-NC-ND",
   "bugs": {
-    "url": "https://github.com/survivejs/webpack/issues"
+    "url": "https://github.com/survivejs/webpack-book/issues"
   },
-  "homepage": "https://github.com/survivejs/webpack",
+  "homepage": "https://github.com/survivejs/webpack-book",
   "dependencies": {},
   "devDependencies": {
     "check-markdown-links": "^0.1.1",
