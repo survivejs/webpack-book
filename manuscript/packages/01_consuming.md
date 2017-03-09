@@ -108,7 +108,9 @@ Sometimes packages do not follow the standard rules and their *package.json* con
 {
   resolve: {
     alias: {
-      demo: path.resolve(__dirname, 'node_modules/demo/dist/demo.js'),
+      demo: path.resolve(
+        __dirname, 'node_modules/demo/dist/demo.js'
+      ),
     },
   },
 },
