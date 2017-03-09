@@ -19,8 +19,8 @@ Both work for me. Use what you feel most comfortable with. I can adapt to that. 
 
 It will help a lot if you can prefix your feedback with the chapter name in question. I.e. `getting started - <script> tag had incorrect path` is clear and easy for me to resolve.
 
-## Freeform Feedback
+## Free-form Feedback
 
-You can also send me freeform feedback through [email](mailto:bebraw@gmail.com) or [Twitter](https://twitter.com/bebraw).
+You can also send me free-form feedback through [email](mailto:bebraw@gmail.com) or [Twitter](https://twitter.com/bebraw).
 
-Even if the things you have in mind might feel trivial, they can help me to improve the book further. I want to provide the best experience within my capability. It is very easy to lose perspective on the book as I spend time with the topic. Therefore any insight you may provide will come in handy!
+Even if the things you have in mind might feel trivial, they can help me to improve the book further. I want to provide the best experience within my capability. It is easy to lose perspective on the book as I spend time with the topic. Therefore any insight you may provide will come in handy!
