@@ -148,4 +148,4 @@ To recap:
 * It is possible to lint CSS through *stylelint*
 * Linting CSS allows you to capture common CSS-related problems and disallow problematic patterns.
 * *stylelint* can be treated as a PostCSS plugin, but it can also be used through *stylelint-webpack-plugin*.
-* *csslint* is an option to *stylelint*. It possible [the projects will merge](https://github.com/CSSLint/csslint/issues/668), though.
+* *csslint* is an option to *stylelint*. It is possible [the projects will merge](https://github.com/CSSLint/csslint/issues/668), though.
