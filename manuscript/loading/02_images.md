@@ -52,7 +52,7 @@ The ideas above can be wrapped in a small helper that can be incorporated into t
 npm install file-loader url-loader --save-dev
 ```
 
-The functionality can be wrapped in a little helper:
+Set up a function as below:
 
 **webpack.parts.js**
 
