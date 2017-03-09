@@ -4,7 +4,7 @@
 
 Even though the idea does not sound that special, there is a technical cost involved, and you can find sharp corners. The approach was popularized by React. Since then frameworks encapsulating the tricky bits, such as [Next.js](https://www.npmjs.com/package/next), have appeared. [isomorphic-webpack](https://www.npmjs.com/package/isomorphic-webpack) is a good example of a solution designed on top of webpack.
 
-I'll show you next how to set up SSR with webpack and React. The idea is that webpack compiles a client-side build that then gets picked up by a server that renders it using React following the SSR idea. Demonstration like this is enough to understand how it works and also where the problems begin.
+To demonstrate SSR, you can use webpack to compile a client-side build that then gets picked up by a server that renders it using React following the principle. Demonstration like this is enough to understand how it works and also where the problems begin.
 
 ## Setting Up Babel with React
 
@@ -209,7 +209,7 @@ If you run the server now (`node ./server.js`) and navigate below `http://localh
 
 ![Hello world](images/hello_01.png)
 
-Even though there is a basic React application running now, it's a little difficult to develop. If you try to modify the code, nothing happens. This can be solved running webpack in a multi-compiler mode as earlier in this book. Another option is to run webpack in **watch mode** against the current configuration and set up a watcher for the server. I'll show you how to achieve the latter setup next.
+Even though there is a basic React application running now, it's a little difficult to develop. If you try to modify the code, nothing happens. This can be solved running webpack in a multi-compiler mode as earlier in this book. Another option is to run webpack in **watch mode** against the current configuration and set up a watcher for the server. You learn the latter setup next.
 
 T> If you want to debug output from the server, set `export DEBUG=express:application`.
 

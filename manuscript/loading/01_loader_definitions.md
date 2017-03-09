@@ -35,7 +35,7 @@ module.exports = {
         // Restrict matching to a directory. This
         // also accepts an array of paths.
         //
-        // Although optional, I prefer to set this for
+        // Although optional, you should set this for
         // JavaScript source as it helps with
         // performance and keeps the configuration cleaner.
         //

@@ -67,7 +67,7 @@ As you can see, *app.js* is big. That is something to fix next.
 
 So far, the project has only a single entry named as `app`. The configuration tells webpack to traverse dependencies starting from the `app` entry directory and then to output the resulting bundle below the `build` directory using the entry name and `.js` extension.
 
-To improve the situation, you can define a `vendor` entry containing React by matching the dependency name. It is possible to generate this information automatically as discussed at the end of this chapter, but I'll go with a static array here to illustrate the basic idea. Change the code like this:
+To improve the situation, you can define a `vendor` entry containing React by matching the dependency name. It is possible to generate this information automatically as discussed at the end of this chapter, but a static array is enough to illustrate the basic idea. Change the code like this:
 
 **webpack.config.js**
 
@@ -253,7 +253,7 @@ To pick React to the vendor build automatically based on usage, you have to drop
 
 `CommonsChunkPlugin` gives control over its behavior through its `minChunks` options. In addition to a number and certain other values, `minChunks` accepts a function with a signature `(module, count)`. The first parameter contains a lot of information about the matches module and allows to deduce which modules are used by the project. The second one tells how many times a particular module has been imported into the project.
 
-I've listed most important `module` properties below. These assume an import like `import 'purecss';` and `ExtractTextPlugin`:
+The most important `module` properties have been listed below. These assume an import like `import 'purecss';` and `ExtractTextPlugin`:
 
 * `resource` represents the path of the full path of the resource being imported. Example: `.../webpack-demo/node_modules/purecss/build/pure-min.css`.
 * `context` returns the path to the directory in which the resource is. Example: `.../webpack-demo/node_modules/purecss/build`.

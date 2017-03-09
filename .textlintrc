@@ -41,7 +41,10 @@
         ["will", ""],
         ["won't", ""],
         ["us", ""],
-        // ["may", ""], This should be a warning
+        ["I'll", ""],
+        ["I've", ""],
+        // ["I", ""], // This should be skipped for foreword/preface
+        // ["may", ""], // This should be a warning
 
         "pre-release",
 

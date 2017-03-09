@@ -186,7 +186,7 @@ T> A related technique, **aliasing**, is discussed in the *Consuming Packages* c
 
 ## Webpack Optimization Plugins
 
-Webpack includes a collection of optimization related plugins. I've listed the most important ones below:
+Webpack includes a collection of optimization related plugins:
 
 * [compression-webpack-plugin](https://www.npmjs.com/package/compression-webpack-plugin) allows you to push the problem of generating compressed files to webpack to potentially save processing time on the server.
 * `webpack.optimize.UglifyJsPlugin` allows you to minify output using different heuristics. Certain of them break code unless you are careful.

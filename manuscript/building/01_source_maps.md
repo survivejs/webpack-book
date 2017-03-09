@@ -102,7 +102,7 @@ Take a good look at those *.map* files. That's where the mapping between the gen
 
 ### Enabling Source Maps on Browsers
 
-To use source maps on browsers, you have to enable source maps explicitly. I've listed reference per browser below:
+To use source maps on browsers, you have to enable source maps explicitly as per browser specific instructions:
 
 * [Chrome](https://developer.chrome.com/devtools/docs/javascript-debugging)
 * [Firefox](https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Use_a_source_map)
@@ -121,7 +121,7 @@ Source map types supported by webpack can be split into two categories: inline a
 
 Webpack provides multiple inline source map variants. Often `eval` is the starting point and [Rico Santa Cruz](https://github.com/rstacruz/webpack-tricks) recommends `cheap-module-eval-source-map` with `output.devtoolModuleFilenameTemplate: 'webpack:///[absolute-resource-path]'` as it's a good compromise between speed and quality while working reliably in Chrome and Firefox browsers.
 
-To get a better idea of the available options, I've listed them below while providing a small example for each. The source code contains only a single `console.log('Hello world')` and `NamedModulesPlugin` is used to keep the output easier to understand. In practice, you would see a lot more code to handle the mapping.
+To get a better idea of the available options, they are listed below while providing a small example for each. The source code contains only a single `console.log('Hello world')` and `NamedModulesPlugin` is used to keep the output easier to understand. In practice, you would see a lot more code to handle the mapping.
 
 ### `devtool: 'eval'`
 

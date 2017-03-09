@@ -50,9 +50,9 @@ T> If you are unsure of a term and its meaning, see the *Glossary* at the end of
 
 ## Who Is This Book For
 
-I expect that you have a basic knowledge of JavaScript and Node. You should be able to use npm on an elementary level. If you know something about webpack, that’s great. By reading this book, you deepen your understanding of these tools.
+You should have basic knowledge of JavaScript, Node, and npm. If you know something about webpack, that’s great. By reading this book, you deepen your understanding of these tools.
 
-If you happen to know webpack well, there is still something in the book for you. Skim through it and see if you can pick up techniques. Read especially the summaries at the end of the chapters and the conclusion chapter. I’ve done my best to cover even the knottier parts of the tool.
+If you happen to know webpack well, there is still something in the book for you. Skim through it and see if you can pick up techniques. Read especially the summaries at the end of the chapters and the conclusion chapter.
 
 If you find yourself struggling, consider seeking help from the community around the book. Any comments you have go towards improving the content.
 
@@ -60,13 +60,13 @@ If you find yourself struggling, consider seeking help from the community around
 
 If you don’t know much about the topic, consider going carefully through the early parts. You can scan the rest to pick the bits you find worthwhile. If you know webpack already, skim and choose the techniques you find valuable.
 
-I have compiled [a set of slides online](http://presentations.survivejs.com/advanced-webpack/) that overlap with the book. Consider going through the set to get a rough idea and then delve into the book to understand the ideas in greater detail.
+You can find [a set of slides online](http://presentations.survivejs.com/advanced-webpack/) that overlap with the book. Consider going through the set to get a rough idea and then delve into the book to understand the ideas in greater detail.
 
 ## Book Versioning
 
-Given this book receives a fair amount of maintenance and improvements due to the pace of innovation, there’s a rough versioning scheme in place. I maintain release notes for each new version at the [book blog](http://survivejs.com/blog/). That should give you a good idea of what has changed between versions.
+Given this book receives a fair amount of maintenance and improvements due to the pace of innovation, there’s a rough versioning scheme in place. Release notes for each new version are maintained at the [book blog](http://survivejs.com/blog/). That should give you a good idea of the major changes between versions.
 
-Examining the GitHub repository is beneficial. I recommend using the GitHub *compare* tool for this purpose. Example:
+Examining the GitHub repository is beneficial. Consider using the GitHub *compare* tool for this purpose. Example:
 
 ```
 https://github.com/survivejs/webpack-book/compare/v1.8.0...v1.9.4
@@ -76,7 +76,7 @@ The page shows you the individual commits that went to the project between the g
 
 The current version of the book is **1.9.4**.
 
-The book is an on-going effort, and I welcome feedback through various channels discussed below. I expand the guide based on demand to make it serve you as well as possible. You can even contribute fixes of your own to the book as the source is available.
+The guide is expanded based on demand to make it serve you as well as possible. You can even contribute fixes of your own to the book as the source is available.
 
 A part of the profit goes towards funding the development of the tool itself. Most of it goes to the core developers, including myself. You can also [support webpack directly through Open Collective](https://opencollective.com/webpack).
 
@@ -94,7 +94,7 @@ If you post questions to Stack Overflow, tag them using **survivejs**. You can u
 
 ## Announcements
 
-I announce SurviveJS-related news through a couple of channels:
+SurviveJS-related news are announced through the following channels:
 
 * [Mailing list](http://eepurl.com/bth1v5)
 * [Twitter](https://twitter.com/survivejs)

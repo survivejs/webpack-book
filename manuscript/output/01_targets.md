@@ -2,7 +2,7 @@
 
 Even though webpack is used most commonly for bundling web applications, it can do more. You can use it to target Node or desktop environments, such as Electron. Webpack can also bundle as a library while writing an appropriate output wrapper making it possible to consume the library.
 
-Webpack's output target is controlled by the `target` field. I'll go through the main targets next and dig into library specific options after that.
+Webpack's output target is controlled by the `target` field. You learn about the main targets next and dig into library specific options after that.
 
 ## Web Targets
 

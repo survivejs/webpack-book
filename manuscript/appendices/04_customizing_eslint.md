@@ -136,7 +136,7 @@ leanpub-end-insert
 }
 ```
 
-If you invoke ESLint now, you should see a bunch of warnings. Of course, the rule doesn't do anything impressive yet. To move forward, I recommend checking out the official documentation about [plugins](http://eslint.org/docs/developer-guide/working-with-plugins.html) and [rules](http://eslint.org/docs/developer-guide/working-with-rules.html).
+If you invoke ESLint now, you should see a bunch of warnings. Of course, the rule doesn't do anything impressive yet. To move forward, check out the [official plugin documentation](http://eslint.org/docs/developer-guide/working-with-plugins.html) and [rules](http://eslint.org/docs/developer-guide/working-with-rules.html).
 
 You can also check out the existing rules and plugins for inspiration to see how they achieve certain things. ESLint allows you to [extend these rulesets](http://eslint.org/docs/user-guide/configuring.html#extending-configuration-files) through `extends` property. It accepts either a path to it (`"extends": "./node_modules/coding-standard/.eslintrc"`) or an array of paths. The entries are applied in the given order, and later ones override the former.
 

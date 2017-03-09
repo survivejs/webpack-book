@@ -9,7 +9,7 @@ There are a couple of ground rules when it comes to optimization:
 3. Perform more involved tweaks after.
 4. Measure impact.
 
-Sometimes optimizations come with a cost. They can make your configuration harder to understand or tie it to a particular solution. Often the best optimization is to do less work or do it in a smarter way. I'll go through basic directions in the next sections, so you know where to look when it's time to work on build performance.
+Sometimes optimizations come with a cost. They can make your configuration harder to understand or tie it to a particular solution. Often the best optimization is to do less work or do it in a smarter way. The basic directions are covered in the next sections, so you know where to look when it's time to work on performance.
 
 ## High-Level Optimizations
 

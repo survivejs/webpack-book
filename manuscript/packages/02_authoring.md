@@ -32,7 +32,7 @@ T> If you want to decrease the size of your dependencies, consider using a tool 
 
 All packages come with a *package.json* that describes metadata related to them and includes information about the author, links, dependencies, and so on. The [official documentation](https://docs.npmjs.com/files/package.json) covers them in detail.
 
-I've annotated a part of *package.json* of my [React component boilerplate](https://github.com/survivejs/react-component-boilerplate) below:
+The example below contains an annotated a part of *package.json* from my [React component boilerplate](https://github.com/survivejs/react-component-boilerplate):
 
 ```json
 {
@@ -177,7 +177,7 @@ To bump your package version, you'll need to invoke one of these commands:
 
 Invoking any of these updates *package.json* and creates a version commit to git automatically. If you execute `npm publish` after doing this, you should have something new out there.
 
-Note that in the example above, I've set up `version`-related hooks to make sure a version contains a fresh version of a distribution build. I also run tests as it is better to catch potential issues early on.
+Note that in the example above, `version`-related hooks have been set to make sure a version contains a fresh version of a distribution build. Tests are run to catch potential issues early on.
 
 T> Consider using [semantic-release](https://www.npmjs.com/package/semantic-release) if you prefer a more structured approach. It can take pain out of the release process while automating a part of it. For instance, it can detect possible breaking changes and generate change logs.
 
@@ -317,7 +317,7 @@ T> Given bundling is still be required sometimes, consider using the [bundledDep
 
 ### Processing Node Version through Babel
 
-If you are processing your code through Babel, I suggest you process the Node version of the package directly through Babel and skip webpack. The advantage of doing this is that it gives you separate modules that are easier to consume one by one if needed.
+If you are processing your code through Babel, you can skip webpack. The advantage of doing this is that it gives you separate modules that are easier to consume one by one if needed.
 
 In this case, you'll likely want a setup like this:
 

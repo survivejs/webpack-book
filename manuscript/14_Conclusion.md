@@ -1,6 +1,6 @@
 -# Conclusion
 
-As this book has demonstrated, webpack is a versatile tool. To make it easier to recap the content and techniques, I’ve compiled checklists you can use to refresh your knowledge.
+As this book has demonstrated, webpack is a versatile tool. To make it easier to recap the content and techniques, go through the checklists below.
 
 ## General Checklist
 

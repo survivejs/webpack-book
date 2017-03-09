@@ -12,7 +12,7 @@ You can find a lot of testing tools for JavaScript. The most popular options wor
 
 [Mocha](https://mochajs.org/) is a popular test framework for Node. While Mocha provides test infrastructure, you have to bring your asserts to it. Even though [Node assert](https://nodejs.org/api/assert.html) can be enough, there are good alternatives such as [power-assert](https://www.npmjs.com/package/power-assert), [Chai](http://chaijs.com/), or [Unexpected](http://unexpected.js.org/).
 
-[mocha-loader](https://www.npmjs.com/package/mocha-loader) allows running Mocha tests through webpack. [mocha-webpack](https://www.npmjs.com/package/mocha-webpack) is another option that aims to provide more functionality. I'll cover the basic *mocha-loader* setup next.
+[mocha-loader](https://www.npmjs.com/package/mocha-loader) allows running Mocha tests through webpack. [mocha-webpack](https://www.npmjs.com/package/mocha-webpack) is another option that aims to provide more functionality. You learn the basic *mocha-loader* setup next.
 
 ### Configuring *mocha-loader* with Webpack
 
@@ -433,7 +433,7 @@ The main idea is to run both webpack and AVA in watch mode to push the problem o
 
 ## Mocking
 
-Mocking is a technique that allows you to replace test objects. I've listed series of tools that allow you to mock with webpack:
+Mocking is a technique that allows you to replace test objects. Consider the solutions below:
 
 * [Sinon](https://www.npmjs.com/package/sinon) provides mocks, stubs, and spies. It is good to note that the `@next` version of Sinon has been designed webpack in mind. 1.x version of Sinon is more problematic and requires work as discussed in [webpack issue #304](https://github.com/webpack/webpack/issues/304).
 * [inject-loader](https://www.npmjs.com/package/inject-loader) allows you to inject code to modules through their dependencies making it valuable for mocking.

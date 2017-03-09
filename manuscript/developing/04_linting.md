@@ -46,7 +46,7 @@ To get started, install ESLint as a development dependency:
 npm install eslint --save-dev
 ```
 
-Next, you'll need to write configuration so you can run ESLint smoothly through npm. I am using the `lint` namespace to signify it's a linting related task. I am also enabling caching to improve performance on subsequent runs. Add the following:
+Next, you have to write configuration so you can run ESLint smoothly through npm. The `lint` namespace can be used to signify it's a linting related task. Caching should be enabled to improve performance on subsequent runs. Add the following:
 
 **package.json**
 
@@ -209,7 +209,7 @@ There are more options, and [eslint-loader](https://www.npmjs.com/package/eslint
 
 ## ESLint Tips
 
-I've collected different ESLint tips below. The great thing about ESLint is that you can shape it to your purposes. The community around it is active, and you can find good integration in other tooling as well.
+The great thing about ESLint is that you can shape it to your purposes. The community around it is active, and you can find good integration in other tooling as well. Consider the tips below.
 
 ### Usability Tips
 

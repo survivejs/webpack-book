@@ -1,6 +1,6 @@
 # Glossary
 
-Given webpack comes with specific nomenclature, I've gathered the main terms and their explanations below based on the book part where they are discussed.
+Given webpack comes with specific nomenclature, the main terms and their explanations have been gathered below based on the book part where they are discussed.
 
 ## Developing
 

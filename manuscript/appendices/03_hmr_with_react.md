@@ -1,6 +1,6 @@
 # Hot Module Replacement with React
 
-Hot module replacement was one of the initial selling points of webpack and React. It relies on the [react-hot-loader](https://www.npmjs.com/package/react-hot-loader) package. At the time of writing, version 3 of *react-hot-loader* is in beta. It requires changes to three places: Babel configuration, webpack configuration, and application. I'll cover these next.
+Hot module replacement was one of the initial selling points of webpack and React. It relies on the [react-hot-loader](https://www.npmjs.com/package/react-hot-loader) package. At the time of writing, version 3 of *react-hot-loader* is in beta. It requires changes to three places: Babel configuration, webpack configuration, and application.
 
 To get started, install the upcoming version of *react-hot-loader*:
 
@@ -229,7 +229,7 @@ Webpack provides [resolve.extensions](https://webpack.js.org/guides/migrating/#r
 },
 ```
 
-To resolve the problem at loader configuration, instead of matching against `/\.js$/`, you can expand it to include `.jsx` extension through `/\.(js|jsx)$/`. Another option would be to write `/\.jsx?$/`, but I find the explicit alternative more readable.
+To resolve the problem at loader configuration, instead of matching against `/\.js$/`, you can expand it to include `.jsx` extension through `/\.(js|jsx)$/`. Another option would be to write `/\.jsx?$/`, but the explicit alternative is more readable.
 
 W> In webpack 1 you had to use `extensions: ['', '.js', '.jsx']` to match files without an extension too. This isn't needed in webpack 2.
 

@@ -18,7 +18,7 @@ The approach is used to discuss different techniques. *webpack.config.js* mainta
 
 ## Composing Configuration by Merging
 
-To eliminate the problem of dealing with `Object.assign` and `Array.concat`, I developed [webpack-merge](https://www.npmjs.org/package/webpack-merge). Effectively it does two things: it concatenates arrays and merges objects instead of overriding them. Even though a basic idea, this allows you to compose configuration and gives a degree of abstraction.
+To eliminate the problem of dealing with `Object.assign` and `Array.concat`, [webpack-merge](https://www.npmjs.org/package/webpack-merge) can be used. Effectively it does two things: it concatenates arrays and merges objects instead of overriding them. Even though a basic idea, this allows you to compose configuration and gives a degree of abstraction.
 
 *webpack-merge* provides even more control through strategies that enable you to control its behavior per field. Strategies allow you to force it to append, prepend, or replace content. Even though *webpack-merge* was designed for this book, it has proven to be an invaluable tool beyond it. You can consider it as a learning tool and pick it up in your work if you find it handy.
 
@@ -77,7 +77,7 @@ exports.lintJavaScript = function({ include, exclude, options }) {
 };
 ```
 
-T> I changed the configuration to use `hot: true` over `hotOnly: true` as I want the browser to refresh regardless of a possible error during processing. The latter option is valuable for debugging HMR when you are implementing the client side interface.
+T> The configuration was changed to use `hot: true` over `hotOnly: true` as then the browser will refresh regardless of a possible error during processing. The latter option is valuable for debugging HMR when you are implementing the client side interface.
 
 To benefit from these configuration parts, you need to connect them with *webpack.config.js* as in the complete code example below:
 
@@ -153,7 +153,7 @@ Splitting configuration allows you to keep on expanding the setup. The biggest w
 
 Instead of duplicating similar configuration across multiple projects, you can manage configuration as a dependency now. As you figure out better ways to perform tasks, all your projects receive the improvements.
 
-Each approach comes with its pros and cons. I am comfortable with the composition-based approach myself, although I can see merit in others as well. In addition to composition, it gives me a limited amount of code to scan through, but it's a good idea to check out how other people do it too. You'll find something that works the best based on your tastes.
+Each approach comes with its pros and cons. Composition-based approach myself is a good starting point. In addition to composition, it gives you a limited amount of code to scan through, but it's a good idea to check out how other people do it too. You can find something that works the best based on your tastes.
 
 Perhaps the biggest problem is that with composition you need to know what you are doing, and it is possible you aren't going to get the composition right the first time around. But that's a software engineering problem that goes beyond webpack. You can always iterate on the interfaces and find better ones.
 

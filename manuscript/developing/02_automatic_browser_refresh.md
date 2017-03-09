@@ -156,7 +156,7 @@ To access your server, you'll need to figure out the ip of your machine. On Unix
 
 ## Alternate Ways to Use *webpack-dev-server*
 
-You could have passed the WDS options through a terminal. I find it clearer to manage it within webpack configuration as that helps to keep *package.json* nice and tidy. It is also easier to understand what's going on as you don't need to dig out the answers from the webpack source.
+You could have passed the WDS options through a terminal. It is clearer to manage the options within webpack configuration as that helps to keep *package.json* nice and tidy. It is also easier to understand what's going on as you don't need to dig out the answers from the webpack source.
 
 Alternately, you could have set up an Express server and use a middleware. There are a couple of options:
 
@@ -189,7 +189,7 @@ It is possible WDS [will support the functionality](https://github.com/webpack/w
 
 ## Development Plugins
 
-As webpack plugin ecosystem is diverse, there are a lot of plugins that can help specifically with development. I've listed certain of these below to give you a better idea of what's available:
+As webpack plugin ecosystem is diverse, there are a lot of plugins that can help specifically with development:
 
 * [case-sensitive-paths-webpack-plugin](https://www.npmjs.com/package/case-sensitive-paths-webpack-plugin) can be handy when you are developing on a case-insensitive environments like macOS or Windows but using case-sensitive environment like Linux for production.
 * [npm-install-webpack-plugin](https://www.npmjs.com/package/npm-install-webpack-plugin) allows webpack to install and wire the installed packages with your *package.json* as you import new packages to your project. It's almost magical this way.

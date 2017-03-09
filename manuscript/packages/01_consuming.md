@@ -53,11 +53,11 @@ T> [app-module-path](https://www.npmjs.com/package/app-module-path) allows you a
 
 ## Version Ranges
 
-npm supports multiple version ranges. I've listed the common ones below:
+npm supports multiple version ranges as listed below:
 
 * `~` - Tilde matches only patch versions. For example, `~1.2` would be equal to `1.2.x`.
 * `^` - Caret is the default you get using `--save` or `--save-dev`. It matches minor versions, and this means `^0.2.0` would be equal to `0.2.x`.
-* `*` - Asterisk matches major releases, and it is the most dangerous of the ranges. Using this recklessly can easily break your project in the future, and I would advise against using it.
+* `*` - Asterisk matches major releases, and it is the most dangerous of the ranges. Using this recklessly can easily break your project in the future.
 * `>= 1.3.0 < 2.0.0` - Ranges between versions come in handy with `peerDependencies`.
 
 You can set the default range using `npm config set save-prefix='^'` in case you prefer something else than caret. Alternately, you can modify *~/.npmrc* directly. Especially defaulting to tilde can be a good idea that can help you to avoid trouble with dependencies, although it doesn't remove potential problems entirely. That's where shrinkwrapping comes in.

@@ -1,6 +1,6 @@
 # Getting Started
 
-Before getting started, make sure you are using a recent version of [Node](http://nodejs.org/). I recommend using at least the most current LTS (long-term support) version. The configuration of the book has been written Node 6 features in mind. You should have `node` and `npm` commands available at your terminal. [Yarn](https://yarnpkg.com/) is a good alternative to npm and works for the tutorial as well.
+Before getting started, make sure you are using a recent version of [Node](http://nodejs.org/). You should use at least the most current LTS (long-term support) version. The configuration of the book has been written Node 6 features in mind. You should have `node` and `npm` commands available at your terminal. [Yarn](https://yarnpkg.com/) is a good alternative to npm and works for the tutorial as well.
 
 The completed configuration is available at [GitHub](https://github.com/survivejs-demos/webpack-demo). If you are unsure of something, refer there.
 
@@ -26,7 +26,7 @@ T> This is a good place to set up version control using [Git](https://git-scm.co
 
 ## Installing Webpack
 
-Even though webpack can be installed globally (`npm install webpack -g`), I recommend maintaining it as a dependency of your project to avoid issues, as then you have control over the exact version you are running.
+Even though webpack can be installed globally (`npm install webpack -g`), it is a good idea to maintain it as a dependency of your project to avoid issues, as then you have control over the exact version you are running.
 
 The approach works nicely in **Continuous Integration** (CI) setups as well. A CI system can install your local dependencies, compile your project using them, and then push the result to a server.
 
@@ -150,13 +150,11 @@ module.exports = {
 };
 ```
 
-The `entry` path could be given as a relative one. The [context](https://webpack.js.org/configuration/entry-context/#context) field can be used to configure that lookup. Given plenty of places expect absolute paths, I prefer to use absolute paths everywhere to avoid confusion.
+The `entry` path could be given as a relative one. The [context](https://webpack.js.org/configuration/entry-context/#context) field can be used to configure that lookup. Given plenty of places expect absolute paths, preferring them over absolute paths everywhere avoids confusion.
 
-T> I use **trailing commas** in the book examples on purpose as it gives cleaner diffs for the code examples. You learn to enforce this rule in the *Linting JavaScript* chapter.
+T> **Trailing commas** are used in the book examples on purpose as it gives cleaner diffs for the code examples. You learn to enforce this rule in the *Linting JavaScript* chapter.
 
 T> `[name]` is a placeholder. Placeholders are discussed in detail in the *Adding Hashes to Filenames* chapter.
-
-T> I like to use `path.join`, but `path.resolve` would be a good alternative. See the [Node path API](https://nodejs.org/api/path.html) for further details.
 
 If you execute `node_modules/.bin/webpack`, you should see output:
 
@@ -222,7 +220,7 @@ T> It is possible to execute *npm run* anywhere within the project. It doesn't h
 
 [html-webpack-template](https://www.npmjs.com/package/html-webpack-template) or [html-webpack-template-pug](https://www.npmjs.com/package/html-webpack-template-pug) complement *html-webpack-plugin* and provide more powerful templates to use with it.
 
-There are also specific plugins that extend *html-webpack-plugin*'s functionality. I've listed examples of these below:
+There are also specific plugins that extend *html-webpack-plugin*'s functionality:
 
 * [favicons-webpack-plugin](https://www.npmjs.com/package/favicons-webpack-plugin) is able to generate favicons.
 * [script-ext-html-webpack-plugin](https://www.npmjs.com/package/script-ext-html-webpack-plugin) gives you more control over script tags and allows you to tune script loading further.

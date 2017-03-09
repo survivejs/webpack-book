@@ -85,9 +85,7 @@ exports.loadJavaScript = function({ include, exclude }) {
 };
 ```
 
-Next, you need to connect this with the main configuration. If you are using a modern browser for development, you can consider processing only the production code through Babel. To play it safe, I'll use it for both production and development environments in this case.
-
-Also, I'll constrain webpack to transform only the application code through Babel as I don't want it to process files from *node_modules* for example. It is a good practice with JavaScript files.
+Next, you need to connect this with the main configuration. If you are using a modern browser for development, you can consider processing only the production code through Babel. To play it safe, it is used for both production and development environments in this case. In addition, only application code is processed through Babel.
 
 **webpack.config.js**
 
@@ -105,7 +103,7 @@ leanpub-end-insert
 ...
 ```
 
-Even though you have Babel installed and set up, you are still missing one bit: Babel configuration. I prefer to handle it using a *.babelrc* dotfile as other tooling can pick it up as well.
+Even though you have Babel installed and set up, you are still missing one bit: Babel configuration. This can be achieved using a *.babelrc* dotfile as other tooling can pick it up as well.
 
 W> There are times when caching Babel compilation can surprise you if your dependencies change in a way that *babel-loader* default caching mechanism doesn't notice. Override `cacheIdentifier` with a string that has been derived based on data that should invalidate the cache for better control. [Node crypto API](https://nodejs.org/api/crypto.html) and especially its MD5 related functions can come in handy.
 
@@ -188,11 +186,11 @@ W> Certain webpack features, such as *Code Splitting*, write `Promise` based cod
 
 There are other possible [*.babelrc* options](https://babeljs.io/docs/usage/options/) beyond the ones covered here. Like ESLint, *.babelrc* supports [JSON5](https://www.npmjs.com/package/json5) as its configuration format meaning you can include comments in your source, use single quoted strings, and so on.
 
-Sometimes you want to use experimental features that fit your project. Although you can find a lot of them within so-called stage presets, I recommend enabling them one by one and even organizing them to a preset of their own unless you are working on a throwaway project. If you expect your project to live a long time, it's better to document the features you are using well.
+Sometimes you want to use experimental features that fit your project. Although you can find a lot of them within so-called stage presets, it is a good idea to enable them one by one and even organize them to a preset of their own unless you are working on a throwaway project. If you expect your project to live a long time, it's better to document the features you are using well.
 
 ## Babel Presets and Plugins
 
-Perhaps the greatest thing about Babel is that it's possible to extend with presets and plugins. I've listed a collection below:
+Perhaps the greatest thing about Babel is that it's possible to extend with presets and plugins:
 
 * [babel-preset-es2015](https://www.npmjs.org/package/babel-preset-es2015) includes ES2015 features.
 * [babel-preset-es2016](https://www.npmjs.org/package/babel-preset-es2016) includes **only** ES2016 features. Remember to include the previous preset as well if you want both!
