@@ -6,7 +6,7 @@ Even though splitting bundles can help a notch, they are not the only solution, 
 
 You can load more code as the user enters a new view of the application. You can also tie loading to a specific action like scrolling or clicking a button. You could also try to predict what the user is trying to do next and load code based on your guess. This way the functionality would be already there as the user tries to access it.
 
-T> Incidentally, it is possible to implement Google’s [PRPL pattern](https://developers.google.com/web/fundamentals/performance/prpl-pattern/) using webpack’s lazy loading. PRPL (Push, Render, Pre-cache, Lazy-load) has been designed with mobile web in mind.
+T> Incidentally, it is possible to implement Google's [PRPL pattern](https://developers.google.com/web/fundamentals/performance/prpl-pattern/) using webpack's lazy loading. PRPL (Push, Render, Pre-cache, Lazy-load) has been designed with mobile web in mind.
 
 ## Code Splitting Formats
 
@@ -18,7 +18,7 @@ The goal is to end up with a split point that will get loaded on demand. There c
 
 ### Dynamic `import`
 
-The [dynamic `import` syntax](https://github.com/tc39/proposal-dynamic-import) isn’t in the official language specification yet. To use it, minor tweaks are needed especially at ESLint and Babel. Certain editors and IDEs may not support the syntax either.
+The [dynamic `import` syntax](https://github.com/tc39/proposal-dynamic-import) isn't in the official language specification yet. To use it, minor tweaks are needed especially at ESLint and Babel. Certain editors and IDEs may not support the syntax either.
 
 Dynamic imports are defined as `Promise`s and look like this:
 
@@ -67,7 +67,7 @@ require.ensure(
 );
 ```
 
-As you can see, `require.ensure` definition is more powerful. The problem is that it doesn’t support error handling. Often you can achieve what you want through a dynamic `import`, but it’s good to know this form exists as well.
+As you can see, `require.ensure` definition is more powerful. The problem is that it doesn't support error handling. Often you can achieve what you want through a dynamic `import`, but it's good to know this form exists as well.
 
 `require.ensure` supports naming. The point is that `require.ensure` blocks that have the same name will be pulled into the same output chunk giving you more control over the result. [The official example](https://github.com/webpack/webpack/tree/master/examples/named-chunks) shows the output in detail.
 
@@ -130,11 +130,11 @@ leanpub-end-insert
 }
 ```
 
-After these changes, ESLint won’t complain if you write `import` in the middle of the code.
+After these changes, ESLint won't complain if you write `import` in the middle of the code.
 
 ### Configuring Babel
 
-Given Babel doesn’t support the dynamic `import` syntax out of the box, it needs [babel-plugin-syntax-dynamic-import](https://www.npmjs.com/package/babel-plugin-syntax-dynamic-import) to work. Install it first:
+Given Babel doesn't support the dynamic `import` syntax out of the box, it needs [babel-plugin-syntax-dynamic-import](https://www.npmjs.com/package/babel-plugin-syntax-dynamic-import) to work. Install it first:
 
 ```bash
 npm install babel-plugin-syntax-dynamic-import --save-dev
@@ -341,11 +341,11 @@ To recap:
 
 * **Code splitting** comes with extra effort as you have to decide what to split and where. Often, you find good split points within a router. Or you may notice that specific functionality is required only when a particular feature is used. Charting is a good example of this.
 * To use dynamic `import` syntax, both Babel and ESLint require careful tweaks. Webpack supports the syntax ouf of the box.
-* Dynamic `import` provides less functionality than `require.ensure`. While it’s possible to handle errors with it, features like naming are available for `require.ensure` only.
+* Dynamic `import` provides less functionality than `require.ensure`. While it's possible to handle errors with it, features like naming are available for `require.ensure` only.
 * The techniques can be used within modern frameworks and libraries like React. You can wrap related logic to a specific component that handles the loading process in a user-friendly manner.
 
 I will show you how to tidy up the build in the next chapter.
 
-T> The *Searching with React* appendix contains a complete example of code splitting. It shows how to set up a static site index that’s loaded when the user searches information.
+T> The *Searching with React* appendix contains a complete example of code splitting. It shows how to set up a static site index that's loaded when the user searches information.
 
 T> [webpack-pwa](https://github.com/webpack/webpack-pwa) illustrates the idea on a larger scale and discusses different shell based approaches. You will get back to this topic in the *Multiple Pages* chapter.

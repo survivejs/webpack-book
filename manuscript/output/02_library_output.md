@@ -1,6 +1,6 @@
 # Library Output
 
-The example of the previous chapter can be expanded further to study webpack’s library output options in detail.
+The example of the previous chapter can be expanded further to study webpack's library output options in detail.
 
 The library target is controlled through the `output.libraryTarget` field. `output.library` will come into play as well and individual targets have additional fields related to them.
 
@@ -107,7 +107,7 @@ global["Demo"] =
 
 ## CommonJS
 
-The CommonJS specific targets are handy when it comes to Node. There are two options: `commonjs` and `commonjs2`. These refer to different interpretations of the [CommonJS specification](http://wiki.commonjs.org/wiki/CommonJS). Let’s explore the difference.
+The CommonJS specific targets are handy when it comes to Node. There are two options: `commonjs` and `commonjs2`. These refer to different interpretations of the [CommonJS specification](http://wiki.commonjs.org/wiki/CommonJS). Let's explore the difference.
 
 ### `commonjs`
 
@@ -137,7 +137,7 @@ module.exports =
 ...
 ```
 
-Note that `Demo`, the library name, isn’t used anywhere. As a result importing the module yields this:
+Note that `Demo`, the library name, isn't used anywhere. As a result importing the module yields this:
 
 ```javascript
 { add: [Getter] }
@@ -147,7 +147,7 @@ You lose the extra wrapping in the second option.
 
 ## AMD
 
-If you remember [RequireJS](http://requirejs.org/), you may recognize the AMD format it uses. In case you can use the `amd` target, you’ll get output like this:
+If you remember [RequireJS](http://requirejs.org/), you may recognize the AMD format it uses. In case you can use the `amd` target, you'll get output like this:
 
 **dist/lib.js**
 
@@ -156,11 +156,11 @@ define("Demo", [], function() { return /******/ (function(modules) { // webpackB
 ...
 ```
 
-In other words, webpack has generated a named AMD module. The result won’t work from Node as it does not support AMD.
+In other words, webpack has generated a named AMD module. The result won't work from Node as it does not support AMD.
 
 ## UMD
 
-[Universal Module Definition](https://github.com/umdjs/umd) (UMD) was developed to solve the problem of consuming the same code from different environments. Webpack implements two output variants: `umd` and `umd2`. To understand the idea better, let’s see what happens when the options are used.
+[Universal Module Definition](https://github.com/umdjs/umd) (UMD) was developed to solve the problem of consuming the same code from different environments. Webpack implements two output variants: `umd` and `umd2`. To understand the idea better, let's see what happens when the options are used.
 
 ### `umd`
 
@@ -181,7 +181,7 @@ Basic UMD output looks like this:
 })(this, function() {
 ```
 
-There’s a lot to digest, but primarily the code performs checks based on the environment and figures out what kind of export to use. The first case covers Node, the second is for AMD, the third one for Node again, while the last one includes a global environment.
+There's a lot to digest, but primarily the code performs checks based on the environment and figures out what kind of export to use. The first case covers Node, the second is for AMD, the third one for Node again, while the last one includes a global environment.
 
 The output can be modified further by setting `output.umdNamedDefine: false`:
 
@@ -205,7 +205,7 @@ To understand `umd2` option, you have to understand *optional externals* first.
 
 ### Optional Externals
 
-In webpack terms, externals are dependencies that are resolved outside of webpack and will be available through the environment. Optional externals are dependencies that can exist in the environment, but if they don’t, they will get skipped instead of failing hard.
+In webpack terms, externals are dependencies that are resolved outside of webpack and will be available through the environment. Optional externals are dependencies that can exist in the environment, but if they don't, they will get skipped instead of failing hard.
 
 Consider the following example where jQuery is loaded if it exists:
 
@@ -302,7 +302,7 @@ In most of the cases using `output.libraryTarget: 'umd'` is enough as optional d
 
 ## JSONP
 
-There’s one more output option: `jsonp`. It generates output like this:
+There's one more output option: `jsonp`. It generates output like this:
 
 **dist/lib.js**
 
@@ -315,7 +315,7 @@ In short, `output.library` maps to the JSONP function name. The idea is that you
 
 ## SystemJS
 
-[SystemJS](https://www.npmjs.com/package/systemjs) is an emerging standard that’s starting to get more attention. [webpack-system-register](https://www.npmjs.com/package/webpack-system-register) plugin allows you to wrap your output in a `System.register` call making it compatible with the scheme.
+[SystemJS](https://www.npmjs.com/package/systemjs) is an emerging standard that's starting to get more attention. [webpack-system-register](https://www.npmjs.com/package/webpack-system-register) plugin allows you to wrap your output in a `System.register` call making it compatible with the scheme.
 
 If you want to support SystemJS this way, set up another build target where to generate a bundle for it.
 

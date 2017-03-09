@@ -2,9 +2,9 @@
 
 Testing is a vital part of development. Even though techniques, such as linting, can help to spot and solve issues, they have their limitations. Testing can be applied against the code and an application on many different levels.
 
-You can **unit test** specific piece of code, or you can look at the application from the user’s point of view through **acceptance testing**. **Integration testing** fits between these ends of the spectrum and is concerned about how separate units of code operate together.
+You can **unit test** specific piece of code, or you can look at the application from the user's point of view through **acceptance testing**. **Integration testing** fits between these ends of the spectrum and is concerned about how separate units of code operate together.
 
-You can find a lot of testing tools for JavaScript. The most popular options work with webpack after you configure it right. Even though test runners work without webpack, running them through it allows you to process code the test runners do not understand while having control over the way modules are resolved. You can also use webpack’s watch mode instead of relying on one provided by a test runner.
+You can find a lot of testing tools for JavaScript. The most popular options work with webpack after you configure it right. Even though test runners work without webpack, running them through it allows you to process code the test runners do not understand while having control over the way modules are resolved. You can also use webpack's watch mode instead of relying on one provided by a test runner.
 
 ## Mocha
 
@@ -12,7 +12,7 @@ You can find a lot of testing tools for JavaScript. The most popular options wor
 
 [Mocha](https://mochajs.org/) is a popular test framework for Node. While Mocha provides test infrastructure, you will have to bring your asserts to it. Even though [Node assert](https://nodejs.org/api/assert.html) can be enough, there are good alternatives such as [power-assert](https://www.npmjs.com/package/power-assert), [Chai](http://chaijs.com/), or [Unexpected](http://unexpected.js.org/).
 
-[mocha-loader](https://www.npmjs.com/package/mocha-loader) allows running Mocha tests through webpack. [mocha-webpack](https://www.npmjs.com/package/mocha-webpack) is another option that aims to provide more functionality. I’ll cover the basic *mocha-loader* setup next.
+[mocha-loader](https://www.npmjs.com/package/mocha-loader) allows running Mocha tests through webpack. [mocha-webpack](https://www.npmjs.com/package/mocha-webpack) is another option that aims to provide more functionality. I'll cover the basic *mocha-loader* setup next.
 
 ### Configuring *mocha-loader* with Webpack
 
@@ -157,7 +157,7 @@ Adjusting either the test or the code should lead to a change in the browser. Yo
 Compared to the vanilla Mocha setup, configuring Mocha through webpack comes with a couple of advantages:
 
 * It is possible to adjust module resolution. Webpack aliasing and other techniques work now, but this would also tie the code to webpack.
-* You can use webpack’s processing to compile your code as you wish. With vanilla Mocha that would imply more setup outside of it.
+* You can use webpack's processing to compile your code as you wish. With vanilla Mocha that would imply more setup outside of it.
 
 On the downside, now you need a browser to examine the tests. *mocha-loader* is at its best as a development helper. The problem can be solved by running the tests through a headless browser.
 
@@ -200,7 +200,7 @@ module.exports = function(config) {
 };
 ```
 
-W> The file has to be named exactly as *karma.conf.js* as otherwise, Karma won’t pick it up automatically.
+W> The file has to be named exactly as *karma.conf.js* as otherwise, Karma won't pick it up automatically.
 
 Add an npm shortcut:
 
@@ -274,7 +274,7 @@ Given running tests after the change can get boring after a while, Karma provide
 
 ### Watch Mode with Karma
 
-Accessing Karma’s watch mode is possible as follows:
+Accessing Karma's watch mode is possible as follows:
 
 **package.json**
 
@@ -384,7 +384,7 @@ LCOV requires specific tooling to work. You can find editor plugins such as [lco
 
 ![Jest](images/jest.png)
 
-Facebook’s [Jest](https://facebook.github.io/jest/) is an opinionated alternative that encapsulates functionality, including coverage and mocking, with minimal setup. It can capture snapshots of data making it valuable for projects where you have the behavior you would like to record and retain.
+Facebook's [Jest](https://facebook.github.io/jest/) is an opinionated alternative that encapsulates functionality, including coverage and mocking, with minimal setup. It can capture snapshots of data making it valuable for projects where you have the behavior you would like to record and retain.
 
 Jest tests follow [Jasmine](https://www.npmjs.com/package/jasmine) test framework semantics, and it supports Jasmine-style assertions out of the box. Especially the suite definition is close enough to Mocha so that the current test should work without any adjustments to the test code itself. Jest provides [jest-codemods](https://www.npmjs.com/package/jest-codemods) for migrating more complex projects to Jest semantics.
 
@@ -421,7 +421,7 @@ Now you have two new commands: one to run tests once and other to run them in a 
 
 Given generating coverage reports comes with a performance overhead, enabling the behavior through the flag can be a good idea. This way you can control exactly when to capture the information.
 
-Porting a webpack setup to Jest may require more effort especially if you rely on webpack specific features. [The official guide](https://facebook.github.io/jest/docs/webpack.html) covers quite a few of the common problems. You can also configure Jest to use Babel through [babel-jest](https://www.npmjs.com/package/babel-jest) as it allows you to use Babel plugins like [babel-plugin-module-resolver](https://www.npmjs.com/package/babel-plugin-module-resolver) to match webpack’s functionality.
+Porting a webpack setup to Jest may require more effort especially if you rely on webpack specific features. [The official guide](https://facebook.github.io/jest/docs/webpack.html) covers quite a few of the common problems. You can also configure Jest to use Babel through [babel-jest](https://www.npmjs.com/package/babel-jest) as it allows you to use Babel plugins like [babel-plugin-module-resolver](https://www.npmjs.com/package/babel-plugin-module-resolver) to match webpack's functionality.
 
 ## AVA
 
@@ -433,7 +433,7 @@ The main idea is to run both webpack and AVA in watch mode to push the problem o
 
 ## Mocking
 
-Mocking is a technique that allows you to replace test objects. I’ve listed series of tools that allow you to mock with webpack:
+Mocking is a technique that allows you to replace test objects. I've listed series of tools that allow you to mock with webpack:
 
 * [Sinon](https://www.npmjs.com/package/sinon) provides mocks, stubs, and spies. It is good to note that the `@next` version of Sinon has been designed webpack in mind. 1.x version of Sinon is more problematic and requires work as discussed in [webpack issue #304](https://github.com/webpack/webpack/issues/304).
 * [inject-loader](https://www.npmjs.com/package/inject-loader) allows you to inject code to modules through their dependencies making it valuable for mocking.
@@ -445,7 +445,7 @@ Webpack can be configured to work with a large variety of testing tools. Each to
 
 To recap:
 
-* Running testing tools allows you to benefit from webpack’s module resolution mechanism.
+* Running testing tools allows you to benefit from webpack's module resolution mechanism.
 * Sometimes the test setup can be quite involved. Tools like Jest remove most of the boilerplate and allow you to develop tests with minimal setup.
 * You can find multiple mocking tools for webpack. They allow you to shape test environment. Sometimes you can avoid mocking through design, though.
 

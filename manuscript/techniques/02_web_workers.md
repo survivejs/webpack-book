@@ -6,7 +6,7 @@ Moving data between the main thread and the worker comes with communication-rela
 
 The idea of workers is valuable on a more general level. [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) uses [worker-farm](https://www.npmjs.com/package/worker-farm) underneath to parallelize webpack execution.
 
-As discussed in the *Build Targets* chapter, webpack allows you to build your application as a worker itself. To get the idea of web workers better, I’ll show you how to build a small worker using [worker-loader](https://www.npmjs.com/package/worker-loader).
+As discussed in the *Build Targets* chapter, webpack allows you to build your application as a worker itself. To get the idea of web workers better, I'll show you how to build a small worker using [worker-loader](https://www.npmjs.com/package/worker-loader).
 
 ## Setting Up Worker Loader
 

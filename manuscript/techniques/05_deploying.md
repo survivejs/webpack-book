@@ -1,6 +1,6 @@
 # Deploying Applications
 
-A project built with webpack can be deployed to a variety of environments. A public project that doesn’t rely on a backend can be pushed to GitHub Pages using the *gh-pages* package. Also, there are a variety of webpack plugins that can target other environments, such as S3.
+A project built with webpack can be deployed to a variety of environments. A public project that doesn't rely on a backend can be pushed to GitHub Pages using the *gh-pages* package. Also, there are a variety of webpack plugins that can target other environments, such as S3.
 
 ## Deploying with *gh-pages*
 
@@ -33,9 +33,9 @@ leanpub-end-insert
 }
 ```
 
-To make the asset paths work on GitHub Pages, `output.publicPath` field has to be adjusted. Otherwise, the asset paths will point at the root, and that won’t work unless you are hosting behind a domain root (say `survivejs.com`) directly.
+To make the asset paths work on GitHub Pages, `output.publicPath` field has to be adjusted. Otherwise, the asset paths will point at the root, and that won't work unless you are hosting behind a domain root (say `survivejs.com`) directly.
 
-`publicPath` gives control over the resulting urls you see at *index.html* for instance. If you are hosting your assets on a CDN, this would be the place to tweak. In this case, it’s enough to set it to point the GitHub project like this:
+`publicPath` gives control over the resulting urls you see at *index.html* for instance. If you are hosting your assets on a CDN, this would be the place to tweak. In this case, it's enough to set it to point the GitHub project like this:
 
 **webpack.config.js**
 
@@ -63,7 +63,7 @@ After building (`npm run build`) and deploying (`npm run deploy`), you should ha
 
 T> If you need a more elaborate setup, use the Node API that *gh-pages* provides. The default command line tool it provides is enough for basic purposes, though.
 
-T> GitHub Pages allows you to choose the branch where you deploy. It is possible to use the `master` branch even as it is enough for minimal sites that don’t need bundling. You can also point below the *./docs* directory within your `master` branch and maintain your site.
+T> GitHub Pages allows you to choose the branch where you deploy. It is possible to use the `master` branch even as it is enough for minimal sites that don't need bundling. You can also point below the *./docs* directory within your `master` branch and maintain your site.
 
 ## Archiving Old Versions
 
@@ -88,7 +88,7 @@ Even though you can push the problem of deployment outside of webpack, there are
 
 ## Resolving `output.publicPath` Dynamically
 
-If you don’t know `publicPath` beforehand, it’s possible to resolve it based on the environment like this:
+If you don't know `publicPath` beforehand, it's possible to resolve it based on the environment like this:
 
 1. Set `__webpack_public_path__ = window.myDynamicPublicPath;` in the application entry point and resolve it as you see fit.
 2. Remove `output.publicPath` setting from your webpack configuration.
@@ -110,9 +110,9 @@ When you compile, webpack picks up `__webpack_public_path__` and rewrites it so 
 
 ## Conclusion
 
-Even though webpack isn’t a deployment tool, you can find plugins for it.
+Even though webpack isn't a deployment tool, you can find plugins for it.
 
 To recap:
 
 * It is also possible to handle the problem of deployment outside of webpack. You can achieve this in an npm script for example.
-* It is possible to configure webpack’s `output.publicPath` dynamically. This technique is valuable if you don’t know it compile-time and want to decide it later. This is possible through the `__webpack_public_path__ ` global.
+* It is possible to configure webpack's `output.publicPath` dynamically. This technique is valuable if you don't know it compile-time and want to decide it later. This is possible through the `__webpack_public_path__ ` global.

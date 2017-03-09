@@ -2,7 +2,7 @@
 
 Even though not a lot has been done with webpack yet, the amount of configuration is starting to feel substantial. Also, you have to be careful about the way you compose it as you have separate production and development targets in the project now. The situation can only get worse as you want to add more functionality to the project.
 
-As the needs of your project grow, you’ll need to figure out means to manage webpack configuration.
+As the needs of your project grow, you'll need to figure out means to manage webpack configuration.
 
 ## Possible Ways to Manage Configuration
 
@@ -12,7 +12,7 @@ You can manage webpack configuration in the following ways:
 * Push configuration to a library, which you then consume. Example: [HenrikJoreteg/hjs-webpack](https://www.npmjs.com/package/hjs-webpack).
 * Maintain configuration within a single file and branch there and by relying on the `--env` parameter.
 
-These approaches can be combined. You can end up with a higher level configuration that’s then composed of smaller parts. Those parts could go to a library which you then use through npm making it possible to consume the same configuration across multiple projects.
+These approaches can be combined. You can end up with a higher level configuration that's then composed of smaller parts. Those parts could go to a library which you then use through npm making it possible to consume the same configuration across multiple projects.
 
 The approach is used to discuss different techniques. *webpack.config.js* will maintain higher level configuration while *webpack.parts.js* will contain the building blocks.
 
@@ -139,11 +139,11 @@ module.exports = function(env) {
 };
 ```
 
-After this change, the build should behave the same way as before. This time, however, you have room to expand, and you don’t have to worry about how to combine different parts of the configuration. The approach allows us to share functionality across different targets.
+After this change, the build should behave the same way as before. This time, however, you have room to expand, and you don't have to worry about how to combine different parts of the configuration. The approach allows us to share functionality across different targets.
 
 You can also add more by expanding the *package.json* definition and branching at *webpack.config.js* based on the need. *webpack.parts.js* will grow to contain specific techniques you can then use to compose the configuration.
 
-Later on, *webpack.parts.js* could be pushed to npm or outside of the project. But for this book, it’s enough to maintain it within the project.
+Later on, *webpack.parts.js* could be pushed to npm or outside of the project. But for this book, it's enough to maintain it within the project.
 
 T> Webpack 2 validates the configuration by default. If you make a mistake like a typo, it will let you know.
 
@@ -153,9 +153,9 @@ Splitting configuration allows you to keep on expanding the setup. The biggest w
 
 Instead of duplicating similar configuration across multiple projects, you can manage configuration as a dependency now. As you figure out better ways to perform tasks, all your projects will receive the improvements.
 
-Each approach comes with its pros and cons. I am comfortable with the composition-based approach myself, although I can see merit in others as well. In addition to composition, it gives me a limited amount of code to scan through, but it’s a good idea to check out how other people do it too. You’ll find something that works the best based on your tastes.
+Each approach comes with its pros and cons. I am comfortable with the composition-based approach myself, although I can see merit in others as well. In addition to composition, it gives me a limited amount of code to scan through, but it's a good idea to check out how other people do it too. You'll find something that works the best based on your tastes.
 
-Perhaps the biggest problem is that with composition you need to know what you are doing, and it is possible you won’t get the composition right the first time around. But that’s a software engineering problem that goes beyond webpack. You can always iterate on the interfaces and find better ones.
+Perhaps the biggest problem is that with composition you need to know what you are doing, and it is possible you won't get the composition right the first time around. But that's a software engineering problem that goes beyond webpack. You can always iterate on the interfaces and find better ones.
 
 T> If you have to support both webpack 1 and 2, you can perform branching based on version using `require('webpack/package.json').version` kind of code to detect it. After that, you have to set specific branches for each and merge. You can still extract the commonality as you see the best.
 

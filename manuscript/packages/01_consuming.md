@@ -4,7 +4,7 @@ Consuming npm packages through webpack is often convenient but there are certain
 
 ## Understanding SemVer
 
-Most popular packages out there comply with SemVer. It’s problematic as sometimes packages may inadvertently break it, but there are ways around this. Roughly, SemVer states that you should not break backward compatibility, given [certain rules](http://semver.org/) are met:
+Most popular packages out there comply with SemVer. It's problematic as sometimes packages may inadvertently break it, but there are ways around this. Roughly, SemVer states that you should not break backward compatibility, given [certain rules](http://semver.org/) are met:
 
 1. The MAJOR version gets incremented when incompatible API changes are made to stable APIs.
 2. The MINOR version gets incremented when backwards-compatible functionality is added.
@@ -18,7 +18,7 @@ T> You can understand SemVer much better by studying [the online tool](http://se
 
 ## Understanding npm Lookup
 
-npm’s lookup algorithm is another aspect that’s good to understand. Sometimes this can explain certain errors, and it also leads to good practices, such as preferring local dependencies over global ones. The basic algorithm goes like this:
+npm's lookup algorithm is another aspect that's good to understand. Sometimes this can explain certain errors, and it also leads to good practices, such as preferring local dependencies over global ones. The basic algorithm goes like this:
 
 1. Look into immediate packages. If there is *node_modules*, crawl through that and also check the parent directories until the project root is reached. You can check that using `npm root`.
 2. If nothing was found, check globally installed packages. If you are using Unix, look into */usr/local/lib/node_modules* to find them. You can figure out the specific directory using `npm root -g`.
@@ -27,12 +27,12 @@ npm’s lookup algorithm is another aspect that’s good to understand. Sometime
 On a package level, npm resolves to a file like this:
 
 1. Look up *package.json* of the package.
-2. Get the contents of the `main` field. If it doesn’t exist, default to *<package>/index.js*.
+2. Get the contents of the `main` field. If it doesn't exist, default to *<package>/index.js*.
 3. Resolve to the `main` file.
 
-The general lookup algorithm respects an environment variable `NODE_PATH`. If you want to tweak the resolution further, you can attach specific directories to it. Example: `NODE_PATH=$NODE_PATH:./demo`. A call like this can be included at the beginning of a *package.json* script to patch the runtime environment temporarily, although it’s better to avoid this if possible.
+The general lookup algorithm respects an environment variable `NODE_PATH`. If you want to tweak the resolution further, you can attach specific directories to it. Example: `NODE_PATH=$NODE_PATH:./demo`. A call like this can be included at the beginning of a *package.json* script to patch the runtime environment temporarily, although it's better to avoid this if possible.
 
-You can tweak webpack’s module resolution through the `resolve.modules` field. Example:
+You can tweak webpack's module resolution through the `resolve.modules` field. Example:
 
 ```javascript
 {
@@ -45,26 +45,26 @@ You can tweak webpack’s module resolution through the `resolve.modules` field.
 },
 ```
 
-Sometimes it may be beneficial to use these techniques together. Compared to npm environment, webpack provides more flexibility, although you can mimic a lot of webpack’s functionality using terminal based tricks.
+Sometimes it may be beneficial to use these techniques together. Compared to npm environment, webpack provides more flexibility, although you can mimic a lot of webpack's functionality using terminal based tricks.
 
-W> Installing global packages can lead to surprising behavior. If you have a package installed both globally and it a project happens to contain it, executing associated terminal command (say `webpack`) will point to the version of the project. It won’t work unless the global package exists.
+W> Installing global packages can lead to surprising behavior. If you have a package installed both globally and it a project happens to contain it, executing associated terminal command (say `webpack`) will point to the version of the project. It won't work unless the global package exists.
 
 T> [app-module-path](https://www.npmjs.com/package/app-module-path) allows you adjust Node module lookup within JavaScript and this can be an alternative to patching `NODE_PATH`.
 
 ## Version Ranges
 
-npm supports multiple version ranges. I’ve listed the common ones below:
+npm supports multiple version ranges. I've listed the common ones below:
 
 * `~` - Tilde matches only patch versions. For example, `~1.2` would be equal to `1.2.x`.
 * `^` - Caret is the default you get using `--save` or `--save-dev`. It matches minor versions, and this means `^0.2.0` would be equal to `0.2.x`.
 * `*` - Asterisk matches major releases, and it is the most dangerous of the ranges. Using this recklessly can easily break your project in the future, and I would advise against using it.
 * `>= 1.3.0 < 2.0.0` - Ranges between versions come in handy with `peerDependencies`.
 
-You can set the default range using `npm config set save-prefix='^'` in case you prefer something else than caret. Alternately, you can modify *~/.npmrc* directly. Especially defaulting to tilde can be a good idea that can help you to avoid trouble with dependencies, although it won’t remove potential problems entirely. That’s where shrinkwrapping comes in.
+You can set the default range using `npm config set save-prefix='^'` in case you prefer something else than caret. Alternately, you can modify *~/.npmrc* directly. Especially defaulting to tilde can be a good idea that can help you to avoid trouble with dependencies, although it won't remove potential problems entirely. That's where shrinkwrapping comes in.
 
 ## Shrinkwrapping Versions
 
-Using version ranges can feel a little dangerous as it doesn’t take much to break an application. A single change in the wrong place is enough. [npm shrinkwrap](https://docs.npmjs.com/cli/shrinkwrap) allows you to fix your dependency versions and have stricter control over the versions you are using in a production environment. Most importantly it fixes the dependencies of your dependencies avoiding accidental breakage due to version changes and SemVer.
+Using version ranges can feel a little dangerous as it doesn't take much to break an application. A single change in the wrong place is enough. [npm shrinkwrap](https://docs.npmjs.com/cli/shrinkwrap) allows you to fix your dependency versions and have stricter control over the versions you are using in a production environment. Most importantly it fixes the dependencies of your dependencies avoiding accidental breakage due to version changes and SemVer.
 
 [lockdown](https://www.npmjs.com/package/lockdown) goes further and gives guarantees about dependency content, not version alone. [shrinkpack](https://www.npmjs.com/package/shrinkpack) is another complementary option.
 
@@ -78,7 +78,7 @@ An important part of maintaining a project is keeping their dependencies up to d
 * Install the newest version of a specific dependency, e.g., `npm install lodash@* --save` as a more controlled approach.
 * Patch version information by hand by modifying *package.json* directly.
 
-It is important to remember that your dependencies may introduce backward incompatible changes. Remember how SemVer works and study the release notes of dependencies. They won’t exist always, so you may have to go through the project commit history.
+It is important to remember that your dependencies may introduce backward incompatible changes. Remember how SemVer works and study the release notes of dependencies. They won't exist always, so you may have to go through the project commit history.
 
 T> `npm ls`, and more specifically `npm ls <package name>`, allow you to figure out which versions you have installed. `npm ls -g` performs a similar lookup against the globally installed packages.
 
@@ -98,7 +98,7 @@ For testing your project, you can consider solutions, such as [Travis CI](https:
 
 T> [shields.io](http://shields.io/) lists a large number of available badges. [NodeICO](https://nodei.co/) provides badges that aggregate package related information.
 
-T> There’s a [Codecov extension](https://chrome.google.com/webstore/detail/codecov-extension/keefkhehidemnokodkdkejapdgfjmijf) for Chrome that allows you to see code coverage through GitHub user interface.
+T> There's a [Codecov extension](https://chrome.google.com/webstore/detail/codecov-extension/keefkhehidemnokodkdkejapdgfjmijf) for Chrome that allows you to see code coverage through GitHub user interface.
 
 ## Tweaking Module Resolution
 
@@ -148,7 +148,7 @@ Sometimes modules depend on globals. `$` provided by jQuery is a good example. [
 },
 ```
 
-Webpack’s `ProvidePlugin` can be used for a similar purpose. It allows webpack to resolve globals as it encounters them:
+Webpack's `ProvidePlugin` can be used for a similar purpose. It allows webpack to resolve globals as it encounters them:
 
 ```javascript
 {
@@ -192,7 +192,7 @@ To bring specific locales to your project, you should use `ContextReplacementPlu
 },
 ```
 
-T> There’s a [Stack Overflow question](https://stackoverflow.com/questions/25384360/how-to-prevent-moment-js-from-loading-locales-with-webpack/25426019) that covers these ideas in detail.
+T> There's a [Stack Overflow question](https://stackoverflow.com/questions/25384360/how-to-prevent-moment-js-from-loading-locales-with-webpack/25426019) that covers these ideas in detail.
 
 T> [null-loader](https://www.npmjs.com/package/null-loader) discussed in the *Loading Fonts* chapter can be used to achieve a similar effect.
 
@@ -219,7 +219,7 @@ The warning can be eliminated by aliasing the package to a source version as dis
 },
 ```
 
-T> There’s a [webpack issue](https://github.com/webpack/webpack/issues/1617) that discusses the problem in detail.
+T> There's a [webpack issue](https://github.com/webpack/webpack/issues/1617) that discusses the problem in detail.
 
 W> Disabling warnings like this one should be the last measure since doing it can hide underlying issues. Do this only if you know what you are doing and consider alternatives first.
 
@@ -302,7 +302,7 @@ To get more information about packages, npm provides `npm info <package>` comman
 
 [slow-deps](https://www.npmjs.com/package/slow-deps) can reveal which dependencies of a project are the slowest to install.
 
-[weigh](https://www.npmjs.com/package/weigh) can be used figure out the approximate size of a package when it’s served to a browser in different ways (uncompressed, minified, gzipped).
+[weigh](https://www.npmjs.com/package/weigh) can be used figure out the approximate size of a package when it's served to a browser in different ways (uncompressed, minified, gzipped).
 
 ## Conclusion
 
@@ -311,8 +311,8 @@ Webpack can consume most npm packages without a hitch. Sometimes, though, patchi
 To recap:
 
 * To consume packages effectively, you should understand SemVer. To keep your build repeatable, consider using technologies like shrinkwrapping or Yarn lockfiles.
-* Use webpack’s access to module resolution to your benefit. Sometimes you can work around issues by tweaking resolution. Often it is a good idea to try to push improvements upstream to the projects themselves, though.
+* Use webpack's access to module resolution to your benefit. Sometimes you can work around issues by tweaking resolution. Often it is a good idea to try to push improvements upstream to the projects themselves, though.
 * Webpack allows you to patch resolved modules in many ways. Given certain dependencies expect globals, you can use webpack to inject them. You can also expose modules as globals. This is necessary for certain development tooling to work.
 * To understand your dependencies better, consider using available tooling and service to study them. Knowing them well can pay off later if problems arise.
 
-In the next chapter, I’ll show you how to author npm packages. It’s the other side of the same coin and worth understanding even if you won’t end up authoring packages of your own.
+In the next chapter, I'll show you how to author npm packages. It's the other side of the same coin and worth understanding even if you won't end up authoring packages of your own.

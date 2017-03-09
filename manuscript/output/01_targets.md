@@ -2,7 +2,7 @@
 
 Even though webpack is used most commonly for bundling web applications, it can do more. You can use it to target Node or desktop environments, such as Electron. Webpack can also bundle as a library while writing an appropriate output wrapper making it possible to consume the library.
 
-Webpack’s output target is controlled by the `target` field. I’ll go through the main targets next and dig into library specific options after that.
+Webpack's output target is controlled by the `target` field. I'll go through the main targets next and dig into library specific options after that.
 
 ## Web Targets
 
@@ -12,7 +12,7 @@ Webpack uses the *web* target by default. This is ideal for a web application li
 
 The *webworker* target will wrap your application as a [web worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API). Using web workers is valuable if you want to execute computation outside of the main thread of the application without slowing down the user interface. There are a couple of limitations you should be aware of:
 
-* You cannot use webpack’s hashing features when the *webworker* target is used.
+* You cannot use webpack's hashing features when the *webworker* target is used.
 * You cannot manipulate the DOM from a web worker. If you wrapped the book project as a worker, it would not display anything.
 
 T> Web workers and their usage are discussed in detail in the *Using Web Workers* chapter.
@@ -35,7 +35,7 @@ There are desktop shells, such as [NW.js](https://nwjs.io/) (previously *node-we
 
 ## Bundling Libraries with Webpack
 
-To understand webpack’s library targets better, you could set up a small library to bundle. The idea is to end up with a non-minified, a minified version, and a version compatible with *package.json* `module` field. The first two can be used for standalone consumption. You can also point to the non-minified version through *package.json* `main`.
+To understand webpack's library targets better, you could set up a small library to bundle. The idea is to end up with a non-minified, a minified version, and a version compatible with *package.json* `module` field. The first two can be used for standalone consumption. You can also point to the non-minified version through *package.json* `main`.
 
 T> The *Authoring Packages* chapter discusses the fields and more in detail.
 
@@ -153,7 +153,7 @@ Child
        [0] ./lib/index.js 55 bytes {0} [built]
 ```
 
-Webpack ran twice in this case. It can be argued that it would be smarter to minify the initial result separately. In this case, the overhead is so small that it’s not worth the extra setup.
+Webpack ran twice in this case. It can be argued that it would be smarter to minify the initial result separately. In this case, the overhead is so small that it's not worth the extra setup.
 
 Examining the build output reveals more:
 
@@ -182,7 +182,7 @@ function add(a, b) {
 //# sourceMappingURL=lib.js.map
 ```
 
-You can see familiar code there and more. Webpack’s bootstrap script is in place, and it starts the entire execution process. It takes the majority of space for a small library like this, but that’s not a problem as the library begins to grow.
+You can see familiar code there and more. Webpack's bootstrap script is in place, and it starts the entire execution process. It takes the majority of space for a small library like this, but that's not a problem as the library begins to grow.
 
 T> Instead of using the multi-compiler mode, it would be possible to define two targets. One of them would generate the non-minified version while the other would generate the minified one. The other npm script could be called as `build:lib:dist` and you could define a `build:lib:all` script to build both.
 
@@ -209,7 +209,7 @@ const libraryConfig = merge([
 
 `parts.clean` and `parts.lintJavaScript` were included to `libraryConfig` on purpose as it makes sense to run them only once at the beginning of the execution. This solution would be problematic with *parallel-webpack* though as it can run configurations out of order.
 
-T> There’s [a proposal to improve the situation](https://github.com/webpack/webpack/issues/4271) by introducing the concepts of pre- and post-processing to webpack.
+T> There's [a proposal to improve the situation](https://github.com/webpack/webpack/issues/4271) by introducing the concepts of pre- and post-processing to webpack.
 
 ### Cleaning and Linting Through npm
 
@@ -234,7 +234,7 @@ leanpub-end-insert
 ...
 ```
 
-If either process fails, npm won’t proceed to the `lib` script. You can verify this by breaking a linting rule and seeing what happens when you build (`npm run build:lib`). Instead, it will give you an error.
+If either process fails, npm won't proceed to the `lib` script. You can verify this by breaking a linting rule and seeing what happens when you build (`npm run build:lib`). Instead, it will give you an error.
 
 T> To get cleaner error output, run either `npm run build:lib --silent` or `npm run build:lib -s`.
 
@@ -316,7 +316,7 @@ Webpack supports targets beyond the web. You can bundle desktop applications, No
 
 To recap:
 
-* Webpack’s output target can be controlled through the `target` field. It defaults to `web`, but accepts other options too.
+* Webpack's output target can be controlled through the `target` field. It defaults to `web`, but accepts other options too.
 * If you bundle libraries with it, you should set the `output` options carefully to get the result you want.
 * Webpack can generate both a non-minified and a minified version of a library through its **multi-compiler** mode. It is possible to minify also as a post-process using an external tool.
 * Performing tasks, such as cleaning and linting JavaScript, while using the multi-compiler mode is problematic at the moment. Instead, it can be a good idea to handle these tasks outside of webpack or run multiple webpack instances separately.

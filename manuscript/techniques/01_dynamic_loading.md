@@ -1,10 +1,10 @@
 # Dynamic Loading
 
-Even though you can get far with webpack’s code splitting features covered in the *Code Splitting* chapter, there’s more to it. Webpack provides more dynamic ways to deal with code through `require.context`.
+Even though you can get far with webpack's code splitting features covered in the *Code Splitting* chapter, there's more to it. Webpack provides more dynamic ways to deal with code through `require.context`.
 
 ## Dynamic Loading with `require.context`
 
-[require.context](https://webpack.js.org/configuration/entry-context/#context) provides a general form of code splitting. Let’s say you are writing a static site generator on top of webpack. You could model your site contents within a directory structure by having a `./pages/` directory which would contain the Markdown files.
+[require.context](https://webpack.js.org/configuration/entry-context/#context) provides a general form of code splitting. Let's say you are writing a static site generator on top of webpack. You could model your site contents within a directory structure by having a `./pages/` directory which would contain the Markdown files.
 
 Each of these files would have a YAML frontmatter for their metadata. The url of each page could be determined based on the filename and mapped as a site. To model the idea using `require.context`, you could end up with code like this:
 
@@ -33,7 +33,7 @@ req.id; // 42
 const demoPage = req('./demo.md');
 ```
 
-This information is enough for generating an entire site. And this is what I’ve done with [Antwar](https://github.com/antwarjs/antwar). You can find a more elaborate example in that static site generator.
+This information is enough for generating an entire site. And this is what I've done with [Antwar](https://github.com/antwarjs/antwar). You can find a more elaborate example in that static site generator.
 
 The technique can be valuable for other purposes, such as testing or adding files for webpack to watch. In that case, you would set up a `require.context` within a file which you then point to through a webpack `entry`.
 
@@ -68,7 +68,7 @@ function combineContexts(...contexts) {
 
 ## Dynamic Paths with a Dynamic `import`
 
-The same idea works with dynamic `import`. Instead of passing a complete path, you can pass a partial one. Webpack will set up a context internally. Here’s a brief example:
+The same idea works with dynamic `import`. Instead of passing a complete path, you can pass a partial one. Webpack will set up a context internally. Here's a brief example:
 
 ```javascript
 // Set up a target or derive this somehow
@@ -84,17 +84,17 @@ T> Any time you are using dynamic imports like this, it is a good idea to specif
 
 ## Dealing with Dynamic Paths
 
-Given the approaches discussed here rely on static analysis and webpack has to find the files in question, it doesn’t work for every possible case. If the files you need are on another server or have to be accessed through a particular end-point, then webpack isn’t enough.
+Given the approaches discussed here rely on static analysis and webpack has to find the files in question, it doesn't work for every possible case. If the files you need are on another server or have to be accessed through a particular end-point, then webpack isn't enough.
 
 Consider using browser-side loaders like [$script.js](https://www.npmjs.com/package/scriptjs) or [little-loader](https://www.npmjs.com/package/little-loader) on top of webpack in this case.
 
 ## Conclusion
 
-Even though `require.context` is a niche feature, it’s good to be aware of it. It becomes valuable if you have to perform lookups against multiple files available within the file system. If your lookup is more complex than that, you may have to resort to other alternatives that allow you to perform loading runtime.
+Even though `require.context` is a niche feature, it's good to be aware of it. It becomes valuable if you have to perform lookups against multiple files available within the file system. If your lookup is more complex than that, you may have to resort to other alternatives that allow you to perform loading runtime.
 
 To recap:
 
-* `require.context` is an advanced feature that’s often hidden behind the scenes. If you have to perform a lookup against a large amount of files, use it.
+* `require.context` is an advanced feature that's often hidden behind the scenes. If you have to perform a lookup against a large amount of files, use it.
 * If you write a dynamic `import` in a certain form, webpack will generate a `require.context` call. The code reads slightly better in this case.
 * The techniques work only against the file system. If you have to operate against urls, you should look into client-side solutions.
 

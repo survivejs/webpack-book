@@ -9,7 +9,7 @@ To get suitable output, you will need to do a couple of tweaks to the configurat
 * `--profile` to capture timing-related information. This is optional, but good to set.
 * `--json` to make webpack output statistics.
 
-Here’s the line of code you need to pipe the output to a file:
+Here's the line of code you need to pipe the output to a file:
 
 **package.json**
 
@@ -26,9 +26,9 @@ leanpub-end-insert
 }
 ```
 
-The above is the basic setup you’ll need, regardless of your webpack configuration. Execute `npm run stats` now. After a while you should find *stats.json* at your project root. This file can be pushed through a variety of tools to understand better what’s going on.
+The above is the basic setup you'll need, regardless of your webpack configuration. Execute `npm run stats` now. After a while you should find *stats.json* at your project root. This file can be pushed through a variety of tools to understand better what's going on.
 
-W> Given you piggyback on the production target in the current setup, this process will clean the build directory! If you want to avoid that, set up a separate target where you don’t clean.
+W> Given you piggyback on the production target in the current setup, this process will clean the build directory! If you want to avoid that, set up a separate target where you don't clean.
 
 ### `StatsWebpackPlugin` and `WebpackStatsPlugin`
 
@@ -61,13 +61,13 @@ This technique can be valuable if you want to do further processing on stats alt
 
 ## Available Analysis Tools
 
-Even though having a look at the file itself gives you idea of what’s going on, often it’s preferable to use a particular tool for that. I’ve listed alternatives below.
+Even though having a look at the file itself gives you idea of what's going on, often it's preferable to use a particular tool for that. I've listed alternatives below.
 
 ### The Official Analyse Tool
 
 ![The Official Analyse Tool](images/analyse.png)
 
-[The official analyse tool](https://github.com/webpack/analyse) gives you recommendations and a good idea of your application’s dependency graph. It can be run locally as well.
+[The official analyse tool](https://github.com/webpack/analyse) gives you recommendations and a good idea of your application's dependency graph. It can be run locally as well.
 
 ### Webpack Visualizer
 
@@ -161,6 +161,6 @@ To recap:
 * Webpack allows you to extract a JSON file containing information about the build. The information can include the build composition and timing.
 * The generated information can be analyzed using various tools that give insight into aspects such as the bundle composition.
 * Understanding the bundles is the key to insights on how to optimize the overall size, what to load and when. It can also reveal bigger issues, such as redundant data.
-* You can find third party tools that don’t depend on webpack but are still valuable for analysis.
+* You can find third party tools that don't depend on webpack but are still valuable for analysis.
 
 To help you understand how to tune webpack, I will discuss performance in the next chapter.

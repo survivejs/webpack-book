@@ -1,6 +1,6 @@
 # Adding Hashes to Filenames
 
-Even though the build generates fine now, the naming it uses is a little problematic. It doesn’t allow us to leverage client level cache effectively as there’s no way tell whether or not a file has changed. Cache invalidation can be achieved by including a hash to filenames.
+Even though the build generates fine now, the naming it uses is a little problematic. It doesn't allow us to leverage client level cache effectively as there's no way tell whether or not a file has changed. Cache invalidation can be achieved by including a hash to filenames.
 
 ## Placeholders
 
@@ -13,7 +13,7 @@ Webpack provides **placeholders** for this purpose. These strings are used to at
 * `[chunkhash]` - Returns an entry chunk-specific hash. Each `entry` defined at the configuration receives a hash of own. If any portion of the entry changes, the hash will change as well. `[chunkhash]` is more granular than `[hash]` by definition.
 * `[contenthash]` - Returns a hash specific to content. `[contenthash]` is available for `ExtractTextPlugin` only and is the most specific option available.
 
-It is preferable to use particularly `hash` and `chunkhash` only for production purposes as hashing won’t do much good during development.
+It is preferable to use particularly `hash` and `chunkhash` only for production purposes as hashing won't do much good during development.
 
 T> It is possible to slice `hash` and `chunkhash` using syntax like this: `[chunkhash:8]`. Instead of a hash like `8c4cbfdb91ff93f3f3c5` this would yield `8c4cbfdb`.
 
@@ -95,7 +95,7 @@ leanpub-end-insert
 ...
 ```
 
-If you used `chunkhash` for the extracted CSS as well, this would lead to problems as the code points to the CSS through JavaScript bringing it to the same entry. That means if the application code or CSS changed, it would invalidate both. Therefore, instead of `chunkhash`, you can use `contenthash` that’s generated based on the extracted content:
+If you used `chunkhash` for the extracted CSS as well, this would lead to problems as the code points to the CSS through JavaScript bringing it to the same entry. That means if the application code or CSS changed, it would invalidate both. Therefore, instead of `chunkhash`, you can use `contenthash` that's generated based on the extracted content:
 
 **webpack.parts.js**
 
@@ -151,13 +151,13 @@ vendor.f897ca59.js.map     135 kB       2  [emitted]  vendor
 
 The files have neat hashes now. To prove that it works for styling, you could try altering *app/main.css* and see what happens to the hashes when you rebuild.
 
-There’s one problem, though. If you change the application code, it will invalidate the vendor file as well! Solving this requires extracting a **manifest**, but before that, you can improve the way the production build handles module IDs.
+There's one problem, though. If you change the application code, it will invalidate the vendor file as well! Solving this requires extracting a **manifest**, but before that, you can improve the way the production build handles module IDs.
 
 ## Enabling `HashedModuleIdsPlugin`
 
 Webpack uses number based IDs for the module code it generates. The problem is that they are difficult to work with and can lead to difficult to debug issues, particularly with hashing. Like you did with the development setup earlier in the *Configuring Hot Module Replacement* chapter, you can perform a simplification here as well.
 
-`HashedModuleIdsPlugin` is like `NamedModulesPlugin` except it hashes the result and hides the path information. The process keeps module IDs stable as they aren’t derived based on order. You sacrifice a couple of bytes for a cleaner setup, but the trade-off is well worth it.
+`HashedModuleIdsPlugin` is like `NamedModulesPlugin` except it hashes the result and hides the path information. The process keeps module IDs stable as they aren't derived based on order. You sacrifice a couple of bytes for a cleaner setup, but the trade-off is well worth it.
 
 The change required is tiny. Tweak the configuration as follows:
 
@@ -217,9 +217,9 @@ Including hashes related to the file contents to their names allows to invalidat
 
 To recap:
 
-* Webpack’s **placeholders** allow you to shape filenames and enable you to include hashes to them.
+* Webpack's **placeholders** allow you to shape filenames and enable you to include hashes to them.
 * The most valuable placeholders are `[name]`, `[chunkhash]`, and `[ext]`. `chunkhash` is derived based on the entry in which the asset belongs.
-* If you are using `ExtractTextPlugin`, you should use `[contenthash]`. This way extracted assets won’t become invalidated even if the entries from which they were extracted change.
+* If you are using `ExtractTextPlugin`, you should use `[contenthash]`. This way extracted assets won't become invalidated even if the entries from which they were extracted change.
 * `HashedModuleIdsPlugin` generates module IDs based on module paths. This is more stable than relying on the default order based numeric module IDs.
 
-Even though the project generates hashes now, the output isn’t flawless. The problem is that if the application changes, it will invalidate the vendor bundle as well. The next chapter digs deeper into the topic and shows you how to extract a **manifest** to resolve the issue.
+Even though the project generates hashes now, the output isn't flawless. The problem is that if the application changes, it will invalidate the vendor bundle as well. The next chapter digs deeper into the topic and shows you how to extract a **manifest** to resolve the issue.

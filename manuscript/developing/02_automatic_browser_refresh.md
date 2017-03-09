@@ -8,11 +8,11 @@ A good first step towards a better development environment is to use webpack in 
 
 WDS is a development server running **in-memory**. It refreshes content automatically in the browser while you develop your application. It also supports an advanced webpack feature, **Hot Module Replacement** (HMR). HMR allows patching the browser state without a full refresh making it handy with libraries like React.
 
-HMR goes further than refreshing browser on change. WDS provides an interface that makes it possible to patch code on the fly. For this to work, you have to implement it for the client-side code. It is trivial for something like CSS by definition (no state), but it’s a harder problem with JavaScript frameworks and libraries. Often careful design is needed to allow this. When the feature works, it is beautiful.
+HMR goes further than refreshing browser on change. WDS provides an interface that makes it possible to patch code on the fly. For this to work, you have to implement it for the client-side code. It is trivial for something like CSS by definition (no state), but it's a harder problem with JavaScript frameworks and libraries. Often careful design is needed to allow this. When the feature works, it is beautiful.
 
 ## Emitting Files from *webpack-dev-server*
 
-Even though it’s good that WDS operates in-memory by default, sometimes it can be good to emit files to the file system. If you are integrating with another server that expects to find the files, this applies in particular. [webpack-disk-plugin](https://www.npmjs.com/package/webpack-disk-plugin), [write-file-webpack-plugin](https://www.npmjs.com/package/write-file-webpack-plugin), and more specifically [html-webpack-harddisk-plugin](https://www.npmjs.com/package/html-webpack-harddisk-plugin) can achieve this.
+Even though it's good that WDS operates in-memory by default, sometimes it can be good to emit files to the file system. If you are integrating with another server that expects to find the files, this applies in particular. [webpack-disk-plugin](https://www.npmjs.com/package/webpack-disk-plugin), [write-file-webpack-plugin](https://www.npmjs.com/package/write-file-webpack-plugin), and more specifically [html-webpack-harddisk-plugin](https://www.npmjs.com/package/html-webpack-harddisk-plugin) can achieve this.
 
 W> You should use *webpack-dev-server* strictly for development. If you want to host your application, consider other standard solutions, such as Apache or Nginx.
 
@@ -146,17 +146,17 @@ Even though `--env` allows us to pass strings to the configuration, it can do a 
 
 Instead of a string, you should receive an object `{ target: 'production' }` at configuration now. You could pass more key-value pairs, and they would go to the `env` object. It is important to note that if you set `--env foo` while setting `--env.target`, the string will override the object.
 
-W> Webpack 2 changed argument behavior compared to webpack 1. You are not allowed to pass custom parameters through the CLI anymore. Instead, it’s better to go through the `--env` mechanism if you need to do this.
+W> Webpack 2 changed argument behavior compared to webpack 1. You are not allowed to pass custom parameters through the CLI anymore. Instead, it's better to go through the `--env` mechanism if you need to do this.
 
 ## Accessing the Development Server from Network
 
 It is possible to customize host and port settings through the environment in the setup (i.e., `export PORT=3000` on Unix or `SET PORT=3000` on Windows). The default settings are enough on most platforms.
 
-To access your server, you’ll need to figure out the ip of your machine. On Unix, this can be achieved using `ifconfig | grep inet`. On Windows, `ipconfig` can be utilized. An npm package, such as [node-ip](https://www.npmjs.com/package/node-ip) may come in handy as well. Especially on Windows, you may need to set your `HOST` to match your ip to make it accessible.
+To access your server, you'll need to figure out the ip of your machine. On Unix, this can be achieved using `ifconfig | grep inet`. On Windows, `ipconfig` can be utilized. An npm package, such as [node-ip](https://www.npmjs.com/package/node-ip) may come in handy as well. Especially on Windows, you may need to set your `HOST` to match your ip to make it accessible.
 
 ## Alternate Ways to Use *webpack-dev-server*
 
-You could have passed the WDS options through a terminal. I find it clearer to manage it within webpack configuration as that helps to keep *package.json* nice and tidy. It is also easier to understand what’s going on as you don’t need to dig out the answers from the webpack source.
+You could have passed the WDS options through a terminal. I find it clearer to manage it within webpack configuration as that helps to keep *package.json* nice and tidy. It is also easier to understand what's going on as you don't need to dig out the answers from the webpack source.
 
 Alternately, you could have set up an Express server and use a middleware. There are a couple of options:
 
@@ -164,7 +164,7 @@ Alternately, you could have set up an Express server and use a middleware. There
 * [webpack-hot-middleware](https://www.npmjs.com/package/webpack-hot-middleware)
 * [webpack-universal-middleware](https://www.npmjs.com/package/webpack-universal-middleware)
 
-There’s also a [Node.js API](https://webpack.js.org/configuration/dev-server/) if you want more control and flexibility.
+There's also a [Node.js API](https://webpack.js.org/configuration/dev-server/) if you want more control and flexibility.
 
 W> Note that there are [slight differences](https://github.com/webpack/webpack-dev-server/issues/106) between the CLI and the Node API.
 
@@ -172,7 +172,7 @@ W> Note that there are [slight differences](https://github.com/webpack/webpack-d
 
 Restarting the development server each time you make a change tends to get boring after a while; therefore, it can be a good idea to let the computer do that for us. As [discussed in GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892), [nodemon](https://www.npmjs.com/package/nodemon) monitoring tool can be used for this purpose.
 
-To get it to work, you will have to install it first through `npm install nodemon --save-dev`. After that, you can make it watch webpack config and restart WDS on change. Here’s the script if you want to give it a go:
+To get it to work, you will have to install it first through `npm install nodemon --save-dev`. After that, you can make it watch webpack config and restart WDS on change. Here's the script if you want to give it a go:
 
 **package.json**
 
@@ -189,10 +189,10 @@ It is possible WDS [will support the functionality](https://github.com/webpack/w
 
 ## Development Plugins
 
-As webpack plugin ecosystem is diverse, there are a lot of plugins that can help specifically with development. I’ve listed certain of these below to give you a better idea of what’s available:
+As webpack plugin ecosystem is diverse, there are a lot of plugins that can help specifically with development. I've listed certain of these below to give you a better idea of what's available:
 
 * [case-sensitive-paths-webpack-plugin](https://www.npmjs.com/package/case-sensitive-paths-webpack-plugin) can be handy when you are developing on a case-insensitive environments like macOS or Windows but using case-sensitive environment like Linux for production.
-* [npm-install-webpack-plugin](https://www.npmjs.com/package/npm-install-webpack-plugin) allows webpack to install and wire the installed packages with your *package.json* as you import new packages to your project. It’s almost magical this way.
+* [npm-install-webpack-plugin](https://www.npmjs.com/package/npm-install-webpack-plugin) allows webpack to install and wire the installed packages with your *package.json* as you import new packages to your project. It's almost magical this way.
 * [system-bell-webpack-plugin](https://www.npmjs.com/package/system-bell-webpack-plugin) rings the system bell on failure instead of letting webpack fail silently.
 * [friendly-errors-webpack-plugin](https://www.npmjs.com/package/friendly-errors-webpack-plugin) improves on error reporting of webpack. It captures common errors and displays them in a friendlier manner, hence the name.
 * [nyan-progress-webpack-plugin](https://www.npmjs.com/package/nyan-progress-webpack-plugin) can be used to get tidier output during the build process. Take care if you are using Continuous Integration (CI) systems like Travis, though, as they can clobber the output. Webpack provides `ProgressPlugin` for the same purpose. No nyan there, though.
@@ -205,8 +205,8 @@ In addition to plugins like these, it can be worth your while to set up linting 
 
 To recap:
 
-* Webpack’s `watch` mode is the first step towards a better development experience. You can have webpack compile bundles as you edit your source.
-* Webpack’s `--env` parameter allows you to control configuration target through terminal. You receive the passed `env` through a function interface.
+* Webpack's `watch` mode is the first step towards a better development experience. You can have webpack compile bundles as you edit your source.
+* Webpack's `--env` parameter allows you to control configuration target through terminal. You receive the passed `env` through a function interface.
 * webpack-dev-server can refresh the browser on change. It also implements Hot Module Replacement.
 * webpack-dev-server can be integrated to an existing Node server using a middleware. This gives you more control than relying on the command line interface.
 

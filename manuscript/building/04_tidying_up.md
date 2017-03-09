@@ -1,6 +1,6 @@
 # Tidying Up
 
-The current setup doesn’t clean the *build* directory between builds. As a result, it will keep on accumulating files as the project changes. Given this can get annoying, you should clean it up in between.
+The current setup doesn't clean the *build* directory between builds. As a result, it will keep on accumulating files as the project changes. Given this can get annoying, you should clean it up in between.
 
 Another nice touch would be to include information about the build itself to the generated bundles as a small comment at the top of each file including version information at least.
 

@@ -8,7 +8,7 @@ Webpack gives control over the inlining process and can defer loading to [file-l
 
 ## Setting Up *url-loader*
 
-*url-loader* is a good starting point and it’s the perfect option for development purposes, as you don’t have to care about the size of the resulting bundle. It comes with a *limit* option that can be used to defer image generation to *file-loader* after a certain limit is reached. This way you can inline small files to your JavaScript bundles while generating separate files for the bigger ones.
+*url-loader* is a good starting point and it's the perfect option for development purposes, as you don't have to care about the size of the resulting bundle. It comes with a *limit* option that can be used to defer image generation to *file-loader* after a certain limit is reached. This way you can inline small files to your JavaScript bundles while generating separate files for the bigger ones.
 
 If you use the limit option, you will need to install both *url-loader* and *file-loader* to your project. Assuming you have configured your styles correctly, webpack will resolve any `url()` statements your styling contains. You can point to the image assets through your JavaScript code as well.
 
@@ -28,7 +28,7 @@ To load *.jpg*, *.png*, and *.svg* files while inlining files below 25kB, you wo
 
 ## Setting Up *file-loader*
 
-If you want to skip inlining altogether, you can use *file-loader* directly. The following setup customizes the resulting filename. By default, *file-loader* returns the MD5 hash of the file’s contents with the original extension:
+If you want to skip inlining altogether, you can use *file-loader* directly. The following setup customizes the resulting filename. By default, *file-loader* returns the MD5 hash of the file's contents with the original extension:
 
 ```javascript
 {
@@ -42,7 +42,7 @@ If you want to skip inlining altogether, you can use *file-loader* directly. The
 
 T> If you want to output your images below a particular directory, set it up like this: `name: './images/[hash].[ext]'`. Adjust to your liking.
 
-W> Be careful not to apply both loaders on images at the same time! Use the `include` field for further control if *url-loader* `limit` isn’t enough.
+W> Be careful not to apply both loaders on images at the same time! Use the `include` field for further control if *url-loader* `limit` isn't enough.
 
 ## Integrating Images to the Project
 
@@ -167,7 +167,7 @@ Compression is particularly valuable for production builds as it will decrease t
 
 ## Referencing to Images
 
-Webpack can pick up images from stylesheets through `@import` and `url()` assuming *css-loader* has been configured. You can also refer to your images within code. In this case, you’ll have to import the files explicitly:
+Webpack can pick up images from stylesheets through `@import` and `url()` assuming *css-loader* has been configured. You can also refer to your images within code. In this case, you'll have to import the files explicitly:
 
 ```javascript
 const src = require('./avatar.png');
@@ -186,7 +186,7 @@ const Profile = () => (
 );
 ```
 
-It is also possible to set up dynamic imports as discussed in the *Code Splitting* chapter. Here’s a small example:
+It is also possible to set up dynamic imports as discussed in the *Code Splitting* chapter. Here's a small example:
 
 ```javascript
 // The name of the avatar is received from somewhere
@@ -197,11 +197,11 @@ const src = require(`./avatars/${avatar}`);
 
 ## Getting Image Dimensions
 
-Sometimes getting the only reference to an image isn’t enough. [image-size-loader](https://www.npmjs.com/package/image-size-loader) emits image dimensions, type, and size in addition to the reference to the image itself.
+Sometimes getting the only reference to an image isn't enough. [image-size-loader](https://www.npmjs.com/package/image-size-loader) emits image dimensions, type, and size in addition to the reference to the image itself.
 
 ## Loading Sprites
 
-**Spriting** technique allows you to combine multiple smaller images into a single image. It has been used for games to describe animations and it’s valuable for web development as well as you avoid request overhead.
+**Spriting** technique allows you to combine multiple smaller images into a single image. It has been used for games to describe animations and it's valuable for web development as well as you avoid request overhead.
 
 [webpack-spritesmith](https://www.npmjs.com/package/webpack-spritesmith) converts provided images into a sprite sheet and Sass/Less/Stylus mixins. You have to set up a `SpritesmithPlugin`, point it to target images, and set the name of the generated mixin. After that, your styling can pick it up like this:
 
@@ -223,7 +223,7 @@ Webpack allows you to load images dynamically based on a condition. The techniqu
 
 ## Images and *css-loader* Source Map Gotcha
 
-If you are using images and *css-loader* with the `sourceMap` option enabled, it is important that you will set `output.publicPath` to an absolute value pointing to your development server. Otherwise, images won’t show up. See [the relevant webpack issue](https://github.com/webpack/style-loader/issues/55) for further explanation.
+If you are using images and *css-loader* with the `sourceMap` option enabled, it is important that you will set `output.publicPath` to an absolute value pointing to your development server. Otherwise, images won't show up. See [the relevant webpack issue](https://github.com/webpack/style-loader/issues/55) for further explanation.
 
 ## Conclusion
 

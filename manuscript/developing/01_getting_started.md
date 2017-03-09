@@ -22,7 +22,7 @@ You can tweak the generated *package.json* manually to make further changes to i
 
 T> You can set those `npm init` defaults at *~/.npmrc*.
 
-T> This is a good place to set up version control using [Git](https://git-scm.com/). You can create a commit per step and tag per chapter, so it’s easier to move back and forth if you want.
+T> This is a good place to set up version control using [Git](https://git-scm.com/). You can create a commit per step and tag per chapter, so it's easier to move back and forth if you want.
 
 ## Installing Webpack
 
@@ -42,7 +42,7 @@ You should see webpack at your *package.json* `devDependencies` section after th
 
 You can display the exact path of the executables using `npm bin`. Most likely it points at *./node_modules/.bin*. Try running webpack from there through the terminal using `node_modules/.bin/webpack` or a similar command.
 
-After running, you should see a version, a link to the command line interface guide and an extensive list of options. You won’t be using most of those, but it’s good to know that this tool is packed with functionality if nothing else.
+After running, you should see a version, a link to the command line interface guide and an extensive list of options. You won't be using most of those, but it's good to know that this tool is packed with functionality if nothing else.
 
 ```bash
 webpack-demo $ node_modules/.bin/webpack
@@ -176,7 +176,7 @@ Child html-webpack-plugin for "index.html":
        [3] ./~/html-webpack-plugin/lib/loader.js!./~/html-webpack-plugin/default_index.ejs 540 bytes {0} [built]
 ```
 
-The output tells us a lot. I’ve annotated it below:
+The output tells us a lot. I've annotated it below:
 
 * `Hash: 3f76ae042ff0f2d98f35` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. Hashing is discussed in detail in the *Adding Hashes to Filenames* chapter.
 * `Version: webpack 2.2.1` - Webpack version.
@@ -216,13 +216,13 @@ You can execute this kind of scripts through *npm run*. If you run it as is, it 
 
 T> There are shortcuts like *npm start* and *npm test*. You can run these directly without *npm run* although that will work too. For those in a hurry, you can use *npm t* to run your tests.
 
-T> It is possible to execute *npm run* anywhere within the project. It doesn’t have to be run in the project root to work. npm will figure out the project root for you.
+T> It is possible to execute *npm run* anywhere within the project. It doesn't have to be run in the project root to work. npm will figure out the project root for you.
 
 ## *html-webpack-plugin* Extensions
 
 [html-webpack-template](https://www.npmjs.com/package/html-webpack-template) or [html-webpack-template-pug](https://www.npmjs.com/package/html-webpack-template-pug) complement *html-webpack-plugin* and provide more powerful templates to use with it.
 
-There are also specific plugins that extend *html-webpack-plugin*'s functionality. I’ve listed examples of these below:
+There are also specific plugins that extend *html-webpack-plugin*'s functionality. I've listed examples of these below:
 
 * [favicons-webpack-plugin](https://www.npmjs.com/package/favicons-webpack-plugin) is able to generate favicons.
 * [script-ext-html-webpack-plugin](https://www.npmjs.com/package/script-ext-html-webpack-plugin) gives you more control over script tags and allows you to tune script loading further.
@@ -233,7 +233,7 @@ There are also specific plugins that extend *html-webpack-plugin*'s functionalit
 
 ## Conclusion
 
-Even though you have managed to get webpack up and running, it does not do that much yet. Developing against it would be painful. Each time you wanted to check out the application, you would have to build it manually using `npm run build` and then refresh the browser. That’s where webpack’s more advanced features come in.
+Even though you have managed to get webpack up and running, it does not do that much yet. Developing against it would be painful. Each time you wanted to check out the application, you would have to build it manually using `npm run build` and then refresh the browser. That's where webpack's more advanced features come in.
 
 To recap:
 

@@ -2,7 +2,7 @@
 
 Sometimes a part of your code should execute only during development. Or you could have experimental features in your build that are not ready for production yet. This code should not end up in the production build.
 
-As JavaScript minifiers can remove dead code (`if (false)`), you can build on top of this idea and write code that gets transformed into this form. Webpack’s `DefinePlugin` enables replacing **free variables** so that you can convert `if (process.env.NODE_ENV === 'development')` kind of code to `if (true)` or `if (false)` depending on the environment.
+As JavaScript minifiers can remove dead code (`if (false)`), you can build on top of this idea and write code that gets transformed into this form. Webpack's `DefinePlugin` enables replacing **free variables** so that you can convert `if (process.env.NODE_ENV === 'development')` kind of code to `if (true)` or `if (false)` depending on the environment.
 
 You can find packages that rely on this behavior. React is perhaps the most known example of an early adopter of the technique. Using `DefinePlugin` can bring down the size of your React production build somewhat as a result, and you may see a similar effect with other packages as well.
 
@@ -148,7 +148,7 @@ You went from 150 kB to 45 kB, and finally, to 24 kB. The final build is a littl
 
 Given the 24 kB can be served gzipped, it is somewhat reasonable. gzipping will drop around another 40%, and it is well supported by browsers.
 
-It is good to remember that you didn’t include *react-dom* in this case and that would add around 100 kB to the final result. To get back to these figures, you would have to use a lighter alternative such as Preact or react-lite as discussed in the *Consuming Packages* chapter.
+It is good to remember that you didn't include *react-dom* in this case and that would add around 100 kB to the final result. To get back to these figures, you would have to use a lighter alternative such as Preact or react-lite as discussed in the *Consuming Packages* chapter.
 
 T> `webpack.EnvironmentPlugin(['NODE_ENV'])` is a shortcut that allows you to refer to environment variables. It uses `DefinePlugin` underneath and you can achieve the same effect by passing `process.env.NODE_ENV` to the custom function you made. The [documentation covers `EnvironmentPlugin`](https://webpack.js.org/plugins/environment-plugin/) in greater detail.
 
@@ -170,7 +170,7 @@ The techniques discussed in this chapter can be used to choose entire modules de
     └── store.prod.js
 ```
 
-The idea is that you will choose either `dev` or `prod` version of the store depending on the environment. It’s that *index.js* which does the hard work like this:
+The idea is that you will choose either `dev` or `prod` version of the store depending on the environment. It's that *index.js* which does the hard work like this:
 
 ```javascript
 if(process.env.NODE_ENV === 'production') {
@@ -180,13 +180,13 @@ if(process.env.NODE_ENV === 'production') {
 }
 ```
 
-Webpack can pick the right code based on the `DefinePlugin` declaration and this code. It is good to note that you will have to use CommonJS module definition style here: ES6 `import`s don’t allow dynamic behavior like this by design.
+Webpack can pick the right code based on the `DefinePlugin` declaration and this code. It is good to note that you will have to use CommonJS module definition style here: ES6 `import`s don't allow dynamic behavior like this by design.
 
 T> A related technique, **aliasing**, is discussed in the *Consuming Packages* chapter. You could alias to development or production particular file depending on the environment. The problem is that it will tie your setup to webpack in a tighter way than the solution above.
 
 ## Webpack Optimization Plugins
 
-Webpack includes a collection of optimization related plugins. I’ve listed the most important ones below:
+Webpack includes a collection of optimization related plugins. I've listed the most important ones below:
 
 * [compression-webpack-plugin](https://www.npmjs.com/package/compression-webpack-plugin) allows you to push the problem of generating compressed files to webpack to potentially save processing time on the server.
 * `webpack.optimize.UglifyJsPlugin` allows you to minify output using different heuristics. Certain of them break code unless you are careful.

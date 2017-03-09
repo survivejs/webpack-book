@@ -6,7 +6,7 @@ Despite this, it is a good idea to set them up with webpack or at least in a sep
 
 ## Brief Introduction to ESLint
 
-The linter that started it all for JavaScript is Douglas Crockford’s [JSLint](http://www.jslint.com/). JSLint is known to be opinionated like Douglas himself. The next step in evolution was [JSHint](http://jshint.com/), which took the opinionated edge out of JSLint and allowed for more customization. [ESLint](http://eslint.org/) is the newest tool in vogue, and it goes even further.
+The linter that started it all for JavaScript is Douglas Crockford's [JSLint](http://www.jslint.com/). JSLint is known to be opinionated like Douglas himself. The next step in evolution was [JSHint](http://jshint.com/), which took the opinionated edge out of JSLint and allowed for more customization. [ESLint](http://eslint.org/) is the newest tool in vogue, and it goes even further.
 
 ### ESLint Is Customizable
 
@@ -18,7 +18,7 @@ T> It is telling that a competing project, JSCS, [decided to merge its efforts w
 
 ### eslint-config-airbnb
 
-[eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb) is a good example of a popular preset. Often it is enough to find a preset you like, tweak it a little bit to your liking with local rules or by deriving a preset of your own based on it, and then using that. This way you don’t have to worry so much about all the available functionality.
+[eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb) is a good example of a popular preset. Often it is enough to find a preset you like, tweak it a little bit to your liking with local rules or by deriving a preset of your own based on it, and then using that. This way you don't have to worry so much about all the available functionality.
 
 T> [eslint-config-cleanjs](https://www.npmjs.com/package/eslint-config-cleanjs) is a good example of how you can use ESLint to restrict JavaScript to a purely functional subset.
 
@@ -46,7 +46,7 @@ To get started, install ESLint as a development dependency:
 npm install eslint --save-dev
 ```
 
-Next, you’ll need to write configuration so you can run ESLint smoothly through npm. I am using the `lint` namespace to signify it’s a linting related task. I am also enabling caching to improve performance on subsequent runs. Add the following:
+Next, you'll need to write configuration so you can run ESLint smoothly through npm. I am using the `lint` namespace to signify it's a linting related task. I am also enabling caching to improve performance on subsequent runs. Add the following:
 
 **package.json**
 
@@ -61,7 +61,7 @@ leanpub-end-insert
 ...
 ```
 
-Given ESLint expects configuration to work, you need to define rules to describe what to lint and how to react if the rules aren’t obeyed. The severity of an individual rule is defined by a number as follows:
+Given ESLint expects configuration to work, you need to define rules to describe what to lint and how to react if the rules aren't obeyed. The severity of an individual rule is defined by a number as follows:
 
 * 0 - The rule has been disabled.
 * 1 - The rule will emit a warning.
@@ -69,7 +69,7 @@ Given ESLint expects configuration to work, you need to define rules to describe
 
 Rules, such as `quotes`, accept an array instead allowing you to pass extra parameters to them. Refer to the [ESLint rules documentation](http://eslint.org/docs/rules/) for specifics.
 
-Here’s a starting point that will work with the project:
+Here's a starting point that will work with the project:
 
 **.eslintrc.js**
 
@@ -111,7 +111,7 @@ W> If you try a pattern like `build`, it will match files like *build.js* too! R
 
 If you invoke `npm run lint:js` now, it should execute without any warnings or errors. If you see either, this is a good time to try ESLint autofixing. You can run it like this: `npm run lint -- --fix`. Running an npm script this way allows you to pass extra parameters to it.
 
-Another alternative would be to push it behind a *package.json* script. Autofix won’t be able to repair each error, but it can fix a lot. And as time goes by and ESLint improves, it can perform more work.
+Another alternative would be to push it behind a *package.json* script. Autofix won't be able to repair each error, but it can fix a lot. And as time goes by and ESLint improves, it can perform more work.
 
 Beyond vanilla JSON, ESLint supports other formats, such as JavaScript or YAML. I.e., *.eslintrc.yaml* would expect YAML. See the [documentation](http://eslint.org/docs/user-guide/configuring#configuration-file-formats) for further details.
 
@@ -178,7 +178,7 @@ T> Attaching the linting process to Git through a prepush hook allows you to cat
 
 ### Configuring ESLint Further
 
-Since webpack 2, the configuration schema of webpack has become stricter, and it doesn’t allow arbitrary fields at configuration root level anymore. To overcome this issue and to access all functionality of the *eslint-loader*, you’ll need to use `LoaderOptionsPlugin` as below:
+Since webpack 2, the configuration schema of webpack has become stricter, and it doesn't allow arbitrary fields at configuration root level anymore. To overcome this issue and to access all functionality of the *eslint-loader*, you'll need to use `LoaderOptionsPlugin` as below:
 
 ```javascript
 {
@@ -209,11 +209,11 @@ There are more options, and [eslint-loader](https://www.npmjs.com/package/eslint
 
 ## ESLint Tips
 
-I’ve collected different ESLint tips below. The great thing about ESLint is that you can shape it to your purposes. The community around it is active, and you can find good integration in other tooling as well.
+I've collected different ESLint tips below. The great thing about ESLint is that you can shape it to your purposes. The community around it is active, and you can find good integration in other tooling as well.
 
 ### Usability Tips
 
-* It can make sense to rely on an existing preset or set up custom configuration. That’s where `--init` can come in handy. You can run it from `npm bin` and you’ll end up with a call like `node_modules/.bin/eslint --init`
+* It can make sense to rely on an existing preset or set up custom configuration. That's where `--init` can come in handy. You can run it from `npm bin` and you'll end up with a call like `node_modules/.bin/eslint --init`
 * ESLint supports custom formatters through `--format` parameter. [eslint-friendly-formatter](https://www.npmjs.com/package/eslint-friendly-formatter) is an example of a formatter that provides terminal-friendly output. This way you can jump conveniently straight to the warnings and errors from there.
 
 ### Performance Tips
@@ -230,13 +230,13 @@ I’ve collected different ESLint tips below. The great thing about ESLint is th
 
 ## Webpack and JSHint
 
-No JSLint particular loader exists for webpack yet. Fortunately, there’s one for JSHint. You could set it up on a legacy project quickly. The key is in configuring [jshint-loader](https://www.npmjs.com/package/jshint-loader).
+No JSLint particular loader exists for webpack yet. Fortunately, there's one for JSHint. You could set it up on a legacy project quickly. The key is in configuring [jshint-loader](https://www.npmjs.com/package/jshint-loader).
 
 JSHint will look into specific rules to apply from `.jshintrc`. You can also define custom settings within a `jshint` object at your webpack configuration. Exact configuration options have been covered by [the JSHint documentation](http://jshint.com/docs/) in detail.
 
 ## EditorConfig
 
-[EditorConfig](http://editorconfig.org/) allows you to maintain a consistent coding style across different IDEs and editors. Certain even come with built-in support. For others, you should install a separate plugin. Also, you’ll need to set up a file like this:
+[EditorConfig](http://editorconfig.org/) allows you to maintain a consistent coding style across different IDEs and editors. Certain even come with built-in support. For others, you should install a separate plugin. Also, you'll need to set up a file like this:
 
 **.editorconfig**
 
@@ -276,4 +276,4 @@ To recap:
 * EditorConfig complements ESLint by allowing you to define a project-level coding style. Editors integrate with EditorConfig making it easier to keep a project consistent regardless of the development platform.
 * Prettier is an upcoming solution that can format your code automatically. Danger operates on repository level and can perform higher level tasks related to the development process.
 
-Given the webpack configuration of the project is starting to get a little messy, and it won’t get any easier should you extend it, it is a good time to discuss how to compose configuration and improve the situation further.
+Given the webpack configuration of the project is starting to get a little messy, and it won't get any easier should you extend it, it is a good time to discuss how to compose configuration and improve the situation further.
