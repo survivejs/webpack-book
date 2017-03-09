@@ -2,7 +2,7 @@
 
 Web applications have the tendency to grow big as features are developed. The longer it takes for your application to load, the more frustrating it is to the user. This problem is amplified in a mobile environment where the connections can be slow.
 
-Even though splitting our bundles can help a notch, they are not the only solution, and you may still end up having to download a lot of data. Fortunately, it is possible to do better thanks to **code splitting**. It allows us to load code lazily as we need it.
+Even though splitting our bundles can help a notch, they are not the only solution, and you may still end up having to download a lot of data. Fortunately, it is possible to do better thanks to **code splitting**. It allows us to load code lazily as you need it.
 
 You can load more code as the user enters a new view of the application. You can also tie loading to a specific action like scrolling or clicking a button. You could also try to predict what the user is trying to do next and load code based on your guess. This way the functionality would be already there as the user tries to access it.
 
@@ -10,7 +10,7 @@ T> Incidentally, it is possible to implement Google’s [PRPL pattern](https://d
 
 ## Code Splitting Formats
 
-Code splitting can be done in two primary ways in webpack: through a dynamic `import` or `require.ensure` syntax. We’ll be using the former in this project.
+Code splitting can be done in two primary ways in webpack: through a dynamic `import` or `require.ensure` syntax. The former is used in this project.
 
 The goal is to end up with a split point that will get loaded on demand. There can be splits inside splits, and you can structure an entire application based on splits. The advantage of doing this is that then the initial payload of your application can be smaller than it would be otherwise.
 
@@ -94,13 +94,13 @@ require.ensure(
 );
 ```
 
-If you had nested `require.ensure` definitions, you could pull a module to the parent chunk using either syntax. It is a similar idea as we saw in the *Splitting Bundles* chapter.
+If you had nested `require.ensure` definitions, you could pull a module to the parent chunk using either syntax. It is a similar idea as you saw in the *Splitting Bundles* chapter.
 
 T> The formats respect `output.publicPath` option. You can also use `output.chunkFilename` to shape where they output. Example: `chunkFilename: '[name].js'`.
 
 ## Setting Up Code Splitting
 
-To demonstrate the idea of code splitting, we’ll use dynamic `import`. Both ESLint and Babel setup of our project needs additions to make the syntax work.
+To demonstrate the idea of code splitting, you can use dynamic `import`. Both ESLint and Babel setup of our project needs additions to make the syntax work.
 
 ### Configuring ESLint
 
@@ -130,7 +130,7 @@ leanpub-end-insert
 }
 ```
 
-After these changes, ESLint won’t complain if we write `import` in the middle of our code.
+After these changes, ESLint won’t complain if you write `import` in the middle of our code.
 
 ### Configuring Babel
 
@@ -163,7 +163,7 @@ The idea can be demonstrated by setting up a module that contains a string that 
 export default 'Hello from lazy';
 ```
 
-We also need to point the application to this file, so the application knows to load it. This can be done by binding the loading process to click. Whenever the user happens to click the button, we’ll trigger the loading process and replace the content:
+You also need to point the application to this file, so the application knows to load it. This can be done by binding the loading process to click. Whenever the user happens to click the button, you will trigger the loading process and replace the content:
 
 **app/component.js**
 
@@ -348,4 +348,4 @@ I will show you how to tidy up the build in the next chapter.
 
 T> The *Searching with React* appendix contains a complete example of code splitting. It shows how to set up a static site index that’s loaded when the user searches information.
 
-T> [webpack-pwa](https://github.com/webpack/webpack-pwa) illustrates the idea on a larger scale and discusses different shell based approaches. We’ll get back to this topic in the *Multiple Pages* chapter.
+T> [webpack-pwa](https://github.com/webpack/webpack-pwa) illustrates the idea on a larger scale and discusses different shell based approaches. You will get back to this topic in the *Multiple Pages* chapter.

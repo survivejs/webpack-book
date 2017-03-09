@@ -1,10 +1,10 @@
 # Loading Images
 
-HTTP/1 application can be made slow by loading a lot of small assets. Each request comes with an overhead. HTTP/2 will help in this regard and change the situation somewhat drastically. Till then we are stuck with different approaches. Webpack allows a couple of these. They are particularly relevant for loading images.
+HTTP/1 application can be made slow by loading a lot of small assets. Each request comes with an overhead. HTTP/2 will help in this regard and change the situation somewhat drastically. Till then you are stuck with different approaches. Webpack allows a couple of these. They are particularly relevant for loading images.
 
 Webpack allows you to inline assets by using [url-loader](https://www.npmjs.com/package/url-loader). It will output your images as base64 strings within your JavaScript bundles. The process will decrease the number of requests needed while growing the bundle size. It is enough to use *url-loader* during development. You may want to consider other alternatives for the production build, though.
 
-Webpack gives control over the inlining process and can defer loading to [file-loader](https://www.npmjs.com/package/file-loader). *file-loader* outputs image files and returns paths to them instead of inlining. This technique works with other assets types, such as fonts, as we will see in the later chapters.
+Webpack gives control over the inlining process and can defer loading to [file-loader](https://www.npmjs.com/package/file-loader). *file-loader* outputs image files and returns paths to them instead of inlining. This technique works with other assets types, such as fonts, as you will see in the later chapters.
 
 ## Setting Up *url-loader*
 
@@ -14,7 +14,7 @@ If you use the limit option, you will need to install both *url-loader* and *fil
 
 It is important to note that if the limit option is used, *url-loader* will pass possible additional options to *file-loader* making it possible to configure its behavior further.
 
-To load *.jpg*, *.png*, and *.svg* files while inlining files below 25kB, we would set up a loader like this:
+To load *.jpg*, *.png*, and *.svg* files while inlining files below 25kB, you would set up a loader like this:
 
 ```javascript
 {
@@ -79,7 +79,7 @@ exports.loadImages = function({ include, exclude, options } = {}) {
 };
 ```
 
-To attach it to the configuration, adjust as follows. We’ll default to *url-loader* during development and use both *url-loader* and *file-loader* in production to maintain smaller bundle sizes. *url-loader* uses *file-loader* implicitly when `limit` is set and both have to be installed for the setup to work.
+To attach it to the configuration, adjust as follows. You will default to *url-loader* during development and use both *url-loader* and *file-loader* in production to maintain smaller bundle sizes. *url-loader* uses *file-loader* implicitly when `limit` is set and both have to be installed for the setup to work.
 
 **webpack.config.js**
 

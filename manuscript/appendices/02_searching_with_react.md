@@ -1,10 +1,10 @@
 # Searching with React
 
-Let’s say we want to implement a rough little search for our application without a proper backend. You could do it through [lunr](http://lunrjs.com/) and generate a static search index to serve.
+Let’s say you want to implement a rough little search for our application without a proper backend. You could do it through [lunr](http://lunrjs.com/) and generate a static search index to serve.
 
-The problem is that the index can be sizable depending on the amount of the content. The good thing is that we don’t need the search index straight from the start. We can do something smarter. We can start loading the index when the user selects our search field.
+The problem is that the index can be sizable depending on the amount of the content. The good thing is that you don’t need the search index straight from the start. You can do something smarter instead. You can start loading the index when the user selects our search field.
 
-Doing this defers the loading and moves it to a place where it’s more acceptable for performance. Given the initial search will be slower than the subsequent ones we should display a loading indicator. But that’s fine from the user point of view.
+Doing this defers the loading and moves it to a place where it’s more acceptable for performance. Given the initial search will be slower than the subsequent ones you should display a loading indicator. But that’s fine from the user point of view.
 
 Webpack’s **code splitting** feature allows us to do this. See the *Code Splitting* chapter for more detailed discussion and the exact setup required.
 
@@ -12,9 +12,9 @@ Webpack’s **code splitting** feature allows us to do this. See the *Code Split
 
 To implement lazy loading, you will need to decide where to put the split point, put it there, and then handle the `Promise`. The basic `import` looks like `import('./asset').then(asset => ...).catch(err => ...)`.
 
-The nice thing is that this gives us error handling in case something goes wrong (network is down etc.) and gives us a chance to recover. We can also use `Promise` based utilities like `Promise.all` for composing more complicated queries.
+The nice thing is that this gives us error handling in case something goes wrong (network is down etc.) and gives us a chance to recover. You can also use `Promise` based utilities like `Promise.all` for composing more complicated queries.
 
-In this case, we need to detect when the user selects the search element, load the data unless it has been loaded already, and then execute our search logic against it. Using React, we could end up with something like this:
+In this case, you need to detect when the user selects the search element, load the data unless it has been loaded already, and then execute our search logic against it. Using React, you could end up with something like this:
 
 **App.jsx**
 
@@ -71,8 +71,8 @@ export default class App extends React.Component {
       return;
     }
 
-    // If the index doesn't exist, we need to set it up.
-    // Unfortunately we cannot pass the path so we need to
+    // If the index doesn't exist, you need to set it up.
+    // Unfortunately you cannot pass the path so you need to
     // hardcode it (webpack uses static analysis).
     //
     // You could show loading indicator here as loading might

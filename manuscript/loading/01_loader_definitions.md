@@ -67,7 +67,7 @@ module.exports = {
 
 T> If you are not sure how a particular RegExp matches, consider using an online tool, such as [regex101](https://regex101.com/) or [RegExr](http://regexr.com/).
 
-T> Babel is discussed in detail in the *Loading JavaScript* chapter. We’ll attach it to the book project there.
+T> Babel is discussed in detail in the *Loading JavaScript* chapter. You will attach it to the book project there.
 
 ## Loader Evaluation Order
 
@@ -99,7 +99,7 @@ Based on the right to left rule, the example can be split up while keeping it eq
 
 Even though it would be possible to develop an arbitrary configuration using the rule above, it can be convenient to be able to force certain rules to be applied before or after regular ones. The `enforce` field can come in handy here. It can be set to either `pre` or `post` to push processing either before or after other loaders.
 
-We used the idea earlier in the *Linting JavaScript* chapter. Linting is a good example as the build should fail before it does anything else. Using `enforce: 'post'` is rarer and it would imply you want to perform a check against the built source. Performing analysis against the built source is one potential example.
+You used the idea earlier in the *Linting JavaScript* chapter. Linting is a good example as the build should fail before it does anything else. Using `enforce: 'post'` is rarer and it would imply you want to perform a check against the built source. Performing analysis against the built source is one potential example.
 
 The basic syntax goes like this:
 
@@ -169,7 +169,7 @@ Or you can also go through `use` like this:
 },
 ```
 
-If we wanted to use more than one loader, we could pass an array to `use` and expand from there:
+If you wanted to use more than one loader, you could pass an array to `use` and expand from there:
 
 ```javascript
 {
@@ -191,7 +191,7 @@ If we wanted to use more than one loader, we could pass an array to `use` and ex
 
 ## Branching at `use` Using a Function
 
-In the book setup, we compose configuration on a higher level. Another option to achieve similar results would be to branch at `use` as webpack’s loader definitions accept functions that allow you to branch depending on the environment. Consider the example below:
+In the book setup, you compose configuration on a higher level. Another option to achieve similar results would be to branch at `use` as webpack’s loader definitions accept functions that allow you to branch depending on the environment. Consider the example below:
 
 ```javascript
 {
@@ -270,7 +270,7 @@ Webpack can also match based on the resource path and related information:
 * `resourcePath: /inline/` - Match against a resource path without its query. Example match: `/path/foo.inline.png`.
 * `resourceQuery: /inline/` - Match against a resource based on its query. Example match: `/path/foo.png?inline`.
 
-The fields above can be combined to apply different loaders based on the context with the `oneOf` field. To handle images differently based on their query, we could apply a rule like this:
+The fields above can be combined to apply different loaders based on the context with the `oneOf` field. To handle images differently based on their query, you could apply a rule like this:
 
 ```javascript
 {

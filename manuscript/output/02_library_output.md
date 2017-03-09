@@ -147,7 +147,7 @@ You lose the extra wrapping in the second option.
 
 ## AMD
 
-If you remember [RequireJS](http://requirejs.org/), you may recognize the AMD format it uses. In case we use the `amd` target, we’ll get output like this:
+If you remember [RequireJS](http://requirejs.org/), you may recognize the AMD format it uses. In case you can use the `amd` target, you’ll get output like this:
 
 **dist/lib.js**
 
@@ -207,7 +207,7 @@ To understand `umd2` option, you have to understand *optional externals* first.
 
 In webpack terms, externals are dependencies that are resolved outside of webpack and will be available through the environment. Optional externals are dependencies that can exist in the environment, but if they don’t, they will get skipped instead of failing hard.
 
-Consider the following example where we try to load jQuery if it exists:
+Consider the following example where jQuery is loaded if it exists:
 
 **lib/index.js**
 
@@ -226,7 +226,7 @@ export {
 };
 ```
 
-To treat jQuery as an external, we should configure as follows:
+To treat jQuery as an external, you should configure as follows:
 
 ```javascript
 {
@@ -236,7 +236,7 @@ To treat jQuery as an external, we should configure as follows:
 },
 ```
 
-If `libraryTarget: 'umd'` is used, we would get output like this:
+If `libraryTarget: 'umd'` is used, you would get output like this:
 
 **dist/lib.js**
 

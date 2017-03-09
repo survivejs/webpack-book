@@ -35,7 +35,7 @@ Even though Babel can be used standalone, as you can see in the *Authoring Packa
 
 Skipping processing is a good option especially if you don’t rely on any custom language features and work using a modern browser. Processing through Babel becomes almost a necessity when you compile your code for production, though.
 
-You can use Babel with webpack through [babel-loader](https://www.npmjs.com/package/babel-loader). It can pick up project level Babel configuration or you can configure it at the webpack loader itself. [babel-webpack-plugin](https://www.npmjs.com/package/babel-webpack-plugin) is another option, but we’ll opt for the loader in this project as it is the more established alternative.
+You can use Babel with webpack through [babel-loader](https://www.npmjs.com/package/babel-loader). It can pick up project level Babel configuration or you can configure it at the webpack loader itself. [babel-webpack-plugin](https://www.npmjs.com/package/babel-webpack-plugin) is another lesser known option.
 
 Connecting Babel with a project allows you to process webpack configuration through it. To achieve this, name your webpack configuration using the *webpack.config.babel.js* convention. [interpret](https://www.npmjs.com/package/interpret) package enables this and it supports other compilers as well.
 
@@ -85,7 +85,7 @@ exports.loadJavaScript = function({ include, exclude }) {
 };
 ```
 
-Next, we need to connect this with the main configuration. If you are using a modern browser for development, you can consider processing only the production code through Babel. To play it safe, I’ll use it for both production and development environments in this case.
+Next, you need to connect this with the main configuration. If you are using a modern browser for development, you can consider processing only the production code through Babel. To play it safe, I’ll use it for both production and development environments in this case.
 
 Also, I’ll constrain webpack to transform only our application code through Babel as I don’t want it to process files from *node_modules* for example. It is a good practice with JavaScript files.
 
@@ -105,7 +105,7 @@ leanpub-end-insert
 ...
 ```
 
-Even though we have Babel installed and set up, we are still missing one bit: Babel configuration. I prefer to handle it using a *.babelrc* dotfile as other tooling can pick it up as well.
+Even though you have Babel installed and set up, you are still missing one bit: Babel configuration. I prefer to handle it using a *.babelrc* dotfile as other tooling can pick it up as well.
 
 W> There are times when caching Babel compilation can surprise you if your dependencies change in a way that *babel-loader* default caching mechanism doesn’t notice. Override `cacheIdentifier` with a string that has been derived based on data that should invalidate the cache for better control. [Node crypto API](https://nodejs.org/api/crypto.html) and especially its MD5 related functions can come in handy.
 
@@ -121,7 +121,7 @@ Install the preset first:
 npm install babel-preset-env --save-dev
 ```
 
-To make Babel aware of the preset, we need to write a *.babelrc*. Given webpack supports ES6 modules out of the box, we can tell Babel to skip processing them. Skipping this step would break webpack’s HMR mechanism although the production build would still work. We can also constrain the build output to work only in recent versions of Chrome.
+To make Babel aware of the preset, you need to write a *.babelrc*. Given webpack supports ES6 modules out of the box, you can tell Babel to skip processing them. Skipping this step would break webpack’s HMR mechanism although the production build would still work. You can also constrain the build output to work only in recent versions of Chrome.
 
 Adjust the target definition as you like. As long as you follow [browserslist](https://www.npmjs.com/package/browserslist), it should work. Here’s a sample configuration.
 
@@ -147,7 +147,7 @@ T> If you omit the `targets` definition, *babel-preset-env* will compile to ES5 
 
 W> **babel-preset-env** does **not** support *browserslist* file yet. [See issue #26](https://github.com/babel/babel-preset-env/issues/26) for more information.
 
-If you execute `npm run build` now and examine *build/app.js*, the result should be similar to the earlier since it supports the features we are using in our code.
+If you execute `npm run build` now and examine *build/app.js*, the result should be similar to the earlier since it supports the features you are using in our code.
 
 To see that the target definition works, change it to work such as `"browsers": ["IE 8"]`. Since IE 8 doesn’t support `const`s, the code should change. If you build (`npm run build`), now, you should see something a little different:
 

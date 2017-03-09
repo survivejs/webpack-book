@@ -1,8 +1,8 @@
 # Extending with Loaders
 
-As we’ve seen so far, loaders are one of the building blocks of webpack. If you want to load an asset, you’ll most likely need to set up a matching loader definition. Even though there are a lot of [available loaders](https://webpack.js.org/loaders/), it is possible you are missing one fitting your purposes.
+As you have seen so far, loaders are one of the building blocks of webpack. If you want to load an asset, you’ll most likely need to set up a matching loader definition. Even though there are a lot of [available loaders](https://webpack.js.org/loaders/), it is possible you are missing one fitting your purposes.
 
-I will show you next how to develop a couple of small loaders. But before that we’ll discuss how to debug them in isolation.
+I will show you next how to develop a couple of small loaders. But before that you will see how to debug them in isolation.
 
 T> The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API in detail.
 
@@ -149,7 +149,7 @@ leanpub-end-insert
 );
 ```
 
-To capture the option, we need to use [loader-utils](https://www.npmjs.com/package/loader-utils). It has been designed to parse loader options and queries. Install it:
+To capture the option, you need to use [loader-utils](https://www.npmjs.com/package/loader-utils). It has been designed to parse loader options and queries. Install it:
 
 ```bash
 npm install loader-utils --save-dev

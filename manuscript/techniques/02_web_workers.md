@@ -20,7 +20,7 @@ Instead of pushing the loader definition to webpack configuration, I will use in
 
 ## Setting Up a Worker
 
-A worker has to do two things: listen to messages and respond. Between those two actions, it can perform a computation. In this case, we’ll accept text data, append it to itself, and send the result.
+A worker has to do two things: listen to messages and respond. Between those two actions, it can perform a computation. In this case, you will accept text data, append it to itself, and send the result.
 
 **app/worker.js**
 

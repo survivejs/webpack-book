@@ -1,6 +1,6 @@
 # Multiple Pages
 
-Even though webpack is often used for bundling single page applications, it is possible to use it with multiple separate pages as well. The idea is similar to the way we generated multiple output files in the *Targets* chapter. This time, however, we have to generate separate pages. That’s achievable through `HtmlWebpackPlugin` and a bit of configuration.
+Even though webpack is often used for bundling single page applications, it is possible to use it with multiple separate pages as well. The idea is similar to the way you generated multiple output files in the *Targets* chapter. This time, however, you have to generate separate pages. That’s achievable through `HtmlWebpackPlugin` and a bit of configuration.
 
 ## Possible Approaches
 
@@ -14,7 +14,7 @@ In practice, you may find more dimensions. For example, you have to generate i18
 
 ## Generating Multiple Pages
 
-To generate multiple separate pages, they should be initialized somehow. We should also be able to return a configuration for each page, so webpack will pick them up and process them through the multi-compiler mode.
+To generate multiple separate pages, they should be initialized somehow. You should also be able to return a configuration for each page, so webpack will pick them up and process them through the multi-compiler mode.
 
 ### Abstracting Pages
 
@@ -106,7 +106,7 @@ After this change you should have two pages in the application: `/` and `/anothe
 
 ### Injecting Different Script per Page
 
-The question is, how to inject a different script per each page. In the current configuration, the same `entry` is shared by both. To solve the problem, we should move `entry` configuration to lower level and manage it per page. To have a script to test with, set up another entry point like this:
+The question is, how to inject a different script per each page. In the current configuration, the same `entry` is shared by both. To solve the problem, you should move `entry` configuration to lower level and manage it per page. To have a script to test with, set up another entry point like this:
 
 **app/another.js**
 
@@ -119,7 +119,7 @@ let demoComponent = component('Another');
 document.body.appendChild(demoComponent);
 ```
 
-The file could go to a directory of its own. Here we reuse the existing code to get something to show up. Webpack configuration has to point to this file:
+The file could go to a directory of its own. Here the existing code is reused to get something to show up. Webpack configuration has to point to this file:
 
 **webpack.config.js**
 
@@ -200,7 +200,7 @@ After these changes `/another` should show something familiar:
 
 ### Pros and Cons
 
-If you build the application (`npm run build`), you should find *another/index.html*. Based on the generated code, we can make the following observations:
+If you build the application (`npm run build`), you should find *another/index.html*. Based on the generated code, you can make the following observations:
 
 * It is clear how to add more pages to the setup.
 * The generated assets are directly below the build root. The pages are an exception as those are handled by `HtmlWebpackPlugin`, but they still point to the assets below the root. It would be possible to add more abstraction in the form of *webpack.page.js* and manage the paths by exposing a function that accepts page configuration.
@@ -217,7 +217,7 @@ In a more complicated application, you should apply techniques covered in the *S
 
 ### Adjusting Configuration
 
-To reach a code sharing setup, a minor adjustment is needed. Most of the code can remain the same. The way we expose it to webpack has to change so that it receives a single configuration object. As `HtmlWebpackPlugin` picks up all chunks by default, we have to adjust it to pick up only the chunks that are related to each page:
+To reach a code sharing setup, a minor adjustment is needed. Most of the code can remain the same. The way you expose it to webpack has to change so that it receives a single configuration object. As `HtmlWebpackPlugin` picks up all chunks by default, you have to adjust it to pick up only the chunks that are related to each page:
 
 **webpack.config.js**
 
@@ -286,7 +286,7 @@ leanpub-end-insert
 };
 ```
 
-If you generate a build (`npm run build`), you should notice that something is a little different compared to the first multiple page build we did. Instead of two manifest files, you can find only one. If you examine it, you will notice it contains references to all files that were generated.
+If you generate a build (`npm run build`), you should notice that something is a little different compared to the first multiple page build you did. Instead of two manifest files, you can find only one. If you examine it, you will notice it contains references to all files that were generated.
 
 Studying the entry specific files in detail reveals more. You can see that they point to different parts of the manifest. The manifest will run different code depending on the entry. Multiple separate manifests are not needed.
 

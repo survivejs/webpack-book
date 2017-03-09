@@ -6,7 +6,7 @@ A project built with webpack can be deployed to a variety of environments. A pub
 
 [gh-pages](https://www.npmjs.com/package/gh-pages) allows you to host stand-alone applications on GitHub Pages easily. It has to be pointed to a build directory first. It will then pick up the contents and push them to the `gh-pages` branch.
 
-Despite its name, the package works with other services that support hosting from a Git repository as well. But given GitHub is so popular, we can use it to demonstrate the idea. In practice, you would likely have more complicated setup in place that would push the result to other service through a Continuous Integration system.
+Despite its name, the package works with other services that support hosting from a Git repository as well. But given GitHub is so popular, it can be used to demonstrate the idea. In practice, you would likely have more complicated setup in place that would push the result to other service through a Continuous Integration system.
 
 ## Setting Up *gh-pages*
 
@@ -16,7 +16,7 @@ To get started, execute
 npm install gh-pages --save-dev
 ```
 
-We are also going to need a script in *package.json*:
+You are also going to need a script in *package.json*:
 
 **package.json**
 
@@ -33,7 +33,7 @@ leanpub-end-insert
 }
 ```
 
-To make the asset paths work on GitHub Pages, we also need to tweak the `output.publicPath` field. Otherwise, they will point at the root, and that won’t work unless you are hosting behind a domain root (say `survivejs.com`) directly.
+To make the asset paths work on GitHub Pages, `output.publicPath` field has to be adjusted. Otherwise, the asset paths will point at the root, and that won’t work unless you are hosting behind a domain root (say `survivejs.com`) directly.
 
 `publicPath` gives control over the resulting urls you see at *index.html* for instance. If you are hosting your assets on a CDN, this would be the place to tweak. In this case, it’s enough to set it to point the GitHub project like this:
 

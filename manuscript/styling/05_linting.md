@@ -27,7 +27,7 @@ leanpub-end-insert
 ...
 ```
 
-To have something to test with, we should define a dummy rule:
+To have something to test with, there should be a dummy rule:
 
 **.stylelintrc**
 
@@ -141,7 +141,7 @@ T> [stylelint-bare-webpack-plugin](https://www.npmjs.com/package/stylelint-bare-
 
 ## Conclusion
 
-After these changes, we have linting for our styling in place. Now you can catch CSS-related problems.
+After these changes, there is style linting in place. Now you can catch CSS-related problems.
 
 To recap:
 

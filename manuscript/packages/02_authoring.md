@@ -237,7 +237,7 @@ babel ./lib --out-dir ./dist-modules
 
 The command will walk through the `./lib` directory and output to `./dist-modules` a processed file for each module it encounters.
 
-Since we want to avoid having to run the command directly whenever we publish a new version, we can connect it to `prepublish` hook like this:
+Since running that command each time you publish is tedious, you can set up a `prepublish` hook like this:
 
 ```json
 {
@@ -351,7 +351,7 @@ What if someone points to a development version of your package directly through
 
 ### Generating a Distribution for Development Usage
 
-To solve the development distribution problem, we need to hook up a custom script the right way. First, we need to connect the hook with a custom script:
+To solve the development distribution problem, a custom script is required. First, connect the hook with a custom script:
 
 **package.json**
 
@@ -367,7 +367,7 @@ To solve the development distribution problem, we need to hook up a custom scrip
 }
 ```
 
-Secondly, we’ll need the script itself:
+Secondly, define a script like this:
 
 **lib/post_install.js**
 
@@ -404,7 +404,7 @@ function exec(command) {
 }
 ```
 
-The script may need tweaking to fit your purposes. But it’s enough to give you a rough idea. If the `dist-modules` directory is missing, we’ll generate it here.
+The script may need tweaking to fit your purposes. But it’s enough to give you a rough idea. If the `dist-modules` directory is missing, you will generate it here.
 
 For the build script to work, you have to remember to include the source of the package to the distribution version and to tweak *package.json* `files` field accordingly.
 

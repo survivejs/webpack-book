@@ -1,6 +1,6 @@
 # Customizing ESLint
 
-Even though you can get far with vanilla ESLint, there are certain techniques you should know. For instance, sometimes you will want to skip specific rules per file. You may even want to implement rules of your own. We’ll cover these cases briefly next.
+Even though you can get far with vanilla ESLint, there are certain techniques you should know. For instance, sometimes you will want to skip specific rules per file. You may even want to implement rules of your own.
 
 ## Skipping ESLint Rules
 
@@ -64,13 +64,13 @@ ESLint plugins rely on Abstract Syntax Tree (AST) definition of JavaScript. It i
 
 ### Understanding AST
 
-To get a better idea of how AST works and what it looks like, you can check [Esprima online JavaScript AST visualization](http://esprima.org/demo/parse.html) or [AST Explorer by Felix Kling](http://astexplorer.net/). Alternately, you can install `recast` and examine the output it gives. That is the structure we’ll be working with for ESLint rules.
+To get a better idea of how AST works and what it looks like, you can check [Esprima online JavaScript AST visualization](http://esprima.org/demo/parse.html) or [AST Explorer by Felix Kling](http://astexplorer.net/). Alternately, you can install `recast` and examine the output it gives. That is the structure you’ll be working with for ESLint rules.
 
 T> [Codemod](https://github.com/facebook/codemod) allows you to perform large-scale changes to your codebase through AST based transformations.
 
 ### Writing a Plugin
 
-In ESLint’s case, we want to check the structure and report in case something is wrong. Follow the steps below to set up a plugin:
+In ESLint’s case, the AST structure can be checked. If something is wrong, it should let you know. Follow the steps below to set up a plugin:
 
 1. Set up a new project named `eslint-plugin-custom`. You can replace `custom` with whatever you want. ESLint follows this naming convention.
 2. Execute `npm init -y` to create a dummy *package.json*
@@ -105,13 +105,13 @@ module.exports = {
 };
 ```
 
-In this case, we report for every identifier found. In practice, you’ll likely want to do something more complex than this, but this is a good starting point.
+In this case, you report for every identifier found. In practice, you’ll likely want to do something more complex than this, but this is a good starting point.
 
 Next, you need to execute `npm link` within `eslint-plugin-custom` to make your plugin visible to your system. `npm link` allows you to consume a development version of a library you are developing. To reverse the link, you can execute `npm unlink` when you feel like it.
 
 T> If you want to do something serious, you should point to your plugin through *package.json*.
 
-We need to alter our project configuration to make it find the plugin and the rule within.
+You need to alter our project configuration to make it find the plugin and the rule within.
 
 **.eslintrc**
 

@@ -82,7 +82,7 @@ Perhaps the problem with HappyPack is that it couples your configuration with it
 
 ## Low-Level Optimizations
 
-Certain lower-level optimizations can be good to know. The key is to allow webpack to perform less work. We’ve already implemented a couple of these, but it’s a good idea to enumerate them:
+Certain lower-level optimizations can be good to know. The key is to allow webpack to perform less work. You have already implemented a couple of these, but it’s a good idea to enumerate them:
 
 * Consider using faster source map variants during development or skip them. Skipping is possible if you don’t process the code in any way.
 * Use [babel-preset-env](https://www.npmjs.com/package/babel-preset-env) during development instead of source maps to transpile fewer features for modern browsers and make the code more readable and easier to debug.
@@ -102,9 +102,9 @@ There are a series of loader and plugin specific optimizations to consider:
 
 ## Optimizing Rebundling Speed During Development
 
-It is possible to optimize rebundling times during development by pointing the development setup to a minified version of a library, such as React. In React’s case, we will lose `propType`-based validation. But if speed is more important, this technique may be worth a go.
+It is possible to optimize rebundling times during development by pointing the development setup to a minified version of a library, such as React. In React’s case, you will lose `propType`-based validation. But if speed is more important, this technique may be worth a go.
 
-To achieve what we want, it is possible to use `module.noParse` option. It accepts a RegExp or an array of RegExps. In addition to telling webpack not to parse the minified file we want to use, we also need to point `react` to it by using `resolve.alias`.
+`module.noParse` accepts a RegExp or an array of RegExps. In addition to telling webpack not to parse the minified file you want to use, you also have to point `react` to it by using `resolve.alias`.
 
 It is possible to encapsulate the core idea within a function like this:
 
@@ -157,7 +157,7 @@ leanpub-end-insert
 
 After this change, the application should be at least a little faster to rebuild. The amount of impact depends on the underlying implementation. The technique can also be applied during production usage.
 
-T> Given `module.noParse` accepts a regular expression if we wanted to ignore all `*.min.js` files, we could set it to `/\.min\.js/`. That can be a more generic approach.
+T> Given `module.noParse` accepts a regular expression if you wanted to ignore all `*.min.js` files, you could set it to `/\.min\.js/`. That can be a more generic approach.
 
 T> The aliasing idea is discussed in detail in the *Consuming Packages* chapter.
 

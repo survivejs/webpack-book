@@ -92,7 +92,7 @@ T> Jamund Ferguson has written an excellent blog series on how to port from [Req
 
 UMD, universal module definition, takes it all to the next level. It is a monster of a format that aims to make the various formats compatible with each other. Check out [the official definitions](https://github.com/umdjs/umd) to understand it in greater detail.
 
-T> Webpack can generate UMD wrappers for you (`output.libraryTarget: 'umd'`). We’ll get back to this later in the *Authoring Packages* chapter.
+T> Webpack can generate UMD wrappers for you (`output.libraryTarget: 'umd'`). You will get back to this later in the *Authoring Packages* chapter.
 
 ## Grunt
 
@@ -100,7 +100,7 @@ T> Webpack can generate UMD wrappers for you (`output.libraryTarget: 'umd'`). We
 
 [Grunt](http://gruntjs.com/) was the first popular task runner for frontend developers. Its plugin architecture contributed towards its popularity. Plugins are often complex by themselves. As a result, when configuration grows, it can become difficult to understand what’s going on.
 
-Here’s an example from [Grunt documentation](http://gruntjs.com/sample-gruntfile). In this configuration, we define a linting and a watcher task. When the *watch* task gets run, it will trigger the *lint* task as well. This way, as we run Grunt, we’ll get warnings in real-time in our terminal as we edit our source code.
+Here’s an example from [Grunt documentation](http://gruntjs.com/sample-gruntfile). In this configuration, you define a linting and a watcher tasks. When the *watch* task gets run, it will trigger the *lint* task as well. This way, as you run Grunt, you’ll get warnings in real-time in our terminal as you edit the source code.
 
 **Gruntfile.js**
 
@@ -230,7 +230,7 @@ Instead of `rm -rf`, you likely want to use utilities such as [rimraf](https://w
 
 ![Browserify](images/browserify.png)
 
-Dealing with JavaScript modules has always been a bit of a problem. The language itself didn’t have the concept of modules till ES6. Ergo, we have been stuck in the '90s when it comes to browser environments. Various solutions, including [AMD](http://requirejs.org/docs/whyamd.html), have been proposed.
+Dealing with JavaScript modules has always been a bit of a problem. The language itself didn’t have the concept of modules till ES6. Ergo, the language was stuck in the '90s when it comes to browser environments. Various solutions, including [AMD](http://requirejs.org/docs/whyamd.html), have been proposed.
 
 [Browserify](http://browserify.org/) is one solution to the module problem. It allows CommonJS modules to be bundled together. You can hook it up with Gulp, and you can find smaller transformation tools that allow you to move beyond the basic usage. For example, [watchify](https://www.npmjs.com/package/watchify) provides a file watcher that creates bundles for you during development saving effort.
 

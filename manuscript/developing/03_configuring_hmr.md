@@ -2,13 +2,13 @@
 
 **Hot Module Replacement** (HMR) builds on top the WDS. It enables an interface that makes it possible to swap modules live. For example, *style-loader* can update your CSS without forcing a refresh. As CSS is stateless by design, implementing HMR for it is ideal.
 
-HMR is possible with JavaScript too, but due to the state we have in our applications, it’s harder. In the *Hot Module Replacement with React* appendix, we discuss how to set it up with React. You can use the same idea elsewhere as well. Vue and [vue-hot-reload-api](https://www.npmjs.com/package/vue-hot-reload-api) is a good example.
+HMR is possible with JavaScript too, but due to application state, it’s harder. In the *Hot Module Replacement with React* appendix, you can see how to set it up with React. You can use the same idea elsewhere as well. Vue and [vue-hot-reload-api](https://www.npmjs.com/package/vue-hot-reload-api) is a good example.
 
-We could use `webpack-dev-server --hot` to achieve this from the CLI. `--hot` enables the HMR portion from webpack through a particular plugin designed for this purpose and writes an entry pointing to a JavaScript file related to it. Another option is to go through webpack configuration as that provides more flexibility.
+You could use `webpack-dev-server --hot` to achieve this from the CLI. `--hot` enables the HMR portion from webpack through a particular plugin designed for this purpose and writes an entry pointing to a JavaScript file related to it. Another option is to go through webpack configuration as that provides more flexibility.
 
 ## Defining Configuration for HMR
 
-If you set up WDS through webpack configuration, you have to attach WDS specific options to a `devServer` field and enable `HotModuleReplacementPlugin`. Also, we need to combine the new configuration with the old one so that it doesn’t get applied to the production build as HMR doesn’t have any value there.
+If you set up WDS through webpack configuration, you have to attach WDS specific options to a `devServer` field and enable `HotModuleReplacementPlugin`. Also, you need to combine the new configuration with the old one so that it doesn’t get applied to the production build as HMR doesn’t have any value there.
 
 Consider the basic setup below:
 
@@ -95,13 +95,13 @@ leanpub-end-insert
 };
 ```
 
-It’s plenty of code. Especially the `Object.assign` portion looks knotty. We’ll fix that up in the *Splitting Configuration* chapter as we discuss configuration composition in detail.
+It’s plenty of code. Especially the `Object.assign` portion looks knotty. That will be fixed in the *Splitting Configuration* chapter soon enough.
 
 Execute `npm start` and surf to `http://localhost:8080`. Try modifying *app/component.js*. Note how it fails to refresh.
 
 ![No refresh](images/no-refresh.png)
 
-We get this behavior because we set `hotOnly: true` for WDS. Going with `inline: true` would have swallowed the error and refreshed the page. This behavior is okay, though, as we will implement the HMR interface next to avoid the need for the hard refresh. Before that, we can do something about those cryptic numbers to get more sensible output.
+You see this behavior because you set `hotOnly: true` for WDS. Going with `inline: true` would have swallowed the error and refreshed the page. This behavior is okay, though, as the HMR interface is implemented next to avoid the need for the hard refresh. Before that, something can be done about those cryptic numbers to get more sensible output.
 
 You can access the application alternately through `http://localhost:8080/webpack-dev-server/` instead of the root. It will provide status information at the top of the application. If your application relies on WebSockets and you use WDS proxying, you’ll need to use this particular url: otherwise, WDS logic will interfere.
 
@@ -145,15 +145,15 @@ If you restart the development server (terminate it and run `npm start`), you sh
 
 ![No refresh, but better output](images/no-refresh2.png)
 
-The message tells us that even though the HMR interface notified the client portion of the code of a hot update, we failed to do anything about it. We have to fix this next to make the code work as we expect.
+The message tells us that even though the HMR interface notified the client portion of the code of a hot update, nothing was done about it. This is something to fix next.
 
-T> We will perform a similar trick for production usage later in this book in the *Adding Hashes to Filenames* chapter.
+T> The same idea works for production usage as you will see in the *Adding Hashes to Filenames* chapter.
 
 T> A similar effect can be achieved by setting `output.pathInfo = true`. It will still use number based indices while emitting the path to the module within a comment. This should be used for development purposes only.
 
 ## Implementing the HMR Interface
 
-Webpack exposes the HMR interface through a global, `module.hot`. It provides updates through `module.hot.accept(<path to watch>, <handler>)` function and we need to patch the application there. In this case, it is enough to replace the old DOM node with a newer one as we receive updates.
+Webpack exposes the HMR interface through a global, `module.hot`. It provides updates through `module.hot.accept(<path to watch>, <handler>)` function and you need to patch the application there. In this case, it is enough to replace the old DOM node with a newer one as you receive updates.
 
 The following implementation illustrates the idea:
 
@@ -195,7 +195,7 @@ T> That `if(module.hot)` block will be eliminated entirely from the production b
 
 ## HMR on Windows, Ubuntu, and Vagrant
 
-The setup may be problematic on older versions of Windows, Ubuntu, and Vagrant. We can solve this through polling:
+The setup may be problematic on older versions of Windows, Ubuntu, and Vagrant. You can solve this through polling:
 
 **webpack.config.js**
 
@@ -282,6 +282,6 @@ To recap:
 * The default HMR setup may be problematic on certain systems. For this reason, you may have to enable more resource intensive polling instead of relying on system level hook based options.
 * WDS does far more than refreshing and HMR. For example proxying allows you to connect it to other servers.
 
-In the next chapter, we’ll make it harder to make mistakes by introducing JavaScript linting to our project.
+In the next chapter, you will make it harder to make mistakes by introducing JavaScript linting to the project.
 
 T> The *Hot Module Replacement with React* appendix discusses HMR specifics related to React.

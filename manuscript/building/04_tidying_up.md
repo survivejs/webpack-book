@@ -1,6 +1,6 @@
 # Tidying Up
 
-The current setup doesn’t clean the *build* directory between builds. As a result, it will keep on accumulating files as our project changes. Given this can get annoying, we should clean it up in between.
+The current setup doesn’t clean the *build* directory between builds. As a result, it will keep on accumulating files as our project changes. Given this can get annoying, you should clean it up in between.
 
 Another nice touch would be to include information about the build itself to the generated bundles as a small comment at the top of each file including version information at least.
 
@@ -16,7 +16,7 @@ Install the [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-p
 npm install clean-webpack-plugin --save-dev
 ```
 
-Next, we need to define a little function to wrap the basic idea. We could use the plugin directly, but this feels like something that could be used across projects, so it makes sense to push it to our library:
+Next, you need to define a little function to wrap the basic idea. You could use the plugin directly, but this feels like something that could be used across projects, so it makes sense to push it to our library:
 
 **webpack.parts.js**
 

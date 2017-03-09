@@ -4,7 +4,7 @@
 
 ## Demonstrating Tree Shaking
 
-To shake code, we need to define a module and use only a part of its code. Set one up like this:
+To shake code, you have to define a module and use only a part of its code. Set one up like this:
 
 **app/shake.js**
 
@@ -23,7 +23,7 @@ export {
 };
 ```
 
-To make sure we use a part of the code, alter the application entry point:
+To make sure you use a part of the code, alter the application entry point:
 
 **app/index.js**
 

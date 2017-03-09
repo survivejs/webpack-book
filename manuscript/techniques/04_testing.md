@@ -94,9 +94,9 @@ T> `--grep <pattern>` can be used for constraining the behavior if you want to f
 
 ### Configuring Webpack
 
-Webpack can provide similar functionality through a web interface. We have written the configuration parts we need earlier in this book, so now it’s more about combining those together.
+Webpack can provide similar functionality through a web interface. The hard parts of the problem have been solved earlier in this book, what remain is combining those solutions together through configuration.
 
-To tell webpack which tests to run, we have to import them somehow. The *Dynamic Loading* chapter discussed `require.context` that allows us to aggregate files based on a rule. It is ideal here. Set up an entry point as follows:
+To tell webpack which tests to run, they need to be imported somehow. The *Dynamic Loading* chapter discussed `require.context` that allows us to aggregate files based on a rule. It is ideal here. Set up an entry point as follows:
 
 **tests/index.js**
 
@@ -165,7 +165,7 @@ On the downside, now you need a browser to examine the tests. *mocha-loader* is 
 
 ![Karma](images/karma.png)
 
-[Karma](https://karma-runner.github.io/) is a test runner that allows you to run tests against real devices and [PhantomJS](http://phantomjs.org/), a headless browser. [karma-webpack](https://www.npmjs.com/package/karma-webpack) is a Karma preprocessor that allows you to connect Karma with webpack. The same benefits as before apply still. This time around, however, we have more control over the test environment.
+[Karma](https://karma-runner.github.io/) is a test runner that allows you to run tests against real devices and [PhantomJS](http://phantomjs.org/), a headless browser. [karma-webpack](https://www.npmjs.com/package/karma-webpack) is a Karma preprocessor that allows you to connect Karma with webpack. The same benefits as before apply still. This time around, however, there is more control over the test environment.
 
 To get started, install Karma, *karma-mocha* reporter, and *karma-webpack*:
 
@@ -295,7 +295,7 @@ To know how much of our code the tests cover, it can be a good idea to generate 
 
 T> LCOV integrates well with visualization services. You can send coverage information to an external service through a continuous integration environment and track the status in one place.
 
-[isparta](https://www.npmjs.com/package/isparta) is a popular, ES6 compatible code coverage tool. Connecting it with Karma will require configuration. Most importantly we have to instrument the code through [babel-plugin-istanbul](https://www.npmjs.com/package/babel-plugin-istanbul). Doing this requires a small amount of webpack configuration as well due to our setup. [karma-coverage](https://www.npmjs.com/package/karma-coverage) is required for the reporting portion of the problem.
+[isparta](https://www.npmjs.com/package/isparta) is a popular, ES6 compatible code coverage tool. Connecting it with Karma will require configuration. Most importantly the code has to be instrumented through [babel-plugin-istanbul](https://www.npmjs.com/package/babel-plugin-istanbul). Doing this requires a small amount of webpack configuration as well due to our setup. [karma-coverage](https://www.npmjs.com/package/karma-coverage) is required for the reporting portion of the problem.
 
 Install the dependencies first:
 
@@ -342,7 +342,7 @@ leanpub-end-insert
 
 T> If you want to understand the `env` idea, see the *Loading JavaScript* chapter.
 
-On Karma side, we have to set up reporting and connect Karma configuration with webpack. *karma-webpack* provides two fields for this purpose: `webpack` and `webpackMiddleware`. We’ll use the former in this case to make sure the code gets processed through Babel.
+On Karma side, reporting has to be set up and Karma configuration has to be connected with webpack. *karma-webpack* provides two fields for this purpose: `webpack` and `webpackMiddleware`. You will use the former in this case to make sure the code gets processed through Babel.
 
 **karma.conf.js**
 
@@ -394,7 +394,7 @@ Install Jest first:
 npm install jest --save-dev
 ```
 
-Jest captures tests through *package.json* [configuration](https://facebook.github.io/jest/docs/configuration.html). It detects tests within a *__tests__* directory by default. Given we are following a different convention, we have to override the defaults:
+Jest captures tests through *package.json* [configuration](https://facebook.github.io/jest/docs/configuration.html). It detects tests within a *__tests__* directory by default. To adapt to the naming convention of this demonstration, override the defaults:
 
 **package.json**
 

@@ -21,7 +21,7 @@ T> There are more options available, and you can even modify the hashing and dig
 
 ### Example Placeholders
 
-Assuming we have a configuration like this:
+Assuming you have the following configuration:
 
 ```javascript
 {
@@ -95,7 +95,7 @@ leanpub-end-insert
 ...
 ```
 
-If we used `chunkhash` for the extracted CSS as well, this would lead to problems as our code points to the CSS through JavaScript bringing it to the same entry. That means if the application code or CSS changed, it would invalidate both. Therefore, instead of `chunkhash`, we can use `contenthash` that’s generated based on the extracted content:
+If you used `chunkhash` for the extracted CSS as well, this would lead to problems as our code points to the CSS through JavaScript bringing it to the same entry. That means if the application code or CSS changed, it would invalidate both. Therefore, instead of `chunkhash`, you can use `contenthash` that’s generated based on the extracted content:
 
 **webpack.parts.js**
 
@@ -151,13 +151,13 @@ vendor.f897ca59.js.map     135 kB       2  [emitted]  vendor
 
 Our files have neat hashes now. To prove that it works for styling, you could try altering *app/main.css* and see what happens to the hashes when you rebuild.
 
-There’s one problem, though. If you change the application code, it will invalidate the vendor file as well! Solving this requires extracting a **manifest**, but before that, we can improve the way the production build handles module IDs.
+There’s one problem, though. If you change the application code, it will invalidate the vendor file as well! Solving this requires extracting a **manifest**, but before that, you can improve the way the production build handles module IDs.
 
 ## Enabling `HashedModuleIdsPlugin`
 
-Webpack uses number based IDs for the module code it generates. The problem is that they are difficult to work with and can lead to difficult to debug issues, particularly with hashing. Like we did with the development setup earlier, we can perform a simplification here as well.
+Webpack uses number based IDs for the module code it generates. The problem is that they are difficult to work with and can lead to difficult to debug issues, particularly with hashing. Like you did with the development setup earlier in the *Configuring Hot Module Replacement* chapter, you can perform a simplification here as well.
 
-`HashedModuleIdsPlugin` is like `NamedModulesPlugin` except it hashes the result and hides the path information. The process keeps module IDs stable as they aren’t derived based on order. We sacrifice a couple of bytes for a cleaner setup, but the trade-off is well worth it.
+`HashedModuleIdsPlugin` is like `NamedModulesPlugin` except it hashes the result and hides the path information. The process keeps module IDs stable as they aren’t derived based on order. You sacrifice a couple of bytes for a cleaner setup, but the trade-off is well worth it.
 
 The change required is tiny. Tweak the configuration as follows:
 
@@ -209,7 +209,7 @@ vendor.3c78d233.js.map     135 kB       2  [emitted]  vendor
 ...
 ```
 
-Note how the output has changed, though. Instead of numbers, you can see hashes. But this is expected given the change we made.
+Note how the output has changed, though. Instead of numbers, you can see hashes. But this is expected given the change you made.
 
 ## Conclusion
 

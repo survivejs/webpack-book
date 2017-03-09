@@ -63,13 +63,13 @@ leanpub-end-insert
 };
 ```
 
-Patching is needed still as we have to make the application side aware of hot loading.
+Patching is needed still as you have to make the application side aware of hot loading.
 
 T> This tweak may not be needed in the future as *react-hot-loader* evolves. It is possible to inject an empty module for `'react-hot-loader/patch'` if it detects that production environment is used. For now, this extra tweak is needed.
 
 ## Setting Up the Application
 
-On React side, *react-hot-loader* relies on an `AppContainer` that deals with patching. We still have to implement the Hot Module Replacement interface as earlier. Set up an entry point for the demo as follows:
+On React side, *react-hot-loader* relies on an `AppContainer` that deals with patching. You still have to implement the Hot Module Replacement interface as earlier. Set up an entry point for the demo as follows:
 
 **app/react.js**
 
@@ -132,9 +132,9 @@ If you run the application after these changes and modify the file above, it sho
 
 ## Removing *react-hot-loader* Related Code from the Production Output
 
-If you build the application (`npm run build`) and examine the output, you may spot references to `__REACT_HOT_LOADER__` there due to the Babel setup. It will use `react-hot-loader/babel` plugin regardless of the build target. To overcome this slight annoyance, we should configure Babel to apply the plugin only when we are developing.
+If you build the application (`npm run build`) and examine the output, you may spot references to `__REACT_HOT_LOADER__` there due to the Babel setup. It will use `react-hot-loader/babel` plugin regardless of the build target. To overcome this slight annoyance, you should configure Babel to apply the plugin only when you are developing.
 
-Babel provides an [env option](https://babeljs.io/docs/usage/babelrc/#env-option) for this purpose. It respects both `NODE_ENV` and `BABEL_ENV` environment variables. If `BABEL_ENV` is set, it will receive precedence. To fix the issue, we can push the problematic Babel plugin behind a development specific `env` while controlling its behavior within webpack configuration by setting `BABEL_ENV`.
+Babel provides an [env option](https://babeljs.io/docs/usage/babelrc/#env-option) for this purpose. It respects both `NODE_ENV` and `BABEL_ENV` environment variables. If `BABEL_ENV` is set, it will receive precedence. To fix the issue, you can push the problematic Babel plugin behind a development specific `env` while controlling its behavior within webpack configuration by setting `BABEL_ENV`.
 
 The webpack part should be adjusted like this:
 
@@ -152,7 +152,7 @@ leanpub-end-insert
 };
 ```
 
-Babel will now receive the target we pass to webpack allowing us to fix the behavior. Tweak Babel setup, so it matches the fields below. The key part is in pushing `react-hot-loader/patch` below `env`:
+Babel will now receive the target you pass to webpack allowing us to fix the behavior. Tweak Babel setup, so it matches the fields below. The key part is in pushing `react-hot-loader/patch` below `env`:
 
 **.babelrc**
 
@@ -229,7 +229,7 @@ Webpack provides [resolve.extensions](https://webpack.js.org/guides/migrating/#r
 },
 ```
 
-To resolve the problem at loader configuration, instead of matching against `/\.js$/`, we can expand it to include `.jsx` extension through `/\.(js|jsx)$/`. Another option would be to write `/\.jsx?$/`, but I find the explicit alternative more readable.
+To resolve the problem at loader configuration, instead of matching against `/\.js$/`, you can expand it to include `.jsx` extension through `/\.(js|jsx)$/`. Another option would be to write `/\.jsx?$/`, but I find the explicit alternative more readable.
 
 W> In webpack 1 you had to use `extensions: ['', '.js', '.jsx']` to match files without an extension too. This isn’t needed in webpack 2.
 

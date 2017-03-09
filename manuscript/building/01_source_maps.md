@@ -2,7 +2,7 @@
 
 ![Source maps in Chrome](images/sourcemaps.png)
 
-To improve the debuggability of an application, we can set up **source maps** for both code and styling. Source maps allow you to see exactly where an error was raised. They map the transformed source to its original form so that you can use browser tooling for debugging making them particularly valuable for development.
+To improve the debuggability of an application, you can set up **source maps** for both code and styling. Source maps allow you to see exactly where an error was raised. They map the transformed source to its original form so that you can use browser tooling for debugging making them particularly valuable for development.
 
 One approach is to simply skip source maps during development and rely on browser support of language features. If you use ES6 without any extensions and develop using a modern browser, this can work. The great advantage of doing this is that you avoid all the problems related to source maps while gaining better performance.
 
@@ -20,9 +20,9 @@ T> It is a good idea to study the documentation of the loaders you are using to 
 
 ## Enabling Source Maps
 
-Webpack provides two ways to enable source maps. There’s a `devtool` shortcut field. You can also find two plugins that give more options to tweak. We’ll discuss the plugins briefly at the end of this chapter.
+Webpack provides two ways to enable source maps. There’s a `devtool` shortcut field. You can also find two plugins that give more options to tweak. The plugins will be discussed briefly at the end of this chapter.
 
-To get started, we can wrap the core idea within a configuration part. You can convert this to use the plugins later if you want:
+To get started, you can wrap the core idea within a configuration part. You can convert this to use the plugins later if you want:
 
 **webpack.parts.js**
 
@@ -36,7 +36,7 @@ exports.generateSourceMaps = function({ type }) {
 };
 ```
 
-Webpack supports a wide variety of source map types. These vary based on quality and build speed. For now, we can enable `eval-source-map` for development and `source-map` for production. This way we get good quality while trading off performance, especially during development.
+Webpack supports a wide variety of source map types. These vary based on quality and build speed. For now, you can enable `eval-source-map` for development and `source-map` for production. This way you get good quality while trading off performance, especially during development.
 
 `eval-source-map` builds slowly initially, but it provides fast rebuild speed. More rapid development specific options, such as `cheap-module-eval-source-map` and `eval`, produce lower quality source maps. All `eval` options will emit source maps as a part of your JavaScript code.
 
@@ -408,7 +408,7 @@ The *css-loader* is [known to have issues](https://github.com/webpack-contrib/cs
 
 ## Conclusion
 
-Source maps can be convenient during development. They provide us with better means to debug our applications as we can still examine the original code over a generated one. They can be valuable even for production usage and allow you to debug issues while serving a client-friendly version of your application.
+Source maps can be convenient during development. They provide us with better means to debug our applications as you can still examine the original code over a generated one. They can be valuable even for production usage and allow you to debug issues while serving a client-friendly version of your application.
 
 To recap:
 

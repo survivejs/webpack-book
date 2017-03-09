@@ -1,6 +1,6 @@
 # Automatic Browser Refresh
 
-Tools, such as [LiveReload](http://livereload.com/) or [Browsersync](http://www.browsersync.io/), allow us to refresh the browser as we develop our application and avoid refresh for CSS changes. It is possible to setup Browsersync to work with webpack through [browser-sync-webpack-plugin](https://www.npmjs.com/package/browser-sync-webpack-plugin), but webpack has more tricks in store.
+Tools, such as [LiveReload](http://livereload.com/) or [Browsersync](http://www.browsersync.io/), allow us to refresh the browser as you develop the application and avoid refresh for CSS changes. It is possible to setup Browsersync to work with webpack through [browser-sync-webpack-plugin](https://www.npmjs.com/package/browser-sync-webpack-plugin), but webpack has more tricks in store.
 
 ## Webpack `watch` Mode and *webpack-dev-server*
 
@@ -30,7 +30,7 @@ W> If you are using an IDE, consider enabling **save write** from its settings. 
 
 ## Attaching *webpack-dev-server* to the Project
 
-To integrate WDS to our project, we should define an npm script for it. To follow npm conventions, we can call it as *start*. To tell our targets apart, we should pass information about the environment to webpack configuration. This will allow us to specialize the configuration as needed:
+To integrate WDS to our project, you should define an npm script for it. To follow npm conventions, you can call it as *start*. To tell our targets apart, you should pass information about the environment to webpack configuration. This will allow us to specialize the configuration as needed:
 
 **package.json**
 
@@ -144,7 +144,7 @@ Even though `--env` allows us to pass strings to the configuration, it can do a 
 ...
 ```
 
-Instead of a string, we should receive an object `{ target: 'production' }` at configuration now. We could pass more key-value pairs, and they would go to the `env` object. It is important to note that if you set `--env foo` while setting `--env.target`, the string will override the object.
+Instead of a string, you should receive an object `{ target: 'production' }` at configuration now. You could pass more key-value pairs, and they would go to the `env` object. It is important to note that if you set `--env foo` while setting `--env.target`, the string will override the object.
 
 W> Webpack 2 changed argument behavior compared to webpack 1. You are not allowed to pass custom parameters through the CLI anymore. Instead, it’s better to go through the `--env` mechanism if you need to do this.
 
@@ -156,9 +156,9 @@ To access your server, you’ll need to figure out the ip of your machine. On Un
 
 ## Alternate Ways to Use *webpack-dev-server*
 
-We could have passed the WDS options through a terminal. I find it clearer to manage it within webpack configuration as that helps to keep *package.json* nice and tidy. It is also easier to understand what’s going on as you don’t need to dig out the answers from the webpack source.
+You could have passed the WDS options through a terminal. I find it clearer to manage it within webpack configuration as that helps to keep *package.json* nice and tidy. It is also easier to understand what’s going on as you don’t need to dig out the answers from the webpack source.
 
-Alternately, we could have set up an Express server of our own and use a middleware. There are a couple of options:
+Alternately, you could have set up an Express server of our own and use a middleware. There are a couple of options:
 
 * [The official WDS middleware](https://webpack.js.org/guides/development/#webpack-dev-middleware)
 * [webpack-hot-middleware](https://www.npmjs.com/package/webpack-hot-middleware)
@@ -210,4 +210,4 @@ To recap:
 * webpack-dev-server can refresh the browser on change. It also implements Hot Module Replacement.
 * webpack-dev-server can be integrated to an existing Node server using a middleware. This gives you more control than relying on the command line interface.
 
-In this chapter, you learned to set up webpack to refresh your browser automatically. We can go a notch further and enable Hot Module Replacement. We’ll do that in the next chapter.
+In this chapter, you learned to set up webpack to refresh your browser automatically. You can go a notch further and enable Hot Module Replacement.

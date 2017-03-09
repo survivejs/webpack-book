@@ -116,7 +116,7 @@ Webpack comes with a significant learning curve. Even still, it’s a tool worth
 
 ## Conclusion
 
-You can use webpack with other tools. It won’t solve everything. It does solve the problem of bundling, however. That’s one less worry during development. Using *package.json*, `scripts`, and webpack alone takes you far, as we will see soon.
+You can use webpack with other tools. It won’t solve everything. It does solve the problem of bundling, however. That’s one less worry during development. Using *package.json*, `scripts`, and webpack alone takes you far, as you will see soon.
 
 To summarize:
 
@@ -127,4 +127,4 @@ To summarize:
 * Webpack can generate **hashes** for filenames allowing you to invalidate bundles as their contents change.
 * Webpack’s logic is contained within **loaders** and **plugins**. These are called through webpack’s configuration.
 
-In the following chapters, we’ll examine webpack in more detail as you will learn to develop a basic development and build configuration. The later chapters continue further and delve into more advanced topics.
+In the following chapters, you’ll examine webpack in more detail as you will learn to develop a basic development and build configuration. The later chapters continue further and delve into more advanced topics.

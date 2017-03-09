@@ -6,7 +6,7 @@ Frameworks like [Bootstrap](https://getbootstrap.com/) tend to come with a lot o
 
 ## Setting Up Pure.css
 
-To make our demo more realistic, let’s install [Pure.css](http://purecss.io/), a small CSS framework, as well and refer to it from our project so that we can see PurifyCSS in action. These two projects aren’t related in any way despite the naming.
+To make our demo more realistic, let’s install [Pure.css](http://purecss.io/), a small CSS framework, as well and refer to it from our project so that you can see PurifyCSS in action. These two projects aren’t related in any way despite the naming.
 
 ```bash
 npm install purecss --save
@@ -23,7 +23,7 @@ leanpub-end-insert
 ...
 ```
 
-We should also make our demo component use a Pure.css class, so we have something to work with:
+You should also make our demo component use a Pure.css class, so there is something to work with:
 
 **app/component.js**
 
@@ -60,7 +60,7 @@ index.html  218 bytes          [emitted]
 ...
 ```
 
-As you can see, the size of the CSS file grew. We’ll fix next with PurifyCSS.
+As you can see, the size of the CSS file grew. This will be fixed next with PurifyCSS.
 
 ## Enabling PurifyCSS
 
@@ -72,7 +72,7 @@ Using PurifyCSS can lead to significant savings. In their example, they purify a
 npm install glob purifycss-webpack --save-dev
 ```
 
-We need one more bit: PurifyCSS configuration. Expand parts like this:
+You need one more bit: PurifyCSS configuration. Expand parts like this:
 
 **webpack.parts.js**
 
@@ -95,7 +95,7 @@ exports.purifyCSS = function({ paths }) {
 leanpub-end-insert
 ```
 
-Next, we have to connect this part to our configuration. It is important the plugin is used *after* the `ExtractTextPlugin`; otherwise, it won’t work:
+Next, the part has to be connected with the configuration. It is important the plugin is used *after* the `ExtractTextPlugin`; otherwise, it won’t work:
 
 **webpack.config.js**
 
@@ -142,7 +142,7 @@ index.html  218 bytes          [emitted]
 ...
 ```
 
-The size of our style has decreased noticeably. Instead of 16k, we have roughly 2k now. The difference would be even bigger for heavier CSS frameworks.
+The size of our style has decreased noticeably. Instead of 16k, you have roughly 2k now. The difference would be even bigger for heavier CSS frameworks.
 
 PurifyCSS supports [additional options](https://github.com/purifycss/purifycss#the-optional-options-argument) including `minify`. You can enable these through the `purifyOptions` field when instantiating the plugin. Given PurifyCSS may not pick all of the classes you are using, you should use `purifyOptions.whitelist` array to define selectors which it should leave in the result no matter what.
 
@@ -165,4 +165,4 @@ To recap:
 * At best, PurifyCSS can eliminate most, if not all, unused CSS rules.
 * Critical path rendering is another CSS technique that puts emphasis on rendering the above-the-fold CSS first. The idea is to render something as fast as possible instead of waiting for all CSS to load.
 
-The styling portion of our demo is in good shape. We can make it easier to develop by including CSS linting to the project. We’ll do that next.
+The styling portion of our demo is in good shape. It can be made easier to develop by including CSS linting to the project.

@@ -2,15 +2,15 @@
 
 Webpack doesn’t handle styling out of the box. Instead, you must configure loaders and plugins to get the setup you need.
 
-In this chapter, we’ll set up CSS with our project and see how it works out with automatic browser refreshing. The neat thing is that in this case, webpack doesn’t have to force a full refresh. Instead, it can do something smarter as we’ll see soon.
+In this chapter, you will set up CSS with our project and see how it works out with automatic browser refreshing. The neat thing is that in this case, webpack doesn’t have to force a full refresh. Instead, it can do something smarter as you will see soon.
 
 ## Loading CSS
 
-To load CSS, we’ll need to use [css-loader](https://www.npmjs.com/package/css-loader) and [style-loader](https://www.npmjs.com/package/style-loader). *css-loader* goes through possible `@import` and `url()` lookups within the matched files and treats them as a regular ES6 `import`.
+To load CSS, you will need to use [css-loader](https://www.npmjs.com/package/css-loader) and [style-loader](https://www.npmjs.com/package/style-loader). *css-loader* goes through possible `@import` and `url()` lookups within the matched files and treats them as a regular ES6 `import`.
 
 This process allows us to rely on other loaders, such as [file-loader](https://www.npmjs.com/package/file-loader) or [url-loader](https://www.npmjs.com/package/url-loader). If an `@import` points to an external resource, *css-loader* will skip it. Only internal resources get processed further by webpack.
 
-After *css-loader* has done its part, *style-loader* picks up the output and injects the CSS into the resulting bundle. The CSS be inlined JavaScript by default, and it implements the HMR interface. As inlining isn’t a good idea for production usage, it makes sense to use `ExtractTextPlugin` to generate a separate CSS file. We’ll do this in the next chapter.
+After *css-loader* has done its part, *style-loader* picks up the output and injects the CSS into the resulting bundle. The CSS be inlined JavaScript by default, and it implements the HMR interface. As inlining isn’t a good idea for production usage, it makes sense to use `ExtractTextPlugin` to generate a separate CSS file. You will do this in the next chapter.
 
 To get started, invoke
 
@@ -42,7 +42,7 @@ exports.loadCSS = function({ include, exclude } = {}) {
 };
 ```
 
-We also need to connect our configuration fragment with the main configuration:
+You also need to connect our configuration fragment with the main configuration:
 
 **webpack.config.js**
 
@@ -61,7 +61,7 @@ leanpub-end-insert
 ...
 ```
 
-The configuration we added means that files ending with `.css` should invoke given loaders. `test` matches against a JavaScript-style regular expression. The loaders are evaluated from right to left.
+The configuration added means that files ending with `.css` should invoke given loaders. `test` matches against a JavaScript-style regular expression. The loaders are evaluated from right to left.
 
 T> Loaders are transformations that are applied to source files, and return the new source. Loaders can be chained together, like using a pipe in Unix. `loaders: ['style-loader', 'css-loader']` can be read as `styleLoader(cssLoader(input))`.
 
@@ -69,7 +69,7 @@ T> If you want to disable *css-loader* `url` parsing, set `url: false`. The same
 
 ## Setting Up the Initial CSS
 
-We are missing one bit: the actual CSS itself:
+You are missing the CSS still:
 
 **app/main.css**
 
@@ -79,7 +79,7 @@ body {
 }
 ```
 
-Also, we’ll need to make webpack aware of it. Without having an entry pointing to it somehow, webpack won’t be able to find the file:
+Also, you’ll need to make webpack aware of it. Without having an entry pointing to it somehow, webpack won’t be able to find the file:
 
 **app/index.js**
 
@@ -90,9 +90,9 @@ leanpub-end-insert
 ...
 ```
 
-Execute `npm start` now. Browse to `http://localhost:8080` if you are using the default port and open up *main.css* and change the background color to something like `lime` (`background: lime`). Develop styles as needed to make it look a little nicer. Note that it does **not** perform a hard refresh on the browser since we have HMR setup in place.
+Execute `npm start` now. Browse to `http://localhost:8080` if you are using the default port and open up *main.css* and change the background color to something like `lime` (`background: lime`). Develop styles as needed to make it look a little nicer. Note that it does **not** perform a hard refresh on the browser since there is HMR setup in place.
 
-We’ll continue from here in the next chapter. Before that, though, I will discuss styling-related techniques.
+You will continue from here in the next chapter. Before that, though, you will see styling-related techniques.
 
 ![Hello cornsilk world](images/hello_02.png)
 
@@ -113,7 +113,7 @@ Webpack’s *css-loader* supports CSS Modules. You can enable it through a loade
 
 After this change, your class definitions will remain local to the files. In case you want global class definitions, you’ll need to wrap them within `:global(.redButton) { ... }` kind of declarations.
 
-In this case, the `import` statement will give you the local classes you can then bind to elements. Assume we had CSS like this:
+In this case, the `import` statement will give you the local classes you can then bind to elements. Assume you had CSS like this:
 
 **app/main.css**
 
@@ -127,7 +127,7 @@ body {
 }
 ```
 
-We could then bind the resulting class to a component like this:
+You could then bind the resulting class to a component like this:
 
 **app/component.js**
 
@@ -361,4 +361,4 @@ To recap:
 * To use source maps, you have to enable `sourceMap` boolean through each style loader you are using except for *style-loader*. You should also set `output.publicPath` to an absolute url that points to your development server.
 * Using Bootstrap with webpack requires special care. You can either go through generic loaders or a bootstrap specific loader for more customization options.
 
-Although the loading approach covered here is enough for development purposes, it’s not ideal for production as it inlines the styling to the JavaScript bundles. We’ll cover this problem in the next chapter as we learn to separate CSS.
+Although the loading approach covered here is enough for development purposes, it’s not ideal for production as it inlines the styling to the JavaScript bundles. You’ll learn to solve this problem in the next chapter by separating CSS from the source.

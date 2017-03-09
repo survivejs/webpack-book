@@ -1,14 +1,14 @@
 # Minifying
 
-We haven’t given thought to our build output yet and no doubt it’s going to be a little chunky, especially as we included React in it. We can apply a variety of techniques to bring down the size of the vendor bundle. We can also leverage client level caching and load individual assets lazily as we saw earlier.
+The build output hasn’t received attention yet and no doubt it’s going to be a little chunky, especially as you included React in it. You can apply a variety of techniques to bring down the size of the vendor bundle. You can also leverage client level caching and load individual assets lazily as you saw earlier.
 
 **Minification** is a process where the code is simplified without losing any meaning that matters to the interpreter. As a result, your code will most likely look jumbled, and it will be hard to read. But that’s the point.
 
-T> Even if we minify our build, we can still generate source maps through the `devtool` option we discussed earlier to gain a better debugging experience, even production code if we want.
+T> Even if you minify the build, you can still generate source maps through the `devtool` option that was discussed earlier to gain a better debugging experience, even production code if you want.
 
 ## Generating a Baseline Build
 
-To get started, we should generate a baseline build, so we have something to optimize. Execute `npm run build`. You should end up with something like this:
+To get started, you should generate a baseline build, so you have something to optimize. Execute `npm run build`. You should end up with something like this:
 
 ```bash
 Hash: 12aec469d54202150429
@@ -84,7 +84,7 @@ Entrypoints:
 ...
 ```
 
-If we do our work right, we will meet the given budget and eliminate this warning as we develop the configuration.
+If minification works, the warning should disappear. That’s the next challenge.
 
 ## Minifying JavaScript
 
@@ -92,7 +92,7 @@ The point of **minification** is to convert our code into a smaller form. Safe *
 
 Unsafe transformations can break code as they can lose something implicit the underlying code relies upon. For example, Angular 1 expects specific function parameter naming when using modules. Rewriting the parameters breaks code unless you take precautions against it in this case.
 
-Minification in webpack can be enabled through `webpack -p` (same as `--optimize-minimize`). This uses webpack’s `UglifyJsPlugin` underneath. The problem is that UglifyJS doesn’t support ES6 syntax yet making it problematic if Babel and *babel-preset-env* are used while targeting specific browsers. We have to go another route in this case for this reason.
+Minification in webpack can be enabled through `webpack -p` (same as `--optimize-minimize`). This uses webpack’s `UglifyJsPlugin` underneath. The problem is that UglifyJS doesn’t support ES6 syntax yet making it problematic if Babel and *babel-preset-env* are used while targeting specific browsers. You have to go another route in this case for this reason.
 
 ### Setting Up JavaScript Minification
 
@@ -211,7 +211,7 @@ Out of the available solutions, `OptimizeCSSAssetsPlugin` composes the best. To 
 npm install optimize-css-assets-webpack-plugin cssnano --save-dev
 ```
 
-Like for JavaScript, we can wrap the idea in a configuration part:
+Like for JavaScript, you can wrap the idea in a configuration part:
 
 **webpack.parts.js**
 

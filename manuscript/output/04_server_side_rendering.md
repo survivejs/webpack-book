@@ -86,7 +86,7 @@ To make sure the project has the dependencies in place, install React and [react
 npm install react react-dom --save
 ```
 
-Next, we are going to need a small entry point for the React code. If we are on the browser side, we will mount `Hello world` `div` to the document. To prove it works, clicking it should give a dialog with a "hello" message. On server-side the React component is returned so the server can pick it up:
+Next, the React code needs a small entry point. If you are on the browser side, you should mount `Hello world` `div` to the document. To prove it works, clicking it should give a dialog with a "hello" message. On server-side the React component is returned so the server can pick it up:
 
 **app/ssr.js**
 
@@ -104,13 +104,13 @@ if (typeof document === 'undefined') {
 }
 ```
 
-We are still missing webpack configuration to turn this file into something the server can pick up.
+You are still missing webpack configuration to turn this file into something the server can pick up.
 
 W> Given ES6 style imports and CommonJS exports cannot be mixed, the entry point was written in CommonJS style.
 
 ## Configuring Webpack
 
-To keep things nice and tidy, we can push the demo configuration to a file of its own. A lot of the work has been done already. Given we have to consume the same output from multiple environments, using UMD as the library target makes sense:
+To keep things nice and tidy, it is possible to push the demo configuration to a file of its own. A lot of the work has been done already. Given you have to consume the same output from multiple environments, using UMD as the library target makes sense:
 
 **webpack.ssr.js**
 
@@ -159,7 +159,7 @@ If you build the SSR demo (`npm run build:ssr`), you should see a new file at *.
 
 ## Setting Up a Server
 
-To keep things clear to understand, we can set up a standalone Express server that picks up the bundle we generated and renders it following the SSR principle. Install Express first:
+To keep things clear to understand, you can set up a standalone Express server that picks up the generated bundle and renders it following the SSR principle. Install Express first:
 
 ```bash
 npm install express --save-dev
@@ -209,7 +209,7 @@ If you run the server now (`node ./server.js`) and navigate below `http://localh
 
 ![Hello world](images/hello_01.png)
 
-Even though we have a basic React application running now, it’s a little difficult to develop. If you try to modify the code, nothing will happen. This can be solved running webpack in a multi-compiler mode as earlier in this book. Another option is to run webpack in **watch mode** against the current configuration and set up a watcher for the server. I’ll show you how to achieve the latter setup next.
+Even though there is a basic React application running now, it’s a little difficult to develop. If you try to modify the code, nothing will happen. This can be solved running webpack in a multi-compiler mode as earlier in this book. Another option is to run webpack in **watch mode** against the current configuration and set up a watcher for the server. I’ll show you how to achieve the latter setup next.
 
 T> If you want to debug output from the server, set `export DEBUG=express:application`.
 
@@ -221,7 +221,7 @@ W> If you get a linting warning like `warning  'React' is defined but never used
 
 The first portion of the problem is fast to solve. Run `npm run build:ssr -- --watch` in a terminal. That will force webpack to run in a watch mode. It would be possible to wrap this idea within an npm script for convenience, but this is enough for this demo.
 
-The remaining part is harder than what we have done so far. How to make the server aware of the changes and how to communicate the changes to the browser?
+The remaining part is harder than what was done so far. How to make the server aware of the changes and how to communicate the changes to the browser?
 
 [browser-refresh](https://www.npmjs.com/package/browser-refresh) can come in handy as it solves both of the problems. Install it first:
 
@@ -263,11 +263,11 @@ leanpub-end-insert
 }
 ```
 
-The first change tells the client that we are online and ready to go. The latter change attaches the client script to the output. *browser-refresh* manages the environment variable in question.
+The first change tells the client that the application is online and ready to go. The latter change attaches the client script to the output. *browser-refresh* manages the environment variable in question.
 
 Run `node_modules/.bin/browser-refresh ./server.js` in another terminal and open the browser at `http://localhost:8080` as earlier to test the setup. Remember to have webpack running in the watch mode at another terminal. If everything went right, any change you make to the demo client script (*app/ssr.js*) should show up in the browser or cause a failure at the server.
 
-If the server crashes, it will lose the WebSocket connection. You will have to force a refresh in the browser in this case. If we managed the server through webpack as well, we could avoid this problem.
+If the server crashes, it will lose the WebSocket connection. You will have to force a refresh in the browser in this case. If the server was managed through webpack as well, the problem could have been avoided.
 
 To prove that SSR works, check out the browser inspector. You should see something familiar there:
 

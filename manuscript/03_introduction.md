@@ -54,7 +54,7 @@ I expect that you have a basic knowledge of JavaScript and Node. You should be a
 
 If you happen to know webpack well, there is still something in the book for you. Skim through it and see if you can pick up techniques. Read especially the summaries at the end of the chapters and the conclusion chapter. I’ve done my best to cover even the knottier parts of the tool.
 
-If you find yourself struggling, consider seeking help from the community around the book. In case you are stuck or don’t understand something, we are here to help. Any comments you have will go towards improving the content.
+If you find yourself struggling, consider seeking help from the community around the book. Any comments you have will go towards improving the content.
 
 ## How to Approach the Book
 

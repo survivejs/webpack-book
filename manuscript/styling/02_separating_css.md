@@ -1,12 +1,12 @@
 # Separating CSS
 
-Even though we have a nice build set up now, where did all the CSS go? As per our configuration, it has been inlined to JavaScript! Even though this can be convenient during development, it doesn’t sound ideal.
+Even though there is a nice build set up now, where did all the CSS go? As per our configuration, it has been inlined to JavaScript! Even though this can be convenient during development, it doesn’t sound ideal.
 
 The current solution doesn’t allow us to cache CSS. You can also get a **Flash of Unstyled Content** (FOUC). FOUC happens because the browser will take a while to load JavaScript and the styles would be applied only then. Separating CSS to a file of its own avoids the problem by letting the browser to manage it separately.
 
 Webpack provides a means to generate a separate CSS bundles using [ExtractTextPlugin](https://www.npmjs.com/package/extract-text-webpack-plugin). It can aggregate multiple CSS files into one. For this reason, it comes with a loader that handles the extraction process. The plugin then picks up the result aggregated by the loader and emits a separate file.
 
-Due to this process, `ExtractTextPlugin` comes with overhead during the compilation phase. It won’t work with Hot Module Replacement (HMR) by design. Given we are using it only for production, that won’t be a problem.
+Due to this process, `ExtractTextPlugin` comes with overhead during the compilation phase. It won’t work with Hot Module Replacement (HMR) by design. Given the plugin is used only for production, that won’t be a problem.
 
 T> This same technique can be employed with other assets, like templates, too.
 
@@ -106,7 +106,7 @@ leanpub-end-insert
 ...
 ```
 
-Using this setup, we can still benefit from the HMR during development. For a production build, we generate a separate CSS, though. *html-webpack-plugin* will pick it up automatically and inject it into our `index.html`.
+Using this setup, you can still benefit from the HMR during development. For a production build, it is possible to generate a separate CSS, though. *html-webpack-plugin* will pick it up automatically and inject it into our `index.html`.
 
 T> If you are using CSS Modules, remember to tweak `use` accordingly as discussed in the *Loading Styles* chapter. You may also want to maintain separate setups for normal CSS and CSS Modules so that they get loaded through separate logic.
 
@@ -126,7 +126,7 @@ index.html  218 bytes          [emitted]
 ...
 ```
 
-Now our styling has been pushed to a separate CSS file. Thus, our JavaScript bundle has become slightly smaller. We also avoid the FOUC problem. The browser doesn’t have to wait for JavaScript to load to get styling information. Instead, it can process the CSS separately, avoiding the flash.
+Now our styling has been pushed to a separate CSS file. Thus, our JavaScript bundle has become slightly smaller. You also avoid the FOUC problem. The browser doesn’t have to wait for JavaScript to load to get styling information. Instead, it can process the CSS separately, avoiding the flash.
 
 T> If you are getting `Module build failed: CssSyntaxError:` or `Module build failed: Unknown word` error, make sure your `common` configuration doesn’t have a CSS-related section set up.
 
@@ -177,4 +177,4 @@ To recap:
 * `ExtractTextPlugin` is not the only solution. *extract-loader* can give the same result in more limited contexts.
 * If you don’t prefer to maintain references to styling through JavaScript, an alternative is to handle them through an entry. You will have to be careful with style ordering in this case, though.
 
-In the next chapter, we will discuss **autoprefixing**. Enabling the feature will make it more convenient to develop complex CSS setups that work with older browsers as well.
+In the next chapter, you will learn to **autoprefix**. Enabling the feature will make it more convenient to develop complex CSS setups that work with older browsers as well.

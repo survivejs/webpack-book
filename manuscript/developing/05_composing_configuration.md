@@ -1,6 +1,6 @@
 # Composing Configuration
 
-Even though we haven’t done a lot with webpack yet, the amount of configuration is starting to feel substantial. Also, we have to be careful about the way we compose it as we have separate production and development targets. The situation can only get worse as we want to add more functionality to our project.
+Even though not a lot has been done with webpack yet, the amount of configuration is starting to feel substantial. Also, you have to be careful about the way you compose it as you have separate production and development targets in the project now. The situation can only get worse as you want to add more functionality to our project.
 
 As the needs of your project grow, you’ll need to figure out means to manage webpack configuration.
 
@@ -14,7 +14,7 @@ You can manage webpack configuration in the following ways:
 
 These approaches can be combined. You can end up with a higher level configuration that’s then composed of smaller parts. Those parts could go to a library which you then use through npm making it possible to consume the same configuration across multiple projects.
 
-We will use this approach in the book to discuss different techniques. *webpack.config.js* will maintain higher level configuration while *webpack.parts.js* will contain the building blocks.
+The approach is used to discuss different techniques. *webpack.config.js* will maintain higher level configuration while *webpack.parts.js* will contain the building blocks.
 
 ## Composing Configuration by Merging
 
@@ -32,7 +32,7 @@ To get started, add *webpack-merge* to the project:
 npm install webpack-merge --save-dev
 ```
 
-Next, we need to refactor *webpack.config.js* into parts we can consume from there and then rewrite the file to use the parts. Here are the parts with small function-based interfaces extracted from the existing code:
+Next, you need to refactor *webpack.config.js* into parts you can consume from there and then rewrite the file to use the parts. Here are the parts with small function-based interfaces extracted from the existing code:
 
 **webpack.parts.js**
 
@@ -79,7 +79,7 @@ exports.lintJavaScript = function({ include, exclude, options }) {
 
 T> I changed the configuration to use `hot: true` over `hotOnly: true` as I want the browser to refresh regardless of a possible error during processing. The latter option is valuable for debugging HMR when you are implementing the client side interface.
 
-To benefit from these configuration parts, we need to connect them with *webpack.config.js* as in the complete code example below:
+To benefit from these configuration parts, you need to connect them with *webpack.config.js* as in the complete code example below:
 
 **webpack.config.js**
 
@@ -139,9 +139,9 @@ module.exports = function(env) {
 };
 ```
 
-After this change, the build should behave the same way as before. This time, however, we have room to expand, and we don’t have to worry about how to combine different parts of the configuration. The approach allows us to share functionality across different targets.
+After this change, the build should behave the same way as before. This time, however, you have room to expand, and you don’t have to worry about how to combine different parts of the configuration. The approach allows us to share functionality across different targets.
 
-We can also add more by expanding the *package.json* definition and branching at *webpack.config.js* based on the need. *webpack.parts.js* will grow to contain specific techniques we can then use to compose the configuration.
+You can also add more by expanding the *package.json* definition and branching at *webpack.config.js* based on the need. *webpack.parts.js* will grow to contain specific techniques you can then use to compose the configuration.
 
 Later on, *webpack.parts.js* could be pushed to npm or outside of the project. But for this book, it’s enough to maintain it within the project.
 
@@ -149,7 +149,7 @@ T> Webpack 2 validates the configuration by default. If you make a mistake like 
 
 ## The Benefits of Composing Configuration
 
-Splitting configuration allows you to keep on expanding the setup. The biggest win is the fact that we can extract commonalities between different targets. We can also identify smaller configuration parts to compose. These configuration parts can be pushed to packages of their own to consume across projects.
+Splitting configuration allows you to keep on expanding the setup. The biggest win is the fact that you can extract commonalities between different targets. You can also identify smaller configuration parts to compose. These configuration parts can be pushed to packages of their own to consume across projects.
 
 Instead of duplicating similar configuration across multiple projects, you can manage configuration as a dependency now. As you figure out better ways to perform tasks, all your projects will receive the improvements.
 
@@ -161,7 +161,7 @@ T> If you have to support both webpack 1 and 2, you can perform branching based 
 
 ## Configuration Layouts
 
-In the book project, we’ll push all of our configuration to two files: *webpack.config.js* and *webpack.parts*. The former contains higher level configuration while the latter lower level. It isolates us from webpack specifics, but it can also grow big. Fortunately, the chosen approach allows more layouts, and you can evolve it further. Consider the following directions.
+In the book project, you will push all of our configuration to two files: *webpack.config.js* and *webpack.parts*. The former contains higher level configuration while the latter lower level. It isolates us from webpack specifics, but it can also grow big. Fortunately, the chosen approach allows more layouts, and you can evolve it further. Consider the following directions.
 
 ### Split per Configuration Target
 
@@ -202,7 +202,7 @@ Given all configuration is JavaScript, nothing prevents us from consuming it as 
 
 ## Conclusion
 
-Even though the configuration is technically the same as before, now we have room to grow it.
+Even though the configuration is technically the same as before, now you have room to grow it.
 
 To recap:
 

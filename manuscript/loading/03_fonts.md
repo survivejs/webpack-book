@@ -12,7 +12,7 @@ T> [canifont](https://www.npmjs.com/package/canifont) helps you to figure out wh
 
 If you exclude Opera Mini, all browsers support the *.woff* format. If you go only with modern browsers, its newer version, *.woff2*, can be enough.
 
-If we go with one format, we can use a similar setup as for images and rely on both *file-loader* and *url-loader* while using the limit option:
+If you go with one format, you can use a similar setup as for images and rely on both *file-loader* and *url-loader* while using the limit option:
 
 ```javascript
 {
@@ -47,7 +47,7 @@ A more elaborate approach to achieve a similar result that includes *.woff2* and
 
 ## Supporting Multiple Formats
 
-In case we want to make sure our site looks good on a maximum amount of browsers, we can use *file-loader* and forget about inlining. Again, it’s a trade-off as we get extra requests, but perhaps it’s the right move. Here we could end up with a loader configuration like this:
+In case you want to make sure our site looks good on a maximum amount of browsers, you can use *file-loader* and forget about inlining. Again, it’s a trade-off as you get extra requests, but perhaps it’s the right move. Here you could end up with a loader configuration like this:
 
 ```javascript
 {
@@ -117,7 +117,7 @@ To integrate Font Awesome to the book project, install it first:
 npm install font-awesome --save
 ```
 
-Given Font Awesome doesn’t define a `main` field in its *package.json* file, we’ll need to point to it through a direct path instead of package name alone.
+Given Font Awesome doesn’t define a `main` field in its *package.json* file, you need to point to it through a direct path instead of package name alone.
 
 Refer to Font Awesome as follows:
 
@@ -130,7 +130,7 @@ leanpub-end-insert
 ...
 ```
 
-Font Awesome includes Sass and Less versions as well, but given we have not set up either, this definition is enough.
+Font Awesome includes Sass and Less versions as well, but given you have not set up either, this definition is enough.
 
 T> The `import` could be cleaned up as `import 'font-awesome'` by setting up a `resolve.alias`. The *Consuming Packages* chapter discusses this idea in detail.
 
@@ -151,7 +151,7 @@ You may need an appropriate loader to handle this file type.
 
 ### Implementing Webpack Configuration
 
-The result is expected as we haven’t configured loaders for any of Font Awesome fonts yet and webpack doesn’t know what to do with the files in question. To match the files and map them through *file-loader*, attach the following snippet to the project:
+The result is expected as you haven’t configured loaders for any of Font Awesome fonts yet and webpack doesn’t know what to do with the files in question. To match the files and map them through *file-loader*, attach the following snippet to the project:
 
 **webpack.parts.js**
 
@@ -179,9 +179,9 @@ exports.loadFonts = function({ include, exclude, options } = {}) {
 };
 ```
 
-The idea is the same as for loading images. This time around we match font files. If you wanted, you could refactor the commonality to a function to share between the two.
+The idea is the same as for loading images. This time around you match font files. If you wanted, you could refactor the commonality to a function to share between the two.
 
-We still need to connect the above with the main configuration:
+You still need to connect the above with the main configuration:
 
 **webpack.config.js**
 
@@ -252,7 +252,7 @@ T> [font-awesome-loader](https://www.npmjs.com/package/font-awesome-loader) allo
 
 ## Conclusion
 
-Loading fonts is similar to loading other assets. Here we have additional concerns to consider. We need to consider the browsers we want to support and choose the loading strategy based on that.
+Loading fonts is similar to loading other assets. You have to consider the browsers you want to support and choose the loading strategy based on that.
 
 To recap:
 

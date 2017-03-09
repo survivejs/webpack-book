@@ -10,7 +10,7 @@ W> If you are using an older version than Node 6, you may either have to adapt t
 
 ## Setting Up the Project
 
-To get a starting point, we should create a directory for our project and set up a *package.json* there. npm uses that to manage project dependencies. Here are the basic commands:
+To get a starting point, you should create a directory for our project and set up a *package.json* there. npm uses that to manage project dependencies. Here are the basic commands:
 
 ```bash
 mkdir webpack-demo
@@ -18,7 +18,7 @@ cd webpack-demo
 npm init -y # -y generates *package.json*, skip for more control
 ```
 
-You can tweak the generated *package.json* manually to make further changes to it. We’ll be doing changes through *npm* tool, but manual tweaks are acceptable. The official documentation explains [package.json options](https://docs.npmjs.com/files/package.json) in more detail.
+You can tweak the generated *package.json* manually to make further changes to it. In this project you will be doing changes through *npm* tool, but manual tweaks are acceptable. The official documentation explains [package.json options](https://docs.npmjs.com/files/package.json) in more detail.
 
 T> You can set those `npm init` defaults at *~/.npmrc*.
 
@@ -42,7 +42,7 @@ You should see webpack at your *package.json* `devDependencies` section after th
 
 You can display the exact path of the executables using `npm bin`. Most likely it points at *./node_modules/.bin*. Try running webpack from there through the terminal using `node_modules/.bin/webpack` or a similar command.
 
-After running, you should see a version, a link to the command line interface guide and an extensive list of options. We won’t be using most of those, but it’s good to know that this tool is packed with functionality if nothing else.
+After running, you should see a version, a link to the command line interface guide and an extensive list of options. You won’t be using most of those, but it’s good to know that this tool is packed with functionality if nothing else.
 
 ```bash
 webpack-demo $ node_modules/.bin/webpack
@@ -57,11 +57,11 @@ To get a quick idea of webpack output, try this:
 2. Execute `node_modules/.bin/webpack app/index.js build/index.js`.
 3. Examine *build/index.js*. You should see webpack bootstrap code that begins executing the code. Below the bootstrap you should find something familiar.
 
-T> We can use `--save` and `--save-dev` to separate application and development dependencies. The former will install and write to *package.json* `dependencies` field whereas the latter will write to `devDependencies` instead.
+T> You can use `--save` and `--save-dev` to separate application and development dependencies. The former will install and write to *package.json* `dependencies` field whereas the latter will write to `devDependencies` instead.
 
 ## Directory Structure
 
-To move further, we can implement a little site that loads JavaScript, which we then build using webpack. After we progress a bit, we’ll end up with a directory structure like this:
+To move further, you can implement a little site that loads JavaScript, which you then build using webpack. After you progress a bit, you will end up with a directory structure like this:
 
 - app/
   - index.js
@@ -70,11 +70,11 @@ To move further, we can implement a little site that loads JavaScript, which we 
 - package.json
 - webpack.config.js
 
-The idea is that we’ll transform that *app/* to as a bundle below *build/*. To make this possible, we should set up the assets needed and *webpack.config.js*.
+The idea is that you will transform that *app/* to as a bundle below *build/*. To make this possible, you should set up the assets needed and *webpack.config.js*.
 
 ## Setting Up Assets
 
-As you never get tired of `Hello world`, we can model a variant of that. Set up a component like this:
+As you never get tired of `Hello world`, you can model a variant of that. Set up a component like this:
 
 **app/component.js**
 
@@ -88,7 +88,7 @@ export default function (text = 'Hello world') {
 }
 ```
 
-Next, we are going to need an entry point for our application. It will `require` our component and render it through the DOM:
+Next, you are going to need an entry point for the application. It will `require` our component and render it through the DOM:
 
 **app/index.js**
 
@@ -100,9 +100,9 @@ document.body.appendChild(component());
 
 ## Setting Up Webpack Configuration
 
-We’ll need to tell webpack how to deal with the assets we set up. For this purpose, we’ll develop a *webpack.config.js* file. Webpack and its development server will be able to discover this file through a convention.
+You will need to tell webpack how to deal with the assets that were set up. For this purpose, you have to develop a *webpack.config.js* file. Webpack and its development server will be able to discover this file through a convention.
 
-To keep things convenient to maintain, we’ll be using [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) to generate an *index.html* for our application. *html-webpack-plugin* wires up the generated assets with it. Install it to the project:
+To keep things convenient to maintain, you can use [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) to generate an *index.html* for the application. *html-webpack-plugin* wires up the generated assets with it. Install it to the project:
 
 ```bash
 npm install html-webpack-plugin --save-dev
@@ -178,7 +178,7 @@ Child html-webpack-plugin for "index.html":
 
 The output tells us a lot. I’ve annotated it below:
 
-* `Hash: 3f76ae042ff0f2d98f35` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. We’ll discuss hashing in detail in the *Adding Hashes to Filenames* chapter.
+* `Hash: 3f76ae042ff0f2d98f35` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. Hashing is discussed in detail in the *Adding Hashes to Filenames* chapter.
 * `Version: webpack 2.2.1` - Webpack version.
 * `Time: 377ms` - Time it took to execute the build.
 * `app.js    3.13 kB       0  [emitted]  app` - Name of the generated asset, size, the IDs of the **chunks** into which it is related, status information telling how it was generated, the name of the chunk.
@@ -196,7 +196,7 @@ T> In addition to a configuration object, webpack accepts an array of configurat
 
 ## Adding a Build Shortcut
 
-Given executing `node_modules/.bin/webpack` is a little verbose, we should do something about it. npm and *package.json* double as a task runner through configuration. Adjust it as follows:
+Given executing `node_modules/.bin/webpack` is a little verbose, you should do something about it. npm and *package.json* double as a task runner through configuration. Adjust it as follows:
 
 **package.json**
 
@@ -210,11 +210,11 @@ Given executing `node_modules/.bin/webpack` is a little verbose, we should do so
 
 Run `npm run build`. You should see the same output as before.
 
-This works because npm adds *node_modules/.bin* temporarily to the path. As a result, rather than having to write `"build": "node_modules/.bin/webpack"`, we can do `"build": "webpack"`.
+This works because npm adds *node_modules/.bin* temporarily to the path. As a result, rather than having to write `"build": "node_modules/.bin/webpack"`, you can do `"build": "webpack"`.
 
 You can execute this kind of scripts through *npm run*. If you run it as is, it will give you the listing of available scripts.
 
-T> There are shortcuts like *npm start* and *npm test*. We can run these directly without *npm run* although that will work too. For those in a hurry, you can use *npm t* to run your tests.
+T> There are shortcuts like *npm start* and *npm test*. You can run these directly without *npm run* although that will work too. For those in a hurry, you can use *npm t* to run your tests.
 
 T> It is possible to execute *npm run* anywhere within the project. It doesn’t have to be run in the project root to work. npm will figure out the project root for you.
 
@@ -233,7 +233,7 @@ There are also specific plugins that extend *html-webpack-plugin*'s functionalit
 
 ## Conclusion
 
-Even though we’ve managed to get webpack up and running, it’s not that much yet. Developing against it would be painful. Each time we wanted to check out our application, we would have to build it manually using `npm run build` and then refresh the browser. That’s where webpack’s more advanced features come in.
+Even though you have managed to get webpack up and running, it does not do that much yet. Developing against it would be painful. Each time you wanted to check out our application, you would have to build it manually using `npm run build` and then refresh the browser. That’s where webpack’s more advanced features come in.
 
 To recap:
 
@@ -243,4 +243,4 @@ To recap:
 * *html-webpack-plugin* can be used to generate an HTML entry point to your application. Later in the book, you will see how to generate multiple separate pages using. The *Multiple Pages* chapter covers that.
 * It is handy to use npm *package.json* scripts to manage webpack. You can use it as a light task runner and use system features outside of webpack.
 
- We’ll look into enabling automatic browser refresh in the next chapter to make the development experience of our setup nicer.
+You will learn to make the development experience nicer in the next chapter by enabling automatic browser refresh.

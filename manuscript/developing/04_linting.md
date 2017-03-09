@@ -46,7 +46,7 @@ To get started, install ESLint as a development dependency:
 npm install eslint --save-dev
 ```
 
-Next, we’ll need to do configuration so we can run ESLint smoothly through npm. I am using the `lint` namespace to signify it’s a linting related task. I am also enabling caching to improve performance on subsequent runs. Add the following:
+Next, you’ll need to write configuration so you can run ESLint smoothly through npm. I am using the `lint` namespace to signify it’s a linting related task. I am also enabling caching to improve performance on subsequent runs. Add the following:
 
 **package.json**
 
@@ -61,7 +61,7 @@ leanpub-end-insert
 ...
 ```
 
-Given ESLint expects configuration to work, we need to define rules to describe what to lint and how to react if the rules aren’t obeyed. The severity of an individual rule is defined by a number as follows:
+Given ESLint expects configuration to work, you need to define rules to describe what to lint and how to react if the rules aren’t obeyed. The severity of an individual rule is defined by a number as follows:
 
 * 0 - The rule has been disabled.
 * 1 - The rule will emit a warning.
@@ -97,7 +97,7 @@ module.exports = {
 };
 ```
 
-Also, we need to tell ESLint to skip linting the *build* directory by setting up ignore patterns. The *node_modules* directory is ignored by default.
+Also, you need to tell ESLint to skip linting the *build* directory by setting up ignore patterns. The *node_modules* directory is ignored by default.
 
 **.eslintignore**
 
@@ -119,7 +119,7 @@ T> When ESLint gives errors, npm will show a long `ELIFECYCLE error` error block
 
 ### Connecting ESLint with Webpack
 
-We can make webpack emit ESLint messages for us by using [eslint-loader](https://www.npmjs.com/package/eslint-loader). As the first step execute
+You can make webpack emit ESLint messages for us by using [eslint-loader](https://www.npmjs.com/package/eslint-loader). As the first step execute
 
 ```bash
 npm install eslint-loader --save-dev
@@ -127,9 +127,9 @@ npm install eslint-loader --save-dev
 
 W> Note that *eslint-loader* will use a globally installed version of ESLint unless you have one included in the project itself. Make sure you have ESLint as a development dependency to avoid the strange behavior.
 
-The loader needs wiring to work. We’ll discuss loaders in detail in the *Loading* part of this book, but the basic idea is fast to understand. A loader is connected to webpack through a rule that contains preconditions related to it and a reference to the loader itself.
+The loader needs wiring to work. Loaders are discussed in detail in the *Loading* part of this book, but the basic idea is fast to understand. A loader is connected to webpack through a rule that contains preconditions related to it and a reference to the loader itself.
 
-In this case, we’ll ensure that ESLint gets executed before anything else using the `enforce` field. It allows us to guarantee that linting happens before any other processing. The idea is discussed in detail in the *Loader Definitions* chapter.
+In this case, you will want to ensure that ESLint gets executed before anything else using the `enforce` field. It allows us to guarantee that linting happens before any other processing. The idea is discussed in detail in the *Loader Definitions* chapter.
 
 To add linting to the project, adjust the configuration as follows:
 
@@ -172,7 +172,7 @@ leanpub-end-insert
 
 If you execute `npm start` now and break a linting rule while developing, you should see that in the terminal output.
 
-W> Note that the webpack configuration lints only the application code we refer. If you want to lint webpack configuration itself, execute `npm run lint:js` separately.
+W> Note that the webpack configuration lints only the application code you refer. If you want to lint webpack configuration itself, execute `npm run lint:js` separately.
 
 T> Attaching the linting process to Git through a prepush hook allows you to catch problems earlier. [pre-git](https://www.npmjs.com/package/pre-git) allows you to achieve this quickly. Doing this allows you to rebase your commits and fix possible problems early.
 
@@ -276,4 +276,4 @@ To recap:
 * EditorConfig complements ESLint by allowing you to define a project-level coding style. Editors integrate with EditorConfig making it easier to keep a project consistent regardless of the development platform.
 * Prettier is an upcoming solution that can format your code automatically. Danger operates on repository level and can perform higher level tasks related to the development process.
 
-Given the webpack configuration of our project is starting to get a little messy, and it won’t get any easier should we extend it, it is a good time to discuss how to compose configuration and improve the situation further. We’ll do that in the next chapter.
+Given the webpack configuration of our project is starting to get a little messy, and it won’t get any easier should you extend it, it is a good time to discuss how to compose configuration and improve the situation further.

@@ -1,15 +1,15 @@
 # Analyzing Build Statistics
 
-Analyzing build statistics is a good step towards understanding webpack better. We can get statistics from it easily, and we can visualize the statistics using a tool to show us the composition of our bundles.
+Analyzing build statistics is a good step towards understanding webpack better. Visualizing them helps you to understand the composition of your bundles.
 
 ## Configuring Webpack
 
-To get suitable output, we’ll need to do a couple of tweaks to our configuration. We’ll need to enable two flags:
+To get suitable output, you will need to do a couple of tweaks to our configuration. Most importantly, you have to enable two flags:
 
-* `--profile` to capture timing-related information.
-* `--json` to make webpack output those statistics we want.
+* `--profile` to capture timing-related information. This is optional, but good to set.
+* `--json` to make webpack output statistics.
 
-Here’s the line of code we need to pipe the output to a file:
+Here’s the line of code you need to pipe the output to a file:
 
 **package.json**
 
@@ -28,7 +28,7 @@ leanpub-end-insert
 
 The above is the basic setup you’ll need, regardless of your webpack configuration. Execute `npm run stats` now. After a while you should find *stats.json* at your project root. This file can be pushed through a variety of tools to understand better what’s going on.
 
-W> Given we piggyback on the production target in our current setup, this process will clean the build directory! If you want to avoid that, set up a separate target where you don’t clean.
+W> Given you piggyback on the production target in our current setup, this process will clean the build directory! If you want to avoid that, set up a separate target where you don’t clean.
 
 ### `StatsWebpackPlugin` and `WebpackStatsPlugin`
 

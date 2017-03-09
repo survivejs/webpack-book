@@ -2,7 +2,7 @@
 
 Sometimes a part of your code should execute only during development. Or you could have experimental features in your build that are not ready for production yet. This code should not end up in the production build.
 
-As JavaScript minifiers can remove dead code (`if (false)`), we can build on top of this idea and write code that gets transformed into this form. Webpack’s `DefinePlugin` enables replacing **free variables** so that we can convert `if (process.env.NODE_ENV === 'development')` kind of code to `if (true)` or `if (false)` depending on the environment.
+As JavaScript minifiers can remove dead code (`if (false)`), you can build on top of this idea and write code that gets transformed into this form. Webpack’s `DefinePlugin` enables replacing **free variables** so that you can convert `if (process.env.NODE_ENV === 'development')` kind of code to `if (true)` or `if (false)` depending on the environment.
 
 You can find packages that rely on this behavior. React is perhaps the most known example of an early adopter of the technique. Using `DefinePlugin` can bring down the size of your React production build somewhat as a result, and you may see a similar effect with other packages as well.
 
@@ -18,13 +18,13 @@ if (foo === 'bar') {
   console.log('bar');
 }
 
-// Free since we don't refer to "bar", ok to replace
+// Free since you don't refer to "bar", ok to replace
 if (bar === 'bar') {
   console.log('bar');
 }
 ```
 
-If we replaced `bar` with a string like `'foobar'`, then we would end up with code like this:
+If you replaced `bar` with a string like `'foobar'`, then you would end up with code like this:
 
 ```javascript
 var foo;
@@ -34,7 +34,7 @@ if (foo === 'bar') {
   console.log('bar');
 }
 
-// Free since we don't refer to "bar", ok to replace
+// Free since you don't refer to "bar", ok to replace
 if ('foobar' === 'bar') {
   console.log('bar');
 }
@@ -50,7 +50,7 @@ if (foo === 'bar') {
   console.log('bar');
 }
 
-// Free since we don't refer to "bar", ok to replace
+// Free since you don't refer to "bar", ok to replace
 if (false) {
   console.log('bar');
 }
@@ -69,13 +69,13 @@ if (foo === 'bar') {
 // if (false) means the block can be dropped entirely
 ```
 
-Elimination is the core idea of `DefinePlugin`. We can toggle parts of code using this kind of mechanism. A good minifier can perform the analysis for us and enable/disable entire portions of the code as we prefer.
+Elimination is the core idea of `DefinePlugin`. You can toggle parts of code using this kind of mechanism. A good minifier can perform the analysis for us and enable/disable entire portions of the code as you prefer.
 
 ## Setting `process.env.NODE_ENV`
 
-Given we are using React in our project and it happens to use the technique, we can try to enable `DefinePlugin` and see what it does to our production build.
+Given you are using React in our project and it happens to use the technique, you can try to enable `DefinePlugin` and see what it does to our production build.
 
-As before, encapsulate this idea to a function. It is important to note that given the way webpack replaces the free variable, we should push it through `JSON.stringify`. We’ll end up with a string like `'"demo"'` and then webpack will insert that into the slots it finds.
+As before, encapsulate this idea to a function. It is important to note that given the way webpack replaces the free variable, you should push it through `JSON.stringify`. You will end up with a string like `'"demo"'` and then webpack will insert that into the slots it finds.
 
 **webpack.parts.js**
 
@@ -94,7 +94,7 @@ exports.setFreeVariable = function(key, value) {
 };
 ```
 
-We can connect this with our configuration like this:
+You can connect this with our configuration like this:
 
 **webpack.config.js**
 
@@ -144,13 +144,13 @@ vendor.js.map     135 kB       2  [emitted]  vendor
 ...
 ```
 
-We went from 150 kB to 45 kB, and finally, to 24 kB. The final build is a little faster than the previous one as well.
+You went from 150 kB to 45 kB, and finally, to 24 kB. The final build is a little faster than the previous one as well.
 
 Given the 24 kB can be served gzipped, it is somewhat reasonable. gzipping will drop around another 40%, and it is well supported by browsers.
 
-It is good to remember that we didn’t include *react-dom* in this case and that would add around 100 kB to the final result. To get back to these figures, we would have to use a lighter alternative such as Preact or react-lite as discussed in the *Consuming Packages* chapter.
+It is good to remember that you didn’t include *react-dom* in this case and that would add around 100 kB to the final result. To get back to these figures, you would have to use a lighter alternative such as Preact or react-lite as discussed in the *Consuming Packages* chapter.
 
-T> `webpack.EnvironmentPlugin(['NODE_ENV'])` is a shortcut that allows you to refer to environment variables. It uses `DefinePlugin` underneath and you can achieve the same effect by passing `process.env.NODE_ENV` to the custom function we made. The [documentation covers `EnvironmentPlugin`](https://webpack.js.org/plugins/environment-plugin/) in greater detail.
+T> `webpack.EnvironmentPlugin(['NODE_ENV'])` is a shortcut that allows you to refer to environment variables. It uses `DefinePlugin` underneath and you can achieve the same effect by passing `process.env.NODE_ENV` to the custom function you made. The [documentation covers `EnvironmentPlugin`](https://webpack.js.org/plugins/environment-plugin/) in greater detail.
 
 ## Replacing Free Variables Through Babel
 
@@ -170,7 +170,7 @@ The techniques discussed in this chapter can be used to choose entire modules de
     └── store.prod.js
 ```
 
-The idea is that we will choose either `dev` or `prod` version of the store depending on the environment. It’s that *index.js* which does the hard work like this:
+The idea is that you will choose either `dev` or `prod` version of the store depending on the environment. It’s that *index.js* which does the hard work like this:
 
 ```javascript
 if(process.env.NODE_ENV === 'production') {
@@ -180,7 +180,7 @@ if(process.env.NODE_ENV === 'production') {
 }
 ```
 
-Webpack can pick the right code based on our `DefinePlugin` declaration and this code. It is good to note that we will have to use CommonJS module definition style here: ES6 `import`s don’t allow dynamic behavior like this by design.
+Webpack can pick the right code based on our `DefinePlugin` declaration and this code. It is good to note that you will have to use CommonJS module definition style here: ES6 `import`s don’t allow dynamic behavior like this by design.
 
 T> A related technique, **aliasing**, is discussed in the *Consuming Packages* chapter. You could alias to development or production particular file depending on the environment. The problem is that it will tie your setup to webpack in a tighter way than the solution above.
 
@@ -208,4 +208,4 @@ To recap:
 * The plugins enable module level patterns. By implementing a wrapper, you can choose which file webpack will include to the resulting build.
 * In addition to these plugins, you can find other optimization related plugins that allow you to control the build result in many ways.
 
-To ensure the build has good cache invalidation behavior, we’ll include hashes to the generated filenames in the next chapter. This way the client will notice if assets have changed and can fetch the updated versions.
+To ensure the build has good cache invalidation behavior, you will learn to include hashes to the generated filenames in the next chapter. This way the client will notice if assets have changed and can fetch the updated versions.

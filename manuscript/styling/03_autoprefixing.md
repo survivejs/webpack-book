@@ -51,7 +51,7 @@ leanpub-end-insert
 ...
 ```
 
-To confirm that the setup works, we should have something to autoprefix. Adjust the CSS like this:
+To confirm that the setup works, there should be something to autoprefix. Adjust the CSS like this:
 
 **app/main.css**
 
@@ -75,9 +75,9 @@ body {
 }
 ```
 
-As you can see, autoprefixing expands the rules, so we don’t have to remember to do that.
+As you can see, autoprefixing expands the rules, so you don’t have to remember to do that.
 
-If you know what browsers you support, it is possible to set up a [browserslist](https://www.npmjs.com/package/browserslist) file. Different tools pick up this definition, *autoprefixer* included. Consider the example below where we select only specific browsers:
+If you know what browsers you support, it is possible to set up a [browserslist](https://www.npmjs.com/package/browserslist) file. Different tools pick up this definition, *autoprefixer* included. Consider the example below where you select only specific browsers:
 
 **browserslist**
 
@@ -99,4 +99,4 @@ To recap:
 * Autoprefixing will write missing CSS definitions based on your minimum browser definition.
 * *browserslist* is a standard file that works with tooling beyond *autoprefixer*
 
-In the next chapter, we will learn to eliminate unused CSS from the project.
+In the next chapter, you will learn to eliminate unused CSS from the project.

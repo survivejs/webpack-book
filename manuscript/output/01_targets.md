@@ -6,7 +6,7 @@ Webpack’s output target is controlled by the `target` field. I’ll go through
 
 ## Web Targets
 
-Webpack uses the *web* target by default. This is ideal for a web application like the one we have developed in this book. Webpack will bootstrap the application and load its modules. The initial list of modules to load is maintained in a manifest, and then the modules can load each other as defined.
+Webpack uses the *web* target by default. This is ideal for a web application like the one you have developed in this book. Webpack will bootstrap the application and load its modules. The initial list of modules to load is maintained in a manifest, and then the modules can load each other as defined.
 
 ### Web Workers
 
@@ -35,7 +35,7 @@ There are desktop shells, such as [NW.js](https://nwjs.io/) (previously *node-we
 
 ## Bundling Libraries with Webpack
 
-To understand webpack’s library targets better, we can set up a small library to bundle. The idea is to end up with a non-minified, a minified version, and a version compatible with *package.json* `module` field. The first two can be used for standalone consumption. You can also point to the non-minified version through *package.json* `main`.
+To understand webpack’s library targets better, you could set up a small library to bundle. The idea is to end up with a non-minified, a minified version, and a version compatible with *package.json* `module` field. The first two can be used for standalone consumption. You can also point to the non-minified version through *package.json* `main`.
 
 T> The *Authoring Packages* chapter discusses the fields and more in detail.
 
@@ -59,7 +59,7 @@ The idea is that this file will become the entry point for the entire library an
 
 ### Setting Up an npm Script
 
-Given the `build` target of the project has been taken already by the main application, we should set up a separate one for generating the library. It will point to a library specific configuration file to keep things nice and tidy.
+Given the `build` target of the project has been taken already by the main application, you should set up a separate one for generating the library. It will point to a library specific configuration file to keep things nice and tidy.
 
 **package.json**
 
@@ -76,7 +76,7 @@ leanpub-end-insert
 
 ### Setting Up Webpack
 
-Webpack configuration itself can be adapted from the one we built. This time, however, we have to generate two files - a non-minified version and a minified one. We can achieve this by running webpack in so called *multi-compiler mode*. It means you can expose an array of configurations for webpack and it will execute each.
+Webpack configuration itself can be adapted from the one you built. This time, however, you have to generate two files - a non-minified version and a minified one. This can be achieved by running webpack in so called *multi-compiler mode*. It means you can expose an array of configurations for webpack and it will execute each.
 
 **webpack.lib.js**
 
@@ -321,6 +321,6 @@ To recap:
 * Webpack can generate both a non-minified and a minified version of a library through its **multi-compiler** mode. It is possible to minify also as a post-process using an external tool.
 * Performing tasks, such as cleaning and linting JavaScript, while using the multi-compiler mode is problematic at the moment. Instead, it can be a good idea to handle these tasks outside of webpack or run multiple webpack instances separately.
 
-If you try to import *./dist/lib.js* through Node, you will notice it will output `{}`. The problem has to do with the output type we chose. To understand better which output to use and why we will go through them and the related options in the next chapter.
+If you try to import *./dist/lib.js* through Node, you will notice it will output `{}`. The problem has to do with the output type that was chosen. To understand better which output to use and why, the next chapter covers them in detail.
 
 T> The *Authoring Packages* chapter discusses npm specific techniques in detail, and it complements these chapters well.

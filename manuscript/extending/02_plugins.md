@@ -2,7 +2,7 @@
 
 Compared to loaders, plugins are a more flexible means to extend webpack. As `ExtractTextPlugin` shows, sometimes it can make sense to use loaders and plugins together. The great thing about plugins is that they allow you to intercept webpack’s execution through many hooks and then extend it as you see fit. Internally webpack consists of an extensive collection of plugins so understanding the basic idea can be valuable if you want to delve into it.
 
-To show you how a plugin works, I will discuss [purifycss-webpack](https://www.npmjs.com/package/purifycss-webpack). We already used it in this book, so diving into its internals doesn’t hurt. The plugin itself doesn’t do much. It figures out what files to pass to PurifyCSS, lets it process the data, captures the output, and writes it to an asset.
+To show you how a plugin works, I will discuss [purifycss-webpack](https://www.npmjs.com/package/purifycss-webpack). You used it in this book already, so diving into its internals doesn’t hurt. The plugin itself doesn’t do much. It figures out what files to pass to PurifyCSS, lets it process the data, captures the output, and writes it to an asset.
 
 A plugin project can be structured similarly as a loader project, so I won’t delve into the project structure. Instead, I will walk through the plugin portion below.
 
@@ -12,9 +12,9 @@ A webpack plugin is expected to expose an `apply` method. The way you do that is
 
 Regardless of your approach, you should capture possible options passed by a user, preferably validate them, and then make sure your `apply` method is ready to go. When webpack runs the plugin, it will pass a `compiler` object to it. This object exposes webpack’s plugin API and allows you to connect into the hooks it provides. [The official reference](https://webpack.js.org/pluginsapi/compiler/) lists all the available hooks.
 
-In this case, we need to intercept only a `this-compilation` hook that is emitted before `compilation` event itself. It happens to be the right hook for this particular purpose although it can take a bit of experimentation to figure out which hooks you need.
+In this case, you need to intercept only a `this-compilation` hook that is emitted before `compilation` event itself. It happens to be the right hook for this particular purpose although it can take a bit of experimentation to figure out which hooks you need.
 
-The hook will receive a `compilation` object that gives access to the build. It comes with a series of hooks of its own. In this case using the `additional-assets` hook is enough as we can go through the compiled chunks there and perform our logic.
+The hook will receive a `compilation` object that gives access to the build. It comes with a series of hooks of its own. In this case using the `additional-assets` hook is enough as you can go through the compiled chunks there and perform our logic.
 
 T> Loaders have a dirty access to `compiler` and `compilation` through underscore (`this._compiler`/`this._compilation`). You could write arbitrary files through them.
 
