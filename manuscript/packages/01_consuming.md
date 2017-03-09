@@ -1,10 +1,10 @@
 # Consuming Packages
 
-Consuming npm packages through webpack is often convenient but there are certain special considerations to take into account. Sometimes the packages may not play with you nicely, or they can require special tweaking to work properly. At the core of this is the concept of SemVer.
+Consuming npm packages through webpack is often convenient but there are certain special considerations to take into account. Sometimes the packages don't play with you nicely, or they can require special tweaking to work properly. At the core of this is the concept of SemVer.
 
 ## Understanding SemVer
 
-Most popular packages out there comply with SemVer. It's problematic as sometimes packages may inadvertently break it, but there are ways around this. Roughly, SemVer states that you should not break backward compatibility, given [certain rules](http://semver.org/) are met:
+Most popular packages out there comply with SemVer. It's problematic as sometimes packages inadvertently break it, but there are ways around this. Roughly, SemVer states that you should not break backward compatibility, given [certain rules](http://semver.org/) are met:
 
 1. The MAJOR version gets incremented when incompatible API changes are made to stable APIs.
 2. The MINOR version gets incremented when backwards-compatible functionality is added.
@@ -45,7 +45,7 @@ You can tweak webpack's module resolution through the `resolve.modules` field. E
 },
 ```
 
-Sometimes it may be beneficial to use these techniques together. Compared to npm environment, webpack provides more flexibility, although you can mimic a lot of webpack's functionality using terminal based tricks.
+Sometimes it is beneficial to use these techniques together. Compared to npm environment, webpack provides more flexibility, although you can mimic a lot of webpack's functionality using terminal based tricks.
 
 W> Installing global packages can lead to surprising behavior. If you have a package installed both globally and it a project happens to contain it, executing associated terminal command (say `webpack`) points to the version of the project. It doesn't work unless the global package exists.
 
@@ -78,7 +78,7 @@ An important part of maintaining a project is keeping their dependencies up to d
 * Install the newest version of a specific dependency, e.g., `npm install lodash@* --save` as a more controlled approach.
 * Patch version information by hand by modifying *package.json* directly.
 
-It is important to remember that your dependencies may introduce backward incompatible changes. Remember how SemVer works and study the release notes of dependencies. They don't exist always, so you may have to go through the project commit history.
+It is important to remember that your dependencies can introduce backward incompatible changes. Remember how SemVer works and study the release notes of dependencies. They don't exist always, so you have to go through the project commit history.
 
 T> `npm ls`, and more specifically `npm ls <package name>`, allow you to figure out which versions you have installed. `npm ls -g` performs a similar lookup against the globally installed packages.
 
@@ -90,7 +90,7 @@ Certain services can help you to keep track of your dependencies:
 * [versioneye](https://www.versioneye.com/)
 * [Gemnasium](https://gemnasium.com)
 
-These services provide badges you can integrate into your project *README.md*, and they may email you about important changes. They can also point out possible security issues that have been fixed.
+These services provide badges you can integrate into your project *README.md*, and they email you about important changes. They can also point out possible security issues that have been fixed.
 
 For testing your project, you can consider solutions, such as [Travis CI](https://travis-ci.org/) or [SauceLabs](https://saucelabs.com/). They can test your project against different environments and browsers. The advantage of doing this is that it allows you to detect regressions. If you accept pull requests to your project, these services can help to keep their quality higher as it forces the authors to maintain their code on a higher level.
 
@@ -160,7 +160,7 @@ Webpack's `ProvidePlugin` can be used for a similar purpose. It allows webpack t
 },
 ```
 
-T> [script-loader](https://www.npmjs.com/package/script-loader) allows you to execute scripts in a global context. You may have to do this if the scripts you are using rely on a global registration setup.
+T> [script-loader](https://www.npmjs.com/package/script-loader) allows you to execute scripts in a global context. You have to do this if the scripts you are using rely on a global registration setup.
 
 ## Removing Unused Modules
 
@@ -209,7 +209,7 @@ Critical dependencies:
 
 The warning can happen if a package points at a pre-built (i.e., minified and already processed) file. Webpack detects this case and warns against it.
 
-The warning can be eliminated by aliasing the package to a source version as discussed above. Given sometimes the source may not be available, another option is to tell webpack to skip parsing the files through `module.noParse`. It accepts either a RegExp or an array of RegExps and can be configured as below:
+The warning can be eliminated by aliasing the package to a source version as discussed above. Given sometimes the source is not available, another option is to tell webpack to skip parsing the files through `module.noParse`. It accepts either a RegExp or an array of RegExps and can be configured as below:
 
 ```javascript
 {
@@ -225,7 +225,7 @@ W> Disabling warnings like this one should be the last measure since doing it ca
 
 ## Exposing Globals to the Browser
 
-Sometimes you may have to expose packages to third party scripts. [expose-loader](https://www.npmjs.com/package/expose-loader) allows this as follows:
+Sometimes you have to expose packages to third party scripts. [expose-loader](https://www.npmjs.com/package/expose-loader) allows this as follows:
 
 ```javascript
 {
@@ -246,7 +246,7 @@ T> It can be a good idea to install [React Developer Tools](https://github.com/f
 
 ### Disabling Asset Loading
 
-It is possible a package comes with formats you are not interested in. A good example of this is a font framework. They often provide fonts in all formats, but you may need only a few if you support modern browsers.
+It is possible a package comes with formats you are not interested in. A good example of this is a font framework. They often provide fonts in all formats, but you need only a few if you support modern browsers.
 
 [null-loader](https://www.npmjs.com/package/null-loader) fits the use case. You can tell webpack to pipe certain assets through it.
 

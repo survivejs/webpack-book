@@ -8,12 +8,12 @@ In this chapter, you learn basic ideas behind authoring npm packages and a coupl
 
 Most of the available npm packages are small and include only a couple of files:
 
-* *index.js* - On small projects, it's enough to have the code at the root. On larger ones, you may want to start splitting it up further.
+* *index.js* - On small projects, it's enough to have the code at the root. On larger ones, you likely want to start splitting it up further.
 * *package.json* - npm metadata in JSON format
 * *README.md* - README is the most important document of your project. It is written in Markdown format and provides an overview. For smallest projects, the full documentation can fit there. It is shown on the package page at *npmjs.com*.
-* *LICENSE* - You can include licensing information within your project. You should refer to the license by name from *package.json* as otherwise, npm gives a warning. If you are using a custom license, you can link to it instead. In commercial projects, you may want to set `"private": true` to avoid pushing your work to public inadvertently.
+* *LICENSE* - You can include licensing information within your project. You should refer to the license by name from *package.json* as otherwise, npm gives a warning. If you are using a custom license, you can link to it instead. In commercial projects, you should to set `"private": true` to avoid pushing your work to public inadvertently.
 
-In larger projects, you may find the following:
+In larger projects, you often find the following:
 
 * *CONTRIBUTING.md* - A guide for potential contributors describing how the code should be developed.
 * *CHANGELOG.md* - This document describes major changes per version. If you do significant API changes, it can be a good idea to cover them here. It is possible to generate the file based on Git commit history, provided you write nice enough commits.
@@ -133,7 +133,7 @@ I've annotated a part of *package.json* of my [React component boilerplate](http
 }
 ```
 
-As you can see, *package.json* can contain a lot of information. You can attach non-npm specific metadata there that can be used by tooling. Given this can bloat *package.json*, it may be preferable to keep metadata in files of their own.
+As you can see, *package.json* can contain a lot of information. You can attach non-npm specific metadata there that can be used by tooling. Given this can bloat *package.json*, it is preferable to keep metadata in files of their own.
 
 T> JSON doesn't support comments even though I'm using them above. There are extended notations, such as [Hjson](http://hjson.org/), that do.
 
@@ -141,7 +141,7 @@ T> JSON doesn't support comments even though I'm using them above. There are ext
 
 To get started, you have to use [npm adduser](https://docs.npmjs.com/cli/adduser). It allows you to set up an account. After this process has completed, it creates a *~/.npmrc* file and use that data for authentication. There's also [npm logout](https://docs.npmjs.com/cli/logout) that clears the credentials.
 
-T> When creating a project, `npm init` respects the values set at *~/.npmrc*. Hence, it may be worth your while to set reasonable defaults there to save time. If you want to limit your package to a particular scope, use `npm init --scope=<scope>`. As a result, you get `@<scope>/<package>` which is handy especially for personal packages since the default namespace of npm is so crowded.
+T> When creating a project, `npm init` respects the values set at *~/.npmrc*. Hence, it is worth your while to set reasonable defaults there to save time. If you want to limit your package to a particular scope, use `npm init --scope=<scope>`. As a result, you get `@<scope>/<package>` which is handy especially for personal packages since the default namespace of npm is so crowded.
 
 ### Publishing a Package
 
@@ -181,7 +181,7 @@ Note that in the example above, I've set up `version`-related hooks to make sure
 
 T> Consider using [semantic-release](https://www.npmjs.com/package/semantic-release) if you prefer a more structured approach. It can take pain out of the release process while automating a part of it. For instance, it can detect possible breaking changes and generate change logs.
 
-T> [dont-break](https://www.npmjs.com/package/dont-break) allows you to run the unit tests of dependent projects against your current code to see if it breaks anything. Sometimes it's possible to overlook a use case that may not be a part of the public API even and break a dependency. *dont-break* helps with that particular problem.
+T> [dont-break](https://www.npmjs.com/package/dont-break) allows you to run the unit tests of dependent projects against your current code to see if it breaks anything. Sometimes it's possible to overlook a use case that is not a part of the public API even and break a dependency. *dont-break* helps with that particular problem.
 
 ### Respect the SemVer
 
@@ -197,7 +197,7 @@ T> The *Consuming Packages* explains the idea of SemVer in detail.
 
 ### Publishing a Pre-Release Version
 
-Sometimes, you may want to publish something preliminary for other people to test. You can do this by tagging your release as a pre-release version. For example, a package can have versions like this:
+Sometimes, you want to publish something preliminary for other people to test. You can do this by tagging your release as a pre-release version. For example, a package can have versions like this:
 
 * v0.5.0-alpha1
 * v0.5.0-beta1
@@ -273,7 +273,7 @@ It is important to note that in npm 3 `prepublish` hook gets also triggered when
 
 ## Sharing Authorship
 
-As packages evolve, you may want to start developing with others. You could become the new maintainer of a project, or pass the torch to someone else. These things happen as packages evolve.
+As packages evolve, you likely want to start developing with others. You could become the new maintainer of a project, or pass the torch to someone else. These things happen as packages evolve.
 
 npm provides certain commands for these purposes. It's all behind `npm owner` namespace. More specifically, you'll find `npm owner ls <package name>`, `npm owner add <user> <package name>` and `npm owner rm <user> <package name>` there. That's about it.
 
@@ -313,7 +313,7 @@ externals: {
 
 If you want to include all modules in *node_modules* by default, it is possible to use [webpack-node-externals](https://www.npmjs.com/package/webpack-node-externals) instead. In this case would end up with `externals: [nodeExternals()]` kind of declaration.
 
-T> Given bundling may still be required sometimes, consider using the [bundledDependencies](https://docs.npmjs.com/files/package.json#bundleddependencies) field for sharing third-party files not available through npm. There's a great [Stack Overflow answer](http://stackoverflow.com/a/25044361/228885) discussing the topic further.
+T> Given bundling is still be required sometimes, consider using the [bundledDependencies](https://docs.npmjs.com/files/package.json#bundleddependencies) field for sharing third-party files not available through npm. There's a great [Stack Overflow answer](http://stackoverflow.com/a/25044361/228885) discussing the topic further.
 
 ### Processing Node Version through Babel
 
@@ -404,11 +404,11 @@ function exec(command) {
 }
 ```
 
-The script may need tweaking to fit your purposes. But it's enough to give you a rough idea. If the `dist-modules` directory is missing, you generate it here.
+The script needs tweaking to fit your purposes. But it's enough to give you a rough idea. If the `dist-modules` directory is missing, you generate it here.
 
 For the build script to work, you have to remember to include the source of the package to the distribution version and to tweak *package.json* `files` field accordingly.
 
-W> Relying on `postinstall` scripts can be [potentially dangerous](http://blog.npmjs.org/post/141702881055/package-install-scripts-vulnerability). Security-minded developers may want to use `npm install --ignore-scripts`. You can set that default through `npm config set ignore-scripts true` if you want. Being a little cautious does not hurt.
+W> Relying on `postinstall` scripts can be [potentially dangerous](http://blog.npmjs.org/post/141702881055/package-install-scripts-vulnerability). Security-minded developers want to use `npm install --ignore-scripts`. You can set that default through `npm config set ignore-scripts true` if you want. Being a little cautious does not hurt.
 
 ### Deprecating, Unpublishing, and Renaming Packages
 
@@ -426,7 +426,7 @@ You should now have a basic idea of how to author npm packages. Webpack can help
 
 To recap:
 
-* It is good to understand what kind of metadata packages may contain. They give you insight on their licensing, guidelines, and even quality.
+* It is good to understand what kind of metadata packages contains. They give you insight on their licensing, guidelines, and even quality.
 * When publishing packages to npm, remember to respect the SemVer or an equivalent scheme to keep your consumers happy.
 * Document the main changes made to your packages using a change log. Documentation comes in handy later as you have to understand when a specific feature was introduced. It also makes it easier to upgrade projects to the most recent features.
 * Consider publishing differently packaged versions of the source to account for different usage patterns. Packaged right, your consumers can benefit from features, such as **tree shaking**.

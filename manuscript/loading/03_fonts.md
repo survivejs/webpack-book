@@ -4,7 +4,7 @@ Loading fonts is similar to loading images. It does come with special challenges
 
 The problem can be solved by deciding a set of browsers and platforms that should receive first class service. The rest can use system fonts.
 
-You can approach the problem in several ways through webpack. You can still use *url-loader* and *file-loader* as with images. Font `test` patterns tend to be more complicated, though, and you may have to worry about font file related lookups.
+You can approach the problem in several ways through webpack. You can still use *url-loader* and *file-loader* as with images. Font `test` patterns tend to be more complicated, though, and you have to worry about font file related lookups.
 
 T> [canifont](https://www.npmjs.com/package/canifont) helps you to figure out which font formats you should support. It accepts a **browserslist** definition and then checks font support of each browser based on the definition.
 
@@ -258,6 +258,6 @@ To recap:
 
 * When loading fonts, the same techniques as for images apply. You can choose to inline small fonts while bigger ones are served as separate assets.
 * If you decide to provide first class support to only modern browsers, you can select only a font format or two and let the older browsers to use system level fonts.
-* Using larger font collections, such as Font Awesome, may be problematic especially if you want to avoid loading additional rules. The problem is dependent on the packages in question and can be solved with webpack to an extent.
+* Using larger font collections, such as Font Awesome, can be problematic especially if you want to avoid loading additional rules. The problem is dependent on the packages in question and can be solved with webpack to an extent.
 
 In the next chapter, you learn to load JavaScript using Babel and webpack. Webpack loads JavaScript by default, but there's more to the topic as you have to consider what browsers you want to support.

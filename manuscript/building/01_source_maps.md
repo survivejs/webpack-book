@@ -12,11 +12,11 @@ T> If you want to understand the ideas behind source maps in greater detail, [re
 
 Webpack can generate both inline source maps included within bundles or separate source map files. The former are valuable during development due to better performance while the latter are handy for production usage as it keeps the bundle size small. In this case, loading source maps is optional.
 
-You may **not** want to generate a source map for your production bundle as this makes it effortless to inspect your application (it depends on whether you want this or not; it is handy for staging). Skip the `devtool` field then or generate a hidden variant. Skipping source maps entirely also speeds up your build a notch as generating source maps at the best quality can be a big operation.
+It is possible you **don't** want to generate a source map for your production bundle as this makes it effortless to inspect your application (it depends on whether you want this or not; it is handy for staging). Skip the `devtool` field then or generate a hidden variant. Skipping source maps entirely also speeds up your build a notch as generating source maps at the best quality can be a big operation.
 
 **Hidden source maps** give stack trace information only. You can connect them with a monitoring service to get traces as the application crashes allowing you to fix the problematic situations. While this isn't ideal, it is better to know about possible problems than not.
 
-T> It is a good idea to study the documentation of the loaders you are using to see loader specific tips. For example, with TypeScript, you may need to set a particular flag to make it work as you expect.
+T> It is a good idea to study the documentation of the loaders you are using to see loader specific tips. For example, with TypeScript, you have to set a particular flag to make it work as you expect.
 
 ## Enabling Source Maps
 
@@ -102,7 +102,7 @@ Take a good look at those *.map* files. That's where the mapping between the gen
 
 ### Enabling Source Maps on Browsers
 
-To use source maps on browsers, you may need to enable source maps explicitly. I've listed reference per browser below:
+To use source maps on browsers, you have to enable source maps explicitly. I've listed reference per browser below:
 
 * [Chrome](https://developer.chrome.com/devtools/docs/javascript-debugging)
 * [Firefox](https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Use_a_source_map)
@@ -421,4 +421,4 @@ To recap:
 * *source-map-loader* can come in handy if your dependencies provide source maps.
 * Enabling source maps for styling requires additional effort. You have to enable `sourceMap` option per styling related loader you are using.
 
-In the next chapter, you learn to split bundles and separate the current bundle into application and vendor bundles that may both be cached.
+In the next chapter, you learn to split bundles and separate the current bundle into application and vendor bundles.

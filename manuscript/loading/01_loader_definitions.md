@@ -1,10 +1,10 @@
 # Loader Definitions
 
-Webpack provides multiple ways to set up module loaders. Webpack 2 simplified the situation by introducing the `use` field. The legacy options (`loader` and `loaders`) still work, though. I'll discuss all the options for completeness, as you may see them in existing configurations.
+Webpack provides multiple ways to set up module loaders. Webpack 2 simplified the situation by introducing the `use` field. The legacy options (`loader` and `loaders`) still work, though. You see all the options for completeness, as they exist in older configurations online.
 
 It can be a good idea to prefer absolute paths here as they allow you to move configuration without breaking assumptions. The other option is to set `context` field as this gives a similar effect and affects the way entry points and loaders are resolved. It doesn't have an impact on the output, though, and you still need to use an absolute path or `/` there.
 
-Assuming you set an `include` or `exclude` rule, packages loaded from *node_modules* still work as the assumption is that they have been compiled in such way that they work out of the box. Sometimes you may come upon a poorly packaged one, but often you can work around these by tweaking your loader configuration or setting up a `resolve.alias` against an asset that is included in the offending package.
+Assuming you set an `include` or `exclude` rule, packages loaded from *node_modules* still work as the assumption is that they have been compiled in such way that they work out of the box. Sometimes you come upon a poorly packaged one, but often you can work around these by tweaking your loader configuration or setting up a `resolve.alias` against an asset that is included in the offending package.
 
 T> The *Consuming Packages* chapter discusses the aliasing idea in further detail.
 
@@ -131,7 +131,7 @@ There's a query format that allows passing parameters to loaders:
 },
 ```
 
-It is good to note that this style of configuration works in entries and source imports too as webpack picks it up. The format may come in handy in certain individual cases, but often you are better off using more readable alternatives.
+It is good to note that this style of configuration works in entries and source imports too as webpack picks it up. The format comes in handy in certain individual cases, but often you are better off using more readable alternatives.
 
 It is preferable to use the combination of `loader` and `options` fields either like this:
 
@@ -292,7 +292,7 @@ If you wanted to embed the context information to the filename, the rule could u
 
 ## `LoaderOptionsPlugin`
 
-Given webpack 2 forbids arbitrary root level configuration, you have to use `LoaderOptionsPlugin` to manage it. The plugin exists for legacy compatibility and may disappear in a future release. Consider the example below:
+Given webpack 2 forbids arbitrary root level configuration, you have to use `LoaderOptionsPlugin` to manage it. The plugin exists for legacy compatibility and disappears in a future release. Consider the example below:
 
 ```javascript
 {

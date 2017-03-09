@@ -66,7 +66,7 @@ I have compiled [a set of slides online](http://presentations.survivejs.com/adva
 
 Given this book receives a fair amount of maintenance and improvements due to the pace of innovation, there’s a rough versioning scheme in place. I maintain release notes for each new version at the [book blog](http://survivejs.com/blog/). That should give you a good idea of what has changed between versions.
 
-Examining the GitHub repository may be beneficial. I recommend using the GitHub *compare* tool for this purpose. Example:
+Examining the GitHub repository is beneficial. I recommend using the GitHub *compare* tool for this purpose. Example:
 
 ```
 https://github.com/survivejs/webpack-book/compare/v1.8.0...v1.9.4

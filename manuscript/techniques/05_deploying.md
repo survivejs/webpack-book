@@ -80,7 +80,7 @@ ghpages.publish(path.join(__dirname, 'build'), { add: true }, callback);
 
 ## Deploying to Other Environments
 
-Even though you can push the problem of deployment outside of webpack, there are a couple of webpack specific utilities that may come in handy:
+Even though you can push the problem of deployment outside of webpack, there are a couple of webpack specific utilities that come in handy:
 
 * [webpack-deploy](https://www.npmjs.com/package/webpack-deploy) is a collection of deployment utilities and works even outside of webpack.
 * [webpack-s3-sync-plugin](https://www.npmjs.com/package/webpack-s3-sync-plugin) and [webpack-s3-plugin](https://www.npmjs.com/package/webpack-s3-plugin) sync the assets to Amazon S3.

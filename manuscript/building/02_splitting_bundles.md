@@ -126,7 +126,7 @@ If you examine the resulting bundle, you can see that it contains React given th
 
 `CommonsChunkPlugin` is a webpack plugin that allows to alter this default behavior.
 
-W> This step can fail on Windows due to letter casing. Instead of `c:\` you may need to force your terminal to read `C:\`. There's more information in the [related webpack issue](https://github.com/webpack/webpack/issues/2362).
+W> This step can fail on Windows due to letter casing. Instead of `c:\` you have to force your terminal to read `C:\`. There's more information in the [related webpack issue](https://github.com/webpack/webpack/issues/2362).
 
 W> Webpack doesn't allow referring to entry files within entries. If you inadvertently do this, webpack complains loudly. If you end up in a case like this, consider refactoring the module structure of your code to eliminate the situation.
 
@@ -300,7 +300,7 @@ The build result should remain the same. This time, however, webpack pulls only 
 
 ## Performing a More Granular Split
 
-Sometimes having only an app and a vendor bundle isn't enough. Especially when your application grows and gains more entry points, you may want to split the vendor bundle into multiples ones per each entry. `CommonsChunkPlugin` operates against all entry chunks by default. This behavior can be constrained through the `chunks` option for more granular control.
+Sometimes having only an app and a vendor bundle isn't enough. Especially when your application grows and gains more entry points, you could split the vendor bundle into multiples ones per each entry. `CommonsChunkPlugin` operates against all entry chunks by default. This behavior can be constrained through the `chunks` option for more granular control.
 
 Consider [the example adapted from a GitHub comment](https://github.com/webpack/webpack/issues/2855#issuecomment-239606760) below where chunks are extracted from `login` and `app` entries:
 

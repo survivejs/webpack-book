@@ -6,7 +6,7 @@ The completed configuration is available at [GitHub](https://github.com/survivej
 
 T> It is possible to get a more controlled environment by using a solution such as [Docker](https://www.docker.com/), [Vagrant](https://www.vagrantup.com/) or [nvm](https://www.npmjs.com/package/nvm). Vagrant comes with a performance penalty as it relies on a virtual machine. Vagrant is valuable in a team: each developer have the same environment, usually close to production.
 
-W> If you are using an older version than Node 6, you may either have to adapt the code or process your webpack configuration through Babel as discussed in the *Loading JavaScript* chapter.
+W> If you are using an older version than Node 6, you have to adapt the code or process your webpack configuration through Babel as discussed in the *Loading JavaScript* chapter.
 
 ## Setting Up the Project
 
@@ -110,7 +110,7 @@ npm install html-webpack-plugin --save-dev
 
 At a minimum, it is nice to have at least `entry` and `output` fields in your configuration. Often you see a lot more as you specify how webpack deals with different file types and how it resolves them.
 
-Entries tell webpack where to start parsing the application. In multi-page applications, you may have an entry per page. Or you could have a configuration per entry as discussed later in this chapter.
+Entries tell webpack where to start parsing the application. In multi-page applications, you have an entry per page. Or you could have a configuration per entry as discussed later in this chapter.
 
 It is good to note that all output related paths that you see in the configuration are resolved against `output.path` meaning that if you had an output related option somewhere and wrote `styles/[name].css` to it, webpack would output the `styles` directory below the output path.
 

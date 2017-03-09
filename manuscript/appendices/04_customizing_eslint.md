@@ -1,6 +1,6 @@
 # Customizing ESLint
 
-Even though you can get far with vanilla ESLint, there are certain techniques you should know. For instance, sometimes you want to skip specific rules per file. You may even want to implement rules of your own.
+Even though you can get far with vanilla ESLint, there are certain techniques you should know. For instance, sometimes you want to skip specific rules per file. You can even implement rules of your own.
 
 ## Skipping ESLint Rules
 
@@ -34,7 +34,7 @@ Note that the rule specific examples assume you have the rules in your configura
 
 ## Setting Environment
 
-Sometimes, you may want to run ESLint in a specific environment, such as Node or Mocha. These environments have certain conventions of their own. For instance, Mocha relies on custom keywords (e.g., `describe`, `it`) and it's good if the linter doesn't choke on those.
+Sometimes, you want to run ESLint in a specific environment, such as Node or Mocha. These environments have certain conventions of their own. For instance, Mocha relies on custom keywords (e.g., `describe`, `it`) and it's good if the linter doesn't choke on those.
 
 ESLint provides two ways to deal with this: local and global. If you want to set it per file, you can use a declaration at the beginning of a file:
 

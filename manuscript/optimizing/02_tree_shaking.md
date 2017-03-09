@@ -46,7 +46,7 @@ T> There is a CSS Modules related tree shaking proof of concept at [dead-css-loa
 
 ## Tree Shaking on Package Level
 
-The same idea works with dependencies that use the ES6 module definition. Given the related packaging standards are still emerging, it is possible you may have to be careful when consuming such packages. Webpack tries to resolve *package.json* `module` field for this reason.
+The same idea works with dependencies that use the ES6 module definition. Given the related packaging standards are still emerging, you have to be careful when consuming such packages. Webpack tries to resolve *package.json* `module` field for this reason.
 
 For tools like webpack to allow tree shake npm packages, you should generate a build that has transpiled everything else except the ES6 module definitions and then point to it through *package.json* `module` field.
 
@@ -67,7 +67,7 @@ In Babel terms, you have to let webpack to manage ES6 modules like this:
 }
 ```
 
-T> The *Consuming Packages* and *Authoring Packages* chapters contain further techniques that may come in handy.
+T> The *Consuming Packages* and *Authoring Packages* chapters contain further techniques that come in handy.
 
 ## Conclusion
 

@@ -72,7 +72,7 @@ The output means that the development server is running. If you open `http://loc
 
 If you try modifying the code, you should see output in your terminal. The browser should also perform a hard refresh on change.
 
-T> WDS tries to run in another port in case the default one is being used. See the terminal output to figure out where it ends up running. You can debug the situation with a command like `netstat -na | grep 8080`. If something is running on the port 8080, it should display a message. The exact command may depend on the platform.
+T> WDS tries to run in another port in case the default one is being used. See the terminal output to figure out where it ends up running. You can debug the situation with a command like `netstat -na | grep 8080`. If something is running on the port 8080, it should display a message. The exact command depends on the platform.
 
 T> If you want to open a browser tab directly after running the server, set `devServer.open: true`. You can also achieve the same result through the CLI by using `webpack-dev-server --open`.
 
@@ -152,7 +152,7 @@ W> Webpack 2 changed argument behavior compared to webpack 1. You are not allowe
 
 It is possible to customize host and port settings through the environment in the setup (i.e., `export PORT=3000` on Unix or `SET PORT=3000` on Windows). The default settings are enough on most platforms.
 
-To access your server, you'll need to figure out the ip of your machine. On Unix, this can be achieved using `ifconfig | grep inet`. On Windows, `ipconfig` can be utilized. An npm package, such as [node-ip](https://www.npmjs.com/package/node-ip) may come in handy as well. Especially on Windows, you may need to set your `HOST` to match your ip to make it accessible.
+To access your server, you'll need to figure out the ip of your machine. On Unix, this can be achieved using `ifconfig | grep inet`. On Windows, `ipconfig` can be utilized. An npm package, such as [node-ip](https://www.npmjs.com/package/node-ip) come in handy as well. Especially on Windows, you need to set your `HOST` to match your ip to make it accessible.
 
 ## Alternate Ways to Use *webpack-dev-server*
 

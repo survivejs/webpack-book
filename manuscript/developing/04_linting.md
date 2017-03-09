@@ -2,7 +2,7 @@
 
 Linting is one of those techniques that can help you make fewer mistakes while coding JavaScript. You can spot issues before they become actual problems. Modern editors and IDEs offer strong support for popular tools allowing you to detect possible issues as you are developing.
 
-Despite this, it is a good idea to set them up with webpack or at least in a separate task that gets run regularly. That allows you to cancel a production build that may not be up to your standards.
+Despite this, it is a good idea to set them up with webpack or at least in a separate task that gets run regularly. That allows you to cancel a production build that is not up to your standards.
 
 ## Brief Introduction to ESLint
 
@@ -26,7 +26,7 @@ T> [eslint-config-cleanjs](https://www.npmjs.com/package/eslint-config-cleanjs) 
 
 Besides linting for issues, it can be valuable to manage the code style. Nothing is more annoying than having to work with source code that has mixed tabs and spaces. Stylistically consistent code reads better. Linting tools allow you to do this.
 
-Establishing strong linting can be beneficial, especially in a context where you need to collaborate with others. Even when working alone you benefit from linting as it can catch issues you could otherwise neglect. JavaScript as a language allows usage which, while valid, may not be the clearest to understand or may even be incorrect.
+Establishing strong linting can be beneficial, especially in a context where you need to collaborate with others. Even when working alone you benefit from linting as it can catch issues you could otherwise neglect. JavaScript as a language allows usage which, while valid, is not be the clearest to understand or is even be incorrect.
 
 Linting does **not** replace proper testing, but it can complement testing approaches. It allows you to harden a codebase and make it a little harder to break. As the size of your project grows, and it becomes more challenging to manage, this becomes particularly important.
 
@@ -218,7 +218,7 @@ I've collected different ESLint tips below. The great thing about ESLint is that
 
 ### Performance Tips
 
-* Especially on bigger projects it may be beneficial to run ESLint outside of webpack. That keeps code compilation fast while still giving the advantage of linting. Solutions like [lint-staged](https://www.npmjs.com/package/lint-staged) and [fastlint](https://www.npmjs.com/package/fastlint) can make this even more quickly.
+* Especially on bigger projects it is beneficial to run ESLint outside of webpack. That keeps code compilation fast while still giving the advantage of linting. Solutions like [lint-staged](https://www.npmjs.com/package/lint-staged) and [fastlint](https://www.npmjs.com/package/fastlint) can make this even more quickly.
 * You can get more performance out of ESLint by running it through a daemon, such as [eslint_d](https://www.npmjs.com/package/eslint_d). Using it brings down the overhead, and it can bring down linting times considerably.
 
 ### Extension Tips

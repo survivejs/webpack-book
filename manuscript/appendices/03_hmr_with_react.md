@@ -8,7 +8,7 @@ To get started, install the upcoming version of *react-hot-loader*:
 npm install react-hot-loader@next --save
 ```
 
-T> I included *react-hot-loader* as a normal dependency as it comes with a small application level tweak. Your mileage may vary.
+T> *react-hot-loader* was included as a normal dependency as it comes with a small application level tweak.
 
 ## Setting Up Babel
 
@@ -65,7 +65,7 @@ leanpub-end-insert
 
 Patching is needed still as you have to make the application side aware of hot loading.
 
-T> This tweak may not be needed in the future as *react-hot-loader* evolves. It is possible to inject an empty module for `'react-hot-loader/patch'` if it detects that production environment is used. For now, this extra tweak is needed.
+T> This tweak is not required in the future as *react-hot-loader* evolves. It is possible to inject an empty module for `'react-hot-loader/patch'` if it detects that production environment is used. For now, this extra tweak is needed.
 
 ## Setting Up the Application
 
@@ -132,7 +132,7 @@ If you run the application after these changes and modify the file above, it sho
 
 ## Removing *react-hot-loader* Related Code from the Production Output
 
-If you build the application (`npm run build`) and examine the output, you may spot references to `__REACT_HOT_LOADER__` there due to the Babel setup. It uses `react-hot-loader/babel` plugin regardless of the build target. To overcome this slight annoyance, you should configure Babel to apply the plugin only when you are developing.
+If you build the application (`npm run build`) and examine the output, you spot references to `__REACT_HOT_LOADER__` there due to the Babel setup. It uses `react-hot-loader/babel` plugin regardless of the build target. To overcome this slight annoyance, you should configure Babel to apply the plugin only when you are developing.
 
 Babel provides an [env option](https://babeljs.io/docs/usage/babelrc/#env-option) for this purpose. It respects both `NODE_ENV` and `BABEL_ENV` environment variables. If `BABEL_ENV` is set, it receives precedence. To fix the issue, you can push the problematic Babel plugin behind a development specific `env` while controlling its behavior within webpack configuration by setting `BABEL_ENV`.
 
@@ -182,7 +182,7 @@ leanpub-end-insert
 
 The development setup should work after this change still. If you examine the build output, you should notice it's missing references to `__REACT_HOT_LOADER__`.
 
-Even after this change, the source may contain references still due to a [bug in react-hot-loader](https://github.com/gaearon/react-hot-loader/issues/471) as it has been built so that it loses information that's valuable for a bundler.
+Even after this change, the source can contain references still due to a [bug in react-hot-loader](https://github.com/gaearon/react-hot-loader/issues/471) as it has been built so that it loses information that's valuable for a bundler.
 
 It is possible to work around the issue by implementing a module chooser pattern as described in the *Setting Environment Variables* chapter. The idea is that `AppContainer` provided by *react-hot-loader* would be mocked with a dummy implementation during production usage.
 

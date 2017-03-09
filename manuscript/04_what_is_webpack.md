@@ -88,7 +88,7 @@ module.exports = {
 };
 ```
 
-Given the configuration is written in JavaScript, it’s quite malleable. The model may make webpack feel a bit opaque at times, as it can be difficult to understand what it’s doing especially in more complicated cases. Covering those is one of the main reasons why this book exists.
+Given the configuration is written in JavaScript, it’s quite malleable. The model makes webpack feel a bit opaque at times, as it can be difficult to understand what it’s doing especially in more complicated cases. Covering those is one of the main reasons why this book exists.
 
 T> To understand webpack on source code level, check out [the artsy webpack tour](https://github.com/TheLarkInn/artsy-webpack-tour).
 
@@ -123,7 +123,7 @@ To summarize:
 * Webpack is a **module bundler**, but you can also use it for tasks as well.
 * **Hot Module Replacement** (HMR) helped to popularize webpack. It is a feature that can enhance development experience.
 * Webpack relies on a **dependency graph** underneath. Webpack traverses through the source to construct the graph and it uses this information and configuration to generate bundles.
-* Webpack’s **configuration** describes how to transform assets of the graphs and what kind of output it should generate. A part of this information may be included in the source itself if features like code splitting are used.
+* Webpack’s **configuration** describes how to transform assets of the graphs and what kind of output it should generate. A part of this information can be included in the source itself if features like code splitting are used.
 * Webpack can generate **hashes** for filenames allowing you to invalidate bundles as their contents change.
 * Webpack’s logic is contained within **loaders** and **plugins**. These are called through webpack’s configuration.
 

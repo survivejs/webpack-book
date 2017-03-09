@@ -10,7 +10,7 @@ When generating multiple pages with webpack, you have a couple of considerations
 * Set up a single configuration and extract the commonalities. The way you do this can differ depending on how you chunk it up.
 * If you follow the idea of [Progressive Web Applications](https://developers.google.com/web/progressive-web-apps/) (PWA), you can end up with either an **app shell** or a **page shell** and load portions of the application as it is used.
 
-In practice, you may find more dimensions. For example, you have to generate i18n variants for pages. These ideas grow on top of the basic approaches.
+In practice, you have more dimensions. For example, you have to generate i18n variants for pages. These ideas grow on top of the basic approaches.
 
 ## Generating Multiple Pages
 

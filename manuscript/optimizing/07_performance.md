@@ -94,7 +94,7 @@ Certain lower-level optimizations can be good to know. The key is to allow webpa
 
 There are a series of loader and plugin specific optimizations to consider:
 
-* Perform less processing by skipping loaders during development. Especially if you are using a modern browser, you may be able to skip using *babel-loader* or equivalent altogether.
+* Perform less processing by skipping loaders during development. Especially if you are using a modern browser, you can skip using *babel-loader* or equivalent altogether.
 * Use either `include` or `exclude` with JavaScript specific loaders. Webpack traverses *node_modules* by default and executes *babel-loader* over the files unless it has been configured correctly.
 * Utilize caching through plugins like [hard-source-webpack-plugin](https://www.npmjs.com/package/hard-source-webpack-plugin) to avoid unnecessary work. The caching idea applies to loaders as well. For example, you can enable cache on *babel-loader*.
 * Use equivalent, but lighter alternatives, of plugins and loaders during development. Replacing `HtmlWebpackPlugin` with a [HtmlPlugin](https://gist.github.com/bebraw/5bd5ebbb2a06936e052886f5eb1e6874) that does far less is one direction.
@@ -102,7 +102,7 @@ There are a series of loader and plugin specific optimizations to consider:
 
 ## Optimizing Rebundling Speed During Development
 
-It is possible to optimize rebundling times during development by pointing the development setup to a minified version of a library, such as React. In React's case, you lose `propType`-based validation. But if speed is more important, this technique may be worth a go.
+It is possible to optimize rebundling times during development by pointing the development setup to a minified version of a library, such as React. In React's case, you lose `propType`-based validation. But if speed is more important, this technique is worth a go.
 
 `module.noParse` accepts a RegExp or an array of RegExps. In addition to telling webpack not to parse the minified file you want to use, you also have to point `react` to it by using `resolve.alias`.
 
@@ -170,6 +170,6 @@ You can optimize webpack's performance in multiple ways. Often it's a good idea 
 To recap:
 
 * Start with higher level techniques that are fast to implement first.
-* Lower level techniques are more involved but may come with their wins.
+* Lower level techniques are more involved but come with their wins.
 * Given webpack runs using a single instance by default, finding ways to parallelize its execution can lead to big wins.
 * Sometimes the best optimization is to skip work. Especially during development, cheating can be acceptable thanks to modern browsers.

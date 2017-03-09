@@ -257,7 +257,7 @@ T> PostCSS supports also *postcss.config.js* based configuration. It relies on [
 
 ![cssnext](images/cssnext.jpg)
 
-[cssnext](http://cssnext.io/) is a PostCSS plugin that allows to experience the future now. It comes with restrictions as it's not possible to adapt to each feature, but it may be worth a go. You can use it through [postcss-cssnext](https://www.npmjs.com/package/postcss-cssnext), and you can enable it as follows:
+[cssnext](http://cssnext.io/) is a PostCSS plugin that allows to experience the future now. It comes with restrictions as it's not possible to adapt to each feature. You can use it through [postcss-cssnext](https://www.npmjs.com/package/postcss-cssnext), and you can enable it as follows:
 
 ```javascript
 {

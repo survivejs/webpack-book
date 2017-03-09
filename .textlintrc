@@ -41,6 +41,7 @@
         ["will", ""],
         ["won't", ""],
         ["us", ""],
+        // ["may", ""], This should be a warning
 
         "pre-release",
 

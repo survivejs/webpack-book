@@ -189,13 +189,13 @@ If you refresh the browser, try to modify *app/component.js* after this change, 
 
 ![Patched a module successfully through HMR](images/hmr.png)
 
-The idea is the same with styling, React, Redux, and other technologies. Sometimes you may not have to implement the interface yourself even as available tooling takes care of that for you.
+The idea is the same with styling, React, Redux, and other technologies. Sometimes you don't have to implement the interface yourself even as available tooling takes care of that for you.
 
 T> That `if(module.hot)` block is eliminated entirely from the production build as minifier picks it up. The *Minifying* chapter delves deeper into this topic.
 
 ## HMR on Windows, Ubuntu, and Vagrant
 
-The setup may be problematic on older versions of Windows, Ubuntu, and Vagrant. You can solve this through polling:
+The setup can be problematic on older versions of Windows, Ubuntu, and Vagrant. You can solve this through polling:
 
 **webpack.config.js**
 
@@ -266,7 +266,7 @@ entry: {
 WDS provides functionality beyond what was covered above. There are a couple of relevant fields that you should be aware of:
 
 * `devServer.contentBase` - Assuming you don't generate *index.html* dynamically like in this setup and rather prefer to maintain it yourself in a specific directory, you'll need to point WDS to it. `contentBase` accepts either a path (e.g., `'build'`) or an array of paths (e.g., `['build', 'images']`). The default for this value is the project root.
-* `devServer.proxy` - If you are using multiple servers, you may have to proxy WDS to them. The proxy setting accepts an object of proxy mappings (e.g., `{ '/api': 'http://localhost:3000/api' }`) that allow WDS to resolve matching queries to another server. Proxy settings are disabled by default.
+* `devServer.proxy` - If you are using multiple servers, you have to proxy WDS to them. The proxy setting accepts an object of proxy mappings (e.g., `{ '/api': 'http://localhost:3000/api' }`) that allow WDS to resolve matching queries to another server. Proxy settings are disabled by default.
 * `devServer.headers` - If you want to attach custom headers to your requests, this is the place to do it.
 
 T> [The official documentation](https://webpack.js.org/configuration/dev-server/) covers more options.
@@ -279,7 +279,7 @@ To recap:
 
 * To work, HMR requires both client and server side support. For this purpose, webpack-dev-server provides both. Often you have to implement the client side interface although loaders like *style-loader* implement it for you.
 * It is a good idea to use the `NamedModulesPlugin` during development as that gives you better debug information.
-* The default HMR setup may be problematic on certain systems. For this reason, you may have to enable more resource intensive polling instead of relying on system level hook based options.
+* The default HMR setup can be problematic on certain systems. For this reason, more resource intensive polling is an option.
 * WDS does far more than refreshing and HMR. For example proxying allows you to connect it to other servers.
 
 In the next chapter, you make it harder to make mistakes by introducing JavaScript linting to the project.
