@@ -88,7 +88,7 @@ Webpack configuration receives the result of `--env` if it exposes a function. T
 leanpub-start-delete
 module.exports = {
   // Entry accepts a path or an object of entries.
-  // We'll be using the latter form given it's
+  // The latter form is used given it's
   // convenient with more complex configurations.
   //
   // Entries have to resolve to files! It relies on Node.js

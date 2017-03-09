@@ -44,6 +44,7 @@
         ["I'll", ""],
         ["I've", ""],
         ["you'll", ""],
+        ["we'll", ""],
         // ["I", ""], // This should be skipped for foreword/preface
         // ["may", ""], // This should be a warning
 
