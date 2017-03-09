@@ -111,7 +111,7 @@ To use source maps on browsers, you may need to enable source maps explicitly. I
 
 W> Sometimes source maps [will not update in Chrome inspector](https://github.com/webpack/webpack/issues/2478). For now, the temporary fix is to force the inspector to reload itself by using *alt-r*.
 
-W> If you want to use breakpoints (i.e., a `debugger;` statement or ones set through the browser), the `eval`-based options won't work in Chrome!
+W> If you want to use breakpoints (i.e., a `debugger;` statement or ones set through the browser), the `eval`-based options don't work in Chrome!
 
 ## Source Map Types Supported by Webpack
 
@@ -236,7 +236,7 @@ Webpack can also generate production usage friendly source maps. These end up in
 
 ### `devtool: 'cheap-source-map'`
 
-`cheap-source-map` is similar to the cheap options above. The result won't have column mappings. Also, source maps from loaders, such as *css-loader*, won't be used.
+`cheap-source-map` is similar to the cheap options above. The result is going to miss column mappings. Also, source maps from loaders, such as *css-loader*, are not going to be used.
 
 Examining the `.map` file reveals the following output in this case:
 
@@ -306,7 +306,7 @@ W> `cheap-module-source-map` is [currently broken if minification is used](https
 
 ### `devtool: 'hidden-source-map'`
 
-`hidden-source-map` is the same as `source-map` except it won't write references to the source maps to the source files. If you don't want to expose source maps to development tools directly while you want proper stack traces, this is handy.
+`hidden-source-map` is the same as `source-map` except it doesn't write references to the source maps to the source files. If you don't want to expose source maps to development tools directly while you want proper stack traces, this is handy.
 
 T> [The official documentation](https://webpack.js.org/configuration/devtool/#devtool) contains more information about `devtool` options.
 
@@ -332,7 +332,7 @@ There are a couple of other options that affect source map generation:
 
 T> The [official documentation](https://webpack.js.org/configuration/output/#output-sourcemapfilename) digs into `output` specifics.
 
-W> If you are using any `UglifyJsPlugin` and want source maps, you need to enable `sourceMap: true` for the plugin. Otherwise, the result won't be what you expect. You have to do this with other plugins and loaders that emit source maps as well. *css-loader* is a good example.
+W> If you are using any `UglifyJsPlugin` and want source maps, you need to enable `sourceMap: true` for the plugin. Otherwise, the result isn't be what you expect. You have to do this with other plugins and loaders that emit source maps as well. *css-loader* is a good example.
 
 ## `SourceMapDevToolPlugin` and `EvalSourceMapDevToolPlugin`
 

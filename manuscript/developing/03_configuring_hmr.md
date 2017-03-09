@@ -107,7 +107,7 @@ You can access the application alternately through `http://localhost:8080/webpac
 
 W> *webpack-dev-server* can be picky about paths. If the given `include` paths don't match the system casing precisely, this can cause it to fail to work. Webpack [issue #675](https://github.com/webpack/webpack/issues/675) discusses the problem in more detail.
 
-W> You should **not** enable HMR for your production configuration. It likely works, but having the capability enabled there won't do any good, and it makes your bundles bigger than they should be.
+W> You should **not** enable HMR for your production configuration. It likely works, but it makes your bundles bigger than they should be.
 
 T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environment variables through a *.env* file. *dotenv* allows you to control the host and port setting of the setup quickly.
 

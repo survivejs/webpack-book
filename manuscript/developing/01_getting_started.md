@@ -42,7 +42,7 @@ You should see webpack at your *package.json* `devDependencies` section after th
 
 You can display the exact path of the executables using `npm bin`. Most likely it points at *./node_modules/.bin*. Try running webpack from there through the terminal using `node_modules/.bin/webpack` or a similar command.
 
-After running, you should see a version, a link to the command line interface guide and an extensive list of options. You won't be using most of those, but it's good to know that this tool is packed with functionality if nothing else.
+After running, you should see a version, a link to the command line interface guide and an extensive list of options. Most aren't used in this project, but it's good to know that this tool is packed with functionality if nothing else.
 
 ```bash
 webpack-demo $ node_modules/.bin/webpack

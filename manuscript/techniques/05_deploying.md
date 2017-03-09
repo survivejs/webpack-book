@@ -33,7 +33,7 @@ leanpub-end-insert
 }
 ```
 
-To make the asset paths work on GitHub Pages, `output.publicPath` field has to be adjusted. Otherwise, the asset paths end up pointing at the root, and that won't work unless you are hosting behind a domain root (say `survivejs.com`) directly.
+To make the asset paths work on GitHub Pages, `output.publicPath` field has to be adjusted. Otherwise, the asset paths end up pointing at the root, and that doesn't work unless you are hosting behind a domain root (say `survivejs.com`) directly.
 
 `publicPath` gives control over the resulting urls you see at *index.html* for instance. If you are hosting your assets on a CDN, this would be the place to tweak. In this case, it's enough to set it to point the GitHub project like this:
 

@@ -2,7 +2,7 @@
 
 Webpack provides multiple ways to set up module loaders. Webpack 2 simplified the situation by introducing the `use` field. The legacy options (`loader` and `loaders`) still work, though. I'll discuss all the options for completeness, as you may see them in existing configurations.
 
-It can be a good idea to prefer absolute paths here as they allow you to move configuration without breaking assumptions. The other option is to set `context` field as this gives a similar effect and affects the way entry points and loaders are resolved. It won't have an impact on the output, though, and you still need to use an absolute path or `/` there.
+It can be a good idea to prefer absolute paths here as they allow you to move configuration without breaking assumptions. The other option is to set `context` field as this gives a similar effect and affects the way entry points and loaders are resolved. It doesn't have an impact on the output, though, and you still need to use an absolute path or `/` there.
 
 Assuming you set an `include` or `exclude` rule, packages loaded from *node_modules* still work as the assumption is that they have been compiled in such way that they work out of the box. Sometimes you may come upon a poorly packaged one, but often you can work around these by tweaking your loader configuration or setting up a `resolve.alias` against an asset that is included in the offending package.
 

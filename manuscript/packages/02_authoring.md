@@ -101,7 +101,7 @@ I've annotated a part of *package.json* of my [React component boilerplate](http
   "devDependencies": { ... },
 
   /* Package peer dependencies. The consumer fixes exact versions. */
-  /* In npm3 these won't get installed automatically and it's */
+  /* In npm3 these don't get installed automatically and it's */
   /* up to the user to define which versions to use. */
   /* If you want to include RC versions to the range, consider */
   /* using a pattern such as ^4.0.0-0 */
@@ -185,7 +185,7 @@ T> [dont-break](https://www.npmjs.com/package/dont-break) allows you to run the 
 
 ### Respect the SemVer
 
-When publishing new versions, it is important to respect the SemVer. Roughly, it states that you should not break backward compatibility, given certain rules are met. The exact rules were covered in the previous chapter so that I won't cover them again here.
+When publishing new versions, it is important to respect the SemVer. Roughly, it states that you should not break backward compatibility, given certain rules are met. The exact rules were covered in the previous chapter.
 
 To make it easier to comply with SemVer, [next-ver](https://www.npmjs.com/package/next-ver) can compute the next version you should use and update it for you. [commitizen](https://www.npmjs.com/package/commitizen) goes further and allows change log generation and automated releases.
 
@@ -208,7 +208,7 @@ Sometimes, you may want to publish something preliminary for other people to tes
 
 The initial alpha release allows the users to try out the upcoming functionality and provide feedback. The beta releases can be considered more stable.
 
-The release candidates (RC) are close to an actual release and won't introduce any new functionality. They are all about refining the release till it's suitable for general consumption.
+The release candidates (RC) are close to an actual release and don't introduce any new functionality. They are all about refining the release till it's suitable for general consumption.
 
 The workflow in this case goes like this:
 
@@ -347,7 +347,7 @@ In this case, you'll likely want a setup like this:
 }
 ```
 
-What if someone points to a development version of your package directly through GitHub, though? It won't work as the `dist-modules` directory is missing. The problem can be fixed using a hook that generates the needed source.
+What if someone points to a development version of your package directly through GitHub, though? It doesn't work as the `dist-modules` directory is missing. The problem can be fixed using a hook that generates the needed source.
 
 ### Generating a Distribution for Development Usage
 

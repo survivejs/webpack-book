@@ -200,7 +200,7 @@ module.exports = function(config) {
 };
 ```
 
-W> The file has to be named exactly as *karma.conf.js* as otherwise, Karma won't pick it up automatically.
+W> The file has to be named exactly as *karma.conf.js* as otherwise, Karma doesn't pick it up automatically.
 
 Add an npm shortcut:
 

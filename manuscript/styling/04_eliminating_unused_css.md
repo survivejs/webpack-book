@@ -95,7 +95,7 @@ exports.purifyCSS = function({ paths }) {
 leanpub-end-insert
 ```
 
-Next, the part has to be connected with the configuration. It is important the plugin is used *after* the `ExtractTextPlugin`; otherwise, it won't work:
+Next, the part has to be connected with the configuration. It is important the plugin is used *after* the `ExtractTextPlugin`; otherwise it doesn't work:
 
 **webpack.config.js**
 

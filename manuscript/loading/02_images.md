@@ -223,7 +223,7 @@ Webpack allows you to load images dynamically based on a condition. The techniqu
 
 ## Images and *css-loader* Source Map Gotcha
 
-If you are using images and *css-loader* with the `sourceMap` option enabled, it is important that you set `output.publicPath` to an absolute value pointing to your development server. Otherwise, images won't show up. See [the relevant webpack issue](https://github.com/webpack/style-loader/issues/55) for further explanation.
+If you are using images and *css-loader* with the `sourceMap` option enabled, it is important that you set `output.publicPath` to an absolute value pointing to your development server. Otherwise, images aren't going to work. See [the relevant webpack issue](https://github.com/webpack/style-loader/issues/55) for further explanation.
 
 ## Conclusion
 

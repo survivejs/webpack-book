@@ -79,7 +79,7 @@ body {
 }
 ```
 
-Also, you'll need to make webpack aware of it. Without having an entry pointing to it somehow, webpack won't be able to find the file:
+Also, you'll need to make webpack aware of it. Without having an entry pointing to it somehow, webpack is not able to find the file:
 
 **app/index.js**
 
@@ -283,7 +283,7 @@ T> Note that cssnext includes autoprefixer! You don't have to configure autopref
 
 ## Understanding Lookups
 
-To get most out of *css-loader*, you should understand how it performs its lookups. Even though *css-loader* handles relative imports by default, it won't touch absolute imports (`url("/static/img/demo.png")`). If you rely on imports like this, you have to copy the files to your project.
+To get most out of *css-loader*, you should understand how it performs its lookups. Even though *css-loader* handles relative imports by default, it doesn't touch absolute imports (`url("/static/img/demo.png")`). If you rely on imports like this, you have to copy the files to your project.
 
 [copy-webpack-plugin](https://www.npmjs.com/package/copy-webpack-plugin) works for this purpose, but you can also copy the files outside of webpack. The benefit of the former approach is that webpack-dev-server can pick that up.
 
@@ -357,7 +357,7 @@ To recap:
 * *css-loader* supports the CSS Modules specification. CSS Modules allow you maintain CSS in a local scope by default solving the biggest issue of CSS.
 * Webpack supports a large variety of formats compiling to CSS through loaders. These include Sass, Less, and Stylus.
 * PostCSS allows you to inject functionality to CSS in through its plugin system. cssnext is an example of a collection of plugins for PostCSS that implements future features of CSS.
-* *css-loader* won't touch absolute imports by default. It allows customization of loading behavior through the `importLoaders` option. You can perform lookups against *node_modules* by prefixing your imports with a tilde (`~`) character.
+* *css-loader* doesn't touch absolute imports by default. It allows customization of loading behavior through the `importLoaders` option. You can perform lookups against *node_modules* by prefixing your imports with a tilde (`~`) character.
 * To use source maps, you have to enable `sourceMap` boolean through each style loader you are using except for *style-loader*. You should also set `output.publicPath` to an absolute url that points to your development server.
 * Using Bootstrap with webpack requires special care. You can either go through generic loaders or a bootstrap specific loader for more customization options.
 

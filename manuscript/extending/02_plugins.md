@@ -4,8 +4,6 @@ Compared to loaders, plugins are a more flexible means to extend webpack. As `Ex
 
 To understand how a plugin works, you study [purifycss-webpack](https://www.npmjs.com/package/purifycss-webpack). You used it in this book already, so diving into its internals doesn't hurt. The plugin itself doesn't do much. It figures out what files to pass to PurifyCSS, lets it process the data, captures the output, and writes it to an asset.
 
-A plugin project can be structured similarly as a loader project, so I won't delve into the project structure. Instead, you walk through the plugin portion below.
-
 ## The Basic Flow of Webpack Plugins
 
 A webpack plugin is expected to expose an `apply` method. The way you do that is up to you. The most common way is to set up a function and then attach methods to its `prototype`. I prefer to return an object from a function and then access plugin `options` through the closure. In the `prototype` approach you would have to capture the options to `this` to access them from your methods. Using ES6 classes is an additional option. The exact approach is up to the coding style you prefer.

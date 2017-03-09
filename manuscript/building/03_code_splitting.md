@@ -130,7 +130,7 @@ leanpub-end-insert
 }
 ```
 
-After these changes, ESLint won't complain if you write `import` in the middle of the code.
+After these changes, ESLint doesn't complain if you write `import` in the middle of the code.
 
 ### Configuring Babel
 

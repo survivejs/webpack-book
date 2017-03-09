@@ -156,7 +156,7 @@ define("Demo", [], function() { return /******/ (function(modules) { // webpackB
 ...
 ```
 
-In other words, webpack has generated a named AMD module. The result won't work from Node as it does not support AMD.
+In other words, webpack has generated a named AMD module. The result doesn't work from Node as there is no support for the AMD format.
 
 ## UMD
 

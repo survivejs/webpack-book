@@ -155,7 +155,7 @@ Instead of duplicating similar configuration across multiple projects, you can m
 
 Each approach comes with its pros and cons. I am comfortable with the composition-based approach myself, although I can see merit in others as well. In addition to composition, it gives me a limited amount of code to scan through, but it's a good idea to check out how other people do it too. You'll find something that works the best based on your tastes.
 
-Perhaps the biggest problem is that with composition you need to know what you are doing, and it is possible you won't get the composition right the first time around. But that's a software engineering problem that goes beyond webpack. You can always iterate on the interfaces and find better ones.
+Perhaps the biggest problem is that with composition you need to know what you are doing, and it is possible you aren't going to get the composition right the first time around. But that's a software engineering problem that goes beyond webpack. You can always iterate on the interfaces and find better ones.
 
 T> If you have to support both webpack 1 and 2, you can perform branching based on version using `require('webpack/package.json').version` kind of code to detect it. After that, you have to set specific branches for each and merge. You can still extract the commonality as you see the best.
 

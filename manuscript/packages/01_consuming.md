@@ -47,7 +47,7 @@ You can tweak webpack's module resolution through the `resolve.modules` field. E
 
 Sometimes it may be beneficial to use these techniques together. Compared to npm environment, webpack provides more flexibility, although you can mimic a lot of webpack's functionality using terminal based tricks.
 
-W> Installing global packages can lead to surprising behavior. If you have a package installed both globally and it a project happens to contain it, executing associated terminal command (say `webpack`) points to the version of the project. It won't work unless the global package exists.
+W> Installing global packages can lead to surprising behavior. If you have a package installed both globally and it a project happens to contain it, executing associated terminal command (say `webpack`) points to the version of the project. It doesn't work unless the global package exists.
 
 T> [app-module-path](https://www.npmjs.com/package/app-module-path) allows you adjust Node module lookup within JavaScript and this can be an alternative to patching `NODE_PATH`.
 
@@ -60,7 +60,7 @@ npm supports multiple version ranges. I've listed the common ones below:
 * `*` - Asterisk matches major releases, and it is the most dangerous of the ranges. Using this recklessly can easily break your project in the future, and I would advise against using it.
 * `>= 1.3.0 < 2.0.0` - Ranges between versions come in handy with `peerDependencies`.
 
-You can set the default range using `npm config set save-prefix='^'` in case you prefer something else than caret. Alternately, you can modify *~/.npmrc* directly. Especially defaulting to tilde can be a good idea that can help you to avoid trouble with dependencies, although it won't remove potential problems entirely. That's where shrinkwrapping comes in.
+You can set the default range using `npm config set save-prefix='^'` in case you prefer something else than caret. Alternately, you can modify *~/.npmrc* directly. Especially defaulting to tilde can be a good idea that can help you to avoid trouble with dependencies, although it doesn't remove potential problems entirely. That's where shrinkwrapping comes in.
 
 ## Shrinkwrapping Versions
 
@@ -78,7 +78,7 @@ An important part of maintaining a project is keeping their dependencies up to d
 * Install the newest version of a specific dependency, e.g., `npm install lodash@* --save` as a more controlled approach.
 * Patch version information by hand by modifying *package.json* directly.
 
-It is important to remember that your dependencies may introduce backward incompatible changes. Remember how SemVer works and study the release notes of dependencies. They won't exist always, so you may have to go through the project commit history.
+It is important to remember that your dependencies may introduce backward incompatible changes. Remember how SemVer works and study the release notes of dependencies. They don't exist always, so you may have to go through the project commit history.
 
 T> `npm ls`, and more specifically `npm ls <package name>`, allow you to figure out which versions you have installed. `npm ls -g` performs a similar lookup against the globally installed packages.
 
@@ -315,4 +315,4 @@ To recap:
 * Webpack allows you to patch resolved modules in many ways. Given certain dependencies expect globals, you can use webpack to inject them. You can also expose modules as globals. This is necessary for certain development tooling to work.
 * To understand your dependencies better, consider using available tooling and service to study them. Knowing them well can pay off later if problems arise.
 
-In the next chapter, I'll show you how to author npm packages. It's the other side of the same coin and worth understanding even if you won't end up authoring packages of your own.
+In the next chapter, you learn to author npm packages. It's the other side of the same coin and worth understanding even if you don't end up authoring packages of your own.

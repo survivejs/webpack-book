@@ -13,7 +13,7 @@ Sometimes optimizations come with a cost. They can make your configuration harde
 
 ## High-Level Optimizations
 
-Webpack uses only a single instance by default meaning you won't be able to benefit from a multi-core processor without extra effort. This where third party solutions, such as [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) and [HappyPack](https://www.npmjs.com/package/happypack) come in.
+Webpack uses only a single instance by default meaning you aren't able to benefit from a multi-core processor without extra effort. This where third party solutions, such as [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) and [HappyPack](https://www.npmjs.com/package/happypack) come in.
 
 ### parallel-webpack - Run Multiple Webpack's in Parallel
 

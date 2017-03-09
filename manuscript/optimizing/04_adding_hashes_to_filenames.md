@@ -13,7 +13,7 @@ Webpack provides **placeholders** for this purpose. These strings are used to at
 * `[chunkhash]` - Returns an entry chunk-specific hash. Each `entry` defined at the configuration receives a hash of own. If any portion of the entry changes, the hash changes as well. `[chunkhash]` is more granular than `[hash]` by definition.
 * `[contenthash]` - Returns a hash specific to content. `[contenthash]` is available for `ExtractTextPlugin` only and is the most specific option available.
 
-It is preferable to use particularly `hash` and `chunkhash` only for production purposes as hashing won't do much good during development.
+It is preferable to use particularly `hash` and `chunkhash` only for production purposes as hashing doesn't do much good during development.
 
 T> It is possible to slice `hash` and `chunkhash` using syntax like this: `[chunkhash:8]`. Instead of a hash like `8c4cbfdb91ff93f3f3c5` this would yield `8c4cbfdb`.
 
@@ -219,7 +219,7 @@ To recap:
 
 * Webpack's **placeholders** allow you to shape filenames and enable you to include hashes to them.
 * The most valuable placeholders are `[name]`, `[chunkhash]`, and `[ext]`. `chunkhash` is derived based on the entry in which the asset belongs.
-* If you are using `ExtractTextPlugin`, you should use `[contenthash]`. This way extracted assets won't become invalidated even if the entries from which they were extracted change.
+* If you are using `ExtractTextPlugin`, you should use `[contenthash]`. This way the generated assets get invalidated only if their content changes.
 * `HashedModuleIdsPlugin` generates module IDs based on module paths. This is more stable than relying on the default order based numeric module IDs.
 
 Even though the project generates hashes now, the output isn't flawless. The problem is that if the application changes, it invalidates the vendor bundle as well. The next chapter digs deeper into the topic and shows you how to extract a **manifest** to resolve the issue.

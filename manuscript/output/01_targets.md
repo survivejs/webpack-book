@@ -234,7 +234,7 @@ leanpub-end-insert
 ...
 ```
 
-If either process fails, npm won't proceed to the `lib` script. You can verify this by breaking a linting rule and seeing what happens when you build (`npm run build:lib`). Instead, it gives you an error.
+If either process fails, npm doesn't proceed to the `lib` script. You can verify this by breaking a linting rule and seeing what happens when you build (`npm run build:lib`). Instead, it gives you an error.
 
 T> To get cleaner error output, run either `npm run build:lib --silent` or `npm run build:lib -s`.
 

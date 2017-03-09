@@ -6,7 +6,7 @@ The current solution doesn't allow us to cache CSS. You can also get a **Flash o
 
 Webpack provides a means to generate a separate CSS bundles using [ExtractTextPlugin](https://www.npmjs.com/package/extract-text-webpack-plugin). It can aggregate multiple CSS files into one. For this reason, it comes with a loader that handles the extraction process. The plugin then picks up the result aggregated by the loader and emits a separate file.
 
-Due to this process, `ExtractTextPlugin` comes with overhead during the compilation phase. It won't work with Hot Module Replacement (HMR) by design. Given the plugin is used only for production, that won't be a problem.
+Due to this process, `ExtractTextPlugin` comes with overhead during the compilation phase. It doesn't work with Hot Module Replacement (HMR) by design. Given the plugin is used only for production, that is not a problem.
 
 T> This same technique can be employed with other assets, like templates, too.
 
@@ -22,7 +22,7 @@ npm install extract-text-webpack-plugin --save-dev
 
 `ExtractTextPlugin` includes a loader, `ExtractTextPlugin.extract` that marks the assets to be extracted. Then a plugin performs its work based on this annotation.
 
-`ExtractTextPlugin.extract` accepts `use` and `fallback` definitions. `ExtractTextPlugin` processes content through `use` only from **initial chunks** by default and it uses `fallback` for the rest. It won't touch any split bundles unless `allChunks: true` is set true. The *Splitting Bundles* chapter digs into greater detail.
+`ExtractTextPlugin.extract` accepts `use` and `fallback` definitions. `ExtractTextPlugin` processes content through `use` only from **initial chunks** by default and it uses `fallback` for the rest. It doesn't touch any split bundles unless `allChunks: true` is set true. The *Splitting Bundles* chapter digs into greater detail.
 
 It is important to note that if you wanted to extract CSS from a more involved format, like Sass, you would have to pass multiple loaders to the `use` option. Both `use` and `fallback` accept a loader (string), a loader definition, or an array of loader definitions.
 
@@ -163,7 +163,7 @@ const commonConfig = merge([
 ]);
 ```
 
-After this type of change, you would not have to refer to styling from your application code. It also means that CSS Modules won't work anymore. As a result, you should get both *style.css* and *style.js*. The latter file contains content like `webpackJsonp([1,3],[function(n,c){}]);` and it doesn't do anything as discussed in [webpack issue 1967](https://github.com/webpack/webpack/issues/1967).
+After this type of change, you would not have to refer to styling from your application code. It also means that CSS Modules stop working. As a result, you should get both *style.css* and *style.js*. The latter file contains content like `webpackJsonp([1,3],[function(n,c){}]);` and it doesn't do anything as discussed in [webpack issue 1967](https://github.com/webpack/webpack/issues/1967).
 
 If you want strict control over the ordering, you can set up a single CSS entry and then use `@import` to bring the rest to the project through it. Another option would be to set up a JavaScript entry and go through `import` to get the same effect.
 

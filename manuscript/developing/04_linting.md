@@ -111,7 +111,7 @@ W> If you try a pattern like `build`, it matches files like *build.js* too! Reme
 
 If you invoke `npm run lint:js` now, it should execute without any warnings or errors. If you see either, this is a good time to try ESLint autofixing. You can run it like this: `npm run lint -- --fix`. Running an npm script this way allows you to pass extra parameters to it.
 
-Another alternative would be to push it behind a *package.json* script. Autofix won't be able to repair each error, but it can fix a lot. And as time goes by and ESLint improves, it can perform more work.
+Another alternative would be to push it behind a *package.json* script. Autofix is not able to repair each error, but it can fix a lot. And as time goes by and ESLint improves, it can perform more work.
 
 Beyond vanilla JSON, ESLint supports other formats, such as JavaScript or YAML. I.e., *.eslintrc.yaml* would expect YAML. See the [documentation](http://eslint.org/docs/user-guide/configuring#configuration-file-formats) for further details.
 
@@ -276,4 +276,4 @@ To recap:
 * EditorConfig complements ESLint by allowing you to define a project-level coding style. Editors integrate with EditorConfig making it easier to keep a project consistent regardless of the development platform.
 * Prettier is an upcoming solution that can format your code automatically. Danger operates on repository level and can perform higher level tasks related to the development process.
 
-Given the webpack configuration of the project is starting to get a little messy, and it won't get any easier should you extend it, it is a good time to discuss how to compose configuration and improve the situation further.
+Given the webpack configuration of the project is starting to get a little messy, it is a good time to discuss how to compose configuration and improve the situation.
