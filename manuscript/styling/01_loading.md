@@ -2,7 +2,7 @@
 
 Webpack doesn’t handle styling out of the box. Instead, you must configure loaders and plugins to get the setup you need.
 
-In this chapter, you will set up CSS with our project and see how it works out with automatic browser refreshing. The neat thing is that in this case, webpack doesn’t have to force a full refresh. Instead, it can do something smarter as you will see soon.
+In this chapter, you will set up CSS with the project and see how it works out with automatic browser refreshing. The neat thing is that in this case, webpack doesn’t have to force a full refresh. Instead, it can do something smarter as you will see soon.
 
 ## Loading CSS
 
@@ -42,7 +42,7 @@ exports.loadCSS = function({ include, exclude } = {}) {
 };
 ```
 
-You also need to connect our configuration fragment with the main configuration:
+You also need to connect the fragment with the main configuration:
 
 **webpack.config.js**
 

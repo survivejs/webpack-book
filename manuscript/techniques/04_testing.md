@@ -291,11 +291,11 @@ If you execute `npm run test:karma:watch` now, you should see watch behavior.
 
 ### Generating Coverage Reports
 
-To know how much of our code the tests cover, it can be a good idea to generate coverage reports. Doing this requires code-level instrumentation. Also, the added information has to be reported. This can be done through HTML and LCOV reports.
+To know how much of the code the tests cover, it can be a good idea to generate coverage reports. Doing this requires code-level instrumentation. Also, the added information has to be reported. This can be done through HTML and LCOV reports.
 
 T> LCOV integrates well with visualization services. You can send coverage information to an external service through a continuous integration environment and track the status in one place.
 
-[isparta](https://www.npmjs.com/package/isparta) is a popular, ES6 compatible code coverage tool. Connecting it with Karma will require configuration. Most importantly the code has to be instrumented through [babel-plugin-istanbul](https://www.npmjs.com/package/babel-plugin-istanbul). Doing this requires a small amount of webpack configuration as well due to our setup. [karma-coverage](https://www.npmjs.com/package/karma-coverage) is required for the reporting portion of the problem.
+[isparta](https://www.npmjs.com/package/isparta) is a popular, ES6 compatible code coverage tool. Connecting it with Karma will require configuration. Most importantly the code has to be instrumented through [babel-plugin-istanbul](https://www.npmjs.com/package/babel-plugin-istanbul). Doing this requires a small amount of webpack configuration as well due to the setup. [karma-coverage](https://www.npmjs.com/package/karma-coverage) is required for the reporting portion of the problem.
 
 Install the dependencies first:
 
@@ -386,7 +386,7 @@ LCOV requires specific tooling to work. You can find editor plugins such as [lco
 
 Facebook’s [Jest](https://facebook.github.io/jest/) is an opinionated alternative that encapsulates functionality, including coverage and mocking, with minimal setup. It can capture snapshots of data making it valuable for projects where you have the behavior you would like to record and retain.
 
-Jest tests follow [Jasmine](https://www.npmjs.com/package/jasmine) test framework semantics, and it supports Jasmine-style assertions out of the box. Especially the suite definition is close enough to Mocha so that our current test should work without any adjustments to the test code itself. Jest provides [jest-codemods](https://www.npmjs.com/package/jest-codemods) for migrating more complex projects to Jest semantics.
+Jest tests follow [Jasmine](https://www.npmjs.com/package/jasmine) test framework semantics, and it supports Jasmine-style assertions out of the box. Especially the suite definition is close enough to Mocha so that the current test should work without any adjustments to the test code itself. Jest provides [jest-codemods](https://www.npmjs.com/package/jest-codemods) for migrating more complex projects to Jest semantics.
 
 Install Jest first:
 

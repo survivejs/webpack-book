@@ -1,6 +1,6 @@
 # Separating CSS
 
-Even though there is a nice build set up now, where did all the CSS go? As per our configuration, it has been inlined to JavaScript! Even though this can be convenient during development, it doesn’t sound ideal.
+Even though there is a nice build set up now, where did all the CSS go? As per configuration, it has been inlined to JavaScript! Even though this can be convenient during development, it doesn’t sound ideal.
 
 The current solution doesn’t allow us to cache CSS. You can also get a **Flash of Unstyled Content** (FOUC). FOUC happens because the browser will take a while to load JavaScript and the styles would be applied only then. Separating CSS to a file of its own avoids the problem by letting the browser to manage it separately.
 
@@ -74,7 +74,7 @@ T> If you wanted to output the resulting file to a specific directory, you could
 
 ### Connecting with Configuration
 
-Connect the function with our configuration as below:
+Connect the function with the configuration as below:
 
 **webpack.config.js**
 
@@ -106,7 +106,7 @@ leanpub-end-insert
 ...
 ```
 
-Using this setup, you can still benefit from the HMR during development. For a production build, it is possible to generate a separate CSS, though. *html-webpack-plugin* will pick it up automatically and inject it into our `index.html`.
+Using this setup, you can still benefit from the HMR during development. For a production build, it is possible to generate a separate CSS, though. *html-webpack-plugin* will pick it up automatically and inject it into `index.html`.
 
 T> If you are using CSS Modules, remember to tweak `use` accordingly as discussed in the *Loading Styles* chapter. You may also want to maintain separate setups for normal CSS and CSS Modules so that they get loaded through separate logic.
 
@@ -126,7 +126,7 @@ index.html  218 bytes          [emitted]
 ...
 ```
 
-Now our styling has been pushed to a separate CSS file. Thus, our JavaScript bundle has become slightly smaller. You also avoid the FOUC problem. The browser doesn’t have to wait for JavaScript to load to get styling information. Instead, it can process the CSS separately, avoiding the flash.
+Now styling has been pushed to a separate CSS file. Thus, the JavaScript bundle has become slightly smaller. You also avoid the FOUC problem. The browser doesn’t have to wait for JavaScript to load to get styling information. Instead, it can process the CSS separately, avoiding the flash.
 
 T> If you are getting `Module build failed: CssSyntaxError:` or `Module build failed: Unknown word` error, make sure your `common` configuration doesn’t have a CSS-related section set up.
 
@@ -169,7 +169,7 @@ If you want strict control over the ordering, you can set up a single CSS entry 
 
 ## Conclusion
 
-Our current setup separates styling from JavaScript neatly. Even though the technique is most valuable with CSS, it can be used to extract HTML templates or any other files types you consume. The hard part about `ExtractTextPlugin` has to do with its setup, but the complexity can be hidden behind an abstraction.
+The current setup separates styling from JavaScript neatly. Even though the technique is most valuable with CSS, it can be used to extract HTML templates or any other files types you consume. The hard part about `ExtractTextPlugin` has to do with its setup, but the complexity can be hidden behind an abstraction.
 
 To recap:
 

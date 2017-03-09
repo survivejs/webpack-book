@@ -45,7 +45,7 @@ T> Babel isn’t the only option although it is the most popular one. [Buble](ht
 
 ### Setting Up *babel-loader*
 
-The first step towards configuring Babel to work with webpack is to set up [babel-loader](https://www.npmjs.com/package/babel-loader). It will take our code and turn it into a format older browsers can understand. Install *babel-loader* and include its peer dependency *babel-core*:
+The first step towards configuring Babel to work with webpack is to set up [babel-loader](https://www.npmjs.com/package/babel-loader). It will take the code and turn it into a format older browsers can understand. Install *babel-loader* and include its peer dependency *babel-core*:
 
 ```bash
 npm install babel-loader babel-core --save-dev
@@ -87,7 +87,7 @@ exports.loadJavaScript = function({ include, exclude }) {
 
 Next, you need to connect this with the main configuration. If you are using a modern browser for development, you can consider processing only the production code through Babel. To play it safe, I’ll use it for both production and development environments in this case.
 
-Also, I’ll constrain webpack to transform only our application code through Babel as I don’t want it to process files from *node_modules* for example. It is a good practice with JavaScript files.
+Also, I’ll constrain webpack to transform only the application code through Babel as I don’t want it to process files from *node_modules* for example. It is a good practice with JavaScript files.
 
 **webpack.config.js**
 
@@ -147,7 +147,7 @@ T> If you omit the `targets` definition, *babel-preset-env* will compile to ES5 
 
 W> **babel-preset-env** does **not** support *browserslist* file yet. [See issue #26](https://github.com/babel/babel-preset-env/issues/26) for more information.
 
-If you execute `npm run build` now and examine *build/app.js*, the result should be similar to the earlier since it supports the features you are using in our code.
+If you execute `npm run build` now and examine *build/app.js*, the result should be similar to the earlier since it supports the features you are using in the code.
 
 To see that the target definition works, change it to work such as `"browsers": ["IE 8"]`. Since IE 8 doesn’t support `const`s, the code should change. If you build (`npm run build`), now, you should see something a little different:
 

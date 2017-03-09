@@ -12,7 +12,7 @@ To get started, install stylelint as a development dependency:
 npm install stylelint --save-dev
 ```
 
-To connect stylelint with npm and make it find our CSS files, adjust as follows:
+To connect stylelint with npm and make it find the CSS files, adjust as follows:
 
 **package.json**
 

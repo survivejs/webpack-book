@@ -408,7 +408,7 @@ The *css-loader* is [known to have issues](https://github.com/webpack-contrib/cs
 
 ## Conclusion
 
-Source maps can be convenient during development. They provide us with better means to debug our applications as you can still examine the original code over a generated one. They can be valuable even for production usage and allow you to debug issues while serving a client-friendly version of your application.
+Source maps can be convenient during development. They provide us with better means to debug applications as you can still examine the original code over a generated one. They can be valuable even for production usage and allow you to debug issues while serving a client-friendly version of your application.
 
 To recap:
 

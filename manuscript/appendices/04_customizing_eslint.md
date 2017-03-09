@@ -111,7 +111,7 @@ Next, you need to execute `npm link` within `eslint-plugin-custom` to make your 
 
 T> If you want to do something serious, you should point to your plugin through *package.json*.
 
-You need to alter our project configuration to make it find the plugin and the rule within.
+You need to alter the project configuration to make it find the plugin and the rule within.
 
 **.eslintrc**
 

@@ -1,6 +1,6 @@
 # Splitting Bundles
 
-Currently, the production version of our application is a single JavaScript file. If the application is changed, the client must download vendor dependencies as well.
+Currently, the production version of the application is a single JavaScript file. If the application is changed, the client must download vendor dependencies as well.
 
 It would be better to download only the changed portion. If the vendor dependencies change, then the client should fetch only the vendor dependencies. The same goes for actual application code. **Bundle splitting** like this can be achieved using `CommonsChunkPlugin`.
 
@@ -65,7 +65,7 @@ As you can see, *app.js* is big. That is something to fix next.
 
 ## Setting Up a `vendor` Bundle
 
-So far our project has only a single entry named as `app`. Our configuration tells webpack to traverse dependencies starting from the `app` entry directory and then to output the resulting bundle below our `build` directory using the entry name and `.js` extension.
+So far, the project has only a single entry named as `app`. The configuration tells webpack to traverse dependencies starting from the `app` entry directory and then to output the resulting bundle below the `build` directory using the entry name and `.js` extension.
 
 To improve the situation, you can define a `vendor` entry containing React by matching the dependency name. It is possible to generate this information automatically as discussed at the end of this chapter, but I’ll go with a static array here to illustrate the basic idea. Change the code like this:
 
@@ -88,7 +88,7 @@ leanpub-end-insert
 ...
 ```
 
-You have two separate entries, or **entry chunks**, now. `[name].js` of our existing `output.path` the configuration will kick in based on the entry name. If you try to generate a build now (`npm run build`), you should see something along this:
+You have two separate entries, or **entry chunks**, now. `[name].js` of the existing `output.path` the configuration will kick in based on the entry name. If you try to generate a build now (`npm run build`), you should see something along this:
 
 ```bash
 Hash: ebf1b976090ff95e4fcd
@@ -118,7 +118,7 @@ vendor.js.map     164 kB       1  [emitted]         vendor
 ...
 ```
 
-*app.js* and *vendor.js* have separate chunk IDs right now given they are entry chunks of their own. The output size is a little off, though. Intuitively *app.js* should be smaller to attain our goal with this build.
+*app.js* and *vendor.js* have separate chunk IDs right now given they are entry chunks of their own. The output size is a little off, though. Intuitively *app.js* should be smaller to attain the goal with this build.
 
 If you examine the resulting bundle, you can see that it contains React given that’s how the default definition works. Webpack pulls the related dependencies to a bundle by default as illustrated by the image below:
 
@@ -188,7 +188,7 @@ vendor.js.map     167 kB       1  [emitted]         vendor
 ...
 ```
 
-Now our bundles look the way they should. The image below illustrates the current situation.
+Now the bundles look the way they should. The image below illustrates the current situation.
 
 ![App and vendor bundles after applying `CommonsChunkPlugin`](images/bundle_02.png)
 
@@ -212,7 +212,7 @@ exports.extractBundles = function(bundles) {
 };
 ```
 
-Given the function handles the entry for us, you can drop our `vendor`-related configuration and use the function instead:
+Given the function handles the entry for us, you can drop the `vendor`-related configuration and use the function instead:
 
 **webpack.config.js**
 

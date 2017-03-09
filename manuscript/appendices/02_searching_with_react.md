@@ -1,8 +1,8 @@
 # Searching with React
 
-Let’s say you want to implement a rough little search for our application without a proper backend. You could do it through [lunr](http://lunrjs.com/) and generate a static search index to serve.
+Let’s say you want to implement a rough little search for an application without a proper backend. You could do it through [lunr](http://lunrjs.com/) and generate a static search index to serve.
 
-The problem is that the index can be sizable depending on the amount of the content. The good thing is that you don’t need the search index straight from the start. You can do something smarter instead. You can start loading the index when the user selects our search field.
+The problem is that the index can be sizable depending on the amount of the content. The good thing is that you don’t need the search index straight from the start. You can do something smarter instead. You can start loading the index when the user selects a search field.
 
 Doing this defers the loading and moves it to a place where it’s more acceptable for performance. Given the initial search will be slower than the subsequent ones you should display a loading indicator. But that’s fine from the user point of view.
 
@@ -14,7 +14,7 @@ To implement lazy loading, you will need to decide where to put the split point,
 
 The nice thing is that this gives us error handling in case something goes wrong (network is down etc.) and gives us a chance to recover. You can also use `Promise` based utilities like `Promise.all` for composing more complicated queries.
 
-In this case, you need to detect when the user selects the search element, load the data unless it has been loaded already, and then execute our search logic against it. Using React, you could end up with something like this:
+In this case, you need to detect when the user selects the search element, load the data unless it has been loaded already, and then execute search logic against it. Using React, you could end up with something like this:
 
 **App.jsx**
 
@@ -114,7 +114,7 @@ const Results = ({results}) => {
 
 function loadIndex() {
   // Here's the magic. Set up `import` to tell webpack
-  // to split here and load our search index dynamically.
+  // to split here and load search index dynamically.
   //
   // Note that you will need to shim Promise.all for
   // older browsers and Internet Explorer!

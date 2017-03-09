@@ -47,7 +47,7 @@ A more elaborate approach to achieve a similar result that includes *.woff2* and
 
 ## Supporting Multiple Formats
 
-In case you want to make sure our site looks good on a maximum amount of browsers, you can use *file-loader* and forget about inlining. Again, it’s a trade-off as you get extra requests, but perhaps it’s the right move. Here you could end up with a loader configuration like this:
+In case you want to make sure the site looks good on a maximum amount of browsers, you can use *file-loader* and forget about inlining. Again, it’s a trade-off as you get extra requests, but perhaps it’s the right move. Here you could end up with a loader configuration like this:
 
 ```javascript
 {

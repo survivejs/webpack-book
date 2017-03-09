@@ -1,6 +1,6 @@
 # Composing Configuration
 
-Even though not a lot has been done with webpack yet, the amount of configuration is starting to feel substantial. Also, you have to be careful about the way you compose it as you have separate production and development targets in the project now. The situation can only get worse as you want to add more functionality to our project.
+Even though not a lot has been done with webpack yet, the amount of configuration is starting to feel substantial. Also, you have to be careful about the way you compose it as you have separate production and development targets in the project now. The situation can only get worse as you want to add more functionality to the project.
 
 As the needs of your project grow, you’ll need to figure out means to manage webpack configuration.
 
@@ -161,7 +161,7 @@ T> If you have to support both webpack 1 and 2, you can perform branching based 
 
 ## Configuration Layouts
 
-In the book project, you will push all of our configuration to two files: *webpack.config.js* and *webpack.parts*. The former contains higher level configuration while the latter lower level. It isolates us from webpack specifics, but it can also grow big. Fortunately, the chosen approach allows more layouts, and you can evolve it further. Consider the following directions.
+In the book project, you will push all of the configuration into two files: *webpack.config.js* and *webpack.parts*. The former contains higher level configuration while the latter lower level. It isolates us from webpack specifics, but it can also grow big. Fortunately, the chosen approach allows more layouts, and you can evolve it further. Consider the following directions.
 
 ### Split per Configuration Target
 

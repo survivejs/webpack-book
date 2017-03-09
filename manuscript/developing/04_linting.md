@@ -69,7 +69,7 @@ Given ESLint expects configuration to work, you need to define rules to describe
 
 Rules, such as `quotes`, accept an array instead allowing you to pass extra parameters to them. Refer to the [ESLint rules documentation](http://eslint.org/docs/rules/) for specifics.
 
-Here’s a starting point that will work with our project:
+Here’s a starting point that will work with the project:
 
 **.eslintrc.js**
 
@@ -276,4 +276,4 @@ To recap:
 * EditorConfig complements ESLint by allowing you to define a project-level coding style. Editors integrate with EditorConfig making it easier to keep a project consistent regardless of the development platform.
 * Prettier is an upcoming solution that can format your code automatically. Danger operates on repository level and can perform higher level tasks related to the development process.
 
-Given the webpack configuration of our project is starting to get a little messy, and it won’t get any easier should you extend it, it is a good time to discuss how to compose configuration and improve the situation further.
+Given the webpack configuration of the project is starting to get a little messy, and it won’t get any easier should you extend it, it is a good time to discuss how to compose configuration and improve the situation further.

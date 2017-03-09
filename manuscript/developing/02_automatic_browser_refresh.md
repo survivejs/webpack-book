@@ -30,7 +30,7 @@ W> If you are using an IDE, consider enabling **save write** from its settings. 
 
 ## Attaching *webpack-dev-server* to the Project
 
-To integrate WDS to our project, you should define an npm script for it. To follow npm conventions, you can call it as *start*. To tell our targets apart, you should pass information about the environment to webpack configuration. This will allow us to specialize the configuration as needed:
+To integrate WDS to the project, you should define an npm script for it. To follow npm conventions, you can call it as *start*. To tell the targets apart, you should pass information about the environment to webpack configuration. This will allow us to specialize the configuration as needed:
 
 **package.json**
 
@@ -150,7 +150,7 @@ W> Webpack 2 changed argument behavior compared to webpack 1. You are not allowe
 
 ## Accessing the Development Server from Network
 
-It is possible to customize host and port settings through the environment in our setup (i.e., `export PORT=3000` on Unix or `SET PORT=3000` on Windows). The default settings are enough on most platforms.
+It is possible to customize host and port settings through the environment in the setup (i.e., `export PORT=3000` on Unix or `SET PORT=3000` on Windows). The default settings are enough on most platforms.
 
 To access your server, you’ll need to figure out the ip of your machine. On Unix, this can be achieved using `ifconfig | grep inet`. On Windows, `ipconfig` can be utilized. An npm package, such as [node-ip](https://www.npmjs.com/package/node-ip) may come in handy as well. Especially on Windows, you may need to set your `HOST` to match your ip to make it accessible.
 
@@ -158,7 +158,7 @@ To access your server, you’ll need to figure out the ip of your machine. On Un
 
 You could have passed the WDS options through a terminal. I find it clearer to manage it within webpack configuration as that helps to keep *package.json* nice and tidy. It is also easier to understand what’s going on as you don’t need to dig out the answers from the webpack source.
 
-Alternately, you could have set up an Express server of our own and use a middleware. There are a couple of options:
+Alternately, you could have set up an Express server and use a middleware. There are a couple of options:
 
 * [The official WDS middleware](https://webpack.js.org/guides/development/#webpack-dev-middleware)
 * [webpack-hot-middleware](https://www.npmjs.com/package/webpack-hot-middleware)

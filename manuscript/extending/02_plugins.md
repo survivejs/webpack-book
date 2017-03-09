@@ -14,7 +14,7 @@ Regardless of your approach, you should capture possible options passed by a use
 
 In this case, you need to intercept only a `this-compilation` hook that is emitted before `compilation` event itself. It happens to be the right hook for this particular purpose although it can take a bit of experimentation to figure out which hooks you need.
 
-The hook will receive a `compilation` object that gives access to the build. It comes with a series of hooks of its own. In this case using the `additional-assets` hook is enough as you can go through the compiled chunks there and perform our logic.
+The hook will receive a `compilation` object that gives access to the build. It comes with a series of hooks of its own. In this case using the `additional-assets` hook is enough as you can go through the compiled chunks there and perform the logic.
 
 T> Loaders have a dirty access to `compiler` and `compilation` through underscore (`this._compiler`/`this._compilation`). You could write arbitrary files through them.
 

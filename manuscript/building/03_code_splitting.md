@@ -2,7 +2,7 @@
 
 Web applications have the tendency to grow big as features are developed. The longer it takes for your application to load, the more frustrating it is to the user. This problem is amplified in a mobile environment where the connections can be slow.
 
-Even though splitting our bundles can help a notch, they are not the only solution, and you may still end up having to download a lot of data. Fortunately, it is possible to do better thanks to **code splitting**. It allows us to load code lazily as you need it.
+Even though splitting bundles can help a notch, they are not the only solution, and you may still end up having to download a lot of data. Fortunately, it is possible to do better thanks to **code splitting**. It allows us to load code lazily as you need it.
 
 You can load more code as the user enters a new view of the application. You can also tie loading to a specific action like scrolling or clicking a button. You could also try to predict what the user is trying to do next and load code based on your guess. This way the functionality would be already there as the user tries to access it.
 
@@ -100,7 +100,7 @@ T> The formats respect `output.publicPath` option. You can also use `output.chun
 
 ## Setting Up Code Splitting
 
-To demonstrate the idea of code splitting, you can use dynamic `import`. Both ESLint and Babel setup of our project needs additions to make the syntax work.
+To demonstrate the idea of code splitting, you can use dynamic `import`. Both ESLint and Babel setup of the project needs additions to make the syntax work.
 
 ### Configuring ESLint
 
@@ -130,7 +130,7 @@ leanpub-end-insert
 }
 ```
 
-After these changes, ESLint won’t complain if you write `import` in the middle of our code.
+After these changes, ESLint won’t complain if you write `import` in the middle of the code.
 
 ### Configuring Babel
 
@@ -155,7 +155,7 @@ leanpub-end-insert
 
 ### Defining a Split Point Using a Dynamic `import`
 
-The idea can be demonstrated by setting up a module that contains a string that will replace the text of our demo button:
+The idea can be demonstrated by setting up a module that contains a string that will replace the text of the demo button:
 
 **app/lazy.js**
 
@@ -223,7 +223,7 @@ vendor.js.map     178 kB       2  [emitted]         vendor
 ...
 ```
 
-That *0.js* is our split point. Examining the file reveals that webpack has wrapped the code in a `webpackJsonp` block and processed the code bit.
+That *0.js* is your split point. Examining the file reveals that webpack has wrapped the code in a `webpackJsonp` block and processed the code bit.
 
 ### Lazy Loading Styles
 
@@ -249,7 +249,7 @@ body {
 }
 ```
 
-The idea is that after *lazy.js* gets loaded, *lazy.css* is applied as well. You can confirm this by running the application (`npm start`). The same behavior is visible if you build the application (`npm run build`) and examine the output (`0.js`). This is due to our `ExtractTextPlugin` definition.
+The idea is that after *lazy.js* gets loaded, *lazy.css* is applied as well. You can confirm this by running the application (`npm start`). The same behavior is visible if you build the application (`npm run build`) and examine the output (`0.js`). This is due to the `ExtractTextPlugin` definition.
 
 ![Lazy styled content](images/lazy-styled.png)
 

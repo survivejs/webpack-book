@@ -88,7 +88,7 @@ If minification works, the warning should disappear. That’s the next challenge
 
 ## Minifying JavaScript
 
-The point of **minification** is to convert our code into a smaller form. Safe **transformations** do this without losing any meaning by rewriting code. Good examples of this include renaming variables or even removing entire blocks of code based on the fact that they are unreachable (`if (false)`).
+The point of **minification** is to convert the code into a smaller form. Safe **transformations** do this without losing any meaning by rewriting code. Good examples of this include renaming variables or even removing entire blocks of code based on the fact that they are unreachable (`if (false)`).
 
 Unsafe transformations can break code as they can lose something implicit the underlying code relies upon. For example, Angular 1 expects specific function parameter naming when using modules. Rewriting the parameters breaks code unless you take precautions against it in this case.
 
@@ -104,7 +104,7 @@ To get started, include the plugin to the project:
 npm install babili-webpack-plugin --save-dev
 ```
 
-To attach it to our configuration, define a part for it first:
+To attach it to the configuration, define a part for it first:
 
 **webpack.parts.js**
 
@@ -127,7 +127,7 @@ exports.minifyJavaScript = function() {
 leanpub-end-insert
 ```
 
-The plugin exposes more functionality, but having the possibility of toggling source maps is enough for our purposes. Hook it up with our configuration:
+The plugin exposes more functionality, but having the possibility of toggling source maps is enough. Hook it up with the configuration:
 
 **webpack.config.js**
 
@@ -178,13 +178,13 @@ leanpub-end-insert
 ...
 ```
 
-Given it needs to do more work, it took longer to execute the build. But on the plus side, the build is now smaller, the size limit warning disappeared, and our vendor build went from 150 kB to roughly 45 kB.
+Given it needs to do more work, it took longer to execute the build. But on the plus side, the build is now smaller, the size limit warning disappeared, and the vendor build went from 150 kB to roughly 45 kB.
 
 You should check *babili-webpack-plugin* and Babili documentation for more options. Babili gives you control over how to handle code comments for example.
 
 ## Other Ways to Minify JavaScript
 
-Although Babili works for our use case, there are more options you can consider:
+Although Babili works for this use case, there are more options you can consider:
 
 * [webpack-closure-compiler](https://www.npmjs.com/package/webpack-closure-compiler) runs parallel and may give even smaller result than Babili.
 * [optimize-js-plugin](https://www.npmjs.com/package/optimize-js-plugin) complements the other solutions by wrapping eager functions and it enhances the way your JavaScript code gets parsed initially. The plugin relies on [optimize-js](https://github.com/nolanlawson/optimize-js) by Nolan Lawson.

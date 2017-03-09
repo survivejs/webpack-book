@@ -73,7 +73,7 @@ Elimination is the core idea of `DefinePlugin`. You can toggle parts of code usi
 
 ## Setting `process.env.NODE_ENV`
 
-Given you are using React in our project and it happens to use the technique, you can try to enable `DefinePlugin` and see what it does to our production build.
+Given you are using React in the project and it happens to use the technique, you can try to enable `DefinePlugin` and see what it does to the production build.
 
 As before, encapsulate this idea to a function. It is important to note that given the way webpack replaces the free variable, you should push it through `JSON.stringify`. You will end up with a string like `'"demo"'` and then webpack will insert that into the slots it finds.
 
@@ -94,7 +94,7 @@ exports.setFreeVariable = function(key, value) {
 };
 ```
 
-You can connect this with our configuration like this:
+You can connect this with the configuration like this:
 
 **webpack.config.js**
 
@@ -180,7 +180,7 @@ if(process.env.NODE_ENV === 'production') {
 }
 ```
 
-Webpack can pick the right code based on our `DefinePlugin` declaration and this code. It is good to note that you will have to use CommonJS module definition style here: ES6 `import`s don’t allow dynamic behavior like this by design.
+Webpack can pick the right code based on the `DefinePlugin` declaration and this code. It is good to note that you will have to use CommonJS module definition style here: ES6 `import`s don’t allow dynamic behavior like this by design.
 
 T> A related technique, **aliasing**, is discussed in the *Consuming Packages* chapter. You could alias to development or production particular file depending on the environment. The problem is that it will tie your setup to webpack in a tighter way than the solution above.
 

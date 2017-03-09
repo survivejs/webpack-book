@@ -10,7 +10,7 @@ W> If you are using an older version than Node 6, you may either have to adapt t
 
 ## Setting Up the Project
 
-To get a starting point, you should create a directory for our project and set up a *package.json* there. npm uses that to manage project dependencies. Here are the basic commands:
+To get a starting point, you should create a directory for the project and set up a *package.json* there. npm uses that to manage project dependencies. Here are the basic commands:
 
 ```bash
 mkdir webpack-demo
@@ -30,7 +30,7 @@ Even though webpack can be installed globally (`npm install webpack -g`), I reco
 
 The approach works nicely in **Continuous Integration** (CI) setups as well. A CI system can install your local dependencies, compile your project using them, and then push the result to a server.
 
-To add webpack to our project, execute:
+To add webpack to the project, execute:
 
 ```bash
 npm install webpack --save-dev # -D if you want to save typing
@@ -88,7 +88,7 @@ export default function (text = 'Hello world') {
 }
 ```
 
-Next, you are going to need an entry point for the application. It will `require` our component and render it through the DOM:
+Next, you are going to need an entry point for the application. It will `require` the component and render it through the DOM:
 
 **app/index.js**
 
@@ -233,7 +233,7 @@ There are also specific plugins that extend *html-webpack-plugin*'s functionalit
 
 ## Conclusion
 
-Even though you have managed to get webpack up and running, it does not do that much yet. Developing against it would be painful. Each time you wanted to check out our application, you would have to build it manually using `npm run build` and then refresh the browser. That’s where webpack’s more advanced features come in.
+Even though you have managed to get webpack up and running, it does not do that much yet. Developing against it would be painful. Each time you wanted to check out the application, you would have to build it manually using `npm run build` and then refresh the browser. That’s where webpack’s more advanced features come in.
 
 To recap:
 

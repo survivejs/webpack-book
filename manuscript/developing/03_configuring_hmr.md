@@ -109,7 +109,7 @@ W> *webpack-dev-server* can be picky about paths. If the given `include` paths d
 
 W> You should **not** enable HMR for your production configuration. It will likely work, but having the capability enabled there won’t do any good, and it will make your bundles bigger than they should be.
 
-T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environment variables through a *.env* file. *dotenv* allows you to control the host and port setting of our setup quickly.
+T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environment variables through a *.env* file. *dotenv* allows you to control the host and port setting of the setup quickly.
 
 ## Making the Module Ids More Debuggable
 

@@ -1,6 +1,6 @@
 # Adding Hashes to Filenames
 
-Even though our build generates fine now, the naming it uses is a little problematic. It doesn’t allow us to leverage client level cache effectively as there’s no way tell whether or not a file has changed. Cache invalidation can be achieved by including a hash to filenames.
+Even though the build generates fine now, the naming it uses is a little problematic. It doesn’t allow us to leverage client level cache effectively as there’s no way tell whether or not a file has changed. Cache invalidation can be achieved by including a hash to filenames.
 
 ## Placeholders
 
@@ -95,7 +95,7 @@ leanpub-end-insert
 ...
 ```
 
-If you used `chunkhash` for the extracted CSS as well, this would lead to problems as our code points to the CSS through JavaScript bringing it to the same entry. That means if the application code or CSS changed, it would invalidate both. Therefore, instead of `chunkhash`, you can use `contenthash` that’s generated based on the extracted content:
+If you used `chunkhash` for the extracted CSS as well, this would lead to problems as the code points to the CSS through JavaScript bringing it to the same entry. That means if the application code or CSS changed, it would invalidate both. Therefore, instead of `chunkhash`, you can use `contenthash` that’s generated based on the extracted content:
 
 **webpack.parts.js**
 
@@ -149,7 +149,7 @@ vendor.f897ca59.js.map     135 kB       2  [emitted]  vendor
 ...
 ```
 
-Our files have neat hashes now. To prove that it works for styling, you could try altering *app/main.css* and see what happens to the hashes when you rebuild.
+The files have neat hashes now. To prove that it works for styling, you could try altering *app/main.css* and see what happens to the hashes when you rebuild.
 
 There’s one problem, though. If you change the application code, it will invalidate the vendor file as well! Solving this requires extracting a **manifest**, but before that, you can improve the way the production build handles module IDs.
 
