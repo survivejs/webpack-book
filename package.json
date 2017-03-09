@@ -10,7 +10,7 @@
     "test": "npm run test:links && npm run textlint",
     "test:links": "check-markdown-links manuscript",
     "proselint": "proselintjs \"manuscript/**/*.md\"",
-    "textlint": "textlint manuscript/*.md && textlint manuscript/packages/*.md && textlint manuscript/**/*.md"
+    "textlint": "textlint \"manuscript/**/*.md\""
   },
   "repository": {
     "type": "git",
