@@ -4,7 +4,7 @@ Tools, such as [LiveReload](http://livereload.com/) or [Browsersync](http://www.
 
 ## Webpack `watch` Mode and *webpack-dev-server*
 
-A good first step towards a better development environment is to use webpack in its **watch** mode. You can activate it through `webpack --watch`. Once enabled, it will detect changes made to your files and recompile automatically. *webpack-dev-server* (WDS) builds on top of the watch mode and goes even further.
+A good first step towards a better development environment is to use webpack in its **watch** mode. You can activate it through `webpack --watch`. Once enabled, it detects changes made to your files and recompiles automatically. *webpack-dev-server* (WDS) builds on top of the watch mode and goes even further.
 
 WDS is a development server running **in-memory**. It refreshes content automatically in the browser while you develop your application. It also supports an advanced webpack feature, **Hot Module Replacement** (HMR). HMR allows patching the browser state without a full refresh making it handy with libraries like React.
 
@@ -24,13 +24,13 @@ To get started with WDS, execute:
 npm install webpack-dev-server --save-dev
 ```
 
-As before, this command will generate a command below the `npm bin` directory. You could try running *webpack-dev-server* from there. After running the WDS, you have a development server running at `http://localhost:8080`. Automatic browser refresh is in place now, although at a rough level.
+As before, this command generates a command below the `npm bin` directory. You could try running *webpack-dev-server* from there. After running the WDS, you have a development server running at `http://localhost:8080`. Automatic browser refresh is in place now, although at a rough level.
 
-W> If you are using an IDE, consider enabling **save write** from its settings. This way WDS will be able to detect changes made to the files correctly.
+W> If you are using an IDE, consider enabling **save write** from its settings. This way WDS is able to detect changes made to the files correctly.
 
 ## Attaching *webpack-dev-server* to the Project
 
-To integrate WDS to the project, you should define an npm script for it. To follow npm conventions, you can call it as *start*. To tell the targets apart, you should pass information about the environment to webpack configuration. This will allow us to specialize the configuration as needed:
+To integrate WDS to the project, you should define an npm script for it. To follow npm conventions, you can call it as *start*. To tell the targets apart, you should pass information about the environment to webpack configuration. This allow you to specialize the configuration as needed:
 
 **package.json**
 
@@ -72,7 +72,7 @@ The output means that the development server is running. If you open `http://loc
 
 If you try modifying the code, you should see output in your terminal. The browser should also perform a hard refresh on change.
 
-T> WDS will try to run in another port in case the default one is being used. See the terminal output to figure out where it ends up running. You can debug the situation with a command like `netstat -na | grep 8080`. If something is running on the port 8080, it should display a message. The exact command may depend on the platform.
+T> WDS tries to run in another port in case the default one is being used. See the terminal output to figure out where it ends up running. You can debug the situation with a command like `netstat -na | grep 8080`. If something is running on the port 8080, it should display a message. The exact command may depend on the platform.
 
 T> If you want to open a browser tab directly after running the server, set `devServer.open: true`. You can also achieve the same result through the CLI by using `webpack-dev-server --open`.
 
@@ -93,7 +93,7 @@ module.exports = {
   //
   // Entries have to resolve to files! It relies on Node.js
   // convention by default so if a directory contains *index.js*,
-  // it will resolve to that.
+  // it resolves to that.
 leanpub-end-delete
 leanpub-start-insert
 const commonConfig = {
@@ -144,7 +144,7 @@ Even though `--env` allows us to pass strings to the configuration, it can do a 
 ...
 ```
 
-Instead of a string, you should receive an object `{ target: 'production' }` at configuration now. You could pass more key-value pairs, and they would go to the `env` object. It is important to note that if you set `--env foo` while setting `--env.target`, the string will override the object.
+Instead of a string, you should receive an object `{ target: 'production' }` at configuration now. You could pass more key-value pairs, and they would go to the `env` object. It is important to note that if you set `--env foo` while setting `--env.target`, the string overrides the object.
 
 W> Webpack 2 changed argument behavior compared to webpack 1. You are not allowed to pass custom parameters through the CLI anymore. Instead, it's better to go through the `--env` mechanism if you need to do this.
 
@@ -172,7 +172,7 @@ W> Note that there are [slight differences](https://github.com/webpack/webpack-d
 
 Restarting the development server each time you make a change tends to get boring after a while; therefore, it can be a good idea to let the computer do that for us. As [discussed in GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892), [nodemon](https://www.npmjs.com/package/nodemon) monitoring tool can be used for this purpose.
 
-To get it to work, you will have to install it first through `npm install nodemon --save-dev`. After that, you can make it watch webpack config and restart WDS on change. Here's the script if you want to give it a go:
+To get it to work, you have to install it first through `npm install nodemon --save-dev`. After that, you can make it watch webpack config and restart WDS on change. Here's the script if you want to give it a go:
 
 **package.json**
 
@@ -197,7 +197,7 @@ As webpack plugin ecosystem is diverse, there are a lot of plugins that can help
 * [friendly-errors-webpack-plugin](https://www.npmjs.com/package/friendly-errors-webpack-plugin) improves on error reporting of webpack. It captures common errors and displays them in a friendlier manner, hence the name.
 * [nyan-progress-webpack-plugin](https://www.npmjs.com/package/nyan-progress-webpack-plugin) can be used to get tidier output during the build process. Take care if you are using Continuous Integration (CI) systems like Travis, though, as they can clobber the output. Webpack provides `ProgressPlugin` for the same purpose. No nyan there, though.
 * [react-dev-utils](https://www.npmjs.com/package/react-dev-utils) contains webpack utilities developed for [Create React App](https://www.npmjs.com/package/create-react-app). Despite its name, they can find use beyond React.
-* [webpack-dashboard](https://www.npmjs.com/package/webpack-dashboard) gives an entire terminal based dashboard over the standard webpack output. If you prefer clear visual output, this one will come in handy.
+* [webpack-dashboard](https://www.npmjs.com/package/webpack-dashboard) gives an entire terminal based dashboard over the standard webpack output. If you prefer clear visual output, this one comes in handy.
 
 In addition to plugins like these, it can be worth your while to set up linting to enforce coding standards. The *Linting JavaScript* chapter digs into that topic in detail.
 

@@ -33,7 +33,7 @@ leanpub-end-insert
 
 ## Setting Up Webpack
 
-On the webpack side, *react-hot-loader* requires an additional entry it uses to patch the running application. It is important the new entry runs first as otherwise, the setup will fail to work reliably:
+On the webpack side, *react-hot-loader* requires an additional entry it uses to patch the running application. It is important the new entry runs first as otherwise the setup fails to work reliably:
 
 **webpack.config.js**
 
@@ -132,9 +132,9 @@ If you run the application after these changes and modify the file above, it sho
 
 ## Removing *react-hot-loader* Related Code from the Production Output
 
-If you build the application (`npm run build`) and examine the output, you may spot references to `__REACT_HOT_LOADER__` there due to the Babel setup. It will use `react-hot-loader/babel` plugin regardless of the build target. To overcome this slight annoyance, you should configure Babel to apply the plugin only when you are developing.
+If you build the application (`npm run build`) and examine the output, you may spot references to `__REACT_HOT_LOADER__` there due to the Babel setup. It uses `react-hot-loader/babel` plugin regardless of the build target. To overcome this slight annoyance, you should configure Babel to apply the plugin only when you are developing.
 
-Babel provides an [env option](https://babeljs.io/docs/usage/babelrc/#env-option) for this purpose. It respects both `NODE_ENV` and `BABEL_ENV` environment variables. If `BABEL_ENV` is set, it will receive precedence. To fix the issue, you can push the problematic Babel plugin behind a development specific `env` while controlling its behavior within webpack configuration by setting `BABEL_ENV`.
+Babel provides an [env option](https://babeljs.io/docs/usage/babelrc/#env-option) for this purpose. It respects both `NODE_ENV` and `BABEL_ENV` environment variables. If `BABEL_ENV` is set, it receives precedence. To fix the issue, you can push the problematic Babel plugin behind a development specific `env` while controlling its behavior within webpack configuration by setting `BABEL_ENV`.
 
 The webpack part should be adjusted like this:
 
@@ -152,7 +152,7 @@ leanpub-end-insert
 };
 ```
 
-Babel will now receive the target you pass to webpack allowing us to fix the behavior. Tweak Babel setup, so it matches the fields below. The key part is in pushing `react-hot-loader/patch` below `env`:
+Babel now receives the target you pass to webpack allowing us to fix the behavior. Tweak Babel setup, so it matches the fields below. The key part is in pushing `react-hot-loader/patch` below `env`:
 
 **.babelrc**
 
@@ -217,7 +217,7 @@ T> You can find [a full implementation of the idea online](https://github.com/su
 
 ## Configuring Webpack to Work with JSX
 
-Sometimes people prefer to name their React components containing JSX using the `.jsx` suffix. Webpack can be configured to work with this convention. The benefit of doing this is that then your editor will be able to pick up the right syntax based on the file name alone. Another option is to configure the editor to use JSX syntax for `.js` files as it's a superset of JavaScript.
+Sometimes people prefer to name their React components containing JSX using the `.jsx` suffix. Webpack can be configured to work with this convention. The benefit of doing this is that then your editor is able to pick up the right syntax based on the file name alone. Another option is to configure the editor to use JSX syntax for `.js` files as it's a superset of JavaScript.
 
 Webpack provides [resolve.extensions](https://webpack.js.org/guides/migrating/#resolve-extensions) field that can be used for configuring its extension lookup. If you want to allow imports like `import Button from './Button';` while naming the file as *Button.jsx*, set it up as follows:
 
@@ -237,7 +237,7 @@ W> In webpack 1 you had to use `extensions: ['', '.js', '.jsx']` to match files 
 
 [create-react-app](https://www.npmjs.com/package/create-react-app) allows you to get started fast with webpack and React. It is a zero configuration approach that encapsulates a lot of best practices allowing you to get started fast with minimal setup.
 
-*create-react-app* allows you to extract a full-blown webpack setup by **ejecting**. There's a problem, though. After you eject, you cannot go back to the dependency-based model, and you will have to maintain the resulting setup yourself.
+*create-react-app* allows you to extract a full-blown webpack setup by **ejecting**. There's a problem, though. After you eject, you cannot go back to the dependency-based model, and you have to maintain the resulting setup yourself.
 
 ## Conclusion
 

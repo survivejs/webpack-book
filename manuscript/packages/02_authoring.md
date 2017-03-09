@@ -2,7 +2,7 @@
 
 Even though webpack is handy for bundling applications, it has its uses for package authors as well. It allows you to generate the distribution bundles required by npm. You can also generate the package site through webpack.
 
-In this chapter, I will cover basic ideas behind authoring npm packages and discuss a couple of webpack specific techniques.
+In this chapter, you learn basic ideas behind authoring npm packages and a couple of webpack specific techniques.
 
 ## Anatomy of an npm Package
 
@@ -10,8 +10,8 @@ Most of the available npm packages are small and include only a couple of files:
 
 * *index.js* - On small projects, it's enough to have the code at the root. On larger ones, you may want to start splitting it up further.
 * *package.json* - npm metadata in JSON format
-* *README.md* - README is the most important document of your project. It is written in Markdown format and provides an overview. For smallest projects, the full documentation can fit there. It will be shown on the package page at *npmjs.com*.
-* *LICENSE* - You can include licensing information within your project. You should refer to the license by name from *package.json* as otherwise, npm will give a warning. If you are using a custom license, you can link to it instead. In commercial projects, you may want to set `"private": true` to avoid pushing your work to public inadvertently.
+* *README.md* - README is the most important document of your project. It is written in Markdown format and provides an overview. For smallest projects, the full documentation can fit there. It is shown on the package page at *npmjs.com*.
+* *LICENSE* - You can include licensing information within your project. You should refer to the license by name from *package.json* as otherwise, npm gives a warning. If you are using a custom license, you can link to it instead. In commercial projects, you may want to set `"private": true` to avoid pushing your work to public inadvertently.
 
 In larger projects, you may find the following:
 
@@ -88,7 +88,7 @@ I've annotated a part of *package.json* of my [React component boilerplate](http
   "module": "dist/",
 
   /* Files to include to npm distribution. */
-  /* Note that relative patterns like "./src" will fail! */
+  /* Note that relative patterns like "./src" fail! */
   "files": [
     "dist/"
   ],
@@ -100,7 +100,7 @@ I've annotated a part of *package.json* of my [React component boilerplate](http
   /* Package development dependencies needed to develop/compile it */
   "devDependencies": { ... },
 
-  /* Package peer dependencies. The consumer will fix versions. */
+  /* Package peer dependencies. The consumer fixes exact versions. */
   /* In npm3 these won't get installed automatically and it's */
   /* up to the user to define which versions to use. */
   /* If you want to include RC versions to the range, consider */
@@ -139,9 +139,9 @@ T> JSON doesn't support comments even though I'm using them above. There are ext
 
 ## npm Workflow
 
-To get started, you will need to use [npm adduser](https://docs.npmjs.com/cli/adduser). It allows you to set up an account. After this process has completed, it will create *~/.npmrc* and use that data for authentication. There's also [npm logout](https://docs.npmjs.com/cli/logout) that will clear the credentials.
+To get started, you have to use [npm adduser](https://docs.npmjs.com/cli/adduser). It allows you to set up an account. After this process has completed, it creates a *~/.npmrc* file and use that data for authentication. There's also [npm logout](https://docs.npmjs.com/cli/logout) that clears the credentials.
 
-T> When creating a project, `npm init` respects the values set at *~/.npmrc*. Hence, it may be worth your while to set reasonable defaults there to save time. If you want to limit your package to a particular scope, use `npm init --scope=<scope>`. As a result, you will get `@<scope>/<package>` which is handy especially for personal packages since the default namespace of npm is so crowded.
+T> When creating a project, `npm init` respects the values set at *~/.npmrc*. Hence, it may be worth your while to set reasonable defaults there to save time. If you want to limit your package to a particular scope, use `npm init --scope=<scope>`. As a result, you get `@<scope>/<package>` which is handy especially for personal packages since the default namespace of npm is so crowded.
 
 ### Publishing a Package
 
@@ -149,7 +149,7 @@ Provided you have logged in, creating new packages is only `npm publish` away. G
 
 Instead of referring to a package by a name, it can be consumed by pointing to it directly in *package.json*. In that case, you can do `"depName": "<github user>/<project>#<reference>"` where `<reference>` can be either commit hash, tag, or branch. You can point to specific pull requests through `<github user>/<project>#pull/<id>/head`.
 
-T> If you want to see what files will be published to npm, consider using [npm pack](https://docs.npmjs.com/cli/pack) generates a tarball you can examine. [irish-pub](https://www.npmjs.com/package/irish-pub) is another option, and it will give you a listing to review. You can also use [publish-diff](https://www.npmjs.com/package/publish-diff) to get a better of the changes that are going to be published.
+T> If you want to see what files are published to npm, consider using [npm pack](https://docs.npmjs.com/cli/pack) generates a tarball you can examine. [irish-pub](https://www.npmjs.com/package/irish-pub) is another option, and it gives you a listing to review. You can also use [publish-diff](https://www.npmjs.com/package/publish-diff) to get a better of the changes that are going to be published.
 
 T> [np](https://www.npmjs.com/package/np) gives an interactive UI for publishing packages. [semantic-release](https://www.npmjs.com/package/semantic-release) takes the idea one step further and automates the entire process.
 
@@ -173,11 +173,11 @@ To bump your package version, you'll need to invoke one of these commands:
 
 * `npm version <x.y.z>` - Define version yourself.
 * `npm version <major|minor|patch>` - Let npm bump the version for you based on SemVer.
-* `npm version <premajor|preminor|prepatch|prerelease>` - Same as previous expect this time it will generate `-<prerelease number>` suffix. Example: `v2.1.2-2`.
+* `npm version <premajor|preminor|prepatch|prerelease>` - Same as previous expect this time it generates `-<prerelease number>` suffix. Example: `v2.1.2-2`.
 
-Invoking any of these will update *package.json* and create a version commit to git automatically. If you execute `npm publish` after doing this, you should have something new out there.
+Invoking any of these updates *package.json* and creates a version commit to git automatically. If you execute `npm publish` after doing this, you should have something new out there.
 
-Note that in the example above, I've set up `version`-related hooks to make sure a version will contain a fresh version of a distribution build. I also run tests as it is better to catch potential issues early on.
+Note that in the example above, I've set up `version`-related hooks to make sure a version contains a fresh version of a distribution build. I also run tests as it is better to catch potential issues early on.
 
 T> Consider using [semantic-release](https://www.npmjs.com/package/semantic-release) if you prefer a more structured approach. It can take pain out of the release process while automating a part of it. For instance, it can detect possible breaking changes and generate change logs.
 
@@ -191,7 +191,7 @@ To make it easier to comply with SemVer, [next-ver](https://www.npmjs.com/packag
 
 Both these tools rely on commit message annotations. On small projects, you can have `fix` or `feat` prefix at your commit titles (e.g., `fix - Allow doodad to work with zero`). You can also communicate the context using `chore(docs)` kind of style to document which part of the project was touched.
 
-This metadata lets the tooling to figure out the types of the changes you made. It can help even with change log generation and allow automated releases over manual ones. Annotating your commits well is a good practice in any case as it will make it easier to debug your code later.
+This metadata lets the tooling to figure out the types of the changes you made. It can help even with change log generation and allow automated releases over manual ones. Annotating your commits well is a good practice in any case as it makes it easier to debug your code later.
 
 T> The *Consuming Packages* explains the idea of SemVer in detail.
 
@@ -206,7 +206,7 @@ Sometimes, you may want to publish something preliminary for other people to tes
 * v0.5.0-rc2
 * v0.5.0
 
-The initial alpha release will allow the users to try out the upcoming functionality and provide feedback. The beta releases can be considered more stable.
+The initial alpha release allows the users to try out the upcoming functionality and provide feedback. The beta releases can be considered more stable.
 
 The release candidates (RC) are close to an actual release and won't introduce any new functionality. They are all about refining the release till it's suitable for general consumption.
 
@@ -215,9 +215,9 @@ The workflow in this case goes like this:
 1. `npm version 0.5.0-alpha1` - Update *package.json* as discussed earlier.
 2. `npm publish --tag alpha` - Publish the package under *alpha* tag.
 
-To consume the test version, your users will have to use `npm install <your package name>@alpha`.
+To consume the test version, your users have to use `npm install <your package name>@alpha`.
 
-T> [npm link](https://docs.npmjs.com/cli/link) allows you to link a package as a globally available symbolic link within your system. Node will resolve to the linked version unless local `node_modules` happens to contain a version. If you want to remove the link, you should use `npm unlink` or `npm unlink <package>`.
+T> [npm link](https://docs.npmjs.com/cli/link) allows you to link a package as a globally available symbolic link within your system. Node resolves to the linked version unless local `node_modules` happens to contain a version. If you want to remove the link, you should use `npm unlink` or `npm unlink <package>`.
 
 ### On Naming Packages
 
@@ -235,7 +235,7 @@ npm provides a collection of lifecycle hooks. Suppose you are authoring a React 
 babel ./lib --out-dir ./dist-modules
 ```
 
-The command will walk through the `./lib` directory and output to `./dist-modules` a processed file for each module it encounters.
+The command walks through the `./lib` directory and writes a processed file to `./dist-modules` for each module it encounters.
 
 Since running that command each time you publish is tedious, you can set up a `prepublish` hook like this:
 
@@ -261,15 +261,15 @@ dist-modules/
 ...
 ```
 
-Besides `prepublish`, npm provides a set of other hooks. The naming is always the same and follows the pattern `pre<hook>`, `<hook>`, `post<hook>` where `<hook>` can be `publish`, `install`, `test`, `stop`, `start`, `restart`, or `version`. Even though npm will trigger scripts bound to these automatically, you can trigger them explicitly through `npm run` for testing (i.e., `npm run prepublish`).
+Besides `prepublish`, npm provides a set of other hooks. The naming is always the same and follows the pattern `pre<hook>`, `<hook>`, `post<hook>` where `<hook>` can be `publish`, `install`, `test`, `stop`, `start`, `restart`, or `version`. Even though npm triggers scripts bound to these automatically, you can trigger them explicitly through `npm run` for testing (i.e., `npm run prepublish`).
 
 The [the official documentation](https://docs.npmjs.com/misc/scripts) covers a lot of smaller tips related to these hooks. However, often all you need is a `prepublish` script for build automation.
 
 ### Working Around `prepublish` in npm 3
 
-It is important to note that in npm 3 `prepublish` hook will get also triggered when you run `npm install` on the project locally. Sometimes this can be surprising and counter-productive even.
+It is important to note that in npm 3 `prepublish` hook gets also triggered when you run `npm install` on the project locally. Sometimes this can be surprising and counter-productive even.
 
-[in-publish](https://www.npmjs.com/package/in-publish) allows you to tune the behavior and skip the installation step. You need to prepend your script with `in-publish && babel ...` kind of line for this to work. npm 4 and the following versions will fix this confusing behavior.
+[in-publish](https://www.npmjs.com/package/in-publish) allows you to tune the behavior and skip the installation step. You need to prepend your script with `in-publish && babel ...` kind of line for this to work. npm 4 and the following versions fix this confusing behavior.
 
 ## Sharing Authorship
 
@@ -347,7 +347,7 @@ In this case, you'll likely want a setup like this:
 }
 ```
 
-What if someone points to a development version of your package directly through GitHub, though? It won't work as the `dist-modules` directory will be missing. The problem can be fixed using a hook that will generate the needed source.
+What if someone points to a development version of your package directly through GitHub, though? It won't work as the `dist-modules` directory is missing. The problem can be fixed using a hook that generates the needed source.
 
 ### Generating a Distribution for Development Usage
 
@@ -404,7 +404,7 @@ function exec(command) {
 }
 ```
 
-The script may need tweaking to fit your purposes. But it's enough to give you a rough idea. If the `dist-modules` directory is missing, you will generate it here.
+The script may need tweaking to fit your purposes. But it's enough to give you a rough idea. If the `dist-modules` directory is missing, you generate it here.
 
 For the build script to work, you have to remember to include the source of the package to the distribution version and to tweak *package.json* `files` field accordingly.
 
@@ -426,9 +426,9 @@ You should now have a basic idea of how to author npm packages. Webpack can help
 
 To recap:
 
-* It is good to understand what kind of metadata packages may contain. They will give you insight on their licensing, guidelines, and even quality.
+* It is good to understand what kind of metadata packages may contain. They give you insight on their licensing, guidelines, and even quality.
 * When publishing packages to npm, remember to respect the SemVer or an equivalent scheme to keep your consumers happy.
-* Document the main changes made to your packages using a change log. Documentation will come in handy later as you have to understand when a specific feature was introduced. It will also make it easier to upgrade projects to the most recent features.
+* Document the main changes made to your packages using a change log. Documentation comes in handy later as you have to understand when a specific feature was introduced. It also makes it easier to upgrade projects to the most recent features.
 * Consider publishing differently packaged versions of the source to account for different usage patterns. Packaged right, your consumers can benefit from features, such as **tree shaking**.
 * To make it possible to consume a work in progress package, implement an npm `postinstall` script that builds the project if a distribution version does not exist in the source.
 * If a package becomes obsolete, consider deprecating it and let your users know how to upgrade to another solution.

@@ -22,7 +22,7 @@ npm's lookup algorithm is another aspect that's good to understand. Sometimes th
 
 1. Look into immediate packages. If there is *node_modules*, crawl through that and also check the parent directories until the project root is reached. You can check that using `npm root`.
 2. If nothing was found, check globally installed packages. If you are using Unix, look into */usr/local/lib/node_modules* to find them. You can figure out the specific directory using `npm root -g`.
-3. If the global lookup fails, it will fail hard. You should get an error now.
+3. If the global lookup fails, it fails hard. You should get an error now.
 
 On a package level, npm resolves to a file like this:
 
@@ -47,7 +47,7 @@ You can tweak webpack's module resolution through the `resolve.modules` field. E
 
 Sometimes it may be beneficial to use these techniques together. Compared to npm environment, webpack provides more flexibility, although you can mimic a lot of webpack's functionality using terminal based tricks.
 
-W> Installing global packages can lead to surprising behavior. If you have a package installed both globally and it a project happens to contain it, executing associated terminal command (say `webpack`) will point to the version of the project. It won't work unless the global package exists.
+W> Installing global packages can lead to surprising behavior. If you have a package installed both globally and it a project happens to contain it, executing associated terminal command (say `webpack`) points to the version of the project. It won't work unless the global package exists.
 
 T> [app-module-path](https://www.npmjs.com/package/app-module-path) allows you adjust Node module lookup within JavaScript and this can be an alternative to patching `NODE_PATH`.
 
@@ -114,7 +114,7 @@ Sometimes packages do not follow the standard rules and their *package.json* con
 },
 ```
 
-The idea is that if webpack resolver matches `demo` in the beginning, it will resolve from the target. You can constrain the process to an exact name by using a pattern like `demo$`.
+The idea is that if webpack resolver matches `demo` in the beginning, it resolves from the target. You can constrain the process to an exact name by using a pattern like `demo$`.
 
 Light React alternatives, such as [Preact](https://www.npmjs.com/package/preact), [react-lite](https://www.npmjs.com/package/react-lite), or [Inferno](https://www.npmjs.com/package/inferno), offer smaller size while trading off functionality like `propTypes` and synthetic event handling. Replacing React with a lighter alternative can save a significant amount of space, but you should test well if you do this. The setup looks like this for *react-lite*. The idea is the same for others:
 
@@ -198,7 +198,7 @@ T> [null-loader](https://www.npmjs.com/package/null-loader) discussed in the *Lo
 
 ## Managing Pre-built Dependencies
 
-It is possible webpack will give the following warning with certain dependencies:
+It is possible webpack gives the following warning with certain dependencies:
 
 ```bash
 WARNING in ../~/jasmine-promises/dist/jasmine-promises.js

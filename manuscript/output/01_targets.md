@@ -6,11 +6,11 @@ Webpack's output target is controlled by the `target` field. I'll go through the
 
 ## Web Targets
 
-Webpack uses the *web* target by default. This is ideal for a web application like the one you have developed in this book. Webpack will bootstrap the application and load its modules. The initial list of modules to load is maintained in a manifest, and then the modules can load each other as defined.
+Webpack uses the *web* target by default. This is ideal for a web application like the one you have developed in this book. Webpack bootstraps the application and load its modules. The initial list of modules to load is maintained in a manifest, and then the modules can load each other as defined.
 
 ### Web Workers
 
-The *webworker* target will wrap your application as a [web worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API). Using web workers is valuable if you want to execute computation outside of the main thread of the application without slowing down the user interface. There are a couple of limitations you should be aware of:
+The *webworker* target wraps your application as a [web worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API). Using web workers is valuable if you want to execute computation outside of the main thread of the application without slowing down the user interface. There are a couple of limitations you should be aware of:
 
 * You cannot use webpack's hashing features when the *webworker* target is used.
 * You cannot manipulate the DOM from a web worker. If you wrapped the book project as a worker, it would not display anything.
@@ -19,7 +19,7 @@ T> Web workers and their usage are discussed in detail in the *Using Web Workers
 
 ## Node Targets
 
-Webpack provides two Node-specific targets: `node` and `async-node`. It will use standard Node `require` to load chunks unless async mode is used. In that case, it will wrap modules so that they are loaded asynchronously through Node `fs` and `vm` modules.
+Webpack provides two Node-specific targets: `node` and `async-node`. It uses standard Node `require` to load chunks unless async mode is used. In that case, it wraps modules so that they are loaded asynchronously through Node `fs` and `vm` modules.
 
 The main use case for using the Node target is *Server Side Rendering* (SSR). The idea is discussed in the *Server Side Rendering* chapter.
 
@@ -55,11 +55,11 @@ export {
 };
 ```
 
-The idea is that this file will become the entry point for the entire library and represents the API exposed to the consumers. If you want to support both CommonJS and ES6, it can be a good idea to use the CommonJS module definition here. If you go with ES6 `export default`, using such an export in a CommonJS environment often requires extra effort.
+The idea is that this file becomes the entry point for the entire library and represents the API exposed to the consumers. If you want to support both CommonJS and ES6, it can be a good idea to use the CommonJS module definition here. If you go with ES6 `export default`, using such an export in a CommonJS environment often requires extra effort.
 
 ### Setting Up an npm Script
 
-Given the `build` target of the project has been taken already by the main application, you should set up a separate one for generating the library. It will point to a library specific configuration file to keep things nice and tidy.
+Given the `build` target of the project has been taken already by the main application, you should set up a separate one for generating the library. It points to a library specific configuration file to keep things nice and tidy.
 
 **package.json**
 
@@ -76,7 +76,7 @@ leanpub-end-insert
 
 ### Setting Up Webpack
 
-Webpack configuration itself can be adapted from the one you built. This time, however, you have to generate two files - a non-minified version and a minified one. This can be achieved by running webpack in so called *multi-compiler mode*. It means you can expose an array of configurations for webpack and it will execute each.
+Webpack configuration itself can be adapted from the one you built. This time, however, you have to generate two files - a non-minified version and a minified one. This can be achieved by running webpack in so called *multi-compiler mode*. It means you can expose an array of configurations for webpack and it executes each.
 
 **webpack.lib.js**
 
@@ -234,7 +234,7 @@ leanpub-end-insert
 ...
 ```
 
-If either process fails, npm won't proceed to the `lib` script. You can verify this by breaking a linting rule and seeing what happens when you build (`npm run build:lib`). Instead, it will give you an error.
+If either process fails, npm won't proceed to the `lib` script. You can verify this by breaking a linting rule and seeing what happens when you build (`npm run build:lib`). Instead, it gives you an error.
 
 T> To get cleaner error output, run either `npm run build:lib --silent` or `npm run build:lib -s`.
 
@@ -321,6 +321,6 @@ To recap:
 * Webpack can generate both a non-minified and a minified version of a library through its **multi-compiler** mode. It is possible to minify also as a post-process using an external tool.
 * Performing tasks, such as cleaning and linting JavaScript, while using the multi-compiler mode is problematic at the moment. Instead, it can be a good idea to handle these tasks outside of webpack or run multiple webpack instances separately.
 
-If you try to import *./dist/lib.js* through Node, you will notice it will output `{}`. The problem has to do with the output type that was chosen. To understand better which output to use and why, the next chapter covers them in detail.
+If you try to import *./dist/lib.js* through Node, you notice it emits `{}`. The problem has to do with the output type that was chosen. To understand better which output to use and why, the next chapter covers them in detail.
 
 T> The *Authoring Packages* chapter discusses npm specific techniques in detail, and it complements these chapters well.

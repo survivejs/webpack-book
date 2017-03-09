@@ -1,3 +1,3 @@
 -# Techniques
 
-In this part, you will learn to use webpack techniques such as dynamic loading, using web workers, internationalization, and deploying.
+In this part, you learn to use webpack techniques such as dynamic loading, using web workers, internationalization, and deploying.

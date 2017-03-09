@@ -84,7 +84,7 @@ define(['require'], function (require) {
 });
 ```
 
-This latter approach eliminates a part of the clutter. You will still end up with code that may feel redundant. Given there's ES6 now, it doesn't make sense to use AMD unless you forced due to legacy reasons.
+This latter approach eliminates a part of the clutter. You still end up with code that may feel redundant. Given there's ES6 now, it doesn't make sense to use AMD unless you forced due to legacy reasons.
 
 T> Jamund Ferguson has written an excellent blog series on how to port from [RequireJS to webpack](https://gist.github.com/xjamundx/b1c800e9282e16a6a18e).
 
@@ -92,7 +92,7 @@ T> Jamund Ferguson has written an excellent blog series on how to port from [Req
 
 UMD, universal module definition, takes it all to the next level. It is a monster of a format that aims to make the various formats compatible with each other. Check out [the official definitions](https://github.com/umdjs/umd) to understand it in greater detail.
 
-T> Webpack can generate UMD wrappers for you (`output.libraryTarget: 'umd'`). You will get back to this later in the *Authoring Packages* chapter.
+T> Webpack can generate UMD wrappers for you (`output.libraryTarget: 'umd'`). You get back to this later in the *Authoring Packages* chapter.
 
 ## Grunt
 
@@ -100,7 +100,7 @@ T> Webpack can generate UMD wrappers for you (`output.libraryTarget: 'umd'`). Yo
 
 [Grunt](http://gruntjs.com/) was the first popular task runner for frontend developers. Its plugin architecture contributed towards its popularity. Plugins are often complex by themselves. As a result, when configuration grows, it can become difficult to understand what's going on.
 
-Here's an example from [Grunt documentation](http://gruntjs.com/sample-gruntfile). In this configuration, you define a linting and a watcher tasks. When the *watch* task gets run, it will trigger the *lint* task as well. This way, as you run Grunt, you'll get warnings in real-time in the terminal as you edit the source code.
+Here's an example from [Grunt documentation](http://gruntjs.com/sample-gruntfile). In this configuration, you define a linting and a watcher tasks. When the *watch* task gets run, it triggers the *lint* task as well. This way, as you run Grunt, you'll get warnings in real-time in the terminal as you edit the source code.
 
 **Gruntfile.js**
 

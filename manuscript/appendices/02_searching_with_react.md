@@ -4,13 +4,13 @@ Let's say you want to implement a rough little search for an application without
 
 The problem is that the index can be sizable depending on the amount of the content. The good thing is that you don't need the search index straight from the start. You can do something smarter instead. You can start loading the index when the user selects a search field.
 
-Doing this defers the loading and moves it to a place where it's more acceptable for performance. Given the initial search will be slower than the subsequent ones you should display a loading indicator. But that's fine from the user point of view.
+Doing this defers the loading and moves it to a place where it's more acceptable for performance. Given the initial search is slower than the subsequent ones, you should display a loading indicator. But that's fine from the user point of view.
 
 Webpack's **code splitting** feature allows us to do this. See the *Code Splitting* chapter for more detailed discussion and the exact setup required.
 
 ## Implementing Search with Lazy Loading
 
-To implement lazy loading, you will need to decide where to put the split point, put it there, and then handle the `Promise`. The basic `import` looks like `import('./asset').then(asset => ...).catch(err => ...)`.
+To implement lazy loading, you need to decide where to put the split point, put it there, and then handle the `Promise`. The basic `import` looks like `import('./asset').then(asset => ...).catch(err => ...)`.
 
 The nice thing is that this gives us error handling in case something goes wrong (network is down etc.) and gives us a chance to recover. You can also use `Promise` based utilities like `Promise.all` for composing more complicated queries.
 
@@ -116,7 +116,7 @@ function loadIndex() {
   // Here's the magic. Set up `import` to tell webpack
   // to split here and load search index dynamically.
   //
-  // Note that you will need to shim Promise.all for
+  // Note that you need to shim Promise.all for
   // older browsers and Internet Explorer!
   return Promise.all([
     import('lunr'),

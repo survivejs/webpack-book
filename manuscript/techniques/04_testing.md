@@ -10,7 +10,7 @@ You can find a lot of testing tools for JavaScript. The most popular options wor
 
 ![Mocha](images/mocha.png)
 
-[Mocha](https://mochajs.org/) is a popular test framework for Node. While Mocha provides test infrastructure, you will have to bring your asserts to it. Even though [Node assert](https://nodejs.org/api/assert.html) can be enough, there are good alternatives such as [power-assert](https://www.npmjs.com/package/power-assert), [Chai](http://chaijs.com/), or [Unexpected](http://unexpected.js.org/).
+[Mocha](https://mochajs.org/) is a popular test framework for Node. While Mocha provides test infrastructure, you have to bring your asserts to it. Even though [Node assert](https://nodejs.org/api/assert.html) can be enough, there are good alternatives such as [power-assert](https://www.npmjs.com/package/power-assert), [Chai](http://chaijs.com/), or [Unexpected](http://unexpected.js.org/).
 
 [mocha-loader](https://www.npmjs.com/package/mocha-loader) allows running Mocha tests through webpack. [mocha-webpack](https://www.npmjs.com/package/mocha-webpack) is another option that aims to provide more functionality. I'll cover the basic *mocha-loader* setup next.
 
@@ -88,7 +88,7 @@ Demo
 1 passing (10ms)
 ```
 
-Mocha also provides a watch mode which you can activate through `npm run test:mocha -- --watch`. It will run the test suite as you modify the code.
+Mocha also provides a watch mode which you can activate through `npm run test:mocha -- --watch`. It runs the test suite as you modify the code.
 
 T> `--grep <pattern>` can be used for constraining the behavior if you want to focus only on a particular set of tests.
 
@@ -219,7 +219,7 @@ webpack: Compiled successfully.
 22 02 2017 14:18:59.455:INFO [karma]: Karma v1.5.0 server started at http://0.0.0.0:9876/
 ```
 
-This means Karma is in a waiting state. You have to visit that url to run the tests. As per configuration (`singleRun: true`), Karma will terminate execution after that:
+This means Karma is in a waiting state. You have to visit that url to run the tests. As per configuration (`singleRun: true`), Karma terminates execution after that:
 
 ```
 ...
@@ -295,7 +295,7 @@ To know how much of the code the tests cover, it can be a good idea to generate 
 
 T> LCOV integrates well with visualization services. You can send coverage information to an external service through a continuous integration environment and track the status in one place.
 
-[isparta](https://www.npmjs.com/package/isparta) is a popular, ES6 compatible code coverage tool. Connecting it with Karma will require configuration. Most importantly the code has to be instrumented through [babel-plugin-istanbul](https://www.npmjs.com/package/babel-plugin-istanbul). Doing this requires a small amount of webpack configuration as well due to the setup. [karma-coverage](https://www.npmjs.com/package/karma-coverage) is required for the reporting portion of the problem.
+[isparta](https://www.npmjs.com/package/isparta) is a popular, ES6 compatible code coverage tool. Connecting it with Karma requires configuration. Most importantly the code has to be instrumented through [babel-plugin-istanbul](https://www.npmjs.com/package/babel-plugin-istanbul). Doing this requires a small amount of webpack configuration as well due to the setup. [karma-coverage](https://www.npmjs.com/package/karma-coverage) is required for the reporting portion of the problem.
 
 Install the dependencies first:
 
@@ -342,7 +342,7 @@ leanpub-end-insert
 
 T> If you want to understand the `env` idea, see the *Loading JavaScript* chapter.
 
-On Karma side, reporting has to be set up and Karma configuration has to be connected with webpack. *karma-webpack* provides two fields for this purpose: `webpack` and `webpackMiddleware`. You will use the former in this case to make sure the code gets processed through Babel.
+On Karma side, reporting has to be set up and Karma configuration has to be connected with webpack. *karma-webpack* provides two fields for this purpose: `webpack` and `webpackMiddleware`. You should use the former in this case to make sure the code gets processed through Babel.
 
 **karma.conf.js**
 
@@ -429,7 +429,7 @@ Porting a webpack setup to Jest may require more effort especially if you rely o
 
 [AVA](https://www.npmjs.com/package/ava) is a test runner that has been designed to take advantage of parallel execution. It comes with a test suite definition of its own. [webpack-ava-recipe](https://github.com/greyepoxy/webpack-ava-recipe) covers how to connect it with webpack.
 
-The main idea is to run both webpack and AVA in watch mode to push the problem of processing code to webpack while allowing AVA to consume the processed code. The `require.context` idea discussed with Mocha will come in handy here as you will have to capture tests for webpack to process somehow.
+The main idea is to run both webpack and AVA in watch mode to push the problem of processing code to webpack while allowing AVA to consume the processed code. The `require.context` idea discussed with Mocha comes in handy here as you have to capture tests for webpack to process somehow.
 
 ## Mocking
 
@@ -449,4 +449,4 @@ To recap:
 * Sometimes the test setup can be quite involved. Tools like Jest remove most of the boilerplate and allow you to develop tests with minimal setup.
 * You can find multiple mocking tools for webpack. They allow you to shape test environment. Sometimes you can avoid mocking through design, though.
 
-I will show you how to deploy applications using webpack in the next chapter.
+You learn to deploy applications using webpack in the next chapter.

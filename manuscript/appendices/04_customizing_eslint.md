@@ -1,6 +1,6 @@
 # Customizing ESLint
 
-Even though you can get far with vanilla ESLint, there are certain techniques you should know. For instance, sometimes you will want to skip specific rules per file. You may even want to implement rules of your own.
+Even though you can get far with vanilla ESLint, there are certain techniques you should know. For instance, sometimes you want to skip specific rules per file. You may even want to implement rules of your own.
 
 ## Skipping ESLint Rules
 

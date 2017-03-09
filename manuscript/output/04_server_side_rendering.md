@@ -1,14 +1,14 @@
 # Server Side Rendering
 
-**Server Side Rendering** (SSR) is a technique that allows you to serve an initial payload with HTML, JavaScript, CSS, and even application state. You will serve a fully rendered HTML page that would make sense even without JavaScript enabled. In addition to providing potential performance benefits, this can help with Search Engine Optimization (SEO).
+**Server Side Rendering** (SSR) is a technique that allows you to serve an initial payload with HTML, JavaScript, CSS, and even application state. You serve a fully rendered HTML page that would make sense even without JavaScript enabled. In addition to providing potential performance benefits, this can help with Search Engine Optimization (SEO).
 
 Even though the idea does not sound that special, there is a technical cost involved, and you can find sharp corners. The approach was popularized by React. Since then frameworks encapsulating the tricky bits, such as [Next.js](https://www.npmjs.com/package/next), have appeared. [isomorphic-webpack](https://www.npmjs.com/package/isomorphic-webpack) is a good example of a solution designed on top of webpack.
 
-I'll show you next how to set up SSR with webpack and React. The idea is that webpack will compile a client-side build that then gets picked up by a server that renders it using React following the SSR idea. Demonstration like this is enough to understand how it works and also where the problems begin.
+I'll show you next how to set up SSR with webpack and React. The idea is that webpack compiles a client-side build that then gets picked up by a server that renders it using React following the SSR idea. Demonstration like this is enough to understand how it works and also where the problems begin.
 
 ## Setting Up Babel with React
 
-The *Loading JavaScript* chapter covers the essentials of using Babel with webpack. There's setup that is particular to React you should perform, though. Given most of React projects rely on [JSX](https://facebook.github.io/jsx/) format, you will have to enable it through Babel.
+The *Loading JavaScript* chapter covers the essentials of using Babel with webpack. There's setup that is particular to React you should perform, though. Given most of React projects rely on [JSX](https://facebook.github.io/jsx/) format, you have to enable it through Babel.
 
 To get React, and particularly JSX, work with Babel, install the preset first:
 
@@ -209,7 +209,7 @@ If you run the server now (`node ./server.js`) and navigate below `http://localh
 
 ![Hello world](images/hello_01.png)
 
-Even though there is a basic React application running now, it's a little difficult to develop. If you try to modify the code, nothing will happen. This can be solved running webpack in a multi-compiler mode as earlier in this book. Another option is to run webpack in **watch mode** against the current configuration and set up a watcher for the server. I'll show you how to achieve the latter setup next.
+Even though there is a basic React application running now, it's a little difficult to develop. If you try to modify the code, nothing happens. This can be solved running webpack in a multi-compiler mode as earlier in this book. Another option is to run webpack in **watch mode** against the current configuration and set up a watcher for the server. I'll show you how to achieve the latter setup next.
 
 T> If you want to debug output from the server, set `export DEBUG=express:application`.
 
@@ -219,7 +219,7 @@ W> If you get a linting warning like `warning  'React' is defined but never used
 
 ## Watching SSR Changes and Refreshing the Browser
 
-The first portion of the problem is fast to solve. Run `npm run build:ssr -- --watch` in a terminal. That will force webpack to run in a watch mode. It would be possible to wrap this idea within an npm script for convenience, but this is enough for this demo.
+The first portion of the problem is fast to solve. Run `npm run build:ssr -- --watch` in a terminal. That forces webpack to run in a watch mode. It would be possible to wrap this idea within an npm script for convenience, but this is enough for this demo.
 
 The remaining part is harder than what was done so far. How to make the server aware of the changes and how to communicate the changes to the browser?
 
@@ -267,7 +267,7 @@ The first change tells the client that the application is online and ready to go
 
 Run `node_modules/.bin/browser-refresh ./server.js` in another terminal and open the browser at `http://localhost:8080` as earlier to test the setup. Remember to have webpack running in the watch mode at another terminal. If everything went right, any change you make to the demo client script (*app/ssr.js*) should show up in the browser or cause a failure at the server.
 
-If the server crashes, it will lose the WebSocket connection. You will have to force a refresh in the browser in this case. If the server was managed through webpack as well, the problem could have been avoided.
+If the server crashes, it loses the WebSocket connection. You have to force a refresh in the browser in this case. If the server was managed through webpack as well, the problem could have been avoided.
 
 To prove that SSR works, check out the browser inspector. You should see something familiar there:
 
@@ -283,7 +283,7 @@ T> The server could inject initial data payload to the generated HTML. Doing thi
 
 Even though the demo illustrates the basic idea of SSR, it still leaves open questions:
 
-* How to deal with styles? Vanilla Node doesn't understand CSS related imports although your frontend code going through webpack will.
+* How to deal with styles? Vanilla Node doesn't understand CSS related imports by design.
 * How to deal with anything else than JavaScript? If the server side is processed through webpack, this is less of an issue as you can patch it at webpack.
 * How to run the server through something else than Node? One option would be to wrap the Node instance in a service you then run through your host environment. Ideally, the results would be cached, and you can find more specific solutions for this particular per platform.
 

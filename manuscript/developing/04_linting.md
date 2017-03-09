@@ -26,7 +26,7 @@ T> [eslint-config-cleanjs](https://www.npmjs.com/package/eslint-config-cleanjs) 
 
 Besides linting for issues, it can be valuable to manage the code style. Nothing is more annoying than having to work with source code that has mixed tabs and spaces. Stylistically consistent code reads better. Linting tools allow you to do this.
 
-Establishing strong linting can be beneficial, especially in a context where you need to collaborate with others. Even when working alone you will benefit from linting as it can catch issues you could otherwise neglect. JavaScript as a language allows usage which, while valid, may not be the clearest to understand or may even be incorrect.
+Establishing strong linting can be beneficial, especially in a context where you need to collaborate with others. Even when working alone you benefit from linting as it can catch issues you could otherwise neglect. JavaScript as a language allows usage which, while valid, may not be the clearest to understand or may even be incorrect.
 
 Linting does **not** replace proper testing, but it can complement testing approaches. It allows you to harden a codebase and make it a little harder to break. As the size of your project grows, and it becomes more challenging to manage, this becomes particularly important.
 
@@ -64,12 +64,12 @@ leanpub-end-insert
 Given ESLint expects configuration to work, you need to define rules to describe what to lint and how to react if the rules aren't obeyed. The severity of an individual rule is defined by a number as follows:
 
 * 0 - The rule has been disabled.
-* 1 - The rule will emit a warning.
-* 2 - The rule will emit an error.
+* 1 - The rule emits a warning.
+* 2 - The rule emits an error.
 
 Rules, such as `quotes`, accept an array instead allowing you to pass extra parameters to them. Refer to the [ESLint rules documentation](http://eslint.org/docs/rules/) for specifics.
 
-Here's a starting point that will work with the project:
+Here's a starting point that works with the project:
 
 **.eslintrc.js**
 
@@ -107,7 +107,7 @@ build/*
 
 T> You can point ESLint to your Git ignores through `--ignore-path .gitignore`. It also accepts individual patterns, through `--ignore-pattern <pattern>`.
 
-W> If you try a pattern like `build`, it will match files like *build.js* too! Remember to use a slash at the end to signify a directory.
+W> If you try a pattern like `build`, it matches files like *build.js* too! Remember to use a slash at the end to signify a directory.
 
 If you invoke `npm run lint:js` now, it should execute without any warnings or errors. If you see either, this is a good time to try ESLint autofixing. You can run it like this: `npm run lint -- --fix`. Running an npm script this way allows you to pass extra parameters to it.
 
@@ -115,7 +115,7 @@ Another alternative would be to push it behind a *package.json* script. Autofix 
 
 Beyond vanilla JSON, ESLint supports other formats, such as JavaScript or YAML. I.e., *.eslintrc.yaml* would expect YAML. See the [documentation](http://eslint.org/docs/user-guide/configuring#configuration-file-formats) for further details.
 
-T> When ESLint gives errors, npm will show a long `ELIFECYCLE error` error block of its own. It is possible to disable that using the `silent` flag like this: `npm run lint:js --silent` or a shortcut `npm run lint:js -s`.
+T> When ESLint gives errors, npm shows a long `ELIFECYCLE error` error block of its own. It is possible to disable that using the `silent` flag like this: `npm run lint:js --silent` or a shortcut `npm run lint:js -s`.
 
 ### Connecting ESLint with Webpack
 
@@ -125,11 +125,11 @@ You can make webpack emit ESLint messages for us by using [eslint-loader](https:
 npm install eslint-loader --save-dev
 ```
 
-W> Note that *eslint-loader* will use a globally installed version of ESLint unless you have one included in the project itself. Make sure you have ESLint as a development dependency to avoid the strange behavior.
+W> Note that *eslint-loader* uses a globally installed version of ESLint unless you have one included in the project itself. Make sure you have ESLint as a development dependency to avoid the strange behavior.
 
 The loader needs wiring to work. Loaders are discussed in detail in the *Loading* part of this book, but the basic idea is fast to understand. A loader is connected to webpack through a rule that contains preconditions related to it and a reference to the loader itself.
 
-In this case, you will want to ensure that ESLint gets executed before anything else using the `enforce` field. It allows us to guarantee that linting happens before any other processing. The idea is discussed in detail in the *Loader Definitions* chapter.
+In this case, you want to ensure that ESLint gets executed before anything else using the `enforce` field. It allows us to guarantee that linting happens before any other processing. The idea is discussed in detail in the *Loader Definitions* chapter.
 
 To add linting to the project, adjust the configuration as follows:
 
@@ -223,7 +223,7 @@ I've collected different ESLint tips below. The great thing about ESLint is that
 
 ### Extension Tips
 
-* ESLint supports ES6 features through configuration. You will have to specify the features to use through the [ecmaFeatures](http://eslint.org/docs/user-guide/configuring.html#specifying-language-options) property.
+* ESLint supports ES6 features through configuration. You have to specify the features to use through the [ecmaFeatures](http://eslint.org/docs/user-guide/configuring.html#specifying-language-options) property.
 * Plugins, such as [eslint-plugin-node](https://www.npmjs.com/package/eslint-plugin-node), [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react), [eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise), [eslint-plugin-compat](https://www.npmjs.com/package/eslint-plugin-compat), and [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import), are worth studying.
 * Most IDEs and editors have good linter integration so you can spot issues as you develop.
 * To learn about ESLint customizations options and how to write an ESLint plugin, check out the *Customizing ESLint* appendix.
@@ -232,7 +232,7 @@ I've collected different ESLint tips below. The great thing about ESLint is that
 
 No JSLint particular loader exists for webpack yet. Fortunately, there's one for JSHint. You could set it up on a legacy project quickly. The key is in configuring [jshint-loader](https://www.npmjs.com/package/jshint-loader).
 
-JSHint will look into specific rules to apply from `.jshintrc`. You can also define custom settings within a `jshint` object at your webpack configuration. Exact configuration options have been covered by [the JSHint documentation](http://jshint.com/docs/) in detail.
+JSHint looks into specific rules to apply from `.jshintrc`. You can also define custom settings within a `jshint` object at your webpack configuration. Exact configuration options have been covered by [the JSHint documentation](http://jshint.com/docs/) in detail.
 
 ## EditorConfig
 

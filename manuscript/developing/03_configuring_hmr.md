@@ -36,7 +36,7 @@ function developmentConfig() {
   const config = {
     devServer: {
       // Enable history API fallback so HTML5 History API based
-      // routing works. This is a good default that will come
+      // routing works. This is a good default that comes
       // in handy in more complicated setups.
       historyApiFallback: true,
 
@@ -95,7 +95,7 @@ leanpub-end-insert
 };
 ```
 
-It's plenty of code. Especially the `Object.assign` portion looks knotty. That will be fixed in the *Splitting Configuration* chapter soon enough.
+It's plenty of code. Especially the `Object.assign` portion looks knotty. That is fixed in the *Splitting Configuration* chapter soon enough.
 
 Execute `npm start` and surf to `http://localhost:8080`. Try modifying *app/component.js*. Note how it fails to refresh.
 
@@ -103,11 +103,11 @@ Execute `npm start` and surf to `http://localhost:8080`. Try modifying *app/comp
 
 You see this behavior because you set `hotOnly: true` for WDS. Going with `inline: true` would have swallowed the error and refreshed the page. This behavior is okay, though, as the HMR interface is implemented next to avoid the need for the hard refresh. Before that, something can be done about those cryptic numbers to get more sensible output.
 
-You can access the application alternately through `http://localhost:8080/webpack-dev-server/` instead of the root. It will provide status information at the top of the application. If your application relies on WebSockets and you use WDS proxying, you'll need to use this particular url: otherwise, WDS logic will interfere.
+You can access the application alternately through `http://localhost:8080/webpack-dev-server/` instead of the root. It provides status information at the top of the application. If your application relies on WebSockets and you use WDS proxying, you'll need to use this particular url: otherwise, WDS logic interferes.
 
 W> *webpack-dev-server* can be picky about paths. If the given `include` paths don't match the system casing precisely, this can cause it to fail to work. Webpack [issue #675](https://github.com/webpack/webpack/issues/675) discusses the problem in more detail.
 
-W> You should **not** enable HMR for your production configuration. It will likely work, but having the capability enabled there won't do any good, and it will make your bundles bigger than they should be.
+W> You should **not** enable HMR for your production configuration. It likely works, but having the capability enabled there won't do any good, and it makes your bundles bigger than they should be.
 
 T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environment variables through a *.env* file. *dotenv* allows you to control the host and port setting of the setup quickly.
 
@@ -147,9 +147,9 @@ If you restart the development server (terminate it and run `npm start`), you sh
 
 The message tells us that even though the HMR interface notified the client portion of the code of a hot update, nothing was done about it. This is something to fix next.
 
-T> The same idea works for production usage as you will see in the *Adding Hashes to Filenames* chapter.
+T> The same idea works for production usage as you see in the *Adding Hashes to Filenames* chapter.
 
-T> A similar effect can be achieved by setting `output.pathInfo = true`. It will still use number based indices while emitting the path to the module within a comment. This should be used for development purposes only.
+T> A similar effect can be achieved by setting `output.pathInfo = true`. It still uses number based indices while emitting the path to the module within a comment. This should be used for development purposes only.
 
 ## Implementing the HMR Interface
 
@@ -191,7 +191,7 @@ If you refresh the browser, try to modify *app/component.js* after this change, 
 
 The idea is the same with styling, React, Redux, and other technologies. Sometimes you may not have to implement the interface yourself even as available tooling takes care of that for you.
 
-T> That `if(module.hot)` block will be eliminated entirely from the production build as minifier picks it up. The *Minifying* chapter delves deeper into this topic.
+T> That `if(module.hot)` block is eliminated entirely from the production build as minifier picks it up. The *Minifying* chapter delves deeper into this topic.
 
 ## HMR on Windows, Ubuntu, and Vagrant
 
@@ -282,6 +282,6 @@ To recap:
 * The default HMR setup may be problematic on certain systems. For this reason, you may have to enable more resource intensive polling instead of relying on system level hook based options.
 * WDS does far more than refreshing and HMR. For example proxying allows you to connect it to other servers.
 
-In the next chapter, you will make it harder to make mistakes by introducing JavaScript linting to the project.
+In the next chapter, you make it harder to make mistakes by introducing JavaScript linting to the project.
 
 T> The *Hot Module Replacement with React* appendix discusses HMR specifics related to React.

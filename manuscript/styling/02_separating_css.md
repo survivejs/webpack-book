@@ -2,7 +2,7 @@
 
 Even though there is a nice build set up now, where did all the CSS go? As per configuration, it has been inlined to JavaScript! Even though this can be convenient during development, it doesn't sound ideal.
 
-The current solution doesn't allow us to cache CSS. You can also get a **Flash of Unstyled Content** (FOUC). FOUC happens because the browser will take a while to load JavaScript and the styles would be applied only then. Separating CSS to a file of its own avoids the problem by letting the browser to manage it separately.
+The current solution doesn't allow us to cache CSS. You can also get a **Flash of Unstyled Content** (FOUC). FOUC happens because the browser takes a while to load JavaScript and the styles would be applied only then. Separating CSS to a file of its own avoids the problem by letting the browser to manage it separately.
 
 Webpack provides a means to generate a separate CSS bundles using [ExtractTextPlugin](https://www.npmjs.com/package/extract-text-webpack-plugin). It can aggregate multiple CSS files into one. For this reason, it comes with a loader that handles the extraction process. The plugin then picks up the result aggregated by the loader and emits a separate file.
 
@@ -14,13 +14,13 @@ W> It can be potentially dangerous to use inline styles within JavaScript in pro
 
 ## Setting Up `ExtractTextPlugin`
 
-It will require configuration to make it work. Install the plugin:
+Install the plugin first:
 
 ```bash
 npm install extract-text-webpack-plugin --save-dev
 ```
 
-`ExtractTextPlugin` includes a loader, `ExtractTextPlugin.extract` that marks the assets to be extracted. Then a plugin will perform its work based on this annotation.
+`ExtractTextPlugin` includes a loader, `ExtractTextPlugin.extract` that marks the assets to be extracted. Then a plugin performs its work based on this annotation.
 
 `ExtractTextPlugin.extract` accepts `use` and `fallback` definitions. `ExtractTextPlugin` processes content through `use` only from **initial chunks** by default and it uses `fallback` for the rest. It won't touch any split bundles unless `allChunks: true` is set true. The *Splitting Bundles* chapter digs into greater detail.
 
@@ -66,7 +66,7 @@ exports.extractCSS = function({ include, exclude, use }) {
 leanpub-end-insert
 ```
 
-That `[name]` placeholder will use the name of the entry where the CSS is referred. Placeholders and the overall idea are discussed in detail in the *Adding Hashes to Filenames* chapter.
+That `[name]` placeholder uses the name of the entry where the CSS is referred. Placeholders and the overall idea are discussed in detail in the *Adding Hashes to Filenames* chapter.
 
 It would be possible to have multiple `plugin.extract` calls against different file types. This would allow you to aggregate them to a single CSS file. Another option would be to extract multiple CSS files through separate plugin definitions and then concatenate them using [merge-files-webpack-plugin](https://www.npmjs.com/package/merge-files-webpack-plugin).
 
@@ -106,7 +106,7 @@ leanpub-end-insert
 ...
 ```
 
-Using this setup, you can still benefit from the HMR during development. For a production build, it is possible to generate a separate CSS, though. *html-webpack-plugin* will pick it up automatically and inject it into `index.html`.
+Using this setup, you can still benefit from the HMR during development. For a production build, it is possible to generate a separate CSS, though. *html-webpack-plugin* picks it up automatically and injects it into `index.html`.
 
 T> If you are using CSS Modules, remember to tweak `use` accordingly as discussed in the *Loading Styles* chapter. You may also want to maintain separate setups for normal CSS and CSS Modules so that they get loaded through separate logic.
 
@@ -163,7 +163,7 @@ const commonConfig = merge([
 ]);
 ```
 
-After this type of change, you would not have to refer to styling from your application code. It also means that CSS Modules won't work anymore. As a result, you should get both *style.css* and *style.js*. The latter file will contain roughly content like `webpackJsonp([1,3],[function(n,c){}]);` and it doesn't do anything as discussed in [webpack issue 1967](https://github.com/webpack/webpack/issues/1967).
+After this type of change, you would not have to refer to styling from your application code. It also means that CSS Modules won't work anymore. As a result, you should get both *style.css* and *style.js*. The latter file contains content like `webpackJsonp([1,3],[function(n,c){}]);` and it doesn't do anything as discussed in [webpack issue 1967](https://github.com/webpack/webpack/issues/1967).
 
 If you want strict control over the ordering, you can set up a single CSS entry and then use `@import` to bring the rest to the project through it. Another option would be to set up a JavaScript entry and go through `import` to get the same effect.
 
@@ -175,6 +175,6 @@ To recap:
 
 * Using `ExtractTextPlugin` with styling solves the problem of Flash of Unstyled Content (FOUC). Separating CSS from JavaScript also improves caching behavior and removes a potential attack vector.
 * `ExtractTextPlugin` is not the only solution. *extract-loader* can give the same result in more limited contexts.
-* If you don't prefer to maintain references to styling through JavaScript, an alternative is to handle them through an entry. You will have to be careful with style ordering in this case, though.
+* If you don't prefer to maintain references to styling through JavaScript, an alternative is to handle them through an entry. You have to be careful with style ordering in this case, though.
 
-In the next chapter, you will learn to **autoprefix**. Enabling the feature will make it more convenient to develop complex CSS setups that work with older browsers as well.
+In the next chapter, you learn to **autoprefix**. Enabling the feature makes it more convenient to develop complex CSS setups that work with older browsers as well.

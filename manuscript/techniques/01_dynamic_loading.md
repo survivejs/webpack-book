@@ -68,7 +68,7 @@ function combineContexts(...contexts) {
 
 ## Dynamic Paths with a Dynamic `import`
 
-The same idea works with dynamic `import`. Instead of passing a complete path, you can pass a partial one. Webpack will set up a context internally. Here's a brief example:
+The same idea works with dynamic `import`. Instead of passing a complete path, you can pass a partial one. Webpack sets up a context internally. Here's a brief example:
 
 ```javascript
 // Set up a target or derive this somehow
@@ -80,7 +80,7 @@ import(`indexes/${target}.json`).then(...).catch(...);
 
 The same idea works with `require` as long as webpack can analyze the situation statically.
 
-T> Any time you are using dynamic imports like this, it is a good idea to specify file extension in the path as that will help with performance by keeping the context smaller than otherwise.
+T> Any time you are using dynamic imports like this, it is a good idea to specify file extension in the path as that helps with performance by keeping the context smaller than otherwise.
 
 ## Dealing with Dynamic Paths
 
@@ -95,8 +95,7 @@ Even though `require.context` is a niche feature, it's good to be aware of it. I
 To recap:
 
 * `require.context` is an advanced feature that's often hidden behind the scenes. If you have to perform a lookup against a large amount of files, use it.
-* If you write a dynamic `import` in a certain form, webpack will generate a `require.context` call. The code reads slightly better in this case.
+* If you write a dynamic `import` in a certain form, webpack generates a `require.context` call. The code reads slightly better in this case.
 * The techniques work only against the file system. If you have to operate against urls, you should look into client-side solutions.
 
-I will show you how to handle web workers with webpack in the next chapter.
-
+The next chapter shows how to use web workers with webpack.

@@ -2,7 +2,7 @@
 
 As you have seen so far, loaders are one of the building blocks of webpack. If you want to load an asset, you'll most likely need to set up a matching loader definition. Even though there are a lot of [available loaders](https://webpack.js.org/loaders/), it is possible you are missing one fitting your purposes.
 
-I will show you next how to develop a couple of small loaders. But before that you will see how to debug them in isolation.
+You learn to develop a couple of small loaders next. But before that, it is good to understand how to debug them in isolation.
 
 T> The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API in detail.
 
@@ -221,7 +221,7 @@ remaining request ./demo.txt preceding request  input {}
   contextDependencies: [] }
 ```
 
-Besides intercepting, this would have been a good chance to attach metadata to the input. Often the pitching stage isn't required, but it is good to be aware of it as you will see it in existing loaders.
+Besides intercepting, this would have been a good chance to attach metadata to the input. Often the pitching stage isn't required, but it is good to be aware of it as you see it in existing loaders.
 
 ## Conclusion
 
@@ -236,4 +236,4 @@ To recap:
 * Use **loader-utils** to parse possible options passed to a loader and consider validating them using **schema-utils**.
 * Pitching stage complements the default behavior allowing you to intercept and to attach metadata.
 
-I will show you how to write plugins in the next chapter. Plugins allow you to intercept webpack's execution process and they can be combined with loaders to develop more advanced functionality.
+You learn to write plugins in the next chapter. Plugins allow you to intercept webpack's execution process and they can be combined with loaders to develop more advanced functionality.

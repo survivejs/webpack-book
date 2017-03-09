@@ -14,7 +14,7 @@ In practice, you may find more dimensions. For example, you have to generate i18
 
 ## Generating Multiple Pages
 
-To generate multiple separate pages, they should be initialized somehow. You should also be able to return a configuration for each page, so webpack will pick them up and process them through the multi-compiler mode.
+To generate multiple separate pages, they should be initialized somehow. You should also be able to return a configuration for each page, so webpack picks them up and process them through the multi-compiler mode.
 
 ### Abstracting Pages
 
@@ -286,16 +286,16 @@ leanpub-end-insert
 };
 ```
 
-If you generate a build (`npm run build`), you should notice that something is a little different compared to the first multiple page build you did. Instead of two manifest files, you can find only one. If you examine it, you will notice it contains references to all files that were generated.
+If you generate a build (`npm run build`), you should notice that something is a little different compared to the first multiple page build you did. Instead of two manifest files, you can find only one. If you examine it, you notice it contains references to all files that were generated.
 
-Studying the entry specific files in detail reveals more. You can see that they point to different parts of the manifest. The manifest will run different code depending on the entry. Multiple separate manifests are not needed.
+Studying the entry specific files in detail reveals more. You can see that they point to different parts of the manifest. The manifest runs different code depending on the entry. Multiple separate manifests are not needed.
 
 ### Pros and Cons
 
 Compared to the earlier approach, something was gained, but also lost:
 
-* Given the configuration isn't in the multi-compiler form anymore, processing it will be slower.
-* Plugins such as `CleanWebpackPlugin` will work without additional consideration now.
+* Given the configuration isn't in the multi-compiler form anymore, processing can be slower.
+* Plugins such as `CleanWebpackPlugin` don't work without additional consideration now.
 * Instead of multiple manifests, only one remains. The result is not a problem, though, as the entries use it differently based on their setup.
 * `CommonsChunkPlugin` related setup required careful thought to avoid problems with styling. The earlier approach avoided this issue through isolation.
 
@@ -319,4 +319,4 @@ To recap:
 * The multi-compiler configuration can run in parallel using external solutions, but it is harder to apply techniques such as bundle splitting against it.
 * A multi-page setup can lead to a **Progressive Web Application**. In this case you'll use various webpack techniques to come up with an application that is fast to load and that fetches functionality as required. Both two flavors of this technique have their own merits.
 
-I will discuss the idea of Server Side Rendering in the next chapter.
+You learn to implement Server Side Rendering in the next chapter.

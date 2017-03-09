@@ -87,7 +87,7 @@ Last 2 versions # Last two versions too
 IE 8 # And IE 8
 ```
 
-W> It is important to note that *browserslist* rules are evaluated as **or**. If any of the rules matches, then the given browser will be supported by the definition!
+W> It is important to note that *browserslist* rules are evaluated as **or**. A browser matched by any of the definitions is included in the result.
 
 ## Conclusion
 
@@ -96,7 +96,7 @@ Autoprefixing is a convenient technique as it decreases the amount of work neede
 To recap:
 
 * Autoprefixing can be enabled through the *autoprefixer* PostCSS plugin.
-* Autoprefixing will write missing CSS definitions based on your minimum browser definition.
+* Autoprefixing writes missing CSS definitions based on your minimum browser definition.
 * *browserslist* is a standard file that works with tooling beyond *autoprefixer*
 
-In the next chapter, you will learn to eliminate unused CSS from the project.
+In the next chapter, you eliminate unused CSS from the project.

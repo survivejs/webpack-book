@@ -12,7 +12,7 @@ T> Incidentally, it is possible to implement Google's [PRPL pattern](https://dev
 
 Code splitting can be done in two primary ways in webpack: through a dynamic `import` or `require.ensure` syntax. The former is used in this project.
 
-The goal is to end up with a split point that will get loaded on demand. There can be splits inside splits, and you can structure an entire application based on splits. The advantage of doing this is that then the initial payload of your application can be smaller than it would be otherwise.
+The goal is to end up with a split point that gets loaded on demand. There can be splits inside splits, and you can structure an entire application based on splits. The advantage of doing this is that then the initial payload of your application can be smaller than it would be otherwise.
 
 ![Code splitting](images/dynamic.png)
 
@@ -40,11 +40,11 @@ Promise.all([
 });
 ```
 
-It is important to note that this will create separate chunks to a request. If you wanted only one, you would have to define an intermediate module to `import`.
+It is important to note that this creates separate chunks to a request. If you wanted only one, you would have to define an intermediate module to `import`.
 
-T> Webpack provided support for `System.import` in the early versions of webpack 2 and it still does. The functionality has been deprecated and will be removed in webpack 3. Until then, you can use the functionality interchangeably.
+T> Webpack provided support for `System.import` in the early versions of webpack 2 and it still does. The functionality has been deprecated and gets removed in webpack 3. Until then, you can use the functionality interchangeably.
 
-W> The syntax works only with JavaScript after configured the right way. If you use another environment, you will have to use alternatives covered in the following sections.
+W> The syntax works only with JavaScript after configured the right way. If you use another environment, you have to use alternatives covered in the following sections.
 
 ### `require.ensure`
 
@@ -69,7 +69,7 @@ require.ensure(
 
 As you can see, `require.ensure` definition is more powerful. The problem is that it doesn't support error handling. Often you can achieve what you want through a dynamic `import`, but it's good to know this form exists as well.
 
-`require.ensure` supports naming. The point is that `require.ensure` blocks that have the same name will be pulled into the same output chunk giving you more control over the result. [The official example](https://github.com/webpack/webpack/tree/master/examples/named-chunks) shows the output in detail.
+`require.ensure` supports naming. The point is that `require.ensure` blocks that have the same name are pulled into the same output chunk giving you more control over the result. [The official example](https://github.com/webpack/webpack/tree/master/examples/named-chunks) shows the output in detail.
 
 W> `require.ensure` relies on `Promise`s internally. If you use `require.ensure` with older browsers, remember to shim `Promise` using a polyfill such as [es6-promise](https://www.npmjs.com/package/es6-promise).
 
@@ -155,7 +155,7 @@ leanpub-end-insert
 
 ### Defining a Split Point Using a Dynamic `import`
 
-The idea can be demonstrated by setting up a module that contains a string that will replace the text of the demo button:
+The idea can be demonstrated by setting up a module that contains a string that replaces the text of the demo button:
 
 **app/lazy.js**
 
@@ -163,7 +163,7 @@ The idea can be demonstrated by setting up a module that contains a string that 
 export default 'Hello from lazy';
 ```
 
-You also need to point the application to this file, so the application knows to load it. This can be done by binding the loading process to click. Whenever the user happens to click the button, you will trigger the loading process and replace the content:
+You also need to point the application to this file, so the application knows to load it. This can be done by binding the loading process to click. Whenever the user happens to click the button, you trigger the loading process and replace the content:
 
 **app/component.js**
 
@@ -344,8 +344,8 @@ To recap:
 * Dynamic `import` provides less functionality than `require.ensure`. While it's possible to handle errors with it, features like naming are available for `require.ensure` only.
 * The techniques can be used within modern frameworks and libraries like React. You can wrap related logic to a specific component that handles the loading process in a user-friendly manner.
 
-I will show you how to tidy up the build in the next chapter.
+You learn to tidy up the build in the next chapter.
 
 T> The *Searching with React* appendix contains a complete example of code splitting. It shows how to set up a static site index that's loaded when the user searches information.
 
-T> [webpack-pwa](https://github.com/webpack/webpack-pwa) illustrates the idea on a larger scale and discusses different shell based approaches. You will get back to this topic in the *Multiple Pages* chapter.
+T> [webpack-pwa](https://github.com/webpack/webpack-pwa) illustrates the idea on a larger scale and discusses different shell based approaches. You get back to this topic in the *Multiple Pages* chapter.

@@ -75,7 +75,7 @@ Elimination is the core idea of `DefinePlugin`. You can toggle parts of code usi
 
 Given you are using React in the project and it happens to use the technique, you can try to enable `DefinePlugin` and see what it does to the production build.
 
-As before, encapsulate this idea to a function. It is important to note that given the way webpack replaces the free variable, you should push it through `JSON.stringify`. You will end up with a string like `'"demo"'` and then webpack will insert that into the slots it finds.
+As before, encapsulate this idea to a function. It is important to note that given the way webpack replaces the free variable, you should push it through `JSON.stringify`. You end up with a string like `'"demo"'` and then webpack inserts that into the slots it finds.
 
 **webpack.parts.js**
 
@@ -146,7 +146,7 @@ vendor.js.map     135 kB       2  [emitted]  vendor
 
 You went from 150 kB to 45 kB, and finally, to 24 kB. The final build is a little faster than the previous one as well.
 
-Given the 24 kB can be served gzipped, it is somewhat reasonable. gzipping will drop around another 40%, and it is well supported by browsers.
+Given the 24 kB can be served gzipped, it is somewhat reasonable. gzipping drops around another 40%, and it is well supported by browsers.
 
 It is good to remember that you didn't include *react-dom* in this case and that would add around 100 kB to the final result. To get back to these figures, you would have to use a lighter alternative such as Preact or react-lite as discussed in the *Consuming Packages* chapter.
 
@@ -170,7 +170,7 @@ The techniques discussed in this chapter can be used to choose entire modules de
     └── store.prod.js
 ```
 
-The idea is that you will choose either `dev` or `prod` version of the store depending on the environment. It's that *index.js* which does the hard work like this:
+The idea is that you choose either `dev` or `prod` version of the store depending on the environment. It's that *index.js* which does the hard work like this:
 
 ```javascript
 if(process.env.NODE_ENV === 'production') {
@@ -180,9 +180,9 @@ if(process.env.NODE_ENV === 'production') {
 }
 ```
 
-Webpack can pick the right code based on the `DefinePlugin` declaration and this code. It is good to note that you will have to use CommonJS module definition style here: ES6 `import`s don't allow dynamic behavior like this by design.
+Webpack can pick the right code based on the `DefinePlugin` declaration and this code. It is good to note that you have to use CommonJS module definition style here: ES6 `import`s don't allow dynamic behavior like this by design.
 
-T> A related technique, **aliasing**, is discussed in the *Consuming Packages* chapter. You could alias to development or production particular file depending on the environment. The problem is that it will tie your setup to webpack in a tighter way than the solution above.
+T> A related technique, **aliasing**, is discussed in the *Consuming Packages* chapter. You could alias to development or production particular file depending on the environment. The problem is that it ties your setup to webpack in a tighter way than the solution above.
 
 ## Webpack Optimization Plugins
 
@@ -202,10 +202,10 @@ Setting environment variables is a technique that allows you to control which pa
 To recap:
 
 * Webpack allows you to set environment variables through `DefinePlugin` and `EnvironmentPlugin`. Latter is a wrapper for `DefinePlugin` that maps system level environment variables to the source.
-* `DefinePlugin` operates based on **free variables** and it will replace them as webpack analyzes the source code.
+* `DefinePlugin` operates based on **free variables** and it replaces them as webpack analyzes the source code.
 * You can achieve similar results by using Babel plugins.
 * Given minifiers eliminate dead code, using the plugins allows you to remove the code from the resulting build.
-* The plugins enable module level patterns. By implementing a wrapper, you can choose which file webpack will include to the resulting build.
+* The plugins enable module level patterns. By implementing a wrapper, you can choose which file webpack includes to the resulting build.
 * In addition to these plugins, you can find other optimization related plugins that allow you to control the build result in many ways.
 
-To ensure the build has good cache invalidation behavior, you will learn to include hashes to the generated filenames in the next chapter. This way the client will notice if assets have changed and can fetch the updated versions.
+To ensure the build has good cache invalidation behavior, you learn to include hashes to the generated filenames in the next chapter. This way the client notices if assets have changed and can fetch the updated versions.

@@ -2,7 +2,7 @@
 
 The build output hasn't received attention yet and no doubt it's going to be a little chunky, especially as you included React in it. You can apply a variety of techniques to bring down the size of the vendor bundle. You can also leverage client level caching and load individual assets lazily as you saw earlier.
 
-**Minification** is a process where the code is simplified without losing any meaning that matters to the interpreter. As a result, your code will most likely look jumbled, and it will be hard to read. But that's the point.
+**Minification** is a process where the code is simplified without losing any meaning that matters to the interpreter. As a result, your code most likely looks jumbled, and it is hard to read. But that's the point.
 
 T> Even if you minify the build, you can still generate source maps through the `devtool` option that was discussed earlier to gain a better debugging experience, even production code if you want.
 
@@ -42,7 +42,7 @@ vendor.js.map     178 kB       2  [emitted]         vendor
 
 ## Enabling a Performance Budget
 
-Webpack allows you to define a **performance budget**. The idea is that it will give your build size constraint which it has to follow. The feature is disabled by default, but if enabled it will default to 250 kB limit per entries and assets. Note that the calculation includes extracted chunks to entry calculation.
+Webpack allows you to define a **performance budget**. The idea is that it gives your build size constraint which it has to follow. The feature is disabled by default, but if enabled it defaults to 250 kB limit per entries and assets. Note that the calculation includes extracted chunks to entry calculation.
 
 Performance budget can be configured to provide warnings or errors. If a budget isn't met and it has been configured to emit an error, it would terminate the entire build.
 
@@ -69,7 +69,7 @@ leanpub-end-insert
 ...
 ```
 
-In practice you will want to maintain lower limits. The current ones are enough for this demonstration. If you build now (`npm run build`), you should see a warning like this within the output:
+In practice you want to maintain lower limits. The current ones are enough for this demonstration. If you build now (`npm run build`), you should see a warning like this within the output:
 
 ```bash
 ...
@@ -311,4 +311,4 @@ Minification is the easiest step you can take to make your build smaller. To rec
 * Webpack includes `UglifyJsPlugin` for minification. Other solutions, such as Babili, provide similar functionality with costs of their own. While Babili supports ES6, it can be less performant that UglifyJS.
 * Besides JavaScript, it is possible to minify other assets, such as CSS and HTML, too. Minifying these requires specific technologies that have to be applied through loaders and plugins of their own.
 
-I will discuss the idea of **tree shaking** in the next chapter.
+You learn to apply tree shaking against code in the next chapter.

@@ -14,7 +14,7 @@ You can manage webpack configuration in the following ways:
 
 These approaches can be combined. You can end up with a higher level configuration that's then composed of smaller parts. Those parts could go to a library which you then use through npm making it possible to consume the same configuration across multiple projects.
 
-The approach is used to discuss different techniques. *webpack.config.js* will maintain higher level configuration while *webpack.parts.js* will contain the building blocks.
+The approach is used to discuss different techniques. *webpack.config.js* maintains higher level configuration while *webpack.parts.js* contains the building blocks.
 
 ## Composing Configuration by Merging
 
@@ -141,17 +141,17 @@ module.exports = function(env) {
 
 After this change, the build should behave the same way as before. This time, however, you have room to expand, and you don't have to worry about how to combine different parts of the configuration. The approach allows us to share functionality across different targets.
 
-You can also add more by expanding the *package.json* definition and branching at *webpack.config.js* based on the need. *webpack.parts.js* will grow to contain specific techniques you can then use to compose the configuration.
+You can also add more by expanding the *package.json* definition and branching at *webpack.config.js* based on the need. *webpack.parts.js* grows to contain specific techniques you can then use to compose the configuration.
 
 Later on, *webpack.parts.js* could be pushed to npm or outside of the project. But for this book, it's enough to maintain it within the project.
 
-T> Webpack 2 validates the configuration by default. If you make a mistake like a typo, it will let you know.
+T> Webpack 2 validates the configuration by default. If you make a mistake like a typo, it lets you know.
 
 ## The Benefits of Composing Configuration
 
 Splitting configuration allows you to keep on expanding the setup. The biggest win is the fact that you can extract commonalities between different targets. You can also identify smaller configuration parts to compose. These configuration parts can be pushed to packages of their own to consume across projects.
 
-Instead of duplicating similar configuration across multiple projects, you can manage configuration as a dependency now. As you figure out better ways to perform tasks, all your projects will receive the improvements.
+Instead of duplicating similar configuration across multiple projects, you can manage configuration as a dependency now. As you figure out better ways to perform tasks, all your projects receive the improvements.
 
 Each approach comes with its pros and cons. I am comfortable with the composition-based approach myself, although I can see merit in others as well. In addition to composition, it gives me a limited amount of code to scan through, but it's a good idea to check out how other people do it too. You'll find something that works the best based on your tastes.
 
@@ -161,7 +161,7 @@ T> If you have to support both webpack 1 and 2, you can perform branching based 
 
 ## Configuration Layouts
 
-In the book project, you will push all of the configuration into two files: *webpack.config.js* and *webpack.parts*. The former contains higher level configuration while the latter lower level. It isolates us from webpack specifics, but it can also grow big. Fortunately, the chosen approach allows more layouts, and you can evolve it further. Consider the following directions.
+In the book project, you push all of the configuration into two files: *webpack.config.js* and *webpack.parts*. The former contains higher level configuration while the latter lower level. It isolates us from webpack specifics, but it can also grow big. Fortunately, the chosen approach allows more layouts, and you can evolve it further. Consider the following directions.
 
 ### Split per Configuration Target
 
@@ -207,7 +207,7 @@ Even though the configuration is technically the same as before, now you have ro
 To recap:
 
 * Given webpack configuration is JavaScript code underneath, there are many ways to manage it.
-* You should choose a method to compose configuration that makes the most sense to you. [webpack-merge](https://www.npmjs.com/package/webpack-merge) was developed to provide a light approach for composition, but you will find many other options in the wild.
-* Composition can enable configuration sharing. Instead of having to maintain a custom configuration per repository, you can share it across repositories this way. Using npm packages enables this. Developing configuration is close to developing any other code. This time, however, you will codify your practices as packages.
+* You should choose a method to compose configuration that makes the most sense to you. [webpack-merge](https://www.npmjs.com/package/webpack-merge) was developed to provide a light approach for composition, but you can find many other options in the wild.
+* Composition can enable configuration sharing. Instead of having to maintain a custom configuration per repository, you can share it across repositories this way. Using npm packages enables this. Developing configuration is close to developing any other code. This time, however, you codify your practices as packages.
 
-The next parts of this book will cover different techniques, and *webpack.parts.js* will see a lot of action as a result. The changes to *webpack.config.js* will fortunately remain minimal.
+The next parts of this book cover different techniques, and *webpack.parts.js* sees a lot of action as a result. The changes to *webpack.config.js* fortunately remain minimal.

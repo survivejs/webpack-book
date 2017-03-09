@@ -45,7 +45,7 @@ T> Babel isn't the only option although it is the most popular one. [Buble](http
 
 ### Setting Up *babel-loader*
 
-The first step towards configuring Babel to work with webpack is to set up [babel-loader](https://www.npmjs.com/package/babel-loader). It will take the code and turn it into a format older browsers can understand. Install *babel-loader* and include its peer dependency *babel-core*:
+The first step towards configuring Babel to work with webpack is to set up [babel-loader](https://www.npmjs.com/package/babel-loader). It takes the code and turns it into a format older browsers can understand. Install *babel-loader* and include its peer dependency *babel-core*:
 
 ```bash
 npm install babel-loader babel-core --save-dev
@@ -109,11 +109,11 @@ Even though you have Babel installed and set up, you are still missing one bit: 
 
 W> There are times when caching Babel compilation can surprise you if your dependencies change in a way that *babel-loader* default caching mechanism doesn't notice. Override `cacheIdentifier` with a string that has been derived based on data that should invalidate the cache for better control. [Node crypto API](https://nodejs.org/api/crypto.html) and especially its MD5 related functions can come in handy.
 
-W> If you try to import files **outside** of your configuration root directory and then process them through *babel-loader*, this will fail. It is [a known issue](https://github.com/babel/babel-loader/issues/313), and there are workarounds including maintaining *.babelrc* at a higher level in the project and resolving against Babel presets through `require.resolve` at webpack configuration.
+W> If you try to import files **outside** of your configuration root directory and then process them through *babel-loader*, this fails. It is [a known issue](https://github.com/babel/babel-loader/issues/313), and there are workarounds including maintaining *.babelrc* at a higher level in the project and resolving against Babel presets through `require.resolve` at webpack configuration.
 
 ### Setting Up *.babelrc*
 
-At a minimum, you will need [babel-preset-env](https://www.npmjs.com/package/babel-preset-env). It is a Babel preset that enables the needed plugins based on the environment definition you pass to it. It follows the **browserslist** definition discussed in the *Autoprefixing* chapter.
+At a minimum, you need [babel-preset-env](https://www.npmjs.com/package/babel-preset-env). It is a Babel preset that enables the needed plugins based on the environment definition you pass to it. It follows the **browserslist** definition discussed in the *Autoprefixing* chapter.
 
 Install the preset first:
 
@@ -143,7 +143,7 @@ Adjust the target definition as you like. As long as you follow [browserslist](h
 }
 ```
 
-T> If you omit the `targets` definition, *babel-preset-env* will compile to ES5 compatible code. If you are using UglifyJS, see the *Minifying* chapter for more information on why this is required.
+T> If you omit the `targets` definition, *babel-preset-env* compiles to ES5 compatible code. If you are using UglifyJS, see the *Minifying* chapter for more information on why this is required.
 
 W> **babel-preset-env** does **not** support *browserslist* file yet. [See issue #26](https://github.com/babel/babel-preset-env/issues/26) for more information.
 
@@ -178,9 +178,9 @@ Note especially how the function was transformed. You can try out different brow
 
 ## Polyfilling Features
 
-*babel-preset-env* allows you to polyfill certain language features for older browsers. For this to work, you should enable its `useBuiltIns` option (`"useBuiltIns": true`) and install [babel-polyfill](https://babeljs.io/docs/usage/polyfill/). You also have to perform either `import "babel-polyfill";` in your code or manage it through an entry such as `app: ['babel-polyfill', PATHS.app]`. *babel-preset-env* will rewrite the import based on your browser definition and load only the polyfills that are needed.
+*babel-preset-env* allows you to polyfill certain language features for older browsers. For this to work, you should enable its `useBuiltIns` option (`"useBuiltIns": true`) and install [babel-polyfill](https://babeljs.io/docs/usage/polyfill/). You also have to perform either `import "babel-polyfill";` in your code or manage it through an entry such as `app: ['babel-polyfill', PATHS.app]`. *babel-preset-env* rewrites the import based on your browser definition and load only the polyfills that are needed.
 
-It is important to note that *babel-polyfill* pollutes the global scope with objects like `Promise`. Given this can be problematic for library authors, there's [transform-runtime](https://babeljs.io/docs/plugins/transform-runtime/) option. It can be enabled as a Babel plugin, and it will avoid the problem of globals by rewriting the code in such way that they won't be needed.
+It is important to note that *babel-polyfill* pollutes the global scope with objects like `Promise`. Given this can be problematic for library authors, there's [transform-runtime](https://babeljs.io/docs/plugins/transform-runtime/) option. It can be enabled as a Babel plugin, and it avoids the problem of globals by rewriting the code in such way that they aren't be needed.
 
 W> Certain webpack features, such as *Code Splitting*, write `Promise` based code to webpack's bootstrap code after webpack has processed loaders. The problem can be solved by using a browser level polyfill for `Promise` as webpack's bootstrap code cannot be processed through Babel.
 
@@ -211,7 +211,7 @@ T> It is possible to connect Babel with Node through [babel-register](https://ww
 
 Babel allows you to control which presets and plugins are used per environment through its [env option](https://babeljs.io/docs/usage/babelrc/#env-option). You can manage Babel's behavior per build target this way.
 
-`env` checks both `NODE_ENV` and `BABEL_ENV` and functionality to your build based on that. If `BABEL_ENV` is set, it will override any possible `NODE_ENV`. Consider the example below:
+`env` checks both `NODE_ENV` and `BABEL_ENV` and functionality to your build based on that. If `BABEL_ENV` is set, it overrides any possible `NODE_ENV`. Consider the example below:
 
 ```json
 {
@@ -244,7 +244,7 @@ leanpub-end-insert
 };
 ```
 
-T> The way `env` works is subtle. Consider logging `env` and make sure it matches your Babel configuration or otherwise the functionality you expect will not get applied to your build.
+T> The way `env` works is subtle. Consider logging `env` and make sure it matches your Babel configuration or otherwise the functionality you expect is not applied to your build.
 
 T> The technique is used in the *Server Side Rendering* chapter to enable the Babel portion of *react-hot-loader* for development target only.
 
@@ -252,7 +252,7 @@ T> The technique is used in the *Server Side Rendering* chapter to enable the Ba
 
 Microsoft's [TypeScript](http://www.typescriptlang.org/) is a compiled language that follows a similar setup as Babel. The neat thing is that in addition to JavaScript, it can emit type definitions. A good editor can pick those up and provide enhanced editing experience. Stronger typing is valuable for development as it becomes easier to state your type contracts.
 
-Compared to Facebook's type checker Flow, TypeScript is a more established option. As a result, you will find more premade type definitions for it, and overall, the quality of support should be better.
+Compared to Facebook's type checker Flow, TypeScript is a more established option. As a result, you find more premade type definitions for it, and overall, the quality of support should be better.
 
 You can use TypeScript with webpack using the following loaders:
 

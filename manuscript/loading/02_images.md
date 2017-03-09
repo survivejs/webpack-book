@@ -1,18 +1,18 @@
 # Loading Images
 
-HTTP/1 application can be made slow by loading a lot of small assets. Each request comes with an overhead. HTTP/2 will help in this regard and change the situation somewhat drastically. Till then you are stuck with different approaches. Webpack allows a couple of these. They are particularly relevant for loading images.
+HTTP/1 application can be made slow by loading a lot of small assets. Each request comes with an overhead. HTTP/2 helps in this regard and changes the situation somewhat drastically. Till then you are stuck with different approaches. Webpack allows a couple of these. They are particularly relevant for loading images.
 
-Webpack allows you to inline assets by using [url-loader](https://www.npmjs.com/package/url-loader). It will output your images as base64 strings within your JavaScript bundles. The process will decrease the number of requests needed while growing the bundle size. It is enough to use *url-loader* during development. You may want to consider other alternatives for the production build, though.
+Webpack allows you to inline assets by using [url-loader](https://www.npmjs.com/package/url-loader). It emits your images as base64 strings within your JavaScript bundles. The process decreases the number of requests needed while growing the bundle size. It is enough to use *url-loader* during development. You may want to consider other alternatives for the production build, though.
 
-Webpack gives control over the inlining process and can defer loading to [file-loader](https://www.npmjs.com/package/file-loader). *file-loader* outputs image files and returns paths to them instead of inlining. This technique works with other assets types, such as fonts, as you will see in the later chapters.
+Webpack gives control over the inlining process and can defer loading to [file-loader](https://www.npmjs.com/package/file-loader). *file-loader* outputs image files and returns paths to them instead of inlining. This technique works with other assets types, such as fonts, as you see in the later chapters.
 
 ## Setting Up *url-loader*
 
 *url-loader* is a good starting point and it's the perfect option for development purposes, as you don't have to care about the size of the resulting bundle. It comes with a *limit* option that can be used to defer image generation to *file-loader* after a certain limit is reached. This way you can inline small files to your JavaScript bundles while generating separate files for the bigger ones.
 
-If you use the limit option, you will need to install both *url-loader* and *file-loader* to your project. Assuming you have configured your styles correctly, webpack will resolve any `url()` statements your styling contains. You can point to the image assets through your JavaScript code as well.
+If you use the limit option, you need to install both *url-loader* and *file-loader* to your project. Assuming you have configured your styles correctly, webpack resolves any `url()` statements your styling contains. You can point to the image assets through your JavaScript code as well.
 
-It is important to note that if the limit option is used, *url-loader* will pass possible additional options to *file-loader* making it possible to configure its behavior further.
+It is important to note that if the `limit` option is used, *url-loader* passes possible additional options to *file-loader* making it possible to configure its behavior further.
 
 To load *.jpg*, *.png*, and *.svg* files while inlining files below 25kB, you would set up a loader like this:
 
@@ -79,7 +79,7 @@ exports.loadImages = function({ include, exclude, options } = {}) {
 };
 ```
 
-To attach it to the configuration, adjust as follows. You will default to *url-loader* during development and use both *url-loader* and *file-loader* in production to maintain smaller bundle sizes. *url-loader* uses *file-loader* implicitly when `limit` is set and both have to be installed for the setup to work.
+To attach it to the configuration, adjust as follows. The configuration defaults to *url-loader* during development and uses both *url-loader* and *file-loader* in production to maintain smaller bundle sizes. *url-loader* uses *file-loader* implicitly when `limit` is set and both have to be installed for the setup to work.
 
 **webpack.config.js**
 
@@ -159,7 +159,7 @@ T> You can still use *url-loader* and the tips above with SVGs too.
 
 In case you want to compress your images, use [image-webpack-loader](https://www.npmjs.com/package/image-webpack-loader), [svgo-loader](https://www.npmjs.com/package/svgo-loader) (SVG specific), or [imagemin-webpack-plugin](https://www.npmjs.com/package/imagemin-webpack-plugin). This type of loader should be applied first to the data, so remember to place it as the last within `use` listing.
 
-Compression is particularly valuable for production builds as it will decrease the amount of bandwidth required to download your image assets and speed up your site or application as a result.
+Compression is particularly valuable for production builds as it decreases the amount of bandwidth required to download your image assets and speed up your site or application as a result.
 
 ## Utilizing `srcset`
 
@@ -223,7 +223,7 @@ Webpack allows you to load images dynamically based on a condition. The techniqu
 
 ## Images and *css-loader* Source Map Gotcha
 
-If you are using images and *css-loader* with the `sourceMap` option enabled, it is important that you will set `output.publicPath` to an absolute value pointing to your development server. Otherwise, images won't show up. See [the relevant webpack issue](https://github.com/webpack/style-loader/issues/55) for further explanation.
+If you are using images and *css-loader* with the `sourceMap` option enabled, it is important that you set `output.publicPath` to an absolute value pointing to your development server. Otherwise, images won't show up. See [the relevant webpack issue](https://github.com/webpack/style-loader/issues/55) for further explanation.
 
 ## Conclusion
 
@@ -238,4 +238,4 @@ To recap:
 * Webpack allows you to load images dynamically based on a given condition.
 * If you are using source maps, you should remember to set `output.publicPath` to an absolute value for the images to show up.
 
-I will explain how to load fonts using webpack in the next chapter.
+You learn to load fonts using webpack in the next chapter.

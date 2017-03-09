@@ -46,11 +46,11 @@ T> There is a CSS Modules related tree shaking proof of concept at [dead-css-loa
 
 ## Tree Shaking on Package Level
 
-The same idea works with dependencies that use the ES6 module definition. Given the related packaging standards are still emerging, it is possible you may have to be careful when consuming such packages. Webpack will try to resolve *package.json* `module` field for this purpose.
+The same idea works with dependencies that use the ES6 module definition. Given the related packaging standards are still emerging, it is possible you may have to be careful when consuming such packages. Webpack tries to resolve *package.json* `module` field for this reason.
 
 For tools like webpack to allow tree shake npm packages, you should generate a build that has transpiled everything else except the ES6 module definitions and then point to it through *package.json* `module` field.
 
-In Babel terms, you will need [babel-preset-es2015](https://www.npmjs.com/package/babel-preset-es2015) configured so that it process everything else except for ES6 module definitions:
+In Babel terms, you have to let webpack to manage ES6 modules like this:
 
 **.babelrc**
 
@@ -58,7 +58,7 @@ In Babel terms, you will need [babel-preset-es2015](https://www.npmjs.com/packag
 {
   "presets": [
     [
-      "es2015",
+      "env",
       {
         "modules": false
       }
@@ -75,9 +75,8 @@ Tree shaking is a potentially powerful technique. For the source to benefit from
 
 To recap:
 
-* **Tree shaking** drops unused pieces of code based on static code analysis. Webpack will perform this process for you as it traverses the dependency graph.
+* **Tree shaking** drops unused pieces of code based on static code analysis. Webpack performs this process for you as it traverses the dependency graph.
 * To benefit from tree shaking, you have to use ES6 module definition.
 * As a package author, you can provide a version of your package that contains ES6 modules, while the rest has been transpiled to ES5.
-* It is possible the idea will be applied against other assets, such as CSS, in the future.
 
-I will show you how to set environment variables using webpack in the next chapter. This technique allows you to enable production specific optimizations and to implement feature flags.
+You learn how to set environment variables using webpack in the next chapter. This technique allows you to enable production specific optimizations and to implement feature flags.

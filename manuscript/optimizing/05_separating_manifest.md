@@ -2,7 +2,7 @@
 
 When webpack writes bundles, it maintains a **manifest** as well. You can find it in the generated *vendor* bundle in this project. The manifest describes what files webpack should load. It is possible to extract it and start loading the files of the project faster instead of having to wait for the *vendor* bundle to be loaded.
 
-If the hashes webpack generates change, then the manifest will change as well. As a result, the contents of the vendor bundle will change, and it will become invalidated. The problem can be eliminated by extracting the manifest to a file of its own or by writing it inline to the *index.html* of the project.
+If the hashes webpack generates change, then the manifest changes as well. As a result, the contents of the vendor bundle change, and become invalidated. The problem can be eliminated by extracting the manifest to a file of its own or by writing it inline to the *index.html* of the project.
 
 T> To understand how a manifest is generated in detail, [read the technical explanation at Stack Overflow](https://stackoverflow.com/questions/39548175/can-someone-explain-webpacks-commonschunkplugin/39600793).
 
@@ -108,13 +108,13 @@ leanpub-end-insert
 ...
 ```
 
-If you build the project (`npm run build`), you should see a new file, *records.json*, at the project root. The next time webpack builds, it will pick up the information and rewrite the file if it has changed.
+If you build the project (`npm run build`), you should see a new file, *records.json*, at the project root. The next time webpack builds, it picks up the information and rewrites the file if it has changed.
 
 Records are particularly valuable if you have a complicated setup with code splitting and want to make sure the split parts gain correct caching behavior. The biggest problem is maintaining the record file.
 
 T> `recordsInputPath` and `recordsOutputPath` give more granular control over input and output, but often setting only `recordsPath` is enough.
 
-W> If you change the way webpack handles module IDs (i.e., remove `HashedModuleIdsPlugin`), possible existing records will still be taken into account! If you want to use the new module ID scheme, you will have to remove your records file as well.
+W> If you change the way webpack handles module IDs (i.e., remove `HashedModuleIdsPlugin`), possible existing records are still taken into account! If you want to use the new module ID scheme, you have to remove your records file as well.
 
 ## Conclusion
 
@@ -123,9 +123,9 @@ The project has basic caching behavior now. If you try to modify *app.js* or *co
 To recap:
 
 * Webpack maintains a **manifest** containing information needed to run the application.
-* If the manifest changes, the change will invalidate the containing bundle.
+* If the manifest changes, the change invalidates the containing bundle.
 * To overcome this problem, the manifest can be extracted to a bundle of its own using the `CommonsChunkPlugin`.
 * Certain plugins allow you to write the manifest to the generated *index.html*. It is also possible to extract the information to a JSON file. The JSON comes in handy with *Server Side Rendering*.
 * **Records** allow you to store module IDs across builds. The approach becomes essential if you rely on code splitting approaches. As a downside you have to track the records file somehow.
 
-I will show you how to analyze the build statistics in the next chapter. This analysis is essential for figuring out how to improve the build result.
+You learn to analyze the build statistics in the next chapter. This analysis is essential for figuring out how to improve the build result.

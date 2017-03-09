@@ -10,7 +10,7 @@ T> If you want to understand build tools and their history in a better detail, c
 
 If you think about the smallest project you could bundle with webpack, you’ll end up with input and output. In webpack terms, the bundling process begins from user defined **entries**. Entries themselves are **modules** and can point to other modules through **imports**.
 
-When you bundle a project through webpack, it will traverse through imports. As a result, webpack constructs a **dependency graph** of the project and then generates the **output** based on the configuration. It will output everything into a single **bundle** by default, but it can be configured to output more.
+When you bundle a project through webpack, it traverses through imports. As a result, webpack constructs a **dependency graph** of the project and then generates the **output** based on the configuration. It writes everything into a single **bundle** by default, but it can be configured to output more.
 
 Webpack supports ES6, CommonJS, and AMD module formats out of the box. The loader mechanism works for CSS as well, and `@import` and `url()` are supported through *css-loader*. You can also find plugins for specific tasks, such as minification, internationalization, HMR, and so on.
 
@@ -18,15 +18,15 @@ T> A dependency graph describes is a directed graph that describes how nodes rel
 
 ## Loaders Evaluate Modules
 
-When webpack encounters a **module**, it will try to perform several things:
+When webpack encounters a **module**, it tries to perform several things:
 
-1. It will **resolve** the module. Webpack provides configuration for adjusting this behavior. Especially the *Consuming Packages* chapter covers techniques related to this. If a module failed to resolve, webpack would give a runtime error.
-2. Assuming a module resolved correctly, webpack will try to pass it through **loaders** in your configuration. Each loader definition contains a condition based on which it should be executed. If a loader was matched, webpack would try to resolve it in a similar way as a module.
-3. If all the loaders were found, webpack will evaluate the matched loaders from bottom to up and right to left (`styleLoader(cssLoader('./main.css'))`). The *Loader Definitions* chapter covers the topic in detail.
-4. If loader evaluation completed without a runtime error, webpack will include the source to the last bundle. **Plugins** can intercept this behavior and alter the way bundling happens.
-5. After each module has been evaluated, webpack will write a bootstrap script including a manifest that describes how to begin executing the result in the browser. This last step can differ based on the build target you are using.
+1. It **resolves** the module. Webpack provides configuration for adjusting this behavior. Especially the *Consuming Packages* chapter covers techniques related to this. If a module failed to resolve, webpack would give a runtime error.
+2. Assuming a module resolved correctly, webpack tries to pass it through **loaders** in your configuration. Each loader definition contains a condition based on which it should be executed. If a loader was matched, webpack would try to resolve it in a similar way as a module.
+3. If all the loaders were found, webpack evaluates the matched loaders from bottom to up and right to left (`styleLoader(cssLoader('./main.css'))`). The *Loader Definitions* chapter covers the topic in detail.
+4. If loader evaluation completed without a runtime error, webpack includes the source to the last bundle. **Plugins** can intercept this behavior and alter the way bundling happens.
+5. After each module has been evaluated, webpack writes a bootstrap script including a manifest that describes how to begin executing the result in the browser. This last step can differ based on the build target you are using.
 
-That’s not all there is to the bundling process. For example, you can define specific **split points** where webpack will generate separate bundles that are loaded based on application logic. The idea is discussed in the *Code Splitting* chapter.
+That’s not all there is to the bundling process. For example, you can define specific **split points** where webpack generates separate bundles that are loaded based on application logic. The idea is discussed in the *Code Splitting* chapter.
 
 ## Additional Control Through Plugins
 
@@ -116,15 +116,15 @@ Webpack comes with a significant learning curve. Even still, it’s a tool worth
 
 ## Conclusion
 
-You can use webpack with other tools. It won’t solve everything. It does solve the problem of bundling, however. That’s one less worry during development. Using *package.json*, `scripts`, and webpack alone takes you far, as you will see soon.
+You can use webpack with other tools. It won’t solve everything. It does solve the problem of bundling, however. That’s one less worry during development. Using *package.json* and webpack alone can take you far.
 
 To summarize:
 
 * Webpack is a **module bundler**, but you can also use it for tasks as well.
 * **Hot Module Replacement** (HMR) helped to popularize webpack. It is a feature that can enhance development experience.
-* Webpack relies on a **dependency graph** underneath. Webpack will traverse through the source to construct the graph and it uses this information and configuration to generate bundles.
+* Webpack relies on a **dependency graph** underneath. Webpack traverses through the source to construct the graph and it uses this information and configuration to generate bundles.
 * Webpack’s **configuration** describes how to transform assets of the graphs and what kind of output it should generate. A part of this information may be included in the source itself if features like code splitting are used.
 * Webpack can generate **hashes** for filenames allowing you to invalidate bundles as their contents change.
 * Webpack’s logic is contained within **loaders** and **plugins**. These are called through webpack’s configuration.
 
-In the following chapters, you’ll examine webpack in more detail as you will learn to develop a basic development and build configuration. The later chapters continue further and delve into more advanced topics.
+In the following chapters, you’ll examine webpack in more detail as you learn to develop a basic development and build configuration. The later chapters continue further and delve into more advanced topics.

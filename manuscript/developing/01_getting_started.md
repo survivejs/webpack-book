@@ -1,10 +1,10 @@
 # Getting Started
 
-Before getting started, make sure you are using a recent version of [Node](http://nodejs.org/). I recommend using at least the most current LTS (long-term support) version. The configuration of the book has been written Node 6 features in mind. You should have `node` and `npm` commands available at your terminal. [Yarn](https://yarnpkg.com/) is a good alternative to npm and will work for the tutorial as well.
+Before getting started, make sure you are using a recent version of [Node](http://nodejs.org/). I recommend using at least the most current LTS (long-term support) version. The configuration of the book has been written Node 6 features in mind. You should have `node` and `npm` commands available at your terminal. [Yarn](https://yarnpkg.com/) is a good alternative to npm and works for the tutorial as well.
 
 The completed configuration is available at [GitHub](https://github.com/survivejs-demos/webpack-demo). If you are unsure of something, refer there.
 
-T> It is possible to get a more controlled environment by using a solution such as [Docker](https://www.docker.com/), [Vagrant](https://www.vagrantup.com/) or [nvm](https://www.npmjs.com/package/nvm). Vagrant comes with a performance penalty as it relies on a virtual machine. Vagrant is valuable in a team: each developer will have the same environment, usually close to production.
+T> It is possible to get a more controlled environment by using a solution such as [Docker](https://www.docker.com/), [Vagrant](https://www.vagrantup.com/) or [nvm](https://www.npmjs.com/package/nvm). Vagrant comes with a performance penalty as it relies on a virtual machine. Vagrant is valuable in a team: each developer have the same environment, usually close to production.
 
 W> If you are using an older version than Node 6, you may either have to adapt the code or process your webpack configuration through Babel as discussed in the *Loading JavaScript* chapter.
 
@@ -18,7 +18,7 @@ cd webpack-demo
 npm init -y # -y generates *package.json*, skip for more control
 ```
 
-You can tweak the generated *package.json* manually to make further changes to it. In this project you will be doing changes through *npm* tool, but manual tweaks are acceptable. The official documentation explains [package.json options](https://docs.npmjs.com/files/package.json) in more detail.
+You can tweak the generated *package.json* manually to make further changes to it even though a part of the operations modify the file automatically for you. The official documentation explains [package.json options](https://docs.npmjs.com/files/package.json) in more detail.
 
 T> You can set those `npm init` defaults at *~/.npmrc*.
 
@@ -26,7 +26,7 @@ T> This is a good place to set up version control using [Git](https://git-scm.co
 
 ## Installing Webpack
 
-Even though webpack can be installed globally (`npm install webpack -g`), I recommend maintaining it as a dependency of your project to avoid issues, as then you will have control over the exact version you are running.
+Even though webpack can be installed globally (`npm install webpack -g`), I recommend maintaining it as a dependency of your project to avoid issues, as then you have control over the exact version you are running.
 
 The approach works nicely in **Continuous Integration** (CI) setups as well. A CI system can install your local dependencies, compile your project using them, and then push the result to a server.
 
@@ -57,11 +57,11 @@ To get a quick idea of webpack output, try this:
 2. Execute `node_modules/.bin/webpack app/index.js build/index.js`.
 3. Examine *build/index.js*. You should see webpack bootstrap code that begins executing the code. Below the bootstrap you should find something familiar.
 
-T> You can use `--save` and `--save-dev` to separate application and development dependencies. The former will install and write to *package.json* `dependencies` field whereas the latter will write to `devDependencies` instead.
+T> You can use `--save` and `--save-dev` to separate application and development dependencies. The former installs and writes to *package.json* `dependencies` field whereas the latter writes to `devDependencies` instead.
 
 ## Directory Structure
 
-To move further, you can implement a little site that loads JavaScript, which you then build using webpack. After you progress a bit, you will end up with a directory structure like this:
+To move further, you can implement a little site that loads JavaScript, which you then build using webpack. After you progress a bit, you end up with a directory structure like this:
 
 - app/
   - index.js
@@ -70,7 +70,7 @@ To move further, you can implement a little site that loads JavaScript, which yo
 - package.json
 - webpack.config.js
 
-The idea is that you will transform that *app/* to as a bundle below *build/*. To make this possible, you should set up the assets needed and *webpack.config.js*.
+The idea is that you transform that *app/* to as a bundle below *build/*. To make this possible, you should set up the assets needed and *webpack.config.js*.
 
 ## Setting Up Assets
 
@@ -88,7 +88,7 @@ export default function (text = 'Hello world') {
 }
 ```
 
-Next, you are going to need an entry point for the application. It will `require` the component and render it through the DOM:
+Next, you are going to need an entry point for the application. It uses `require` against the component and renders it through the DOM:
 
 **app/index.js**
 
@@ -100,7 +100,7 @@ document.body.appendChild(component());
 
 ## Setting Up Webpack Configuration
 
-You will need to tell webpack how to deal with the assets that were set up. For this purpose, you have to develop a *webpack.config.js* file. Webpack and its development server will be able to discover this file through a convention.
+You need to tell webpack how to deal with the assets that were set up. For this purpose, you have to develop a *webpack.config.js* file. Webpack and its development server are able to discover this file through a convention.
 
 To keep things convenient to maintain, you can use [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) to generate an *index.html* for the application. *html-webpack-plugin* wires up the generated assets with it. Install it to the project:
 
@@ -108,7 +108,7 @@ To keep things convenient to maintain, you can use [html-webpack-plugin](https:/
 npm install html-webpack-plugin --save-dev
 ```
 
-At a minimum, it is nice to have at least `entry` and `output` fields in your configuration. Often you see a lot more as you will specify how webpack deals with different file types and how it resolves them.
+At a minimum, it is nice to have at least `entry` and `output` fields in your configuration. Often you see a lot more as you specify how webpack deals with different file types and how it resolves them.
 
 Entries tell webpack where to start parsing the application. In multi-page applications, you may have an entry per page. Or you could have a configuration per entry as discussed later in this chapter.
 
@@ -134,7 +134,7 @@ module.exports = {
   //
   // Entries have to resolve to files! It relies on Node
   // convention by default so if a directory contains *index.js*,
-  // it will resolve to that.
+  // it resolves to that.
   entry: {
     app: PATHS.app,
   },
@@ -152,7 +152,7 @@ module.exports = {
 
 The `entry` path could be given as a relative one. The [context](https://webpack.js.org/configuration/entry-context/#context) field can be used to configure that lookup. Given plenty of places expect absolute paths, I prefer to use absolute paths everywhere to avoid confusion.
 
-T> I use **trailing commas** in the book examples on purpose as it gives cleaner diffs for the code examples. I will show you how to enforce this rule in the *Linting JavaScript* chapter.
+T> I use **trailing commas** in the book examples on purpose as it gives cleaner diffs for the code examples. You learn to enforce this rule in the *Linting JavaScript* chapter.
 
 T> `[name]` is a placeholder. Placeholders are discussed in detail in the *Adding Hashes to Filenames* chapter.
 
@@ -212,11 +212,11 @@ Run `npm run build`. You should see the same output as before.
 
 This works because npm adds *node_modules/.bin* temporarily to the path. As a result, rather than having to write `"build": "node_modules/.bin/webpack"`, you can do `"build": "webpack"`.
 
-You can execute this kind of scripts through *npm run*. If you run it as is, it will give you the listing of available scripts.
+You can execute this kind of scripts through *npm run*. If you run it as is, it gives you the listing of available scripts.
 
-T> There are shortcuts like *npm start* and *npm test*. You can run these directly without *npm run* although that will work too. For those in a hurry, you can use *npm t* to run your tests.
+T> There are shortcuts like *npm start* and *npm test*. You can run these directly without *npm run* although that works too. For those in a hurry, you can use *npm t* to run your tests.
 
-T> It is possible to execute *npm run* anywhere within the project. It doesn't have to be run in the project root to work. npm will figure out the project root for you.
+T> It is possible to execute *npm run* anywhere within the project. It doesn't have to be run in the project root to work. npm figures out the project root for you.
 
 ## *html-webpack-plugin* Extensions
 
@@ -239,8 +239,8 @@ To recap:
 
 * It is a good idea to use a locally installed version of webpack over a globally installed one. This way you can be sure of what version you are using. The local dependency works also in a Continuous Integration environment.
 * Webpack provides a command line interface. You can use it even without configuration, but then you are limited by the options it provides.
-* To write more complicated setups, you will most likely have to write a separate *webpack.config.js* file.
-* *html-webpack-plugin* can be used to generate an HTML entry point to your application. Later in the book, you will see how to generate multiple separate pages using. The *Multiple Pages* chapter covers that.
+* To write more complicated setups, you most likely have to write a separate *webpack.config.js* file.
+* *html-webpack-plugin* can be used to generate an HTML entry point to your application. Later in the book, you see how to generate multiple separate pages using. The *Multiple Pages* chapter covers that.
 * It is handy to use npm *package.json* scripts to manage webpack. You can use it as a light task runner and use system features outside of webpack.
 
-You will learn to make the development experience nicer in the next chapter by enabling automatic browser refresh.
+You learn to make the development experience nicer in the next chapter by enabling automatic browser refresh.

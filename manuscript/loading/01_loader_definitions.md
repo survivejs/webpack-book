@@ -4,11 +4,11 @@ Webpack provides multiple ways to set up module loaders. Webpack 2 simplified th
 
 It can be a good idea to prefer absolute paths here as they allow you to move configuration without breaking assumptions. The other option is to set `context` field as this gives a similar effect and affects the way entry points and loaders are resolved. It won't have an impact on the output, though, and you still need to use an absolute path or `/` there.
 
-Assuming you set an `include` or `exclude` rule, packages loaded from *node_modules* will still work as the assumption is that they have been compiled in such way that they work out of the box. Sometimes you may come upon a poorly packaged one, but often you can work around these by tweaking your loader configuration or setting up a `resolve.alias` against an asset that is included in the offending package.
+Assuming you set an `include` or `exclude` rule, packages loaded from *node_modules* still work as the assumption is that they have been compiled in such way that they work out of the box. Sometimes you may come upon a poorly packaged one, but often you can work around these by tweaking your loader configuration or setting up a `resolve.alias` against an asset that is included in the offending package.
 
 T> The *Consuming Packages* chapter discusses the aliasing idea in further detail.
 
-T> `include`/`exclude` is handy with *node_modules* as webpack will process and traverse the installed packages by default when you import JavaScript files to your project. Therefore you need to configure it to avoid that behavior. Other file types don't suffer from this issue.
+T> `include`/`exclude` is handy with *node_modules* as webpack processes and traverses the installed packages by default when you import JavaScript files to your project. Therefore you need to configure it to avoid that behavior. Other file types don't suffer from this issue.
 
 ## Anatomy of a Loader
 
@@ -67,7 +67,7 @@ module.exports = {
 
 T> If you are not sure how a particular RegExp matches, consider using an online tool, such as [regex101](https://regex101.com/) or [RegExr](http://regexr.com/).
 
-T> Babel is discussed in detail in the *Loading JavaScript* chapter. You will attach it to the book project there.
+T> Babel is discussed in detail in the *Loading JavaScript* chapter.
 
 ## Loader Evaluation Order
 
@@ -131,7 +131,7 @@ There's a query format that allows passing parameters to loaders:
 },
 ```
 
-It is good to note that this style of configuration works in entries and source imports too as webpack will pick it up. The format may come in handy in certain individual cases, but often you are better off using more readable alternatives.
+It is good to note that this style of configuration works in entries and source imports too as webpack picks it up. The format may come in handy in certain individual cases, but often you are better off using more readable alternatives.
 
 It is preferable to use the combination of `loader` and `options` fields either like this:
 
@@ -205,7 +205,7 @@ In the book setup, you compose configuration on a higher level. Another option t
     // string (i.e., 'style-loader'), or an object
     // from here.
     //
-    // Returning an array will fail! To get around that,
+    // Returning an array fails! To get around that,
     // it is possible to nest rules.
     if (env === 'development') {
       return {
@@ -320,6 +320,6 @@ To recap:
 * Webpack 2 provides multiple ways to match and alter loader behavior. You can, for example, match based on a **resource query** after a loader has been matched and route the loader to specific actions.
 * `LoaderOptionsPlugin` exists for legacy purposes and allows you to get around the strict configuration schema of webpack 2 to work with older plugins and loaders.
 
-In the next chapter, I will show you how to load images using webpack.
+In the next chapter, you learn to load images using webpack.
 
 T> If you want to examine loaders in isolation and understand how they work better, see the *Extending with Loaders* chapter.

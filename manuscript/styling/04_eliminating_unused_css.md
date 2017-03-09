@@ -60,7 +60,7 @@ index.html  218 bytes          [emitted]
 ...
 ```
 
-As you can see, the size of the CSS file grew. This will be fixed next with PurifyCSS.
+As you can see, the size of the CSS file grew. This is something to fix with PurifyCSS.
 
 ## Enabling PurifyCSS
 
@@ -146,7 +146,7 @@ The size of the style has decreased noticeably. Instead of 16k, you have roughly
 
 PurifyCSS supports [additional options](https://github.com/purifycss/purifycss#the-optional-options-argument) including `minify`. You can enable these through the `purifyOptions` field when instantiating the plugin. Given PurifyCSS may not pick all of the classes you are using, you should use `purifyOptions.whitelist` array to define selectors which it should leave in the result no matter what.
 
-W> Using PurifyCSS will lose CSS source maps even if you have enabled them through loader specific configuration due to the way it works.
+W> Using PurifyCSS loses CSS source maps even if you have enabled them through loader specific configuration due to the way it works underneath.
 
 ### Critical Path Rendering
 

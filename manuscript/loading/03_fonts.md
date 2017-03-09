@@ -2,7 +2,7 @@
 
 Loading fonts is similar to loading images. It does come with special challenges, though. How to know what font formats to support? There can be up to four font formats to worry about if you want to provide first class support to each browser.
 
-The problem can be solved by deciding a set of browsers and platforms that should receive first class service. The rest will use system fonts.
+The problem can be solved by deciding a set of browsers and platforms that should receive first class service. The rest can use system fonts.
 
 You can approach the problem in several ways through webpack. You can still use *url-loader* and *file-loader* as with images. Font `test` patterns tend to be more complicated, though, and you may have to worry about font file related lookups.
 
@@ -32,11 +32,11 @@ A more elaborate approach to achieve a similar result that includes *.woff2* and
   test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
   loader: 'url-loader',
   options: {
-    // Limit at 50k. Above that it will emit separate files
+    // Limit at 50k. Above that it emits separate files
     limit: 50000,
 
-    // url-loader will set mimetype if it is passed.
-    // Without this it will derive it from file extension
+    // url-loader sets mimetype if it is passed.
+    // Without this it derives it from the file extension
     mimetype: 'application/font-woff',
 
     // Output below fonts directory
@@ -59,7 +59,7 @@ In case you want to make sure the site looks good on a maximum amount of browser
 },
 ```
 
-The way you write your CSS definition matters. To make sure you are getting the benefit from the newer formats, they should become first in the definition. This way the browser will pick them up.
+The way you write your CSS definition matters. To make sure you are getting the benefit from the newer formats, they should become first in the definition. This way the browser picks them up.
 
 ```css
 @font-face {
@@ -134,7 +134,7 @@ Font Awesome includes Sass and Less versions as well, but given you have not set
 
 T> The `import` could be cleaned up as `import 'font-awesome'` by setting up a `resolve.alias`. The *Consuming Packages* chapter discusses this idea in detail.
 
-W> If you are using CSS Modules in your project, you should process normal CSS like this through a separate loader definition without `modules` option of *css-loader* enabled. Otherwise it will rewrite the class names and Font Awesome will not work as you expect.
+W> If you are using CSS Modules in your project, you should process normal CSS like this through a separate loader definition without `modules` option of *css-loader* enabled. Otherwise it rewrites the class names and Font Awesome does not work as you expect.
 
 If you run the project now (`npm start`), webpack should give a long list of errors like this:
 
@@ -246,9 +246,9 @@ Time: 2547ms
 
 Note that the SVG file included in Font Awesome has been marked as `[big]`. It is beyond the performance budget defaults set by webpack. The topic is discussed in detail in the *Minifying* chapter.
 
-To skip certain Font Awesome fonts, you could disable specific formats as discussed in the *Consuming Packages* chapter. Due to the way Font Awesome CSS has been setup, you will still have to capture the files, but instead of emitting the original content, you can replace it with empty content.
+To skip certain Font Awesome fonts, you could disable specific formats as discussed in the *Consuming Packages* chapter. Due to the way Font Awesome CSS has been setup, you still has to capture the files, but instead of emitting the original content, you can replace it with empty content.
 
-T> [font-awesome-loader](https://www.npmjs.com/package/font-awesome-loader) allows more customization. Font Awesome 5 will improve the situation further and make it easier to decide what fonts to consume. [Font Awesome wiki](https://github.com/FortAwesome/Font-Awesome/wiki/Customize-Font-Awesome) points to available online services that allow you to select specific fonts from Font Awesome collection.
+T> [font-awesome-loader](https://www.npmjs.com/package/font-awesome-loader) allows more customization. Font Awesome 5 improves the situation further and make it easier to decide what fonts to consume. [Font Awesome wiki](https://github.com/FortAwesome/Font-Awesome/wiki/Customize-Font-Awesome) points to available online services that allow you to select specific fonts from Font Awesome collection.
 
 ## Conclusion
 
@@ -256,8 +256,8 @@ Loading fonts is similar to loading other assets. You have to consider the brows
 
 To recap:
 
-* When loading fonts, the same techniques as for images apply. You can choose to inline small fonts while bigger ones will be served as separate assets.
+* When loading fonts, the same techniques as for images apply. You can choose to inline small fonts while bigger ones are served as separate assets.
 * If you decide to provide first class support to only modern browsers, you can select only a font format or two and let the older browsers to use system level fonts.
 * Using larger font collections, such as Font Awesome, may be problematic especially if you want to avoid loading additional rules. The problem is dependent on the packages in question and can be solved with webpack to an extent.
 
-In the next chapter, I will show you how to load JavaScript using webpack. It loads JavaScript by default, but there's more to the topic as you have to consider what browsers you want to support.
+In the next chapter, you learn to load JavaScript using Babel and webpack. Webpack loads JavaScript by default, but there's more to the topic as you have to consider what browsers you want to support.

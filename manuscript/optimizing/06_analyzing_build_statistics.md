@@ -4,7 +4,7 @@ Analyzing build statistics is a good step towards understanding webpack better. 
 
 ## Configuring Webpack
 
-To get suitable output, you will need to do a couple of tweaks to the configuration. Most importantly, you have to enable two flags:
+To get suitable output, you need to do a couple of tweaks to the configuration. Most importantly, you have to enable two flags:
 
 * `--profile` to capture timing-related information. This is optional, but good to set.
 * `--json` to make webpack output statistics.
@@ -28,7 +28,7 @@ leanpub-end-insert
 
 The above is the basic setup you'll need, regardless of your webpack configuration. Execute `npm run stats` now. After a while you should find *stats.json* at your project root. This file can be pushed through a variety of tools to understand better what's going on.
 
-W> Given you piggyback on the production target in the current setup, this process will clean the build directory! If you want to avoid that, set up a separate target where you don't clean.
+W> Given you piggyback on the production target in the current setup, this process cleans the build directory! If you want to avoid that, set up a separate target where you don't clean.
 
 ### `StatsWebpackPlugin` and `WebpackStatsPlugin`
 
@@ -163,4 +163,4 @@ To recap:
 * Understanding the bundles is the key to insights on how to optimize the overall size, what to load and when. It can also reveal bigger issues, such as redundant data.
 * You can find third party tools that don't depend on webpack but are still valuable for analysis.
 
-To help you understand how to tune webpack, I will discuss performance in the next chapter.
+You learn to tune webpack performance in the next chapter.

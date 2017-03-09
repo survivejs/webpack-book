@@ -8,7 +8,7 @@ Given webpack comes with specific nomenclature, I've gathered the main terms and
 * **Module** - Module can be an entry, but it can also be a file where an entry points. Modules can point to other modules.
 * **Plugin** - Plugins connect to webpack's event system and can inject functionality into it. They allow you to extend webpack and can be combined with loaders for maximum control.
 * **Hot module replacement** - Hot module replacement refers to a particular technique that allows you to patch code while it is running in the browser.
-* **Linting** - Linting relates to the process in which code is statically examined for specific faults. A linter will alert if any of these faults are found. It helps to improve code quality.
+* **Linting** - Linting relates to the process in which code is statically examined for specific faults. A linter alerts if any of these faults are found. It helps to improve code quality.
 
 ## Loading
 
@@ -18,7 +18,7 @@ Given webpack comes with specific nomenclature, I've gathered the main terms and
 ## Building
 
 * **Source map** - Source maps describe the mapping between the original source and the generated source allowing browsers to provide a better debugging experience.
-* **Bundle** - When webpack runs successfully, it will create output files that are called bundles.
+* **Bundle** - When webpack runs successfully, it creates output files that are called bundles.
 * **Bundle splitting** - Bundle splitting is a particular technique that allows us to generate multiple bundles based on a condition.
 * **Code splitting** - Code splitting produces more granular bundles. The term refers to bundle splitting that is performed within source code using specific syntax.
 * **Chunk** - Chunk is a webpack specific term that is used internally to manage the bundling process. Webpack composes bundles out of chunks, and there are several types of those.
@@ -31,9 +31,9 @@ Given webpack comes with specific nomenclature, I've gathered the main terms and
 
 ## Output
 
-* **Output** - Output refers to files emitted by webpack. More specifically, webpack will emit **bundles** and **assets** based on the output settings.
+* **Output** - Output refers to files emitted by webpack. More specifically, webpack emits **bundles** and **assets** based on the output settings.
 * **Target** - Even though webpack is used mainly on the web, it can target other platforms as well. The target configuration is used to alter this behavior.
 
 ## Packages
 
-* **Resolving** - When webpack encounters a module or a loader, it will try to resolve it based on its resolution rules. Resolving is the generic term describing this process.
+* **Resolving** - When webpack encounters a module or a loader, it tries to resolve it based on its resolution rules. Resolving is the generic term describing this process.

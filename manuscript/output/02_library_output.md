@@ -2,7 +2,7 @@
 
 The example of the previous chapter can be expanded further to study webpack's library output options in detail.
 
-The library target is controlled through the `output.libraryTarget` field. `output.library` will come into play as well and individual targets have additional fields related to them.
+The library target is controlled through the `output.libraryTarget` field. `output.library` comes into play as well and individual targets have additional fields related to them.
 
 ## `var`
 
@@ -44,7 +44,7 @@ var Demo =
 //# sourceMappingURL=lib.js.map
 ```
 
-This tells us it will generate `var <output.library> = <webpack bootstrap>` kind of code and also explains why importing the code from Node does not give us access to any functionality.
+This tells us it generates `var <output.library> = <webpack bootstrap>` kind of code and also explains why importing the code from Node does not give us access to any functionality.
 
 ## `assign`
 
@@ -205,7 +205,7 @@ To understand `umd2` option, you have to understand *optional externals* first.
 
 ### Optional Externals
 
-In webpack terms, externals are dependencies that are resolved outside of webpack and will be available through the environment. Optional externals are dependencies that can exist in the environment, but if they don't, they will get skipped instead of failing hard.
+In webpack terms, externals are dependencies that are resolved outside of webpack and are available through the environment. Optional externals are dependencies that can exist in the environment, but if they don't, they get skipped instead of failing hard.
 
 Consider the following example where jQuery is loaded if it exists:
 
@@ -329,4 +329,4 @@ To recap:
 * The CommonJS variants are handy if you target only Node or consume the output through bundlers alone. UMD implements support for CommonJS, AMD, and globals.
 * It is possible to target SystemJS through a plugin. Webpack does not support it out of the box.
 
-In the next chapter, I will discuss the idea of managing multi-page setups.
+You learn to manage multi-page setups in the next chapter.

@@ -10,7 +10,7 @@ T> If you want to understand the ideas behind source maps in greater detail, [re
 
 ## Inline Source Maps and Separate Source Maps
 
-Webpack can generate both inline source maps included within bundles or separate source map files. The former are valuable during development due to better performance while the latter are handy for production usage as it will keep the bundle size small. In this case, loading source maps is optional.
+Webpack can generate both inline source maps included within bundles or separate source map files. The former are valuable during development due to better performance while the latter are handy for production usage as it keeps the bundle size small. In this case, loading source maps is optional.
 
 You may **not** want to generate a source map for your production bundle as this makes it effortless to inspect your application (it depends on whether you want this or not; it is handy for staging). Skip the `devtool` field then or generate a hidden variant. Skipping source maps entirely also speeds up your build a notch as generating source maps at the best quality can be a big operation.
 
@@ -20,7 +20,7 @@ T> It is a good idea to study the documentation of the loaders you are using to 
 
 ## Enabling Source Maps
 
-Webpack provides two ways to enable source maps. There's a `devtool` shortcut field. You can also find two plugins that give more options to tweak. The plugins will be discussed briefly at the end of this chapter.
+Webpack provides two ways to enable source maps. There's a `devtool` shortcut field. You can also find two plugins that give more options to tweak. The plugins are be discussed briefly at the end of this chapter.
 
 To get started, you can wrap the core idea within a configuration part. You can convert this to use the plugins later if you want:
 
@@ -38,7 +38,7 @@ exports.generateSourceMaps = function({ type }) {
 
 Webpack supports a wide variety of source map types. These vary based on quality and build speed. For now, you can enable `eval-source-map` for development and `source-map` for production. This way you get good quality while trading off performance, especially during development.
 
-`eval-source-map` builds slowly initially, but it provides fast rebuild speed. More rapid development specific options, such as `cheap-module-eval-source-map` and `eval`, produce lower quality source maps. All `eval` options will emit source maps as a part of your JavaScript code.
+`eval-source-map` builds slowly initially, but it provides fast rebuild speed. More rapid development specific options, such as `cheap-module-eval-source-map` and `eval`, produce lower quality source maps. All `eval` options emit source maps as a part of your JavaScript code.
 
 `source-map` is the slowest and highest quality option of them all, but that's fine for a production build.
 
@@ -98,7 +98,7 @@ Time: 2817ms
 ...
 ```
 
-Take a good look at those *.map* files. That's where the mapping between the generated and the original source happens. During development, it will write the mapping information in the bundle itself.
+Take a good look at those *.map* files. That's where the mapping between the generated and the original source happens. During development, it writes the mapping information in the bundle itself.
 
 ### Enabling Source Maps on Browsers
 
@@ -147,7 +147,7 @@ webpackJsonp([1, 2], {
 }, ["./app/index.js"]);
 ```
 
-If you decode that base64 string, you will get output containing the mapping:
+If you decode that base64 string, you get output containing the mapping:
 
 ```json
 {
@@ -230,9 +230,9 @@ This time around there's more mapping data available for the browser:
 
 ## Separate Source Map Types
 
-Webpack can also generate production usage friendly source maps. These will end up in separate files ending with `.map` extension and will be loaded by the browser only when required. This way your users get good performance while it's easier for you to debug the application.
+Webpack can also generate production usage friendly source maps. These end up in separate files ending with `.map` extension and are loaded by the browser only when required. This way your users get good performance while it's easier for you to debug the application.
 
-`source-map` is a good default here. Even though it will take longer to generate the source maps this way, you will get the best quality. If you don't care about production source maps, you can simply skip the setting there and get better performance in return.
+`source-map` is a good default here. Even though it takes longer to generate the source maps this way, you get the best quality. If you don't care about production source maps, you can simply skip the setting there and get better performance in return.
 
 ### `devtool: 'cheap-source-map'`
 
@@ -398,7 +398,7 @@ Given webpack matches only `.js` and `.css` files by default for source maps, yo
 
 ## Using Dependency Source Maps
 
-Assuming you are using a package that uses inline source maps in its distribution, you can use [source-map-loader](https://www.npmjs.com/package/source-map-loader) to make webpack aware of them. Without setting it up against the package, you will get minified debug output. Often you can skip this step as it is a special case.
+Assuming you are using a package that uses inline source maps in its distribution, you can use [source-map-loader](https://www.npmjs.com/package/source-map-loader) to make webpack aware of them. Without setting it up against the package, you get minified debug output. Often you can skip this step as it is a special case.
 
 ## Source Maps for Styling
 
@@ -419,6 +419,6 @@ To recap:
 * If you want to get only stack traces during production, use `devtool: 'hidden-source-map'`. You can capture the output and send it to a third party service for you to examine. This way you can capture errors and fix them.
 * `SourceMapDevToolPlugin` and `EvalSourceMapDevToolPlugin` provide more control over the result than the `devtool` shortcut.
 * *source-map-loader* can come in handy if your dependencies provide source maps.
-* Enabling source maps for styling requires additional effort. You will have to enable `sourceMap` option per styling related loader you are using.
+* Enabling source maps for styling requires additional effort. You have to enable `sourceMap` option per styling related loader you are using.
 
-In the next chapter, I will show you how to split bundles and separate the current bundle into application and vendor bundles that may both be cached.
+In the next chapter, you learn to split bundles and separate the current bundle into application and vendor bundles that may both be cached.
