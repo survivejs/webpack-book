@@ -19,7 +19,7 @@ Given webpack comes with specific nomenclature, I've gathered the main terms and
 
 * **Source map** - Source maps describe the mapping between the original source and the generated source allowing browsers to provide a better debugging experience.
 * **Bundle** - When webpack runs successfully, it creates output files that are called bundles.
-* **Bundle splitting** - Bundle splitting is a particular technique that allows us to generate multiple bundles based on a condition.
+* **Bundle splitting** - Bundle splitting is a particular technique that allows to generate multiple bundles based on a condition.
 * **Code splitting** - Code splitting produces more granular bundles. The term refers to bundle splitting that is performed within source code using specific syntax.
 * **Chunk** - Chunk is a webpack specific term that is used internally to manage the bundling process. Webpack composes bundles out of chunks, and there are several types of those.
 

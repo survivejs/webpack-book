@@ -152,7 +152,7 @@ leanpub-end-insert
 };
 ```
 
-Babel now receives the target you pass to webpack allowing us to fix the behavior. Tweak Babel setup, so it matches the fields below. The key part is in pushing `react-hot-loader/patch` below `env`:
+Babel now receives the target you pass to webpack allowing to fix the behavior. Tweak Babel setup, so it matches the fields below. The key part is in pushing `react-hot-loader/patch` below `env`:
 
 **.babelrc**
 

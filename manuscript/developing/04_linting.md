@@ -119,7 +119,7 @@ T> When ESLint gives errors, npm shows a long `ELIFECYCLE error` error block of 
 
 ### Connecting ESLint with Webpack
 
-You can make webpack emit ESLint messages for us by using [eslint-loader](https://www.npmjs.com/package/eslint-loader). As the first step execute
+You can make webpack emit ESLint messages by using [eslint-loader](https://www.npmjs.com/package/eslint-loader). As the first step execute
 
 ```bash
 npm install eslint-loader --save-dev
@@ -129,7 +129,7 @@ W> Note that *eslint-loader* uses a globally installed version of ESLint unless 
 
 The loader needs wiring to work. Loaders are discussed in detail in the *Loading* part of this book, but the basic idea is fast to understand. A loader is connected to webpack through a rule that contains preconditions related to it and a reference to the loader itself.
 
-In this case, you want to ensure that ESLint gets executed before anything else using the `enforce` field. It allows us to guarantee that linting happens before any other processing. The idea is discussed in detail in the *Loader Definitions* chapter.
+In this case, you want to ensure that ESLint gets executed before anything else using the `enforce` field. It allows to guarantee that linting happens before any other processing. The idea is discussed in detail in the *Loader Definitions* chapter.
 
 To add linting to the project, adjust the configuration as follows:
 

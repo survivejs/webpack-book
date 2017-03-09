@@ -70,7 +70,7 @@ leanpub-end-insert
 ...
 ```
 
-This change gave us a separate file that contains the manifest. In the output above it has been marked with `manifest` chunk name. Because the setup is using *html-webpack-plugin*, there is no need to worry about loading the manifest ourselves as the plugin adds a reference to *index.html*.
+This change gave a separate file that contains the manifest. In the output above it has been marked with `manifest` chunk name. Because the setup is using *html-webpack-plugin*, there is no need to worry about loading the manifest ourselves as the plugin adds a reference to *index.html*.
 
 Plugins, such as [inline-manifest-webpack-plugin](https://www.npmjs.com/package/inline-manifest-webpack-plugin) and [html-webpack-inline-chunk-plugin](https://www.npmjs.com/package/html-webpack-inline-chunk-plugin), [assets-webpack-plugin](https://www.npmjs.com/package/assets-webpack-plugin), work with *html-webpack-plugin* and allow you to write the manifest within *index.html* to avoid a request.
 

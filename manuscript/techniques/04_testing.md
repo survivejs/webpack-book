@@ -96,7 +96,7 @@ T> `--grep <pattern>` can be used for constraining the behavior if you want to f
 
 Webpack can provide similar functionality through a web interface. The hard parts of the problem have been solved earlier in this book, what remain is combining those solutions together through configuration.
 
-To tell webpack which tests to run, they need to be imported somehow. The *Dynamic Loading* chapter discussed `require.context` that allows us to aggregate files based on a rule. It is ideal here. Set up an entry point as follows:
+To tell webpack which tests to run, they need to be imported somehow. The *Dynamic Loading* chapter discussed `require.context` that allows to aggregate files based on a rule. It is ideal here. Set up an entry point as follows:
 
 **tests/index.js**
 

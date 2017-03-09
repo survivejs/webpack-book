@@ -4,15 +4,13 @@ Let's say you want to implement a rough little search for an application without
 
 The problem is that the index can be sizable depending on the amount of the content. The good thing is that you don't need the search index straight from the start. You can do something smarter instead. You can start loading the index when the user selects a search field.
 
-Doing this defers the loading and moves it to a place where it's more acceptable for performance. Given the initial search is slower than the subsequent ones, you should display a loading indicator. But that's fine from the user point of view.
-
-Webpack's **code splitting** feature allows us to do this. See the *Code Splitting* chapter for more detailed discussion and the exact setup required.
+Doing this defers the loading and moves it to a place where it's more acceptable for performance. Given the initial search is slower than the subsequent ones, you should display a loading indicator. But that's fine from the user point of view. Webpack's *Code Splitting* feature allows to do this.
 
 ## Implementing Search with Lazy Loading
 
 To implement lazy loading, you need to decide where to put the split point, put it there, and then handle the `Promise`. The basic `import` looks like `import('./asset').then(asset => ...).catch(err => ...)`.
 
-The nice thing is that this gives us error handling in case something goes wrong (network is down etc.) and gives us a chance to recover. You can also use `Promise` based utilities like `Promise.all` for composing more complicated queries.
+The nice thing is that this gives error handling in case something goes wrong (network is down etc.) and gives a chance to recover. You can also use `Promise` based utilities like `Promise.all` for composing more complicated queries.
 
 In this case, you need to detect when the user selects the search element, load the data unless it has been loaded already, and then execute search logic against it. Using React, you could end up with something like this:
 

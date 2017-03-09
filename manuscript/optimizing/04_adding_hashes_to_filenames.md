@@ -1,6 +1,6 @@
 # Adding Hashes to Filenames
 
-Even though the build generates fine now, the naming it uses is a little problematic. It doesn't allow us to leverage client level cache effectively as there's no way tell whether or not a file has changed. Cache invalidation can be achieved by including a hash to filenames.
+Even though the build generates fine now, the naming it uses is a little problematic. It doesn't allow to leverage client level cache effectively as there's no way tell whether or not a file has changed. Cache invalidation can be achieved by including a hash to filenames.
 
 ## Placeholders
 

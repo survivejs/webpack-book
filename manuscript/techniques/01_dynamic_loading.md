@@ -22,7 +22,7 @@ const req = require.context(
 
 T> The loader definition could be pushed to webpack configuration. I am using the inline form here to keep the example minimal.
 
-`require.context` returns us a function to `require` against. It also knows its module `id` and it provides a `keys()` method for figuring out the contents of the context. To give you a better example, consider the code below:
+`require.context` returns a function to `require` against. It also knows its module `id` and it provides a `keys()` method for figuring out the contents of the context. To give you a better example, consider the code below:
 
 ```javascript
 req.keys(); // ['./demo.md', './another-demo.md']

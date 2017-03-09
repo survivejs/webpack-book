@@ -44,7 +44,7 @@ var Demo =
 //# sourceMappingURL=lib.js.map
 ```
 
-This tells us it generates `var <output.library> = <webpack bootstrap>` kind of code and also explains why importing the code from Node does not give us access to any functionality.
+This tells it generates `var <output.library> = <webpack bootstrap>` kind of code and also explains why importing the code from Node does not give access to any functionality.
 
 ## `assign`
 

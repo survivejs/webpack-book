@@ -145,7 +145,7 @@ If you restart the development server (terminate it and run `npm start`), you sh
 
 ![No refresh, but better output](images/no-refresh2.png)
 
-The message tells us that even though the HMR interface notified the client portion of the code of a hot update, nothing was done about it. This is something to fix next.
+The message tells that even though the HMR interface notified the client portion of the code of a hot update, nothing was done about it. This is something to fix next.
 
 T> The same idea works for production usage as you see in the *Adding Hashes to Filenames* chapter.
 

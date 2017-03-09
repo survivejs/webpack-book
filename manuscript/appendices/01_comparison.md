@@ -57,7 +57,7 @@ With Make, you model your tasks using Make-specific syntax and terminal commands
 
 ## RequireJS
 
-[RequireJS](http://requirejs.org/) was perhaps the first script loader that became genuinely popular. It gave us the first proper look at what modular JavaScript on the web could be. Its greatest attraction was AMD. It introduced a `define` wrapper:
+[RequireJS](http://requirejs.org/) was perhaps the first script loader that became genuinely popular. It gave the first proper look at what modular JavaScript on the web could be. Its greatest attraction was AMD. It introduced a `define` wrapper:
 
 ```javascript
 define(['./MyModule.js'], function (MyModule) {

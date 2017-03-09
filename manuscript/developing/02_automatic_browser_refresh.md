@@ -1,6 +1,6 @@
 # Automatic Browser Refresh
 
-Tools, such as [LiveReload](http://livereload.com/) or [Browsersync](http://www.browsersync.io/), allow us to refresh the browser as you develop the application and avoid refresh for CSS changes. It is possible to setup Browsersync to work with webpack through [browser-sync-webpack-plugin](https://www.npmjs.com/package/browser-sync-webpack-plugin), but webpack has more tricks in store.
+Tools, such as [LiveReload](http://livereload.com/) or [Browsersync](http://www.browsersync.io/), allow to refresh the browser as you develop the application and avoid refresh for CSS changes. It is possible to setup Browsersync to work with webpack through [browser-sync-webpack-plugin](https://www.npmjs.com/package/browser-sync-webpack-plugin), but webpack has more tricks in store.
 
 ## Webpack `watch` Mode and *webpack-dev-server*
 
@@ -131,7 +131,7 @@ env development
 
 ## Understanding `--env`
 
-Even though `--env` allows us to pass strings to the configuration, it can do a bit more. Consider the following example:
+Even though `--env` allows to pass strings to the configuration, it can do a bit more. Consider the following example:
 
 **package.json**
 
@@ -170,7 +170,7 @@ W> Note that there are [slight differences](https://github.com/webpack/webpack-d
 
 ## Making It Faster to Develop Configuration
 
-Restarting the development server each time you make a change tends to get boring after a while; therefore, it can be a good idea to let the computer do that for us. As [discussed in GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892), [nodemon](https://www.npmjs.com/package/nodemon) monitoring tool can be used for this purpose.
+Restarting the development server each time you make a change tends to get boring after a while; therefore, it can be a good idea to let the computer do that. As [discussed in GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892), [nodemon](https://www.npmjs.com/package/nodemon) monitoring tool can be used for this purpose.
 
 To get it to work, you have to install it first through `npm install nodemon --save-dev`. After that, you can make it watch webpack config and restart WDS on change. Here's the script if you want to give it a go:
 

@@ -176,7 +176,7 @@ Child html-webpack-plugin for "index.html":
        [3] ./~/html-webpack-plugin/lib/loader.js!./~/html-webpack-plugin/default_index.ejs 540 bytes {0} [built]
 ```
 
-The output tells us a lot. I've annotated it below:
+The output tells a lot:
 
 * `Hash: 3f76ae042ff0f2d98f35` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. Hashing is discussed in detail in the *Adding Hashes to Filenames* chapter.
 * `Version: webpack 2.2.1` - Webpack version.

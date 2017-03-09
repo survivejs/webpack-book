@@ -8,7 +8,7 @@ In this chapter, you set up CSS with the project and see how it works out with a
 
 To load CSS, you need to use [css-loader](https://www.npmjs.com/package/css-loader) and [style-loader](https://www.npmjs.com/package/style-loader). *css-loader* goes through possible `@import` and `url()` lookups within the matched files and treats them as a regular ES6 `import`.
 
-This process allows us to rely on other loaders, such as [file-loader](https://www.npmjs.com/package/file-loader) or [url-loader](https://www.npmjs.com/package/url-loader). If an `@import` points to an external resource, *css-loader* skips it. Only internal resources get processed further by webpack.
+This process allows to rely on other loaders, such as [file-loader](https://www.npmjs.com/package/file-loader) or [url-loader](https://www.npmjs.com/package/url-loader). If an `@import` points to an external resource, *css-loader* skips it. Only internal resources get processed further by webpack.
 
 After *css-loader* has done its part, *style-loader* picks up the output and injects the CSS into the resulting bundle. The CSS be inlined JavaScript by default, and it implements the HMR interface. As inlining isn't a good idea for production usage, it makes sense to use `ExtractTextPlugin` to generate a separate CSS file. This is done in the next chapter.
 
@@ -257,7 +257,7 @@ T> PostCSS supports also *postcss.config.js* based configuration. It relies on [
 
 ![cssnext](images/cssnext.jpg)
 
-[cssnext](http://cssnext.io/) is a PostCSS plugin that allows us to experience the future now. It comes with restrictions as it's not possible to adapt to each feature, but it may be worth a go. You can use it through [postcss-cssnext](https://www.npmjs.com/package/postcss-cssnext), and you can enable it as follows:
+[cssnext](http://cssnext.io/) is a PostCSS plugin that allows to experience the future now. It comes with restrictions as it's not possible to adapt to each feature, but it may be worth a go. You can use it through [postcss-cssnext](https://www.npmjs.com/package/postcss-cssnext), and you can enable it as follows:
 
 ```javascript
 {

@@ -40,7 +40,7 @@ if ('foobar' === 'bar') {
 }
 ```
 
-Further analysis shows that `'foobar' === 'bar'` equals `false` so a minifier gives us:
+Further analysis shows that `'foobar' === 'bar'` equals `false` so a minifier gives the following:
 
 ```javascript
 var foo;
@@ -69,7 +69,7 @@ if (foo === 'bar') {
 // if (false) means the block can be dropped entirely
 ```
 
-Elimination is the core idea of `DefinePlugin`. You can toggle parts of code using this kind of mechanism. A good minifier can perform the analysis for us and enable/disable entire portions of the code as you prefer.
+Elimination is the core idea of `DefinePlugin`. You can toggle parts of code using this kind of mechanism. A good minifier can perform the analysis and enable/disable entire portions of the code as you prefer.
 
 ## Setting `process.env.NODE_ENV`
 
@@ -160,7 +160,7 @@ T> `webpack.EnvironmentPlugin(['NODE_ENV'])` is a shortcut that allows you to re
 
 ## Choosing Which Module to Use Based on the Environment
 
-The techniques discussed in this chapter can be used to choose entire modules depending on the environment. As seen above, `DefinePlugin` based splitting allows us to choose which branch of code to use and which to discard. This idea can be used to implement branching on module level. Consider the file structure below:
+The techniques discussed in this chapter can be used to choose entire modules depending on the environment. As seen above, `DefinePlugin` based splitting allows you to choose which branch of code to use and which to discard. This idea can be used to implement branching on module level. Consider the file structure below:
 
 ```bash
 .

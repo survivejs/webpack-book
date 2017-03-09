@@ -124,7 +124,7 @@ If you examine the resulting bundle, you can see that it contains React given th
 
 ![Separate app and vendor bundles](images/bundle_01.png)
 
-`CommonsChunkPlugin` is a webpack plugin that allows us to alter this default behavior.
+`CommonsChunkPlugin` is a webpack plugin that allows to alter this default behavior.
 
 W> This step can fail on Windows due to letter casing. Instead of `c:\` you may need to force your terminal to read `C:\`. There's more information in the [related webpack issue](https://github.com/webpack/webpack/issues/2362).
 
@@ -212,7 +212,7 @@ exports.extractBundles = function(bundles) {
 };
 ```
 
-Given the function handles the entry for us, you can drop the `vendor`-related configuration and use the function instead:
+Given the function handles the entry, you can drop the `vendor`-related configuration and use the function instead:
 
 **webpack.config.js**
 
@@ -251,7 +251,7 @@ To pick React to the vendor build automatically based on usage, you have to drop
 
 ## Loading `dependencies` to a `vendor` Bundle Automatically
 
-`CommonsChunkPlugin` gives control over its behavior through its `minChunks` options. In addition to a number and certain other values, `minChunks` accepts a function with a signature `(module, count)`. The first parameter contains a lot of information about the matches module and allows us to deduce which modules are used by the project. The second one tells how many times a particular module has been imported into the project.
+`CommonsChunkPlugin` gives control over its behavior through its `minChunks` options. In addition to a number and certain other values, `minChunks` accepts a function with a signature `(module, count)`. The first parameter contains a lot of information about the matches module and allows to deduce which modules are used by the project. The second one tells how many times a particular module has been imported into the project.
 
 I've listed most important `module` properties below. These assume an import like `import 'purecss';` and `ExtractTextPlugin`:
 

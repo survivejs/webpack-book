@@ -18,7 +18,7 @@ The approach is used to discuss different techniques. *webpack.config.js* mainta
 
 ## Composing Configuration by Merging
 
-To eliminate the problem of dealing with `Object.assign` and `Array.concat`, I developed [webpack-merge](https://www.npmjs.org/package/webpack-merge). Effectively it does two things: it concatenates arrays and merges objects instead of overriding them. Even though a basic idea, this allows us to compose configuration and gives us a degree of abstraction.
+To eliminate the problem of dealing with `Object.assign` and `Array.concat`, I developed [webpack-merge](https://www.npmjs.org/package/webpack-merge). Effectively it does two things: it concatenates arrays and merges objects instead of overriding them. Even though a basic idea, this allows you to compose configuration and gives a degree of abstraction.
 
 *webpack-merge* provides even more control through strategies that enable you to control its behavior per field. Strategies allow you to force it to append, prepend, or replace content. Even though *webpack-merge* was designed for this book, it has proven to be an invaluable tool beyond it. You can consider it as a learning tool and pick it up in your work if you find it handy.
 
@@ -139,7 +139,7 @@ module.exports = function(env) {
 };
 ```
 
-After this change, the build should behave the same way as before. This time, however, you have room to expand, and you don't have to worry about how to combine different parts of the configuration. The approach allows us to share functionality across different targets.
+After this change, the build should behave the same way as before. This time, however, you have room to expand, and you don't have to worry about how to combine different parts of the configuration. The approach allows to share functionality across different targets.
 
 You can also add more by expanding the *package.json* definition and branching at *webpack.config.js* based on the need. *webpack.parts.js* grows to contain specific techniques you can then use to compose the configuration.
 
@@ -161,7 +161,7 @@ T> If you have to support both webpack 1 and 2, you can perform branching based 
 
 ## Configuration Layouts
 
-In the book project, you push all of the configuration into two files: *webpack.config.js* and *webpack.parts*. The former contains higher level configuration while the latter lower level. It isolates us from webpack specifics, but it can also grow big. Fortunately, the chosen approach allows more layouts, and you can evolve it further. Consider the following directions.
+In the book project, you push all of the configuration into two files: *webpack.config.js* and *webpack.parts*. The former contains higher level configuration while the latter lower level. It isolates you from webpack specifics, but it can also grow big. Fortunately, the chosen approach allows more layouts, and you can evolve it further. Consider the following directions.
 
 ### Split per Configuration Target
 
@@ -198,7 +198,7 @@ This arrangement would make it faster to find configuration related to a categor
 
 ### Pushing Parts to Packages
 
-Given all configuration is JavaScript, nothing prevents us from consuming it as a package or packages. It would be possible to package the shared configuration so that you can consume it across multiple projects. See the *Authoring Packages* chapter for further information on how to achieve this.
+Given all configuration is JavaScript, nothing prevents you from consuming it as a package or packages. It would be possible to package the shared configuration so that you can consume it across multiple projects. See the *Authoring Packages* chapter for further information on how to achieve this.
 
 ## Conclusion
 
