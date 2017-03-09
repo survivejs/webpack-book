@@ -317,6 +317,6 @@ To recap:
 
 * Webpack can be used to generate separate pages either through its multi-compiler mode or by including all the page configuration into one.
 * The multi-compiler configuration can run in parallel using external solutions, but it is harder to apply techniques such as bundle splitting against it.
-* A multi-page setup can lead to a **Progressive Web Application**. In this case you'll use various webpack techniques to come up with an application that is fast to load and that fetches functionality as required. Both two flavors of this technique have their own merits.
+* A multi-page setup can lead to a **Progressive Web Application**. In this case you use various webpack techniques to come up with an application that is fast to load and that fetches functionality as required. Both two flavors of this technique have their own merits.
 
 You learn to implement Server Side Rendering in the next chapter.

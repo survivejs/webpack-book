@@ -2,7 +2,7 @@
 
 Even though not a lot has been done with webpack yet, the amount of configuration is starting to feel substantial. Also, you have to be careful about the way you compose it as you have separate production and development targets in the project now. The situation can only get worse as you want to add more functionality to the project.
 
-As the needs of your project grow, you'll need to figure out means to manage webpack configuration.
+As the needs of your project grow, you have to figure out means to manage webpack configuration.
 
 ## Possible Ways to Manage Configuration
 
@@ -77,7 +77,7 @@ exports.lintJavaScript = function({ include, exclude, options }) {
 };
 ```
 
-T> The configuration was changed to use `hot: true` over `hotOnly: true` as then the browser will refresh regardless of a possible error during processing. The latter option is valuable for debugging HMR when you are implementing the client side interface.
+T> The configuration was changed to use `hot: true` over `hotOnly: true` as then the browser refreshes regardless of a possible error during processing. The latter option is valuable for debugging HMR when you are implementing the client side interface.
 
 To benefit from these configuration parts, you need to connect them with *webpack.config.js* as in the complete code example below:
 

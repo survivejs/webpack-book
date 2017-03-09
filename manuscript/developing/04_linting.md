@@ -178,7 +178,7 @@ T> Attaching the linting process to Git through a prepush hook allows you to cat
 
 ### Configuring ESLint Further
 
-Since webpack 2, the configuration schema of webpack has become stricter, and it doesn't allow arbitrary fields at configuration root level anymore. To overcome this issue and to access all functionality of the *eslint-loader*, you'll need to use `LoaderOptionsPlugin` as below:
+Since webpack 2, the configuration schema of webpack has become stricter, and it doesn't allow arbitrary fields at configuration root level anymore. To overcome this issue and to access all functionality of the *eslint-loader*, you have to use `LoaderOptionsPlugin` as below:
 
 ```javascript
 {
@@ -213,7 +213,7 @@ The great thing about ESLint is that you can shape it to your purposes. The comm
 
 ### Usability Tips
 
-* It can make sense to rely on an existing preset or set up custom configuration. That's where `--init` can come in handy. You can run it from `npm bin` and you'll end up with a call like `node_modules/.bin/eslint --init`
+* It can make sense to rely on an existing preset or set up custom configuration. That's where `--init` can come in handy. You can run it from `npm bin` and end up with a call like `node_modules/.bin/eslint --init`
 * ESLint supports custom formatters through `--format` parameter. [eslint-friendly-formatter](https://www.npmjs.com/package/eslint-friendly-formatter) is an example of a formatter that provides terminal-friendly output. This way you can jump conveniently straight to the warnings and errors from there.
 
 ### Performance Tips
@@ -236,7 +236,7 @@ JSHint looks into specific rules to apply from `.jshintrc`. You can also define 
 
 ## EditorConfig
 
-[EditorConfig](http://editorconfig.org/) allows you to maintain a consistent coding style across different IDEs and editors. Certain even come with built-in support. For others, you should install a separate plugin. Also, you'll need to set up a file like this:
+[EditorConfig](http://editorconfig.org/) allows you to maintain a consistent coding style across different IDEs and editors. Certain even come with built-in support. For others, you should install a separate plugin. Also, you need to set up a file like this:
 
 **.editorconfig**
 

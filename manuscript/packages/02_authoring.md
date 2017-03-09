@@ -24,7 +24,7 @@ In larger projects, you often find the following:
 * *.eslintrc* - Linting rules. You can use *.jshintrc* and such based on your preferences.
 * *webpack.config.js* - If you are using a basic setup, you can have the configuration at project root.
 
-Also, you'll likely have separate directories for the source, tests, demos, documentation, and so on.
+Also, you likely have separate directories for the source, tests, demos, documentation, and so on.
 
 T> If you want to decrease the size of your dependencies, consider using a tool like [package-config-checker](https://www.npmjs.com/package/package-config-checker). It can pinpoint packages not using the `files` field correctly. Once you know which ones haven't set it, you can consider making Pull Requests (PRs) to those projects.
 
@@ -169,7 +169,7 @@ W> Even though it's possible to tell npm what to exclude from `files` through `!
 
 ### Bumping a Version
 
-To bump your package version, you'll need to invoke one of these commands:
+To bump your package version, you need to invoke one of these commands:
 
 * `npm version <x.y.z>` - Define version yourself.
 * `npm version <major|minor|patch>` - Let npm bump the version for you based on SemVer.
@@ -275,7 +275,7 @@ It is important to note that in npm 3 `prepublish` hook gets also triggered when
 
 As packages evolve, you likely want to start developing with others. You could become the new maintainer of a project, or pass the torch to someone else. These things happen as packages evolve.
 
-npm provides certain commands for these purposes. It's all behind `npm owner` namespace. More specifically, you'll find `npm owner ls <package name>`, `npm owner add <user> <package name>` and `npm owner rm <user> <package name>` there. That's about it.
+npm provides certain commands for these purposes. It's all behind `npm owner` namespace. More specifically, there are `npm owner ls <package name>`, `npm owner add <user> <package name>` and `npm owner rm <user> <package name>`. That's about it.
 
 See [npm documentation](https://docs.npmjs.com/cli/owner) for the most up to date information about the topic.
 
@@ -319,7 +319,7 @@ T> Given bundling is still be required sometimes, consider using the [bundledDep
 
 If you are processing your code through Babel, you can skip webpack. The advantage of doing this is that it gives you separate modules that are easier to consume one by one if needed.
 
-In this case, you'll likely want a setup like this:
+In this case, a setup like this works:
 
 **package.json**
 

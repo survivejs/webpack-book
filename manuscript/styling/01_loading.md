@@ -79,7 +79,7 @@ body {
 }
 ```
 
-Also, you'll need to make webpack aware of it. Without having an entry pointing to it somehow, webpack is not able to find the file:
+Also, you need to make webpack aware of it. Without having an entry pointing to it somehow, webpack is not able to find the file:
 
 **app/index.js**
 
@@ -111,7 +111,7 @@ Webpack's *css-loader* supports CSS Modules. You can enable it through a loader 
 },
 ```
 
-After this change, your class definitions remain local to the files. In case you want global class definitions, you'll need to wrap them within `:global(.redButton) { ... }` kind of declarations.
+After this change, your class definitions remain local to the files. In case you want global class definitions, you need to wrap them within `:global(.redButton) { ... }` kind of declarations.
 
 In this case, the `import` statement gives you the local classes you can then bind to elements. Assume you had CSS like this:
 
@@ -361,4 +361,4 @@ To recap:
 * To use source maps, you have to enable `sourceMap` boolean through each style loader you are using except for *style-loader*. You should also set `output.publicPath` to an absolute url that points to your development server.
 * Using Bootstrap with webpack requires special care. You can either go through generic loaders or a bootstrap specific loader for more customization options.
 
-Although the loading approach covered here is enough for development purposes, it's not ideal for production as it inlines the styling to the JavaScript bundles. You'll learn to solve this problem in the next chapter by separating CSS from the source.
+Although the loading approach covered here is enough for development purposes, it's not ideal for production as it inlines the styling to the JavaScript bundles. You learn to solve this problem in the next chapter by separating CSS from the source.

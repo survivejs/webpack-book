@@ -64,7 +64,7 @@ ESLint plugins rely on Abstract Syntax Tree (AST) definition of JavaScript. It i
 
 ### Understanding AST
 
-To get a better idea of how AST works and what it looks like, you can check [Esprima online JavaScript AST visualization](http://esprima.org/demo/parse.html) or [AST Explorer by Felix Kling](http://astexplorer.net/). Alternately, you can install `recast` and examine the output it gives. That is the structure you'll be working with for ESLint rules.
+To get a better idea of how AST works and what it looks like, you can check [Esprima online JavaScript AST visualization](http://esprima.org/demo/parse.html) or [AST Explorer by Felix Kling](http://astexplorer.net/). Alternately, you can install `recast` and examine the output it gives. That is the structure you work with for ESLint rules.
 
 T> [Codemod](https://github.com/facebook/codemod) allows you to perform large-scale changes to your codebase through AST based transformations.
 
@@ -105,7 +105,7 @@ module.exports = {
 };
 ```
 
-In this case, you report for every identifier found. In practice, you'll likely want to do something more complex than this, but this is a good starting point.
+In this case, you report for every identifier found. In practice, you likely want to do something more complex than this, but this is a good starting point.
 
 Next, you need to execute `npm link` within `eslint-plugin-custom` to make your plugin visible to your system. `npm link` allows you to consume a development version of a library you are developing. To reverse the link, you can execute `npm unlink` when you feel like it.
 
@@ -152,4 +152,4 @@ If you want a starting point, you can pick one of [eslint-config- packages](http
 
 ## Conclusion
 
-Especially the fact that you can customize ESLint to various purposes makes it a powerful tool. Thanks to its vibrant ecosystem, it is likely you'll find rules that are close to your purposes. Those make excellent starting points for your own development.
+Especially the fact that you can customize ESLint to various purposes makes it a powerful tool. Thanks to its vibrant ecosystem, it is likely you find rules that are close to your purposes. Those make excellent starting points for your own development.

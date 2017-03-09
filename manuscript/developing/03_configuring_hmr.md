@@ -103,7 +103,7 @@ Execute `npm start` and surf to `http://localhost:8080`. Try modifying *app/comp
 
 You see this behavior because you set `hotOnly: true` for WDS. Going with `inline: true` would have swallowed the error and refreshed the page. This behavior is okay, though, as the HMR interface is implemented next to avoid the need for the hard refresh. Before that, something can be done about those cryptic numbers to get more sensible output.
 
-You can access the application alternately through `http://localhost:8080/webpack-dev-server/` instead of the root. It provides status information at the top of the application. If your application relies on WebSockets and you use WDS proxying, you'll need to use this particular url: otherwise, WDS logic interferes.
+You can access the application alternately through `http://localhost:8080/webpack-dev-server/` instead of the root. It provides status information at the top of the application. If your application relies on WebSockets and you use WDS proxying, you need to use this particular url: otherwise, WDS logic interferes.
 
 W> *webpack-dev-server* can be picky about paths. If the given `include` paths don't match the system casing precisely, this can cause it to fail to work. Webpack [issue #675](https://github.com/webpack/webpack/issues/675) discusses the problem in more detail.
 
@@ -265,7 +265,7 @@ entry: {
 
 WDS provides functionality beyond what was covered above. There are a couple of relevant fields that you should be aware of:
 
-* `devServer.contentBase` - Assuming you don't generate *index.html* dynamically like in this setup and rather prefer to maintain it yourself in a specific directory, you'll need to point WDS to it. `contentBase` accepts either a path (e.g., `'build'`) or an array of paths (e.g., `['build', 'images']`). The default for this value is the project root.
+* `devServer.contentBase` - Assuming you don't generate *index.html* dynamically like in this setup and rather prefer to maintain it yourself in a specific directory, you need to point WDS to it. `contentBase` accepts either a path (e.g., `'build'`) or an array of paths (e.g., `['build', 'images']`). The default for this value is the project root.
 * `devServer.proxy` - If you are using multiple servers, you have to proxy WDS to them. The proxy setting accepts an object of proxy mappings (e.g., `{ '/api': 'http://localhost:3000/api' }`) that allow WDS to resolve matching queries to another server. Proxy settings are disabled by default.
 * `devServer.headers` - If you want to attach custom headers to your requests, this is the place to do it.
 
