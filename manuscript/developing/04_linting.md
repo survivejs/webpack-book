@@ -24,7 +24,7 @@ T> [eslint-config-cleanjs](https://www.npmjs.com/package/eslint-config-cleanjs) 
 
 ## Linting Is about More than Catching Issues
 
-Besides linting for issues, it can be valuable to manage the code style. Nothing is more annoying than having to work with source code that has mixed tabs and spaces. Stylistically consistent code reads better. Linting tools allow you to do this.
+Besides linting for issues, it can be valuable to manage the code style. Nothing is more annoying than having to work with source code that has mixed tabs and spaces. Stylistically consistent code reads better. When integrated with an Editor or IDE linting also points out your mistakes as you make them, making it easier to adjust your technique and avoid making more of the same errors.
 
 Establishing strong linting can be beneficial, especially in a context where you need to collaborate with others. Even when working alone you benefit from linting as it can catch issues you could otherwise neglect. JavaScript as a language allows usage which, while valid, is not be the clearest to understand or is even be incorrect.
 
@@ -261,7 +261,7 @@ indent_style = space
 indent_size = 2
 ```
 
-T> [Prettier](https://www.npmjs.com/package/prettier) goes one step further and can format your code automatically according to your coding style. If you want to use Prettier with ESLint, you should use [eslint-config-prettier](https://www.npmjs.com/package/eslint-config-prettier) to disable ESLint rules that conflict with Prettier.
+T> [Prettier](https://www.npmjs.com/package/prettier) goes one step further and can format your code automatically according to your coding style. If you want to use Prettier with ESLint, you should use [eslint-config-prettier](https://www.npmjs.com/package/eslint-config-prettier) to disable ESLint rules that conflict with Prettier. Be warned that Prettier is highly opinionated in how it thinks code should look and offers few formatting options.
 
 T> [Danger](https://www.npmjs.com/package/danger) operates on a higher level than the tools discussed. For example, it can check that the project change log was updated before a release is pushed to the public. You can also force pull requests of your project to comply specific standards.
 
@@ -274,6 +274,6 @@ To recap:
 * ESLint is the most versatile of the current options. You can expand it to fit your exact use case.
 * ESLint can be run through webpack. It can terminate your build and even prevent it from getting deployed if your build does not pass the linting rules.
 * EditorConfig complements ESLint by allowing you to define a project-level coding style. Editors integrate with EditorConfig making it easier to keep a project consistent regardless of the development platform.
-* Prettier is an upcoming solution that can format your code automatically. Danger operates on repository level and can perform higher level tasks related to the development process.
+* Prettier is a complimentary solution that can format your code automatically whilst Danger operates on repository level and can perform higher level tasks related to the development process.
 
 Given the webpack configuration of the project is starting to get a little messy, it's a good time to discuss how to compose configuration and improve the situation.
