@@ -8,7 +8,7 @@ You could use `webpack-dev-server --hot` to achieve this from the CLI. `--hot` e
 
 ## Defining Configuration for HMR
 
-If you set up WDS through webpack configuration, you have to attach WDS specific options to a `devServer` field and enable `HotModuleReplacementPlugin`. Also, you need to combine the new configuration with the old one so that it doesn't get applied to the production build as HMR doesn't have any value there.
+Although we are have already added the WDS plugin, the webpack config object has special `devServer` field used to configure WDS which we will use to enable `HotModuleReplacementPlugin`. We will also need to combine the new configuration with the old one so that it doesn't get applied to the production build as HMR has no value there.
 
 Consider the basic setup below:
 
@@ -95,7 +95,7 @@ leanpub-end-insert
 };
 ```
 
-It's plenty of code. Especially the `Object.assign` portion looks knotty. That is fixed in the *Splitting Configuration* chapter soon enough.
+It's plenty of code. Especially the `Object.assign` portion looks knotty. That will soon be fixed in the *Splitting Configuration* chapter.
 
 Execute `npm start` and surf to `http://localhost:8080`. Try modifying *app/component.js*. Note how it fails to refresh.
 
@@ -153,7 +153,7 @@ T> A similar effect can be achieved by setting `output.pathInfo = true`. It stil
 
 ## Implementing the HMR Interface
 
-Webpack exposes the HMR interface through a global, `module.hot`. It provides updates through `module.hot.accept(<path to watch>, <handler>)` function and you need to patch the application there. In this case, it's enough to replace the old DOM node with a newer one as you receive updates.
+Webpack exposes the HMR interface through a global variable: `module.hot`. It provides updates through `module.hot.accept(<path to watch>, <handler>)` function and you need to patch the application there. In this case, it's enough to replace the old DOM node with a newer one as you receive updates.
 
 The following implementation illustrates the idea:
 
