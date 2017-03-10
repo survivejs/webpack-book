@@ -10,7 +10,7 @@ To load CSS, you need to use [css-loader](https://www.npmjs.com/package/css-load
 
 This process allows to rely on other loaders, such as [file-loader](https://www.npmjs.com/package/file-loader) or [url-loader](https://www.npmjs.com/package/url-loader). If an `@import` points to an external resource, *css-loader* skips it. Only internal resources get processed further by webpack.
 
-After *css-loader* has done its part, *style-loader* picks up the output and injects the CSS into the resulting bundle. The CSS be inlined JavaScript by default, and it implements the HMR interface. As inlining isn't a good idea for production usage, it makes sense to use `ExtractTextPlugin` to generate a separate CSS file. This is done in the next chapter.
+After *css-loader* has done its part, *style-loader* picks up the output and injects the CSS into the resulting bundle. The CSS be inlined JavaScript by default, and it implements the HMR interface. As inlining isn't a good idea for production usage, it makes sense to use `ExtractTextPlugin` to generate a separate CSS file. You will do this in the next chapter.
 
 To get started, invoke
 
