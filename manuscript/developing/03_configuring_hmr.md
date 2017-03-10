@@ -193,6 +193,39 @@ The idea is the same with styling, React, Redux, and other technologies. Sometim
 
 T> That `if(module.hot)` block is eliminated entirely from the production build as minifier picks it up. The *Minifying* chapter delves deeper into this topic.
 
+## Enabling Refresh on Error
+
+Given the HMR interface is stable now, it should be safe to switch it to `hot: true`. If you want to debug the interface and get proper errors to study, switch it back to `hotOnly: true`. Adjust as follows:
+
+**webpack.config.js**
+
+```javascript
+...
+
+function developmentConfig() {
+  const config = {
+    ...
+
+leanpub-start-delete
+      // Don't refresh if hot loading fails. If you want
+      // refresh behavior, set hot: true instead.
+      hotOnly: true,
+leanpub-end-delete
+leanpub-start-insert
+      hot: true,
+leanpub-end-insert
+
+      ...
+    },
+    ...
+  };
+
+  ...
+}
+
+...
+```
+
 ## HMR on Windows, Ubuntu, and Vagrant
 
 The setup can be problematic on older versions of Windows, Ubuntu, and Vagrant. You can solve this through polling:

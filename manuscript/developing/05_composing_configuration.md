@@ -91,8 +91,6 @@ exports.lintJavaScript = function({ include, exclude, options }) {
 };
 ```
 
-T> The configuration was changed to use `hot: true` over `hotOnly: true` as then the browser refreshes regardless of a possible error during processing. The latter option is valuable for debugging HMR when you are implementing the client side interface.
-
 To benefit from these configuration parts, you need to connect them with *webpack.config.js* as in the complete code example below:
 
 **webpack.config.js**
