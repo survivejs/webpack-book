@@ -4,7 +4,7 @@
 
 It isn’t the easiest tool to learn due to its configuration-driven approach. The purpose of this guide is to help you get started with webpack and then to go beyond the basics.
 
-## What Is Webpack
+## What Is Webpack?
 
 Web browsers have been designed to consume HTML, JavaScript, and CSS. You can simply to write files that the browser understands directly. The problem is that this eventually becomes unwieldy and this is particularly the case when you are developing web applications as you have to deal with multiple different formats.
 
@@ -12,35 +12,35 @@ As an application develops, the complexity of handling it grows as well. Webpack
 
 Webpack isn’t the only solution for this problem, and a collection of different tools have emerged. Task runners, such as Grunt and Gulp, are good examples of higher level tools. Often the problem is that need to write the workflows by hand. Pushing that issue to a bundler, such as webpack, is a step forward.
 
-### How Webpack Changes the Situation
+### How Does Webpack Change The Situation?
 
 Webpack takes another route. It allows you to treat your project as a dependency graph. You could have an *index.js* in your project that pulls in the dependencies the project needs through standard `require` or `import` statements. You can refer to your style files and other assets the same way if you want.
 
 Webpack does all the preprocessing for you and gives you the bundles you specify through configuration and your code. This declarative approach is powerful, but it is a little difficult to learn. Webpack becomes an indispensable tool after you begin to understand how it works. This book has been designed to get through that initial learning curve and even go a little further.
 
-## What You Learn
+## What Will You Learn?
 
 This book has been designed to complement [the official documentation of webpack](https://webpack.js.org/). The official documentation goes deeper in many aspects, and this book can be considered a companion to it. This book is more like a quick walkthrough that eases the initial learning curve while giving food for thought to more advanced users.
 
-You learn to develop a composable webpack configuration for both development and production purposes. Advanced techniques covered by the book allow you to get the most out of webpack.
+You will learn to develop a composable webpack configuration for both development and production purposes. Advanced techniques covered by the book allow you to get the most out of webpack.
 
 T> This book has focused on webpack 2. If you want to apply its techniques to webpack 1, you should see [the official migration guide](https://webpack.js.org/guides/migrating/) as it covers the changes made between the major versions. There are also [codemods at the webpack-cli repository](https://github.com/webpack/webpack-cli) for migrating from webpack 1 to 2.
 
-## How Is This Book Organized
+## How Is This Book Organized?
 
 The book starts by explaining what webpack is. After that, you find multiple parts, each of which discusses webpack from a different direction. While going through those chapters, you develop your webpack configuration. The chapters also double as reference material.
 
 The book has been split into the following parts:
 
-* **Developing** part gets you up and running with webpack. This part goes through features such as Hot Module Replacement and explains how to compose your configuration so that it remains maintainable.
-* **Styling** part puts heavy emphasis on styling related topics. You learn how to load styles with webpack and how to introduce techniques such as autoprefixing to your setup.
-* **Loading** part explains webpack’s loader definitions in detail and shows you how to load assets such as images, fonts, and JavaScript.
-* **Building** part introduces source maps and the ideas of bundle and code splitting. You learn to tidy up your build.
-* **Optimizing** part pushes your build to production quality level and introduces many smaller tweaks to make it smaller. You learn to tune webpack for performance.
-* **Output** part discusses webpack’s output options. Despite its name, it’s not only for the web. You see how to manage multiple page setups with webpack and pick up the basic idea of Server Side Rendering.
-* **Techniques** part discusses several specific ideas including dynamic loading, web workers, internationalization, and deploying your applications.
-* **Packages** part has a heavy focus on npm and webpack related techniques. You learn both to consume and author npm packages in an efficient way.
-* **Extending** part shows how to extend webpack with your loaders and plugins.
+* **Developing** gets you up and running with webpack. This part goes through features such as Hot Module Replacement and explains how to compose your configuration so that it remains maintainable.
+* **Styling** puts heavy emphasis on styling related topics. You learn how to load styles with webpack and how to introduce techniques such as autoprefixing to your setup.
+* **Loading** explains webpack’s loader definitions in detail and shows you how to load assets such as images, fonts, and JavaScript.
+* **Building** introduces source maps and the ideas of bundle and code splitting. You learn to tidy up your build.
+* **Optimizing** pushes your build to production quality level and introduces many smaller tweaks to make it smaller. You learn to tune webpack for performance.
+* **Output** discusses webpack’s output options. Despite its name, it’s not only for the web. You see how to manage multiple page setups with webpack and pick up the basic idea of Server Side Rendering.
+* **Techniques** discusses several specific ideas including dynamic loading, web workers, internationalization, and deploying your applications.
+* **Packages** has a heavy focus on npm and webpack related techniques. You learn both to consume and author npm packages in an efficient way.
+* **Extending** shows how to extend webpack with your loaders and plugins.
 
 There's a short conclusion chapter after the main content that recaps the main points of the book. It contains checklists that allow you to go through your projects against the book techniques.
 
@@ -48,15 +48,15 @@ The appendices the end of the book cover secondary topics and sometimes dig deep
 
 T> If you are unsure of a term and its meaning, see the *Glossary* at the end of the book.
 
-## Who Is This Book For
+## Who Is This Book For?
 
-You should have basic knowledge of JavaScript, Node, and npm. If you know something about webpack, that’s great. By reading this book, you deepen your understanding of these tools.
+You should have basic knowledge of JavaScript, Node, and npm. If you know something about Webpack, that’s great. By reading this book, you deepen your understanding of these tools.
 
-If you happen to know webpack well, there is still something in the book for you. Skim through it and see if you can pick up techniques. Read especially the summaries at the end of the chapters and the conclusion chapter.
+If you happen to know Webpack well, there is still something in the book for you. Skim through it and see if you can pick up techniques. Read especially the summaries at the end of the chapters and the conclusion chapter.
 
 If you find yourself struggling, consider seeking help from the community around the book. Any comments you have go towards improving the content.
 
-## How to Approach the Book
+## How To Approach the Book
 
 If you don’t know much about the topic, consider going carefully through the early parts. You can scan the rest to pick the bits you find worthwhile. If you know webpack already, skim and choose the techniques you find valuable.
 
