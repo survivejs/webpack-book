@@ -174,7 +174,7 @@ If you execute `npm start` now and break a linting rule while developing, you sh
 
 W> Note that the webpack configuration lints only the application code you refer. If you want to lint webpack configuration itself, execute `npm run lint:js` separately.
 
-T> Attaching the linting process to Git through a prepush hook allows you to catch problems earlier. [pre-git](https://www.npmjs.com/package/pre-git) allows you to achieve this quickly. Doing this allows you to rebase your commits and fix possible problems early.
+T> Attaching the linting process to Git through a prepush hook allows you to catch problems earlier. [husky](https://www.npmjs.com/package/husky) allows you to achieve this quickly. Doing this allows you to rebase your commits and fix possible problems early.
 
 ### Configuring ESLint Further
 
