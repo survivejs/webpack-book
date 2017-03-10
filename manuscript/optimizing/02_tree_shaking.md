@@ -44,6 +44,8 @@ T> If you want to see which parts of the code tree shaking affects, enable warni
 
 T> There is a CSS Modules related tree shaking proof of concept at [dead-css-loader](https://github.com/simlrh/dead-css-loader).
 
+W> To get most out of tree shaking with external packages, you have to use [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-imports) to rewrite imports so that they work with webpack's tree shaking logic. See [webpack issue #2867](https://github.com/webpack/webpack/issues/2867) for more information.
+
 ## Tree Shaking on Package Level
 
 The same idea works with dependencies that use the ES6 module definition. Given the related packaging standards are still emerging, you have to be careful when consuming such packages. Webpack tries to resolve *package.json* `module` field for this reason.
