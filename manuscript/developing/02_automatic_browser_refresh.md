@@ -1,14 +1,18 @@
 # Automatic Browser Refresh
 
 Tools, such as [LiveReload](http://livereload.com/) or [Browsersync](http://www.browsersync.io/), allow to refresh the browser as you develop the application and avoid a refresh for CSS changes. It's possible to setup Browsersync to work with webpack through [browser-sync-webpack-plugin](https://www.npmjs.com/package/browser-sync-webpack-plugin), but webpack has more tricks in store.
-<!--  -->
+
 ## Webpack `watch` Mode and *webpack-dev-server*
 
 A good first step towards a better development environment is to use webpack in its **watch** mode. You can activate it through `webpack --watch`. Once enabled, it detects changes made to your files and recompiles automatically. *webpack-dev-server* (WDS) builds on top of the watch mode and goes even further.
 
-WDS is a development server running **in-memory**, meaning the bundle contents isn't actually written out to files, but stored in memory. This is an important distinction when trying to debug code and styles. By default WDS refreshes content automatically in the browser while you develop your application which saves you from remembering to do it yourself. However it also supports an advanced webpack feature, **Hot Module Replacement** (HMR). HMR allows patching the browser state without a full refresh making it particularly handy with libraries like React where a refresh blow away the application state.
+WDS is a development server running **in-memory**, meaning the bundle contents aren't written out to files, but stored in memory. This is an important distinction when trying to debug code and styles.
 
-WDS provides an interface that makes it possible to patch code on the fly, however for this to work effectively, you have to implement this interfact for the client-side code. It's trivial for something like CSS because it is stateless, but it's a harder problem with JavaScript frameworks and libraries. Often careful design is needed to allow this, but when the feature works, it's beautiful. We will explore this in a later chapter, but for now we'll concentrate on getting WDS to refresh the page when we make changes to our code.
+By default WDS refreshes content automatically in the browser while you develop your application so you don't have to do it yourself. However it also supports an advanced webpack feature, **Hot Module Replacement** (HMR). HMR allows patching the browser state without a full refresh making it particularly handy with libraries like React where a refresh blows away the application state.
+
+WDS provides an interface that makes it possible to patch code on the fly, however for this to work effectively, you have to implement this interface for the client-side code. It's trivial for something like CSS because it's stateless, but the problem is harder with JavaScript frameworks and libraries.
+
+Often careful design is needed to allow this, but when the feature works, it's beautiful. The feature is explored in a later chapter. Now the goal is to get automatic refresh to work.
 
 ## Emitting Files from *webpack-dev-server*
 
@@ -18,7 +22,7 @@ W> You should use *webpack-dev-server* strictly for development. If you want to 
 
 ## Getting Started with *webpack-dev-server*
 
-To get started with WDS, first install it:
+To get started with WDS, install it first:
 
 ```bash
 npm install webpack-dev-server --save-dev
@@ -170,7 +174,7 @@ W> Note that there are [slight differences](https://github.com/webpack/webpack-d
 
 ## Making It Faster to Develop Configuration
 
-WDS will handle restarting the server when we change a bundled file, but what about when we edit the webpack config? Restarting the development server each time you make a change tends to get boring after a while; therefore, it can be a good idea to let automate it. As [discussed in GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892), [nodemon](https://www.npmjs.com/package/nodemon) monitoring tool can be used for this purpose.
+WDS will handle restarting the server when you change a bundled file, but what about when you edit the webpack config? Restarting the development server each time you make a change tends to get boring after a while; therefore, it can be a good idea to let automate it. As [discussed in GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892), [nodemon](https://www.npmjs.com/package/nodemon) monitoring tool can be used for this purpose.
 
 To get it to work, you have to install it first through `npm install nodemon --save-dev`. After that, you can make it watch webpack config and restart WDS on change. Here's the script if you want to give it a go:
 

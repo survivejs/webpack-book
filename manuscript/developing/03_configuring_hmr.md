@@ -8,7 +8,7 @@ You could use `webpack-dev-server --hot` to achieve this from the CLI. `--hot` e
 
 ## Defining Configuration for HMR
 
-Although we are have already added the WDS plugin, the webpack config object has special `devServer` field used to configure WDS which we will use to enable `HotModuleReplacementPlugin`. We will also need to combine the new configuration with the old one so that it doesn't get applied to the production build as HMR has no value there.
+Although WDS was enabled already, more configuration is required to enable HMR. This is done through the `devServer` field. You also have to set up `HotModuleReplacementPlugin`. The new configuration has to be combined with the old one so that it doesn't get applied to the production build as HMR has no value there.
 
 Consider the basic setup below:
 

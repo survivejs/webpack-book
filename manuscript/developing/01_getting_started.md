@@ -102,7 +102,7 @@ document.body.appendChild(component());
 
 You need to tell webpack how to deal with the assets that were set up. For this purpose, you have to develop a *webpack.config.js* file. Webpack and its development server are able to discover this file through a convention.
 
-To keep things convenient to maintain, you can use your first plugin:  [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) *html-webpack-plugin* is a will generate an *index.html* for the application and add a `script` tag to load our generated bundle.
+To keep things convenient to maintain, you can use your first plugin: [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin). `HtmlWebpackPlugin` generates an *index.html* for the application and adds a `script` tag to load the generated bundle.
 
 ```bash
 npm install html-webpack-plugin --save-dev
@@ -114,7 +114,7 @@ Entries tell webpack where to start parsing the application. In multi-page appli
 
 It's good to note that all output related paths that you see in the configuration are resolved against `output.path` meaning that if you had an output related option somewhere and wrote `styles/[name].css` to it, and had set your `output.path' to your project directory found at `~/Documents/Sites/Example/build`, webpack would output the `styles` directory below the output path to `~/Documents/Sites/Example/build/styles/[name].css`.
 
-To illustrate how to connect `entry` and `output` with *html-webpack-plugin*, consider the code below:
+To illustrate how to connect `entry` and `output` with `HtmlWebpackPlugin`, consider the code below:
 
 **webpack.config.js**
 
@@ -216,11 +216,11 @@ T> There are shortcuts like *npm start* and *npm test*. You can run these direct
 
 T> It's possible to execute *npm run* anywhere within the project. It doesn't have to be run in the project root to work. npm figures out the project root for you.
 
-## *html-webpack-plugin* Extensions
+## `HtmlWebpackPlugin` Extensions
 
-[html-webpack-template](https://www.npmjs.com/package/html-webpack-template) or [html-webpack-template-pug](https://www.npmjs.com/package/html-webpack-template-pug) complement *html-webpack-plugin* and provide more powerful templates to use with it.
+[html-webpack-template](https://www.npmjs.com/package/html-webpack-template) or [html-webpack-template-pug](https://www.npmjs.com/package/html-webpack-template-pug) complement `HtmlWebpackPlugin` and provide more powerful templates to use with it.
 
-There are also specific plugins that extend *html-webpack-plugin*'s functionality:
+There are also specific plugins that extend `HtmlWebpackPlugin`'s functionality:
 
 * [favicons-webpack-plugin](https://www.npmjs.com/package/favicons-webpack-plugin) is able to generate favicons.
 * [script-ext-html-webpack-plugin](https://www.npmjs.com/package/script-ext-html-webpack-plugin) gives you more control over script tags and allows you to tune script loading further.
@@ -238,7 +238,7 @@ To recap:
 * It's a good idea to use a locally installed version of webpack over a globally installed one. This way you can be sure of what version you are using. The local dependency works also in a Continuous Integration environment.
 * Webpack provides a command line interface. You can use it even without configuration, but then you are limited by the options it provides.
 * To write more complicated setups, you most likely have to write a separate *webpack.config.js* file.
-* *html-webpack-plugin* can be used to generate an HTML entry point to your application. Later in the book, you see how to generate multiple separate pages using. The *Multiple Pages* chapter covers that.
+* `HtmlWebpackPlugin` can be used to generate an HTML entry point to your application. Later in the book, you see how to generate multiple separate pages using. The *Multiple Pages* chapter covers that.
 * It's handy to use npm *package.json* scripts to manage webpack. You can use it as a light task runner and use system features outside of webpack.
 
 In the next chapter you will learn how to improve the developer experience by enabling automatic browser refresh.

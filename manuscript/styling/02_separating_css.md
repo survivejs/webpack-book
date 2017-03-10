@@ -106,7 +106,7 @@ leanpub-end-insert
 ...
 ```
 
-Using this setup, you can still benefit from the HMR during development. For a production build, it's possible to generate a separate CSS, though. *html-webpack-plugin* picks it up automatically and injects it into `index.html`.
+Using this setup, you can still benefit from the HMR during development. For a production build, it's possible to generate a separate CSS, though. `HtmlWebpackPlugin` picks it up automatically and injects it into `index.html`.
 
 T> If you are using CSS Modules, remember to tweak `use` accordingly as discussed in the *Loading Styles* chapter. You can maintain separate setups for normal CSS and CSS Modules so that they get loaded through separate logic.
 

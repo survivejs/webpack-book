@@ -8,7 +8,7 @@ As the needs of your project grow, you have to figure out the means to manage we
 
 You can manage webpack configuration in the following ways:
 
-* Maintain configuration in multiple files for each environemnt and point webpack to each through the `--config` parameter, sharing configuration through module imports. You can see this approach in action at [webpack/react-starter](https://github.com/webpack/react-starter).
+* Maintain configuration in multiple files for each environment and point webpack to each through the `--config` parameter, sharing configuration through module imports. You can see this approach in action at [webpack/react-starter](https://github.com/webpack/react-starter).
 * Push configuration to a library, which you then consume. Example: [HenrikJoreteg/hjs-webpack](https://www.npmjs.com/package/hjs-webpack).
 * Maintain all configuration within a single file and branch there and by relying on the `--env` parameter.
 
@@ -18,7 +18,21 @@ This approach is used to discuss different techniques. *webpack.config.js* maint
 
 ## Composing Configuration by Merging
 
-If we break apart the config file into separate pieces, we will need to put these pieces back together again whcih will involve merging objects and arrays. To eliminate the problem of dealing with `Object.assign` and `Array.concat`, [webpack-merge](https://www.npmjs.org/package/webpack-merge) can be used. It does two things: it concatenates arrays and merges objects instead of overriding them. Even though a basic idea, this allows you to compose configuration and gives a degree of abstraction.
+If the configuration file is broken into separate pieces, they have to be combined together again somehow. Normally this means merging objects and arrays. To eliminate the problem of dealing with `Object.assign` and `Array.concat`, [webpack-merge](https://www.npmjs.org/package/webpack-merge) was developed.
+
+*webpack-merge* does two things: it concatenates arrays and merges objects instead of overriding them. Even though a basic idea, this allows you to compose configuration and gives a degree of abstraction.
+
+The example below shows the behavior in detail:
+
+```bash
+> merge = require('webpack-merge')
+...
+> merge(
+... { a: [1], b: 5, c: 20 },
+... { a: [2], b: 10, d: 421 }
+... )
+{ a: [ 1, 2 ], b: 10, c: 20, d: 421 }
+```
 
 *webpack-merge* provides even more control through strategies that enable you to control its behavior per field. Strategies allow you to force it to append, prepend, or replace content. Even though *webpack-merge* was designed for this book, it has proven to be an invaluable tool beyond it. You can consider it as a learning tool and pick it up in your work if you find it handy.
 
@@ -155,13 +169,13 @@ Instead of duplicating similar configuration across multiple projects, you can m
 
 Each approach comes with its pros and cons. Composition-based approach myself is a good starting point. In addition to composition, it gives you a limited amount of code to scan through, but it's a good idea to check out how other people do it too. You can find something that works the best based on your tastes.
 
-Perhaps the biggest problem is that with composition you need to know what you are doing, and it's possible you aren't going to get the composition right the first time around. But that's a software engineering problem that goes beyond webpack. You can always iterate on the interfaces and find better ones. By passing in a configuration object instead of multiple arguments we can always change the behaviour of a part without effecting its API, allowing us to support configuration options incrementally.
+Perhaps the biggest problem is that with composition you need to know what you are doing, and it's possible you aren't going to get the composition right the first time around. But that's a software engineering problem that goes beyond webpack. You can always iterate on the interfaces and find better ones. By passing in a configuration object instead of multiple arguments, you can change the behavior of a part without effecting its API. You can expose API as you need it.
 
 T> If you have to support both webpack 1 and 2, you can perform branching based on version using `require('webpack/package.json').version` to detect it. After that, you have to set specific branches for each and merge. You can still extract the commonality as you see the best.
 
 ## Configuration Layouts
 
-In the book project, you push all of the configuration into two files: *webpack.config.js* and *webpack.parts*. The former contains higher level configuration while the latter lower level. Isolates you from webpack specifics, but it can also grow big. Fortunately, the chosen approach allows more layouts, and you can evolve it further. Consider the following directions.
+In the book project, you push all of the configuration into two files: *webpack.config.js* and *webpack.parts*. The former contains higher level configuration while the latter lower level and isolates you from webpack specifics. Fortunately, the chosen approach allows more layouts, and you can evolve it further. Consider the following directions.
 
 ### Split per Configuration Target
 

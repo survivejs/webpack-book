@@ -37,7 +37,7 @@ Even though webpack could resolve to your modules fine, it can still fail to bui
 
 ## Module build failed: Unknown word
 
-This error fits the same category. Parsing the file succeeded, but there was the unknown syntax. Most likely the problem is a typo, but this error can also occur when Webpack has followed an import and encountered syntax it doesn't understand. This probably means that a loader is missing for that particular filetype.
+This error fits the same category. Parsing the file succeeded, but there was the unknown syntax. Most likely the problem is a typo, but this error can also occur when Webpack has followed an import and encountered syntax it doesn't understand. Most likely this means that a loader is missing for that particular file type.
 
 ## SyntaxError: Unexpected token
 
