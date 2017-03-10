@@ -112,19 +112,23 @@ With webpack, you can inject a hash to each bundle name (e.g., *app.d587bbd6.js*
 
 All these smaller features add up. Surprisingly, you can get many things done out of the box. If you are missing something, there are loaders and plugins available that allow you to go further.
 
-Webpack comes with a significant learning curve. However it’s a tool worth learning, given it saves so much time and effort over the long term. To get a better idea how it compares to other tools, check out [the official comparison](https://webpack.js.org/get-started/why-webpack/#comparison).
+Understanding the difference between loaders and plugins is vital. Loaders operate on module level. You use them to transform modules from shape to another. A loader can also emit a new module. These options are explored in the *Extending with Loaders* chapter.
+
+Plugins operate on a higher level. Webpack itself has been implemented using a collection of plugins. Each plugin encapsulates a small amount of functionality. Plugins communicate together using hooks. They provide the most powerful means to extend webpack and can also be used in tandem with loaders.
 
 ## Conclusion
 
-You can use webpack with other tools. It won’t solve everything. It does solve the problem of bundling, however. That’s one less worry during development. Using *package.json* and webpack alone can take you far.
+Webpack comes with a significant learning curve. However it’s a tool worth learning, given it saves so much time and effort over the long term. To get a better idea how it compares to other tools, check out [the official comparison](https://webpack.js.org/get-started/why-webpack/#comparison).
+
+Webpack won’t solve everything. It does solve the problem of bundling, however. That’s one less worry during development. Using *package.json* and webpack alone can take you far.
 
 To summarize:
 
 * Webpack is a **module bundler**, but you can also use it for tasks as well.
 * **Hot Module Replacement** (HMR) helped to popularize webpack. It's a feature that can enhance development experience by updating code in the browser without a full refresh.
 * Webpack relies on a **dependency graph** underneath. Webpack traverses through the source to construct the graph and it uses this information and configuration to generate bundles.
-* Webpack’s logic is contained within **loaders** and **plugins**. These are called through webpack’s configuration.
 * Webpack’s **configuration** describes how to transform assets of the graphs and what kind of output it should generate. A part of this information can be included in the source itself if features like code splitting are used.
 * Webpack can generate **hashes** for filenames allowing you to invalidate bundles as their contents change.
+* Webpack relies on **loaders** and **plugins**. Loaders operate on module level while plugins rely on hooks provided by webpack and have the best access to its execution process.
 
 In the following chapters, you’ll examine webpack in more detail as you learn to develop a basic development and build configuration. The later chapters continue further and delve into more advanced topics.
