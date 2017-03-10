@@ -1,36 +1,36 @@
 # Automatic Browser Refresh
 
-Tools, such as [LiveReload](http://livereload.com/) or [Browsersync](http://www.browsersync.io/), allow to refresh the browser as you develop the application and avoid refresh for CSS changes. It's possible to setup Browsersync to work with webpack through [browser-sync-webpack-plugin](https://www.npmjs.com/package/browser-sync-webpack-plugin), but webpack has more tricks in store.
-
+Tools, such as [LiveReload](http://livereload.com/) or [Browsersync](http://www.browsersync.io/), allow to refresh the browser as you develop the application and avoid a refresh for CSS changes. It's possible to setup Browsersync to work with webpack through [browser-sync-webpack-plugin](https://www.npmjs.com/package/browser-sync-webpack-plugin), but webpack has more tricks in store.
+<!--  -->
 ## Webpack `watch` Mode and *webpack-dev-server*
 
 A good first step towards a better development environment is to use webpack in its **watch** mode. You can activate it through `webpack --watch`. Once enabled, it detects changes made to your files and recompiles automatically. *webpack-dev-server* (WDS) builds on top of the watch mode and goes even further.
 
-WDS is a development server running **in-memory**. It refreshes content automatically in the browser while you develop your application. It also supports an advanced webpack feature, **Hot Module Replacement** (HMR). HMR allows patching the browser state without a full refresh making it handy with libraries like React.
+WDS is a development server running **in-memory**, meaning the bundle contents isn't actually written out to files, but stored in memory. This is an important distinction when trying to debug code and styles. By default WDS refreshes content automatically in the browser while you develop your application which saves you from remembering to do it yourself. However it also supports an advanced webpack feature, **Hot Module Replacement** (HMR). HMR allows patching the browser state without a full refresh making it particularly handy with libraries like React where a refresh blow away the application state.
 
-HMR goes further than refreshing browser on change. WDS provides an interface that makes it possible to patch code on the fly. For this to work, you have to implement it for the client-side code. It's trivial for something like CSS by definition (no state), but it's a harder problem with JavaScript frameworks and libraries. Often careful design is needed to allow this. When the feature works, it's beautiful.
+WDS provides an interface that makes it possible to patch code on the fly, however for this to work effectively, you have to implement this interfact for the client-side code. It's trivial for something like CSS because it is stateless, but it's a harder problem with JavaScript frameworks and libraries. Often careful design is needed to allow this, but when the feature works, it's beautiful. We will explore this in a later chapter, but for now we'll concentrate on getting WDS to refresh the page when we make changes to our code.
 
 ## Emitting Files from *webpack-dev-server*
 
-Even though it's good that WDS operates in-memory by default, sometimes it can be good to emit files to the file system. If you are integrating with another server that expects to find the files, this applies in particular. [webpack-disk-plugin](https://www.npmjs.com/package/webpack-disk-plugin), [write-file-webpack-plugin](https://www.npmjs.com/package/write-file-webpack-plugin), and more specifically [html-webpack-harddisk-plugin](https://www.npmjs.com/package/html-webpack-harddisk-plugin) can achieve this.
+Even though it's good that WDS operates in-memory by default for performance reasons, sometimes it can be good to emit files to the file system. This applies in particular, if you are integrating with another server that expects to find the files. [webpack-disk-plugin](https://www.npmjs.com/package/webpack-disk-plugin), [write-file-webpack-plugin](https://www.npmjs.com/package/write-file-webpack-plugin), and more specifically [html-webpack-harddisk-plugin](https://www.npmjs.com/package/html-webpack-harddisk-plugin) can achieve this.
 
 W> You should use *webpack-dev-server* strictly for development. If you want to host your application, consider other standard solutions, such as Apache or Nginx.
 
 ## Getting Started with *webpack-dev-server*
 
-To get started with WDS, execute:
+To get started with WDS, first install it:
 
 ```bash
 npm install webpack-dev-server --save-dev
 ```
 
-As before, this command generates a command below the `npm bin` directory. You could try running *webpack-dev-server* from there. After running the WDS, you have a development server running at `http://localhost:8080`. Automatic browser refresh is in place now, although at a rough level.
+As before, this command generates a command below the `npm bin` directory and you could run *webpack-dev-server* from there. After running the WDS, you have a development server running at `http://localhost:8080`. Automatic browser refresh is in place now, although at a basic level.
 
 W> If you are using an IDE, consider enabling **save write** from its settings. This way WDS is able to detect changes made to the files correctly.
 
 ## Attaching *webpack-dev-server* to the Project
 
-To integrate WDS to the project, you should define an npm script for it. To follow npm conventions, you can call it as *start*. To tell the targets apart, you should pass information about the environment to webpack configuration. This allow you to specialize the configuration as needed:
+To integrate WDS to the project, you should define an npm script for launching it. To follow npm conventions, you can call it as *start*. To tell the targets apart, you should pass information about the environment to webpack configuration. This allow you to specialize the configuration as needed:
 
 **package.json**
 
@@ -170,7 +170,7 @@ W> Note that there are [slight differences](https://github.com/webpack/webpack-d
 
 ## Making It Faster to Develop Configuration
 
-Restarting the development server each time you make a change tends to get boring after a while; therefore, it can be a good idea to let the computer do that. As [discussed in GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892), [nodemon](https://www.npmjs.com/package/nodemon) monitoring tool can be used for this purpose.
+WDS will handle restarting the server when we change a bundled file, but what about when we edit the webpack config? Restarting the development server each time you make a change tends to get boring after a while; therefore, it can be a good idea to let automate it. As [discussed in GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892), [nodemon](https://www.npmjs.com/package/nodemon) monitoring tool can be used for this purpose.
 
 To get it to work, you have to install it first through `npm install nodemon --save-dev`. After that, you can make it watch webpack config and restart WDS on change. Here's the script if you want to give it a go:
 

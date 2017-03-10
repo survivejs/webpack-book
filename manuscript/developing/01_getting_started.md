@@ -70,11 +70,11 @@ To move further, you can implement a little site that loads JavaScript, which yo
 - package.json
 - webpack.config.js
 
-The idea is that you transform that *app/* to as a bundle below *build/*. To make this possible, you should set up the assets needed and *webpack.config.js*.
+The idea is that you transform *app/* to a bundle below *build/*. To make this possible, you should set up the assets needed and configure webpack through *webpack.config.js*.
 
 ## Setting Up Assets
 
-As you never get tired of `Hello world`, you can model a variant of that. Set up a component like this:
+As you never get tired of `Hello world`, you will model a variant of that. Set up a component like this:
 
 **app/component.js**
 
@@ -102,7 +102,7 @@ document.body.appendChild(component());
 
 You need to tell webpack how to deal with the assets that were set up. For this purpose, you have to develop a *webpack.config.js* file. Webpack and its development server are able to discover this file through a convention.
 
-To keep things convenient to maintain, you can use [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) to generate an *index.html* for the application. *html-webpack-plugin* wires up the generated assets with it. Install it to the project:
+To keep things convenient to maintain, you can use your first plugin:  [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) *html-webpack-plugin* is a will generate an *index.html* for the application and add a `script` tag to load our generated bundle.
 
 ```bash
 npm install html-webpack-plugin --save-dev
@@ -112,7 +112,7 @@ At a minimum, it's nice to have at least `entry` and `output` fields in your con
 
 Entries tell webpack where to start parsing the application. In multi-page applications, you have an entry per page. Or you could have a configuration per entry as discussed later in this chapter.
 
-It's good to note that all output related paths that you see in the configuration are resolved against `output.path` meaning that if you had an output related option somewhere and wrote `styles/[name].css` to it, webpack would output the `styles` directory below the output path.
+It's good to note that all output related paths that you see in the configuration are resolved against `output.path` meaning that if you had an output related option somewhere and wrote `styles/[name].css` to it, and had set your `output.path' to your project directory found at `~/Documents/Sites/Example/build`, webpack would output the `styles` directory below the output path to `~/Documents/Sites/Example/build/styles/[name].css`.
 
 To illustrate how to connect `entry` and `output` with *html-webpack-plugin*, consider the code below:
 
@@ -150,13 +150,11 @@ module.exports = {
 };
 ```
 
-The `entry` path could be given as a relative one. The [context](https://webpack.js.org/configuration/entry-context/#context) field can be used to configure that lookup. Given plenty of places expect absolute paths, preferring them over absolute paths everywhere avoids confusion.
-
-T> Even though often entries are paths to modules, they can also be paths to loaders returning code. The *Extending with Loaders* chapter discusses the idea. An entry can also be a function that returns a path or a `Promise` resolving to a path.
+The `entry` path could be given as a relative one with the [context](https://webpack.js.org/configuration/entry-context/#context) field used to configure that lookup. However, given plenty of places expect absolute paths, preferring them over relative paths everywhere avoids confusion.
 
 T> **Trailing commas** are used in the book examples on purpose as it gives cleaner diffs for the code examples. You learn to enforce this rule in the *Linting JavaScript* chapter.
 
-T> `[name]` is a placeholder. Placeholders are discussed in detail in the *Adding Hashes to Filenames* chapter.
+T> `[name]` is a placeholder. Placeholders are discussed in detail in the *Adding Hashes to Filenames* chapter, but they are effectively tokens that will be replaced when the string is evaluated. In this case `[name]` will be replaced by the name of the entry - 'app'.
 
 If you execute `node_modules/.bin/webpack`, you should see output:
 
@@ -243,4 +241,4 @@ To recap:
 * *html-webpack-plugin* can be used to generate an HTML entry point to your application. Later in the book, you see how to generate multiple separate pages using. The *Multiple Pages* chapter covers that.
 * It's handy to use npm *package.json* scripts to manage webpack. You can use it as a light task runner and use system features outside of webpack.
 
-You learn to make the development experience nicer in the next chapter by enabling automatic browser refresh.
+In the next chapter you will learn how to improve the developer experience by enabling automatic browser refresh.
