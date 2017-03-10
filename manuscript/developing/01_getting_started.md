@@ -152,6 +152,8 @@ module.exports = {
 
 The `entry` path could be given as a relative one. The [context](https://webpack.js.org/configuration/entry-context/#context) field can be used to configure that lookup. Given plenty of places expect absolute paths, preferring them over absolute paths everywhere avoids confusion.
 
+T> Even though often entries are paths to modules, they can also be paths to loaders returning code. The *Extending with Loaders* chapter discusses the idea. An entry can also be a function that returns a path or a `Promise` resolving to a path.
+
 T> **Trailing commas** are used in the book examples on purpose as it gives cleaner diffs for the code examples. You learn to enforce this rule in the *Linting JavaScript* chapter.
 
 T> `[name]` is a placeholder. Placeholders are discussed in detail in the *Adding Hashes to Filenames* chapter.
