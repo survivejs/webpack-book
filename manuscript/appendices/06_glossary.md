@@ -2,6 +2,10 @@
 
 Given webpack comes with specific nomenclature, the main terms and their explanations have been gathered below based on the book part where they are discussed.
 
+## Introduction
+
+* **Static analysis** - When a tool performs static analysis, it examines the code without running it. This is how tools like ESLint or webpack operate.
+
 ## Developing
 
 * **Entry** - Entry refers to a file where you point from webpack's `entry` configuration.
