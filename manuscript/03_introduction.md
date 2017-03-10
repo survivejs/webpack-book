@@ -69,12 +69,12 @@ Given this book receives a fair amount of maintenance and improvements due to th
 Examining the GitHub repository is beneficial. Consider using the GitHub *compare* tool for this purpose. Example:
 
 ```
-https://github.com/survivejs/webpack-book/compare/v1.8.0...v1.9.4
+https://github.com/survivejs/webpack-book/compare/v1.8.0...v1.9.5
 ```
 
 The page shows you the individual commits that went to the project between the given version range. You can also see the lines that have changed in the book.
 
-The current version of the book is **1.9.4**.
+The current version of the book is **1.9.5**.
 
 The guide is expanded based on demand to make it serve you as well as possible. You can even contribute fixes of your own to the book as the source is available.
 
