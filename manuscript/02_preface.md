@@ -2,7 +2,7 @@
 
 The book you are reading right now goes years back. It all started from a comment I made at Christian Alfoni’s blog in 2014. I had recently discovered webpack and React, and I felt there was a need for a cookbook about the topics. The work begun in a GitHub wiki early 2015.
 
-After a while, I realized this should become an actual book and tried pitching it to a known publisher. As they weren’t interested yet I felt the book has to happen, I started the **SurviveJS** effort. The book warped into "SurviveJS - Webpack and React", my first self-published book. It combined the two topics into one single book.
+After a while, I realized this should become an *actual* book and tried pitching it to a known publisher. As they weren’t interested yet and I felt the book needed to happen, I started the **SurviveJS** effort. The book warped into "SurviveJS - Webpack and React", my first self-published book. It combined the two topics into one single book.
 
 Given a book focusing only on a single technology can stand taller, I ended up splitting the book into two separate ones in 2016. The current book represents the webpack portion of it, and it has grown significantly due to this greater focus. The journey has not been a short one, but it has been possible thanks to community support and continued interest in the topic.
 
