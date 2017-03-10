@@ -23,11 +23,11 @@ You can end up with this error if you make an entry path point at a place that d
 
 ## ERROR ... Module not found
 
-You can get an error like this by either breaking a loader definition so that it points to a loader that does not exist or by breaking an import path within your code. Reading the error message points out what to fix.
+You can get an error like this in two ways. Either by breaking a loader definition so that it points to a loader that does not exist, or by breaking an import path within your code so that it points to a module that doesn't exist. Reading the error message points out what to fix.
 
 ## Loader Not Found
 
-There's another subtle loader related error. If a package matching to a loader name that does not implement the loader interface exists, webpack matches to that and gives a runtime error that says the package is not a loader. This mistake can be made by writing `loader: 'eslint'` over `loader: 'eslint-loader'`.
+There's another subtle loader related error. If a package matching to a loader name that does not implement the loader interface exists, webpack matches to that and gives a runtime error that says the package is not a loader. For example, this mistake can be made by writing `loader: 'eslint'` instead of `loader: 'eslint-loader'`. If the loader doesn't exist at all the previous 'Module not found' error will be raised.
 
 W> A loader definition like this was valid in webpack 1. It has been disallowed in webpack 2. The behavior can be enabled again through `resolveLoader.moduleExtensions` array.
 
@@ -37,11 +37,11 @@ Even though webpack could resolve to your modules fine, it can still fail to bui
 
 ## Module build failed: Unknown word
 
-This error fits the same category. Parsing the file succeeded, but there was the unknown syntax. Most likely that is a typo, or a loader definition is missing.
+This error fits the same category. Parsing the file succeeded, but there was the unknown syntax. Most likely the problem is a typo, but this error can also occur when Webpack has followed an import and encountered syntax it doesn't understand. This probably means that a loader is missing for that particular filetype.
 
 ## SyntaxError: Unexpected token
 
-`SyntaxError` is another error for the same category. This error is possible if you use ES6 syntax with UglifyJS. As it encounters a syntax construct it does not recognize, it raises an error like this.
+`SyntaxError` is another error for the same category. This error is possible if you use ES6 syntax that hasn't been transpiled alongside UglifyJS. As it encounters a syntax construct it does not recognize, it raises an error like this.
 
 ## Conclusion
 
