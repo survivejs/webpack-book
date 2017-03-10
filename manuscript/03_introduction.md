@@ -2,7 +2,7 @@
 
 [Webpack](https://webpack.js.org/) simplifies web development by solving a fundamental problem: bundling. It takes in various assets, such as JavaScript, CSS, and HTML, and then transforms these assets into a format that’s convenient to consume through a browser. Doing this well takes away a significant amount of pain from web development.
 
-It isn’t the easiest tool to learn due to its configuration-driven approach. The purpose of this guide is to help you get started with webpack and then to go beyond the basics.
+It isn’t the easiest tool to learn due to its configuration-driven approach, but it is incredibly powerful. The purpose of this guide is to help you get started with webpack and then to go beyond the basics.
 
 ## What Is Webpack
 
