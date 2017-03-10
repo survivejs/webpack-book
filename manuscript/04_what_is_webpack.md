@@ -21,7 +21,7 @@ T> A dependency graph describes is a directed graph that describes how nodes rel
 Loaders are a crucial part of webpack. When webpack encounters a **module**, it does several things:
 
 1. It **resolves** the module, making sure that the module exists in the supplied location. Webpack provides configuration for adjusting this behavior. The *Consuming Packages* chapter covers techniques related to this. If a module failed to resolve, webpack would give a runtime error.
-2. Assuming a module resolved correctly, webpack decides which loaders the module should be passed through. Each loader is configured to match some modules and not others. This might be based on filetype, location or something else. If a loader is matched, webpack would try to resolve it in a similar way as a module, making sure it exists.
+2. Assuming a module resolved correctly, webpack decides which loaders the module should be passed through. Each loader is configured to match specific modules. This can be based on filetype, location or something else. If a loader is matched, webpack would try to resolve it in a similar way as a module, making sure it exists.
 3. If all the loaders were found, webpack evaluates the matched loaders from bottom to top and right to left (`styleLoader(cssLoader('./main.css'))`), running the module through each loader in turn. The *Loader Definitions* chapter covers the topic in detail.
 4. If all loader evaluation completed without a runtime error, webpack includes the source in the last bundle. **Plugins** can intercept this behavior and alter the way bundling happens.
 5. After every module has been evaluated, webpack writes a bootstrap script including a manifest that describes how to begin executing the result in the browser. This last step can differ based on the build target you are using.
@@ -32,7 +32,7 @@ That’s not all there is to the bundling process. For example, you can define s
 
 Although loaders can do a lot, they don’t provide enough power for more advanced tasks by themselves. **Plugins** allow you to intercept **runtime events** provided by webpack. A good example is bundle extraction performed by `ExtractTextPlugin` which, working in tandem with a loader, extracts CSS files out of the bundle and into a file of its own.
 
-Without this step, CSS would end up in the resulting JavaScript. This is a really important part of Webpack to understand. The fact that a module declares a dependency on another module doesn't mean that this dependency is directly included into the module when it is bundled. The *Separating CSS* chapter discusses this idea in detail.
+Without this step, CSS would end up in the resulting JavaScript. This is a absolutely important part of Webpack to understand. The fact that a module declares a dependency on another module doesn't mean that this dependency is directly included into the module when it's bundled. The *Separating CSS* chapter discusses this idea in detail.
 
 The image below recaps the main concepts discussed above and shows how they relate to each other:
 
@@ -94,7 +94,7 @@ T> To understand webpack on source code level, check out [the artsy webpack tour
 
 ## Hot Module Replacement
 
-You might be familiar with tools, such as [LiveReload](http://livereload.com/) or [BrowserSync](http://www.browsersync.io/), already. These tools refresh the browser automatically as you make changes. HMR takes things one step further. In the case of React, it allows the application to maintain its state without forcing a refresh. While this does not sound that special, it makes a big difference in practice.
+You are likely familiar with tools, such as [LiveReload](http://livereload.com/) or [BrowserSync](http://www.browsersync.io/), already. These tools refresh the browser automatically as you make changes. HMR takes things one step further. In the case of React, it allows the application to maintain its state without forcing a refresh. While this does not sound that special, it makes a big difference in practice.
 
 Note that HMR is available in Browserify via [livereactload](https://github.com/milankinen/livereactload), so it’s not a feature that’s exclusive to webpack.
 
