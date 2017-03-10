@@ -6,6 +6,6 @@ Somehow the Instagram frontend team discovered an early version of webpack and s
 
 I have been following this book since its early stages. It was once a combined React & webpack book. It has grown since then and become a book of its own filled with content.
 
-Juho is an important part of the webpack documentation team for the webpack 2 documentation, so he knows best what complements the official documentation best. And he used this information to create this book in a format that is suitable to learn webpack and how to use it for good.
+Juho is an important part of the webpack documentation team for the webpack 2 documentation, so he knows best what complements the official documentation. And he used this information to create this book in a format that is suitable to learn webpack and how to use it for good.
 
 Tobias Koppers
