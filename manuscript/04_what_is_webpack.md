@@ -8,7 +8,9 @@ T> If you want to understand build tools and their history in a better detail, c
 
 ## Webpack Relies on Modules
 
-The way to think about webpack is that you supply it with input and it gives you back output. In webpack terms, the bundling process begins from user defined **entries**. An entry is a starting point from which webpack will follow references to other modules and from these modules will follow references to other modules and so on. As a result, webpack constructs a **dependency graph** of the project and then generates the **output** based on your configuration. It writes everything into a single **bundle** by default, but it can be configured to output more.
+To use webpack, you supply it with input and it gives you back files. In webpack terms, the bundling process begins from user defined **entries**. An entry is a starting point from which webpack follows references to other modules and from these modules follow references to other modules and so on.
+
+As a result, webpack constructs a **dependency graph** of the project and then generates **bundles** based on your configuration. It writes everything into a single **bundle** by default, but it can be configured to output more.
 
 When it comes to JavaScript, webpack supports ES6, CommonJS, and AMD module formats out of the box, but modules don't have to be JavaScript modules. The loader mechanism works for CSS as well, and `@import` and `url()` are supported through *css-loader* but through the use of other loaders, other types of file (like fonts or images) can be imported. This is one of the things that makes webpack so powerful.
 
