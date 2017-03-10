@@ -52,7 +52,7 @@ module.exports = function(a, b) {
 
 Then, to test that, set up a small test suite:
 
-**tests/add_test.js**
+**tests/add.test.js**
 
 ```javascript
 const assert = require('assert');
@@ -106,7 +106,7 @@ if (module.hot) {
   const context = require.context(
     'mocha-loader!./', // Process through mocha-loader
     false, // Skip recursive processing
-    /_test.js$/ // Pick only files ending with _test
+    /\.test.js$/ // Pick only files ending with .test.js
   );
 
   // Execute each test suite
@@ -179,7 +179,7 @@ Like webpack, Karma relies on the configuration as well. Set up a file as follow
 
 ```javascript
 module.exports = function(config) {
-  const tests = 'tests/*_test.js';
+  const tests = 'tests/*.test.js';
 
   config.set({
     frameworks: ['mocha'],
@@ -394,7 +394,7 @@ Install Jest first:
 npm install jest --save-dev
 ```
 
-Jest captures tests through *package.json* [configuration](https://facebook.github.io/jest/docs/configuration.html). It detects tests within a *__tests__* directory by default. To adapt to the naming convention of this demonstration, override the defaults:
+Jest captures tests through *package.json* [configuration](https://facebook.github.io/jest/docs/configuration.html). It detects tests within a *__tests__* directory it also happens to capture the naming pattern the project is using by default:
 
 **package.json**
 
@@ -408,11 +408,6 @@ leanpub-start-insert
 leanpub-end-insert
     ...
   },
-leanpub-start-insert
-  "jest": {
-    "testMatch": ["**/tests/**/*_test.js"]
-  },
-leanpub-end-insert
   ...
 }
 ```
