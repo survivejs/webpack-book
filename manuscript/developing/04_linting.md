@@ -2,7 +2,7 @@
 
 Linting is one of those techniques that can help you make fewer mistakes while coding JavaScript. You can spot issues before they become actual problems. Modern editors and IDEs offer strong support for popular tools allowing you to detect possible issues as you are developing.
 
-Despite this, it is a good idea to set them up with webpack or at least in a separate task that gets run regularly. That allows you to cancel a production build that is not up to your standards.
+Despite this, it's a good idea to set them up with webpack or at least in a separate task that gets run regularly. That allows you to cancel a production build that is not up to your standards.
 
 ## Brief Introduction to ESLint
 
@@ -14,11 +14,11 @@ ESLint goes to the next level as it allows you to implement custom rules, parser
 
 ESLint rules have been documented well, and you have full control over their severity. These features alone make it a powerful tool. Better yet, there is a significant number of rules and presets beyond the core as the community has built on top of it.
 
-T> It is telling that a competing project, JSCS, [decided to merge its efforts with ESLint](http://eslint.org/blog/2016/04/welcoming-jscs-to-eslint). JSCS reached the end of its life with its 3.0.0 release, and the core team joined with ESLint.
+T> It's telling that a competing project, JSCS, [decided to merge its efforts with ESLint](http://eslint.org/blog/2016/04/welcoming-jscs-to-eslint). JSCS reached the end of its life with its 3.0.0 release, and the core team joined with ESLint.
 
 ### eslint-config-airbnb
 
-[eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb) is a good example of a popular preset. Often it is enough to find a preset you like, tweak it a little bit to your liking with local rules or by deriving a preset of your own based on it, and then using that. This way you don't have to worry so much about all the available functionality.
+[eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb) is a good example of a popular preset. Often it's enough to find a preset you like, tweak it a little bit to your liking with local rules or by deriving a preset of your own based on it, and then using that. This way you don't have to worry so much about all the available functionality.
 
 T> [eslint-config-cleanjs](https://www.npmjs.com/package/eslint-config-cleanjs) is a good example of how you can use ESLint to restrict JavaScript to a purely functional subset.
 
@@ -36,7 +36,7 @@ Linting does **not** replace proper testing, but it can complement testing appro
 
 [ESLint](http://eslint.org/) is the most versatile linting solution for JavaScript. It builds on top of ideas presented by JSLint and JSHint. More importantly, it allows you to develop custom rules. As a result, a nice set of rules has been developed for React in the form of [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react).
 
-T> Since *v1.4.0* ESLint supports [autofixing](http://eslint.org/blog/2015/09/eslint-v1.4.0-released/). It allows you to perform certain rule fixes automatically. To activate it, pass the flag `--fix` to the tool. It is also possible to use this feature with webpack, although you should be careful with it. [js-beautify](https://www.npmjs.com/package/js-beautify) can perform a similar operation.
+T> Since *v1.4.0* ESLint supports [autofixing](http://eslint.org/blog/2015/09/eslint-v1.4.0-released/). It allows you to perform certain rule fixes automatically. To activate it, pass the flag `--fix` to the tool. It's also possible to use this feature with webpack, although you should be careful with it. [js-beautify](https://www.npmjs.com/package/js-beautify) can perform a similar operation.
 
 ### Connecting ESlint with *package.json*
 
@@ -115,7 +115,7 @@ Another alternative would be to push it behind a *package.json* script. Autofix 
 
 Beyond vanilla JSON, ESLint supports other formats, such as JavaScript or YAML. I.e., *.eslintrc.yaml* would expect YAML. See the [documentation](http://eslint.org/docs/user-guide/configuring#configuration-file-formats) for further details.
 
-T> When ESLint gives errors, npm shows a long `ELIFECYCLE error` error block of its own. It is possible to disable that using the `silent` flag like this: `npm run lint:js --silent` or a shortcut `npm run lint:js -s`.
+T> When ESLint gives errors, npm shows a long `ELIFECYCLE error` error block of its own. It's possible to disable that using the `silent` flag like this: `npm run lint:js --silent` or a shortcut `npm run lint:js -s`.
 
 ### Connecting ESLint with Webpack
 
@@ -209,7 +209,7 @@ There are more options, and [eslint-loader](https://www.npmjs.com/package/eslint
 
 ## ESLint Tips
 
-The great thing about ESLint is that you can shape it to your purposes. The community around it is active, and you can find good integration in other tooling as well. Consider the tips below.
+The great thing about ESLint is that you can shape it to your purposes. The community around it's active, and you can find good integration in other tooling as well. Consider the tips below.
 
 ### Usability Tips
 
@@ -218,7 +218,7 @@ The great thing about ESLint is that you can shape it to your purposes. The comm
 
 ### Performance Tips
 
-* Especially on bigger projects it is beneficial to run ESLint outside of webpack. That keeps code compilation fast while still giving the advantage of linting. Solutions like [lint-staged](https://www.npmjs.com/package/lint-staged) and [fastlint](https://www.npmjs.com/package/fastlint) can make this even more quickly.
+* Especially on bigger projects it's beneficial to run ESLint outside of webpack. That keeps code compilation fast while still giving the advantage of linting. Solutions like [lint-staged](https://www.npmjs.com/package/lint-staged) and [fastlint](https://www.npmjs.com/package/fastlint) can make this even more quickly.
 * You can get more performance out of ESLint by running it through a daemon, such as [eslint_d](https://www.npmjs.com/package/eslint_d). Using it brings down the overhead, and it can bring down linting times considerably.
 
 ### Extension Tips
@@ -267,7 +267,7 @@ T> [Danger](https://www.npmjs.com/package/danger) operates on a higher level tha
 
 ## Conclusion
 
-In this chapter, you learned how to lint your code using webpack in different ways. It is one of those techniques that yields benefits over the long term. You can fix possible problems before they become actual issues.
+In this chapter, you learned how to lint your code using webpack in different ways. It's one of those techniques that yields benefits over the long term. You can fix possible problems before they become actual issues.
 
 To recap:
 
@@ -276,4 +276,4 @@ To recap:
 * EditorConfig complements ESLint by allowing you to define a project-level coding style. Editors integrate with EditorConfig making it easier to keep a project consistent regardless of the development platform.
 * Prettier is an upcoming solution that can format your code automatically. Danger operates on repository level and can perform higher level tasks related to the development process.
 
-Given the webpack configuration of the project is starting to get a little messy, it is a good time to discuss how to compose configuration and improve the situation.
+Given the webpack configuration of the project is starting to get a little messy, it's a good time to discuss how to compose configuration and improve the situation.

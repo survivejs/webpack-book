@@ -1,6 +1,6 @@
 # Configuring Hot Module Replacement
 
-**Hot Module Replacement** (HMR) builds on top the WDS. It enables an interface that makes it possible to swap modules live. For example, *style-loader* can update your CSS without forcing a refresh. As CSS is stateless by design, implementing HMR for it is ideal.
+**Hot Module Replacement** (HMR) builds on top the WDS. It enables an interface that makes it possible to swap modules live. For example, *style-loader* can update your CSS without forcing a refresh. As CSS is stateless by design, implementing HMR for it's ideal.
 
 HMR is possible with JavaScript too, but due to application state, it's harder. In the *Hot Module Replacement with React* appendix, you can see how to set it up with React. You can use the same idea elsewhere as well. Vue and [vue-hot-reload-api](https://www.npmjs.com/package/vue-hot-reload-api) is a good example.
 
@@ -115,7 +115,7 @@ T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environme
 
 When webpack generates a bundle, it needs to tell different modules apart. By default, it uses numbers for this purpose. The problem is that this makes it difficult to debug the code if you must inspect the resulting code. It can also lead to issues with hashing behavior.
 
-To overcome this problem, it is a good idea to use an alternative module ID scheme. As it happens, webpack provides a plugin that's ideal for debugging. This plugin, `NamedModulesPlugin`, emits module paths over numeric IDs to make the output easier to understand.
+To overcome this problem, it's a good idea to use an alternative module ID scheme. As it happens, webpack provides a plugin that's ideal for debugging. This plugin, `NamedModulesPlugin`, emits module paths over numeric IDs to make the output easier to understand.
 
 You can enable this better behavior as follows:
 
@@ -153,7 +153,7 @@ T> A similar effect can be achieved by setting `output.pathInfo = true`. It stil
 
 ## Implementing the HMR Interface
 
-Webpack exposes the HMR interface through a global, `module.hot`. It provides updates through `module.hot.accept(<path to watch>, <handler>)` function and you need to patch the application there. In this case, it is enough to replace the old DOM node with a newer one as you receive updates.
+Webpack exposes the HMR interface through a global, `module.hot`. It provides updates through `module.hot.accept(<path to watch>, <handler>)` function and you need to patch the application there. In this case, it's enough to replace the old DOM node with a newer one as you receive updates.
 
 The following implementation illustrates the idea:
 
@@ -235,7 +235,7 @@ leanpub-end-insert
 ...
 ```
 
-Given this setup polls the file system, it is more resource intensive. It's worth giving a go if the default doesn't work, though.
+Given this setup polls the file system, it's more resource intensive. It's worth giving a go if the default doesn't work, though.
 
 T> There are more details in *webpack-dev-server* issue [#155](https://github.com/webpack/webpack-dev-server/issues/155).
 
@@ -278,7 +278,7 @@ HMR is one of those aspects of webpack that makes it attractive for developers. 
 To recap:
 
 * To work, HMR requires both client and server side support. For this purpose, webpack-dev-server provides both. Often you have to implement the client side interface although loaders like *style-loader* implement it for you.
-* It is a good idea to use the `NamedModulesPlugin` during development as that gives you better debug information.
+* It's a good idea to use the `NamedModulesPlugin` during development as that gives you better debug information.
 * The default HMR setup can be problematic on certain systems. For this reason, more resource intensive polling is an option.
 * WDS does far more than refreshing and HMR. For example proxying allows you to connect it to other servers.
 

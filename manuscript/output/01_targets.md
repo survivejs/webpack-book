@@ -188,7 +188,7 @@ T> Instead of using the multi-compiler mode, it would be possible to define two 
 
 ### Cleaning and Linting Before Building
 
-It is a good idea to clean the build directory and lint the code before building the library. You could expand webpack configuration like this:
+It's a good idea to clean the build directory and lint the code before building the library. You could expand webpack configuration like this:
 
 ```javascript
 ...
@@ -258,7 +258,7 @@ T> If you are using Git, ignore rules can be managed through *.gitignore*. You c
 
 ### Generating `module` Field Compatible Output
 
-To generate *package.json* `module` field compatible output to enable tree shaking for the consumers, the source should be processed so that it does not lose ES6 module definitions. It is better to solve this problem outside of webpack by passing the source through Babel instead. Adjust as follows:
+To generate *package.json* `module` field compatible output to enable tree shaking for the consumers, the source should be processed so that it does not lose ES6 module definitions. It's better to solve this problem outside of webpack by passing the source through Babel instead. Adjust as follows:
 
 **package.json**
 
@@ -318,7 +318,7 @@ To recap:
 
 * Webpack's output target can be controlled through the `target` field. It defaults to `web`, but accepts other options too.
 * If you bundle libraries with it, you should set the `output` options carefully to get the result you want.
-* Webpack can generate both a non-minified and a minified version of a library through its **multi-compiler** mode. It is possible to minify also as a post-process using an external tool.
+* Webpack can generate both a non-minified and a minified version of a library through its **multi-compiler** mode. It's possible to minify also as a post-process using an external tool.
 * Performing tasks, such as cleaning and linting JavaScript, while using the multi-compiler mode is problematic at the moment. Instead, it can be a good idea to handle these tasks outside of webpack or run multiple webpack instances separately.
 
 If you try to import *./dist/lib.js* through Node, you notice it emits `{}`. The problem has to do with the output type that was chosen. To understand better which output to use and why, the next chapter covers them in detail.

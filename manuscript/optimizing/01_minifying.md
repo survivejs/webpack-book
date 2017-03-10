@@ -2,7 +2,7 @@
 
 The build output hasn't received attention yet and no doubt it's going to be a little chunky, especially as you included React in it. You can apply a variety of techniques to bring down the size of the vendor bundle. You can also leverage client level caching and load individual assets lazily as you saw earlier.
 
-**Minification** is a process where the code is simplified without losing any meaning that matters to the interpreter. As a result, your code most likely looks jumbled, and it is hard to read. But that's the point.
+**Minification** is a process where the code is simplified without losing any meaning that matters to the interpreter. As a result, your code most likely looks jumbled, and it's hard to read. But that's the point.
 
 T> Even if you minify the build, you can still generate source maps through the `devtool` option that was discussed earlier to gain a better debugging experience, even production code if you want.
 
@@ -266,7 +266,7 @@ leanpub-end-insert
 ...
 ```
 
-If you build the project now (`npm run build`), you should notice that CSS has become smaller as it is missing comments:
+If you build the project now (`npm run build`), you should notice that CSS has become smaller as it's missing comments:
 
 ```bash
 Hash: 12aec469d54202150429
@@ -309,6 +309,6 @@ Minification is the easiest step you can take to make your build smaller. To rec
 * **Minification** process analyzes your source code and turns it into a smaller form with the same meaning if you use safe transformations. Certain unsafe transformations allow you to reach even smaller results while potentially breaking code that relies, for example, on exact parameter naming.
 * **Performance budget** allows you to set limits to the build size. Maintaining a budget can keep developers more conscious of the size of the generated bundles.
 * Webpack includes `UglifyJsPlugin` for minification. Other solutions, such as Babili, provide similar functionality with costs of their own. While Babili supports ES6, it can be less performant that UglifyJS.
-* Besides JavaScript, it is possible to minify other assets, such as CSS and HTML, too. Minifying these requires specific technologies that have to be applied through loaders and plugins of their own.
+* Besides JavaScript, it's possible to minify other assets, such as CSS and HTML, too. Minifying these requires specific technologies that have to be applied through loaders and plugins of their own.
 
 You learn to apply tree shaking against code in the next chapter.

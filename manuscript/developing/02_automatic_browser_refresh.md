@@ -1,6 +1,6 @@
 # Automatic Browser Refresh
 
-Tools, such as [LiveReload](http://livereload.com/) or [Browsersync](http://www.browsersync.io/), allow to refresh the browser as you develop the application and avoid refresh for CSS changes. It is possible to setup Browsersync to work with webpack through [browser-sync-webpack-plugin](https://www.npmjs.com/package/browser-sync-webpack-plugin), but webpack has more tricks in store.
+Tools, such as [LiveReload](http://livereload.com/) or [Browsersync](http://www.browsersync.io/), allow to refresh the browser as you develop the application and avoid refresh for CSS changes. It's possible to setup Browsersync to work with webpack through [browser-sync-webpack-plugin](https://www.npmjs.com/package/browser-sync-webpack-plugin), but webpack has more tricks in store.
 
 ## Webpack `watch` Mode and *webpack-dev-server*
 
@@ -8,7 +8,7 @@ A good first step towards a better development environment is to use webpack in 
 
 WDS is a development server running **in-memory**. It refreshes content automatically in the browser while you develop your application. It also supports an advanced webpack feature, **Hot Module Replacement** (HMR). HMR allows patching the browser state without a full refresh making it handy with libraries like React.
 
-HMR goes further than refreshing browser on change. WDS provides an interface that makes it possible to patch code on the fly. For this to work, you have to implement it for the client-side code. It is trivial for something like CSS by definition (no state), but it's a harder problem with JavaScript frameworks and libraries. Often careful design is needed to allow this. When the feature works, it is beautiful.
+HMR goes further than refreshing browser on change. WDS provides an interface that makes it possible to patch code on the fly. For this to work, you have to implement it for the client-side code. It's trivial for something like CSS by definition (no state), but it's a harder problem with JavaScript frameworks and libraries. Often careful design is needed to allow this. When the feature works, it's beautiful.
 
 ## Emitting Files from *webpack-dev-server*
 
@@ -144,19 +144,19 @@ Even though `--env` allows to pass strings to the configuration, it can do a bit
 ...
 ```
 
-Instead of a string, you should receive an object `{ target: 'production' }` at configuration now. You could pass more key-value pairs, and they would go to the `env` object. It is important to note that if you set `--env foo` while setting `--env.target`, the string overrides the object.
+Instead of a string, you should receive an object `{ target: 'production' }` at configuration now. You could pass more key-value pairs, and they would go to the `env` object. It's important to note that if you set `--env foo` while setting `--env.target`, the string overrides the object.
 
 W> Webpack 2 changed argument behavior compared to webpack 1. You are not allowed to pass custom parameters through the CLI anymore. Instead, it's better to go through the `--env` mechanism if you need to do this.
 
 ## Accessing the Development Server from Network
 
-It is possible to customize host and port settings through the environment in the setup (i.e., `export PORT=3000` on Unix or `SET PORT=3000` on Windows). The default settings are enough on most platforms.
+It's possible to customize host and port settings through the environment in the setup (i.e., `export PORT=3000` on Unix or `SET PORT=3000` on Windows). The default settings are enough on most platforms.
 
 To access your server, you need to figure out the ip of your machine. On Unix, this can be achieved using `ifconfig | grep inet`. On Windows, `ipconfig` can be utilized. An npm package, such as [node-ip](https://www.npmjs.com/package/node-ip) come in handy as well. Especially on Windows, you need to set your `HOST` to match your ip to make it accessible.
 
 ## Alternate Ways to Use *webpack-dev-server*
 
-You could have passed the WDS options through a terminal. It is clearer to manage the options within webpack configuration as that helps to keep *package.json* nice and tidy. It is also easier to understand what's going on as you don't need to dig out the answers from the webpack source.
+You could have passed the WDS options through a terminal. It's clearer to manage the options within webpack configuration as that helps to keep *package.json* nice and tidy. It's also easier to understand what's going on as you don't need to dig out the answers from the webpack source.
 
 Alternately, you could have set up an Express server and use a middleware. There are a couple of options:
 
@@ -185,7 +185,7 @@ To get it to work, you have to install it first through `npm install nodemon --s
 ...
 ```
 
-It is possible WDS [will support the functionality](https://github.com/webpack/webpack/issues/3153) itself in the future. If you want to make it reload itself on change, you should implement a little workaround like this for now.
+It's possible WDS [will support the functionality](https://github.com/webpack/webpack/issues/3153) itself in the future. If you want to make it reload itself on change, you should implement a little workaround like this for now.
 
 ## Development Plugins
 

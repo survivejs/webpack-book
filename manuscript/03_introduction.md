@@ -2,13 +2,13 @@
 
 [Webpack](https://webpack.js.org/) simplifies web development by solving a fundamental problem: bundling. It takes in various assets, such as JavaScript, CSS, and HTML, and then transforms these assets into a format that’s convenient to consume through a browser. Doing this well takes away a significant amount of pain from web development.
 
-It isn’t the easiest tool to learn due to its configuration-driven approach, but it is incredibly powerful. The purpose of this guide is to help you get started with webpack and then to go beyond the basics.
+It's not the easiest tool to learn due to its configuration-driven approach, but it's incredibly powerful. The purpose of this guide is to help you get started with webpack and then to go beyond the basics.
 
 ## What Is Webpack?
 
 Web browsers have been designed to consume HTML, JavaScript, and CSS. You can simply to write files that the browser understands directly. The problem is that this eventually becomes unwieldy and this is particularly the case when you are developing web applications as you have to deal with multiple different formats.
 
-As an application develops, the complexity of handling it grows as well. Webpack was designed to counter this problem. It manages the problems mentioned above through static analysis. This process gets most of the work done. It is one of the fundamental issues of web development currently, and solving the problem well can help you a lot.
+As an application develops, the complexity of handling it grows as well. Webpack was designed to counter this problem. It manages the problems mentioned above through static analysis. This process gets most of the work done. It's one of the fundamental issues of web development currently, and solving the problem well can help you a lot.
 
 Webpack isn’t the only solution for this problem, and a collection of different tools have emerged. Task runners, such as Grunt and Gulp, are good examples of higher level tools. Often the problem is that need to write the workflows by hand. Pushing that issue to a bundler, such as webpack, is a step forward.
 
@@ -16,7 +16,7 @@ Webpack isn’t the only solution for this problem, and a collection of differen
 
 Webpack takes another route. It allows you to treat your project as a dependency graph. You could have an *index.js* in your project that pulls in the dependencies the project needs through standard `require` or `import` statements. You can refer to your style files and other assets the same way if you want.
 
-Webpack does all the preprocessing for you and gives you the bundles you specify through configuration and your code. This declarative approach is powerful, but it is a little difficult to learn. Webpack becomes an indispensable tool after you begin to understand how it works. This book has been designed to get through that initial learning curve and even go a little further.
+Webpack does all the preprocessing for you and gives you the bundles you specify through configuration and your code. This declarative approach is powerful, but it's a little difficult to learn. Webpack becomes an indispensable tool after you begin to understand how it works. This book has been designed to get through that initial learning curve and even go a little further.
 
 ## What Will You Learn?
 
@@ -106,7 +106,7 @@ Feel free to subscribe.
 
 Big thanks to [Christian Alfoni](http://www.christianalfoni.com/) for helping me craft the first version of this book. That inspired the whole SurviveJS effort. The version you see now is a complete rewrite.
 
-The book wouldn’t be half as good as it is without patient editing and feedback by my editor [Jesús Rodríguez](https://github.com/Foxandxss). Thank you.
+The book wouldn’t be half as good as it's without patient editing and feedback by my editor [Jesús Rodríguez](https://github.com/Foxandxss). Thank you.
 
 This book wouldn’t have been possible without the original "SurviveJS - Webpack and React" effort. Anyone who contributed to it deserves my thanks. You can check that book for more accurate attributions.
 

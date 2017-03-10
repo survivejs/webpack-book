@@ -80,7 +80,7 @@ import(`indexes/${target}.json`).then(...).catch(...);
 
 The same idea works with `require` as long as webpack can analyze the situation statically.
 
-T> Any time you are using dynamic imports like this, it is a good idea to specify file extension in the path as that helps with performance by keeping the context smaller than otherwise.
+T> Any time you are using dynamic imports like this, it's a good idea to specify file extension in the path as that helps with performance by keeping the context smaller than otherwise.
 
 ## Dealing with Dynamic Paths
 

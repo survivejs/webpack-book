@@ -45,7 +45,7 @@ You can tweak webpack's module resolution through the `resolve.modules` field. E
 },
 ```
 
-Sometimes it is beneficial to use these techniques together. Compared to npm environment, webpack provides more flexibility, although you can mimic a lot of webpack's functionality using terminal based tricks.
+Sometimes it's beneficial to use these techniques together. Compared to npm environment, webpack provides more flexibility, although you can mimic a lot of webpack's functionality using terminal based tricks.
 
 W> Installing global packages can lead to surprising behavior. If you have a package installed both globally and it a project happens to contain it, executing associated terminal command (say `webpack`) points to the version of the project. It doesn't work unless the global package exists.
 
@@ -57,7 +57,7 @@ npm supports multiple version ranges as listed below:
 
 * `~` - Tilde matches only patch versions. For example, `~1.2` would be equal to `1.2.x`.
 * `^` - Caret is the default you get using `--save` or `--save-dev`. It matches minor versions, and this means `^0.2.0` would be equal to `0.2.x`.
-* `*` - Asterisk matches major releases, and it is the most dangerous of the ranges. Using this recklessly can easily break your project in the future.
+* `*` - Asterisk matches major releases, and it's the most dangerous of the ranges. Using this recklessly can easily break your project in the future.
 * `>= 1.3.0 < 2.0.0` - Ranges between versions come in handy with `peerDependencies`.
 
 You can set the default range using `npm config set save-prefix='^'` in case you prefer something else than caret. Alternately, you can modify *~/.npmrc* directly. Especially defaulting to tilde can be a good idea that can help you to avoid trouble with dependencies, although it doesn't remove potential problems entirely. That's where shrinkwrapping comes in.
@@ -78,7 +78,7 @@ An important part of maintaining a project is keeping their dependencies up to d
 * Install the newest version of a specific dependency, e.g., `npm install lodash@* --save` as a more controlled approach.
 * Patch version information by hand by modifying *package.json* directly.
 
-It is important to remember that your dependencies can introduce backward incompatible changes. Remember how SemVer works and study the release notes of dependencies. They don't exist always, so you have to go through the project commit history.
+It's important to remember that your dependencies can introduce backward incompatible changes. Remember how SemVer works and study the release notes of dependencies. They don't exist always, so you have to go through the project commit history.
 
 T> `npm ls`, and more specifically `npm ls <package name>`, allow you to figure out which versions you have installed. `npm ls -g` performs a similar lookup against the globally installed packages.
 
@@ -94,7 +94,7 @@ These services provide badges you can integrate into your project *README.md*, a
 
 For testing your project, you can consider solutions, such as [Travis CI](https://travis-ci.org/) or [SauceLabs](https://saucelabs.com/). They can test your project against different environments and browsers. The advantage of doing this is that it allows you to detect regressions. If you accept pull requests to your project, these services can help to keep their quality higher as it forces the authors to maintain their code on a higher level.
 
-[Codecov](https://codecov.io/) and [Coveralls](https://coveralls.io/) provide code coverage information and a badge to include in your README. It is a part of improving the quality of your pull requests as they should maintain the current coverage at a minimum and ideally improve it.
+[Codecov](https://codecov.io/) and [Coveralls](https://coveralls.io/) provide code coverage information and a badge to include in your README. It's a part of improving the quality of your pull requests as they should maintain the current coverage at a minimum and ideally improve it.
 
 T> [shields.io](http://shields.io/) lists a large number of available badges. [NodeICO](https://nodei.co/) provides badges that aggregate package related information.
 
@@ -200,7 +200,7 @@ T> [null-loader](https://www.npmjs.com/package/null-loader) discussed in the *Lo
 
 ## Managing Pre-built Dependencies
 
-It is possible webpack gives the following warning with certain dependencies:
+It's possible webpack gives the following warning with certain dependencies:
 
 ```bash
 WARNING in ../~/jasmine-promises/dist/jasmine-promises.js
@@ -248,7 +248,7 @@ T> It can be a good idea to install [React Developer Tools](https://github.com/f
 
 ### Disabling Asset Loading
 
-It is possible a package comes with formats you are not interested in. A good example of this is a font framework. They often provide fonts in all formats, but you need only a few if you support modern browsers.
+It's possible a package comes with formats you are not interested in. A good example of this is a font framework. They often provide fonts in all formats, but you need only a few if you support modern browsers.
 
 [null-loader](https://www.npmjs.com/package/null-loader) fits the use case. You can tell webpack to pipe certain assets through it.
 
@@ -313,7 +313,7 @@ Webpack can consume most npm packages without a hitch. Sometimes, though, patchi
 To recap:
 
 * To consume packages effectively, you should understand SemVer. To keep your build repeatable, consider using technologies like shrinkwrapping or Yarn lockfiles.
-* Use webpack's access to module resolution to your benefit. Sometimes you can work around issues by tweaking resolution. Often it is a good idea to try to push improvements upstream to the projects themselves, though.
+* Use webpack's access to module resolution to your benefit. Sometimes you can work around issues by tweaking resolution. Often it's a good idea to try to push improvements upstream to the projects themselves, though.
 * Webpack allows you to patch resolved modules in many ways. Given certain dependencies expect globals, you can use webpack to inject them. You can also expose modules as globals. This is necessary for certain development tooling to work.
 * To understand your dependencies better, consider using available tooling and service to study them. Knowing them well can pay off later if problems arise.
 

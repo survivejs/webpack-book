@@ -46,6 +46,8 @@
         ["you'll", ""],
         ["we'll", ""],
         ["they'll", ""],
+        ["it is", "it's"],
+        ["It is", "It's"],
         // ["I", ""], // This should be skipped for foreword/preface
         // ["may", ""], // This should be a warning
 

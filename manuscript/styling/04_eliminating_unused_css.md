@@ -1,6 +1,6 @@
 # Eliminating Unused CSS
 
-Frameworks like [Bootstrap](https://getbootstrap.com/) tend to come with a lot of CSS. Often you use only a small part of it. Typically, you bundle even the unused CSS. It is possible, however, to eliminate the portions you aren't using.
+Frameworks like [Bootstrap](https://getbootstrap.com/) tend to come with a lot of CSS. Often you use only a small part of it. Typically, you bundle even the unused CSS. It's possible, however, to eliminate the portions you aren't using.
 
 [PurifyCSS](https://www.npmjs.com/package/purifycss) is a tool that can achieve this by analyzing files. It walks through your code and figures out which CSS classes are being used. Often there is enough information for it to strip unused CSS from your project. It also works with single page applications to an extent.
 
@@ -95,7 +95,7 @@ exports.purifyCSS = function({ paths }) {
 leanpub-end-insert
 ```
 
-Next, the part has to be connected with the configuration. It is important the plugin is used *after* the `ExtractTextPlugin`; otherwise it doesn't work:
+Next, the part has to be connected with the configuration. It's important the plugin is used *after* the `ExtractTextPlugin`; otherwise it doesn't work:
 
 **webpack.config.js**
 
@@ -156,7 +156,7 @@ The idea of [critical path rendering](https://developers.google.com/web/fundamen
 
 ## Conclusion
 
-Using PurifyCSS can lead to a significant decrease in file size. It is particularly valuable for static sites that rely on a heavy CSS framework. The more dynamic a site or an application becomes, the harder it becomes to analyze reliably.
+Using PurifyCSS can lead to a significant decrease in file size. It's particularly valuable for static sites that rely on a heavy CSS framework. The more dynamic a site or an application becomes, the harder it becomes to analyze reliably.
 
 To recap:
 

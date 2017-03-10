@@ -4,7 +4,7 @@ Before getting started, make sure you are using a recent version of [Node](http:
 
 The completed configuration is available at [GitHub](https://github.com/survivejs-demos/webpack-demo). If you are unsure of something, refer there.
 
-T> It is possible to get a more controlled environment by using a solution such as [Docker](https://www.docker.com/), [Vagrant](https://www.vagrantup.com/) or [nvm](https://www.npmjs.com/package/nvm). Vagrant comes with a performance penalty as it relies on a virtual machine. Vagrant is valuable in a team: each developer have the same environment, usually close to production.
+T> It's possible to get a more controlled environment by using a solution such as [Docker](https://www.docker.com/), [Vagrant](https://www.vagrantup.com/) or [nvm](https://www.npmjs.com/package/nvm). Vagrant comes with a performance penalty as it relies on a virtual machine. Vagrant is valuable in a team: each developer have the same environment, usually close to production.
 
 W> If you are using an older version than Node 6, you have to adapt the code or process your webpack configuration through Babel as discussed in the *Loading JavaScript* chapter.
 
@@ -26,7 +26,7 @@ T> This is a good place to set up version control using [Git](https://git-scm.co
 
 ## Installing Webpack
 
-Even though webpack can be installed globally (`npm install webpack -g`), it is a good idea to maintain it as a dependency of your project to avoid issues, as then you have control over the exact version you are running.
+Even though webpack can be installed globally (`npm install webpack -g`), it's a good idea to maintain it as a dependency of your project to avoid issues, as then you have control over the exact version you are running.
 
 The approach works nicely in **Continuous Integration** (CI) setups as well. A CI system can install your local dependencies, compile your project using them, and then push the result to a server.
 
@@ -108,11 +108,11 @@ To keep things convenient to maintain, you can use [html-webpack-plugin](https:/
 npm install html-webpack-plugin --save-dev
 ```
 
-At a minimum, it is nice to have at least `entry` and `output` fields in your configuration. Often you see a lot more as you specify how webpack deals with different file types and how it resolves them.
+At a minimum, it's nice to have at least `entry` and `output` fields in your configuration. Often you see a lot more as you specify how webpack deals with different file types and how it resolves them.
 
 Entries tell webpack where to start parsing the application. In multi-page applications, you have an entry per page. Or you could have a configuration per entry as discussed later in this chapter.
 
-It is good to note that all output related paths that you see in the configuration are resolved against `output.path` meaning that if you had an output related option somewhere and wrote `styles/[name].css` to it, webpack would output the `styles` directory below the output path.
+It's good to note that all output related paths that you see in the configuration are resolved against `output.path` meaning that if you had an output related option somewhere and wrote `styles/[name].css` to it, webpack would output the `styles` directory below the output path.
 
 To illustrate how to connect `entry` and `output` with *html-webpack-plugin*, consider the code below:
 
@@ -179,7 +179,7 @@ The output tells a lot:
 * `Hash: 3f76ae042ff0f2d98f35` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. Hashing is discussed in detail in the *Adding Hashes to Filenames* chapter.
 * `Version: webpack 2.2.1` - Webpack version.
 * `Time: 377ms` - Time it took to execute the build.
-* `app.js    3.13 kB       0  [emitted]  app` - Name of the generated asset, size, the IDs of the **chunks** into which it is related, status information telling how it was generated, the name of the chunk.
+* `app.js    3.13 kB       0  [emitted]  app` - Name of the generated asset, size, the IDs of the **chunks** into which it's related, status information telling how it was generated, the name of the chunk.
 * `index.html  180 bytes          [emitted]` - Another generated asset that was emitted by the process.
 * `[0] ./app/component.js 148 bytes {0} [built]` - The ID of the entry asset, name, size, entry chunk ID, the way it was generated.
 * `Child html-webpack-plugin for "index.html":` - This is plugin-related output. In this case *html-webpack-plugin* is doing the output of its own.
@@ -214,7 +214,7 @@ You can execute this kind of scripts through *npm run*. If you run it as is, it 
 
 T> There are shortcuts like *npm start* and *npm test*. You can run these directly without *npm run* although that works too. For those in a hurry, you can use *npm t* to run your tests.
 
-T> It is possible to execute *npm run* anywhere within the project. It doesn't have to be run in the project root to work. npm figures out the project root for you.
+T> It's possible to execute *npm run* anywhere within the project. It doesn't have to be run in the project root to work. npm figures out the project root for you.
 
 ## *html-webpack-plugin* Extensions
 
@@ -235,10 +235,10 @@ Even though you have managed to get webpack up and running, it does not do that 
 
 To recap:
 
-* It is a good idea to use a locally installed version of webpack over a globally installed one. This way you can be sure of what version you are using. The local dependency works also in a Continuous Integration environment.
+* It's a good idea to use a locally installed version of webpack over a globally installed one. This way you can be sure of what version you are using. The local dependency works also in a Continuous Integration environment.
 * Webpack provides a command line interface. You can use it even without configuration, but then you are limited by the options it provides.
 * To write more complicated setups, you most likely have to write a separate *webpack.config.js* file.
 * *html-webpack-plugin* can be used to generate an HTML entry point to your application. Later in the book, you see how to generate multiple separate pages using. The *Multiple Pages* chapter covers that.
-* It is handy to use npm *package.json* scripts to manage webpack. You can use it as a light task runner and use system features outside of webpack.
+* It's handy to use npm *package.json* scripts to manage webpack. You can use it as a light task runner and use system features outside of webpack.
 
 You learn to make the development experience nicer in the next chapter by enabling automatic browser refresh.

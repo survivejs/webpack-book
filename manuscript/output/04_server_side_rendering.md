@@ -76,7 +76,7 @@ leanpub-end-insert
 };
 ```
 
-You can enable more specific rules based on your liking, but the `plugin:react/recommended` gives a good starting point. It is important to remember to enable JSX at the `parserOptions` as well.
+You can enable more specific rules based on your liking, but the `plugin:react/recommended` gives a good starting point. It's important to remember to enable JSX at the `parserOptions` as well.
 
 ## Setting Up a React Demo
 
@@ -110,7 +110,7 @@ W> Given ES6 style imports and CommonJS exports cannot be mixed, the entry point
 
 ## Configuring Webpack
 
-To keep things nice and tidy, it is possible to push the demo configuration to a file of its own. A lot of the work has been done already. Given you have to consume the same output from multiple environments, using UMD as the library target makes sense:
+To keep things nice and tidy, it's possible to push the demo configuration to a file of its own. A lot of the work has been done already. Given you have to consume the same output from multiple environments, using UMD as the library target makes sense:
 
 **webpack.ssr.js**
 

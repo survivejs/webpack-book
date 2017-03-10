@@ -25,7 +25,7 @@ webpackJsonp([1],{
 ...
 ```
 
-The problem can be worked around by processing the code through [Babel](https://babeljs.io/), a popular JavaScript compiler that supports ES6 features and more. It resembles ESLint in that it is built on top of presets and plugins. Presets are collections of plugins, and you can define your own as well.
+The problem can be worked around by processing the code through [Babel](https://babeljs.io/), a popular JavaScript compiler that supports ES6 features and more. It resembles ESLint in that it's built on top of presets and plugins. Presets are collections of plugins, and you can define your own as well.
 
 T> Given sometimes extending existing presets is not be enough, [modify-babel-preset](https://www.npmjs.com/package/modify-babel-preset) allows you to go a step further and configure the base preset in a more flexible way.
 
@@ -41,7 +41,7 @@ Connecting Babel with a project allows you to process webpack configuration thro
 
 T> Given that [Node supports the ES6 specification well](http://node.green/) these days, you can use a lot of ES6 features without having to process configuration through Babel.
 
-T> Babel isn't the only option although it is the most popular one. [Buble](https://buble.surge.sh) by Rich Harris is another compiler worth checking out. There's experimental [buble-loader](https://www.npmjs.com/package/buble-loader) that allows you to use it with webpack. Buble doesn't support ES6 modules, but that's not a problem as webpack provides that functionality.
+T> Babel isn't the only option although it's the most popular one. [Buble](https://buble.surge.sh) by Rich Harris is another compiler worth checking out. There's experimental [buble-loader](https://www.npmjs.com/package/buble-loader) that allows you to use it with webpack. Buble doesn't support ES6 modules, but that's not a problem as webpack provides that functionality.
 
 ### Setting Up *babel-loader*
 
@@ -85,7 +85,7 @@ exports.loadJavaScript = function({ include, exclude }) {
 };
 ```
 
-Next, you need to connect this with the main configuration. If you are using a modern browser for development, you can consider processing only the production code through Babel. To play it safe, it is used for both production and development environments in this case. In addition, only application code is processed through Babel.
+Next, you need to connect this with the main configuration. If you are using a modern browser for development, you can consider processing only the production code through Babel. To play it safe, it's used for both production and development environments in this case. In addition, only application code is processed through Babel.
 
 **webpack.config.js**
 
@@ -107,11 +107,11 @@ Even though you have Babel installed and set up, you are still missing one bit: 
 
 W> There are times when caching Babel compilation can surprise you if your dependencies change in a way that *babel-loader* default caching mechanism doesn't notice. Override `cacheIdentifier` with a string that has been derived based on data that should invalidate the cache for better control. [Node crypto API](https://nodejs.org/api/crypto.html) and especially its MD5 related functions can come in handy.
 
-W> If you try to import files **outside** of your configuration root directory and then process them through *babel-loader*, this fails. It is [a known issue](https://github.com/babel/babel-loader/issues/313), and there are workarounds including maintaining *.babelrc* at a higher level in the project and resolving against Babel presets through `require.resolve` at webpack configuration.
+W> If you try to import files **outside** of your configuration root directory and then process them through *babel-loader*, this fails. It's [a known issue](https://github.com/babel/babel-loader/issues/313), and there are workarounds including maintaining *.babelrc* at a higher level in the project and resolving against Babel presets through `require.resolve` at webpack configuration.
 
 ### Setting Up *.babelrc*
 
-At a minimum, you need [babel-preset-env](https://www.npmjs.com/package/babel-preset-env). It is a Babel preset that enables the needed plugins based on the environment definition you pass to it. It follows the **browserslist** definition discussed in the *Autoprefixing* chapter.
+At a minimum, you need [babel-preset-env](https://www.npmjs.com/package/babel-preset-env). It's a Babel preset that enables the needed plugins based on the environment definition you pass to it. It follows the **browserslist** definition discussed in the *Autoprefixing* chapter.
 
 Install the preset first:
 
@@ -178,7 +178,7 @@ Note especially how the function was transformed. You can try out different brow
 
 *babel-preset-env* allows you to polyfill certain language features for older browsers. For this to work, you should enable its `useBuiltIns` option (`"useBuiltIns": true`) and install [babel-polyfill](https://babeljs.io/docs/usage/polyfill/). You also have to perform either `import "babel-polyfill";` in your code or manage it through an entry such as `app: ['babel-polyfill', PATHS.app]`. *babel-preset-env* rewrites the import based on your browser definition and load only the polyfills that are needed.
 
-It is important to note that *babel-polyfill* pollutes the global scope with objects like `Promise`. Given this can be problematic for library authors, there's [transform-runtime](https://babeljs.io/docs/plugins/transform-runtime/) option. It can be enabled as a Babel plugin, and it avoids the problem of globals by rewriting the code in such way that they aren't be needed.
+It's important to note that *babel-polyfill* pollutes the global scope with objects like `Promise`. Given this can be problematic for library authors, there's [transform-runtime](https://babeljs.io/docs/plugins/transform-runtime/) option. It can be enabled as a Babel plugin, and it avoids the problem of globals by rewriting the code in such way that they aren't be needed.
 
 W> Certain webpack features, such as *Code Splitting*, write `Promise` based code to webpack's bootstrap code after webpack has processed loaders. The problem can be solved by using a browser level polyfill for `Promise` as webpack's bootstrap code cannot be processed through Babel.
 
@@ -186,7 +186,7 @@ W> Certain webpack features, such as *Code Splitting*, write `Promise` based cod
 
 There are other possible [*.babelrc* options](https://babeljs.io/docs/usage/options/) beyond the ones covered here. Like ESLint, *.babelrc* supports [JSON5](https://www.npmjs.com/package/json5) as its configuration format meaning you can include comments in your source, use single quoted strings, and so on.
 
-Sometimes you want to use experimental features that fit your project. Although you can find a lot of them within so-called stage presets, it is a good idea to enable them one by one and even organize them to a preset of their own unless you are working on a throwaway project. If you expect your project to live a long time, it's better to document the features you are using well.
+Sometimes you want to use experimental features that fit your project. Although you can find a lot of them within so-called stage presets, it's a good idea to enable them one by one and even organize them to a preset of their own unless you are working on a throwaway project. If you expect your project to live a long time, it's better to document the features you are using well.
 
 ## Babel Presets and Plugins
 
@@ -203,7 +203,7 @@ Perhaps the greatest thing about Babel is that it's possible to extend with pres
 * [babel-react-optimize](https://github.com/thejameskyle/babel-react-optimize) implements a variety of React specific optimizations you can experiment with.
 * [babel-plugin-transform-react-remove-prop-types](https://www.npmjs.com/package/babel-plugin-transform-react-remove-prop-types) allows you to remove `propType` related code from your production build. It also allows component authors to generate code that's wrapped so that setting environment at `DefinePlugin` can kick in as discussed in the book.
 
-T> It is possible to connect Babel with Node through [babel-register](https://www.npmjs.com/package/babel-register) or [babel-cli](https://www.npmjs.com/package/babel-cli). These packages can be handy if you want to execute your code through Babel without using webpack.
+T> It's possible to connect Babel with Node through [babel-register](https://www.npmjs.com/package/babel-register) or [babel-cli](https://www.npmjs.com/package/babel-cli). These packages can be handy if you want to execute your code through Babel without using webpack.
 
 ## Enabling Presets and Plugins per Environment
 
@@ -226,7 +226,7 @@ Babel allows you to control which presets and plugins are used per environment t
 
 Note that any shared presets and plugins are available to all targets still. `env` allows you to specialize your Babel configuration further.
 
-It is possible to pass the webpack environment to Babel with a tweak like this:
+It's possible to pass the webpack environment to Babel with a tweak like this:
 
 **webpack.config.js**
 

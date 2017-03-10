@@ -121,7 +121,7 @@ You can use webpack with other tools. It won’t solve everything. It does solve
 To summarize:
 
 * Webpack is a **module bundler**, but you can also use it for tasks as well.
-* **Hot Module Replacement** (HMR) helped to popularize webpack. It is a feature that can enhance development experience.
+* **Hot Module Replacement** (HMR) helped to popularize webpack. It's a feature that can enhance development experience.
 * Webpack relies on a **dependency graph** underneath. Webpack traverses through the source to construct the graph and it uses this information and configuration to generate bundles.
 * Webpack’s **configuration** describes how to transform assets of the graphs and what kind of output it should generate. A part of this information can be included in the source itself if features like code splitting are used.
 * Webpack can generate **hashes** for filenames allowing you to invalidate bundles as their contents change.

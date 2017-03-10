@@ -71,7 +71,7 @@ T> Babel is discussed in detail in the *Loading JavaScript* chapter.
 
 ## Loader Evaluation Order
 
-It is good to keep in mind that webpack's `loaders` are always evaluated from right to left and from bottom to top (separate definitions). The right-to-left rule is easier to remember when you think about as functions. You can read definition `use: ['style-loader', 'css-loader']` as `style(css(input))` based on this rule.
+It's good to keep in mind that webpack's `loaders` are always evaluated from right to left and from bottom to top (separate definitions). The right-to-left rule is easier to remember when you think about as functions. You can read definition `use: ['style-loader', 'css-loader']` as `style(css(input))` based on this rule.
 
 To see the rule in action, consider the example below:
 
@@ -131,9 +131,9 @@ There's a query format that allows passing parameters to loaders:
 },
 ```
 
-It is good to note that this style of configuration works in entries and source imports too as webpack picks it up. The format comes in handy in certain individual cases, but often you are better off using more readable alternatives.
+It's good to note that this style of configuration works in entries and source imports too as webpack picks it up. The format comes in handy in certain individual cases, but often you are better off using more readable alternatives.
 
-It is preferable to use the combination of `loader` and `options` fields either like this:
+It's preferable to use the combination of `loader` and `options` fields either like this:
 
 ```javascript
 {
@@ -206,7 +206,7 @@ In the book setup, you compose configuration on a higher level. Another option t
     // from here.
     //
     // Returning an array fails! To get around that,
-    // it is possible to nest rules.
+    // it's possible to nest rules.
     if (env === 'development') {
       return {
         // Trigger css-loader first
@@ -228,7 +228,7 @@ Carefully applied, this technique allows different means of composition.
 
 ## Inline Definitions
 
-Even though configuration level loader definitions are preferable, it is possible to write loader definitions inline like this:
+Even though configuration level loader definitions are preferable, it's possible to write loader definitions inline like this:
 
 ```javascript
 // Process foo.png through url-loader and other
@@ -239,7 +239,7 @@ import 'url-loader!./foo.png';
 import '!!url-loader!./bar.png';
 ```
 
-The problem with this approach is that it couples your source with webpack. But it is a good form to know still. Since configuration entries go through the same mechanism, the same forms work there as well:
+The problem with this approach is that it couples your source with webpack. But it's a good form to know still. Since configuration entries go through the same mechanism, the same forms work there as well:
 
 ```javascript
 {

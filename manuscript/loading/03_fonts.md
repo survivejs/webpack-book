@@ -35,7 +35,7 @@ A more elaborate approach to achieve a similar result that includes *.woff2* and
     // Limit at 50k. Above that it emits separate files
     limit: 50000,
 
-    // url-loader sets mimetype if it is passed.
+    // url-loader sets mimetype if it's passed.
     // Without this it derives it from the file extension
     mimetype: 'application/font-woff',
 
@@ -244,7 +244,7 @@ Time: 2547ms
 ...
 ```
 
-Note that the SVG file included in Font Awesome has been marked as `[big]`. It is beyond the performance budget defaults set by webpack. The topic is discussed in detail in the *Minifying* chapter.
+Note that the SVG file included in Font Awesome has been marked as `[big]`. It's beyond the performance budget defaults set by webpack. The topic is discussed in detail in the *Minifying* chapter.
 
 To skip certain Font Awesome fonts, you could disable specific formats as discussed in the *Consuming Packages* chapter. Due to the way Font Awesome CSS has been setup, you still has to capture the files, but instead of emitting the original content, you can replace it with empty content.
 

@@ -63,7 +63,7 @@ After building (`npm run build`) and deploying (`npm run deploy`), you should ha
 
 T> If you need a more elaborate setup, use the Node API that *gh-pages* provides. The default command line tool it provides is enough for basic purposes, though.
 
-T> GitHub Pages allows you to choose the branch where you deploy. It is possible to use the `master` branch even as it is enough for minimal sites that don't need bundling. You can also point below the *./docs* directory within your `master` branch and maintain your site.
+T> GitHub Pages allows you to choose the branch where you deploy. It's possible to use the `master` branch even as it's enough for minimal sites that don't need bundling. You can also point below the *./docs* directory within your `master` branch and maintain your site.
 
 ## Archiving Old Versions
 
@@ -114,5 +114,5 @@ Even though webpack isn't a deployment tool, you can find plugins for it.
 
 To recap:
 
-* It is also possible to handle the problem of deployment outside of webpack. You can achieve this in an npm script for example.
-* It is possible to configure webpack's `output.publicPath` dynamically. This technique is valuable if you don't know it compile-time and want to decide it later. This is possible through the `__webpack_public_path__ ` global.
+* It's also possible to handle the problem of deployment outside of webpack. You can achieve this in an npm script for example.
+* It's possible to configure webpack's `output.publicPath` dynamically. This technique is valuable if you don't know it compile-time and want to decide it later. This is possible through the `__webpack_public_path__ ` global.

@@ -1,6 +1,6 @@
 # Separating a Manifest
 
-When webpack writes bundles, it maintains a **manifest** as well. You can find it in the generated *vendor* bundle in this project. The manifest describes what files webpack should load. It is possible to extract it and start loading the files of the project faster instead of having to wait for the *vendor* bundle to be loaded.
+When webpack writes bundles, it maintains a **manifest** as well. You can find it in the generated *vendor* bundle in this project. The manifest describes what files webpack should load. It's possible to extract it and start loading the files of the project faster instead of having to wait for the *vendor* bundle to be loaded.
 
 If the hashes webpack generates change, then the manifest changes as well. As a result, the contents of the vendor bundle change, and become invalidated. The problem can be eliminated by extracting the manifest to a file of its own or by writing it inline to the *index.html* of the project.
 
@@ -125,7 +125,7 @@ To recap:
 * Webpack maintains a **manifest** containing information needed to run the application.
 * If the manifest changes, the change invalidates the containing bundle.
 * To overcome this problem, the manifest can be extracted to a bundle of its own using the `CommonsChunkPlugin`.
-* Certain plugins allow you to write the manifest to the generated *index.html*. It is also possible to extract the information to a JSON file. The JSON comes in handy with *Server Side Rendering*.
+* Certain plugins allow you to write the manifest to the generated *index.html*. It's also possible to extract the information to a JSON file. The JSON comes in handy with *Server Side Rendering*.
 * **Records** allow you to store module IDs across builds. The approach becomes essential if you rely on code splitting approaches. As a downside you have to track the records file somehow.
 
 You learn to analyze the build statistics in the next chapter. This analysis is essential for figuring out how to improve the build result.

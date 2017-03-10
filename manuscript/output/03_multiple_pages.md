@@ -1,6 +1,6 @@
 # Multiple Pages
 
-Even though webpack is often used for bundling single page applications, it is possible to use it with multiple separate pages as well. The idea is similar to the way you generated multiple output files in the *Targets* chapter. This time, however, you have to generate separate pages. That's achievable through `HtmlWebpackPlugin` and a bit of configuration.
+Even though webpack is often used for bundling single page applications, it's possible to use it with multiple separate pages as well. The idea is similar to the way you generated multiple output files in the *Targets* chapter. This time, however, you have to generate separate pages. That's achievable through `HtmlWebpackPlugin` and a bit of configuration.
 
 ## Possible Approaches
 
@@ -8,7 +8,7 @@ When generating multiple pages with webpack, you have a couple of considerations
 
 * Go through the *multi-compiler mode* and return an array of configurations. The approach would work as long as the pages are separate and there is a minimal need for sharing code across them. The benefit of this approach is that you can process it through [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) to improve build performance.
 * Set up a single configuration and extract the commonalities. The way you do this can differ depending on how you chunk it up.
-* If you follow the idea of [Progressive Web Applications](https://developers.google.com/web/progressive-web-apps/) (PWA), you can end up with either an **app shell** or a **page shell** and load portions of the application as it is used.
+* If you follow the idea of [Progressive Web Applications](https://developers.google.com/web/progressive-web-apps/) (PWA), you can end up with either an **app shell** or a **page shell** and load portions of the application as it's used.
 
 In practice, you have more dimensions. For example, you have to generate i18n variants for pages. These ideas grow on top of the basic approaches.
 
@@ -53,7 +53,7 @@ leanpub-end-insert
 
 ### Integrating to Configuration
 
-To incorporate the idea to the configuration, the way it is composed has to change. Also, a page definition is required. To get started, let's reuse the same JavaScript logic for each page for now:
+To incorporate the idea to the configuration, the way it's composed has to change. Also, a page definition is required. To get started, let's reuse the same JavaScript logic for each page for now:
 
 **webpack.config.js**
 
@@ -202,7 +202,7 @@ After these changes `/another` should show something familiar:
 
 If you build the application (`npm run build`), you should find *another/index.html*. Based on the generated code, you can make the following observations:
 
-* It is clear how to add more pages to the setup.
+* It's clear how to add more pages to the setup.
 * The generated assets are directly below the build root. The pages are an exception as those are handled by `HtmlWebpackPlugin`, but they still point to the assets below the root. It would be possible to add more abstraction in the form of *webpack.page.js* and manage the paths by exposing a function that accepts page configuration.
 * Records should be written separately per each page in files of their own. Currently, the configuration that writes the last, wins. The above solution would allow solving this.
 * Processes like linting and cleaning run twice currently. The *Targets* chapter discussed potential solutions to that problem.
@@ -311,12 +311,12 @@ The approach combines well with plugins like [offline-plugin](https://www.npmjs.
 
 ## Conclusion
 
-Webpack allows you to manage multiple page setups. Especially the PWA approach is valuable as it allows loading the application in a progressive manner based on usage. It is more flexible than a more traditional single page application approach, and webpack's functionality enables it well.
+Webpack allows you to manage multiple page setups. Especially the PWA approach is valuable as it allows loading the application in a progressive manner based on usage. It's more flexible than a more traditional single page application approach, and webpack's functionality enables it well.
 
 To recap:
 
 * Webpack can be used to generate separate pages either through its multi-compiler mode or by including all the page configuration into one.
-* The multi-compiler configuration can run in parallel using external solutions, but it is harder to apply techniques such as bundle splitting against it.
+* The multi-compiler configuration can run in parallel using external solutions, but it's harder to apply techniques such as bundle splitting against it.
 * A multi-page setup can lead to a **Progressive Web Application**. In this case you use various webpack techniques to come up with an application that is fast to load and that fetches functionality as required. Both two flavors of this technique have their own merits.
 
 You learn to implement Server Side Rendering in the next chapter.

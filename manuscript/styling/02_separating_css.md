@@ -10,7 +10,7 @@ Due to this process, `ExtractTextPlugin` comes with overhead during the compilat
 
 T> This same technique can be employed with other assets, like templates, too.
 
-W> It can be potentially dangerous to use inline styles within JavaScript in production as it represents an attack vector. **Critical path rendering** embraces the idea and inlines the critical CSS to the initial HTML payload improving perceived performance of the site. It is discussed in the next chapter in detail. In limited contexts inlining a small amount of CSS can be a viable option to speed up the initial load (fewer requests).
+W> It can be potentially dangerous to use inline styles within JavaScript in production as it represents an attack vector. **Critical path rendering** embraces the idea and inlines the critical CSS to the initial HTML payload improving perceived performance of the site. It's discussed in the next chapter in detail. In limited contexts inlining a small amount of CSS can be a viable option to speed up the initial load (fewer requests).
 
 ## Setting Up `ExtractTextPlugin`
 
@@ -24,7 +24,7 @@ npm install extract-text-webpack-plugin --save-dev
 
 `ExtractTextPlugin.extract` accepts `use` and `fallback` definitions. `ExtractTextPlugin` processes content through `use` only from **initial chunks** by default and it uses `fallback` for the rest. It doesn't touch any split bundles unless `allChunks: true` is set true. The *Splitting Bundles* chapter digs into greater detail.
 
-It is important to note that if you wanted to extract CSS from a more involved format, like Sass, you would have to pass multiple loaders to the `use` option. Both `use` and `fallback` accept a loader (string), a loader definition, or an array of loader definitions.
+It's important to note that if you wanted to extract CSS from a more involved format, like Sass, you would have to pass multiple loaders to the `use` option. Both `use` and `fallback` accept a loader (string), a loader definition, or an array of loader definitions.
 
 The idea looks like this:
 
@@ -106,7 +106,7 @@ leanpub-end-insert
 ...
 ```
 
-Using this setup, you can still benefit from the HMR during development. For a production build, it is possible to generate a separate CSS, though. *html-webpack-plugin* picks it up automatically and injects it into `index.html`.
+Using this setup, you can still benefit from the HMR during development. For a production build, it's possible to generate a separate CSS, though. *html-webpack-plugin* picks it up automatically and injects it into `index.html`.
 
 T> If you are using CSS Modules, remember to tweak `use` accordingly as discussed in the *Loading Styles* chapter. You can maintain separate setups for normal CSS and CSS Modules so that they get loaded through separate logic.
 
@@ -134,7 +134,7 @@ T> [extract-loader](https://www.npmjs.com/package/extract-loader) is a light alt
 
 ## Managing Styles Outside of JavaScript
 
-Even though referring to styling through JavaScript and then bundling is a valid option, it is possible to achieve the same result through an `entry` and [globbing](https://www.npmjs.com/package/glob). The basic idea goes like this:
+Even though referring to styling through JavaScript and then bundling is a valid option, it's possible to achieve the same result through an `entry` and [globbing](https://www.npmjs.com/package/glob). The basic idea goes like this:
 
 ```javascript
 ...

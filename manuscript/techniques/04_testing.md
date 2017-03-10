@@ -96,7 +96,7 @@ T> `--grep <pattern>` can be used for constraining the behavior if you want to f
 
 Webpack can provide similar functionality through a web interface. The hard parts of the problem have been solved earlier in this book, what remain is combining those solutions together through configuration.
 
-To tell webpack which tests to run, they need to be imported somehow. The *Dynamic Loading* chapter discussed `require.context` that allows to aggregate files based on a rule. It is ideal here. Set up an entry point as follows:
+To tell webpack which tests to run, they need to be imported somehow. The *Dynamic Loading* chapter discussed `require.context` that allows to aggregate files based on a rule. It's ideal here. Set up an entry point as follows:
 
 **tests/index.js**
 
@@ -156,7 +156,7 @@ Adjusting either the test or the code should lead to a change in the browser. Yo
 
 Compared to the vanilla Mocha setup, configuring Mocha through webpack comes with a couple of advantages:
 
-* It is possible to adjust module resolution. Webpack aliasing and other techniques work now, but this would also tie the code to webpack.
+* It's possible to adjust module resolution. Webpack aliasing and other techniques work now, but this would also tie the code to webpack.
 * You can use webpack's processing to compile your code as you wish. With vanilla Mocha that would imply more setup outside of it.
 
 On the downside, now you need a browser to examine the tests. *mocha-loader* is at its best as a development helper. The problem can be solved by running the tests through a headless browser.
@@ -228,7 +228,7 @@ This means Karma is in a waiting state. You have to visit that url to run the te
 Chrome 56.0.2924 (Mac OS X 10.12.3): Executed 1 of 1 SUCCESS (0.003 secs / 0 secs)
 ```
 
-Given running tests this way can become annoying, it is a good idea to configure alternative ways. Using PhantomJS is one option.
+Given running tests this way can become annoying, it's a good idea to configure alternative ways. Using PhantomJS is one option.
 
 T> You can point Karma to specific browsers through the `browsers` field. Example: `browsers: ['Chrome']`.
 
@@ -435,7 +435,7 @@ The main idea is to run both webpack and AVA in watch mode to push the problem o
 
 Mocking is a technique that allows you to replace test objects. Consider the solutions below:
 
-* [Sinon](https://www.npmjs.com/package/sinon) provides mocks, stubs, and spies. It is good to note that the `@next` version of Sinon has been designed webpack in mind. 1.x version of Sinon is more problematic and requires work as discussed in [webpack issue #304](https://github.com/webpack/webpack/issues/304).
+* [Sinon](https://www.npmjs.com/package/sinon) provides mocks, stubs, and spies. It's good to note that the `@next` version of Sinon has been designed webpack in mind. 1.x version of Sinon is more problematic and requires work as discussed in [webpack issue #304](https://github.com/webpack/webpack/issues/304).
 * [inject-loader](https://www.npmjs.com/package/inject-loader) allows you to inject code to modules through their dependencies making it valuable for mocking.
 * [rewire-webpack](https://www.npmjs.com/package/rewire-webpack) allows mocking and overriding module globals. [babel-plugin-rewire](https://www.npmjs.com/package/babel-plugin-rewire) implements [rewire](https://www.npmjs.com/package/rewire) for Babel.
 

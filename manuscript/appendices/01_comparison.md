@@ -8,7 +8,7 @@ The popularity of Node and [npm](https://www.npmjs.com/), its package manager, p
 
 ## Task Runners and Bundlers
 
-Historically speaking, there have been many build tools. *Make* is perhaps the best known, and it is still a viable option. Specialized *task runners*, such as Grunt and Gulp were created particularly with JavaScript developers in mind. Plugins available through npm made both task runners powerful and extendable. It is possible to use even npm `scripts` as a task runner. That's common, particularly with webpack.
+Historically speaking, there have been many build tools. *Make* is perhaps the best known, and it's still a viable option. Specialized *task runners*, such as Grunt and Gulp were created particularly with JavaScript developers in mind. Plugins available through npm made both task runners powerful and extendable. It's possible to use even npm `scripts` as a task runner. That's common, particularly with webpack.
 
 Task runners are great tools on a high level. They allow you to perform operations in a cross-platform manner. The problems begin when you need to splice various assets together and produce bundles. *bundlers*, such as Browserify, Brunch, or webpack, exist for this reason.
 
@@ -72,7 +72,7 @@ define(['./MyModule.js'], function (MyModule) {
 });
 ```
 
-Incidentally, it is possible to use `require` within the wrapper like this:
+Incidentally, it's possible to use `require` within the wrapper like this:
 
 ```javascript
 define(['require'], function (require) {
@@ -88,7 +88,7 @@ T> Jamund Ferguson has written an excellent blog series on how to port from [Req
 
 ### UMD
 
-UMD, universal module definition, takes it all to the next level. It is a monster of a format that aims to make the various formats compatible with each other. Check out [the official definitions](https://github.com/umdjs/umd) to understand it in greater detail.
+UMD, universal module definition, takes it all to the next level. It's a monster of a format that aims to make the various formats compatible with each other. Check out [the official definitions](https://github.com/umdjs/umd) to understand it in greater detail.
 
 T> Webpack can generate UMD wrappers for you (`output.libraryTarget: 'umd'`). You get back to this later in the *Authoring Packages* chapter.
 
@@ -284,7 +284,7 @@ You could say [webpack](https://webpack.js.org/) takes a more monolithic approac
 
 Webpack core can be extended using specific *loaders* and *plugins*. It gives control over how it *resolves* the modules, making it possible to adapt your build to match specific situations and workaround packages that don't work correctly out of the box.
 
-Compared to the other tools, webpack comes with initial complexity, but it makes up for this through its broad feature set. It is an advanced tool that requires patience. But once you understand the basic ideas behind it, webpack becomes powerful.
+Compared to the other tools, webpack comes with initial complexity, but it makes up for this through its broad feature set. It's an advanced tool that requires patience. But once you understand the basic ideas behind it, webpack becomes powerful.
 
 ## Other Options
 

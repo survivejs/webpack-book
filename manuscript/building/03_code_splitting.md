@@ -1,12 +1,12 @@
 # Code Splitting
 
-Web applications have the tendency to grow big as features are developed. The longer it takes for your application to load, the more frustrating it is to the user. This problem is amplified in a mobile environment where the connections can be slow.
+Web applications have the tendency to grow big as features are developed. The longer it takes for your application to load, the more frustrating it's to the user. This problem is amplified in a mobile environment where the connections can be slow.
 
-Even though splitting bundles can help a notch, they are not the only solution, and you can still end up having to download a lot of data. Fortunately, it is possible to do better thanks to **code splitting**. It allows to load code lazily as you need it.
+Even though splitting bundles can help a notch, they are not the only solution, and you can still end up having to download a lot of data. Fortunately, it's possible to do better thanks to **code splitting**. It allows to load code lazily as you need it.
 
 You can load more code as the user enters a new view of the application. You can also tie loading to a specific action like scrolling or clicking a button. You could also try to predict what the user is trying to do next and load code based on your guess. This way the functionality would be already there as the user tries to access it.
 
-T> Incidentally, it is possible to implement Google's [PRPL pattern](https://developers.google.com/web/fundamentals/performance/prpl-pattern/) using webpack's lazy loading. PRPL (Push, Render, Pre-cache, Lazy-load) has been designed with mobile web in mind.
+T> Incidentally, it's possible to implement Google's [PRPL pattern](https://developers.google.com/web/fundamentals/performance/prpl-pattern/) using webpack's lazy loading. PRPL (Push, Render, Pre-cache, Lazy-load) has been designed with mobile web in mind.
 
 ## Code Splitting Formats
 
@@ -40,7 +40,7 @@ Promise.all([
 });
 ```
 
-It is important to note that this creates separate chunks to a request. If you wanted only one, you would have to define an intermediate module to `import`.
+It's important to note that this creates separate chunks to a request. If you wanted only one, you would have to define an intermediate module to `import`.
 
 T> Webpack provided support for `System.import` in the early versions of webpack 2 and it still does. The functionality has been deprecated and gets removed in webpack 3. Until then, you can use the functionality interchangeably.
 
@@ -94,7 +94,7 @@ require.ensure(
 );
 ```
 
-If you had nested `require.ensure` definitions, you could pull a module to the parent chunk using either syntax. It is a similar idea as you saw in the *Splitting Bundles* chapter.
+If you had nested `require.ensure` definitions, you could pull a module to the parent chunk using either syntax. It's a similar idea as you saw in the *Splitting Bundles* chapter.
 
 T> The formats respect `output.publicPath` option. You can also use `output.chunkFilename` to shape where they output. Example: `chunkFilename: '[name].js'`.
 
@@ -255,7 +255,7 @@ The idea is that after *lazy.js* gets loaded, *lazy.css* is applied as well. You
 
 ### Defining a Split Point Using `require.ensure`
 
-It is possible to achieve the same with `require.ensure`. Consider the full example below:
+It's possible to achieve the same with `require.ensure`. Consider the full example below:
 
 ```javascript
 export default function () {

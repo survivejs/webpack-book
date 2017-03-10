@@ -78,7 +78,7 @@ The important thing to note is that the worker cannot access the DOM. You can pe
 To recap:
 
 * Web workers allow you to push work out of the main thread of the browser. This separation is valuable especially if performance is an issue.
-* Web workers cannot manipulate the DOM. Instead, it is best to use them for long running computations and requests.
+* Web workers cannot manipulate the DOM. Instead, it's best to use them for long running computations and requests.
 * The isolation provided by web workers can be used for architectural benefit. It forces the programmers to stay within a specific sandbox.
 * Communicating with web workers comes with an overhead that makes them less practical. As the specification evolves, this can change in the future.
 

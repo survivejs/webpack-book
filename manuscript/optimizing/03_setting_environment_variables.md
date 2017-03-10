@@ -75,7 +75,7 @@ Elimination is the core idea of `DefinePlugin`. You can toggle parts of code usi
 
 Given you are using React in the project and it happens to use the technique, you can try to enable `DefinePlugin` and see what it does to the production build.
 
-As before, encapsulate this idea to a function. It is important to note that given the way webpack replaces the free variable, you should push it through `JSON.stringify`. You end up with a string like `'"demo"'` and then webpack inserts that into the slots it finds.
+As before, encapsulate this idea to a function. It's important to note that given the way webpack replaces the free variable, you should push it through `JSON.stringify`. You end up with a string like `'"demo"'` and then webpack inserts that into the slots it finds.
 
 **webpack.parts.js**
 
@@ -146,9 +146,9 @@ vendor.js.map     135 kB       2  [emitted]  vendor
 
 You went from 150 kB to 45 kB, and finally, to 24 kB. The final build is a little faster than the previous one as well.
 
-Given the 24 kB can be served gzipped, it is somewhat reasonable. gzipping drops around another 40%, and it is well supported by browsers.
+Given the 24 kB can be served gzipped, it's somewhat reasonable. gzipping drops around another 40%, and it's well supported by browsers.
 
-It is good to remember that you didn't include *react-dom* in this case and that would add around 100 kB to the final result. To get back to these figures, you would have to use a lighter alternative such as Preact or react-lite as discussed in the *Consuming Packages* chapter.
+It's good to remember that you didn't include *react-dom* in this case and that would add around 100 kB to the final result. To get back to these figures, you would have to use a lighter alternative such as Preact or react-lite as discussed in the *Consuming Packages* chapter.
 
 T> `webpack.EnvironmentPlugin(['NODE_ENV'])` is a shortcut that allows you to refer to environment variables. It uses `DefinePlugin` underneath and you can achieve the same effect by passing `process.env.NODE_ENV` to the custom function you made. The [documentation covers `EnvironmentPlugin`](https://webpack.js.org/plugins/environment-plugin/) in greater detail.
 
@@ -180,7 +180,7 @@ if(process.env.NODE_ENV === 'production') {
 }
 ```
 
-Webpack can pick the right code based on the `DefinePlugin` declaration and this code. It is good to note that you have to use CommonJS module definition style here: ES6 `import`s don't allow dynamic behavior like this by design.
+Webpack can pick the right code based on the `DefinePlugin` declaration and this code. It's good to note that you have to use CommonJS module definition style here: ES6 `import`s don't allow dynamic behavior like this by design.
 
 T> A related technique, **aliasing**, is discussed in the *Consuming Packages* chapter. You could alias to development or production particular file depending on the environment. The problem is that it ties your setup to webpack in a tighter way than the solution above.
 

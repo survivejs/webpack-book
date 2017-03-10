@@ -2,17 +2,17 @@
 
 HTTP/1 application can be made slow by loading a lot of small assets. Each request comes with an overhead. HTTP/2 helps in this regard and changes the situation somewhat drastically. Till then you are stuck with different approaches. Webpack allows a couple of these. They are particularly relevant for loading images.
 
-Webpack allows you to inline assets by using [url-loader](https://www.npmjs.com/package/url-loader). It emits your images as base64 strings within your JavaScript bundles. The process decreases the number of requests needed while growing the bundle size. It is enough to use *url-loader* during development. You want to consider other alternatives for the production build, though.
+Webpack allows you to inline assets by using [url-loader](https://www.npmjs.com/package/url-loader). It emits your images as base64 strings within your JavaScript bundles. The process decreases the number of requests needed while growing the bundle size. It's enough to use *url-loader* during development. You want to consider other alternatives for the production build, though.
 
 Webpack gives control over the inlining process and can defer loading to [file-loader](https://www.npmjs.com/package/file-loader). *file-loader* outputs image files and returns paths to them instead of inlining. This technique works with other assets types, such as fonts, as you see in the later chapters.
 
 ## Setting Up *url-loader*
 
-*url-loader* is a good starting point and it's the perfect option for development purposes, as you don't have to care about the size of the resulting bundle. It comes with a *limit* option that can be used to defer image generation to *file-loader* after a certain limit is reached. This way you can inline small files to your JavaScript bundles while generating separate files for the bigger ones.
+*url-loader* is a good starting point and it's the perfect option for development purposes, as you don't have to care about the size of the resulting bundle. It comes with a *limit* option that can be used to defer image generation to *file-loader* after a certain limit's reached. This way you can inline small files to your JavaScript bundles while generating separate files for the bigger ones.
 
 If you use the limit option, you need to install both *url-loader* and *file-loader* to your project. Assuming you have configured your styles correctly, webpack resolves any `url()` statements your styling contains. You can point to the image assets through your JavaScript code as well.
 
-It is important to note that if the `limit` option is used, *url-loader* passes possible additional options to *file-loader* making it possible to configure its behavior further.
+It's important to note that if the `limit` option is used, *url-loader* passes possible additional options to *file-loader* making it possible to configure its behavior further.
 
 To load *.jpg*, *.png*, and *.svg* files while inlining files below 25kB, you would set up a loader like this:
 
@@ -186,7 +186,7 @@ const Profile = () => (
 );
 ```
 
-It is also possible to set up dynamic imports as discussed in the *Code Splitting* chapter. Here's a small example:
+It's also possible to set up dynamic imports as discussed in the *Code Splitting* chapter. Here's a small example:
 
 ```javascript
 // The name of the avatar is received from somewhere
@@ -223,7 +223,7 @@ Webpack allows you to load images dynamically based on a condition. The techniqu
 
 ## Images and *css-loader* Source Map Gotcha
 
-If you are using images and *css-loader* with the `sourceMap` option enabled, it is important that you set `output.publicPath` to an absolute value pointing to your development server. Otherwise, images aren't going to work. See [the relevant webpack issue](https://github.com/webpack/style-loader/issues/55) for further explanation.
+If you are using images and *css-loader* with the `sourceMap` option enabled, it's important that you set `output.publicPath` to an absolute value pointing to your development server. Otherwise, images aren't going to work. See [the relevant webpack issue](https://github.com/webpack/style-loader/issues/55) for further explanation.
 
 ## Conclusion
 
@@ -234,7 +234,7 @@ To recap:
 * *url-loader* inlines the assets within JavaScript. It comes with a `limit` option that allows you to defer assets above it to *file-loader*.
 * *file-loader* emits image assets and returns paths to them to the code. It allows hashing the asset names.
 * You can find image optimization related loaders and plugins that allow you to tune their size further.
-* It is possible to generate **sprite sheets** out of smaller images to combine them into a single request.
+* It's possible to generate **sprite sheets** out of smaller images to combine them into a single request.
 * Webpack allows you to load images dynamically based on a given condition.
 * If you are using source maps, you should remember to set `output.publicPath` to an absolute value for the images to show up.
 

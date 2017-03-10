@@ -33,7 +33,7 @@ leanpub-end-insert
 
 ## Setting Up Webpack
 
-On the webpack side, *react-hot-loader* requires an additional entry it uses to patch the running application. It is important the new entry runs first as otherwise the setup fails to work reliably:
+On the webpack side, *react-hot-loader* requires an additional entry it uses to patch the running application. It's important the new entry runs first as otherwise the setup fails to work reliably:
 
 **webpack.config.js**
 
@@ -65,7 +65,7 @@ leanpub-end-insert
 
 Patching is needed still as you have to make the application side aware of hot loading.
 
-T> This tweak is not required in the future as *react-hot-loader* evolves. It is possible to inject an empty module for `'react-hot-loader/patch'` if it detects that production environment is used. For now, this extra tweak is needed.
+T> This tweak is not required in the future as *react-hot-loader* evolves. It's possible to inject an empty module for `'react-hot-loader/patch'` if it detects that production environment is used. For now, this extra tweak is needed.
 
 ## Setting Up the Application
 
@@ -184,7 +184,7 @@ The development setup should work after this change still. If you examine the bu
 
 Even after this change, the source can contain references still due to a [bug in react-hot-loader](https://github.com/gaearon/react-hot-loader/issues/471) as it has been built so that it loses information that's valuable for a bundler.
 
-It is possible to work around the issue by implementing a module chooser pattern as described in the *Setting Environment Variables* chapter. The idea is that `AppContainer` provided by *react-hot-loader* would be mocked with a dummy implementation during production usage.
+It's possible to work around the issue by implementing a module chooser pattern as described in the *Setting Environment Variables* chapter. The idea is that `AppContainer` provided by *react-hot-loader* would be mocked with a dummy implementation during production usage.
 
 T> The aforementioned `env` technique can be used to apply Babel presets and plugins per environment. You could enable additional checks and logging during development this way. See the *Loading JavaScript* chapter for more information.
 
@@ -235,7 +235,7 @@ W> In webpack 1 you had to use `extensions: ['', '.js', '.jsx']` to match files 
 
 ## Get Started Fast with *create-react-app*
 
-[create-react-app](https://www.npmjs.com/package/create-react-app) allows you to get started fast with webpack and React. It is a zero configuration approach that encapsulates a lot of best practices allowing you to get started fast with minimal setup.
+[create-react-app](https://www.npmjs.com/package/create-react-app) allows you to get started fast with webpack and React. It's a zero configuration approach that encapsulates a lot of best practices allowing you to get started fast with minimal setup.
 
 *create-react-app* allows you to extract a full-blown webpack setup by **ejecting**. There's a problem, though. After you eject, you cannot go back to the dependency-based model, and you have to maintain the resulting setup yourself.
 

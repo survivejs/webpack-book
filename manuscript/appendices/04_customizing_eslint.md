@@ -60,7 +60,7 @@ module.exports = {
 
 ## Writing ESLint Plugins
 
-ESLint plugins rely on Abstract Syntax Tree (AST) definition of JavaScript. It is a data structure that describes JavaScript code after it has been lexically analyzed. There are tools, such as [recast](https://github.com/benjamn/recast), that allow you to perform transformations on JavaScript code by using AST transformations. The idea is that you match a structure, then transform it somehow and convert AST back to JavaScript.
+ESLint plugins rely on Abstract Syntax Tree (AST) definition of JavaScript. It's a data structure that describes JavaScript code after it has been lexically analyzed. There are tools, such as [recast](https://github.com/benjamn/recast), that allow you to perform transformations on JavaScript code by using AST transformations. The idea is that you match a structure, then transform it somehow and convert AST back to JavaScript.
 
 ### Understanding AST
 
@@ -152,4 +152,4 @@ If you want a starting point, you can pick one of [eslint-config- packages](http
 
 ## Conclusion
 
-Especially the fact that you can customize ESLint to various purposes makes it a powerful tool. Thanks to its vibrant ecosystem, it is likely you find rules that are close to your purposes. Those make excellent starting points for your own development.
+Especially the fact that you can customize ESLint to various purposes makes it a powerful tool. Thanks to its vibrant ecosystem, it's likely you find rules that are close to your purposes. Those make excellent starting points for your own development.

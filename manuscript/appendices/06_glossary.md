@@ -7,7 +7,7 @@ Given webpack comes with specific nomenclature, the main terms and their explana
 * **Entry** - Entry refers to a file where you point from webpack's `entry` configuration.
 * **Module** - Module can be an entry, but it can also be a file where an entry points. Modules can point to other modules.
 * **Plugin** - Plugins connect to webpack's event system and can inject functionality into it. They allow you to extend webpack and can be combined with loaders for maximum control.
-* **Hot module replacement** - Hot module replacement refers to a particular technique that allows you to patch code while it is running in the browser.
+* **Hot module replacement** - Hot module replacement refers to a particular technique that allows you to patch code while it's running in the browser.
 * **Linting** - Linting relates to the process in which code is statically examined for specific faults. A linter alerts if any of these faults are found. It helps to improve code quality.
 
 ## Loading
@@ -26,7 +26,7 @@ Given webpack comes with specific nomenclature, the main terms and their explana
 ## Optimizing
 
 * **Minifying** - Minifying, or minification, is an optimization technique in which code is written in a more compact form without losing meaning. Certain destructive transformations break code if you are not careful.
-* **Tree shaking** - Tree shaking is the process of dropping unused code based on static analysis. A good ES6 module definition allows this process as it is possible to analyze in this particular manner.
+* **Tree shaking** - Tree shaking is the process of dropping unused code based on static analysis. A good ES6 module definition allows this process as it's possible to analyze in this particular manner.
 * **Hashing** - Hashing refers to the process of generating a hash that is attached to the asset/bundle path to invalidate it on the client. Example of a hashed bundle name: *app.f6f78b2fd2c38e8200d.js*.
 
 ## Output

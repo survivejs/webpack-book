@@ -1,8 +1,8 @@
 # Extending with Loaders
 
-As you have seen so far, loaders are one of the building blocks of webpack. If you want to load an asset, you most likely need to set up a matching loader definition. Even though there are a lot of [available loaders](https://webpack.js.org/loaders/), it is possible you are missing one fitting your purposes.
+As you have seen so far, loaders are one of the building blocks of webpack. If you want to load an asset, you most likely need to set up a matching loader definition. Even though there are a lot of [available loaders](https://webpack.js.org/loaders/), it's possible you are missing one fitting your purposes.
 
-You learn to develop a couple of small loaders next. But before that, it is good to understand how to debug them in isolation.
+You learn to develop a couple of small loaders next. But before that, it's good to understand how to debug them in isolation.
 
 T> The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API in detail.
 
@@ -73,7 +73,7 @@ The output tells the `result` of the processing, the resource that was processed
 
 T> If you want to capture the output to a file, use either `fs.writeFileSync('./output.txt', result.result)` or its asynchronous version as discussed in [Node documentation](https://nodejs.org/api/fs.html).
 
-T> It is possible to refer to loaders installed to the local project by name instead of resolving a full path to them. Example: `loaders: ['raw-loader']`.
+T> It's possible to refer to loaders installed to the local project by name instead of resolving a full path to them. Example: `loaders: ['raw-loader']`.
 
 ## Implementing an Asynchronous Loader
 
@@ -117,7 +117,7 @@ module.exports = function() {
 };
 ```
 
-But what's the point? You can pass to loaders through webpack entries. Instead of pointint to pre-existing files as you would in majority of the cases, you could pass to a loader that generates code dynamically. Even though a special case, it is good to be aware of the technique.
+But what's the point? You can pass to loaders through webpack entries. Instead of pointint to pre-existing files as you would in majority of the cases, you could pass to a loader that generates code dynamically. Even though a special case, it's good to be aware of the technique.
 
 ## Passing Options to Loaders
 
@@ -181,7 +181,7 @@ After running (`node ./run-loader.js`), you should see something like this:
 
 The result is as expected. You can try to pass more options to the loader or use query parameters to see what happens with different combinations.
 
-T> It is a good idea to validate options and rather fail hard than silently if the options aren't what you expect. [schema-utils](https://www.npmjs.com/package/schema-utils) has been designed for this purpose.
+T> It's a good idea to validate options and rather fail hard than silently if the options aren't what you expect. [schema-utils](https://www.npmjs.com/package/schema-utils) has been designed for this purpose.
 
 ## Pitch Loaders
 
@@ -221,7 +221,7 @@ remaining request ./demo.txt preceding request  input {}
   contextDependencies: [] }
 ```
 
-Besides intercepting, this would have been a good chance to attach metadata to the input. Often the pitching stage isn't required, but it is good to be aware of it as you see it in existing loaders.
+Besides intercepting, this would have been a good chance to attach metadata to the input. Often the pitching stage isn't required, but it's good to be aware of it as you see it in existing loaders.
 
 ## Conclusion
 
@@ -232,7 +232,7 @@ To recap:
 * *loader-runner* is a valuable tool for understanding how loaders work. Use it for debugging how loaders work.
 * Webpack **loaders** accept input and produce output based on it.
 * Loaders can be either synchronous or asynchronous. In the latter case, you should use `this.async()` webpack API to capture the callback exposed by webpack.
-* If you want to generate code dynamically for webpack entries, that's where loaders can come in handy. A loader does not have to accept input. It is acceptable that it returns only output in this case.
+* If you want to generate code dynamically for webpack entries, that's where loaders can come in handy. A loader does not have to accept input. It's acceptable that it returns only output in this case.
 * Use **loader-utils** to parse possible options passed to a loader and consider validating them using **schema-utils**.
 * Pitching stage complements the default behavior allowing you to intercept and to attach metadata.
 

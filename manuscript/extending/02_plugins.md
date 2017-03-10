@@ -34,7 +34,7 @@ The PurifyCSS plugin exposes a small interface to the user. Consider the example
 },
 ```
 
-In this case it is important the plugin is executed **after** `ExtractTextPlugin`. That way there is something sensible to process. The plugin also supports more advanced forms of path input. You could pass an `entry` like object to it to constrain the purifying process per entry instead of relying on the same set of files. This adds complexity to the implementation, but it's a good feature to support as it provides more control to the user.
+In this case it's important the plugin is executed **after** `ExtractTextPlugin`. That way there is something sensible to process. The plugin also supports more advanced forms of path input. You could pass an `entry` like object to it to constrain the purifying process per entry instead of relying on the same set of files. This adds complexity to the implementation, but it's a good feature to support as it provides more control to the user.
 
 Given failing fast and loud is a good idea when it comes to user-facing interfaces like this, the input can be validated carefully. JSON Schema is a good choice. Validating the input through [ajv](https://www.npmjs.com/package/ajv) allows you to provide verbose errors related to the input shape and it can capture even typos as it complains if you try to pass fields that are not supported. Webpack uses a similar solution internally, and it has proven to be a good decision.
 
@@ -129,9 +129,9 @@ module.exports = function PurifyPlugin(options) {
 };
 ```
 
-Even though this is a humble plugin, it took a lot of effort to achieve a basic implementation. It would be possible to decompose the plugin logic further although it is currently in a manageable shape. There are additional observations that can be made based on the implementation:
+Even though this is a humble plugin, it took a lot of effort to achieve a basic implementation. It would be possible to decompose the plugin logic further although it's currently in a manageable shape. There are additional observations that can be made based on the implementation:
 
-* The plugin output has been wrapped in callbacks. This way output related logic is performed only if the output (the `verbose` flag) has been enabled. It is possible webpack receives better logging facilities of its own in the future. For now, you can log warnings and errors through `compilation.warnings.push(new Error(...))` and `compilation.errors.push(...)` interface.
+* The plugin output has been wrapped in callbacks. This way output related logic is performed only if the output (the `verbose` flag) has been enabled. It's possible webpack receives better logging facilities of its own in the future. For now, you can log warnings and errors through `compilation.warnings.push(new Error(...))` and `compilation.errors.push(...)` interface.
 * The plugin has been written in a functional style as much as possible. The individual helper functions have been tested thoroughly and written in a test driven manner.
 * [webpack-sources](https://www.npmjs.com/package/webpack-sources) package comes in handy when you have to deal with the source in a format that webpack understands.
 
@@ -141,9 +141,9 @@ Sometimes it can make sense for a plugin to provide hooks of its own. This way y
 
 ## Conclusion
 
-Writing webpack plugins can be challenging at first due to the sheer size of the API webpack provides and it is the most powerful way you can extend webpack, though. When you begin to design a plugin, it is a good idea to spend time studying existing plugins that are close enough to what you are going to implement as this can generate insight on which hooks you should use and how.
+Writing webpack plugins can be challenging at first due to the sheer size of the API webpack provides and it's the most powerful way you can extend webpack, though. When you begin to design a plugin, it's a good idea to spend time studying existing plugins that are close enough to what you are going to implement as this can generate insight on which hooks you should use and how.
 
-It is a good idea to develop a plugin piece-wise so that you validate one piece of it at a time. The ultimate approach for understanding webpack plugins in great detail is to delve into webpack source itself as it is a big collection of plugins.
+It's a good idea to develop a plugin piece-wise so that you validate one piece of it at a time. The ultimate approach for understanding webpack plugins in great detail is to delve into webpack source itself as it's a big collection of plugins.
 
 To recap:
 
