@@ -81,7 +81,7 @@ $ node
 
 The code works through a convention, but there are better ways later in the chapter.
 
-T> You can try running the other examples through Node like this. Or you can set up a little standalone script to execute through it to reach the same results.
+T> You can try running the other examples through Node like this or you can set up a standalone script to execute through it to reach the same results.
 
 ## `window`
 

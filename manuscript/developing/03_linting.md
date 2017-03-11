@@ -18,7 +18,7 @@ T> It's telling that a competing project, JSCS, [decided to merge its efforts wi
 
 ### eslint-config-airbnb
 
-[eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb) is a good example of a popular preset. Often it's enough to find a preset you like, tweak it a little bit to your liking with local rules or by deriving a preset of your own based on it, and then using that. This way you don't have to worry so much about all the available functionality.
+[eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb) is a good example of a popular preset. Often it's enough to find a preset you like, tweak it to your liking with local rules or by deriving a preset of your own based on it, and then using that. This way you don't have to worry so much about all the available functionality.
 
 T> [eslint-config-cleanjs](https://www.npmjs.com/package/eslint-config-cleanjs) is a good example of how you can use ESLint to restrict JavaScript to a purely functional subset.
 
@@ -28,7 +28,7 @@ Besides linting for issues, it can be valuable to manage the code style. Nothing
 
 Establishing strong linting can be beneficial, especially in a context where you need to collaborate with others. Even when working alone you benefit from linting as it can catch issues you could otherwise neglect. JavaScript as a language allows usage which, while valid, is not be the clearest to understand or is even be incorrect.
 
-Linting does **not** replace proper testing, but it can complement testing approaches. It allows you to harden a codebase and make it a little harder to break. As the size of your project grows, and it becomes more challenging to manage, this becomes particularly important.
+Linting does **not** replace proper testing, but it can complement testing approaches. It allows you to harden a codebase and make it more difficult to break. As the size of your project grows, and it becomes more challenging to manage, this becomes particularly important.
 
 ## Setting Up ESLint
 
@@ -175,7 +175,7 @@ T> Attaching the linting process to Git through a prepush hook allows you to cat
 
 ### Enabling Error Overlay
 
-To make the development flow a little nicer, WDS provides an error overlay. The default setting, `overlay: true` captures only errors. Since even warnings can be beneficial, adjust the configuration as follows:
+To make the development flow nicer, WDS provides an error overlay. The default setting, `overlay: true` captures only errors. Since even warnings can be beneficial, adjust the configuration as follows:
 
 **webpack.config.js**
 
@@ -308,4 +308,4 @@ To recap:
 * EditorConfig complements ESLint by allowing you to define a project-level coding style. Editors integrate with EditorConfig making it easier to keep a project consistent regardless of the development platform.
 * Prettier is a complimentary solution that can format your code automatically whilst Danger operates on repository level and can perform higher level tasks related to the development process.
 
-Given the webpack configuration of the project is starting to get a little messy, it's a good time to discuss how to compose configuration and improve the situation.
+Given the webpack configuration of the project is starting to get messy, it's a good time to discuss how to compose configuration and improve the situation.

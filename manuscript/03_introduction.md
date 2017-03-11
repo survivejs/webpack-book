@@ -16,7 +16,7 @@ Webpack isn’t the only solution for this problem, and a collection of differen
 
 Webpack takes another route. It allows you to treat your project as a dependency graph. You could have an *index.js* in your project that pulls in the dependencies the project needs through standard `require` or `import` statements. You can refer to your style files and other assets the same way if you want.
 
-Webpack does all the preprocessing for you and gives you the bundles you specify through configuration and your code. This declarative approach is powerful, but it's a little difficult to learn. Webpack becomes an indispensable tool after you begin to understand how it works. This book has been designed to get through that initial learning curve and even go a little further.
+Webpack does all the preprocessing for you and gives you the bundles you specify through configuration and your code. This declarative approach is powerful, but it's difficult to learn. Webpack becomes an indispensable tool after you begin to understand how it works. This book has been designed to get through that initial learning curve and even go further.
 
 ## What Will You Learn?
 

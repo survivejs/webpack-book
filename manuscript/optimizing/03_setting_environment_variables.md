@@ -144,7 +144,7 @@ vendor.js.map     135 kB       2  [emitted]  vendor
 ...
 ```
 
-You went from 150 kB to 45 kB, and finally, to 24 kB. The final build is a little faster than the previous one as well.
+You went from 150 kB to 45 kB, and finally, to 24 kB. The final build is faster than the previous one as well.
 
 Given the 24 kB can be served gzipped, it's somewhat reasonable. gzipping drops around another 40%, and it's well supported by browsers.
 

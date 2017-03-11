@@ -155,7 +155,7 @@ leanpub-end-insert
 ...
 ```
 
-After this change, the application should be at least a little faster to rebuild. The amount of impact depends on the underlying implementation. The technique can also be applied during production usage.
+After this change, the application should be faster to rebuild. The amount of impact depends on the underlying implementation. The technique can also be applied during production usage.
 
 T> Given `module.noParse` accepts a regular expression if you wanted to ignore all `*.min.js` files, you could set it to `/\.min\.js/`. That can be a more generic approach.
 

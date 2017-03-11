@@ -1,6 +1,6 @@
 # Minifying
 
-The build output hasn't received attention yet and no doubt it's going to be a little chunky, especially as you included React in it. You can apply a variety of techniques to bring down the size of the vendor bundle. You can also leverage client level caching and load individual assets lazily as you saw earlier.
+The build output hasn't received attention yet and no doubt it's going to be chunky, especially as you included React in it. You can apply a variety of techniques to bring down the size of the vendor bundle. You can also leverage client level caching and load individual assets lazily as you saw earlier.
 
 **Minification** is a process where the code is simplified without losing any meaning that matters to the interpreter. As a result, your code most likely looks jumbled, and it's hard to read. But that's the point.
 

@@ -96,7 +96,7 @@ if (module.hot) {
 }
 ```
 
-To test the setup, a component is needed as well. In this case, it's going to be a little counter so you can see how the hot replacement mechanism maintains the state:
+To test the setup, a component is needed as well. In this case, it's going to be a counter so you can see how the hot replacement mechanism maintains the state:
 
 **app/counter.js**
 

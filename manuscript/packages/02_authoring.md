@@ -221,7 +221,7 @@ T> [npm link](https://docs.npmjs.com/cli/link) allows you to link a package as a
 
 ### On Naming Packages
 
-Before starting to develop, it can be a good idea to spend a little bit of time on figuring out a good name for your package. It's not fun to write an excellent package only to notice the name has been taken. A good name is possible to find through a search engine, and most importantly, is available at npm.
+Before starting to develop, it can be a good idea to spend time on figuring out a good name for your package. It's not fun to write an excellent package only to notice the name has been taken. A good name is possible to find through a search engine, and most importantly, is available at npm.
 
 As of npm 2.7.0, it's possible to create [scoped packages](https://docs.npmjs.com/getting-started/scoped-packages). They follow format `@username/project-name`. Simply follow that when naming your project.
 
@@ -408,7 +408,7 @@ The script needs tweaking to fit your purposes. But it's enough to give you a ro
 
 For the build script to work, you have to remember to include the source of the package to the distribution version and to tweak *package.json* `files` field accordingly.
 
-W> Relying on `postinstall` scripts can be [potentially dangerous](http://blog.npmjs.org/post/141702881055/package-install-scripts-vulnerability). Security-minded developers want to use `npm install --ignore-scripts`. You can set that default through `npm config set ignore-scripts true` if you want. Being a little cautious does not hurt.
+W> Relying on `postinstall` scripts can be [potentially dangerous](http://blog.npmjs.org/post/141702881055/package-install-scripts-vulnerability). Security-minded developers want to use `npm install --ignore-scripts`. You can set that default through `npm config set ignore-scripts true` if you want. Being cautious does not hurt.
 
 ### Deprecating, Unpublishing, and Renaming Packages
 

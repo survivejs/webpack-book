@@ -1,6 +1,6 @@
 # Tree Shaking
 
-**Tree shaking** is a feature enabled by the ES6 module definition. The idea is that given it's possible to analyze the module definition in a static way without running it, webpack can tell which parts of the code are being used and which are not. It's possible to verify this behavior by expanding the application a little and adding code there that should be eliminated.
+**Tree shaking** is a feature enabled by the ES6 module definition. The idea is that given it's possible to analyze the module definition in a static way without running it, webpack can tell which parts of the code are being used and which are not. It's possible to verify this behavior by expanding the application and adding code there that should be eliminated.
 
 ## Demonstrating Tree Shaking
 

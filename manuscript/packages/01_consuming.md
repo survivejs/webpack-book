@@ -10,9 +10,9 @@ Most popular packages out there comply with SemVer. It's problematic as sometime
 2. The MINOR version gets incremented when backwards-compatible functionality is added.
 3. The PATCH version gets incremented when a backwards-compatible bug is fixed.
 
-The rules are a little different for `0.x` versions. There the rule is `0.<MAJOR>.<MINOR>`. For packages considered stable and suitable for public usage (`1.0.0` and above), the rule is `<MAJOR>.<MINOR>.<PATCH>`. For example, if the current version of a package is `0.1.4` and a breaking change is performed, it should bump to `0.2.0`.
+The rules are different for `0.x` versions. There the rule is `0.<MAJOR>.<MINOR>`. For packages considered stable and suitable for public usage (`1.0.0` and above), the rule is `<MAJOR>.<MINOR>.<PATCH>`. For example, if the current version of a package is `0.1.4` and a breaking change is performed, it should bump to `0.2.0`.
 
-Given SemVer can be a little tricky to manage, [ComVer](https://github.com/staltz/comver) exists as an alternative. ComVer can be described as a binary decision `<not compatible>.<compatible>`.
+Given SemVer can be tricky to manage, [ComVer](https://github.com/staltz/comver) exists as an alternative. ComVer can be described as a binary decision `<not compatible>.<compatible>`.
 
 T> You can understand SemVer much better by studying [the online tool](http://semver.npmjs.com/) and how it behaves.
 
@@ -64,7 +64,7 @@ You can set the default range using `npm config set save-prefix='^'` in case you
 
 ## Shrinkwrapping Versions
 
-Using version ranges can feel a little dangerous as it doesn't take much to break an application. A single change in the wrong place is enough. [npm shrinkwrap](https://docs.npmjs.com/cli/shrinkwrap) allows you to fix your dependency versions and have stricter control over the versions you are using in a production environment. Most importantly it fixes the dependencies of your dependencies avoiding accidental breakage due to version changes and SemVer.
+Using version ranges can feel dangerous as it doesn't take much to break an application. A single change in the wrong place is enough. [npm shrinkwrap](https://docs.npmjs.com/cli/shrinkwrap) allows you to fix your dependency versions and have stricter control over the versions you are using in a production environment. Most importantly it fixes the dependencies of your dependencies avoiding accidental breakage due to version changes and SemVer.
 
 [lockdown](https://www.npmjs.com/package/lockdown) goes further and gives guarantees about dependency content, not version alone. [shrinkpack](https://www.npmjs.com/package/shrinkpack) is another complementary option.
 
@@ -72,7 +72,7 @@ Using version ranges can feel a little dangerous as it doesn't take much to brea
 
 ## Keeping Dependencies Up to Date
 
-An important part of maintaining a project is keeping their dependencies up to date. How to do this depends a lot of on the maturity of your project. Ideally, you have an excellent set of tests covering the functionality. If not, things can get a little hairier. You can consider the following approaches:
+An important part of maintaining a project is keeping their dependencies up to date. How to do this depends a lot of on the maturity of your project. Ideally, you have an excellent set of tests covering the functionality to avoid problems with updates. Consider the following approaches:
 
 * You can update all dependencies at once and hope for the best. Tools, such as [npm-check-updates](https://www.npmjs.com/package/npm-check-updates), [npm-check](https://www.npmjs.com/package/npm-check), [npm-upgrade](https://www.npmjs.com/package/npm-upgrade), or [updtr](https://www.npmjs.com/package/updtr), can do this for you.
 * Install the newest version of a specific dependency, e.g., `npm install lodash@* --save` as a more controlled approach.

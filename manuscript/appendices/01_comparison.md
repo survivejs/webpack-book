@@ -232,7 +232,7 @@ Dealing with JavaScript modules has always been a bit of a problem. The language
 
 [Browserify](http://browserify.org/) is one solution to the module problem. It allows CommonJS modules to be bundled together. You can hook it up with Gulp, and you can find smaller transformation tools that allow you to move beyond the basic usage. For example, [watchify](https://www.npmjs.com/package/watchify) provides a file watcher that creates bundles for you during development saving effort.
 
-The Browserify ecosystem is composed of a lot of small modules. In this way, Browserify adheres to the Unix philosophy. Browserify is a little easier to adopt than webpack, and is, in fact, a good alternative to it.
+The Browserify ecosystem is composed of a lot of small modules. In this way, Browserify adheres to the Unix philosophy. Browserify is easier to adopt than webpack, and is, in fact, a good alternative to it.
 
 T> [Splittable](https://www.npmjs.com/package/splittable) is a Browserify wrapper that allows code splitting, supports ES6 out of the box, tree shaking, and more.
 
@@ -274,7 +274,7 @@ T> There is an experimental [Hot Module Reloading runtime](https://www.npmjs.com
 
 ![JSPM](images/jspm.png)
 
-Using JSPM is quite different than previous tools. It comes with a little command line tool of its own that is used to install new packages to the project, create a production bundle, and so on. It supports [SystemJS plugins](https://github.com/systemjs/systemjs#plugins) that allow you to load various formats to your project.
+Using JSPM is quite different than previous tools. It comes with a command line tool of its own that is used to install new packages to the project, create a production bundle, and so on. It supports [SystemJS plugins](https://github.com/systemjs/systemjs#plugins) that allow you to load various formats to your project.
 
 ## Webpack
 

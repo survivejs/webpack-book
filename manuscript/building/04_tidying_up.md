@@ -16,7 +16,7 @@ Install the [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-p
 npm install clean-webpack-plugin --save-dev
 ```
 
-Next, you need to define a little function to wrap the basic idea. You could use the plugin directly, but this feels like something that could be used across projects, so it makes sense to push it to the library:
+Next, you need to define a function to wrap the basic idea. You could use the plugin directly, but this feels like something that could be used across projects, so it makes sense to push it to the library:
 
 **webpack.parts.js**
 

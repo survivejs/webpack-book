@@ -118,7 +118,7 @@ vendor.js.map     164 kB       1  [emitted]         vendor
 ...
 ```
 
-*app.js* and *vendor.js* have separate chunk IDs right now given they are entry chunks of their own. The output size is a little off, though. Intuitively *app.js* should be smaller to attain the goal with this build.
+*app.js* and *vendor.js* have separate chunk IDs right now given they are entry chunks of their own. The output size is off, though. Intuitively *app.js* should be smaller to attain the goal with this build.
 
 If you examine the resulting bundle, you can see that it contains React given that's how the default definition works. Webpack pulls the related dependencies to a bundle by default as illustrated by the image below:
 
