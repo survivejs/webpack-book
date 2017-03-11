@@ -235,6 +235,8 @@ exports.minifyCSS = ({ options }) => ({
 leanpub-end-insert
 ```
 
+W> If you use `--json` output with webpack as discussed in the *Analyzing Build Statistics* chapter, you should set `canPrint: false` to avoid output. You can solve by exposing the flag as a parameter so you can control it based on the environment.
+
 Then, connect with main configuration:
 
 **webpack.config.js**
