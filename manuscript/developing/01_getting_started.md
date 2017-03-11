@@ -112,7 +112,7 @@ At a minimum, it's nice to have at least `entry` and `output` fields in your con
 
 Entries tell webpack where to start parsing the application. In multi-page applications, you have an entry per page. Or you could have a configuration per entry as discussed later in this chapter.
 
-It's good to note that all output related paths that you see in the configuration are resolved against `output.path` meaning that if you had an output related option somewhere and wrote `styles/[name].css` to it, and had set your `output.path' to your project directory found at `~/Documents/Sites/Example/build`, webpack would output the `styles` directory below the output path to `~/Documents/Sites/Example/build/styles/[name].css`.
+All output related paths you see in the configuration are resolved against the `output.path` field. If you had an output relation option somewhere and wrote `styles/[name].css`, that would be expanded so that you get `<output.path> + <specific path>`. Example: *~/webpack-demo/build/styles/[name].css*.
 
 To illustrate how to connect `entry` and `output` with `HtmlWebpackPlugin`, consider the code below:
 
@@ -150,7 +150,7 @@ module.exports = {
 };
 ```
 
-The `entry` path could be given as a relative one with the [context](https://webpack.js.org/configuration/entry-context/#context) field used to configure that lookup. However, given plenty of places expect absolute paths, preferring them over relative paths everywhere avoids confusion.
+The `entry` path could be given as a relative one using the [context](https://webpack.js.org/configuration/entry-context/#context) field used to configure that lookup. However, given plenty of places expect absolute paths, preferring them over relative paths everywhere avoids confusion.
 
 T> **Trailing commas** are used in the book examples on purpose as it gives cleaner diffs for the code examples. You learn to enforce this rule in the *Linting JavaScript* chapter.
 
