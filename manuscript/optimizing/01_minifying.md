@@ -228,6 +228,7 @@ exports.minifyCSS = ({ options }) => ({
     new OptimizeCSSAssetsPlugin({
       cssProcessor: cssnano,
       cssProcessorOptions: options,
+      canPrint: false,
     }),
   ],
 });
