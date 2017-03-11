@@ -126,11 +126,6 @@ const productionConfig = merge([
 ]);
 
 const developmentConfig = merge([
-  {
-    plugins: [
-      new webpack.NamedModulesPlugin(),
-    ],
-  },
   parts.devServer({
     // Customize host/port here if needed
     host: process.env.HOST,
