@@ -148,8 +148,6 @@ You went from 150 kB to 45 kB, and finally, to 24 kB. The final build is faster 
 
 Given the 24 kB can be served gzipped, it's somewhat reasonable. gzipping drops around another 40%, and it's well supported by browsers.
 
-It's good to remember that you didn't include *react-dom* in this case and that would add around 100 kB to the final result. To get back to these figures, you would have to use a lighter alternative such as Preact or react-lite as discussed in the *Consuming Packages* chapter.
-
 T> `webpack.EnvironmentPlugin(['NODE_ENV'])` is a shortcut that allows you to refer to environment variables. It uses `DefinePlugin` underneath and you can achieve the same effect by passing `process.env.NODE_ENV` to the custom function you made. The [documentation covers `EnvironmentPlugin`](https://webpack.js.org/plugins/environment-plugin/) in greater detail.
 
 ## Replacing Free Variables Through Babel
