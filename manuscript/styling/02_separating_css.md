@@ -6,7 +6,7 @@ The current solution doesn't allow to cache CSS. You can also get a **Flash of U
 
 Webpack provides a means to generate a separate CSS bundles using [ExtractTextPlugin](https://www.npmjs.com/package/extract-text-webpack-plugin). It can aggregate multiple CSS files into one. For this reason, it comes with a loader that handles the extraction process. The plugin then picks up the result aggregated by the loader and emits a separate file.
 
-Due to this process, `ExtractTextPlugin` comes with overhead during the compilation phase. It doesn't work with Hot Module Replacement (HMR) by design. Given the plugin is used only for production, that is not a problem.
+Due to this process, `ExtractTextPlugin` comes with overhead during the compilation phase. It doesn't work with Hot Module Replacement by design. Given the plugin is used only for production, that is not a problem.
 
 T> This same technique can be employed with other assets, like templates, too.
 
@@ -31,7 +31,6 @@ The idea looks like this:
 **webpack.parts.js**
 
 ```javascript
-const webpack = require('webpack');
 leanpub-start-insert
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 leanpub-end-insert

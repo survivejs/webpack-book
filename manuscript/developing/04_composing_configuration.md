@@ -1,8 +1,8 @@
 # Composing Configuration
 
-Even though not a lot has been done with webpack yet, the amount of configuration is starting to feel substantial. Also, you have to be careful about the way you compose it as you have separate production and development targets in the project now. The situation can only get worse as you want to add more functionality to the project and using a single monolithic configuration file impacts comprehension and removes any potential for reusablity.
+Even though not a lot has been done with webpack yet, the amount of configuration is starting to feel substantial. Also, you have to be careful about the way you compose it as you have separate production and development targets in the project now. The situation can only get worse as you want to add more functionality to the project.
 
-As the needs of your project grow, you have to figure out the means to manage webpack configuration more effectively.
+Using a single monolithic configuration file impacts comprehension and removes any potential for reusablity. As the needs of your project grow, you have to figure out the means to manage webpack configuration more effectively.
 
 ## Possible Ways to Manage Configuration
 
@@ -51,13 +51,10 @@ Next, you need to refactor *webpack.config.js* into parts you can consume from t
 **webpack.parts.js**
 
 ```javascript
-const webpack = require('webpack');
-
 exports.devServer = function({ host, port } = {}) {
   return {
     devServer: {
       historyApiFallback: true,
-      hot: true,
       stats: 'errors-only',
       host, // Defaults to `localhost`
       port, // Defaults to 8080
@@ -66,9 +63,6 @@ exports.devServer = function({ host, port } = {}) {
         warnings: true,
       },
     },
-    plugins: [
-      new webpack.HotModuleReplacementPlugin(),
-    ],
   };
 };
 

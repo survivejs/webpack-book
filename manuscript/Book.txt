@@ -10,9 +10,8 @@ Mainmatter.txt
 05_Developing.md
 developing/01_getting_started.md
 developing/02_automatic_browser_refresh.md
-developing/03_configuring_hmr.md
-developing/04_linting.md
-developing/05_composing_configuration.md
+developing/03_linting.md
+developing/04_composing_configuration.md
 
 06_Styling.md
 styling/01_loading.md
@@ -70,8 +69,9 @@ Backmatter.txt
 
 15_Appendices.md
 appendices/01_comparison.md
-appendices/02_searching_with_react.md
+developing/02_configuring_hmr.md
 appendices/03_hmr_with_react.md
 appendices/04_customizing_eslint.md
-appendices/05_troubleshooting.md
-appendices/06_glossary.md
+appendices/05_searching_with_react.md
+appendices/06_troubleshooting.md
+appendices/07_glossary.md

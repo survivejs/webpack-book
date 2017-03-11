@@ -159,9 +159,6 @@ leanpub-start-insert
       ],
     },
 leanpub-end-insert
-    plugins: [
-      ...
-    ],
   };
 
   ...
@@ -175,6 +172,40 @@ If you execute `npm start` now and break a linting rule while developing, you sh
 W> Note that the webpack configuration lints only the application code you refer. If you want to lint webpack configuration itself, execute `npm run lint:js` separately.
 
 T> Attaching the linting process to Git through a prepush hook allows you to catch problems earlier. [husky](https://www.npmjs.com/package/husky) allows you to achieve this quickly. Doing this allows you to rebase your commits and fix possible problems early.
+
+### Enabling Error Overlay
+
+To make the development flow a little nicer, WDS provides an error overlay. The default setting, `overlay: true` captures only errors. Since even warnings can be beneficial, adjust the configuration as follows:
+
+**webpack.config.js**
+
+```javascript
+...
+
+function developmentConfig() {
+  const config = {
+    devServer: {
+      ...
+
+leanpub-start-insert
+      // Enable error/warning overlay
+      overlay: {
+        errors: true,
+        warnings: true,
+      },
+leanpub-end-insert
+    },
+  };
+
+  ...
+}
+
+...
+```
+
+If you run the server now (`npm start`) and break the code somehow, you should see something like this in the browser:
+
+![Error overlay](images/error-overlay.png)
 
 ### Configuring ESLint Further
 
@@ -273,6 +304,7 @@ To recap:
 
 * ESLint is the most versatile of the current options. You can expand it to fit your exact use case.
 * ESLint can be run through webpack. It can terminate your build and even prevent it from getting deployed if your build does not pass the linting rules.
+* To get a better development experience, consider enabling WDS `overlay` to capture errors and warnings emitted by webpack.
 * EditorConfig complements ESLint by allowing you to define a project-level coding style. Editors integrate with EditorConfig making it easier to keep a project consistent regardless of the development platform.
 * Prettier is a complimentary solution that can format your code automatically whilst Danger operates on repository level and can perform higher level tasks related to the development process.
 

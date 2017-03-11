@@ -11,7 +11,7 @@ Given webpack comes with specific nomenclature, the main terms and their explana
 * **Entry** - Entry refers to a file where you point from webpack's `entry` configuration.
 * **Module** - Module can be an entry, but it can also be a file where an entry points. Modules can point to other modules.
 * **Plugin** - Plugins connect to webpack's event system and can inject functionality into it. They allow you to extend webpack and can be combined with loaders for maximum control.
-* **Hot module replacement** - Hot module replacement refers to a particular technique that allows you to patch code while it's running in the browser.
+* **Hot Module Replacement** (HMR) - Hot module replacement refers to a particular technique that allows you to patch code while it's running in the browser.
 * **Linting** - Linting relates to the process in which code is statically examined for specific faults. A linter alerts if any of these faults are found. It helps to improve code quality.
 
 ## Loading

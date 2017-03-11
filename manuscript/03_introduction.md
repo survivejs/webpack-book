@@ -32,7 +32,7 @@ The book starts by explaining what webpack is. After that, you find multiple par
 
 The book has been split into the following parts:
 
-* **Developing** gets you up and running with webpack. This part goes through features such as Hot Module Replacement and explains how to compose your configuration so that it remains maintainable.
+* **Developing** gets you up and running with webpack. This part goes through features such as automatic browser refresh and explains how to compose your configuration so that it remains maintainable.
 * **Styling** puts heavy emphasis on styling related topics. You learn how to load styles with webpack and how to introduce techniques such as autoprefixing to your setup.
 * **Loading** explains webpack’s loader definitions in detail and shows you how to load assets such as images, fonts, and JavaScript.
 * **Building** introduces source maps and the ideas of bundle and code splitting. You learn to tidy up your build.

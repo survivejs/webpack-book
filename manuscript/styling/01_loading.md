@@ -90,7 +90,7 @@ leanpub-end-insert
 ...
 ```
 
-Execute `npm start` now. Browse to `http://localhost:8080` if you are using the default port and open up *main.css* and change the background color to something like `lime` (`background: lime`). Develop styles as needed to make it look a little nicer. Note that it does **not** perform a hard refresh on the browser since there is HMR setup in place.
+Execute `npm start` now. Browse to `http://localhost:8080` if you are using the default port and open up *main.css* and change the background color to something like `lime` (`background: lime`). Develop styles as needed to make it look a nicer. Note that it does **not** perform a hard refresh on the browser since there is HMR setup in place.
 
 You continue from here in the next chapter. Before that, though, you learn about styling-related techniques.
 

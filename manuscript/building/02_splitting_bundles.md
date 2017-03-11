@@ -202,7 +202,13 @@ The following code combines the `entry` idea above with a basic `CommonsChunkPlu
 
 ```javascript
 ...
+leanpub-start-insert
+const webpack = require('webpack');
+leanpub-end-insert
 
+...
+
+leanpub-start-insert
 exports.extractBundles = function(bundles) {
   return {
     plugins: bundles.map((bundle) => (
@@ -210,6 +216,7 @@ exports.extractBundles = function(bundles) {
     )),
   };
 };
+leanpub-end-insert
 ```
 
 Given the function handles the entry, you can drop the `vendor`-related configuration and use the function instead:
