@@ -167,7 +167,7 @@ Compression is particularly valuable for production builds as it decreases the a
 
 ## Referencing to Images
 
-Webpack can pick up images from stylesheets through `@import` and `url()` assuming *css-loader* has been configured. You can also refer to your images within code. In this case, you have to import the files explicitly:
+Webpack can pick up images from style sheets through `@import` and `url()` assuming *css-loader* has been configured. You can also refer to your images within code. In this case, you have to import the files explicitly:
 
 ```javascript
 const src = require('./avatar.png');
