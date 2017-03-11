@@ -40,7 +40,7 @@ If you implement configuration like above without implementing the client interf
 
 ![No refresh](images/no-refresh.png)
 
-The numbers are cryptic but the problem can be fixed with a plugin.
+The numbers are cryptic but the problem can be fixed with the `webpack.HotModuleReplacementPlugin` plugin.
 
 W> *webpack-dev-server* can be picky about paths. Webpack [issue #675](https://github.com/webpack/webpack/issues/675) discusses the problem in more detail.
 
