@@ -85,6 +85,8 @@ exports.lintJavaScript = function({ include, exclude, options }) {
 };
 ```
 
+T> The same `stats` idea works for production configuration as well. See [the official documentation](https://webpack.js.org/configuration/stats/) for all the available options.
+
 To benefit from these configuration parts, you need to connect them with *webpack.config.js* as in the complete code example below:
 
 **webpack.config.js**
