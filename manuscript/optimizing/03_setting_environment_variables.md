@@ -75,7 +75,7 @@ Elimination is the core idea of `DefinePlugin`. You can toggle parts of code usi
 
 Given you are using React in the project and it happens to use the technique, you can try to enable `DefinePlugin` and see what it does to the production build.
 
-As before, encapsulate this idea to a function. It's important to note that given the way webpack replaces the free variable, you should push it through `JSON.stringify`. You end up with a string like `'"demo"'` and then webpack inserts that into the slots it finds.
+As before, encapsulate this idea to a function. Due to the way webpack replaces the free variable, you should push it through `JSON.stringify`. You end up with a string like `'"demo"'` and then webpack inserts that into the slots it finds.
 
 **webpack.parts.js**
 

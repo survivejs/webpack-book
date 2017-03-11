@@ -125,7 +125,7 @@ You can make webpack emit ESLint messages by using [eslint-loader](https://www.n
 npm install eslint-loader --save-dev
 ```
 
-W> Note that *eslint-loader* uses a globally installed version of ESLint unless you have one included in the project itself. Make sure you have ESLint as a development dependency to avoid the strange behavior.
+W> *eslint-loader* uses a globally installed version of ESLint unless you have one included in the project itself. Make sure you have ESLint as a development dependency to avoid the strange behavior.
 
 The loader needs wiring to work. Loaders are discussed in detail in the *Loading* part of this book, but the basic idea is fast to understand. A loader is connected to webpack through a rule that contains preconditions related to it and a reference to the loader itself.
 
@@ -169,7 +169,7 @@ leanpub-end-insert
 
 If you execute `npm start` now and break a linting rule while developing, you should see that in the terminal output.
 
-W> Note that the webpack configuration lints only the application code you refer. If you want to lint webpack configuration itself, execute `npm run lint:js` separately.
+W> Webpack configuration lints only the application code you refer. If you want to lint webpack configuration itself, execute `npm run lint:js` separately.
 
 T> Attaching the linting process to Git through a prepush hook allows you to catch problems earlier. [husky](https://www.npmjs.com/package/husky) allows you to achieve this quickly. Doing this allows you to rebase your commits and fix possible problems early.
 

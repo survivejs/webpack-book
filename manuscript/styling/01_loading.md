@@ -90,7 +90,7 @@ leanpub-end-insert
 ...
 ```
 
-Execute `npm start` now. Browse to `http://localhost:8080` if you are using the default port and open up *main.css* and change the background color to something like `lime` (`background: lime`). Develop styles as needed to make it look a nicer. Note that it does **not** perform a hard refresh on the browser since there is HMR setup in place.
+Execute `npm start` now. Browse to `http://localhost:8080` if you are using the default port and open up *main.css* and change the background color to something like `lime` (`background: lime`). Develop styles as needed to make it look a nicer.
 
 You continue from here in the next chapter. Before that, though, you learn about styling-related techniques.
 
@@ -140,7 +140,7 @@ import styles from './main.css';
 element.className = styles.redButton;
 ```
 
-Note that `body` remains as a global declaration still. It's that `redButton` that makes the difference. You can build component-specific styles that don't leak elsewhere this way.
+`body` remains as a global declaration still. It's that `redButton` that makes the difference. You can build component-specific styles that don't leak elsewhere this way.
 
 CSS Modules provides also features like composition to make it even easier to work with your styles. You can also combine it with other loaders as long as you apply them before *css-loader*.
 
@@ -279,7 +279,7 @@ T> PostCSS supports also *postcss.config.js* based configuration. It relies on [
 
 See [the usage documentation](http://cssnext.io/usage/) for available options.
 
-T> Note that cssnext includes autoprefixer! You don't have to configure autoprefixing separately for it to work in this case.
+T> cssnext includes autoprefixer! You don't have to configure autoprefixing separately for it to work in this case.
 
 ## Understanding Lookups
 

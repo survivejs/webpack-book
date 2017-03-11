@@ -148,7 +148,7 @@ Even though `--env` allows to pass strings to the configuration, it can do a bit
 ...
 ```
 
-Instead of a string, you should receive an object `{ target: 'production' }` at configuration now. You could pass more key-value pairs, and they would go to the `env` object. It's important to note that if you set `--env foo` while setting `--env.target`, the string overrides the object.
+Instead of a string, you should receive an object `{ target: 'production' }` at configuration now. You could pass more key-value pairs, and they would go to the `env` object. If you set `--env foo` while setting `--env.target`, the string overrides the object.
 
 W> Webpack 2 changed argument behavior compared to webpack 1. You are not allowed to pass custom parameters through the CLI anymore. Instead, it's better to go through the `--env` mechanism if you need to do this.
 
@@ -268,7 +268,7 @@ Alternately, you could have set up an Express server and use a middleware. There
 
 There's also a [Node.js API](https://webpack.js.org/configuration/dev-server/) if you want more control and flexibility.
 
-W> Note that there are [slight differences](https://github.com/webpack/webpack-dev-server/issues/106) between the CLI and the Node API.
+W> There are [slight differences](https://github.com/webpack/webpack-dev-server/issues/106) between the CLI and the Node API.
 
 ## Other Features of *webpack-dev-server*
 

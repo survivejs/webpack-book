@@ -124,7 +124,7 @@ leanpub-end-insert
 ...
 ```
 
-W> Note that the order matters. CSS extraction has to happen before purifying.
+W> The order matters. CSS extraction has to happen before purifying.
 
 If you execute `npm run build` now, you should see something like this:
 

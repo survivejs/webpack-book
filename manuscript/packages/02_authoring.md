@@ -88,7 +88,7 @@ The example below contains an annotated a part of *package.json* from my [React 
   "module": "dist/",
 
   /* Files to include to npm distribution. */
-  /* Note that relative patterns like "./src" fail! */
+  /* Relative patterns like "./src" fail! */
   "files": [
     "dist/"
   ],
@@ -177,7 +177,7 @@ To bump your package version, you need to invoke one of these commands:
 
 Invoking any of these updates *package.json* and creates a version commit to git automatically. If you execute `npm publish` after doing this, you should have something new out there.
 
-Note that in the example above, `version`-related hooks have been set to make sure a version contains a fresh version of a distribution build. Tests are run to catch potential issues early on.
+In the example above, `version`-related hooks have been set to make sure a version contains a fresh version of a distribution build. Tests are run to catch potential issues early on.
 
 T> Consider using [semantic-release](https://www.npmjs.com/package/semantic-release) if you prefer a more structured approach. It can take pain out of the release process while automating a part of it. For instance, it can detect possible breaking changes and generate change logs.
 
@@ -267,7 +267,7 @@ The [the official documentation](https://docs.npmjs.com/misc/scripts) covers a l
 
 ### Working Around `prepublish` in npm 3
 
-It's important to note that in npm 3 `prepublish` hook gets also triggered when you run `npm install` on the project locally. Sometimes this can be surprising and counter-productive even.
+In npm 3 `prepublish` hook gets also triggered when you run `npm install` on the project locally. Sometimes this can be surprising and counter-productive even.
 
 [in-publish](https://www.npmjs.com/package/in-publish) allows you to tune the behavior and skip the installation step. You need to prepend your script with `in-publish && babel ...` kind of line for this to work. npm 4 and the following versions fix this confusing behavior.
 

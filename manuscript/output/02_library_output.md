@@ -137,7 +137,7 @@ module.exports =
 ...
 ```
 
-Note that `Demo`, the library name, isn't used anywhere. As a result importing the module yields this:
+The library name, `Demo`, isn't used anywhere. As a result importing the module yields this:
 
 ```javascript
 { add: [Getter] }

@@ -114,7 +114,7 @@ function loadIndex() {
   // Here's the magic. Set up `import` to tell webpack
   // to split here and load search index dynamically.
   //
-  // Note that you need to shim Promise.all for
+  // You need to shim Promise.all for
   // older browsers and Internet Explorer!
   return Promise.all([
     import('lunr'),

@@ -178,7 +178,7 @@ Note especially how the function was transformed. You can try out different brow
 
 *babel-preset-env* allows you to polyfill certain language features for older browsers. For this to work, you should enable its `useBuiltIns` option (`"useBuiltIns": true`) and install [babel-polyfill](https://babeljs.io/docs/usage/polyfill/). You also have to perform either `import "babel-polyfill";` in your code or manage it through an entry such as `app: ['babel-polyfill', PATHS.app]`. *babel-preset-env* rewrites the import based on your browser definition and load only the polyfills that are needed.
 
-It's important to note that *babel-polyfill* pollutes the global scope with objects like `Promise`. Given this can be problematic for library authors, there's [transform-runtime](https://babeljs.io/docs/plugins/transform-runtime/) option. It can be enabled as a Babel plugin, and it avoids the problem of globals by rewriting the code in such way that they aren't be needed.
+*babel-polyfill* pollutes the global scope with objects like `Promise`. Given this can be problematic for library authors, there's [transform-runtime](https://babeljs.io/docs/plugins/transform-runtime/) option. It can be enabled as a Babel plugin, and it avoids the problem of globals by rewriting the code in such way that they aren't be needed.
 
 W> Certain webpack features, such as *Code Splitting*, write `Promise` based code to webpack's bootstrap code after webpack has processed loaders. The problem can be solved by using a browser level polyfill for `Promise` as webpack's bootstrap code cannot be processed through Babel.
 
@@ -224,7 +224,7 @@ Babel allows you to control which presets and plugins are used per environment t
 }
 ```
 
-Note that any shared presets and plugins are available to all targets still. `env` allows you to specialize your Babel configuration further.
+Any shared presets and plugins are available to all targets still. `env` allows you to specialize your Babel configuration further.
 
 It's possible to pass the webpack environment to Babel with a tweak like this:
 

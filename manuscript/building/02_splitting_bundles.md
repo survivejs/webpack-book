@@ -370,7 +370,7 @@ parts.extractBundles([
 ]),
 ```
 
-T> Note that the `chunks` option refers to the entry chunks of your configuration.
+T> The `chunks` option refers to the entry chunks of your configuration.
 
 ## `CommonsChunkPlugin` `children` and `async` Flags
 
@@ -383,7 +383,7 @@ The image below shows the difference compared to the default. The top circles re
 
 ![`CommonsChunkPlugin` children and async](images/commonschunk.png)
 
-W> Note that the `children` behavior applies only to immediate children. The algorithm is not applied recursively. [Webpack issue 3981](https://github.com/webpack/webpack/issues/3981) explains this in detail.
+W> The `children` behavior applies only to immediate children. The algorithm is not applied recursively. [Webpack issue 3981](https://github.com/webpack/webpack/issues/3981) explains this in detail.
 
 ## Splitting and Merging Chunks
 

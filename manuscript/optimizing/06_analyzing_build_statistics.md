@@ -38,7 +38,7 @@ If you want to manage stats through a plugin, check out [stats-webpack-plugin](h
 
 ### Node API
 
-Stats can be captured through Node. Note that stats can contain errors, so it's a good idea to handle that case separately:
+Stats can be captured through Node. Since stats can contain errors, so it's a good idea to handle that case separately:
 
 ```javascript
 const webpack = require('webpack');

@@ -30,7 +30,7 @@ ESLint allows you to skip rules on several levels. Consider the following exampl
 alert('foo'); // eslint-disable-line no-alert
 ```
 
-Note that the rule specific examples assume you have the rules in your configuration in the first place! You cannot specify new rules here. Instead, you can modify the behavior of existing rules.
+The rule specific examples assume you have the rules in your configuration in the first place! You cannot specify new rules here. Instead, you can modify the behavior of existing rules.
 
 ## Setting Environment
 

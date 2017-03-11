@@ -40,7 +40,7 @@ Promise.all([
 });
 ```
 
-It's important to note that this creates separate chunks to a request. If you wanted only one, you would have to define an intermediate module to `import`.
+This creates separate chunks to a request. If you wanted only one, you would have to define an intermediate module to `import`.
 
 T> Webpack provided support for `System.import` in the early versions of webpack 2 and it still does. The functionality has been deprecated and gets removed in webpack 3. Until then, you can use the functionality interchangeably.
 

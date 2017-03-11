@@ -42,7 +42,7 @@ vendor.js.map     178 kB       2  [emitted]         vendor
 
 ## Enabling a Performance Budget
 
-Webpack allows you to define a **performance budget**. The idea is that it gives your build size constraint which it has to follow. The feature is disabled by default, but if enabled it defaults to 250 kB limit per entries and assets. Note that the calculation includes extracted chunks to entry calculation.
+Webpack allows you to define a **performance budget**. The idea is that it gives your build size constraint which it has to follow. The feature is disabled by default, but if enabled it defaults to 250 kB limit per entries and assets. The calculation includes extracted chunks to entry calculation.
 
 Performance budget can be configured to provide warnings or errors. If a budget isn't met and it has been configured to emit an error, it would terminate the entire build.
 

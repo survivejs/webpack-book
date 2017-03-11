@@ -87,7 +87,7 @@ Last 2 versions # Last two versions too
 IE 8 # And IE 8
 ```
 
-W> It's important to note that *browserslist* rules are evaluated as **or**. A browser matched by any of the definitions is included in the result.
+W> *browserslist* rules are evaluated as **or**. A browser matched by any of the definitions is included in the result.
 
 ## Conclusion
 

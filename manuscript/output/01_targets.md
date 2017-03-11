@@ -280,7 +280,7 @@ leanpub-end-insert
 ...
 ```
 
-Note that *rimraf* related rule was extended to remove all distribution related directories.
+The *rimraf* related rule was extended to remove all distribution related directories.
 
 [Babel CLI](https://babeljs.io/docs/usage/cli/) needs to be installed separately:
 
