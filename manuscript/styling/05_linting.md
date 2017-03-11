@@ -69,30 +69,28 @@ Next, to integrate with configuration, set up a part first:
 ```javascript
 ...
 
-exports.lintCSS = function({ include, exclude }) {
-  return {
-    module: {
-      rules: [
-        {
-          test: /\.css$/,
-          include,
-          exclude,
-          enforce: 'pre',
+exports.lintCSS = ({ include, exclude }) => ({
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        include,
+        exclude,
+        enforce: 'pre',
 
-          loader: 'postcss-loader',
-          options: {
-            plugins: () => ([
-              require('stylelint')({
-                // Ignore node_modules CSS
-                ignoreFiles: 'node_modules/**/*.css',
-              }),
-            ]),
-          },
+        loader: 'postcss-loader',
+        options: {
+          plugins: () => ([
+            require('stylelint')({
+              // Ignore node_modules CSS
+              ignoreFiles: 'node_modules/**/*.css',
+            }),
+          ]),
         },
-      ],
-    },
-  };
-};
+      },
+    ],
+  },
+});
 ```
 
 Then add it to the common configuration:

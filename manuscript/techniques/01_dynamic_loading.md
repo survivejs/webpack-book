@@ -44,7 +44,7 @@ Multiple separate `require.context`s can be combined into one by wrapping them b
 ```javascript
 const { concat, uniq } from 'lodash';
 
-function combineContexts(...contexts) {
+const combineContexts = (...contexts) => {
   function webpackContext(req) {
     // Find the first match and execute
     const matches = contexts.map(

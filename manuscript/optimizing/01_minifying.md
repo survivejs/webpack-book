@@ -117,13 +117,11 @@ leanpub-end-insert
 ...
 
 leanpub-start-insert
-exports.minifyJavaScript = function() {
-  return {
-    plugins: [
-      new BabiliPlugin(),
-    ],
-  };
-};
+exports.minifyJavaScript = () => ({
+  plugins: [
+    new BabiliPlugin(),
+  ],
+});
 leanpub-end-insert
 ```
 
@@ -225,16 +223,14 @@ leanpub-end-insert
 ...
 
 leanpub-start-insert
-exports.minifyCSS = function({ options }) {
-  return {
-    plugins: [
-      new OptimizeCSSAssetsPlugin({
-        cssProcessor: cssnano,
-        cssProcessorOptions: options,
-      }),
-    ],
-  };
-};
+exports.minifyCSS = ({ options }) => ({
+  plugins: [
+    new OptimizeCSSAssetsPlugin({
+      cssProcessor: cssnano,
+      cssProcessorOptions: options,
+    }),
+  ],
+});
 leanpub-end-insert
 ```
 

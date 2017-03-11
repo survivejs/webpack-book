@@ -117,7 +117,7 @@ leanpub-end-insert
 };
 
 leanpub-start-insert
-module.exports = function(env) {
+module.exports = (env) => {
   console.log('env', env);
 
   return commonConfig;
@@ -168,11 +168,9 @@ const commonConfig = {
 };
 
 leanpub-start-insert
-function productionConfig() {
-  return commonConfig;
-}
+const productionConfig = () => commonConfig;
 
-function developmentConfig() {
+const developmentConfig = () => {
   const config = {
     devServer: {
       // Enable history API fallback so HTML5 History API based
@@ -200,10 +198,10 @@ function developmentConfig() {
     commonConfig,
     config
   );
-}
+};
 leanpub-end-insert
 
-module.exports = function(env) {
+module.exports = (env) => {
 leanpub-start-delete
   console.log('env', env);
 

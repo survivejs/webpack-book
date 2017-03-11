@@ -29,11 +29,9 @@ To get started, you can wrap the core idea within a configuration part. You can 
 ```javascript
 ...
 
-exports.generateSourceMaps = function({ type }) {
-  return {
-    devtool: type,
-  };
-};
+exports.generateSourceMaps = ({ type }) => ({
+  devtool: type,
+});
 ```
 
 Webpack supports a wide variety of source map types. These vary based on quality and build speed. For now, you can enable `eval-source-map` for development and `source-map` for production. This way you get good quality while trading off performance, especially during development.
@@ -342,53 +340,51 @@ You can generate source maps only for the portions of the code you want while ha
 You could model a configuration part using `SourceMapDevToolPlugin` like this (adapted from [the official documentation](https://webpack.js.org/plugins/source-map-dev-tool-plugin/)):
 
 ```javascript
-exports.generateSourceMaps = function({
+exports.generateSourceMaps = ({
   test, include, separateSourceMaps, columnMappings
-}) {
+}) => ({
   // Enable functionality as you want to expose it
-  return {
-    plugins: [
-      new webpack.SourceMapDevToolPlugin({
-        // Match assets like for loaders. This is
-        // convenient if you want to match against multiple
-        // file types.
-        test: test, // string | RegExp | Array,
-        include: include, // string | RegExp | Array,
+  plugins: [
+    new webpack.SourceMapDevToolPlugin({
+      // Match assets like for loaders. This is
+      // convenient if you want to match against multiple
+      // file types.
+      test: test, // string | RegExp | Array,
+      include: include, // string | RegExp | Array,
 
-        // `exclude` matches file names, not package names!
-        // exclude: string | RegExp | Array,
+      // `exclude` matches file names, not package names!
+      // exclude: string | RegExp | Array,
 
-        // If filename is set, output to this file.
-        // See `sourceMapFileName`.
-        // filename: string,
+      // If filename is set, output to this file.
+      // See `sourceMapFileName`.
+      // filename: string,
 
-        // This line is appended to the original asset processed.
-        // For instance '[url]' would get replaced with an url
-        // to the source map.
-        // append: false | string,
+      // This line is appended to the original asset processed.
+      // For instance '[url]' would get replaced with an url
+      // to the source map.
+      // append: false | string,
 
-        // See `devtoolModuleFilenameTemplate` for specifics.
-        // moduleFilenameTemplate: string,
-        // fallbackModuleFilenameTemplate: string,
+      // See `devtoolModuleFilenameTemplate` for specifics.
+      // moduleFilenameTemplate: string,
+      // fallbackModuleFilenameTemplate: string,
 
-        // If false, separate source maps aren't generated.
-        module: separateSourceMaps,
+      // If false, separate source maps aren't generated.
+      module: separateSourceMaps,
 
-        // If false, column mappings are ignored.
-        columns: columnMappings,
+      // If false, column mappings are ignored.
+      columns: columnMappings,
 
-        // Use plain line to line mappings for the matched modules.
-        // lineToLine: bool | {test, include, exclude},
+      // Use plain line to line mappings for the matched modules.
+      // lineToLine: bool | {test, include, exclude},
 
-        // Remove source content from source maps. This is handy
-        // especially if your source maps are big (over 10 MB)
-        // as browsers can struggle with those.
-        // See https://github.com/webpack/webpack/issues/2669.
-        // noSources: bool,
-      }),
-    ],
-  };
-};
+      // Remove source content from source maps. This is handy
+      // especially if your source maps are big (over 10 MB)
+      // as browsers can struggle with those.
+      // See https://github.com/webpack/webpack/issues/2669.
+      // noSources: bool,
+    }),
+  ],
+});
 ```
 
 Given webpack matches only `.js` and `.css` files by default for source maps, you can use `SourceMapDevToolPlugin` to overcome this issue. This can be achieved by passing a `test` pattern like `/\.(js|jsx|css)($|\?)/i`.

@@ -28,7 +28,7 @@ You should also make the demo component use a Pure.css class, so there is someth
 **app/component.js**
 
 ```javascript
-module.exports = function () {
+module.exports = () => {
   const element = document.createElement('div');
 
 leanpub-start-insert
@@ -85,13 +85,11 @@ leanpub-end-insert
 ...
 
 leanpub-start-insert
-exports.purifyCSS = function({ paths }) {
-  return {
-    plugins: [
-      new PurifyCSSPlugin({ paths: paths }),
-    ],
-  };
-};
+exports.purifyCSS = ({ paths }) => ({
+  plugins: [
+    new PurifyCSSPlugin({ paths }),
+  ],
+});
 leanpub-end-insert
 ```
 

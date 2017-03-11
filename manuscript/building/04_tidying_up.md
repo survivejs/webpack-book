@@ -29,13 +29,11 @@ leanpub-end-insert
 ...
 
 leanpub-start-insert
-exports.clean = function(path) {
-  return {
-    plugins: [
-      new CleanWebpackPlugin([path]),
-    ],
-  };
-};
+exports.clean = (path) => ({
+  plugins: [
+    new CleanWebpackPlugin([path]),
+  ],
+});
 leanpub-end-insert
 ```
 
@@ -83,15 +81,13 @@ leanpub-end-insert
 ...
 
 leanpub-start-insert
-exports.attachRevision = function() {
-  return {
-    plugins: [
-      new webpack.BannerPlugin({
-        banner: new GitRevisionPlugin().version(),
-      }),
-    ],
-  };
-};
+exports.attachRevision = () => ({
+  plugins: [
+    new webpack.BannerPlugin({
+      banner: new GitRevisionPlugin().version(),
+    }),
+  ],
+});
 leanpub-end-insert
 ```
 

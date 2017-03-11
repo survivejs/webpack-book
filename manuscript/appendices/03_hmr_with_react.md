@@ -40,7 +40,7 @@ On the webpack side, *react-hot-loader* requires an additional entry it uses to 
 ```javascript
 ...
 
-module.exports = function(env) {
+module.exports = (env) => {
   const pages = [
     ...
     parts.page({
@@ -143,7 +143,7 @@ The webpack part should be adjusted like this:
 ```javascript
 ...
 
-module.exports = function(env) {
+module.exports = (env) => {
 leanpub-start-insert
   process.env.BABEL_ENV = env;
 leanpub-end-insert
@@ -195,7 +195,7 @@ T> The aforementioned `env` technique can be used to apply Babel presets and plu
 ```javascript
 ...
 
-export default function configureStore(initialState) {
+const configureStore = (initialState) => {
   const store = createStoreWithMiddleware(
     rootReducer,
     initialState
@@ -211,6 +211,8 @@ export default function configureStore(initialState) {
 
   return store;
 }
+
+export default configureStore;
 ```
 
 T> You can find [a full implementation of the idea online](https://github.com/survivejs-demos/redux-demo).

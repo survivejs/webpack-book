@@ -79,13 +79,13 @@ As you never get tired of `Hello world`, you will model a variant of that. Set u
 **app/component.js**
 
 ```javascript
-export default function (text = 'Hello world') {
+export default (text = 'Hello world') => {
   const element = document.createElement('div');
 
   element.innerHTML = text;
 
   return element;
-}
+};
 ```
 
 Next, you are going to need an entry point for the application. It uses `require` against the component and renders it through the DOM:

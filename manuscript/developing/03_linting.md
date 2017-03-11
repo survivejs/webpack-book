@@ -139,7 +139,7 @@ To add linting to the project, adjust the configuration as follows:
 ...
 
 
-function developmentConfig() {
+const developmentConfig = () => {
   const config = {
     devServer: {
       ...
@@ -162,7 +162,7 @@ leanpub-end-insert
   };
 
   ...
-}
+};
 
 ...
 ```
@@ -182,7 +182,7 @@ To make the development flow nicer, WDS provides an error overlay. The default s
 ```javascript
 ...
 
-function developmentConfig() {
+const developmentConfig = () => {
   const config = {
     devServer: {
       ...
@@ -198,7 +198,7 @@ leanpub-end-insert
   };
 
   ...
-}
+};
 
 ...
 ```

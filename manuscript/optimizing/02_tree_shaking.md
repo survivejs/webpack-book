@@ -9,13 +9,8 @@ To shake code, you have to define a module and use only a part of its code. Set 
 **app/shake.js**
 
 ```javascript
-const shake = function() {
-  console.log('shake');
-};
-
-const bake = function () {
-  console.log('bake');
-};
+const shake = () => console.log('shake');
+const bake = () => console.log('bake');
 
 export {
   shake,

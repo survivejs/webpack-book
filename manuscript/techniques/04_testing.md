@@ -45,9 +45,7 @@ To have something to test, set up a function:
 **tests/add.js**
 
 ```javascript
-module.exports = function(a, b) {
-  return a + b;
-};
+module.exports = (a, b) => a + b;
 ```
 
 Then, to test that, set up a small test suite:
@@ -58,8 +56,8 @@ Then, to test that, set up a small test suite:
 const assert = require('assert');
 const add = require('./add');
 
-describe('Demo', function() {
-  it('should add correctly', function() {
+describe('Demo', () => {
+  it('should add correctly', () => {
     assert.equal(add(1, 1), 2);
   });
 });
@@ -178,7 +176,7 @@ Like webpack, Karma relies on the configuration as well. Set up a file as follow
 **karma.conf.js**
 
 ```javascript
-module.exports = function(config) {
+module.exports = (config) => {
   const tests = 'tests/*.test.js';
 
   config.set({
@@ -245,7 +243,7 @@ To make Karma run tests through Phantom, adjust its configuration as follows:
 **karma.conf.js**
 
 ```javascript
-module.exports = function(config) {
+module.exports = (config) => {
   ...
 
   config.set({
@@ -327,7 +325,7 @@ Make sure to set Babel environment, so it picks up the plugin:
 **karma.conf.js**
 
 ```javascript
-module.exports = function(config) {
+module.exports = (config) => {
   ...
 
 leanpub-start-insert
@@ -347,7 +345,7 @@ On Karma side, reporting has to be set up and Karma configuration has to be conn
 **karma.conf.js**
 
 ```javascript
-module.exports = function(config) {
+module.exports = (config) => {
   ...
 
   config.set({

@@ -25,21 +25,19 @@ Now let's make sure webpack is aware of them. Configure as follows:
 ```javascript
 ...
 
-exports.loadCSS = function({ include, exclude } = {}) {
-  return {
-    module: {
-      rules: [
-        {
-          test: /\.css$/,
-          include,
-          exclude,
+exports.loadCSS = ({ include, exclude } = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        include,
+        exclude,
 
-          use: ['style-loader', 'css-loader'],
-        },
-      ],
-    },
-  };
-};
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
+});
 ```
 
 You also need to connect the fragment with the main configuration:

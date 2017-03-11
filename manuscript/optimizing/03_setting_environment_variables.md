@@ -82,7 +82,7 @@ As before, encapsulate this idea to a function. Due to the way webpack replaces 
 ```javascript
 ...
 
-exports.setFreeVariable = function(key, value) {
+exports.setFreeVariable = (key, value) => {
   const env = {};
   env[key] = JSON.stringify(value);
 

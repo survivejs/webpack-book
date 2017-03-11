@@ -158,25 +158,23 @@ The result is expected as you haven't configured loaders for any of Font Awesome
 ```javascript
 ...
 
-exports.loadFonts = function({ include, exclude, options } = {}) {
-  return {
-    module: {
-      rules: [
-        {
-          // Capture eot, ttf, woff, and woff2
-          test: /\.(eot|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-          include,
-          exclude,
+exports.loadFonts = ({ include, exclude, options } = {}) => ({
+  module: {
+    rules: [
+      {
+        // Capture eot, ttf, woff, and woff2
+        test: /\.(eot|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+        include,
+        exclude,
 
-          use: {
-            loader: 'file-loader',
-            options,
-          },
+        use: {
+          loader: 'file-loader',
+          options,
         },
-      ],
-    },
-  };
-};
+      },
+    ],
+  },
+});
 ```
 
 The idea is the same as for loading images. This time around you match font files. If you wanted, you could refactor the commonality to a function to share between the two.
@@ -207,7 +205,7 @@ If you run the project again (`npm start`), it should run without any errors. To
 **app/component.js**
 
 ```javascript
-export default function (text = 'Hello world') {
+export default (text = 'Hello world') => {
   const element = document.createElement('div');
 
 leanpub-start-delete

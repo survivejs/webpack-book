@@ -59,24 +59,22 @@ Set up a function as below:
 ```javascript
 ...
 
-exports.loadImages = function({ include, exclude, options } = {}) {
-  return {
-    module: {
-      rules: [
-        {
-          test: /\.(png|jpg|svg)$/,
-          include,
-          exclude,
+exports.loadImages = ({ include, exclude, options } = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpg|svg)$/,
+        include,
+        exclude,
 
-          use: {
-            loader: 'url-loader',
-            options,
-          },
+        use: {
+          loader: 'url-loader',
+          options,
         },
-      ],
-    },
-  };
-};
+      },
+    ],
+  },
+});
 ```
 
 To attach it to the configuration, adjust as follows. The configuration defaults to *url-loader* during development and uses both *url-loader* and *file-loader* in production to maintain smaller bundle sizes. *url-loader* uses *file-loader* implicitly when `limit` is set and both have to be installed for the setup to work.

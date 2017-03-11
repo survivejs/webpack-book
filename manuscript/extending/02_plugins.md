@@ -50,83 +50,81 @@ import * as search from './search';
 import validateOptions from './validate-options';
 import schema from './schema';
 
-module.exports = function PurifyPlugin(options) {
-  return {
-    apply(compiler) {
-      const validation = validateOptions(
-        schema({
-          entry: compiler.options.entry
-        }),
-        options
-      );
+module.exports = PurifyPlugin(options) => ({
+  apply(compiler) {
+    const validation = validateOptions(
+      schema({
+        entry: compiler.options.entry
+      }),
+      options
+    );
 
-      if (!validation.isValid) {
-        throw new Error(validation.error);
-      }
+    if (!validation.isValid) {
+      throw new Error(validation.error);
+    }
 
-      compiler.plugin('this-compilation', (compilation) => {
-        const entryPaths = parse.entryPaths(options.paths);
+    compiler.plugin('this-compilation', (compilation) => {
+      const entryPaths = parse.entryPaths(options.paths);
 
-        // Output debug information through a callback pattern
-        // to avoid unnecessary processing
-        const output = options.verbose ?
-          messageCb => console.info(...messageCb()) :
-          () => {};
+      // Output debug information through a callback pattern
+      // to avoid unnecessary processing
+      const output = options.verbose ?
+        messageCb => console.info(...messageCb()) :
+        () => {};
 
-        compilation.plugin('additional-assets', (cb) => {
-          // Go through chunks and purify as configured
-          compilation.chunks.forEach(
-            ({ name: chunkName, modules }) => {
-              const assetsToPurify = search.assets(
-                compilation.assets, options.styleExtensions
-              ).filter(
-                asset => asset.name.indexOf(chunkName) >= 0
+      compilation.plugin('additional-assets', (cb) => {
+        // Go through chunks and purify as configured
+        compilation.chunks.forEach(
+          ({ name: chunkName, modules }) => {
+            const assetsToPurify = search.assets(
+              compilation.assets, options.styleExtensions
+            ).filter(
+              asset => asset.name.indexOf(chunkName) >= 0
+            );
+
+            output(() => [
+              'Assets to purify:',
+              assetsToPurify.map(({ name }) => name).join(', ')
+            ]);
+
+            assetsToPurify.forEach(({ name, asset }) => {
+              const filesToSearch = parse.entries(
+                entryPaths, chunkName
+              ).concat(
+                search.files(
+                  modules,
+                  options.moduleExtensions || [],
+                  file => file.resource
+                )
               );
 
               output(() => [
-                'Assets to purify:',
-                assetsToPurify.map(({ name }) => name).join(', ')
+                'Files to search for used rules:',
+                filesToSearch.join(', ')
               ]);
 
-              assetsToPurify.forEach(({ name, asset }) => {
-                const filesToSearch = parse.entries(
-                  entryPaths, chunkName
-                ).concat(
-                  search.files(
-                    modules,
-                    options.moduleExtensions || [],
-                    file => file.resource
-                  )
-                );
+              // Compile through Purify and attach to output.
+              // This loses sourcemaps should there be any!
+              compilation.assets[name] = new ConcatSource(
+                purify(
+                  filesToSearch,
+                  asset.source(),
+                  {
+                    info: options.verbose,
+                    minify: options.minimize,
+                    ...options.purifyOptions
+                  }
+                )
+              );
+            });
+          }
+        );
 
-                output(() => [
-                  'Files to search for used rules:',
-                  filesToSearch.join(', ')
-                ]);
-
-                // Compile through Purify and attach to output.
-                // This loses sourcemaps should there be any!
-                compilation.assets[name] = new ConcatSource(
-                  purify(
-                    filesToSearch,
-                    asset.source(),
-                    {
-                      info: options.verbose,
-                      minify: options.minimize,
-                      ...options.purifyOptions
-                    }
-                  )
-                );
-              });
-            }
-          );
-
-          cb();
-        });
+        cb();
       });
-    }
-  };
-};
+    });
+  }
+});
 ```
 
 Even though this is a humble plugin, it took a lot of effort to achieve a basic implementation. It would be possible to decompose the plugin logic further although it's currently in a manageable shape. There are additional observations that can be made based on the implementation:

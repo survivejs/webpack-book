@@ -41,7 +41,7 @@ The host has to instantiate the worker and the communicate with it. The idea is 
 ```javascript
 import Worker from 'worker-loader!./worker';
 
-export default function () {
+export default () => {
   const element = document.createElement('h1');
 
   const worker = new Worker();

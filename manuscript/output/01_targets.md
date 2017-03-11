@@ -46,13 +46,12 @@ To have something to build, set up a module as follows:
 **lib/index.js**
 
 ```javascript
-function add(a, b) {
-  return a + b;
-}
+const add = (a, b) => a + b;
 
 export {
   add,
 };
+
 ```
 
 The idea is that this file becomes the entry point for the entire library and represents the API exposed to the consumers. If you want to support both CommonJS and ES6, it can be a good idea to use the CommonJS module definition here. If you go with ES6 `export default`, using such an export in a CommonJS environment often requires extra effort.
@@ -173,9 +172,9 @@ var Demo =
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "add", function() { return add; });
-function add(a, b) {
+var add = function add(a, b) {
   return a + b;
-}
+};
 
 /***/ })
 /******/ ]);

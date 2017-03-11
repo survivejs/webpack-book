@@ -54,26 +54,32 @@ const commonConfig = merge([{
 To complete the connection, you have to replace the original Babel loader definition with a HappyPack one:
 
 ```javascript
-exports.loadJavaScript = function({ include, exclude }) {
-  return {
-    module: {
-      rules: [
-        {
-          test: /\.js$/,
-          include,
-          exclude,
+exports.loadJavaScript = ({ include, exclude }) => ({
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        include,
+        exclude,
+
 leanpub-start-delete
-          loader: 'babel-loader',
+        loader: 'babel-loader',
 leanpub-end-delete
 leanpub-start-insert
-          loader: 'happypack/loader',
+        loader: 'happypack/loader',
 leanpub-end-insert
-          ...
+        options: {
+          // Enable caching for improved performance during
+          // development.
+          // It uses default OS directory by default. If you need
+          // something more custom, pass a path to it.
+          // I.e., { cacheDirectory: '<path>' }
+          cacheDirectory: true,
         },
-      ],
-    },
-  };
-};
+      },
+    ],
+  },
+});
 ```
 
 The example above contains enough information for webpack to run the given loader parallel. HappyPack comes with more advanced options, but applying this idea is enough to get started.
@@ -113,7 +119,7 @@ It's possible to encapsulate the core idea within a function like this:
 ```javascript
 ...
 
-exports.dontParse = function({ name, path }) {
+exports.dontParse = ({ name, path }) => {
   const alias = {};
   alias[name] = path;
 

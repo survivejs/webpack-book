@@ -103,7 +103,7 @@ Here's an example from [Grunt documentation](http://gruntjs.com/sample-gruntfile
 **Gruntfile.js**
 
 ```javascript
-module.exports = function(grunt) {
+module.exports = (grunt) => {
   grunt.initConfig({
     lint: {
       files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
@@ -169,18 +169,18 @@ gulp.task(
 gulp.task(
   'scripts',
   ['clean'],
-  function() {
+  () => (
     // Minify and copy all JavaScript (except vendor scripts)
     // with sourcemaps all the way down.
-    return gulp.src(paths.scripts)
+    gulp.src(paths.scripts)
       // Pipeline within pipeline
       .pipe(sourcemaps.init())
         .pipe(coffee())
         .pipe(uglify())
         .pipe(concat('all.min.js'))
       .pipe(sourcemaps.write())
-      .pipe(gulp.dest('build/js'));
-  }
+      .pipe(gulp.dest('build/js'))
+  )
 );
 
 // Rerun the task when a file changes.

@@ -209,13 +209,11 @@ leanpub-end-insert
 ...
 
 leanpub-start-insert
-exports.extractBundles = function(bundles) {
-  return {
-    plugins: bundles.map((bundle) => (
-      new webpack.optimize.CommonsChunkPlugin(bundle)
-    )),
-  };
-};
+exports.extractBundles = (bundles) => ({
+  plugins: bundles.map((bundle) => (
+    new webpack.optimize.CommonsChunkPlugin(bundle)
+  )),
+});
 leanpub-end-insert
 ```
 

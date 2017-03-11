@@ -168,7 +168,7 @@ You also need to point the application to this file, so the application knows to
 **app/component.js**
 
 ```javascript
-export default function () {
+export default () => {
   const element = document.createElement('div');
 
   element.className = 'fa fa-hand-spock-o fa-1g';
@@ -184,7 +184,7 @@ leanpub-start-insert
 leanpub-end-insert
 
   return element;
-}
+};
 ```
 
 If you open up the application (`npm start`) and click the button, you should see the new text in the button.
@@ -258,7 +258,7 @@ The idea is that after *lazy.js* gets loaded, *lazy.css* is applied as well. You
 It's possible to achieve the same with `require.ensure`. Consider the full example below:
 
 ```javascript
-export default function () {
+export default () => {
   const element = document.createElement('div');
 
   element.className = 'pure-button';
@@ -270,7 +270,7 @@ export default function () {
   };
 
   return element;
-}
+};
 ```
 
 You could name the split point as outlined above. If you add another split point and give it the same name, the splits should end up in the same bundle.

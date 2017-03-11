@@ -31,23 +31,21 @@ leanpub-end-insert
 ...
 
 leanpub-start-insert
-exports.page = function({
+exports.page = ({
   path = '',
   template = require.resolve(
     'html-webpack-plugin/default_index.ejs'
   ),
   title,
-} = {}) {
-  return {
-    plugins: [
-      new HtmlWebpackPlugin({
-        filename: `${path && path + '/'}index.html`,
-        template,
-        title,
-      }),
-    ],
-  };
-};
+} = {}) => ({
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: `${path && path + '/'}index.html`,
+      template,
+      title,
+    }),
+  ],
+});
 leanpub-end-insert
 ```
 
@@ -80,7 +78,7 @@ leanpub-end-delete
 
 ...
 
-module.exports = function(env) {
+module.exports = (env) => {
 leanpub-start-delete
   if (env === 'production') {
     return merge(commonConfig, productionConfig);
@@ -140,7 +138,7 @@ leanpub-end-delete
 
 ...
 
-module.exports = function(env) {
+module.exports = (env) => {
 leanpub-start-delete
   const pages = [
     parts.page({ title: 'Webpack demo' }),
@@ -179,19 +177,17 @@ The tweak also requires a change at the related part so that `entry` gets includ
 ```javascript
 ...
 
-exports.page = function({
+exports.page = ({
   ...
 leanpub-start-insert
   entry,
 leanpub-end-insert
-} = {}) {
-  return {
+} = {}) => ({
 leanpub-start-insert
-    entry,
+  entry,
 leanpub-end-insert
-    ...
-  };
-};
+  ...
+});
 ```
 
 After these changes `/another` should show something familiar:
@@ -224,7 +220,7 @@ To reach a code sharing setup, a minor adjustment is needed. Most of the code ca
 ```javascript
 ...
 
-module.exports = function(env) {
+module.exports = (env) => {
   const pages = [
     parts.page({
       title: 'Webpack demo',
@@ -266,24 +262,22 @@ The page-specific configuration requires a small tweak as well:
 ```javascript
 ...
 
-exports.page = function({
+exports.page = ({
   ...
 leanpub-start-insert
   chunks,
 leanpub-end-insert
-} = {}) {
-  return {
-    entry,
-    plugins: [
-      new HtmlWebpackPlugin({
+} = {}) => ({
+  entry,
+  plugins: [
+    new HtmlWebpackPlugin({
 leanpub-start-insert
-        chunks,
+      chunks,
 leanpub-end-insert
-        ...
-      }),
-    ],
-  };
-};
+      ...
+    }),
+  ],
+});
 ```
 
 If you generate a build (`npm run build`), you should notice that something is different compared to the first multiple page build you did. Instead of two manifest files, you can find only one. If you examine it, you notice it contains references to all files that were generated.

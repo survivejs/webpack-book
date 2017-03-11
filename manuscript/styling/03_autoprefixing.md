@@ -17,16 +17,14 @@ Add a fragment enabling autoprefixing like this:
 ```javascript
 ...
 
-exports.autoprefix = function() {
-  return {
-    loader: 'postcss-loader',
-    options: {
-      plugins: () => ([
-        require('autoprefixer'),
-      ]),
-    },
-  };
-};
+exports.autoprefix = () => ({
+  loader: 'postcss-loader',
+  options: {
+    plugins: () => ([
+      require('autoprefixer'),
+    ]),
+  },
+});
 ```
 
 To connect the loader with `ExtractTextPlugin`, hook it up as follows:

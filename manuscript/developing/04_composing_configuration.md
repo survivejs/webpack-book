@@ -51,38 +51,34 @@ Next, you need to refactor *webpack.config.js* into parts you can consume from t
 **webpack.parts.js**
 
 ```javascript
-exports.devServer = function({ host, port } = {}) {
-  return {
-    devServer: {
-      historyApiFallback: true,
-      stats: 'errors-only',
-      host, // Defaults to `localhost`
-      port, // Defaults to 8080
-      overlay: {
-        errors: true,
-        warnings: true,
+exports.devServer = ({ host, port } = {}) => ({
+  devServer: {
+    historyApiFallback: true,
+    stats: 'errors-only',
+    host, // Defaults to `localhost`
+    port, // Defaults to 8080
+    overlay: {
+      errors: true,
+      warnings: true,
+    },
+  },
+});
+
+exports.lintJavaScript = ({ include, exclude, options }) => ({
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        include,
+        exclude,
+        enforce: 'pre',
+
+        loader: 'eslint-loader',
+        options,
       },
-    },
-  };
-};
-
-exports.lintJavaScript = function({ include, exclude, options }) {
-  return {
-    module: {
-      rules: [
-        {
-          test: /\.js$/,
-          include,
-          exclude,
-          enforce: 'pre',
-
-          loader: 'eslint-loader',
-          options,
-        },
-      ],
-    },
-  };
-};
+    ],
+  },
+});
 ```
 
 T> The same `stats` idea works for production configuration as well. See [the official documentation](https://webpack.js.org/configuration/stats/) for all the available options.
@@ -133,7 +129,7 @@ const developmentConfig = merge([
   }),
 ]);
 
-module.exports = function(env) {
+module.exports = (env) => {
   if (env === 'production') {
     return merge(commonConfig, productionConfig);
   }

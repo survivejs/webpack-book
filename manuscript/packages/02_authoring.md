@@ -381,7 +381,7 @@ const fs = require('fs');
 // This could be read from package.json
 const distDirectory = 'dist-modules';
 
-fs.stat(distDirectory, function(error, stat) {
+fs.stat(distDirectory, (error, stat) => {
   // Skip building on Travis
   if (process.env.TRAVIS) {
     return;

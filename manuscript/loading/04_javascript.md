@@ -60,29 +60,27 @@ Here's the full loader configuration:
 ```javascript
 ...
 
-exports.loadJavaScript = function({ include, exclude }) {
-  return {
-    module: {
-      rules: [
-        {
-          test: /\.js$/,
-          include,
-          exclude,
+exports.loadJavaScript = ({ include, exclude }) => ({
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        include,
+        exclude,
 
-          loader: 'babel-loader',
-          options: {
-            // Enable caching for improved performance during
-            // development.
-            // It uses default OS directory by default. If you need
-            // something more custom, pass a path to it.
-            // I.e., { cacheDirectory: '<path>' }
-            cacheDirectory: true,
-          },
+        loader: 'babel-loader',
+        options: {
+          // Enable caching for improved performance during
+          // development.
+          // It uses default OS directory by default. If you need
+          // something more custom, pass a path to it.
+          // I.e., { cacheDirectory: '<path>' }
+          cacheDirectory: true,
         },
-      ],
-    },
-  };
-};
+      },
+    ],
+  },
+});
 ```
 
 Next, you need to connect this with the main configuration. If you are using a modern browser for development, you can consider processing only the production code through Babel. To play it safe, it's used for both production and development environments in this case. In addition, only application code is processed through Babel.
@@ -233,7 +231,7 @@ It's possible to pass the webpack environment to Babel with a tweak like this:
 ```javascript
 ...
 
-module.exports = function(env) {
+module.exports = (env) => {
 leanpub-start-insert
   process.env.BABEL_ENV = env;
 leanpub-end-insert

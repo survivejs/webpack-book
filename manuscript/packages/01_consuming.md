@@ -259,21 +259,19 @@ You can model an `ignore` part using *null-loader* like this:
 ```javascript
 ...
 
-exports.ignore = function({ test, include, exclude }) {
-  return {
-    module: {
-      rules: [
-        {
-          test,
-          include,
-          exclude,
+exports.ignore = ({ test, include, exclude }) => ({
+  module: {
+    rules: [
+      {
+        test,
+        include,
+        exclude,
 
-          use: 'null-loader',
-        },
-      ],
-    },
-  };
-};
+        use: 'null-loader',
+      },
+    ],
+  },
+});
 ```
 
 To ignore all Font Awesome SVGs, you could have a definition like this:

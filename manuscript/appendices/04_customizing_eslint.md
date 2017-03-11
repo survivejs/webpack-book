@@ -93,9 +93,9 @@ module.exports = {
         properties: {},
         additionalProperties: false,
       }],
-      create: function(context) {
+      create(context) {
         return {
-          Identifier: function(node) {
+          Identifier(node) {
             context.report(node, 'This is unexpected!');
           },
         };

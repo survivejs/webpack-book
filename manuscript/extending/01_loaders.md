@@ -21,9 +21,7 @@ To have something to test with, set up a loader that returns twice what's passed
 **loaders/demo-loader.js**
 
 ```javascript
-module.exports = function(input) {
-  return input + input;
-};
+module.exports = (input) => input + input;
 ```
 
 Set up a file to process:
@@ -43,19 +41,15 @@ const fs = require('fs');
 const { runLoaders } = require('loader-runner');
 
 runLoaders({
-    resource: './demo.txt',
-    loaders: [
-      path.resolve(__dirname, './loaders/demo-loader')
-    ]
-    readResource: fs.readFile.bind(fs)
-  },
-  function(err, result) {
-    if(err) {
-      return console.error(err);
-    }
-
-    console.log(result);
-  }
+  resource: './demo.txt',
+  loaders: [
+    path.resolve(__dirname, './loaders/demo-loader')
+  ]
+  readResource: fs.readFile.bind(fs)
+},
+(err, result) => err ?
+  console.error(err) :
+  console.log(result)
 );
 ```
 
@@ -90,6 +84,8 @@ module.exports = function(input) {
   callback(null, input + input);
 };
 ```
+
+W> Given webpack injects its API through `this`, the shorter function form (`() => ...`) cannot be used here.
 
 Running the demo script (`node run-loader.js`) again should give exactly the same result as before. To raise an error during execution, try the following:
 
@@ -129,23 +125,23 @@ To control loader behavior, often you want to pass specific options to a loader.
 ...
 
 runLoaders({
-    resource: './demo.txt',
-    loaders: [
+  resource: './demo.txt',
+  loaders: [
 leanpub-start-delete
-      path.resolve(__dirname, './loaders/demo-loader')
+    path.resolve(__dirname, './loaders/demo-loader')
 leanpub-end-delete
 leanpub-start-insert
-      {
-        loader: path.resolve(__dirname, './loaders/demo-loader'),
-        options: {
-          text: 'demo',
-        },
+    {
+      loader: path.resolve(__dirname, './loaders/demo-loader'),
+      options: {
+        text: 'demo',
       },
+    },
 leanpub-end-insert
-    ]
-    readResource: fs.readFile.bind(fs)
-  },
-  ...
+  ],
+  readResource: fs.readFile.bind(fs),
+},
+...
 );
 ```
 
@@ -199,7 +195,9 @@ module.exports = function(input) {
 
   return input + text;
 };
-module.exports.pitch = function(remainingRequest, precedingRequest, input) {
+module.exports.pitch = function(
+  remainingRequest, precedingRequest, input
+) {
   console.log(
     'remaining request', remainingRequest,
     'preceding request', precedingRequest,
