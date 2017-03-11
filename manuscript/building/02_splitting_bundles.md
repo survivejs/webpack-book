@@ -192,7 +192,7 @@ Now the bundles look the way they should. The image below illustrates the curren
 
 ![App and vendor bundles after applying `CommonsChunkPlugin`](images/bundle_02.png)
 
-It's good to note that if the vendor entry contained extra dependencies (white on the image), the setup would pull those into the project as well. Resolving this problem is possible by examining which packages are being used in the project using the `minChunks` parameter of the `CommonsChunksPlugin`. But before that, let's abstract the solution a bit.
+If the vendor entry contained extra dependencies (white on the image), the setup would pull those into the project as well. Resolving this problem is possible by examining which packages are being used in the project using the `minChunks` parameter of the `CommonsChunksPlugin`. But before that, let's abstract the solution a bit.
 
 ## Abstracting Bundle Extraction
 
