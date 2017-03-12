@@ -43,9 +43,9 @@ const { runLoaders } = require('loader-runner');
 runLoaders({
   resource: './demo.txt',
   loaders: [
-    path.resolve(__dirname, './loaders/demo-loader')
-  ]
-  readResource: fs.readFile.bind(fs)
+    path.resolve(__dirname, './loaders/demo-loader'),
+  ],
+  readResource: fs.readFile.bind(fs),
 },
 (err, result) => err ?
   console.error(err) :
@@ -115,9 +115,59 @@ module.exports = function() {
 
 But what's the point? You can pass to loaders through webpack entries. Instead of pointint to pre-existing files as you would in majority of the cases, you could pass to a loader that generates code dynamically. Even though a special case, it's good to be aware of the technique.
 
+## Writing Files
+
+Loaders, like [file-loader](https://www.npmjs.com/package/file-loader), emit files. Webpack provides a single method, `this.emitFile`, for this. Given *loader-runner* does not implement it, you have to mock it:
+
+**run-loader.js**
+
+```javascript
+const fs = require('fs');
+const { runLoaders } = require('loader-runner');
+
+runLoaders({
+  resource: './demo.txt',
+  loaders: [
+    path.resolve(__dirname, './loaders/demo-loader'),
+  ],
+leanpub-start-insert
+  context: {
+    emitFile: () => {},
+  },
+leanpub-end-insert
+  readResource: fs.readFile.bind(fs),
+},
+(err, result) => err ?
+  console.error(err) :
+  console.log(result)
+);
+```
+
+To implement the essential idea of *file-loader*, you have to do two things: emit the file and return path to it. You could implement it like this:
+
+**loaders/demo-loader.js**
+
+```javascript
+const loaderUtils = require('loader-utils');
+
+module.exports = function(content) {
+  const url = loaderUtils.interpolateName(
+    this, '[hash].[ext]', { content }
+  );
+
+  this.emitFile(url, content);
+
+  const filePath = `__webpack_public_path__ + ${JSON.stringify(url)};`;
+
+  return `export default ${filePath}`;
+};
+```
+
+The next question is, how to pass file name to the loader.
+
 ## Passing Options to Loaders
 
-To control loader behavior, often you want to pass specific options to a loader. To demonstrate this, the runner needs a small tweak:
+To demonstrate passing options, the runner needs a small tweak:
 
 **run-loader.js**
 
@@ -134,12 +184,12 @@ leanpub-start-insert
     {
       loader: path.resolve(__dirname, './loaders/demo-loader'),
       options: {
-        text: 'demo',
+        name: 'demo.[ext]',
       },
     },
 leanpub-end-insert
   ],
-  readResource: fs.readFile.bind(fs),
+  ...
 },
 ...
 );
@@ -151,31 +201,45 @@ To capture the option, you need to use [loader-utils](https://www.npmjs.com/pack
 npm install loader-utils --save-dev
 ```
 
-To connect it the loader, set it to concatenate the passed input and the `text` option:
+To connect it the loader, set it to capture `name` and pass it through webpack's interpolator:
 
 **loaders/demo-loader.js**
 
 ```javascript
 const loaderUtils = require('loader-utils');
 
-module.exports = function(input) {
-  const { text } = loaderUtils.getOptions(this);
+module.exports = function(content) {
+leanpub-start-insert
+  const { name } = loaderUtils.getOptions(this);
+leanpub-end-insert
+  const url = loaderUtils.interpolateName(
+leanpub-start-delete
+    this, '[hash].[ext]', { content }
+leanpub-end-delete
+leanpub-start-insert
+    this, name, { content }
+leanpub-end-insert
+  );
 
-  return input + text;
+  this.emitFile(url, content);
+
+  const filePath = `__webpack_public_path__ + ${JSON.stringify(url)};`;
+
+  return `export default ${filePath}`;
 };
 ```
 
 After running (`node ./run-loader.js`), you should see something like this:
 
 ```javascript
-{ result: [ 'foobar\ndemo' ],
+{ result: [ 'export default __webpack_public_path__ + "demo.txt";' ],
   resourceBuffer: <Buffer 66 6f 6f 62 61 72 0a>,
   cacheable: true,
   fileDependencies: [ './demo.txt' ],
   contextDependencies: [] }
 ```
 
-The result is as expected. You can try to pass more options to the loader or use query parameters to see what happens with different combinations.
+You can see that the result matches what the loader should have returned. You can try to pass more options to the loader or use query parameters to see what happens with different combinations.
 
 T> It's a good idea to validate options and rather fail hard than silently if the options aren't what you expect. [schema-utils](https://www.npmjs.com/package/schema-utils) has been designed for this purpose.
 
@@ -183,9 +247,9 @@ T> It's a good idea to validate options and rather fail hard than silently if th
 
 Webpack evaluates loaders in two phases: pitching and running. If you are used to web event semantics, these map to capturing and bubbling. The idea is that webpack allows you to intercept execution during the pitching (capturing) phase. It goes through the loaders left to right first like this and after that it executes them from right to left.
 
-A pitch loader allows you shape the request and even terminate it. To show how termination works. Adjust the example as follows:
+A pitch loader allows you shape the request and even terminate it. Set up an example as follows:
 
-**loaders/demo-loader.js**
+**loaders/pitch-loader.js**
 
 ```javascript
 const loaderUtils = require('loader-utils');
@@ -198,28 +262,96 @@ module.exports = function(input) {
 module.exports.pitch = function(
   remainingRequest, precedingRequest, input
 ) {
-  console.log(
-    'remaining request', remainingRequest,
-    'preceding request', precedingRequest,
-    'input', input
-  );
+  console.log(`
+Remaining request: ${remainingRequest}
+Preceding request: ${precedingRequest}
+Input: ${JSON.stringify(input, null, 2)}
+  `);
 
   return 'pitched';
 };
 ```
 
+To connect it to the runner, add it to the loader definition:
+
+**run-loader.js**
+
+```javascript
+const fs = require('fs');
+const path = require('path');
+const { runLoaders } = require('loader-runner');
+
+runLoaders({
+  resource: './demo.txt',
+  loaders: [
+    {
+      loader: path.resolve(__dirname, './loaders/demo-loader'),
+      options: {
+        name: 'demo.[ext]',
+      },
+    },
+leanpub-start-insert
+    path.resolve(__dirname, './loaders/pitch-loader'),
+leanpub-end-insert
+  ],
+  context: {
+    emitFile: () => {},
+  },
+  readResource: fs.readFile.bind(fs),
+},
+(err, result) => err ?
+  console.error(err) :
+  console.log(result)
+);
+```
+
 If you run (`node ./run-loader.js`) now, the pitch loader should log intermediate data and intercept the execution:
 
 ```javascript
-remaining request ./demo.txt preceding request  input {}
-{ result: [ 'pitched' ],
+Remaining request: ./demo.txt
+Preceding request: .../webpack-demo/loaders/demo-loader?{"name":"demo.[ext]"}
+Input: {}
+
+{ result: [ 'export default __webpack_public_path__ + "demo.txt";' ],
   resourceBuffer: null,
   cacheable: true,
   fileDependencies: [],
   contextDependencies: [] }
 ```
 
-Besides intercepting, this would have been a good chance to attach metadata to the input. Often the pitching stage isn't required, but it's good to be aware of it as you see it in existing loaders.
+Although webpack caches loaders by default unless they set `this.cacheable(false)`, writing a caching loader can be a good exercise as it helps you to understand how loader stages can work together. The example below shows how to achieve this (courtesy of Vladimir Grenaderov):
+
+```
+const cache = new Map();
+
+module.exports = function(content) {
+  // Calls only once for given resourcePath
+  const callbacks = cache.get(this.resourcePath);
+  callbacks.forEach(callback => callback(null, content));
+
+  cache.set(this.resourcePath, content);
+
+  return content;
+};
+module.exports.pitch = function() {
+  if (cache.has(this.resourcePath)) {
+    const item = cache.get(this.resourcePath);
+
+    if (item instanceof Array) {
+      // Load to cache
+      item.push(this.async());
+    } else {
+      // Hit cache
+      return item;
+    }
+  } else {
+    // Missed cache
+    cache.set(this.resourcePath, []);
+  }
+};
+```
+
+A pitch loader can be used to attach metadata to the input to use later. In this example, cache was constructed during the pitching stage and it was accessed during normal execution.
 
 ## Conclusion
 
