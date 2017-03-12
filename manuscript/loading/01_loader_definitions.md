@@ -308,6 +308,12 @@ Given webpack 2 forbids arbitrary root level configuration, you have to use `Loa
 },
 ```
 
+## Understanding Loader Behavior
+
+Loader behavior can be understood in greater detail by inspecting them. [loader-runner](https://www.npmjs.com/package/loader-runner) allows you to run them in isolation without webpack. Webpack uses this package internally and *Extending with Loaders* chapter covers it in detail.
+
+[inspect-loader](https://www.npmjs.com/package/inspect-loader) allows you to inspect what's being passed between loaders. Instead of having to insert `console.log`s within *node_modules*, you can attach this loader to your configuration and inspect the flow there.
+
 ## Conclusion
 
 Webpack provides multiple ways to set up loaders, but sticking with `use` is enough in webpack 2. You should be careful, especially with loader ordering, as this is a common source of problems.
@@ -321,5 +327,3 @@ To recap:
 * `LoaderOptionsPlugin` exists for legacy purposes and allows you to get around the strict configuration schema of webpack 2 to work with older plugins and loaders.
 
 In the next chapter, you learn to load images using webpack.
-
-T> If you want to examine loaders in isolation and understand how they work better, see the *Extending with Loaders* chapter.
