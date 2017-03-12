@@ -65,7 +65,7 @@ exports.extractCSS = ({ include, exclude, use }) => {
 leanpub-end-insert
 ```
 
-That `[name]` placeholder uses the name of the entry where the CSS is referred. Placeholders and the overall idea are discussed in detail in the *Adding Hashes to Filenames* chapter.
+That `[name]` placeholder uses the name of the entry where the CSS is referred. Placeholders and hashing are discussed in detail in the *Adding Hashes to Filenames* chapter.
 
 It would be possible to have multiple `plugin.extract` calls against different file types. This would allow you to aggregate them to a single CSS file. Another option would be to extract multiple CSS files through separate plugin definitions and then concatenate them using [merge-files-webpack-plugin](https://www.npmjs.com/package/merge-files-webpack-plugin).
 
