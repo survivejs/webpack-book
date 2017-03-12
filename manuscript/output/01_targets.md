@@ -246,7 +246,7 @@ To keep ESLint from linting the new build output, adjust its ignore rules as fol
 **.eslintignore**
 
 ```bash
-build/*
+...
 leanpub-start-insert
 dist/*
 dist-modules/*

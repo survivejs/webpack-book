@@ -157,6 +157,17 @@ leanpub-end-insert
 
 If you build the SSR demo (`npm run build:ssr`), you should see a new file at *./static/index.js*. The next step is to set up a server to render it.
 
+To make sure ESLint doesn't traverse through the new directory, ignore it:
+
+**.eslintignore**
+
+```bash
+...
+leanpub-start-insert
+static/*
+leanpub-end-insert
+```
+
 ## Setting Up a Server
 
 To keep things clear to understand, you can set up a standalone Express server that picks up the generated bundle and renders it following the SSR principle. Install Express first:

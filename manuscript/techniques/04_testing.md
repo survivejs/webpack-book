@@ -378,6 +378,17 @@ If you execute karma now (`npm run test:karma`), you should see a new directory 
 
 LCOV requires specific tooling to work. You can find editor plugins such as [lcov-info](https://atom.io/packages/lcov-info) for Atom. A properly configured plugin can give you coverage information while you are developing using the watch mode.
 
+To make sure ESLint doesn't pick up the generated coverage files, ignore *coverage* directory:
+
+**.eslintignore**
+
+```bash
+...
+leanpub-start-insert
+coverage/*
+leanpub-end-insert
+```
+
 ## Jest
 
 ![Jest](images/jest.png)
