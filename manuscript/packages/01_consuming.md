@@ -133,6 +133,29 @@ Light React alternatives, such as [Preact](https://www.npmjs.com/package/preact)
 
 T> The same technique works with loaders too. You can use `resolveLoader.alias` similarly. You can use the technique to adapt a RequireJS project to work with webpack.
 
+## Consuming Packages Outside of Webpack
+
+Browser dependencies, like jQuery, are often served through publicly available Content Delivery Networks (CDN). CDNs allow you to push the problem of loading popular packages elsewhere. If a package has been already loaded from a CDN and it's in the user cache, there is no need to load it.
+
+To use this technique, you should first mark the dependency in question as an external:
+
+```javascript
+externals: {
+  'jquery': 'jquery',
+},
+```
+
+You still have to point to a CDN and ideally provide a local fallback so there is something to load if the CDN does not work for the client. You can do it like this:
+
+```html
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery-3.1.1.min.js"><\/script>')
+</script>
+```
+
+T> [html-webpack-cdn-plugin](https://www.npmjs.com/package/html-webpack-cdn-plugin) is one option if you are using `HtmlWebpackPlugin` and want to inject a `script` tag automatically.
+
 ## Dealing with Globals
 
 Sometimes modules depend on globals. `$` provided by jQuery is a good example. [imports-loader](https://www.npmjs.com/package/imports-loader) allows you to inject them as below:
