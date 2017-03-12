@@ -46,7 +46,7 @@ To get started, install ESLint as a development dependency:
 npm install eslint --save-dev
 ```
 
-Next, you have to write configuration so you can run ESLint smoothly through npm. The `lint` namespace can be used to signify it's a linting related task. Caching should be enabled to improve performance on subsequent runs. Add the following:
+Next, you have to write configuration so you can run ESLint smoothly through npm. The `lint` namespace can be used to signify it's a linting related task. Caching should be enabled to improve performance on subsequent runs. Add the following to lint the application files and configuration:
 
 **package.json**
 
@@ -54,12 +54,18 @@ Next, you have to write configuration so you can run ESLint smoothly through npm
 ...
 "scripts": {
 leanpub-start-insert
-  "lint:js": "eslint . --cache",
+  "lint:js": "eslint app/ webpack.*.js --cache",
 leanpub-end-insert
   ...
 },
 ...
 ```
+
+Instead of pointing exact directories for ESLint to process, you could point it to project root through `eslint .` and manage the files it excludes by setting up a *.eslintignore* file. The idea is the same as for *.gitignore*. You could even tell ESLint to use your Git ignores through `--ignore-path .gitignore`. Individual patterns are supported through `--ignore-pattern <pattern>`.
+
+The problem with excluding files is that as your project grows, you have to maintain the ignore file as well. Includes are convenient for this reason as you can control strictly which files to lint and expand the set as needed.
+
+### Defining Linting Rules
 
 Given ESLint expects configuration to work, you need to define rules to describe what to lint and how to react if the rules aren't obeyed. The severity of an individual rule is defined by a number as follows:
 
@@ -96,18 +102,6 @@ module.exports = {
   },
 };
 ```
-
-Also, you need to tell ESLint to skip linting the *build* directory by setting up ignore patterns. The *node_modules* directory is ignored by default.
-
-**.eslintignore**
-
-```bash
-build/*
-```
-
-T> You can point ESLint to your Git ignores through `--ignore-path .gitignore`. It also accepts individual patterns, through `--ignore-pattern <pattern>`.
-
-W> If you try a pattern like `build`, it matches files like *build.js* too! Remember to use a slash at the end to signify a directory.
 
 If you invoke `npm run lint:js` now, it should execute without any warnings or errors. If you see either, this is a good time to try ESLint autofixing. You can run it like this: `npm run lint -- --fix`. Running an npm script this way allows you to pass extra parameters to it.
 

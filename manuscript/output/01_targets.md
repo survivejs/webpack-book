@@ -239,22 +239,6 @@ T> To get cleaner error output, run either `npm run build:lib --silent` or `npm 
 
 T> The same idea can be used for post-processes, such as deployment. For example, you could set up a `postpublish` script to deploy the library site after you have published it to npm.
 
-### Setting Up ESLint
-
-To keep ESLint from linting the new build output, adjust its ignore rules as follows, so it matches all *dist* related files:
-
-**.eslintignore**
-
-```bash
-...
-leanpub-start-insert
-dist/*
-dist-modules/*
-leanpub-end-insert
-```
-
-T> If you are using Git, ignore rules can be managed through *.gitignore*. You can point ESLint to it instead. The *Linting JavaScript* chapter covers the idea in greater detail.
-
 ### Generating `module` Field Compatible Output
 
 To generate *package.json* `module` field compatible output to enable tree shaking for the consumers, the source should be processed so that it does not lose ES6 module definitions. It's better to solve this problem outside of webpack by passing the source through Babel instead. Adjust as follows:
