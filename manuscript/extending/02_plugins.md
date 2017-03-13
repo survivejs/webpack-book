@@ -1,137 +1,244 @@
 # Extending with Plugins
 
-Compared to loaders, plugins are a more flexible means to extend webpack. As `ExtractTextPlugin` shows, sometimes it can make sense to use loaders and plugins together. The great thing about plugins is that they allow you to intercept webpack's execution through many hooks and then extend it as you see fit. Internally webpack consists of an extensive collection of plugins so understanding the basic idea can be valuable if you want to delve into it.
+Compared to loaders, plugins are a more flexible means to extend webpack. You have access to webpack's **compiler** and **compilation** processes. It's possible to run child compilers and plugins can work in tandem with loaders as `ExtractTextPlugin` shows.
 
-To understand how a plugin works, you study [purifycss-webpack](https://www.npmjs.com/package/purifycss-webpack). You used it in this book already, so diving into its internals doesn't hurt. The plugin itself doesn't do much. It figures out what files to pass to PurifyCSS, lets it process the data, captures the output, and writes it to an asset.
+Plugins allow you to intercept webpack's execution through hooks. Webpack itself has been implemented as a collection of plugins. Underneath it relies on [tapable](https://www.npmjs.com/package/tapable) plugin interface that allows webpack to apply plugins in different ways.
+
+You learn to develop a couple of small plugins next. Unlike for loaders, there is no separate environment where you can run them so they have to be run against webpack itself. It's possible to push smaller logic outside of the webpack facing portion, though, as this allows you to unit test it in isolation.
 
 ## The Basic Flow of Webpack Plugins
 
-A webpack plugin is expected to expose an `apply` method. The way you do that is up to you. The most common way is to set up a function and then attach methods to its `prototype`. You can return an object from a function and then access plugin `options` through the closure. In the `prototype` approach you would have to capture the options to `this` to access them from your methods. Using ES6 classes is an additional option. The exact approach is up to the coding style you prefer.
+A webpack plugin is expected to expose an `apply(compiler)` method. JavaScript allows multiple ways to do this. You could use a function and then attach methods to its `prototype`. To follow the newest syntax, you could use a `class` to model the same idea.
 
-Regardless of your approach, you should capture possible options passed by a user, preferably validate them, and then make sure your `apply` method is ready to go. When webpack runs the plugin, it passes a `compiler` object to it. This object exposes webpack's plugin API and allows you to connect into the hooks it provides. [The official reference](https://webpack.js.org/pluginsapi/compiler/) lists all the available hooks.
+Regardless of your approach, you should capture possible options passed by a user at the constructor. It's a good idea to declare a schema to communicate them to the user. [schema-utils](https://www.npmjs.com/package/schema-utils) allows validation and works with loaders too.
 
-In this case, you need to intercept only a `this-compilation` hook that is emitted before `compilation` event itself. It happens to be the right hook for this particular purpose although it can take a bit of experimentation to figure out which hooks you need.
+When the plugin is connected to webpack configuration, webpack will run its constructor and call `apply` with a compiler object passed to it. The object exposes webpack's plugin API and allows you to use its hooks as listed by [the official reference](https://webpack.js.org/pluginsapi/compiler/).
 
-The hook receives a `compilation` object that gives access to the build. It comes with a series of hooks of its own. In this case using the `additional-assets` hook is enough as you can go through the compiled chunks there and perform the logic.
+T> [webpack-defaults](https://www.npmjs.com/package/webpack-defaults) works as a starting point for webpack plugins. It contains the infrastructure used to develop official webpack loaders and plugins.
 
-T> Loaders have a dirty access to `compiler` and `compilation` through underscore (`this._compiler`/`this._compilation`). You could write arbitrary files through them.
+## Setting Up a Development Environment
 
-## Understanding `PurifyCSSPlugin` in Detail
+Since plugins have to be run against webpack, you have to set up one to run a demo plugin that will be developed further:
 
-The PurifyCSS plugin exposes a small interface to the user. Consider the example below:
+**webpack.plugin.js**
 
 ```javascript
-{
-  ...
+const path = require('path');
+
+const DemoPlugin = require('./plugins/demo-plugin.js');
+
+const PATHS = {
+  lib: path.join(__dirname, 'lib'),
+  build: path.join(__dirname, 'build'),
+};
+
+module.exports = {
+  entry: {
+    lib: PATHS.lib,
+  },
+  output: {
+    path: PATHS.build,
+    filename: '[name].js',
+  },
   plugins: [
-    new ExtractTextPlugin('[name].[contenthash].css'),
-    // Make sure this is after ExtractTextPlugin!
-    new PurifyCSSPlugin({
-      // Give paths to parse for rules. These should be absolute!
-      paths: glob.sync(path.join(__dirname, 'app/*.html')),
-    }),
+    new DemoPlugin(),
   ],
+};
+```
+
+T> If you don't have a `lib` entry file set up yet, write one. The contents don't matter as long as it's JavaScript that webpack can parse.
+
+To make it convenient to run, set up a build shortcut:
+
+**package.json**
+
+```json
+"scripts": {
+leanpub-start-insert
+  "build:plugin": "webpack --config webpack.plugin.js",
+leanpub-end-insert
+  ...
 },
 ```
 
-In this case it's important the plugin is executed **after** `ExtractTextPlugin`. That way there is something sensible to process. The plugin also supports more advanced forms of path input. You could pass an `entry` like object to it to constrain the purifying process per entry instead of relying on the same set of files. This adds complexity to the implementation, but it's a good feature to support as it provides more control to the user.
+Executing either should result in an `Error: Cannot find module` failure as the actual plugin is still missing.
 
-Given failing fast and loud is a good idea when it comes to user-facing interfaces like this, the input can be validated carefully. JSON Schema is a good choice. Validating the input through [ajv](https://www.npmjs.com/package/ajv) allows you to provide verbose errors related to the input shape and it can capture even typos as it complains if you try to pass fields that are not supported. Webpack uses a similar solution internally, and it has proven to be a good decision.
+T> If you want an interactive development environment, consider setting up [nodemon](https://www.npmjs.com/package/nodemon) against the build. Webpack's own watcher won't work in this particular case as you have to restart the whole webpack process once you detect a change.
 
-Most of the complexity of the plugin has to do with figuring out which data to pass to PurifyCSS. The process has to capture assets from the application hierarchy and perform a lookup against them. Writing the data is the easiest step. To add output, you have to use `compilation.assets['demo.css'] = 'demo';` kind of an API.
+## Implementing a Basic Plugin
 
-The source below walks through the main ideas of the plugin in detail. Logic, such as input validation, parsing, and searching, has been pushed behind modules of their own as they have little to do with the main flow of the plugin.
+The simplest plugin should do two things: capture options and provide `apply` method:
+
+**plugins/demo-plugin.js**
 
 ```javascript
-import purify from 'purify-css';
-import { ConcatSource } from 'webpack-sources';
-import * as parse from './parse';
-import * as search from './search';
-import validateOptions from './validate-options';
-import schema from './schema';
-
-module.exports = PurifyPlugin(options) => ({
-  apply(compiler) {
-    const validation = validateOptions(
-      schema({
-        entry: compiler.options.entry
-      }),
-      options
-    );
-
-    if (!validation.isValid) {
-      throw new Error(validation.error);
-    }
-
-    compiler.plugin('this-compilation', (compilation) => {
-      const entryPaths = parse.entryPaths(options.paths);
-
-      // Output debug information through a callback pattern
-      // to avoid unnecessary processing
-      const output = options.verbose ?
-        messageCb => console.info(...messageCb()) :
-        () => {};
-
-      compilation.plugin('additional-assets', (cb) => {
-        // Go through chunks and purify as configured
-        compilation.chunks.forEach(
-          ({ name: chunkName, modules }) => {
-            const assetsToPurify = search.assets(
-              compilation.assets, options.styleExtensions
-            ).filter(
-              asset => asset.name.indexOf(chunkName) >= 0
-            );
-
-            output(() => [
-              'Assets to purify:',
-              assetsToPurify.map(({ name }) => name).join(', ')
-            ]);
-
-            assetsToPurify.forEach(({ name, asset }) => {
-              const filesToSearch = parse.entries(
-                entryPaths, chunkName
-              ).concat(
-                search.files(
-                  modules,
-                  options.moduleExtensions || [],
-                  file => file.resource
-                )
-              );
-
-              output(() => [
-                'Files to search for used rules:',
-                filesToSearch.join(', ')
-              ]);
-
-              // Compile through Purify and attach to output.
-              // This loses sourcemaps should there be any!
-              compilation.assets[name] = new ConcatSource(
-                purify(
-                  filesToSearch,
-                  asset.source(),
-                  {
-                    info: options.verbose,
-                    minify: options.minimize,
-                    ...options.purifyOptions
-                  }
-                )
-              );
-            });
-          }
-        );
-
-        cb();
-      });
-    });
+module.exports = class DemoPlugin {
+  apply() {
+    console.log('applying ');
   }
-});
+};
 ```
 
-Even though this is a humble plugin, it took a lot of effort to achieve a basic implementation. It would be possible to decompose the plugin logic further although it's currently in a manageable shape. There are additional observations that can be made based on the implementation:
+If you run the plugin (`npm run build:plugin`), you should see `applying` message at console. Given most plugins accept options, it's a good idea to capture those and pass them to `apply`.
 
-* The plugin output has been wrapped in callbacks. This way output related logic is performed only if the output (the `verbose` flag) has been enabled. It's possible webpack receives better logging facilities of its own in the future. For now, you can log warnings and errors through `compilation.warnings.push(new Error(...))` and `compilation.errors.push(...)` interface.
-* The plugin has been written in a functional style as much as possible. The individual helper functions have been tested thoroughly and written in a test driven manner.
-* [webpack-sources](https://www.npmjs.com/package/webpack-sources) package comes in handy when you have to deal with the source in a format that webpack understands.
+## Capturing Options
+
+Options can be captured through a `constructor`:
+
+**plugins/demo-plugin.js**
+
+```javascript
+module.exports = class DemoPlugin {
+  constructor(options) {
+    this.options = options;
+  }
+  apply() {
+    console.log(`apply ${JSON.stringify(this.options)}`);
+  }
+};
+```
+
+Running the plugin (`npm run build:plugin`) now would result in `apply undefined` kind of message given no options were passed. Adjust the configuration to pass an option:
+
+**webpack.plugin.js**
+
+```javascript
+...
+
+module.exports = {
+  ...
+  plugins: [
+leanpub-start-delete
+    new DemoPlugin(),
+leanpub-end-delete
+leanpub-start-insert
+    new DemoPlugin({ name: 'demo' }),
+leanpub-end-insert
+  ],
+};
+```
+
+Now you should see `apply {"name":"demo"}` after running (`npm run build:plugin`).
+
+## Understanding Compiler and Compilation
+
+`apply` receives webpack's compiler as a parameter. Printing reveals more:
+
+**plugins/demo-plugin.js**
+
+```javascript
+module.exports = class DemoPlugin {
+  constructor(options) {
+    this.options = options;
+  }
+  apply(compiler) {
+    console.log(compiler);
+  }
+};
+```
+
+After running (`npm run build:plugin`), you should see a lot of data. Especially `options` should look familiar as it contains webpack configuration. You can also see familiar names like `records`.
+
+If you go through webpack's [plugin development documentation](https://webpack.js.org/api/plugins/), you'll see a compiler provides a large amount of hooks. Each hook corresponds with a specific stage. For example, to emit files, you could listen to the `emit` event and then write.
+
+Adjust the implementation to listen and capture `compilation`:
+
+**plugins/demo-plugin.js**
+
+```javascript
+module.exports = class DemoPlugin {
+  constructor(options) {
+    this.options = options;
+  }
+  apply(compiler) {
+leanpub-start-delete
+    console.log(compiler);
+leanpub-end-delete
+leanpub-start-insert
+    compiler.plugin('emit', (compilation, cb) => {
+      console.log(compilation);
+
+      cb();
+    });
+leanpub-end-insert
+  }
+};
+```
+
+W> Forgetting the callback and running the plugin makes webpack fail silently!
+
+Running the build (`npm run build:plugin`) should show more information than before. This is because a compilation object contains whole dependency graph traversed by webpack. You have access to everything related to it here including entries, chunks, modules, assets, and more.
+
+T> Many of the available hooks expose compilation, but sometimes they expose a more specific structure and it takes more specific study to understand those.
+
+T> Loaders have a dirty access to `compiler` and `compilation` through underscore (`this._compiler`/`this._compilation`).
+
+## Writing Files Through Compilation
+
+The `assets` object of compilation can be used for writing new files. You can also capture already created assets, manipulate them, and write them back.
+
+To write an asset, you have to use [webpack-sources](https://www.npmjs.com/package/webpack-sources) file abstraction. Install it first:
+
+```bash
+npm install webpack-sources --save-dev
+```
+
+Adjust the code as follows to write through `RawSource`:
+
+**plugins/demo-plugin.js**
+
+```javascript
+const { RawSource } = require('webpack-sources');
+
+module.exports = class DemoPlugin {
+  constructor(options) {
+    this.options = options;
+  }
+  apply(compiler) {
+leanpub-start-insert
+    const { name } = this.options;
+leanpub-end-insert
+
+    compiler.plugin('emit', (compilation, cb) => {
+leanpub-start-delete
+      console.log(compilation);
+leanpub-end-delete
+leanpub-start-insert
+      compilation.assets[name] = new RawSource('demo');
+leanpub-end-insert
+
+      cb();
+    });
+  }
+};
+```
+
+After building (`npm run build:plugin`), you should see output like this:
+
+```bash
+Hash: 62abc7fe06a7360b9735
+Version: webpack 2.2.1
+Time: 58ms
+ Asset     Size  Chunks             Chunk Names
+lib.js  2.89 kB       0  [emitted]  lib
+  demo  4 bytes          [emitted]
+   [0] ./lib/index.js 49 bytes {0} [built]
+```
+
+If you examine *build/demo* file, you'll see it contains the word *demo* as per code above.
+
+## Managing Warnings and Errors
+
+Plugin execution can be caused to fail by throwing an error (`throw new Error('Message')`). If you validate options, you can use this method.
+
+In case you want to give the user a warning or an error message during compilation, you should use `compilation.warnings` and `compilation.errors`. Example:
+
+```javascript
+compilation.warnings.push('warning');
+compilation.warnings.push('error');
+```
+
+There is no way pass information messages to webpack yet although there is [a logging proposal](https://github.com/webpack/webpack/issues/3996). If you want to use `console.log` for this purpose, push it behind a `verbose` flag. The problem is that `console.log` will print to stdout and it will end up in webpack's `--json` output as a result. A flag will allow the user to work around this problem.
 
 ## Plugins Can Have Plugins
 
