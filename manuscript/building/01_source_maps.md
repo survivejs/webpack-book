@@ -2,7 +2,7 @@
 
 ![Source maps in Chrome](images/sourcemaps.png)
 
-To improve the debuggability of an application, you can set up **source maps** for both code and styling. Source maps allow you to see exactly where an error was raised. They map the transformed source to its original form so that you can use browser tooling for debugging making them particularly valuable for development.
+To improve the debuggability of an application, you can set up **source maps** for both code and styling. Source maps allow you to see exactly where an error was raised in the source. If the source has gone through any transformations, for example transpiling or pre-processing, they map the transformed source to its original form so that you can use browser tooling for debugging making them particularly valuable for development. Without source maps you would be left to try and deduce which piece of your original code the transformed code mapped to.
 
 One approach is to simply skip source maps during development and rely on browser support of language features. If you use ES6 without any extensions and develop using a modern browser, this can work. The great advantage of doing this is that you avoid all the problems related to source maps while gaining better performance.
 
@@ -12,7 +12,7 @@ T> If you want to understand the ideas behind source maps in greater detail, [re
 
 Webpack can generate both inline source maps included within bundles or separate source map files. The former are valuable during development due to better performance while the latter are handy for production usage as it keeps the bundle size small. In this case, loading source maps is optional.
 
-It's possible you **don't** want to generate a source map for your production bundle as this makes it effortless to inspect your application (it depends on whether you want this or not; it's handy for staging). Skip the `devtool` field then or generate a hidden variant. Skipping source maps entirely also speeds up your build a notch as generating source maps at the best quality can be a big operation.
+It's possible you **don't** want to generate a source map for your production bundle as this makes it effortless to inspect your application. By disabling them you are performing a sort of obfuscation. Whether or not you want to enable source maps for production, it's certainly handy for staging. You can skip the `devtool` field  entirely, or generate a hidden variant. Skipping source maps entirely also speeds up your build a notch as generating source maps at the best quality can be a complex operation.
 
 **Hidden source maps** give stack trace information only. You can connect them with a monitoring service to get traces as the application crashes allowing you to fix the problematic situations. While this isn't ideal, it's better to know about possible problems than not.
 
@@ -97,7 +97,7 @@ Take a good look at those *.map* files. That's where the mapping between the gen
 
 ### Enabling Source Maps on Browsers
 
-To use source maps on browsers, you have to enable source maps explicitly as per browser specific instructions:
+To use source maps within a browser, you have to enable source maps explicitly as per browser-specific instructions:
 
 * [Chrome](https://developer.chrome.com/devtools/docs/javascript-debugging)
 * [Firefox](https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Use_a_source_map)
@@ -110,7 +110,7 @@ W> If you want to use breakpoints (i.e., a `debugger;` statement or ones set thr
 
 ## Source Map Types Supported by Webpack
 
-Source map types supported by webpack can be split into two categories: inline and separate. The former are valuable during development, whereas the latter are suited for production usage. Separate source maps can be used for development as well, but given they come with a greater performance overhead, often inline variants are preferred instead.
+Source map types supported by webpack can be split into two categories: inline and separate. Inline sourcemaps effectively comprise of mapping data added directly to the generated files, while with separate sourcemaps, a separate file containing all the information about the mappings. The former are valuable during development, whereas the latter are suited for production usage. Separate source maps can be used for development as well, but given they come with a greater performance overhead, often inline variants are preferred instead.
 
 ## Inline Source Map Types
 
@@ -329,13 +329,13 @@ There are a couple of other options that affect source map generation:
 
 T> The [official documentation](https://webpack.js.org/configuration/output/#output-sourcemapfilename) digs into `output` specifics.
 
-W> If you are using any `UglifyJsPlugin` and want source maps, you need to enable `sourceMap: true` for the plugin. Otherwise, the result isn't be what you expect. You have to do this with other plugins and loaders that emit source maps as well. *css-loader* is a good example.
+W> If you are using any `UglifyJsPlugin` and still want source maps, you need to enable `sourceMap: true` for the plugin. Otherwise, the result isn't be what you expect because uglify will perform a further transformation on the code, breaking the mapping. You have to do this with other plugins and loaders that perform transformations on the code as well, often enabling source maps for each loader in the chain. *css-loader* is a good example.
 
 ## `SourceMapDevToolPlugin` and `EvalSourceMapDevToolPlugin`
 
 If you want more control over source map generation, it's possible to use the `SourceMapDevToolPlugin` or `EvalSourceMapDevToolPlugin` instead. The latter is a more limited alternative, and as stated by its name, it's handy for generating `eval` based source maps.
 
-You can generate source maps only for the portions of the code you want while having strict control over the result with `SourceMapDevToolPlugin`. Using these plugins allows you to skip the `devtool` option altogether.
+Both plugins can allow more granular control over which portions of the code you want to generate source maps for, while also having strict control over the result with `SourceMapDevToolPlugin`. Using either plugin allows you to skip the `devtool` option altogether.
 
 You could model a configuration part using `SourceMapDevToolPlugin` like this (adapted from [the official documentation](https://webpack.js.org/plugins/source-map-dev-tool-plugin/)):
 
