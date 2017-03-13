@@ -246,6 +246,12 @@ T> There's a [webpack issue](https://github.com/webpack/webpack/issues/1617) tha
 
 W> Disabling warnings like this one should be the last measure since doing it can hide underlying issues. Do this only if you know what you are doing and consider alternatives first.
 
+## Managing Symbolic Links
+
+Symbolic links, or symlinks, are an operating system level feature that allow you to point to other files through a file system without copying them. You can use `npm link` to create global symlinks for packages under development and then use `npm unlink` to remove the links.
+
+Webpack resolves symlinks to their full path like Node does. The problem is that if you are unaware of this fact, the behavior can surprise you especially if you rely on webpack processing. It's possible to work around the behavior as discussed in webpack issues [#1643](https://github.com/webpack/webpack/issues/1643) and [#985](https://github.com/webpack/webpack/issues/985). Webpack core behavior may improve in the future to make these workarounds unnecessary.
+
 ## Exposing Globals to the Browser
 
 Sometimes you have to expose packages to third party scripts. [expose-loader](https://www.npmjs.com/package/expose-loader) allows this as follows:
