@@ -4,8 +4,6 @@ As you have seen so far, loaders are one of the building blocks of webpack. If y
 
 You learn to develop a couple of small loaders next. But before that, it's good to understand how to debug them in isolation.
 
-T> The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API in detail.
-
 T> If you want a good starting point for a standalone loader or plugin project, consider using [webpack-defaults](https://github.com/webpack-contrib/webpack-defaults). It provides an opinionated starting point that comes with linting, testing, and other goodies.
 
 ## Debugging Loaders with *loader-runner*
@@ -115,6 +113,8 @@ module.exports = function() {
 
 But what's the point? You can pass to loaders through webpack entries. Instead of pointint to pre-existing files as you would in majority of the cases, you could pass to a loader that generates code dynamically. Even though a special case, it's good to be aware of the technique.
 
+T> If you want to return `Buffer` output, you will have to set `module.exports.raw = true` as webpack expects a string by default. The flag overrides this default behavior. You need this if you wrap for example [node-sass](https://www.npmjs.com/package/node-sass) as a loader.
+
 ## Writing Files
 
 Loaders, like [file-loader](https://www.npmjs.com/package/file-loader), emit files. Webpack provides a single method, `this.emitFile`, for this. Given *loader-runner* does not implement it, you have to mock it:
@@ -162,6 +162,8 @@ module.exports = function(content) {
   return `export default ${filePath}`;
 };
 ```
+
+Webpack provides two additional `emit` methods: `this.emitWarning` and `this.emitError`. Both accept a string and can be used to tell the user something unexpected happened. They should be used over `console` based alternatives. As with `this.emitFile`, you have to mock them for *loader-runner* to work.
 
 The next question is, how to pass file name to the loader.
 
@@ -352,6 +354,8 @@ module.exports.pitch = function() {
 ```
 
 A pitch loader can be used to attach metadata to the input to use later. In this example, cache was constructed during the pitching stage and it was accessed during normal execution.
+
+T> The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API in detail. You can see all fields available through `this` there.
 
 ## Conclusion
 
