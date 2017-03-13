@@ -6,15 +6,15 @@ The problem is that the index can be sizable depending on the amount of the cont
 
 Doing this defers the loading and moves it to a place where it's more acceptable for performance. Given the initial search is slower than the subsequent ones, you should display a loading indicator. But that's fine from the user point of view. Webpack's *Code Splitting* feature allows to do this.
 
-## Implementing Search with Lazy Loading
+## Implementing Search with Code Splitting
 
-To implement lazy loading, you need to decide where to put the split point, put it there, and then handle the `Promise`. The basic `import` looks like `import('./asset').then(asset => ...).catch(err => ...)`.
+To implement code splitting, you need to decide where to put the split point, put it there, and then handle the `Promise`. The basic `import` looks like `import('./asset').then(asset => ...).catch(err => ...)`.
 
 The nice thing is that this gives error handling in case something goes wrong (network is down etc.) and gives a chance to recover. You can also use `Promise` based utilities like `Promise.all` for composing more complicated queries.
 
 In this case, you need to detect when the user selects the search element, load the data unless it has been loaded already, and then execute search logic against it. Using React, you could end up with something like this:
 
-**App.jsx**
+**App.js**
 
 ```javascript
 import React from 'react';
@@ -109,7 +109,6 @@ const Results = ({results}) => {
   return <span>No results</span>;
 };
 
-
 function loadIndex() {
   // Here's the magic. Set up `import` to tell webpack
   // to split here and load search index dynamically.
@@ -135,3 +134,10 @@ In the example, webpack detects the `import` statically. It can generate a separ
 Beyond search, the approach can be used with routers too. As the user enters a route, you can load the dependencies the resulting view needs. Alternately, you can start loading dependencies as the user scrolls a page and gets adjacent parts with actual functionality. `import` provides a lot of power and allows you to keep your application lean.
 
 You can find a [full example](https://github.com/survivejs-demos/lunr-demo) showing how it all goes together with lunr, React, and webpack. The basic idea is the same, but there's more setup in place.
+
+To recap:
+
+* If your dataset is small and static, client-side search is a good option.
+* You can index your content using a solution like [lunr](http://lunrjs.com/) and then perform a search against it.
+* Webpack's *code splitting* feature is ideal for loading a search index on demand.
+* Code splitting can be combined with a UI solution like React to implement the whole user interface.
