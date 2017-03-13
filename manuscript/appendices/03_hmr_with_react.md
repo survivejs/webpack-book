@@ -65,7 +65,7 @@ leanpub-end-insert
 
 Patching is needed still as you have to make the application side aware of hot loading.
 
-T> This tweak is not required in the future as *react-hot-loader* evolves. It's possible to inject an empty module for `'react-hot-loader/patch'` if it detects that production environment is used. For now, this extra tweak is needed.
+T> This tweak is not required in the future as *react-hot-loader* evolves. It's possible to inject an empty module for `'react-hot-loader/patch'` if it detects that production environment is used. For now, it's needed, though.
 
 ## Setting Up the Application
 
@@ -180,6 +180,8 @@ leanpub-end-insert
 }
 ```
 
+T> This tweak may not be required in the future as *react-hot-loader* evolves further.
+
 The development setup should work after this change still. If you examine the build output, you should notice it's missing references to `__REACT_HOT_LOADER__`.
 
 Even after this change, the source can contain references still due to a [bug in react-hot-loader](https://github.com/gaearon/react-hot-loader/issues/471) as it has been built so that it loses information that's valuable for a bundler.
@@ -244,3 +246,14 @@ W> In webpack 1 you had to use `extensions: ['', '.js', '.jsx']` to match files 
 ## Conclusion
 
 *react-hot-loader* allows you to set up HMR with webpack. It was one of the initial selling points of both and is still a good technique. The setup takes care, but after you have it running, it's nice.
+
+To recap:
+
+* Setting up *react-hot-loader* requires changes to Babel, webpack, and application.
+* On Babel level you must enable *react-hot-loader/babel* plugin.
+* Webpack configuration has to inject `'react-hot-loader/patch'` entry before the application.
+* Application has to be wrapped into `AppContainer` provided by *react-hot-loader*.
+* The setup may get easier to manage as *react-hot-loader* develops further.
+* HMR can be configured to work with Redux by implementing `module.hot.accept` against reducers.
+* Webpack makes it convenient to work with `.jsx` files.
+* *create-react-app* allows you to get started fast with webpack and React.
