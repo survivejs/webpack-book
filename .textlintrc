@@ -17,6 +17,9 @@
         ["a npm", "an npm"],
         "npm",
 
+        ["uglify", "UglifyJS"],
+        ["sourcemap", "sourcemap"],
+        ["source maps", "source maps"],
         ["environemnt", "environment"],
         ["some", ""],
         ["filetype", "file type"],
@@ -74,7 +77,6 @@
         ["repo\\b", "repository"],
         ["style-?guide(s?)", "style guide$1"],
         ["change-?log(s?)", "change log$1"],
-        ["source-?map(s?)", "source map$1"],
 
         // Starts from a lower case letter in the middle of a sentence
         ["(\\w+[^.?!]\\)? )internet", "$1internet"],

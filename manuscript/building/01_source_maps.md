@@ -2,9 +2,9 @@
 
 ![Source maps in Chrome](images/sourcemaps.png)
 
-To improve the debuggability of an application, you can set up **source maps** for both code and styling. Source maps allow you to see exactly where an error was raised in the source. If the source has gone through any transformations, for example transpiling or pre-processing, they map the transformed source to its original form so that you can use browser tooling for debugging making them particularly valuable for development. Without source maps you would be left to try and deduce which piece of your original code the transformed code mapped to.
+When your source code has gone through any transformations, debugging becomes a problem. When debugging in a browser, how to tell where the original code is? **Source maps** solve this problem by providing a mapping between the original and the transformed source code. In addition to source compiling to JavaScript, this works for styling as well.
 
-One approach is to simply skip source maps during development and rely on browser support of language features. If you use ES6 without any extensions and develop using a modern browser, this can work. The great advantage of doing this is that you avoid all the problems related to source maps while gaining better performance.
+One approach is to simply skip source maps during development and rely on browser support of language features. If you use ES6 without any extensions and develop using a modern browser, this can work. The advantage of doing this is that you avoid all the problems related to source maps while gaining better performance.
 
 T> If you want to understand the ideas behind source maps in greater detail, [read Ryan Seddon's introduction to the topic](https://www.html5rocks.com/en/tutorials/developertools/sourcemaps/).
 
@@ -12,7 +12,7 @@ T> If you want to understand the ideas behind source maps in greater detail, [re
 
 Webpack can generate both inline source maps included within bundles or separate source map files. The former are valuable during development due to better performance while the latter are handy for production usage as it keeps the bundle size small. In this case, loading source maps is optional.
 
-It's possible you **don't** want to generate a source map for your production bundle as this makes it effortless to inspect your application. By disabling them you are performing a sort of obfuscation. Whether or not you want to enable source maps for production, it's certainly handy for staging. You can skip the `devtool` field  entirely, or generate a hidden variant. Skipping source maps entirely also speeds up your build a notch as generating source maps at the best quality can be a complex operation.
+It's possible you **don't** want to generate a source map for your production bundle as this makes it effortless to inspect your application. By disabling them you are performing a sort of obfuscation. Whether or not you want to enable source maps for production, they are handy for staging. Skipping source maps entirely speeds up your build as generating source maps at the best quality can be a complex operation.
 
 **Hidden source maps** give stack trace information only. You can connect them with a monitoring service to get traces as the application crashes allowing you to fix the problematic situations. While this isn't ideal, it's better to know about possible problems than not.
 
@@ -84,8 +84,10 @@ Time: 2817ms
   ...font.ttf     166 kB          [emitted]
        app.js    4.46 kB       0  [emitted]         app
       app.css    3.89 kB       0  [emitted]         app
+leanpub-start-insert
    app.js.map    4.15 kB       0  [emitted]         app
   app.css.map   84 bytes       0  [emitted]         app
+leanpub-end-insert
    index.html  218 bytes          [emitted]
    [0] ./app/component.js 272 bytes {0} [built]
    [1] ./~/font-awesome/css/font-awesome.css 41 bytes {0} [built]
@@ -110,7 +112,12 @@ W> If you want to use breakpoints (i.e., a `debugger;` statement or ones set thr
 
 ## Source Map Types Supported by Webpack
 
-Source map types supported by webpack can be split into two categories: inline and separate. Inline sourcemaps effectively comprise of mapping data added directly to the generated files, while with separate sourcemaps, a separate file containing all the information about the mappings. The former are valuable during development, whereas the latter are suited for production usage. Separate source maps can be used for development as well, but given they come with a greater performance overhead, often inline variants are preferred instead.
+Source map types supported by webpack can be split into two categories:
+
+* **Inline** source maps add the mapping data directly to the generated files.
+* **Separate** source maps emit the mapping data to separate source map files and link the original source to them using a comment. Hidden source maps omit the comment on purpose.
+
+Thanks to their speed, inline source maps are ideal for development. Given they make the bundles big, separate source maps are the preferable solution for production. Separate source maps work during development as well if the performance overhead is acceptable.
 
 ## Inline Source Map Types
 
@@ -329,7 +336,7 @@ There are a couple of other options that affect source map generation:
 
 T> The [official documentation](https://webpack.js.org/configuration/output/#output-sourcemapfilename) digs into `output` specifics.
 
-W> If you are using any `UglifyJsPlugin` and still want source maps, you need to enable `sourceMap: true` for the plugin. Otherwise, the result isn't be what you expect because uglify will perform a further transformation on the code, breaking the mapping. You have to do this with other plugins and loaders that perform transformations on the code as well, often enabling source maps for each loader in the chain. *css-loader* is a good example.
+W> If you are using any `UglifyJsPlugin` and still want source maps, you need to enable `sourceMap: true` for the plugin. Otherwise, the result isn't be what you expect because UglifyJS will perform a further transformation on the code, breaking the mapping. The same has to be done with other plugins and loaders performing transformations. *css-loader* and related loaders are a good example.
 
 ## `SourceMapDevToolPlugin` and `EvalSourceMapDevToolPlugin`
 
