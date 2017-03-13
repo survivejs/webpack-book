@@ -61,9 +61,9 @@ leanpub-end-insert
 ...
 ```
 
-Instead of pointing exact directories for ESLint to process, you could point it to project root through `eslint .` and manage the files it excludes by setting up a *.eslintignore* file. The idea is the same as for *.gitignore*. You could even tell ESLint to use your Git ignores through `--ignore-path .gitignore`. Individual patterns are supported through `--ignore-pattern <pattern>`.
+The potential problem with using an include based approach is that you forget to lint source code. Using excludes solves this but then you have to be careful to update the exclude list as your project grows to avoid linting too much.
 
-The problem with excluding files is that as your project grows, you have to maintain the ignore file as well. Includes are convenient for this reason as you can control strictly which files to lint and expand the set as needed.
+The exclusion approach can be achieved by pointing ESLint to the project root through `eslint .` and setting up a *.eslintignore* file for the excludes like for *.gitignore*. You can point to your Git ignores `--ignore-path .gitignore` for maximum reuse. Individual patterns are supported through `--ignore-pattern <pattern>`.
 
 ### Defining Linting Rules
 
