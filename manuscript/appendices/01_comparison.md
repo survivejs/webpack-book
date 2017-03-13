@@ -300,3 +300,10 @@ You can find more alternatives as listed below:
 ## Conclusion
 
 Historically there have been a lot of build tools for JavaScript. Each has tried to solve a specific problem in its own way. The standards have begun to catch up and less effort is required around basic semantics. Instead, tools can compete on a higher level and push towards better user experience. Often you can use a couple of separate solutions together.
+
+To recap:
+
+* **Task runners** and **bundlers** solve different problems. You can achieve similar results with both but often it's best to use them together to complement each other.
+* Older tools, such as Make or RequireJS, still have influence even if they aren't as popular in web development as they once were.
+* Bundlers like Browserify or webpack solve an important problem and help you to manage complex web applications.
+* A number of emerging technologies approach the problem from different angles. Sometimes they build on top of other tools and at times they can be used together.
