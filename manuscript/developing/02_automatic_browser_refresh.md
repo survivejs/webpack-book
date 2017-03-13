@@ -133,6 +133,8 @@ env development
 ...
 ```
 
+T> The result could be verified also by using the `DefinePlugin` to write it to the client code. The *Setting Environment Variables* chapter discusses how to achieve this.
+
 ### Understanding `--env`
 
 Even though `--env` allows to pass strings to the configuration, it can do a bit more. Consider the following example:
