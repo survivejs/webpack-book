@@ -153,3 +153,9 @@ If you want a starting point, you can pick one of [eslint-config- packages](http
 ## Conclusion
 
 Especially the fact that you can customize ESLint to various purposes makes it a powerful tool. Thanks to its vibrant ecosystem, it's likely you find rules that are close to your purposes. Those make excellent starting points for your own development.
+
+To recap:
+
+* ESLint allows rules to be skipped locally. Use this feature sparingly.
+* You can override ESLint environment per file. It's good to consider other solutions if you notice a lot of overrides in your source, though.
+* ESLint can be expanded through plugins. They allow you to adjust its behavior to your liking. Given the ecosystem is strong, check it first before going this way.
