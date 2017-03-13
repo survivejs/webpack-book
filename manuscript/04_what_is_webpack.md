@@ -1,6 +1,6 @@
 # What is Webpack?
 
-Webpack is a module bundler. You can use a separate task runner while leaving it to take care of bundling, however thisline has become blurred as the community has developed plugins for it. Sometimes these plugins are used to perform tasks that are usually done outside of webpack, for example cleaning the build directory or deploying the build.
+Webpack is a module bundler. You can use a separate task runner while leaving it to take care of bundling, however this line has become blurred as the community has developed plugins for it. Sometimes these plugins are used to perform tasks that are usually done outside of webpack, for example cleaning the build directory or deploying the build.
 
 Webpack became particularly popular with React due to Hot Module Replacement (HMR) which helped greatly to popularize webpack and lead to its usage in other environments, such as [Ruby on Rails](https://github.com/rails/webpacker). Despite its name, web pack is not limited to web alone. It can bundle for other targets as well as discussed in the *Build Targets* chapter.
 
@@ -16,23 +16,33 @@ Webpack supports ES6, CommonJS, and AMD module formats out of the box. The loade
 
 T> A dependency graph describes is a directed graph that describes how nodes relate to each other. In this case the graph definition is defined through references (`require`, `import`) between files. Webpack can traverse this information in a static manner without executing the source to generate the graph it needs to create bundles.
 
-## Loaders Evaluate Modules
+## Webpack's Execution Process
 
-Loaders are a crucial part of webpack. When webpack encounters a **module**, it does several things:
+Webpack begins its work from **entries**. Often these are JavaScript modules where webpack begins its traversal process. During this process webpack evaluates the matches against **loader** configuration that tells how to transform the files.
 
-1. It **resolves** the module, making sure that the module exists in the supplied location. Webpack provides configuration for adjusting this behavior. The *Consuming Packages* chapter covers techniques related to this. If a module failed to resolve, webpack would give a runtime error.
-2. Assuming a module resolved correctly, webpack decides which loaders the module should be passed through. Each loader is configured to match specific modules. This can be based on file type, location or something else. If a loader is matched, webpack would try to resolve it in a similar way as a module, making sure it exists.
-3. If all the loaders were found, webpack evaluates the matched loaders from bottom to top and right to left (`styleLoader(cssLoader('./main.css'))`), running the module through each loader in turn. The *Loader Definitions* chapter covers the topic in detail.
-4. If all loader evaluation completed without a runtime error, webpack includes the source in the last bundle. **Plugins** can intercept this behavior and alter the way bundling happens.
-5. After every module has been evaluated, webpack writes a bootstrap script including a manifest that describes how to begin executing the result in the browser. This last step can differ based on the build target you are using.
+### Resolution Process
+
+An entry itself is a module and when webpack encounters one, it tries to match it against the file system using its `resolve` configuration. You can tell webpack to perform the lookup against specific directories in addition to *node_modules*. It's also possible to adjust the way it matches against file extensions and you can define specific aliases against directories. The *Consuming Packages* chapter covers these ideas in greater detail.
+
+If the resolution pass failed, webpack gives a runtime error. If webpack managed to resolve a file correctly, webpack performs processing over the matched file based on the loader definition. Each loader applies a specific transformation against the module contents. The way a loader gets matched against a resolved file can be configured in multiple ways including file type and its location in the file system.
+
+The same resolution process is performed against webpack's loaders. It allows you to apply similar logic there while it figures out which loader it should use. Loaders have resolve configuration of their own for this reason. If webpack fails to perform a loader lookup, you will get a runtime error.
+
+### Evaluation Process
+
+Assuming all loaders were found, webpack evaluates the matched loaders from bottom to top and right to left (`styleLoader(cssLoader('./main.css'))`), running the module through each loader in turn. As a result you get output which webpack will inject in the resulting **bundle**. The *Loader Definitions* chapter covers the topic in detail.
+
+If all loader evaluation completed without a runtime error, webpack includes the source in the last bundle. **Plugins** allow you to intercept **runtime events** at different stages of the bundling process.
+
+Plugins give the best access to the overall process and can be combined with loaders. Loaders can capture a part of the data while plugins can use this data to emit new files. This is the way `ExtractTextPlugin` works. It allows you to extract specific data from JavaScript bundles.
+
+Without `ExtractTextPlugin`, CSS would end up in the resulting JavaScript. This is a absolutely important part of Webpack to understand. The fact that a module declares a dependency on another module doesn't mean that this dependency is directly included into the module when it's bundled. The *Separating CSS* chapter discusses this idea in detail.
+
+### Finishing
+
+After every module has been evaluated, webpack writes **output**. The output includes a bootstrap script with a manifest that describes how to begin executing the result in the browser. The manifest can be extracted to a file of its own as discussed later in the book. The output differs based on the build target you are using and targeting web is not the only option.
 
 That’s not all there is to the bundling process. For example, you can define specific **split points** where webpack generates separate bundles that are loaded based on application logic. The idea is discussed in the *Code Splitting* chapter.
-
-## Additional Control Through Plugins
-
-Although loaders can do a lot, they don’t provide enough power for more advanced tasks by themselves. **Plugins** allow you to intercept **runtime events** provided by webpack. A good example is bundle extraction performed by `ExtractTextPlugin` which, working in tandem with a loader, extracts CSS files out of the bundle and into a file of its own.
-
-Without this step, CSS would end up in the resulting JavaScript. This is a absolutely important part of Webpack to understand. The fact that a module declares a dependency on another module doesn't mean that this dependency is directly included into the module when it's bundled. The *Separating CSS* chapter discusses this idea in detail.
 
 The image below recaps the main concepts discussed above and shows how they relate to each other:
 
