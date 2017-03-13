@@ -357,6 +357,8 @@ A pitch loader can be used to attach metadata to the input to use later. In this
 
 T> The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API in detail. You can see all fields available through `this` there.
 
+W> Although using *loader-runner* can be convenient for developing and testing loaders, it is a good idea to implement integration tests that run it against webpack itself. Node and webpack environments have subtle differences and this is a good way to catch those.
+
 ## Conclusion
 
 Writing loaders is fun in the sense that they describe transformations from a format to another. Often you can figure out how to achieve something specific by either studying either the API documentation or the existing loaders.
