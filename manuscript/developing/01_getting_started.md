@@ -196,7 +196,7 @@ T> In addition to a configuration object, webpack accepts an array of configurat
 
 ## Adding a Build Shortcut
 
-Given executing `node_modules/.bin/webpack` is verbose, you should do something about it. npm and *package.json* double as a task runner through configuration. Adjust it as follows:
+Given executing `node_modules/.bin/webpack` is verbose, you should do something about it. This is where npm and *package.json* can be used for running tasks. Adjust the file as follows:
 
 **package.json**
 
