@@ -260,4 +260,7 @@ To recap:
 
 * **Plugins** can intercept webpack's execution and extend it making them more flexible than loaders.
 * Plugins can be combined with loaders. `ExtractTextPlugin` is a good example of a plugin that works this way. In that case, loaders are used to mark assets to extract.
-* Most importantly plugins can emit new assets and shape existing assets. `CommonsChunkPlugin` is an example of a plugin that shapes the way webpack generates bundles.
+* Plugins have access to webpack's **compiler** and **compilation** processes. Both provide hooks for different stages of webpack's execution flow and allow you to manipulate it. This is how webpack itself works.
+* Plugins can emit new assets and shape existing assets.
+* Plugins can implement plugin systems of their own. `HtmlWebpackPlugin` is an example of a such plugin.
+* Plugins can run compilers of their own. The isolation gives more control and allows plugins like *offline-plugin* to be written.
