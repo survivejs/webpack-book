@@ -23,6 +23,8 @@ leanpub-end-insert
 ...
 ```
 
+{pagebreak}
+
 You should also make the demo component use a Pure.css class, so there is something to work with:
 
 **app/component.js**
@@ -44,6 +46,8 @@ If you run the application (`npm start`), the "Hello world" should look like a b
 
 ![Styled hello](images/styled-button.png)
 
+{pagebreak}
+
 Building the application (`npm run build`) should yield output like this:
 
 ```bash
@@ -64,7 +68,7 @@ As you can see, the size of the CSS file grew. This is something to fix with Pur
 
 ## Enabling PurifyCSS
 
-Using PurifyCSS can lead to significant savings. In their example, they purify and minify Bootstrap (140 kB) in an application using ~40% of its selectors to mere ~35 kB. That's a big difference.
+Using PurifyCSS can lead to significant savings. In the official example of the project, they purify and minify Bootstrap (140 kB) in an application using ~40% of its selectors to mere ~35 kB. That's a big difference.
 
 [purifycss-webpack](https://www.npmjs.com/package/purifycss-webpack) allows to achieve results like this. You should use the `ExtractTextPlugin` with it for the best results. Install it and a [glob](https://www.npmjs.org/package/glob) helper first:
 
