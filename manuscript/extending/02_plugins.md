@@ -118,7 +118,7 @@ leanpub-end-insert
 };
 ```
 
-Now you should see `apply {"name":"demo"}` after running (`npm run build:plugin`).
+Now you should see `apply { name: 'demo' }` after running (`npm run build:plugin`).
 
 ## Understanding Compiler and Compilation
 
