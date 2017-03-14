@@ -293,6 +293,8 @@ To get most out of *css-loader*, you should understand how it performs its looku
 
 T> [resolve-url-loader](https://www.npmjs.com/package/resolve-url-loader) comes in handy if you use Sass or Less. It adds support for relative imports to the environments.
 
+{pagebreak}
+
 ### Processing *css-loader* Imports
 
 If you want to process *css-loader* imports in a specific way, you should set up `importLoaders` option to a number that tells the loader how many loaders after the *css-loader* should be executed against the imports found. If you import other CSS files from your CSS through the `@import` statement and want to process the imports through specific loaders, this technique is essential.
@@ -322,6 +324,8 @@ To process the Sass file, you would have to write configuration like this:
 ```
 
 If you added more loaders, such as *postcss-loader*, to the chain, you would have to adjust the `importLoaders` option accordingly.
+
+{pagebreak}
 
 ### Loading from *node_modules* Directory
 
