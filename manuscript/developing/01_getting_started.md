@@ -90,6 +90,8 @@ export default (text = 'Hello world') => {
 };
 ```
 
+{pagebreak}
+
 Next, you are going to need an entry point for the application. It uses `require` against the component and renders it through the DOM:
 
 **app/index.js**
