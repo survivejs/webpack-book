@@ -203,6 +203,8 @@ If you run the server now (`npm start`) and break the code somehow, you should s
 
 ![Error overlay](images/error-overlay.png)
 
+{pagebreak}
+
 ### Configuring ESLint Further
 
 Since webpack 2, the configuration schema of webpack has become stricter, and it doesn't allow arbitrary fields at configuration root level anymore. To overcome this issue and to access all functionality of the *eslint-loader*, you have to use `LoaderOptionsPlugin` as below:
@@ -217,7 +219,7 @@ Since webpack 2, the configuration schema of webpack has become stricter, and it
           failOnWarning: false,
           failOnError: true,
 
-          // Disable/enable autofix
+          // Toggle autofix
           fix: false,
 
           // Output to Jenkins compatible XML
@@ -233,6 +235,8 @@ Since webpack 2, the configuration schema of webpack has become stricter, and it
 ```
 
 There are more options, and [eslint-loader](https://www.npmjs.com/package/eslint-loader) documentation covers those in detail.
+
+{pagebreak}
 
 ## ESLint Tips
 
