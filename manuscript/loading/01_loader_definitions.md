@@ -73,6 +73,8 @@ T> Babel is discussed in detail in the *Loading JavaScript* chapter.
 
 It's good to keep in mind that webpack's `loaders` are always evaluated from right to left and from bottom to top (separate definitions). The right-to-left rule is easier to remember when you think about as functions. You can read definition `use: ['style-loader', 'css-loader']` as `style(css(input))` based on this rule.
 
+{pagebreak}
+
 To see the rule in action, consider the example below:
 
 ```javascript
@@ -100,6 +102,8 @@ Based on the right to left rule, the example can be split up while keeping it eq
 Even though it would be possible to develop an arbitrary configuration using the rule above, it can be convenient to be able to force certain rules to be applied before or after regular ones. The `enforce` field can come in handy here. It can be set to either `pre` or `post` to push processing either before or after other loaders.
 
 You used the idea earlier in the *Linting JavaScript* chapter. Linting is a good example as the build should fail before it does anything else. Using `enforce: 'post'` is rarer and it would imply you want to perform a check against the built source. Performing analysis against the built source is one potential example.
+
+{pagebreak}
 
 The basic syntax goes like this:
 
@@ -132,6 +136,8 @@ There's a query format that allows passing parameters to loaders:
 ```
 
 This style of configuration works in entries and source imports too as webpack picks it up. The format comes in handy in certain individual cases, but often you are better off using more readable alternatives.
+
+{pagebreak}
 
 It's preferable to use the combination of `loader` and `options` fields either like this:
 
@@ -168,6 +174,8 @@ Or you can also go through `use` like this:
   },
 },
 ```
+
+{pagebreak}
 
 If you wanted to use more than one loader, you could pass an array to `use` and expand from there:
 
