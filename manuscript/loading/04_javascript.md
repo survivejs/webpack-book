@@ -119,6 +119,8 @@ npm install babel-preset-env --save-dev
 
 To make Babel aware of the preset, you need to write a *.babelrc*. Given webpack supports ES6 modules out of the box, you can tell Babel to skip processing them. Skipping this step would break webpack's HMR mechanism although the production build would still work. You can also constrain the build output to work only in recent versions of Chrome.
 
+{pagebreak}
+
 Adjust the target definition as you like. As long as you follow [browserslist](https://www.npmjs.com/package/browserslist), it should work. Here's a sample configuration.
 
 **.babelrc**
@@ -229,6 +231,8 @@ Babel allows you to control which presets and plugins are used per environment t
 ```
 
 Any shared presets and plugins are available to all targets still. `env` allows you to specialize your Babel configuration further.
+
+{pagebreak}
 
 It's possible to pass the webpack environment to Babel with a tweak like this:
 
