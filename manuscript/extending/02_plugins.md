@@ -237,7 +237,7 @@ In case you want to give the user a warning or an error message during compilati
 
 ```javascript
 compilation.warnings.push('warning');
-compilation.warnings.push('error');
+compilation.errors.push('error');
 ```
 
 There is no way pass information messages to webpack yet although there is [a logging proposal](https://github.com/webpack/webpack/issues/3996). If you want to use `console.log` for this purpose, push it behind a `verbose` flag. The problem is that `console.log` will print to stdout and it will end up in webpack's `--json` output as a result. A flag will allow the user to work around this problem.
