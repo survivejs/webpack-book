@@ -136,8 +136,6 @@ Font Awesome includes Sass and Less versions as well, but given you have not set
 
 T> The `import` could be cleaned up as `import 'font-awesome'` by setting up a `resolve.alias`. The *Consuming Packages* chapter discusses this idea in detail.
 
-W> If you are using CSS Modules in your project, you should process normal CSS like this through a separate loader definition without `modules` option of *css-loader* enabled. Otherwise it rewrites the class names and Font Awesome does not work as you expect.
-
 If you run the project now (`npm start`), webpack should give a long list of errors like this:
 
 ```bash
@@ -150,8 +148,6 @@ You may need an appropriate loader to handle this file type.
  @ ./app/index.js
  @ multi (webpack)-dev-server/client?http://localhost:8080 webpack/hot/only-dev-server react-hot-loader/patch ./app
 ```
-
-{pagebreak}
 
 ### Implementing Webpack Configuration
 

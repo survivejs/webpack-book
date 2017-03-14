@@ -152,6 +152,8 @@ T> CSS Modules behavior can be modified [as discussed in the official documentat
 
 T> [eslint-plugin-css-modules](https://www.npmjs.com/package/eslint-plugin-css-modules) is handy for tracking CSS Modules related problems.
 
+W> If you are using CSS Modules in your project, you should process normal CSS through a separate loader definition without the `modules` option of *css-loader* enabled. Otherwise it rewrites the class names and Font Awesome does not work as you expect.
+
 ## Loading Less
 
 ![Less](images/less.png)
