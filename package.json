@@ -10,7 +10,9 @@
     "test": "npm run test:links && npm run textlint",
     "test:links": "check-markdown-links manuscript",
     "proselint": "proselintjs \"manuscript/**/*.md\"",
-    "textlint": "textlint \"manuscript/**/*.md\""
+    "textlint": "textlint \"manuscript/**/*.md\"",
+    "prepush": "npm test",
+    "postpush": "npm run preview"
   },
   "repository": {
     "type": "git",
@@ -29,16 +31,12 @@
   "dependencies": {},
   "devDependencies": {
     "check-markdown-links": "^0.1.1",
-    "git-prepush-hook": "^1.0.2",
+    "husky": "^0.13.2",
     "leanpub-cli": "^0.2.0",
     "proselint": "^0.1.7",
     "textlint": "^7.3.0",
     "textlint-rule-common-misspellings": "^1.0.1",
     "textlint-rule-terminology": "^1.1.6",
     "textlint-rule-write-good": "^1.6.0"
-  },
-  "pre-push": [
-    "test",
-    "preview"
-  ]
+  }
 }
