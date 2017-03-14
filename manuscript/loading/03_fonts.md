@@ -151,6 +151,8 @@ You may need an appropriate loader to handle this file type.
  @ multi (webpack)-dev-server/client?http://localhost:8080 webpack/hot/only-dev-server react-hot-loader/patch ./app
 ```
 
+{pagebreak}
+
 ### Implementing Webpack Configuration
 
 The result is expected as you haven't configured loaders for any of Font Awesome fonts yet and webpack doesn't know what to do with the files in question. To match the files and map them through *file-loader*, attach the following snippet to the project:
