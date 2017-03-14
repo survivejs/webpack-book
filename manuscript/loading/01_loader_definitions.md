@@ -24,8 +24,7 @@ module.exports = {
   module: {
     rules: [
       {
-        // Conditions
-
+        // **Conditions**
         // Match files against RegExp. This accepts
         // a function too.
         test: /\.js$/,
@@ -41,16 +40,13 @@ module.exports = {
         // same applies to `exclude` as well.
         include: path.join(__dirname, 'app'),
 
-        /*
         exclude(path) {
           // You can perform more complicated checks
           // through functions if you want.
           return path.match(/node_modules/);
         },
-        */
 
-        // Actions
-
+        // **Actions**
         // Apply loaders the matched files. These need to
         // be installed separately. In this case our
         // project would need *babel-loader*. This
@@ -232,6 +228,8 @@ In the book setup, you compose configuration on a higher level. Another option t
 
 Carefully applied, this technique allows different means of composition.
 
+{pagebreak}
+
 ## Inline Definitions
 
 Even though configuration level loader definitions are preferable, it's possible to write loader definitions inline like this:
@@ -319,6 +317,8 @@ Given webpack 2 forbids arbitrary root level configuration, you have to use `Loa
 Loader behavior can be understood in greater detail by inspecting them. [loader-runner](https://www.npmjs.com/package/loader-runner) allows you to run them in isolation without webpack. Webpack uses this package internally and *Extending with Loaders* chapter covers it in detail.
 
 [inspect-loader](https://www.npmjs.com/package/inspect-loader) allows you to inspect what's being passed between loaders. Instead of having to insert `console.log`s within *node_modules*, you can attach this loader to your configuration and inspect the flow there.
+
+{pagebreak}
 
 ## Conclusion
 
