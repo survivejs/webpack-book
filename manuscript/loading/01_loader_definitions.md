@@ -261,6 +261,8 @@ The problem with this approach is that it couples your source with webpack. But 
 * `include` - The same.
 * `exclude` - The same, except the output is the inverse of `include`.
 
+{pagebreak}
+
 There are a couple of boolean based fields that can be used to constrain the result further:
 
 * `not` - Do **not** match against a condition like above.
