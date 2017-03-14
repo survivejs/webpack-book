@@ -27,6 +27,8 @@ leanpub-end-insert
 ...
 ```
 
+{pagebreak}
+
 To have something to test with, there should be a dummy rule:
 
 **.stylelintrc**
