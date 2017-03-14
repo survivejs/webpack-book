@@ -202,7 +202,9 @@ leanpub-end-insert
 ...
 ```
 
-If you run the project again (`npm start`), it should run without any errors.
+The project should run (`npm start`) without any errors now.
+
+{pagebreak}
 
 To see Font Awesome in action, adjust the application as follows:
 
