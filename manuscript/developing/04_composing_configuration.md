@@ -38,8 +38,6 @@ The example below shows the behavior in detail:
 
 T> [webpack-chain](https://www.npmjs.com/package/webpack-chain) provides a fluent API for configuring webpack allowing you to avoid configuration shape-related problems while enabling composition.
 
-{pagebreak}
-
 ## Setting Up *webpack-merge*
 
 To get started, add *webpack-merge* to the project:
