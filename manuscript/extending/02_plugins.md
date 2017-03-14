@@ -46,7 +46,7 @@ module.exports = {
 };
 ```
 
-T> If you don't have a `lib` entry file set up yet, write one. The contents don't matter as long as it's JavaScript that webpack can parse.
+T> If you don't have a `lib` entry file set up yet, write one. The contents doesn't matter as long as it's JavaScript that webpack can parse.
 
 To make it convenient to run, set up a build shortcut:
 
