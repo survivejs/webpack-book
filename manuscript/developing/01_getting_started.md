@@ -134,11 +134,7 @@ const PATHS = {
 };
 
 module.exports = {
-  // Entry accepts a path or an object of entries.
-  // The latter form is used given it's
-  // convenient with more complex configurations.
-  //
-  // Entries have to resolve to files! It relies on Node
+  // Entries have to resolve to files! They rely on Node
   // convention by default so if a directory contains *index.js*,
   // it resolves to that.
   entry: {
