@@ -93,7 +93,7 @@ module.exports = class DemoPlugin {
     this.options = options;
   }
   apply() {
-    console.log(`apply ${JSON.stringify(this.options)}`);
+    console.log('apply', this.options);
   }
 };
 ```
