@@ -125,6 +125,8 @@ The loader needs wiring to work. Loaders are discussed in detail in the *Loading
 
 In this case, you want to ensure that ESLint gets executed before anything else using the `enforce` field. It allows to guarantee that linting happens before any other processing. The idea is discussed in detail in the *Loader Definitions* chapter.
 
+{pagebreak}
+
 To add linting to the project, adjust the configuration as follows:
 
 **webpack.config.js**
