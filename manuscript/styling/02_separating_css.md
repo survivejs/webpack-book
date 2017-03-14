@@ -71,6 +71,8 @@ It would be possible to have multiple `plugin.extract` calls against different f
 
 T> If you wanted to output the resulting file to a specific directory, you could do it by passing a path to `filename` like this: `filename: 'styles/[name].css'`.
 
+{pagebreak}
+
 ### Connecting with Configuration
 
 Connect the function with the configuration as below:
@@ -131,6 +133,8 @@ T> If you are getting `Module build failed: CssSyntaxError:` or `Module build fa
 
 T> [extract-loader](https://www.npmjs.com/package/extract-loader) is a light alternative to `ExtractTextPlugin`. It does less, but can be enough for basic extraction needs.
 
+{pagebreak}
+
 ## Managing Styles Outside of JavaScript
 
 Even though referring to styling through JavaScript and then bundling is a valid option, it's possible to achieve the same result through an `entry` and [globbing](https://www.npmjs.com/package/glob). The basic idea goes like this:
@@ -140,12 +144,12 @@ Even though referring to styling through JavaScript and then bundling is a valid
 const glob = require('glob');
 
 // Glob CSS files as an array of CSS files. This can be
-// potentially problematic due to CSS rule ordering so
-// be careful!
+// problematic due to CSS rule ordering so be careful!
 const PATHS = {
-  app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'build'),
+  ...
+leanpub-start-insert
   style: glob.sync('./app/**/*.css'),
+leanpub-end-insert
 };
 
 ...
@@ -153,8 +157,10 @@ const PATHS = {
 const commonConfig = merge([
   {
     entry: {
-      app: PATHS.app,
+      ...
+leanpub-start-insert
       style: PATHS.style,
+leanpub-end-insert
     },
     ...
   },
@@ -162,7 +168,7 @@ const commonConfig = merge([
 ]);
 ```
 
-After this type of change, you would not have to refer to styling from your application code. It also means that CSS Modules stop working. As a result, you should get both *style.css* and *style.js*. The latter file contains content like `webpackJsonp([1,3],[function(n,c){}]);` and it doesn't do anything as discussed in [webpack issue 1967](https://github.com/webpack/webpack/issues/1967).
+After this type of change, you would not have to refer to styling from your application code. It also means that CSS Modules stop working. As a result, you should get both *style.css* and *style.js*. The latter file contains content like `webpackJsonp([1,3],[function(n,c){}]);` and it doesn't do anything as discussed in the [webpack issue 1967](https://github.com/webpack/webpack/issues/1967).
 
 If you want strict control over the ordering, you can set up a single CSS entry and then use `@import` to bring the rest to the project through it. Another option would be to set up a JavaScript entry and go through `import` to get the same effect.
 
