@@ -12,7 +12,7 @@ A webpack plugin is expected to expose an `apply(compiler)` method. JavaScript a
 
 Regardless of your approach, you should capture possible options passed by a user at the constructor. It's a good idea to declare a schema to communicate them to the user. [schema-utils](https://www.npmjs.com/package/schema-utils) allows validation and works with loaders too.
 
-When the plugin is connected to webpack configuration, webpack will run its constructor and call `apply` with a compiler object passed to it. The object exposes webpack's plugin API and allows you to use its hooks as listed by [the official reference](https://webpack.js.org/pluginsapi/compiler/).
+When the plugin is connected to webpack configuration, webpack will run its constructor and call `apply` with a compiler object passed to it. The object exposes webpack's plugin API and allows you to use its hooks as listed by [the official compiler reference](https://webpack.js.org/api/plugins/compiler/).
 
 T> [webpack-defaults](https://www.npmjs.com/package/webpack-defaults) works as a starting point for webpack plugins. It contains the infrastructure used to develop official webpack loaders and plugins.
 
@@ -226,6 +226,8 @@ lib.js  2.89 kB       0  [emitted]  lib
 ```
 
 If you examine *build/demo* file, you'll see it contains the word *demo* as per code above.
+
+T> Compilation has a set of hooks of its own as covered in [the official compilation reference](https://webpack.js.org/api/plugins/compiler/).
 
 ## Managing Warnings and Errors
 
