@@ -38,6 +38,8 @@ The example below shows the behavior in detail:
 
 T> [webpack-chain](https://www.npmjs.com/package/webpack-chain) provides a fluent API for configuring webpack allowing you to avoid configuration shape-related problems while enabling composition.
 
+{{pagebreak}}
+
 ## Setting Up *webpack-merge*
 
 To get started, add *webpack-merge* to the project:
@@ -138,11 +140,9 @@ module.exports = (env) => {
 };
 ```
 
-After this change, the build should behave the same way as before. This time, however, you have room to expand, and you don't have to worry about how to combine different parts of the configuration. The approach allows to share functionality across different targets.
+After this change, the build should behave the same way as before. This time, however, you have room to expand, and you don't have to worry about how to combine different parts of the configuration.
 
-You can also add more by expanding the *package.json* definition and branching at *webpack.config.js* based on the need. *webpack.parts.js* grows to contain specific techniques you can then use to compose the configuration.
-
-Later on, *webpack.parts.js* could be pushed to npm or outside of the project. But for this book, it's enough to maintain it within the project.
+You can add more targets by expanding the *package.json* definition and branching at *webpack.config.js* based on the need. *webpack.parts.js* grows to contain specific techniques you can then use to compose the configuration.
 
 T> Webpack 2 validates the configuration by default. If you make a mistake like a typo, it lets you know.
 
@@ -154,9 +154,11 @@ Instead of duplicating similar configuration across multiple projects, you can m
 
 Each approach comes with its pros and cons. Composition-based approach myself is a good starting point. In addition to composition, it gives you a limited amount of code to scan through, but it's a good idea to check out how other people do it too. You can find something that works the best based on your tastes.
 
-Perhaps the biggest problem is that with composition you need to know what you are doing, and it's possible you aren't going to get the composition right the first time around. But that's a software engineering problem that goes beyond webpack. You can always iterate on the interfaces and find better ones. By passing in a configuration object instead of multiple arguments, you can change the behavior of a part without effecting its API. You can expose API as you need it.
+Perhaps the biggest problem is that with composition you need to know what you are doing, and it's possible you aren't going to get the composition right the first time around. But that's a software engineering problem that goes beyond webpack.
 
-T> If you have to support both webpack 1 and 2, you can perform branching based on version using `require('webpack/package.json').version` to detect it. After that, you have to set specific branches for each and merge. You can still extract the commonality as you see the best.
+You can always iterate on the interfaces and find better ones. By passing in a configuration object instead of multiple arguments, you can change the behavior of a part without effecting its API. You can expose API as you need it.
+
+T> If you have to support both webpack 1 and 2, you can perform branching based on version using `require('webpack/package.json').version` to detect it. After that, you have to set specific branches for each and merge.
 
 ## Configuration Layouts
 
@@ -198,8 +200,6 @@ This arrangement would make it faster to find configuration related to a categor
 ### Pushing Parts to Packages
 
 Given all configuration is JavaScript, nothing prevents you from consuming it as a package or packages. It would be possible to package the shared configuration so that you can consume it across multiple projects. See the *Authoring Packages* chapter for further information on how to achieve this.
-
-{{pagebreak}}
 
 ## Conclusion
 
