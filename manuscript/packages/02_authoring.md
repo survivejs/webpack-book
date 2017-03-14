@@ -147,13 +147,11 @@ T> When creating a project, `npm init` respects the values set at *~/.npmrc*. He
 
 Provided you have logged in, creating new packages is only `npm publish` away. Given that the package name is still available and everything goes fine, you should have something out there! After this, you can install your package through `npm install` or `npm i`.
 
-Instead of referring to a package by a name, it can be consumed by pointing to it directly in *package.json*. In that case, you can do `"depName": "<github user>/<project>#<reference>"` where `<reference>` can be either commit hash, tag, or branch. You can point to specific pull requests through `<github user>/<project>#pull/<id>/head`.
-
-T> If you want to see what files are published to npm, consider using [npm pack](https://docs.npmjs.com/cli/pack) generates a tarball you can examine. [irish-pub](https://www.npmjs.com/package/irish-pub) is another option, and it gives you a listing to review. You can also use [publish-diff](https://www.npmjs.com/package/publish-diff) to get a better of the changes that are going to be published.
+If you want to see what files are published to npm, consider using [npm pack](https://docs.npmjs.com/cli/pack) generates a tarball you can examine. [irish-pub](https://www.npmjs.com/package/irish-pub) is another option, and it gives you a listing to review. You can also use [publish-diff](https://www.npmjs.com/package/publish-diff) to get a better of the changes that are going to be published.
 
 T> [np](https://www.npmjs.com/package/np) gives an interactive UI for publishing packages. [semantic-release](https://www.npmjs.com/package/semantic-release) takes the idea one step further and automates the entire process.
 
-### What Files to Publish to npm?
+### What Files to Publish?
 
 Even though a project can contain a lot of files, not all of them should be published. Besides wasting bandwidth, this can leak personal files to a public registry and is the reason why it's a good idea to maintain a [files](https://docs.npmjs.com/files/package.json#files) array at *package.json* and enumerate which files and directories you want to publish.
 
@@ -167,9 +165,9 @@ In addition to the source, you can consider distributing package *README.md* and
 
 W> Even though it's possible to tell npm what to exclude from `files` through `!src/*.test.js` kind of definitions, [using negation patterns is not recommended](https://github.com/npm/npm/wiki/Files-and-Ignores#details). Instead, you should use *.npmignore* and include `src/*.test.js` kind of pattern there.
 
-### Bumping a Version
+### Increasing a Version
 
-To bump your package version, you need to invoke one of these commands:
+To increase the version of your package, you need to invoke one of these commands:
 
 * `npm version <x.y.z>` - Define version yourself.
 * `npm version <major|minor|patch>` - Let npm bump the version for you based on SemVer.

@@ -16,6 +16,31 @@ Given SemVer can be tricky to manage, [ComVer](https://github.com/staltz/comver)
 
 T> You can understand SemVer much better by studying [the online tool](http://semver.npmjs.com/) and how it behaves.
 
+## Dependency Types
+
+An npm package comes with different types of dependencies:
+
+* `dependencies` refer to the direct dependencies a package needs to work. On application level you could list the dependencies of the application code itself. This excludes dependencies needed to build it.
+* `devDependencies` are dependencies you need to develop the package. They include packages related to building, testing, and similar tasks. When you install a package from npm, they won't be installed by default. If you run `npm install` on a project locally, npm will install them.
+* `peerDependencies` are usually given as version ranges. The idea is to allow the user to decide the exact versions of these dependencies without fixing it to a specific one. The behavior was changed in npm 3. Before that npm install peer dependencies automatically. Now you have to install and include them to your project explicitly.
+* `bundledDependencies` refer to dependencies that are bundled with the package itself. They are used rarely, though.
+* `optionalDependencies` are dependencies that the user can install but aren't required for the package to work. This is another rare field.
+
+Often npm consumption workflow resolves around two commands:
+
+* `npm install <package> --save` or `npm i <package> -S`.
+* `npm install <package> --save-dev` or `npm i <package> -D`
+
+To install a specific version, you should pass it through `@<version>`. npm will set the version prefix based on *~/.npmrc*. The related ranges are discussed later in this chapter.
+
+You can refer to a package by its name and version but that is not the only way. Consider the following alternatives:
+
+* `<git repository>#<reference>` points to a Git repository and a Git reference.
+* `<github user>/<project>#<reference>` shortcut points to GitHub in a similar manner.
+* `<github user>/<project>#pull/<id>/head` points to a specific GitHub pull request.
+
+`<reference>` can be either commit hash, tag, or a branch. The technique does not work unless the package has been set up to support consumption outside of Git. The *Authoring Packages* chapter shows how to achieve this.
+
 ## Understanding npm Lookup
 
 npm's lookup algorithm is another aspect that's good to understand. Sometimes this can explain certain errors, and it also leads to good practices, such as preferring local dependencies over global ones. The basic algorithm goes like this:
@@ -337,6 +362,7 @@ Webpack can consume most npm packages without a hitch. Sometimes, though, patchi
 
 To recap:
 
+* npm packages can be grouped based on their purpose. Most often you split them between `dependencies` and `devDependencies`. `peerDependencies` allow you to control the exact version on the consumer side.
 * To consume packages effectively, you should understand SemVer. To keep your build repeatable, consider using technologies like shrinkwrapping or Yarn lockfiles.
 * Use webpack's access to module resolution to your benefit. Sometimes you can work around issues by tweaking resolution. Often it's a good idea to try to push improvements upstream to the projects themselves, though.
 * Webpack allows you to patch resolved modules in many ways. Given certain dependencies expect globals, you can use webpack to inject them. You can also expose modules as globals. This is necessary for certain development tooling to work.
