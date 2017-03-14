@@ -136,6 +136,8 @@ Font Awesome includes Sass and Less versions as well, but given you have not set
 
 T> The `import` could be cleaned up as `import 'font-awesome'` by setting up a `resolve.alias`. The *Consuming Packages* chapter discusses this idea in detail.
 
+{pagebreak}
+
 If you run the project now (`npm start`), webpack should give a long list of errors like this:
 
 ```bash
@@ -201,8 +203,6 @@ leanpub-end-insert
 ```
 
 If you run the project again (`npm start`), it should run without any errors.
-
-{pagebreak}
 
 To see Font Awesome in action, adjust the application as follows:
 
