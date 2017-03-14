@@ -246,6 +246,10 @@ There is no way pass information messages to webpack yet although there is [a lo
 
 Sometimes it can make sense for a plugin to provide hooks of its own. This way you can write plugins for plugins to extend their functionality. [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) is a good example of that. Example plugins are discussed in detail in the *Getting Started* chapter.
 
+## Plugins Can Run Compilers of Their Own
+
+In special cases, like [offline-plugin](https://www.npmjs.com/package/offline-plugin), it makes sense to run a child compiler. This gives full control over related entries and output. Arthur Stolyar, the author of the plugin has explained [the idea of child compilers at Stack Overflow](https://stackoverflow.com/questions/38276028/webpack-child-compiler-change-configuration).
+
 ## Conclusion
 
 Writing webpack plugins can be challenging at first due to the sheer size of the API webpack provides and it's the most powerful way you can extend webpack, though. When you begin to design a plugin, it's a good idea to spend time studying existing plugins that are close enough to what you are going to implement as this can generate insight on which hooks you should use and how.
