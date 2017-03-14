@@ -32,6 +32,8 @@ Even though webpack can be installed globally (`npm install webpack -g`), it's a
 
 The approach works nicely in **Continuous Integration** (CI) setups as well. A CI system can install your local dependencies, compile your project using them, and then push the result to a server.
 
+{pagebreak}
+
 To add webpack to the project, execute:
 
 ```bash
