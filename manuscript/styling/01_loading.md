@@ -12,6 +12,8 @@ This process allows to rely on other loaders, such as [file-loader](https://www.
 
 After *css-loader* has done its part, *style-loader* picks up the output and injects the CSS into the resulting bundle. The CSS be inlined JavaScript by default, and it implements the HMR interface. As inlining isn't a good idea for production usage, it makes sense to use `ExtractTextPlugin` to generate a separate CSS file. You will do this in the next chapter.
 
+{pagebreak}
+
 To get started, invoke
 
 ```bash
@@ -40,6 +42,8 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
 });
 ```
 
+{pagebreak}
+
 You also need to connect the fragment with the main configuration:
 
 **webpack.config.js**
@@ -48,9 +52,7 @@ You also need to connect the fragment with the main configuration:
 ...
 
 const commonConfig = merge([
-  {
-    ...
-  },
+  ...
 leanpub-start-insert
   parts.loadCSS(),
 leanpub-end-insert
