@@ -87,6 +87,8 @@ IE 8 # And IE 8
 
 W> *browserslist* rules are evaluated as **or**. A browser matched by any of the definitions is included in the result.
 
+{pagebreak}
+
 ## Conclusion
 
 Autoprefixing is a convenient technique as it decreases the amount of work needed while crafting CSS. You can maintain minimum browser requirements within a *browserslist* file. The tooling can then use that information to generate optimal output.
