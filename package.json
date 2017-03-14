@@ -7,12 +7,12 @@
     "publish:silent": "leanpub-cli publish-silent survivejs-webpack",
     "preview": "leanpub-cli preview survivejs-webpack",
     "job-status": "leanpub-cli job-status survivejs-webpack",
-    "test": "npm run test:links && npm run textlint",
+    "test": "npm run textlint",
     "test:links": "check-markdown-links manuscript",
     "proselint": "proselintjs \"manuscript/**/*.md\"",
     "textlint": "textlint \"manuscript/**/*.md\"",
     "prepush": "npm test",
-    "postpush": "npm run preview"
+    "push": "git push && npm run preview"
   },
   "repository": {
     "type": "git",
