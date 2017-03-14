@@ -79,6 +79,8 @@ exports.loadImages = ({ include, exclude, options } = {}) => ({
 
 To attach it to the configuration, adjust as follows. The configuration defaults to *url-loader* during development and uses both *url-loader* and *file-loader* in production to maintain smaller bundle sizes. *url-loader* uses *file-loader* implicitly when `limit` is set and both have to be installed for the setup to work.
 
+{pagebreak}
+
 **webpack.config.js**
 
 ```javascript
@@ -122,9 +124,9 @@ leanpub-end-insert
 }
 ```
 
-Note how the behavior changes depending on the `limit` you set. Below the limit, it should inline the image while above it should emit a separate asset and a path to it.
+The behavior changes depending on the `limit` you set. Below the limit, it should inline the image while above it should emit a separate asset and a path to it. The CSS lookup works because of *css-loader*. You can also try importing the image from JavaScript code and see what happens.
 
-The CSS lookup works because of *css-loader*. You can also try importing the image from JavaScript code and see what happens.
+{pagebreak}
 
 ## Loading SVGs
 
@@ -222,6 +224,8 @@ Webpack allows you to load images dynamically based on a condition. The techniqu
 ## Images and *css-loader* Source Map Gotcha
 
 If you are using images and *css-loader* with the `sourceMap` option enabled, it's important that you set `output.publicPath` to an absolute value pointing to your development server. Otherwise, images aren't going to work. See [the relevant webpack issue](https://github.com/webpack/style-loader/issues/55) for further explanation.
+
+{pagebreak}
 
 ## Conclusion
 
