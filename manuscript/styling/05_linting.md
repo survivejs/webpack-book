@@ -62,6 +62,8 @@ To get started, install *postcss-loader* unless you have it set up already:
 npm install postcss-loader --save-dev
 ```
 
+{pagebreak}
+
 Next, to integrate with configuration, set up a part first:
 
 **webpack.parts.js**
@@ -92,6 +94,8 @@ exports.lintCSS = ({ include, exclude }) => ({
   },
 });
 ```
+
+{pagebreak}
 
 Then add it to the common configuration:
 
