@@ -67,6 +67,8 @@ T> Loaders are transformations that are applied to source files, and return the 
 
 T> If you want to disable *css-loader* `url` parsing, set `url: false`. The same idea applies to `@import` as to disable parsing imports you can set `import: false` through the loader options.
 
+{pagebreak}
+
 ## Setting Up the Initial CSS
 
 You are missing the CSS still:
@@ -95,6 +97,8 @@ Execute `npm start` now. Browse to `http://localhost:8080` if you are using the 
 You continue from here in the next chapter. Before that, though, you learn about styling-related techniques.
 
 ![Hello cornsilk world](images/hello_02.png)
+
+{pagebreak}
 
 ## Understanding CSS Scoping and CSS Modules
 
