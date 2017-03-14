@@ -38,6 +38,7 @@
     "textlint-rule-write-good": "^1.6.0"
   },
   "pre-push": [
-    "test"
+    "test",
+    "preview"
   ]
 }
