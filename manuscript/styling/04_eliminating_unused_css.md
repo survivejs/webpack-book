@@ -76,7 +76,9 @@ Using PurifyCSS can lead to significant savings. In the official example of the 
 npm install glob purifycss-webpack --save-dev
 ```
 
-You need one more bit: PurifyCSS configuration. Expand parts like this:
+{pagebreak}
+
+You need PurifyCSS configuration still. Expand parts like this:
 
 **webpack.parts.js**
 
@@ -149,6 +151,8 @@ The size of the style has decreased noticeably. Instead of 16k, you have roughly
 PurifyCSS supports [additional options](https://github.com/purifycss/purifycss#the-optional-options-argument) including `minify`. You can enable these through the `purifyOptions` field when instantiating the plugin. Given PurifyCSS cannot pick all of the classes you are using always, you should use `purifyOptions.whitelist` array to define selectors which it should leave in the result no matter what.
 
 W> Using PurifyCSS loses CSS source maps even if you have enabled them through loader specific configuration due to the way it works underneath.
+
+{pagebreak}
 
 ### Critical Path Rendering
 
