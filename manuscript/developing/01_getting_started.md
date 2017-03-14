@@ -118,6 +118,8 @@ Entries tell webpack where to start parsing the application. In multi-page appli
 
 All output related paths you see in the configuration are resolved against the `output.path` field. If you had an output relation option somewhere and wrote `styles/[name].css`, that would be expanded so that you get `<output.path> + <specific path>`. Example: *~/webpack-demo/build/styles/[name].css*.
 
+{pagebreak}
+
 To illustrate how to connect `entry` and `output` with `HtmlWebpackPlugin`, consider the code below:
 
 **webpack.config.js**
