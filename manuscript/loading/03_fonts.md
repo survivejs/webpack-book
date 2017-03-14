@@ -200,7 +200,11 @@ leanpub-end-insert
 ...
 ```
 
-If you run the project again (`npm start`), it should run without any errors. To see Font Awesome in action, adjust the application as follows:
+If you run the project again (`npm start`), it should run without any errors.
+
+{pagebreak}
+
+To see Font Awesome in action, adjust the application as follows:
 
 **app/component.js**
 
@@ -220,7 +224,7 @@ leanpub-end-insert
 }
 ```
 
-If you build the application (`npm run build`), you should see that it processed as expected while Font Awesome assets were included.
+If you build the application (`npm run build`), you should see that it processed and Font Awesome assets were included.
 
 ```bash
 Hash: e379b2c5a9f46663f367
