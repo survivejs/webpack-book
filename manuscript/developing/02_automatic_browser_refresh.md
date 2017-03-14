@@ -70,7 +70,9 @@ chunk    {0} app.js (app) 300 kB [entry] [rendered]
 webpack: bundle is now VALID.
 ```
 
-The output means that the development server is running. If you open `http://localhost:8080/` at your browser, you should see something familiar:
+{pagebreak}
+
+The server is running and if you open `http://localhost:8080/` at your browser, you should see something familiar:
 
 ![Hello world](images/hello_01.png)
 
@@ -79,6 +81,8 @@ If you try modifying the code, you should see output in your terminal. The brows
 T> WDS tries to run in another port in case the default one is being used. See the terminal output to figure out where it ends up running. You can debug the situation with a command like `netstat -na | grep 8080`. If something is running on the port 8080, it should display a message. The exact command depends on the platform.
 
 T> If you want to open a browser tab directly after running the server, set `devServer.open: true`. You can also achieve the same result through the CLI by using `webpack-dev-server --open`.
+
+{pagebreak}
 
 ## Verifying that `--env` Works
 
@@ -91,10 +95,6 @@ Webpack configuration receives the result of `--env` if it exposes a function. T
 
 leanpub-start-delete
 module.exports = {
-  // Entry accepts a path or an object of entries.
-  // The latter form is used given it's
-  // convenient with more complex configurations.
-  //
   // Entries have to resolve to files! It relies on Node.js
   // convention by default so if a directory contains *index.js*,
   // it resolves to that.
