@@ -218,9 +218,11 @@ T> There are shortcuts like *npm start* and *npm test*. You can run these direct
 
 T> It's possible to execute *npm run* anywhere within the project. It doesn't have to be run in the project root to work. npm figures out the project root for you.
 
+{pagebreak}
+
 ## `HtmlWebpackPlugin` Extensions
 
-[html-webpack-template](https://www.npmjs.com/package/html-webpack-template) or [html-webpack-template-pug](https://www.npmjs.com/package/html-webpack-template-pug) complement `HtmlWebpackPlugin` and provide more powerful templates to use with it.
+Although you can replace `HtmlWebpackPlugin` template with your own, there are premade ones like [html-webpack-template](https://www.npmjs.com/package/html-webpack-template) or [html-webpack-template-pug](https://www.npmjs.com/package/html-webpack-template-pug).
 
 There are also specific plugins that extend `HtmlWebpackPlugin`'s functionality:
 
@@ -229,6 +231,8 @@ There are also specific plugins that extend `HtmlWebpackPlugin`'s functionality:
 * [multipage-webpack-plugin](https://www.npmjs.com/package/multipage-webpack-plugin) builds on top of *html-webpack-plugin* and makes it easier to manage multi-page configurations.
 * [resource-hints-webpack-plugin](https://www.npmjs.com/package/resource-hints-webpack-plugin) adds [resource hints](https://www.w3.org/TR/resource-hints/) to your HTML files to speed up loading time.
 * [preload-webpack-plugin](https://www.npmjs.com/package/preload-webpack-plugin) enables `rel=preload` capabilities for scripts. This helps with lazy loading and it combines well with techniques discussed in the *Building* part of this book.
+
+{pagebreak}
 
 ## Conclusion
 
