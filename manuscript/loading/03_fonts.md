@@ -74,6 +74,8 @@ The way you write your CSS definition matters. To make sure you are getting the 
 
 T> [MDN discusses the font-family rule](https://developer.mozilla.org/en/docs/Web/CSS/@font-face) in detail.
 
+{pagebreak}
+
 ## Generating Font Files Based on SVGs
 
 If you prefer to use SVG based fonts, they can be bundled as a single font file by using [fontgen-loader](https://www.npmjs.com/package/fontgen-loader).
