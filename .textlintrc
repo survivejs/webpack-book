@@ -16,6 +16,7 @@
         ["React[ .]js", "React"],
         ["a npm", "an npm"],
         "npm",
+        "pull request",
 
         ["uglify", "UglifyJS"],
         ["sourcemap", "sourcemap"],
