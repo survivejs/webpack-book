@@ -114,6 +114,8 @@ W> Sometimes source maps [will not update in Chrome inspector](https://github.co
 
 W> If you want to use breakpoints (i.e., a `debugger;` statement or ones set through the browser), the `eval`-based options don't work in Chrome!
 
+{pagebreak}
+
 ## Source Map Types Supported by Webpack
 
 Source map types supported by webpack can be split into two categories:
