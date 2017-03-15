@@ -283,6 +283,8 @@ In short, `output.library` maps to the JSONP function name. The idea is that you
 
 If you want to support SystemJS this way, set up another build target where to generate a bundle for it.
 
+{pagebreak}
+
 ## Conclusion
 
 Webpack supports a large variety of library output formats. `umd` is the most valuable for a package author. The rest are more specialized and require specific use cases to be valuable.
