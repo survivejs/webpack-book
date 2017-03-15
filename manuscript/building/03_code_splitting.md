@@ -291,7 +291,7 @@ You could name the split point as outlined above. If you add another split point
 
 T> [bundle-loader](https://www.npmjs.com/package/bundle-loader) gives similar results, but through a loader interface. It supports bundle naming through its `name` option.
 
-T> The *Dynamic Loading* chapter covers other techniques that come in handy when you have to deal with more dynamic splits.
+T> The *Dynamic Loading* chapter covers other techniques that come in handy when you have to deal with more complicated splits.
 
 {pagebreak}
 
@@ -348,6 +348,8 @@ AsyncComponent.propTypes = {
 ```
 
 T> [react-async-component](https://www.npmjs.com/package/react-async-component) wraps the pattern in a `createAsyncComponent` call and provides server side rendering specific functionality. [react-loadable](https://www.npmjs.com/package/react-loadable) is another option.
+
+{pagebreak}
 
 ## Conclusion
 
