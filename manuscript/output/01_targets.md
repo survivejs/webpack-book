@@ -33,6 +33,8 @@ There are desktop shells, such as [NW.js](https://nwjs.io/) (previously *node-we
 
 [electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate) is a good starting point if you want hot loading webpack setup for Electron and React based development. [electron-compile](https://github.com/electron/electron-compile) skips webpack entirely and can be a lighter alternative for compiling JavaScript and CSS for Electron. Using [the official quick start for Electron](https://github.com/electron/electron-quick-start) is one way.
 
+{pagebreak}
+
 ## Bundling Libraries with Webpack
 
 To understand webpack's library targets better, you could set up a small library to bundle. The idea is to end up with a non-minified, a minified version, and a version compatible with *package.json* `module` field. The first two can be used for standalone consumption. You can also point to the non-minified version through *package.json* `main`.
@@ -55,6 +57,8 @@ export {
 ```
 
 The idea is that this file becomes the entry point for the entire library and represents the API exposed to the consumers. If you want to support both CommonJS and ES6, it can be a good idea to use the CommonJS module definition here. If you go with ES6 `export default`, using such an export in a CommonJS environment often requires extra effort.
+
+{pagebreak}
 
 ### Setting Up an npm Script
 
