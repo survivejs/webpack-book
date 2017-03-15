@@ -123,6 +123,8 @@ leanpub-end-insert
 
 W> The hashes have been sliced to make the output fit better in the book. In practice, you can skip slicing them.
 
+{pagebreak}
+
 If you generate a build now (`npm run build`), you should see something like this:
 
 ```bash
@@ -155,6 +157,8 @@ The files have neat hashes now. To prove that it works for styling, you could tr
 
 There's one problem, though. If you change the application code, it invalidates the vendor file as well! Solving this requires extracting a **manifest**, but before that, you can improve the way the production build handles module IDs.
 
+{pagebreak}
+
 ## Enabling `HashedModuleIdsPlugin`
 
 Webpack uses number based IDs for the module code it generates. The problem is that they are difficult to work with and can lead to difficult to debug issues, particularly with hashing. Like you did with the development setup earlier in the *Configuring Hot Module Replacement* chapter, you can perform a simplification here as well.
@@ -182,6 +186,8 @@ leanpub-end-insert
 
 ...
 ```
+
+{pagebreak}
 
 As you can see in the build output, the difference is negligible:
 
@@ -212,6 +218,8 @@ vendor.3c78d233.js.map     135 kB       2  [emitted]  vendor
 ```
 
 Note how the output has changed, though. Instead of numbers, you can see hashes. But this is expected given the change you made.
+
+{pagebreak}
 
 ## Conclusion
 
