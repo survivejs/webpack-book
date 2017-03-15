@@ -139,6 +139,8 @@ Basic UMD output looks like this:
 
 There's a lot to digest, but primarily the code performs checks based on the environment and figures out what kind of export to use. The first case covers Node, the second is for AMD, the third one for Node again, while the last one includes a global environment.
 
+{pagebreak}
+
 The output can be modified further by setting `output.umdNamedDefine: false`:
 
 **dist/lib.js**
