@@ -238,6 +238,8 @@ Given running tests this way can become annoying, it's a good idea to configure 
 
 T> You can point Karma to specific browsers through the `browsers` field. Example: `browsers: ['Chrome']`.
 
+{pagebreak}
+
 ### Running Tests Through PhantomJS
 
 Running tests through PhantomJS requires a couple of dependencies:
