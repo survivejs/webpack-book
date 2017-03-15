@@ -14,6 +14,8 @@ You can find a lot of testing tools for JavaScript. The most popular options wor
 
 [mocha-loader](https://www.npmjs.com/package/mocha-loader) allows running Mocha tests through webpack. [mocha-webpack](https://www.npmjs.com/package/mocha-webpack) is another option that aims to provide more functionality. You'll learn the basic *mocha-loader* setup next.
 
+{pagebreak}
+
 ### Configuring *mocha-loader* with Webpack
 
 To get started, include Mocha and *mocha-loader* to your project:
