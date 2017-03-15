@@ -165,6 +165,8 @@ To understand `umd2` option, you have to understand *optional externals* first.
 
 In webpack terms, externals are dependencies that are resolved outside of webpack and are available through the environment. Optional externals are dependencies that can exist in the environment, but if they don't, they get skipped instead of failing hard.
 
+{pagebreak}
+
 Consider the following example where jQuery is loaded if it exists:
 
 **lib/index.js**
