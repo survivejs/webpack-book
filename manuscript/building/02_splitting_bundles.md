@@ -264,6 +264,8 @@ To pick React to the vendor build automatically based on usage, you have to drop
 
 `CommonsChunkPlugin` gives control over its behavior through its `minChunks` options. In addition to a number and certain other values, `minChunks` accepts a function with a signature `(module, count)`. The first parameter contains a lot of information about the matches module and allows to deduce which modules are used by the project. The second one tells how many times a particular module has been imported into the project.
 
+{pagebreak}
+
 The most important `module` properties have been listed below. These assume an import like `import 'purecss';` and `ExtractTextPlugin`:
 
 * `resource` represents the path of the full path of the resource being imported. Example: `.../webpack-demo/node_modules/purecss/build/pure-min.css`.
@@ -382,6 +384,8 @@ T> The `chunks` option refers to the entry chunks of your configuration.
 
 * `children` - If `children` is set to `true`, webpack detects which modules are the same in the resulting bundles and push them to the parent bundle.
 * `async` - The idea is the same if `async` is set to `true`. In this case, webpack generates a separate bundle with the commonalities and load it asynchronously from the parent.
+
+{pagebreak}
 
 The image below shows the difference compared to the default. The top circles represent the parent bundles. The way `B` is treated depends on the chosen option:
 
