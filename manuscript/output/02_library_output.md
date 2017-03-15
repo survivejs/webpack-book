@@ -196,7 +196,9 @@ To treat jQuery as an external, you should configure as follows:
 },
 ```
 
-If `libraryTarget: 'umd'` is used, you would get output like this:
+{pagebreak}
+
+If `libraryTarget: 'umd'` is used after these changes, you get output like this:
 
 **dist/lib.js**
 
@@ -224,6 +226,8 @@ return /******/ (function(modules) { // webpackBootstrap
 ```
 
 Webpack wrapped the optional externals in `try`/`catch` blocks.
+
+{pagebreak}
 
 ### `umd2`
 
