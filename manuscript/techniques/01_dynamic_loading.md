@@ -88,6 +88,8 @@ Given the approaches discussed here rely on static analysis and webpack has to f
 
 Consider using browser-side loaders like [$script.js](https://www.npmjs.com/package/scriptjs) or [little-loader](https://www.npmjs.com/package/little-loader) on top of webpack in this case.
 
+{pagebreak}
+
 ## Conclusion
 
 Even though `require.context` is a niche feature, it's good to be aware of it. It becomes valuable if you have to perform lookups against multiple files available within the file system. If your lookup is more complex than that, you have to resort to other alternatives that allow you to perform loading runtime.
