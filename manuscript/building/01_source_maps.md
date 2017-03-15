@@ -133,6 +133,8 @@ To get a better idea of the available options, they are listed below while provi
 
 T> `webpack.NamedModulesPlugin` replaces number based module IDs with paths. It's discussed in the *Configuring Hot Module Replacement* appendix.
 
+{pagebreak}
+
 ### `devtool: 'eval'`
 
 `eval` generates code in which each module is wrapped within an `eval` function:
@@ -156,6 +158,8 @@ webpackJsonp([1, 2], {
   }
 }, ["./app/index.js"]);
 ```
+
+{pagebreak}
 
 If you decode that base64 string, you get output containing the mapping:
 
