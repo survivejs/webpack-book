@@ -75,11 +75,19 @@ Even though having a look at the file itself gives you idea of what's going on, 
 
 [Webpack Visualizer](https://chrisbateman.github.io/webpack-visualizer/) provides a pie chart showing your bundle composition allowing to understand which dependencies contribute to the size of the overall result.
 
+### `DuplicatePackageCheckerPlugin`
+
+[duplicate-package-checker-webpack-plugin](https://www.npmjs.com/package/duplicate-package-checker-webpack-plugin) warns you if it finds single package multiple times in your build. This situation can be hard to spot otherwise.
+
 ### Webpack Chart
 
 ![Webpack Chart](images/webpack-chart.png)
 
 [Webpack Chart](https://alexkuz.github.io/webpack-chart/) is another similar visualization.
+
+### webpack-unused
+
+[webpack-unused](https://www.npmjs.com/package/webpack-unused) prints out unused files and can be used to understand which assets are no longer used and can be removed from the project.
 
 ### Stellar Webpack
 
@@ -87,13 +95,21 @@ Even though having a look at the file itself gives you idea of what's going on, 
 
 [Stellar Webpack](https://alexkuz.github.io/stellar-webpack/) gives a universe based visualization and allows you to examine your application in a 3D form.
 
+### webpack-bundle-tracker
+
+[webpack-bundle-tracker](https://www.npmjs.com/package/webpack-bundle-tracker) can capture data while webpack is compiling. It uses JSON for this purpose.
+
 ### webpack-bundle-analyzer
 
 ![webpack-bundle-analyzer](images/webpack-bundle-analyzer.jpg)
 
 [webpack-bundle-analyzer](https://www.npmjs.com/package/webpack-bundle-analyzer) provides a zoomable treemap.
 
+{pagebreak}
+
 ### webpack-bundle-size-analyzer
+
+[webpack-bundle-size-analyzer](https://www.npmjs.com/package/webpack-bundle-size-analyzer) gives a text based composition.
 
 ```bash
 $ webpack-bundle-size-analyzer stats.json
@@ -106,9 +122,9 @@ css-loader: 1.47 KB (1.17%)
 <self>: 572 B (0.445%)
 ```
 
-[webpack-bundle-size-analyzer](https://www.npmjs.com/package/webpack-bundle-size-analyzer) gives a text based composition.
-
 ### inspectpack
+
+[inspectpack](https://www.npmjs.com/package/inspectpack) can be used for figuring out specific places of code to improve.
 
 ```bash
 $ inspectpack --action=duplicates --bundle=bundle.js
@@ -123,20 +139,6 @@ $ inspectpack --action=duplicates --bundle=bundle.js
     * Extra Bytes (min):   253955
     * Pct of Bundle Size:  15 %
 ```
-
-[inspectpack](https://www.npmjs.com/package/inspectpack) can be used for figuring out specific places of code to improve.
-
-### webpack-bundle-tracker
-
-[webpack-bundle-tracker](https://www.npmjs.com/package/webpack-bundle-tracker) can capture data while webpack is compiling. It uses JSON for this purpose.
-
-### webpack-unused
-
-[webpack-unused](https://www.npmjs.com/package/webpack-unused) prints out unused files and can be used to understand which assets are no longer used and can be removed from the project.
-
-### `DuplicatePackageCheckerPlugin`
-
-[duplicate-package-checker-webpack-plugin](https://www.npmjs.com/package/duplicate-package-checker-webpack-plugin) warns you if it finds single package multiple times in your build. This situation can be hard to spot otherwise.
 
 ## Independent Tools
 
