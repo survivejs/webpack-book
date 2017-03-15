@@ -216,6 +216,8 @@ const libraryConfig = merge([
 
 T> There's [a proposal to improve the situation](https://github.com/webpack/webpack/issues/4271) by introducing the concepts of pre- and post-processing to webpack.
 
+{pagebreak}
+
 ### Cleaning and Linting Through npm
 
 Another, and in this case a more fitting, way would be to handle the problem through an npm script. As discussing in the *Authoring Packages* chapter, npm provides pre- and post-script hooks. To keep this solution cross-platform, install [rimraf](https://www.npmjs.com/package/rimraf) first:
@@ -244,6 +246,8 @@ If either process fails, npm doesn't proceed to the `lib` script. You can verify
 T> To get cleaner error output, run either `npm run build:lib --silent` or `npm run build:lib -s`.
 
 T> The same idea can be used for post-processes, such as deployment. For example, you could set up a `postpublish` script to deploy the library site after you have published it to npm.
+
+{pagebreak}
 
 ### Generating `module` Field Compatible Output
 
