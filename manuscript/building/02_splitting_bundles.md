@@ -401,8 +401,6 @@ W> The `children` behavior applies only to immediate children. The algorithm is 
 
 Webpack provides more control over the generated chunks by providing two plugins: `AggressiveSplittingPlugin` and `AggressiveMergingPlugin`. The former allows you to emit more and smaller bundles. The behavior is handy with HTTP/2 due to the way the new standard works.
 
-There's a trade-off involved as you lose out in caching if you split to multiple small bundles. You also get request overhead in HTTP/1 environment. For now, the approach doesn't work when `HtmlWebpackPlugin` is enabled due to [a bug in the plugin](https://github.com/ampedandwired/html-webpack-plugin/issues/446).
-
 Here's the basic idea of aggressive splitting:
 
 ```javascript
@@ -416,7 +414,7 @@ Here's the basic idea of aggressive splitting:
 },
 ```
 
-{pagebreak}
+There's a trade-off as you lose out in caching if you split to multiple small bundles. You also get request overhead in HTTP/1 environment. For now, the approach doesn't work when `HtmlWebpackPlugin` is enabled due to [a bug in the plugin](https://github.com/ampedandwired/html-webpack-plugin/issues/446).
 
 The aggressive merging plugin works the opposite way and allows you to combine too small bundles into bigger ones:
 
