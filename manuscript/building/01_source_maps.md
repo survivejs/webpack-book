@@ -40,13 +40,7 @@ exports.generateSourceMaps = ({ type }) => ({
 
 Webpack supports a wide variety of source map types. These vary based on quality and build speed. For now, you can enable `eval-source-map` for development and `source-map` for production. This way you get good quality while trading off performance, especially during development.
 
-`eval-source-map` builds slowly initially, but it provides fast rebuild speed. More rapid development specific options, such as `cheap-module-eval-source-map` and `eval`, produce lower quality source maps. All `eval` options emit source maps as a part of your JavaScript code.
-
-`source-map` is the slowest and highest quality option of them all, but that's fine for a production build.
-
-{pagebreak}
-
-You can set these up as follows:
+Set these up as follows:
 
 **webpack.config.js**
 
@@ -74,6 +68,10 @@ leanpub-end-insert
 
 ...
 ```
+
+`eval-source-map` builds slowly initially, but it provides fast rebuild speed. More rapid development specific options, such as `cheap-module-eval-source-map` and `eval`, produce lower quality source maps. All `eval` options emit source maps as a part of your JavaScript code.
+
+`source-map` is the slowest and highest quality option of them all, but that's fine for a production build.
 
 {pagebreak}
 
