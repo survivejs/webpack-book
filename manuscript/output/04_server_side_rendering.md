@@ -146,6 +146,8 @@ module.exports = merge([
 ]);
 ```
 
+{pagebreak}
+
 To make it convenient to generate a build, add a helper script.
 
 **package.json**
