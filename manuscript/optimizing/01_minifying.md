@@ -273,6 +273,8 @@ leanpub-end-insert
 ...
 ```
 
+{pagebreak}
+
 If you build the project now (`npm run build`), you should notice that CSS has become smaller as it's missing comments:
 
 ```bash
@@ -304,6 +306,8 @@ vendor.js.map     169 kB       2  [emitted]  vendor
 ```
 
 [cssnano](http://cssnano.co/) has a lot more options to try out.
+
+{pagebreak}
 
 ## Minifying HTML
 
