@@ -11,6 +11,8 @@ There are a couple of ground rules when it comes to optimization:
 
 Sometimes optimizations come with a cost. They can make your configuration harder to understand or tie it to a particular solution. Often the best optimization is to do less work or do it in a smarter way. The basic directions are covered in the next sections, so you know where to look when it's time to work on performance.
 
+{pagebreak}
+
 ## High-Level Optimizations
 
 Webpack uses only a single instance by default meaning you aren't able to benefit from a multi-core processor without extra effort. This where third party solutions, such as [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) and [HappyPack](https://www.npmjs.com/package/happypack) come in.
@@ -24,6 +26,8 @@ Using variants allows you to generate both production and development builds at 
 The underlying idea can be implemented using a [worker-farm](https://www.npmjs.com/package/worker-farm). In fact, *parallel-webpack* relies on *worker-farm* underneath.
 
 *parallel-webpack* can be used by installing it to your project as a development dependency and then replacing `webpack` command with `parallel-webpack`.
+
+{pagebreak}
 
 ### HappyPack - File Level Parallelism
 
@@ -106,6 +110,8 @@ There are a series of loader and plugin specific optimizations to consider:
 * Use equivalent, but lighter alternatives, of plugins and loaders during development. Replacing `HtmlWebpackPlugin` with a [HtmlPlugin](https://gist.github.com/bebraw/5bd5ebbb2a06936e052886f5eb1e6874) that does far less is one direction.
 * Consider using parallel variants of plugins if they are available. [webpack-uglify-parallel](https://www.npmjs.com/package/webpack-uglify-parallel) is one example.
 
+{pagebreak}
+
 ## Optimizing Rebundling Speed During Development
 
 It's possible to optimize rebundling times during development by pointing the development setup to a minified version of a library, such as React. In React's case, you lose `propType`-based validation. But if speed is more important, this technique is worth a go.
@@ -168,6 +174,8 @@ T> Given `module.noParse` accepts a regular expression if you wanted to ignore a
 T> The aliasing idea is discussed in detail in the *Consuming Packages* chapter.
 
 W> Not all modules support `module.noParse`. They should not have a reference to `require`, `define`, or similar, as that leads to an `Uncaught ReferenceError: require is not defined` error.
+
+{pagebreak}
 
 ## Conclusion
 
