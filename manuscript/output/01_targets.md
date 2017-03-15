@@ -281,6 +281,8 @@ The *rimraf* related rule was extended to remove all distribution related direct
 npm install babel-cli --save-dev
 ```
 
+{pagebreak}
+
 Make sure your Babel configuration skips processing ES6 modules like this:
 
 **.babelrc**
@@ -302,6 +304,8 @@ Make sure your Babel configuration skips processing ES6 modules like this:
 If you build the project (`npm run build:lib`), it should generate a *./dist-modules* directory. If you try to use ES6 specific features, the output should have been transpiled them to something ES5 compatible.
 
 When distributing the library, you should point to that *./dist-modules* directory from *package.json* `module` field.
+
+{pagebreak}
 
 ## Conclusion
 
