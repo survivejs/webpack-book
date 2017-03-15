@@ -75,6 +75,8 @@ leanpub-end-insert
 ...
 ```
 
+{pagebreak}
+
 If you build the project now (`npm run build`), you should see source maps in the output:
 
 ```bash
