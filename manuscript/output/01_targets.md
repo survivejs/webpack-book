@@ -158,6 +158,8 @@ Child
 
 Webpack ran twice in this case. It can be argued that it would be smarter to minify the initial result separately. In this case, the overhead is so small that it's not worth the extra setup.
 
+{pagebreak}
+
 Examining the build output reveals more:
 
 **dist/lib.js**
