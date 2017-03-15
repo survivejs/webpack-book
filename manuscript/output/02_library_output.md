@@ -55,16 +55,9 @@ Most of the available options vary the first line of the output as listed below:
 * `window` - `window["Demo"] =`
 * `global` - `global["Demo"] =`
 * `assign` - `Demo =` - If you executed this code in the right context, it would associate it to a global `Demo`.
-* `this` - `this["Demo"] =` - Now the code would associate to context `this`.
+* `this` - `this["Demo"] =` - Now the code would associate to context `this` and work through Node.
 
-You can try running the code through Node REPL (use `node` at project root). The last option would yield the following:
-
-```bash
-$ node
-> lib = require('./dist/lib')
-{ Demo: { add: [Getter] } }
->
-```
+T> You can try running the resulting code through Node REPL (use `node` at project root and use `require('./dist/lib')`).
 
 ## CommonJS
 
