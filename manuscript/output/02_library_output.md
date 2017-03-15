@@ -28,6 +28,8 @@ const commonConfig = merge([
 ...
 ```
 
+{pagebreak}
+
 The output configuration maps `library` and `libraryTarget` to the following form:
 
 **dist/lib.js**
@@ -53,7 +55,9 @@ Most of the available options vary the first line of the output as listed below:
 * `window` - `window["Demo"] =`
 * `global` - `global["Demo"] =`
 * `assign` - `Demo =` - If you executed this code in the right context, it would associate it to a global `Demo`.
-* `this` - `this["Demo"] =` - Now the code would associate to context `this`. You can use the code through Node REPL (use `node` at project root) and get the following:
+* `this` - `this["Demo"] =` - Now the code would associate to context `this`.
+
+You can try running the code through Node REPL (use `node` at project root). The last option would yield the following:
 
 ```bash
 $ node
@@ -61,8 +65,6 @@ $ node
 { Demo: { add: [Getter] } }
 >
 ```
-
-T> You can try running the other examples through Node the same way.
 
 ## CommonJS
 
