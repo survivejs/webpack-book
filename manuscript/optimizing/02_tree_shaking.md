@@ -18,6 +18,8 @@ export {
 };
 ```
 
+{pagebreak}
+
 To make sure you use a part of the code, alter the application entry point:
 
 **app/index.js**
@@ -67,6 +69,8 @@ In Babel terms, you have to let webpack to manage ES6 modules like this:
 T> The *Consuming Packages* and *Authoring Packages* chapters contain further techniques that come in handy.
 
 W> To get most out of tree shaking with external packages, you have to use [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-imports) to rewrite imports so that they work with webpack's tree shaking logic. See [webpack issue #2867](https://github.com/webpack/webpack/issues/2867) for more information.
+
+{pagebreak}
 
 ## Conclusion
 
