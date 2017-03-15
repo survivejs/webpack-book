@@ -49,6 +49,8 @@ exports.page = ({
 leanpub-end-insert
 ```
 
+{pagebreak}
+
 ### Integrating to Configuration
 
 To incorporate the idea to the configuration, the way it's composed has to change. Also, a page definition is required. To get started, let's reuse the same JavaScript logic for each page for now:
