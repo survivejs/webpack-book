@@ -16,6 +16,8 @@ To get React, and particularly JSX, work with Babel, install the preset first:
 npm install babel-preset-react --save-dev
 ```
 
+{pagebreak}
+
 Connect the preset with Babel configuration as follows:
 
 **.babelrc**
@@ -85,6 +87,8 @@ To make sure the project has the dependencies in place, install React and [react
 ```bash
 npm install react react-dom --save
 ```
+
+{pagebreak}
 
 Next, the React code needs a small entry point. If you are on the browser side, you should mount `Hello world` `div` to the document. To prove it works, clicking it should give a dialog with a "hello" message. On server-side the React component is returned so the server can pick it up:
 
