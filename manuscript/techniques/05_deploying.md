@@ -8,6 +8,8 @@ A project built with webpack can be deployed to a variety of environments. A pub
 
 Despite its name, the package works with other services that support hosting from a Git repository as well. But given GitHub is so popular, it can be used to demonstrate the idea. In practice, you would likely have more complicated setup in place that would push the result to other service through a Continuous Integration system.
 
+{pagebreak}
+
 ## Setting Up *gh-pages*
 
 To get started, execute
@@ -15,8 +17,6 @@ To get started, execute
 ```bash
 npm install gh-pages --save-dev
 ```
-
-{pagebreak}
 
 You are also going to need a script in *package.json*:
 
