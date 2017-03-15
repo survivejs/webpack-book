@@ -76,6 +76,8 @@ W> Installing global packages can lead to surprising behavior. If you have a pac
 
 T> [app-module-path](https://www.npmjs.com/package/app-module-path) allows you adjust Node module lookup within JavaScript and this can be an alternative to patching `NODE_PATH`.
 
+{pagebreak}
+
 ## Version Ranges
 
 npm supports multiple version ranges as listed below:
