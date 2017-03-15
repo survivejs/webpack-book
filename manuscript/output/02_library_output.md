@@ -80,6 +80,8 @@ If this code was imported from Node, you would get:
 { Demo: { add: [Getter] } }
 ```
 
+{pagebreak}
+
 ### `commonjs2`
 
 `commonjs2` expects a global `module.exports` instead:
