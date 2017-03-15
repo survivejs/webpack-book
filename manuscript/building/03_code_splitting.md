@@ -265,6 +265,8 @@ The idea is that after *lazy.js* gets loaded, *lazy.css* is applied as well. You
 
 ![Lazy styled content](images/lazy-styled.png)
 
+{pagebreak}
+
 ### Defining a Split Point Using `require.ensure`
 
 It's possible to achieve the same with `require.ensure`. Consider the full example below:
