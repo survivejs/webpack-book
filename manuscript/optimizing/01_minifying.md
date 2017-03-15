@@ -148,6 +148,8 @@ leanpub-end-insert
 ...
 ```
 
+{pagebreak}
+
 If you execute `npm run build` now, you should see smaller results:
 
 ```bash
@@ -183,6 +185,8 @@ leanpub-end-insert
 Given it needs to do more work, it took longer to execute the build. But on the plus side, the build is now smaller, the size limit warning disappeared, and the vendor build went from 150 kB to roughly 45 kB.
 
 You should check *babili-webpack-plugin* and Babili documentation for more options. Babili gives you control over how to handle code comments for example.
+
+{pagebreak}
 
 ## Other Ways to Minify JavaScript
 
