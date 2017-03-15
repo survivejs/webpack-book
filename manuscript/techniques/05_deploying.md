@@ -16,6 +16,8 @@ To get started, execute
 npm install gh-pages --save-dev
 ```
 
+{pagebreak}
+
 You are also going to need a script in *package.json*:
 
 **package.json**
@@ -77,6 +79,8 @@ T> GitHub Pages allows you to choose the branch where you deploy. It's possible 
 ```javascript
 ghpages.publish(path.join(__dirname, 'build'), { add: true }, callback);
 ```
+
+{pagebreak}
 
 ## Deploying to Other Environments
 
