@@ -223,6 +223,8 @@ webpackJsonp([1, 2], {
 }, ["./app/index.js"]);
 ```
 
+{pagebreak}
+
 This time around there's more mapping data available for the browser:
 
 ```json
