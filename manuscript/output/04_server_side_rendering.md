@@ -173,6 +173,8 @@ To keep things clear to understand, you can set up a standalone Express server t
 npm install express --save-dev
 ```
 
+{pagebreak}
+
 Then, to get something running, implement a server as follows:
 
 **server.js**
@@ -213,7 +215,7 @@ function renderMarkup(html) {
 }
 ```
 
-If you run the server now (`node ./server.js`) and navigate below `http://localhost:8080`, you should see something familiar:
+Run the server now (`node ./server.js`) and go below `http://localhost:8080`, you should see something familiar:
 
 ![Hello world](images/hello_01.png)
 
