@@ -199,6 +199,8 @@ If you open up the application (`npm start`) and click the button, you should se
 
 ![Lazy loaded content](images/lazy.png)
 
+{pagebreak}
+
 If you run `npm run build`, you should see something like this:
 
 ```bash
@@ -232,6 +234,8 @@ vendor.js.map     178 kB       2  [emitted]         vendor
 ```
 
 That *0.js* is your split point. Examining the file reveals that webpack has wrapped the code in a `webpackJsonp` block and processed the code bit.
+
+{pagebreak}
 
 ### Lazy Loading Styles
 
