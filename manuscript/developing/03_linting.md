@@ -298,7 +298,7 @@ T> [Danger](https://www.npmjs.com/package/danger) operates on a higher level tha
 
 ## Conclusion
 
-In this chapter, you learned how to lint your code using webpack in different ways. It's one of those techniques that yields benefits over the long term. You can fix possible problems before they become actual issues.
+In this chapter, you'll learned how to lint your code using webpack in different ways. It's one of those techniques that yields benefits over the long term. You can fix possible problems before they become actual issues.
 
 To recap:
 

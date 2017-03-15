@@ -2,7 +2,7 @@
 
 As you have seen so far, loaders are one of the building blocks of webpack. If you want to load an asset, you most likely need to set up a matching loader definition. Even though there are a lot of [available loaders](https://webpack.js.org/loaders/), it's possible you are missing one fitting your purposes.
 
-You learn to develop a couple of small loaders next. But before that, it's good to understand how to debug them in isolation.
+You'll learn to develop a couple of small loaders next. But before that, it's good to understand how to debug them in isolation.
 
 T> If you want a good starting point for a standalone loader or plugin project, consider using [webpack-defaults](https://github.com/webpack-contrib/webpack-defaults). It provides an opinionated starting point that comes with linting, testing, and other goodies.
 
@@ -372,4 +372,4 @@ To recap:
 * Use **loader-utils** to parse possible options passed to a loader and consider validating them using **schema-utils**.
 * Pitching stage complements the default behavior allowing you to intercept and to attach metadata.
 
-You learn to write plugins in the next chapter. Plugins allow you to intercept webpack's execution process and they can be combined with loaders to develop more advanced functionality.
+You'll learn to write plugins in the next chapter. Plugins allow you to intercept webpack's execution process and they can be combined with loaders to develop more advanced functionality.

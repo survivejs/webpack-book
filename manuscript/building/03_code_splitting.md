@@ -344,7 +344,7 @@ To recap:
 * Dynamic `import` provides less functionality than `require.ensure`. While it's possible to handle errors with it, features like naming are available for `require.ensure` only.
 * The techniques can be used within modern frameworks and libraries like React. You can wrap related logic to a specific component that handles the loading process in a user-friendly manner.
 
-You learn to tidy up the build in the next chapter.
+You'll learn to tidy up the build in the next chapter.
 
 T> The *Searching with React* appendix contains a complete example of code splitting. It shows how to set up a static site index that's loaded when the user searches information.
 

@@ -4,7 +4,7 @@ Compared to loaders, plugins are a more flexible means to extend webpack. You ha
 
 Plugins allow you to intercept webpack's execution through hooks. Webpack itself has been implemented as a collection of plugins. Underneath it relies on [tapable](https://www.npmjs.com/package/tapable) plugin interface that allows webpack to apply plugins in different ways.
 
-You learn to develop a couple of small plugins next. Unlike for loaders, there is no separate environment where you can run plugins so you have to run them against webpack itself. It's possible to push smaller logic outside of the webpack facing portion, though, as this allows you to unit test it in isolation.
+You'll learn to develop a couple of small plugins next. Unlike for loaders, there is no separate environment where you can run plugins so you have to run them against webpack itself. It's possible to push smaller logic outside of the webpack facing portion, though, as this allows you to unit test it in isolation.
 
 ## The Basic Flow of Webpack Plugins
 

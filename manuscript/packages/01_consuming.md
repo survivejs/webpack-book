@@ -368,4 +368,4 @@ To recap:
 * Webpack allows you to patch resolved modules in many ways. Given certain dependencies expect globals, you can use webpack to inject them. You can also expose modules as globals. This is necessary for certain development tooling to work.
 * To understand your dependencies better, consider using available tooling and service to study them. Knowing them well can pay off later if problems arise.
 
-In the next chapter, you learn to author npm packages. It's the other side of the same coin and worth understanding even if you don't end up authoring packages of your own.
+In the next chapter, you'll learn to author npm packages. It's the other side of the same coin and worth understanding even if you don't end up authoring packages of your own.

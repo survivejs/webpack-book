@@ -443,4 +443,4 @@ To recap:
 * Webpack offers more control over chunking through specific plugins, such as `AggressiveSplittingPlugin` and `AggressiveMergingPlugin`. Particularly the splitting plugin can be handy in HTTP/2 oriented setups.
 * Internally webpack relies on three chunk types: entry, normal, and initial chunks. `CommonsChunkPlugin` flags modules using these types.
 
-In the next chapter, you learn about code splitting and learn how to load code on demand using webpack.
+In the next chapter, you'll learn about code splitting and loading code on demand.

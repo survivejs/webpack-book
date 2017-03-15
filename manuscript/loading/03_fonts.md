@@ -264,4 +264,4 @@ To recap:
 * If you decide to provide first class support to only modern browsers, you can select only a font format or two and let the older browsers to use system level fonts.
 * Using larger font collections, such as Font Awesome, can be problematic especially if you want to avoid loading additional rules. The problem is dependent on the packages in question and can be solved with webpack to an extent.
 
-In the next chapter, you learn to load JavaScript using Babel and webpack. Webpack loads JavaScript by default, but there's more to the topic as you have to consider what browsers you want to support.
+In the next chapter, you'll learn to load JavaScript using Babel and webpack. Webpack loads JavaScript by default but there's more to the topic as you have to consider what browsers you want to support.

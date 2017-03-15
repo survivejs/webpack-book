@@ -128,4 +128,4 @@ To recap:
 * Certain plugins allow you to write the manifest to the generated *index.html*. It's also possible to extract the information to a JSON file. The JSON comes in handy with *Server Side Rendering*.
 * **Records** allow you to store module IDs across builds. The approach becomes essential if you rely on code splitting approaches. As a downside you have to track the records file somehow.
 
-You learn to analyze the build statistics in the next chapter. This analysis is essential for figuring out how to improve the build result.
+You'll learn to analyze the build statistics in the next chapter. This analysis is essential for figuring out how to improve the build result.

@@ -16,7 +16,7 @@ Using webpack can lead to a variety of runtime warnings or errors. Often a parti
 
 Sometimes it's fastest to drop the error to a search engine and gain an answer that way. Other than that this is a good debugging order. If your setup worked in the past, you could also consider using commands like [git bisect](https://git-scm.com/docs/git-bisect) to figure out what has changed between the known working state and the current broken one.
 
-You learn about the most common errors next and learn how to deal with them.
+You'll learn about the most common errors next and how to deal with them.
 
 ## ERROR in Entry module not found
 

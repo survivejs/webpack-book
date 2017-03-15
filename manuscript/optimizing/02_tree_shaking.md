@@ -78,4 +78,4 @@ To recap:
 * To benefit from tree shaking, you have to use ES6 module definition.
 * As a package author, you can provide a version of your package that contains ES6 modules, while the rest has been transpiled to ES5.
 
-You learn how to set environment variables using webpack in the next chapter. This technique allows you to enable production specific optimizations and to implement feature flags.
+You'll learn how to set environment variables using webpack in the next chapter. This technique allows you to enable production specific optimizations and to implement feature flags.

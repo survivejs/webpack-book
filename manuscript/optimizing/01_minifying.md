@@ -310,4 +310,4 @@ Minification is the easiest step you can take to make your build smaller. To rec
 * Webpack includes `UglifyJsPlugin` for minification. Other solutions, such as Babili, provide similar functionality with costs of their own. While Babili supports ES6, it can be less performant that UglifyJS.
 * Besides JavaScript, it's possible to minify other assets, such as CSS and HTML, too. Minifying these requires specific technologies that have to be applied through loaders and plugins of their own.
 
-You learn to apply tree shaking against code in the next chapter.
+You'll learn to apply tree shaking against code in the next chapter.

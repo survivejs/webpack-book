@@ -2,7 +2,7 @@
 
 Even though webpack is handy for bundling applications, it has its uses for package authors as well. It allows you to generate the distribution bundles required by npm. You can also generate the package site through webpack.
 
-In this chapter, you learn basic ideas behind authoring npm packages and a couple of webpack specific techniques.
+In this chapter, you'll learn basic ideas behind authoring npm packages and a couple of webpack specific techniques.
 
 ## Anatomy of an npm Package
 

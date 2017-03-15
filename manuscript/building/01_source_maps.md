@@ -423,4 +423,4 @@ To recap:
 * *source-map-loader* can come in handy if your dependencies provide source maps.
 * Enabling source maps for styling requires additional effort. You have to enable `sourceMap` option per styling related loader you are using.
 
-In the next chapter, you learn to split bundles and separate the current bundle into application and vendor bundles.
+In the next chapter, you'll learn to split bundles and separate the current bundle into application and vendor bundles.

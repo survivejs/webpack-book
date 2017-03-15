@@ -182,4 +182,4 @@ To recap:
 * `ExtractTextPlugin` is not the only solution. *extract-loader* can give the same result in more limited contexts.
 * If you don't prefer to maintain references to styling through JavaScript, an alternative is to handle them through an entry. You have to be careful with style ordering in this case, though.
 
-In the next chapter, you learn to **autoprefix**. Enabling the feature makes it more convenient to develop complex CSS setups that work with older browsers as well.
+In the next chapter, you'll learn to **autoprefix**. Enabling the feature makes it more convenient to develop complex CSS setups that work with older browsers as well.

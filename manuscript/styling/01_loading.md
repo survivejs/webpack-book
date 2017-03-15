@@ -94,7 +94,7 @@ leanpub-end-insert
 
 Execute `npm start` now. Browse to `http://localhost:8080` if you are using the default port and open up *main.css* and change the background color to something like `lime` (`background: lime`). Develop styles as needed to make it look a nicer.
 
-You continue from here in the next chapter. Before that, though, you learn about styling-related techniques.
+You continue from here in the next chapter. Before that, though, you'll learn about styling-related techniques.
 
 ![Hello cornsilk world](images/hello_02.png)
 
@@ -373,4 +373,4 @@ To recap:
 * To use source maps, you have to enable `sourceMap` boolean through each style loader you are using except for *style-loader*. You should also set `output.publicPath` to an absolute url that points to your development server.
 * Using Bootstrap with webpack requires special care. You can either go through generic loaders or a bootstrap specific loader for more customization options.
 
-Although the loading approach covered here is enough for development purposes, it's not ideal for production as it inlines the styling to the JavaScript bundles. You learn to solve this problem in the next chapter by separating CSS from the source.
+Although the loading approach covered here is enough for development purposes, it's not ideal for production as it inlines the styling to the JavaScript bundles. You'll learn to solve this problem in the next chapter by separating CSS from the source.

@@ -236,4 +236,4 @@ To recap:
 * Webpack allows you to load images dynamically based on a given condition.
 * If you are using source maps, you should remember to set `output.publicPath` to an absolute value for the images to show up.
 
-You learn to load fonts using webpack in the next chapter.
+You'll learn to load fonts using webpack in the next chapter.

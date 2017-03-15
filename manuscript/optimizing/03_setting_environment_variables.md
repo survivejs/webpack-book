@@ -206,4 +206,4 @@ To recap:
 * The plugins enable module level patterns. By implementing a wrapper, you can choose which file webpack includes to the resulting build.
 * In addition to these plugins, you can find other optimization related plugins that allow you to control the build result in many ways.
 
-To ensure the build has good cache invalidation behavior, you learn to include hashes to the generated filenames in the next chapter. This way the client notices if assets have changed and can fetch the updated versions.
+To ensure the build has good cache invalidation behavior, you'll learn to include hashes to the generated filenames in the next chapter. This way the client notices if assets have changed and can fetch the updated versions.

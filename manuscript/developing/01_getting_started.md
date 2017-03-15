@@ -154,7 +154,7 @@ module.exports = {
 
 The `entry` path could be given as a relative one using the [context](https://webpack.js.org/configuration/entry-context/#context) field used to configure that lookup. However, given plenty of places expect absolute paths, preferring them over relative paths everywhere avoids confusion.
 
-T> **Trailing commas** are used in the book examples on purpose as it gives cleaner diffs for the code examples. You learn to enforce this rule in the *Linting JavaScript* chapter.
+T> **Trailing commas** are used in the book examples on purpose as it gives cleaner diffs for the code examples. You'll learn to enforce this rule in the *Linting JavaScript* chapter.
 
 T> `[name]` is a placeholder. Placeholders are discussed in detail in the *Adding Hashes to Filenames* chapter, but they are effectively tokens that will be replaced when the string is evaluated. In this case `[name]` will be replaced by the name of the entry - 'app'.
 

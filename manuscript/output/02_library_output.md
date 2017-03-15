@@ -329,4 +329,4 @@ To recap:
 * The CommonJS variants are handy if you target only Node or consume the output through bundlers alone. UMD implements support for CommonJS, AMD, and globals.
 * It's possible to target SystemJS through a plugin. Webpack does not support it out of the box.
 
-You learn to manage multi-page setups in the next chapter.
+You'll learn to manage multi-page setups in the next chapter.

@@ -163,4 +163,4 @@ To recap:
 * Understanding the bundles is the key to insights on how to optimize the overall size, what to load and when. It can also reveal bigger issues, such as redundant data.
 * You can find third party tools that don't depend on webpack but are still valuable for analysis.
 
-You learn to tune webpack performance in the next chapter.
+You'll learn to tune webpack performance in the next chapter.
