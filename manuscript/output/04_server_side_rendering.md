@@ -82,6 +82,8 @@ leanpub-end-insert
 
 You can enable more specific rules based on your liking, but the `plugin:react/recommended` gives a good starting point. It's important to remember to enable JSX at the `parserOptions` as well.
 
+{pagebreak}
+
 ## Setting Up a React Demo
 
 To make sure the project has the dependencies in place, install React and [react-dom](https://www.npmjs.com/package/react-dom). The latter package is needed to render the application to the DOM.
