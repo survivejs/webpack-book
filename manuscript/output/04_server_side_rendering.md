@@ -80,7 +80,7 @@ leanpub-end-insert
 };
 ```
 
-You can enable more specific rules based on your liking, but the `plugin:react/recommended` gives a good starting point. It's important to remember to enable JSX at the `parserOptions` as well.
+`plugin:react/recommended` gives a good starting point. It's important to remember to enable JSX at the `parserOptions` as otherwise it will fail to parse JSX syntax.
 
 {pagebreak}
 
