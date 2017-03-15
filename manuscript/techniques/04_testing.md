@@ -206,6 +206,8 @@ module.exports = (config) => {
 
 W> The file has to be named exactly as *karma.conf.js* as otherwise, Karma doesn't pick it up automatically.
 
+{pagebreak}
+
 Add an npm shortcut:
 
 ```json
