@@ -20,7 +20,9 @@ T> It's a good idea to study the documentation of the loaders you are using to s
 
 ## Enabling Source Maps
 
-Webpack provides two ways to enable source maps. There's a `devtool` shortcut field. You can also find two plugins that give more options to tweak. The plugins are be discussed briefly at the end of this chapter.
+Webpack provides two ways to enable source maps. There's a `devtool` shortcut field. You can also find two plugins that give more options to tweak. The plugins are be discussed briefly at the end of this chapter. Beyond webpack, you also have to enable support for source maps at the browsers you are using for development.
+
+### Enabling Source Maps in Webpack
 
 To get started, you can wrap the core idea within a configuration part. You can convert this to use the plugins later if you want:
 
@@ -97,7 +99,7 @@ leanpub-end-insert
 
 Take a good look at those *.map* files. That's where the mapping between the generated and the original source happens. During development, it writes the mapping information in the bundle itself.
 
-### Enabling Source Maps on Browsers
+### Enabling Source Maps in Browsers
 
 To use source maps within a browser, you have to enable source maps explicitly as per browser-specific instructions:
 
