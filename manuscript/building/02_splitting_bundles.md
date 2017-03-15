@@ -190,11 +190,15 @@ vendor.js.map     167 kB       1  [emitted]         vendor
 ...
 ```
 
+{pagebreak}
+
 Now the bundles look the way they should. The image below illustrates the current situation.
 
 ![App and vendor bundles after applying `CommonsChunkPlugin`](images/bundle_02.png)
 
 If the vendor entry contained extra dependencies (white on the image), the setup would pull those into the project as well. Resolving this problem is possible by examining which packages are being used in the project using the `minChunks` parameter of the `CommonsChunksPlugin`. But before that, let's abstract the solution a bit.
+
+{pagebreak}
 
 ## Abstracting Bundle Extraction
 
