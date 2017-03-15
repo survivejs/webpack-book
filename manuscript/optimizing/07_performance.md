@@ -55,6 +55,8 @@ const commonConfig = merge([{
 }];
 ```
 
+{pagebreak}
+
 To complete the connection, you have to replace the original Babel loader definition with a HappyPack one:
 
 ```javascript
@@ -90,6 +92,8 @@ The example above contains enough information for webpack to run the given loade
 
 Perhaps the problem with HappyPack is that it couples your configuration with it. It would be possible to overcome this issue by design and make it easier to inject. One option would be to build a higher level abstraction that can perform the replacement on top of vanilla configuration.
 
+{pagebreak}
+
 ## Low-Level Optimizations
 
 Certain lower-level optimizations can be good to know. The key is to allow webpack to perform less work. You have already implemented a couple of these, but it's a good idea to enumerate them:
@@ -109,8 +113,6 @@ There are a series of loader and plugin specific optimizations to consider:
 * Utilize caching through plugins like [hard-source-webpack-plugin](https://www.npmjs.com/package/hard-source-webpack-plugin) to avoid unnecessary work. The caching idea applies to loaders as well. For example, you can enable cache on *babel-loader*.
 * Use equivalent, but lighter alternatives, of plugins and loaders during development. Replacing `HtmlWebpackPlugin` with a [HtmlPlugin](https://gist.github.com/bebraw/5bd5ebbb2a06936e052886f5eb1e6874) that does far less is one direction.
 * Consider using parallel variants of plugins if they are available. [webpack-uglify-parallel](https://www.npmjs.com/package/webpack-uglify-parallel) is one example.
-
-{pagebreak}
 
 ## Optimizing Rebundling Speed During Development
 
