@@ -107,6 +107,8 @@ It's important to remember that your dependencies can introduce backward incompa
 
 T> `npm ls`, and more specifically `npm ls <package name>`, allow you to figure out which versions you have installed. `npm ls -g` performs a similar lookup against the globally installed packages.
 
+{pagebreak}
+
 ## Tracking Dependencies
 
 Certain services can help you to keep track of your dependencies:
@@ -153,7 +155,7 @@ Light React alternatives, such as [Preact](https://www.npmjs.com/package/preact)
       'react-dom': 'react-lite',
     },
   },
-  },
+},
 ```
 
 T> The same technique works with loaders too. You can use `resolveLoader.alias` similarly. You can use the technique to adapt a RequireJS project to work with webpack.
