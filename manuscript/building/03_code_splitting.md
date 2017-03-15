@@ -169,6 +169,8 @@ The idea can be demonstrated by setting up a module that contains a string that 
 export default 'Hello from lazy';
 ```
 
+{pagebreak}
+
 You also need to point the application to this file, so the application knows to load it. This can be done by binding the loading process to click. Whenever the user happens to click the button, you trigger the loading process and replace the content:
 
 **app/component.js**
