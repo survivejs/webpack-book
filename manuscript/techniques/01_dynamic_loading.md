@@ -37,6 +37,8 @@ The technique can be valuable for other purposes, such as testing or adding file
 
 T> The information is enough for generating an entire site. This has been done with [Antwar](https://github.com/antwarjs/antwar).
 
+{pagebreak}
+
 ## Combining Multiple `require.context`s
 
 Multiple separate `require.context`s can be combined into one by wrapping them behind a function like this:
@@ -56,9 +58,7 @@ const combineContexts = (...contexts) => {
   webpackContext.keys = () => uniq(
     concat.apply(
       null,
-      contexts.map(
-        context => context.keys()
-      )
+      contexts.map(context => context.keys())
     )
   );
 
@@ -72,10 +72,10 @@ The same idea works with dynamic `import`. Instead of passing a complete path, y
 
 ```javascript
 // Set up a target or derive this somehow
-const target = 'demo';
+const target = 'fi';
 
 // Elsewhere in code
-import(`indexes/${target}.json`).then(...).catch(...);
+import(`translations/${target}.json`).then(...).catch(...);
 ```
 
 The same idea works with `require` as long as webpack can analyze the situation statically.
