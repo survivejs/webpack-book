@@ -46,6 +46,8 @@ T> Webpack provided support for `System.import` in the early versions of webpack
 
 W> The syntax works only with JavaScript after configured the right way. If you use another environment, you have to use alternatives covered in the following sections.
 
+{pagebreak}
+
 ### `require.ensure`
 
 [require.ensure](https://webpack.js.org/guides/code-splitting-require/#require-ensure-) provides an alternate way:
