@@ -44,6 +44,8 @@ Webpack supports a wide variety of source map types. These vary based on quality
 
 `source-map` is the slowest and highest quality option of them all, but that's fine for a production build.
 
+{pagebreak}
+
 You can set these up as follows:
 
 **webpack.config.js**
