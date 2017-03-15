@@ -73,8 +73,6 @@ leanpub-end-insert
 
 `source-map` is the slowest and highest quality option of them all, but that's fine for a production build.
 
-{pagebreak}
-
 If you build the project now (`npm run build`), you should see source maps in the output:
 
 ```bash
