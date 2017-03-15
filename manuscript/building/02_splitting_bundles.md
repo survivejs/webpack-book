@@ -130,6 +130,8 @@ W> This step can fail on Windows due to letter casing. Instead of `c:\` you have
 
 W> Webpack doesn't allow referring to entry files within entries. If you inadvertently do this, webpack complains loudly. If you end up in a case like this, consider refactoring the module structure of your code to eliminate the situation.
 
+{pagebreak}
+
 ## Setting Up `CommonsChunkPlugin`
 
 [CommonsChunkPlugin](https://webpack.js.org/guides/code-splitting-libraries/#commonschunkplugin) is a powerful and complex plugin. In this case, the target is clear. You have to tell it to extract vendor related code to a bundle of its own. Before abstraction, implement it like this:
