@@ -6,6 +6,8 @@ If the hashes webpack generates change, then the manifest changes as well. As a 
 
 T> To understand how a manifest is generated in detail, [read the technical explanation at Stack Overflow](https://stackoverflow.com/questions/39548175/can-someone-explain-webpacks-commonschunkplugin/39600793).
 
+{pagebreak}
+
 ## Extracting a Manifest
 
 Most of the work was done already when `extractBundles` was set up in the *Splitting Bundles* chapter. To extract the manifest, a single change is required:
@@ -35,6 +37,8 @@ leanpub-end-insert
 ```
 
 T> `minChunks` is optional in this case. Passing `Infinity` to it tells webpack **not** to move any modules to the resulting bundle.
+
+{pagebreak}
 
 If you build the project now (`npm run build`), you should see something like this:
 
