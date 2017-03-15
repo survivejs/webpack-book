@@ -50,6 +50,8 @@ To have something to test, set up a function:
 module.exports = (a, b) => a + b;
 ```
 
+{pagebreak}
+
 Then, to test that, set up a small test suite:
 
 **tests/add.test.js**
