@@ -63,7 +63,7 @@ leanpub-end-insert
 
 Executing it should result in an `Error: Cannot find module` failure as the actual plugin is still missing.
 
-T> If you want an interactive development environment, consider setting up [nodemon](https://www.npmjs.com/package/nodemon) against the build. Webpack's own watcher won't work in this particular case as you have to restart the whole webpack process once you detect a change.
+T> If you want an interactive development environment, consider setting up [nodemon](https://www.npmjs.com/package/nodemon) against the build. Webpack's own watcher won't work in this particular case as you have to restart the whole webpack process after every change.
 
 ## Implementing a Basic Plugin
 
