@@ -46,31 +46,14 @@ var Demo =
 
 This tells it generates `var <output.library> = <webpack bootstrap>` kind of code and also explains why importing the code from Node does not give access to any functionality.
 
-## `assign`
+## `window`, `global`, `assign`, `this`
 
-Changing `output.libraryTarget` to `assign` yields slightly different results:
+Most of the available options vary the first line of the output as listed below:
 
-**dist/lib.js**
-
-```javascript
-Demo =
-...
-```
-
-Effectively `var Demo` becomes `Demo` instead. If you executed this code in the right context, it could associate it to a global `Demo`.
-
-## `this`
-
-Setting `output.libraryTarget` to `this` changes the situation further:
-
-**dist/lib.js**
-
-```javascript
-this["Demo"] =
-...
-```
-
-Now the code would associate to context `this`. You can use the code through Node REPL now (use `node` at project root):
+* `window` - `window["Demo"] =`
+* `global` - `global["Demo"] =`
+* `assign` - `Demo =` - If you executed this code in the right context, it would associate it to a global `Demo`.
+* `this` - `this["Demo"] =` - Now the code would associate to context `this`. You can use the code through Node REPL (use `node` at project root) and get the following:
 
 ```bash
 $ node
@@ -79,31 +62,7 @@ $ node
 >
 ```
 
-The code works through a convention, but there are better ways later in the chapter.
-
-T> You can try running the other examples through Node like this or you can set up a standalone script to execute through it to reach the same results.
-
-## `window`
-
-`output.libraryTarget = 'window'` associates like this:
-
-**dist/lib.js**
-
-```javascript
-window["Demo"] =
-...
-```
-
-## `global`
-
-`output.libraryTarget = 'global'` is a similar option:
-
-**dist/lib.js**
-
-```javascript
-global["Demo"] =
-...
-```
+T> You can try running the other examples through Node the same way.
 
 ## CommonJS
 
