@@ -16,6 +16,8 @@ Install the [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-p
 npm install clean-webpack-plugin --save-dev
 ```
 
+{pagebreak}
+
 Next, you need to define a function to wrap the basic idea. You could use the plugin directly, but this feels like something that could be used across projects, so it makes sense to push it to the library:
 
 **webpack.parts.js**
@@ -55,6 +57,8 @@ leanpub-end-insert
 ```
 
 After this change, the `build` directory should remain nice and tidy while building. You can verify this by building the project and making sure no old files remained in the output directory.
+
+{pagebreak}
 
 ## Attaching a Revision to the Build
 
