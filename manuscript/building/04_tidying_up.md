@@ -95,6 +95,8 @@ exports.attachRevision = () => ({
 leanpub-end-insert
 ```
 
+{pagebreak}
+
 And connect it to the main configuration:
 
 **webpack.config.js**
