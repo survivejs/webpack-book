@@ -307,6 +307,8 @@ App shell is loaded initially, and it manages the whole application including it
 
 The approach combines well with plugins like [offline-plugin](https://www.npmjs.com/package/offline-plugin) and [sw-precache-webpack-plugin](https://www.npmjs.com/package/sw-precache-webpack-plugin). This way you can benefit from [Service Workers](https://developer.mozilla.org/en/docs/Web/API/Service_Worker_API) and improve the offline experience.
 
+{pagebreak}
+
 ## Conclusion
 
 Webpack allows you to manage multiple page setups. Especially the PWA approach is valuable as it allows loading the application in a progressive manner based on usage. It's more flexible than a more traditional single page application approach, and webpack's functionality enables it well.
