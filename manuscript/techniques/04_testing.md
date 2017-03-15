@@ -305,6 +305,8 @@ T> LCOV integrates well with visualization services. You can send coverage infor
 
 [isparta](https://www.npmjs.com/package/isparta) is a popular, ES6 compatible code coverage tool. Connecting it with Karma requires configuration. Most importantly the code has to be instrumented through [babel-plugin-istanbul](https://www.npmjs.com/package/babel-plugin-istanbul). Doing this requires a small amount of webpack configuration as well due to the setup. [karma-coverage](https://www.npmjs.com/package/karma-coverage) is required for the reporting portion of the problem.
 
+{pagebreak}
+
 Install the dependencies first:
 
 ```
