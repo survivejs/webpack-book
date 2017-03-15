@@ -30,12 +30,6 @@ The above is the basic setup you need, regardless of your webpack configuration.
 
 W> Given you piggyback on the production target in the current setup, this process cleans the build directory! If you want to avoid that, set up a separate target where you don't clean.
 
-### `StatsWebpackPlugin` and `WebpackStatsPlugin`
-
-If you want to manage stats through a plugin, check out [stats-webpack-plugin](https://www.npmjs.com/package/stats-webpack-plugin). It gives you a bit more control over the output. You can use it to exclude certain dependencies from the output.
-
-[webpack-stats-plugin](https://www.npmjs.com/package/webpack-stats-plugin) is another option. It allows you to transform the data before outputting it.
-
 ### Node API
 
 Stats can be captured through Node. Since stats can contain errors, so it's a good idea to handle that case separately:
@@ -58,6 +52,12 @@ webpack(config, (err, stats) => {
 ```
 
 This technique can be valuable if you want to do further processing on stats although often the other solutions are enough.
+
+### `StatsWebpackPlugin` and `WebpackStatsPlugin`
+
+If you want to manage stats through a plugin, check out [stats-webpack-plugin](https://www.npmjs.com/package/stats-webpack-plugin). It gives you a bit more control over the output. You can use it to exclude certain dependencies from the output.
+
+[webpack-stats-plugin](https://www.npmjs.com/package/webpack-stats-plugin) is another option. It allows you to transform the data before outputting it.
 
 ## Available Analysis Tools
 
@@ -140,6 +140,8 @@ $ inspectpack --action=duplicates --bundle=bundle.js
     * Pct of Bundle Size:  15 %
 ```
 
+{pagebreak}
+
 ## Independent Tools
 
 In addition to tools that work with webpack output, there are a couple that are webpack agnostic and worth a mention.
@@ -153,6 +155,8 @@ In addition to tools that work with webpack output, there are a couple that are 
 ![madge](images/madge.png)
 
 [madge](https://www.npmjs.com/package/madge) is another independent tool that can output a graph based on module input. The graph output allows you to understand the dependencies of your project in greater detail.
+
+{pagebreak}
 
 ## Conclusion
 
