@@ -56,7 +56,9 @@ if (false) {
 }
 ```
 
-And based on this a minifier can eliminate the `if` statement as it has become dead code:
+{pagebreak}
+
+A minifier eliminates the `if` statement as it has become dead code:
 
 ```javascript
 var foo;
@@ -69,13 +71,13 @@ if (foo === 'bar') {
 // if (false) means the block can be dropped entirely
 ```
 
-Elimination is the core idea of `DefinePlugin`. You can toggle parts of code using this kind of mechanism. A good minifier can perform the analysis and enable/disable entire portions of the code as you prefer.
+Elimination is the core idea of `DefinePlugin` and it allows toggling. A minifier performs analysis and toggles entire portions of the code.
 
 ## Setting `process.env.NODE_ENV`
 
 Given you are using React in the project and it happens to use the technique, you can try to enable `DefinePlugin` and see what it does to the production build.
 
-As before, encapsulate this idea to a function. Due to the way webpack replaces the free variable, you should push it through `JSON.stringify`. You end up with a string like `'"demo"'` and then webpack inserts that into the slots it finds.
+As before, encapsulate this idea to a function. Due to the way webpack replaces the free variable, you should push it through `JSON.stringify`. You end up with a string like `'"demo"'` and then webpack inserts that into the slots it finds:
 
 **webpack.parts.js**
 
