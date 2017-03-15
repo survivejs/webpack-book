@@ -136,6 +136,8 @@ leanpub-end-insert
 
 After these changes, ESLint doesn't complain if you write `import` in the middle of the code.
 
+{pagebreak}
+
 ### Configuring Babel
 
 Given Babel doesn't support the dynamic `import` syntax out of the box, it needs [babel-plugin-syntax-dynamic-import](https://www.npmjs.com/package/babel-plugin-syntax-dynamic-import) to work. Install it first:
