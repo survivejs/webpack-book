@@ -100,6 +100,8 @@ If you had nested `require.ensure` definitions, you could pull a module to the p
 
 T> The formats respect `output.publicPath` option. You can also use `output.chunkFilename` to shape where they output. Example: `chunkFilename: '[name].js'`.
 
+{pagebreak}
+
 ## Setting Up Code Splitting
 
 To demonstrate the idea of code splitting, you can use dynamic `import`. Both ESLint and Babel setup of the project needs additions to make the syntax work.
