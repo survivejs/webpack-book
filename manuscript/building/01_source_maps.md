@@ -190,6 +190,8 @@ webpackJsonp([1, 2], {
 }, ["./app/index.js"]);
 ```
 
+{pagebreak}
+
 Again, decoding the data reveals more:
 
 ```json
