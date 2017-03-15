@@ -119,6 +119,8 @@ let demoComponent = component('Another');
 document.body.appendChild(demoComponent);
 ```
 
+{pagebreak}
+
 The file could go to a directory of its own. Here the existing code is reused to get something to show up. Webpack configuration has to point to this file:
 
 **webpack.config.js**
