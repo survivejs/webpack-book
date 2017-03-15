@@ -37,7 +37,11 @@ leanpub-end-insert
 
 To make the asset paths work on GitHub Pages, `output.publicPath` field has to be adjusted. Otherwise, the asset paths end up pointing at the root, and that doesn't work unless you are hosting behind a domain root (say `survivejs.com`) directly.
 
-`publicPath` gives control over the resulting urls you see at *index.html* for instance. If you are hosting your assets on a CDN, this would be the place to tweak. In this case, it's enough to set it to point the GitHub project like this:
+`publicPath` gives control over the resulting urls you see at *index.html* for instance. If you are hosting your assets on a CDN, this would be the place to tweak.
+
+{pagebreak}
+
+In this case, it's enough to set it to point the GitHub project as below:
 
 **webpack.config.js**
 
@@ -67,6 +71,8 @@ T> If you need a more elaborate setup, use the Node API that *gh-pages* provides
 
 T> GitHub Pages allows you to choose the branch where you deploy. It's possible to use the `master` branch even as it's enough for minimal sites that don't need bundling. You can also point below the *./docs* directory within your `master` branch and maintain your site.
 
+{pagebreak}
+
 ## Archiving Old Versions
 
 *gh-pages* provides an `add` option for archival purposes. The idea goes as follows:
@@ -79,8 +85,6 @@ T> GitHub Pages allows you to choose the branch where you deploy. It's possible 
 ```javascript
 ghpages.publish(path.join(__dirname, 'build'), { add: true }, callback);
 ```
-
-{pagebreak}
 
 ## Deploying to Other Environments
 
