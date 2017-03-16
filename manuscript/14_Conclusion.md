@@ -10,6 +10,8 @@ As this book has demonstrated, webpack is a versatile tool. To make it easier to
 * The way webpack consumes packages can be customized. The *Consuming Packages* chapter covers specific techniques related to this.
 * Sometimes you have to extend webpack. The *Extending with Loaders* and *Extending with Plugins* chapters show how to achieve this. You can also work on top of webpack’s configuration definition and implement an abstraction of your own for it to suit your purposes.
 
+{pagebreak}
+
 ## Development Checklist
 
 * To get most out of webpack during development, use [webpack-dev-server](https://www.npmjs.com/package/webpack-dev-server) (WDS). You can also find middlewares which you can attach to your Node server during development. The *Automatic Browser Refresh* chapter covers WDS in greater detail.
