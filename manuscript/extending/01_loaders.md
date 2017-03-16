@@ -219,7 +219,7 @@ npm install loader-utils --save-dev
 
 {pagebreak}
 
-To connect it the loader, set it to capture `name` and pass it through webpack's interpolator:
+To connect it to the loader, set it to capture `name` and pass it through webpack's interpolator:
 
 **loaders/demo-loader.js**
 
