@@ -14,6 +14,8 @@ T> If you want a good starting point for a standalone loader or plugin project, 
 npm install loader-runner --save-dev
 ```
 
+{pagebreak}
+
 To have something to test with, set up a loader that returns twice what's passed to it like this:
 
 **loaders/demo-loader.js**
