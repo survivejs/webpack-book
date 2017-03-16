@@ -327,6 +327,8 @@ Input: {}
   contextDependencies: [] }
 ```
 
+{pagebreak}
+
 ## Caching with Loaders
 
 Although webpack caches loaders by default unless they set `this.cacheable(false)`, writing a caching loader can be a good exercise as it helps you to understand how loader stages can work together. The example below shows how to achieve this (courtesy of Vladimir Grenaderov):
