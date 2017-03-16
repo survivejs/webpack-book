@@ -26,7 +26,7 @@ This book has been designed to complement [the official documentation of webpack
 
 The book teaches you to develop a composable webpack configuration for both development and production purposes. Advanced techniques covered by the book allow you to get the most out of webpack.
 
-T> This book has been written based on webpack 2. If you want to apply its techniques to webpack 1, you should see [the official migration guide](https://webpack.js.org/guides/migrating/) as it covers the changes made between the major versions. There are also [codemods at the webpack-cli repository](https://github.com/webpack/webpack-cli) for migrating from webpack 1 to 2.
+T> The book is based on webpack 2. If you want to apply its techniques to webpack 1, you should see [the official migration guide](https://webpack.js.org/guides/migrating/) as it covers the changes made between the major versions. There are also [codemods at the webpack-cli repository](https://github.com/webpack/webpack-cli) for migrating from webpack 1 to 2.
 
 ## How Is The Book Organized
 
@@ -35,13 +35,13 @@ The book starts by explaining what webpack is. After that, you find multiple par
 The book has been split into the following parts:
 
 * **Developing** gets you up and running with webpack. This part goes through features such as automatic browser refresh and explains how to compose your configuration so that it remains maintainable.
-* **Styling** puts heavy emphasis on styling related topics. You learn how to load styles with webpack and how to introduce techniques such as autoprefixing to your setup.
+* **Styling** puts heavy emphasis on styling related topics. You will learn how to load styles with webpack and how to introduce techniques such as autoprefixing to your setup.
 * **Loading** explains webpack’s loader definitions in detail and shows you how to load assets such as images, fonts, and JavaScript.
-* **Building** introduces source maps and the ideas of bundle and code splitting. You learn to tidy up your build.
-* **Optimizing** pushes your build to production quality level and introduces many smaller tweaks to make it smaller. You learn to tune webpack for performance.
+* **Building** introduces source maps and the ideas of bundle and code splitting. You will learn to tidy up your build.
+* **Optimizing** pushes your build to production quality level and introduces many smaller tweaks to make it smaller. You will learn to tune webpack for performance.
 * **Output** discusses webpack’s output options. Despite its name, it’s not only for the web. You see how to manage multiple page setups with webpack and pick up the basic idea of Server Side Rendering.
 * **Techniques** discusses several specific ideas including dynamic loading, web workers, internationalization, and deploying your applications.
-* **Packages** has a heavy focus on npm and webpack related techniques. You learn both to consume and author npm packages in an efficient way.
+* **Packages** has a heavy focus on npm and webpack related techniques. You will learn both to consume and author npm packages in an efficient way.
 * **Extending** shows how to extend webpack with your loaders and plugins.
 
 There's a short conclusion chapter after the main content that recaps the main points of the book. It contains checklists that allow you to go through your projects against the book techniques.
@@ -56,19 +56,15 @@ T> If you are unsure of a term and its meaning, see the *Glossary* at the end of
 
 You should have basic knowledge of JavaScript, Node, and npm. If you know something about webpack, that’s great. By reading this book, you deepen your understanding of these tools.
 
-If you happen to know webpack well, there is still something in the book for you. Skim through it and see if you can pick up techniques. Read especially the summaries at the end of the chapters and the conclusion chapter.
-
-If you find yourself struggling, consider seeking help from the community around the book. Any comments you have go towards improving the content.
-
-## How To Approach the Book
-
 If you don’t know much about the topic, consider going carefully through the early parts. You can scan the rest to pick the bits you find worthwhile. If you know webpack already, skim and choose the techniques you find valuable.
 
-You can find [a set of slides online](http://presentations.survivejs.com/advanced-webpack/) that overlap with the book. Consider going through the set to get a rough idea and then delve into the book to understand the ideas in greater detail.
+In case you know webpack well already, there is still something in the book for you. Skim through it and see if you can pick up new techniques. Read especially the summaries at the end of the chapters and the conclusion chapter.
+
+T> You can find [a set of slides online](http://presentations.survivejs.com/advanced-webpack/) that complement the book. Consider going through the set for a quick overview and then delve into the book to understand the ideas in greater detail.
 
 ## Book Versioning
 
-Given this book receives a fair amount of maintenance and improvements due to the pace of innovation, there’s a rough versioning scheme in place. Release notes for each new version are maintained at the [book blog](http://survivejs.com/blog/). That should give you a good idea of the major changes between versions.
+Given this book receives a fair amount of maintenance and improvements due to the pace of innovation, there's a versioning scheme in place. Release notes for each new version are maintained at the [book blog](http://survivejs.com/blog/). That should give you a good idea of the major changes between versions.
 
 Examining the GitHub repository is beneficial. Consider using the GitHub *compare* tool for this purpose. Example:
 
@@ -80,17 +76,12 @@ The page shows you the individual commits that went to the project between the g
 
 The current version of the book is **1.9.5**.
 
-The guide is expanded based on demand to make it serve you as well as possible. You can even contribute fixes of your own to the book as the source is available.
-
-A part of the profit goes towards funding the development of the tool itself. Most of it goes to the core developers, including myself. You can also [support webpack directly through Open Collective](https://opencollective.com/webpack).
-
 ## Getting Support
 
-If you run into trouble or have questions related to the content, there are options:
+If you run into trouble or have questions related to the content, there are several options:
 
 * Contact me through [GitHub Issue Tracker](https://github.com/survivejs/webpack-book/issues).
 * Join me at [Gitter Chat](https://gitter.im/survivejs/webpack).
-* Follow [@survivejs](https://twitter.com/survivejs) on Twitter for official news or poke me through [@bebraw](https://twitter.com/bebraw) directly.
 * Send me email at [info@survivejs.com](mailto:info@survivejs.com).
 * Ask me anything about webpack or React at [SurviveJS AmA](https://github.com/survivejs/ama/issues).
 
@@ -100,11 +91,9 @@ If you post questions to Stack Overflow, tag them using **survivejs**. You can u
 
 SurviveJS-related news are announced through the following channels:
 
-* [Mailing list](http://eepurl.com/bth1v5)
-* [Twitter](https://twitter.com/survivejs)
-* [Blog RSS](http://survivejs.com/atom.xml)
-
-Feel free to subscribe.
+* Join the [mailing list](http://eepurl.com/bth1v5) for occasional updates.
+* Follow [@survivejs](https://twitter.com/survivejs) on Twitter for official news.
+* Subscribe to the [blog RSS](http://survivejs.com/atom.xml) to get supplemental content through your RSS reader.
 
 ## Acknowledgments
 

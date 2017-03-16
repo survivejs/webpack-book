@@ -141,4 +141,4 @@ To summarize:
 * Webpack can generate **hashes** for filenames allowing you to invalidate bundles as their contents change.
 * Webpack relies on **loaders** and **plugins**. Loaders operate on module level while plugins rely on hooks provided by webpack and have the best access to its execution process.
 
-In the following chapters, you’ll examine webpack in more detail as you learn to develop a basic development and build configuration. The later chapters continue further and delve into more advanced topics.
+In the following chapters, you’ll examine webpack in more detail as you will learn to develop a basic development and build configuration. The later chapters continue further and delve into more advanced topics.

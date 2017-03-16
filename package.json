@@ -10,7 +10,7 @@
     "test": "npm run textlint && npm run remark",
     "test:links": "check-markdown-links manuscript",
     "proselint": "proselintjs \"manuscript/**/*.md\"",
-    "textlint": "textlint \"manuscript/**/*.md\"",
+    "textlint": "textlint \"manuscript/*.md\" && textlint \"manuscript/**/*.md\"",
     "keywords": "node ./utils/keywords",
     "remark": "remark manuscript",
     "prepush": "npm test",
