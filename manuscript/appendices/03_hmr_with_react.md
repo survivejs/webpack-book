@@ -247,6 +247,8 @@ W> In webpack 1 you had to use `extensions: ['', '.js', '.jsx']` to match files 
 
 *create-react-app* allows you to extract a full-blown webpack setup by **ejecting**. There's a problem, though. After you eject, you cannot go back to the dependency-based model, and you have to maintain the resulting setup yourself.
 
+{pagebreak}
+
 ## Conclusion
 
 *react-hot-loader* allows you to set up HMR with webpack. It was one of the initial selling points of both and is still a good technique. The setup takes care, but after you have it running, it's nice.
