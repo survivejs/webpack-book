@@ -5,6 +5,7 @@ Given webpack comes with specific nomenclature, the main terms and their explana
 ## Introduction
 
 * **Static analysis** - When a tool performs static analysis, it examines the code without running it. This is how tools like ESLint or webpack operate. Statically analyzable standards, like ES6 module definition, enable features like **tree shaking**.
+* **Resolving** is the process that happens when webpack encounters a module or a loader. When that happens, it tries to resolve it based on the given resolution rules.
 
 ## Developing
 
@@ -37,7 +38,3 @@ Given webpack comes with specific nomenclature, the main terms and their explana
 
 * **Output** refers to files emitted by webpack. More specifically, webpack emits **bundles** and **assets** based on the output settings.
 * **Target** options of webpack allow you to override the default web target. You can use webpack to develop code for specific JavaScript platforms.
-
-## Packages
-
-* **Resolving** is the process that happens when webpack encounters a module or a loader. When that happens, it tries to resolve it based on the given resolution rules.
