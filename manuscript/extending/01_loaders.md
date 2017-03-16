@@ -169,15 +169,17 @@ module.exports = function(content) {
 
   this.emitFile(url, content);
 
-  const filePath = `__webpack_public_path__ + ${JSON.stringify(url)};`;
+  const path = `__webpack_public_path__ + ${JSON.stringify(url)};`;
 
-  return `export default ${filePath}`;
+  return `export default ${path}`;
 };
 ```
 
 Webpack provides two additional `emit` methods: `this.emitWarning` and `this.emitError`. Both accept a string and can be used to tell the user something unexpected happened. They should be used over `console` based alternatives. As with `this.emitFile`, you have to mock them for *loader-runner* to work.
 
 The next question is, how to pass file name to the loader.
+
+{pagebreak}
 
 ## Passing Options to Loaders
 
