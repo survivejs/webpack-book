@@ -138,7 +138,9 @@ If you build the application (`npm run build`) and examine the output, you spot 
 
 Babel provides an [env option](https://babeljs.io/docs/usage/babelrc/#env-option) for this purpose. It respects both `NODE_ENV` and `BABEL_ENV` environment variables. If `BABEL_ENV` is set, it receives precedence. To fix the issue, you can push the problematic Babel plugin behind a development specific `env` while controlling its behavior within webpack configuration by setting `BABEL_ENV`.
 
-The webpack part should be adjusted like this:
+{pagebreak}
+
+The webpack portion should be adjusted like this:
 
 **webpack.config.js**
 
