@@ -59,7 +59,7 @@ module.exports = {
 };
 ```
 
-T> If you are not sure how a particular RegExp matches, consider using an online tool, such as [regex101](https://regex101.com/) or [RegExr](http://regexr.com/).
+T> If you are not sure how a particular RegExp matches, consider using an online tool, such as [regex101](https://regex101.com/), [RegExr](http://regexr.com/), or [Regexper](https://regexper.com).
 
 T> Babel is discussed in detail in the *Loading JavaScript* chapter.
 
