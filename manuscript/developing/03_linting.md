@@ -75,6 +75,8 @@ Given ESLint expects configuration to work, you need to define rules to describe
 
 Rules, such as `quotes`, accept an array instead allowing you to pass extra parameters to them. Refer to the [ESLint rules documentation](http://eslint.org/docs/rules/) for specifics.
 
+{pagebreak}
+
 Here's a starting point that works with the project:
 
 **.eslintrc.js**
