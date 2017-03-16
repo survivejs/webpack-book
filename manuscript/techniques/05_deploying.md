@@ -122,5 +122,5 @@ Even though webpack isn't a deployment tool, you can find plugins for it.
 
 To recap:
 
-* It's also possible to handle the problem of deployment outside of webpack. You can achieve this in an npm script for example.
-* It's possible to configure webpack's `output.publicPath` dynamically. This technique is valuable if you don't know it compile-time and want to decide it later. This is possible through the `__webpack_public_path__ ` global.
+* It's possible to handle the problem of deployment outside of webpack. You can achieve this in an npm script for example.
+* You can configure webpack's `output.publicPath` dynamically. This technique is valuable if you don't know it compile-time and want to decide it later. This is possible through the `__webpack_public_path__ ` global.
