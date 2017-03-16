@@ -13,9 +13,11 @@ To enable HMR, the following things have to happen:
 3. The client has to run specific scripts provided by the WDS. They are injected automatically but can be enabled explicitly through entry configuration.
 4. The client has to implement the HMR interface through `module.hot.accept`.
 
-Using `webpack-dev-server --hot`. `--hot` solves the first two problems. In this case you have to handle only the last one yourself if you want to patch JavaScript application code.
+Using `webpack-dev-server --hot`. `--hot` solves the first two problems. In this case you have to handle only the last one yourself if you want to patch JavaScript application code. Skipping the `--hot` flag and going through webpack configuration gives more flexibility.
 
-Skipping the `--hot` flag and going through webpack configuration gives more flexibility. The following listing contains the most important parts related to this approach. You will have to adapt from here to match your configuration style.
+{pagebreak}
+
+The following listing contains the most important parts related to this approach. You will have to adapt from here to match your configuration style.
 
 ```javascript
 {
@@ -40,7 +42,7 @@ If you implement configuration like above without implementing the client interf
 
 ![No refresh](images/no-refresh.png)
 
-The numbers are cryptic but the problem can be fixed with the `webpack.NamedModulesPlugin`.
+The numbers are cryptic but the problem can be fixed with the `NamedModulesPlugin`.
 
 W> *webpack-dev-server* can be picky about paths. Webpack [issue #675](https://github.com/webpack/webpack/issues/675) discusses the problem in more detail.
 
