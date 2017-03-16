@@ -105,6 +105,8 @@ module.exports = function(input) {
 
 The result should contain `Error: Demo error` with a stack trace showing where the error originates.
 
+{pagebreak}
+
 ## Returning Only Output
 
 Loaders can be used to output code. You could have implementation like this:
