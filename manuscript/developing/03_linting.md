@@ -63,7 +63,7 @@ leanpub-end-insert
 
 The potential problem with using an include based approach is that you forget to lint source code. Using excludes solves this but then you have to be careful to update the exclude list as your project grows to avoid linting too much.
 
-The exclusion approach can be achieved by pointing ESLint to the project root through `eslint .` and setting up a *.eslintignore* file for the excludes like for *.gitignore*. You can point to your Git ignores `--ignore-path .gitignore` for maximum reuse. Individual patterns are supported through `--ignore-pattern <pattern>`.
+The exclusion approach can be achieved by pointing ESLint to the project root through `eslint .` and setting up a *.eslintignore* file for the excludes like for *.gitignore*. You can point to your Git ignores using `--ignore-path .gitignore` for maximum reuse. Individual patterns are supported through `--ignore-pattern <pattern>`.
 
 ### Defining Linting Rules
 
