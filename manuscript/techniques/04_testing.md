@@ -212,7 +212,7 @@ Add an npm shortcut:
 
 ```json
 "scripts": {
-  "test:karma": "karma",
+  "test:karma": "karma start",
   ...
 },
 ```
