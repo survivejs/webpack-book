@@ -225,13 +225,13 @@ webpack: Compiled successfully.
 ...:INFO [karma]: Karma v1.5.0 server started at http://0.0.0.0:9876/
 ```
 
-This means Karma is in a waiting state. You have to visit that url to run the tests. As per configuration (`singleRun: true`), Karma terminates execution after that:
+This means Karma is in a waiting state and you have to visit that url to run the tests. As per configuration (`singleRun: true`), Karma terminates execution after that:
 
 ```
 ...
 ...:INFO [karma]: Karma v1.5.0 server started at http://0.0.0.0:9876/
-...:INFO [Chrome 56.0.2924 (...)]: Connected on socket D...A with id manual-7373
-Chrome 56.0.2924 (...): Executed 1 of 1 SUCCESS (0.003 secs / 0 secs)
+...:INFO [Chrome 57...]: Connected on socket D...A with id manual-73
+Chrome 57...): Executed 1 of 1 SUCCESS (0.003 secs / 0 secs)
 ```
 
 Given running tests this way can become annoying, it's a good idea to configure alternative ways. Using PhantomJS is one option.
