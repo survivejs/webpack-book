@@ -74,7 +74,11 @@ In ESLint's case, the AST structure can be checked. If something is wrong, it sh
 
 1. Set up a new project named `eslint-plugin-custom`. You can replace `custom` with whatever you want. ESLint follows this naming convention.
 2. Execute `npm init -y` to create a dummy *package.json*
-3. Set up `index.js` in the project root with content like this:
+3. Set up `index.js` in the project root with content.
+
+{pagebreak}
+
+You can get started like this:
 
 **eslint-plugin-custom/index.js**
 
