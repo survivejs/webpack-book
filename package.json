@@ -16,7 +16,9 @@
     "push": "git push && npm run preview"
   },
   "remarkConfig": {
-    "plugins": ["preset-survivejs"]
+    "plugins": [
+      "preset-survivejs"
+    ]
   },
   "repository": {
     "type": "git",
@@ -35,14 +37,19 @@
   "dependencies": {},
   "devDependencies": {
     "check-markdown-links": "^0.1.1",
+    "glob": "^7.1.1",
     "husky": "^0.13.2",
     "leanpub-cli": "^0.2.0",
+    "nlcst-to-string": "^2.0.0",
     "proselint": "^0.1.7",
     "remark-cli": "^3.0.0",
     "remark-preset-survivejs": "^0.2.1",
+    "retext": "^5.0.0",
+    "retext-keywords": "^4.0.0",
     "textlint": "^7.3.0",
     "textlint-rule-common-misspellings": "^1.0.1",
     "textlint-rule-terminology": "^1.1.6",
-    "textlint-rule-write-good": "^1.6.0"
+    "textlint-rule-write-good": "^1.6.0",
+    "to-vfile": "^2.1.1"
   }
 }
