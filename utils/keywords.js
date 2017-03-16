@@ -7,11 +7,11 @@ const toVfile = require('to-vfile');
 main();
 
 function main() {
-  const corpus = glob.sync('../manuscript/**/*.md').map(
+  const corpus = glob.sync('./manuscript/**/*.md').map(
     name => toVfile.readSync(name, 'utf8').contents
   ).join('\n');
 
-  retext().use(keywords, { maximum: 30 }).process(
+  retext().use(keywords, { maximum: 10 }).process(
     corpus, (err, file) => {
     console.log('Keywords:');
 

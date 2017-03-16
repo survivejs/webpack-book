@@ -11,6 +11,7 @@
     "test:links": "check-markdown-links manuscript",
     "proselint": "proselintjs \"manuscript/**/*.md\"",
     "textlint": "textlint \"manuscript/**/*.md\"",
+    "keywords": "node ./utils/keywords",
     "remark": "remark manuscript",
     "prepush": "npm test",
     "push": "git push && npm run preview"
