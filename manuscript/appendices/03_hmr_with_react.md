@@ -10,6 +10,8 @@ npm install react-hot-loader@next --save
 
 T> *react-hot-loader* was included as a normal dependency as it comes with a small application level tweak.
 
+{pagebreak}
+
 ## Setting Up Babel
 
 To connect Babel with *react-hot-loader*, it needs to become aware of its plugin portion:
