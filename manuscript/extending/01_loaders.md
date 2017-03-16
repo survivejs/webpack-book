@@ -123,6 +123,8 @@ But what's the point? You can pass to loaders through webpack entries. Instead o
 
 T> If you want to return `Buffer` output, you will have to set `module.exports.raw = true` as webpack expects a string by default. The flag overrides this default behavior. You need this if you wrap for example [node-sass](https://www.npmjs.com/package/node-sass) as a loader.
 
+{pagebreak}
+
 ## Writing Files
 
 Loaders, like [file-loader](https://www.npmjs.com/package/file-loader), emit files. Webpack provides a single method, `this.emitFile`, for this. Given *loader-runner* does not implement it, you have to mock it:
