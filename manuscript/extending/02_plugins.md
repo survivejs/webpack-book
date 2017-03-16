@@ -143,6 +143,8 @@ After running (`npm run build:plugin`), you should see a lot of data. Especially
 
 If you go through webpack's [plugin development documentation](https://webpack.js.org/api/plugins/), you'll see a compiler provides a large amount of hooks. Each hook corresponds with a specific stage. For example, to emit files, you could listen to the `emit` event and then write.
 
+{pagebreak}
+
 Adjust the implementation to listen and capture `compilation`:
 
 **plugins/demo-plugin.js**
