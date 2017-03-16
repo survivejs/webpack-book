@@ -222,16 +222,16 @@ If you execute `npm run test:karma` now, you should see terminal output like thi
 ```
 ...
 webpack: Compiled successfully.
-22 02 2017 14:18:59.455:INFO [karma]: Karma v1.5.0 server started at http://0.0.0.0:9876/
+...:INFO [karma]: Karma v1.5.0 server started at http://0.0.0.0:9876/
 ```
 
 This means Karma is in a waiting state. You have to visit that url to run the tests. As per configuration (`singleRun: true`), Karma terminates execution after that:
 
 ```
 ...
-22 02 2017 14:18:59.455:INFO [karma]: Karma v1.5.0 server started at http://0.0.0.0:9876/
-22 02 2017 14:19:02.310:INFO [Chrome 56.0.2924 (Mac OS X 10.12.3)]: Connected on socket Dsv_bS_0YOr_HnfCAAAA with id manual-7373
-Chrome 56.0.2924 (Mac OS X 10.12.3): Executed 1 of 1 SUCCESS (0.003 secs / 0 secs)
+...:INFO [karma]: Karma v1.5.0 server started at http://0.0.0.0:9876/
+...:INFO [Chrome 56.0.2924 (...)]: Connected on socket D...A with id manual-7373
+Chrome 56.0.2924 (...): Executed 1 of 1 SUCCESS (0.003 secs / 0 secs)
 ```
 
 Given running tests this way can become annoying, it's a good idea to configure alternative ways. Using PhantomJS is one option.
