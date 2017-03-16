@@ -422,6 +422,8 @@ Deprecation can be handy if you have to rename a package. You can publish the pa
 
 There is a heavier duty option in the form of [npm unpublish](https://docs.npmjs.com/cli/unpublish). Using `npm unpublish` you can pull a package out of the registry. Given this can be potentially dangerous and break the code for a lot of people, it has been [restricted to versions that are less than 24 hours old](http://blog.npmjs.org/post/141905368000/changes-to-npms-unpublish-policy). Most likely you don't need the feature at all, but it's nice to know it exists.
 
+{pagebreak}
+
 ## Conclusion
 
 You should now have a basic idea of how to author npm packages. Webpack can help you a lot here.
