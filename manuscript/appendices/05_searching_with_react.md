@@ -8,7 +8,11 @@ Doing this defers the loading and moves it to a place where it's more acceptable
 
 ## Implementing Search with Code Splitting
 
-To implement code splitting, you need to decide where to put the split point, put it there, and then handle the `Promise`. The basic `import` looks like `import('./asset').then(asset => ...).catch(err => ...)`.
+To implement code splitting, you need to decide where to put the split point, put it there, and then handle the `Promise`. The basic `import` looks like this:
+
+```javascript
+import('./asset').then(asset => ...).catch(err => ...)
+```
 
 The nice thing is that this gives error handling in case something goes wrong (network is down etc.) and gives a chance to recover. You can also use `Promise` based utilities like `Promise.all` for composing more complicated queries.
 
