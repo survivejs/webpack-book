@@ -38,6 +38,8 @@ The following listing contains the most important parts related to this approach
 }
 ```
 
+{pagebreak}
+
 If you implement configuration like above without implementing the client interface, you will most likely end up with an error like this:
 
 ![No refresh](images/no-refresh.png)
@@ -47,6 +49,8 @@ The numbers are cryptic but the problem can be fixed with the `NamedModulesPlugi
 W> *webpack-dev-server* can be picky about paths. Webpack [issue #675](https://github.com/webpack/webpack/issues/675) discusses the problem in more detail.
 
 W> You should **not** enable HMR for your production configuration. It likely works, but it makes your bundles bigger than they should be.
+
+{pagebreak}
 
 ## Making the Module Ids More Debuggable
 

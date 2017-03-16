@@ -12,27 +12,6 @@ T> *react-hot-loader* was included as a normal dependency as it comes with a sma
 
 {pagebreak}
 
-## Setting Up Babel
-
-To connect Babel with *react-hot-loader*, it needs to become aware of its plugin portion:
-
-**.babelrc**
-
-```json
-{
-leanpub-start-delete
-  "plugins": ["syntax-dynamic-import"],
-leanpub-end-delete
-leanpub-start-insert
-  "plugins": [
-    "syntax-dynamic-import",
-    "react-hot-loader/babel"
-  ],
-leanpub-end-insert
-  ...
-}
-```
-
 ## Setting Up Webpack
 
 On the webpack side, *react-hot-loader* requires an additional entry it uses to patch the running application. It's important the new entry runs first as otherwise the setup fails to work reliably:
@@ -68,6 +47,27 @@ leanpub-end-insert
 Patching is needed still as you have to make the application side aware of hot loading.
 
 T> This tweak is not required in the future as *react-hot-loader* evolves. It's possible to inject an empty module for `'react-hot-loader/patch'` if it detects that production environment is used. For now, it's needed, though.
+
+## Setting Up Babel
+
+To connect Babel with *react-hot-loader*, it needs to become aware of its plugin portion:
+
+**.babelrc**
+
+```json
+{
+leanpub-start-delete
+  "plugins": ["syntax-dynamic-import"],
+leanpub-end-delete
+leanpub-start-insert
+  "plugins": [
+    "syntax-dynamic-import",
+    "react-hot-loader/babel"
+  ],
+leanpub-end-insert
+  ...
+}
+```
 
 ## Setting Up the Application
 

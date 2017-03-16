@@ -16,6 +16,8 @@ import('./asset').then(asset => ...).catch(err => ...)
 
 The nice thing is that this gives error handling in case something goes wrong (network is down etc.) and gives a chance to recover. You can also use `Promise` based utilities like `Promise.all` for composing more complicated queries.
 
+{pagebreak}
+
 In this case, you need to detect when the user selects the search element, load the data unless it has been loaded already, and then execute search logic against it. Using React, you could end up with something like this:
 
 **App.js**
