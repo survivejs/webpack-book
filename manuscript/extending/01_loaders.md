@@ -297,31 +297,19 @@ To connect it to the runner, add it to the loader definition:
 **run-loader.js**
 
 ```javascript
-const fs = require('fs');
-const path = require('path');
-const { runLoaders } = require('loader-runner');
+...
 
 runLoaders({
   resource: './demo.txt',
   loaders: [
-    {
-      loader: path.resolve(__dirname, './loaders/demo-loader'),
-      options: {
-        name: 'demo.[ext]',
-      },
-    },
+    ...
 leanpub-start-insert
     path.resolve(__dirname, './loaders/pitch-loader'),
 leanpub-end-insert
   ],
-  context: {
-    emitFile: () => {},
-  },
-  readResource: fs.readFile.bind(fs),
+  ...
 },
-(err, result) => err ?
-  console.error(err) :
-  console.log(result)
+...
 );
 ```
 
