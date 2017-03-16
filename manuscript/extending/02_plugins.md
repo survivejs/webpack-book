@@ -217,6 +217,8 @@ leanpub-end-insert
 };
 ```
 
+{pagebreak}
+
 After building (`npm run build:plugin`), you should see output like this:
 
 ```bash
