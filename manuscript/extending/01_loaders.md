@@ -290,6 +290,8 @@ Input: ${JSON.stringify(input, null, 2)}
 };
 ```
 
+{pagebreak}
+
 To connect it to the runner, add it to the loader definition:
 
 **run-loader.js**
