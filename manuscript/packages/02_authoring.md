@@ -263,6 +263,8 @@ Besides `prepublish`, npm provides a set of other hooks. The naming is always th
 
 The [the official documentation](https://docs.npmjs.com/misc/scripts) covers a lot of smaller tips related to these hooks. However, often all you need is a `prepublish` script for build automation.
 
+{pagebreak}
+
 ### Working Around `prepublish` in npm 3
 
 In npm 3 `prepublish` hook gets also triggered when you run `npm install` on the project locally. Sometimes this can be surprising and counter-productive even.
