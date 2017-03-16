@@ -1,4 +1,4 @@
-# What is Webpack?
+# What is Webpack
 
 Webpack is a module bundler. You can use a separate task runner while leaving it to take care of bundling, however this line has become blurred as the community has developed plugins for it. Sometimes these plugins are used to perform tasks that are usually done outside of webpack, for example cleaning the build directory or deploying the build.
 
@@ -36,7 +36,7 @@ If all loader evaluation completed without a runtime error, webpack includes the
 
 Plugins give the best access to the overall process and can be combined with loaders. Loaders can capture a part of the data while plugins can use this data to emit new files. This is the way `ExtractTextPlugin` works. It allows you to extract specific data from JavaScript bundles.
 
-Without `ExtractTextPlugin`, CSS would end up in the resulting JavaScript. This is a absolutely important part of Webpack to understand. The fact that a module declares a dependency on another module doesn't mean that this dependency is directly included into the module when it's bundled. The *Separating CSS* chapter discusses this idea in detail.
+Without `ExtractTextPlugin`, CSS would end up in the resulting JavaScript. This is an absolutely important part of webpack to understand. The fact that a module declares a dependency on another module doesn't mean that this dependency is directly included into the module when it's bundled. The *Separating CSS* chapter discusses this idea in detail.
 
 ### Finishing
 

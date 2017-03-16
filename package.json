@@ -7,12 +7,16 @@
     "publish:silent": "leanpub-cli publish-silent survivejs-webpack",
     "preview": "leanpub-cli preview survivejs-webpack",
     "job-status": "leanpub-cli job-status survivejs-webpack",
-    "test": "npm run textlint",
+    "test": "npm run textlint && npm run remark",
     "test:links": "check-markdown-links manuscript",
     "proselint": "proselintjs \"manuscript/**/*.md\"",
     "textlint": "textlint \"manuscript/**/*.md\"",
+    "remark": "remark manuscript",
     "prepush": "npm test",
     "push": "git push && npm run preview"
+  },
+  "remarkConfig": {
+    "plugins": ["preset-survivejs"]
   },
   "repository": {
     "type": "git",
@@ -34,6 +38,8 @@
     "husky": "^0.13.2",
     "leanpub-cli": "^0.2.0",
     "proselint": "^0.1.7",
+    "remark-cli": "^3.0.0",
+    "remark-preset-survivejs": "^0.1.6",
     "textlint": "^7.3.0",
     "textlint-rule-common-misspellings": "^1.0.1",
     "textlint-rule-terminology": "^1.1.6",

@@ -65,12 +65,12 @@ T> You can use `--save` and `--save-dev` to separate application and development
 
 To move further, you can implement a site that loads JavaScript, which you then build using webpack. After you progress a bit, you end up with a directory structure below:
 
-- app/
-  - index.js
-  - component.js
-- build/
-- package.json
-- webpack.config.js
+* app/
+  * index.js
+  * component.js
+* build/
+* package.json
+* webpack.config.js
 
 The idea is that you transform *app/* to a bundle below *build/*. To make this possible, you should set up the assets needed and configure webpack through *webpack.config.js*.
 
@@ -116,7 +116,7 @@ At a minimum, it's nice to have at least `entry` and `output` fields in your con
 
 Entries tell webpack where to start parsing the application. In multi-page applications, you have an entry per page. Or you could have a configuration per entry as discussed later in this chapter.
 
-All output related paths you see in the configuration are resolved against the `output.path` field. If you had an output relation option somewhere and wrote `styles/[name].css`, that would be expanded so that you get `<output.path> + <specific path>`. Example: *~/webpack-demo/build/styles/[name].css*.
+All output related paths you see in the configuration are resolved against the `output.path` field. If you had an output relation option somewhere and wrote `styles/[name].css`, that would be expanded so that you get `<output.path> + <specific path>`. Example: *~/webpack-demo/build/styles/main.css*.
 
 {pagebreak}
 

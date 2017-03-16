@@ -4,7 +4,7 @@
 
 It's not the easiest tool to learn due to its configuration-driven approach, but it's incredibly powerful. The purpose of this guide is to help you get started with webpack and then to go beyond the basics.
 
-## What Is Webpack?
+## What Is Webpack
 
 Web browsers are designed to consume HTML, CSS, and JavaScript. As a project grows, tracking and configuring all of these files grows too complex to manage without help. Webpack was designed to help with this problem.
 
@@ -14,13 +14,13 @@ Webpack isn’t the only solution for this problem, and a collection of differen
 
 {pagebreak}
 
-### How Does Webpack Change The Situation?
+### How Does Webpack Change The Situation
 
 Webpack takes another route. It allows you to treat your project as a dependency graph. You could have an *index.js* in your project that pulls in the dependencies the project needs through standard `require` or `import` statements. You can refer to your style files and other assets the same way if you want.
 
 Webpack does all the preprocessing for you and gives you the bundles you specify through configuration and your code. This declarative approach is powerful, but it's difficult to learn. Webpack becomes an indispensable tool after you begin to understand how it works. This book has been designed to get through that initial learning curve and even go further.
 
-## What Will You Learn?
+## What Will You Learn
 
 This book has been designed to complement [the official documentation of webpack](https://webpack.js.org/). The official documentation goes deeper in many aspects, and this book can be considered a companion to it. This book is more like a quick walkthrough that eases the initial learning curve while giving food for thought to more advanced users.
 
@@ -28,7 +28,7 @@ The book teaches you to develop a composable webpack configuration for both deve
 
 T> This book has been written based on webpack 2. If you want to apply its techniques to webpack 1, you should see [the official migration guide](https://webpack.js.org/guides/migrating/) as it covers the changes made between the major versions. There are also [codemods at the webpack-cli repository](https://github.com/webpack/webpack-cli) for migrating from webpack 1 to 2.
 
-## How Is This Book Organized?
+## How Is The Book Organized
 
 The book starts by explaining what webpack is. After that, you find multiple parts, each of which discusses webpack from a different direction. While going through those chapters, you develop your webpack configuration. The chapters also double as reference material.
 
@@ -52,7 +52,7 @@ Given eventually webpack will give you an error, the *Troubleshooting* appendix 
 
 T> If you are unsure of a term and its meaning, see the *Glossary* at the end of the book.
 
-## Who Is This Book For?
+## Who Is The Book For
 
 You should have basic knowledge of JavaScript, Node, and npm. If you know something about webpack, that’s great. By reading this book, you deepen your understanding of these tools.
 

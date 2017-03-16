@@ -194,7 +194,6 @@ T> If you want more performance, especially during development, check out [fast-
 
 [Stylus](http://stylus-lang.com/) is yet another example of a CSS processor. It works well through [stylus-loader](https://www.npmjs.com/package/stylus-loader). [yeticss](https://www.npmjs.com/package/yeticss) is a pattern library that works well with it. Consider the following configuration:
 
-
 ```javascript
 {
   ...
