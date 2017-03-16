@@ -136,7 +136,6 @@ To add linting to the project, adjust the configuration as follows:
 ```javascript
 ...
 
-
 const developmentConfig = () => {
   const config = {
     devServer: {
