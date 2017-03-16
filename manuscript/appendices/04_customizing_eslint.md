@@ -42,7 +42,7 @@ ESLint provides two ways to deal with this: local and global. If you want to set
 /*eslint-env node, mocha */
 ```
 
-Global configuration is possible as well. In this case, you can use `env` key like this:
+Global configuration is possible as well. In this case, you can use `env` key:
 
 **.eslintrc.js**
 
@@ -78,7 +78,7 @@ In ESLint's case, the AST structure can be checked. If something is wrong, it sh
 
 {pagebreak}
 
-You can get started like this:
+You can get started with a skeleton as below:
 
 **eslint-plugin-custom/index.js**
 

@@ -14,7 +14,7 @@ If you use the limit option, you need to install both *url-loader* and *file-loa
 
 In case the `limit` option is used, *url-loader* passes possible additional options to *file-loader* making it possible to configure its behavior further.
 
-To load *.jpg*, *.png*, and *.svg* files while inlining files below 25kB, you would set up a loader like this:
+To load *.jpg*, *.png*, and *.svg* files while inlining files below 25kB, you would have to set up a loader:
 
 ```javascript
 {
@@ -40,7 +40,7 @@ If you want to skip inlining altogether, you can use *file-loader* directly. The
 },
 ```
 
-T> If you want to output your images below a particular directory, set it up like this: `name: './images/[hash].[ext]'`. Adjust to your liking.
+T> If you want to output your images below a particular directory, set it up with `name: './images/[hash].[ext]'`.
 
 W> Be careful not to apply both loaders on images at the same time! Use the `include` field for further control if *url-loader* `limit` isn't enough.
 
@@ -108,7 +108,7 @@ leanpub-end-insert
 ...
 ```
 
-To test that the setup works, download an image or generate it (`convert -size 100x100 gradient:blue logo.png`) and refer to it from the project like this:
+To test that the setup works, download an image or generate it (`convert -size 100x100 gradient:blue logo.png`) and refer to it from the project:
 
 **app/main.css**
 
@@ -137,7 +137,7 @@ Webpack allows a [couple ways](https://github.com/webpack/webpack/issues/595) to
 },
 ```
 
-Assuming you have set up your styling correctly, you can refer to your SVG files like this. The example SVG path below is relative to the CSS file:
+Assuming you have set up your styling correctly, you can refer to your SVG files as below. The example SVG path below is relative to the CSS file:
 
 ```css
 .icon {
@@ -176,7 +176,7 @@ const Profile = () => (
 );
 ```
 
-If you are using React, then you use [babel-plugin-transform-react-jsx-img-import](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-img-import) to generate the `require` automatically. In that case, you would end up with code like this:
+If you are using React, then you use [babel-plugin-transform-react-jsx-img-import](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-img-import) to generate the `require` automatically. In that case, you would end up with code:
 
 ```javascript
 const Profile = () => (
@@ -201,7 +201,7 @@ Sometimes getting the only reference to an image isn't enough. [image-size-loade
 
 **Spriting** technique allows you to combine multiple smaller images into a single image. It has been used for games to describe animations and it's valuable for web development as well as you avoid request overhead.
 
-[webpack-spritesmith](https://www.npmjs.com/package/webpack-spritesmith) converts provided images into a sprite sheet and Sass/Less/Stylus mixins. You have to set up a `SpritesmithPlugin`, point it to target images, and set the name of the generated mixin. After that, your styling can pick it up like this:
+[webpack-spritesmith](https://www.npmjs.com/package/webpack-spritesmith) converts provided images into a sprite sheet and Sass/Less/Stylus mixins. You have to set up a `SpritesmithPlugin`, point it to target images, and set the name of the generated mixin. After that, your styling can pick it up:
 
 ```sass
 @import '~sprite.sass';

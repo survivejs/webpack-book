@@ -80,7 +80,7 @@ T> GitHub Pages allows you to choose the branch where you deploy. It's possible 
 1. Copy the old version of the site in a temporary directory and remove *archive* directory from it. You can name the archival directory as you want.
 2. Clean and build the project.
 3. Copy the old version below *build/archive/<version>*
-4. Set up a script to call *gh-pages* through Node like this and capture possible errors in the callback:
+4. Set up a script to call *gh-pages* through Node as below and capture possible errors in the callback:
 
 ```javascript
 ghpages.publish(path.join(__dirname, 'build'), { add: true }, callback);
@@ -96,7 +96,7 @@ Even though you can push the problem of deployment outside of webpack, there are
 
 ## Resolving `output.publicPath` Dynamically
 
-If you don't know `publicPath` beforehand, it's possible to resolve it based on the environment like this:
+If you don't know `publicPath` beforehand, it's possible to resolve it based on the environment by following these steps:
 
 1. Set `__webpack_public_path__ = window.myDynamicPublicPath;` in the application entry point and resolve it as you see fit.
 2. Remove `output.publicPath` setting from your webpack configuration.

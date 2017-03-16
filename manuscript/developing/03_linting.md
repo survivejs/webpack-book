@@ -103,13 +103,13 @@ module.exports = {
 };
 ```
 
-If you invoke `npm run lint:js` now, it should execute without any warnings or errors. If you see either, this is a good time to try ESLint autofixing. You can run it like this: `npm run lint -- --fix`. Running an npm script this way allows you to pass extra parameters to it.
+If you invoke `npm run lint:js` now, it should execute without any warnings or errors. If you see either, this is a good time to try ESLint autofixing. You can run it through `npm run lint -- --fix`. Running an npm script this way allows you to pass extra parameters to it.
 
 Another alternative would be to push it behind a *package.json* script. Autofix is not able to repair each error, but it can fix a lot. And as time goes by and ESLint improves, it can perform more work.
 
 Beyond vanilla JSON, ESLint supports other formats, such as JavaScript or YAML. I.e., *.eslintrc.yaml* would expect YAML. See the [documentation](http://eslint.org/docs/user-guide/configuring#configuration-file-formats) for further details.
 
-T> When ESLint gives errors, npm shows a long `ELIFECYCLE error` error block of its own. It's possible to disable that using the `silent` flag like this: `npm run lint:js --silent` or a shortcut `npm run lint:js -s`.
+T> When ESLint gives errors, npm shows a long `ELIFECYCLE error` error block of its own. It's possible to disable that using the `silent` flag: `npm run lint:js --silent` or a shortcut `npm run lint:js -s`.
 
 ### Connecting ESLint with Webpack
 
@@ -199,7 +199,7 @@ leanpub-end-insert
 ...
 ```
 
-If you run the server now (`npm start`) and break the code somehow, you should see something like this in the browser:
+If you run the server now (`npm start`) and break the code somehow, you should see something in the browser:
 
 ![Error overlay](images/error-overlay.png)
 
@@ -267,7 +267,7 @@ JSHint looks into specific rules to apply from `.jshintrc`. You can also define 
 
 ## EditorConfig
 
-[EditorConfig](http://editorconfig.org/) allows you to maintain a consistent coding style across different IDEs and editors. Certain even come with built-in support. For others, you should install a separate plugin. Also, you need to set up a file like this:
+[EditorConfig](http://editorconfig.org/) allows you to maintain a consistent coding style across different IDEs and editors. Certain even come with built-in support. For others, you should install a separate plugin. Also, you need to set up a file:
 
 **.editorconfig**
 

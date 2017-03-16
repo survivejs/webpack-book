@@ -26,7 +26,7 @@ npm install extract-text-webpack-plugin --save-dev
 
 If you wanted to extract CSS from a more involved format, like Sass, you would have to pass multiple loaders to the `use` option. Both `use` and `fallback` accept a loader (string), a loader definition, or an array of loader definitions.
 
-The idea looks like this:
+The idea can be modeled as below:
 
 **webpack.parts.js**
 
@@ -69,7 +69,7 @@ That `[name]` placeholder uses the name of the entry where the CSS is referred. 
 
 It would be possible to have multiple `plugin.extract` calls against different file types. This would allow you to aggregate them to a single CSS file. Another option would be to extract multiple CSS files through separate plugin definitions and then concatenate them using [merge-files-webpack-plugin](https://www.npmjs.com/package/merge-files-webpack-plugin).
 
-T> If you wanted to output the resulting file to a specific directory, you could do it by passing a path to `filename` like this: `filename: 'styles/[name].css'`.
+T> If you wanted to output the resulting file to a specific directory, you could do it by passing a path. Example: `filename: 'styles/[name].css'`.
 
 {pagebreak}
 
@@ -137,7 +137,7 @@ T> [extract-loader](https://www.npmjs.com/package/extract-loader) is a light alt
 
 ## Managing Styles Outside of JavaScript
 
-Even though referring to styling through JavaScript and then bundling is a valid option, it's possible to achieve the same result through an `entry` and [globbing](https://www.npmjs.com/package/glob). The basic idea goes like this:
+Even though referring to styling through JavaScript and then bundling is a valid option, it's possible to achieve the same result through an `entry` and [globbing](https://www.npmjs.com/package/glob):
 
 ```javascript
 ...

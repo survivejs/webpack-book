@@ -135,7 +135,7 @@ module.exports = [
 ];
 ```
 
-If you execute `npm run build:lib` now, you should see output like this:
+If you execute `npm run build:lib` now, you should see output:
 
 ```bash
 Hash: 760c4d25403432782e1079cf0c3f76bbd168a80c
@@ -187,13 +187,13 @@ var add = function add(a, b) {
 //# sourceMappingURL=lib.js.map
 ```
 
-You can see familiar code there and more. Webpack's bootstrap script is in place, and it starts the entire execution process. It takes the majority of space for a small library like this, but that's not a problem as the library begins to grow.
+You can see familiar code there and more. Webpack's bootstrap script is in place, and it starts the entire execution process. It takes the majority of space for a small library, but that's not a problem as the library begins to grow.
 
 T> Instead of using the multi-compiler mode, it would be possible to define two targets. One of them would generate the non-minified version while the other would generate the minified one. The other npm script could be called as `build:lib:dist` and you could define a `build:lib:all` script to build both.
 
 ### Cleaning and Linting Before Building
 
-It's a good idea to clean the build directory and lint the code before building the library. You could expand webpack configuration like this:
+It's a good idea to clean the build directory and lint the code before building the library. You could expand webpack configuration:
 
 ```javascript
 ...
@@ -283,7 +283,7 @@ npm install babel-cli --save-dev
 
 {pagebreak}
 
-Make sure your Babel configuration skips processing ES6 modules like this:
+Make sure your Babel configuration skips processing ES6 modules:
 
 **.babelrc**
 

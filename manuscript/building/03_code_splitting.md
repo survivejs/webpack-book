@@ -20,13 +20,13 @@ The goal is to end up with a split point that gets loaded on demand. There can b
 
 The [dynamic `import` syntax](https://github.com/tc39/proposal-dynamic-import) isn't in the official language specification yet. To use it, minor tweaks are needed especially at ESLint and Babel.
 
-Dynamic imports are defined as `Promise`s and look like this:
+Dynamic imports are defined as `Promise`s:
 
 ```javascript
 import('./module').then((module) => {...}).catch((error) => {...});
 ```
 
-The interface allows composition, and you could load multiple resources in parallel like this:
+The interface allows composition, and you could load multiple resources in parallel:
 
 ```javascript
 Promise.all([
@@ -201,7 +201,7 @@ If you open up the application (`npm start`) and click the button, you should se
 
 {pagebreak}
 
-If you run `npm run build`, you should see something like this:
+If you run `npm run build`, you should see something:
 
 ```bash
 Hash: e61343b53de634da8aac
@@ -239,7 +239,7 @@ That *0.js* is your split point. Examining the file reveals that webpack has wra
 
 ### Lazy Loading Styles
 
-Lazy loading can be applied to styling as well. Expand the definition like this:
+Lazy loading can be applied to styling as well. Expand the definition:
 
 **app/lazy.js**
 

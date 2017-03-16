@@ -2,7 +2,7 @@
 
 Currently, the production version of the application is a single JavaScript file. If the application is changed, the client must download vendor dependencies as well.
 
-It would be better to download only the changed portion. If the vendor dependencies change, then the client should fetch only the vendor dependencies. The same goes for actual application code. **Bundle splitting** like this can be achieved using `CommonsChunkPlugin`.
+It would be better to download only the changed portion. If the vendor dependencies change, then the client should fetch only the vendor dependencies. The same goes for actual application code. **Bundle splitting** can be achieved using `CommonsChunkPlugin`.
 
 T> To invalidate the bundles properly, you have to attach hashes to the generated bundles as discussed in the *Adding Hashes to Filenames* chapter.
 
@@ -35,7 +35,7 @@ leanpub-end-insert
 ...
 ```
 
-Execute `npm run build` to get a baseline build. You should end up with something like this:
+Execute `npm run build` to get a baseline build. You should end up with something as below:
 
 ```bash
 Hash: 2db5a05e02ac73897fd4
@@ -67,7 +67,7 @@ As you can see, *app.js* is big. That is something to fix next.
 
 So far, the project has only a single entry named as `app`. The configuration tells webpack to traverse dependencies starting from the `app` entry directory and then to output the resulting bundle below the `build` directory using the entry name and `.js` extension.
 
-To improve the situation, you can define a `vendor` entry containing React by matching the dependency name. It's possible to generate this information automatically as discussed at the end of this chapter, but a static array is enough to illustrate the basic idea. Change the code like this:
+To improve the situation, you can define a `vendor` entry containing React by matching the dependency name. It's possible to generate this information automatically as discussed at the end of this chapter, but a static array is enough to illustrate the basic idea. Change the code:
 
 **webpack.config.js**
 
@@ -128,13 +128,13 @@ If you examine the resulting bundle, you can see that it contains React given th
 
 W> This step can fail on Windows due to letter casing. Instead of `c:\` you have to force your terminal to read `C:\`. There's more information in the [related webpack issue](https://github.com/webpack/webpack/issues/2362).
 
-W> Webpack doesn't allow referring to entry files within entries. If you inadvertently do this, webpack complains loudly. If you end up in a case like this, consider refactoring the module structure of your code to eliminate the situation.
+W> Webpack doesn't allow referring to entry files within entries. If you inadvertently do this, webpack complains loudly. Consider refactoring the module structure of your code to eliminate the situation.
 
 {pagebreak}
 
 ## Setting Up `CommonsChunkPlugin`
 
-[CommonsChunkPlugin](https://webpack.js.org/guides/code-splitting-libraries/#commonschunkplugin) is a powerful and complex plugin. In this case, the target is clear. You have to tell it to extract vendor related code to a bundle of its own. Before abstraction, implement it like this:
+[CommonsChunkPlugin](https://webpack.js.org/guides/code-splitting-libraries/#commonschunkplugin) is a powerful and complex plugin. In this case, the target is clear. You have to tell it to extract vendor related code to a bundle of its own. Before abstraction, implement it:
 
 **webpack.config.js**
 
@@ -354,7 +354,7 @@ function isVendor({ resource }) {
 }
 ```
 
-The same code would look like this using the `parts.extractBundles` abstraction:
+The same code would look as below using the `parts.extractBundles` abstraction:
 
 ```javascript
 parts.extractBundles([

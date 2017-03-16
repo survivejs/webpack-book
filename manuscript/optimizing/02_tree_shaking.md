@@ -4,7 +4,7 @@
 
 ## Demonstrating Tree Shaking
 
-To shake code, you have to define a module and use only a part of its code. Set one up like this:
+To shake code, you have to define a module and use only a part of its code. Set one up:
 
 **app/shake.js**
 
@@ -37,7 +37,7 @@ leanpub-end-insert
 
 If you build the project again (`npm run build`) and examine the build result (*build/app.js*), it should contain `console.log('bake')`, but miss `console.log('shake')`. That's tree shaking in action.
 
-To get a better idea of what webpack is using for tree shaking, run it like this: `npm run build -- --display-used-exports`. You should see additional output like `[no exports used]` or `[only some exports used: bake]` in the terminal.
+To get a better idea of what webpack is using for tree shaking, run it through `npm run build -- --display-used-exports`. You should see additional output like `[no exports used]` or `[only some exports used: bake]` in the terminal.
 
 T> If you are using `UglifyJsPlugin`, enable warnings for a similar effect. In addition to other messages, you should see lines like `Dropping unused variable treeShakingDemo [./app/component.js:17,6]`.
 
@@ -49,7 +49,7 @@ The same idea works with dependencies that use the ES6 module definition. Given 
 
 For tools like webpack to allow tree shake npm packages, you should generate a build that has transpiled everything else except the ES6 module definitions and then point to it through *package.json* `module` field.
 
-In Babel terms, you have to let webpack to manage ES6 modules like this:
+In Babel terms, you have to let webpack to manage ES6 modules:
 
 **.babelrc**
 

@@ -40,7 +40,7 @@ T> `minChunks` is optional in this case. Passing `Infinity` to it tells webpack 
 
 {pagebreak}
 
-If you build the project now (`npm run build`), you should see something like this:
+If you build the project now (`npm run build`), you should see something:
 
 ```bash
 Hash: 73f8c0d53361c3a81ea6

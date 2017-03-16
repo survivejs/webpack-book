@@ -15,7 +15,7 @@ Webpack provides **placeholders** for this purpose. These strings are used to at
 
 It's preferable to use particularly `hash` and `chunkhash` only for production purposes as hashing doesn't do much good during development.
 
-T> It's possible to slice `hash` and `chunkhash` using syntax like this: `[chunkhash:8]`. Instead of a hash like `8c4cbfdb91ff93f3f3c5` this would yield `8c4cbfdb`.
+T> It's possible to slice `hash` and `chunkhash` using specific syntax: `[chunkhash:8]`. Instead of a hash like `8c4cbfdb91ff93f3f3c5` this would yield `8c4cbfdb`.
 
 T> There are more options available, and you can even modify the hashing and digest type as discussed at [loader-utils](https://www.npmjs.com/package/loader-utils#interpolatename) documentation.
 
@@ -125,7 +125,7 @@ W> The hashes have been sliced to make the output fit better in the book. In pra
 
 {pagebreak}
 
-If you generate a build now (`npm run build`), you should see something like this:
+If you generate a build now (`npm run build`), you should see something:
 
 ```bash
 Hash: 16b92fddd41e579e77ba

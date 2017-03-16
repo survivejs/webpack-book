@@ -16,7 +16,7 @@ npm install loader-runner --save-dev
 
 {pagebreak}
 
-To have something to test with, set up a loader that returns twice what's passed to it like this:
+To have something to test with, set up a loader that returns twice what's passed to it:
 
 **loaders/demo-loader.js**
 
@@ -53,7 +53,7 @@ runLoaders({
 );
 ```
 
-If you run the script now (`node run-loader.js`), you should see output like this:
+If you run the script now (`node run-loader.js`), you should see output:
 
 ```javascript
 { result: [ 'foobar\nfoobar\n' ],
@@ -109,7 +109,7 @@ The result should contain `Error: Demo error` with a stack trace showing where t
 
 ## Returning Only Output
 
-Loaders can be used to output code. You could have implementation like this:
+Loaders can be used to output code alone. You could have implementation as below:
 
 **loaders/demo-loader.js**
 
@@ -155,7 +155,7 @@ leanpub-end-insert
 
 {pagebreak}
 
-To implement the essential idea of *file-loader*, you have to do two things: emit the file and return path to it. You could implement it like this:
+To implement the essential idea of *file-loader*, you have to do two things: emit the file and return path to it. You could implement it as below:
 
 **loaders/demo-loader.js**
 
@@ -247,7 +247,7 @@ leanpub-end-insert
 };
 ```
 
-After running (`node ./run-loader.js`), you should see something like this:
+After running (`node ./run-loader.js`), you should see something:
 
 ```javascript
 { result: [ 'export default __webpack_public_path__ + "demo.txt";' ],
@@ -263,7 +263,7 @@ T> It's a good idea to validate options and rather fail hard than silently if th
 
 ## Pitch Loaders
 
-Webpack evaluates loaders in two phases: pitching and running. If you are used to web event semantics, these map to capturing and bubbling. The idea is that webpack allows you to intercept execution during the pitching (capturing) phase. It goes through the loaders left to right first like this and after that it executes them from right to left.
+Webpack evaluates loaders in two phases: pitching and running. If you are used to web event semantics, these map to capturing and bubbling. The idea is that webpack allows you to intercept execution during the pitching (capturing) phase. It goes through the loaders left to right first and executes them from right to left after that.
 
 A pitch loader allows you shape the request and even terminate it. Set up an example as follows:
 

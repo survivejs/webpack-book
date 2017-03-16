@@ -8,7 +8,7 @@ T> Even if you minify the build, you can still generate source maps through the 
 
 ## Generating a Baseline Build
 
-To get started, you should generate a baseline build, so you have something to optimize. Execute `npm run build`. You should end up with something like this:
+To get started, you should generate a baseline build, so you have something to optimize. Execute `npm run build` to see output below:
 
 ```bash
 Hash: 12aec469d54202150429
@@ -48,7 +48,7 @@ Performance budget can be configured to provide warnings or errors. If a budget 
 
 {pagebreak}
 
-To integrate the feature into the project, adjust the configuration like this:
+To integrate the feature into the project, adjust the configuration:
 
 **webpack.config.js**
 
@@ -71,7 +71,7 @@ leanpub-end-insert
 ...
 ```
 
-In practice you want to maintain lower limits. The current ones are enough for this demonstration. If you build now (`npm run build`), you should see a warning like this within the output:
+In practice you want to maintain lower limits. The current ones are enough for this demonstration. If you build now (`npm run build`), you should see a warning within the output:
 
 ```bash
 ...

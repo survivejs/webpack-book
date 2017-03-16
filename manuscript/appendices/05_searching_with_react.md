@@ -8,7 +8,7 @@ Doing this defers the loading and moves it to a place where it's more acceptable
 
 ## Implementing Search with Code Splitting
 
-To implement code splitting, you need to decide where to put the split point, put it there, and then handle the `Promise`. The basic `import` looks like this:
+To implement code splitting, you need to decide where to put the split point, put it there, and then handle the `Promise`:
 
 ```javascript
 import('./asset').then(asset => ...).catch(err => ...)
@@ -18,7 +18,7 @@ The nice thing is that this gives error handling in case something goes wrong (n
 
 {pagebreak}
 
-In this case, you need to detect when the user selects the search element, load the data unless it has been loaded already, and then execute search logic against it. Using React, you could end up with something like this:
+In this case, you need to detect when the user selects the search element, load the data unless it has been loaded already, and then execute search logic against it. Consider the React implementation below:
 
 **App.js**
 

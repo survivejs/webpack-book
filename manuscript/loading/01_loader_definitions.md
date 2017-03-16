@@ -99,7 +99,7 @@ You used the idea earlier in the *Linting JavaScript* chapter. Linting is a good
 
 {pagebreak}
 
-The basic syntax goes like this:
+The basic syntax goes as below:
 
 ```javascript
 {
@@ -133,7 +133,7 @@ This style of configuration works in entries and source imports too as webpack p
 
 {pagebreak}
 
-It's preferable to use the combination of `loader` and `options` fields either like this:
+It's preferable to use the combination of `loader` and `options` fields:
 
 ```javascript
 {
@@ -150,7 +150,7 @@ It's preferable to use the combination of `loader` and `options` fields either l
 },
 ```
 
-Or you can also go through `use` like this:
+Or you can also go through `use`:
 
 ```javascript
 {
@@ -232,7 +232,7 @@ Carefully applied, this technique allows different means of composition.
 
 ## Inline Definitions
 
-Even though configuration level loader definitions are preferable, it's possible to write loader definitions inline like this:
+Even though configuration level loader definitions are preferable, it's possible to write loader definitions inline:
 
 ```javascript
 // Process foo.png through url-loader and other
@@ -276,7 +276,7 @@ Webpack can also match based on the resource path and related information:
 * `resourcePath: /inline/` - Match against a resource path without its query. Example match: `/path/foo.inline.png`.
 * `resourceQuery: /inline/` - Match against a resource based on its query. Example match: `/path/foo.png?inline`.
 
-The fields above can be combined to apply different loaders based on the context with the `oneOf` field. To handle images differently based on their query, you could apply a rule like this:
+The fields above can be combined to apply different loaders based on the context with the `oneOf` field. To handle images differently based on their query, you could apply a rule:
 
 ```javascript
 {

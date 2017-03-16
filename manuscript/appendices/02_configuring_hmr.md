@@ -40,7 +40,7 @@ The following listing contains the most important parts related to this approach
 
 {pagebreak}
 
-If you implement configuration like above without implementing the client interface, you will most likely end up with an error like this:
+If you implement configuration like above without implementing the client interface, you will most likely end up with an error:
 
 ![No refresh](images/no-refresh.png)
 

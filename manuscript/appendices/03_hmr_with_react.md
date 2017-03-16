@@ -140,7 +140,7 @@ Babel provides an [env option](https://babeljs.io/docs/usage/babelrc/#env-option
 
 {pagebreak}
 
-The webpack portion should be adjusted like this:
+The webpack portion should be adjusted:
 
 **webpack.config.js**
 

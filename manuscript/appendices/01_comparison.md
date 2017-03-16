@@ -74,7 +74,7 @@ define(['./MyModule.js'], function (MyModule) {
 });
 ```
 
-Incidentally, it's possible to use `require` within the wrapper like this:
+Incidentally, it's possible to use `require` within the wrapper:
 
 ```javascript
 define(['require'], function (require) {
@@ -130,7 +130,7 @@ module.exports = (grunt) => {
 };
 ```
 
-In practice, you would have many small tasks like this for specific purposes, such as building the project. An important part of the power of Grunt is that it hides a lot of the wiring from you.
+In practice, you would have many small tasks for specific purposes, such as building the project. An important part of the power of Grunt is that it hides a lot of the wiring from you.
 
 Taken too far, this can get problematic. It can become hard to understand what's going on under the hood. That's the architectural lesson to take from Grunt.
 

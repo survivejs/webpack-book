@@ -360,7 +360,7 @@ Both plugins can allow more granular control over which portions of the code you
 
 {pagebreak}
 
-You could model a configuration part using `SourceMapDevToolPlugin` like this (adapted from [the official documentation](https://webpack.js.org/plugins/source-map-dev-tool-plugin/)):
+You could model a configuration part using `SourceMapDevToolPlugin` (adapted from [the official documentation](https://webpack.js.org/plugins/source-map-dev-tool-plugin/)):
 
 ```javascript
 exports.generateSourceMaps = ({

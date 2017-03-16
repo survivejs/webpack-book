@@ -6,7 +6,7 @@ The library target is controlled through the `output.libraryTarget` field. `outp
 
 ## `var`
 
-The demonstration project of ours uses `var` by default through configuration like this:
+The demonstration project of ours uses `var` by default through configuration:
 
 **webpack.lib.js**
 
@@ -103,7 +103,7 @@ You lose the extra wrapping in the second option.
 
 ## AMD
 
-If you remember [RequireJS](http://requirejs.org/), you recognize the AMD format it uses. In case you can use the `amd` target, you get output like this:
+If you remember [RequireJS](http://requirejs.org/), you recognize the AMD format it uses. In case you can use the `amd` target, you get output:
 
 **dist/lib.js**
 
@@ -120,7 +120,7 @@ In other words, webpack has generated a named AMD module. The result doesn't wor
 
 ### `umd`
 
-Basic UMD output looks like this:
+Basic UMD output looks complicated:
 
 **dist/lib.js**
 
@@ -198,7 +198,7 @@ To treat jQuery as an external, you should configure as follows:
 
 {pagebreak}
 
-If `libraryTarget: 'umd'` is used after these changes, you get output like this:
+If `libraryTarget: 'umd'` is used after these changes, you get output:
 
 **dist/lib.js**
 
@@ -266,7 +266,7 @@ In most of the cases using `output.libraryTarget: 'umd'` is enough as optional d
 
 ## JSONP
 
-There's one more output option: `jsonp`. It generates output like this:
+There's one more output option: `jsonp`. It generates output as below:
 
 **dist/lib.js**
 
@@ -275,7 +275,7 @@ Demo(/******/ (function(modules) { // webpackBootstrap
 ...
 ```
 
-In short, `output.library` maps to the JSONP function name. The idea is that you could load a file like this across domains and have it call the named function. Specific APIs implement the pattern although there is no official standard for it.
+In short, `output.library` maps to the JSONP function name. The idea is that you could load a file across domains and have it call the named function. Specific APIs implement the pattern although there is no official standard for it.
 
 ## SystemJS
 

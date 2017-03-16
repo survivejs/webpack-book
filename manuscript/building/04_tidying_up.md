@@ -39,7 +39,7 @@ exports.clean = (path) => ({
 leanpub-end-insert
 ```
 
-Connect it with the project like this:
+Connect it with the project:
 
 **webpack.config.js**
 
@@ -129,7 +129,7 @@ Copying files is another common operation you can handle with webpack. [copy-web
 
 ## Conclusion
 
-Often, you work with webpack like this: First, you identify a problem and then find a plugin to tackle it. It's entirely acceptable to solve these types of issues outside of webpack, but webpack can often handle them as well.
+Often, you work with webpack by identifying a problem and then finding a plugin to tackle it. It's entirely acceptable to solve these types of issues outside of webpack, but webpack can often handle them as well.
 
 To recap:
 

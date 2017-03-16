@@ -104,7 +104,7 @@ You continue from here in the next chapter. Before that, though, you'll learn ab
 
 Perhaps the biggest challenge of CSS is that all rules exist within **global scope**. Due to this reason, specific conventions that work around this feature have been developed. The [CSS Modules](https://github.com/css-modules/css-modules) specification solves the problem by introducing **local scope** per `import`. As it happens, this makes CSS more bearable to use as you don't have to worry about namespace collisions anymore.
 
-Webpack's *css-loader* supports CSS Modules. You can enable it through a loader definition like this:
+Webpack's *css-loader* supports CSS Modules. You can enable it through a loader definition:
 
 ```javascript
 {
@@ -117,7 +117,7 @@ Webpack's *css-loader* supports CSS Modules. You can enable it through a loader 
 
 After this change, your class definitions remain local to the files. In case you want global class definitions, you need to wrap them within `:global(.redButton) { ... }` kind of declarations.
 
-In this case, the `import` statement gives you the local classes you can then bind to elements. Assume you had CSS like this:
+In this case, the `import` statement gives you the local classes you can then bind to elements. Assume you had CSS as below:
 
 **app/main.css**
 
@@ -131,7 +131,7 @@ body {
 }
 ```
 
-You could then bind the resulting class to a component like this:
+You could then bind the resulting class to a component:
 
 **app/component.js**
 
@@ -289,7 +289,7 @@ T> cssnext includes autoprefixer! You don't have to configure autoprefixing sepa
 
 ## Understanding Lookups
 
-To get most out of *css-loader*, you should understand how it performs its lookups. Even though *css-loader* handles relative imports by default, it doesn't touch absolute imports (`url("/static/img/demo.png")`). If you rely on imports like this, you have to copy the files to your project.
+To get most out of *css-loader*, you should understand how it performs its lookups. Even though *css-loader* handles relative imports by default, it doesn't touch absolute imports (`url("/static/img/demo.png")`). If you rely on these kind of imports, you have to copy the files to your project.
 
 [copy-webpack-plugin](https://www.npmjs.com/package/copy-webpack-plugin) works for this purpose, but you can also copy the files outside of webpack. The benefit of the former approach is that webpack-dev-server can pick that up.
 
@@ -307,7 +307,7 @@ Consider the following import from a CSS file:
 @import "./variables.sass";
 ```
 
-To process the Sass file, you would have to write configuration like this:
+To process the Sass file, you would have to write configuration:
 
 ```javascript
 {

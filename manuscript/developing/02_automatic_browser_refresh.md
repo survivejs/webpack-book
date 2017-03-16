@@ -52,7 +52,7 @@ leanpub-end-delete
 ...
 ```
 
-If you execute either *npm run start* or *npm start* now, you should see something like this in the terminal:
+If you execute either *npm run start* or *npm start* now, you should see something in the terminal:
 
 ```bash
 > webpack-dev-server --env development
@@ -254,7 +254,7 @@ To get it to work, you have to install it first through `npm install nodemon --s
 ...
 ```
 
-It's possible WDS [will support the functionality](https://github.com/webpack/webpack/issues/3153) itself in the future. If you want to make it reload itself on change, you should implement a workaround like this for now.
+It's possible WDS [will support the functionality](https://github.com/webpack/webpack/issues/3153) itself in the future. If you want to make it reload itself on change, you should implement a workaround for now.
 
 ## Alternate Ways to Use *webpack-dev-server*
 

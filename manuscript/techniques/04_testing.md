@@ -217,7 +217,7 @@ Add an npm shortcut:
 },
 ```
 
-If you execute `npm run test:karma` now, you should see terminal output like this:
+If you execute `npm run test:karma` now, you should see terminal output:
 
 ```
 ...
@@ -384,7 +384,7 @@ leanpub-end-insert
 
 T> If you want to emit the reports to specific directories below `dir`, set `subdir` per each report.
 
-If you execute karma now (`npm run test:karma`), you should see a new directory containing coverage reports. The HTML report can be examined through the browser, and it should look something like this:
+If you execute karma now (`npm run test:karma`), you should see a new directory containing coverage reports. The HTML report can be examined through the browser.
 
 ![Coverage in browser](images/coverage.png)
 

@@ -195,7 +195,7 @@ T> The *Consuming Packages* explains the idea of SemVer in detail.
 
 ### Publishing a Pre-Release Version
 
-Sometimes, you want to publish something preliminary for other people to test. You can do this by tagging your release as a pre-release version. For example, a package can have versions like this:
+Sometimes, you want to publish something preliminary for other people to test. You can do this by tagging your release as a pre-release version. For example, a package can have versions as below:
 
 * v0.5.0-alpha1
 * v0.5.0-beta1
@@ -208,7 +208,7 @@ The initial alpha release allows the users to try out the upcoming functionality
 
 The release candidates (RC) are close to an actual release and don't introduce any new functionality. They are all about refining the release till it's suitable for general consumption.
 
-The workflow in this case goes like this:
+The workflow has two steps:
 
 1. `npm version 0.5.0-alpha1` - Update *package.json* as discussed earlier.
 2. `npm publish --tag alpha` - Publish the package under *alpha* tag.
@@ -235,7 +235,7 @@ babel ./lib --out-dir ./dist-modules
 
 The command walks through the `./lib` directory and writes a processed file to `./dist-modules` for each module it encounters.
 
-Since running that command each time you publish is tedious, you can set up a `prepublish` hook like this:
+Since running that command each time you publish is tedious, you can set up a `prepublish` hook:
 
 ```json
 {
@@ -287,7 +287,7 @@ A couple of certain package authoring-related techniques are good to know. For e
 
 ### Avoiding Bundling Dependencies
 
-Since it's not a good idea to bundle your package dependencies, such as React, within the distribution bundle itself, you should let the user inject them. You can configure external dependencies using the `externals` configuration. You can control it like this:
+Since it's not a good idea to bundle your package dependencies, such as React, within the distribution bundle itself, you should let the user inject them. You can configure external dependencies using the `externals` configuration:
 
 **webpack.config.js**
 
@@ -321,7 +321,7 @@ T> Given bundling is still be required sometimes, consider using the [bundledDep
 
 If you are processing your code through Babel, you can skip webpack. The advantage of doing this is that it gives you separate modules that are easier to consume one by one if needed.
 
-In this case, a setup like this works:
+In this case, a setup as below works:
 
 **package.json**
 
@@ -369,7 +369,7 @@ To solve the development distribution problem, a custom script is required. Firs
 }
 ```
 
-Secondly, define a script like this:
+Secondly, define a script:
 
 **lib/post_install.js**
 
@@ -416,7 +416,7 @@ W> Relying on `postinstall` scripts can be [potentially dangerous](http://blog.n
 
 It's possible that your package reaches the end of its life. Another package could replace it, or it can become obsolete. For this purpose, npm provides [npm deprecate](https://docs.npmjs.com/cli/deprecate) command. You can state `npm deprecate foo@"< 0.4.0" "Use bar package instead"`.
 
-You can deprecate a range like this or a whole package by skipping the range. Given mistakes happen, you can undeprecate a package by providing an empty message.
+You can deprecate a range or a whole package by skipping the range. Given mistakes happen, you can undeprecate a package by providing an empty message.
 
 Deprecation can be handy if you have to rename a package. You can publish the package under a new name and let the users know of the new name in your deprecation message.
 

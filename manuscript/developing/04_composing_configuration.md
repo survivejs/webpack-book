@@ -166,7 +166,7 @@ In the book project, you push all of the configuration into two files: *webpack.
 
 ### Split per Configuration Target
 
-If you split the configuration per target, you could end up with a file structure like this:
+If you split the configuration per target, you could end up with a file structure as below:
 
 ```bash
 .
@@ -181,7 +181,7 @@ In this case, you would point to the targets through webpack `--config` paramete
 
 ### Split Parts per Purpose
 
-To add hierarchy to the way configuration parts are managed, you could decompose *webpack.parts.js* per category like this:
+To add hierarchy to the way configuration parts are managed, you could decompose *webpack.parts.js* per category:
 
 ```bash
 .

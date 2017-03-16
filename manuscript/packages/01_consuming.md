@@ -43,19 +43,19 @@ You can refer to a package by its name and version but that is not the only way.
 
 ## Understanding npm Lookup
 
-npm's lookup algorithm is another aspect that's good to understand. Sometimes this can explain certain errors, and it also leads to good practices, such as preferring local dependencies over global ones. The basic algorithm goes like this:
+npm's lookup algorithm is another aspect that's good to understand. Sometimes this can explain certain errors, and it also leads to good practices, such as preferring local dependencies over global ones. The basic algorithm goes as below:
 
 1. Look into immediate packages. If there is *node_modules*, crawl through that and also check the parent directories until the project root is reached. You can check that using `npm root`.
 2. If nothing was found, check globally installed packages. If you are using Unix, look into */usr/local/lib/node_modules* to find them. You can figure out the specific directory using `npm root -g`.
 3. If the global lookup fails, it fails hard. You should get an error now.
 
-On a package level, npm resolves to a file like this:
+On a package level, npm resolves to a file through the following process:
 
 1. Look up *package.json* of the package.
 2. Get the contents of the `main` field. If it doesn't exist, default to *<package>/index.js*.
 3. Resolve to the `main` file.
 
-The general lookup algorithm respects an environment variable `NODE_PATH`. If you want to tweak the resolution further, you can attach specific directories to it. Example: `NODE_PATH=$NODE_PATH:./demo`. A call like this can be included at the beginning of a *package.json* script to patch the runtime environment temporarily, although it's better to avoid this if possible.
+The general lookup algorithm respects an environment variable `NODE_PATH`. If you want to tweak the resolution further, you can attach specific directories to it. Example: `NODE_PATH=$NODE_PATH:./demo`. This kind of call can be included at the beginning of a *package.json* script to patch the runtime environment temporarily, although it's better to avoid this if possible.
 
 You can tweak webpack's module resolution through the `resolve.modules` field. Example:
 
@@ -151,12 +151,13 @@ Light React alternatives, such as [Preact](https://www.npmjs.com/package/preact)
 
 {pagebreak}
 
-The setup looks like this for *react-lite* and the idea is the same for others:
+If you are using *react-lite*, configure it as below:
 
 ```javascript
 {
   resolve: {
     alias: {
+      // Swap the target based on your need.
       'react': 'react-lite',
       'react-dom': 'react-lite',
     },
@@ -178,7 +179,7 @@ externals: {
 },
 ```
 
-You still have to point to a CDN and ideally provide a local fallback so there is something to load if the CDN does not work for the client. You can do it like this:
+You still have to point to a CDN and ideally provide a local fallback so there is something to load if the CDN does not work for the client:
 
 ```html
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -222,7 +223,7 @@ T> [script-loader](https://www.npmjs.com/package/script-loader) allows you to ex
 
 ## Removing Unused Modules
 
-Even though packages can work well out of the box, they bring too much code to your project sometimes. [Moment.js](https://www.npmjs.com/package/moment) is a popular example. It brings locale data to your project by default. The easiest method to disable that behavior is to use `IgnorePlugin` to ignore locales like this:
+Even though packages can work well out of the box, they bring too much code to your project sometimes. [Moment.js](https://www.npmjs.com/package/moment) is a popular example. It brings locale data to your project by default. The easiest method to disable that behavior is to use `IgnorePlugin` to ignore locales:
 
 ```javascript
 {
@@ -277,7 +278,7 @@ The warning can be eliminated by aliasing the package to a source version as dis
 
 T> There's a [webpack issue](https://github.com/webpack/webpack/issues/1617) that discusses the problem in detail.
 
-W> Disabling warnings like this one should be the last measure since doing it can hide underlying issues. Do this only if you know what you are doing and consider alternatives first.
+W> Disabling warnings should be the last measure since doing it can hide underlying issues. Do this only if you know what you are doing and consider alternatives first.
 
 ## Managing Symbolic Links
 
@@ -316,7 +317,7 @@ It's possible a package comes with formats you are not interested in. A good exa
 
 {pagebreak}
 
-You can model an `ignore` part using *null-loader* like this:
+You can model an `ignore` part using *null-loader*:
 
 **webpack.parts.js**
 
@@ -338,7 +339,7 @@ exports.ignore = ({ test, include, exclude }) => ({
 });
 ```
 
-To ignore all Font Awesome SVGs, you could have a definition like this:
+To ignore all Font Awesome SVGs, you could have a definition as below:
 
 **webpack.config.js**
 

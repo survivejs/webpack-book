@@ -6,7 +6,7 @@ Even though you can get far with webpack's code splitting features covered in th
 
 [require.context](https://webpack.js.org/configuration/entry-context/#context) provides a general form of code splitting. Let's say you are writing a static site generator on top of webpack. You could model your site contents within a directory structure by having a `./pages/` directory which would contain the Markdown files.
 
-Each of these files would have a YAML frontmatter for their metadata. The url of each page could be determined based on the filename and mapped as a site. To model the idea using `require.context`, you could end up with code like this:
+Each of these files would have a YAML frontmatter for their metadata. The url of each page could be determined based on the filename and mapped as a site. To model the idea using `require.context`, you could end up with code as below:
 
 ```javascript
 // Process pages through `yaml-frontmatter-loader` and `json-loader`.
@@ -41,7 +41,7 @@ T> The information is enough for generating an entire site. This has been done w
 
 ## Combining Multiple `require.context`s
 
-Multiple separate `require.context`s can be combined into one by wrapping them behind a function like this:
+Multiple separate `require.context`s can be combined into one by wrapping them behind a function:
 
 ```javascript
 const { concat, uniq } from 'lodash';
@@ -80,7 +80,7 @@ import(`translations/${target}.json`).then(...).catch(...);
 
 The same idea works with `require` as long as webpack can analyze the situation statically.
 
-T> Any time you are using dynamic imports like this, it's a good idea to specify file extension in the path as that helps with performance by keeping the context smaller than otherwise.
+T> Any time you are using dynamic imports, it's a good idea to specify file extension in the path as that helps with performance by keeping the context smaller than otherwise.
 
 ## Dealing with Dynamic Paths
 

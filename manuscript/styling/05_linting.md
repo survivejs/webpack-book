@@ -41,7 +41,7 @@ To have something to test with, there should be a dummy rule:
 }
 ```
 
-If you break the rule at *app/main.css* and run `npm run lint:style`, you should see something like this:
+If you break the rule at *app/main.css* and run `npm run lint:style`, you should see a message:
 
 ```bash
 ...
@@ -116,7 +116,7 @@ leanpub-end-insert
 ...
 ```
 
-If you define a CSS rule, such as `background-color: #EFEFEF;` at *main.css* now, you should see a warning like this at your terminal when you run the build (`npm start` or `npm run build`):
+If you define a CSS rule, such as `background-color: #EFEFEF;` at *main.css* now, you should see a warning at your terminal when you run the build (`npm start` or `npm run build`):
 
 ```bash
 WARNING in ./~/css-loader!./~/postcss-loader!./app/main.css

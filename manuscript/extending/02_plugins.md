@@ -219,7 +219,7 @@ leanpub-end-insert
 
 {pagebreak}
 
-After building, you should see output like this:
+After building, you should see output:
 
 ```bash
 Hash: 62abc7fe06a7360b9735

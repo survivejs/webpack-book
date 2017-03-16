@@ -24,7 +24,7 @@ if (bar === 'bar') {
 }
 ```
 
-If you replaced `bar` with a string like `'foobar'`, then you would end up with code like this:
+If you replaced `bar` with a string like `'foobar'`, then you would end up with code as below:
 
 ```javascript
 var foo;
@@ -96,7 +96,7 @@ exports.setFreeVariable = (key, value) => {
 };
 ```
 
-You can connect this with the configuration like this:
+You can connect this with the configuration:
 
 **webpack.config.js**
 
@@ -170,7 +170,7 @@ The techniques discussed in this chapter can be used to choose entire modules de
     └── store.prod.js
 ```
 
-The idea is that you choose either `dev` or `prod` version of the store depending on the environment. It's that *index.js* which does the hard work like this:
+The idea is that you choose either `dev` or `prod` version of the store depending on the environment. It's that *index.js* which does the hard work:
 
 ```javascript
 if(process.env.NODE_ENV === 'production') {

@@ -48,7 +48,7 @@ If you run the application (`npm start`), the "Hello world" should look like a b
 
 {pagebreak}
 
-Building the application (`npm run build`) should yield output like this:
+Building the application (`npm run build`) should yield output:
 
 ```bash
 Hash: e8601af01b5c5a5e722c
@@ -70,7 +70,7 @@ As you can see, the size of the CSS file grew. This is something to fix with Pur
 
 Using PurifyCSS can lead to significant savings. In the official example of the project, they purify and minify Bootstrap (140 kB) in an application using ~40% of its selectors to mere ~35 kB. That's a big difference.
 
-[purifycss-webpack](https://www.npmjs.com/package/purifycss-webpack) allows to achieve results like this. You should use the `ExtractTextPlugin` with it for the best results. Install it and a [glob](https://www.npmjs.org/package/glob) helper first:
+[purifycss-webpack](https://www.npmjs.com/package/purifycss-webpack) allows to achieve similar results. You should use the `ExtractTextPlugin` with it for the best results. Install it and a [glob](https://www.npmjs.org/package/glob) helper first:
 
 ```bash
 npm install glob purifycss-webpack --save-dev
@@ -78,7 +78,7 @@ npm install glob purifycss-webpack --save-dev
 
 {pagebreak}
 
-You need PurifyCSS configuration still. Expand parts like this:
+You also need PurifyCSS configuration as below:
 
 **webpack.parts.js**
 
@@ -130,7 +130,7 @@ leanpub-end-insert
 
 W> The order matters. CSS extraction has to happen before purifying.
 
-If you execute `npm run build` now, you should see something like this:
+If you execute `npm run build` now, you should see something:
 
 ```bash
 Hash: e8601af01b5c5a5e722c

@@ -31,7 +31,7 @@ The underlying idea can be implemented using a [worker-farm](https://www.npmjs.c
 
 ### HappyPack - File Level Parallelism
 
-Compared to *parallel-webpack*, HappyPack is a more involved option. The idea is that HappyPack intercepts the loader calls you specify and then runs them in parallel. You have to set up the plugin like this first:
+Compared to *parallel-webpack*, HappyPack is a more involved option. The idea is that HappyPack intercepts the loader calls you specify and then runs them in parallel. You have to set up the plugin first:
 
 **webpack.config.js**
 

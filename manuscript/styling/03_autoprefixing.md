@@ -10,7 +10,7 @@ Achieving autoprefixing takes a small addition to the current setup. Install *po
 npm install postcss-loader autoprefixer --save-dev
 ```
 
-Add a fragment enabling autoprefixing like this:
+Add a fragment enabling autoprefixing:
 
 **webpack.parts.js**
 
@@ -49,7 +49,7 @@ leanpub-end-insert
 ...
 ```
 
-To confirm that the setup works, there should be something to autoprefix. Adjust the CSS like this:
+To confirm that the setup works, there should be something to autoprefix. Adjust the CSS:
 
 **app/main.css**
 
@@ -62,7 +62,7 @@ leanpub-end-insert
 }
 ```
 
-If you build the application now (`npm run build`) and examine the built CSS, you should be able to find a declaration like this there:
+If you build the application now (`npm run build`) and examine the built CSS, you should be able to find a declaration there:
 
 ```css
 body {

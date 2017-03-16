@@ -234,7 +234,7 @@ Any shared presets and plugins are available to all targets still. `env` allows 
 
 {pagebreak}
 
-It's possible to pass the webpack environment to Babel with a tweak like this:
+It's possible to pass the webpack environment to Babel with a tweak:
 
 **webpack.config.js**
 

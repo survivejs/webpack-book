@@ -18,7 +18,7 @@ To generate multiple separate pages, they should be initialized somehow. You sho
 
 ### Abstracting Pages
 
-To initialize a page, it should receive page title, output path, and an optional template at least. Each page should receive optional output path, and a template for customization. The idea can be modeled as a configuration part like this:
+To initialize a page, it should receive page title, output path, and an optional template at least. Each page should receive optional output path, and a template for customization. The idea can be modeled as a configuration part:
 
 **webpack.parts.js**
 
@@ -106,7 +106,7 @@ After this change you should have two pages in the application: `/` and `/anothe
 
 ### Injecting Different Script per Page
 
-The question is, how to inject a different script per each page. In the current configuration, the same `entry` is shared by both. To solve the problem, you should move `entry` configuration to lower level and manage it per page. To have a script to test with, set up another entry point like this:
+The question is, how to inject a different script per each page. In the current configuration, the same `entry` is shared by both. To solve the problem, you should move `entry` configuration to lower level and manage it per page. To have a script to test with, set up another entry point:
 
 **app/another.js**
 
@@ -207,7 +207,7 @@ If you build the application (`npm run build`), you should find *another/index.h
 * Records should be written separately per each page in files of their own. Currently, the configuration that writes the last, wins. The above solution would allow solving this.
 * Processes like linting and cleaning run twice currently. The *Targets* chapter discussed potential solutions to that problem.
 
-The approach can be pushed to another direction by dropping the multi-compiler mode. Even though it's slower to process a build like this, it enables code sharing, and the implementation of shells. The first step towards a shell setup is to rework the configuration so that it picks up the code shared between the pages.
+The approach can be pushed to another direction by dropping the multi-compiler mode. Even though it's slower to process this kind of build, it enables code sharing, and the implementation of shells. The first step towards a shell setup is to rework the configuration so that it picks up the code shared between the pages.
 
 ## Generating Multiple Pages While Sharing Code
 

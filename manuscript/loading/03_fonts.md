@@ -24,7 +24,7 @@ If you go with one format, you can use a similar setup as for images and rely on
 },
 ```
 
-A more elaborate approach to achieve a similar result that includes *.woff2* and more complicated patterns, would be to end up with code like this:
+A more elaborate approach to achieve a similar result that includes *.woff2* and more complicated patterns, would be to end up with code as below:
 
 ```javascript
 {
@@ -47,7 +47,7 @@ A more elaborate approach to achieve a similar result that includes *.woff2* and
 
 ## Supporting Multiple Formats
 
-In case you want to make sure the site looks good on a maximum amount of browsers, you can use *file-loader* and forget about inlining. Again, it's a trade-off as you get extra requests, but perhaps it's the right move. Here you could end up with a loader configuration like this:
+In case you want to make sure the site looks good on a maximum amount of browsers, you can use *file-loader* and forget about inlining. Again, it's a trade-off as you get extra requests, but perhaps it's the right move. Here you could end up with a loader configuration:
 
 ```javascript
 {
@@ -138,7 +138,7 @@ T> The `import` could be cleaned up as `import 'font-awesome'` by setting up a `
 
 {pagebreak}
 
-If you run the project now (`npm start`), webpack should give a long list of errors like this:
+If you run the project now (`npm start`), webpack should give a long list of errors:
 
 ```bash
 ERROR in ./~/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0
