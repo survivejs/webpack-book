@@ -73,6 +73,8 @@ T> It's possible to refer to loaders installed to the local project by name inst
 
 Even though you can implement a lot of loaders using the synchronous interface, there are times when asynchronous calculation is required. Wrapping a third party package as a loader can force you to this.
 
+{pagebreak}
+
 The example above can be adapted to asynchronous form by using webpack specific API through `this.async()`. Webpack sets this and the function returns a callback following Node conventions (error first, result second). Tweak as follows:
 
 **loaders/demo-loader.js**
