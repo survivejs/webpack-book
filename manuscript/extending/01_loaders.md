@@ -153,6 +153,8 @@ leanpub-end-insert
 );
 ```
 
+{pagebreak}
+
 To implement the essential idea of *file-loader*, you have to do two things: emit the file and return path to it. You could implement it like this:
 
 **loaders/demo-loader.js**
