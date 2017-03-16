@@ -12,7 +12,7 @@ By default WDS refreshes content automatically in the browser while you develop 
 
 WDS provides an interface that makes it possible to patch code on the fly, however for this to work effectively, you have to implement this interface for the client-side code. It's trivial for something like CSS because it's stateless, but the problem is harder with JavaScript frameworks and libraries.
 
-Often careful design is needed to allow this, but when the feature works, it's beautiful. The feature is explored in a later chapter. Now the goal is to get automatic refresh to work.
+T> Often careful design is needed to allow this, but when the feature works, it's beautiful. The feature is explored the *Configuring Hot Module Replacement* appendix.
 
 ## Emitting Files from WDS
 
