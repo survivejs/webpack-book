@@ -283,6 +283,8 @@ See [npm documentation](https://docs.npmjs.com/cli/owner) for the most up to dat
 
 A couple of certain package authoring-related techniques are good to know. For example, to make it easier to consume your packages, you can generate a Node friendly versions. This technique can be improved further by setting up a specific script.
 
+{pagebreak}
+
 ### Avoiding Bundling Dependencies
 
 Since it's not a good idea to bundle your package dependencies, such as React, within the distribution bundle itself, you should let the user inject them. You can configure external dependencies using the `externals` configuration. You can control it like this:
