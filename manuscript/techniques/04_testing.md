@@ -271,11 +271,11 @@ If you execute the tests again (`npm run test:karma`), you should get output wit
 ```
 ...
 webpack: Compiled successfully.
-22 02 2017 14:24:40.871:INFO [karma]: Karma v1.5.0 server started at http://0.0.0.0:9876/
-22 02 2017 14:24:40.873:INFO [launcher]: Launching browser PhantomJS with unlimited concurrency
-22 02 2017 14:24:40.878:INFO [launcher]: Starting browser PhantomJS
-22 02 2017 14:24:41.797:INFO [PhantomJS 2.1.1 (Mac OS X 0.0.0)]: Connected on socket 7FgAYLaPUuT-8JryAAAA with id 16586373
-PhantomJS 2.1.1 (Mac OS X 0.0.0): Executed 1 of 1 SUCCESS (0.005 secs / 0.001 secs)
+...:INFO [karma]: Karma v1.5.0 server started at http://0.0.0.0:9876/
+...:INFO [launcher]: Launching browser PhantomJS with unlimited concurrency
+...:INFO [launcher]: Starting browser PhantomJS
+...:INFO [PhantomJS ...]: Connected on socket 7...A with id 123
+PhantomJS ...: Executed 1 of 1 SUCCESS (0.005 secs / 0.001 secs)
 ```
 
 Given running tests after the change can get boring after a while, Karma provides a watch mode.
