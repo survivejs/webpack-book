@@ -120,6 +120,8 @@ leanpub-end-insert
 
 Now you should see `apply { name: 'demo' }` after running (`npm run build:plugin`).
 
+{pagebreak}
+
 ## Understanding Compiler and Compilation
 
 `apply` receives webpack's compiler as a parameter. Printing reveals more:
