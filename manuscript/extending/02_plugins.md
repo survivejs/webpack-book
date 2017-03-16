@@ -98,7 +98,7 @@ module.exports = class DemoPlugin {
 };
 ```
 
-Running the plugin (`npm run build:plugin`) now would result in `apply undefined` kind of message given no options were passed. Adjust the configuration to pass an option:
+Running the plugin now would result in `apply undefined` kind of message given no options were passed. Adjust the configuration to pass an option:
 
 **webpack.plugin.js**
 
@@ -118,7 +118,7 @@ leanpub-end-insert
 };
 ```
 
-Now you should see `apply { name: 'demo' }` after running (`npm run build:plugin`).
+Now you should see `apply { name: 'demo' }` after running.
 
 {pagebreak}
 
@@ -139,7 +139,7 @@ module.exports = class DemoPlugin {
 };
 ```
 
-After running (`npm run build:plugin`), you should see a lot of data. Especially `options` should look familiar as it contains webpack configuration. You can also see familiar names like `records`.
+After running, you should see a lot of data. Especially `options` should look familiar as it contains webpack configuration. You can also see familiar names like `records`.
 
 If you go through webpack's [plugin development documentation](https://webpack.js.org/api/plugins/), you'll see a compiler provides a large amount of hooks. Each hook corresponds with a specific stage. For example, to emit files, you could listen to the `emit` event and then write.
 
@@ -171,7 +171,7 @@ leanpub-end-insert
 
 W> Forgetting the callback and running the plugin makes webpack fail silently!
 
-Running the build (`npm run build:plugin`) should show more information than before. This is because a compilation object contains whole dependency graph traversed by webpack. You have access to everything related to it here including entries, chunks, modules, assets, and more.
+Running the build should show more information than before. This is because a compilation object contains whole dependency graph traversed by webpack. You have access to everything related to it here including entries, chunks, modules, assets, and more.
 
 T> Many of the available hooks expose compilation, but sometimes they expose a more specific structure and it takes more specific study to understand those.
 
@@ -219,7 +219,7 @@ leanpub-end-insert
 
 {pagebreak}
 
-After building (`npm run build:plugin`), you should see output like this:
+After building, you should see output like this:
 
 ```bash
 Hash: 62abc7fe06a7360b9735
