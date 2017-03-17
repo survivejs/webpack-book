@@ -191,6 +191,10 @@ const src = require(`./avatars/${avatar}`);
 
 Sometimes getting the only reference to an image isn't enough. [image-size-loader](https://www.npmjs.com/package/image-size-loader) emits image dimensions, type, and size in addition to the reference to the image itself.
 
+## Loading Images Dynamically
+
+Webpack allows you to load images dynamically based on a condition. The techniques covered in the *Code Splitting* chapter are enough for this purpose. Doing this can save bandwidth and load images only when you need them or preload them while you have time.
+
 ## Loading Sprites
 
 **Spriting** technique allows you to combine multiple smaller images into a single image. It has been used for games to describe animations and it's valuable for web development as well as you avoid request overhead.
@@ -208,10 +212,6 @@ Sometimes getting the only reference to an image isn't enough. [image-size-loade
   sprite($open);
 }
 ```
-
-## Loading Images Dynamically
-
-Webpack allows you to load images dynamically based on a condition. The techniques covered in the *Code Splitting* chapter are enough for this purpose. Doing this can save bandwidth and load images only when you need them or preload them while you have time.
 
 ## Images and *css-loader* Source Map Gotcha
 
