@@ -65,9 +65,7 @@ leanpub-end-insert
 
 Executing it should result in an `Error: Cannot find module` failure as the actual plugin is still missing.
 
-T> If you want an interactive development environment, consider setting up [nodemon](https://www.npmjs.com/package/nodemon) against the build. Webpack's own watcher won't work in this particular case as you have to restart the whole webpack process after every change.
-
-{pagebreak}
+T> If you want an interactive development environment, consider setting up [nodemon](https://www.npmjs.com/package/nodemon) against the build. Webpack's own watcher won't work in this case.
 
 ## Implementing a Basic Plugin
 
@@ -82,6 +80,8 @@ module.exports = class DemoPlugin {
   }
 };
 ```
+
+{pagebreak}
 
 If you run the plugin (`npm run build:plugin`), you should see `applying` message at console. Given most plugins accept options, it's a good idea to capture those and pass them to `apply`.
 
