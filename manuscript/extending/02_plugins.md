@@ -81,8 +81,6 @@ module.exports = class DemoPlugin {
 };
 ```
 
-{pagebreak}
-
 If you run the plugin (`npm run build:plugin`), you should see `applying` message at console. Given most plugins accept options, it's a good idea to capture those and pass them to `apply`.
 
 ## Capturing Options
@@ -103,8 +101,6 @@ module.exports = class DemoPlugin {
 ```
 
 Running the plugin now would result in `apply undefined` kind of message given no options were passed.
-
-{pagebreak}
 
 Adjust the configuration to pass an option:
 
