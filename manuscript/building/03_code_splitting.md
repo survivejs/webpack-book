@@ -26,6 +26,8 @@ Dynamic imports are defined as `Promise`s:
 import('./module').then((module) => {...}).catch((error) => {...});
 ```
 
+{pagebreak}
+
 The interface allows composition, and you could load multiple resources in parallel:
 
 ```javascript
@@ -45,8 +47,6 @@ This creates separate chunks to a request. If you wanted only one, you would hav
 T> Webpack provided support for `System.import` in the early versions of webpack 2 and it still does. The functionality has been deprecated and gets removed in webpack 3. Until then, you can use the functionality interchangeably.
 
 W> The syntax works only with JavaScript after configured the right way. If you use another environment, you have to use alternatives covered in the following sections.
-
-{pagebreak}
 
 ### `require.ensure`
 
@@ -100,8 +100,6 @@ If you had nested `require.ensure` definitions, you could pull a module to the p
 
 T> The formats respect `output.publicPath` option. You can also use `output.chunkFilename` to shape where they output. Example: `chunkFilename: '[name].js'`.
 
-{pagebreak}
-
 ## Setting Up Code Splitting
 
 To demonstrate the idea of code splitting, you can use dynamic `import`. Both ESLint and Babel setup of the project needs additions to make the syntax work.
@@ -135,8 +133,6 @@ leanpub-end-insert
 ```
 
 After these changes, ESLint doesn't complain if you write `import` in the middle of the code.
-
-{pagebreak}
 
 ### Configuring Babel
 
