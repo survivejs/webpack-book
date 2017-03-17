@@ -176,7 +176,6 @@ const developmentConfig = () => {
     devServer: {
       ...
 leanpub-start-insert
-      // Enable error/warning overlay
       overlay: {
         errors: true,
         warnings: true,
@@ -189,7 +188,7 @@ leanpub-end-insert
 };
 ```
 
-If you run the server now (`npm start`) and break the code somehow, you should see something in the browser:
+Run the server now (`npm start`) and break the code somehow to see something in the browser:
 
 ![Error overlay](images/error-overlay.png)
 
