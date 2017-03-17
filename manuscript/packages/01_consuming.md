@@ -315,6 +315,8 @@ It's possible a package comes with formats you are not interested in. A good exa
 
 [null-loader](https://www.npmjs.com/package/null-loader) fits the use case. You can tell webpack to pipe certain assets through it.
 
+{pagebreak}
+
 You can model an `ignore` part using *null-loader*:
 
 **webpack.parts.js**
