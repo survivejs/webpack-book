@@ -58,8 +58,6 @@ Here's the full loader configuration:
 **webpack.parts.js**
 
 ```javascript
-...
-
 exports.loadJavaScript = ({ include, exclude }) => ({
   module: {
     rules: [
@@ -88,8 +86,6 @@ Next, you need to connect this with the main configuration. If you are using a m
 **webpack.config.js**
 
 ```javascript
-...
-
 const commonConfig = merge([
   {
   ...
@@ -97,8 +93,6 @@ leanpub-start-insert
   parts.loadJavaScript({ include: PATHS.app }),
 leanpub-end-insert
 ]);
-
-...
 ```
 
 Even though you have Babel installed and set up, you are still missing one bit: Babel configuration. This can be achieved using a *.babelrc* dotfile as other tooling can pick it up as well.
@@ -239,8 +233,6 @@ It's possible to pass the webpack environment to Babel with a tweak:
 **webpack.config.js**
 
 ```javascript
-...
-
 module.exports = (env) => {
 leanpub-start-insert
   process.env.BABEL_ENV = env;

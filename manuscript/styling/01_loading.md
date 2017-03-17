@@ -25,8 +25,6 @@ Now let's make sure webpack is aware of them. Configure as follows:
 **webpack.parts.js**
 
 ```javascript
-...
-
 exports.loadCSS = ({ include, exclude } = {}) => ({
   module: {
     rules: [
@@ -42,24 +40,20 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
 });
 ```
 
-{pagebreak}
-
 You also need to connect the fragment with the main configuration:
 
 **webpack.config.js**
 
 ```javascript
-...
-
 const commonConfig = merge([
   ...
 leanpub-start-insert
   parts.loadCSS(),
 leanpub-end-insert
 ]);
-
-...
 ```
+
+{pagebreak}
 
 The configuration added means that files ending with `.css` should invoke given loaders. `test` matches against a JavaScript-style regular expression. The loaders are evaluated from right to left.
 

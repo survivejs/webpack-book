@@ -11,8 +11,6 @@ The demonstration project of ours uses `var` by default through configuration:
 **webpack.lib.js**
 
 ```javascript
-...
-
 const commonConfig = merge([
   {
     ...
@@ -24,8 +22,6 @@ const commonConfig = merge([
   },
   ...
 ]);
-
-...
 ```
 
 {pagebreak}
@@ -74,13 +70,7 @@ exports["Demo"] =
 ...
 ```
 
-If this code was imported from Node, you would get:
-
-```javascript
-{ Demo: { add: [Getter] } }
-```
-
-{pagebreak}
+If this code was imported from Node, you would get `{ Demo: { add: [Getter] } }`.
 
 ### `commonjs2`
 
@@ -93,13 +83,7 @@ module.exports =
 ...
 ```
 
-The library name, `Demo`, isn't used anywhere. As a result importing the module yields this:
-
-```javascript
-{ add: [Getter] }
-```
-
-You lose the extra wrapping in the second option.
+The library name, `Demo`, isn't used anywhere. As a result importing the module yields `{ add: [Getter] }`. You lose the extra wrapping.
 
 ## AMD
 

@@ -158,8 +158,6 @@ The result is expected as you haven't configured loaders for any of Font Awesome
 **webpack.parts.js**
 
 ```javascript
-...
-
 exports.loadFonts = ({ include, exclude, options } = {}) => ({
   module: {
     rules: [
@@ -186,8 +184,6 @@ You still need to connect the above with the main configuration:
 **webpack.config.js**
 
 ```javascript
-...
-
 const commonConfig = merge([
   ...
 leanpub-start-insert
@@ -198,8 +194,6 @@ leanpub-start-insert
   }),
 leanpub-end-insert
 ]);
-
-...
 ```
 
 The project should run (`npm start`) without any errors now.

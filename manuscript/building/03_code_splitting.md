@@ -122,12 +122,12 @@ Tweak ESLint configuration as follows:
 module.exports = {
   ...
 leanpub-start-insert
-  "parser": "babel-eslint",
+  parser: 'babel-eslint',
 leanpub-end-insert
-  "parserOptions": {
-    "sourceType": "module",
+  parserOptions: {
+    sourceType: 'module',
 leanpub-start-insert
-    "allowImportExportEverywhere": true,
+    allowImportExportEverywhere: true,
 leanpub-end-insert
   },
   ...

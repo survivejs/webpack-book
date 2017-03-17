@@ -121,8 +121,6 @@ leanpub-start-insert
   }),
 leanpub-end-insert
 ]);
-
-...
 ```
 
 W> The order matters. CSS extraction has to happen before purifying.

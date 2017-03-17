@@ -46,13 +46,13 @@ Global configuration is possible as well. In this case, you can use `env` key:
 
 **.eslintrc.js**
 
-```json
+```javascript
 module.exports = {
-  "env": {
-    "browser": true,
-    "commonjs": true,
-    "es6": true,
-    "node": true,
+  env: {
+    browser: true,
+    commonjs: true,
+    es6: true,
+    node: true,
   },
   ...
 };
@@ -117,27 +117,24 @@ T> If you want to do something serious, you should point to your plugin through 
 
 You need to alter the project configuration to make it find the plugin and the rule within.
 
-**.eslintrc**
+**.eslintrc.js**
 
-```json
-{
+```javascript
+module.exports = {
   ...
-  "plugins": [
-leanpub-start-delete
-    "react",
-leanpub-end-delete
+  plugins: [
+    ...
 leanpub-start-insert
-    "react",
-    "custom"
+    'custom'
 leanpub-end-insert
   ],
-  "rules": {
-leanpub-start-insert
-    "custom/demo": 1,
-leanpub-end-insert
+  rules: {
     ...
+leanpub-start-insert
+    'custom/demo': 1,
+leanpub-end-insert
   }
-}
+};
 ```
 
 If you invoke ESLint now, you should see a bunch of warnings. Of course, the rule doesn't do anything impressive yet. To move forward, check out the [official plugin documentation](http://eslint.org/docs/developer-guide/working-with-plugins.html) and [rules](http://eslint.org/docs/developer-guide/working-with-rules.html).

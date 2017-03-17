@@ -91,8 +91,6 @@ Webpack configuration receives the result of `--env` if it exposes a function. T
 **webpack.config.js**
 
 ```javascript
-...
-
 leanpub-start-delete
 module.exports = {
   // Entries have to resolve to files! It relies on Node.js
@@ -163,8 +161,6 @@ Enable additional functionality as below:
 **webpack.config.js**
 
 ```javascript
-...
-
 const commonConfig = {
   ...
 };

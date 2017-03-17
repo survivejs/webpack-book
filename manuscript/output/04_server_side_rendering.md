@@ -54,26 +54,26 @@ The suggested minimum configuration is as follows:
 module.exports = {
   ...
 leanpub-start-delete
-  "extends": "eslint:recommended",
+  extends: 'eslint:recommended',
 leanpub-end-delete
 leanpub-start-insert
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  extends: ['eslint:recommended', 'plugin:react/recommended'],
 leanpub-end-insert
-  "parser": "babel-eslint",
-  "parserOptions": {
-    "sourceType": "module",
-    "allowImportExportEverywhere": true,
+  parser: 'babel-eslint',
+  parserOptions: {
+    sourceType: 'module',
+    allowImportExportEverywhere: true,
 
 leanpub-start-insert
     // Enable JSX
-    "ecmaFeatures": {
-      "jsx": true,
+    ecmaFeatures: {
+      jsx: true,
     },
 leanpub-end-insert
   },
 leanpub-start-insert
-  "plugins": [
-    "react",
+  plugins: [
+    'react',
   ],
 leanpub-end-insert
   ...
@@ -191,10 +191,8 @@ function server(port) {
   const app = express();
 
   app.use(express.static('static'));
-  app.get('/', (req, res) => (
-    res.status(200).send(
-      renderMarkup(renderToString(SSR))
-    )
+  app.get('/', (req, res) => res.status(200).send(
+    renderMarkup(renderToString(SSR))
   ));
 
   app.listen(port);
@@ -244,8 +242,6 @@ The client portion requires two small changes to the server code:
 **server.js**
 
 ```javascript
-...
-
 server(process.env.PORT || 8080);
 
 function server(port) {

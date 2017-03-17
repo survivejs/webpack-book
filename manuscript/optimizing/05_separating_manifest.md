@@ -15,8 +15,6 @@ Most of the work was done already when `extractBundles` was set up in the *Split
 **webpack.config.js**
 
 ```javascript
-...
-
 const productionConfig = merge([
   ...
   parts.extractBundles([
@@ -32,8 +30,6 @@ leanpub-end-insert
   ]),
   ...
 ]);
-
-...
 ```
 
 T> `minChunks` is optional in this case. Passing `Infinity` to it tells webpack **not** to move any modules to the resulting bundle.
@@ -99,8 +95,6 @@ To generate a *records.json* file, adjust the configuration as follows:
 **webpack.config.js**
 
 ```javascript
-...
-
 const productionConfig = merge([
   {
     ...
@@ -110,8 +104,6 @@ leanpub-end-insert
   },
   ...
 ]);
-
-...
 ```
 
 If you build the project (`npm run build`), you should see a new file, *records.json*, at the project root. The next time webpack builds, it picks up the information and rewrites the file if it has changed.

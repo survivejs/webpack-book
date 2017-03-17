@@ -23,16 +23,14 @@ You are also going to need a script in *package.json*:
 **package.json**
 
 ```json
-{
-  ...
-  "scripts": {
+...
+"scripts": {
 leanpub-start-insert
-    "deploy": "gh-pages -d build",
+  "deploy": "gh-pages -d build",
 leanpub-end-insert
-    ...
-  },
   ...
-}
+},
+...
 ```
 
 To make the asset paths work on GitHub Pages, `output.publicPath` field has to be adjusted. Otherwise, the asset paths end up pointing at the root, and that doesn't work unless you are hosting behind a domain root (say `survivejs.com`) directly.
@@ -46,8 +44,6 @@ In this case, it's enough to set it to point the GitHub project as below:
 **webpack.config.js**
 
 ```javascript
-...
-
 const productionConfig = merge([
   {
     ...
@@ -61,8 +57,6 @@ leanpub-end-insert
   },
   ...
 ]);
-
-...
 ```
 
 After building (`npm run build`) and deploying (`npm run deploy`), you should have your application from the `build/` directory hosted through GitHub Pages. You should find it at `https://<name>.github.io/<project>` (`github.com/<name>/<project>` at GitHub) assuming everything went fine.
@@ -107,8 +101,8 @@ If you don't know `publicPath` beforehand, it's possible to resolve it based on 
 ```javascript
 module.exports = {
   ...
-  "globals": {
-    "__webpack_public_path__": true
+  globals: {
+    __webpack_public_path__: true
   },
   ...
 };

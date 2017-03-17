@@ -31,8 +31,6 @@ To get started, you can wrap the core idea within a configuration part. You can 
 **webpack.parts.js**
 
 ```javascript
-...
-
 exports.generateSourceMaps = ({ type }) => ({
   devtool: type,
 });
@@ -45,8 +43,6 @@ Set these up as follows:
 **webpack.config.js**
 
 ```javascript
-...
-
 const productionConfig = merge([
 leanpub-start-insert
   parts.generateSourceMaps({ type: 'source-map' }),
@@ -65,8 +61,6 @@ leanpub-start-insert
 leanpub-end-insert
   ...
 ]);
-
-...
 ```
 
 `eval-source-map` builds slowly initially, but it provides fast rebuild speed. More rapid development specific options, such as `cheap-module-eval-source-map` and `eval`, produce lower quality source maps. All `eval` options emit source maps as a part of your JavaScript code.

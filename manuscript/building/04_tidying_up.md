@@ -44,16 +44,12 @@ Connect it with the project:
 **webpack.config.js**
 
 ```javascript
-...
-
 const productionConfig = merge([
 leanpub-start-insert
   parts.clean(PATHS.build),
 leanpub-end-insert
   ...
 ]);
-
-...
 ```
 
 After this change, the `build` directory should remain nice and tidy while building. You can verify this by building the project and making sure no old files remained in the output directory.
@@ -102,8 +98,6 @@ And connect it to the main configuration:
 **webpack.config.js**
 
 ```javascript
-...
-
 const productionConfig = merge([
   parts.clean(PATHS.build),
 leanpub-start-insert
@@ -111,8 +105,6 @@ leanpub-start-insert
 leanpub-end-insert
   ...
 ]);
-
-...
 ```
 
 If you build the project (`npm run build`), you should notice the built files contain comments like `/*! 0b5bb05 */` or `/*! v1.7.0-9-g5f82fe8 */` in the beginning.

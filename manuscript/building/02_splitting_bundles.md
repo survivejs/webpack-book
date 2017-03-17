@@ -72,8 +72,6 @@ To improve the situation, you can define a `vendor` entry containing React by ma
 **webpack.config.js**
 
 ```javascript
-...
-
 const productionConfig = merge([
 leanpub-start-insert
   {
@@ -84,8 +82,6 @@ leanpub-start-insert
 leanpub-end-insert
   ...
 ]);
-
-...
 ```
 
 You have two separate entries, or **entry chunks**, now. `[name].js` of the existing `output.path` the configuration kicks in based on the entry name. If you try to generate a build now (`npm run build`), you should see something along this:
@@ -139,8 +135,6 @@ W> Webpack doesn't allow referring to entry files within entries. If you inadver
 **webpack.config.js**
 
 ```javascript
-...
-
 const productionConfig = merge([
   {
     entry: {
@@ -156,8 +150,6 @@ leanpub-end-insert
   },
   ...
 ]);
-
-...
 ```
 
 The configuration tells the plugin to extract React to a bundle named `vendor`. If you execute the build now using `npm run build`, you should see something along this:
@@ -228,8 +220,6 @@ Given the function handles the entry, you can drop the `vendor`-related configur
 **webpack.config.js**
 
 ```javascript
-...
-
 const productionConfig = merge([
   {
     entry: {
@@ -252,8 +242,6 @@ leanpub-start-insert
 leanpub-end-insert
   ...
 ]);
-
-...
 ```
 
 Everything should work the same way as earlier. This time around, however, it's more convenient to work with the plugin. You still have access to its functionality as before, but with a smaller amount of code.
@@ -281,8 +269,6 @@ To capture only JavaScript files from *node_modules*, you should perform a check
 **webpack.config.js**
 
 ```javascript
-...
-
 const productionConfig = merge([
 leanpub-start-delete
   {
@@ -305,8 +291,6 @@ leanpub-end-insert
   ]),
   ...
 ]);
-
-...
 ```
 
 The build result should remain the same. This time, however, webpack pulls only dependencies that are used in the project, and you don't have to maintain the list anymore.
@@ -344,8 +328,6 @@ const config = {
   ],
   ...
 };
-
-...
 
 function isVendor({ resource }) {
   return resource &&

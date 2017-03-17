@@ -83,24 +83,24 @@ Here's a starting point that works with the project:
 
 ```javascript
 module.exports = {
-  "env": {
-    "browser": true,
-    "commonjs": true,
-    "es6": true,
-    "node": true,
+  env: {
+    browser: true,
+    commonjs: true,
+    es6: true,
+    node: true,
   },
-  "extends": "eslint:recommended",
-  "parserOptions": {
-    "sourceType": "module",
+  extends: 'eslint:recommended',
+  parserOptions: {
+    sourceType: 'module',
   },
-  "rules": {
-    "comma-dangle": ["error", "always-multiline"],
-    "indent": ["error", 2],
-    "linebreak-style": ["error", "unix"],
-    "quotes": ["error", "single"],
-    "semi": ["error", "always"],
-    "no-unused-vars": ["warn"],
-    "no-console": 0,
+  rules: {
+    'comma-dangle': ['error', 'always-multiline'],
+    indent: ['error', 2],
+    'linebreak-style': ['error', 'unix'],
+    quotes: ['error', 'single'],
+    semi: ['error', 'always'],
+    'no-unused-vars': ['warn'],
+    'no-console': 0,
   },
 };
 ```
@@ -134,8 +134,6 @@ To add linting to the project, adjust the configuration as follows:
 **webpack.config.js**
 
 ```javascript
-...
-
 const developmentConfig = () => {
   const config = {
     ...
@@ -158,8 +156,6 @@ leanpub-end-insert
 
   ...
 };
-
-...
 ```
 
 If you execute `npm start` now and break a linting rule while developing, you should see that in the terminal output.
@@ -175,8 +171,6 @@ To make the development flow nicer, WDS provides an error overlay. The default s
 **webpack.config.js**
 
 ```javascript
-...
-
 const developmentConfig = () => {
   const config = {
     devServer: {
@@ -193,8 +187,6 @@ leanpub-end-insert
 
   ...
 };
-
-...
 ```
 
 {pagebreak}

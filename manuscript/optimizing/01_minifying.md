@@ -53,8 +53,6 @@ To integrate the feature into the project, adjust the configuration:
 **webpack.config.js**
 
 ```javascript
-...
-
 const productionConfig = merge([
 leanpub-start-insert
   {
@@ -67,22 +65,18 @@ leanpub-start-insert
 leanpub-end-insert
   ...
 ]);
-
-...
 ```
 
 In practice you want to maintain lower limits. The current ones are enough for this demonstration. If you build now (`npm run build`), you should see a warning within the output:
 
 ```bash
 ...
-
 WARNING in entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (100 kB). This can impact web performance.
 Entrypoints:
   app (156 kB)
       vendor.js
 ,      app.js
 ,      app.css
-
 ...
 ```
 
@@ -134,8 +128,6 @@ The plugin exposes more functionality, but having the possibility of toggling so
 **webpack.config.js**
 
 ```javascript
-...
-
 const productionConfig = merge([
   ...
   parts.clean(PATHS.build),
@@ -144,8 +136,6 @@ leanpub-start-insert
 leanpub-end-insert
   ...
 ]);
-
-...
 ```
 
 {pagebreak}
@@ -250,8 +240,6 @@ Then, connect with main configuration:
 **webpack.config.js**
 
 ```javascript
-...
-
 const productionConfig = merge([
   ...
   parts.minifyJavaScript({ useSourceMap: true }),
@@ -269,8 +257,6 @@ leanpub-start-insert
 leanpub-end-insert
   ...
 ]);
-
-...
 ```
 
 {pagebreak}

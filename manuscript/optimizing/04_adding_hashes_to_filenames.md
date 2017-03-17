@@ -52,8 +52,6 @@ The build needs tweaking to generate proper hashes. Images and fonts should rece
 **webpack.config.js**
 
 ```javascript
-...
-
 const commonConfig = {
   ...
   parts.loadFonts({
@@ -93,8 +91,6 @@ leanpub-end-insert
   }),
   ...
 ]);
-
-...
 ```
 
 If you used `chunkhash` for the extracted CSS as well, this would lead to problems as the code points to the CSS through JavaScript bringing it to the same entry. That means if the application code or CSS changed, it would invalidate both. Therefore, instead of `chunkhash`, you can use `contenthash` that's generated based on the extracted content:
@@ -102,8 +98,6 @@ If you used `chunkhash` for the extracted CSS as well, this would lead to proble
 **webpack.parts.js**
 
 ```javascript
-...
-
 exports.extractCSS = ({ include, exclude, use }) => {
   // Output extracted CSS to a file
   const plugin = new ExtractTextPlugin({
@@ -117,8 +111,6 @@ leanpub-end-insert
 
   ...
 };
-
-...
 ```
 
 W> The hashes have been sliced to make the output fit better in the book. In practice, you can skip slicing them.
@@ -170,8 +162,6 @@ The change required is tiny. Tweak the configuration as follows:
 **webpack.config.js**
 
 ```javascript
-...
-
 const productionConfig = merge([
   {
     ...
@@ -183,8 +173,6 @@ leanpub-end-insert
   },
   ...
 ]);
-
-...
 ```
 
 {pagebreak}

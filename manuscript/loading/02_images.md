@@ -57,8 +57,6 @@ Set up a function as below:
 **webpack.parts.js**
 
 ```javascript
-...
-
 exports.loadImages = ({ include, exclude, options } = {}) => ({
   module: {
     rules: [
@@ -84,8 +82,6 @@ To attach it to the configuration, adjust as follows. The configuration defaults
 **webpack.config.js**
 
 ```javascript
-...
-
 const productionConfig = merge([
   ...
 leanpub-start-insert
@@ -104,8 +100,6 @@ leanpub-start-insert
   parts.loadImages(),
 leanpub-end-insert
 ]);
-
-...
 ```
 
 To test that the setup works, download an image or generate it (`convert -size 100x100 gradient:blue logo.png`) and refer to it from the project:

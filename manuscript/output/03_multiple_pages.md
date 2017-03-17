@@ -126,8 +126,6 @@ The file could go to a directory of its own. Here the existing code is reused to
 **webpack.config.js**
 
 ```javascript
-...
-
 const commonConfig = merge([
   {
 leanpub-start-delete
@@ -179,8 +177,6 @@ The tweak also requires a change at the related part so that `entry` gets includ
 **webpack.parts.js**
 
 ```javascript
-...
-
 exports.page = ({
   ...
 leanpub-start-insert
@@ -222,8 +218,6 @@ To reach a code sharing setup, a minor adjustment is needed. Most of the code ca
 **webpack.config.js**
 
 ```javascript
-...
-
 module.exports = (env) => {
   const pages = [
     parts.page({
@@ -264,8 +258,6 @@ The page-specific configuration requires a small tweak as well:
 **webpack.parts.js**
 
 ```javascript
-...
-
 exports.page = ({
   ...
 leanpub-start-insert

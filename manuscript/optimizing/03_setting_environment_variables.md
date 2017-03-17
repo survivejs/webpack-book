@@ -82,8 +82,6 @@ As before, encapsulate this idea to a function. Due to the way webpack replaces 
 **webpack.parts.js**
 
 ```javascript
-...
-
 exports.setFreeVariable = (key, value) => {
   const env = {};
   env[key] = JSON.stringify(value);
@@ -101,8 +99,6 @@ You can connect this with the configuration:
 **webpack.config.js**
 
 ```javascript
-...
-
 const productionConfig = merge([
   ...
 leanpub-start-insert
@@ -112,8 +108,6 @@ leanpub-start-insert
   ),
 leanpub-end-insert
 ]);
-
-...
 ```
 
 Execute `npm run build` and you should see improved results:

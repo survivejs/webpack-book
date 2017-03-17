@@ -124,14 +124,10 @@ The setup can be problematic on older versions of Windows, Ubuntu, and Vagrant. 
 **webpack.config.js**
 
 ```javascript
-...
-
-function developmentConfig() {
-  const config = {
-    devServer: {
-      ...
-
+const developmentConfig = merge([
 leanpub-start-insert
+  {
+    devServer: {
       watchOptions: {
         // Delay the rebuild after the first change
         aggregateTimeout: 300,
@@ -139,24 +135,18 @@ leanpub-start-insert
         // Poll using interval (in ms, accepts boolean too)
         poll: 1000,
       },
-leanpub-end-insert
     },
     plugins: [
-      ...
-leanpub-start-insert
       // Ignore node_modules so CPU usage with poll
       // watching drops significantly.
       new webpack.WatchIgnorePlugin([
         path.join(__dirname, 'node_modules')
       ]),
+    ]
 leanpub-end-insert
-    ],
-  };
-
+  },
   ...
-}
-
-...
+]);
 ```
 
 Given this setup polls the file system, it's more resource intensive. It's worth giving a go if the default doesn't work, though.

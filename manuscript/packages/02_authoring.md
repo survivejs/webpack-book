@@ -237,17 +237,16 @@ The command walks through the `./lib` directory and writes a processed file to `
 
 Since running that command each time you publish is tedious, you can set up a `prepublish` hook:
 
+**package.json**
+
 ```json
-{
+...
+"scripts": {
   ...
-  "scripts": {
-    ...
-    "prepublish": "babel ./lib --out-dir ./dist-modules"
-  },
-  ...
-  "main": "dist-modules/",
-  ...
-}
+  "prepublish": "babel ./lib --out-dir ./dist-modules"
+},
+"main": "dist-modules/",
+...
 ```
 
 Make sure you execute `npm install babel-cli --save-dev` to include the tool into your project.
@@ -326,27 +325,23 @@ In this case, a setup as below works:
 **package.json**
 
 ```json
-{
-  ..
-  /* `npm run <name>` */
-  "scripts": {
-    ...
-    "dist": "webpack --env dist",
-    "dist:min": "webpack --env dist:min",
-
-    /* Process source through Babel! */
-    "dist:modules": "babel ./src --out-dir ./dist-modules",
-
-    ...
-
-    "preversion": "npm run test && npm run dist:all && git commit --allow-empty -am \"Update dist\"",
-    "prepublish": "npm run dist:modules",
-    ...
-  },
-  /* Point to the Node specific version */
-  "main": "dist-modules",
+...
+/* `npm run <name>` */
+"scripts": {
   ...
-}
+  "dist": "webpack --env dist",
+  "dist:min": "webpack --env dist:min",
+
+  /* Process source through Babel! */
+  "dist:modules": "babel ./src --out-dir ./dist-modules",
+  ...
+  "preversion": "npm run test && npm run dist:all && git commit --allow-empty -am \"Update dist\"",
+  "prepublish": "npm run dist:modules",
+  ...
+},
+/* Point to the Node specific version */
+"main": "dist-modules",
+...
 ```
 
 What if someone points to a development version of your package directly through GitHub, though? It doesn't work as the `dist-modules` directory is missing. The problem can be fixed using a hook that generates the needed source.
@@ -358,15 +353,13 @@ To solve the development distribution problem, a custom script is required. Firs
 **package.json**
 
 ```json
-{
+...
+"scripts": {
   ...
-  "scripts": {
-    ...
-    /* Point to the script that generates the missing source. */
-    "postinstall": "node lib/post_install.js"
-  },
-  ...
-}
+  /* Point to the script that generates the missing source. */
+  "postinstall": "node lib/post_install.js"
+},
+...
 ```
 
 Secondly, define a script:

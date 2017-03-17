@@ -15,8 +15,6 @@ Add a fragment enabling autoprefixing:
 **webpack.parts.js**
 
 ```javascript
-...
-
 exports.autoprefix = () => ({
   loader: 'postcss-loader',
   options: {
@@ -32,8 +30,6 @@ To connect the loader with `ExtractTextPlugin`, hook it up as follows:
 **webpack.config.js**
 
 ```javascript
-...
-
 const productionConfig = merge([
   ...
 leanpub-start-delete
@@ -45,8 +41,6 @@ leanpub-start-insert
   }),
 leanpub-end-insert
 ]);
-
-...
 ```
 
 To confirm that the setup works, there should be something to autoprefix. Adjust the CSS:

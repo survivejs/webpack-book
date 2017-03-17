@@ -322,8 +322,6 @@ You can model an `ignore` part using *null-loader*:
 **webpack.parts.js**
 
 ```javascript
-...
-
 exports.ignore = ({ test, include, exclude }) => ({
   module: {
     rules: [
@@ -344,8 +342,6 @@ To ignore all Font Awesome SVGs, you could have a definition as below:
 **webpack.config.js**
 
 ```javascript
-...
-
 const commonConfig = merge([
   ...
 leanpub-start-insert

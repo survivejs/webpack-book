@@ -17,27 +17,18 @@ Consider the example below where webpack is set to process JavaScript through Ba
 **webpack.config.js**
 
 ```javascript
-...
-
 module.exports = {
   ...
   module: {
     rules: [
       {
         // **Conditions**
-        // Match files against RegExp. This accepts
-        // a function too.
+        // Match files against RegExp or a function.
         test: /\.js$/,
 
         // Restrict matching to a directory. This
-        // also accepts an array of paths.
-        //
-        // Although optional, you should set this for
-        // JavaScript source as it helps with
-        // performance and keeps the configuration cleaner.
-        //
-        // This accepts an array or a function too. The
-        // same applies to `exclude` as well.
+        // also accepts an array of paths or a function.
+        // The same applies to `exclude`.
         include: path.join(__dirname, 'app'),
 
         exclude(path) {
@@ -47,11 +38,7 @@ module.exports = {
         },
 
         // **Actions**
-        // Apply loaders the matched files. These need to
-        // be installed separately. In this case our
-        // project would need *babel-loader*. This
-        // accepts an array of loaders as well and
-        // more forms are possible as discussed below.
+        // Apply loaders the matched files.
         use: 'babel-loader',
       },
     ],

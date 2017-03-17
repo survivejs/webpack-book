@@ -19,8 +19,6 @@ On the webpack side, *react-hot-loader* requires an additional entry it uses to 
 **webpack.config.js**
 
 ```javascript
-...
-
 module.exports = (env) => {
   const pages = [
     ...
@@ -145,8 +143,6 @@ The webpack portion should be adjusted:
 **webpack.config.js**
 
 ```javascript
-...
-
 module.exports = (env) => {
 leanpub-start-insert
   process.env.BABEL_ENV = env;
@@ -156,7 +152,7 @@ leanpub-end-insert
 };
 ```
 
-Babel now receives the target you pass to webpack allowing to fix the behavior. Tweak Babel setup, so it matches the fields below. The key part is in pushing `react-hot-loader/patch` below `env`:
+Babel receives now the target you pass to webpack allowing to fix the behavior. Tweak Babel setup, so it matches the fields below. The key part is in pushing `react-hot-loader/patch` below `env`:
 
 **.babelrc**
 
@@ -199,8 +195,6 @@ T> The aforementioned `env` technique can be used to apply Babel presets and plu
 [Redux](http://redux.js.org/) is a popular state management library designed HMR in mind. To configure Redux reducers to support HMR, you have to implement the protocol as above:
 
 ```javascript
-...
-
 const configureStore = (initialState) => {
   const store = createStoreWithMiddleware(
     rootReducer,

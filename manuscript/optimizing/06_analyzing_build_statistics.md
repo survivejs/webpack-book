@@ -14,16 +14,14 @@ Here's the line of code you need to pipe the output to a file:
 **package.json**
 
 ```json
-{
-  ...
-  "scripts": {
+...
+"scripts": {
 leanpub-start-insert
-    "stats": "webpack --env production --profile --json > stats.json",
+  "stats": "webpack --env production --profile --json > stats.json",
 leanpub-end-insert
-    ...
-  },
   ...
-}
+},
+...
 ```
 
 The above is the basic setup you need, regardless of your webpack configuration. Execute `npm run stats` now. After a while you should find *stats.json* at your project root. This file can be pushed through a variety of tools to understand better what's going on.

@@ -45,10 +45,8 @@ If you break the rule at *app/main.css* and run `npm run lint:style`, you should
 
 ```bash
 ...
-
 app/main.css
  2:15  Expected "#FFF" to be "#fff"   color-hex-case
-
 ...
 ```
 
@@ -71,8 +69,6 @@ Next, to integrate with configuration, set up a part first:
 **webpack.parts.js**
 
 ```javascript
-...
-
 exports.lintCSS = ({ include, exclude }) => ({
   module: {
     rules: [
@@ -104,16 +100,12 @@ Then add it to the common configuration:
 **webpack.config.js**
 
 ```javascript
-...
-
 const commonConfig = merge([
   ...
 leanpub-start-insert
   parts.lintCSS({ include: PATHS.app }),
 leanpub-end-insert
 ]);
-
-...
 ```
 
 If you define a CSS rule, such as `background-color: #EFEFEF;` at *main.css* now, you should see a warning at your terminal when you run the build (`npm start` or `npm run build`):

@@ -188,8 +188,6 @@ To demonstrate passing options, the runner needs a small tweak:
 **run-loader.js**
 
 ```javascript
-...
-
 runLoaders({
   resource: './demo.txt',
   loaders: [
@@ -297,8 +295,6 @@ To connect it to the runner, add it to the loader definition:
 **run-loader.js**
 
 ```javascript
-...
-
 runLoaders({
   resource: './demo.txt',
   loaders: [
@@ -333,7 +329,7 @@ Input: {}
 
 Although webpack caches loaders by default unless they set `this.cacheable(false)`, writing a caching loader can be a good exercise as it helps you to understand how loader stages can work together. The example below shows how to achieve this (courtesy of Vladimir Grenaderov):
 
-```
+```javascript
 const cache = new Map();
 
 module.exports = function(content) {
