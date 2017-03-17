@@ -32,7 +32,7 @@ leanpub-end-insert
 
 {pagebreak}
 
-If you build the project again (`npm run build`) and examine the build result (*build/app.js*), it should contain `console.log('bake')`, but miss `console.log('shake')`. That's tree shaking in action.
+If you build the project again (`npm run build`) and examine the build (*build/app.js*), it should contain `console.log('bake')`, but miss `console.log('shake')`. That's tree shaking in action.
 
 To get a better idea of what webpack is using for tree shaking, run it through `npm run build -- --display-used-exports`. You should see additional output like `[no exports used]` or `[only some exports used: bake]` in the terminal.
 
@@ -45,6 +45,8 @@ T> There is a CSS Modules related tree shaking proof of concept at [dead-css-loa
 The same idea works with dependencies that use the ES6 module definition. Given the related packaging standards are still emerging, you have to be careful when consuming such packages. Webpack tries to resolve *package.json* `module` field for this reason.
 
 For tools like webpack to allow tree shake npm packages, you should generate a build that has transpiled everything else except the ES6 module definitions and then point to it through *package.json* `module` field.
+
+{pagebreak}
 
 In Babel terms, you have to let webpack to manage ES6 modules:
 
@@ -66,8 +68,6 @@ In Babel terms, you have to let webpack to manage ES6 modules:
 T> The *Consuming Packages* and *Authoring Packages* chapters contain further techniques that come in handy.
 
 W> To get most out of tree shaking with external packages, you have to use [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-imports) to rewrite imports so that they work with webpack's tree shaking logic. See [webpack issue #2867](https://github.com/webpack/webpack/issues/2867) for more information.
-
-{pagebreak}
 
 ## Conclusion
 
