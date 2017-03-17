@@ -82,8 +82,6 @@ The example above contains enough information for webpack to run the given loade
 
 Perhaps the problem with HappyPack is that it couples your configuration with it. It would be possible to overcome this issue by design and make it easier to inject. One option would be to build a higher level abstraction that can perform the replacement on top of vanilla configuration.
 
-{pagebreak}
-
 ## Low-Level Optimizations
 
 Certain lower-level optimizations can be good to know. The key is to allow webpack to perform less work. You have already implemented a couple of these, but it's a good idea to enumerate them:
@@ -109,8 +107,6 @@ There are a series of loader and plugin specific optimizations to consider:
 It's possible to optimize rebundling times during development by pointing the development setup to a minified version of a library, such as React. In React's case, you lose `propType`-based validation. But if speed is more important, this technique is worth a go.
 
 `module.noParse` accepts a RegExp or an array of RegExps. In addition to telling webpack not to parse the minified file you want to use, you also have to point `react` to it by using `resolve.alias`. The aliasing idea is discussed in detail in the *Consuming Packages* chapter.
-
-{pagebreak}
 
 It's possible to encapsulate the core idea within a function:
 
