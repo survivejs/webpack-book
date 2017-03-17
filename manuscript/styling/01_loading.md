@@ -254,13 +254,13 @@ The example below illustrates how to set up autoprefixing using PostCSS. It also
 },
 ```
 
-For this to work, you have to remember to include [autoprefixer](https://www.npmjs.com/package/autoprefixer) and [precss](https://www.npmjs.com/package/precss) to your project. The technique is discussed in detail in the *Autoprefixing* chapter.
+You have to remember to include [autoprefixer](https://www.npmjs.com/package/autoprefixer) and [precss](https://www.npmjs.com/package/precss) to your project for this to work. The technique is discussed in detail in the *Autoprefixing* chapter.
 
-T> PostCSS supports also *postcss.config.js* based configuration. It relies on [cosmiconfig](https://www.npmjs.com/package/cosmiconfig) internally. It can pick up configuration from your *package.json*, JSON or YAML.
+T> PostCSS supports *postcss.config.js* based configuration. It relies on [cosmiconfig](https://www.npmjs.com/package/cosmiconfig) internally for other formats.
 
 ### cssnext
 
-[cssnext](http://cssnext.io/) is a PostCSS plugin that allows to experience the future now. It comes with restrictions as it's not possible to adapt to each feature. You can use it through [postcss-cssnext](https://www.npmjs.com/package/postcss-cssnext), and you can enable it as follows:
+[cssnext](http://cssnext.io/) is a PostCSS plugin that allows to experience the future now with certain restrictions. You can use it through [postcss-cssnext](https://www.npmjs.com/package/postcss-cssnext) and enable it as follows:
 
 ```javascript
 {
