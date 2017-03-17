@@ -187,7 +187,7 @@ The development setup should work after this change still. If you examine the bu
 
 Even after this change, the source can contain references still due to a [bug in react-hot-loader](https://github.com/gaearon/react-hot-loader/issues/471) as it has been built so that it loses information.
 
-It's possible to work around the issue by implementing a module chooser pattern as described in the *Setting Environment Variables* chapter. The idea is that `AppContainer` provided by *react-hot-loader* would be mocked with a dummy implementation during production usage.
+The issue can be worked around by implementing a module chooser pattern as in the *Setting Environment Variables* chapter. `AppContainer` provided by *react-hot-loader* should be mocked with a dummy.
 
 T> See the *Loading JavaScript* chapter to learn more about Babel `env`.
 
