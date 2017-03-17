@@ -171,6 +171,8 @@ The loader supports Less plugins, source maps, and so on. To understand how thos
 
 [Sass](http://sass-lang.com/) is a widely used CSS preprocessor. You should use [sass-loader](https://www.npmjs.com/package/sass-loader) with it. Remember to install [node-sass](https://www.npmjs.com/package/node-sass) to your project as it's a peer dependency.
 
+{pagebreak}
+
 Webpack doesn't take much configuration:
 
 ```javascript
@@ -186,7 +188,11 @@ T> If you want more performance, especially during development, check out [fast-
 
 ![Stylus](images/stylus.png)
 
-[Stylus](http://stylus-lang.com/) is yet another example of a CSS processor. It works well through [stylus-loader](https://www.npmjs.com/package/stylus-loader). [yeticss](https://www.npmjs.com/package/yeticss) is a pattern library that works well with it. Consider the following configuration:
+[Stylus](http://stylus-lang.com/) is yet another example of a CSS processor. It works well through [stylus-loader](https://www.npmjs.com/package/stylus-loader). [yeticss](https://www.npmjs.com/package/yeticss) is a pattern library that works well with it.
+
+{pagebreak}
+
+Consider the following configuration:
 
 ```javascript
 {
