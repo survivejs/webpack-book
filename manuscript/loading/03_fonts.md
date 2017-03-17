@@ -10,7 +10,7 @@ T> [canifont](https://www.npmjs.com/package/canifont) helps you to figure out wh
 
 ## Choosing One Format
 
-If you exclude Opera Mini, all browsers support the *.woff* format. If you go only with modern browsers, its newer version, *.woff2*, can be enough.
+If you exclude Opera Mini, all browsers support the *.woff* format. Its newer version, *.woff2*, is widely supported by modern browsers and can be a good alternative.
 
 {pagebreak}
 
@@ -80,12 +80,6 @@ T> [MDN discusses the font-family rule](https://developer.mozilla.org/en/docs/We
 
 {pagebreak}
 
-## Generating Font Files Based on SVGs
-
-If you prefer to use SVG based fonts, they can be bundled as a single font file by using [fontgen-loader](https://www.npmjs.com/package/fontgen-loader).
-
-W> Take care with SVGs if you have SVG specific image setup in place already. If you want to process font SVGs differently, set their definitions carefully. The *Loader Definitions* chapter covers alternatives.
-
 ## Manipulating *file-loader* Output Path and `publicPath`
 
 As discussed above and in [webpack issue tracker](https://github.com/webpack/file-loader/issues/32#issuecomment-250622904), *file-loader* allows shaping the output. This way you can output your fonts below `fonts/`, images below `images/`, and so on over using the root.
@@ -110,6 +104,12 @@ Furthermore, it's possible to manipulate `publicPath` and override the default p
   },
 },
 ```
+
+## Generating Font Files Based on SVGs
+
+If you prefer to use SVG based fonts, they can be bundled as a single font file by using [fontgen-loader](https://www.npmjs.com/package/fontgen-loader).
+
+W> Take care with SVGs if you have SVG specific image setup in place already. If you want to process font SVGs differently, set their definitions carefully. The *Loader Definitions* chapter covers alternatives.
 
 ## Using Font Awesome
 
@@ -202,8 +202,6 @@ leanpub-end-insert
 
 The project should run (`npm start`) without any errors now.
 
-{pagebreak}
-
 To see Font Awesome in action, adjust the application as follows:
 
 **app/component.js**
@@ -223,6 +221,8 @@ leanpub-end-insert
   return element;
 }
 ```
+
+{pagebreak}
 
 If you build the application (`npm run build`), you should see that it processed and Font Awesome assets were included.
 
