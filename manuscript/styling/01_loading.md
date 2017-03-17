@@ -152,6 +152,8 @@ W> If you are using CSS Modules in your project, you should process normal CSS t
 
 [Less](http://lesscss.org/) is a CSS processor packed with functionality. Using Less doesn't take a lot of effort through webpack as [less-loader](https://www.npmjs.com/package/less-loader) deals with the heavy lifting. You should install [less](https://www.npmjs.com/package/less) as well given it's a peer dependency of *less-loader*.
 
+{pagebreak}
+
 Consider the following minimal setup:
 
 ```javascript
