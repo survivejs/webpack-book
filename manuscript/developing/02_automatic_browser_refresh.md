@@ -161,10 +161,6 @@ Enable additional functionality as below:
 **webpack.config.js**
 
 ```javascript
-const commonConfig = {
-  ...
-};
-
 leanpub-start-insert
 const productionConfig = () => commonConfig;
 
@@ -172,8 +168,7 @@ const developmentConfig = () => {
   const config = {
     devServer: {
       // Enable history API fallback so HTML5 History API based
-      // routing works. This is a good default that comes
-      // in handy in more complicated setups.
+      // routing works. Good for complex setups.
       historyApiFallback: true,
 
       // Display only errors to reduce the amount of output.
