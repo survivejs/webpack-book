@@ -102,6 +102,8 @@ In other words, webpack has generated a named AMD module. The result doesn't wor
 
 [Universal Module Definition](https://github.com/umdjs/umd) (UMD) was developed to solve the problem of consuming the same code from different environments. Webpack implements two output variants: `umd` and `umd2`. To understand the idea better, let's see what happens when the options are used.
 
+{pagebreak}
+
 ### `umd`
 
 Basic UMD output looks complicated:
@@ -145,11 +147,11 @@ The output can be modified further by setting `output.umdNamedDefine: false`:
 
 To understand `umd2` option, you have to understand *optional externals* first.
 
+{pagebreak}
+
 ### Optional Externals
 
 In webpack terms, externals are dependencies that are resolved outside of webpack and are available through the environment. Optional externals are dependencies that can exist in the environment, but if they don't, they get skipped instead of failing hard.
-
-{pagebreak}
 
 Consider the following example where jQuery is loaded if it exists:
 
@@ -179,8 +181,6 @@ To treat jQuery as an external, you should configure as follows:
   },
 },
 ```
-
-{pagebreak}
 
 If `libraryTarget: 'umd'` is used after these changes, you get output:
 
