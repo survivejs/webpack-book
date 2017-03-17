@@ -102,6 +102,8 @@ If you had nested `require.ensure` definitions, you could pull a module to the p
 
 T> The formats respect `output.publicPath` option. You can also use `output.chunkFilename` to shape where they output. Example: `chunkFilename: '[name].js'`.
 
+{pagebreak}
+
 ## Setting Up Code Splitting
 
 To demonstrate the idea of code splitting, you can use dynamic `import`. Both ESLint and Babel setup of the project needs additions to make the syntax work.
@@ -166,8 +168,6 @@ The idea can be demonstrated by setting up a module that contains a string that 
 ```javascript
 export default 'Hello from lazy';
 ```
-
-{pagebreak}
 
 You also need to point the application to this file, so the application knows to load it. This can be done by binding the loading process to click. Whenever the user happens to click the button, you trigger the loading process and replace the content:
 
