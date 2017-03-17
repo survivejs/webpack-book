@@ -128,6 +128,8 @@ exports.dontParse = ({ name, path }) => {
 };
 ```
 
+{pagebreak}
+
 To use the function, you would call it as follows:
 
 ```javascript
@@ -140,7 +142,7 @@ dontParse({
 ...
 ```
 
-After this change, the application should be faster to rebuild. The amount of impact depends on the underlying implementation. The technique can also be applied during production usage.
+After this change, the application should be faster to rebuild depending on the underlying implementation. The technique can also be applied during production.
 
 T> Given `module.noParse` accepts a regular expression if you wanted to ignore all `*.min.js` files, you could set it to `/\.min\.js/`. That can be a more generic approach.
 
