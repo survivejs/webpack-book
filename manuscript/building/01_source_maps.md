@@ -285,6 +285,8 @@ The original source contains `//# sourceMappingURL=app.9a...18.js.map` kind of c
 
 W> `cheap-module-source-map` is [currently broken if minification is used](https://github.com/webpack/webpack/issues/4176) and this is a good reason to avoid the option for now.
 
+{pagebreak}
+
 ### `devtool: 'source-map'`
 
 `source-map` provides the best quality with the complete result, but it's also the slowest option. The output reflects this:
@@ -313,6 +315,8 @@ W> `cheap-module-source-map` is [currently broken if minification is used](https
   "version": 3
 }
 ```
+
+{pagebreak}
 
 ### `devtool: 'hidden-source-map'`
 
