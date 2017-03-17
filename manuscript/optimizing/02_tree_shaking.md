@@ -12,13 +12,8 @@ To shake code, you have to define a module and use only a part of its code. Set 
 const shake = () => console.log('shake');
 const bake = () => console.log('bake');
 
-export {
-  shake,
-  bake,
-};
+export { shake, bake };
 ```
-
-{pagebreak}
 
 To make sure you use a part of the code, alter the application entry point:
 
@@ -34,6 +29,8 @@ leanpub-end-insert
 
 ...
 ```
+
+{pagebreak}
 
 If you build the project again (`npm run build`) and examine the build result (*build/app.js*), it should contain `console.log('bake')`, but miss `console.log('shake')`. That's tree shaking in action.
 
