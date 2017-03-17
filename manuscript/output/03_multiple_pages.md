@@ -194,6 +194,8 @@ After these changes `/another` should show something familiar:
 
 ![Another page shows up](images/another.png)
 
+{pagebreak}
+
 ### Pros and Cons
 
 If you build the application (`npm run build`), you should find *another/index.html*. Based on the generated code, you can make the following observations:
@@ -210,6 +212,8 @@ The approach can be pushed to another direction by dropping the multi-compiler m
 The current configuration shares code by coincidence already due to the usage patterns. Only a small part of the code differs, and as a result only the page manifests, and the bundles mapping to their entries differ.
 
 In a more complicated application, you should apply techniques covered in the *Splitting Bundles* chapter across the pages. Dropping the multi-compiler mode can be worthwhile then.
+
+{pagebreak}
 
 ### Adjusting Configuration
 
@@ -252,6 +256,8 @@ leanpub-start-insert
 leanpub-end-insert
 };
 ```
+
+{pagebreak}
 
 The page-specific configuration requires a small tweak as well:
 
@@ -298,8 +304,6 @@ The PWA example implements client-side routing. When you go from a page to anoth
 App shell is loaded initially, and it manages the whole application including its routing. Compared to app shells, page shells are more granular, and more are loaded as you use the application. The total size of the application is larger in this case, but conversely, you can load initial content faster.
 
 The approach combines well with plugins like [offline-plugin](https://www.npmjs.com/package/offline-plugin) and [sw-precache-webpack-plugin](https://www.npmjs.com/package/sw-precache-webpack-plugin). This way you can benefit from [Service Workers](https://developer.mozilla.org/en/docs/Web/API/Service_Worker_API) and improve the offline experience.
-
-{pagebreak}
 
 ## Conclusion
 
