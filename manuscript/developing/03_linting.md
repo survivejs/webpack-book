@@ -265,6 +265,14 @@ No JSLint particular loader exists for webpack yet. Fortunately, there's one for
 
 JSHint looks into specific rules to apply from `.jshintrc`. You can also define custom settings within a `jshint` object at your webpack configuration. Exact configuration options have been covered by [the JSHint documentation](http://jshint.com/docs/) in detail.
 
+## Prettier
+
+[Prettier](https://www.npmjs.com/package/prettier) goes one step further and can format your code automatically according to your coding style. If you want to use Prettier with ESLint, you should use [eslint-config-prettier](https://www.npmjs.com/package/eslint-config-prettier) to disable ESLint rules that conflict with Prettier. Be warned that Prettier is highly opinionated in how it thinks code should look and offers few formatting options.
+
+## Danger
+
+[Danger](https://www.npmjs.com/package/danger) operates on a higher level than the tools discussed. For example, it can check that the project change log was updated before a release is pushed to the public. You can also force pull requests of your project to comply specific standards.
+
 ## EditorConfig
 
 [EditorConfig](http://editorconfig.org/) allows you to maintain a consistent coding style across different IDEs and editors. Certain even come with built-in support. For others, you should install a separate plugin. Also, you need to set up a file:
@@ -291,14 +299,6 @@ trim_trailing_whitespace = false
 indent_style = space
 indent_size = 2
 ```
-
-## Prettier
-
-[Prettier](https://www.npmjs.com/package/prettier) goes one step further and can format your code automatically according to your coding style. If you want to use Prettier with ESLint, you should use [eslint-config-prettier](https://www.npmjs.com/package/eslint-config-prettier) to disable ESLint rules that conflict with Prettier. Be warned that Prettier is highly opinionated in how it thinks code should look and offers few formatting options.
-
-## Danger
-
-[Danger](https://www.npmjs.com/package/danger) operates on a higher level than the tools discussed. For example, it can check that the project change log was updated before a release is pushed to the public. You can also force pull requests of your project to comply specific standards.
 
 ## Conclusion
 
