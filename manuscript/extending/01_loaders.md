@@ -53,6 +53,8 @@ runLoaders({
 );
 ```
 
+{pagebreak}
+
 If you run the script now (`node run-loader.js`), you should see output:
 
 ```javascript
@@ -358,6 +360,8 @@ module.exports.pitch = function() {
   }
 };
 ```
+
+{pagebreak}
 
 A pitch loader can be used to attach metadata to the input to use later. In this example, cache was constructed during the pitching stage and it was accessed during normal execution.
 
