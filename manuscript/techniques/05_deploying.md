@@ -76,6 +76,8 @@ T> GitHub Pages allows you to choose the branch where you deploy. It's possible 
 ghpages.publish(path.join(__dirname, 'build'), { add: true }, callback);
 ```
 
+{pagebreak}
+
 ## Deploying to Other Environments
 
 Even though you can push the problem of deployment outside of webpack, there are a couple of webpack specific utilities that come in handy:
