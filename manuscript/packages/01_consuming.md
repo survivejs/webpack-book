@@ -367,14 +367,14 @@ To get more information about packages, npm provides `npm info <package>` comman
 
 ## Conclusion
 
-Webpack can consume most npm packages without a hitch. Sometimes, though, patching is required. Fortunately, its resolution mechanism is patchable enough, and you can modify the way it brings the source to your project if needed.
+Webpack can consume most npm packages without a problem. Sometimes, though, patching is required using webpack's resolution mechanism.
 
 To recap:
 
-* npm packages can be grouped based on their purpose. Most often you split them between `dependencies` and `devDependencies`. `peerDependencies` allow you to control the exact version on the consumer side.
-* To consume packages effectively, you should understand SemVer. To keep your build repeatable, consider using technologies like shrinkwrapping or Yarn lockfiles.
-* Use webpack's access to module resolution to your benefit. Sometimes you can work around issues by tweaking resolution. Often it's a good idea to try to push improvements upstream to the projects themselves, though.
-* Webpack allows you to patch resolved modules in many ways. Given certain dependencies expect globals, you can use webpack to inject them. You can also expose modules as globals. This is necessary for certain development tooling to work.
-* To understand your dependencies better, consider using available tooling and service to study them. Knowing them well can pay off later if problems arise.
+* npm packages can be grouped based on their purpose. Often you split them between `dependencies` and `devDependencies`. `peerDependencies` allow you to control the exact version on the consumer side.
+* To consume packages effectively, you should understand SemVer. To keep your build repeatable, use shrinkwrapping or Yarn lockfiles.
+* Use webpack's module resolution to your benefit. Sometimes you can work around issues by tweaking resolution. Often it's a good idea to try to push improvements upstream to the projects themselves, though.
+* Webpack allows you to patch resolved modules. Given certain dependencies expect globals, you can inject them. You can also expose modules as globals as this is necessary for certain development tooling to work.
+* To understand your dependencies better, use available tooling and service to study them.
 
 In the next chapter, you'll learn to author npm packages. It's the other side of the same coin and worth understanding even if you don't end up authoring packages of your own.
