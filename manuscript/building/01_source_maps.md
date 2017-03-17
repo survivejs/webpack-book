@@ -99,16 +99,12 @@ Take a good look at those *.map* files. That's where the mapping between the gen
 
 To use source maps within a browser, you have to enable source maps explicitly as per browser-specific instructions:
 
-* [Chrome](https://developer.chrome.com/devtools/docs/javascript-debugging)
+* [Chrome](https://developer.chrome.com/devtools/docs/javascript-debugging). Sometimes source maps [will not update in Chrome inspector](https://github.com/webpack/webpack/issues/2478). For now, the temporary fix is to force the inspector to reload itself by using *alt-r*.
 * [Firefox](https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Use_a_source_map)
 * [IE Edge](https://developer.microsoft.com/en-us/microsoft-edge/platform/documentation/f12-devtools-guide/debugger/#source-maps)
 * [Safari](https://developer.apple.com/library/safari/documentation/AppleApplications/Conceptual/Safari_Developer_Guide/ResourcesandtheDOM/ResourcesandtheDOM.html#//apple_ref/doc/uid/TP40007874-CH3-SW2)
 
-W> Sometimes source maps [will not update in Chrome inspector](https://github.com/webpack/webpack/issues/2478). For now, the temporary fix is to force the inspector to reload itself by using *alt-r*.
-
-W> If you want to use breakpoints (i.e., a `debugger;` statement or ones set through the browser), the `eval`-based options don't work in Chrome!
-
-{pagebreak}
+W> If you want to use breakpoints (i.e., a `debugger;` statement or ones set through the browser), the `eval`-based options won't work in Chrome!
 
 ## Source Map Types Supported by Webpack
 
@@ -119,6 +115,8 @@ Source map types supported by webpack can be split into two categories:
 
 Thanks to their speed, inline source maps are ideal for development. Given they make the bundles big, separate source maps are the preferable solution for production. Separate source maps work during development as well if the performance overhead is acceptable.
 
+{pagebreak}
+
 ## Inline Source Map Types
 
 Webpack provides multiple inline source map variants. Often `eval` is the starting point and [Rico Santa Cruz](https://github.com/rstacruz/webpack-tricks) recommends `cheap-module-eval-source-map` with `output.devtoolModuleFilenameTemplate: 'webpack:///[absolute-resource-path]'` as it's a good compromise between speed and quality while working reliably in Chrome and Firefox browsers.
@@ -126,8 +124,6 @@ Webpack provides multiple inline source map variants. Often `eval` is the starti
 To get a better idea of the available options, they are listed below while providing a small example for each. The source code contains only a single `console.log('Hello world')` and `webpack.NamedModulesPlugin` is used to keep the output easier to understand. In practice, you would see a lot more code to handle the mapping.
 
 T> `webpack.NamedModulesPlugin` replaces number based module IDs with paths. It's discussed in the *Configuring Hot Module Replacement* appendix.
-
-{pagebreak}
 
 ### `devtool: 'eval'`
 
