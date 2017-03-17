@@ -355,8 +355,6 @@ leanpub-end-insert
 
 As a result you should get `// empty (null-loader)` for the matched SVG files.
 
-{pagebreak}
-
 ## Getting Insights on Packages
 
 To get more information about packages, npm provides `npm info <package>` command for basic queries. You can use it to check the metadata associated with packages while figuring out version related information.
