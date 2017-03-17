@@ -133,6 +133,8 @@ It's preferable to use the combination of `loader` and `options` fields:
 },
 ```
 
+{pagebreak}
+
 Or you can also go through `use`:
 
 ```javascript
