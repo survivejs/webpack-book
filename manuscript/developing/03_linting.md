@@ -181,7 +181,6 @@ const developmentConfig = () => {
   const config = {
     devServer: {
       ...
-
 leanpub-start-insert
       // Enable error/warning overlay
       overlay: {
@@ -198,11 +197,32 @@ leanpub-end-insert
 ...
 ```
 
+{pagebreak}
+
 If you run the server now (`npm start`) and break the code somehow, you should see something in the browser:
 
 ![Error overlay](images/error-overlay.png)
 
-{pagebreak}
+## ESLint Tips
+
+The great thing about ESLint is that you can shape it to your purposes. The community around it's active, and you can find good integration in other tooling as well. Consider the tips below.
+
+### Usability Tips
+
+* It can make sense to rely on an existing preset or set up custom configuration. That's where `--init` can come in handy. You can run it from `npm bin` and end up with a call like `node_modules/.bin/eslint --init`
+* ESLint supports custom formatters through `--format` parameter. [eslint-friendly-formatter](https://www.npmjs.com/package/eslint-friendly-formatter) is an example of a formatter that provides terminal-friendly output. This way you can jump conveniently straight to the warnings and errors from there.
+
+### Performance Tips
+
+* Especially on bigger projects it's beneficial to run ESLint outside of webpack. That keeps code compilation fast while still giving the advantage of linting. Solutions like [lint-staged](https://www.npmjs.com/package/lint-staged) and [fastlint](https://www.npmjs.com/package/fastlint) can make this even more quickly.
+* You can get more performance out of ESLint by running it through a daemon, such as [eslint_d](https://www.npmjs.com/package/eslint_d). Using it brings down the overhead, and it can bring down linting times considerably.
+
+### Extension Tips
+
+* ESLint supports ES6 features through configuration. You have to specify the features to use through the [ecmaFeatures](http://eslint.org/docs/user-guide/configuring.html#specifying-language-options) property.
+* Plugins, such as [eslint-plugin-node](https://www.npmjs.com/package/eslint-plugin-node), [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react), [eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise), [eslint-plugin-compat](https://www.npmjs.com/package/eslint-plugin-compat), and [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import), are worth studying.
+* Most IDEs and editors have good linter integration so you can spot issues as you develop.
+* To learn about ESLint customizations options and how to write an ESLint plugin, check out the *Customizing ESLint* appendix.
 
 ### Configuring ESLint Further
 
@@ -234,29 +254,6 @@ Since webpack 2, the configuration schema of webpack has become stricter, and it
 ```
 
 There are more options, and [eslint-loader](https://www.npmjs.com/package/eslint-loader) documentation covers those in detail.
-
-{pagebreak}
-
-## ESLint Tips
-
-The great thing about ESLint is that you can shape it to your purposes. The community around it's active, and you can find good integration in other tooling as well. Consider the tips below.
-
-### Usability Tips
-
-* It can make sense to rely on an existing preset or set up custom configuration. That's where `--init` can come in handy. You can run it from `npm bin` and end up with a call like `node_modules/.bin/eslint --init`
-* ESLint supports custom formatters through `--format` parameter. [eslint-friendly-formatter](https://www.npmjs.com/package/eslint-friendly-formatter) is an example of a formatter that provides terminal-friendly output. This way you can jump conveniently straight to the warnings and errors from there.
-
-### Performance Tips
-
-* Especially on bigger projects it's beneficial to run ESLint outside of webpack. That keeps code compilation fast while still giving the advantage of linting. Solutions like [lint-staged](https://www.npmjs.com/package/lint-staged) and [fastlint](https://www.npmjs.com/package/fastlint) can make this even more quickly.
-* You can get more performance out of ESLint by running it through a daemon, such as [eslint_d](https://www.npmjs.com/package/eslint_d). Using it brings down the overhead, and it can bring down linting times considerably.
-
-### Extension Tips
-
-* ESLint supports ES6 features through configuration. You have to specify the features to use through the [ecmaFeatures](http://eslint.org/docs/user-guide/configuring.html#specifying-language-options) property.
-* Plugins, such as [eslint-plugin-node](https://www.npmjs.com/package/eslint-plugin-node), [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react), [eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise), [eslint-plugin-compat](https://www.npmjs.com/package/eslint-plugin-compat), and [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import), are worth studying.
-* Most IDEs and editors have good linter integration so you can spot issues as you develop.
-* To learn about ESLint customizations options and how to write an ESLint plugin, check out the *Customizing ESLint* appendix.
 
 ## Webpack and JSHint
 
