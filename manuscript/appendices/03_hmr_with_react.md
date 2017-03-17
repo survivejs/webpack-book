@@ -149,7 +149,7 @@ leanpub-end-insert
 };
 ```
 
-Babel receives now the target you pass to webpack allowing to fix the behavior.
+Now Babel will receive the same `env` as webpack allowing you to fix the behavior.
 
 {pagebreak}
 
