@@ -84,6 +84,8 @@ leanpub-end-insert
 ]);
 ```
 
+{pagebreak}
+
 You have two separate entries, or **entry chunks**, now. `[name].js` of the existing `output.path` the configuration kicks in based on the entry name. If you try to generate a build now (`npm run build`), you should see something along this:
 
 ```bash
@@ -95,13 +97,18 @@ leanpub-start-insert
        app.js     140 kB       0  [emitted]         app
 leanpub-end-insert
   ...font.eot     166 kB          [emitted]
-...
+...font.woff2    77.2 kB          [emitted]
+ ...font.woff      98 kB          [emitted]
+  ...font.svg     444 kB          [emitted]  [big]
+     logo.png      77 kB          [emitted]
   ...font.ttf     166 kB          [emitted]
 leanpub-start-insert
     vendor.js     138 kB       1  [emitted]         vendor
 leanpub-end-insert
       app.css    3.89 kB       0  [emitted]         app
-...
+   app.js.map     165 kB       0  [emitted]         app
+  app.css.map   84 bytes       0  [emitted]         app
+vendor.js.map     164 kB       1  [emitted]         vendor
    index.html  274 bytes          [emitted]
    [3] ./~/react/lib/ReactElement.js 11.2 kB {0} {1} [built]
   [18] ./~/react/react.js 56 bytes {0} {1} [built]
@@ -110,6 +117,8 @@ leanpub-end-insert
 ```
 
 *app.js* and *vendor.js* have separate chunk IDs right now given they are entry chunks of their own. The output size is off, though. Intuitively *app.js* should be smaller to attain the goal with this build.
+
+{pagebreak}
 
 If you examine the resulting bundle, you can see that it contains React given that's how the default definition works. Webpack pulls the related dependencies to a bundle by default as illustrated by the image below:
 
