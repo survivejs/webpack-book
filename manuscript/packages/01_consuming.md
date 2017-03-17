@@ -337,6 +337,8 @@ exports.ignore = ({ test, include, exclude }) => ({
 });
 ```
 
+{pagebreak}
+
 To ignore all Font Awesome SVGs, you could have a definition as below:
 
 **webpack.config.js**
