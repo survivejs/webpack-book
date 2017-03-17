@@ -235,6 +235,8 @@ babel ./lib --out-dir ./dist-modules
 
 The command walks through the `./lib` directory and writes a processed file to `./dist-modules` for each module it encounters.
 
+{pagebreak}
+
 Since running that command each time you publish is tedious, you can set up a `prepublish` hook:
 
 **package.json**
@@ -414,8 +416,6 @@ You can deprecate a range or a whole package by skipping the range. Given mistak
 Deprecation can be handy if you have to rename a package. You can publish the package under a new name and let the users know of the new name in your deprecation message.
 
 There is a heavier duty option in the form of [npm unpublish](https://docs.npmjs.com/cli/unpublish). Using `npm unpublish` you can pull a package out of the registry. Given this can be potentially dangerous and break the code for a lot of people, it has been [restricted to versions that are less than 24 hours old](http://blog.npmjs.org/post/141905368000/changes-to-npms-unpublish-policy). Most likely you don't need the feature at all, but it's nice to know it exists.
-
-{pagebreak}
 
 ## Conclusion
 
