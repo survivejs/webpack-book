@@ -104,6 +104,8 @@ module.exports = class DemoPlugin {
 
 Running the plugin now would result in `apply undefined` kind of message given no options were passed.
 
+{pagebreak}
+
 Adjust the configuration to pass an option:
 
 **webpack.plugin.js**
@@ -147,7 +149,7 @@ If you go through webpack's [plugin development documentation](https://webpack.j
 
 {pagebreak}
 
-Adjust the implementation to listen and capture `compilation`:
+Change the implementation to listen and capture `compilation`:
 
 **plugins/demo-plugin.js**
 
