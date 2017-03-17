@@ -52,7 +52,7 @@ T> Babel is discussed in detail in the *Loading JavaScript* chapter.
 
 ## Loader Evaluation Order
 
-It's good to keep in mind that webpack's `loaders` are always evaluated from right to left and from bottom to top (separate definitions). The right-to-left rule is easier to remember when you think about as functions. You can read definition `use: ['style-loader', 'css-loader']` as `style(css(input))` based on this rule.
+It's good to keep in mind that webpack's loaders are always evaluated from right to left and from bottom to top (separate definitions). The right-to-left rule is easier to remember when you think about as functions. You can read definition `use: ['style-loader', 'css-loader']` as `style(css(input))` based on this rule.
 
 To see the rule in action, consider the example below:
 
