@@ -188,7 +188,7 @@ leanpub-end-insert
 };
 ```
 
-Run the server now (`npm start`) and break the code somehow to see something in the browser:
+Run the server now (`npm start`) and break the code to see an overlay in the browser:
 
 ![Error overlay](images/error-overlay.png)
 
