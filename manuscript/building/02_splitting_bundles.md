@@ -156,7 +156,11 @@ leanpub-end-insert
 ]);
 ```
 
-The configuration tells the plugin to extract React to a bundle named `vendor`. If you execute the build now using `npm run build`, you should see something along this:
+The configuration tells the plugin to extract React to a bundle named `vendor`.
+
+{pagebreak}
+
+If you execute the build now using `npm run build`, you should see something along this:
 
 ```bash
 Hash: af634c8857c0ffb5c5e0
