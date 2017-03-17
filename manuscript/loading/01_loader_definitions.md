@@ -187,8 +187,7 @@ In the book setup, you compose configuration on a higher level. Another option t
   // issuer tells about match context path
   use: ({ resource, resourceQuery, issuer }) => {
     // You have to return either something falsy,
-    // string (i.e., 'style-loader'), or an object
-    // from here.
+    // string (i.e., 'style-loader'), or an object from here.
     //
     // Returning an array fails! To get around that,
     // it's possible to nest rules.
@@ -203,7 +202,6 @@ In the book setup, you compose configuration on a higher level. Another option t
       };
     }
 
-    // Do something else in production environment now
     ...
   },
 },
