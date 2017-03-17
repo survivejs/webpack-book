@@ -91,6 +91,8 @@ if (module.hot) {
 }
 ```
 
+{pagebreak}
+
 To test the setup, a component is needed as well. In this case, it's going to be a counter so you can see how the hot replacement mechanism maintains the state:
 
 **app/counter.js**
@@ -124,6 +126,8 @@ export default Counter;
 ```
 
 If you run the application after these changes and modify the file above, it should pick up changes without a hard refresh while retaining the amount.
+
+{pagebreak}
 
 ## Removing *react-hot-loader* Related Code from the Production Output
 
@@ -183,6 +187,8 @@ It's possible to work around the issue by implementing a module chooser pattern 
 
 T> The aforementioned `env` technique can be used to apply Babel presets and plugins per environment. You could enable additional checks and logging during development this way. See the *Loading JavaScript* chapter for more information.
 
+{pagebreak}
+
 ## Configuring HMR with Redux
 
 [Redux](http://redux.js.org/) is a popular state management library designed HMR in mind. To configure Redux reducers to support HMR, you have to implement the protocol as above:
@@ -209,6 +215,8 @@ export default configureStore;
 ```
 
 T> You can find [a full implementation of the idea online](https://github.com/survivejs-demos/redux-demo).
+
+{pagebreak}
 
 ## Configuring Webpack to Work with JSX
 
