@@ -118,6 +118,8 @@ if (module.hot) {
 }
 ```
 
+{pagebreak}
+
 To allow webpack to pick this up, a small amount of configuration is required:
 
 **webpack.mocha.js**
@@ -156,6 +158,8 @@ Add a helper script to make it convenient to run:
 
 T> If you want to understand what `--hot` does better, see the *Configuring Hot Module Replacement* appendix.
 
+{pagebreak}
+
 If you execute the server now and navigate to `http://localhost:8080/`, you should see the test:
 
 ![Mocha in browser](images/mocha-browser.png)
@@ -175,13 +179,13 @@ On the downside, now you need a browser to examine the tests. *mocha-loader* is 
 
 [Karma](https://karma-runner.github.io/) is a test runner that allows you to run tests against real devices and [PhantomJS](http://phantomjs.org/), a headless browser. [karma-webpack](https://www.npmjs.com/package/karma-webpack) is a Karma preprocessor that allows you to connect Karma with webpack. The same benefits as before apply still. This time around, however, there is more control over the test environment.
 
-{pagebreak}
-
 To get started, install Karma, *karma-mocha* reporter, and *karma-webpack*:
 
 ```
 npm install karma karma-mocha karma-webpack --save-dev
 ```
+
+{pagebreak}
 
 Like webpack, Karma relies on the configuration as well. Set up a file as follows to make it pick up the tests:
 
