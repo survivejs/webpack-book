@@ -181,6 +181,8 @@ If you split the configuration per target, you could end up with a file structur
 
 In this case, you would point to the targets through webpack `--config` parameter and `merge` common configuration at a target through `module.exports = merge(common, config);` kind of calls.
 
+{pagebreak}
+
 ### Split Parts per Purpose
 
 To add hierarchy to the way configuration parts are managed, you could decompose *webpack.parts.js* per category:
