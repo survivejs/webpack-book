@@ -63,6 +63,8 @@ You can enable this better behavior as follows:
 }
 ```
 
+{pagebreak}
+
 If you restart the development server (terminate it and run `npm start`), you should see something more familiar:
 
 ![No refresh, but better output](images/no-refresh2.png)
@@ -76,6 +78,8 @@ T> A similar effect can be achieved by setting `output.pathInfo = true`. It stil
 ## Implementing the HMR Interface
 
 Webpack exposes the HMR interface through a global variable: `module.hot`. It provides updates through `module.hot.accept(<path to watch>, <handler>)` function and you need to patch the application there.
+
+{pagebreak}
 
 The following implementation illustrates the idea against the tutorial application:
 
@@ -102,7 +106,11 @@ if(module.hot) {
 }
 ```
 
-If you refresh the browser, try to modify *app/component.js* after this change, and alter the text to something else, you should notice that the browser does not refresh at all. Instead, it should replace the DOM node while retaining the rest of the application as is. The image below shows possible output.
+If you refresh the browser, try to modify *app/component.js* after this change, and alter the text to something else, you should notice that the browser does not refresh at all. Instead, it should replace the DOM node while retaining the rest of the application as is.
+
+{pagebreak}
+
+The image below shows possible output:
 
 ![Patched a module successfully through HMR](images/hmr.png)
 
@@ -111,6 +119,8 @@ The idea is the same with styling, React, Redux, and other technologies. Sometim
 T> To prove that HMR retains application state, set up [a checkbox](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox) based component next to the original. The `module.hot.accept` code has to evolve to capture changes to it as well.
 
 T> The `if(module.hot)` block is eliminated entirely from the production build as minifier picks it up. The *Minifying* chapter delves deeper into this topic.
+
+{pagebreak}
 
 ## HMR on Windows, Ubuntu, and Vagrant
 
