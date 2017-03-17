@@ -149,7 +149,11 @@ leanpub-end-insert
 };
 ```
 
-Babel receives now the target you pass to webpack allowing to fix the behavior. Tweak Babel setup, so it matches the fields below. The key part is in pushing `react-hot-loader/patch` below `env`:
+Babel receives now the target you pass to webpack allowing to fix the behavior.
+
+{pagebreak}
+
+Tweak Babel setup, so it matches the fields below. The key part is in pushing `react-hot-loader/patch` below `env`:
 
 **.babelrc**
 
@@ -181,11 +185,11 @@ T> This tweak may not be required in the future as *react-hot-loader* evolves fu
 
 The development setup should work after this change still. If you examine the build output, you should notice it's missing references to `__REACT_HOT_LOADER__`.
 
-Even after this change, the source can contain references still due to a [bug in react-hot-loader](https://github.com/gaearon/react-hot-loader/issues/471) as it has been built so that it loses information that's valuable for a bundler.
+Even after this change, the source can contain references still due to a [bug in react-hot-loader](https://github.com/gaearon/react-hot-loader/issues/471) as it has been built so that it loses information.
 
 It's possible to work around the issue by implementing a module chooser pattern as described in the *Setting Environment Variables* chapter. The idea is that `AppContainer` provided by *react-hot-loader* would be mocked with a dummy implementation during production usage.
 
-T> The aforementioned `env` technique can be used to apply Babel presets and plugins per environment. You could enable additional checks and logging during development this way. See the *Loading JavaScript* chapter for more information.
+T> See the *Loading JavaScript* chapter to learn more about Babel `env`.
 
 {pagebreak}
 
