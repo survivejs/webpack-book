@@ -209,6 +209,8 @@ Sometimes modules depend on globals. `$` provided by jQuery is a good example. [
 },
 ```
 
+{pagebreak}
+
 Webpack's `ProvidePlugin` can be used for a similar purpose. It allows webpack to resolve globals as it encounters them:
 
 ```javascript
