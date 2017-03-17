@@ -63,8 +63,6 @@ T> If you need a more elaborate setup, use the Node API that *gh-pages* provides
 
 T> GitHub Pages allows you to choose the branch where you deploy. It's possible to use the `master` branch even as it's enough for minimal sites that don't need bundling. You can also point below the *./docs* directory within your `master` branch and maintain your site.
 
-{pagebreak}
-
 ## Archiving Old Versions
 
 *gh-pages* provides an `add` option for archival purposes. The idea goes as follows:
