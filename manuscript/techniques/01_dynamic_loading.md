@@ -66,6 +66,8 @@ const combineContexts = (...contexts) => {
 }
 ```
 
+{pagebreak}
+
 ## Dynamic Paths with a Dynamic `import`
 
 The same idea works with dynamic `import`. Instead of passing a complete path, you can pass a partial one. Webpack sets up a context internally. Here's a brief example:
