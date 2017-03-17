@@ -25,6 +25,8 @@ exports.autoprefix = () => ({
 });
 ```
 
+{pagebreak}
+
 To connect the loader with `ExtractTextPlugin`, hook it up as follows:
 
 **webpack.config.js**
@@ -69,7 +71,11 @@ body {
 
 As you can see, autoprefixing expands the rules, so you don't have to remember to do that.
 
-If you know what browsers you support, it's possible to set up a [browserslist](https://www.npmjs.com/package/browserslist) file. Different tools pick up this definition, *autoprefixer* included. Consider the example below where you select only specific browsers:
+If you know what browsers you support, it's possible to set up a [browserslist](https://www.npmjs.com/package/browserslist) file. Different tools pick up this definition, *autoprefixer* included.
+
+{pagebreak}
+
+Consider the example below where you select only specific browsers:
 
 **browserslist**
 
@@ -80,8 +86,6 @@ IE 8 # And IE 8
 ```
 
 W> *browserslist* rules are evaluated as **or**. A browser matched by any of the definitions is included in the result.
-
-{pagebreak}
 
 ## Conclusion
 
