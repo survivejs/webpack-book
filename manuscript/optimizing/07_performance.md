@@ -139,12 +139,11 @@ dontParse({
     __dirname, 'node_modules/react/dist/react.min.js',
   ),
 }),
-...
 ```
 
 After this change, the application should be faster to rebuild depending on the underlying implementation. The technique can also be applied during production.
 
-T> Given `module.noParse` accepts a regular expression if you wanted to ignore all `*.min.js` files, you could set it to `/\.min\.js/`. That can be a more generic approach.
+Given `module.noParse` accepts a regular expression if you wanted to ignore all `*.min.js` files, you could set it to `/\.min\.js/`.
 
 W> Not all modules support `module.noParse`. They should not have a reference to `require`, `define`, or similar, as that leads to an `Uncaught ReferenceError: require is not defined` error.
 
@@ -156,5 +155,5 @@ To recap:
 
 * Start with higher level techniques that are fast to implement first.
 * Lower level techniques are more involved but come with their wins.
-* Given webpack runs using a single instance by default, finding ways to parallelize its execution can lead to big wins.
-* Sometimes the best optimization is to skip work. Especially during development, cheating can be acceptable thanks to modern browsers.
+* Since webpack runs using a single instance by default, parallelizing is worthwhile.
+* Especially during development, skipping work can be acceptable thanks to modern browsers.
