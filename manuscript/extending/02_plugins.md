@@ -67,6 +67,8 @@ Executing it should result in an `Error: Cannot find module` failure as the actu
 
 T> If you want an interactive development environment, consider setting up [nodemon](https://www.npmjs.com/package/nodemon) against the build. Webpack's own watcher won't work in this particular case as you have to restart the whole webpack process after every change.
 
+{pagebreak}
+
 ## Implementing a Basic Plugin
 
 The simplest plugin should do two things: capture options and provide `apply` method:
@@ -100,7 +102,11 @@ module.exports = class DemoPlugin {
 };
 ```
 
-Running the plugin now would result in `apply undefined` kind of message given no options were passed. Adjust the configuration to pass an option:
+Running the plugin now would result in `apply undefined` kind of message given no options were passed.
+
+{pagebreak}
+
+Adjust the configuration to pass an option:
 
 **webpack.plugin.js**
 
@@ -119,8 +125,6 @@ leanpub-end-insert
 ```
 
 Now you should see `apply { name: 'demo' }` after running.
-
-{pagebreak}
 
 ## Understanding Compiler and Compilation
 
