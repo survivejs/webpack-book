@@ -105,6 +105,8 @@ Using this setup, you can still benefit from the HMR during development. For a p
 
 T> If you are using CSS Modules, remember to tweak `use` accordingly as discussed in the *Loading Styles* chapter. You can maintain separate setups for normal CSS and CSS Modules so that they get loaded through separate logic.
 
+{pagebreak}
+
 After running `npm run build`, you should see output similar to the following:
 
 ```bash
