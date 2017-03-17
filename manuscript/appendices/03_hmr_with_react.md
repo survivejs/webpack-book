@@ -2,15 +2,11 @@
 
 Hot module replacement was one of the initial selling points of webpack and React. It relies on the [react-hot-loader](https://www.npmjs.com/package/react-hot-loader) package. At the time of writing, version 3 of *react-hot-loader* is in beta. It requires changes to three places: Babel configuration, webpack configuration, and application.
 
-To get started, install the upcoming version of *react-hot-loader*:
+To get started, install the upcoming version of *react-hot-loader* as a normal dependency as it comes with a small application dependency:
 
 ```bash
 npm install react-hot-loader@next --save
 ```
-
-T> *react-hot-loader* was included as a normal dependency as it comes with a small application level tweak.
-
-{pagebreak}
 
 ## Setting Up Webpack
 
@@ -136,8 +132,6 @@ If you build the application (`npm run build`) and examine the output, you spot 
 
 Babel provides an [env option](https://babeljs.io/docs/usage/babelrc/#env-option) for this purpose. It respects both `NODE_ENV` and `BABEL_ENV` environment variables. If `BABEL_ENV` is set, it receives precedence. To fix the issue, you can push the problematic Babel plugin behind a development specific `env` while controlling its behavior within webpack configuration by setting `BABEL_ENV`.
 
-{pagebreak}
-
 The webpack portion should be adjusted:
 
 **webpack.config.js**
@@ -240,8 +234,6 @@ W> In webpack 1 you had to use `extensions: ['', '.js', '.jsx']` to match files 
 [create-react-app](https://www.npmjs.com/package/create-react-app) allows you to get started fast with webpack and React. It's a zero configuration approach that encapsulates a lot of best practices allowing you to get started fast with minimal setup.
 
 *create-react-app* allows you to extract a full-blown webpack setup by **ejecting**. There's a problem, though. After you eject, you cannot go back to the dependency-based model, and you have to maintain the resulting setup yourself.
-
-{pagebreak}
 
 ## Conclusion
 
