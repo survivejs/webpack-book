@@ -161,6 +161,10 @@ Compression is particularly valuable for production builds as it decreases the a
 
 Webpack allows you to load images dynamically based on a condition. The techniques covered in the *Code Splitting* chapter are enough for this purpose. Doing this can save bandwidth and load images only when you need them or preload them while you have time.
 
+## Getting Image Dimensions
+
+Sometimes getting the only reference to an image isn't enough. [image-size-loader](https://www.npmjs.com/package/image-size-loader) emits image dimensions, type, and size in addition to the reference to the image itself.
+
 ## Referencing to Images
 
 Webpack can pick up images from style sheets through `@import` and `url()` assuming *css-loader* has been configured. You can also refer to your images within code. In this case, you have to import the files explicitly:
@@ -190,10 +194,6 @@ const src = require(`./avatars/${avatar}`);
 
 ...
 ```
-
-## Getting Image Dimensions
-
-Sometimes getting the only reference to an image isn't enough. [image-size-loader](https://www.npmjs.com/package/image-size-loader) emits image dimensions, type, and size in addition to the reference to the image itself.
 
 ## Loading Sprites
 
