@@ -63,6 +63,8 @@ To see the rule in action, consider the example below:
 }
 ```
 
+{pagebreak}
+
 Based on the right to left rule, the example can be split up while keeping it equivalent:
 
 ```javascript
