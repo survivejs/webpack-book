@@ -273,6 +273,8 @@ JSHint looks into specific rules to apply from `.jshintrc`. You can also define 
 
 [Danger](https://www.npmjs.com/package/danger) operates on a higher level than the tools discussed. For example, it can check that the project change log was updated before a release is pushed to the public. You can also force pull requests of your project to comply specific standards.
 
+{pagebreak}
+
 ## EditorConfig
 
 [EditorConfig](http://editorconfig.org/) allows you to maintain a consistent coding style across different IDEs and editors. Certain even come with built-in support. For others, you should install a separate plugin. Also, you need to set up a file:
