@@ -138,6 +138,8 @@ leanpub-end-insert
 
 After these changes, ESLint doesn't complain if you write `import` in the middle of the code.
 
+{pagebreak}
+
 ### Configuring Babel
 
 Given Babel doesn't support the dynamic `import` syntax out of the box, it needs [babel-plugin-syntax-dynamic-import](https://www.npmjs.com/package/babel-plugin-syntax-dynamic-import) to work. Install it first:
@@ -196,8 +198,6 @@ leanpub-end-insert
 If you open up the application (`npm start`) and click the button, you should see the new text in the button.
 
 ![Lazy loaded content](images/lazy.png)
-
-{pagebreak}
 
 If you run `npm run build`, you should see something:
 
