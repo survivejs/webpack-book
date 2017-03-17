@@ -307,8 +307,6 @@ The build result should remain the same. This time, however, webpack pulls only 
 
 Sometimes having only an app and a vendor bundle isn't enough. Especially when your application grows and gains more entry points, you could split the vendor bundle into multiples ones per each entry. `CommonsChunkPlugin` operates against all entry chunks by default. This behavior can be constrained through the `chunks` option for more granular control.
 
-{pagebreak}
-
 Consider [the example adapted from a GitHub comment](https://github.com/webpack/webpack/issues/2855#issuecomment-239606760) below where chunks are extracted from `login` and `app` entries:
 
 ```javascript
@@ -370,8 +368,6 @@ parts.extractBundles([
 
 T> The `chunks` option refers to the entry chunks of your configuration.
 
-{pagebreak}
-
 ## `CommonsChunkPlugin` `children` and `async` Flags
 
 `CommonsChunkPlugin` provides more control through `children` and `async` flags:
@@ -384,8 +380,6 @@ The image below shows the difference compared to the default. The top circles re
 ![`CommonsChunkPlugin` children and async](images/commonschunk.png)
 
 W> The `children` behavior applies only to immediate children. The algorithm is not applied recursively. [Webpack issue 3981](https://github.com/webpack/webpack/issues/3981) explains this in detail.
-
-{pagebreak}
 
 ## Splitting and Merging Chunks
 
