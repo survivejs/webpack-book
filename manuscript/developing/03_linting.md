@@ -189,11 +189,11 @@ leanpub-end-insert
 };
 ```
 
-{pagebreak}
-
 If you run the server now (`npm start`) and break the code somehow, you should see something in the browser:
 
 ![Error overlay](images/error-overlay.png)
+
+{pagebreak}
 
 ## ESLint Tips
 
