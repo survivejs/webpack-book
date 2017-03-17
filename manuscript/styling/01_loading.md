@@ -264,19 +264,12 @@ T> PostCSS supports also *postcss.config.js* based configuration. It relies on [
 
 ```javascript
 {
-  test: /\.css$/,
-  use: [
-    'style-loader',
-    'css-loader',
-    {
-      loader: 'postcss-loader',
-      options: {
-        plugins: () => ([
-          require('cssnext'),
-        ]),
-      },
-    },
-  ],
+  loader: 'postcss-loader',
+  options: {
+    plugins: () => ([
+      require('cssnext'),
+    ]),
+  },
 },
 ```
 
