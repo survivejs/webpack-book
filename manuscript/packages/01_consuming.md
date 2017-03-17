@@ -309,13 +309,13 @@ if (process.env.NODE_ENV !== 'production') {
 
 T> It can be a good idea to install [React Developer Tools](https://github.com/facebook/react-devtools) to Chrome for even more information as it allows you to inspect *props* and *state* of your application.
 
+{pagebreak}
+
 ### Disabling Asset Loading
 
 It's possible a package comes with formats you are not interested in. A good example of this is a font framework. They often provide fonts in all formats, but you need only a few if you support modern browsers.
 
 [null-loader](https://www.npmjs.com/package/null-loader) fits the use case. You can tell webpack to pipe certain assets through it.
-
-{pagebreak}
 
 You can model an `ignore` part using *null-loader*:
 
