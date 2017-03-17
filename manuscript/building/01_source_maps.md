@@ -137,6 +137,8 @@ webpackJsonp([1, 2], {
 }, ["./app/index.js"]);
 ```
 
+{pagebreak}
+
 ### `devtool: 'cheap-eval-source-map'`
 
 `cheap-eval-source-map` goes a step further and it includes base64 encoded version of the code as a data url. The result includes only line data while losing column mappings.
@@ -148,8 +150,6 @@ webpackJsonp([1, 2], {
   }
 }, ["./app/index.js"]);
 ```
-
-{pagebreak}
 
 If you decode that base64 string, you get output containing the mapping:
 
@@ -168,6 +168,8 @@ If you decode that base64 string, you get output containing the mapping:
 }
 ```
 
+{pagebreak}
+
 ### `devtool: 'cheap-module-eval-source-map'`
 
 `cheap-module-eval-source-map` is the same idea, except with higher quality and lower performance:
@@ -179,8 +181,6 @@ webpackJsonp([1, 2], {
   }
 }, ["./app/index.js"]);
 ```
-
-{pagebreak}
 
 Again, decoding the data reveals more:
 
@@ -201,6 +201,8 @@ Again, decoding the data reveals more:
 
 In this particular case, the difference between the options is minimal.
 
+{pagebreak}
+
 ### `devtool: 'eval-source-map'`
 
 `eval-source-map` is the highest quality option of the inline options. It's also the slowest one as it emits the most data:
@@ -212,8 +214,6 @@ webpackJsonp([1, 2], {
   }
 }, ["./app/index.js"]);
 ```
-
-{pagebreak}
 
 This time around there's more mapping data available for the browser:
 
@@ -235,6 +235,8 @@ This time around there's more mapping data available for the browser:
   "version": 3
 }
 ```
+
+{pagebreak}
 
 ## Separate Source Map Types
 
