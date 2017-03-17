@@ -57,7 +57,7 @@ leanpub-end-insert
 ]);
 ```
 
-After building (`npm run build`) and deploying (`npm run deploy`), you should have your application from the `build/` directory hosted through GitHub Pages. You should find it at `https://<name>.github.io/<project>` (`github.com/<name>/<project>` at GitHub) assuming everything went fine.
+After building (`npm run build`) and deploying (`npm run deploy`), you should have your application from the `build/` directory hosted through GitHub Pages. You should find it at `https://<name>.github.io/<project>` assuming everything went fine.
 
 T> If you need a more elaborate setup, use the Node API that *gh-pages* provides. The default command line tool it provides is enough for basic purposes, though.
 
