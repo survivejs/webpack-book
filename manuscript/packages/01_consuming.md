@@ -179,6 +179,8 @@ externals: {
 },
 ```
 
+{pagebreak}
+
 You still have to point to a CDN and ideally provide a local fallback so there is something to load if the CDN does not work for the client:
 
 ```html
