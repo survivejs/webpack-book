@@ -138,9 +138,7 @@ To add linting to the project, adjust the configuration as follows:
 
 const developmentConfig = () => {
   const config = {
-    devServer: {
-      ...
-    },
+    ...
 leanpub-start-insert
     module: {
       rules: [
