@@ -92,7 +92,9 @@ If you don't know `publicPath` beforehand, it's possible to resolve it based on 
 
 1. Set `__webpack_public_path__ = window.myDynamicPublicPath;` in the application entry point and resolve it as you see fit.
 2. Remove `output.publicPath` setting from your webpack configuration.
-3. If you are using ESLint, set it to ignore the global:
+3. If you are using ESLint, set it to ignore the global.
+
+{pagebreak}
 
 **.eslintrc.js**
 
