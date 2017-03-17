@@ -67,6 +67,8 @@ Executing it should result in an `Error: Cannot find module` failure as the actu
 
 T> If you want an interactive development environment, consider setting up [nodemon](https://www.npmjs.com/package/nodemon) against the build. Webpack's own watcher won't work in this case.
 
+{pagebreak}
+
 ## Implementing a Basic Plugin
 
 The simplest plugin should do two things: capture options and provide `apply` method:
