@@ -335,8 +335,6 @@ exports.ignore = ({ test, include, exclude }) => ({
 });
 ```
 
-{pagebreak}
-
 To ignore all Font Awesome SVGs, you could have a definition as below:
 
 **webpack.config.js**
@@ -354,6 +352,8 @@ leanpub-end-insert
 ```
 
 As a result you should get `// empty (null-loader)` for the matched SVG files.
+
+{pagebreak}
 
 ## Getting Insights on Packages
 
