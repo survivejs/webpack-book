@@ -166,7 +166,7 @@ T> Attaching the linting process to Git through a prepush hook allows you to cat
 
 ### Enabling Error Overlay
 
-To make the development flow nicer, WDS provides an error overlay. The default setting, `overlay: true` captures only errors. Since even warnings can be beneficial, adjust the configuration as follows:
+WDS provides an overlay for capturing warnings and errors. Adjust the configuration as follows:
 
 **webpack.config.js**
 
@@ -176,6 +176,7 @@ const developmentConfig = () => {
     devServer: {
       ...
 leanpub-start-insert
+      // overlay: true captures only errors
       overlay: {
         errors: true,
         warnings: true,
