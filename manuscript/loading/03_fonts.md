@@ -12,7 +12,9 @@ T> [canifont](https://www.npmjs.com/package/canifont) helps you to figure out wh
 
 If you exclude Opera Mini, all browsers support the *.woff* format. If you go only with modern browsers, its newer version, *.woff2*, can be enough.
 
-If you go with one format, you can use a similar setup as for images and rely on both *file-loader* and *url-loader* while using the limit option:
+{pagebreak}
+
+Going with one format you can use a similar setup as for images and rely on both *file-loader* and *url-loader* while using the limit option:
 
 ```javascript
 {
@@ -24,7 +26,7 @@ If you go with one format, you can use a similar setup as for images and rely on
 },
 ```
 
-A more elaborate approach to achieve a similar result that includes *.woff2* and more complicated patterns, would be to end up with code as below:
+A more elaborate approach to achieve a similar result that includes *.woff2* and others, would be to end up with code as below:
 
 ```javascript
 {
@@ -44,6 +46,8 @@ A more elaborate approach to achieve a similar result that includes *.woff2* and
   },
 },
 ```
+
+{pagebreak}
 
 ## Supporting Multiple Formats
 
