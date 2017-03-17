@@ -166,7 +166,7 @@ T> Attaching the linting process to Git through a prepush hook allows you to cat
 
 ### Enabling Error Overlay
 
-WDS provides an overlay for capturing warnings and errors. Adjust the configuration as follows:
+WDS provides an overlay for capturing warnings and errors:
 
 **webpack.config.js**
 
