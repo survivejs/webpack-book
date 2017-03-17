@@ -158,8 +158,6 @@ Add a helper script to make it convenient to run:
 
 T> If you want to understand what `--hot` does better, see the *Configuring Hot Module Replacement* appendix.
 
-{pagebreak}
-
 If you execute the server now and navigate to `http://localhost:8080/`, you should see the test:
 
 ![Mocha in browser](images/mocha-browser.png)
