@@ -165,8 +165,7 @@ In the setup above, the WDS-related entries were injected automatically. Assumin
 ```javascript
 entry: {
   hmr: [
-    // Include the client code.
-    // Note how the host/port setting maps here.
+    // Include the client code. Note host/post.
     'webpack-dev-server/client?http://localhost:8080',
 
     // Hot reload only when compiled successfully
@@ -175,19 +174,16 @@ entry: {
     // Alternative with refresh on failure
     // 'webpack/hot/dev-server',
   ],
-  // The rest of the entries
   ...
 },
 ```
 
 ## Conclusion
 
-HMR is one of those aspects of webpack that makes it attractive for developers. Even though other tools have similar functionality, webpack has taken its implementation far.
+HMR is one of those aspects of webpack that makes it attractive for developers and webpack has taken its implementation far.
 
 To recap:
 
 * To work, HMR requires both client and server side support. For this purpose, webpack-dev-server provides both. Often you have to implement the client side interface although loaders like *style-loader* implement it for you.
 * It's a good idea to use the `NamedModulesPlugin` during development as that gives you better debug information.
 * The default HMR setup can be problematic on certain systems. For this reason, more resource intensive polling is an option.
-
-T> The *Hot Module Replacement with React* appendix discusses HMR specifics related to React.
