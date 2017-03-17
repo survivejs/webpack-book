@@ -224,6 +224,8 @@ The great thing about ESLint is that you can shape it to your purposes. The comm
 * Most IDEs and editors have good linter integration so you can spot issues as you develop.
 * To learn about ESLint customizations options and how to write an ESLint plugin, check out the *Customizing ESLint* appendix.
 
+{pagebreak}
+
 ### Configuring ESLint Further
 
 Since webpack 2, the configuration schema of webpack has become stricter, and it doesn't allow arbitrary fields at configuration root level anymore. To overcome this issue and to access all functionality of the *eslint-loader*, you have to use `LoaderOptionsPlugin` as below:
@@ -254,6 +256,8 @@ Since webpack 2, the configuration schema of webpack has become stricter, and it
 ```
 
 There are more options, and [eslint-loader](https://www.npmjs.com/package/eslint-loader) documentation covers those in detail.
+
+{pagebreak}
 
 ## Webpack and JSHint
 
