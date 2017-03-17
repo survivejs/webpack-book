@@ -354,8 +354,6 @@ If you want more control over source map generation, it's possible to use the `S
 
 Both plugins can allow more granular control over which portions of the code you want to generate source maps for, while also having strict control over the result with `SourceMapDevToolPlugin`. Using either plugin allows you to skip the `devtool` option altogether.
 
-{pagebreak}
-
 You could model a configuration part using `SourceMapDevToolPlugin` (adapted from [the official documentation](https://webpack.js.org/plugins/source-map-dev-tool-plugin/)):
 
 ```javascript
@@ -413,8 +411,6 @@ Given webpack matches only `.js` and `.css` files by default for source maps, yo
 ## Using Dependency Source Maps
 
 Assuming you are using a package that uses inline source maps in its distribution, you can use [source-map-loader](https://www.npmjs.com/package/source-map-loader) to make webpack aware of them. Without setting it up against the package, you get minified debug output. Often you can skip this step as it's a special case.
-
-{pagebreak}
 
 ## Source Maps for Styling
 
