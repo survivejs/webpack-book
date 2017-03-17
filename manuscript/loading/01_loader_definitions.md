@@ -240,7 +240,9 @@ The problem with this approach is that it couples your source with webpack. But 
 * `include` - The same.
 * `exclude` - The same, except the output is the inverse of `include`.
 
-There are a couple of boolean based fields that can be used to constrain the result further:
+{pagebreak}
+
+Boolean based fields can be used to constrain the result further:
 
 * `not` - Do **not** match against a condition like above.
 * `and` - Match against an array of conditions. All must match.
@@ -253,7 +255,7 @@ Webpack can also match based on the resource path and related information:
 * `resourcePath: /inline/` - Match against a resource path without its query. Example match: `/path/foo.inline.png`.
 * `resourceQuery: /inline/` - Match against a resource based on its query. Example match: `/path/foo.png?inline`.
 
-The fields above can be combined to apply different loaders based on the context with the `oneOf` field. To handle images differently based on their query, you could apply a rule:
+The fields above can be combined to apply different loaders based on the context with the `oneOf` field:
 
 ```javascript
 {
