@@ -156,6 +156,8 @@ T> `webpack.EnvironmentPlugin(['NODE_ENV'])` is a shortcut that allows you to re
 
 The techniques discussed in this chapter can be used to choose entire modules depending on the environment. As seen above, `DefinePlugin` based splitting allows you to choose which branch of code to use and which to discard. This idea can be used to implement branching on module level.
 
+{pagebreak}
+
 Consider the file structure below:
 
 ```bash
