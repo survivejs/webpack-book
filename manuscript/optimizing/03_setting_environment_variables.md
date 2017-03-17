@@ -154,7 +154,9 @@ T> `webpack.EnvironmentPlugin(['NODE_ENV'])` is a shortcut that allows you to re
 
 ## Choosing Which Module to Use Based on the Environment
 
-The techniques discussed in this chapter can be used to choose entire modules depending on the environment. As seen above, `DefinePlugin` based splitting allows you to choose which branch of code to use and which to discard. This idea can be used to implement branching on module level. Consider the file structure below:
+The techniques discussed in this chapter can be used to choose entire modules depending on the environment. As seen above, `DefinePlugin` based splitting allows you to choose which branch of code to use and which to discard. This idea can be used to implement branching on module level.
+
+Consider the file structure below:
 
 ```bash
 .
@@ -177,6 +179,8 @@ if(process.env.NODE_ENV === 'production') {
 Webpack can pick the right code based on the `DefinePlugin` declaration and this code. You have to use CommonJS module definition style here as ES6 `import`s don't allow dynamic behavior by design.
 
 T> A related technique, **aliasing**, is discussed in the *Consuming Packages* chapter. You could alias to development or production particular file depending on the environment. The problem is that it ties your setup to webpack in a tighter way than the solution above.
+
+{pagebreak}
 
 ## Webpack Optimization Plugins
 
