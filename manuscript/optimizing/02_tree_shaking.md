@@ -73,6 +73,8 @@ W> To get most out of tree shaking with external packages, you have to use [babe
 
 Tree shaking is a potentially powerful technique. For the source to benefit from tree shaking, npm packages have to be implemented using the ES6 module syntax, and they have to expose the ES6 version through *package.json* `module` field tools like webpack can pick up.
 
+{pagebreak}
+
 To recap:
 
 * **Tree shaking** drops unused pieces of code based on static code analysis. Webpack performs this process for you as it traverses the dependency graph.
