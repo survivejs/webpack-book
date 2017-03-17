@@ -302,6 +302,8 @@ indent_style = space
 indent_size = 2
 ```
 
+{pagebreak}
+
 ## Conclusion
 
 Linting is one of those techniques that yields benefits over the long term. You can fix possible problems before they become actual issues.
