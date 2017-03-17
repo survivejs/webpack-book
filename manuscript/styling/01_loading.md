@@ -90,8 +90,6 @@ You continue from here in the next chapter. Before that, though, you'll learn ab
 
 ![Hello cornsilk world](images/hello_02.png)
 
-{pagebreak}
-
 ## Understanding CSS Scoping and CSS Modules
 
 Perhaps the biggest challenge of CSS is that all rules exist within **global scope**. Due to this reason, specific conventions that work around this feature have been developed. The [CSS Modules](https://github.com/css-modules/css-modules) specification solves the problem by introducing **local scope** per `import`. As it happens, this makes CSS more bearable to use as you don't have to worry about namespace collisions anymore.
@@ -108,6 +106,8 @@ Webpack's *css-loader* supports CSS Modules. You can enable it through a loader 
 ```
 
 After this change, your class definitions remain local to the files. In case you want global class definitions, you need to wrap them within `:global(.redButton) { ... }` kind of declarations.
+
+{pagebreak}
 
 In this case, the `import` statement gives you the local classes you can then bind to elements. Assume you had CSS as below:
 
