@@ -305,8 +305,6 @@ If you build the project (`npm run build:lib`), it should generate a *./dist-mod
 
 When distributing the library, you should point to that *./dist-modules* directory from *package.json* `module` field.
 
-{pagebreak}
-
 ## Conclusion
 
 Webpack supports targets beyond the web. You can bundle desktop applications, Node servers, and web workers through it. npm package authors can be find it handy too.
