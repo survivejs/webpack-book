@@ -152,7 +152,7 @@ Instead of a string, you should receive an object `{ target: 'production' }` at 
 
 W> Webpack 2 changed argument behavior compared to webpack 1. You are not allowed to pass custom parameters through the CLI anymore. Instead, it's better to go through the `--env` mechanism if you need to do this.
 
-## Configuring WDS through Webpack Configuration
+## Configuring WDS Through Webpack Configuration
 
 To customize WDS functionality it's possible to define a `devServer` field at webpack configuration. You can set most of these options through the CLI as well, but managing them through webpack is a good approach.
 
