@@ -1,6 +1,6 @@
 # Composing Configuration
 
-Even though not a lot has been done with webpack yet, the amount of configuration is starting to feel substantial. Also, you have to be careful about the way you compose it as you have separate production and development targets in the project now. The situation can only get worse as you want to add more functionality to the project.
+Even though not a lot has been done with webpack yet, the amount of configuration is starting to feel substantial. Now you have to be careful about the way you compose it as you have separate production and development targets in the project. The situation can only get worse as you want to add more functionality to the project.
 
 Using a single monolithic configuration file impacts comprehension and removes any potential for reusablity. As the needs of your project grow, you have to figure out the means to manage webpack configuration more effectively.
 
@@ -12,9 +12,9 @@ You can manage webpack configuration in the following ways:
 * Push configuration to a library, which you then consume. Example: [HenrikJoreteg/hjs-webpack](https://www.npmjs.com/package/hjs-webpack).
 * Maintain all configuration within a single file and branch there and by relying on the `--env` parameter.
 
-These approaches can be combined to create a higher level configuration that's then composed of smaller parts. Those parts could then be added to a library which you then use through npm making it possible to consume the same configuration across multiple projects.
+These approaches can be combined to create a higher level configuration that is then composed of smaller parts. Those parts could then be added to a library which you then use through npm making it possible to consume the same configuration across multiple projects.
 
-This approach is used to discuss different techniques. *webpack.config.js* maintains higher level configuration while *webpack.parts.js* contains the building blocks.
+{pagebreak}
 
 ## Composing Configuration by Merging
 
@@ -34,7 +34,9 @@ The example below shows the behavior in detail:
 { a: [ 1, 2 ], b: 10, c: 20, d: 421 }
 ```
 
-*webpack-merge* provides even more control through strategies that enable you to control its behavior per field. Strategies allow you to force it to append, prepend, or replace content. Even though *webpack-merge* was designed for this book, it has proven to be an invaluable tool beyond it. You can consider it as a learning tool and pick it up in your work if you find it handy.
+*webpack-merge* provides even more control through strategies that enable you to control its behavior per field. Strategies allow you to force it to append, prepend, or replace content.
+
+Even though *webpack-merge* was designed for this book, it has proven to be an invaluable tool beyond it. You can consider it as a learning tool and pick it up in your work if you find it handy.
 
 T> [webpack-chain](https://www.npmjs.com/package/webpack-chain) provides a fluent API for configuring webpack allowing you to avoid configuration shape-related problems while enabling composition.
 
@@ -48,7 +50,7 @@ To get started, add *webpack-merge* to the project:
 npm install webpack-merge --save-dev
 ```
 
-Next, you need to refactor *webpack.config.js* into parts you can consume from there and then rewrite the file to use the parts. Here are the parts with small function-based interfaces extracted from the existing code:
+To give a degree of abstraction, you can define *webpack.config.js* for higher level configuration and *webpack.parts.js* for configuration parts to consume. Here are the parts with small function-based interfaces extracted from the existing code:
 
 **webpack.parts.js**
 
@@ -85,7 +87,7 @@ exports.lintJavaScript = ({ include, exclude, options }) => ({
 
 T> The same `stats` idea works for production configuration as well. See [the official documentation](https://webpack.js.org/configuration/stats/) for all the available options.
 
-To benefit from these configuration parts, you need to connect them with *webpack.config.js* as in the complete code example below:
+To connect these configuration parts, set up *webpack.config.js* as in the code example below:
 
 **webpack.config.js**
 
