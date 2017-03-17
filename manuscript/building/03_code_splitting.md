@@ -20,13 +20,13 @@ The goal is to end up with a split point that gets loaded on demand. There can b
 
 The [dynamic `import` syntax](https://github.com/tc39/proposal-dynamic-import) isn't in the official language specification yet. To use it, minor tweaks are needed especially at ESLint and Babel.
 
+{pagebreak}
+
 Dynamic imports are defined as `Promise`s:
 
 ```javascript
 import('./module').then((module) => {...}).catch((error) => {...});
 ```
-
-{pagebreak}
 
 The interface allows composition, and you could load multiple resources in parallel:
 
@@ -47,6 +47,8 @@ This creates separate chunks to a request. If you wanted only one, you would hav
 T> Webpack provided support for `System.import` in the early versions of webpack 2 and it still does. The functionality has been deprecated and gets removed in webpack 3. Until then, you can use the functionality interchangeably.
 
 W> The syntax works only with JavaScript after configured the right way. If you use another environment, you have to use alternatives covered in the following sections.
+
+{pagebreak}
 
 ### `require.ensure`
 
