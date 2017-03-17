@@ -82,6 +82,8 @@ Entrypoints:
 
 If minification works, the warning should disappear. That's the next challenge.
 
+{pagebreak}
+
 ## Minifying JavaScript
 
 The point of **minification** is to convert the code into a smaller form. Safe **transformations** do this without losing any meaning by rewriting code. Good examples of this include renaming variables or even removing entire blocks of code based on the fact that they are unreachable (`if (false)`).
@@ -94,13 +96,13 @@ Minification in webpack can be enabled through `webpack -p` (same as `--optimize
 
 [babili](https://www.npmjs.com/package/babili) is a JavaScript minifier maintained by the Babel team and it provides support for ES6 and newer features. [babili-webpack-plugin](https://www.npmjs.com/package/babili-webpack-plugin) makes it possible to use it through webpack.
 
-{pagebreak}
-
 To get started, include the plugin to the project:
 
 ```bash
 npm install babili-webpack-plugin --save-dev
 ```
+
+{pagebreak}
 
 To attach it to the configuration, define a part for it first:
 
