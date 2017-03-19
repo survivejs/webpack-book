@@ -287,6 +287,8 @@ In addition to plugins like these, it can be worth your while to set up linting 
 
 ## Conclusion
 
+WDS complements webpack and makes it more friendly by developers by providing development oriented functionality.
+
 To recap:
 
 * Webpack's `watch` mode is the first step towards a better development experience. You can have webpack compile bundles as you edit your source.
