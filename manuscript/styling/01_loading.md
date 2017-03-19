@@ -317,10 +317,6 @@ To process the Sass file, you would have to write configuration:
 
 If you added more loaders, such as *postcss-loader*, to the chain, you would have to adjust the `importLoaders` option accordingly.
 
-## Converting CSS to Strings
-
-Especially with Angular 2, it can be convenient if you can get CSS in a string format that can be pushed to components. [css-to-string-loader](https://www.npmjs.com/package/css-to-string-loader) achieves exactly this.
-
 {pagebreak}
 
 ### Loading from *node_modules* Directory
@@ -338,6 +334,10 @@ W> If you are using *postcss-loader*, you can skip using `~` as discussed in [po
 ## Enabling Source Maps
 
 If you want to enable source maps for CSS, you should enable `sourceMap` option for *css-loader* and set `output.publicPath` to an absolute url pointing to your development server. If you have multiple loaders in a chain, you have to enable source maps separately for each. *css-loader* [issue 29](https://github.com/webpack/css-loader/issues/29) discusses this problem further.
+
+## Converting CSS to Strings
+
+Especially with Angular 2, it can be convenient if you can get CSS in a string format that can be pushed to components. [css-to-string-loader](https://www.npmjs.com/package/css-to-string-loader) achieves exactly this.
 
 {pagebreak}
 
