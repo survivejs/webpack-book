@@ -317,6 +317,10 @@ To process the Sass file, you would have to write configuration:
 
 If you added more loaders, such as *postcss-loader*, to the chain, you would have to adjust the `importLoaders` option accordingly.
 
+## Converting CSS to Strings
+
+Especially with Angular 2, it can be convenient if you can get CSS in a string format that can be pushed to components. [css-to-string-loader](https://www.npmjs.com/package/css-to-string-loader) achieves exactly this.
+
 {pagebreak}
 
 ### Loading from *node_modules* Directory
@@ -344,10 +348,6 @@ There are a couple of ways to use [Bootstrap](https://getbootstrap.com/) through
 The [Sass version](https://www.npmjs.com/package/bootstrap-sass) is another option. In this case, you should set `precision` option of *sass-loader* to at least 8. This is [a known issue](https://www.npmjs.com/package/bootstrap-sass#sass-number-precision) explained at *bootstrap-sass*.
 
 The third option is to go through [bootstrap-loader](https://www.npmjs.com/package/bootstrap-loader). It does a lot more but allows customization.
-
-## Converting CSS to Strings
-
-Especially with Angular 2, it can be convenient if you can get CSS in a string format that can be pushed to components. [css-to-string-loader](https://www.npmjs.com/package/css-to-string-loader) achieves exactly this.
 
 ## Conclusion
 
