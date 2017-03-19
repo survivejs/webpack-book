@@ -161,6 +161,8 @@ Enable additional functionality as below:
 **webpack.config.js**
 
 ```javascript
+...
+
 leanpub-start-insert
 const productionConfig = () => commonConfig;
 
