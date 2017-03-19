@@ -18,6 +18,8 @@ T> A dependency graph describes is a directed graph that describes how nodes rel
 
 ## Webpack's Execution Process
 
+![Webpack's execution process](images/webpack-process.png)
+
 Webpack begins its work from **entries**. Often these are JavaScript modules where webpack begins its traversal process. During this process webpack evaluates the matches against **loader** configuration that tells how to transform the files.
 
 ### Resolution Process
@@ -43,10 +45,6 @@ Without `ExtractTextPlugin`, CSS would end up in the resulting JavaScript. This 
 After every module has been evaluated, webpack writes **output**. The output includes a bootstrap script with a manifest that describes how to begin executing the result in the browser. The manifest can be extracted to a file of its own as discussed later in the book. The output differs based on the build target you are using and targeting web is not the only option.
 
 That’s not all there is to the bundling process. For example, you can define specific **split points** where webpack generates separate bundles that are loaded based on application logic. The idea is discussed in the *Code Splitting* chapter.
-
-The image below recaps the main concepts discussed above and shows how they relate to each other:
-
-![Webpack process](images/webpack-process.png)
 
 ## Webpack Is Configuration Driven
 
