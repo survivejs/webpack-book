@@ -261,6 +261,8 @@ JSHint looks into specific rules to apply from `.jshintrc`. You can also define 
 
 [Prettier](https://www.npmjs.com/package/prettier) goes one step further and can format your code automatically according to your coding style. If you want to use Prettier with ESLint, you should use [eslint-config-prettier](https://www.npmjs.com/package/eslint-config-prettier) to disable ESLint rules that conflict with Prettier. Be warned that Prettier is highly opinionated in how it thinks code should look and offers few formatting options.
 
+{pagebreak}
+
 ## Danger
 
 [Danger](https://www.npmjs.com/package/danger) operates on a higher level than the tools discussed. For example, it can check that the project change log was updated before a release is pushed to the public. You can also force pull requests of your project to comply specific standards.
