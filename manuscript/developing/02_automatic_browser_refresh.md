@@ -257,6 +257,8 @@ It's possible WDS [will support the functionality](https://github.com/webpack/we
 
 You could have passed the WDS options through a terminal. It's clearer to manage the options within webpack configuration as that helps to keep *package.json* nice and tidy. It's also easier to understand what's going on as you don't need to dig out the answers from the webpack source.
 
+{pagebreak}
+
 Alternately, you could have set up an Express server and use a middleware. There are a couple of options:
 
 * [The official WDS middleware](https://webpack.js.org/guides/development/#webpack-dev-middleware)
