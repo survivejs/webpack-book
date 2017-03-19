@@ -55,9 +55,9 @@ leanpub-end-insert
 
 {pagebreak}
 
-The added configuration means that files ending with `.css` should invoke given loaders. `test` matches against a JavaScript-style regular expression. The loaders are evaluated from right to left.
+The added configuration means that files ending with `.css` should invoke given loaders. `test` matches against a JavaScript-style regular expression.
 
-`loaders: ['style-loader', 'css-loader']` can be read as `styleLoader(cssLoader(input))`. Loaders are transformations that are applied to source files, and return the new source and can be chained together like a pipe in Unix.
+Loaders are transformations that are applied to source files, and return the new source and can be chained together like a pipe in Unix. They evaluated from right to left. This means that `loaders: ['style-loader', 'css-loader']` can be read as `styleLoader(cssLoader(input))`.
 
 T> If you want to disable *css-loader* `url` parsing, set `url: false`. The same idea applies to `@import` as to disable parsing imports you can set `import: false` through the loader options.
 
