@@ -161,6 +161,8 @@ You can always iterate on the interfaces and find better ones. By passing in a c
 
 T> If you have to support both webpack 1 and 2, you can perform branching based on version using `require('webpack/package.json').version` to detect it. After that, you have to set specific branches for each and merge.
 
+{pagebreak}
+
 ## Configuration Layouts
 
 In the book project, you push all of the configuration into two files: *webpack.config.js* and *webpack.parts*. The former contains higher level configuration while the latter lower level and isolates you from webpack specifics. The chosen approach allows more layouts, and you can evolve it further.
@@ -179,8 +181,6 @@ If you split the configuration per target, you could end up with a file structur
 ```
 
 In this case, you would point to the targets through webpack `--config` parameter and `merge` common configuration through `module.exports = merge(common, config);`.
-
-{pagebreak}
 
 ### Split Parts per Purpose
 
