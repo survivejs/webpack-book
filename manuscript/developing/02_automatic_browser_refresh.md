@@ -123,6 +123,8 @@ module.exports = (env) => {
 leanpub-end-insert
 ```
 
+{pagebreak}
+
 If you run the npm commands now, you should see a different terminal output depending on which one you trigger:
 
 ```bash
