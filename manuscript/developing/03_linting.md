@@ -46,7 +46,11 @@ To get started, install ESLint as a development dependency:
 npm install eslint --save-dev
 ```
 
-Next, you have to write configuration so you can run ESLint smoothly through npm. The `lint` namespace can be used to signify it's a linting related task. Caching should be enabled to improve performance on subsequent runs. Add the following to lint the application files and configuration:
+Next, you have to write configuration so you can run ESLint smoothly through npm. The `lint` namespace can be used to signify it's a linting related task. Caching should be enabled to improve performance on subsequent runs.
+
+{pagebreak}
+
+Add the following to lint the application files and configuration:
 
 **package.json**
 
