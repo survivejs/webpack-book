@@ -56,6 +56,8 @@ After every module has been evaluated, webpack writes **output**. The output inc
 
 That’s not all there is to the bundling process. For example, you can define specific **split points** where webpack generates separate bundles that are loaded based on application logic. The idea is discussed in the *Code Splitting* chapter.
 
+{pagebreak}
+
 ## Webpack Is Configuration Driven
 
 At its core webpack relies on configuration. Here is a sample adapted from [the official webpack tutorial](https://webpack.js.org/get-started/) that shows how the main ideas go together:
