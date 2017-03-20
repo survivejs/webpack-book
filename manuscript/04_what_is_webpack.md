@@ -8,9 +8,9 @@ T> If you want to understand build tools and their history in a better detail, c
 
 ## Webpack Relies on Modules
 
-If you think about the smallest project you could bundle with webpack, you’ll end up with input and output. In webpack terms, the bundling process begins from user defined **entries**. Entries themselves are **modules** and can point to other modules through **imports**.
+The smallest project you could bundle with webpack would consist of **input** and **output**. The bundling process begins from user defined **entries**. Entries themselves are **modules** and can point to other modules through **imports**.
 
-When you bundle a project through webpack, it traverses through imports. As a result, webpack constructs a **dependency graph** of the project and then generates the **output** based on the configuration. It writes everything into a single **bundle** by default, but it can be configured to output more.
+When you bundle a project through webpack, it traverses through imports, constructing a **dependency graph** of the project and then generating the **output** based on the configuration. It writes everything into a single **bundle** by default, but it can be configured to output more.
 
 Webpack supports ES6, CommonJS, and AMD module formats out of the box. The loader mechanism works for CSS as well, and `@import` and `url()` are supported through *css-loader*. You can also find plugins for specific tasks, such as minification, internationalization, HMR, and so on.
 
@@ -32,7 +32,7 @@ That’s not all there is to the bundling process. For example, you can define s
 
 Although loaders can do a lot, they don’t provide enough power for more advanced tasks by themselves. **Plugins** allow you to intercept **runtime events** provided by webpack. A good example is bundle extraction performed by `ExtractTextPlugin` which, working in tandem with a loader, extracts CSS files out of the bundle and into a file of its own.
 
-Without this step, CSS would end up in the resulting JavaScript. This is a absolutely important part of Webpack to understand. The fact that a module declares a dependency on another module doesn't mean that this dependency is directly included into the module when it's bundled. The *Separating CSS* chapter discusses this idea in detail.
+Without this step, CSS would end up in the resulting JavaScript. This is a very important part of Webpack to understand. The fact that a module declares a dependency on another module doesn't mean that this dependency is directly included into the module when it's bundled. The *Separating CSS* chapter discusses this idea in detail.
 
 The image below recaps the main concepts discussed above and shows how they relate to each other:
 
@@ -88,7 +88,7 @@ module.exports = {
 };
 ```
 
-Given the configuration is written in JavaScript, it’s quite malleable. The model makes webpack feel a bit opaque at times, as it can be difficult to understand what it’s doing especially in more complicated cases. Covering this is one of the main reasons why this book exists.
+Webpack's configuration model can feel a bit opaque at times. The configuration file can appear monolithic and it can be difficult to understand what it’s doing, especially in more complicated cases. Given the configuration is written in JavaScript, it’s quite malleable, supporting a number of approaches to organising and modularising the configuration itself. Covering this complexity and offering alternatives is one of the main reasons why this book exists.
 
 T> To understand webpack on source code level, check out [the artsy webpack tour](https://github.com/TheLarkInn/artsy-webpack-tour).
 
@@ -120,7 +120,7 @@ Plugins operate on a higher level. Webpack itself has been implemented using a c
 
 Webpack comes with a significant learning curve. However it’s a tool worth learning, given it saves so much time and effort over the long term. To get a better idea how it compares to other tools, check out [the official comparison](https://webpack.js.org/get-started/why-webpack/#comparison).
 
-Webpack won’t solve everything. It does solve the problem of bundling, however. That’s one less worry during development. Using *package.json* and webpack alone can take you far.
+Webpack won’t solve everything, however it ably solves the problem of bundling. That’s one less worry during development. Using *package.json* and webpack alone can take you far.
 
 To summarize:
 
