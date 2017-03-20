@@ -1,8 +1,8 @@
 # Loading Styles
 
-Webpack doesn't handle styling out of the box. Instead, you must configure loaders and plugins to get the setup you need.
+Webpack doesn't handle styling out of the box, but loaders and plugins to get the setup you need.
 
-In this chapter, you set up CSS with the project and see how it works out with automatic browser refreshing. The neat thing is that in this case, webpack doesn't have to force a full refresh. Instead, it can do something smarter.
+In this chapter, you set up CSS with the project and see how it works out with automatic browser refreshing. When you make a change to the CSS webpack doesn't have to force a full refresh. Instead, it can do something smarter.
 
 ## Loading CSS
 
@@ -55,7 +55,7 @@ leanpub-end-insert
 
 {pagebreak}
 
-The added configuration means that files ending with `.css` should invoke given loaders. `test` matches against a JavaScript-style regular expression.
+The added configuration means that files ending with `.css` should invoke the given loaders. `test` matches against a JavaScript-style regular expression.
 
 Loaders are transformations that are applied to source files, and return the new source and can be chained together like a pipe in Unix. They evaluated from right to left. This means that `loaders: ['style-loader', 'css-loader']` can be read as `styleLoader(cssLoader(input))`.
 
@@ -92,7 +92,7 @@ You continue from here in the next chapter. Before that, though, you'll learn ab
 
 ## Understanding CSS Scoping and CSS Modules
 
-Perhaps the biggest challenge of CSS is that all rules exist within **global scope**. Due to this reason, specific conventions that work around this feature have been developed. The [CSS Modules](https://github.com/css-modules/css-modules) specification solves the problem by introducing **local scope** per `import`. As it happens, this makes CSS more bearable to use as you don't have to worry about namespace collisions anymore.
+Perhaps the biggest challenge of CSS is that all rules exist within **global scope**, meaning that two classes with the same name will collide. This is a limitation inherent to the implementation of CSS, but projects have found ways of working around this issue. [CSS Modules](https://github.com/css-modules/css-modules) introduces **local scope** for every module by making every class declared within unique by including a hash in their name that is globally unique to the module.
 
 Webpack's *css-loader* supports CSS Modules. You can enable it through a loader definition:
 
@@ -138,13 +138,13 @@ element.className = styles.redButton;
 
 `body` remains as a global declaration still. It's that `redButton` that makes the difference. You can build component-specific styles that don't leak elsewhere this way.
 
-CSS Modules provides also features like composition to make it even easier to work with your styles. You can also combine it with other loaders as long as you apply them before *css-loader*.
+CSS Modules also provides features like composition to make it even easier to work with your styles. You can also combine it with other loaders as long as you apply them before *css-loader*.
 
 T> CSS Modules behavior can be modified [as discussed in the official documentation](https://www.npmjs.com/package/css-loader#local-scope). You have control over the names it generates for instance.
 
 T> [eslint-plugin-css-modules](https://www.npmjs.com/package/eslint-plugin-css-modules) is handy for tracking CSS Modules related problems.
 
-W> If you are using CSS Modules in your project, you should process normal CSS through a separate loader definition without the `modules` option of *css-loader* enabled. Otherwise it rewrites the class names and Font Awesome does not work as you expect.
+W> If you are using CSS Modules in your project, you should process normal CSS through a separate loader definition without the `modules` option of *css-loader* enabled. Otherwise all classes will be scoped to their module. In the case of third party libraries this is almost certainly not what you want. This can be implemented in a variety of ways. You could use a different loader based on the location of the files (for example you could use a loader that doesn't support modules for all css modules located in `node_modules`) Alternatively you could give css files intended to treated as modules a different extension (for example `.mcss`) and use the extension to differentiate between your loaders.
 
 ## Loading Less
 
