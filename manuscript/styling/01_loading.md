@@ -1,8 +1,6 @@
 # Loading Styles
 
-Webpack doesn't handle styling out of the box, but loaders and plugins to get the setup you need.
-
-In this chapter, you set up CSS with the project and see how it works out with automatic browser refreshing. When you make a change to the CSS webpack doesn't have to force a full refresh. Instead, it can do something smarter.
+Webpack doesn't handle styling out of the box and you will have to use loaders and plugins to allow loading style files. In this chapter, you will set up CSS with the project and see how it works out with automatic browser refreshing. When you make a change to the CSS webpack doesn't have to force a full refresh. Instead, it can patch the CSS without one.
 
 ## Loading CSS
 
@@ -92,7 +90,7 @@ You continue from here in the next chapter. Before that, though, you'll learn ab
 
 ## Understanding CSS Scoping and CSS Modules
 
-Perhaps the biggest challenge of CSS is that all rules exist within **global scope**, meaning that two classes with the same name will collide. This is a limitation inherent to the implementation of CSS, but projects have found ways of working around this issue. [CSS Modules](https://github.com/css-modules/css-modules) introduces **local scope** for every module by making every class declared within unique by including a hash in their name that is globally unique to the module.
+Perhaps the biggest challenge of CSS is that all rules exist within **global scope**, meaning that two classes with the same name will collide. The limitation is inherent to the CSS specification but projects have workarounds for the issue. [CSS Modules](https://github.com/css-modules/css-modules) introduces **local scope** for every module by making every class declared within unique by including a hash in their name that is globally unique to the module.
 
 Webpack's *css-loader* supports CSS Modules. You can enable it through a loader definition:
 
@@ -138,13 +136,17 @@ element.className = styles.redButton;
 
 `body` remains as a global declaration still. It's that `redButton` that makes the difference. You can build component-specific styles that don't leak elsewhere this way.
 
-CSS Modules also provides features like composition to make it even easier to work with your styles. You can also combine it with other loaders as long as you apply them before *css-loader*.
+CSS Modules provides additional features like composition to make it easier to work with your styles. You can also combine it with other loaders as long as you apply them before *css-loader*.
 
 T> CSS Modules behavior can be modified [as discussed in the official documentation](https://www.npmjs.com/package/css-loader#local-scope). You have control over the names it generates for instance.
 
 T> [eslint-plugin-css-modules](https://www.npmjs.com/package/eslint-plugin-css-modules) is handy for tracking CSS Modules related problems.
 
-W> If you are using CSS Modules in your project, you should process normal CSS through a separate loader definition without the `modules` option of *css-loader* enabled. Otherwise all classes will be scoped to their module. In the case of third party libraries this is almost certainly not what you want. This can be implemented in a variety of ways. You could use a different loader based on the location of the files (for example you could use a loader that doesn't support modules for all css modules located in `node_modules`) Alternatively you could give css files intended to treated as modules a different extension (for example `.mcss`) and use the extension to differentiate between your loaders.
+### Using CSS Modules with Third Party Libraries and CSS
+
+If you are using CSS Modules in your project, you should process normal CSS through a separate loader definition without the `modules` option of *css-loader* enabled. Otherwise all classes will be scoped to their module. In the case of third party libraries this is almost certainly not what you want.
+
+You can solve the problem by processing third party CSS differently through an `include` definition against *node_modules*. Alternately, you could use a file extension (`.mcss`) to tell files using CSS Modules apart from the rest and then manage this situation in a loader `test`.
 
 ## Loading Less
 
