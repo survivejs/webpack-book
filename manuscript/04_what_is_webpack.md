@@ -32,7 +32,13 @@ If the resolution pass failed, webpack gives a runtime error. If webpack managed
 
 The same resolution process is performed against webpack's loaders. It allows you to apply similar logic there while it figures out which loader it should use. Loaders have resolve configuration of their own for this reason. If webpack fails to perform a loader lookup, you will get a runtime error.
 
-Webpack will resolve against each module it encounters while constructing the dependency graph. If an entry contains dependencies, the process will be performed against each until the traversal has completed.
+### Webpack Resolves Against Any File Type
+
+Webpack will resolve against each module it encounters while constructing the dependency graph. If an entry contains dependencies, the process will be performed against each until the traversal has completed. Webpack performs this process against any file type unlike a specialized tool like Babel or Sass compiler.
+
+Webpack gives you control over how to treat different assets it encounters. You can decide to **inline** assets to your JavaScript bundles to avoid requests for example. Webpack also allows you to use techniques, like CSS Modules, to couple styling with components and to avoid issues of standard CSS styling. It's this flexibility which makes webpack valuable.
+
+Although webpack is used mainly to bundle JavaScript, it can capture assets like images or fonts and emit separate files for them. Entries are only a starting point of the bundling process. What webpack emits depends entirely on the way you configure it.
 
 ### Evaluation Process
 
