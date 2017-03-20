@@ -10,7 +10,7 @@ T> If you want to understand build tools and their history in a better detail, c
 
 The smallest project you could bundle with webpack consists of **input** and **output**. The bundling process begins from user defined **entries**. Entries themselves are **modules** and can point to other modules through **imports**.
 
-When you bundle a project through webpack, it traverses through imports, constructing a **dependency graph** of the project and then generating the **output** based on the configuration. It writes everything into a single **bundle** by default, but it can be configured to output more.
+When you bundle a project through webpack, it traverses through imports, constructing a **dependency graph** of the project and then generating the **output** based on the configuration. It's possible to define **split points** generating separate bundles within the project code itself.
 
 Webpack supports ES6, CommonJS, and AMD module formats out of the box. The loader mechanism works for CSS as well, and `@import` and `url()` are supported through *css-loader*. You can also find plugins for specific tasks, such as minification, internationalization, HMR, and so on.
 
@@ -32,21 +32,31 @@ If the resolution pass failed, webpack gives a runtime error. If webpack managed
 
 The same resolution process is performed against webpack's loaders. It allows you to apply similar logic there while it figures out which loader it should use. Loaders have resolve configuration of their own for this reason. If webpack fails to perform a loader lookup, you will get a runtime error.
 
+### Webpack Resolves Against Any File Type
+
+Webpack will resolve against each module it encounters while constructing the dependency graph. If an entry contains dependencies, the process will be performed against each until the traversal has completed. Webpack performs this process against any file type unlike a specialized tool like Babel or Sass compiler.
+
+Webpack gives you control over how to treat different assets it encounters. You can decide to **inline** assets to your JavaScript bundles to avoid requests for example. Webpack also allows you to use techniques, like CSS Modules, to couple styling with components and to avoid issues of standard CSS styling. It's this flexibility which makes webpack valuable.
+
+Although webpack is used mainly to bundle JavaScript, it can capture assets like images or fonts and emit separate files for them. Entries are only a starting point of the bundling process. What webpack emits depends entirely on the way you configure it.
+
 ### Evaluation Process
 
 Assuming all loaders were found, webpack evaluates the matched loaders from bottom to top and right to left (`styleLoader(cssLoader('./main.css'))`), running the module through each loader in turn. As a result you get output which webpack will inject in the resulting **bundle**. The *Loader Definitions* chapter covers the topic in detail.
 
 If all loader evaluation completed without a runtime error, webpack includes the source in the last bundle. **Plugins** allow you to intercept **runtime events** at different stages of the bundling process.
 
-Plugins give the best access to the overall process and can be combined with loaders. Loaders can capture a part of the data while plugins can use this data to emit new files. This is the way `ExtractTextPlugin` works. It allows you to extract specific data from JavaScript bundles.
+Although loaders can do a lot, they don’t provide enough power for advanced tasks by themselves. Plugins intercept **runtime events** provided by webpack. A good example is bundle extraction performed by `ExtractTextPlugin` which, working in tandem with a loader, extracts CSS files out of the bundle and into a file of its own.
 
-Without `ExtractTextPlugin`, CSS would end up in the resulting JavaScript. This is an *important* part of webpack to understand. The fact that a module declares a dependency on another module doesn't mean that this dependency is directly included into the module when it's bundled. The *Separating CSS* chapter discusses this idea in detail.
+Without this step, CSS would end up in the resulting JavaScript as webpack treats all code as JavaScript by default. The extraction idea is discussed in the *Separating CSS* chapter.
 
 ### Finishing
 
 After every module has been evaluated, webpack writes **output**. The output includes a bootstrap script with a manifest that describes how to begin executing the result in the browser. The manifest can be extracted to a file of its own as discussed later in the book. The output differs based on the build target you are using and targeting web is not the only option.
 
 That’s not all there is to the bundling process. For example, you can define specific **split points** where webpack generates separate bundles that are loaded based on application logic. The idea is discussed in the *Code Splitting* chapter.
+
+{pagebreak}
 
 ## Webpack Is Configuration Driven
 
