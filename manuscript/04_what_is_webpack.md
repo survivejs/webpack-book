@@ -8,9 +8,9 @@ T> If you want to understand build tools and their history in a better detail, c
 
 ## Webpack Relies on Modules
 
-If you think about the smallest project you could bundle with webpack, you’ll end up with input and output. In webpack terms, the bundling process begins from user defined **entries**. Entries themselves are **modules** and can point to other modules through **imports**.
+The smallest project you could bundle with webpack consists of **input** and **output**. The bundling process begins from user defined **entries**. Entries themselves are **modules** and can point to other modules through **imports**.
 
-When you bundle a project through webpack, it traverses through imports. As a result, webpack constructs a **dependency graph** of the project and then generates the **output** based on the configuration. It writes everything into a single **bundle** by default, but it can be configured to output more.
+When you bundle a project through webpack, it traverses through imports, constructing a **dependency graph** of the project and then generating the **output** based on the configuration. It writes everything into a single **bundle** by default, but it can be configured to output more.
 
 Webpack supports ES6, CommonJS, and AMD module formats out of the box. The loader mechanism works for CSS as well, and `@import` and `url()` are supported through *css-loader*. You can also find plugins for specific tasks, such as minification, internationalization, HMR, and so on.
 
@@ -40,7 +40,7 @@ If all loader evaluation completed without a runtime error, webpack includes the
 
 Plugins give the best access to the overall process and can be combined with loaders. Loaders can capture a part of the data while plugins can use this data to emit new files. This is the way `ExtractTextPlugin` works. It allows you to extract specific data from JavaScript bundles.
 
-Without `ExtractTextPlugin`, CSS would end up in the resulting JavaScript. This is an absolutely important part of webpack to understand. The fact that a module declares a dependency on another module doesn't mean that this dependency is directly included into the module when it's bundled. The *Separating CSS* chapter discusses this idea in detail.
+Without `ExtractTextPlugin`, CSS would end up in the resulting JavaScript. This is an *important* part of webpack to understand. The fact that a module declares a dependency on another module doesn't mean that this dependency is directly included into the module when it's bundled. The *Separating CSS* chapter discusses this idea in detail.
 
 ### Finishing
 
@@ -98,7 +98,7 @@ module.exports = {
 };
 ```
 
-Given the configuration is written in JavaScript, it’s quite malleable. The model makes webpack feel a bit opaque at times, as it can be difficult to understand what it’s doing especially in more complicated cases. Covering this is one of the main reasons why this book exists.
+Webpack's configuration model can feel a bit opaque at times as the configuration file can appear monolithic. It can be difficult to understand what it's doing unless you understand the ideas behind it. Providing means to tame configuration is one of the main purposes why this book exists.
 
 T> To understand webpack on source code level, check out [the artsy webpack tour](https://github.com/TheLarkInn/artsy-webpack-tour).
 
@@ -130,7 +130,7 @@ Plugins operate on a higher level. Webpack itself has been implemented using a c
 
 Webpack comes with a significant learning curve. However it’s a tool worth learning, given it saves so much time and effort over the long term. To get a better idea how it compares to other tools, check out [the official comparison](https://webpack.js.org/get-started/why-webpack/#comparison).
 
-Webpack won’t solve everything. It does solve the problem of bundling, however. That’s one less worry during development. Using *package.json* and webpack alone can take you far.
+Webpack won’t solve everything, however, it does solve the problem of bundling. That’s one less worry during development. Using *package.json* and webpack alone can take you far.
 
 To summarize:
 
