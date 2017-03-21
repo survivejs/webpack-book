@@ -255,7 +255,7 @@ Webpack can also match based on the resource path and related information:
 * `resourcePath: /inline/` - Match against a resource path without its query. Example match: `/path/foo.inline.png`.
 * `resourceQuery: /inline/` - Match against a resource based on its query. Example match: `/path/foo.png?inline`.
 
-## Loading Based on Resource Query
+## Loading Based on `resourceQuery`
 
 `oneOf` field makes it possible to route webpack to a specific loader based on a resource related match:
 
@@ -278,7 +278,7 @@ Webpack can also match based on the resource path and related information:
 
 If you wanted to embed the context information to the filename, the rule could use `resourcePath` over `resourceQuery`.
 
-## Loading Based on Issuer
+## Loading Based on `issuer`
 
 `issuer` can be used to control behavior based on where a resource was imported. In the example below adapted from [css-loader issue 287](https://github.com/webpack-contrib/css-loader/pull/287#issuecomment-261269199), *style-loader* is applied only when webpack captures a CSS file from a JavaScript import:
 
