@@ -107,7 +107,7 @@ Furthermore, it's possible to manipulate `publicPath` and override the default p
 
 ## Generating Font Files Based on SVGs
 
-If you prefer to use SVG based fonts, they can be bundled as a single font file by using [fontgen-loader](https://www.npmjs.com/package/fontgen-loader).
+If you prefer to use SVG based fonts, they can be bundled as a single font file by using [webfonts-loader](https://www.npmjs.com/package/webfonts-loader).
 
 W> Take care with SVGs if you have SVG specific image setup in place already. If you want to process font SVGs differently, set their definitions carefully. The *Loader Definitions* chapter covers alternatives.
 
