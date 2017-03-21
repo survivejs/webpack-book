@@ -16,7 +16,7 @@ As this book has demonstrated, webpack is a versatile tool. To make it easier to
 
 * To get most out of webpack during development, use [webpack-dev-server](https://www.npmjs.com/package/webpack-dev-server) (WDS). You can also find middlewares which you can attach to your Node server during development. The *Automatic Browser Refresh* chapter covers WDS in greater detail.
 * Webpack implements **Hot Module Replacement** (HMR). It allows you to replace modules without forcing a browser refresh while your application is running. The *Configuring Hot Module Replacement* chapter covers the topic in detail. If you are using React, read the *Hot Module Replacement with React* appendix.
-* **Linting** is a technique that allows you to detect code related issue through static analysis. You can disallow certain kind of usage while enforcing coding style using linting tools. Particularly [ESLint](http://eslint.org/) is a popular option for JavaScript code. [stylelint](https://www.npmjs.com/package/stylelint) can be used with CSS. The *Linting JavaScript* and *Linting CSS* chapters cover the topic in detail. See also the *Customizing ESLint* appendix to learn how to expand ESLint.
+* **Linting** is a technique that allows you to detect code related issue through static analysis. You can disallow certain kind of usage while enforcing coding style using linting tools. Particularly [ESLint](http://eslint.org/) is a popular option for JavaScript code. [Stylelint](https://www.npmjs.com/package/stylelint) can be used with CSS. The *Linting JavaScript* and *Linting CSS* chapters cover the topic in detail. See also the *Customizing ESLint* appendix to learn how to expand ESLint.
 
 ## Production Checklist
 

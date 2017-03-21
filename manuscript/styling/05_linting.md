@@ -2,17 +2,17 @@
 
 As discussed earlier in the *Linting JavaScript* chapter, linting is a technique that allows to avoid certain categories of mistakes. Automation is good, as it can save effort. In addition to JavaScript, it's possible to lint CSS.
 
-[stylelint](http://stylelint.io/) is a tool that allows linting. It can be used with webpack through [postcss-loader](https://www.npmjs.com/package/postcss-loader).
+[Stylelint](http://stylelint.io/) is a tool that allows linting. It can be used with webpack through [postcss-loader](https://www.npmjs.com/package/postcss-loader).
 
 ## Connecting Stylelint with *package.json*
 
-To get started, install stylelint as a development dependency:
+To get started, install Stylelint as a development dependency:
 
 ```bash
 npm install stylelint --save-dev
 ```
 
-To connect stylelint with npm and make it find the CSS files, adjust as follows:
+To connect Stylelint with npm and make it find the CSS files, adjust as follows:
 
 **package.json**
 
@@ -117,7 +117,7 @@ stylelint: /webpack-demo/app/main.css:2:21: Expected "#EFEFEF" to be "#efefef" (
  @ ./app/index.js
 ```
 
-See the stylelint documentation for a full list of rules. npm lists [possible stylelint rulesets](https://www.npmjs.com/search?q=stylelint-config) you can enable through configuration.
+See the Stylelint documentation for a full list of rules. npm lists [possible rulesets](https://www.npmjs.com/search?q=stylelint-config) you can enable through configuration.
 
 T> [stylelint-scss](https://www.npmjs.com/package/stylelint-scss) provides a collection of SCSS specific linting rules.
 
@@ -129,11 +129,11 @@ W> If you get `Module build failed: Error: No configuration provided for ...` ki
 
 [stylelint-webpack-plugin](https://www.npmjs.com/package/stylelint-webpack-plugin) allows you to reach the same result. Its greatest advantage over the setup above is that it follows possible `@import` statements you have in your styling.
 
-T> [stylelint-bare-webpack-plugin](https://www.npmjs.com/package/stylelint-bare-webpack-plugin) is a variant of *stylelint-webpack-plugin* that allows you to control the version of stylelint you are using.
+T> [stylelint-bare-webpack-plugin](https://www.npmjs.com/package/stylelint-bare-webpack-plugin) is a variant of *stylelint-webpack-plugin* that allows you to control the version of Stylelint you are using.
 
-## csslint
+## CSSLint
 
-[csslint](http://csslint.net/) is another option to *stylelint*. It can be used through [csslint-loader](https://www.npmjs.com/package/csslint-loader) and follows a normal loader setup.
+[CSSLint](http://csslint.net/) is another option to Stylelint. It can be used through [csslint-loader](https://www.npmjs.com/package/csslint-loader) and follows a normal loader setup.
 
 ## Conclusion
 
@@ -141,7 +141,7 @@ After these changes, there is style linting in place. Now you can catch CSS-rela
 
 To recap:
 
-* It's possible to lint CSS through *stylelint*
+* It's possible to lint CSS through **Stylelint**.
 * Linting CSS allows you to capture common CSS-related problems and disallow problematic patterns.
-* *stylelint* can be treated as a PostCSS plugin, but it can also be used through *stylelint-webpack-plugin*.
-* *csslint* is an option to *stylelint*. It's possible [the projects merge](https://github.com/CSSLint/csslint/issues/668), though.
+* Stylelint can be treated as a PostCSS plugin, but it can also be used through *stylelint-webpack-plugin*.
+* **CSSLint** is an option to Stylelint. It's possible [the projects merge](https://github.com/CSSLint/csslint/issues/668), though.
