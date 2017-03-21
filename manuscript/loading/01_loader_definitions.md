@@ -33,7 +33,6 @@ module.exports = {
         // also accepts an array of paths or a function.
         // The same applies to `exclude`.
         include: path.join(__dirname, 'app'),
-
         exclude(path) {
           // You can perform more complicated checks
           // through functions if you want.
