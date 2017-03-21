@@ -273,7 +273,7 @@ Webpack can also match based on the resource path and related information:
       use: 'file-loader',
     },
   ],
-}
+},
 ```
 
 If you wanted to embed the context information to the filename, the rule could use `resourcePath` over `resourceQuery`.
