@@ -13,7 +13,7 @@ To enable HMR, the following things have to happen:
 3. The client has to run specific scripts provided by the WDS. They are injected automatically but can be enabled explicitly through entry configuration.
 4. The client has to implement the HMR interface through `module.hot.accept`.
 
-Using `webpack-dev-server --hot`. `--hot` solves the first two problems. In this case you have to handle only the last one yourself if you want to patch JavaScript application code. Skipping the `--hot` flag and going through webpack configuration gives more flexibility.
+Using `webpack-dev-server --hot` solves the first two problems. In this case you have to handle only the last one yourself if you want to patch JavaScript application code. Skipping the `--hot` flag and going through webpack configuration gives more flexibility.
 
 {pagebreak}
 
