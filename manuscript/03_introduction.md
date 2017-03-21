@@ -62,9 +62,7 @@ In case you know webpack well already, there is still something in the book for 
 
 ## Book Versioning
 
-Given this book receives a fair amount of maintenance and improvements due to the pace of innovation, there's a versioning scheme in place. Release notes for each new version are maintained at the [book blog](http://survivejs.com/blog/). That should give you a good idea of the major changes between versions.
-
-Examining the GitHub repository is beneficial. Consider using the GitHub *compare* tool for this purpose. Example:
+Given this book receives a fair amount of maintenance and improvements due to the pace of innovation, there's a versioning scheme in place. Release notes for each new version are maintained at the [book blog](http://survivejs.com/blog/). You can also use GitHub *compare* tool for this purpose. Example:
 
 ```
 https://github.com/survivejs/webpack-book/compare/v1.9.0...v2.0.0-rc3
@@ -84,8 +82,6 @@ If you run into trouble or have questions related to the content, there are seve
 * Ask me anything about webpack or React at [SurviveJS AmA](https://github.com/survivejs/ama/issues).
 
 If you post questions to Stack Overflow, tag them using **survivejs**. You can use the hashtag **#survivejs** on Twitter for the same result.
-
-{pagebreak}
 
 ## Additional Material
 
