@@ -78,8 +78,6 @@ Based on the right to left rule, the example can be split up while keeping it eq
 },
 ```
 
-{pagebreak}
-
 ### Enforcing Order
 
 Even though it would be possible to develop an arbitrary configuration using the rule above, it can be convenient to be able to force certain rules to be applied before or after regular ones. The `enforce` field can come in handy here. It can be set to either `pre` or `post` to push processing either before or after other loaders.
@@ -92,7 +90,7 @@ The basic syntax goes as below:
 {
   // Conditions
   test: /\.js$/,
-  enforce: 'pre',
+  enforce: 'pre', // 'post' too
 
   // Actions
   loader: 'eslint-loader',
@@ -100,6 +98,8 @@ The basic syntax goes as below:
 ```
 
 It would be possible to write the same configuration without `enforce` if you chained the declaration with other loaders related to the `test` carefully. Using `enforce` removes the necessity for that allows you to split loader execution into separate stages that are easier to compose.
+
+{pagebreak}
 
 ## Passing Parameters to a Loader
 
