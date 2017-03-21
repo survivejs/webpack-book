@@ -97,4 +97,4 @@ To recap:
 * Autoprefixing writes missing CSS definitions based on your minimum browser definition.
 * *browserslist* is a standard file that works with tooling beyond *autoprefixer*
 
-In the next chapter, you eliminate unused CSS from the project.
+In the next chapter, you'll learn to eliminate unused CSS from the project.
