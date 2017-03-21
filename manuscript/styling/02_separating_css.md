@@ -10,7 +10,7 @@ Due to this process, `ExtractTextPlugin` comes with overhead during the compilat
 
 T> This same technique can be employed with other assets, like templates, too.
 
-W> It can be potentially dangerous to use inline styles within JavaScript in production as it represents an attack vector. **Critical path rendering** embraces the idea and inlines the critical CSS to the initial HTML payload improving perceived performance of the site. It's discussed in the next chapter in detail. In limited contexts inlining a small amount of CSS can be a viable option to speed up the initial load (fewer requests).
+W> It can be potentially dangerous to use inline styles within JavaScript in production as it represents an attack vector. **Critical path rendering** embraces the idea and inlines the critical CSS to the initial HTML payload improving perceived performance of the site. In limited contexts inlining a small amount of CSS can be a viable option to speed up the initial load (fewer requests).
 
 ## Setting Up `ExtractTextPlugin`
 
