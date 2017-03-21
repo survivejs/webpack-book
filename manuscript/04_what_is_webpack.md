@@ -28,7 +28,9 @@ Webpack begins its work from **entries**. Often these are JavaScript modules whe
 
 An entry itself is a module and when webpack encounters one, it tries to match it against the file system using its `resolve` configuration. You can tell webpack to perform the lookup against specific directories in addition to *node_modules*. It's also possible to adjust the way it matches against file extensions and you can define specific aliases against directories. The *Consuming Packages* chapter covers these ideas in greater detail.
 
-If the resolution pass failed, webpack gives a runtime error. If webpack managed to resolve a file correctly, webpack performs processing over the matched file based on the loader definition. Each loader applies a specific transformation against the module contents. The way a loader gets matched against a resolved file can be configured in multiple ways including file type and its location in the file system.
+If the resolution pass failed, webpack gives a runtime error. If webpack managed to resolve a file correctly, webpack performs processing over the matched file based on the loader definition. Each loader applies a specific transformation against the module contents.
+
+The way a loader gets matched against a resolved file can be configured in multiple ways including file type and its location in the file system. Webpack provides even more flexible ways to achieve this as you can apply specific transformation against a file based on *where* it was imported to the project.
 
 The same resolution process is performed against webpack's loaders. It allows you to apply similar logic there while it figures out which loader it should use. Loaders have resolve configuration of their own for this reason. If webpack fails to perform a loader lookup, you will get a runtime error.
 
