@@ -87,13 +87,15 @@ If you run into trouble or have questions related to the content, there are seve
 
 If you post questions to Stack Overflow, tag them using **survivejs**. You can use the hashtag **#survivejs** on Twitter for the same result.
 
-## Announcements
+## Additional Material
 
-SurviveJS-related news are announced through the following channels:
+You can find more related material from the following sources:
 
 * Join the [mailing list](http://eepurl.com/bth1v5) for occasional updates.
-* Follow [@survivejs](https://twitter.com/survivejs) on Twitter for official news.
-* Subscribe to the [blog RSS](http://survivejs.com/atom.xml) to get supplemental content through your RSS reader.
+* Follow [@survivejs](https://twitter.com/survivejs) on Twitter.
+* Subscribe to the [blog RSS](http://survivejs.com/atom.xml) to get access interviews and more.
+* Subscribe to the [Youtube channel](https://www.youtube.com/channel/UCvUR-BJcbrhmRQZEEr4_bnw).
+* Check out [SurviveJS related presentation slides](https://presentations.survivejs.com/).
 
 ## Acknowledgments
 
