@@ -12,6 +12,8 @@ T> `include`/`exclude` is handy with *node_modules* as webpack processes and tra
 
 Webpack supports a large variety of formats through *loaders*. Also, it supports a couple of JavaScript module formats out of the box. The idea is the same. You always set up a loader, or loaders, and connect those with your directory structure.
 
+{pagebreak}
+
 Consider the example below where webpack is set to process JavaScript through Babel:
 
 **webpack.config.js**
@@ -26,6 +28,7 @@ module.exports = {
         // Match files against RegExp or a function.
         test: /\.js$/,
 
+        // **Restrictions**
         // Restrict matching to a directory. This
         // also accepts an array of paths or a function.
         // The same applies to `exclude`.
@@ -63,8 +66,6 @@ To see the rule in action, consider the example below:
 }
 ```
 
-{pagebreak}
-
 Based on the right to left rule, the example can be split up while keeping it equivalent:
 
 ```javascript
@@ -77,6 +78,8 @@ Based on the right to left rule, the example can be split up while keeping it eq
   use: ['css-loader'],
 },
 ```
+
+{pagebreak}
 
 ### Enforcing Order
 
