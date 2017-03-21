@@ -60,7 +60,7 @@ To see the rule in action, consider the example below:
 {
   test: /\.css$/,
   use: ['style-loader', 'css-loader'],
-}
+},
 ```
 
 Based on the right to left rule, the example can be split up while keeping it equivalent:
