@@ -29,7 +29,7 @@ req.keys(); // ['./demo.md', './another-demo.md']
 
 req.id; // 42
 
-// {title: 'Demo', __content: '# Demo page\nDemo content\n\n'}
+// {title: 'Demo', body: '# Demo page\nDemo content\n\n'}
 const demoPage = req('./demo.md');
 ```
 
