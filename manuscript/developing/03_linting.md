@@ -109,7 +109,7 @@ module.exports = {
 };
 ```
 
-If you invoke `npm run lint:js` now, it should execute without any warnings or errors. If you see either, this is a good time to try ESLint autofixing. You can run it through `npm run lint -- --fix`. Running an npm script this way allows you to pass extra parameters to it.
+If you invoke `npm run lint:js` now, it should execute without any warnings or errors. If you see either, this is a good time to try ESLint autofixing. You can run it through `npm run lint:js -- --fix`. Running an npm script this way allows you to pass extra parameters to it.
 
 Another alternative would be to push it behind a *package.json* script. Autofix is not able to repair each error, but it can fix a lot. And as time goes by and ESLint improves, it can perform more work.
 
