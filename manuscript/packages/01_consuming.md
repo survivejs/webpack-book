@@ -315,6 +315,8 @@ Symbolic links, or symlinks, are an operating system level feature that allow yo
 
 Webpack resolves symlinks to their full path like Node does. The problem is that if you are unaware of this fact, the behavior can surprise you especially if you rely on webpack processing. It's possible to work around the behavior as discussed in webpack issues [#1643](https://github.com/webpack/webpack/issues/1643) and [#985](https://github.com/webpack/webpack/issues/985). Webpack core behavior may improve in the future to make these workarounds unnecessary.
 
+T> You can disable webpack's symlink handling by setting `resolve.symlinks` as `false`.
+
 ### Disabling Asset Loading
 
 It's possible a package comes with formats you are not interested in. A good example of this is a font framework. They often provide fonts in all formats, but you need only a few if you support modern browsers.
