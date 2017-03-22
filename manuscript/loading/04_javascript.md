@@ -115,7 +115,7 @@ To make Babel aware of the preset, you need to write a *.babelrc*. Given webpack
 
 {pagebreak}
 
-Adjust the target definition as you like. As long as you follow [browserslist](https://www.npmjs.com/package/browserslist), it should work. Here's a sample configuration.
+Adjust the target definition as you like. As long as you follow [browserslist](https://www.npmjs.com/package/browserslist), it should work. Here's a sample configuration:
 
 **.babelrc**
 
