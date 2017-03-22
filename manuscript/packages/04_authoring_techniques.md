@@ -12,6 +12,8 @@ babel ./lib --out-dir ./dist-modules
 
 The command walks through the `./lib` directory and writes a processed file to `./dist-modules` for each module it encounters.
 
+{pagebreak}
+
 Since running that command each time you publish is tedious, you can set up a `prepublish` hook:
 
 **package.json**
@@ -28,12 +30,7 @@ Since running that command each time you publish is tedious, you can set up a `p
 
 Make sure you execute `npm install babel-cli --save-dev` to include the tool into your project.
 
-To avoid versioning the directory and to keep your `git status` clean, consider this sort of `.gitignore`:
-
-```bash
-dist-modules/
-...
-```
+To avoid versioning the directory and to keep your `git status` clean, consider adding `dist-modules/` to your *.gitignore*.
 
 Besides `prepublish`, npm provides a set of other hooks. The naming is always the same and follows the pattern `pre<hook>`, `<hook>`, `post<hook>` where `<hook>` can be `publish`, `install`, `test`, `stop`, `start`, `restart`, or `version`. Even though npm triggers scripts bound to these automatically, you can trigger them explicitly through `npm run` for testing (i.e., `npm run prepublish`).
 
