@@ -248,7 +248,7 @@ Time: 2547ms
 
 The SVG file included in Font Awesome has been marked as `[big]`. It's beyond the performance budget defaults set by webpack and the topic is discussed in detail in the *Minifying* chapter.
 
-To skip certain Font Awesome fonts, you could disable specific formats as discussed in the *Consuming Packages* chapter. Due to the way Font Awesome CSS has been setup, you still has to capture the files, but instead of emitting the original content, you can replace it with empty content.
+To skip certain Font Awesome fonts, you could disable specific formats as discussed in the *Consuming Packages* chapter. Due to the way Font Awesome CSS has been setup, you still have to capture the files, but instead of emitting the original content, you can replace it with empty content.
 
 T> [font-awesome-loader](https://www.npmjs.com/package/font-awesome-loader) allows more customization. Font Awesome 5 improves the situation further and make it easier to decide what fonts to consume. [Font Awesome wiki](https://github.com/FortAwesome/Font-Awesome/wiki/Customize-Font-Awesome) points to available online services that allow you to select specific fonts from Font Awesome collection.
 
