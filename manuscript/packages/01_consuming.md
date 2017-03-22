@@ -194,7 +194,11 @@ T> [html-webpack-cdn-plugin](https://www.npmjs.com/package/html-webpack-cdn-plug
 
 ## Dealing with Globals
 
-Sometimes modules depend on globals. `$` provided by jQuery is a good example. [imports-loader](https://www.npmjs.com/package/imports-loader) allows you to inject them as below:
+Sometimes modules depend on globals. `$` provided by jQuery is a good example. Webpack provides a few ways that allow you to deal with them.
+
+### Injecting Globals
+
+[imports-loader](https://www.npmjs.com/package/imports-loader) allows you to inject globals as below:
 
 ```javascript
 {
@@ -211,7 +215,9 @@ Sometimes modules depend on globals. `$` provided by jQuery is a good example. [
 
 {pagebreak}
 
-Webpack's `ProvidePlugin` can be used for a similar purpose. It allows webpack to resolve globals as it encounters them:
+### Resolving Globals
+
+Webpack's `ProvidePlugin` allows webpack to resolve globals as it encounters them:
 
 ```javascript
 {
@@ -222,6 +228,27 @@ Webpack's `ProvidePlugin` can be used for a similar purpose. It allows webpack t
   ],
 },
 ```
+
+### Exposing Globals to the Browser
+
+Sometimes you have to expose packages to third party scripts. [expose-loader](https://www.npmjs.com/package/expose-loader) allows this as follows:
+
+```javascript
+{
+  test: require.resolve('react'),
+  use: 'expose-loader?React',
+},
+```
+
+With the small extra tweak, the technique can be used to expose React performance utilities to the browser through `React.Perf` global. You have to insert the following code to your application entry point for this to work:
+
+```javascript
+if (process.env.NODE_ENV !== 'production') {
+  React.Perf = require('react-addons-perf');
+}
+```
+
+T> It can be a good idea to install [React Developer Tools](https://github.com/facebook/react-devtools) to Chrome for even more information as it allows you to inspect *props* and *state* of your application.
 
 T> [script-loader](https://www.npmjs.com/package/script-loader) allows you to execute scripts in a global context. You have to do this if the scripts you are using rely on a global registration setup.
 
@@ -287,29 +314,6 @@ W> Disabling warnings should be the last measure since doing it can hide underly
 Symbolic links, or symlinks, are an operating system level feature that allow you to point to other files through a file system without copying them. You can use `npm link` to create global symlinks for packages under development and then use `npm unlink` to remove the links.
 
 Webpack resolves symlinks to their full path like Node does. The problem is that if you are unaware of this fact, the behavior can surprise you especially if you rely on webpack processing. It's possible to work around the behavior as discussed in webpack issues [#1643](https://github.com/webpack/webpack/issues/1643) and [#985](https://github.com/webpack/webpack/issues/985). Webpack core behavior may improve in the future to make these workarounds unnecessary.
-
-## Exposing Globals to the Browser
-
-Sometimes you have to expose packages to third party scripts. [expose-loader](https://www.npmjs.com/package/expose-loader) allows this as follows:
-
-```javascript
-{
-  test: require.resolve('react'),
-  use: 'expose-loader?React',
-},
-```
-
-With the small extra tweak, the technique can be used to expose React performance utilities to the browser through `React.Perf` global. You have to insert the following code to your application entry point for this to work:
-
-```javascript
-if (process.env.NODE_ENV !== 'production') {
-  React.Perf = require('react-addons-perf');
-}
-```
-
-T> It can be a good idea to install [React Developer Tools](https://github.com/facebook/react-devtools) to Chrome for even more information as it allows you to inspect *props* and *state* of your application.
-
-{pagebreak}
 
 ### Disabling Asset Loading
 
