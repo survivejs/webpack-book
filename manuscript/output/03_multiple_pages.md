@@ -4,7 +4,7 @@ Even though webpack is often used for bundling single page applications, it's po
 
 ## Possible Approaches
 
-When generating multiple pages with webpack, you have a couple of considerations:
+When generating multiple pages with webpack, you have a couple of possibilities:
 
 * Go through the *multi-compiler mode* and return an array of configurations. The approach would work as long as the pages are separate and there is a minimal need for sharing code across them. The benefit of this approach is that you can process it through [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) to improve build performance.
 * Set up a single configuration and extract the commonalities. The way you do this can differ depending on how you chunk it up.
