@@ -72,7 +72,7 @@ To improve the situation, you can define a `vendor` entry containing React by ma
 **webpack.config.js**
 
 ```javascript
-const productionConfig = merge([
+const commonConfig = merge([
 leanpub-start-insert
   {
     entry: {
@@ -139,7 +139,7 @@ W> Webpack doesn't allow referring to entry files within entries. If you inadver
 **webpack.config.js**
 
 ```javascript
-const productionConfig = merge([
+const commonConfig = merge([
   {
     entry: {
       vendor: ['react'],
@@ -228,7 +228,7 @@ Given the function handles the entry, you can drop the `vendor`-related configur
 **webpack.config.js**
 
 ```javascript
-const productionConfig = merge([
+const commonConfig = merge([
   {
     entry: {
       vendor: ['react'],
@@ -241,6 +241,7 @@ leanpub-start-delete
     ],
 leanpub-end-delete
   },
+  ...
 leanpub-start-insert
   parts.extractBundles([
     {
@@ -248,7 +249,6 @@ leanpub-start-insert
     },
   ]),
 leanpub-end-insert
-  ...
 ]);
 ```
 
@@ -277,7 +277,7 @@ To capture only JavaScript files from *node_modules*, you should perform a check
 **webpack.config.js**
 
 ```javascript
-const productionConfig = merge([
+const commonConfig = merge([
 leanpub-start-delete
   {
     entry: {
@@ -285,6 +285,7 @@ leanpub-start-delete
     },
   },
 leanpub-end-delete
+  ...
   parts.extractBundles([
     {
       name: 'vendor',
@@ -297,7 +298,6 @@ leanpub-start-insert
 leanpub-end-insert
     },
   ]),
-  ...
 ]);
 ```
 
