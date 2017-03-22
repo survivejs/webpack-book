@@ -198,6 +198,8 @@ Now the bundles look the way they should. The image below illustrates the curren
 
 If the vendor entry contained extra dependencies (white on the image), the setup would pull those into the project as well. Resolving this problem is possible by examining which packages are being used in the project using the `minChunks` parameter of the `CommonsChunksPlugin`. But before that, let's abstract the solution a bit.
 
+T> The technique could be implemented only for `productionConfig`. It's sensible to maintain it at `commonConfig` as it improved performance.
+
 {pagebreak}
 
 ## Abstracting Bundle Extraction
