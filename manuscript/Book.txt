@@ -58,7 +58,9 @@ techniques/05_deploying.md
 
 12_Packages.md
 packages/01_consuming.md
-packages/02_authoring.md
+packages/02_consuming_techniques.md
+packages/03_authoring.md
+packages/04_authoring_techniques.md
 
 13_Extending.md
 extending/01_loaders.md
