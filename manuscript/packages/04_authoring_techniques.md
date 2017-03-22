@@ -1,4 +1,4 @@
-# Authoring Techniques
+# Package Authoring Techniques
 
 To get most out of npm and webpack, consider the techniques below. Webpack can help you here.
 

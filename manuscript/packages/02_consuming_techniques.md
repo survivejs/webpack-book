@@ -1,4 +1,4 @@
-# Consuming Techniques
+# Package Consuming Techniques
 
 Sometimes packages have not been packaged the way you expect and you have to tweak the way webpack interprets them. Webpack provides multiple ways to achieve this.
 
