@@ -205,8 +205,10 @@ const libraryConfig = merge([
       filename: '[name].js',
     },
   },
+leanpub-start-insert
   parts.clean(PATHS.build),
   parts.lintJavaScript({ include: PATHS.lib }),
+leanpub-end-insert
 ]);
 
 ...
