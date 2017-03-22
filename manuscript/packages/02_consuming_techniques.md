@@ -212,6 +212,8 @@ exports.ignore = ({ test, include, exclude }) => ({
 });
 ```
 
+{pagebreak}
+
 To ignore all Font Awesome SVGs, you could have a definition as below:
 
 **webpack.config.js**
@@ -239,6 +241,8 @@ To get more information about packages, npm provides `npm info <package>` comman
 [slow-deps](https://www.npmjs.com/package/slow-deps) can reveal which dependencies of a project are the slowest to install.
 
 [weigh](https://www.npmjs.com/package/weigh) can be used figure out the approximate size of a package when it's served to a browser in different ways (uncompressed, minified, gzipped).
+
+{pagebreak}
 
 ## Conclusion
 
