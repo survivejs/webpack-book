@@ -28,6 +28,8 @@ The book teaches you to develop a composable webpack configuration for both deve
 
 T> The book is based on webpack 2. If you want to apply its techniques to webpack 1, you should see [the official migration guide](https://webpack.js.org/guides/migrating/) as it covers the changes made between the major versions. There are also [codemods at the webpack-cli repository](https://github.com/webpack/webpack-cli) for migrating from webpack 1 to 2.
 
+{pagebreak}
+
 ## How Is The Book Organized
 
 The book starts by explaining what webpack is. After that, you find multiple parts, each of which discusses webpack from a different direction. While going through those chapters, you develop your webpack configuration. The chapters also double as reference material.
@@ -48,9 +50,7 @@ There's a short conclusion chapter after the main content that recaps the main p
 
 The appendices the end of the book cover secondary topics and sometimes dig deeper into the main ones. You can approach them in any order you want depending on your interest.
 
-Given eventually webpack will give you an error, the *Troubleshooting* appendix at the end covers what to do then. It covers a basic process on what to do and how to debug the problem. When in doubt, study the appendix.
-
-T> If you are unsure of a term and its meaning, see the *Glossary* at the end of the book.
+Given eventually webpack will give you an error, the *Troubleshooting* appendix at the end covers what to do then. It covers a basic process on what to do and how to debug the problem. When in doubt, study the appendix. If you are unsure of a term and its meaning, see the *Glossary* at the end of the book.
 
 ## Who Is The Book For
 
