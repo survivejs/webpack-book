@@ -10,7 +10,7 @@ T> To understand how a manifest is generated in detail, [read the technical expl
 
 ## Extracting a Manifest
 
-Most of the work was done already when `extractBundles` was set up in the *Splitting Bundles* chapter. To extract the manifest, a single change is required:
+Most of the work was done already when `extractBundles` was set up in the *Splitting Bundles* chapter. To extract the manifest, a single change is required to capture the remaining code which contains webpack bootstrap:
 
 **webpack.config.js**
 
@@ -31,7 +31,7 @@ leanpub-end-insert
 ]);
 ```
 
-T> `minChunks` is optional in this case. Passing `Infinity` to it tells webpack **not** to move any modules to the resulting bundle.
+The name `manifest` is used by convention. You can use any other name and it will still work. It's important that the definition is after others, though, as it has to capture what has not been extracted yet. `minChunks` is optional in this case and passing `Infinity` tells webpack **not** to move any modules to the resulting bundle.
 
 {pagebreak}
 
