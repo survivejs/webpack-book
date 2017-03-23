@@ -53,6 +53,8 @@ npm's lookup algorithm is another aspect that's good to understand. Sometimes th
 2. If nothing was found, check globally installed packages. If you are using Unix, look into */usr/local/lib/node_modules* to find them. You can figure out the specific directory using `npm root -g`.
 3. If the global lookup fails, it fails hard. You should get an error now.
 
+{pagebreak}
+
 On a package level, npm resolves to a file through the following process:
 
 1. Look up *package.json* of the package.
