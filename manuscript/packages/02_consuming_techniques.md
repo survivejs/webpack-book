@@ -44,6 +44,8 @@ T> Specific plugins like [directory-named-webpack-plugin](https://www.npmjs.com/
 
 Browser dependencies, like jQuery, are often served through publicly available Content Delivery Networks (CDN). CDNs allow you to push the problem of loading popular packages elsewhere. If a package has been already loaded from a CDN and it's in the user cache, there is no need to load it.
 
+{pagebreak}
+
 To use this technique, you should first mark the dependency in question as an external:
 
 ```javascript
@@ -83,8 +85,6 @@ Sometimes modules depend on globals. `$` provided by jQuery is a good example. W
   },
 },
 ```
-
-{pagebreak}
 
 ### Resolving Globals
 
