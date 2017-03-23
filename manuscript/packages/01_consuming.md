@@ -26,6 +26,8 @@ An npm package comes with different types of dependencies:
 * `bundledDependencies` refer to dependencies that are bundled with the package itself. They are used rarely, though.
 * `optionalDependencies` are dependencies that the user can install but aren't required for the package to work. This is another rare field.
 
+## Consumption Workflow
+
 Often npm consumption workflow resolves around two commands:
 
 * `npm install <package> --save` or `npm i <package> -S`.
@@ -40,6 +42,8 @@ You can refer to a package by its name and version but that is not the only way.
 * `<github user>/<project>#pull/<id>/head` points to a specific GitHub pull request.
 
 `<reference>` can be either commit hash, tag, or a branch. The technique does not work unless the package has been set up to support consumption outside of Git. The *Authoring Packages* chapter shows how to achieve this.
+
+T> To avoid sharing all your packages in public, npm allows you to maintain private packages through their commercial offering. Another option is to use a package like [verdaccio](https://www.npmjs.com/package/verdaccio). verdaccio allows you to maintain a private server that can also work as a cache for npm. You can also override public packages using it.
 
 ## Understanding npm Lookup
 
