@@ -65,9 +65,11 @@ You still have to point to a CDN and ideally provide a local fallback so there i
 
 T> [html-webpack-cdn-plugin](https://www.npmjs.com/package/html-webpack-cdn-plugin) is one option if you are using `HtmlWebpackPlugin` and want to inject a `script` tag automatically.
 
+{pagebreak}
+
 ## Dealing with Globals
 
-Sometimes modules depend on globals. `$` provided by jQuery is a good example. Webpack provides a few ways that allow you to deal with them.
+Sometimes modules depend on globals. `$` provided by jQuery is a good example. Webpack provides a few ways that allow you to handle them.
 
 ### Injecting Globals
 
@@ -99,6 +101,8 @@ Webpack's `ProvidePlugin` allows webpack to resolve globals as it encounters the
   ],
 },
 ```
+
+{pagebreak}
 
 ### Exposing Globals to the Browser
 
