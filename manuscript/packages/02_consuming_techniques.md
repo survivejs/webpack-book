@@ -198,54 +198,6 @@ Webpack resolves symlinks to their full path like Node does. The problem is that
 
 T> You can disable webpack's symlink handling by setting `resolve.symlinks` as `false`.
 
-### Disabling Asset Loading
-
-It's possible a package comes with formats you are not interested in. A good example of this is a font framework. They often provide fonts in all formats, but you need only a few if you support modern browsers.
-
-[null-loader](https://www.npmjs.com/package/null-loader) fits the use case. You can tell webpack to pipe certain assets through it.
-
-{pagebreak}
-
-You can model an `ignore` part using *null-loader*:
-
-**webpack.parts.js**
-
-```javascript
-exports.ignore = ({ test, include, exclude }) => ({
-  module: {
-    rules: [
-      {
-        test,
-        include,
-        exclude,
-
-        use: 'null-loader',
-      },
-    ],
-  },
-});
-```
-
-To ignore all Font Awesome SVGs, you could have a definition as below:
-
-**webpack.config.js**
-
-```javascript
-const commonConfig = merge([
-  ...
-leanpub-start-insert
-  parts.ignore({
-    test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-    include: /font-awesome/,
-  }),
-leanpub-end-insert
-]);
-```
-
-As a result you should get `// empty (null-loader)` for the matched SVG files.
-
-{pagebreak}
-
 ## Getting Insights on Packages
 
 To get more information about packages, npm provides `npm info <package>` command for basic queries. You can use it to check the metadata associated with packages while figuring out version related information.
