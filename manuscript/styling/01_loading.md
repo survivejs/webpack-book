@@ -51,8 +51,6 @@ leanpub-end-insert
 ]);
 ```
 
-{pagebreak}
-
 The added configuration means that files ending with `.css` should invoke the given loaders. `test` matches against a JavaScript-style regular expression.
 
 Loaders are transformations that are applied to source files, and return the new source and can be chained together like a pipe in Unix. They evaluated from right to left. This means that `loaders: ['style-loader', 'css-loader']` can be read as `styleLoader(cssLoader(input))`.
