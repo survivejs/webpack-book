@@ -61,9 +61,9 @@ On a package level, npm resolves to a file through the following process:
 2. Get the contents of the `main` field. If it doesn't exist, default to *<package>/index.js*.
 3. Resolve to the `main` file.
 
-The general lookup algorithm respects an environment variable `NODE_PATH`. If you want to tweak the resolution further, you can attach specific directories to it. Example: `NODE_PATH=$NODE_PATH:./demo`. This kind of call can be included at the beginning of a *package.json* script to patch the runtime environment temporarily, although it's better to avoid this if possible.
+The general lookup algorithm respects an environment variable `NODE_PATH`. If you are using Unix, you can patch it through `NODE_PATH=$NODE_PATH:./demo`. The call can be included at the beginning of a *package.json* scripts to tweak `NODE_PATH` temporarily, although it's better to avoid this if possible.
 
-You can tweak webpack's module resolution through the `resolve.modules` field. Example:
+You can tweak webpack's module resolution through the `resolve.modules` field:
 
 ```javascript
 {
