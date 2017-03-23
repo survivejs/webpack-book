@@ -14,6 +14,8 @@ To make the demo more realistic, let's install [Pure.css](http://purecss.io/), a
 npm install purecss --save
 ```
 
+{pagebreak}
+
 To make the project aware of Pure.css, `import` it:
 
 **app/index.js**
@@ -24,8 +26,6 @@ import 'purecss';
 leanpub-end-insert
 ...
 ```
-
-{pagebreak}
 
 You should also make the demo component use a Pure.css class, so there is something to work with:
 
