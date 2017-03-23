@@ -81,11 +81,9 @@ Consider the example below where you select only specific browsers:
 
 ```
 > 1% # Browser usage over 1%
-Last 2 versions # Last two versions too
-IE 8 # And IE 8
+Last 2 versions # Or last two versions
+IE 8 # Or IE 8
 ```
-
-W> *browserslist* rules are evaluated as **or**. A browser matched by any of the definitions is included in the result.
 
 ## Conclusion
 
