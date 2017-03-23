@@ -65,11 +65,11 @@ You still have to point to a CDN and ideally provide a local fallback so there i
 
 T> [html-webpack-cdn-plugin](https://www.npmjs.com/package/html-webpack-cdn-plugin) is one option if you are using `HtmlWebpackPlugin` and want to inject a `script` tag automatically.
 
-{pagebreak}
-
 ## Dealing with Globals
 
 Sometimes modules depend on globals. `$` provided by jQuery is a good example. Webpack provides a few ways that allow you to handle them.
+
+{pagebreak}
 
 ### Injecting Globals
 
@@ -255,8 +255,6 @@ To get more information about packages, npm provides `npm info <package>` comman
 [slow-deps](https://www.npmjs.com/package/slow-deps) can reveal which dependencies of a project are the slowest to install.
 
 [weigh](https://www.npmjs.com/package/weigh) can be used figure out the approximate size of a package when it's served to a browser in different ways (uncompressed, minified, gzipped).
-
-{pagebreak}
 
 ## Conclusion
 
