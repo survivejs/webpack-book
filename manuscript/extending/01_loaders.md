@@ -93,6 +93,8 @@ module.exports = function(input) {
 
 W> Given webpack injects its API through `this`, the shorter function form (`() => ...`) cannot be used here.
 
+T> If you want to pass a source map to webpack, pass it as the third parameter of the callback.
+
 Running the demo script (`node run-loader.js`) again should give exactly the same result as before. To raise an error during execution, try the following:
 
 **loaders/demo-loader.js**
