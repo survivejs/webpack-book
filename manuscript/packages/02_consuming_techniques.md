@@ -125,7 +125,11 @@ T> [script-loader](https://www.npmjs.com/package/script-loader) allows you to ex
 
 ## Removing Unused Modules
 
-Even though packages can work well out of the box, they bring too much code to your project sometimes. [Moment.js](https://www.npmjs.com/package/moment) is a popular example. It brings locale data to your project by default. The easiest method to disable that behavior is to use `IgnorePlugin` to ignore locales:
+Even though packages can work well out of the box, they bring too much code to your project sometimes. [Moment.js](https://www.npmjs.com/package/moment) is a popular example. It brings locale data to your project by default.
+
+{pagebreak}
+
+The easiest method to disable that behavior is to use `IgnorePlugin` to ignore locales:
 
 ```javascript
 {
@@ -196,6 +200,8 @@ It's possible a package comes with formats you are not interested in. A good exa
 
 [null-loader](https://www.npmjs.com/package/null-loader) fits the use case. You can tell webpack to pipe certain assets through it.
 
+{pagebreak}
+
 You can model an `ignore` part using *null-loader*:
 
 **webpack.parts.js**
@@ -216,8 +222,6 @@ exports.ignore = ({ test, include, exclude }) => ({
 });
 ```
 
-{pagebreak}
-
 To ignore all Font Awesome SVGs, you could have a definition as below:
 
 **webpack.config.js**
@@ -235,6 +239,8 @@ leanpub-end-insert
 ```
 
 As a result you should get `// empty (null-loader)` for the matched SVG files.
+
+{pagebreak}
 
 ## Getting Insights on Packages
 
