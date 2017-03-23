@@ -140,8 +140,6 @@ Even though packages can work well out of the box, they bring too much code to y
 
 T> You can use the same mechanism to work around problematic dependencies. Example: `new webpack.IgnorePlugin(/^(buffertools)$/)`.
 
-{pagebreak}
-
 To bring specific locales to your project, you should use `ContextReplacementPlugin`:
 
 ```javascript
@@ -156,6 +154,8 @@ To bring specific locales to your project, you should use `ContextReplacementPlu
 ```
 
 T> There's a [Stack Overflow question](https://stackoverflow.com/questions/25384360/how-to-prevent-moment-js-from-loading-locales-with-webpack/25426019) that covers these ideas in detail.
+
+{pagebreak}
 
 ## Managing Pre-built Dependencies
 
