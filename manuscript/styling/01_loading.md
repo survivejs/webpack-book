@@ -4,19 +4,19 @@ Webpack doesn't handle styling out of the box and you will have to use loaders a
 
 ## Loading CSS
 
-To load CSS, you need to use [css-loader](https://www.npmjs.com/package/css-loader) and [style-loader](https://www.npmjs.com/package/style-loader). *css-loader* goes through possible `@import` and `url()` lookups within the matched files and treats them as a regular ES6 `import`.
+To load CSS, you need to use [css-loader](https://www.npmjs.com/package/css-loader) and [style-loader](https://www.npmjs.com/package/style-loader). *css-loader* goes through possible `@import` and `url()` lookups within the matched files and treats them as a regular ES6 `import`. If an `@import` points to an external resource, *css-loader* skips it as only internal resources get processed further by webpack.
 
-This process allows to rely on other loaders, such as [file-loader](https://www.npmjs.com/package/file-loader) or [url-loader](https://www.npmjs.com/package/url-loader). If an `@import` points to an external resource, *css-loader* skips it. Only internal resources get processed further by webpack.
+The matched files can be processed through loaders like [file-loader](https://www.npmjs.com/package/file-loader) or [url-loader](https://www.npmjs.com/package/url-loader) and these possibilities are discussed in the *Loading Assets* part of the book.
 
-After *css-loader* has done its part, *style-loader* picks up the output and injects the CSS into the resulting bundle. The CSS be inlined JavaScript by default, and it implements the HMR interface. As inlining isn't a good idea for production usage, it makes sense to use `ExtractTextPlugin` to generate a separate CSS file. You will do this in the next chapter.
-
-{pagebreak}
+Since inlining CSS isn't a good idea for production usage, it makes sense to use `ExtractTextPlugin` to generate a separate CSS file. You will do this in the next chapter.
 
 To get started, invoke
 
 ```bash
 npm install css-loader style-loader --save-dev
 ```
+
+{pagebreak}
 
 Now let's make sure webpack is aware of them. Configure as follows:
 
