@@ -38,6 +38,8 @@ If you are using *react-lite*, configure it as below:
 
 T> The same technique works with loaders too. You can use `resolveLoader.alias` similarly. You can use the technique to adapt a RequireJS project to work with webpack.
 
+T> Specific plugins like [directory-named-webpack-plugin](https://www.npmjs.com/package/directory-named-webpack-plugin) allow you to enhance webpack's module resolution. You can attach these to your setup through the `resolve.plugins` field.
+
 ## Consuming Packages Outside of Webpack
 
 Browser dependencies, like jQuery, are often served through publicly available Content Delivery Networks (CDN). CDNs allow you to push the problem of loading popular packages elsewhere. If a package has been already loaded from a CDN and it's in the user cache, there is no need to load it.
