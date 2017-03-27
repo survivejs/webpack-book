@@ -164,8 +164,6 @@ To treat jQuery as an external, you should configure as follows:
 },
 ```
 
-{pagebreak}
-
 If `libraryTarget: 'umd'` is used after these changes, you get output:
 
 ```javascript
