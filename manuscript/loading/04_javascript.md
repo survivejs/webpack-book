@@ -254,6 +254,8 @@ Microsoft's [TypeScript](http://www.typescriptlang.org/) is a compiled language 
 
 Compared to Facebook's type checker Flow, TypeScript is a more established option. As a result, you find more premade type definitions for it, and overall, the quality of support should be better.
 
+{pagebreak}
+
 You can use TypeScript with webpack using the following loaders:
 
 * [ts-loader](https://www.npmjs.com/package/ts-loader)
