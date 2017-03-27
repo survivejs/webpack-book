@@ -123,9 +123,7 @@ Basic UMD output looks complicated:
 })(this, function() {
 ```
 
-There's a lot to digest, but primarily the code performs checks based on the environment and figures out what kind of export to use. The first case covers Node, the second is for AMD, the third one for Node again, while the last one includes a global environment.
-
-{pagebreak}
+The code performs checks based on the environment and figures out what kind of export to use. The first case covers Node, the second is for AMD, the third one for Node again, while the last one includes a global environment.
 
 The output can be modified further by setting `output.umdNamedDefine: false`:
 
