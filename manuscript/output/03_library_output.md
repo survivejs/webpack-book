@@ -263,7 +263,7 @@ In short, `output.library` maps to the JSONP function name. The idea is that you
 
 ## SystemJS
 
-[SystemJS](https://www.npmjs.com/package/systemjs) is an emerging standard that's starting to get more attention. [webpack-system-register](https://www.npmjs.com/package/webpack-system-register) plugin allows you to wrap your output in a `System.register` call making it compatible with the scheme. If you want to support SystemJS this way, set up another build target.
+[SystemJS](https://www.npmjs.com/package/systemjs) is an emerging standard. [webpack-system-register](https://www.npmjs.com/package/webpack-system-register) plugin allows you to wrap your output in a `System.register` call making it compatible with the scheme. If you want to support SystemJS this way, set up another build target.
 
 ## Conclusion
 
