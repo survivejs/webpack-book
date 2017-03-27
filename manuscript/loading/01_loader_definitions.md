@@ -303,25 +303,23 @@ Loader behavior can be understood in greater detail by inspecting them. [loader-
 
 ## `LoaderOptionsPlugin`
 
-Given webpack 2 forbids arbitrary root level configuration, you have to use `LoaderOptionsPlugin` to manage it. The plugin exists for legacy compatibility and disappears in a future release. Consider the example below:
+Given webpack 2 forbids arbitrary root level configuration, you have to use `LoaderOptionsPlugin`. The plugin exists for legacy compatibility and disappears in a future release. Consider the example below:
 
 ```javascript
-{
-  plugins: [
-    new webpack.LoaderOptionsPlugin({
-      sassLoader: {
-        includePaths: [
-          path.join(__dirname, 'style'),
-        ],
-      },
-    }),
-  ],
-},
+plugins: [
+  new webpack.LoaderOptionsPlugin({
+    sassLoader: {
+      includePaths: [
+        path.join(__dirname, 'style'),
+      ],
+    },
+  }),
+],
 ```
 
 ## Conclusion
 
-Webpack provides multiple ways to set up loaders, but sticking with `use` is enough in webpack 2. You should be careful, especially with loader ordering, as this is a common source of problems.
+Webpack provides multiple ways to set up loaders but sticking with `use` is enough in webpack 2. Be careful with loader ordering, as it's a common source of problems.
 
 To recap:
 
