@@ -262,14 +262,12 @@ In special cases, like [offline-plugin](https://www.npmjs.com/package/offline-pl
 
 ## Conclusion
 
-Writing webpack plugins can be challenging at first due to the sheer size of the API webpack provides and it's the most powerful way you can extend webpack, though. When you begin to design a plugin, it's a good idea to spend time studying existing plugins that are close enough to what you are going to implement as this can generate insight on which hooks you should use and how.
-
-It's a good idea to develop a plugin piece-wise so that you validate one piece of it at a time. The ultimate approach for understanding webpack plugins in great detail is to delve into webpack source itself as it's a big collection of plugins.
+Writing webpack plugins can be challenging at first due to the size of the API. When you begin to design a plugin, spend time studying existing plugins that are close enough. Develop plugins piece-wise so that you validate one piece at a time. Studying webpack source can give more insight given it's a collection of plugins itself.
 
 To recap:
 
 * **Plugins** can intercept webpack's execution and extend it making them more flexible than loaders.
-* Plugins can be combined with loaders. `ExtractTextPlugin` is a good example of a plugin that works this way. In that case, loaders are used to mark assets to extract.
+* Plugins can be combined with loaders. `ExtractTextPlugin` works this way. There loaders are used to mark assets to extract.
 * Plugins have access to webpack's **compiler** and **compilation** processes. Both provide hooks for different stages of webpack's execution flow and allow you to manipulate it. This is how webpack itself works.
 * Plugins can emit new assets and shape existing assets.
 * Plugins can implement plugin systems of their own. `HtmlWebpackPlugin` is an example of a such plugin.
