@@ -177,10 +177,10 @@ On the downside, now you need a browser to examine the tests. *mocha-loader* is 
 
 [Karma](https://karma-runner.github.io/) is a test runner that allows you to run tests against real devices and [PhantomJS](http://phantomjs.org/), a headless browser. [karma-webpack](https://www.npmjs.com/package/karma-webpack) is a Karma preprocessor that allows you to connect Karma with webpack. The same benefits as before apply still. This time around, however, there is more control over the test environment.
 
-To get started, install Karma, *karma-mocha* reporter, and *karma-webpack*:
+To get started, install Karma, Mocha, *karma-mocha* reporter, and *karma-webpack*:
 
 ```
-npm install karma karma-mocha karma-webpack --save-dev
+npm install karma mocha karma-mocha karma-webpack --save-dev
 ```
 
 {pagebreak}
