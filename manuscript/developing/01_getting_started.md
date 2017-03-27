@@ -212,11 +212,7 @@ This works because npm adds *node_modules/.bin* temporarily to the path. As a re
 
 You can execute this kind of scripts through *npm run*. If you run it as is, it gives you the listing of available scripts.
 
-T> There are shortcuts like *npm start* and *npm test*. You can run these directly without *npm run* although that works too. For those in a hurry, you can use *npm t* to run your tests.
-
-T> It's possible to execute *npm run* anywhere within the project. It doesn't have to be run in the project root to work. npm figures out the project root for you.
-
-{pagebreak}
+T> There are shortcuts like *npm start* and *npm test*. You can run these directly without *npm run* although that works too. For those in a hurry, you can use *npm t* to run your tests. It's possible to execute *npm run* anywhere within the project. It doesn't have to be run in the project root to work as npm figures out the project root for you.
 
 ## `HtmlWebpackPlugin` Extensions
 
@@ -229,8 +225,6 @@ There are also specific plugins that extend `HtmlWebpackPlugin`'s functionality:
 * [multipage-webpack-plugin](https://www.npmjs.com/package/multipage-webpack-plugin) builds on top of *html-webpack-plugin* and makes it easier to manage multi-page configurations.
 * [resource-hints-webpack-plugin](https://www.npmjs.com/package/resource-hints-webpack-plugin) adds [resource hints](https://www.w3.org/TR/resource-hints/) to your HTML files to speed up loading time.
 * [preload-webpack-plugin](https://www.npmjs.com/package/preload-webpack-plugin) enables `rel=preload` capabilities for scripts. This helps with lazy loading and it combines well with techniques discussed in the *Building* part of this book.
-
-{pagebreak}
 
 ## Conclusion
 
