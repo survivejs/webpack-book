@@ -103,7 +103,7 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin(),
   ],
 
-  // Adjust resolution algorithm
+  // Adjust module resolution algorithm
   resolve: {
     alias: { ... },
   },
