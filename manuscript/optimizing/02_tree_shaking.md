@@ -44,26 +44,9 @@ T> There is a CSS Modules related tree shaking proof of concept at [dead-css-loa
 
 The same idea works with dependencies that use the ES6 module definition. Given the related packaging standards are still emerging, you have to be careful when consuming such packages. Webpack tries to resolve *package.json* `module` field for this reason.
 
-For tools like webpack to allow tree shake npm packages, you should generate a build that has transpiled everything else except the ES6 module definitions and then point to it through *package.json* `module` field.
+For tools like webpack to allow tree shake npm packages, you should generate a build that has transpiled everything else except the ES6 module definitions and then point to it through *package.json* `module` field. In Babel terms, you have to let webpack to manage ES6 modules by setting `"modules": false`.
 
 {pagebreak}
-
-In Babel terms, you have to let webpack to manage ES6 modules:
-
-**.babelrc**
-
-```json
-{
-  "presets": [
-    [
-      "env",
-      {
-        "modules": false
-      }
-    ]
-  ]
-}
-```
 
 To get most out of tree shaking with external packages, you have to use [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-imports) to rewrite imports so that they work with webpack's tree shaking logic. See [webpack issue #2867](https://github.com/webpack/webpack/issues/2867) for more information.
 
