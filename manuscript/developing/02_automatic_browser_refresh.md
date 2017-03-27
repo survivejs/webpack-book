@@ -255,6 +255,42 @@ To get it to work, you have to install it first through `npm install nodemon --s
 
 It's possible WDS [will support the functionality](https://github.com/webpack/webpack/issues/3153) itself in the future. If you want to make it reload itself on change, you should implement a workaround for now.
 
+## Polling Over Watching Files
+
+Sometimes the file watching setup provided by WDS won't work on your system. It can be problematic on older versions of Windows, Ubuntu, Vagrant, and Docker. Enabling polling is a good option then:
+
+**webpack.config.js**
+
+```javascript
+const developmentConfig = merge([
+leanpub-start-insert
+  {
+    devServer: {
+      watchOptions: {
+        // Delay the rebuild after the first change
+        aggregateTimeout: 300,
+
+        // Poll using interval (in ms, accepts boolean too)
+        poll: 1000,
+      },
+    },
+    plugins: [
+      // Ignore node_modules so CPU usage with poll
+      // watching drops significantly.
+      new webpack.WatchIgnorePlugin([
+        path.join(__dirname, 'node_modules')
+      ]),
+    ]
+leanpub-end-insert
+  },
+  ...
+]);
+```
+
+The setup is more resource intensive than the default but it is worth trying out.
+
+T> There are more details in *webpack-dev-server* issue [#155](https://github.com/webpack/webpack-dev-server/issues/155).
+
 ## Alternate Ways to Use *webpack-dev-server*
 
 You could have passed the WDS options through a terminal. It's clearer to manage the options within webpack configuration as that helps to keep *package.json* nice and tidy. It's also easier to understand what's going on as you don't need to dig out the answers from the webpack source.
@@ -303,7 +339,8 @@ To recap:
 
 * Webpack's `watch` mode is the first step towards a better development experience. You can have webpack compile bundles as you edit your source.
 * Webpack's `--env` parameter allows you to control configuration target through terminal. You receive the passed `env` through a function interface.
-* WDS can refresh the browser on change. It also implements Hot Module Replacement.
+* WDS can refresh the browser on change. It also implements **Hot Module Replacement**.
+* The default WDS setup can be problematic on certain systems. For this reason, more resource intensive polling is an alternative.
 * WDS can be integrated to an existing Node server using a middleware. This gives you more control than relying on the command line interface.
 * WDS does far more than refreshing and HMR. For example proxying allows you to connect it with other servers.
 

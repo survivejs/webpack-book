@@ -122,42 +122,6 @@ T> The `if(module.hot)` block is eliminated entirely from the production build a
 
 {pagebreak}
 
-## HMR on Windows, Ubuntu, and Vagrant
-
-The setup can be problematic on older versions of Windows, Ubuntu, and Vagrant. You can solve this through polling:
-
-**webpack.config.js**
-
-```javascript
-const developmentConfig = merge([
-leanpub-start-insert
-  {
-    devServer: {
-      watchOptions: {
-        // Delay the rebuild after the first change
-        aggregateTimeout: 300,
-
-        // Poll using interval (in ms, accepts boolean too)
-        poll: 1000,
-      },
-    },
-    plugins: [
-      // Ignore node_modules so CPU usage with poll
-      // watching drops significantly.
-      new webpack.WatchIgnorePlugin([
-        path.join(__dirname, 'node_modules')
-      ]),
-    ]
-leanpub-end-insert
-  },
-  ...
-]);
-```
-
-Given this setup polls the file system, it's more resource intensive. It's worth giving a go if the default doesn't work, though.
-
-T> There are more details in *webpack-dev-server* issue [#155](https://github.com/webpack/webpack-dev-server/issues/155).
-
 ## Setting WDS Entry Points Manually
 
 In the setup above, the WDS-related entries were injected automatically. Assuming you are using WDS through Node, you would have to set them yourself as the Node API doesn't support injecting. The example below illustrates how to achieve this:
@@ -186,4 +150,3 @@ To recap:
 
 * To work, HMR requires both client and server side support. For this purpose, webpack-dev-server provides both. Often you have to implement the client side interface although loaders like *style-loader* implement it for you.
 * It's a good idea to use the `NamedModulesPlugin` during development as that gives you better debug information.
-* The default HMR setup can be problematic on certain systems. For this reason, more resource intensive polling is an option.
