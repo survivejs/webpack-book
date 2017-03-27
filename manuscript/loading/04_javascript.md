@@ -53,9 +53,9 @@ The first step towards configuring Babel to work with webpack is to set up [babe
 npm install babel-loader babel-core --save-dev
 ```
 
-As usual, let's define a part for Babel:
+{pagebreak}
 
-Here's the full loader configuration:
+As usual, let's define a part for Babel:
 
 **webpack.parts.js**
 
