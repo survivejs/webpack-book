@@ -287,11 +287,11 @@ To get most out of *css-loader*, you should understand how it performs its looku
 
 T> [resolve-url-loader](https://www.npmjs.com/package/resolve-url-loader) comes in handy if you use Sass or Less. It adds support for relative imports to the environments.
 
-{pagebreak}
-
 ### Processing *css-loader* Imports
 
 If you want to process *css-loader* imports in a specific way, you should set up `importLoaders` option to a number that tells the loader how many loaders after the *css-loader* should be executed against the imports found. If you import other CSS files from your CSS through the `@import` statement and want to process the imports through specific loaders, this technique is essential.
+
+{pagebreak}
 
 Consider the following import from a CSS file:
 
@@ -319,8 +319,6 @@ To process the Sass file, you would have to write configuration:
 
 If you added more loaders, such as *postcss-loader*, to the chain, you would have to adjust the `importLoaders` option accordingly.
 
-{pagebreak}
-
 ### Loading from *node_modules* Directory
 
 You can load files directly from your node_modules directory. Consider Bootstrap and its usage for example:
@@ -340,8 +338,6 @@ If you want to enable source maps for CSS, you should enable `sourceMap` option 
 ## Converting CSS to Strings
 
 Especially with Angular 2, it can be convenient if you can get CSS in a string format that can be pushed to components. [css-to-string-loader](https://www.npmjs.com/package/css-to-string-loader) achieves exactly this.
-
-{pagebreak}
 
 ## Using Bootstrap
 
