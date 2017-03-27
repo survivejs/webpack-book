@@ -195,13 +195,12 @@ Webpack includes a collection of optimization related plugins:
 
 ## Conclusion
 
-Setting environment variables is a technique that allows you to control which paths of the source are included in the build. The process enables production specific optimizations and feature flags.
+Setting environment variables is a technique that allows you to control which paths of the source are included in the build.
 
 To recap:
 
-* Webpack allows you to set environment variables through `DefinePlugin` and `EnvironmentPlugin`. Latter is a wrapper for `DefinePlugin` that maps system level environment variables to the source.
-* `DefinePlugin` operates based on **free variables** and it replaces them as webpack analyzes the source code.
-* You can achieve similar results by using Babel plugins.
+* Webpack allows you to set environment variables through `DefinePlugin` and `EnvironmentPlugin`. Latter maps system level environment variables to the source.
+* `DefinePlugin` operates based on **free variables** and it replaces them as webpack analyzes the source code. You can achieve similar results by using Babel plugins.
 * Given minifiers eliminate dead code, using the plugins allows you to remove the code from the resulting build.
 * The plugins enable module level patterns. By implementing a wrapper, you can choose which file webpack includes to the resulting build.
 * In addition to these plugins, you can find other optimization related plugins that allow you to control the build result in many ways.
