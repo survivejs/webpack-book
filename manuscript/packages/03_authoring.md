@@ -143,6 +143,8 @@ To get started, you have to use [npm adduser](https://docs.npmjs.com/cli/adduser
 
 T> When creating a project, `npm init` respects the values set at *~/.npmrc*. Hence, it's worth your while to set reasonable defaults there to save time. If you want to limit your package to a particular scope, use `npm init --scope=<scope>`. As a result, you get `@<scope>/<package>` which is handy especially for personal packages since the default namespace of npm is so crowded.
 
+T> [npm organizations](https://www.npmjs.com/docs/orgs/) give your project a scope (`@<scope>/<package>`) and make it easier to manage rights across the organization. They are free if your organization contains only public packages.
+
 ### Publishing a Package
 
 Provided you have logged in, creating new packages is only `npm publish` away. Given that the package name is still available and everything goes fine, you should have something out there! After this, you can install your package through `npm install` or `npm i`.
