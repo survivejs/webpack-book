@@ -197,7 +197,7 @@ T> The *Consuming Packages* explains the idea of SemVer in detail.
 
 ### Publishing a Pre-Release Version
 
-Sometimes, you want to publish something preliminary for other people to test. You can do this by tagging your release as a pre-release version. For example, a package can have versions as below:
+Sometimes, you want to publish something preliminary to test. Tag your release as below:
 
 * v0.5.0-alpha1
 * v0.5.0-beta1
@@ -217,15 +217,13 @@ The workflow has two steps:
 
 To consume the test version, your users have to use `npm install <your package name>@alpha`.
 
-T> [npm link](https://docs.npmjs.com/cli/link) allows you to link a package as a globally available symbolic link within your system. Node resolves to the linked version unless local `node_modules` happens to contain a version. If you want to remove the link, you should use `npm unlink` or `npm unlink <package>`.
+T> [npm link](https://docs.npmjs.com/cli/link) allows you to link a package as a globally available symbolic link. Node resolves to the linked version unless local `node_modules` exists. Use `npm unlink` or `npm unlink <package>` to remove the link.
 
 ### On Naming Packages
 
-Before starting to develop, it can be a good idea to spend time on figuring out a good name for your package. It's not fun to write an excellent package only to notice the name has been taken. A good name is possible to find through a search engine, and most importantly, is available at npm.
+Before starting to develop, it can be a good idea to spend time on figuring out a good name for your package. It's not fun to write an excellent package only to notice the name has been taken. A good name is possible to find through a search engine, and most importantly, is available at npm. If you find a good name that appears to be abandoned, contact npm. They can give it to you.
 
 As of npm 2.7.0, it's possible to create [scoped packages](https://docs.npmjs.com/getting-started/scoped-packages). They follow format `@username/project-name`. Simply follow that when naming your project.
-
-T> If you find a good name that appears to be abandoned, contact npm. They can give it to you.
 
 ## Conclusion
 
