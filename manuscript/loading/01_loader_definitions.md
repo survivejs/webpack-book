@@ -239,21 +239,16 @@ The problem with this approach is that it couples your source with webpack. But 
 * `test` - Match against a RegExp, string, function, an object, or an array of conditions like these.
 * `include` - The same.
 * `exclude` - The same, except the output is the inverse of `include`.
+* `resource: /inline/` - Match against a resource path including the query. Examples: `/path/foo.inline.js`, `/path/bar.png?inline`.
+* `issuer: /bar.js/` - Match against a resource requested from the match. Example: `/path/foo.png` would match if it was requested from `/path/bar.js`.
+* `resourcePath: /inline/` - Match against a resource path without its query. Example: `/path/foo.inline.png`.
+* `resourceQuery: /inline/` - Match against a resource based on its query. Example: `/path/foo.png?inline`.
 
-{pagebreak}
+Boolean based fields can be used to constrain these matchers further:
 
-Boolean based fields can be used to constrain the result further:
-
-* `not` - Do **not** match against a condition like above.
+* `not` - Do **not** match against a condition (see `test` for accepted values).
 * `and` - Match against an array of conditions. All must match.
 * `or` - Match against an array while any must match.
-
-Webpack can also match based on the resource path and related information:
-
-* `resource: /inline/` - Match against a resource path including the query. Example matches: `/path/foo.inline.js`, `/path/bar.png?inline`.
-* `issuer: /bar.js/` - Match against a resource requested from the match. Example: `/path/foo.png` would match if it was requested from `/path/bar.js`.
-* `resourcePath: /inline/` - Match against a resource path without its query. Example match: `/path/foo.inline.png`.
-* `resourceQuery: /inline/` - Match against a resource based on its query. Example match: `/path/foo.png?inline`.
 
 ## Loading Based on `resourceQuery`
 
