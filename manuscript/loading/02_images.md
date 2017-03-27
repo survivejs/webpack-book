@@ -195,6 +195,8 @@ const src = require(`./avatars/${avatar}`);
 ...
 ```
 
+{pagebreak}
+
 ## Loading Sprites
 
 **Spriting** technique allows you to combine multiple smaller images into a single image. It has been used for games to describe animations and it's valuable for web development as well as you avoid request overhead.
@@ -216,6 +218,8 @@ const src = require(`./avatars/${avatar}`);
 ## Images and *css-loader* Source Map Gotcha
 
 If you are using images and *css-loader* with the `sourceMap` option enabled, it's important that you set `output.publicPath` to an absolute value pointing to your development server. Otherwise, images aren't going to work. See [the relevant webpack issue](https://github.com/webpack/style-loader/issues/55) for further explanation.
+
+{pagebreak}
 
 ## Conclusion
 
