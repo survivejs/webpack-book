@@ -6,6 +6,8 @@ Webpack doesn't handle styling out of the box and you will have to use loaders a
 
 To load CSS, you need to use [css-loader](https://www.npmjs.com/package/css-loader) and [style-loader](https://www.npmjs.com/package/style-loader). *css-loader* goes through possible `@import` and `url()` lookups within the matched files and treats them as a regular ES6 `import`. If an `@import` points to an external resource, *css-loader* skips it as only internal resources get processed further by webpack.
 
+*style-loader* injects the styling through a `style` element. The way it does this can be customized. It also implements the *Hot Module Replacement* interface providing good development experience.
+
 The matched files can be processed through loaders like [file-loader](https://www.npmjs.com/package/file-loader) or [url-loader](https://www.npmjs.com/package/url-loader) and these possibilities are discussed in the *Loading Assets* part of the book.
 
 Since inlining CSS isn't a good idea for production usage, it makes sense to use `ExtractTextPlugin` to generate a separate CSS file. You will do this in the next chapter.
