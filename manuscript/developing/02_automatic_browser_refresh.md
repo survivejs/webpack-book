@@ -10,7 +10,7 @@ WDS is a development server running **in-memory**, meaning the bundle contents a
 
 By default WDS refreshes content automatically in the browser while you develop your application so you don't have to do it yourself. However it also supports an advanced webpack feature, **Hot Module Replacement** (HMR).
 
-HMR allows patching the browser state without a full refresh making it particularly handy with libraries like React where a refresh blows away the application state. The *Configuring Hot Module Replacement* appendix covers the feature in detail.
+HMR allows patching the browser state without a full refresh making it particularly handy with libraries like React where a refresh blows away the application state. The *Hot Module Replacement* appendix covers the feature in detail.
 
 WDS provides an interface that makes it possible to patch code on the fly, however for this to work effectively, you have to implement this interface for the client-side code. It's trivial for something like CSS because it's stateless, but the problem is harder with JavaScript frameworks and libraries.
 
@@ -226,7 +226,7 @@ T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environme
 
 ## Enabling Hot Module Replacement
 
-Hot Module Replacement is one of those features that sets webpack apart. Implementing it requires additional effort on both server and client-side. The *Configuring Hot Module Replacement* discusses the topic in greater detail. If you want to integrate HMR to your project, give it a look. It won't be needed to complete the tutorial, though.
+Hot Module Replacement is one of those features that sets webpack apart. Implementing it requires additional effort on both server and client-side. The *Hot Module Replacement* appendix discusses the topic in greater detail. If you want to integrate HMR to your project, give it a look. It won't be needed to complete the tutorial, though.
 
 ## Accessing the Development Server from Network
 

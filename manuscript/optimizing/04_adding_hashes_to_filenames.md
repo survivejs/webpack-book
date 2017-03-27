@@ -153,9 +153,7 @@ There's one problem, though. If you change the application code, it invalidates 
 
 ## Enabling `HashedModuleIdsPlugin`
 
-Webpack uses number based IDs for the module code it generates. The problem is that they are difficult to work with and can lead to difficult to debug issues, particularly with hashing. Like you did with the development setup earlier in the *Configuring Hot Module Replacement* chapter, you can perform a simplification here as well.
-
-This is why webpack provides two plugins. `NamedModulesPlugin` replaces module IDs with paths to the modules making it ideal for development. `HashedModuleIdsPlugin` does the same except it hashes the result and hides the path information.
+Webpack uses number based IDs for the module code it generates. The problem is that they are difficult to work with and can lead to difficult to debug issues, particularly with hashing. This is why webpack provides two plugins. `NamedModulesPlugin` replaces module IDs with paths to the modules making it ideal for development. `HashedModuleIdsPlugin` does the same except it hashes the result and hides the path information.
 
 The process keeps module IDs stable as they aren't derived based on order. You sacrifice a couple of bytes for a cleaner setup, but the trade-off is well worth it.
 

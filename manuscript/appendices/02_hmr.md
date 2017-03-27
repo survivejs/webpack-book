@@ -1,4 +1,4 @@
-# Configuring Hot Module Replacement
+# Hot Module Replacement
 
 **Hot Module Replacement** (HMR) builds on top of the WDS. It enables an interface that makes it possible to swap modules live. For example, *style-loader* can update your CSS without forcing a refresh. As CSS is stateless by design, implementing HMR for it's ideal.
 

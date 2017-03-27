@@ -72,7 +72,7 @@ Backmatter.txt
 
 15_Appendices.md
 appendices/01_comparison.md
-appendices/02_configuring_hmr.md
+appendices/02_hmr.md
 appendices/03_hmr_with_react.md
 appendices/04_customizing_eslint.md
 appendices/05_searching_with_react.md
