@@ -303,6 +303,8 @@ leanpub-end-insert
 ]);
 ```
 
+{pagebreak}
+
 With this change the import can be simplified:
 
 ```javascript
