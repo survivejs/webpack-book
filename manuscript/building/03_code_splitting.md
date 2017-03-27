@@ -73,7 +73,7 @@ require.ensure(
 
 As you can see, `require.ensure` definition is more powerful. The problem is that it doesn't support error handling. Often you can achieve what you want through a dynamic `import`, but it's good to know this form exists as well.
 
-`require.ensure` supports naming. The point is that `require.ensure` blocks that have the same name are pulled into the same output chunk giving you more control over the result. [The official example](https://github.com/webpack/webpack/tree/master/examples/named-chunks) shows the output in detail.
+`require.ensure` supports naming. `require.ensure` blocks that have the same name are pulled into the same output bundle. [The official example](https://github.com/webpack/webpack/tree/master/examples/named-chunks) shows the output in detail.
 
 W> `require.ensure` relies on `Promise`s internally. If you use `require.ensure` with older browsers, remember to shim `Promise` using a polyfill such as [es6-promise](https://www.npmjs.com/package/es6-promise).
 
