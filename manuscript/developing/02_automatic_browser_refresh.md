@@ -287,7 +287,7 @@ leanpub-end-insert
 ]);
 ```
 
-The setup is more resource intensive than the default but it is worth trying out.
+The setup is more resource intensive than the default but it's worth trying out.
 
 T> There are more details in *webpack-dev-server* issue [#155](https://github.com/webpack/webpack-dev-server/issues/155).
 
