@@ -85,6 +85,10 @@ exports.loadJavaScript = ({ include, exclude }) => ({
 
 Next, you need to connect this with the main configuration. If you are using a modern browser for development, you can consider processing only the production code through Babel. To play it safe, it's used for both production and development environments in this case. In addition, only application code is processed through Babel.
 
+{pagebreak}
+
+Adjust as below:
+
 **webpack.config.js**
 
 ```javascript
@@ -114,8 +118,6 @@ npm install babel-preset-env --save-dev
 ```
 
 To make Babel aware of the preset, you need to write a *.babelrc*. Given webpack supports ES6 modules out of the box, you can tell Babel to skip processing them. Skipping this step would break webpack's HMR mechanism although the production build would still work. You can also constrain the build output to work only in recent versions of Chrome.
-
-{pagebreak}
 
 Adjust the target definition as you like. As long as you follow [browserslist](https://www.npmjs.com/package/browserslist), it should work. Here's a sample configuration:
 
