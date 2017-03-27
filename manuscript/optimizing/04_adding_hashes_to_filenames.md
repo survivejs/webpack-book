@@ -207,6 +207,8 @@ vendor.3c78d233.js.map     135 kB       2  [emitted]  vendor
 
 Note how the output has changed, though. Instead of numbers, you can see hashes. But this is expected given the change you made.
 
+T> The *Hot Module Replacement* appendix shows how to set up `NamedModulesPlugin` as it can be used for debugging HMR.
+
 {pagebreak}
 
 ## Conclusion
