@@ -147,7 +147,7 @@ You can add more targets by expanding the *package.json* definition and branchin
 
 T> Webpack 2 validates the configuration by default. If you make a mistake like a typo, it lets you know.
 
-## The Benefits of Composing Configuration
+## Benefits of Composing Configuration
 
 Splitting configuration allows you to keep on expanding the setup. The biggest win is the fact that you can extract commonalities between different targets. You can also identify smaller configuration parts to compose. These configuration parts can be pushed to packages of their own to consume across projects.
 
