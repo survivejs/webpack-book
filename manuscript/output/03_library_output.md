@@ -94,8 +94,6 @@ In other words, webpack has generated a named AMD module. The result doesn't wor
 
 [Universal Module Definition](https://github.com/umdjs/umd) (UMD) was developed to solve the problem of consuming the same code from different environments. Webpack implements two output variants: `umd` and `umd2`. To understand the idea better, let's see what happens when the options are used.
 
-{pagebreak}
-
 ### `umd`
 
 Basic UMD output looks complicated:
@@ -132,8 +130,6 @@ The output can be modified further by setting `output.umdNamedDefine: false`:
 ```
 
 To understand `umd2` option, you have to understand *optional externals* first.
-
-{pagebreak}
 
 ### Optional Externals
 
