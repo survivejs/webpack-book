@@ -115,8 +115,6 @@ Source map types supported by webpack can be split into two categories:
 
 Thanks to their speed, inline source maps are ideal for development. Given they make the bundles big, separate source maps are the preferable solution for production. Separate source maps work during development as well if the performance overhead is acceptable.
 
-T> You can prefix a source map option with a **pragma** character that gets injected to the source map reference. Webpack uses `#` by default that is supported by modern browsers so you don't have to set it. To override this, you have to prefix your source map option with it (e.g., `@source-map`). After the change, you should see `//@` kind of reference to the source map over `//#` in your JavaScript files assuming a separate source map type was used.
-
 {pagebreak}
 
 ## Inline Source Map Types
@@ -409,6 +407,10 @@ exports.generateSourceMaps = ({
 Given webpack matches only `.js` and `.css` files by default for source maps, you can use `SourceMapDevToolPlugin` to overcome this issue. This can be achieved by passing a `test` pattern like `/\.(js|jsx|css)($|\?)/i`.
 
 `EvalSourceMapDevToolPlugin` accepts only `module` and `lineToLine` options as described above. Therefore it can be considered as an alias to `devtool: 'eval'` while allowing a notch more flexibility.
+
+## Changing Source Map Prefix
+
+You can prefix a source map option with a **pragma** character that gets injected to the source map reference. Webpack uses `#` by default that is supported by modern browsers so you don't have to set it. To override this, you have to prefix your source map option with it (e.g., `@source-map`). After the change, you should see `//@` kind of reference to the source map over `//#` in your JavaScript files assuming a separate source map type was used.
 
 ## Using Dependency Source Maps
 
