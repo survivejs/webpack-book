@@ -171,7 +171,7 @@ Consider the file structure below:
 The idea is that you choose either `dev` or `prod` version of the store depending on the environment. It's that *index.js* which does the hard work:
 
 ```javascript
-if(process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
   module.exports = require('./store.prod');
 } else {
   module.exports = require('./store.dev');
