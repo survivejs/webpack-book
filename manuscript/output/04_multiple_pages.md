@@ -297,17 +297,15 @@ Compared to the earlier approach, something was gained, but also lost:
 
 ## Progressive Web Applications
 
-The idea can be pushed further if you combine it with code splitting and smart routing and this is the idea of PWAs. Webpack is well suited to the approach as illustrated by the [webpack-pwa](https://github.com/webpack/webpack-pwa) example.
+If you push the idea further by combining it with code splitting and smart routing, you'll end up with the idea of Progressive Web Applications (PWA). [webpack-pwa](https://github.com/webpack/webpack-pwa) example illustrates how to implement the approach using webpack either through an app shell or a page shell.
 
-The PWA example implements client-side routing. When you go from a page to another, it loads the functionality needed using a dynamic `import`. It implements two approaches - app shell and page shell.
+App shell is loaded initially, and it manages the whole application including its routing. Page shells are more granular, and more are loaded as you use the application. The total size of the application is larger but conversely you can load initial content faster.
 
-App shell is loaded initially, and it manages the whole application including its routing. Compared to app shells, page shells are more granular, and more are loaded as you use the application. The total size of the application is larger in this case, but conversely, you can load initial content faster.
-
-The approach combines well with plugins like [offline-plugin](https://www.npmjs.com/package/offline-plugin) and [sw-precache-webpack-plugin](https://www.npmjs.com/package/sw-precache-webpack-plugin). This way you can benefit from [Service Workers](https://developer.mozilla.org/en/docs/Web/API/Service_Worker_API) and improve the offline experience.
+PWA combines well with plugins like [offline-plugin](https://www.npmjs.com/package/offline-plugin) and [sw-precache-webpack-plugin](https://www.npmjs.com/package/sw-precache-webpack-plugin). Using [Service Workers](https://developer.mozilla.org/en/docs/Web/API/Service_Worker_API) and improves the offline experience.
 
 ## Conclusion
 
-Webpack allows you to manage multiple page setups. Especially the PWA approach is valuable as it allows loading the application in a progressive manner based on usage. It's more flexible than a more traditional single page application approach, and webpack's functionality enables it well.
+Webpack allows you to manage multiple page setups. The PWA approach allows the application to be loaded progressively as it's used and webpack allows implementing it.
 
 To recap:
 
