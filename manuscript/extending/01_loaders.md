@@ -246,7 +246,7 @@ leanpub-end-insert
 
   this.emitFile(url, content);
 
-  const filePath = `__webpack_public_path__ + ${JSON.stringify(url)};`;
+  const filePath = `__webpack_public_path__+${JSON.stringify(url)};`;
 
   return `export default ${filePath}`;
 };
@@ -255,7 +255,7 @@ leanpub-end-insert
 After running (`node ./run-loader.js`), you should see something:
 
 ```javascript
-{ result: [ 'export default __webpack_public_path__ + "demo.txt";' ],
+{ result: [ 'export default __webpack_public_path__+"demo.txt";' ],
   resourceBuffer: <Buffer 66 6f 6f 62 61 72 0a>,
   cacheable: true,
   fileDependencies: [ './demo.txt' ],
