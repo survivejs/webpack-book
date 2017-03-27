@@ -65,9 +65,7 @@ In Babel terms, you have to let webpack to manage ES6 modules:
 }
 ```
 
-T> The *Consuming Packages* and *Authoring Packages* chapters contain further techniques that come in handy.
-
-W> To get most out of tree shaking with external packages, you have to use [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-imports) to rewrite imports so that they work with webpack's tree shaking logic. See [webpack issue #2867](https://github.com/webpack/webpack/issues/2867) for more information.
+To get most out of tree shaking with external packages, you have to use [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-imports) to rewrite imports so that they work with webpack's tree shaking logic. See [webpack issue #2867](https://github.com/webpack/webpack/issues/2867) for more information.
 
 ## Conclusion
 
@@ -81,4 +79,4 @@ To recap:
 * To benefit from tree shaking, you have to use ES6 module definition.
 * As a package author, you can provide a version of your package that contains ES6 modules, while the rest has been transpiled to ES5.
 
-You'll learn how to set environment variables using webpack in the next chapter. This technique allows you to enable production specific optimizations and to implement feature flags.
+You'll learn how to manage environment variables using webpack in the next chapter.
