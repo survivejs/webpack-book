@@ -131,14 +131,6 @@ Even small applications can benefit from code splitting, as it allows the users 
 
 With webpack, you can inject a hash to each bundle name (e.g., *app.d587bbd6.js*) to invalidate bundles on the client side as changes are made. Bundle-splitting allows the client to reload only a small part of the data in the ideal case.
 
-## Loaders and Plugins
-
-All these smaller features add up. Surprisingly, you can get many things done out of the box. If you are missing something, there are loaders and plugins available that allow you to go further.
-
-Understanding the difference between loaders and plugins is vital. Loaders operate on module level. You use them to transform modules from shape to another. A loader can also emit a new module. These options are explored in the *Extending with Loaders* chapter.
-
-Plugins operate on a higher level. Webpack itself has been implemented using a collection of plugins. Each plugin encapsulates a small amount of functionality. Plugins communicate together using hooks. They provide the most powerful means to extend webpack and can also be used in tandem with loaders. The *Extending with Plugins* chapter shows you how to write plugins yourself.
-
 ## Conclusion
 
 Webpack comes with a significant learning curve. However it’s a tool worth learning, given it saves so much time and effort over the long term. To get a better idea how it compares to other tools, check out [the official comparison](https://webpack.js.org/get-started/why-webpack/#comparison).
