@@ -279,15 +279,13 @@ To prove that SSR works, check out the browser inspector. You should see somethi
 
 Instead of a `div` where to mount an application, you can see all related HTML there. It's not much in this particular case, but it's enough to showcase the approach.
 
-T> The current implementation could be refined further by implementing a production mode for the server that would skip injecting the browser refresh script at a minimum.
-
-T> The server could inject initial data payload to the generated HTML. Doing this would avoid queries on the client-side.
+T> The implementation could be refined further by implementing a production mode for the server that would skip injecting the browser refresh script at a minimum. The server could inject initial data payload to the generated HTML. Doing this would avoid queries on the client-side.
 
 ## Open Questions
 
 Even though the demo illustrates the basic idea of SSR, it still leaves open questions:
 
-* How to deal with styles? Vanilla Node doesn't understand CSS related imports by design.
+* How to deal with styles? Node doesn't understand CSS related imports.
 * How to deal with anything else than JavaScript? If the server side is processed through webpack, this is less of an issue as you can patch it at webpack.
 * How to run the server through something else than Node? One option would be to wrap the Node instance in a service you then run through your host environment. Ideally, the results would be cached, and you can find more specific solutions for this particular per platform.
 
@@ -297,11 +295,11 @@ T> Routing is a big problem of its own solved by frameworks like Next.js. Patric
 
 ## Conclusion
 
-SSR is a big topic on its own. It comes with a technical challenge, and for this reason, specific solutions have appeared around it. Webpack is a good fit for SSR setups. The idea can be adapted to other purposes.
+SSR comes with a technical challenge and for this reason specific solutions have appeared around it. Webpack is a good fit for SSR setups.
 
 To recap:
 
-* The idea of **Server Side Rendering** is to provide more for the browser to render initially. Instead of waiting for the JavaScript to load, it can display markup instantly.
-* Server Side Rendering also allows you to pass initial payload of data to the client. This can help you to avoid unnecessary queries to the server.
+* **Server Side Rendering** can provide more for the browser to render initially. Instead of waiting for the JavaScript to load, you can display markup instantly.
+* Server Side Rendering also allows you to pass initial payload of data to the client to avoid unnecessary queries to the server.
 * Webpack can manage the client side portion of the problem. It can be used to generate the server as well if more integrated solution is required. Abstractions, such as Next.js, hide these details.
-* Server Side Rendering does not come without a cost. It leads to new problems as you need better approaches for dealing with aspects, such as styling or routing. The server and the client environment differ in important manners, so code has to be written so that it does not rely on platform-specific features too much.
+* Server Side Rendering does not come without a cost and it leads to new problems as you need better approaches for dealing with aspects, such as styling or routing. The server and the client environment differ in important manners, so code has to be written so that it does not rely on platform-specific features too much.
