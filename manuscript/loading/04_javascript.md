@@ -145,8 +145,6 @@ W> **babel-preset-env** does **not** support *browserslist* file yet. [See issue
 
 If you execute `npm run build` now and examine *build/app.js*, the result should be similar to the earlier since it supports the features you are using in the code.
 
-{pagebreak}
-
 To see that the target definition works, change it to work such as `"browsers": ["IE 8"]`. Since IE 8 doesn't support `const`s, the code should change. If you build (`npm run build`), now, you should see something different:
 
 **build/app.js**
