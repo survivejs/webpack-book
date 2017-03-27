@@ -12,13 +12,13 @@ The matched files can be processed through loaders like [file-loader](https://ww
 
 Since inlining CSS isn't a good idea for production usage, it makes sense to use `ExtractTextPlugin` to generate a separate CSS file. You will do this in the next chapter.
 
+{pagebreak}
+
 To get started, invoke
 
 ```bash
 npm install css-loader style-loader --save-dev
 ```
-
-{pagebreak}
 
 Now let's make sure webpack is aware of them. Configure as follows:
 
