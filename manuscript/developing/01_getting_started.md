@@ -206,13 +206,11 @@ Given executing `node_modules/.bin/webpack` is verbose, you should do something 
 },
 ```
 
-Run `npm run build`. You should see the same output as before.
+Run `npm run build` to see the same output as before. This works because npm adds *node_modules/.bin* temporarily to the path. As a result, rather than having to write `"build": "node_modules/.bin/webpack"`, you can do `"build": "webpack"`.
 
-This works because npm adds *node_modules/.bin* temporarily to the path. As a result, rather than having to write `"build": "node_modules/.bin/webpack"`, you can do `"build": "webpack"`.
+You can execute this kind of scripts through *npm run* and you can use *npm run* anywhere within your project. If you run the command as is, it gives you the listing of available scripts.
 
-You can execute this kind of scripts through *npm run*. If you run it as is, it gives you the listing of available scripts.
-
-T> There are shortcuts like *npm start* and *npm test*. You can run these directly without *npm run* although that works too. For those in a hurry, you can use *npm t* to run your tests. It's possible to execute *npm run* anywhere within the project. It doesn't have to be run in the project root to work as npm figures out the project root for you.
+T> There are shortcuts like *npm start* and *npm test*. You can run these directly without *npm run* although that works too. For those in a hurry, you can use *npm t* to run your tests.
 
 ## `HtmlWebpackPlugin` Extensions
 
