@@ -159,4 +159,4 @@ To recap:
 
 * ESLint allows rules to be skipped locally. Use this feature sparingly.
 * You can override ESLint environment per file. It's good to consider other solutions if you notice a lot of overrides in your source, though.
-* ESLint can be expanded through plugins. They allow you to adjust its behavior to your liking. Given the ecosystem is strong, check it first before going this way.
+* ESLint can be extended through plugins. They allow you to adjust its behavior to your liking. Given the ecosystem is strong, check it first before going this way.
