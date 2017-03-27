@@ -20,13 +20,12 @@ Instead of pushing the loader definition to webpack configuration, you can use i
 
 ## Setting Up a Worker
 
-A worker has to do two things: listen to messages and respond. Between those two actions, it can perform a computation. In this case, you accept text data, append it to itself, and send the result.
+A worker has to do two things: listen to messages and respond. Between those two actions, it can perform a computation. In this case, you accept text data, append it to itself, and send the result:
 
 **app/worker.js**
 
 ```javascript
 self.onmessage = ({ data: { text } }) => {
-  // Append the given text to itself
   self.postMessage({ text: text + text });
 };
 ```
@@ -42,7 +41,6 @@ import Worker from 'worker-loader!./worker';
 
 export default () => {
   const element = document.createElement('h1');
-
   const worker = new Worker();
   const state = { text: 'foo' };
 
@@ -55,9 +53,7 @@ export default () => {
   );
 
   element.innerHTML = state.text;
-  element.onclick = () => {
-    worker.postMessage({ text: state.text });
-  };
+  element.onclick = () => worker.postMessage({ text: state.text });
 
   return element;
 }
@@ -78,4 +74,4 @@ To recap:
 * The isolation provided by web workers can be used for architectural benefit. It forces the programmers to stay within a specific sandbox.
 * Communicating with web workers comes with an overhead that makes them less practical. As the specification evolves, this can change in the future.
 
-The idea of internationalization is covered in the next chapter.
+You'll learn about internationalization in the next chapter.
