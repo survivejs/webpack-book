@@ -28,8 +28,6 @@ const commonConfig = merge([
 
 The output configuration maps `library` and `libraryTarget` to the following form:
 
-**dist/lib.js**
-
 ```javascript
 var Demo =
 /******/ (function(modules) { // webpackBootstrap
@@ -63,8 +61,6 @@ The CommonJS specific targets are handy when it comes to Node. There are two opt
 
 If you used the `commonjs` option, you would end up with code that expects global `exports` in which to associate:
 
-**dist/lib.js**
-
 ```javascript
 exports["Demo"] =
 ...
@@ -76,8 +72,6 @@ If this code was imported from Node, you would get `{ Demo: { add: [Getter] } }`
 
 `commonjs2` expects a global `module.exports` instead:
 
-**dist/lib.js**
-
 ```javascript
 module.exports =
 ...
@@ -88,8 +82,6 @@ The library name, `Demo`, isn't used anywhere. As a result importing the module 
 ## AMD
 
 If you remember [RequireJS](http://requirejs.org/), you recognize the AMD format it uses. In case you can use the `amd` target, you get output:
-
-**dist/lib.js**
 
 ```javascript
 define("Demo", [], function() { return /******/ (function(modules) { // webpackBootstrap
@@ -108,8 +100,6 @@ In other words, webpack has generated a named AMD module. The result doesn't wor
 
 Basic UMD output looks complicated:
 
-**dist/lib.js**
-
 ```javascript
 (function webpackUniversalModuleDefinition(root, factory) {
   if(typeof exports === 'object' && typeof module === 'object')
@@ -126,8 +116,6 @@ Basic UMD output looks complicated:
 The code performs checks based on the environment and figures out what kind of export to use. The first case covers Node, the second is for AMD, the third one for Node again, while the last one includes a global environment.
 
 The output can be modified further by setting `output.umdNamedDefine: false`:
-
-**dist/lib.js**
 
 ```javascript
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -184,8 +172,6 @@ To treat jQuery as an external, you should configure as follows:
 
 If `libraryTarget: 'umd'` is used after these changes, you get output:
 
-**dist/lib.js**
-
 ```javascript
 (function webpackUniversalModuleDefinition(root, factory) {
   if(typeof exports === 'object' && typeof module === 'object')
@@ -216,8 +202,6 @@ Webpack wrapped the optional externals in `try`/`catch` blocks.
 ### `umd2`
 
 To understand what the `umd2` option does, consider the following output:
-
-**dist/lib.js**
 
 ```javascript
 /*! fd0ace9 */
@@ -251,8 +235,6 @@ In most of the cases using `output.libraryTarget: 'umd'` is enough as optional d
 ## JSONP
 
 There's one more output option: `jsonp`. It generates output as below:
-
-**dist/lib.js**
 
 ```javascript
 Demo(/******/ (function(modules) { // webpackBootstrap
