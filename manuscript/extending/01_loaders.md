@@ -322,6 +322,8 @@ You could also handle the loader definition through `rules`. Webpack respects al
 
 T> Once the loader is stable enough, set up a project based on *webpack-defaults*, push the logic there, and begin to consume the loader as a package.
 
+W> Although using *loader-runner* can be convenient for developing and testing loaders, it's a good idea to implement integration tests that run it against webpack itself. Node and webpack environments have subtle differences making this essential.
+
 ## Pitch Loaders
 
 Webpack evaluates loaders in two phases: pitching and running. If you are used to web event semantics, these map to capturing and bubbling. The idea is that webpack allows you to intercept execution during the pitching (capturing) phase. It goes through the loaders left to right first and executes them from right to left after that.
@@ -388,6 +390,8 @@ Input: {}
   contextDependencies: [] }
 ```
 
+T> The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API in detail. You can see all fields available through `this` there.
+
 {pagebreak}
 
 ## Caching with Loaders
@@ -427,10 +431,6 @@ module.exports.pitch = function() {
 {pagebreak}
 
 A pitch loader can be used to attach metadata to the input to use later. In this example, cache was constructed during the pitching stage and it was accessed during normal execution.
-
-T> The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API in detail. You can see all fields available through `this` there.
-
-W> Although using *loader-runner* can be convenient for developing and testing loaders, it's a good idea to implement integration tests that run it against webpack itself. Node and webpack environments have subtle differences making this essential.
 
 ## Conclusion
 
