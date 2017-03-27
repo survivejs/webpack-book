@@ -28,7 +28,9 @@ You can get the error in two ways. Either by breaking a loader definition so tha
 
 ## Loader Not Found
 
-There's another subtle loader related error. If a package matching to a loader name that does not implement the loader interface exists, webpack matches to that and gives a runtime error that says the package is not a loader. For example, this mistake can be made by writing `loader: 'eslint'` instead of `loader: 'eslint-loader'`. If the loader doesn't exist at all the previous 'Module not found' error will be raised.
+There's another subtle loader related error. If a package matching to a loader name that does not implement the loader interface exists, webpack matches to that and gives a runtime error that says the package is not a loader.
+
+This mistake can be made by writing `loader: 'eslint'` instead of `loader: 'eslint-loader'`. If the loader doesn't exist at all the previous 'Module not found' error will be raised.
 
 W> A loader definition missing `-loader` was valid in webpack 1. It has been disallowed in webpack 2. The behavior can be enabled again through `resolveLoader.moduleExtensions` array.
 
