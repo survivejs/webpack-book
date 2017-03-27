@@ -187,6 +187,8 @@ To write an asset, you have to use [webpack-sources](https://www.npmjs.com/packa
 npm install webpack-sources --save-dev
 ```
 
+{pagebreak}
+
 Adjust the code as follows to write through `RawSource`:
 
 **plugins/demo-plugin.js**
