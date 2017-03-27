@@ -266,6 +266,60 @@ You can see that the result matches what the loader should have returned. You ca
 
 T> It's a good idea to validate options and rather fail hard than silently if the options aren't what you expect. [schema-utils](https://www.npmjs.com/package/schema-utils) has been designed for this purpose.
 
+## Connecting Custom Loaders with Webpack
+
+To get most out of loaders you have to connect them with webpack. To achieve this, you can go through imports:
+
+**app/component.js**
+
+```javascript
+leanpub-start-insert
+import demo from '!../loaders/demo-loader?name=foo!./main.css';
+leanpub-end-insert
+
+...
+```
+
+Given the definition is verbose, the loader can be aliased:
+
+**webpack.config.js**
+
+```javascript
+const commonConfig = merge([
+  {
+    output: {
+      path: PATHS.build,
+      filename: '[name].js',
+    },
+leanpub-start-insert
+    resolveLoader: {
+      alias: {
+        'demo-loader': path.resolve(__dirname, 'loaders/demo-loader.js'),
+      },
+    },
+leanpub-end-insert
+  },
+  ...
+]);
+```
+
+With this change the import can be simplified:
+
+```javascript
+leanpub-start-delete
+import demo from '!../loaders/demo-loader?name=foo!./main.css';
+leanpub-end-delete
+leanpub-start-insert
+import demo from '!demo-loader?name=foo!./main.css';
+leanpub-end-insert
+
+...
+```
+
+You could also handle the loader definition through `rules`. Webpack respects aliases there as well.
+
+T> Once the loader is stable enough, set up a project based on *webpack-defaults*, push the logic there, and begin to consume the loader as a package.
+
 ## Pitch Loaders
 
 Webpack evaluates loaders in two phases: pitching and running. If you are used to web event semantics, these map to capturing and bubbling. The idea is that webpack allows you to intercept execution during the pitching (capturing) phase. It goes through the loaders left to right first and executes them from right to left after that.
@@ -385,6 +439,7 @@ To recap:
 * Loaders can be either synchronous or asynchronous. In the latter case, you should use `this.async()` webpack API to capture the callback exposed by webpack.
 * If you want to generate code dynamically for webpack entries, that's where loaders can come in handy. A loader does not have to accept input. It's acceptable that it returns only output in this case.
 * Use **loader-utils** to parse possible options passed to a loader and consider validating them using **schema-utils**.
+* When developing loaders locally, consider setting up a `resolveLoader.alias` to clean up references.
 * Pitching stage complements the default behavior allowing you to intercept and to attach metadata.
 
 You'll learn to write plugins in the next chapter. Plugins allow you to intercept webpack's execution process and they can be combined with loaders to develop more advanced functionality.
