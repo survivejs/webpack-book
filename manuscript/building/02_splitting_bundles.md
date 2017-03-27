@@ -262,8 +262,6 @@ To pick React to the vendor build automatically based on usage, you have to drop
 
 `CommonsChunkPlugin` gives control over its behavior through its `minChunks` options. In addition to a number and certain other values, `minChunks` accepts a function with a signature `(module, count)`. The first parameter contains a lot of information about the matches module and allows to deduce which modules are used by the project. The second one tells how many times a particular module has been imported into the project.
 
-{pagebreak}
-
 The most important `module` properties have been listed below. These assume an import like `import 'purecss';` and `ExtractTextPlugin`:
 
 * `resource` represents the path of the full path of the resource being imported. Example: `.../webpack-demo/node_modules/purecss/build/pure-min.css`.
