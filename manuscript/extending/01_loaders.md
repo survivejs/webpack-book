@@ -326,6 +326,8 @@ T> Once the loader is stable enough, set up a project based on *webpack-defaults
 
 Webpack evaluates loaders in two phases: pitching and running. If you are used to web event semantics, these map to capturing and bubbling. The idea is that webpack allows you to intercept execution during the pitching (capturing) phase. It goes through the loaders left to right first and executes them from right to left after that.
 
+{pagebreak}
+
 A pitch loader allows you shape the request and even terminate it. Set up an example as follows:
 
 **loaders/pitch-loader.js**
@@ -383,8 +385,6 @@ Input: {}
   fileDependencies: [],
   contextDependencies: [] }
 ```
-
-{pagebreak}
 
 ## Caching with Loaders
 
