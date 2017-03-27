@@ -180,7 +180,7 @@ if(process.env.NODE_ENV === 'production') {
 
 Webpack can pick the right code based on the `DefinePlugin` declaration and this code. You have to use CommonJS module definition style here as ES6 `import`s don't allow dynamic behavior by design.
 
-T> A related technique, **aliasing**, is discussed in the *Consuming Packages* chapter. You could alias to development or production particular file depending on the environment. The problem is that it ties your setup to webpack in a tighter way than the solution above.
+T> A related technique, **aliasing**, is discussed in the *Package Consuming Techniques* chapter. You could alias to development or production particular file depending on the environment. The problem is that it ties your setup to webpack in a tighter way than the solution above.
 
 {pagebreak}
 
