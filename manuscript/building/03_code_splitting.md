@@ -77,6 +77,8 @@ As you can see, `require.ensure` definition is more powerful. The problem is tha
 
 W> `require.ensure` relies on `Promise`s internally. If you use `require.ensure` with older browsers, remember to shim `Promise` using a polyfill such as [es6-promise](https://www.npmjs.com/package/es6-promise).
 
+{pagebreak}
+
 ### `require.include`
 
 The example above could be rewritten using webpack particular `require.include`:
