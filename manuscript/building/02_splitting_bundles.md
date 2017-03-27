@@ -381,7 +381,7 @@ The image below shows the difference compared to the default. The top circles re
 
 ![`CommonsChunkPlugin` children and async](images/commonschunk.png)
 
-T> `children` and `async` can be used together in special cases. If you are using *Code Splitting* while you want to extract commonalities, enabling both is useful.
+T> `children` and `async` can be used together if you are using *Code Splitting* and want to extract commonalities.
 
 W> The `children` behavior applies only to immediate children. The algorithm is not applied recursively. [Webpack issue 3981](https://github.com/webpack/webpack/issues/3981) explains this in detail.
 
