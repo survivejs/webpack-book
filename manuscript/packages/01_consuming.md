@@ -41,7 +41,7 @@ You can refer to a package by its name and version but that is not the only way.
 * `<github user>/<project>#<reference>` shortcut points to GitHub in a similar manner.
 * `<github user>/<project>#pull/<id>/head` points to a specific GitHub pull request.
 
-`<reference>` can be either commit hash, tag, or a branch. The technique does not work unless the package has been set up to support consumption outside of Git. The *Authoring Packages* chapter shows how to achieve this.
+`<reference>` can be either commit hash, tag, or a branch. The technique does not work unless the package has been set up to support consumption outside of Git. The *Package Authoring Techniques* chapter shows how to achieve this.
 
 T> To avoid sharing all your packages in public, npm allows you to maintain private packages through their commercial offering. Another option is to use a package like [verdaccio](https://www.npmjs.com/package/verdaccio). verdaccio allows you to maintain a private server that can also work as a cache for npm. You can also override public packages using it.
 

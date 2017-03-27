@@ -182,7 +182,7 @@ T> There's [a proposal to improve the situation](https://github.com/webpack/webp
 
 ## Cleaning and Linting Through npm
 
-Another, and in this case a more fitting, way would be to handle the problem through an npm script. As discussing in the *Authoring Packages* chapter, npm provides pre- and post-script hooks. To keep this solution cross-platform, install [rimraf](https://www.npmjs.com/package/rimraf) first:
+Another, and in this case a more fitting, way would be to handle the problem through an npm script. As discussing in the *Package Authoring Techniques* chapter, npm provides pre- and post-script hooks. To keep this solution cross-platform, install [rimraf](https://www.npmjs.com/package/rimraf) first:
 
 ```bash
 npm install rimraf --save-dev
@@ -223,4 +223,4 @@ To recap:
 
 If you try to import *./dist/lib.js* through Node, you notice it emits `{}`. The problem has to do with the output type that was chosen. To understand better which output to use and why, the next chapter covers them in detail.
 
-T> The *Authoring Packages* chapter discusses npm specific techniques in detail, and it complements these chapters well.
+T> The *Package Authoring Techniques* chapter discusses npm specific techniques in detail.
