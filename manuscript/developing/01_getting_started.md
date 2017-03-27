@@ -201,11 +201,9 @@ Given executing `node_modules/.bin/webpack` is verbose, you should do something 
 **package.json**
 
 ```json
-...
 "scripts": {
   "build": "webpack"
 },
-...
 ```
 
 Run `npm run build`. You should see the same output as before.

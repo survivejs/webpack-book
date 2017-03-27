@@ -211,15 +211,12 @@ Even though npm CLI wasn't primarily designed to be used as a task runner, it wo
 **package.json**
 
 ```json
-{
-  "scripts": {
-    "stats": "webpack --env production --json > stats.json",
-    "start": "webpack-dev-server --env development",
-    "deploy": "gh-pages -d build",
-    "build": "webpack --env production"
-  },
-  ...
-}
+"scripts": {
+  "stats": "webpack --env production --json > stats.json",
+  "start": "webpack-dev-server --env development",
+  "deploy": "gh-pages -d build",
+  "build": "webpack --env production"
+},
 ```
 
 These scripts can be listed using `npm run` and then executed using `npm run <script>`. You can also namespace your scripts using a convention like `test:watch`. The problem with this approach is that it takes care to keep it cross-platform.

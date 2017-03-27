@@ -74,12 +74,10 @@ To run Mocha against the test, add a script:
 **package.json**
 
 ```json
-...
 "scripts": {
   "test:mocha": "mocha tests",
   ...
 },
-...
 ```
 
 If you execute `npm run test:mocha` now, you should see output:
@@ -148,12 +146,10 @@ Add a helper script to make it convenient to run:
 **package.json**
 
 ```json
-...
 "scripts": {
   "test:mocha:watch": "webpack-dev-server --hot --config webpack.mocha.js",
   ...
 },
-...
 ```
 
 T> If you want to understand what `--hot` does better, see the *Hot Module Replacement* appendix.
@@ -297,14 +293,12 @@ Accessing Karma's watch mode is possible as follows:
 **package.json**
 
 ```json
-...
 "scripts": {
 leanpub-start-insert
   "test:karma:watch": "karma start --auto-watch --no-single-run",
 leanpub-end-insert
   ...
 },
-...
 ```
 
 If you execute `npm run test:karma:watch` now, you should see watch behavior.
@@ -421,7 +415,6 @@ Jest captures tests through *package.json* [configuration](https://facebook.gith
 **package.json**
 
 ```json
-...
 "scripts": {
 leanpub-start-insert
   "test:jest:watch": "jest --watch",
@@ -429,7 +422,6 @@ leanpub-start-insert
 leanpub-end-insert
   ...
 },
-...
 ```
 
 Now you have two new commands: one to run tests once and other to run them in a watch mode. To capture coverage information, you have to set `"collectCoverage": true` at `"jest"` settings in *package.json* or pass `--coverage` flag to Jest. It emits the coverage reports below *coverage* directory by default.

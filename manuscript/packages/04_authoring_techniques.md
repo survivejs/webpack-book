@@ -19,13 +19,11 @@ Since running that command each time you publish is tedious, you can set up a `p
 **package.json**
 
 ```json
-...
 "scripts": {
   ...
   "prepublish": "babel ./lib --out-dir ./dist-modules"
 },
 "main": "dist-modules/",
-...
 ```
 
 Make sure you execute `npm install babel-cli --save-dev` to include the tool into your project.
@@ -83,7 +81,6 @@ In this case, a setup as below works:
 **package.json**
 
 ```json
-...
 /* `npm run <name>` */
 "scripts": {
   ...
@@ -99,7 +96,6 @@ In this case, a setup as below works:
 },
 /* Point to the Node specific version */
 "main": "dist-modules",
-...
 ```
 
 What if someone points to a development version of your package directly through GitHub, though? It doesn't work as the `dist-modules` directory is missing. The problem can be fixed using a hook that generates the needed source.
@@ -111,13 +107,11 @@ To solve the development distribution problem, a custom script is required. Firs
 **package.json**
 
 ```json
-...
 "scripts": {
   ...
   /* Point to the script that generates the missing source. */
   "postinstall": "node lib/post_install.js"
 },
-...
 ```
 
 Secondly, define a script:

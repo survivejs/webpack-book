@@ -39,7 +39,6 @@ To integrate WDS to the project, you should define an npm script for launching i
 **package.json**
 
 ```json
-...
 "scripts": {
 leanpub-start-insert
   "start": "webpack-dev-server --env development",
@@ -49,7 +48,6 @@ leanpub-start-delete
   "build": "webpack"
 leanpub-end-delete
 },
-...
 ```
 
 If you execute either *npm run start* or *npm start* now, you should see something in the terminal:
@@ -142,12 +140,10 @@ Even though `--env` allows to pass strings to the configuration, it can do a bit
 **package.json**
 
 ```json
-...
 "scripts": {
   "start": "webpack-dev-server --env development",
   "build": "webpack --env.target production"
 },
-...
 ```
 
 Instead of a string, you should receive an object `{ target: 'production' }` at configuration now. You could pass more key-value pairs, and they would go to the `env` object. If you set `--env foo` while setting `--env.target`, the string overrides the object.
@@ -245,12 +241,10 @@ To get it to work, you have to install it first through `npm install nodemon --s
 **package.json**
 
 ```json
-...
 "scripts": {
   "start": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --env development\"",
   "build": "webpack --env production"
 },
-...
 ```
 
 It's possible WDS [will support the functionality](https://github.com/webpack/webpack/issues/3153) itself in the future. If you want to make it reload itself on change, you should implement a workaround for now.

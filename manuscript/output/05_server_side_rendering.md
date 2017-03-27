@@ -153,14 +153,12 @@ To make it convenient to generate a build, add a helper script:
 **package.json**
 
 ```json
-...
 "scripts": {
 leanpub-start-insert
   "build:ssr": "webpack --config webpack.ssr.js",
 leanpub-end-insert
   ...
 },
-...
 ```
 
 If you build the SSR demo (`npm run build:ssr`), you should see a new file at *./static/index.js*. The next step is to set up a server to render it.

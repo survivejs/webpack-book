@@ -17,14 +17,12 @@ To connect Stylelint with npm and make it find the CSS files, adjust as follows:
 **package.json**
 
 ```json
-...
 "scripts": {
 leanpub-start-insert
   "lint:style": "stylelint app/**/*.css",
 leanpub-end-insert
   ...
 },
-...
 ```
 
 {pagebreak}

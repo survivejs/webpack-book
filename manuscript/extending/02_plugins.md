@@ -53,14 +53,12 @@ To make it convenient to run, set up a build shortcut:
 **package.json**
 
 ```json
-...
 "scripts": {
 leanpub-start-insert
   "build:plugin": "webpack --config webpack.plugin.js",
 leanpub-end-insert
   ...
 },
-...
 ```
 
 Executing it should result in an `Error: Cannot find module` failure as the actual plugin is still missing.

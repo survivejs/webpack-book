@@ -27,14 +27,12 @@ Given the `build` target of the project has been taken already by the main appli
 **package.json**
 
 ```json
-...
 "scripts": {
 leanpub-start-insert
   "build:lib": "webpack --config webpack.lib.js",
 leanpub-end-insert
   ...
 },
-...
 ```
 
 ## Setting Up Webpack
@@ -193,14 +191,12 @@ Then, to remove the build directory and lint the source before building, adjust 
 **package.json**
 
 ```json
-...
 "scripts": {
 leanpub-start-insert
   "prebuild:lib": "npm run lint:js && rimraf dist",
 leanpub-end-insert
   ...
 },
-...
 ```
 
 If either process fails, npm doesn't proceed to the `lib` script. You can verify this by breaking a linting rule and seeing what happens when you build (`npm run build:lib`). Instead, it gives you an error.

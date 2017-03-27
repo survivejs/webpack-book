@@ -55,14 +55,12 @@ Add the following to lint the application files and configuration:
 **package.json**
 
 ```json
-...
 "scripts": {
 leanpub-start-insert
   "lint:js": "eslint app/ webpack.*.js --cache",
 leanpub-end-insert
   ...
 },
-...
 ```
 
 The potential problem with using an include based approach is that you forget to lint source code. Using excludes solves this but then you have to be careful to update the exclude list as your project grows to avoid linting too much.
