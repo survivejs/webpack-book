@@ -88,11 +88,7 @@ This latter approach eliminates a part of the clutter. You still end up with cod
 
 T> Jamund Ferguson has written an excellent blog series on how to port from [RequireJS to webpack](https://gist.github.com/xjamundx/b1c800e9282e16a6a18e).
 
-### UMD
-
-UMD, universal module definition, takes it all to the next level. It's a monster of a format that aims to make the various formats compatible with each other. Check out [the official definitions](https://github.com/umdjs/umd) to understand it in greater detail.
-
-T> Webpack can generate UMD wrappers for you (`output.libraryTarget: 'umd'`). You get back to this later in the *Authoring Packages* chapter.
+{pagebreak}
 
 ## Grunt
 
