@@ -8,7 +8,7 @@ A project built with webpack can be deployed to a variety of environments. A pub
 
 Despite its name, the package works with other services that support hosting from a Git repository as well. But given GitHub is so popular, it can be used to demonstrate the idea. In practice, you would likely have more complicated setup in place that would push the result to other service through a Continuous Integration system.
 
-## Setting Up *gh-pages*
+### Setting Up *gh-pages*
 
 To get started, execute
 
@@ -63,7 +63,7 @@ T> If you need a more elaborate setup, use the Node API that *gh-pages* provides
 
 T> GitHub Pages allows you to choose the branch where you deploy. It's possible to use the `master` branch even as it's enough for minimal sites that don't need bundling. You can also point below the *./docs* directory within your `master` branch and maintain your site.
 
-## Archiving Old Versions
+### Archiving Old Versions
 
 *gh-pages* provides an `add` option for archival purposes. The idea goes as follows:
 
