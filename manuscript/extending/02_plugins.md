@@ -65,8 +65,6 @@ Executing it should result in an `Error: Cannot find module` failure as the actu
 
 T> If you want an interactive development environment, consider setting up [nodemon](https://www.npmjs.com/package/nodemon) against the build. Webpack's own watcher won't work in this case.
 
-{pagebreak}
-
 ## Implementing a Basic Plugin
 
 The simplest plugin should do two things: capture options and provide `apply` method:
@@ -82,6 +80,8 @@ module.exports = class DemoPlugin {
 ```
 
 If you run the plugin (`npm run build:plugin`), you should see `applying` message at console. Given most plugins accept options, it's a good idea to capture those and pass them to `apply`.
+
+{pagebreak}
 
 ## Capturing Options
 
@@ -101,8 +101,6 @@ module.exports = class DemoPlugin {
 ```
 
 Running the plugin now would result in `apply undefined` kind of message given no options were passed.
-
-{pagebreak}
 
 Adjust the configuration to pass an option:
 
@@ -124,6 +122,8 @@ leanpub-end-insert
 
 Now you should see `apply { name: 'demo' }` after running.
 
+{pagebreak}
+
 ## Understanding Compiler and Compilation
 
 `apply` receives webpack's compiler as a parameter. Printing reveals more:
@@ -144,8 +144,6 @@ module.exports = class DemoPlugin {
 After running, you should see a lot of data. Especially `options` should look familiar as it contains webpack configuration. You can also see familiar names like `records`.
 
 If you go through webpack's [plugin development documentation](https://webpack.js.org/api/plugins/), you'll see a compiler provides a large amount of hooks. Each hook corresponds with a specific stage. For example, to emit files, you could listen to the `emit` event and then write.
-
-{pagebreak}
 
 Change the implementation to listen and capture `compilation`:
 
@@ -218,8 +216,6 @@ leanpub-end-insert
   }
 };
 ```
-
-{pagebreak}
 
 After building, you should see output:
 
