@@ -328,7 +328,7 @@ Webpack evaluates loaders in two phases: pitching and running. If you are used t
 
 {pagebreak}
 
-A pitch loader allows you shape the request and even terminate it. Set up an example as follows:
+A pitch loader allows you shape the request and even terminate it. Set it up:
 
 **loaders/pitch-loader.js**
 
@@ -353,8 +353,6 @@ Input: ${JSON.stringify(input, null, 2)}
 };
 ```
 
-{pagebreak}
-
 To connect it to the runner, add it to the loader definition:
 
 **run-loader.js**
@@ -373,6 +371,8 @@ leanpub-end-insert
 ...
 );
 ```
+
+{pagebreak}
 
 If you run (`node ./run-loader.js`) now, the pitch loader should log intermediate data and intercept the execution:
 
