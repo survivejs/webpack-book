@@ -324,8 +324,6 @@ W> Although using *loader-runner* can be convenient for developing and testing l
 
 Webpack evaluates loaders in two phases: pitching and running. If you are used to web event semantics, these map to capturing and bubbling. The idea is that webpack allows you to intercept execution during the pitching (capturing) phase. It goes through the loaders left to right first and executes them from right to left after that.
 
-{pagebreak}
-
 A pitch loader allows you shape the request and even terminate it. Set it up:
 
 **loaders/pitch-loader.js**
@@ -370,8 +368,6 @@ leanpub-end-insert
 );
 ```
 
-{pagebreak}
-
 If you run (`node ./run-loader.js`) now, the pitch loader should log intermediate data and intercept the execution:
 
 ```javascript
@@ -387,8 +383,6 @@ Input: {}
 ```
 
 T> The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API in detail. You can see all fields available through `this` there.
-
-{pagebreak}
 
 ## Caching with Loaders
 
