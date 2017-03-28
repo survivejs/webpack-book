@@ -272,8 +272,6 @@ To get most out of loaders you have to connect them with webpack. To achieve thi
 leanpub-start-insert
 import demo from '!../loaders/demo-loader?name=foo!./main.css';
 leanpub-end-insert
-
-...
 ```
 
 Given the definition is verbose, the loader can be aliased:
@@ -283,10 +281,7 @@ Given the definition is verbose, the loader can be aliased:
 ```javascript
 const commonConfig = merge([
   {
-    output: {
-      path: PATHS.build,
-      filename: '[name].js',
-    },
+  ...
 leanpub-start-insert
     resolveLoader: {
       alias: {
@@ -301,8 +296,6 @@ leanpub-end-insert
 ]);
 ```
 
-{pagebreak}
-
 With this change the import can be simplified:
 
 ```javascript
@@ -314,9 +307,9 @@ import demo from '!demo-loader?name=foo!./main.css';
 leanpub-end-insert
 ```
 
-You could also handle the loader definition through `rules`. Webpack respects aliases there as well.
+{pagebreak}
 
-Once the loader is stable enough, set up a project based on *webpack-defaults*, push the logic there, and begin to consume the loader as a package.
+You could also handle the loader definition through `rules`. Once the loader is stable enough, set up a project based on *webpack-defaults*, push the logic there, and begin to consume the loader as a package.
 
 W> Although using *loader-runner* can be convenient for developing and testing loaders, implement integration tests that run against webpack. Subtle differences between environments make this essential.
 
@@ -417,8 +410,6 @@ module.exports.pitch = function() {
   }
 };
 ```
-
-{pagebreak}
 
 A pitch loader can be used to attach metadata to the input to use later. In this example, cache was constructed during the pitching stage and it was accessed during normal execution.
 
