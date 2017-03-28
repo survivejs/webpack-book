@@ -131,7 +131,7 @@ env development
 ...
 ```
 
-T> The result could be verified also by using the `DefinePlugin` to write it to the client code. The *Setting Environment Variables* chapter discusses how to achieve this.
+T> The result could be verified also by using the `DefinePlugin` to write it to the client code. The *Environment Variables* chapter discusses how to achieve this.
 
 ### Understanding `--env`
 

@@ -185,7 +185,7 @@ T> This tweak may not be required in the future as *react-hot-loader* evolves fu
 
 The development setup should work after this change still. If you examine the build output, you should notice it's missing references to `__REACT_HOT_LOADER__`.
 
-Even after this change, the source can contain references still due to a [bug in react-hot-loader](https://github.com/gaearon/react-hot-loader/issues/471) as it has been built so that it loses information. The issue can be worked around by implementing a module chooser pattern as in the *Setting Environment Variables* chapter. `AppContainer` provided by *react-hot-loader* should be mocked with a dummy.
+Even after this change, the source can contain references still due to a [bug in react-hot-loader](https://github.com/gaearon/react-hot-loader/issues/471) as it has been built so that it loses information. The issue can be worked around by implementing a module chooser pattern as in the *Environment Variables* chapter. `AppContainer` provided by *react-hot-loader* should be mocked with a dummy.
 
 {pagebreak}
 

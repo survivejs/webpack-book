@@ -1,4 +1,4 @@
-# Setting Environment Variables
+# Environment Variables
 
 Sometimes a part of your code should execute only during development. Or you could have experimental features in your build that are not ready for production yet. This code should not end up in the production build.
 
@@ -152,7 +152,7 @@ T> `webpack.EnvironmentPlugin(['NODE_ENV'])` is a shortcut that allows you to re
 
 [babel-plugin-transform-define](https://www.npmjs.com/package/babel-plugin-transform-define) and [babel-plugin-minify-replace](https://www.npmjs.com/package/babel-plugin-minify-replace) are other alternatives for Babel.
 
-## Choosing Which Module to Use Based on the Environment
+## Choosing Which Module to Use
 
 The techniques discussed in this chapter can be used to choose entire modules depending on the environment. As seen above, `DefinePlugin` based splitting allows you to choose which branch of code to use and which to discard. This idea can be used to implement branching on module level.
 
