@@ -84,9 +84,28 @@ define(['require'], function (require) {
 });
 ```
 
-This latter approach eliminates a part of the clutter. You still end up with code that feels redundant. Given there's ES6 now, it doesn't make sense to use AMD unless you forced due to legacy reasons.
+This latter approach eliminates a part of the clutter. You still end up with code that feels redundant. ES6 and other standards solve this.
 
 T> Jamund Ferguson has written an excellent blog series on how to port from [RequireJS to webpack](https://gist.github.com/xjamundx/b1c800e9282e16a6a18e).
+
+## npm `scripts` as a Task Runner
+
+Even though npm CLI wasn't primarily designed to be used as a task runner, it works as such thanks to *package.json* `scripts` field. Consider the example below:
+
+**package.json**
+
+```json
+"scripts": {
+  "stats": "webpack --env production --json > stats.json",
+  "start": "webpack-dev-server --env development",
+  "deploy": "gh-pages -d build",
+  "build": "webpack --env production"
+},
+```
+
+These scripts can be listed using `npm run` and then executed using `npm run <script>`. You can also namespace your scripts using a convention like `test:watch`. The problem with this approach is that it takes care to keep it cross-platform.
+
+Instead of `rm -rf`, you likely want to use utilities such as [rimraf](https://www.npmjs.com/package/rimraf) and so on. It's possible to invoke other tasks runners here to hide the fact that you are using one. This way you can refactor your tooling while keeping the interface as the same.
 
 {pagebreak}
 
@@ -204,24 +223,7 @@ T> [webpack-stream](https://www.npmjs.com/package/webpack-stream) allows you to 
 
 T> [Fly](https://www.npmjs.com/package/fly) is a similar tool as Gulp. It relies on ES6 generators instead.
 
-## npm `scripts` as a Task Runner
-
-Even though npm CLI wasn't primarily designed to be used as a task runner, it works as such thanks to *package.json* `scripts` field. Consider the example below:
-
-**package.json**
-
-```json
-"scripts": {
-  "stats": "webpack --env production --json > stats.json",
-  "start": "webpack-dev-server --env development",
-  "deploy": "gh-pages -d build",
-  "build": "webpack --env production"
-},
-```
-
-These scripts can be listed using `npm run` and then executed using `npm run <script>`. You can also namespace your scripts using a convention like `test:watch`. The problem with this approach is that it takes care to keep it cross-platform.
-
-Instead of `rm -rf`, you likely want to use utilities such as [rimraf](https://www.npmjs.com/package/rimraf) and so on. It's possible to invoke other tasks runners here to hide the fact that you are using one. This way you can refactor your tooling while keeping the interface as the same.
+{pagebreak}
 
 ## Browserify
 
