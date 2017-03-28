@@ -277,7 +277,7 @@ T> PostCSS supports *postcss.config.js* based configuration. It relies on [cosmi
 
 See [the usage documentation](http://cssnext.io/usage/) for available options.
 
-T> cssnext includes autoprefixer! You don't have to configure autoprefixing separately for it to work in this case.
+T> cssnext includes *autoprefixer*! You don't have to configure autoprefixing separately for it to work in this case.
 
 ## Understanding Lookups
 
