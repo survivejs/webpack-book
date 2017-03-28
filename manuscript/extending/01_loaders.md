@@ -312,15 +312,13 @@ leanpub-end-delete
 leanpub-start-insert
 import demo from '!demo-loader?name=foo!./main.css';
 leanpub-end-insert
-
-...
 ```
 
 You could also handle the loader definition through `rules`. Webpack respects aliases there as well.
 
-T> Once the loader is stable enough, set up a project based on *webpack-defaults*, push the logic there, and begin to consume the loader as a package.
+Once the loader is stable enough, set up a project based on *webpack-defaults*, push the logic there, and begin to consume the loader as a package.
 
-W> Although using *loader-runner* can be convenient for developing and testing loaders, it's a good idea to implement integration tests that run it against webpack itself. Node and webpack environments have subtle differences making this essential.
+W> Although using *loader-runner* can be convenient for developing and testing loaders, implement integration tests that run against webpack. Subtle differences between environments make this essential.
 
 ## Pitch Loaders
 
