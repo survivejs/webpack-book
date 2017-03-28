@@ -329,9 +329,7 @@ module.exports = function(input) {
 
   return input + text;
 };
-module.exports.pitch = function(
-  remainingRequest, precedingRequest, input
-) {
+module.exports.pitch = function(remainingRequest, precedingRequest, input) {
   console.log(`
 Remaining request: ${remainingRequest}
 Preceding request: ${precedingRequest}
