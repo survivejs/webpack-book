@@ -88,7 +88,11 @@ To make sure the project has the dependencies in place, install React and [react
 npm install react react-dom --save
 ```
 
-Next, the React code needs a small entry point. If you are on the browser side, you should mount `Hello world` `div` to the document. To prove it works, clicking it should give a dialog with a "hello" message. On server-side the React component is returned so the server can pick it up:
+Next, the React code needs a small entry point. If you are on the browser side, you should mount `Hello world` `div` to the document. To prove it works, clicking it should give a dialog with a "hello" message. On server-side the React component is returned so the server can pick it up.
+
+{pagebreak}
+
+Adjust as follows:
 
 **app/ssr.js**
 
@@ -109,6 +113,8 @@ if (typeof document === 'undefined') {
 You are still missing webpack configuration to turn this file into something the server can pick up.
 
 W> Given ES6 style imports and CommonJS exports cannot be mixed, the entry point was written in CommonJS style.
+
+{pagebreak}
 
 ## Configuring Webpack
 
