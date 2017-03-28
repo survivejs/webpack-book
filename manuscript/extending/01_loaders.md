@@ -128,9 +128,7 @@ module.exports = function() {
 
 But what's the point? You can pass to loaders through webpack entries. Instead of pointint to pre-existing files as you would in majority of the cases, you could pass to a loader that generates code dynamically. Even though a special case, it's good to be aware of the technique.
 
-T> If you want to return `Buffer` output, you will have to set `module.exports.raw = true` as webpack expects a string by default. The flag overrides this default behavior. You need this if you wrap for example [node-sass](https://www.npmjs.com/package/node-sass) as a loader.
-
-{pagebreak}
+T> If you want to return `Buffer` output, set `module.exports.raw = true`. The flag overrides the default behavior which expects a string is returned.
 
 ## Writing Files
 
@@ -159,8 +157,6 @@ leanpub-end-insert
   console.log(result)
 );
 ```
-
-{pagebreak}
 
 To implement the essential idea of *file-loader*, you have to do two things: emit the file and return path to it. You could implement it as below:
 
