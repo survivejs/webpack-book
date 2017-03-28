@@ -126,13 +126,13 @@ module.exports = function() {
 };
 ```
 
-But what's the point? You can pass to loaders through webpack entries. Instead of pointint to pre-existing files as you would in majority of the cases, you could pass to a loader that generates code dynamically. Even though a special case, it's good to be aware of the technique.
+But what's the point? You can pass to loaders through webpack entries. Instead of pointing to pre-existing files as you would in majority of the cases, you could pass to a loader that generates code dynamically.
 
 T> If you want to return `Buffer` output, set `module.exports.raw = true`. The flag overrides the default behavior which expects a string is returned.
 
 ## Writing Files
 
-Loaders, like [file-loader](https://www.npmjs.com/package/file-loader), emit files. Webpack provides a single method, `this.emitFile`, for this. Given *loader-runner* does not implement it, you have to mock it:
+Loaders, like *file-loader*, emit files. Webpack provides a single method, `this.emitFile`, for this. Given *loader-runner* does not implement it, you have to mock it:
 
 **run-loader.js**
 
