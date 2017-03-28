@@ -329,16 +329,18 @@ module.exports = function(input) {
 
   return input + text;
 };
-module.exports.pitch = function(remainingRequest, precedingRequest, input) {
+module.exports.pitch = function(remainingReq, precedingReq, input) {
   console.log(`
-Remaining request: ${remainingRequest}
-Preceding request: ${precedingRequest}
+Remaining request: ${remainingReq}
+Preceding request: ${precedingReq}
 Input: ${JSON.stringify(input, null, 2)}
   `);
 
   return 'pitched';
 };
 ```
+
+{pagebreak}
 
 To connect it to the runner, add it to the loader definition:
 
