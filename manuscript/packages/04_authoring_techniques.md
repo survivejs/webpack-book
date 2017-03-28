@@ -38,6 +38,8 @@ In npm 3 `prepublish` hook gets also triggered when you run `npm install` on the
 
 [in-publish](https://www.npmjs.com/package/in-publish) allows you to tune the behavior and skip the installation step. You need to prepend your script with `in-publish && babel ...` kind of line for this to work. npm 4 and the following versions fix this confusing behavior.
 
+{pagebreak}
+
 ## Avoiding Bundling Dependencies
 
 Since it's not a good idea to bundle your package dependencies, such as React, within the distribution bundle itself, you should let the user inject them. You can configure external dependencies using the `externals` configuration:
