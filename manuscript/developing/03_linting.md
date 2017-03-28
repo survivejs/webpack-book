@@ -34,7 +34,7 @@ Linting does **not** replace proper testing, but it can complement testing appro
 
 ![ESLint](images/eslint.png)
 
-[ESLint](http://eslint.org/) is the most versatile linting solution for JavaScript. It builds on top of ideas presented by JSLint and JSHint. More importantly, it allows you to develop custom rules. As a result, a nice set of rules has been developed for React in the form of [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react).
+[ESLint](http://eslint.org/) is the most versatile linting solution for JavaScript. It builds on top of ideas presented by JSLint and JSHint. More importantly, it allows you to develop custom rules.
 
 T> Since *v1.4.0* ESLint supports [autofixing](http://eslint.org/blog/2015/09/eslint-v1.4.0-released/). It allows you to perform certain rule fixes automatically. To activate it, pass the flag `--fix` to the tool. It's also possible to use this feature with webpack, although you should be careful with it. [js-beautify](https://www.npmjs.com/package/js-beautify) can perform a similar operation.
 
@@ -214,7 +214,7 @@ The great thing about ESLint is that you can shape it to your purposes. The comm
 ### Extension Tips
 
 * ESLint supports ES6 features through configuration. You have to specify the features to use through the [ecmaFeatures](http://eslint.org/docs/user-guide/configuring.html#specifying-language-options) property.
-* Plugins, such as [eslint-plugin-node](https://www.npmjs.com/package/eslint-plugin-node), [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react), [eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise), [eslint-plugin-compat](https://www.npmjs.com/package/eslint-plugin-compat), and [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import), are worth studying.
+* Plugins, such as [eslint-plugin-node](https://www.npmjs.com/package/eslint-plugin-node), [eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise), [eslint-plugin-compat](https://www.npmjs.com/package/eslint-plugin-compat), and [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import), are worth studying.
 * Most IDEs and editors have good linter integration so you can spot issues as you develop.
 * To learn about ESLint customizations options and how to write an ESLint plugin, check out the *Customizing ESLint* appendix.
 

@@ -218,7 +218,7 @@ Including hashes related to the file contents to their names allows to invalidat
 To recap:
 
 * Webpack's **placeholders** allow you to shape filenames and enable you to include hashes to them.
-* The most valuable placeholders are `[name]`, `[chunkhash]`, and `[ext]`. `chunkhash` is derived based on the entry in which the asset belongs.
+* The most valuable placeholders are `[name]`, `[chunkhash]`, and `[ext]`. A chunk hash is derived based on the entry in which the asset belongs.
 * If you are using `ExtractTextPlugin`, you should use `[contenthash]`. This way the generated assets get invalidated only if their content changes.
 * `HashedModuleIdsPlugin` generates module IDs based on module paths. This is more stable than relying on the default order based numeric module IDs.
 

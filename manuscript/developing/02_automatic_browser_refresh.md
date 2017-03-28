@@ -214,7 +214,7 @@ leanpub-end-insert
 
 After this change, you can configure the server host and port options through environment parameters. The merging portion of the code (`Object.assign`) is beginning to look knotty and it will be fixed in the *Splitting Configuration* chapter.
 
-You can access the application alternately through `http://localhost:8080/webpack-dev-server/` instead of the root. It provides status information at the top of the application. If your application relies on WebSockets and you use WDS proxying, you need to use this particular url: otherwise, WDS logic interferes.
+You can access the application through `http://localhost:8080/webpack-dev-server/` instead of the root. It provides status information at the top of the application. If your application relies on WebSockets and you use WDS proxying, you need to use this particular url: otherwise, WDS logic interferes.
 
 ![Status information](images/status-information.png)
 

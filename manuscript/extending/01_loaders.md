@@ -178,7 +178,12 @@ module.exports = function(content) {
 };
 ```
 
-Webpack provides two additional `emit` methods: `this.emitWarning` and `this.emitError`. Both accept a string and can be used to tell the user something unexpected happened. They should be used over `console` based alternatives. As with `this.emitFile`, you have to mock them for *loader-runner* to work.
+Webpack provides two additional `emit` methods:
+
+* `this.emitWarning(<string>)`
+* `this.emitError(<string>)`
+
+These calls should be used over `console` based alternatives. As with `this.emitFile`, you have to mock them for *loader-runner* to work.
 
 The next question is, how to pass file name to the loader.
 
