@@ -74,8 +74,6 @@ T> GitHub Pages allows you to choose the branch where you deploy. It's possible 
 ghpages.publish(path.join(__dirname, 'build'), { add: true }, callback);
 ```
 
-{pagebreak}
-
 ## Deploying to Other Environments
 
 Even though you can push the problem of deployment outside of webpack, there are a couple of webpack specific utilities that come in handy:
@@ -84,6 +82,8 @@ Even though you can push the problem of deployment outside of webpack, there are
 * [webpack-s3-sync-plugin](https://www.npmjs.com/package/webpack-s3-sync-plugin) and [webpack-s3-plugin](https://www.npmjs.com/package/webpack-s3-plugin) sync the assets to Amazon S3.
 * [ssh-webpack-plugin](https://www.npmjs.com/package/ssh-webpack-plugin) has been designed for deployments over SSH.
 
+{pagebreak}
+
 ## Resolving `output.publicPath` Dynamically
 
 If you don't know `publicPath` beforehand, it's possible to resolve it based on the environment by following these steps:
@@ -91,8 +91,6 @@ If you don't know `publicPath` beforehand, it's possible to resolve it based on 
 1. Set `__webpack_public_path__ = window.myDynamicPublicPath;` in the application entry point and resolve it as you see fit.
 2. Remove `output.publicPath` setting from your webpack configuration.
 3. If you are using ESLint, set it to ignore the global.
-
-{pagebreak}
 
 **.eslintrc.js**
 
