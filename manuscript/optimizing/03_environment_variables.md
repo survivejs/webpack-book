@@ -1,8 +1,8 @@
 # Environment Variables
 
-Sometimes a part of your code should execute only during development. Or you could have experimental features in your build that are not ready for production yet. This code should not end up in the production build.
+Sometimes a part of your code should execute only during development. Or you could have experimental features in your build that are not ready for production yet. This is where controlling **environment variables** becomes valuable as you can toggle functionality using them.
 
-As JavaScript minifiers can remove dead code (`if (false)`), you can build on top of this idea and write code that gets transformed into this form. Webpack's `DefinePlugin` enables replacing **free variables** so that you can convert `if (process.env.NODE_ENV === 'development')` kind of code to `if (true)` or `if (false)` depending on the environment.
+Since JavaScript minifiers can remove dead code (`if (false)`), you can build on top of this idea and write code that gets transformed into this form. Webpack's `DefinePlugin` enables replacing **free variables** so that you can convert `if (process.env.NODE_ENV === 'development')` kind of code to `if (true)` or `if (false)` depending on the environment.
 
 You can find packages that rely on this behavior. React is perhaps the most known example of an early adopter of the technique. Using `DefinePlugin` can bring down the size of your React production build somewhat as a result, and you can see a similar effect with other packages as well.
 
@@ -199,7 +199,7 @@ Setting environment variables is a technique that allows you to control which pa
 
 To recap:
 
-* Webpack allows you to set environment variables through `DefinePlugin` and `EnvironmentPlugin`. Latter maps system level environment variables to the source.
+* Webpack allows you to set **environment variables** through `DefinePlugin` and `EnvironmentPlugin`. Latter maps system level environment variables to the source.
 * `DefinePlugin` operates based on **free variables** and it replaces them as webpack analyzes the source code. You can achieve similar results by using Babel plugins.
 * Given minifiers eliminate dead code, using the plugins allows you to remove the code from the resulting build.
 * The plugins enable module level patterns. By implementing a wrapper, you can choose which file webpack includes to the resulting build.
