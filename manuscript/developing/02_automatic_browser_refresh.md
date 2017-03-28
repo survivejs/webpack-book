@@ -251,7 +251,7 @@ It's possible WDS [will support the functionality](https://github.com/webpack/we
 
 {pagebreak}
 
-## Polling Over Watching Files
+## Polling Instead of Watching Files
 
 Sometimes the file watching setup provided by WDS won't work on your system. It can be problematic on older versions of Windows, Ubuntu, Vagrant, and Docker. Enabling polling is a good option then:
 
