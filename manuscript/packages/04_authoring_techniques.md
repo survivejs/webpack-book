@@ -12,8 +12,6 @@ babel ./lib --out-dir ./dist-modules
 
 The command walks through the `./lib` directory and writes a processed file to `./dist-modules` for each module it encounters.
 
-{pagebreak}
-
 Since running that command each time you publish is tedious, you can set up a `prepublish` hook:
 
 **package.json**
