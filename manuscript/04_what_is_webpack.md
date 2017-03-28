@@ -137,6 +137,8 @@ Webpack comes with a significant learning curve. However it’s a tool worth lea
 
 Webpack won’t solve everything, however, it does solve the problem of bundling. That’s one less worry during development. Using *package.json* and webpack alone can take you far.
 
+{pagebreak}
+
 To summarize:
 
 * Webpack is a **module bundler**, but you can also use it for tasks as well.
