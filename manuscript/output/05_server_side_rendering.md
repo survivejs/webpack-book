@@ -44,8 +44,6 @@ Install *eslint-plugin-react* to get started:
 npm install eslint-plugin-react --save-dev
 ```
 
-{pagebreak}
-
 The suggested minimum configuration is as follows:
 
 **.eslintrc.js**
@@ -81,8 +79,6 @@ leanpub-end-insert
 ```
 
 `plugin:react/recommended` gives a good starting point. It's important to remember to enable JSX at the `parserOptions` as otherwise it will fail to parse JSX syntax.
-
-{pagebreak}
 
 ## Setting Up a React Demo
 
