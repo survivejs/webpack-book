@@ -188,7 +188,7 @@ The warning can be eliminated by aliasing the package to a source version as dis
 },
 ```
 
-W> Disabling warnings should be the last measure since doing it can hide underlying issues. Do this only if you know what you are doing and consider alternatives first. There's a [webpack issue](https://github.com/webpack/webpack/issues/1617) that discusses the problem in detail.
+W> Take care when disabling warnings as it can hide underlying issues. Consider alternatives first. There's a [webpack issue](https://github.com/webpack/webpack/issues/1617) that discusses the problem in detail.
 
 ## Managing Symbolic Links
 
