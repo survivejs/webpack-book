@@ -139,6 +139,12 @@ W> Webpack doesn't allow referring to entry files within entries. If you inadver
 **webpack.config.js**
 
 ```javascript
+leanpub-start-insert
+const webpack = require('webpack');
+leanpub-end-insert
+
+  ...
+
 const commonConfig = merge([
   {
     entry: {
