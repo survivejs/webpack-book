@@ -59,7 +59,7 @@ On a package level, npm resolves to a file through the following process:
 2. Get the contents of the `main` field. If it doesn't exist, default to *<package>/index.js*.
 3. Resolve to the `main` file.
 
-The general lookup algorithm respects an environment variable `NODE_PATH`. If you are using Unix, you can patch it through `NODE_PATH=$NODE_PATH:./demo`. The call can be included at the beginning of a *package.json* scripts to tweak `NODE_PATH` temporarily, although it's better to avoid this if possible.
+The general lookup algorithm respects an environment variable `NODE_PATH`. If you are using Unix, you can patch it through `NODE_PATH=$NODE_PATH:./demo`. The call can be included at the beginning of a *package.json* scripts to tweak `NODE_PATH` temporarily.
 
 You can tweak webpack's module resolution through the `resolve.modules` field:
 
@@ -74,7 +74,7 @@ You can tweak webpack's module resolution through the `resolve.modules` field:
 },
 ```
 
-Sometimes it's beneficial to use these techniques together. Compared to npm environment, webpack provides more flexibility, although you can mimic a lot of webpack's functionality using terminal based tricks.
+Compared to npm environment, webpack provides more flexibility, although you can mimic a lot of webpack's functionality using terminal based tricks.
 
 W> Installing global packages can lead to surprising behavior. If you have a package installed both globally and it a project happens to contain it, executing associated terminal command (say `webpack`) points to the version of the project. It doesn't work unless the global package exists.
 
