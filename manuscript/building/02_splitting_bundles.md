@@ -143,7 +143,7 @@ leanpub-start-insert
 const webpack = require('webpack');
 leanpub-end-insert
 
-  ...
+...
 
 const commonConfig = merge([
   {
@@ -236,6 +236,12 @@ Given the function handles the entry, you can drop the `vendor`-related configur
 **webpack.config.js**
 
 ```javascript
+leanpub-start-delete
+const webpack = require('webpack');
+leanpub-end-delete
+
+...
+
 const commonConfig = merge([
   {
     entry: {
