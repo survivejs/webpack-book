@@ -326,23 +326,19 @@ Connect the Babel plugin so that the instrumentation happens when Karma is run:
 **.babelrc**
 
 ```json
-{
-  ...
+...
 leanpub-start-insert
-  "env": {
-    "karma": {
-      "plugins": [
-        [
-          "istanbul",
-          {
-            "exclude": ["tests/*.test.js"]
-          }
-        ]
+"env": {
+  "karma": {
+    "plugins": [
+      [
+        "istanbul",
+        { "exclude": ["tests/*.test.js"] }
       ]
-    }
+    ]
   }
-leanpub-end-insert
 }
+leanpub-end-insert
 ```
 
 Make sure to set Babel environment, so it picks up the plugin:
