@@ -6,9 +6,9 @@ Consuming npm packages through webpack is often convenient but there are certain
 
 Most popular packages out there comply with SemVer. It's problematic as sometimes packages inadvertently break it, but there are ways around this. Roughly, SemVer states that you should not break backward compatibility, given [certain rules](http://semver.org/) are met:
 
-1. The MAJOR version increments when incompatible API changes are made to stable APIs.
-2. The MINOR version increments when backwards-compatible functionality is added.
-3. The PATCH version increments when a backwards-compatible bug is fixed.
+1. The MAJOR version increments when incompatible API changes are made.
+2. The MINOR version increments when backwards-compatible features are added.
+3. The PATCH version increments when backwards-compatible bugs are fixed.
 
 The rules are different for `0.x` versions. There the rule is `0.<MAJOR>.<MINOR>`. For packages considered stable and suitable for public usage (`1.0.0` and above), the rule is `<MAJOR>.<MINOR>.<PATCH>`. For example, if the current version of a package is `0.1.4` and a breaking change is performed, it should bump to `0.2.0`.
 
