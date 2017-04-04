@@ -72,6 +72,8 @@ define(['./MyModule.js'], function (MyModule) {
 });
 ```
 
+{pagebreak}
+
 Incidentally, it's possible to use `require` within the wrapper:
 
 ```javascript
