@@ -208,7 +208,9 @@ module.exports = (config) => {
 };
 ```
 
-W> The file has to be named exactly as *karma.conf.js* as otherwise, Karma doesn't pick it up automatically.
+W> The file has to be named exactly as *karma.conf.js*. Otherwise Karma doesn't pick it up automatically.
+
+W> The setup generates a bundle per each test. If you have a large amount of tests and want to improve performance, set up `require.context` as for Mocha above. See [karma-webpack issue 23](https://github.com/webpack-contrib/karma-webpack/issues/23) for more details.
 
 {pagebreak}
 
@@ -319,7 +321,7 @@ Install the dependencies first:
 npm install babel-plugin-istanbul karma-coverage --save-dev
 ```
 
-Connect the Babel plugin so that the instrumentation only happens when Karma is run:
+Connect the Babel plugin so that the instrumentation happens when Karma is run:
 
 **.babelrc**
 
@@ -330,7 +332,12 @@ leanpub-start-insert
   "env": {
     "karma": {
       "plugins": [
-        "istanbul"
+        [
+          "istanbul",
+          {
+            "exclude": ["tests/*.test.js"]
+          }
+        ]
       ]
     }
   }
