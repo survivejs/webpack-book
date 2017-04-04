@@ -71,7 +71,7 @@ T> GitHub Pages allows you to choose the branch where you deploy. It's possible 
 4. Set up a script to call *gh-pages* through Node as below and capture possible errors in the callback:
 
 ```javascript
-ghpages.publish(path.join(__dirname, 'build'), { add: true }, callback);
+ghpages.publish(path.join(__dirname, 'build'), { add: true }, cb);
 ```
 
 ## Deploying to Other Environments
