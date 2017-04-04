@@ -61,15 +61,13 @@ With Make, you model your tasks using Make-specific syntax and terminal commands
 
 ```javascript
 define(['./MyModule.js'], function (MyModule) {
-  // export at module root
-  return function() {};
+  return function() {}; // Export at module root
 });
 
 // or
 define(['./MyModule.js'], function (MyModule) {
-  // export as module function
   return {
-    hello: function() {...},
+    hello: function() {...}, // Export as a module function
   };
 });
 ```
