@@ -1,4 +1,4 @@
-# Splitting Bundles
+# Bundle Splitting
 
 Currently, the production version of the application is a single JavaScript file. If the application is changed, the client must download vendor dependencies as well.
 

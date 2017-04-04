@@ -34,7 +34,7 @@ As this book has demonstrated, webpack is a versatile tool. To make it easier to
 
 ### Caching
 
-* To benefit from client caching, split a vendor bundle out of your application. This way the client has less to download in the ideal case. The *Splitting Bundles* chapter discusses the topic. The *Adding Hashes to Filenames* chapter shows how to achieve cache invalidation on top of that.
+* To benefit from client caching, split a vendor bundle out of your application. This way the client has less to download in the ideal case. The *Bundle Splitting* chapter discusses the topic. The *Adding Hashes to Filenames* chapter shows how to achieve cache invalidation on top of that.
 * Use webpack’s **code splitting** functionality to load code on demand. The technique is handy if you don’t need all the code at once and instead can push it behind a logical trigger such as clicking a user interface element. The *Code Splitting* chapter covers the technique in detail. The *Dynamic Loading* chapter shows how to handle more advanced scenarios.
 * Add hashes to filenames as covered in the *Adding Hashes to Filenames* chapter to benefit from caching and separate a manifest to improve the solution further as discussed in the *Separating Manifest* chapter.
 

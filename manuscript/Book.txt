@@ -28,7 +28,7 @@ loading/04_javascript.md
 
 08_Building.md
 building/01_source_maps.md
-building/02_splitting_bundles.md
+building/02_bundle_splitting.md
 building/03_code_splitting.md
 building/04_tidying_up.md
 

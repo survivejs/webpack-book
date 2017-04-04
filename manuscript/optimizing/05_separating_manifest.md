@@ -10,7 +10,7 @@ T> To understand how a manifest is generated in detail, [read the technical expl
 
 ## Extracting a Manifest
 
-Most of the work was done already when `extractBundles` was set up in the *Splitting Bundles* chapter. To extract the manifest, a single change is required to capture the remaining code which contains webpack bootstrap:
+Most of the work was done already when `extractBundles` was set up in the *Bundle Splitting* chapter. To extract the manifest, a single change is required to capture the remaining code which contains webpack bootstrap:
 
 **webpack.config.js**
 
@@ -85,7 +85,7 @@ T> The build can be improved further by loading popular dependencies, such as Re
 
 ## Using Records
 
-As mentioned in the *Splitting Bundles* chapter, plugins such as `AggressiveSplittingPlugin` use **records** to implement caching. The approaches discussed above are still valid, but records go one step further.
+As mentioned in the *Bundle Splitting* chapter, plugins such as `AggressiveSplittingPlugin` use **records** to implement caching. The approaches discussed above are still valid, but records go one step further.
 
 Records are used for storing module IDs across separate builds. The problem is that you need to store this file. If you build locally, one option is to include it to your version control.
 
