@@ -275,7 +275,7 @@ To get most out of loaders you have to connect them with webpack. To achieve thi
 
 ```javascript
 leanpub-start-insert
-import demo from '!../loaders/demo-loader?name=foo!./main.css';
+import '!../loaders/demo-loader?name=foo!./main.css';
 leanpub-end-insert
 ```
 
@@ -305,10 +305,10 @@ With this change the import can be simplified:
 
 ```javascript
 leanpub-start-delete
-import demo from '!../loaders/demo-loader?name=foo!./main.css';
+import '!../loaders/demo-loader?name=foo!./main.css';
 leanpub-end-delete
 leanpub-start-insert
-import demo from '!demo-loader?name=foo!./main.css';
+import '!demo-loader?name=foo!./main.css';
 leanpub-end-insert
 ```
 
