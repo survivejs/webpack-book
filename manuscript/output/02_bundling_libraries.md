@@ -55,7 +55,7 @@ const PATHS = {
 const commonConfig = merge([
   {
     entry: {
-      demo: PATHS.lib,
+      lib: PATHS.lib,
     },
     output: {
       path: PATHS.build,
