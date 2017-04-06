@@ -288,6 +288,8 @@ PhantomJS ...: Executed 1 of 1 SUCCESS (0.005 secs / 0.001 secs)
 
 Given running tests after the change can get boring after a while, Karma provides a watch mode.
 
+W> PhantomJS does not support ES6 features yet so you have to preprocess the code for tests using them. The webpack setup is done later in this chapter. ES6 support is planned for PhantomJS 2.5.
+
 ### Watch Mode with Karma
 
 Accessing Karma's watch mode is possible as follows:
