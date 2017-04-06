@@ -366,6 +366,11 @@ On Karma side, reporting has to be set up and Karma configuration has to be conn
 **karma.conf.js**
 
 ```javascript
+leanpub-start-insert
+const path = require('path');
+leanpub-end-insert
+...
+
 module.exports = (config) => {
   ...
 
