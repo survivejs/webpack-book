@@ -2,13 +2,13 @@
 
 Hot module replacement was one of the initial selling points of webpack and React. It relies on the [react-hot-loader](https://www.npmjs.com/package/react-hot-loader) package. At the time of writing, version 3 of *react-hot-loader* is in beta. It requires changes to three places: Babel configuration, webpack configuration, and application.
 
+Before proceeding, make sure you have HMR set up as discussed in the *Hot Module Replacement* appendix.
+
 To get started, install the upcoming version of *react-hot-loader* as a normal dependency as it comes with a small application dependency:
 
 ```bash
 npm install react-hot-loader@next --save
 ```
-
-T> Before proceeding, make sure you have HMR set up as discussed in the *Hot Module Replacement* appendix.
 
 ## Setting Up Babel
 
