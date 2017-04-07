@@ -8,6 +8,8 @@ To get started, install the upcoming version of *react-hot-loader* as a normal d
 npm install react-hot-loader@next --save
 ```
 
+T> Before proceeding, make sure you have HMR set up as discussed in the *Hot Module Replacement* appendix.
+
 ## Setting Up Babel
 
 To connect Babel with *react-hot-loader*, it needs to become aware of its plugin portion:
