@@ -307,7 +307,7 @@ Minification is the easiest step you can take to make your build smaller. To rec
 
 * **Minification** process analyzes your source code and turns it into a smaller form with the same meaning if you use safe transformations. Certain unsafe transformations allow you to reach even smaller results while potentially breaking code that relies, for example, on exact parameter naming.
 * **Performance budget** allows you to set limits to the build size. Maintaining a budget can keep developers more conscious of the size of the generated bundles.
-* Webpack includes `UglifyJsPlugin` for minification. Other solutions, such as Babili, provide similar functionality with costs of their own. While Babili supports ES6, it can be less performant that UglifyJS.
+* Webpack includes `UglifyJsPlugin` for minification. Other solutions, such as Babili, provide similar functionality with costs of their own. While Babili supports ES6, it can be less performant than UglifyJS.
 * Besides JavaScript, it's possible to minify other assets, such as CSS and HTML, too. Minifying these requires specific technologies that have to be applied through loaders and plugins of their own.
 
 You'll learn to apply tree shaking against code in the next chapter.
