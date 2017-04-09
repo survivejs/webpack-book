@@ -98,7 +98,7 @@ const productionConfig = merge([
   {
     ...
 leanpub-start-insert
-    recordsPath: 'records.json',
+    recordsPath: path.join(__dirname, 'records.json'),
 leanpub-end-insert
   },
   ...
