@@ -8,6 +8,8 @@ T> [uncss](https://www.npmjs.com/package/uncss) is a good alternative to PurifyC
 
 W> The approach does **not** work with CSS Modules and `ExtractTextPlugin` yet. See [issue 97](https://github.com/webpack-contrib/purifycss-webpack/issues/97) for more information.
 
+{pagebreak}
+
 ## Setting Up Pure.css
 
 To make the demo more realistic, let's install [Pure.css](http://purecss.io/), a small CSS framework, as well and refer to it from the project so that you can see PurifyCSS in action. These two projects aren't related in any way despite the naming.
@@ -15,8 +17,6 @@ To make the demo more realistic, let's install [Pure.css](http://purecss.io/), a
 ```bash
 npm install purecss --save
 ```
-
-{pagebreak}
 
 To make the project aware of Pure.css, `import` it:
 
