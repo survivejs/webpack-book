@@ -6,6 +6,8 @@ Frameworks like [Bootstrap](https://getbootstrap.com/) tend to come with a lot o
 
 T> [uncss](https://www.npmjs.com/package/uncss) is a good alternative to PurifyCSS. It operates through PhantomJS and performs its work in a different manner. You can use uncss itself as a PostCSS plugin.
 
+W> The approach does **not** work with CSS Modules and `ExtractTextPlugin` yet. See [issue 97](https://github.com/webpack-contrib/purifycss-webpack/issues/97) for more information.
+
 ## Setting Up Pure.css
 
 To make the demo more realistic, let's install [Pure.css](http://purecss.io/), a small CSS framework, as well and refer to it from the project so that you can see PurifyCSS in action. These two projects aren't related in any way despite the naming.
