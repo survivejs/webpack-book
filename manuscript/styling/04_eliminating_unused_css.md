@@ -4,11 +4,9 @@ Frameworks like [Bootstrap](https://getbootstrap.com/) tend to come with a lot o
 
 [PurifyCSS](https://www.npmjs.com/package/purifycss) is a tool that can achieve this by analyzing files. It walks through your code and figures out which CSS classes are being used. Often there is enough information for it to strip unused CSS from your project. It also works with single page applications to an extent.
 
-T> [uncss](https://www.npmjs.com/package/uncss) is a good alternative to PurifyCSS. It operates through PhantomJS and performs its work in a different manner. You can use uncss itself as a PostCSS plugin.
+[uncss](https://www.npmjs.com/package/uncss) is a good alternative to PurifyCSS. It operates through PhantomJS and performs its work in a different manner. You can use uncss itself as a PostCSS plugin.
 
 W> The approach does **not** work with CSS Modules and `ExtractTextPlugin` yet. See [issue 97](https://github.com/webpack-contrib/purifycss-webpack/issues/97) for more information.
-
-{pagebreak}
 
 ## Setting Up Pure.css
 
@@ -17,6 +15,8 @@ To make the demo more realistic, let's install [Pure.css](http://purecss.io/), a
 ```bash
 npm install purecss --save
 ```
+
+{pagebreak}
 
 To make the project aware of Pure.css, `import` it:
 
