@@ -9,7 +9,7 @@ In this chapter, you'll learn basic ideas behind authoring npm packages and a co
 Most of the available npm packages are small and include only a couple of files:
 
 * *index.js* - On small projects, it's enough to have the code at the root. On larger ones, you likely want to start splitting it up further.
-* *package.json* - npm metadata in JSON format
+* *package.json* - npm metadata in JSON format.
 * *README.md* - README is the most important document of your project. It's written in Markdown format and provides an overview. For smallest projects, the full documentation can fit there. It's shown on the package page at *npmjs.com*.
 * *LICENSE* - You can include licensing information within your project. You should refer to the license by name from *package.json* as otherwise, npm gives a warning. If you are using a custom license, you can link to it instead. In commercial projects, you should to set `"private": true` to avoid pushing your work to public inadvertently.
 
