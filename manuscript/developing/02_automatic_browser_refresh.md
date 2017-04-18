@@ -82,7 +82,11 @@ T> WDS tries to run in another port in case the default one is being used. See t
 
 ## Verifying that `--env` Works
 
-Webpack configuration is able to receive the value of `--env` if the configuration is defined within a function. To check that the correct environment is passed, adjust the configuration as follows:
+Webpack configuration is able to receive the value of `--env` if the configuration is defined within a function.
+
+{pagebreak}
+
+To check that the correct environment is passed, adjust the configuration as follows:
 
 **webpack.config.js**
 
@@ -118,8 +122,6 @@ module.exports = (env) => {
 };
 leanpub-end-insert
 ```
-
-{pagebreak}
 
 If you run the npm commands now, you should see a different terminal output depending on which one you trigger:
 
