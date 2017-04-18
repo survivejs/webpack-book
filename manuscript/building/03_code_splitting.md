@@ -25,8 +25,14 @@ The [dynamic `import` syntax](https://github.com/tc39/proposal-dynamic-import) i
 Dynamic imports are defined as `Promise`s:
 
 ```javascript
-import('./module').then((module) => {...}).catch((error) => {...});
+import(/* webpackChunkName: "optional-name" */ './module').then(
+  module => {...}
+).catch(
+  error => {...}
+);
 ```
+
+The optional name allows you to pull multiple split points into a single bundle. As long as they have the same name, they will be grouped together. Each split point generates a separate bundle by default.
 
 The interface allows composition, and you could load multiple resources in parallel:
 
@@ -42,7 +48,7 @@ Promise.all([
 });
 ```
 
-This creates separate chunks to a request. If you wanted only one, you would have to define an intermediate module to `import`.
+This creates separate bundles to request. If you wanted only one, you would have to use naming or define an intermediate module to `import`.
 
 T> Webpack provided support for `System.import` in the early versions of webpack 2 and it still does. The functionality has been deprecated and gets removed in webpack 3. Until then, you can use the functionality interchangeably.
 
@@ -67,13 +73,12 @@ require.ensure(
 
     ...
   },
-  'optional name'
+  err => console.error(err),
+  'optional-name'
 );
 ```
 
-As you can see, `require.ensure` definition is more powerful. The problem is that it doesn't support error handling. Often you can achieve what you want through a dynamic `import`, but it's good to know this form exists as well.
-
-`require.ensure` supports naming. `require.ensure` blocks that have the same name are pulled into the same output bundle. [The official example](https://github.com/webpack/webpack/tree/master/examples/named-chunks) shows the output in detail.
+Often you can achieve what you want through a dynamic `import`, but it's good to know this alternate form exists as well. `require.ensure` supports naming as well and [the official example](https://github.com/webpack/webpack/tree/master/examples/named-chunks) shows the output in detail.
 
 W> `require.ensure` relies on `Promise`s internally. If you use `require.ensure` with older browsers, remember to shim `Promise` using a polyfill such as [es6-promise](https://www.npmjs.com/package/es6-promise).
 
@@ -363,7 +368,7 @@ To recap:
 
 * **Code splitting** comes with extra effort as you have to decide what to split and where. Often, you find good split points within a router. Or you notice that specific functionality is required only when a particular feature is used. Charting is a good example of this.
 * To use dynamic `import` syntax, both Babel and ESLint require careful tweaks. Webpack supports the syntax ouf of the box.
-* Dynamic `import` provides less functionality than `require.ensure`. While it's possible to handle errors with it, features like naming are available for `require.ensure` only.
+* Use naming to pull separate split points into the same bundles.
 * The techniques can be used within modern frameworks and libraries like React. You can wrap related logic to a specific component that handles the loading process in a user-friendly manner.
 
 You'll learn to tidy up the build in the next chapter.
