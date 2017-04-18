@@ -80,13 +80,11 @@ If you try modifying the code, you should see output in your terminal. The brows
 
 T> WDS tries to run in another port in case the default one is being used. See the terminal output to figure out where it ends up running. You can debug the situation with a command like `netstat -na | grep 8080`. If something is running on the port 8080, it should display a message. The exact command depends on the platform.
 
-## Verifying that `--env` Works
-
-Webpack configuration is able to receive the value of `--env` if the configuration is defined within a function.
-
 {pagebreak}
 
-To check that the correct environment is passed, adjust the configuration as follows:
+## Verifying that `--env` Works
+
+Webpack configuration is able to receive the value of `--env` if the configuration is defined within a function. To check that the correct environment is passed, adjust the configuration as follows:
 
 **webpack.config.js**
 
@@ -100,18 +98,7 @@ leanpub-end-delete
 leanpub-start-insert
 const commonConfig = {
 leanpub-end-insert
-  entry: {
-    app: PATHS.app,
-  },
-  output: {
-    path: PATHS.build,
-    filename: '[name].js',
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Webpack demo',
-    }),
-  ],
+  ...
 };
 
 leanpub-start-insert
@@ -132,6 +119,8 @@ env development
 ```
 
 T> The result could be verified also by using the `DefinePlugin` to write it to the client code. The *Environment Variables* chapter discusses how to achieve this.
+
+{pagebreak}
 
 ### Understanding `--env`
 
