@@ -20,8 +20,6 @@ The goal is to end up with a split point that gets loaded on demand. There can b
 
 The [dynamic `import` syntax](https://github.com/tc39/proposal-dynamic-import) isn't in the official language specification yet. To use it, minor tweaks are needed especially at ESLint and Babel.
 
-{pagebreak}
-
 Dynamic imports are defined as `Promise`s:
 
 ```javascript
@@ -31,6 +29,8 @@ import(/* webpackChunkName: "optional-name" */ './module').then(
   error => {...}
 );
 ```
+
+{pagebreak}
 
 The optional name allows you to pull multiple split points into a single bundle. As long as they have the same name, they will be grouped together. Each split point generates a separate bundle by default.
 
