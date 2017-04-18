@@ -78,9 +78,7 @@ The server is running and if you open `http://localhost:8080/` at your browser, 
 
 If you try modifying the code, you should see output in your terminal. The browser should also perform a hard refresh on change.
 
-T> WDS tries to run in another port in case the default one is being used. See the terminal output to figure out where it ends up running. You can debug the situation with a command like `netstat -na | grep 8080`. If something is running on the port 8080, it should display a message. The exact command depends on the platform.
-
-{pagebreak}
+WDS tries to run in another port in case the default one is being used. The terminal output tells you where it ends up running. You can debug the situation with a command like `netstat -na | grep 8080`. If something is running on the port 8080, it should display a message on Unix.
 
 ## Verifying that `--env` Works
 
@@ -119,8 +117,6 @@ env development
 ```
 
 T> The result could be verified also by using the `DefinePlugin` to write it to the client code. The *Environment Variables* chapter discusses how to achieve this.
-
-{pagebreak}
 
 ### Understanding `--env`
 
