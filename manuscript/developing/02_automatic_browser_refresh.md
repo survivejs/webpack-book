@@ -50,6 +50,8 @@ leanpub-end-delete
 },
 ```
 
+T> WDS picks up configuration like webpack itself. The same rules apply.
+
 If you execute either *npm run start* or *npm start* now, you should see something in the terminal:
 
 ```bash
@@ -78,13 +80,11 @@ If you try modifying the code, you should see output in your terminal. The brows
 
 T> WDS tries to run in another port in case the default one is being used. See the terminal output to figure out where it ends up running. You can debug the situation with a command like `netstat -na | grep 8080`. If something is running on the port 8080, it should display a message. The exact command depends on the platform.
 
-T> If you want to open a browser tab directly after running the server, set `devServer.open: true`. You can also achieve the same result through the CLI by using `webpack-dev-server --open`.
-
 {pagebreak}
 
 ## Verifying that `--env` Works
 
-Webpack configuration receives the result of `--env` if it exposes a function. To check that the correct environment is passed, adjust the configuration as follows:
+Webpack configuration is able to receive the value of `--env` if the configuration is defined within a function. To check that the correct environment is passed, adjust the configuration as follows:
 
 **webpack.config.js**
 
@@ -247,7 +247,7 @@ To get it to work, you have to install it first through `npm install nodemon --s
 },
 ```
 
-It's possible WDS [will support the functionality](https://github.com/webpack/webpack/issues/3153) itself in the future. If you want to make it reload itself on change, you should implement a workaround for now.
+It's possible WDS [will support the functionality](https://github.com/webpack/webpack/issues/3153) itself in the future. If you want to make it reload itself on change, you should implement this workaround for now.
 
 {pagebreak}
 
@@ -313,7 +313,7 @@ T> [The official documentation](https://webpack.js.org/configuration/dev-server/
 
 ## Development Plugins
 
-As webpack plugin ecosystem is diverse, there are a lot of plugins that can help specifically with development:
+The webpack plugin ecosystem is diverse and there are a lot of plugins that can help specifically with development:
 
 * [case-sensitive-paths-webpack-plugin](https://www.npmjs.com/package/case-sensitive-paths-webpack-plugin) can be handy when you are developing on a case-insensitive environments like macOS or Windows but using case-sensitive environment like Linux for production.
 * [npm-install-webpack-plugin](https://www.npmjs.com/package/npm-install-webpack-plugin) allows webpack to install and wire the installed packages with your *package.json* as you import new packages to your project.
