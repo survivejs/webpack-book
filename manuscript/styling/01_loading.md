@@ -92,14 +92,16 @@ You continue from here in the next chapter. Before that, though, you'll learn ab
 
 Perhaps the biggest challenge of CSS is that all rules exist within **global scope**, meaning that two classes with the same name will collide. The limitation is inherent to the CSS specification but projects have workarounds for the issue. [CSS Modules](https://github.com/css-modules/css-modules) introduces **local scope** for every module by making every class declared within unique by including a hash in their name that is globally unique to the module.
 
-Webpack's *css-loader* supports CSS Modules. You can enable it through a loader definition:
+Webpack's *css-loader* supports CSS Modules. You can enable it through a loader definition as above while enabling the support:
 
 ```javascript
 {
   loader: 'css-loader',
+leanpub-start-insert
   options: {
     modules: true,
   },
+leanpub-end-insert
 },
 ```
 
