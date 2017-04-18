@@ -26,7 +26,7 @@ T> [eslint-config-cleanjs](https://www.npmjs.com/package/eslint-config-cleanjs) 
 
 Besides linting for issues, it can be valuable to manage the code style. Nothing is more annoying than having to work with source code that has mixed tabs and spaces. Stylistically consistent code reads better. When integrated with an Editor or IDE linting also points out your mistakes as you make them, making it easier to adjust your technique and avoid making more of the same errors.
 
-Establishing strong linting can be beneficial, especially in a context where you need to collaborate with others. Even when working alone you benefit from linting as it can catch issues you could otherwise neglect. JavaScript as a language allows usage which, while valid, is not be the clearest to understand or is even be incorrect.
+Establishing strong linting can be beneficial, especially in a context where you need to collaborate with others. Even when working alone you benefit from linting as it can catch issues you could otherwise neglect. JavaScript as a language allows usage which, while valid, is not be the clearest to understand or may even be incorrect.
 
 Linting does **not** replace proper testing, but it can complement testing approaches. It allows you to harden a codebase and make it more difficult to break. As the size of your project grows, and it becomes more challenging to manage, this becomes particularly important.
 
