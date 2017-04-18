@@ -20,7 +20,7 @@ To get started, invoke
 npm install css-loader style-loader --save-dev
 ```
 
-Now let's make sure webpack is aware of them. Configure as follows:
+Now let's make sure webpack is aware of them. Add a new function at the end of the part definition:
 
 **webpack.parts.js**
 
