@@ -80,8 +80,6 @@ If you try modifying the code, you should see output in your terminal. The brows
 
 T> WDS tries to run in another port in case the default one is being used. See the terminal output to figure out where it ends up running. You can debug the situation with a command like `netstat -na | grep 8080`. If something is running on the port 8080, it should display a message. The exact command depends on the platform.
 
-{pagebreak}
-
 ## Verifying that `--env` Works
 
 Webpack configuration is able to receive the value of `--env` if the configuration is defined within a function. To check that the correct environment is passed, adjust the configuration as follows:
@@ -230,8 +228,6 @@ It's possible to customize host and port settings through the environment in the
 
 To access your server, you need to figure out the ip of your machine. On Unix, this can be achieved using `ifconfig | grep inet`. On Windows, `ipconfig` can be utilized. An npm package, such as [node-ip](https://www.npmjs.com/package/node-ip) come in handy as well. Especially on Windows, you need to set your `HOST` to match your ip to make it accessible.
 
-{pagebreak}
-
 ## Making It Faster to Develop Configuration
 
 WDS will handle restarting the server when you change a bundled file, but what about when you edit the webpack config? Restarting the development server each time you make a change tends to get boring after a while; therefore, it can be a good idea to let automate it. As [discussed in GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892), [nodemon](https://www.npmjs.com/package/nodemon) monitoring tool can be used for this purpose.
@@ -248,8 +244,6 @@ To get it to work, you have to install it first through `npm install nodemon --s
 ```
 
 It's possible WDS [will support the functionality](https://github.com/webpack/webpack/issues/3153) itself in the future. If you want to make it reload itself on change, you should implement this workaround for now.
-
-{pagebreak}
 
 ## Polling Instead of Watching Files
 
