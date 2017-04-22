@@ -30,7 +30,7 @@ npm install webpack-dev-server --save-dev
 
 As before, this command generates a command below the `npm bin` directory and you could run *webpack-dev-server* from there. After running the WDS, you have a development server running at `http://localhost:8080`. Automatic browser refresh is in place now, although at a basic level.
 
-W> If you are using an IDE, consider enabling **save write** from its settings. This way WDS is able to detect changes made to the files correctly.
+W> If you are using an IDE, consider enabling **safe write** from its settings. This way WDS is able to detect changes made to the files correctly.
 
 ## Attaching WDS to the Project
 
