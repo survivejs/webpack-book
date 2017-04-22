@@ -178,7 +178,7 @@ const developmentConfig = () => {
     devServer: {
       ...
 leanpub-start-insert
-      // overlay: true captures only errors
+      // overlay: true is equivalent
       overlay: {
         errors: true,
         warnings: true,
