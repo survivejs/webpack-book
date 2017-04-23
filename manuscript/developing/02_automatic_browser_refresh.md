@@ -175,7 +175,7 @@ const developmentConfig = () => {
 
   return Object.assign(
     {},
-    commonConfig,
+    commonConfig(),
     config
   );
 };
