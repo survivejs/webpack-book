@@ -73,7 +73,7 @@ The example below contains an annotated a part of *package.json* from my [React 
     "postpublish": "npm run gh-pages && npm run gh-pages:deploy",
 
     /* If your library is installed through Git, transpile it */
-    "postinstall": "node lib/post_install.js"
+    "postinstall": "node lib/postinstall.js"
   },
 
   /* Entry point for terminal (i.e., <package name>). */

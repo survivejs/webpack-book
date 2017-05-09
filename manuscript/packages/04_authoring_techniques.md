@@ -110,13 +110,13 @@ To solve the development distribution problem, a custom script is required. Firs
 "scripts": {
   ...
   /* Point to the script that generates the missing source. */
-  "postinstall": "node lib/post_install.js"
+  "postinstall": "node lib/postinstall.js"
 },
 ```
 
 Secondly, define a script:
 
-**lib/post_install.js**
+**lib/postinstall.js**
 
 ```javascript
 /* eslint-disable */
