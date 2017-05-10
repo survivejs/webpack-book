@@ -244,7 +244,7 @@ Then, connect with main configuration:
 ```javascript
 const productionConfig = merge([
   ...
-  parts.minifyJavaScript({ useSourceMap: true }),
+  parts.minifyJavaScript(),
 leanpub-start-insert
   parts.minifyCSS({
     options: {
