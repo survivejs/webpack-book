@@ -271,7 +271,7 @@ T> PostCSS supports *postcss.config.js* based configuration. It relies on [cosmi
   loader: 'postcss-loader',
   options: {
     plugins: () => ([
-      require('cssnext'),
+      require('postcss-cssnext')(),
     ]),
   },
 },
