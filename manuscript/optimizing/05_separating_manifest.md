@@ -15,7 +15,7 @@ Most of the work was done already when `extractBundles` was set up in the *Bundl
 **webpack.config.js**
 
 ```javascript
-const commonConfig = merge([
+const productionConfig = merge([
   ...
   parts.extractBundles([
       {
@@ -28,6 +28,7 @@ leanpub-start-insert
       },
 leanpub-end-insert
   ]),
+  ...
 ]);
 ```
 

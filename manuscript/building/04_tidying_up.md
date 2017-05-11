@@ -99,11 +99,10 @@ And connect it to the main configuration:
 
 ```javascript
 const productionConfig = merge([
-  parts.clean(PATHS.build),
+  ...
 leanpub-start-insert
   parts.attachRevision(),
 leanpub-end-insert
-  ...
 ]);
 ```
 
