@@ -133,7 +133,7 @@ T> [extract-loader](https://www.npmjs.com/package/extract-loader) is a light alt
 
 ## Managing Styles Outside of JavaScript
 
-Even though referring to styling through JavaScript and then bundling is a valid option, it's possible to achieve the same result through an `entry` and [globbing](https://www.npmjs.com/package/glob):
+Even though referring to styling through JavaScript and then bundling is the recommended option, it's possible to achieve the same result through an `entry` and [globbing](https://www.npmjs.com/package/glob):
 
 ```javascript
 ...
