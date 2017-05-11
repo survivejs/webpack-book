@@ -79,10 +79,7 @@ exports.lintCSS = ({ include, exclude }) => ({
         loader: 'postcss-loader',
         options: {
           plugins: () => ([
-            require('stylelint')({
-              // Ignore node_modules CSS
-              ignoreFiles: 'node_modules/**/*.css',
-            }),
+            require('stylelint')(),
           ]),
         },
       },
