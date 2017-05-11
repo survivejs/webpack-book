@@ -339,9 +339,7 @@ const config = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'common',
       chunks: ['login', 'app'],
-      minChunks: (module, count) => {
-        return count >= 2 && isVendor(module);
-      }
+      minChunks: (module, count) => count >= 2 && isVendor(module),
     }),
   ],
   ...
