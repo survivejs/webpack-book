@@ -284,7 +284,7 @@ trim_trailing_whitespace = true
 insert_final_newline = true
 
 # Format specific overrides
-[app/**/*.js]
+[*.js]
 indent_style = space
 indent_size = 2
 ```
