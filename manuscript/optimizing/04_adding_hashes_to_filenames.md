@@ -162,6 +162,11 @@ Tweak the configuration as follows:
 **webpack.config.js**
 
 ```javascript
+leanpub-start-insert
+const webpack = require('webpack');
+leanpub-end-insert
+...
+
 const productionConfig = merge([
   {
     ...
