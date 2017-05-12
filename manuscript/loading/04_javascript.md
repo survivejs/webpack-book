@@ -110,6 +110,8 @@ W> If you try to import files **outside** of your configuration root directory a
 
 At a minimum, you need [babel-preset-env](https://www.npmjs.com/package/babel-preset-env). It's a Babel preset that enables the needed plugins based on the environment definition you pass to it. It follows the **browserslist** definition discussed in the *Autoprefixing* chapter.
 
+{pagebreak}
+
 Install the preset first:
 
 ```bash
