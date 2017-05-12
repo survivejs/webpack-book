@@ -107,8 +107,6 @@ These scripts can be listed using `npm run` and then executed using `npm run <sc
 
 Instead of `rm -rf`, you likely want to use utilities such as [rimraf](https://www.npmjs.com/package/rimraf) and so on. It's possible to invoke other tasks runners here to hide the fact that you are using one. This way you can refactor your tooling while keeping the interface as the same.
 
-{pagebreak}
-
 ## Grunt
 
 ![Grunt](images/grunt.png)
