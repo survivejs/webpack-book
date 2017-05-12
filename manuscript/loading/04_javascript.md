@@ -93,7 +93,6 @@ Adjust as below:
 
 ```javascript
 const commonConfig = merge([
-  {
   ...
 leanpub-start-insert
   parts.loadJavaScript({ include: PATHS.app }),

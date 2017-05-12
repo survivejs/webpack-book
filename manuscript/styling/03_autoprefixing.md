@@ -33,7 +33,6 @@ To connect the loader with `ExtractTextPlugin`, hook it up as follows:
 
 ```javascript
 const productionConfig = merge([
-  ...
 leanpub-start-delete
   parts.extractCSS({ use: 'css-loader' }),
 leanpub-end-delete
@@ -69,9 +68,7 @@ body {
 }
 ```
 
-As you can see, autoprefixing expands the rules, so you don't have to remember to do that.
-
-If you know what browsers you support, it's possible to set up a [browserslist](https://www.npmjs.com/package/browserslist) file. Different tools pick up this definition, *autoprefixer* included.
+As you can see, autoprefixing expands the rules. If you know what browsers you support, it's possible to set up a [browserslist](https://www.npmjs.com/package/browserslist) file. Different tools pick up this definition, *autoprefixer* included.
 
 {pagebreak}
 
