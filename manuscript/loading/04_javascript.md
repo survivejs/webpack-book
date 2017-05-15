@@ -214,6 +214,8 @@ Babel allows you to control which presets and plugins are used per environment t
 
 `env` checks both `NODE_ENV` and `BABEL_ENV` and functionality to your build based on that. If `BABEL_ENV` is set, it overrides any possible `NODE_ENV`. Consider the example below:
 
+**.babelrc**
+
 ```json
 {
   ...
