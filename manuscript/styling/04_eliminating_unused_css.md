@@ -77,7 +77,7 @@ Using PurifyCSS can lead to significant savings. In the official example of the 
 [purifycss-webpack](https://www.npmjs.com/package/purifycss-webpack) allows to achieve similar results. You should use the `ExtractTextPlugin` with it for the best results. Install it and a [glob](https://www.npmjs.org/package/glob) helper first:
 
 ```bash
-npm install glob purifycss-webpack --save-dev
+npm install glob purifycss-webpack purify-css --save-dev
 ```
 
 {pagebreak}
