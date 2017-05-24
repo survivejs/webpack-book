@@ -37,7 +37,7 @@ There are desktop shells, such as [NW.js](https://nwjs.io/) (previously *node-we
 
 ## Conclusion
 
-Webpack supports targets beyond the web. Based on this you can say name webpack is an understatement considering its capabilities.
+Webpack supports targets beyond the web. Based on this you can say name "webpack" is an understatement considering its capabilities.
 
 To recap:
 
