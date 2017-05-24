@@ -6,9 +6,7 @@ It's not the easiest tool to learn due to its configuration-driven approach, but
 
 ## What Is Webpack
 
-Web browsers are designed to consume HTML, CSS, and JavaScript. As a project grows, tracking and configuring all of these files grows too complex to manage without help. Webpack was designed to help with this problem.
-
-As an application develops, handling it becomes more difficult. Webpack was designed to counter this problem. Managing complexity is one of the fundamental issues of web development, and solving the problem well can help you a lot.
+Web browsers are designed to consume HTML, CSS, and JavaScript. As a project grows, tracking and configuring all of these files grows too complex to manage without help. As an application develops, handling it becomes more difficult. Webpack was designed to counter these problems. Managing complexity is one of the fundamental issues of web development, and solving the problem well can help you a lot.
 
 Webpack isn’t the only solution for this problem, and a collection of different tools have emerged. Task runners, such as Grunt and Gulp, are good examples of higher level tools. Often the problem is that need to write the workflows by hand. Pushing that issue to a bundler, such as webpack, is a step forward.
 
