@@ -194,7 +194,9 @@ Adjust the code as follows to write through `RawSource`:
 **plugins/demo-plugin.js**
 
 ```javascript
+leanpub-start-insert
 const { RawSource } = require('webpack-sources');
+leanpub-end-insert
 
 module.exports = class DemoPlugin {
   constructor(options) {
