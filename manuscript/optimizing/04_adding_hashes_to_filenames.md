@@ -212,6 +212,8 @@ vendor.3c78d233.js.map     135 kB       2  [emitted]  vendor
 
 Note how the output has changed, though. Instead of numbers, you can see hashes. But this is expected given the change you made.
 
+T> `NamedChunksPlugin` achieves a similar result for split points. See [Predictable long term caching with Webpack](https://medium.com/webpack/predictable-long-term-caching-with-webpack-d3eee1d3fa31) by Tim Sebastian for further details.
+
 T> The *Hot Module Replacement* appendix shows how to set up `NamedModulesPlugin` as it can be used for debugging HMR.
 
 {pagebreak}

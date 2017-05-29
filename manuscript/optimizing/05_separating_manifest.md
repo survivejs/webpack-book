@@ -124,6 +124,6 @@ To recap:
 * If the manifest changes, the change invalidates the containing bundle.
 * To overcome this problem, the manifest can be extracted to a bundle of its own using the `CommonsChunkPlugin`.
 * Certain plugins allow you to write the manifest to the generated *index.html*. It's also possible to extract the information to a JSON file. The JSON comes in handy with *Server Side Rendering*.
-* **Records** allow you to store module IDs across builds. The approach becomes essential if you rely on code splitting approaches. As a downside you have to track the records file somehow.
+* **Records** allow you to store module IDs across builds. As a downside you have to track the records file.
 
 You'll learn to analyze the build statistics in the next chapter. This analysis is essential for figuring out how to improve the build result.
