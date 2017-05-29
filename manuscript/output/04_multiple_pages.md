@@ -58,6 +58,7 @@ To incorporate the idea to the configuration, the way it's composed has to chang
 **webpack.config.js**
 
 ```javascript
+const webpack = require('webpack');
 const path = require('path');
 leanpub-start-delete
 const HtmlWebpackPlugin = require('html-webpack-plugin');
