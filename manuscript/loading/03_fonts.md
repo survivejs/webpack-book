@@ -6,7 +6,7 @@ The problem can be solved by deciding a set of browsers and platforms that shoul
 
 You can approach the problem in several ways through webpack. You can still use *url-loader* and *file-loader* as with images. Font `test` patterns tend to be more complicated, though, and you have to worry about font file related lookups.
 
-T> [canifont](https://www.npmjs.com/package/canifont) helps you to figure out which font formats you should support. It accepts a **browserslist** definition and then checks font support of each browser based on the definition.
+T> [canifont](https://www.npmjs.com/package/canifont) helps you to figure out which font formats you should support. It accepts a **.browserslistrc** definition and then checks font support of each browser based on the definition.
 
 ## Choosing One Format
 

@@ -68,13 +68,13 @@ body {
 }
 ```
 
-As you can see, autoprefixing expands the rules. If you know what browsers you support, it's possible to set up a [browserslist](https://www.npmjs.com/package/browserslist) file. Different tools pick up this definition, *autoprefixer* included.
+As you can see, autoprefixing expands the rules. If you know what browsers you support, it's possible to set up a [.browserslistrc](https://www.npmjs.com/package/browserslist) file. Different tools pick up this definition, *autoprefixer* included.
 
 {pagebreak}
 
 Consider the example below where you select only specific browsers:
 
-**browserslist**
+**.browserslistrc**
 
 ```
 > 1% # Browser usage over 1%
@@ -84,12 +84,12 @@ IE 8 # Or IE 8
 
 ## Conclusion
 
-Autoprefixing is a convenient technique as it decreases the amount of work needed while crafting CSS. You can maintain minimum browser requirements within a *browserslist* file. The tooling can then use that information to generate optimal output.
+Autoprefixing is a convenient technique as it decreases the amount of work needed while crafting CSS. You can maintain minimum browser requirements within a *.browserslistrc* file. The tooling can then use that information to generate optimal output.
 
 To recap:
 
 * Autoprefixing can be enabled through the *autoprefixer* PostCSS plugin.
 * Autoprefixing writes missing CSS definitions based on your minimum browser definition.
-* *browserslist* is a standard file that works with tooling beyond *autoprefixer*
+* *.browserslistrc* is a standard file that works with tooling beyond *autoprefixer*
 
 In the next chapter, you'll learn to eliminate unused CSS from the project.

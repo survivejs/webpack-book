@@ -142,7 +142,7 @@ Adjust the target definition as you like. As long as you follow [browserslist](h
 
 T> If you omit the `targets` definition, *babel-preset-env* compiles to ES5 compatible code. If you are using UglifyJS, see the *Minifying* chapter for more information on why this is required. You can also target Node through the `node` field. Example: `"node": "current"`.
 
-W> **babel-preset-env** does **not** support *browserslist* file yet. [See issue #26](https://github.com/babel/babel-preset-env/issues/26) for more information.
+W> **babel-preset-env** does **not** support *.browserslistrc* file yet. [See issue #26](https://github.com/babel/babel-preset-env/issues/26) for more information.
 
 If you execute `npm run build` now and examine *build/app.js*, the result should be similar to the earlier since it supports the features you are using in the code.
 
