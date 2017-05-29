@@ -38,6 +38,7 @@ There's nothing webpack specific in the code yet. The next step is to run the lo
 
 ```javascript
 const fs = require('fs');
+const path = require('path');
 const { runLoaders } = require('loader-runner');
 
 runLoaders({
@@ -138,6 +139,7 @@ Loaders, like *file-loader*, emit files. Webpack provides a single method, `this
 
 ```javascript
 const fs = require('fs');
+const path = require('path');
 const { runLoaders } = require('loader-runner');
 
 runLoaders({
