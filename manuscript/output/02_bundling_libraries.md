@@ -65,7 +65,7 @@ const commonConfig = merge([
   },
   parts.attachRevision(),
   parts.generateSourceMaps({ type: 'source-map' }),
-  parts.loadJavaScript({ include: PATHS.app }),
+  parts.loadJavaScript({ include: PATHS.lib }),
 ]);
 
 const libraryConfig = merge([
