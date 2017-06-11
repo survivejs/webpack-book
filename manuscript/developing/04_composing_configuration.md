@@ -153,7 +153,7 @@ Splitting configuration allows you to keep on expanding the setup. The biggest w
 
 Instead of duplicating similar configuration across multiple projects, you can manage configuration as a dependency now. As you figure out better ways to perform tasks, all your projects receive the improvements.
 
-Each approach comes with its pros and cons. Composition-based approach myself is a good starting point. In addition to composition, it gives you a limited amount of code to scan through, but it's a good idea to check out how other people do it too. You can find something that works the best based on your tastes.
+Each approach comes with its pros and cons. Personally, I think the composition-based approach is a good starting point. In addition to Componositon, it gives you a limited amount of code to scan through, but it's a good idea to check out how other people do it too. You can find something that works the best based on your tastes.
 
 Perhaps the biggest problem is that with composition you need to know what you are doing, and it's possible you aren't going to get the composition right the first time around. But that's a software engineering problem that goes beyond webpack.
 
