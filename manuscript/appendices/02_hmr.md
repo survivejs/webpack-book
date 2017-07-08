@@ -73,7 +73,7 @@ The message tells that even though the HMR interface notified the client portion
 
 T> The same idea works for production usage as you see in the *Adding Hashes to Filenames* chapter.
 
-T> A similar effect can be achieved by setting `output.pathInfo = true`. It still uses number based indices while emitting the path to the module within a comment. This should be used for development purposes only.
+T> A similar effect can be achieved by setting `output.pathinfo = true`. It still uses number based indices while emitting the path to the module within a comment. This should be used for development purposes only.
 
 ## Implementing the HMR Interface
 
