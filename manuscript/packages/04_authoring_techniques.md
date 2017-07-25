@@ -129,11 +129,6 @@ const fs = require('fs');
 const distDirectory = 'dist-modules';
 
 fs.stat(distDirectory, (error, stat) => {
-  // Skip building on Travis
-  if (process.env.TRAVIS) {
-    return;
-  }
-
   if (error || !stat.isDirectory()) {
     // Create a directory to avoid getting stuck
     // in postinstall loop
