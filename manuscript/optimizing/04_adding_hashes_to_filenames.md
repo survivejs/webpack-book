@@ -10,7 +10,7 @@ Webpack provides **placeholders** for this purpose. These strings are used to at
 * `[name]` - Returns the file name.
 * `[ext]` - Returns the extension. `[ext]` works for most available fields. `ExtractTextPlugin` is a notable exception to this rule.
 * `[hash]` - Returns the build hash. If any portion of the build changes, this changes as well.
-* `[chunkhash]` - Returns an entry chunk-specific hash. Each `entry` defined at the configuration receives a hash of own. If any portion of the entry changes, the hash changes as well. `[chunkhash]` is more granular than `[hash]` by definition.
+* `[chunkhash]` - Returns an entry chunk-specific hash. Each `entry` defined at the configuration receives a hash of its own. If any portion of the entry changes, the hash changes as well. `[chunkhash]` is more granular than `[hash]` by definition.
 * `[contenthash]` - Returns a hash specific to content. `[contenthash]` is available for `ExtractTextPlugin` only and is the most specific option available.
 
 It's preferable to use particularly `hash` and `chunkhash` only for production purposes as hashing doesn't do much good during development.
@@ -41,7 +41,7 @@ vendor.dc746a5db4ed650296e1.js
 
 If the file contents related to a chunk are different, the hash changes as well, thus invalidating the cache. More accurately, the browser sends a new request for the new file. If only `app` bundle gets updated, only that file needs to be requested again.
 
-The same result can be achieved by generating static filenames and invalidating the cache through a querystring (i.e., `app.js?d587bbd6e38337f5accd`). The part behind the question mark invalidates the cache. According to [Steve Souders](http://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/), attaching the hash to the filename is the more performant.
+The same result can be achieved by generating static filenames and invalidating the cache through a querystring (i.e., `app.js?d587bbd6e38337f5accd`). The part behind the question mark invalidates the cache. According to [Steve Souders](http://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/), attaching the hash to the filename is the most performant option.
 
 {pagebreak}
 
