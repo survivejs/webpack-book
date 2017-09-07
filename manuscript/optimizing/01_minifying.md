@@ -94,12 +94,12 @@ Minification in webpack can be enabled through `webpack -p` (same as `--optimize
 
 ### Setting Up JavaScript Minification
 
-[babili](https://www.npmjs.com/package/babili) is a JavaScript minifier maintained by the Babel team and it provides support for ES6 and newer features. [babili-webpack-plugin](https://www.npmjs.com/package/babili-webpack-plugin) makes it possible to use it through webpack.
+[babel-preset-minify](https://www.npmjs.com/package/babel-preset-minify) is a JavaScript minifier maintained by the Babel team and it provides support for ES6 and newer features. [babel-minify-webpack-plugin](https://www.npmjs.com/package/babel-minify-webpack-plugin) makes it possible to use it through webpack.
 
 To get started, include the plugin to the project:
 
 ```bash
-npm install babili-webpack-plugin --save-dev
+npm install babel-minify-webpack-plugin --save-dev
 ```
 
 {pagebreak}
@@ -111,7 +111,7 @@ To attach it to the configuration, define a part for it first:
 ```javascript
 ...
 leanpub-start-insert
-const BabiliPlugin = require('babili-webpack-plugin');
+const BabelWebpackPlugin = require('babel-minify-webpack-plugin');
 leanpub-end-insert
 
 ...
@@ -119,7 +119,7 @@ leanpub-end-insert
 leanpub-start-insert
 exports.minifyJavaScript = () => ({
   plugins: [
-    new BabiliPlugin(),
+    new BabelWebpackPlugin(),
   ],
 });
 leanpub-end-insert
@@ -176,15 +176,15 @@ leanpub-end-insert
 
 Given it needs to do more work, it took longer to execute the build. But on the plus side, the build is now smaller, the size limit warning disappeared, and the vendor build went from 150 kB to roughly 45 kB.
 
-You should check *babili-webpack-plugin* and Babili documentation for more options. Babili gives you control over how to handle code comments for example.
+You should check *babel-minify-webpack-plugin* for more options. It gives you control over how to handle code comments for example.
 
 {pagebreak}
 
 ## Other Ways to Minify JavaScript
 
-Although Babili works for this use case, there are more options you can consider:
+Although *babel-minify-webpack-plugin* works for this use case, there are more options you can consider:
 
-* [webpack-closure-compiler](https://www.npmjs.com/package/webpack-closure-compiler) runs parallel and gives even smaller result than Babili at times.
+* [webpack-closure-compiler](https://www.npmjs.com/package/webpack-closure-compiler) runs parallel and gives even smaller result than *babel-minify-webpack-plugin* at times.
 * [optimize-js-plugin](https://www.npmjs.com/package/optimize-js-plugin) complements the other solutions by wrapping eager functions and it enhances the way your JavaScript code gets parsed initially. The plugin relies on [optimize-js](https://github.com/nolanlawson/optimize-js) by Nolan Lawson.
 * [webpack.optimize.UglifyJsPlugin](https://webpack.js.org/plugins/uglifyjs-webpack-plugin/) is the official UglifyJS plugin for webpack. It doesn't support ES6 yet.
 * [uglifyjs-webpack-plugin](https://www.npmjs.com/package/uglifyjs-webpack-plugin) allows you to try out an experimental version of UglifyJS that provides better support for ES6 than the stable version.
@@ -307,7 +307,7 @@ Minification is the easiest step you can take to make your build smaller. To rec
 
 * **Minification** process analyzes your source code and turns it into a smaller form with the same meaning if you use safe transformations. Certain unsafe transformations allow you to reach even smaller results while potentially breaking code that relies, for example, on exact parameter naming.
 * **Performance budget** allows you to set limits to the build size. Maintaining a budget can keep developers more conscious of the size of the generated bundles.
-* Webpack includes `UglifyJsPlugin` for minification. Other solutions, such as Babili, provide similar functionality with costs of their own. While Babili supports ES6, it can be less performant than UglifyJS.
+* Webpack includes `UglifyJsPlugin` for minification. Other solutions, such as *babel-minify-webpack-plugin*, provide similar functionality with costs of their own. While *babel-minify-webpack-plugin* supports ES6, it can be less performant than UglifyJS.
 * Besides JavaScript, it's possible to minify other assets, such as CSS and HTML, too. Minifying these requires specific technologies that have to be applied through loaders and plugins of their own.
 
 You'll learn to apply tree shaking against code in the next chapter.
