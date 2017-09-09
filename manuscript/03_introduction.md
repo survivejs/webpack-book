@@ -46,7 +46,7 @@ The book has been split into the following parts:
 
 There's a short conclusion chapter after the main content that recaps the main points of the book. It contains checklists that allow you to go through your projects against the book techniques.
 
-The appendices the end of the book cover secondary topics and sometimes dig deeper into the main ones. You can approach them in any order you want depending on your interest.
+The appendices at the end of the book cover secondary topics and sometimes dig deeper into the main ones. You can approach them in any order you want depending on your interest.
 
 Given eventually webpack will give you an error, the *Troubleshooting* appendix at the end covers what to do then. It covers a basic process on what to do and how to debug the problem. When in doubt, study the appendix. If you are unsure of a term and its meaning, see the *Glossary* at the end of the book.
 
