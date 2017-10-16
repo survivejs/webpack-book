@@ -24,22 +24,6 @@ To get started, include Mocha and *mocha-loader* to your project:
 npm install mocha mocha-loader --save-dev
 ```
 
-To make ESLint aware of Mocha globals, tweak as follows:
-
-**eslintrc.js**
-
-```javascript
-module.exports = {
-  env: {
-    ...
-leanpub-start-insert
-    mocha: true,
-leanpub-end-insert
-  },
-  ...
-};
-```
-
 ### Setting Up Code to Test
 
 To have something to test, set up a function:

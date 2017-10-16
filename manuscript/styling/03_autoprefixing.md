@@ -93,3 +93,5 @@ To recap:
 * *.browserslistrc* is a standard file that works with tooling beyond *autoprefixer*
 
 In the next chapter, you'll learn to eliminate unused CSS from the project.
+
+T> You can lint CSS through [Stylelint](http://stylelint.io/). It can be set up the same way through *postcss-loader* as autoprefixing above.

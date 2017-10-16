@@ -18,7 +18,7 @@ The goal is to end up with a split point that gets loaded on demand. There can b
 
 ### Dynamic `import`
 
-The [dynamic `import` syntax](https://github.com/tc39/proposal-dynamic-import) isn't in the official language specification yet. To use it, minor tweaks are needed especially at ESLint and Babel.
+The [dynamic `import` syntax](https://github.com/tc39/proposal-dynamic-import) isn't in the official language specification yet. To use it, minor tweaks are needed especially at the Babel setup.
 
 Dynamic imports are defined as `Promise`s:
 
@@ -113,39 +113,7 @@ T> The formats respect `output.publicPath` option. You can also use `output.chun
 
 ## Setting Up Code Splitting
 
-To demonstrate the idea of code splitting, you can use dynamic `import`. Both ESLint and Babel setup of the project needs additions to make the syntax work.
-
-### Configuring ESLint
-
-Given ESLint supports only standard ES6 out of the box, it requires tweaking to work with dynamic `import`. Install *babel-eslint* parser first:
-
-```bash
-npm install babel-eslint --save-dev
-```
-
-Tweak ESLint configuration as follows:
-
-**.eslintrc.js**
-
-```javascript
-module.exports = {
-  ...
-leanpub-start-insert
-  parser: 'babel-eslint',
-leanpub-end-insert
-  parserOptions: {
-    sourceType: 'module',
-leanpub-start-insert
-    allowImportExportEverywhere: true,
-leanpub-end-insert
-  },
-  ...
-}
-```
-
-After these changes, ESLint doesn't complain if you write `import` in the middle of the code.
-
-{pagebreak}
+To demonstrate the idea of code splitting, you can use dynamic `import`. The Babel setup of the project needs additions to make the syntax work.
 
 ### Configuring Babel
 
@@ -167,6 +135,8 @@ leanpub-end-insert
   ...
 }
 ```
+
+W> If you are using ESLint, you should install `babel-eslint` and set `parser: 'babel-eslint'` in addition to `parserOptions.allowImportExportEverywhere: true` at ESLint configuration.
 
 ### Defining a Split Point Using a Dynamic `import`
 

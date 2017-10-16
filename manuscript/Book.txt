@@ -10,15 +10,13 @@ Mainmatter.txt
 05_Developing.md
 developing/01_getting_started.md
 developing/02_automatic_browser_refresh.md
-developing/03_linting.md
-developing/04_composing_configuration.md
+developing/03_composing_configuration.md
 
 06_Styling.md
 styling/01_loading.md
 styling/02_separating_css.md
 styling/03_autoprefixing.md
 styling/04_eliminating_unused_css.md
-styling/05_linting.md
 
 07_Loading.md
 loading/01_loader_definitions.md
@@ -55,26 +53,21 @@ techniques/02_web_workers.md
 techniques/03_i18n.md
 techniques/04_testing.md
 techniques/05_deploying.md
+techniques/06_consuming.md
+techniques/07_authoring.md
 
-12_Packages.md
-packages/01_consuming.md
-packages/02_consuming_techniques.md
-packages/03_authoring.md
-packages/04_authoring_techniques.md
-
-13_Extending.md
+12_Extending.md
 extending/01_loaders.md
 extending/02_plugins.md
 
 Backmatter.txt
 
-14_Conclusion.md
+13_Conclusion.md
 
-15_Appendices.md
+14_Appendices.md
 appendices/01_comparison.md
 appendices/02_hmr.md
 appendices/03_hmr_with_react.md
-appendices/04_customizing_eslint.md
-appendices/05_searching_with_react.md
-appendices/06_troubleshooting.md
-appendices/07_glossary.md
+appendices/04_searching_with_react.md
+appendices/05_troubleshooting.md
+appendices/06_glossary.md
