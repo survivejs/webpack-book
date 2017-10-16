@@ -421,7 +421,7 @@ Install Jest first:
 npm install jest --save-dev
 ```
 
-Jest captures tests through *package.json* [configuration](https://facebook.github.io/jest/docs/configuration.html). It detects tests within a *__tests__* directory it also happens to capture the naming pattern the project is using by default:
+Jest captures tests through *package.json* [configuration](https://facebook.github.io/jest/docs/en/configuration.html). It detects tests within a *__tests__* directory it also happens to capture the naming pattern the project is using by default:
 
 **package.json**
 
@@ -439,7 +439,7 @@ Now you have two new commands: one to run tests once and other to run them in a 
 
 Given generating coverage reports comes with a performance overhead, enabling the behavior through the flag can be a good idea. This way you can control exactly when to capture the information.
 
-Porting a webpack setup to Jest requires more effort especially if you rely on webpack specific features. [The official guide](https://facebook.github.io/jest/docs/webpack.html) covers quite a few of the common problems. You can also configure Jest to use Babel through [babel-jest](https://www.npmjs.com/package/babel-jest) as it allows you to use Babel plugins like [babel-plugin-module-resolver](https://www.npmjs.com/package/babel-plugin-module-resolver) to match webpack's functionality.
+Porting a webpack setup to Jest requires more effort especially if you rely on webpack specific features. [The official guide](https://facebook.github.io/jest/docs/en/webpack.html) covers quite a few of the common problems. You can also configure Jest to use Babel through [babel-jest](https://www.npmjs.com/package/babel-jest) as it allows you to use Babel plugins like [babel-plugin-module-resolver](https://www.npmjs.com/package/babel-plugin-module-resolver) to match webpack's functionality.
 
 ## AVA
 
