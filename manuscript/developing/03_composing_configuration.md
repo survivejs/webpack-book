@@ -71,7 +71,9 @@ exports.devServer = ({ host, port } = {}) => ({
 
 T> The same `stats` idea works for production configuration as well. See [the official documentation](https://webpack.js.org/configuration/stats/) for all the available options.
 
-To connect these configuration parts, set up *webpack.config.js* as in the code example below:
+{pagebreak}
+
+To connect this configuration part, set up *webpack.config.js* as in the code example below:
 
 **webpack.config.js**
 
@@ -143,8 +145,6 @@ Perhaps the biggest problem is that with composition you need to know what you a
 You can always iterate on the interfaces and find better ones. By passing in a configuration object instead of multiple arguments, you can change the behavior of a part without effecting its API. You can expose API as you need it.
 
 T> If you have to support both webpack 1 and 2, you can perform branching based on version using `require('webpack/package.json').version` to detect it. After that, you have to set specific branches for each and merge.
-
-{pagebreak}
 
 ## Configuration Layouts
 
