@@ -186,14 +186,14 @@ Another, and in this case a more fitting, way would be to handle the problem thr
 npm install rimraf --save-dev
 ```
 
-Then, to remove the build directory and lint the source before building, adjust as follows:
+Then, to remove the build directory before building, adjust as follows:
 
 **package.json**
 
 ```json
 "scripts": {
 leanpub-start-insert
-  "prebuild:lib": "npm run lint:js && rimraf dist",
+  "prebuild:lib": "rimraf dist",
 leanpub-end-insert
   ...
 },
