@@ -161,29 +161,29 @@ T> `[name]` is a placeholder. Placeholders are discussed in detail in the *Addin
 If you execute `node_modules/.bin/webpack`, you should see output:
 
 ```bash
-Hash: 3f76ae042ff0f2d98f35
-Version: webpack 2.2.1
-Time: 376ms
+Hash: 922e1437a5b7761b926e
+Version: webpack 3.8.1
+Time: 344ms
      Asset       Size  Chunks             Chunk Names
-    app.js    3.13 kB       0  [emitted]  app
+    app.js    3.07 kB       0  [emitted]  app
 index.html  180 bytes          [emitted]
-   [0] ./app/component.js 148 bytes {0} [built]
-   [1] ./app/index.js 78 bytes {0} [built]
+   [0] ./app/index.js 77 bytes {0} [built]
+   [1] ./app/component.js 142 bytes {0} [built]
 Child html-webpack-plugin for "index.html":
-       [0] ./~/lodash/lodash.js 540 kB {0} [built]
-       [1] (webpack)/buildin/global.js 509 bytes {0} [built]
-       [2] (webpack)/buildin/module.js 517 bytes {0} [built]
-       [3] ./~/html-webpack-plugin/lib/loader.js!./~/html-webpack-plugin/default_index.ejs 540 bytes {0} [built]
+     1 asset
+       [2] (webpack)/buildin/global.js 488 bytes {0} [built]
+       [3] (webpack)/buildin/module.js 495 bytes {0} [built]
+        + 2 hidden modules
 ```
 
 The output tells a lot:
 
-* `Hash: 3f76ae042ff0f2d98f35` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. Hashing is discussed in detail in the *Adding Hashes to Filenames* chapter.
-* `Version: webpack 2.2.1` - Webpack version.
-* `Time: 377ms` - Time it took to execute the build.
-* `app.js    3.13 kB       0  [emitted]  app` - Name of the generated asset, size, the IDs of the **chunks** into which it's related, status information telling how it was generated, the name of the chunk.
+* `Hash: 922e1437a5b7761b926e` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. Hashing is discussed in detail in the *Adding Hashes to Filenames* chapter.
+* `Version: webpack 3.8.1` - Webpack version.
+* `Time: 344ms` - Time it took to execute the build.
+* `app.js    3.07 kB       0  [emitted]  app` - Name of the generated asset, size, the IDs of the **chunks** into which it's related, status information telling how it was generated, the name of the chunk.
 * `index.html  180 bytes          [emitted]` - Another generated asset that was emitted by the process.
-* `[0] ./app/component.js 148 bytes {0} [built]` - The ID of the entry asset, name, size, entry chunk ID, the way it was generated.
+* `[0] ./app/index.js 77 bytes {0} [built]` - The ID of the entry asset, name, size, entry chunk ID, the way it was generated.
 * `Child html-webpack-plugin for "index.html":` - This is plugin-related output. In this case *html-webpack-plugin* is doing the output of its own.
 
 Examine the output below `build/`. If you look closely, you can see the same IDs within the source. To see the application running, open the `build/index.html` file directly through a browser. On macOS `open ./build/index.html` works.
