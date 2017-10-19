@@ -31,7 +31,7 @@ T> Given sometimes extending existing presets is not be enough, [modify-babel-pr
 
 ## Using Babel with Webpack Configuration
 
-Even though Babel can be used standalone, as you can see in the *Package Authoring Techniques* chapter, you can hook it up with webpack as well. During development, it can make sense to skip processing if you are using language features supported by your browser.
+Even though Babel can be used standalone, as you can see in the *Authoring Packages* chapter, you can hook it up with webpack as well. During development, it can make sense to skip processing if you are using language features supported by your browser.
 
 Skipping processing is a good option especially if you don't rely on any custom language features and work using a modern browser. Processing through Babel becomes almost a necessity when you compile your code for production, though.
 

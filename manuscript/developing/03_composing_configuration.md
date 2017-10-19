@@ -67,22 +67,6 @@ exports.devServer = ({ host, port } = {}) => ({
     },
   },
 });
-
-exports.lintJavaScript = ({ include, exclude, options }) => ({
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        include,
-        exclude,
-        enforce: 'pre',
-
-        loader: 'eslint-loader',
-        options,
-      },
-    ],
-  },
-});
 ```
 
 T> The same `stats` idea works for production configuration as well. See [the official documentation](https://webpack.js.org/configuration/stats/) for all the available options.
@@ -118,7 +102,6 @@ const commonConfig = merge([
       }),
     ],
   },
-  parts.lintJavaScript({ include: PATHS.app }),
 ]);
 
 const productionConfig = merge([
@@ -203,7 +186,7 @@ This arrangement would make it faster to find configuration related to a categor
 
 ### Pushing Parts to Packages
 
-Given all configuration is JavaScript, nothing prevents you from consuming it as a package or packages. It would be possible to package the shared configuration so that you can consume it across multiple projects. See the *Package Authoring Techniques* chapter for further information on how to achieve this.
+Given all configuration is JavaScript, nothing prevents you from consuming it as a package or packages. It would be possible to package the shared configuration so that you can consume it across multiple projects. See the *Authoring Packages* chapter for further information on how to achieve this.
 
 {pagebreak}
 

@@ -149,9 +149,9 @@ You can see familiar code there and more. Webpack's bootstrap script is in place
 
 T> Instead of using the multi-compiler mode, it would be possible to define two targets. One of them would generate the non-minified version while the other would generate the minified one. The other npm script could be called as `build:lib:dist` and you could define a `build:lib:all` script to build both.
 
-## Cleaning and Linting Before Building
+## Cleaning Before Building
 
-It's a good idea to clean the build directory and lint the code before building the library. You could expand webpack configuration:
+It's a good idea to clean the build directory before building the library. You could expand webpack configuration:
 
 ```javascript
 ...
@@ -165,22 +165,21 @@ const libraryConfig = merge([
   },
 leanpub-start-insert
   parts.clean(PATHS.build),
-  parts.lintJavaScript({ include: PATHS.lib }),
 leanpub-end-insert
 ]);
 
 ...
 ```
 
-`parts.clean` and `parts.lintJavaScript` were included to `libraryConfig` on purpose as it makes sense to run them only once at the beginning of the execution. This solution would be problematic with *parallel-webpack* though as it can run configurations out of order.
+`parts.clean` was included to `libraryConfig` on purpose as it makes sense to run it only once at the beginning of the execution. This solution would be problematic with *parallel-webpack* though as it can run configurations out of order.
 
 T> There's [a proposal to improve the situation](https://github.com/webpack/webpack/issues/4271) by introducing the concepts of pre- and post-processing to webpack.
 
 {pagebreak}
 
-## Cleaning and Linting Through npm
+## Cleaning Through npm
 
-Another, and in this case a more fitting, way would be to handle the problem through an npm script. As discussing in the *Package Authoring Techniques* chapter, npm provides pre- and post-script hooks. To keep this solution cross-platform, install [rimraf](https://www.npmjs.com/package/rimraf) first:
+Another, and in this case a more fitting, way would be to handle the problem through an npm script. As discussing in the *Authoring Packages* chapter, npm provides pre- and post-script hooks. To keep this solution cross-platform, install [rimraf](https://www.npmjs.com/package/rimraf) first:
 
 ```bash
 npm install rimraf --save-dev
@@ -199,8 +198,6 @@ leanpub-end-insert
 },
 ```
 
-If either process fails, npm doesn't proceed to the `lib` script. You can verify this by breaking a linting rule and seeing what happens when you build (`npm run build:lib`). Instead, it gives you an error.
-
 T> To get cleaner error output, run either `npm run build:lib --silent` or `npm run build:lib -s`.
 
 T> The same idea can be used for post-processes, such as deployment. For example, you could set up a `postpublish` script to deploy the library site after you have published it to npm.
@@ -215,8 +212,8 @@ To recap:
 
 * If you bundle libraries with webpack, you should set the `output` options carefully to get the result you want.
 * Webpack can generate both a non-minified and a minified version of a library through its **multi-compiler** mode. It's possible to minify also as a post-process using an external tool.
-* Performing tasks, such as cleaning and linting JavaScript, while using the multi-compiler mode is problematic at the moment. Instead, it can be a good idea to handle these tasks outside of webpack or run multiple webpack instances separately.
+* Performing tasks, such as cleaning the output directory, while using the multi-compiler mode is problematic at the moment. Instead, it can be a good idea to handle these tasks outside of webpack or run multiple webpack instances separately.
 
 If you try to import *./dist/lib.js* through Node, you notice it emits `{}`. The problem has to do with the output type that was chosen. To understand better which output to use and why, the next chapter covers them in detail.
 
-T> The *Package Authoring Techniques* chapter discusses npm specific techniques in detail.
+T> The *Authoring Packages* chapter discusses npm specific techniques in detail.
