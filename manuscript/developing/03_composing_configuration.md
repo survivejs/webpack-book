@@ -58,7 +58,7 @@ To give a degree of abstraction, you can define *webpack.config.js* for higher l
 exports.devServer = ({ host, port } = {}) => ({
   devServer: {
     historyApiFallback: true,
-    stats: 'errors-only',
+    stats: "errors-only",
     host, // Defaults to `localhost`
     port, // Defaults to 8080
     overlay: {
@@ -78,15 +78,15 @@ To connect this configuration part, set up *webpack.config.js* as in the code ex
 **webpack.config.js**
 
 ```javascript
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const merge = require('webpack-merge');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const merge = require("webpack-merge");
 
-const parts = require('./webpack.parts');
+const parts = require("./webpack.parts");
 
 const PATHS = {
-  app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'build'),
+  app: path.join(__dirname, "app"),
+  build: path.join(__dirname, "build"),
 };
 
 const commonConfig = merge([
@@ -96,18 +96,17 @@ const commonConfig = merge([
     },
     output: {
       path: PATHS.build,
-      filename: '[name].js',
+      filename: "[name].js",
     },
     plugins: [
       new HtmlWebpackPlugin({
-        title: 'Webpack demo',
+        title: "Webpack demo",
       }),
     ],
   },
 ]);
 
-const productionConfig = merge([
-]);
+const productionConfig = merge([]);
 
 const developmentConfig = merge([
   parts.devServer({
@@ -117,8 +116,8 @@ const developmentConfig = merge([
   }),
 ]);
 
-module.exports = (env) => {
-  if (env === 'production') {
+module.exports = env => {
+  if (env === "production") {
     return merge(commonConfig, productionConfig);
   }
 
