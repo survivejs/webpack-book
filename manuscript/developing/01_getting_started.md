@@ -125,12 +125,12 @@ To illustrate how to connect `entry` and `output` with `HtmlWebpackPlugin`, cons
 **webpack.config.js**
 
 ```javascript
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const PATHS = {
-  app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'build'),
+  app: path.join(__dirname, "app"),
+  build: path.join(__dirname, "build"),
 };
 
 module.exports = {
@@ -142,11 +142,11 @@ module.exports = {
   },
   output: {
     path: PATHS.build,
-    filename: '[name].js',
+    filename: "[name].js",
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Webpack demo',
+      title: "Webpack demo",
     }),
   ],
 };

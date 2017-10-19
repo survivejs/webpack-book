@@ -59,13 +59,12 @@ If you execute either *npm run start* or *npm start* now, you should see somethi
 
 Project is running at http://localhost:8080/
 webpack output is served from /
-Hash: c1b0a0508a91f4b1ac74
-Version: webpack 2.2.1
-Time: 757ms
+Hash: 2bf6813b1d90a3b0653a
+Version: webpack 3.8.1
+Time: 689ms
      Asset       Size  Chunks                    Chunk Names
-    app.js     314 kB       0  [emitted]  [big]  app
+    app.js     328 kB       0  [emitted]  [big]  app
 index.html  180 bytes          [emitted]
-chunk    {0} app.js (app) 300 kB [entry] [rendered]
 ...
 webpack: bundle is now VALID.
 ```
@@ -100,8 +99,8 @@ leanpub-end-insert
 };
 
 leanpub-start-insert
-module.exports = (env) => {
-  console.log('env', env);
+module.exports = env => {
+  console.log("env", env);
 
   return commonConfig;
 };
@@ -133,7 +132,7 @@ Even though `--env` allows to pass strings to the configuration, it can do a bit
 
 Instead of a string, you should receive an object `{ target: 'production' }` at configuration now. You could pass more key-value pairs, and they would go to the `env` object. If you set `--env foo` while setting `--env.target`, the string overrides the object.
 
-T> Webpack relies on yargs underneath. To understand the dot notation in greater detail, see [yargs documentation](http://yargs.js.org/docs/#parsing-tricks-dot-notation).
+T> Webpack relies on *yargs* underneath. To understand the dot notation in greater detail, see [yargs documentation](http://yargs.js.org/docs/#parsing-tricks-dot-notation).
 
 W> Webpack 2 changed argument behavior compared to webpack 1. You are not allowed to pass custom parameters through the CLI anymore. Instead, it's better to go through the `--env` mechanism if you need to do this.
 
@@ -148,6 +147,10 @@ Enable additional functionality as below:
 ```javascript
 ...
 
+const commonConfig = {
+  ...
+};
+
 leanpub-start-insert
 const productionConfig = () => commonConfig;
 
@@ -159,7 +162,7 @@ const developmentConfig = () => {
       historyApiFallback: true,
 
       // Display only errors to reduce the amount of output.
-      stats: 'errors-only',
+      stats: "errors-only",
 
       // Parse host and port from env to allow customization.
       //
@@ -173,15 +176,11 @@ const developmentConfig = () => {
     },
   };
 
-  return Object.assign(
-    {},
-    commonConfig,
-    config
-  );
+  return Object.assign({}, commonConfig, config);
 };
 leanpub-end-insert
 
-module.exports = (env) => {
+module.exports = env => {
 leanpub-start-delete
   console.log('env', env);
 
@@ -285,10 +284,8 @@ leanpub-start-insert
     plugins: [
       // Ignore node_modules so CPU usage with poll
       // watching drops significantly.
-      new webpack.WatchIgnorePlugin([
-        path.join(__dirname, 'node_modules')
-      ]),
-    ]
+      new webpack.WatchIgnorePlugin([path.join(__dirname, "node_modules")]),
+    ],
 leanpub-end-insert
   },
   ...
