@@ -101,10 +101,10 @@ leanpub-end-insert
   ...font.svg     444 kB          [emitted]  [big]
   ...font.ttf     166 kB          [emitted]
 leanpub-start-insert
-       app.js     82.4 kB       0  [emitted]         app
+       app.js     82.4 kB      0  [emitted]         app
 leanpub-end-insert
       app.css    3.89 kB       0  [emitted]         app
-   app.js.map     165 kB       0  [emitted]         app
+   app.js.map     165 kB      0  [emitted]         app
   app.css.map   84 bytes       0  [emitted]         app
 vendor.js.map     164 kB       1  [emitted]         vendor
    index.html  274 bytes          [emitted]
