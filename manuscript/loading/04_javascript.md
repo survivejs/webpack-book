@@ -108,7 +108,7 @@ W> If you try to import files **outside** of your configuration root directory a
 
 ### Setting Up *.babelrc*
 
-At a minimum, you need [babel-preset-env](https://www.npmjs.com/package/babel-preset-env). It's a Babel preset that enables the needed plugins based on the environment definition you pass to it. It follows the **browserslist** definition discussed in the *Autoprefixing* chapter.
+At a minimum, you need [babel-preset-env](https://www.npmjs.com/package/babel-preset-env). It's a Babel preset that enables the needed plugins based on the optional environment definition you pass to it.
 
 {pagebreak}
 
@@ -131,22 +131,15 @@ Adjust the target definition as you like. As long as you follow [browserslist](h
       "env",
       {
         "modules": false,
-        "targets": {
-          "browsers": ["last 2 Chrome versions"]
-        }
       }
     ]
   ]
 }
 ```
 
-T> If you omit the `targets` definition, *babel-preset-env* compiles to ES5 compatible code. If you are using UglifyJS, see the *Minifying* chapter for more information on why this is required. You can also target Node through the `node` field. Example: `"node": "current"`.
-
-W> **babel-preset-env** does **not** support *.browserslistrc* file yet. [See issue #26](https://github.com/babel/babel-preset-env/issues/26) for more information.
-
 If you execute `npm run build` now and examine *build/app.js*, the result should be similar to the earlier since it supports the features you are using in the code.
 
-To see that the target definition works, change it to work such as `"browsers": ["IE 8"]`. Since IE 8 doesn't support `const`s, the code should change. If you build (`npm run build`), now, you should see something different:
+To see that the preset works, change `.browserslistrc` to include only a definition like `IE 8` and the code should change accordingly:
 
 **build/app.js**
 
@@ -238,7 +231,7 @@ It's possible to pass the webpack environment to Babel with a tweak:
 **webpack.config.js**
 
 ```javascript
-module.exports = (env) => {
+module.exports = env => {
 leanpub-start-insert
   process.env.BABEL_ENV = env;
 leanpub-end-insert
