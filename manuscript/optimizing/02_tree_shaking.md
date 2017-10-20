@@ -9,8 +9,8 @@ To shake code, you have to define a module and use only a part of its code. Set 
 **app/shake.js**
 
 ```javascript
-const shake = () => console.log('shake');
-const bake = () => console.log('bake');
+const shake = () => console.log("shake");
+const bake = () => console.log("bake");
 
 export { shake, bake };
 ```
@@ -22,7 +22,7 @@ To make sure you use a part of the code, alter the application entry point:
 ```javascript
 ...
 leanpub-start-insert
-import { bake } from './shake';
+import { bake } from "./shake";
 
 bake();
 leanpub-end-insert
@@ -32,7 +32,7 @@ leanpub-end-insert
 
 {pagebreak}
 
-If you build the project again (`npm run build`) and examine the build (*build/app.js*), it should contain `console.log('bake')`, but miss `console.log('shake')`. That's tree shaking in action.
+If you build the project again (`npm run build`) and examine the build (*build/app.js*), it should contain `console.log("bake")`, but miss `console.log("shake")`. That's tree shaking in action.
 
 To get a better idea of what webpack is using for tree shaking, run it through `npm run build -- --display-used-exports`. You should see additional output like `[no exports used]` or `[only some exports used: bake]` in the terminal.
 
