@@ -26,15 +26,9 @@ Next, you need to define a function to wrap the basic idea. You could use the pl
 ...
 leanpub-start-insert
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-leanpub-end-insert
 
-...
-
-leanpub-start-insert
-exports.clean = (path) => ({
-  plugins: [
-    new CleanWebpackPlugin([path]),
-  ],
+exports.clean = path => ({
+  plugins: [new CleanWebpackPlugin([path])],
 });
 leanpub-end-insert
 ```
@@ -76,11 +70,7 @@ Then define a part to wrap the idea:
 ...
 leanpub-start-insert
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
-leanpub-end-insert
 
-...
-
-leanpub-start-insert
 exports.attachRevision = () => ({
   plugins: [
     new webpack.BannerPlugin({
