@@ -27,7 +27,7 @@ Assuming you have the following configuration:
 {
   output: {
     path: PATHS.build,
-    filename: '[name].[chunkhash].js',
+    filename: "[name].[chunkhash].js",
   },
 },
 ```
@@ -57,10 +57,10 @@ const commonConfig = {
   parts.loadFonts({
     options: {
 leanpub-start-delete
-      name: '[name].[ext]',
+      name: "[name].[ext]",
 leanpub-end-delete
 leanpub-start-insert
-      name: '[name].[hash:8].[ext]',
+      name: "[name].[hash:8].[ext]",
 leanpub-end-insert
     },
   }),
@@ -72,8 +72,8 @@ const productionConfig = merge([
     ...
 leanpub-start-insert
     output: {
-      chunkFilename: '[name].[chunkhash:8].js',
-      filename: '[name].[chunkhash:8].js',
+      chunkFilename: "[name].[chunkhash:8].js",
+      filename: "[name].[chunkhash:8].js",
     },
 leanpub-end-insert
   },
@@ -82,10 +82,10 @@ leanpub-end-insert
     options: {
       limit: 15000,
 leanpub-start-delete
-      name: '[name].[ext]',
+      name: "[name].[ext]",
 leanpub-end-delete
 leanpub-start-insert
-      name: '[name].[hash:8].[ext]',
+      name: "[name].[hash:8].[ext]",
 leanpub-end-insert
     },
   }),
@@ -102,10 +102,10 @@ exports.extractCSS = ({ include, exclude, use }) => {
   // Output extracted CSS to a file
   const plugin = new ExtractTextPlugin({
 leanpub-start-delete
-    filename: '[name].css',
+    filename: "[name].css",
 leanpub-end-delete
 leanpub-start-insert
-    filename: '[name].[contenthash:8].css',
+    filename: "[name].[contenthash:8].css",
 leanpub-end-insert
   });
 
@@ -120,28 +120,27 @@ W> The hashes have been sliced to make the output fit better in the book. In pra
 If you generate a build now (`npm run build`), you should see something:
 
 ```bash
-Hash: 16b92fddd41e579e77ba
-Version: webpack 2.2.1
-Time: 4258ms
+Hash: beb8471fa36469ac48c7
+Version: webpack 3.8.1
+Time: 3204ms
                  Asset       Size  Chunks             Chunk Names
+                 vendor.ad7a8b28.js    14.1 kB       2  [emitted]  vendor
        app.e0f59512.js  811 bytes       1  [emitted]  app
   ...font.674f50d2.eot     166 kB          [emitted]
 ...font.af7ae505.woff2    77.2 kB          [emitted]
  ...font.fee66e71.woff      98 kB          [emitted]
   ...font.912ec66d.svg     444 kB          [emitted]
-     logo.85011118.png      77 kB          [emitted]
          0.470796d5.js  408 bytes       0  [emitted]
   ...font.b06871f2.ttf     166 kB          [emitted]
-    vendor.f897ca59.js    24.4 kB       2  [emitted]  vendor
       app.bf4d156d.css    2.54 kB       1  [emitted]  app
      0.470796d5.js.map    2.08 kB       0  [emitted]
    app.e0f59512.js.map    2.33 kB       1  [emitted]  app
   app.bf4d156d.css.map   93 bytes       1  [emitted]  app
-vendor.f897ca59.js.map     135 kB       2  [emitted]  vendor
+vendor.f897ca59.js.map    38.3 kB       2  [emitted]  vendor
             index.html  301 bytes          [emitted]
-   [4] ./~/object-assign/index.js 2.11 kB {2} [built]
-  [14] ./app/component.js 461 bytes {1} [built]
-  [15] ./app/shake.js 138 bytes {1} [built]
+  [0] ./app/index.js 217 bytes {1} [built]
+ [10] ./app/main.css 41 bytes {1} [built]
+ [11] ./app/component.js 464 bytes {1} [built]
 ...
 ```
 
@@ -163,7 +162,7 @@ Tweak the configuration as follows:
 
 ```javascript
 leanpub-start-insert
-const webpack = require('webpack');
+const webpack = require("webpack");
 leanpub-end-insert
 ...
 
@@ -171,9 +170,7 @@ const productionConfig = merge([
   {
     ...
 leanpub-start-insert
-    plugins: [
-      new webpack.HashedModuleIdsPlugin(),
-    ],
+    plugins: [new webpack.HashedModuleIdsPlugin()],
 leanpub-end-insert
   },
   ...
@@ -185,28 +182,27 @@ leanpub-end-insert
 As you can see in the build output, the difference is negligible:
 
 ```bash
-Hash: 11891d736f3749fb9f8f
-Version: webpack 2.2.1
-Time: 4115ms
+Hash: 410229e400dbfd95d622
+Version: webpack 3.8.1
+Time: 2935ms
                  Asset       Size  Chunks             Chunk Names
+    vendor.12f5b764.js    14.2 kB       2  [emitted]  vendor
        app.4330d101.js  863 bytes       1  [emitted]  app
   ...font.912ec66d.svg     444 kB          [emitted]
   ...font.674f50d2.eot     166 kB          [emitted]
  ...font.fee66e71.woff      98 kB          [emitted]
 ...font.af7ae505.woff2    77.2 kB          [emitted]
-     logo.85011118.png      77 kB          [emitted]
          0.b2a1fec0.js  430 bytes       0  [emitted]
   ...font.b06871f2.ttf     166 kB          [emitted]
-    vendor.3c78d233.js    24.8 kB       2  [emitted]  vendor
       app.bf4d156d.css    2.54 kB       1  [emitted]  app
      0.b2a1fec0.js.map    2.08 kB       0  [emitted]
    app.4330d101.js.map    2.34 kB       1  [emitted]  app
   app.bf4d156d.css.map   93 bytes       1  [emitted]  app
-vendor.3c78d233.js.map     135 kB       2  [emitted]  vendor
+vendor.3c78d233.js.map    38.3 kB       2  [emitted]  vendor
             index.html  301 bytes          [emitted]
 [1Q41] ./app/main.css 41 bytes {1} [built]
-[2twT] ./app/index.js 557 bytes {1} [built]
-[5W1q] ./~/font-awesome/css/font-awesome.css 41 bytes {1} [built]
+[2twT] ./app/index.js 217 bytes {1} [built]
+[KMic] ./app/lazy.css 1.17 kB {0} [built]
 ...
 ```
 
