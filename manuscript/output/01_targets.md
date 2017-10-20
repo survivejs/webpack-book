@@ -45,4 +45,4 @@ To recap:
 * Webpack can target the desktop, Node, and web workers in addition to its web target.
 * The Node targets come in handy if especially in Server Side Rendering setups.
 
-You'll learn how to bundle libraries in the next chapter.
+You'll learn how to handle multi-page setups in the next chapter.
