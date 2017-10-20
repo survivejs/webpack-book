@@ -87,11 +87,12 @@ leanpub-start-delete
 leanpub-end-delete
 ]);
 
-const productionConfig = merge([
+leanpub-start-delete
+const productionConfig = merge([]);
+leanpub-end-delete
 leanpub-start-insert
-  parts.extractCSS({ use: 'css-loader' }),
+const productionConfig = merge([parts.extractCSS({ use: "css-loader" })]);
 leanpub-end-insert
-]);
 
 const developmentConfig = merge([
   ...
@@ -110,16 +111,17 @@ T> If you are using CSS Modules, remember to tweak `use` accordingly as discusse
 After running `npm run build`, you should see output similar to the following:
 
 ```bash
-Hash: 57e54590377069688806
-Version: webpack 2.2.1
-Time: 952ms
+Hash: 8df5d17c1c58bc1146dc
+Version: webpack 3.8.1
+Time: 659ms
      Asset       Size  Chunks             Chunk Names
-    app.js    3.79 kB       0  [emitted]  app
-   app.css   32 bytes       0  [emitted]  app
+    app.js     3.4 kB       0  [emitted]  app
+   app.css   33 bytes       0  [emitted]  app
 index.html  218 bytes          [emitted]
-   [0] ./app/component.js 148 bytes {0} [built]
+   [0] ./app/index.js 99 bytes {0} [built]
    [1] ./app/main.css 41 bytes {0} [built]
-   [2] ./app/index.js 434 bytes {0} [built]
+   [2] ./app/component.js 142 bytes {0} [built]
+   [3] ./node_modules/css-loader!./app/main.css 199 bytes [built]
 ...
 ```
 
