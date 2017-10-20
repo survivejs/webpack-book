@@ -11,34 +11,33 @@ T> Even if you minify the build, you can still generate source maps through the 
 To get started, you should generate a baseline build, so you have something to optimize. Execute `npm run build` to see output below:
 
 ```bash
-Hash: 12aec469d54202150429
-Version: webpack 2.2.1
-Time: 2863ms
+Hash: 9164f800e257bf1d9791
+Version: webpack 3.8.1
+Time: 2398ms
         Asset       Size  Chunks                    Chunk Names
+leanpub-start-insert
+    vendor.js    98.7 kB       2  [emitted]         vendor
+leanpub-end-insert
        app.js    2.42 kB       1  [emitted]         app
   ...font.eot     166 kB          [emitted]
 ...font.woff2    77.2 kB          [emitted]
  ...font.woff      98 kB          [emitted]
   ...font.svg     444 kB          [emitted]  [big]
-     logo.png      77 kB          [emitted]
          0.js    1.89 kB       0  [emitted]
   ...font.ttf     166 kB          [emitted]
-leanpub-start-insert
-    vendor.js     150 kB       2  [emitted]         vendor
-leanpub-end-insert
       app.css     3.9 kB       1  [emitted]         app
      0.js.map    2.22 kB       0  [emitted]
    app.js.map    2.13 kB       1  [emitted]         app
   app.css.map   84 bytes       1  [emitted]         app
-vendor.js.map     178 kB       2  [emitted]         vendor
+vendor.js.map     119 kB       2  [emitted]         vendor
    index.html  274 bytes          [emitted]
-   [3] ./~/react/lib/ReactElement.js 11.2 kB {2} [built]
-  [18] ./app/component.js 461 bytes {1} [built]
-  [19] ./~/font-awesome/css/font-awesome.css 41 bytes {1} [built]
+    [6] ./app/index.js 176 bytes {1} [built]
+   [15] ./app/main.css 41 bytes {1} [built]
+   [16] ./app/component.js 464 bytes {1} [built]
 ...
 ```
 
-150 kB for a vendor bundle is a lot! Minification should bring the size down.
+98 kB for a vendor bundle is a lot! Minification should bring the size down.
 
 ## Enabling a Performance Budget
 
@@ -73,10 +72,10 @@ In practice you want to maintain lower limits. The current ones are enough for t
 ...
 WARNING in entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (100 kB). This can impact web performance.
 Entrypoints:
-  app (156 kB)
+  app (104 kB)
       vendor.js
-,      app.js
-,      app.css
+      app.js
+      app.css
 ...
 ```
 
@@ -110,19 +109,13 @@ To attach it to the configuration, define a part for it first:
 
 ```javascript
 ...
-leanpub-start-insert
 const BabelWebpackPlugin = require('babel-minify-webpack-plugin');
-leanpub-end-insert
 
-...
-
-leanpub-start-insert
 exports.minifyJavaScript = () => ({
   plugins: [
     new BabelWebpackPlugin(),
   ],
 });
-leanpub-end-insert
 ```
 
 The plugin exposes more functionality, but having the possibility of toggling source maps is enough. Hook it up with the configuration:
@@ -145,36 +138,35 @@ leanpub-end-insert
 If you execute `npm run build` now, you should see smaller results:
 
 ```bash
-Hash: 12aec469d54202150429
-Version: webpack 2.2.1
-Time: 5265ms
+Hash: 9164f800e257bf1d9791
+Version: webpack 3.8.1
+Time: 3165ms
         Asset       Size  Chunks             Chunk Names
+leanpub-start-insert
+    vendor.js    45.2 kB       2  [emitted]  vendor
+leanpub-end-insert
        app.js  669 bytes       1  [emitted]  app
   ...font.eot     166 kB          [emitted]
 ...font.woff2    77.2 kB          [emitted]
  ...font.woff      98 kB          [emitted]
   ...font.svg     444 kB          [emitted]
-     logo.png      77 kB          [emitted]
          0.js  399 bytes       0  [emitted]
   ...font.ttf     166 kB          [emitted]
-leanpub-start-insert
-    vendor.js    45.2 kB       2  [emitted]  vendor
-leanpub-end-insert
       app.css     3.9 kB       1  [emitted]  app
      0.js.map    2.07 kB       0  [emitted]
    app.js.map    1.64 kB       1  [emitted]  app
   app.css.map   84 bytes       1  [emitted]  app
 leanpub-start-insert
-vendor.js.map     169 kB       2  [emitted]  vendor
+vendor.js.map     113 kB       2  [emitted]  vendor
 leanpub-end-insert
    index.html  274 bytes          [emitted]
-   [3] ./~/react/lib/ReactElement.js 11.2 kB {2} [built]
-  [18] ./app/component.js 461 bytes {1} [built]
-  [19] ./~/font-awesome/css/font-awesome.css 41 bytes {1} [built]
+    [6] ./app/index.js 176 bytes {1} [built]
+   [15] ./app/main.css 41 bytes {1} [built]
+   [16] ./app/component.js 464 bytes {1} [built]
 ...
 ```
 
-Given it needs to do more work, it took longer to execute the build. But on the plus side, the build is now smaller, the size limit warning disappeared, and the vendor build went from 150 kB to roughly 45 kB.
+Given it needs to do more work, it took longer to execute the build. But on the plus side, the build is now smaller, the size limit warning disappeared, and the vendor build went from 98 kB to roughly 45 kB.
 
 You should check *babel-minify-webpack-plugin* for more options. It gives you control over how to handle code comments for example.
 
@@ -215,14 +207,9 @@ Like for JavaScript, you can wrap the idea in a configuration part:
 
 ```javascript
 ...
-leanpub-start-insert
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const cssnano = require('cssnano');
-leanpub-end-insert
 
-...
-
-leanpub-start-insert
 exports.minifyCSS = ({ options }) => ({
   plugins: [
     new OptimizeCSSAssetsPlugin({
@@ -232,7 +219,6 @@ exports.minifyCSS = ({ options }) => ({
     }),
   ],
 });
-leanpub-end-insert
 ```
 
 W> If you use `--json` output with webpack as discussed in the *Analyzing Build Statistics* chapter, you should set `canPrint: false` to avoid output. You can solve by exposing the flag as a parameter so you can control it based on the environment.
@@ -266,30 +252,29 @@ leanpub-end-insert
 If you build the project now (`npm run build`), you should notice that CSS has become smaller as it's missing comments:
 
 ```bash
-Hash: 12aec469d54202150429
-Version: webpack 2.2.1
-Time: 4764ms
+Hash: 9164f800e257bf1d9791
+Version: webpack 3.8.1
+Time: 3254ms
         Asset       Size  Chunks             Chunk Names
+    vendor.js    33.8 kB       2  [emitted]  vendor
        app.js  669 bytes       1  [emitted]  app
   ...font.eot     166 kB          [emitted]
 ...font.woff2    77.2 kB          [emitted]
  ...font.woff      98 kB          [emitted]
   ...font.svg     444 kB          [emitted]
-     logo.png      77 kB          [emitted]
          0.js  399 bytes       0  [emitted]
   ...font.ttf     166 kB          [emitted]
-    vendor.js    45.2 kB       2  [emitted]  vendor
 leanpub-start-insert
-      app.css    2.48 kB       1  [emitted]  app
+      app.css    2.24 kB       1  [emitted]  app
 leanpub-end-insert
      0.js.map    2.07 kB       0  [emitted]
    app.js.map    1.64 kB       1  [emitted]  app
   app.css.map   84 bytes       1  [emitted]  app
-vendor.js.map     169 kB       2  [emitted]  vendor
+vendor.js.map     113 kB       2  [emitted]  vendor
    index.html  274 bytes          [emitted]
-   [3] ./~/react/lib/ReactElement.js 11.2 kB {2} [built]
-  [18] ./app/component.js 461 bytes {1} [built]
-  [19] ./~/font-awesome/css/font-awesome.css 41 bytes {1} [built]
+    [6] ./app/index.js 176 bytes {1} [built]
+   [15] ./app/main.css 41 bytes {1} [built]
+   [16] ./app/component.js 464 bytes {1} [built]
 ...
 ```
 
