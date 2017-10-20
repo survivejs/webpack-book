@@ -24,7 +24,7 @@ To make the project aware of Pure.css, `import` it:
 
 ```javascript
 leanpub-start-insert
-import 'purecss';
+import "purecss";
 leanpub-end-insert
 ...
 ```
@@ -35,12 +35,12 @@ You should also make the demo component use a Pure.css class, so there is someth
 
 ```javascript
 module.exports = () => {
-  const element = document.createElement('div');
+  const element = document.createElement("div");
 
 leanpub-start-insert
-  element.className = 'pure-button';
+  element.className = "pure-button";
 leanpub-end-insert
-  element.innerHTML = 'Hello world';
+  element.innerHTML = "Hello world";
 
   return element;
 };
@@ -89,7 +89,7 @@ You also need PurifyCSS configuration as below:
 ```javascript
 ...
 leanpub-start-insert
-const PurifyCSSPlugin = require('purifycss-webpack');
+const PurifyCSSPlugin = require("purifycss-webpack");
 leanpub-end-insert
 
 ...
@@ -108,10 +108,10 @@ Next, the part has to be connected with the configuration. It's important the pl
 ```javascript
 ...
 leanpub-start-insert
-const glob = require('glob');
+const glob = require("glob");
 leanpub-end-insert
 
-const parts = require('./webpack.parts');
+const parts = require("./webpack.parts");
 
 ...
 
