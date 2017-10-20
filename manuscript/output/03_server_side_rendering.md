@@ -51,16 +51,16 @@ Adjust as follows:
 **app/ssr.js**
 
 ```javascript
-const React = require('react');
-const ReactDOM = require('react-dom');
+const React = require("react");
+const ReactDOM = require("react-dom");
 
-const SSR = <div onClick={() => alert('hello')}>Hello world</div>;
+const SSR = <div onClick={() => alert("hello")}>Hello world</div>;
 
 // Render only in the browser, export otherwise
-if (typeof document === 'undefined') {
+if (typeof document === "undefined") {
   module.exports = SSR;
 } else {
-  ReactDOM.render(SSR, document.getElementById('app'));
+  ReactDOM.render(SSR, document.getElementById("app"));
 }
 ```
 
@@ -77,14 +77,14 @@ To keep things nice and tidy, it's possible to push the demo configuration to a 
 **webpack.ssr.js**
 
 ```javascript
-const path = require('path');
-const merge = require('webpack-merge');
+const path = require("path");
+const merge = require("webpack-merge");
 
-const parts = require('./webpack.parts');
+const parts = require("./webpack.parts");
 
 const PATHS = {
-  build: path.join(__dirname, 'static'),
-  ssrDemo: path.join(__dirname, 'app', 'ssr.js'),
+  build: path.join(__dirname, "static"),
+  ssrDemo: path.join(__dirname, "app", "ssr.js"),
 };
 
 module.exports = merge([
@@ -94,8 +94,8 @@ module.exports = merge([
     },
     output: {
       path: PATHS.build,
-      filename: '[name].js',
-      libraryTarget: 'umd',
+      filename: "[name].js",
+      libraryTarget: "umd",
     },
   },
   parts.loadJavaScript({ include: PATHS.ssrDemo }),
@@ -132,20 +132,20 @@ Then, to get something running, implement a server as follows:
 **server.js**
 
 ```javascript
-const express = require('express');
-const { renderToString } = require('react-dom/server');
+const express = require("express");
+const { renderToString } = require("react-dom/server");
 
-const SSR = require('./static');
+const SSR = require("./static");
 
 server(process.env.PORT || 8080);
 
 function server(port) {
   const app = express();
 
-  app.use(express.static('static'));
-  app.get('/', (req, res) => res.status(200).send(
-    renderMarkup(renderToString(SSR))
-  ));
+  app.use(express.static("static"));
+  app.get("/", (req, res) =>
+    res.status(200).send(renderMarkup(renderToString(SSR)))
+  );
 
   app.listen(port);
 }
