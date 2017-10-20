@@ -81,8 +81,8 @@ As you never get tired of `Hello world`, you will model a variant of that. Set u
 **app/component.js**
 
 ```javascript
-export default (text = 'Hello world') => {
-  const element = document.createElement('div');
+export default (text = "Hello world") => {
+  const element = document.createElement("div");
 
   element.innerHTML = text;
 
@@ -97,7 +97,7 @@ Next, you are going to need an entry point for the application. It uses `import`
 **app/index.js**
 
 ```javascript
-import component from './component';
+import component from "./component";
 
 document.body.appendChild(component());
 ```
