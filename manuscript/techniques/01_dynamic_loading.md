@@ -14,7 +14,7 @@ Each of these files would have a YAML frontmatter for their metadata. The url of
 // converts it into a JSON structure to use later. Markdown
 // hasn't been processed yet.
 const req = require.context(
-  'json-loader!yaml-frontmatter-loader!./pages',
+  "json-loader!yaml-frontmatter-loader!./pages",
   true, // Load files recursively. Pass false to skip recursion.
   /^\.\/.*\.md$/ // Match files ending with .md.
 );
@@ -25,12 +25,12 @@ T> The loader definition could be pushed to webpack configuration. The inline fo
 `require.context` returns a function to `require` against. It also knows its module `id` and it provides a `keys()` method for figuring out the contents of the context. To give you a better example, consider the code below:
 
 ```javascript
-req.keys(); // ['./demo.md', './another-demo.md']
+req.keys(); // ["./demo.md", "./another-demo.md"]
 
 req.id; // 42
 
-// {title: 'Demo', body: '# Demo page\nDemo content\n\n'}
-const demoPage = req('./demo.md');
+// {title: "Demo", body: "# Demo page\nDemo content\n\n"}
+const demoPage = req("./demo.md");
 ```
 
 The technique can be valuable for other purposes, such as testing or adding files for webpack to watch. In that case, you would set up a `require.context` within a file which you then point to through a webpack `entry`.
@@ -44,26 +44,22 @@ T> The information is enough for generating an entire site. This has been done w
 Multiple separate `require.context`s can be combined into one by wrapping them behind a function:
 
 ```javascript
-const { concat, uniq } from 'lodash';
+const { concat, uniq } = require("lodash");
 
 const combineContexts = (...contexts) => {
   function webpackContext(req) {
     // Find the first match and execute
-    const matches = contexts.map(
-      context => context.keys().indexOf(req) >= 0 && context
-    ).filter(a => a);
+    const matches = contexts
+      .map(context => context.keys().indexOf(req) >= 0 && context)
+      .filter(a => a);
 
     return matches[0] && matches[0](req);
   }
-  webpackContext.keys = () => uniq(
-    concat.apply(
-      null,
-      contexts.map(context => context.keys())
-    )
-  );
+  webpackContext.keys = () =>
+    uniq(concat.apply(null, contexts.map(context => context.keys())));
 
   return webpackContext;
-}
+};
 ```
 
 {pagebreak}
@@ -74,7 +70,7 @@ The same idea works with dynamic `import`. Instead of passing a complete path, y
 
 ```javascript
 // Set up a target or derive this somehow
-const target = 'fi';
+const target = "fi";
 
 // Elsewhere in code
 import(`translations/${target}.json`).then(...).catch(...);
