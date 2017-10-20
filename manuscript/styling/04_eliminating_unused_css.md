@@ -55,16 +55,16 @@ If you run the application (`npm start`), the "Hello world" should look like a b
 Building the application (`npm run build`) should yield output:
 
 ```bash
-Hash: e8601af01b5c5a5e722c
-Version: webpack 2.2.1
-Time: 1255ms
+Hash: 20c680ed670eff9c69c9
+Version: webpack 3.8.1
+Time: 1029ms
      Asset       Size  Chunks             Chunk Names
-    app.js    4.15 kB       0  [emitted]  app
-   app.css    16.5 kB       0  [emitted]  app
+    app.js    3.76 kB       0  [emitted]  app
+   app.css    16.9 kB       0  [emitted]  app
 index.html  218 bytes          [emitted]
-   [0] ./app/component.js 185 bytes {0} [built]
-   [1] ./app/main.css 41 bytes {0} [built]
-   [2] ./~/purecss/build/pure-min.css 41 bytes {0} [built]
+   [0] ./app/index.js 117 bytes {0} [built]
+   [2] ./app/main.css 41 bytes {0} [built]
+   [3] ./app/component.js 180 bytes {0} [built]
 ...
 ```
 
@@ -96,9 +96,7 @@ leanpub-end-insert
 
 leanpub-start-insert
 exports.purifyCSS = ({ paths }) => ({
-  plugins: [
-    new PurifyCSSPlugin({ paths }),
-  ],
+  plugins: [new PurifyCSSPlugin({ paths })],
 });
 leanpub-end-insert
 ```
@@ -132,16 +130,16 @@ W> The order matters. CSS extraction has to happen before purifying.
 If you execute `npm run build` now, you should see something:
 
 ```bash
-Hash: e8601af01b5c5a5e722c
-Version: webpack 2.2.1
-Time: 1363ms
+Hash: 20c680ed670eff9c69c9
+Version: webpack 3.8.1
+Time: 1126ms
      Asset       Size  Chunks             Chunk Names
-    app.js    4.15 kB       0  [emitted]  app
-   app.css    2.19 kB       0  [emitted]  app
+    app.js    3.76 kB       0  [emitted]  app
+   app.css    2.38 kB       0  [emitted]  app
 index.html  218 bytes          [emitted]
-   [0] ./app/component.js 185 bytes {0} [built]
-   [1] ./app/main.css 41 bytes {0} [built]
-   [2] ./~/purecss/build/pure-min.css 41 bytes {0} [built]
+   [0] ./app/index.js 117 bytes {0} [built]
+   [2] ./app/main.css 41 bytes {0} [built]
+   [3] ./app/component.js 180 bytes {0} [built]
 ...
 ```
 
