@@ -30,7 +30,7 @@ Then make the project depend on it:
 
 ```
 leanpub-start-insert
-import 'react';
+import "react";
 leanpub-end-insert
 ...
 ```
@@ -38,26 +38,25 @@ leanpub-end-insert
 Execute `npm run build` to get a baseline build. You should end up with something as below:
 
 ```bash
-Hash: 2db5a05e02ac73897fd4
-Version: webpack 2.2.1
-Time: 2864ms
+Hash: 4683e2d4037e397a0d26
+Version: webpack 3.8.1
+Time: 2023ms
         Asset       Size  Chunks                    Chunk Names
-     logo.png      77 kB          [emitted]
   ...font.eot     166 kB          [emitted]
 ...font.woff2    77.2 kB          [emitted]
  ...font.woff      98 kB          [emitted]
   ...font.svg     444 kB          [emitted]  [big]
   ...font.ttf     166 kB          [emitted]
 leanpub-start-insert
-       app.js     140 kB       0  [emitted]         app
+       app.js     82.4 kB       0  [emitted]         app
 leanpub-end-insert
       app.css    3.89 kB       0  [emitted]         app
-   app.js.map     165 kB       0  [emitted]         app
+   app.js.map     97.9 kB       0  [emitted]         app
   app.css.map   84 bytes       0  [emitted]         app
    index.html  218 bytes          [emitted]
-   [0] ./~/process/browser.js 5.3 kB {0} [built]
-   [3] ./~/react/lib/ReactElement.js 11.2 kB {0} [built]
-  [18] ./app/component.js 272 bytes {0} [built]
+    [6] ./app/index.js 176 bytes {0} [built]
+   [14] ./app/main.css 41 bytes {0} [built]
+   [15] ./app/component.js 275 bytes {0} [built]
 ...
 ```
 
@@ -76,7 +75,7 @@ const productionConfig = merge([
 leanpub-start-insert
   {
     entry: {
-      vendor: ['react'],
+      vendor: ["react"],
     },
   },
 leanpub-end-insert
@@ -89,30 +88,29 @@ leanpub-end-insert
 You have two separate entries, or **entry chunks**, now. `[name].js` of the existing `output.path` the configuration kicks in based on the entry name. If you try to generate a build now (`npm run build`), you should see something along this:
 
 ```bash
-Hash: ebf1b976090ff95e4fcd
-Version: webpack 2.2.1
-Time: 2814ms
+Hash: ecc92b2cf4057b78f49e
+Version: webpack 3.8.1
+Time: 1899ms
         Asset       Size  Chunks                    Chunk Names
 leanpub-start-insert
-       app.js     140 kB       0  [emitted]         app
+    vendor.js     80.5 kB       1  [emitted]         vendor
 leanpub-end-insert
   ...font.eot     166 kB          [emitted]
 ...font.woff2    77.2 kB          [emitted]
  ...font.woff      98 kB          [emitted]
   ...font.svg     444 kB          [emitted]  [big]
-     logo.png      77 kB          [emitted]
   ...font.ttf     166 kB          [emitted]
 leanpub-start-insert
-    vendor.js     138 kB       1  [emitted]         vendor
+       app.js     82.4 kB       0  [emitted]         app
 leanpub-end-insert
       app.css    3.89 kB       0  [emitted]         app
    app.js.map     165 kB       0  [emitted]         app
   app.css.map   84 bytes       0  [emitted]         app
 vendor.js.map     164 kB       1  [emitted]         vendor
    index.html  274 bytes          [emitted]
-   [3] ./~/react/lib/ReactElement.js 11.2 kB {0} {1} [built]
-  [18] ./~/react/react.js 56 bytes {0} {1} [built]
-  [21] ./~/react/lib/React.js 2.69 kB {0} {1} [built]
+   [11] ./app/index.js 176 bytes {0} [built]
+   [14] ./app/main.css 41 bytes {0} [built]
+   [15] ./app/component.js 275 bytes {0} [built]
 ...
 ```
 
@@ -140,7 +138,7 @@ W> Webpack doesn't allow referring to entry files within entries. If you inadver
 
 ```javascript
 leanpub-start-insert
-const webpack = require('webpack');
+const webpack = require("webpack");
 leanpub-end-insert
 
 ...
@@ -169,12 +167,12 @@ The configuration tells the plugin to extract React to a bundle named `vendor`.
 If you execute the build now using `npm run build`, you should see something along this:
 
 ```bash
-Hash: af634c8857c0ffb5c5e0
-Version: webpack 2.2.1
-Time: 2790ms
+Hash: 483c40610bb4c7c84f4b
+Version: webpack 3.8.1
+Time: 1907ms
         Asset       Size  Chunks                    Chunk Names
 leanpub-start-insert
-       app.js    2.15 kB       0  [emitted]         app
+    vendor.js     84 kB       1  [emitted]         vendor
 leanpub-end-insert
   ...font.eot     166 kB          [emitted]
 ...font.woff2    77.2 kB          [emitted]
@@ -183,16 +181,16 @@ leanpub-end-insert
      logo.png      77 kB          [emitted]
   ...font.ttf     166 kB          [emitted]
 leanpub-start-insert
-    vendor.js     141 kB       1  [emitted]         vendor
+       app.js    2.22 kB       0  [emitted]         app
 leanpub-end-insert
       app.css    3.89 kB       0  [emitted]         app
    app.js.map    1.67 kB       0  [emitted]         app
   app.css.map   84 bytes       0  [emitted]         app
 vendor.js.map     167 kB       1  [emitted]         vendor
    index.html  274 bytes          [emitted]
-   [0] ./~/process/browser.js 5.3 kB {1} [built]
-   [3] ./~/react/lib/ReactElement.js 11.2 kB {1} [built]
-   [7] ./~/react/react.js 56 bytes {1} [built]
+    [7] ./app/index.js 176 bytes {0} [built]
+   [14] ./app/main.css 41 bytes {0} [built]
+   [15] ./app/component.js 275 bytes {0} [built]
 ...
 ```
 
@@ -302,18 +300,19 @@ leanpub-end-delete
     {
       name: 'vendor',
 leanpub-start-insert
-      minChunks: ({ resource }) => (
+      minChunks: ({ resource }) =>
         resource &&
-        resource.indexOf('node_modules') >= 0 &&
-        resource.match(/\.js$/)
-      ),
+        resource.indexOf("node_modules") >= 0 &&
+        resource.match(/\.js$/),
 leanpub-end-insert
     },
   ]),
 ]);
 ```
 
-The build result should remain the same. This time, however, webpack pulls only dependencies that are used in the project, and you don't have to maintain the list anymore.
+This time webpack pulls only dependencies that are used in the project, and you don't have to maintain the list anymore.
+
+W> If you study the output, you will notice webpack pulled previously missing *css-loader* and *style-loader* code to the vendor bundle. You could implement a special check in the `minChunks` function to avoid this behavior.
 
 ## Performing a More Granular Split
 
