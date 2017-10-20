@@ -47,7 +47,7 @@ const commonConfig = merge([{
       new HappyPack({
         loaders: [
           // Capture Babel loader
-          'babel-loader'
+          "babel-loader"
         ],
       }),
     ],
@@ -66,10 +66,10 @@ exports.loadJavaScript = ({ include, exclude }) => ({
       {
         ...
 leanpub-start-delete
-        loader: 'babel-loader',
+        loader: "babel-loader",
 leanpub-end-delete
 leanpub-start-insert
-        loader: 'happypack/loader',
+        loader: "happypack/loader",
 leanpub-end-insert
         ...
       },
@@ -117,13 +117,11 @@ exports.dontParse = ({ name, path }) => {
 
   return {
     module: {
-      noParse: [
-        new RegExp(path),
-      ],
+      noParse: [new RegExp(path)]
     },
     resolve: {
-      alias,
-    },
+      alias
+    }
   };
 };
 ```
@@ -134,9 +132,9 @@ To use the function, you would call it as follows:
 
 ```javascript
 dontParse({
-  name: 'react',
+  name: "react",
   path: path.resolve(
-    __dirname, 'node_modules/react/dist/react.min.js',
+    __dirname, "node_modules/react/dist/react.min.js",
   ),
 }),
 ```
