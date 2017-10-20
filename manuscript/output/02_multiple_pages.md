@@ -25,22 +25,22 @@ To initialize a page, it should receive page title, output path, and an optional
 ```javascript
 ...
 leanpub-start-insert
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 leanpub-end-insert
 
 ...
 
 leanpub-start-insert
-exports.page = ({
-  path = '',
-  template = require.resolve(
-    'html-webpack-plugin/default_index.ejs'
-  ),
-  title,
-} = {}) => ({
+exports.page = (
+  {
+    path = "",
+    template = require.resolve("html-webpack-plugin/default_index.ejs"),
+    title,
+  } = {}
+) => ({
   plugins: [
     new HtmlWebpackPlugin({
-      filename: `${path && path + '/'}index.html`,
+      filename: `${path && path + "/"}index.html`,
       template,
       title,
     }),
@@ -58,10 +58,10 @@ To incorporate the idea to the configuration, the way it's composed has to chang
 **webpack.config.js**
 
 ```javascript
-const webpack = require('webpack');
-const path = require('path');
+const webpack = require("webpack");
+const path = require("path");
 leanpub-start-delete
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 leanpub-end-delete
 ...
 
@@ -83,7 +83,7 @@ leanpub-end-delete
 
 module.exports = (env) => {
 leanpub-start-delete
-  if (env === 'production') {
+  if (env === "production") {
     return merge(commonConfig, productionConfig);
   }
 
@@ -91,12 +91,10 @@ leanpub-start-delete
 leanpub-end-delete
 leanpub-start-insert
   const pages = [
-    parts.page({ title: 'Webpack demo' }),
-    parts.page({ title: 'Another demo', path: 'another' }),
+    parts.page({ title: "Webpack demo" }),
+    parts.page({ title: "Another demo", path: "another" }),
   ];
-  const config = env === 'production' ?
-    productionConfig :
-    developmentConfig;
+  const config = env === "production" ? productionConfig : developmentConfig;
 
   return pages.map(page => merge(commonConfig, config, page));
 leanpub-end-insert
@@ -144,30 +142,28 @@ leanpub-end-delete
 module.exports = (env) => {
 leanpub-start-delete
   const pages = [
-    parts.page({ title: 'Webpack demo' }),
-    parts.page({ title: 'Another demo', path: 'another' }),
+    parts.page({ title: "Webpack demo" }),
+    parts.page({ title: "Another demo", path: "another" }),
   ];
 leanpub-end-delete
 leanpub-start-insert
   const pages = [
     parts.page({
-      title: 'Webpack demo',
+      title: "Webpack demo",
       entry: {
         app: PATHS.app,
       },
     }),
     parts.page({
-      title: 'Another demo',
-      path: 'another',
+      title: "Another demo",
+      path: "another",
       entry: {
-        another: path.join(PATHS.app, 'another.js'),
+        another: path.join(PATHS.app, "another.js"),
       },
     }),
   ];
 leanpub-end-insert
-  const config = env === 'production' ?
-    productionConfig :
-    developmentConfig;
+  const config = env === "production" ? productionConfig : developmentConfig;
 
   return pages.map(page => merge(commonConfig, config, page));
 };
@@ -178,12 +174,14 @@ The tweak also requires a change at the related part so that `entry` gets includ
 **webpack.parts.js**
 
 ```javascript
-exports.page = ({
-  ...
+exports.page = (
+  {
+    ...
 leanpub-start-insert
-  entry,
+    entry,
 leanpub-end-insert
-} = {}) => ({
+  } = {}
+) => ({
 leanpub-start-insert
   entry,
 leanpub-end-insert
@@ -223,31 +221,29 @@ To reach a code sharing setup, a minor adjustment is needed. Most of the code ca
 **webpack.config.js**
 
 ```javascript
-module.exports = (env) => {
+module.exports = env => {
   const pages = [
     parts.page({
-      title: 'Webpack demo',
+      title: "Webpack demo",
       entry: {
         app: PATHS.app,
       },
 leanpub-start-insert
-      chunks: ['app', 'manifest', 'vendor'],
+      chunks: ["app", "manifest", "vendor"],
 leanpub-end-insert
     }),
     parts.page({
-      title: 'Another demo',
-      path: 'another',
+      title: "Another demo",
+      path: "another",
       entry: {
-        another: path.join(PATHS.app, 'another.js'),
+        another: path.join(PATHS.app, "another.js"),
       },
 leanpub-start-insert
-      chunks: ['another', 'manifest', 'vendor'],
+      chunks: ["another", "manifest", "vendor"],
 leanpub-end-insert
     }),
   ];
-  const config = env === 'production' ?
-    productionConfig :
-    developmentConfig;
+  const config = env === "production" ? productionConfig : developmentConfig;
 
 leanpub-start-delete
   return pages.map(page => merge(commonConfig, config, page));
@@ -265,12 +261,14 @@ The page-specific configuration requires a small tweak as well:
 **webpack.parts.js**
 
 ```javascript
-exports.page = ({
-  ...
+exports.page = (
+  {
+    ...
 leanpub-start-insert
-  chunks,
+    chunks,
 leanpub-end-insert
-} = {}) => ({
+  } = {}
+) => ({
   entry,
   plugins: [
     new HtmlWebpackPlugin({
