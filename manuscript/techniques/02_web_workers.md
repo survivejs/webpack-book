@@ -37,26 +37,23 @@ The host has to instantiate the worker and the communicate with it. The idea is 
 **app/component.js**
 
 ```javascript
-import Worker from 'worker-loader!./worker';
+import Worker from "worker-loader!./worker";
 
 export default () => {
-  const element = document.createElement('h1');
+  const element = document.createElement("h1");
   const worker = new Worker();
-  const state = { text: 'foo' };
+  const state = { text: "foo" };
 
-  worker.addEventListener(
-    'message',
-    ({ data: { text } }) => {
-      state.text = text;
-      element.innerHTML = text;
-    }
-  );
+  worker.addEventListener("message", ({ data: { text } }) => {
+    state.text = text;
+    element.innerHTML = text;
+  });
 
   element.innerHTML = state.text;
   element.onclick = () => worker.postMessage({ text: state.text });
 
   return element;
-}
+};
 ```
 
 After you have these two set up, it should work. As you click the text, it should mutate the application state as the worker completes its execution. To demonstrate the asynchronous nature of workers, you could try adding delay to the answer and see what happens.
