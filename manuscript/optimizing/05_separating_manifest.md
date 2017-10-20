@@ -23,7 +23,7 @@ const productionConfig = merge([
       },
 leanpub-start-insert
       {
-        name: 'manifest',
+        name: "manifest",
         minChunks: Infinity,
       },
 leanpub-end-insert
@@ -39,10 +39,13 @@ The name `manifest` is used by convention. You can use any other name and it wil
 If you build the project now (`npm run build`), you should see something:
 
 ```bash
-Hash: 73f8c0d53361c3a81ea6
-Version: webpack 2.2.1
-Time: 4071ms
+Hash: 6831aac319dc22be602b
+Version: webpack 3.8.1
+Time: 2798ms
                    Asset       Size  Chunks             Chunk Names
+leanpub-start-insert
+    manifest.95266dc7.js     1.5 kB       3  [emitted]  manifest
+leanpub-end-insert
          app.801b7672.js  865 bytes    2, 3  [emitted]  app
     ...font.912ec66d.svg     444 kB          [emitted]
     ...font.674f50d2.eot     166 kB          [emitted]
@@ -50,23 +53,20 @@ Time: 4071ms
   ...font.af7ae505.woff2    77.2 kB          [emitted]
        logo.85011118.png      77 kB          [emitted]
            0.e7c9bce9.js  432 bytes    0, 3  [emitted]
-      vendor.c4ac6d53.js    23.4 kB    1, 3  [emitted]  vendor
+      vendor.c4ac6d53.js    12.8 kB    1, 3  [emitted]  vendor
     ...font.b06871f2.ttf     166 kB          [emitted]
-leanpub-start-insert
-    manifest.95266dc7.js    1.51 kB       3  [emitted]  manifest
-leanpub-end-insert
         app.bf4d156d.css    2.54 kB    2, 3  [emitted]  app
        0.e7c9bce9.js.map    2.08 kB    0, 3  [emitted]
-  vendor.c4ac6d53.js.map     129 kB    1, 3  [emitted]  vendor
+  vendor.c4ac6d53.js.map    32.7 kB    1, 3  [emitted]  vendor
      app.801b7672.js.map    2.34 kB    2, 3  [emitted]  app
     app.bf4d156d.css.map   93 bytes    2, 3  [emitted]  app
 leanpub-start-insert
-manifest.95266dc7.js.map    5.77 kB       3  [emitted]  manifest
+manifest.95266dc7.js.map    5.81 kB       3  [emitted]  manifest
 leanpub-end-insert
               index.html  368 bytes          [emitted]
 [1Q41] ./app/main.css 41 bytes {2} [built]
-[2twT] ./app/index.js 557 bytes {2} [built]
-[5W1q] ./~/font-awesome/css/font-awesome.css 41 bytes {2} [built]
+[2twT] ./app/index.js 217 bytes {2} [built]
+[KMic] ./app/lazy.css 1.17 kB {0} [built]
 ...
 ```
 
@@ -74,7 +74,7 @@ This change gave a separate file that contains the manifest. In the output above
 
 Plugins, such as [inline-manifest-webpack-plugin](https://www.npmjs.com/package/inline-manifest-webpack-plugin) and [html-webpack-inline-chunk-plugin](https://www.npmjs.com/package/html-webpack-inline-chunk-plugin), [assets-webpack-plugin](https://www.npmjs.com/package/assets-webpack-plugin), work with `HtmlWebpackPlugin` and allow you to write the manifest within *index.html* to avoid a request.
 
-T> To get a better idea of the manifest contents, comment out `parts.minify()` and examine the resulting manifest. You should see something familiar there.
+T> To get a better idea of the manifest contents, comment out `parts.minifyJavaScript()` and examine the resulting manifest. You should see something familiar there.
 
 Try adjusting *app/index.js* and see how the hashes change. This time around it should **not** invalidate the vendor bundle, and only the manifest and app bundle names should become different.
 
@@ -99,7 +99,7 @@ const productionConfig = merge([
   {
     ...
 leanpub-start-insert
-    recordsPath: path.join(__dirname, 'records.json'),
+    recordsPath: path.join(__dirname, "records.json"),
 leanpub-end-insert
   },
   ...
