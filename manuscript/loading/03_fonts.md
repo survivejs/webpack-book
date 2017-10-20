@@ -249,6 +249,8 @@ The SVG file included in Font Awesome has been marked as `[big]`. It's beyond th
 
 T> [font-awesome-loader](https://www.npmjs.com/package/font-awesome-loader) allows more customization. Font Awesome 5 improves the situation further and make it easier to decide what fonts to consume. [Font Awesome wiki](https://github.com/FortAwesome/Font-Awesome/wiki/Customize-Font-Awesome) points to available online services that allow you to select specific fonts from Font Awesome collection.
 
+{pagebreak}
+
 ## Conclusion
 
 Loading fonts is similar to loading other assets. You have to consider the browsers you want to support and choose the loading strategy based on that.
