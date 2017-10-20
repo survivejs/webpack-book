@@ -14,13 +14,13 @@ To understand the idea of `DefinePlugin` better, consider the example below:
 var foo;
 
 // Not free due to "foo" above, not ok to replace
-if (foo === 'bar') {
-  console.log('bar');
+if (foo === "bar") {
+  console.log("bar");
 }
 
 // Free since you don't refer to "bar", ok to replace
-if (bar === 'bar') {
-  console.log('bar');
+if (bar === "bar") {
+  console.log("bar");
 }
 ```
 
@@ -30,13 +30,13 @@ If you replaced `bar` with a string like `'foobar'`, then you would end up with 
 var foo;
 
 // Not free due to "foo" above, not ok to replace
-if (foo === 'bar') {
-  console.log('bar');
+if (foo === "bar") {
+  console.log("bar");
 }
 
 // Free since you don't refer to "bar", ok to replace
-if ('foobar' === 'bar') {
-  console.log('bar');
+if ("foobar" === "bar") {
+  console.log("bar");
 }
 ```
 
@@ -46,13 +46,13 @@ Further analysis shows that `'foobar' === 'bar'` equals `false` so a minifier gi
 var foo;
 
 // Not free due to "foo" above, not ok to replace
-if (foo === 'bar') {
-  console.log('bar');
+if (foo === "bar") {
+  console.log("bar");
 }
 
 // Free since you don't refer to "bar", ok to replace
 if (false) {
-  console.log('bar');
+  console.log("bar");
 }
 ```
 
@@ -64,8 +64,8 @@ A minifier eliminates the `if` statement as it has become dead code:
 var foo;
 
 // Not free, not ok to replace
-if (foo === 'bar') {
-  console.log('bar');
+if (foo === "bar") {
+  console.log("bar");
 }
 
 // if (false) means the block can be dropped entirely
@@ -87,9 +87,7 @@ exports.setFreeVariable = (key, value) => {
   env[key] = JSON.stringify(value);
 
   return {
-    plugins: [
-      new webpack.DefinePlugin(env),
-    ],
+    plugins: [new webpack.DefinePlugin(env)],
   };
 };
 ```
@@ -102,10 +100,7 @@ You can connect this with the configuration:
 const productionConfig = merge([
   ...
 leanpub-start-insert
-  parts.setFreeVariable(
-    'process.env.NODE_ENV',
-    'production'
-  ),
+  parts.setFreeVariable("process.env.NODE_ENV", "production"),
 leanpub-end-insert
 ]);
 ```
@@ -113,10 +108,13 @@ leanpub-end-insert
 Execute `npm run build` and you should see improved results:
 
 ```bash
-Hash: fe11f4781275080dd01a
-Version: webpack 2.2.1
-Time: 4726ms
+Hash: 7ed744e79c0813f45427
+Version: webpack 3.8.1
+Time: 2740ms
         Asset       Size  Chunks             Chunk Names
+leanpub-start-insert
+    vendor.js      14 kB       2  [emitted]  vendor
+leanpub-end-insert
        app.js  802 bytes       1  [emitted]  app
   ...font.eot     166 kB          [emitted]
 ...font.woff2    77.2 kB          [emitted]
@@ -125,14 +123,11 @@ Time: 4726ms
      logo.png      77 kB          [emitted]
          0.js  399 bytes       0  [emitted]
   ...font.ttf     166 kB          [emitted]
-leanpub-start-insert
-    vendor.js    24.3 kB       2  [emitted]  vendor
-leanpub-end-insert
       app.css    2.48 kB       1  [emitted]  app
      0.js.map    2.07 kB       0  [emitted]
    app.js.map    2.32 kB       1  [emitted]  app
   app.css.map   84 bytes       1  [emitted]  app
-vendor.js.map     135 kB       2  [emitted]  vendor
+vendor.js.map    38.2 kB       2  [emitted]  vendor
    index.html  274 bytes          [emitted]
    [4] ./~/object-assign/index.js 2.11 kB {2} [built]
   [14] ./app/component.js 461 bytes {1} [built]
@@ -140,9 +135,9 @@ vendor.js.map     135 kB       2  [emitted]  vendor
 ...
 ```
 
-You went from 150 kB to 45 kB, and finally, to 24 kB. The final build is faster than the previous one as well.
+You went from 98 kB to 45 kB, and finally, to 14 kB. The final build is faster than the previous one as well.
 
-Given the 24 kB can be served gzipped, it's somewhat reasonable. gzipping drops around another 40%, and it's well supported by browsers.
+Given the 14 kB can be served gzipped, it's somewhat reasonable. gzipping drops around another 40%, and it's well supported by browsers.
 
 T> `webpack.EnvironmentPlugin(['NODE_ENV'])` is a shortcut that allows you to refer to environment variables. It uses `DefinePlugin` underneath and you can achieve the same effect by passing `process.env.NODE_ENV` to the custom function you made. The [documentation covers `EnvironmentPlugin`](https://webpack.js.org/plugins/environment-plugin/) in greater detail.
 
@@ -171,10 +166,10 @@ Consider the file structure below:
 The idea is that you choose either `dev` or `prod` version of the store depending on the environment. It's that *index.js* which does the hard work:
 
 ```javascript
-if (process.env.NODE_ENV === 'production') {
-  module.exports = require('./store.prod');
+if (process.env.NODE_ENV === "production") {
+  module.exports = require("./store.prod");
 } else {
-  module.exports = require('./store.dev');
+  module.exports = require("./store.dev");
 }
 ```
 
