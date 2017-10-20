@@ -23,7 +23,7 @@ The [dynamic `import` syntax](https://github.com/tc39/proposal-dynamic-import) i
 Dynamic imports are defined as `Promise`s:
 
 ```javascript
-import(/* webpackChunkName: "optional-name" */ './module').then(
+import(/* webpackChunkName: "optional-name" */ "./module").then(
   module => {...}
 ).catch(
   error => {...}
@@ -38,8 +38,8 @@ The interface allows composition, and you could load multiple resources in paral
 
 ```javascript
 Promise.all([
-  import('lunr'),
-  import('../search_index.json'),
+  import("lunr"),
+  import("../search_index.json"),
 ]).then(([lunr, search]) => {
   return {
     index: lunr.Index.load(search.index),
@@ -58,23 +58,23 @@ W> The syntax works only with JavaScript after configured the right way. If you 
 
 ### `require.ensure`
 
-[require.ensure](https://webpack.js.org/guides/code-splitting-require/#require-ensure-) provides an alternate way:
+[require.ensure](https://webpack.js.org/api/module-methods/#require-ensure) provides an alternate way:
 
 ```javascript
 require.ensure(
   // Modules to load, but not execute yet
-  ['./load-earlier'],
+  ["./load-earlier"],
   () => {
-    const loadEarlier = require('./load-earlier');
+    const loadEarlier = require("./load-earlier");
 
     // Load later on demand and include to the same chunk
-    const module1 = require('./module1');
-    const module2 = require('./module2');
+    const module1 = require("./module1");
+    const module2 = require("./module2");
 
     ...
   },
   err => console.error(err),
-  'optional-name'
+  "optional-name"
 );
 ```
 
@@ -92,13 +92,13 @@ The example above could be rewritten using webpack particular `require.include`:
 require.ensure(
   [],
   () => {
-    require.include('./load-earlier');
+    require.include("./load-earlier");
 
-    const loadEarlier = require('./load-earlier');
+    const loadEarlier = require("./load-earlier");
 
     // Load later on demand and include to the same chunk
-    const module1 = require('./module1');
-    const module2 = require('./module2');
+    const module1 = require("./module1");
+    const module2 = require("./module2");
 
     ...
   }
@@ -145,7 +145,7 @@ The idea can be demonstrated by setting up a module that contains a string that 
 **app/lazy.js**
 
 ```javascript
-export default 'Hello from lazy';
+export default "Hello from lazy";
 ```
 
 {pagebreak}
@@ -155,18 +155,20 @@ You also need to point the application to this file, so the application knows to
 **app/component.js**
 
 ```javascript
-export default () => {
-  const element = document.createElement('div');
+export default (text = "Hello world") => {
+  const element = document.createElement("div");
 
-  element.className = 'fa fa-hand-spock-o fa-1g';
-  element.innerHTML = 'Hello world';
+  element.className = "fa fa-hand-spock-o fa-1g";
+  element.innerHTML = text;
 leanpub-start-insert
   element.onclick = () => {
-    import('./lazy').then((lazy) => {
-      element.textContent = lazy.default;
-    }).catch((err) => {
-      console.error(err);
-    });
+    import("./lazy")
+      .then(lazy => {
+        element.textContent = lazy.default;
+      })
+      .catch(err => {
+        console.error(err);
+      });
   };
 leanpub-end-insert
 
@@ -183,32 +185,31 @@ If you open up the application (`npm start`) and click the button, you should se
 If you run `npm run build`, you should see something:
 
 ```bash
-Hash: e61343b53de634da8aac
-Version: webpack 2.2.1
-Time: 2890ms
+Hash: bd020a9fce9965e910a3
+Version: webpack 3.8.1
+Time: 2184ms
         Asset       Size  Chunks                    Chunk Names
-       app.js     2.4 kB       1  [emitted]         app
+    vendor.js     150 kB       2  [emitted]         vendor
   ...font.eot     166 kB          [emitted]
 ...font.woff2    77.2 kB          [emitted]
  ...font.woff      98 kB          [emitted]
   ...font.svg     444 kB          [emitted]  [big]
-     logo.png      77 kB          [emitted]
 leanpub-start-insert
-         0.js  313 bytes       0  [emitted]
+         0.js  315 bytes       0  [emitted]
 leanpub-end-insert
   ...font.ttf     166 kB          [emitted]
-    vendor.js     150 kB       2  [emitted]         vendor
+       app.js     2.4 kB       1  [emitted]         app
       app.css    3.89 kB       1  [emitted]         app
 leanpub-start-insert
-     0.js.map  233 bytes       0  [emitted]
+     0.js.map  235 bytes       0  [emitted]
 leanpub-end-insert
    app.js.map    2.13 kB       1  [emitted]         app
   app.css.map   84 bytes       1  [emitted]         app
 vendor.js.map     178 kB       2  [emitted]         vendor
    index.html  274 bytes          [emitted]
-   [0] ./~/process/browser.js 5.3 kB {2} [built]
-   [3] ./~/react/lib/ReactElement.js 11.2 kB {2} [built]
-  [18] ./app/component.js 461 bytes {1} [built]
+    [6] ./app/index.js 176 bytes {1} [built]
+   [15] ./app/main.css 41 bytes {1} [built]
+   [16] ./app/component.js 464 bytes {1} [built]
 ...
 ```
 
@@ -224,7 +225,7 @@ Lazy loading can be applied to styling as well. Expand the definition:
 
 ```javascript
 leanpub-start-insert
-import './lazy.css';
+import "./lazy.css";
 leanpub-end-insert
 
 export default 'Hello from lazy';
@@ -251,14 +252,14 @@ The idea is that after *lazy.js* gets loaded, *lazy.css* is applied as well. You
 It's possible to achieve the same with `require.ensure`. Consider the full example below:
 
 ```javascript
-export default () => {
-  const element = document.createElement('div');
+export default (text = "Hello world") => {
+  const element = document.createElement("div");
 
-  element.className = 'pure-button';
-  element.innerHTML = 'Hello world';
+  element.className = "fa fa-hand-spock-o fa-1g";
+  element.innerHTML = text;
   element.onclick = () => {
     require.ensure([], (require) => {
-      element.textContent = require('./lazy').default;
+      element.textContent = require("./lazy").default;
     });
   };
 
@@ -279,12 +280,12 @@ T> The *Dynamic Loading* chapter covers other techniques that come in handy when
 The splitting pattern can be wrapped into a React component. Airbnb uses the following solution [as described by Joe Lencioni](https://gist.github.com/lencioni/643a78712337d255f5c031bfc81ca4cf):
 
 ```javascript
-import React from 'react';
+import React from "react";
 
 ...
 
 // Somewhere in code
-<AsyncComponent loader={() => import('./SomeComponent')} />
+<AsyncComponent loader={() => import("./SomeComponent")} />
 
 ...
 
