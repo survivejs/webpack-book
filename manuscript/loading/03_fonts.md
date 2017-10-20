@@ -236,7 +236,7 @@ Time: 1738ms
 ...font.woff2    77.2 kB          [emitted]
  ...font.woff      98 kB          [emitted]
   ...font.svg     444 kB          [emitted]  [big]
-        app.js    4.18 kB       0  [emitted]         app
+       app.js    4.18 kB       0  [emitted]         app
       app.css    3.51 kB       0  [emitted]         app
    index.html  218 bytes          [emitted]
   [0] ./app/index.js 161 bytes {0} [built]
