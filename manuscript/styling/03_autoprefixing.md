@@ -32,16 +32,16 @@ To connect the loader with `ExtractTextPlugin`, hook it up as follows:
 **webpack.config.js**
 
 ```javascript
-const productionConfig = merge([
 leanpub-start-delete
-  parts.extractCSS({ use: 'css-loader' }),
+const productionConfig = merge([parts.extractCSS({ use: "css-loader" })]);
 leanpub-end-delete
 leanpub-start-insert
+const productionConfig = merge([
   parts.extractCSS({
-    use: ['css-loader', parts.autoprefix()],
+    use: ["css-loader", parts.autoprefix()],
   }),
-leanpub-end-insert
 ]);
+leanpub-end-insert
 ```
 
 To confirm that the setup works, there should be something to autoprefix. Adjust the CSS:
