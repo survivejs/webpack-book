@@ -106,11 +106,11 @@ W> There are times when caching Babel compilation can surprise you if your depen
 
 W> If you try to import files **outside** of your configuration root directory and then process them through *babel-loader*, this fails. It's [a known issue](https://github.com/babel/babel-loader/issues/313), and there are workarounds including maintaining *.babelrc* at a higher level in the project and resolving against Babel presets through `require.resolve` at webpack configuration.
 
+{pagebreak}
+
 ### Setting Up *.babelrc*
 
 At a minimum, you need [babel-preset-env](https://www.npmjs.com/package/babel-preset-env). It's a Babel preset that enables the needed plugins based on the optional environment definition you pass to it.
-
-{pagebreak}
 
 Install the preset first:
 
@@ -138,6 +138,8 @@ Adjust the target definition as you like. As long as you follow [browserslist](h
 ```
 
 If you execute `npm run build` now and examine *build/app.js*, the result should be similar to the earlier since it supports the features you are using in the code.
+
+{pagebreak}
 
 To see that the preset works, change `.browserslistrc` to include only a definition like `IE 8` and the code should change accordingly:
 
