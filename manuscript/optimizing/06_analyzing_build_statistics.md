@@ -31,8 +31,8 @@ W> Given you piggyback on the production target in the current setup, this proce
 Stats can be captured through Node. Since stats can contain errors, so it's a good idea to handle that case separately:
 
 ```javascript
-const webpack = require('webpack');
-const config = require('./webpack.config.js')('production');
+const webpack = require("webpack");
+const config = require("./webpack.config.js")("production");
 
 webpack(config, (err, stats) => {
   if (err) {
@@ -40,7 +40,7 @@ webpack(config, (err, stats) => {
   }
 
   if (stats.hasErrors()) {
-    return console.error(stats.toString('errors-only'));
+    return console.error(stats.toString("errors-only"));
   }
 
   console.log(stats);
