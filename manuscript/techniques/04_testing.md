@@ -167,6 +167,9 @@ Like webpack, Karma relies on the configuration as well. Set up a file as follow
 **karma.conf.js**
 
 ```javascript
+const path = require("path");
+const parts = require("./webpack.parts");
+
 module.exports = config => {
   const tests = "tests/*.test.js";
 
@@ -184,7 +187,11 @@ module.exports = config => {
       [tests]: ["webpack"],
     },
 
+    webpack: parts.loadJavaScript({ include: path.join(__dirname, "tests") }),
+
     singleRun: true,
+
+    browsers: ["PhantomJS"],
   });
 };
 ```
