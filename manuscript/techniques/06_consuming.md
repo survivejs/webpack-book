@@ -27,8 +27,8 @@ If you are using *react-lite*, configure it as below:
   resolve: {
     alias: {
       // Swap the target based on your need
-      'react': 'react-lite',
-      'react-dom': 'react-lite',
+      react: "react-lite",
+      "react-dom": "react-lite",
     },
   },
 },
