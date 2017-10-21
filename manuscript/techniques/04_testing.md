@@ -96,7 +96,6 @@ if (module.hot) {
   // Execute each test suite
   context.keys().forEach(context);
 }
-
 ```
 
 To allow webpack to pick this up, a small amount of configuration is required:
@@ -252,7 +251,7 @@ module.exports = config => {
     ...
 
 leanpub-start-insert
-    browsers: ['PhantomJS'],
+    browsers: ["PhantomJS"],
 leanpub-end-insert
   });
 };
@@ -336,7 +335,7 @@ module.exports = config => {
   ...
 
 leanpub-start-insert
-  process.env.BABEL_ENV = 'karma';
+  process.env.BABEL_ENV = "karma";
 leanpub-end-insert
 
   config.set({
@@ -353,19 +352,19 @@ On Karma side, reporting has to be set up and Karma configuration has to be conn
 
 ```javascript
 leanpub-start-insert
-const path = require('path');
+const path = require("path");
 leanpub-end-insert
 
 ...
 
-module.exports = (config) => {
+module.exports = config => {
   ...
 
   config.set({
     ...
 
 leanpub-start-insert
-    reporters: ['coverage'],
+    reporters: ["coverage"],
 
     coverageReporter: {
       dir: "build",
