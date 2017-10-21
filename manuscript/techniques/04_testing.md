@@ -182,7 +182,6 @@ module.exports = config => {
       },
     ],
 
-    // Preprocess through webpack
     preprocessors: {
       [tests]: ["webpack"],
     },
