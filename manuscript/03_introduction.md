@@ -40,7 +40,7 @@ The book has been split into the following parts:
 * **Building** introduces source maps and the ideas of bundle and code splitting. You will learn to tidy up your build.
 * **Optimizing** pushes your build to production quality level and introduces many smaller tweaks to make it smaller. You will learn to tune webpack for performance.
 * **Output** discusses webpack’s output related techniques. Despite its name, it’s not only for the web. You see how to manage multiple page setups with webpack and pick up the basic idea of Server Side Rendering.
-* **Techniques** discusses several specific ideas including dynamic loading, web workers, internationalization, deploying your applications, consuming and authoring npm packages through webpack.
+* **Techniques** discusses several specific ideas including dynamic loading, web workers, internationalization, deploying your applications, consuming npm packages through webpack.
 * **Extending** shows how to extend webpack with your loaders and plugins.
 
 There's a short conclusion chapter after the main content that recaps the main points of the book. It contains checklists that allow you to go through your projects against the book techniques.

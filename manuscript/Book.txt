@@ -52,7 +52,6 @@ techniques/03_i18n.md
 techniques/04_testing.md
 techniques/05_deploying.md
 techniques/06_consuming.md
-techniques/07_authoring.md
 
 12_Extending.md
 extending/01_loaders.md

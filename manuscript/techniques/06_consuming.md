@@ -206,5 +206,3 @@ To recap:
 
 * Use webpack's module resolution to your benefit. Sometimes you can work around issues by tweaking resolution. Often it's a good idea to try to push improvements upstream to the projects themselves, though.
 * Webpack allows you to patch resolved modules. Given certain dependencies expect globals, you can inject them. You can also expose modules as globals as this is necessary for certain development tooling to work.
-
-In the next chapter, you'll learn to author npm packages. It's the other side of the same coin and worth understanding even if you don't end up authoring packages of your own.

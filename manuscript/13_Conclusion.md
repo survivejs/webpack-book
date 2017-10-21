@@ -47,7 +47,6 @@ As this book has demonstrated, webpack is a versatile tool. To make it easier to
 ### Output
 
 * Clean up and attach information about the build to the result. The *Tidying Up* chapter shows how to do this.
-* If you are authoring a package, take care with how you bundle it. The *Authoring Packages* chapter covers the related considerations.
 
 ## Conclusion
 
