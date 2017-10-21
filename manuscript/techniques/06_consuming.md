@@ -10,9 +10,7 @@ Sometimes packages do not follow the standard rules and their *package.json* con
 {
   resolve: {
     alias: {
-      demo: path.resolve(
-        __dirname, 'node_modules/demo/dist/demo.js'
-      ),
+      demo: path.resolve(__dirname, "node_modules/demo/dist/demo.js"),
     },
   },
 },
@@ -28,7 +26,7 @@ If you are using *react-lite*, configure it as below:
 {
   resolve: {
     alias: {
-      // Swap the target based on your need.
+      // Swap the target based on your need
       'react': 'react-lite',
       'react-dom': 'react-lite',
     },
@@ -50,7 +48,7 @@ To use this technique, you should first mark the dependency in question as an ex
 
 ```javascript
 externals: {
-  'jquery': 'jquery',
+  jquery: "jquery",
 },
 ```
 
@@ -81,8 +79,8 @@ Sometimes modules depend on globals. `$` provided by jQuery is a good example. W
     rules: {
       // Resolve against package path.
       // require.resolve returns a path to it.
-      test: require.resolve('jquery-plugin'),
-      loader: 'imports-loader?$=jquery',
+      test: require.resolve("jquery-plugin"),
+      loader: "imports-loader?$=jquery",
     },
   },
 },
@@ -96,7 +94,7 @@ Webpack's `ProvidePlugin` allows webpack to resolve globals as it encounters the
 {
   plugins: [
     new webpack.ProvidePlugin({
-      $: 'jquery',
+      $: "jquery",
     }),
   ],
 },
@@ -110,16 +108,16 @@ Sometimes you have to expose packages to third party scripts. [expose-loader](ht
 
 ```javascript
 {
-  test: require.resolve('react'),
-  use: 'expose-loader?React',
+  test: require.resolve("react"),
+  use: "expose-loader?React",
 },
 ```
 
 With the small extra tweak, the technique can be used to expose React performance utilities to the browser through `React.Perf` global. You have to insert the following code to your application entry point for this to work:
 
 ```javascript
-if (process.env.NODE_ENV !== 'production') {
-  React.Perf = require('react-addons-perf');
+if (process.env.NODE_ENV !== "production") {
+  React.Perf = require("react-addons-perf");
 }
 ```
 
@@ -137,12 +135,7 @@ The easiest method to disable that behavior is to use `IgnorePlugin` to ignore l
 
 ```javascript
 {
-  plugins: [
-    new webpack.IgnorePlugin(
-      /^\.\/locale$/,
-      /moment$/
-    ),
-  ],
+  plugins: [new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)],
 },
 ```
 
@@ -153,10 +146,7 @@ To bring specific locales to your project, you should use `ContextReplacementPlu
 ```javascript
 {
   plugins: [
-    new webpack.ContextReplacementPlugin(
-      /moment[\/\\]locale$/,
-      /de|fi/
-    ),
+    new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /de|fi/),
   ],
 },
 ```
