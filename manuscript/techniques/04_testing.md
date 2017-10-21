@@ -162,7 +162,7 @@ npm install karma mocha karma-mocha karma-webpack --save-dev
 
 {pagebreak}
 
-Like webpack, Karma relies on the configuration as well. Set up a file as follows to make it pick up the tests:
+Like webpack, Karma relies on a configuration convention as well. Set up a file as follows to make it pick up the tests:
 
 **karma.conf.js**
 
@@ -195,8 +195,6 @@ module.exports = config => {
   });
 };
 ```
-
-W> The file has to be named exactly as *karma.conf.js*. Otherwise Karma doesn't pick it up automatically.
 
 W> The setup generates a bundle per each test. If you have a large amount of tests and want to improve performance, set up `require.context` as for Mocha above. See [karma-webpack issue 23](https://github.com/webpack-contrib/karma-webpack/issues/23) for more details.
 
