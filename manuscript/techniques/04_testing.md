@@ -167,7 +167,6 @@ Like webpack, Karma relies on a configuration convention as well. Set up a file 
 **karma.conf.js**
 
 ```javascript
-const path = require("path");
 const parts = require("./webpack.parts");
 
 module.exports = config => {
@@ -215,7 +214,7 @@ If you execute `npm run test:karma` now, you should see terminal output:
 ```
 ...
 webpack: Compiled successfully.
-...:INFO [karma]: Karma v1.5.0 server started at http://0.0.0.0:9876/
+...:INFO [karma]: Karma v1.7.1 server started at http://0.0.0.0:9876/
 ```
 
 This means Karma is in a waiting state and you have to visit that url to run the tests. As per configuration (`singleRun: true`), Karma terminates execution after that:
@@ -273,7 +272,7 @@ PhantomJS ...: Executed 1 of 1 SUCCESS (0.005 secs / 0.001 secs)
 
 Given running tests after the change can get boring after a while, Karma provides a watch mode.
 
-W> PhantomJS does not support ES6 features yet so you have to preprocess the code for tests using them. The webpack setup is done later in this chapter. ES6 support is planned for PhantomJS 2.5.
+W> PhantomJS does not support ES6 features yet so you have to preprocess the code for tests using them. ES6 support is planned for PhantomJS 2.5.
 
 ### Watch Mode with Karma
 
@@ -333,7 +332,7 @@ Make sure to set Babel environment, so it picks up the plugin:
 **karma.conf.js**
 
 ```javascript
-module.exports = (config) => {
+module.exports = config => {
   ...
 
 leanpub-start-insert
@@ -366,18 +365,11 @@ module.exports = (config) => {
     ...
 
 leanpub-start-insert
-    webpack: require('./webpack.parts').loadJavaScript({
-      include: path.join(__dirname, 'tests'),
-    }),
-
     reporters: ['coverage'],
 
     coverageReporter: {
-      dir: 'build',
-      reporters: [
-        { type: 'html' },
-        { type: 'lcov' },
-      ],
+      dir: "build",
+      reporters: [{ type: "html" }, { type: "lcov" }],
     },
 leanpub-end-insert
   });
@@ -386,7 +378,7 @@ leanpub-end-insert
 
 T> If you want to emit the reports to specific directories below `dir`, set `subdir` per each report.
 
-If you execute karma now (`npm run test:karma`), you should see a new directory containing coverage reports. The HTML report can be examined through the browser.
+If you execute karma now (`npm run test:karma`), you should see a new directory below *build* containing coverage reports. The HTML report can be examined through the browser.
 
 ![Coverage in browser](images/coverage.png)
 
