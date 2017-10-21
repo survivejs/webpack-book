@@ -187,7 +187,7 @@ module.exports = config => {
       [tests]: ["webpack"],
     },
 
-    webpack: parts.loadJavaScript({ include: path.join(__dirname, "tests") }),
+    webpack: parts.loadJavaScript(),
 
     singleRun: true,
 

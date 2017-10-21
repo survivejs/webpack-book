@@ -60,7 +60,7 @@ As usual, let's define a part for Babel:
 **webpack.parts.js**
 
 ```javascript
-exports.loadJavaScript = ({ include, exclude }) => ({
+exports.loadJavaScript = ({ include, exclude } = {}) => ({
   module: {
     rules: [
       {
