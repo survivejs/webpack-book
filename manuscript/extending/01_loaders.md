@@ -21,7 +21,7 @@ To have something to test with, set up a loader that returns twice what's passed
 **loaders/demo-loader.js**
 
 ```javascript
-module.exports = (input) => input + input;
+module.exports = input => input + input;
 ```
 
 Set up a file to process:
@@ -37,20 +37,17 @@ There's nothing webpack specific in the code yet. The next step is to run the lo
 **run-loader.js**
 
 ```javascript
-const fs = require('fs');
-const path = require('path');
-const { runLoaders } = require('loader-runner');
+const fs = require("fs");
+const path = require("path");
+const { runLoaders } = require("loader-runner");
 
-runLoaders({
-  resource: './demo.txt',
-  loaders: [
-    path.resolve(__dirname, './loaders/demo-loader'),
-  ],
-  readResource: fs.readFile.bind(fs),
-},
-(err, result) => err ?
-  console.error(err) :
-  console.log(result)
+runLoaders(
+  {
+    resource: "./demo.txt",
+    loaders: [path.resolve(__dirname, "./loaders/demo-loader")],
+    readResource: fs.readFile.bind(fs),
+  },
+  (err, result) => (err ? console.error(err) : console.log(result))
 );
 ```
 
@@ -107,7 +104,7 @@ Running the demo script (`node run-loader.js`) again should give exactly the sam
 module.exports = function(input) {
   const callback = this.async();
 
-  callback(new Error('Demo error'));
+  callback(new Error("Demo error"));
 };
 ```
 
@@ -123,7 +120,7 @@ Loaders can be used to output code alone. You could have implementation as below
 
 ```javascript
 module.exports = function() {
-  return 'foobar';
+  return "foobar";
 };
 ```
 
@@ -138,25 +135,22 @@ Loaders, like *file-loader*, emit files. Webpack provides a single method, `this
 **run-loader.js**
 
 ```javascript
-const fs = require('fs');
-const path = require('path');
-const { runLoaders } = require('loader-runner');
+const fs = require("fs");
+const path = require("path");
+const { runLoaders } = require("loader-runner");
 
-runLoaders({
-  resource: './demo.txt',
-  loaders: [
-    path.resolve(__dirname, './loaders/demo-loader'),
-  ],
+runLoaders(
+  {
+    resource: "./demo.txt",
+    loaders: [path.resolve(__dirname, "./loaders/demo-loader")],
 leanpub-start-insert
-  context: {
-    emitFile: () => {},
-  },
+    context: {
+      emitFile: () => {},
+    },
 leanpub-end-insert
-  readResource: fs.readFile.bind(fs),
-},
-(err, result) => err ?
-  console.error(err) :
-  console.log(result)
+    readResource: fs.readFile.bind(fs),
+  },
+  (err, result) => (err ? console.error(err) : console.log(result))
 );
 ```
 
@@ -165,12 +159,10 @@ To implement the essential idea of *file-loader*, you have to do two things: emi
 **loaders/demo-loader.js**
 
 ```javascript
-const loaderUtils = require('loader-utils');
+const loaderUtils = require("loader-utils");
 
 module.exports = function(content) {
-  const url = loaderUtils.interpolateName(
-    this, '[hash].[ext]', { content }
-  );
+  const url = loaderUtils.interpolateName(this, "[hash].[ext]", { content });
 
   this.emitFile(url, content);
 
@@ -198,6 +190,27 @@ To demonstrate passing options, the runner needs a small tweak:
 **run-loader.js**
 
 ```javascript
+const fs = require("fs");
+const path = require("path");
+const { runLoaders } = require("loader-runner");
+
+runLoaders(
+  {
+    resource: "./demo.txt",
+leanpub-start-delete
+    loaders: [path.resolve(__dirname, "./loaders/demo-loader")],
+leanpub-end-delete
+leanpub-start-insert
+leanpub-end-insert
+    context: {
+      emitFile: () => {},
+    },
+    readResource: fs.readFile.bind(fs),
+  },
+  (err, result) => (err ? console.error(err) : console.log(result))
+);
+
+
 runLoaders({
   resource: './demo.txt',
   loaders: [
@@ -206,9 +219,9 @@ leanpub-start-delete
 leanpub-end-delete
 leanpub-start-insert
     {
-      loader: path.resolve(__dirname, './loaders/demo-loader'),
+      loader: path.resolve(__dirname, "./loaders/demo-loader"),
       options: {
-        name: 'demo.[ext]',
+        name: "demo.[ext]",
       },
     },
 leanpub-end-insert
@@ -238,20 +251,19 @@ module.exports = function(content) {
 leanpub-start-insert
   const { name } = loaderUtils.getOptions(this);
 leanpub-end-insert
-  const url = loaderUtils.interpolateName(
 leanpub-start-delete
-    this, '[hash].[ext]', { content }
+  const url = loaderUtils.interpolateName(this, "[hash].[ext]", { content });
 leanpub-end-delete
 leanpub-start-insert
-    this, name, { content }
+  const url = loaderUtils.interpolateName(this, name, { content });
 leanpub-end-insert
   );
 
   this.emitFile(url, content);
 
-  const filePath = `__webpack_public_path__+${JSON.stringify(url)};`;
+  const path = `__webpack_public_path__ + ${JSON.stringify(url)};`;
 
-  return `export default ${filePath}`;
+  return `export default ${path}`;
 };
 ```
 
@@ -277,7 +289,7 @@ To get most out of loaders you have to connect them with webpack. To achieve thi
 
 ```javascript
 leanpub-start-insert
-import '!../loaders/demo-loader?name=foo!./main.css';
+import "!../loaders/demo-loader?name=foo!./main.css";
 leanpub-end-insert
 ```
 
@@ -292,9 +304,7 @@ const commonConfig = merge([
 leanpub-start-insert
     resolveLoader: {
       alias: {
-        'demo-loader': path.resolve(
-          __dirname, 'loaders/demo-loader.js'
-        ),
+        "demo-loader": path.resolve(__dirname, "loaders/demo-loader.js"),
       },
     },
 leanpub-end-insert
@@ -329,7 +339,7 @@ A pitch loader allows you shape the request and even terminate it. Set it up:
 **loaders/pitch-loader.js**
 
 ```javascript
-const loaderUtils = require('loader-utils');
+const loaderUtils = require("loader-utils");
 
 module.exports = function(input) {
   const { text } = loaderUtils.getOptions(this);
@@ -343,7 +353,7 @@ Preceding request: ${precedingReq}
 Input: ${JSON.stringify(input, null, 2)}
   `);
 
-  return 'pitched';
+  return "pitched";
 };
 ```
 
@@ -355,11 +365,11 @@ To connect it to the runner, add it to the loader definition:
 
 ```javascript
 runLoaders({
-  resource: './demo.txt',
+  resource: "./demo.txt",
   loaders: [
     ...
 leanpub-start-insert
-    path.resolve(__dirname, './loaders/pitch-loader'),
+    path.resolve(__dirname, "./loaders/pitch-loader"),
 leanpub-end-insert
   ],
   ...
