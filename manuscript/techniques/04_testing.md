@@ -20,7 +20,7 @@ You can find a lot of testing tools for JavaScript. The most popular options wor
 
 To get started, include Mocha and *mocha-loader* to your project:
 
-```
+```bash
 npm install mocha mocha-loader --save-dev
 ```
 
@@ -34,18 +34,16 @@ To have something to test, set up a function:
 module.exports = (a, b) => a + b;
 ```
 
-{pagebreak}
-
 Then, to test that, set up a small test suite:
 
 **tests/add.test.js**
 
 ```javascript
-const assert = require('assert');
-const add = require('./add');
+const assert = require("assert");
+const add = require("./add");
 
-describe('Demo', () => {
-  it('should add correctly', () => {
+describe("Demo", () => {
+  it("should add correctly", () => {
     assert.equal(add(1, 1), 2);
   });
 });
@@ -71,7 +69,7 @@ Demo
   should add correctly
 
 
-1 passing (10ms)
+1 passing (5ms)
 ```
 
 Mocha also provides a watch mode which you can activate through `npm run test:mocha -- --watch`. It runs the test suite as you modify the code.
@@ -90,7 +88,7 @@ To tell webpack which tests to run, they need to be imported somehow. The *Dynam
 // Skip execution in Node
 if (module.hot) {
   const context = require.context(
-    'mocha-loader!./', // Process through mocha-loader
+    "mocha-loader!./", // Process through mocha-loader
     false, // Skip recursive processing
     /\.test.js$/ // Pick only files ending with .test.js
   );
@@ -98,26 +96,25 @@ if (module.hot) {
   // Execute each test suite
   context.keys().forEach(context);
 }
-```
 
-{pagebreak}
+```
 
 To allow webpack to pick this up, a small amount of configuration is required:
 
 **webpack.mocha.js**
 
 ```javascript
-const path = require('path');
-const merge = require('webpack-merge');
+const path = require("path");
+const merge = require("webpack-merge");
 
-const parts = require('./webpack.parts');
+const parts = require("./webpack.parts");
 
 module.exports = merge([
   parts.devServer(),
   parts.page({
-    title: 'Mocha demo',
+    title: "Mocha demo",
     entry: {
-      tests: path.join(__dirname, 'tests'),
+      tests: path.join(__dirname, "tests"),
     },
   }),
 ]);
@@ -170,11 +167,11 @@ Like webpack, Karma relies on the configuration as well. Set up a file as follow
 **karma.conf.js**
 
 ```javascript
-module.exports = (config) => {
-  const tests = 'tests/*.test.js';
+module.exports = config => {
+  const tests = "tests/*.test.js";
 
   config.set({
-    frameworks: ['mocha'],
+    frameworks: ["mocha"],
 
     files: [
       {
@@ -184,7 +181,7 @@ module.exports = (config) => {
 
     // Preprocess through webpack
     preprocessors: {
-      [tests]: ['webpack'],
+      [tests]: ["webpack"],
     },
 
     singleRun: true,
@@ -221,9 +218,9 @@ This means Karma is in a waiting state and you have to visit that url to run the
 
 ```
 ...
-...:INFO [karma]: Karma v1.5.0 server started at http://0.0.0.0:9876/
-...:INFO [Chrome 57...]: Connected on socket D...A with id manual-73
-Chrome 57...): Executed 1 of 1 SUCCESS (0.003 secs / 0 secs)
+...:INFO [karma]: Karma v1.7.1 server started at http://0.0.0.0:9876/
+...:INFO [Chrome 61...]: Connected on socket D...A with id manual-73
+Chrome 61...): Executed 1 of 1 SUCCESS (0.003 secs / 0 secs)
 ```
 
 Given running tests this way can become annoying, it's a good idea to configure alternative ways. Using PhantomJS is one option.
@@ -245,7 +242,7 @@ To make Karma run tests through Phantom, adjust its configuration as follows:
 **karma.conf.js**
 
 ```javascript
-module.exports = (config) => {
+module.exports = config => {
   ...
 
   config.set({
@@ -263,7 +260,7 @@ If you execute the tests again (`npm run test:karma`), you should get output wit
 ```
 ...
 webpack: Compiled successfully.
-...:INFO [karma]: Karma v1.5.0 server started at http://0.0.0.0:9876/
+...:INFO [karma]: Karma v1.7.1 server started at http://0.0.0.0:9876/
 ...:INFO [launcher]: Launching browser PhantomJS with unlimited concurrency
 ...:INFO [launcher]: Starting browser PhantomJS
 ...:INFO [PhantomJS ...]: Connected on socket 7...A with id 123
