@@ -57,9 +57,7 @@ You can enable this better behavior as follows:
 
 ```javascript
 {
-  plugins: [
-    new webpack.NamedModulesPlugin(),
-  ],
+  plugins: [new webpack.NamedModulesPlugin()],
 }
 ```
 
@@ -86,16 +84,16 @@ The following implementation illustrates the idea against the tutorial applicati
 **app/index.js**
 
 ```javascript
-import component from './component';
+import component from "./component";
 
 let demoComponent = component();
 
 document.body.appendChild(demoComponent);
 
 // HMR interface
-if(module.hot) {
+if (module.hot) {
   // Capture hot update
-  module.hot.accept('./component', () => {
+  module.hot.accept("./component", () => {
     const nextComponent = component();
 
     // Replace old content with the hot loaded one
@@ -130,13 +128,13 @@ In the setup above, the WDS-related entries were injected automatically. Assumin
 entry: {
   hmr: [
     // Include the client code. Note host/post.
-    'webpack-dev-server/client?http://localhost:8080',
+    "webpack-dev-server/client?http://localhost:8080",
 
     // Hot reload only when compiled successfully
-    'webpack/hot/only-dev-server',
+    "webpack/hot/only-dev-server",
 
     // Alternative with refresh on failure
-    // 'webpack/hot/dev-server',
+    // "webpack/hot/dev-server",
   ],
   ...
 },
