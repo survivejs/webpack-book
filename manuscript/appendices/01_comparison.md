@@ -60,12 +60,12 @@ With Make, you model your tasks using Make-specific syntax and terminal commands
 [RequireJS](http://requirejs.org/) was perhaps the first script loader that became genuinely popular. It gave the first proper look at what modular JavaScript on the web could be. Its greatest attraction was AMD. It introduced a `define` wrapper:
 
 ```javascript
-define(['./MyModule.js'], function (MyModule) {
+define(["./MyModule.js"], function (MyModule) {
   return function() {}; // Export at module root
 });
 
 // or
-define(['./MyModule.js'], function (MyModule) {
+define(["./MyModule.js"], function (MyModule) {
   return {
     hello: function() {...}, // Export as a module function
   };
@@ -77,8 +77,8 @@ define(['./MyModule.js'], function (MyModule) {
 Incidentally, it's possible to use `require` within the wrapper:
 
 ```javascript
-define(['require'], function (require) {
-  var MyModule = require('./MyModule.js');
+define(["require"], function (require) {
+  var MyModule = require("./MyModule.js");
 
   return function() {...};
 });
@@ -120,10 +120,10 @@ Here's an example from [Grunt documentation](http://gruntjs.com/sample-gruntfile
 **Gruntfile.js**
 
 ```javascript
-module.exports = (grunt) => {
+module.exports = grunt => {
   grunt.initConfig({
     lint: {
-      files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+      files: ["Gruntfile.js", "src/**/*.js", "test/**/*.js"],
       options: {
         globals: {
           jQuery: true,
@@ -131,15 +131,15 @@ module.exports = (grunt) => {
       },
     },
     watch: {
-      files: ['<%= lint.files %>'],
-      tasks: ['lint'],
+      files: ["<%= lint.files %>"],
+      tasks: ["lint"],
     },
   });
 
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks("grunt-contrib-jshint");
+  grunt.loadNpmTasks("grunt-contrib-watch");
 
-  grunt.registerTask('default', ['lint']);
+  grunt.registerTask("default", ["lint"]);
 };
 ```
 
@@ -166,53 +166,41 @@ Here's a sample *Gulpfile* to give you a better idea of the approach, taken from
 **Gulpfile.js**
 
 ```javascript
-const gulp = require('gulp');
-const coffee = require('gulp-coffee');
-const concat = require('gulp-concat');
-const uglify = require('gulp-uglify');
-const sourcemaps = require('gulp-sourcemaps');
-const del = require('del');
+const gulp = require("gulp");
+const coffee = require("gulp-coffee");
+const concat = require("gulp-concat");
+const uglify = require("gulp-uglify");
+const sourcemaps = require("gulp-sourcemaps");
+const del = require("del");
 
 const paths = {
-  scripts: ['client/js/**/*.coffee', '!client/external/**/*.coffee']
+  scripts: ["client/js/**/*.coffee", "!client/external/**/*.coffee"],
 };
 
 // Not all tasks need to use streams.
 // A gulpfile is another node program
 // and you can use all packages available on npm.
-gulp.task(
-  'clean',
-  del.bind(null, ['build']
-);
+gulp.task("clean", del.bind(null, ["build"]));
 
-gulp.task(
-  'scripts',
-  ['clean'],
-  () => (
-    // Minify and copy all JavaScript (except vendor scripts)
-    // with sourcemaps all the way down.
-    gulp.src(paths.scripts)
-      // Pipeline within pipeline
-      .pipe(sourcemaps.init())
-        .pipe(coffee())
-        .pipe(uglify())
-        .pipe(concat('all.min.js'))
-      .pipe(sourcemaps.write())
-      .pipe(gulp.dest('build/js'))
-  )
+gulp.task("scripts", ["clean"], () =>
+  // Minify and copy all JavaScript (except vendor scripts)
+  // with sourcemaps all the way down.
+  gulp
+    .src(paths.scripts)
+    // Pipeline within pipeline
+    .pipe(sourcemaps.init())
+    .pipe(coffee())
+    .pipe(uglify())
+    .pipe(concat("all.min.js"))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest("build/js"))
 );
 
 // Rerun the task when a file changes.
-gulp.task(
-  'watch',
-  gulp.watch.bind(null, paths.scripts, ['scripts'])
-);
+gulp.task("watch", gulp.watch.bind(null, paths.scripts, ["scripts"]));
 
 // The default task (called when you run `gulp` from CLI).
-gulp.task(
-  'default',
-  ['watch', 'scripts']
-);
+gulp.task("default", ["watch", "scripts"]);
 ```
 
 Given the configuration is code, you can always hack it if you run into troubles. You can wrap existing Node packages as Gulp plugins, and so on. Compared to Grunt, you have a clearer idea of what's going on. You still end up writing a lot of boilerplate for casual tasks, though. That is where newer approaches come in.
@@ -252,20 +240,20 @@ module.exports = {
   files: {
     javascripts: {
       joinTo: {
-        'vendor.js': /^(?!app)/,
-        'app.js': /^app/,
+        "vendor.js": /^(?!app)/,
+        "app.js": /^app/,
       },
     },
     stylesheets: {
-      joinTo: 'app.css',
+      joinTo: "app.css",
     },
   },
   plugins: {
     babel: {
-      presets: ['es2015', 'react'],
+      presets: ["es2015", "react"],
     },
     postcss: {
-      processors: [require('autoprefixer')],
+      processors: [require("autoprefixer")],
     },
   },
 };
