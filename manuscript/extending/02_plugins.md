@@ -23,13 +23,12 @@ Since plugins have to be run against webpack, you have to set up one to run a de
 **webpack.plugin.js**
 
 ```javascript
-const path = require('path');
-
-const DemoPlugin = require('./plugins/demo-plugin.js');
+const path = require("path");
+const DemoPlugin = require("./plugins/demo-plugin.js");
 
 const PATHS = {
-  lib: path.join(__dirname, 'lib'),
-  build: path.join(__dirname, 'build'),
+  lib: path.join(__dirname, "app", "shake.js"),
+  build: path.join(__dirname, "build"),
 };
 
 module.exports = {
@@ -38,11 +37,9 @@ module.exports = {
   },
   output: {
     path: PATHS.build,
-    filename: '[name].js',
+    filename: "[name].js",
   },
-  plugins: [
-    new DemoPlugin(),
-  ],
+  plugins: [new DemoPlugin()],
 };
 ```
 
@@ -74,7 +71,7 @@ The simplest plugin should do two things: capture options and provide `apply` me
 ```javascript
 module.exports = class DemoPlugin {
   apply() {
-    console.log('applying ');
+    console.log("applying");
   }
 };
 ```
@@ -95,7 +92,7 @@ module.exports = class DemoPlugin {
     this.options = options;
   }
   apply() {
-    console.log('apply', this.options);
+    console.log("apply", this.options);
   }
 };
 ```
@@ -109,12 +106,11 @@ Adjust the configuration to pass an option:
 ```javascript
 module.exports = {
   ...
-  plugins: [
 leanpub-start-delete
-    new DemoPlugin(),
+  plugins: [new DemoPlugin()],
 leanpub-end-delete
 leanpub-start-insert
-    new DemoPlugin({ name: 'demo' }),
+  plugins: [new DemoPlugin({ name: "demo" })],
 leanpub-end-insert
   ],
 };
@@ -159,7 +155,7 @@ leanpub-start-delete
     console.log(compiler);
 leanpub-end-delete
 leanpub-start-insert
-    compiler.plugin('emit', (compilation, cb) => {
+    compiler.plugin("emit", (compilation, cb) => {
       console.log(compilation);
 
       cb();
@@ -195,7 +191,7 @@ Adjust the code as follows to write through `RawSource`:
 
 ```javascript
 leanpub-start-insert
-const { RawSource } = require('webpack-sources');
+const { RawSource } = require("webpack-sources");
 leanpub-end-insert
 
 module.exports = class DemoPlugin {
@@ -207,12 +203,12 @@ leanpub-start-insert
     const { name } = this.options;
 leanpub-end-insert
 
-    compiler.plugin('emit', (compilation, cb) => {
+    compiler.plugin("emit", (compilation, cb) => {
 leanpub-start-delete
       console.log(compilation);
 leanpub-end-delete
 leanpub-start-insert
-      compilation.assets[name] = new RawSource('demo');
+      compilation.assets[name] = new RawSource("demo");
 leanpub-end-insert
 
       cb();
@@ -224,13 +220,13 @@ leanpub-end-insert
 After building, you should see output:
 
 ```bash
-Hash: 62abc7fe06a7360b9735
-Version: webpack 2.2.1
-Time: 58ms
+Hash: d698e1dab6472ba42525
+Version: webpack 3.8.1
+Time: 51ms
  Asset     Size  Chunks             Chunk Names
-lib.js  2.89 kB       0  [emitted]  lib
+lib.js   2.9 kB       0  [emitted]  lib
   demo  4 bytes          [emitted]
-   [0] ./lib/index.js 49 bytes {0} [built]
+   [0] ./app/shake.js 107 bytes {0} [built]
 ```
 
 If you examine *build/demo* file, you'll see it contains the word *demo* as per code above.
@@ -244,8 +240,8 @@ Plugin execution can be caused to fail by throwing (`throw new Error('Message')`
 In case you want to give the user a warning or an error message during compilation, you should use `compilation.warnings` and `compilation.errors`. Example:
 
 ```javascript
-compilation.warnings.push('warning');
-compilation.errors.push('error');
+compilation.warnings.push("warning");
+compilation.errors.push("error");
 ```
 
 There is no way pass information messages to webpack yet although there is [a logging proposal](https://github.com/webpack/webpack/issues/3996). If you want to use `console.log` for this purpose, push it behind a `verbose` flag. The problem is that `console.log` will print to stdout and it will end up in webpack's `--json` output as a result. A flag will allow the user to work around this problem.
