@@ -37,23 +37,23 @@ On the webpack side, *react-hot-loader* requires an additional entry it uses to 
 **webpack.config.js**
 
 ```javascript
-module.exports = (env) => {
+module.exports = env => {
   const pages = [
     ...
     parts.page({
-      title: 'React demo',
-      path: 'react',
+      title: "React demo",
+      path: "react",
       entry: {
 leanpub-start-delete
         react: reactDemo,
 leanpub-end-delete
 leanpub-start-insert
-        react: env === 'production' ?
+        react: env === "production" ?
           PATHS.reactDemo :
-          ['react-hot-loader/patch', PATHS.reactDemo],
+          ["react-hot-loader/patch", PATHS.reactDemo],
 leanpub-end-insert
       },
-      chunks: ['react', 'manifest', 'vendor'],
+      chunks: ["react", "manifest", "vendor"],
     }),
   ];
   ...
@@ -62,7 +62,7 @@ leanpub-end-insert
 
 Patching is needed still as you have to make the application side aware of hot loading.
 
-T> This tweak is not required in the future as *react-hot-loader* evolves. It's possible to inject an empty module for `'react-hot-loader/patch'` if it detects that production environment is used. For now, it's needed, though.
+T> This tweak is not required in the future as *react-hot-loader* evolves. It's possible to inject an empty module for `"react-hot-loader/patch"` if it detects that production environment is used. For now, it's needed, though.
 
 ## Setting Up the Application
 
@@ -71,17 +71,19 @@ On React side, *react-hot-loader* relies on an `AppContainer` that deals with pa
 **app/react.js**
 
 ```javascript
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Counter from './counter';
-import { AppContainer } from 'react-hot-loader';
+import React from "react";
+import ReactDOM from "react-dom";
+import Counter from "./counter";
+import { AppContainer } from "react-hot-loader";
 
-const app = document.createElement('div');
+const app = document.createElement("div");
 document.body.appendChild(app);
 
 const render = App => {
   ReactDOM.render(
-    <AppContainer><App /></AppContainer>,
+    <AppContainer>
+      <App />
+    </AppContainer>,
     app
   );
 };
@@ -89,7 +91,7 @@ const render = App => {
 render(Counter);
 
 if (module.hot) {
-  module.hot.accept('./counter', () => render(Counter));
+  module.hot.accept("./counter", () => render(Counter));
 }
 ```
 
@@ -100,7 +102,7 @@ To test the setup, a component is needed as well. In this case, it's going to be
 **app/counter.js**
 
 ```javascript
-import React from 'react';
+import React from "react";
 
 class Counter extends React.Component {
   constructor(props) {
@@ -114,9 +116,7 @@ class Counter extends React.Component {
         <span className="fa fa-hand-spock-o fa-1g">
           Amount: {this.state.amount}
         </span>
-        <button onClick={() => this.setState(addOne)}>
-          Add one
-        </button>
+        <button onClick={() => this.setState(addOne)}>Add one</button>
       </div>
     );
   }
@@ -142,7 +142,7 @@ The webpack portion should be adjusted:
 **webpack.config.js**
 
 ```javascript
-module.exports = (env) => {
+module.exports = env => {
 leanpub-start-insert
   process.env.BABEL_ENV = env;
 leanpub-end-insert
@@ -196,22 +196,16 @@ Even after this change, the source can contain references still due to a [bug in
 [Redux](http://redux.js.org/) is a popular state management library designed HMR in mind. To configure Redux reducers to support HMR, you have to implement the protocol as above:
 
 ```javascript
-const configureStore = (initialState) => {
-  const store = createStoreWithMiddleware(
-    rootReducer,
-    initialState
-  );
+const configureStore = initialState => {
+  const store = createStoreWithMiddleware(rootReducer, initialState);
 
-  if(module.hot) {
+  if (module.hot) {
     // Enable webpack hot module replacement for reducers
-    module.hot.accept(
-      '../reducers',
-      () => store.replaceReducer(reducers)
-    );
+    module.hot.accept("../reducers", () => store.replaceReducer(reducers));
   }
 
   return store;
-}
+};
 
 export default configureStore;
 ```
@@ -229,7 +223,7 @@ Webpack provides [resolve.extensions](https://webpack.js.org/guides/migrating/#r
 ```javascript
 {
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: [".js", ".jsx"],
   },
 },
 ```
