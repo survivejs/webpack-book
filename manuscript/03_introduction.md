@@ -12,7 +12,7 @@ Webpack isn’t the only solution for this problem, and a collection of differen
 
 {pagebreak}
 
-### How Does Webpack Change The Situation
+### How Webpack Changes The Situation
 
 Webpack takes another route. It allows you to treat your project as a dependency graph. You could have an *index.js* in your project that pulls in the dependencies the project needs through standard `require` or `import` statements. You can refer to your style files and other assets the same way if you want.
 
