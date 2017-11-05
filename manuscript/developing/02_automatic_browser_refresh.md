@@ -79,63 +79,6 @@ If you try modifying the code, you should see output in your terminal. The brows
 
 WDS tries to run in another port in case the default one is being used. The terminal output tells you where it ends up running. You can debug the situation with a command like `netstat -na | grep 8080`. If something is running on the port 8080, it should display a message on Unix.
 
-## Verifying that `--env` Works
-
-Webpack configuration is able to receive the value of `--env` if the configuration is defined within a function. To check that the correct environment is passed, adjust the configuration as follows:
-
-**webpack.config.js**
-
-```javascript
-leanpub-start-delete
-module.exports = {
-  // Entries have to resolve to files! It relies on Node.js
-  // convention by default so if a directory contains *index.js*,
-  // it resolves to that.
-leanpub-end-delete
-leanpub-start-insert
-const commonConfig = {
-leanpub-end-insert
-  ...
-};
-
-leanpub-start-insert
-module.exports = env => {
-  console.log("env", env);
-
-  return commonConfig;
-};
-leanpub-end-insert
-```
-
-If you run the npm commands now, you should see a different terminal output depending on which one you trigger:
-
-```bash
-> webpack-dev-server --env development
-env development
-...
-```
-
-T> The result could be verified also by using the `DefinePlugin` to write it to the client code. The *Environment Variables* chapter discusses how to achieve this.
-
-### Understanding `--env`
-
-Even though `--env` allows to pass strings to the configuration, it can do a bit more. Consider the following example:
-
-**package.json**
-
-```json
-"scripts": {
-  "start": "webpack-dev-server --env development",
-  "build": "webpack --env.target production"
-},
-```
-
-Instead of a string, you should receive an object `{ target: 'production' }` at configuration now. You could pass more key-value pairs, and they would go to the `env` object. If you set `--env foo` while setting `--env.target`, the string overrides the object.
-
-T> Webpack relies on *yargs* underneath. To understand the dot notation in greater detail, see [yargs documentation](http://yargs.js.org/docs/#parsing-tricks-dot-notation).
-
-W> Webpack 2 changed argument behavior compared to webpack 1. You are not allowed to pass custom parameters through the CLI anymore. Instead, it's better to go through the `--env` mechanism if you need to do this.
-
 ## Configuring WDS Through Webpack Configuration
 
 To customize WDS functionality it's possible to define a `devServer` field at webpack configuration. You can set most of these options through the CLI as well, but managing them through webpack is a good approach.
@@ -147,7 +90,15 @@ Enable additional functionality as below:
 ```javascript
 ...
 
+leanpub-start-delete
+module.exports = {
+  // Entries have to resolve to files! It relies on Node.js
+  // convention by default so if a directory contains *index.js*,
+  // it resolves to that.
+leanpub-end-delete
+leanpub-start-insert
 const commonConfig = {
+leanpub-end-insert
   ...
 };
 
@@ -178,33 +129,43 @@ const developmentConfig = () => {
 
   return Object.assign({}, commonConfig, config);
 };
-leanpub-end-insert
 
 module.exports = env => {
-leanpub-start-delete
-  console.log('env', env);
-
-  return commonConfig;
-leanpub-end-delete
-leanpub-start-insert
   if (env === 'production') {
     return productionConfig();
   }
 
   return developmentConfig();
-leanpub-end-insert
 };
+leanpub-end-insert
 ```
 
 After this change, you can configure the server host and port options through environment parameters. The merging portion of the code (`Object.assign`) is beginning to look knotty and it will be fixed in the *Splitting Configuration* chapter.
-
-{pagebreak}
 
 If you access through `http://localhost:8080/webpack-dev-server/`, WDS provides status information at the top. If your application relies on WebSockets and you use WDS proxying, you need to use this particular url as otherwise WDS logic interferes.
 
 ![Status information](images/status-information.png)
 
 T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environment variables through a *.env* file. *dotenv* allows you to control the host and port setting of the setup quickly.
+
+### Understanding `--env`
+
+Even though `--env` allows to pass strings to the configuration, it can do a bit more. Consider the following example:
+
+**package.json**
+
+```json
+"scripts": {
+  "start": "webpack-dev-server --env development",
+  "build": "webpack --env.target production"
+},
+```
+
+Instead of a string, you should receive an object `{ target: 'production' }` at configuration now. You could pass more key-value pairs, and they would go to the `env` object. If you set `--env foo` while setting `--env.target`, the string overrides the object.
+
+T> Webpack relies on *yargs* underneath. To understand the dot notation in greater detail, see [yargs documentation](http://yargs.js.org/docs/#parsing-tricks-dot-notation).
+
+W> Webpack 2 changed argument behavior compared to webpack 1. You are not allowed to pass custom parameters through the CLI anymore. Instead, it's better to go through the `--env` mechanism if you need to do this.
 
 ## Enabling Error Overlay
 
@@ -261,8 +222,6 @@ To get it to work, you have to install it first through `npm install nodemon --s
 ```
 
 It's possible WDS [will support the functionality](https://github.com/webpack/webpack/issues/3153) itself in the future. If you want to make it reload itself on change, you should implement this workaround for now.
-
-{pagebreak}
 
 ## Polling Instead of Watching Files
 
