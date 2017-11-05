@@ -57,7 +57,6 @@ To give a degree of abstraction, you can define *webpack.config.js* for higher l
 ```javascript
 exports.devServer = ({ host, port } = {}) => ({
   devServer: {
-    historyApiFallback: true,
     stats: "errors-only",
     host, // Defaults to `localhost`
     port, // Defaults to 8080

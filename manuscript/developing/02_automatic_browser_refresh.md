@@ -110,10 +110,6 @@ const productionConfig = () => commonConfig;
 const developmentConfig = () => {
   const config = {
     devServer: {
-      // Enable history API fallback so HTML5 History API based
-      // routing works. Good for complex setups.
-      historyApiFallback: true,
-
       // Display only errors to reduce the amount of output.
       stats: "errors-only",
 
@@ -150,7 +146,7 @@ If you access through `http://localhost:8080/webpack-dev-server/`, WDS provides 
 
 T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environment variables through a *.env* file. *dotenv* allows you to control the host and port setting of the setup quickly.
 
-{pagebreak}
+T> Enable `devServer.historyApiFallback` if you are using HTML5 History API based routing.
 
 ### Understanding `--env`
 
