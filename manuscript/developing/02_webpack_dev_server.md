@@ -1,4 +1,4 @@
-# Automatic Browser Refresh
+# webpack-dev-server
 
 Tools, such as [LiveReload](http://livereload.com/) or [Browsersync](http://www.browsersync.io/), allow to refresh the browser as you develop the application and avoid a refresh for CSS changes. It's possible to setup Browsersync to work with webpack through [browser-sync-webpack-plugin](https://www.npmjs.com/package/browser-sync-webpack-plugin), but webpack has more tricks in store.
 
