@@ -196,8 +196,6 @@ T> In addition to a configuration object, webpack accepts an array of configurat
 
 Given executing `node_modules/.bin/webpack` is verbose, you should do something about it. This is where npm and *package.json* can be used for running tasks.
 
-{pagebreak}
-
 Adjust the file as follows:
 
 **package.json**
@@ -207,6 +205,8 @@ Adjust the file as follows:
   "build": "webpack"
 },
 ```
+
+{pagebreak}
 
 Run `npm run build` to see the same output as before. This works because npm adds *node_modules/.bin* temporarily to the path. As a result, rather than having to write `"build": "node_modules/.bin/webpack"`, you can do `"build": "webpack"`.
 
