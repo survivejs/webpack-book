@@ -37,7 +37,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 exports.extractCSS = ({ include, exclude, use }) => {
   // Output extracted CSS to a file
   const plugin = new ExtractTextPlugin({
-    filename: '[name].css',
+    filename: "[name].css",
   });
 
   return {
@@ -50,12 +50,12 @@ exports.extractCSS = ({ include, exclude, use }) => {
 
           use: plugin.extract({
             use,
-            fallback: 'style-loader',
+            fallback: "style-loader",
           }),
         },
       ],
     },
-    plugins: [ plugin ],
+    plugins: [plugin],
   };
 };
 leanpub-end-insert
@@ -67,7 +67,7 @@ That `[name]` placeholder uses the name of the entry where the CSS is referred. 
 
 It would be possible to have multiple `plugin.extract` calls against different file types. This would allow you to aggregate them to a single CSS file. Another option would be to extract multiple CSS files through separate plugin definitions and then concatenate them using [merge-files-webpack-plugin](https://www.npmjs.com/package/merge-files-webpack-plugin).
 
-T> If you wanted to output the resulting file to a specific directory, you could do it by passing a path. Example: `filename: 'styles/[name].css'`.
+T> If you wanted to output the resulting file to a specific directory, you could do it by passing a path. Example: `filename: "styles/[name].css"`.
 
 {pagebreak}
 
@@ -137,14 +137,14 @@ Even though referring to styling through JavaScript and then bundling is the rec
 
 ```javascript
 ...
-const glob = require('glob');
+const glob = require("glob");
 
 // Glob CSS files as an array of CSS files. This can be
 // problematic due to CSS rule ordering so be careful!
 const PATHS = {
   ...
 leanpub-start-insert
-  style: glob.sync('./app/**/*.css'),
+  style: glob.sync("./app/**/*.css"),
 leanpub-end-insert
 };
 
