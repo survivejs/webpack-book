@@ -31,7 +31,11 @@ To connect the loader with `ExtractTextPlugin`, hook it up as follows:
 
 ```javascript
 leanpub-start-delete
-const productionConfig = merge([parts.extractCSS({ use: "css-loader" })]);
+const productionConfig = merge([
+  parts.extractCSS({
+    use: "css-loader",
+  }),
+]);
 leanpub-end-delete
 leanpub-start-insert
 const productionConfig = merge([

@@ -89,7 +89,11 @@ leanpub-start-delete
 const productionConfig = merge([]);
 leanpub-end-delete
 leanpub-start-insert
-const productionConfig = merge([parts.extractCSS({ use: "css-loader" })]);
+const productionConfig = merge([
+  parts.extractCSS({
+    use: "css-loader",
+  }),
+]);
 leanpub-end-insert
 
 const developmentConfig = merge([
