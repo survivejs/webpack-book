@@ -142,8 +142,6 @@ Perhaps the biggest problem is that with composition you need to know what you a
 
 You can always iterate on the interfaces and find better ones. By passing in a configuration object instead of multiple arguments, you can change the behavior of a part without effecting its API. You can expose API as you need it.
 
-T> If you have to support both webpack 1 and 2, you can perform branching based on version using `require('webpack/package.json').version` to detect it. After that, you have to set specific branches for each and merge.
-
 ## Configuration Layouts
 
 In the book project, you push all of the configuration into two files: *webpack.config.js* and *webpack.parts.js*. The former contains higher level configuration while the latter lower level and isolates you from webpack specifics. The chosen approach allows more layouts, and you can evolve it further.

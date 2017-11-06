@@ -32,8 +32,6 @@ There's another subtle loader related error. If a package matching to a loader n
 
 This mistake can be made by writing `loader: 'eslint'` instead of `loader: 'eslint-loader'`. If the loader doesn't exist at all the previous 'Module not found' error will be raised.
 
-W> A loader definition missing `-loader` was valid in webpack 1. It has been disallowed in webpack 2. The behavior can be enabled again through `resolveLoader.moduleExtensions` array.
-
 ## Module parse failed
 
 Even though webpack could resolve to your modules fine, it can still fail to build them. This case can happen if you are using syntax that your loaders don't understand. You could be missing something in your processing pass.
