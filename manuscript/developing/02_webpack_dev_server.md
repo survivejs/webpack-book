@@ -281,6 +281,8 @@ WDS provides functionality beyond what was covered above. There are a couple of 
 
 T> [The official documentation](https://webpack.js.org/configuration/dev-server/) covers more options.
 
+{pagebreak}
+
 ## Development Plugins
 
 The webpack plugin ecosystem is diverse and there are a lot of plugins that can help specifically with development:
