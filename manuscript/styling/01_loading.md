@@ -33,7 +33,7 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
         include,
         exclude,
 
-        use: ['style-loader', 'css-loader'],
+        use: ["style-loader", "css-loader"],
       },
     ],
   },
@@ -77,7 +77,7 @@ Also, you need to make webpack aware of it. Without having an entry pointing to 
 
 ```javascript
 leanpub-start-insert
-import './main.css';
+import "./main.css";
 leanpub-end-insert
 ...
 ```
@@ -96,7 +96,7 @@ Webpack's *css-loader* supports CSS Modules. You can enable it through a loader 
 
 ```javascript
 {
-  loader: 'css-loader',
+  loader: "css-loader",
 leanpub-start-insert
   options: {
     modules: true,
@@ -128,7 +128,7 @@ You could then bind the resulting class to a component:
 **app/component.js**
 
 ```javascript
-import styles from './main.css';
+import styles from "./main.css";
 
 ...
 
@@ -163,7 +163,7 @@ Consider the following minimal setup:
 ```javascript
 {
   test: /\.less$/,
-  use: ['style-loader', 'css-loader', 'less-loader'],
+  use: ["style-loader", "css-loader", "less-loader"],
 },
 ```
 
@@ -182,7 +182,7 @@ Webpack doesn't take much configuration:
 ```javascript
 {
   test: /\.scss$/,
-  use: ['style-loader', 'css-loader', 'sass-loader'],
+  use: ["style-loader", "css-loader", "sass-loader"],
 },
 ```
 
@@ -205,20 +205,19 @@ Consider the following configuration:
     rules: [
       {
         test: /\.styl$/,
-        use: ['style-loader', 'css-loader', 'stylus-loader'],
+        use: [
+          "style-loader",
+          "css-loader",
+          {
+            loader: "stylus-loader",
+            options: {
+              use: [require("yeticss")],
+            },
+          },
+        ],
       },
     ],
   },
-  plugins: [
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        // yeticss
-        stylus: {
-          use: [require('yeticss')],
-        },
-      },
-    }),
-  ],
 },
 ```
 
@@ -243,14 +242,14 @@ The example below illustrates how to set up autoprefixing using PostCSS. It also
 {
   test: /\.css$/,
   use: [
-    'style-loader',
-    'css-loader',
+    "style-loader",
+    "css-loader",
     {
-      loader: 'postcss-loader',
+      loader: "postcss-loader",
       options: {
         plugins: () => ([
-          require('autoprefixer'),
-          require('precss'),
+          require("autoprefixer"),
+          require("precss"),
         ]),
       },
     },
@@ -268,11 +267,9 @@ T> PostCSS supports *postcss.config.js* based configuration. It relies on [cosmi
 
 ```javascript
 {
-  loader: 'postcss-loader',
+  loader: "postcss-loader",
   options: {
-    plugins: () => ([
-      require('postcss-cssnext')(),
-    ]),
+    plugins: () => [require("postcss-cssnext")()],
   },
 },
 ```
@@ -307,14 +304,14 @@ To process the Sass file, you would have to write configuration:
 {
   test: /\.css$/,
   use: [
-    'style-loader',
+    "style-loader",
     {
-      loader: 'css-loader',
+      loader: "css-loader",
       options: {
         importLoaders: 1,
       },
     },
-    'sass-loader',
+    "sass-loader",
   ],
 },
 ```
