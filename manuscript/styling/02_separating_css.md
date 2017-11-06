@@ -33,11 +33,7 @@ The idea can be modeled as below:
 ```javascript
 leanpub-start-insert
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-leanpub-end-insert
 
-...
-
-leanpub-start-insert
 exports.extractCSS = ({ include, exclude, use }) => {
   // Output extracted CSS to a file
   const plugin = new ExtractTextPlugin({
@@ -63,6 +59,8 @@ exports.extractCSS = ({ include, exclude, use }) => {
   };
 };
 leanpub-end-insert
+
+...
 ```
 
 That `[name]` placeholder uses the name of the entry where the CSS is referred. Placeholders and hashing are discussed in detail in the *Adding Hashes to Filenames* chapter.
