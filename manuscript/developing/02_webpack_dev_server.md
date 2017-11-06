@@ -83,6 +83,8 @@ WDS tries to run in another port in case the default one is being used. The term
 
 To customize WDS functionality it's possible to define a `devServer` field at webpack configuration. You can set most of these options through the CLI as well, but managing them through webpack is a good approach.
 
+{pagebreak}
+
 Enable additional functionality as below:
 
 **webpack.config.js**
