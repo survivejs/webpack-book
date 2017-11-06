@@ -72,8 +72,6 @@ body {
 
 As you can see, autoprefixing expands the rules. If you know what browsers you support, it's possible to set up a [.browserslistrc](https://www.npmjs.com/package/browserslist) file. Different tools pick up this definition, *autoprefixer* included.
 
-{pagebreak}
-
 Consider the example below where you select only specific browsers:
 
 **.browserslistrc**
