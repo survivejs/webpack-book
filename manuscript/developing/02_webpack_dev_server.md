@@ -83,8 +83,6 @@ WDS tries to run in another port in case the default one is being used. The term
 
 To customize WDS functionality it's possible to define a `devServer` field at webpack configuration. You can set most of these options through the CLI as well, but managing them through webpack is a good approach.
 
-{pagebreak}
-
 Enable additional functionality as below:
 
 **webpack.config.js**
@@ -147,6 +145,8 @@ If you access through `http://localhost:8080/webpack-dev-server/`, WDS provides 
 T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environment variables through a *.env* file. *dotenv* allows you to control the host and port setting of the setup quickly.
 
 T> Enable `devServer.historyApiFallback` if you are using HTML5 History API based routing.
+
+{pagebreak}
 
 ### Understanding `--env`
 
