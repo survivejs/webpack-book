@@ -208,6 +208,8 @@ To access your server, you need to figure out the ip of your machine. On Unix, t
 
 WDS will handle restarting the server when you change a bundled file, but what about when you edit the webpack config? Restarting the development server each time you make a change tends to get boring after a while. This can be automated as [discussed in GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892) by using [nodemon](https://www.npmjs.com/package/nodemon) monitoring tool.
 
+{pagebreak}
+
 To get it to work, you have to install it first through `npm install nodemon --save-dev`. After that, you can make it watch webpack config and restart WDS on change. Here's the script if you want to give it a go:
 
 **package.json**
@@ -292,6 +294,8 @@ The webpack plugin ecosystem is diverse and there are a lot of plugins that can 
 * [webpack-dashboard](https://www.npmjs.com/package/webpack-dashboard) gives an entire terminal based dashboard over the standard webpack output. If you prefer clear visual output, this one comes in handy.
 
 In addition to plugins like these, it can be worth your while to set up linting to enforce coding standards. The *Linting JavaScript* chapter digs into that topic in detail.
+
+{pagebreak}
 
 ## Conclusion
 
