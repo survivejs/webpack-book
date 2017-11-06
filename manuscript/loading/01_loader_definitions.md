@@ -301,22 +301,6 @@ Loader behavior can be understood in greater detail by inspecting them. [loader-
 
 {pagebreak}
 
-## `LoaderOptionsPlugin`
-
-Given webpack 2 forbids arbitrary root level configuration, you have to use `LoaderOptionsPlugin`. The plugin exists for legacy compatibility and disappears in a future release. Consider the example below:
-
-```javascript
-plugins: [
-  new webpack.LoaderOptionsPlugin({
-    sassLoader: {
-      includePaths: [
-        path.join(__dirname, 'style'),
-      ],
-    },
-  }),
-],
-```
-
 ## Conclusion
 
 Webpack provides multiple ways to set up loaders but sticking with `use` is enough in webpack 2. Be careful with loader ordering, as it's a common source of problems.
@@ -327,6 +311,5 @@ To recap:
 * A loader definition consists of **conditions** based on which to match and **actions** that should be performed when a match happens.
 * Webpack 2 introduced the `use` field. It combines the ideas of old `loader` and `loaders` fields into a single construct.
 * Webpack 2 provides multiple ways to match and alter loader behavior. You can, for example, match based on a **resource query** after a loader has been matched and route the loader to specific actions.
-* `LoaderOptionsPlugin` exists for legacy purposes and allows you to get around the strict configuration schema of webpack 2.
 
 In the next chapter, you'll learn to load images using webpack.
