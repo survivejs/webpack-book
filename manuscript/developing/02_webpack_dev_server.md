@@ -176,21 +176,17 @@ WDS provides an overlay for capturing warnings and errors:
 **webpack.config.js**
 
 ```javascript
-const developmentConfig = () => {
-  const config = {
-    devServer: {
-      ...
+const config = {
+  devServer: {
+    ...
 leanpub-start-insert
-      // overlay: true is equivalent
-      overlay: {
-        errors: true,
-        warnings: true,
-      },
-leanpub-end-insert
+    // overlay: true is equivalent
+    overlay: {
+      errors: true,
+      warnings: true,
     },
-  };
-
-  ...
+leanpub-end-insert
+  },
 };
 ```
 
