@@ -312,4 +312,4 @@ To recap:
 * WDS can be integrated to an existing Node server using a middleware. This gives you more control than relying on the command line interface.
 * WDS does far more than refreshing and HMR. For example proxying allows you to connect it with other servers.
 
-In the next chapter, you make it harder to make mistakes by introducing JavaScript linting to the project.
+In the next chapter, you learn to compose configuration so that it can be developer further later in the book.
