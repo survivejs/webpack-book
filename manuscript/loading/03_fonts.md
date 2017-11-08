@@ -90,19 +90,14 @@ Furthermore, it's possible to manipulate `publicPath` and override the default p
 
 ```javascript
 {
-  // Match woff2 in addition to patterns like .woff?v=1.1.1.
+  // Match woff2 and patterns like .woff?v=1.1.1.
   test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/,
   loader: "url-loader",
   options: {
     limit: 50000,
     mimetype: "application/font-woff",
-
-    // Output below the fonts directory
-    name: "./fonts/[name].[ext]",
-
-    // Tweak publicPath to fix CSS lookups to take
-    // the directory into account.
-    publicPath: "../",
+    name: "./fonts/[name].[ext]", // Output below ./fonts
+    publicPath: "../", // Take the directory into account
   },
 },
 ```
