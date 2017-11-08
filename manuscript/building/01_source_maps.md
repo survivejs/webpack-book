@@ -339,7 +339,8 @@ There are a couple of other options that affect source map generation:
     // This is the source map filename template. It's default
     // format depends on the devtool option used. You don't
     // need to modify this often.
-    devtoolModuleFilenameTemplate: 'webpack:///[resource-path]?[loaders]'
+    devtoolModuleFilenameTemplate:
+      'webpack:///[resource-path]?[loaders]'
   },
 }
 ```
@@ -350,59 +351,9 @@ W> If you are using any `UglifyJsPlugin` and still want source maps, you need to
 
 ## `SourceMapDevToolPlugin` and `EvalSourceMapDevToolPlugin`
 
-If you want more control over source map generation, it's possible to use the `SourceMapDevToolPlugin` or `EvalSourceMapDevToolPlugin` instead. The latter is a more limited alternative, and as stated by its name, it's handy for generating `eval` based source maps.
+If you want more control over source map generation, it's possible to use the [SourceMapDevToolPlugin](https://webpack.js.org/plugins/source-map-dev-tool-plugin/) or `EvalSourceMapDevToolPlugin` instead. The latter is a more limited alternative, and as stated by its name, it's handy for generating `eval` based source maps.
 
 Both plugins can allow more granular control over which portions of the code you want to generate source maps for, while also having strict control over the result with `SourceMapDevToolPlugin`. Using either plugin allows you to skip the `devtool` option altogether.
-
-You could model a configuration part using `SourceMapDevToolPlugin` (adapted from [the official documentation](https://webpack.js.org/plugins/source-map-dev-tool-plugin/)):
-
-```javascript
-exports.generateSourceMaps = ({
-  test, include, separateSourceMaps, columnMappings
-}) => ({
-  // Enable functionality as you want to expose it
-  plugins: [
-    new webpack.SourceMapDevToolPlugin({
-      // Match assets like for loaders. This is
-      // convenient if you want to match against multiple
-      // file types.
-      test: test, // string | RegExp | Array,
-      include: include, // string | RegExp | Array,
-
-      // `exclude` matches file names, not package names!
-      // exclude: string | RegExp | Array,
-
-      // If filename is set, output to this file.
-      // See `sourceMapFileName`.
-      // filename: string,
-
-      // This line is appended to the original asset processed.
-      // For instance '[url]' would get replaced with an url
-      // to the source map.
-      // append: false | string,
-
-      // See `devtoolModuleFilenameTemplate` for specifics.
-      // moduleFilenameTemplate: string,
-      // fallbackModuleFilenameTemplate: string,
-
-      // If false, separate source maps aren't generated.
-      module: separateSourceMaps,
-
-      // If false, column mappings are ignored.
-      columns: columnMappings,
-
-      // Use plain line to line mappings for the matched modules.
-      // lineToLine: bool | {test, include, exclude},
-
-      // Remove source content from source maps. This is handy
-      // especially if your source maps are big (over 10 MB)
-      // as browsers can struggle with those.
-      // See https://github.com/webpack/webpack/issues/2669.
-      // noSources: bool,
-    }),
-  ],
-});
-```
 
 Given webpack matches only `.js` and `.css` files by default for source maps, you can use `SourceMapDevToolPlugin` to overcome this issue. This can be achieved by passing a `test` pattern like `/\.(js|jsx|css)($|\?)/i`.
 
