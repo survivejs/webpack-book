@@ -162,29 +162,24 @@ In the book setup, you compose configuration on a higher level. Another option t
 {
   test: /\.css$/,
 
-  // resource refers to the resource path matched.
-  // resourceQuery contains possible query passed to it (?sourceMap)
-  // issuer tells about match context path
+  // `resource` refers to the resource path matched.
+  // `resourceQuery` contains possible query passed to it
+  // `issuer` tells about match context path
   use: ({ resource, resourceQuery, issuer }) => {
-    // You have to return either something falsy,
-    // string (i.e., 'style-loader'), or an object from here.
+    // You have to return something falsy, object, or a
+    // string (i.e., "style-loader") from here.
     //
-    // Returning an array fails! To get around that,
-    // it's possible to nest rules.
+    // Returning an array fails! Nest rules instead.
     if (env === "development") {
       return {
-        // Trigger css-loader first
         use: {
-          loader: "css-loader",
+          loader: "css-loader", // css-loader first
           rules: [
-            // And style-loader after it
-            "style-loader",
+            "style-loader", // style-loader after
           ],
         },
       };
     }
-
-    ...
   },
 },
 ```
