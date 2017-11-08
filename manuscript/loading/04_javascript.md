@@ -68,15 +68,7 @@ exports.loadJavaScript = ({ include, exclude } = {}) => ({
         include,
         exclude,
 
-        loader: 'babel-loader',
-        options: {
-          // Enable caching for improved performance during
-          // development.
-          // It uses default OS directory by default. If you need
-          // something more custom, pass a path to it.
-          // I.e., { cacheDirectory: '<path>' }
-          cacheDirectory: true,
-        },
+        loader: "babel-loader",
       },
     ],
   },
@@ -101,8 +93,6 @@ leanpub-end-insert
 ```
 
 Even though you have Babel installed and set up, you are still missing one bit: Babel configuration. This can be achieved using a *.babelrc* dotfile as other tooling can pick it up as well.
-
-W> There are times when caching Babel compilation can surprise you if your dependencies change in a way that *babel-loader* default caching mechanism doesn't notice. Override `cacheIdentifier` with a string that has been derived based on data that should invalidate the cache for better control. [Node crypto API](https://nodejs.org/api/crypto.html) and especially its MD5 related functions can come in handy.
 
 W> If you try to import files **outside** of your configuration root directory and then process them through *babel-loader*, this fails. It's [a known issue](https://github.com/babel/babel-loader/issues/313), and there are workarounds including maintaining *.babelrc* at a higher level in the project and resolving against Babel presets through `require.resolve` at webpack configuration.
 
