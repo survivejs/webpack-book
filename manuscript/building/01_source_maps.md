@@ -285,6 +285,12 @@ The original source contains `//# sourceMappingURL=app.9a...18.js.map` kind of c
 
 W> `cheap-module-source-map` is [currently broken if minification is used](https://github.com/webpack/webpack/issues/4176) and this is a good reason to avoid the option for now.
 
+### `devtool: 'hidden-source-map'`
+
+`hidden-source-map` is the same as `source-map` except it doesn't write references to the source maps to the source files. If you don't want to expose source maps to development tools directly while you want proper stack traces, this is handy.
+
+T> [The official documentation](https://webpack.js.org/configuration/devtool/#devtool) contains more information about `devtool` options.
+
 {pagebreak}
 
 ### `devtool: 'source-map'`
@@ -317,12 +323,6 @@ W> `cheap-module-source-map` is [currently broken if minification is used](https
 ```
 
 {pagebreak}
-
-### `devtool: 'hidden-source-map'`
-
-`hidden-source-map` is the same as `source-map` except it doesn't write references to the source maps to the source files. If you don't want to expose source maps to development tools directly while you want proper stack traces, this is handy.
-
-T> [The official documentation](https://webpack.js.org/configuration/devtool/#devtool) contains more information about `devtool` options.
 
 ## Other Source Map Options
 
