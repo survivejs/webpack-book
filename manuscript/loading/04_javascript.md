@@ -1,6 +1,6 @@
 # Loading JavaScript
 
-Webpack processes ES6 module definitions by default and transforms them into code. It does **not** transform ES6 specific syntax apart, such as `const`. The resulting code can be problematic especially in the older browsers.
+Webpack processes ES2015 module definitions by default and transforms them into code. It does **not** transform specific syntax, such as `const`, though. The resulting code can be problematic especially in the older browsers.
 
 To get a better idea of the default transform, consider the example output below:
 
