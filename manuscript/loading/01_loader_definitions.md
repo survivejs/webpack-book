@@ -24,8 +24,7 @@ module.exports = {
   module: {
     rules: [
       {
-        // **Conditions**
-        // Match files against RegExp or a function.
+        // **Conditions** to match files against RegExp or a function.
         test: /\.js$/,
 
         // **Restrictions**
@@ -34,13 +33,11 @@ module.exports = {
         // The same applies to `exclude`.
         include: path.join(__dirname, "app"),
         exclude(path) {
-          // You can perform more complicated checks
-          // through functions if you want.
+          // You can perform more complicated checks  as well.
           return path.match(/node_modules/);
         },
 
-        // **Actions**
-        // Apply loaders the matched files.
+        // **Actions** to apply loaders to the matched files.
         use: "babel-loader",
       },
     ],
@@ -96,8 +93,6 @@ The basic syntax goes as below:
 ```
 
 It would be possible to write the same configuration without `enforce` if you chained the declaration with other loaders related to the `test` carefully. Using `enforce` removes the necessity for that allows you to split loader execution into separate stages that are easier to compose.
-
-{pagebreak}
 
 ## Passing Parameters to a Loader
 
