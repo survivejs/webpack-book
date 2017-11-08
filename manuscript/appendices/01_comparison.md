@@ -250,7 +250,7 @@ module.exports = {
   },
   plugins: {
     babel: {
-      presets: ["es2015", "react"],
+      presets: [react", "env"],
     },
     postcss: {
       processors: [require("autoprefixer")],
