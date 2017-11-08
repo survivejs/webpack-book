@@ -34,13 +34,13 @@ You should also make the demo component use a Pure.css class, so there is someth
 **app/component.js**
 
 ```javascript
-module.exports = () => {
+export default (text = "Hello world") => {
   const element = document.createElement("div");
 
 leanpub-start-insert
   element.className = "pure-button";
 leanpub-end-insert
-  element.innerHTML = "Hello world";
+  element.innerHTML = text;
 
   return element;
 };
@@ -90,11 +90,7 @@ You also need PurifyCSS configuration as below:
 ...
 leanpub-start-insert
 const PurifyCSSPlugin = require("purifycss-webpack");
-leanpub-end-insert
 
-...
-
-leanpub-start-insert
 exports.purifyCSS = ({ paths }) => ({
   plugins: [new PurifyCSSPlugin({ paths })],
 });
@@ -126,6 +122,8 @@ leanpub-end-insert
 ```
 
 W> The order matters. CSS extraction has to happen before purifying.
+
+{pagebreak}
 
 If you execute `npm run build` now, you should see something:
 
