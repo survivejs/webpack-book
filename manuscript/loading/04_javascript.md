@@ -25,7 +25,7 @@ webpackJsonp([1],{
 ...
 ```
 
-The problem can be worked around by processing the code through [Babel](https://babeljs.io/), a popular JavaScript compiler that supports ES6 features and more. It resembles ESLint in that it's built on top of presets and plugins. Presets are collections of plugins, and you can define your own as well.
+The problem can be worked around by processing the code through [Babel](https://babeljs.io/), a popular JavaScript compiler that supports ES2015+ features and more. It resembles ESLint in that it's built on top of presets and plugins. Presets are collections of plugins, and you can define your own as well.
 
 T> Given sometimes extending existing presets is not be enough, [modify-babel-preset](https://www.npmjs.com/package/modify-babel-preset) allows you to go a step further and configure the base preset in a more flexible way.
 
@@ -39,11 +39,9 @@ You can use Babel with webpack through [babel-loader](https://www.npmjs.com/pack
 
 Connecting Babel with a project allows you to process webpack configuration through it. To achieve this, name your webpack configuration using the *webpack.config.babel.js* convention. [interpret](https://www.npmjs.com/package/interpret) package enables this and it supports other compilers as well.
 
-T> Given that [Node supports the ES6 specification well](http://node.green/) these days, you can use a lot of ES6 features without having to process configuration through Babel.
+T> Given that [Node supports the ES2015 specification well](http://node.green/) these days, you can use a lot of ES2015 features without having to process configuration through Babel.
 
-T> Babel isn't the only option although it's the most popular one. [Buble](https://buble.surge.sh) by Rich Harris is another compiler worth checking out. There's experimental [buble-loader](https://www.npmjs.com/package/buble-loader) that allows you to use it with webpack. Buble doesn't support ES6 modules, but that's not a problem as webpack provides that functionality.
-
-W> If you use *webpack.config.babel.js*, take care with the `"modules": false,` setting. If you want to use ES6 modules, you could skip the setting in your global Babel configuration and then configure it per environment as discussed below.
+W> If you use *webpack.config.babel.js*, take care with the `"modules": false,` setting. If you want to use ES2015 modules, you could skip the setting in your global Babel configuration and then configure it per environment as discussed below.
 
 ### Setting Up *babel-loader*
 
@@ -52,8 +50,6 @@ The first step towards configuring Babel to work with webpack is to set up [babe
 ```bash
 npm install babel-loader babel-core --save-dev
 ```
-
-{pagebreak}
 
 As usual, let's define a part for Babel:
 
@@ -67,8 +63,7 @@ exports.loadJavaScript = ({ include, exclude } = {}) => ({
         test: /\.js$/,
         include,
         exclude,
-
-        loader: "babel-loader",
+        use: "babel-loader",
       },
     ],
   },
@@ -104,7 +99,7 @@ Install the preset first:
 npm install babel-preset-env --save-dev
 ```
 
-To make Babel aware of the preset, you need to write a *.babelrc*. Given webpack supports ES6 modules out of the box, you can tell Babel to skip processing them. Skipping this step would break webpack's HMR mechanism although the production build would still work. You can also constrain the build output to work only in recent versions of Chrome.
+To make Babel aware of the preset, you need to write a *.babelrc*. Given webpack supports ES2015 modules out of the box, you can tell Babel to skip processing them. Skipping this step would break webpack's HMR mechanism although the production build would still work. You can also constrain the build output to work only in recent versions of Chrome.
 
 Adjust the target definition as you like. As long as you follow [browserslist](https://www.npmjs.com/package/browserslist), it should work. Here's a sample configuration:
 
@@ -166,6 +161,8 @@ W> Certain webpack features, such as *Code Splitting*, write `Promise` based cod
 There are other possible [*.babelrc* options](https://babeljs.io/docs/usage/options/) beyond the ones covered here. Like ESLint, *.babelrc* supports [JSON5](https://www.npmjs.com/package/json5) as its configuration format meaning you can include comments in your source, use single quoted strings, and so on.
 
 Sometimes you want to use experimental features that fit your project. Although you can find a lot of them within so-called stage presets, it's a good idea to enable them one by one and even organize them to a preset of their own unless you are working on a throwaway project. If you expect your project to live a long time, it's better to document the features you are using well.
+
+Babel isn't the only option although it's the most popular one. [Buble](https://buble.surge.sh) by Rich Harris is another compiler worth checking out. There's experimental [buble-loader](https://www.npmjs.com/package/buble-loader) that allows you to use it with webpack. Buble doesn't support ES2015 modules, but that's not a problem as webpack provides that functionality.
 
 ## Babel Presets and Plugins
 
@@ -253,7 +250,7 @@ Babel has become an indispensable tool for developers given it bridges the stand
 
 To recap:
 
-* Babel gives you control over what browsers to support. It can compile ES6 features to a form the older browser understand. *babel-preset-env* is valuable as it can choose which features to compile and which polyfills to enable based on your browser definition.
+* Babel gives you control over what browsers to support. It can compile ES2015+ features to a form the older browser understand. *babel-preset-env* is valuable as it can choose which features to compile and which polyfills to enable based on your browser definition.
 * Babel allows you to use experimental language features. You can find numerous plugins that improve development experience and the production build through optimizations.
 * Babel functionality can be enabled per development target. This way you can be sure you are using the correct plugins at the right place.
 * Besides Babel, webpack supports other solutions like TypeScript of Flow. Flow can complement Babel while TypeScript represents an entire language compiling to JavaScript.
