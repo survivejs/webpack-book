@@ -41,7 +41,7 @@ module.exports = {
 
         // **Actions**
         // Apply loaders the matched files.
-        use: 'babel-loader',
+        use: "babel-loader",
       },
     ],
   },
@@ -52,14 +52,14 @@ T> If you are not sure how a particular RegExp matches, consider using an online
 
 ## Loader Evaluation Order
 
-It's good to keep in mind that webpack's loaders are always evaluated from right to left and from bottom to top (separate definitions). The right-to-left rule is easier to remember when you think about as functions. You can read definition `use: ['style-loader', 'css-loader']` as `style(css(input))` based on this rule.
+It's good to keep in mind that webpack's loaders are always evaluated from right to left and from bottom to top (separate definitions). The right-to-left rule is easier to remember when you think about as functions. You can read definition `use: ["style-loader", "css-loader"]` as `style(css(input))` based on this rule.
 
 To see the rule in action, consider the example below:
 
 ```javascript
 {
   test: /\.css$/,
-  use: ['style-loader', 'css-loader'],
+  use: ["style-loader", "css-loader"],
 },
 ```
 
@@ -68,11 +68,11 @@ Based on the right to left rule, the example can be split up while keeping it eq
 ```javascript
 {
   test: /\.css$/,
-  use: ['style-loader'],
+  use: ["style-loader"],
 },
 {
   test: /\.css$/,
-  use: ['css-loader'],
+  use: ["css-loader"],
 },
 ```
 
@@ -80,7 +80,7 @@ Based on the right to left rule, the example can be split up while keeping it eq
 
 Even though it would be possible to develop an arbitrary configuration using the rule above, it can be convenient to be able to force certain rules to be applied before or after regular ones. The `enforce` field can come in handy here. It can be set to either `pre` or `post` to push processing either before or after other loaders.
 
-Linting is a good example as the build should fail before it does anything else. Using `enforce: 'post'` is rarer and it would imply you want to perform a check against the built source. Performing analysis against the built source is one potential example.
+Linting is a good example as the build should fail before it does anything else. Using `enforce: "post"` is rarer and it would imply you want to perform a check against the built source. Performing analysis against the built source is one potential example.
 
 The basic syntax goes as below:
 
@@ -88,10 +88,10 @@ The basic syntax goes as below:
 {
   // Conditions
   test: /\.js$/,
-  enforce: 'pre', // 'post' too
+  enforce: "pre", // "post" too
 
   // Actions
-  loader: 'eslint-loader',
+  use: "eslint-loader",
 },
 ```
 
@@ -110,7 +110,7 @@ There's a query format that allows passing parameters to loaders:
   include: PATHS.app,
 
   // Actions
-  use: 'babel-loader?cacheDirectory,presets[]=es2015',
+  use: "babel-loader?presets[]=env",
 },
 ```
 
@@ -125,10 +125,9 @@ It's preferable to use the combination of `loader` and `options` fields:
   include: PATHS.app,
 
   // Actions
-  loader: 'babel-loader',
+  loader: ."babel-loader",
   options: {
-    cacheDirectory: true,
-    presets: ['react', 'es2015'],
+    presets: ["react", "env"],
   },
 },
 ```
@@ -145,10 +144,9 @@ Or you can also go through `use`:
 
   // Actions
   use: {
-    loader: 'babel-loader',
+    loader: "babel-loader",
     options: {
-      cacheDirectory: true,
-      presets: ['react', 'es2015'],
+      presets: ["react", "env"],
     },
   },
 },
@@ -163,10 +161,9 @@ If you wanted to use more than one loader, you could pass an array to `use` and 
 
   use: [
     {
-      loader: 'babel-loader',
+      loader: "babel-loader",
       options: {
-        cacheDirectory: true,
-        presets: ['react', 'es2015'],
+        presets: ["react", "env"],
       },
     },
     // Add more loaders here
@@ -191,13 +188,13 @@ In the book setup, you compose configuration on a higher level. Another option t
     //
     // Returning an array fails! To get around that,
     // it's possible to nest rules.
-    if (env === 'development') {
+    if (env === "development") {
       return {
         // Trigger css-loader first
-        loader: 'css-loader',
+        loader: "css-loader",
         rules: [
           // And style-loader after it
-          'style-loader',
+          "style-loader",
         ],
       };
     }
@@ -216,10 +213,10 @@ Even though configuration level loader definitions are preferable, it's possible
 ```javascript
 // Process foo.png through url-loader and other
 // possible matches.
-import 'url-loader!./foo.png';
+import "url-loader!./foo.png";
 
 // Override possible higher level match completely
-import '!!url-loader!./bar.png';
+import "!!url-loader!./bar.png";
 ```
 
 The problem with this approach is that it couples your source with webpack. But it's a good form to know still. Since configuration entries go through the same mechanism, the same forms work there as well:
@@ -227,7 +224,7 @@ The problem with this approach is that it couples your source with webpack. But 
 ```javascript
 {
   entry: {
-    app: 'babel-loader!./app',
+    app: "babel-loader!./app",
   },
 },
 ```
@@ -261,11 +258,11 @@ Boolean based fields can be used to constrain these matchers further:
   oneOf: [
     {
       resourceQuery: /inline/,
-      use: 'url-loader',
+      use: "url-loader",
     },
     {
       resourceQuery: /external/,
-      use: 'file-loader',
+      use: "file-loader",
     },
   ],
 },
@@ -284,10 +281,10 @@ If you wanted to embed the context information to the filename, the rule could u
   rules: [
     {
       issuer: /\.js$/,
-      use: 'style-loader',
+      use: "style-loader",
     },
     {
-      use: 'css-loader',
+      use: "css-loader",
     },
   ],
 },
@@ -303,13 +300,13 @@ Loader behavior can be understood in greater detail by inspecting them. [loader-
 
 ## Conclusion
 
-Webpack provides multiple ways to set up loaders but sticking with `use` is enough in webpack 2. Be careful with loader ordering, as it's a common source of problems.
+Webpack provides multiple ways to set up loaders but sticking with `use` is enough in webpack 3. Be careful with loader ordering, as it's a common source of problems.
 
 To recap:
 
 * **Loaders** allow you determine what should happen when webpack's module resolution mechanism encounters a file.
 * A loader definition consists of **conditions** based on which to match and **actions** that should be performed when a match happens.
 * Webpack 2 introduced the `use` field. It combines the ideas of old `loader` and `loaders` fields into a single construct.
-* Webpack 2 provides multiple ways to match and alter loader behavior. You can, for example, match based on a **resource query** after a loader has been matched and route the loader to specific actions.
+* Webpack 3 provides multiple ways to match and alter loader behavior. You can, for example, match based on a **resource query** after a loader has been matched and route the loader to specific actions.
 
 In the next chapter, you'll learn to load images using webpack.
