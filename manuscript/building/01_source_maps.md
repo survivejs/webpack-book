@@ -54,10 +54,11 @@ const developmentConfig = merge([
 leanpub-start-insert
   {
     output: {
-      devtoolModuleFilenameTemplate: 'webpack:///[absolute-resource-path]',
+      devtoolModuleFilenameTemplate:
+        "webpack:///[absolute-resource-path]",
     },
   },
-  parts.generateSourceMaps({ type: 'cheap-module-eval-source-map' }),
+  parts.generateSourceMaps({ type: "cheap-module-eval-source-map" }),
 leanpub-end-insert
   ...
 ]);
