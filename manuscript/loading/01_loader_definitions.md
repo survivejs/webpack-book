@@ -227,8 +227,6 @@ Boolean based fields can be used to constrain these matchers further:
 * `and` - Match against an array of conditions. All must match.
 * `or` - Match against an array while any must match.
 
-{pagebreak}
-
 ## Loading Based on `resourceQuery`
 
 `oneOf` field makes it possible to route webpack to a specific loader based on a resource related match:
@@ -236,7 +234,6 @@ Boolean based fields can be used to constrain these matchers further:
 ```javascript
 {
   test: /\.css$/,
-
   oneOf: [
     {
       resourceQuery: /inline/,
