@@ -19,9 +19,11 @@ Going with one format you can use a similar setup as for images and rely on both
 ```javascript
 {
   test: /\.woff$/,
-  loader: 'url-loader',
-  options: {
-    limit: 50000,
+  use: {
+    loader: "url-loader",
+    options: {
+      limit: 50000,
+    },
   },
 },
 ```
@@ -32,17 +34,17 @@ A more elaborate approach to achieve a similar result that includes *.woff2* and
 {
   // Match woff2 in addition to patterns like .woff?v=1.1.1.
   test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-  loader: 'url-loader',
+  use: "url-loader",
   options: {
     // Limit at 50k. Above that it emits separate files
     limit: 50000,
 
     // url-loader sets mimetype if it's passed.
     // Without this it derives it from the file extension
-    mimetype: 'application/font-woff',
+    mimetype: "application/font-woff",
 
     // Output below fonts directory
-    name: './fonts/[name].[ext]',
+    name: "./fonts/[name].[ext]",
   },
 },
 ```
@@ -56,9 +58,9 @@ In case you want to make sure the site looks good on a maximum amount of browser
 ```javascript
 {
   test: /\.(ttf|eot|woff|woff2)$/,
-  loader: 'file-loader',
+  loader: "file-loader",
   options: {
-    name: 'fonts/[name].[ext]',
+    name: "fonts/[name].[ext]",
   },
 },
 ```
@@ -67,11 +69,11 @@ The way you write your CSS definition matters. To make sure you are getting the 
 
 ```css
 @font-face {
-  font-family: 'myfontfamily';
-  src: url('./fonts/myfontfile.woff2') format('woff2'),
-    url('./fonts/myfontfile.woff') format('woff'),
-    url('./fonts/myfontfile.eot') format('embedded-opentype'),
-    url('./fonts/myfontfile.ttf') format('truetype');
+  font-family: "myfontfamily";
+  src: url("./fonts/myfontfile.woff2") format("woff2"),
+    url("./fonts/myfontfile.woff") format("woff"),
+    url("./fonts/myfontfile.eot") format("embedded-opentype"),
+    url("./fonts/myfontfile.ttf") format("truetype");
     /* Add other formats as you see fit */
 }
 ```
@@ -90,17 +92,17 @@ Furthermore, it's possible to manipulate `publicPath` and override the default p
 {
   // Match woff2 in addition to patterns like .woff?v=1.1.1.
   test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/,
-  loader: 'url-loader',
+  loader: "url-loader",
   options: {
     limit: 50000,
-    mimetype: 'application/font-woff',
+    mimetype: "application/font-woff",
 
     // Output below the fonts directory
-    name: './fonts/[name].[ext]',
+    name: "./fonts/[name].[ext]",
 
     // Tweak publicPath to fix CSS lookups to take
     // the directory into account.
-    publicPath: '../',
+    publicPath: "../",
   },
 },
 ```
@@ -172,7 +174,7 @@ exports.loadFonts = ({ include, exclude, options } = {}) => ({
         exclude,
 
         use: {
-          loader: 'file-loader',
+          loader: "file-loader",
           options,
         },
       },
@@ -193,7 +195,7 @@ const commonConfig = merge([
 leanpub-start-insert
   parts.loadFonts({
     options: {
-      name: '[name].[ext]',
+      name: "[name].[ext]",
     },
   }),
 leanpub-end-insert
