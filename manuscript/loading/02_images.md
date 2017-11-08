@@ -110,7 +110,7 @@ To test that the setup works, download an image or generate it (`convert -size 1
 body {
   background: cornsilk;
 leanpub-start-insert
-  background-image: url('./logo.png');
+  background-image: url("./logo.png");
   background-repeat: no-repeat;
   background-position: center;
 leanpub-end-insert
