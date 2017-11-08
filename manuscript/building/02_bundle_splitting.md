@@ -146,12 +146,12 @@ leanpub-end-insert
 const productionConfig = merge([
   {
     entry: {
-      vendor: ['react'],
+      vendor: ["react"],
     },
 leanpub-start-insert
     plugins: [
       new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor',
+        name: "vendor",
       }),
     ],
 leanpub-end-insert
@@ -216,15 +216,11 @@ The following code combines the `entry` idea above with a basic `CommonsChunkPlu
 ...
 leanpub-start-insert
 const webpack = require('webpack');
-leanpub-end-insert
 
-...
-
-leanpub-start-insert
-exports.extractBundles = (bundles) => ({
-  plugins: bundles.map((bundle) => (
-    new webpack.optimize.CommonsChunkPlugin(bundle)
-  )),
+exports.extractBundles = bundles => ({
+  plugins: bundles.map(
+    bundle => new webpack.optimize.CommonsChunkPlugin(bundle)
+  ),
 });
 leanpub-end-insert
 ```
@@ -243,12 +239,12 @@ leanpub-end-delete
 const productionConfig = merge([
   {
     entry: {
-      vendor: ['react'],
+      vendor: ["react"],
     },
 leanpub-start-delete
     plugins: [
       new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor',
+        name: "vendor",
       }),
     ],
 leanpub-end-delete
@@ -257,7 +253,7 @@ leanpub-end-delete
 leanpub-start-insert
   parts.extractBundles([
     {
-      name: 'vendor',
+      name: "vendor",
     },
   ]),
 leanpub-end-insert
@@ -291,14 +287,14 @@ const productionConfig = merge([
 leanpub-start-delete
   {
     entry: {
-      vendor: ['react'],
+      vendor: ["react"],
     },
   },
 leanpub-end-delete
   ...
   parts.extractBundles([
     {
-      name: 'vendor',
+      name: "vendor",
 leanpub-start-insert
       minChunks: ({ resource }) =>
         resource &&
@@ -325,30 +321,24 @@ const config = {
   ...
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'login',
-      chunks: ['login'],
+      name: "login",
+      chunks: ["login"],
       minChunks: isVendor,
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      chunks: ['app'],
+      name: "vendor",
+      chunks: ["app"],
       minChunks: isVendor,
     }),
     // Extract chunks common to both app and login
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'common',
-      chunks: ['login', 'app'],
+      name: "common",
+      chunks: ["login", "app"],
       minChunks: (module, count) => count >= 2 && isVendor(module),
     }),
   ],
   ...
 };
-
-function isVendor({ resource }) {
-  return resource &&
-    resource.indexOf('node_modules') >= 0 &&
-    resource.match(/\.js$/);
-}
 ```
 
 The same code would look as below using the `parts.extractBundles` abstraction:
@@ -356,18 +346,18 @@ The same code would look as below using the `parts.extractBundles` abstraction:
 ```javascript
 parts.extractBundles([
   {
-    name: 'login',
-    chunks: ['login'],
+    name: "login",
+    chunks: ["login"],
     minChunks: isVendor,
   },
   {
-    name: 'vendor',
-    chunks: ['app'],
+    name: "vendor",
+    chunks: ["app"],
     minChunks: isVendor,
   },
   {
-    name: 'common',
-    chunks: ['login', 'app'],
+    name: "common",
+    chunks: ["login", "app"],
     minChunks: (module, count) => (
       count >= 2 && isVendor(module),
     ),
@@ -382,6 +372,7 @@ T> The `chunks` option refers to the entry chunks of your configuration.
 `CommonsChunkPlugin` provides more control through `children` and `async` flags:
 
 * `children` - If `children` is set to `true`, webpack detects which modules are the same in the resulting bundles and push them to the parent bundle.
+* `deepChildren` - If `deepChildren` is set to `true`, webpack selects from all descendants, not only immediate as in the case of `children`.
 * `async` - The idea is the same if `async` is set to `true`. In this case, webpack generates a separate bundle with the commonalities and load it asynchronously from the parent. You can pass a string to `async` option to name the output bundle. The idea is the same as for *Code Splitting* as you will see in the next chapter.
 
 The image below shows the difference compared to the default. The top circles represent the parent bundles. The way `B` is treated depends on the chosen option:
@@ -389,8 +380,6 @@ The image below shows the difference compared to the default. The top circles re
 ![`CommonsChunkPlugin` children and async](images/commonschunk.png)
 
 T> `children` and `async` can be used together if you are using *Code Splitting* and want to extract commonalities.
-
-W> The `children` behavior applies only to immediate children. The algorithm is not applied recursively. [Webpack issue 3981](https://github.com/webpack/webpack/issues/3981) explains this in detail.
 
 ## Splitting and Merging Chunks
 
