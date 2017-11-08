@@ -77,8 +77,6 @@ exports.loadJavaScript = ({ include, exclude } = {}) => ({
 
 Next, you need to connect this with the main configuration. If you are using a modern browser for development, you can consider processing only the production code through Babel. To play it safe, it's used for both production and development environments in this case. In addition, only application code is processed through Babel.
 
-{pagebreak}
-
 Adjust as below:
 
 **webpack.config.js**
@@ -95,8 +93,6 @@ leanpub-end-insert
 Even though you have Babel installed and set up, you are still missing one bit: Babel configuration. This can be achieved using a *.babelrc* dotfile as other tooling can pick it up as well.
 
 W> If you try to import files **outside** of your configuration root directory and then process them through *babel-loader*, this fails. It's [a known issue](https://github.com/babel/babel-loader/issues/313), and there are workarounds including maintaining *.babelrc* at a higher level in the project and resolving against Babel presets through `require.resolve` at webpack configuration.
-
-{pagebreak}
 
 ### Setting Up *.babelrc*
 
@@ -129,8 +125,6 @@ Adjust the target definition as you like. As long as you follow [browserslist](h
 
 If you execute `npm run build` now and examine *build/app.js*, the result should be similar to the earlier since it supports the features you are using in the code.
 
-{pagebreak}
-
 To see that the preset works, change `.browserslistrc` to include only a definition like `IE 8` and the code should change accordingly:
 
 **build/app.js**
@@ -158,8 +152,6 @@ webpackJsonp([1],{
 
 Note especially how the function was transformed. You can try out different browser definitions and language features to see how the output changes based on the selection.
 
-{pagebreak}
-
 ## Polyfilling Features
 
 *babel-preset-env* allows you to polyfill certain language features for older browsers. For this to work, you should enable its `useBuiltIns` option (`"useBuiltIns": true`) and install [babel-polyfill](https://babeljs.io/docs/usage/polyfill/). You have include it to your project either through an import or an entry (`app: ['babel-polyfill', PATHS.app]`). *babel-preset-env* rewrites the import based on your browser definition and loads only the polyfills that are needed.
@@ -173,8 +165,6 @@ W> Certain webpack features, such as *Code Splitting*, write `Promise` based cod
 There are other possible [*.babelrc* options](https://babeljs.io/docs/usage/options/) beyond the ones covered here. Like ESLint, *.babelrc* supports [JSON5](https://www.npmjs.com/package/json5) as its configuration format meaning you can include comments in your source, use single quoted strings, and so on.
 
 Sometimes you want to use experimental features that fit your project. Although you can find a lot of them within so-called stage presets, it's a good idea to enable them one by one and even organize them to a preset of their own unless you are working on a throwaway project. If you expect your project to live a long time, it's better to document the features you are using well.
-
-{pagebreak}
 
 ## Babel Presets and Plugins
 
@@ -214,8 +204,6 @@ Babel allows you to control which presets and plugins are used per environment t
 
 Any shared presets and plugins are available to all targets still. `env` allows you to specialize your Babel configuration further.
 
-{pagebreak}
-
 It's possible to pass the webpack environment to Babel with a tweak:
 
 **webpack.config.js**
@@ -239,8 +227,6 @@ T> The technique is used in the *Server Side Rendering* chapter to enable the Ba
 Microsoft's [TypeScript](http://www.typescriptlang.org/) is a compiled language that follows a similar setup as Babel. The neat thing is that in addition to JavaScript, it can emit type definitions. A good editor can pick those up and provide enhanced editing experience. Stronger typing is valuable for development as it becomes easier to state your type contracts.
 
 Compared to Facebook's type checker Flow, TypeScript is a more established option. As a result, you find more premade type definitions for it, and overall, the quality of support should be better.
-
-{pagebreak}
 
 You can use TypeScript with webpack using the following loaders:
 
