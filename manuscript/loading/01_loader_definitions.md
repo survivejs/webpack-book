@@ -1,8 +1,8 @@
 # Loader Definitions
 
-Webpack provides multiple ways to set up module loaders. Webpack 2 simplified the situation by introducing the `use` field. The legacy options (`loader` and `loaders`) still work, though. You see all the options for completeness, as they exist in older configurations online.
+Webpack provides multiple ways to set up module loaders. Webpack 2 simplified the situation by introducing the `use` field. It can be a good idea to prefer absolute paths here as they allow you to move configuration without breaking assumptions.
 
-It can be a good idea to prefer absolute paths here as they allow you to move configuration without breaking assumptions. The other option is to set `context` field as this gives a similar effect and affects the way entry points and loaders are resolved. It doesn't have an impact on the output, though, and you still need to use an absolute path or `/` there.
+The other way is to set `context` field as this gives a similar effect and affects the way entry points and loaders are resolved. It doesn't have an impact on the output, though, and you still need to use an absolute path or `/` there.
 
 Assuming you set an `include` or `exclude` rule, packages loaded from *node_modules* still work as the assumption is that they have been compiled in such way that they work out of the box. If they don't, then you have to apply techniques covered in the *Package Consuming Techniques* chapter.
 
@@ -68,11 +68,11 @@ Based on the right to left rule, the example can be split up while keeping it eq
 ```javascript
 {
   test: /\.css$/,
-  use: ["style-loader"],
+  use: "style-loader",
 },
 {
   test: /\.css$/,
-  use: ["css-loader"],
+  use: "css-loader",
 },
 ```
 
@@ -116,25 +116,7 @@ There's a query format that allows passing parameters to loaders:
 
 This style of configuration works in entries and source imports too as webpack picks it up. The format comes in handy in certain individual cases, but often you are better off using more readable alternatives.
 
-It's preferable to use the combination of `loader` and `options` fields:
-
-```javascript
-{
-  // Conditions
-  test: /\.js$/,
-  include: PATHS.app,
-
-  // Actions
-  loader: ."babel-loader",
-  options: {
-    presets: ["react", "env"],
-  },
-},
-```
-
-{pagebreak}
-
-Or you can also go through `use`:
+It's preferable to go through `use`:
 
 ```javascript
 {
@@ -191,11 +173,13 @@ In the book setup, you compose configuration on a higher level. Another option t
     if (env === "development") {
       return {
         // Trigger css-loader first
-        loader: "css-loader",
-        rules: [
-          // And style-loader after it
-          "style-loader",
-        ],
+        use: {
+          loader: "css-loader",
+          rules: [
+            // And style-loader after it
+            "style-loader",
+          ],
+        },
       };
     }
 
