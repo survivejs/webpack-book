@@ -14,7 +14,7 @@ Webpack supports a large variety of formats through *loaders*. Also, it supports
 
 {pagebreak}
 
-Consider the example below where webpack is set to process JavaScript through Babel:
+Consider the example below where webpack processes JavaScript through Babel:
 
 **webpack.config.js**
 
