@@ -48,10 +48,10 @@ Time: 2023ms
   ...font.svg     444 kB          [emitted]  [big]
   ...font.ttf     166 kB          [emitted]
 leanpub-start-insert
-       app.js     82.4 kB       0  [emitted]         app
+       app.js    82.4 kB       0  [emitted]         app
 leanpub-end-insert
       app.css    3.89 kB       0  [emitted]         app
-   app.js.map     97.9 kB       0  [emitted]         app
+   app.js.map    97.9 kB       0  [emitted]         app
   app.css.map   84 bytes       0  [emitted]         app
    index.html  218 bytes          [emitted]
     [6] ./app/index.js 176 bytes {0} [built]
@@ -83,9 +83,11 @@ leanpub-end-insert
 ]);
 ```
 
+You have two separate entries, or **entry chunks**, now. `[name].js` of the existing `output.path` the configuration kicks in based on the entry name.
+
 {pagebreak}
 
-You have two separate entries, or **entry chunks**, now. `[name].js` of the existing `output.path` the configuration kicks in based on the entry name. If you try to generate a build now (`npm run build`), you should see something along this:
+If you try to generate a build now (`npm run build`), you should see something along this:
 
 ```bash
 Hash: ecc92b2cf4057b78f49e
@@ -358,14 +360,14 @@ parts.extractBundles([
   {
     name: "common",
     chunks: ["login", "app"],
-    minChunks: (module, count) => (
-      count >= 2 && isVendor(module),
-    ),
+    minChunks: (module, count) => count >= 2 && isVendor(module),
   },
 ]),
 ```
 
 T> The `chunks` option refers to the entry chunks of your configuration.
+
+{pagebreak}
 
 ## `CommonsChunkPlugin` `children` and `async` Flags
 
@@ -380,6 +382,8 @@ The image below shows the difference compared to the default. The top circles re
 ![`CommonsChunkPlugin` children and async](images/commonschunk.png)
 
 T> `children` and `async` can be used together if you are using *Code Splitting* and want to extract commonalities.
+
+{pagebreak}
 
 ## Splitting and Merging Chunks
 
