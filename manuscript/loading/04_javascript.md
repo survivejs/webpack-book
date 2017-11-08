@@ -72,6 +72,8 @@ exports.loadJavaScript = ({ include, exclude } = {}) => ({
 
 Next, you need to connect this with the main configuration. If you are using a modern browser for development, you can consider processing only the production code through Babel. To play it safe, it's used for both production and development environments in this case. In addition, only application code is processed through Babel.
 
+{pagebreak}
+
 Adjust as below:
 
 **webpack.config.js**
@@ -100,6 +102,8 @@ npm install babel-preset-env --save-dev
 ```
 
 To make Babel aware of the preset, you need to write a *.babelrc*. Given webpack supports ES2015 modules out of the box, you can tell Babel to skip processing them. Skipping this step would break webpack's HMR mechanism although the production build would still work. You can also constrain the build output to work only in recent versions of Chrome.
+
+{pagebreak}
 
 Adjust the target definition as you like. As long as you follow [browserslist](https://www.npmjs.com/package/browserslist), it should work. Here's a sample configuration:
 
@@ -174,7 +178,6 @@ Perhaps the greatest thing about Babel is that it's possible to extend with pres
 * [babel-plugin-annotate-console-log](https://www.npmjs.com/package/babel-plugin-annotate-console-log) annotates `console.log` calls with information about invocation context so it's easier to see where they logged.
 * [babel-plugin-webpack-loaders](https://www.npmjs.com/package/babel-plugin-webpack-loaders) allows you to use certain webpack loaders through Babel.
 * [babel-plugin-syntax-trailing-function-commas](https://www.npmjs.com/package/babel-plugin-syntax-trailing-function-commas) adds trailing comma support for functions.
-* [babel-react-optimize](https://github.com/thejameskyle/babel-react-optimize) implements a variety of React specific optimizations you can experiment with.
 * [babel-plugin-transform-react-remove-prop-types](https://www.npmjs.com/package/babel-plugin-transform-react-remove-prop-types) allows you to remove `propType` related code from your production build. It also allows component authors to generate code that's wrapped so that setting environment at `DefinePlugin` can kick in as discussed in the book.
 
 T> It's possible to connect Babel with Node through [babel-register](https://www.npmjs.com/package/babel-register) or [babel-cli](https://www.npmjs.com/package/babel-cli). These packages can be handy if you want to execute your code through Babel without using webpack.
@@ -183,7 +186,11 @@ T> It's possible to connect Babel with Node through [babel-register](https://www
 
 Babel allows you to control which presets and plugins are used per environment through its [env option](https://babeljs.io/docs/usage/babelrc/#env-option). You can manage Babel's behavior per build target this way.
 
-`env` checks both `NODE_ENV` and `BABEL_ENV` and functionality to your build based on that. If `BABEL_ENV` is set, it overrides any possible `NODE_ENV`. Consider the example below:
+`env` checks both `NODE_ENV` and `BABEL_ENV` and functionality to your build based on that. If `BABEL_ENV` is set, it overrides any possible `NODE_ENV`.
+
+{pagebreak}
+
+Consider the example below:
 
 **.babelrc**
 
@@ -218,7 +225,7 @@ leanpub-end-insert
 
 T> The way `env` works is subtle. Consider logging `env` and make sure it matches your Babel configuration or otherwise the functionality you expect is not applied to your build.
 
-T> The technique is used in the *Server Side Rendering* chapter to enable the Babel portion of *react-hot-loader* for development target only.
+{pagebreak}
 
 ## Setting Up TypeScript
 
