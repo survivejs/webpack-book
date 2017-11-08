@@ -24,7 +24,7 @@ module.exports = {
   module: {
     rules: [
       {
-        // **Conditions** to match files against RegExp or a function.
+        // **Conditions** to match files using RegExp, function.
         test: /\.js$/,
 
         // **Restrictions**
