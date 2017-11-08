@@ -130,22 +130,23 @@ To see that the preset works, change `.browserslistrc` to include only a definit
 **build/app.js**
 
 ```javascript
-webpackJsonp([1],{
+...
 
-/* 0 */
+/***/ }),
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = function () {
-  var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Hello world';
+/* harmony default export */ __webpack_exports__["a"] = (function () {
+  var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "Hello world";
 
-  var element = document.createElement('div');
+  var element = document.createElement("div");
 
-  element.className = 'fa fa-hand-spock-o fa-1g';
+  element.className = "fa fa-hand-spock-o fa-1g";
   element.innerHTML = text;
 
   return element;
-};
+});
 
 ...
 ```
