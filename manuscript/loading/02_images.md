@@ -19,7 +19,7 @@ To load *.jpg*, *.png*, and *.svg* files while inlining files below 25kB, you wo
 ```javascript
 {
   test: /\.(jpg|png|svg)$/,
-  loader: 'url-loader',
+  loader: "url-loader",
   options: {
     limit: 25000,
   },
@@ -33,14 +33,14 @@ If you want to skip inlining altogether, you can use *file-loader* directly. The
 ```javascript
 {
   test: /\.(jpg|png|svg)$/,
-  loader: 'file-loader',
+  loader: "file-loader",
   options: {
-    name: '[path][name].[hash].[ext]',
+    name: "[path][name].[hash].[ext]",
   },
 },
 ```
 
-T> If you want to output your images below a particular directory, set it up with `name: './images/[hash].[ext]'`.
+T> If you want to output your images below a particular directory, set it up with `name: "./images/[hash].[ext]"`.
 
 W> Be careful not to apply both loaders on images at the same time! Use the `include` field for further control if *url-loader* `limit` isn't enough.
 
@@ -66,7 +66,7 @@ exports.loadImages = ({ include, exclude, options } = {}) => ({
         exclude,
 
         use: {
-          loader: 'url-loader',
+          loader: "url-loader",
           options,
         },
       },
@@ -88,7 +88,7 @@ leanpub-start-insert
   parts.loadImages({
     options: {
       limit: 15000,
-      name: '[name].[ext]',
+      name: "[name].[ext]",
     },
   }),
 leanpub-end-insert
@@ -127,7 +127,7 @@ Webpack allows a [couple ways](https://github.com/webpack/webpack/issues/595) to
 ```javascript
 {
   test: /\.svg$/,
-  use: 'file-loader',
+  use: "file-loader",
 },
 ```
 
@@ -135,7 +135,7 @@ Assuming you have set up your styling correctly, you can refer to your SVG files
 
 ```css
 .icon {
-   background-image: url('../assets/icon.svg');
+   background-image: url("../assets/icon.svg");
 }
 ```
 
@@ -170,7 +170,7 @@ Sometimes getting the only reference to an image isn't enough. [image-size-loade
 Webpack can pick up images from style sheets through `@import` and `url()` assuming *css-loader* has been configured. You can also refer to your images within code. In this case, you have to import the files explicitly:
 
 ```javascript
-const src = require('./avatar.png');
+import src from "./avatar.png";
 
 // Use the image in your code somehow now
 const Profile = () => (
@@ -204,7 +204,7 @@ const src = require(`./avatars/${avatar}`);
 [webpack-spritesmith](https://www.npmjs.com/package/webpack-spritesmith) converts provided images into a sprite sheet and Sass/Less/Stylus mixins. You have to set up a `SpritesmithPlugin`, point it to target images, and set the name of the generated mixin. After that, your styling can pick it up:
 
 ```sass
-@import '~sprite.sass';
+@import "~sprite.sass";
 
 .close-button {
   sprite($close);
