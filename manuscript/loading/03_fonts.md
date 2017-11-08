@@ -120,9 +120,7 @@ To integrate Font Awesome to the book project, install it first:
 npm install font-awesome --save
 ```
 
-Given Font Awesome doesn't define a `main` field in its *package.json* file, you need to point to it through a direct path instead of package name alone.
-
-Refer to Font Awesome as follows:
+Given Font Awesome doesn't define a `main` field in its *package.json* file, you need to point to it through a direct path instead of package name alone as follows:
 
 **app/index.js**
 
@@ -147,9 +145,7 @@ Module parse failed: Unexpected character '' (1:0)
 You may need an appropriate loader to handle this file type.
 (Source code omitted for this binary file)
  @ ./node_modules/css-loader!./node_modules/font-awesome/css/font-awesome.css 6:645-696
- @ ./node_modules/font-awesome/css/font-awesome.css
- @ ./app/index.js
- @ multi (webpack)-dev-server/client?http://localhost:8080 ./app
+...
 ```
 
 ### Implementing Webpack Configuration
