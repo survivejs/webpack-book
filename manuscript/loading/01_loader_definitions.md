@@ -79,6 +79,8 @@ Even though it would be possible to develop an arbitrary configuration using the
 
 Linting is a good example as the build should fail before it does anything else. Using `enforce: "post"` is rarer and it would imply you want to perform a check against the built source. Performing analysis against the built source is one potential example.
 
+{pagebreak}
+
 The basic syntax goes as below:
 
 ```javascript
