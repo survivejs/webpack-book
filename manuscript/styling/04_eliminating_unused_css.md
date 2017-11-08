@@ -147,13 +147,13 @@ PurifyCSS supports [additional options](https://github.com/purifycss/purifycss#t
 
 W> Using PurifyCSS loses CSS source maps even if you have enabled them through loader specific configuration due to the way it works underneath.
 
-{pagebreak}
-
 ### Critical Path Rendering
 
 The idea of [critical path rendering](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/) takes a look at CSS performance from a different angle. Instead of optimizing for size, it optimizes for render order and puts emphasis on **above-the-fold** CSS.
 
 [isomorphic-style-loader](https://www.npmjs.com/package/isomorphic-style-loader) achieves this using webpack and React. [critical-path-css-tools](https://github.com/addyosmani/critical-path-css-tools) listing by Addy Osmani lists other related tools.
+
+{pagebreak}
 
 ## Conclusion
 
