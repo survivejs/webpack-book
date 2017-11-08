@@ -64,7 +64,6 @@ exports.loadImages = ({ include, exclude, options } = {}) => ({
         test: /\.(png|jpg|svg)$/,
         include,
         exclude,
-
         use: {
           loader: "url-loader",
           options,
