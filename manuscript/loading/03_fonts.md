@@ -142,14 +142,14 @@ T> The `import` could be cleaned up as `import "font-awesome"` by setting up a `
 If you run the project now (`npm start`), webpack should give a long list of errors:
 
 ```bash
-ERROR in ./~/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0
-Module parse failed: .../node_modules/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0 Unexpected character '' (1:4)
+ERROR in ./node_modules/font-awesome/fonts/fontawesome-webfont.ttf?v=4.7.0
+Module parse failed: Unexpected character '' (1:0)
 You may need an appropriate loader to handle this file type.
 (Source code omitted for this binary file)
- @ ./~/css-loader!./~/font-awesome/css/font-awesome.css 6:479-532
- @ ./~/font-awesome/css/font-awesome.css
+ @ ./node_modules/css-loader!./node_modules/font-awesome/css/font-awesome.css 6:645-696
+ @ ./node_modules/font-awesome/css/font-awesome.css
  @ ./app/index.js
- @ multi (webpack)-dev-server/client?http://localhost:8080 webpack/hot/only-dev-server react-hot-loader/patch ./app
+ @ multi (webpack)-dev-server/client?http://localhost:8080 ./app
 ```
 
 ### Implementing Webpack Configuration
@@ -167,7 +167,6 @@ exports.loadFonts = ({ include, exclude, options } = {}) => ({
         test: /\.(eot|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
         include,
         exclude,
-
         use: {
           loader: "file-loader",
           options,
