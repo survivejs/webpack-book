@@ -47,18 +47,7 @@ leanpub-start-insert
     manifest.95266dc7.js     1.5 kB       3  [emitted]  manifest
 leanpub-end-insert
          app.801b7672.js  865 bytes    2, 3  [emitted]  app
-    ...font.912ec66d.svg     444 kB          [emitted]
-    ...font.674f50d2.eot     166 kB          [emitted]
-   ...font.fee66e71.woff      98 kB          [emitted]
-  ...font.af7ae505.woff2    77.2 kB          [emitted]
-       logo.85011118.png      77 kB          [emitted]
-           0.e7c9bce9.js  432 bytes    0, 3  [emitted]
-      vendor.c4ac6d53.js    12.8 kB    1, 3  [emitted]  vendor
-    ...font.b06871f2.ttf     166 kB          [emitted]
-        app.bf4d156d.css    2.54 kB    2, 3  [emitted]  app
-       0.e7c9bce9.js.map    2.08 kB    0, 3  [emitted]
-  vendor.c4ac6d53.js.map    32.7 kB    1, 3  [emitted]  vendor
-     app.801b7672.js.map    2.34 kB    2, 3  [emitted]  app
+...
     app.bf4d156d.css.map   93 bytes    2, 3  [emitted]  app
 leanpub-start-insert
 manifest.95266dc7.js.map    5.81 kB       3  [emitted]  manifest
@@ -81,8 +70,6 @@ Try adjusting *app/index.js* and see how the hashes change. This time around it 
 T> To integrate with asset pipelines, you can consider using plugins like [chunk-manifest-webpack-plugin](https://www.npmjs.com/package/chunk-manifest-webpack-plugin), [webpack-manifest-plugin](https://www.npmjs.com/package/webpack-manifest-plugin), [webpack-assets-manifest](https://www.npmjs.com/package/webpack-assets-manifest), or [webpack-rails-manifest-plugin](https://www.npmjs.com/package/webpack-rails-manifest-plugin). These solutions emit JSON that maps the original asset path to the new one.
 
 T> The build can be improved further by loading popular dependencies, such as React, through a CDN. That would decrease the size of the vendor bundle even further while adding an external dependency on the project. The idea is that if the user has hit the CDN earlier, caching can kick in like here.
-
-{pagebreak}
 
 ## Using Records
 
