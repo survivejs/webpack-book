@@ -127,13 +127,13 @@ Hash: beb8471fa36469ac48c7
 Version: webpack 3.8.1
 Time: 3204ms
                  Asset       Size  Chunks             Chunk Names
-                 vendor.ad7a8b28.js    14.1 kB       2  [emitted]  vendor
-       app.e0f59512.js  811 bytes       1  [emitted]  app
+    vendor.ad7a8b28.js    8.42 kB       2  [emitted]  vendor
   ...font.674f50d2.eot     166 kB          [emitted]
 ...font.af7ae505.woff2    77.2 kB          [emitted]
  ...font.fee66e71.woff      98 kB          [emitted]
   ...font.912ec66d.svg     444 kB          [emitted]
-         0.470796d5.js  408 bytes       0  [emitted]
+         0.470796d5.js  222 bytes       0  [emitted]
+       app.e0f59512.js  805 bytes       1  [emitted]  app
   ...font.b06871f2.ttf     166 kB          [emitted]
       app.bf4d156d.css    2.54 kB       1  [emitted]  app
      0.470796d5.js.map    2.08 kB       0  [emitted]
@@ -189,13 +189,13 @@ Hash: 410229e400dbfd95d622
 Version: webpack 3.8.1
 Time: 2935ms
                  Asset       Size  Chunks             Chunk Names
-    vendor.12f5b764.js    14.2 kB       2  [emitted]  vendor
-       app.4330d101.js  863 bytes       1  [emitted]  app
+    vendor.12f5b764.js    8.48 kB       2  [emitted]  vendor
   ...font.912ec66d.svg     444 kB          [emitted]
   ...font.674f50d2.eot     166 kB          [emitted]
  ...font.fee66e71.woff      98 kB          [emitted]
 ...font.af7ae505.woff2    77.2 kB          [emitted]
-         0.b2a1fec0.js  430 bytes       0  [emitted]
+         0.b2a1fec0.js  230 bytes       0  [emitted]
+       app.4330d101.js  874 bytes       1  [emitted]  app
   ...font.b06871f2.ttf     166 kB          [emitted]
       app.bf4d156d.css    2.54 kB       1  [emitted]  app
      0.b2a1fec0.js.map    2.08 kB       0  [emitted]
@@ -205,7 +205,7 @@ vendor.3c78d233.js.map    38.3 kB       2  [emitted]  vendor
             index.html  301 bytes          [emitted]
 [1Q41] ./app/main.css 41 bytes {1} [built]
 [2twT] ./app/index.js 217 bytes {1} [built]
-[KMic] ./app/lazy.css 1.17 kB {0} [built]
+[KMic] ./app/lazy.css 41 bytes {0} [built]
 ...
 ```
 
