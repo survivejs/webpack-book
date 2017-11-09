@@ -75,6 +75,8 @@ Unsafe transformations can break code as they can lose something implicit the un
 
 Minification in webpack can be enabled through `webpack -p` (same as `--optimize-minimize`). This uses webpack's `UglifyJsPlugin` underneath.
 
+{pagebreak}
+
 ### Setting Up JavaScript Minification
 
 [uglifyjs-webpack-plugin](https://www.npmjs.com/package/uglifyjs-webpack-plugin) allows you to use ES6 syntax out of the box and minify it.
@@ -144,6 +146,8 @@ You should check *uglifyjs-webpack-plugin* for more options. It gives you contro
 
 W> Source maps are disabled by default. You can enable them through the `sourceMap` flag.
 
+{pagebreak}
+
 ## Other Ways to Minify JavaScript
 
 Although *uglifyjs-webpack-plugin* works for this use case, there are more options you can consider:
@@ -160,7 +164,7 @@ Although *uglifyjs-webpack-plugin* works for this use case, there are more optio
 
 [optimize-css-assets-webpack-plugin](https://www.npmjs.com/package/optimize-css-assets-webpack-plugin) is a plugin based option that applies a chosen minifier on CSS assets. Using `ExtractTextPlugin` can lead to duplicated CSS given it only merges text chunks. `OptimizeCSSAssetsPlugin` avoids this problem by operating on the generated result and thus can lead to a better result.
 
-W> In webpack 1 `minimize` was set on by default if `UglifyJsPlugin` was used. This confusing behavior was fixed in webpack 2, and now you have explicit control over minification.
+{pagebreak}
 
 ### Setting Up CSS Minification
 
@@ -191,6 +195,8 @@ exports.minifyCSS = ({ options }) => ({
 ```
 
 W> If you use `--json` output with webpack as discussed in the *Analyzing Build Statistics* chapter, you should set `canPrint: false` to avoid output. You can solve by exposing the flag as a parameter so you can control it based on the environment.
+
+{pagebreak}
 
 Then, connect with main configuration:
 
