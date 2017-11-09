@@ -300,10 +300,7 @@ class AsyncComponent extends React.Component {
   }
 }
 AsyncComponent.propTypes = {
-  // A loader is a function that should return a Promise.
   loader: PropTypes.func.isRequired,
-
-  // A placeholder to render while waiting completion.
   Placeholder: PropTypes.node.isRequired,
 };
 ```
