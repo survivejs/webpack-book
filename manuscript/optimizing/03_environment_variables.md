@@ -56,6 +56,8 @@ if (false) {
 }
 ```
 
+{pagebreak}
+
 A minifier eliminates the `if` statement as it has become dead code:
 
 ```javascript
@@ -170,6 +172,8 @@ Webpack includes a collection of optimization related plugins:
 * `webpack.optimize.CommonsChunkPlugin` makes it possible to extract common dependencies into bundles of their own.
 * `webpack.DefinePlugin` allows you to use feature flags in your code and eliminate the redundant code as discussed in this chapter.
 * [lodash-webpack-plugin](https://www.npmjs.com/package/lodash-webpack-plugin) creates smaller Lodash builds by replacing feature sets with smaller alternatives leading to more compact builds.
+
+{pagebreak}
 
 ## Conclusion
 
