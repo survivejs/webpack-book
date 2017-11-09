@@ -37,6 +37,9 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 exports.extractCSS = ({ include, exclude, use }) => {
   // Output extracted CSS to a file
   const plugin = new ExtractTextPlugin({
+    // `allChunks` is needed with CommonsChunkPlugin to extract
+    // from extracted chunks as well.
+    allChunks: true,
     filename: "[name].css",
   });
 

@@ -174,7 +174,7 @@ Version: webpack 3.8.1
 Time: 1907ms
         Asset       Size  Chunks                    Chunk Names
 leanpub-start-insert
-    vendor.js     84 kB       1  [emitted]         vendor
+    vendor.js    83.7 kB       1  [emitted]         vendor
 leanpub-end-insert
   ...font.eot     166 kB          [emitted]
 ...font.woff2    77.2 kB          [emitted]
