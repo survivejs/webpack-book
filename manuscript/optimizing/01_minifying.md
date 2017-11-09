@@ -19,17 +19,7 @@ leanpub-start-insert
     vendor.js    83.7 kB       2  [emitted]         vendor
 leanpub-end-insert
        app.js    2.49 kB       1  [emitted]         app
-  ...font.eot     166 kB          [emitted]
-...font.woff2    77.2 kB          [emitted]
- ...font.woff      98 kB          [emitted]
-  ...font.svg     444 kB          [emitted]  [big]
-         0.js    1.89 kB       0  [emitted]
-  ...font.ttf     166 kB          [emitted]
-      app.css     3.9 kB       1  [emitted]         app
-     0.js.map    2.22 kB       0  [emitted]
-   app.js.map    2.13 kB       1  [emitted]         app
-  app.css.map   84 bytes       1  [emitted]         app
-vendor.js.map     119 kB       2  [emitted]         vendor
+...
    index.html  274 bytes          [emitted]
     [6] ./app/index.js 176 bytes {1} [built]
    [14] ./app/main.css 41 bytes {1} [built]
@@ -44,8 +34,6 @@ vendor.js.map     119 kB       2  [emitted]         vendor
 Webpack allows you to define a **performance budget**. The idea is that it gives your build size constraint which it has to follow. The feature is disabled by default, but if enabled it defaults to 250 kB limit per entries and assets. The calculation includes extracted chunks to entry calculation.
 
 Performance budget can be configured to provide warnings or errors. If a budget isn't met and it has been configured to emit an error, it would terminate the entire build.
-
-{pagebreak}
 
 To integrate the feature into the project, adjust the configuration:
 
@@ -80,8 +68,6 @@ Entrypoints:
 ```
 
 If minification works, the warning should disappear. That's the next challenge.
-
-{pagebreak}
 
 ## Minifying JavaScript
 
@@ -144,15 +130,7 @@ leanpub-start-insert
     vendor.js    28.1 kB       2  [emitted]  vendor
 leanpub-end-insert
        app.js  675 bytes       1  [emitted]  app
-  ...font.eot     166 kB          [emitted]
-...font.woff2    77.2 kB          [emitted]
- ...font.woff      98 kB          [emitted]
-  ...font.svg     444 kB          [emitted]
-         0.js  399 bytes       0  [emitted]
-  ...font.ttf     166 kB          [emitted]
-      app.css     3.9 kB       1  [emitted]  app
-     0.js.map    2.07 kB       0  [emitted]
-   app.js.map    1.64 kB       1  [emitted]  app
+...
   app.css.map   84 bytes       1  [emitted]  app
 leanpub-start-insert
 vendor.js.map   86 bytes       2  [emitted]  vendor
@@ -169,8 +147,6 @@ Given it needs to do more work, it took longer to execute the build. But on the 
 You should check *uglifyjs-webpack-plugin* for more options. It gives you control over how to handle code comments for example.
 
 W> Source maps are disabled by default. You can enable them through the `sourceMap` flag.
-
-{pagebreak}
 
 ## Other Ways to Minify JavaScript
 
