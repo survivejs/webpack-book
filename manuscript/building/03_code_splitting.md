@@ -50,11 +50,7 @@ Promise.all([
 
 This creates separate bundles to request. If you wanted only one, you would have to use naming or define an intermediate module to `import`.
 
-T> Webpack provided support for `System.import` in the early versions of webpack 2 and it still does. The functionality has been deprecated and gets removed in webpack 3. Until then, you can use the functionality interchangeably.
-
-W> The syntax works only with JavaScript after configured the right way. If you use another environment, you have to use alternatives covered in the following sections.
-
-{pagebreak}
+W> The syntax works only with JavaScript after configured the right way. If you use another environment, you may have to use alternatives covered in the following sections.
 
 ### `require.ensure`
 
@@ -81,8 +77,6 @@ require.ensure(
 Often you can achieve what you want through a dynamic `import`, but it's good to know this alternate form exists as well. `require.ensure` supports naming as well and [the official example](https://github.com/webpack/webpack/tree/master/examples/named-chunks) shows the output in detail.
 
 W> `require.ensure` relies on `Promise`s internally. If you use `require.ensure` with older browsers, remember to shim `Promise` using a polyfill such as [es6-promise](https://www.npmjs.com/package/es6-promise).
-
-{pagebreak}
 
 ### `require.include`
 
@@ -113,11 +107,11 @@ T> The formats respect `output.publicPath` option. You can also use `output.chun
 
 To demonstrate the idea of code splitting, you can use dynamic `import`. The Babel setup of the project needs additions to make the syntax work.
 
-{pagebreak}
-
 ### Configuring Babel
 
-Given Babel doesn't support the dynamic `import` syntax out of the box, it needs [babel-plugin-syntax-dynamic-import](https://www.npmjs.com/package/babel-plugin-syntax-dynamic-import) to work. Install it first:
+Given Babel doesn't support the dynamic `import` syntax out of the box, it needs [babel-plugin-syntax-dynamic-import](https://www.npmjs.com/package/babel-plugin-syntax-dynamic-import) to work.
+
+Install it first:
 
 ```bash
 npm install babel-plugin-syntax-dynamic-import --save-dev
@@ -148,8 +142,6 @@ The idea can be demonstrated by setting up a module that contains a string that 
 export default "Hello from lazy";
 ```
 
-{pagebreak}
-
 You also need to point the application to this file, so the application knows to load it. This can be done by binding the loading process to click. Whenever the user happens to click the button, you trigger the loading process and replace the content:
 
 **app/component.js**
@@ -179,8 +171,6 @@ leanpub-end-insert
 If you open up the application (`npm start`) and click the button, you should see the new text in the button.
 
 ![Lazy loaded content](images/lazy.png)
-
-{pagebreak}
 
 If you run `npm run build`, you should see something:
 
@@ -215,8 +205,6 @@ vendor.js.map     178 kB       2  [emitted]         vendor
 
 That *0.js* is your split point. Examining the file reveals that webpack has wrapped the code in a `webpackJsonp` block and processed the code bit.
 
-{pagebreak}
-
 ### Lazy Loading Styles
 
 Lazy loading can be applied to styling as well. Expand the definition:
@@ -245,8 +233,6 @@ The idea is that after *lazy.js* gets loaded, *lazy.css* is applied as well. You
 
 ![Lazy styled content](images/lazy-styled.png)
 
-{pagebreak}
-
 ### Defining a Split Point Using `require.ensure`
 
 It's possible to achieve the same with `require.ensure`. Consider the full example below:
@@ -272,8 +258,6 @@ You could name the split point as outlined above. If you add another split point
 T> [bundle-loader](https://www.npmjs.com/package/bundle-loader) gives similar results, but through a loader interface. It supports bundle naming through its `name` option.
 
 T> The *Dynamic Loading* chapter covers other techniques that come in handy when you have to deal with more complicated splits.
-
-{pagebreak}
 
 ## Code Splitting in React
 
@@ -328,8 +312,6 @@ AsyncComponent.propTypes = {
 ```
 
 T> [react-async-component](https://www.npmjs.com/package/react-async-component) wraps the pattern in a `createAsyncComponent` call and provides server side rendering specific functionality. [react-loadable](https://www.npmjs.com/package/react-loadable) is another option.
-
-{pagebreak}
 
 ## Conclusion
 
