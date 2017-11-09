@@ -278,30 +278,20 @@ The splitting pattern can be wrapped into a React component. Airbnb uses the fol
 ```javascript
 import React from "react";
 
-...
-
 // Somewhere in code
 <AsyncComponent loader={() => import("./SomeComponent")} />
 
-...
-
-// React wrapper for loading
 class AsyncComponent extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      Component: null,
-    };
+    this.state = { Component: null };
   }
-
   componentDidMount() {
-    // Load the component now
-    this.props.loader().then(Component => {
-      this.setState({ Component });
-    });
+    this.props.loader().then(
+      Component => this.setState({ Component })
+    );
   }
-
   render() {
     const { Component } = this.state;
     const { Placeholder, ...props } = this.props;
@@ -320,11 +310,9 @@ AsyncComponent.propTypes = {
 
 T> [react-async-component](https://www.npmjs.com/package/react-async-component) wraps the pattern in a `createAsyncComponent` call and provides server side rendering specific functionality. [react-loadable](https://www.npmjs.com/package/react-loadable) is another option.
 
-{pagebreak}
-
 ## Conclusion
 
-Code splitting is one of those features that allows you to push your application a notch further. You can load code when you need it to gain faster initial load times and improved user experience especially in a mobile context where bandwidth is limited.
+Code splitting is a feature that allows you to push your application a notch further. You can load code when you need it to gain faster initial load times and improved user experience especially in a mobile context where bandwidth is limited.
 
 To recap:
 
