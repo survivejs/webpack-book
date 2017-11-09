@@ -63,8 +63,6 @@ Entrypoints:
 
 If minification works, the warning should disappear. That's the next challenge.
 
-{pagebreak}
-
 ## Minifying JavaScript
 
 The point of **minification** is to convert the code into a smaller form. Safe **transformations** do this without losing any meaning by rewriting code. Good examples of this include renaming variables or even removing entire blocks of code based on the fact that they are unreachable (`if (false)`).
@@ -72,8 +70,6 @@ The point of **minification** is to convert the code into a smaller form. Safe *
 Unsafe transformations can break code as they can lose something implicit the underlying code relies upon. For example, Angular 1 expects specific function parameter naming when using modules. Rewriting the parameters breaks code unless you take precautions against it in this case.
 
 Minification in webpack can be enabled through `webpack -p` (same as `--optimize-minimize`). This uses webpack's `UglifyJsPlugin` underneath.
-
-{pagebreak}
 
 ### Setting Up JavaScript Minification
 
@@ -113,8 +109,6 @@ leanpub-end-insert
 ]);
 ```
 
-{pagebreak}
-
 If you execute `npm run build` now, you should see smaller results:
 
 ```bash
@@ -144,8 +138,6 @@ You should check *uglifyjs-webpack-plugin* for more options. It gives you contro
 
 W> Source maps are disabled by default. You can enable them through the `sourceMap` flag.
 
-{pagebreak}
-
 ## Other Ways to Minify JavaScript
 
 Although *uglifyjs-webpack-plugin* works for this use case, there are more options you can consider:
@@ -161,8 +153,6 @@ Although *uglifyjs-webpack-plugin* works for this use case, there are more optio
 [clean-css-loader](https://www.npmjs.com/package/clean-css-loader) allows you to use a popular CSS minifier [clean-css](https://www.npmjs.com/package/clean-css).
 
 [optimize-css-assets-webpack-plugin](https://www.npmjs.com/package/optimize-css-assets-webpack-plugin) is a plugin based option that applies a chosen minifier on CSS assets. Using `ExtractTextPlugin` can lead to duplicated CSS given it only merges text chunks. `OptimizeCSSAssetsPlugin` avoids this problem by operating on the generated result and thus can lead to a better result.
-
-{pagebreak}
 
 ### Setting Up CSS Minification
 
@@ -193,8 +183,6 @@ exports.minifyCSS = ({ options }) => ({
 ```
 
 W> If you use `--json` output with webpack as discussed in the *Analyzing Build Statistics* chapter, you should set `canPrint: false` to avoid output. You can solve by exposing the flag as a parameter so you can control it based on the environment.
-
-{pagebreak}
 
 Then, connect with main configuration:
 
