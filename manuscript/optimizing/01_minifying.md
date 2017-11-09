@@ -56,7 +56,7 @@ const productionConfig = merge([
 leanpub-start-insert
   {
     performance: {
-      hints: 'warning', // 'error' or false are valid too
+      hints: "warning", // 'error' or false are valid too
       maxEntrypointSize: 50000, // in bytes
       maxAssetSize: 450000, // in bytes
     },
@@ -266,8 +266,6 @@ leanpub-end-insert
 ## Minifying HTML
 
 If you consume HTML templates through your code using [html-loader](https://www.npmjs.com/package/html-loader), you can preprocess it through [posthtml](https://www.npmjs.com/package/posthtml) with [posthtml-loader](https://www.npmjs.com/package/posthtml-loader). You can use [posthtml-minifier](https://www.npmjs.com/package/posthtml-minifier) to minify your HTML through it.
-
-{pagebreak}
 
 ## Conclusion
 
