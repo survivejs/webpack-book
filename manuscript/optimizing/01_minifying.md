@@ -16,9 +16,9 @@ Version: webpack 3.8.1
 Time: 2398ms
         Asset       Size  Chunks                    Chunk Names
 leanpub-start-insert
-    vendor.js    98.7 kB       2  [emitted]         vendor
+    vendor.js    83.7 kB       2  [emitted]         vendor
 leanpub-end-insert
-       app.js    2.42 kB       1  [emitted]         app
+       app.js    2.49 kB       1  [emitted]         app
   ...font.eot     166 kB          [emitted]
 ...font.woff2    77.2 kB          [emitted]
  ...font.woff      98 kB          [emitted]
@@ -32,12 +32,12 @@ leanpub-end-insert
 vendor.js.map     119 kB       2  [emitted]         vendor
    index.html  274 bytes          [emitted]
     [6] ./app/index.js 176 bytes {1} [built]
-   [15] ./app/main.css 41 bytes {1} [built]
-   [16] ./app/component.js 464 bytes {1} [built]
+   [14] ./app/main.css 41 bytes {1} [built]
+   [15] ./app/component.js 464 bytes {1} [built]
 ...
 ```
 
-98 kB for a vendor bundle is a lot! Minification should bring the size down.
+83 kB for a vendor bundle is a lot! Minification should bring the size down.
 
 ## Enabling a Performance Budget
 
@@ -57,7 +57,7 @@ leanpub-start-insert
   {
     performance: {
       hints: 'warning', // 'error' or false are valid too
-      maxEntrypointSize: 100000, // in bytes
+      maxEntrypointSize: 50000, // in bytes
       maxAssetSize: 450000, // in bytes
     },
   },
@@ -70,9 +70,9 @@ In practice you want to maintain lower limits. The current ones are enough for t
 
 ```bash
 ...
-WARNING in entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (100 kB). This can impact web performance.
+WARNING in entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (50 kB). This can impact web performance.
 Entrypoints:
-  app (104 kB)
+  app (89.5 kB)
       vendor.js
       app.js
       app.css
@@ -89,16 +89,16 @@ The point of **minification** is to convert the code into a smaller form. Safe *
 
 Unsafe transformations can break code as they can lose something implicit the underlying code relies upon. For example, Angular 1 expects specific function parameter naming when using modules. Rewriting the parameters breaks code unless you take precautions against it in this case.
 
-Minification in webpack can be enabled through `webpack -p` (same as `--optimize-minimize`). This uses webpack's `UglifyJsPlugin` underneath. The problem is that UglifyJS doesn't support ES6 syntax yet making it problematic if Babel and *babel-preset-env* are used while targeting specific browsers. You have to go another route in this case for this reason.
+Minification in webpack can be enabled through `webpack -p` (same as `--optimize-minimize`). This uses webpack's `UglifyJsPlugin` underneath.
 
 ### Setting Up JavaScript Minification
 
-[babel-preset-minify](https://www.npmjs.com/package/babel-preset-minify) is a JavaScript minifier maintained by the Babel team and it provides support for ES6 and newer features. [babel-minify-webpack-plugin](https://www.npmjs.com/package/babel-minify-webpack-plugin) makes it possible to use it through webpack.
+[uglifyjs-webpack-plugin](https://www.npmjs.com/package/uglifyjs-webpack-plugin) allows you to use ES6 syntax out of the box and minify it.
 
 To get started, include the plugin to the project:
 
 ```bash
-npm install babel-minify-webpack-plugin --save-dev
+npm install uglifyjs-webpack-plugin --save-dev
 ```
 
 {pagebreak}
@@ -109,12 +109,10 @@ To attach it to the configuration, define a part for it first:
 
 ```javascript
 ...
-const BabelWebpackPlugin = require('babel-minify-webpack-plugin');
+const UglifyWebpackPlugin = require("uglifyjs-webpack-plugin");
 
 exports.minifyJavaScript = () => ({
-  plugins: [
-    new BabelWebpackPlugin(),
-  ],
+  plugins: [new UglifyWebpackPlugin()],
 });
 ```
 
@@ -143,9 +141,9 @@ Version: webpack 3.8.1
 Time: 3165ms
         Asset       Size  Chunks             Chunk Names
 leanpub-start-insert
-    vendor.js    45.2 kB       2  [emitted]  vendor
+    vendor.js    28.1 kB       2  [emitted]  vendor
 leanpub-end-insert
-       app.js  669 bytes       1  [emitted]  app
+       app.js  675 bytes       1  [emitted]  app
   ...font.eot     166 kB          [emitted]
 ...font.woff2    77.2 kB          [emitted]
  ...font.woff      98 kB          [emitted]
@@ -157,7 +155,7 @@ leanpub-end-insert
    app.js.map    1.64 kB       1  [emitted]  app
   app.css.map   84 bytes       1  [emitted]  app
 leanpub-start-insert
-vendor.js.map     113 kB       2  [emitted]  vendor
+vendor.js.map   86 bytes       2  [emitted]  vendor
 leanpub-end-insert
    index.html  274 bytes          [emitted]
     [6] ./app/index.js 176 bytes {1} [built]
@@ -168,20 +166,19 @@ leanpub-end-insert
 
 Given it needs to do more work, it took longer to execute the build. But on the plus side, the build is now smaller, the size limit warning disappeared, and the vendor build went from 98 kB to roughly 45 kB.
 
-You should check *babel-minify-webpack-plugin* for more options. It gives you control over how to handle code comments for example.
+You should check *uglifyjs-webpack-plugin* for more options. It gives you control over how to handle code comments for example.
+
+W> Source maps are disabled by default. You can enable them through the `sourceMap` flag.
 
 {pagebreak}
 
 ## Other Ways to Minify JavaScript
 
-Although *babel-minify-webpack-plugin* works for this use case, there are more options you can consider:
+Although *uglifyjs-webpack-plugin* works for this use case, there are more options you can consider:
 
+* [babel-minify-webpack-plugin](https://www.npmjs.com/package/babel-minify-webpack-plugin) relies on [babel-preset-minify](https://www.npmjs.com/package/babel-preset-minify) underneath and it has been developed by the Babel team. It's slower than UglifyJS, though.
 * [webpack-closure-compiler](https://www.npmjs.com/package/webpack-closure-compiler) runs parallel and gives even smaller result than *babel-minify-webpack-plugin* at times.
 * [optimize-js-plugin](https://www.npmjs.com/package/optimize-js-plugin) complements the other solutions by wrapping eager functions and it enhances the way your JavaScript code gets parsed initially. The plugin relies on [optimize-js](https://github.com/nolanlawson/optimize-js) by Nolan Lawson.
-* [webpack.optimize.UglifyJsPlugin](https://webpack.js.org/plugins/uglifyjs-webpack-plugin/) is the official UglifyJS plugin for webpack. It doesn't support ES6 yet.
-* [uglifyjs-webpack-plugin](https://www.npmjs.com/package/uglifyjs-webpack-plugin) allows you to try out an experimental version of UglifyJS that provides better support for ES6 than the stable version.
-* [uglify-loader](https://www.npmjs.com/package/uglify-loader) gives more granular control than webpack's `UglifyJsPlugin` in case you prefer to use UglifyJS.
-* [webpack-parallel-uglify-plugin](https://www.npmjs.com/package/webpack-parallel-uglify-plugin) allows you to parallelize the minifying step and can yield extra performance as webpack doesn't run in parallel by default.
 
 ## Minifying CSS
 
@@ -207,7 +204,7 @@ Like for JavaScript, you can wrap the idea in a configuration part:
 
 ```javascript
 ...
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const cssnano = require('cssnano');
 
 exports.minifyCSS = ({ options }) => ({
@@ -292,7 +289,7 @@ Minification is the easiest step you can take to make your build smaller. To rec
 
 * **Minification** process analyzes your source code and turns it into a smaller form with the same meaning if you use safe transformations. Certain unsafe transformations allow you to reach even smaller results while potentially breaking code that relies, for example, on exact parameter naming.
 * **Performance budget** allows you to set limits to the build size. Maintaining a budget can keep developers more conscious of the size of the generated bundles.
-* Webpack includes `UglifyJsPlugin` for minification. Other solutions, such as *babel-minify-webpack-plugin*, provide similar functionality with costs of their own. While *babel-minify-webpack-plugin* supports ES6, it can be less performant than UglifyJS.
+* Webpack includes `UglifyJsPlugin` for minification. Other solutions, such as *babel-minify-webpack-plugin*, provide similar functionality with costs of their own.
 * Besides JavaScript, it's possible to minify other assets, such as CSS and HTML, too. Minifying these requires specific technologies that have to be applied through loaders and plugins of their own.
 
 You'll learn to apply tree shaking against code in the next chapter.

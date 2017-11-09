@@ -22,7 +22,7 @@
 
         ["uglify", "UglifyJS"],
         ["sourcemap", "sourcemap"],
-        ["source maps", "source maps"],
+        ["sourcemaps", "source maps"],
         ["environemnt", "environment"],
         ["some", ""],
         ["filetype", "file type"],
