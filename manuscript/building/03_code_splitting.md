@@ -187,7 +187,7 @@ Hash: bd020a9fce9965e910a3
 Version: webpack 3.8.1
 Time: 2184ms
         Asset       Size  Chunks                    Chunk Names
-    vendor.js     150 kB       2  [emitted]         vendor
+    vendor.js    83.7 kB       2  [emitted]         vendor
   ...font.eot     166 kB          [emitted]
 ...font.woff2    77.2 kB          [emitted]
  ...font.woff      98 kB          [emitted]
@@ -196,18 +196,18 @@ leanpub-start-insert
          0.js  315 bytes       0  [emitted]
 leanpub-end-insert
   ...font.ttf     166 kB          [emitted]
-       app.js     2.4 kB       1  [emitted]         app
-      app.css    3.89 kB       1  [emitted]         app
+       app.js    2.48 kB       1  [emitted]         app
+      app.css    3.23 kB       1  [emitted]         app
 leanpub-start-insert
-     0.js.map  235 bytes       0  [emitted]
+     0.js.map  233 bytes       0  [emitted]
 leanpub-end-insert
    app.js.map    2.13 kB       1  [emitted]         app
   app.css.map   84 bytes       1  [emitted]         app
 vendor.js.map     178 kB       2  [emitted]         vendor
    index.html  274 bytes          [emitted]
     [6] ./app/index.js 176 bytes {1} [built]
-   [15] ./app/main.css 41 bytes {1} [built]
-   [16] ./app/component.js 464 bytes {1} [built]
+   [14] ./app/main.css 41 bytes {1} [built]
+   [15] ./app/component.js 464 bytes {1} [built]
 ...
 ```
 
