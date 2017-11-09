@@ -164,7 +164,7 @@ leanpub-end-insert
 ...
 ```
 
-Given it needs to do more work, it took longer to execute the build. But on the plus side, the build is now smaller, the size limit warning disappeared, and the vendor build went from 98 kB to roughly 45 kB.
+Given it needs to do more work, it took longer to execute the build. But on the plus side, the build is now smaller, the size limit warning disappeared, and the vendor build went from 83 kB to roughly 28 kB.
 
 You should check *uglifyjs-webpack-plugin* for more options. It gives you control over how to handle code comments for example.
 
@@ -205,7 +205,7 @@ Like for JavaScript, you can wrap the idea in a configuration part:
 ```javascript
 ...
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const cssnano = require('cssnano');
+const cssnano = require("cssnano");
 
 exports.minifyCSS = ({ options }) => ({
   plugins: [
@@ -253,8 +253,8 @@ Hash: 9164f800e257bf1d9791
 Version: webpack 3.8.1
 Time: 3254ms
         Asset       Size  Chunks             Chunk Names
-    vendor.js    33.8 kB       2  [emitted]  vendor
-       app.js  669 bytes       1  [emitted]  app
+    vendor.js    28.1 kB       2  [emitted]  vendor
+       app.js  675 bytes       1  [emitted]  app
   ...font.eot     166 kB          [emitted]
 ...font.woff2    77.2 kB          [emitted]
  ...font.woff      98 kB          [emitted]
@@ -262,16 +262,16 @@ Time: 3254ms
          0.js  399 bytes       0  [emitted]
   ...font.ttf     166 kB          [emitted]
 leanpub-start-insert
-      app.css    2.24 kB       1  [emitted]  app
+      app.css    2.25 kB       1  [emitted]  app
 leanpub-end-insert
      0.js.map    2.07 kB       0  [emitted]
    app.js.map    1.64 kB       1  [emitted]  app
   app.css.map   84 bytes       1  [emitted]  app
-vendor.js.map     113 kB       2  [emitted]  vendor
+vendor.js.map   86 bytes       2  [emitted]  vendor
    index.html  274 bytes          [emitted]
     [6] ./app/index.js 176 bytes {1} [built]
-   [15] ./app/main.css 41 bytes {1} [built]
-   [16] ./app/component.js 464 bytes {1} [built]
+   [14] ./app/main.css 41 bytes {1} [built]
+   [15] ./app/component.js 464 bytes {1} [built]
 ...
 ```
 
