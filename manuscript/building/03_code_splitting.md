@@ -138,6 +138,8 @@ leanpub-end-insert
 
 W> If you are using ESLint, you should install `babel-eslint` and set `parser: 'babel-eslint'` in addition to `parserOptions.allowImportExportEverywhere: true` at ESLint configuration.
 
+{pagebreak}
+
 ### Defining a Split Point Using a Dynamic `import`
 
 The idea can be demonstrated by setting up a module that contains a string that replaces the text of the demo button:
@@ -239,6 +241,8 @@ The idea is that after *lazy.js* gets loaded, *lazy.css* is applied as well. You
 
 ![Lazy styled content](images/lazy-styled.png)
 
+{pagebreak}
+
 ### Defining a Split Point Using `require.ensure`
 
 It's possible to achieve the same with `require.ensure`. Consider the full example below:
@@ -264,6 +268,8 @@ You could name the split point as outlined above. If you add another split point
 T> [bundle-loader](https://www.npmjs.com/package/bundle-loader) gives similar results, but through a loader interface. It supports bundle naming through its `name` option.
 
 T> The *Dynamic Loading* chapter covers other techniques that come in handy when you have to deal with more complicated splits.
+
+{pagebreak}
 
 ## Code Splitting in React
 
