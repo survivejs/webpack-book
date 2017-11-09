@@ -52,6 +52,8 @@ This creates separate bundles to request. If you wanted only one, you would have
 
 W> The syntax works only with JavaScript after configured the right way. If you use another environment, you may have to use alternatives covered in the following sections.
 
+{pagebreak}
+
 ### `require.ensure`
 
 [require.ensure](https://webpack.js.org/api/module-methods/#require-ensure) provides an alternate way:
@@ -78,6 +80,8 @@ Often you can achieve what you want through a dynamic `import`, but it's good to
 
 W> `require.ensure` relies on `Promise`s internally. If you use `require.ensure` with older browsers, remember to shim `Promise` using a polyfill such as [es6-promise](https://www.npmjs.com/package/es6-promise).
 
+{pagebreak}
+
 ### `require.include`
 
 The example above could be rewritten using webpack particular `require.include`:
@@ -102,6 +106,8 @@ require.ensure(
 If you had nested `require.ensure` definitions, you could pull a module to the parent chunk using either syntax. It's a similar idea as you saw in the *Bundle Splitting* chapter.
 
 T> The formats respect `output.publicPath` option. You can also use `output.chunkFilename` to shape where they output. Example: `chunkFilename: '[name].js'`.
+
+{pagebreak}
 
 ## Setting Up Code Splitting
 
