@@ -313,7 +313,6 @@ class AsyncComponent extends React.Component {
     return <Placeholder>
   }
 }
-
 AsyncComponent.propTypes = {
   // A loader is a function that should return a Promise.
   loader: PropTypes.func.isRequired,
@@ -324,6 +323,8 @@ AsyncComponent.propTypes = {
 ```
 
 T> [react-async-component](https://www.npmjs.com/package/react-async-component) wraps the pattern in a `createAsyncComponent` call and provides server side rendering specific functionality. [react-loadable](https://www.npmjs.com/package/react-loadable) is another option.
+
+{pagebreak}
 
 ## Conclusion
 
