@@ -27,8 +27,6 @@ leanpub-end-insert
 
 83 kB for a vendor bundle is a lot! Minification should bring the size down.
 
-{pagebreak}
-
 ## Enabling a Performance Budget
 
 Webpack allows you to define a **performance budget**. The idea is that it gives your build size constraint which it has to follow. The feature is disabled by default, but if enabled it defaults to 250 kB limit per entries and assets. The calculation includes extracted chunks to entry calculation.
@@ -59,14 +57,12 @@ leanpub-end-insert
 In practice you want to maintain lower limits. The current ones are enough for this demonstration. If you build now (`npm run build`), you should see a warning within the output:
 
 ```bash
-...
 WARNING in entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (50 kB). This can impact web performance.
 Entrypoints:
   app (89.5 kB)
       vendor.js
       app.js
       app.css
-...
 ```
 
 If minification works, the warning should disappear. That's the next challenge.
@@ -88,8 +84,6 @@ To get started, include the plugin to the project:
 ```bash
 npm install uglifyjs-webpack-plugin --save-dev
 ```
-
-{pagebreak}
 
 To attach it to the configuration, define a part for it first:
 
