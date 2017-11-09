@@ -314,7 +314,7 @@ AsyncComponent.propTypes = {
   loader: PropTypes.func.isRequired,
 
   // A placeholder to render while waiting completion.
-  Placeholder: PropTypes.node.isRequired
+  Placeholder: PropTypes.node.isRequired,
 };
 ```
 
