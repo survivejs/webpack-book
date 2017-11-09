@@ -24,13 +24,11 @@ Next, you need to define a function to wrap the basic idea. You could use the pl
 
 ```javascript
 ...
-leanpub-start-insert
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 exports.clean = path => ({
   plugins: [new CleanWebpackPlugin([path])],
 });
-leanpub-end-insert
 ```
 
 Connect it with the project:
@@ -68,7 +66,6 @@ Then define a part to wrap the idea:
 
 ```javascript
 ...
-leanpub-start-insert
 const GitRevisionPlugin = require("git-revision-webpack-plugin");
 
 exports.attachRevision = () => ({
@@ -78,7 +75,6 @@ exports.attachRevision = () => ({
     }),
   ],
 });
-leanpub-end-insert
 ```
 
 {pagebreak}
