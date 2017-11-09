@@ -29,7 +29,7 @@ leanpub-end-insert
 
 ## Enabling a Performance Budget
 
-Webpack allows you to define a **performance budget**. The idea is that it gives your build size constraint which it has to follow. The feature is disabled by default, but if enabled it defaults to 250 kB limit per entries and assets. The calculation includes extracted chunks to entry calculation.
+Webpack allows you to define a **performance budget**. The idea is that it gives your build size constraint which it has to follow. The feature is disabled by default and the calculation includes extracted chunks to entry calculation.
 
 Performance budget can be configured to provide warnings or errors. If a budget isn't met and it has been configured to emit an error, it would terminate the entire build.
 
@@ -43,7 +43,7 @@ leanpub-start-insert
   {
     performance: {
       hints: "warning", // "error" or false are valid too
-      maxEntrypointSize: 50000, // in bytes
+      maxEntrypointSize: 50000, // in bytes, default 250k
       maxAssetSize: 450000, // in bytes
     },
   },
@@ -51,8 +51,6 @@ leanpub-end-insert
   ...
 ]);
 ```
-
-{pagebreak}
 
 In practice you want to maintain lower limits. The current ones are enough for this demonstration. If you build now (`npm run build`), you should see a warning within the output:
 
@@ -66,6 +64,8 @@ Entrypoints:
 ```
 
 If minification works, the warning should disappear. That's the next challenge.
+
+{pagebreak}
 
 ## Minifying JavaScript
 
