@@ -4,8 +4,6 @@ The build output hasn't received attention yet and no doubt it's going to be chu
 
 **Minification** is a process where the code is simplified without losing any meaning that matters to the interpreter. As a result, your code most likely looks jumbled, and it's hard to read. But that's the point.
 
-T> Even if you minify the build, you can still generate source maps through the `devtool` option that was discussed earlier to gain a better debugging experience, even production code if you want.
-
 ## Generating a Baseline Build
 
 To get started, you should generate a baseline build, so you have something to optimize. Execute `npm run build` to see output below:
@@ -29,6 +27,8 @@ leanpub-end-insert
 
 83 kB for a vendor bundle is a lot! Minification should bring the size down.
 
+{pagebreak}
+
 ## Enabling a Performance Budget
 
 Webpack allows you to define a **performance budget**. The idea is that it gives your build size constraint which it has to follow. The feature is disabled by default, but if enabled it defaults to 250 kB limit per entries and assets. The calculation includes extracted chunks to entry calculation.
@@ -44,7 +44,7 @@ const productionConfig = merge([
 leanpub-start-insert
   {
     performance: {
-      hints: "warning", // 'error' or false are valid too
+      hints: "warning", // "error" or false are valid too
       maxEntrypointSize: 50000, // in bytes
       maxAssetSize: 450000, // in bytes
     },
@@ -53,6 +53,8 @@ leanpub-end-insert
   ...
 ]);
 ```
+
+{pagebreak}
 
 In practice you want to maintain lower limits. The current ones are enough for this demonstration. If you build now (`npm run build`), you should see a warning within the output:
 
