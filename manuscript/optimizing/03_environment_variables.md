@@ -56,8 +56,6 @@ if (false) {
 }
 ```
 
-{pagebreak}
-
 A minifier eliminates the `if` statement as it has become dead code:
 
 ```javascript
@@ -113,21 +111,10 @@ Version: webpack 3.8.1
 Time: 2740ms
         Asset       Size  Chunks             Chunk Names
 leanpub-start-insert
-    vendor.js      14 kB       2  [emitted]  vendor
+    vendor.js    8.36 kB       2  [emitted]  vendor
 leanpub-end-insert
        app.js  802 bytes       1  [emitted]  app
-  ...font.eot     166 kB          [emitted]
-...font.woff2    77.2 kB          [emitted]
- ...font.woff      98 kB          [emitted]
-  ...font.svg     444 kB          [emitted]
-     logo.png      77 kB          [emitted]
-         0.js  399 bytes       0  [emitted]
-  ...font.ttf     166 kB          [emitted]
-      app.css    2.48 kB       1  [emitted]  app
-     0.js.map    2.07 kB       0  [emitted]
-   app.js.map    2.32 kB       1  [emitted]  app
-  app.css.map   84 bytes       1  [emitted]  app
-vendor.js.map    38.2 kB       2  [emitted]  vendor
+...
    index.html  274 bytes          [emitted]
    [4] ./~/object-assign/index.js 2.11 kB {2} [built]
   [14] ./app/component.js 461 bytes {1} [built]
@@ -135,9 +122,9 @@ vendor.js.map    38.2 kB       2  [emitted]  vendor
 ...
 ```
 
-You went from 98 kB to 45 kB, and finally, to 14 kB. The final build is faster than the previous one as well.
+You went from 83 kB to 28 kB, and finally, to 8 kB. The final build is faster than the previous one as well.
 
-Given the 14 kB can be served gzipped, it's somewhat reasonable. gzipping drops around another 40%, and it's well supported by browsers.
+Given the 8 kB can be served gzipped, it's somewhat reasonable. gzipping drops around another 40%, and it's well supported by browsers. It comes with a performance overhead on mobile usage, though.
 
 T> `webpack.EnvironmentPlugin(['NODE_ENV'])` is a shortcut that allows you to refer to environment variables. It uses `DefinePlugin` underneath and you can achieve the same effect by passing `process.env.NODE_ENV` to the custom function you made. The [documentation covers `EnvironmentPlugin`](https://webpack.js.org/plugins/environment-plugin/) in greater detail.
 
@@ -150,8 +137,6 @@ T> `webpack.EnvironmentPlugin(['NODE_ENV'])` is a shortcut that allows you to re
 ## Choosing Which Module to Use
 
 The techniques discussed in this chapter can be used to choose entire modules depending on the environment. As seen above, `DefinePlugin` based splitting allows you to choose which branch of code to use and which to discard. This idea can be used to implement branching on module level.
-
-{pagebreak}
 
 Consider the file structure below:
 
