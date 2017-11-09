@@ -94,6 +94,8 @@ exports.minifyJavaScript = () => ({
 });
 ```
 
+{pagebreak}
+
 The plugin exposes more functionality, but having the possibility of toggling source maps is enough. Hook it up with the configuration:
 
 **webpack.config.js**
@@ -134,9 +136,7 @@ leanpub-end-insert
 
 Given it needs to do more work, it took longer to execute the build. But on the plus side, the build is now smaller, the size limit warning disappeared, and the vendor build went from 83 kB to roughly 28 kB.
 
-You should check *uglifyjs-webpack-plugin* for more options. It gives you control over how to handle code comments for example.
-
-W> Source maps are disabled by default. You can enable them through the `sourceMap` flag.
+T> Source maps are disabled by default. You can enable them through the `sourceMap` flag. You should check *uglifyjs-webpack-plugin* for more options.
 
 ## Other Ways to Minify JavaScript
 
@@ -156,7 +156,7 @@ Although *uglifyjs-webpack-plugin* works for this use case, there are more optio
 
 ### Setting Up CSS Minification
 
-Out of the available solutions, `OptimizeCSSAssetsPlugin` composes the best. To attach it to the setup, install it and *cssnano* first:
+Out of the available solutions, `OptimizeCSSAssetsPlugin` composes the best. To attach it to the setup, install it and [cssnano](http://cssnano.co/) first:
 
 ```bash
 npm install optimize-css-assets-webpack-plugin cssnano --save-dev
@@ -183,6 +183,8 @@ exports.minifyCSS = ({ options }) => ({
 ```
 
 W> If you use `--json` output with webpack as discussed in the *Analyzing Build Statistics* chapter, you should set `canPrint: false` to avoid output. You can solve by exposing the flag as a parameter so you can control it based on the environment.
+
+{pagebreak}
 
 Then, connect with main configuration:
 
@@ -224,8 +226,6 @@ leanpub-end-insert
    app.js.map    1.64 kB       1  [emitted]  app
 ...
 ```
-
-[cssnano](http://cssnano.co/) has a lot more options to try out.
 
 ## Minifying HTML
 
