@@ -304,6 +304,8 @@ leanpub-end-insert
 ]);
 ```
 
+{pagebreak}
+
 With this change the import can be simplified:
 
 ```javascript
@@ -314,8 +316,6 @@ leanpub-start-insert
 import '!demo-loader?name=foo!./main.css';
 leanpub-end-insert
 ```
-
-{pagebreak}
 
 You could also handle the loader definition through `rules`. Once the loader is stable enough, set up a project based on *webpack-defaults*, push the logic there, and begin to consume the loader as a package.
 
