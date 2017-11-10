@@ -11,7 +11,7 @@ Using webpack can lead to a variety of runtime warnings or errors. Often a parti
 7. Search for the error online. Perhaps someone else has run into it. Ideally doing this leads to a quick solution. [Stack Overflow](https://stackoverflow.com/questions/tagged/webpack) and [the official issue tracker](https://github.com/webpack/webpack/issues) are good starting points.
 8. Enable `stats: 'verbose'` to get more information out of webpack. The [official documentation covers more flags](https://webpack.js.org/configuration/stats/).
 9. Add a temporary `console.log` near the error to get more insight into the problem. A heavier option is to [debug webpack through Chrome Dev Tools](https://medium.com/webpack/webpack-bits-learn-and-debug-webpack-with-chrome-dev-tools-da1c5b19554).
-10. [Ask a question at Stack Overflow](https://stackoverflow.com/questions/tagged/webpack) or [use the official Gitter channel](https://gitter.im/webpack/webpack) to get more ideas.
+10. [Ask a question at Stack Overflow](https://stackoverflow.com/questions/tagged/webpack) or [use the official Gitter channel](https://gitter.im/webpack/webpack).
 11. If everything fails and you are convinced you have found a bug, [report an issue at the official issue tracker](https://github.com/webpack/webpack/issues) or at other appropriate places if it's an issue in a dependency. Follow the issue template carefully, and provide a minimal runnable example as it helps to resolve the problem.
 
 Sometimes it's fastest to drop the error to a search engine and gain an answer that way. Other than that this is a good debugging order. If your setup worked in the past, you could also consider using commands like [git bisect](https://git-scm.com/docs/git-bisect) to figure out what has changed between the known working state and the current broken one.
@@ -26,15 +26,15 @@ You can end up with this error if you make an entry path point at a place that d
 
 You can get the error in two ways. Either by breaking a loader definition so that it points to a loader that does not exist, or by breaking an import path within your code so that it points to a module that doesn't exist. The message points out what to fix.
 
+## Module parse failed
+
+Even though webpack could resolve to your modules fine, it can still fail to build them. This case can happen if you are using syntax that your loaders don't understand. You could be missing something in your processing pass.
+
 ## Loader Not Found
 
 There's another subtle loader related error. If a package matching to a loader name that does not implement the loader interface exists, webpack matches to that and gives a runtime error that says the package is not a loader.
 
 This mistake can be made by writing `loader: "eslint"` instead of `loader: "eslint-loader"`. If the loader doesn't exist at all, the `Module not found` error will be raised.
-
-## Module parse failed
-
-Even though webpack could resolve to your modules fine, it can still fail to build them. This case can happen if you are using syntax that your loaders don't understand. You could be missing something in your processing pass.
 
 ## Module build failed: Unknown word
 
