@@ -153,13 +153,13 @@ T> [grunt-webpack](https://www.npmjs.com/package/grunt-webpack) plugin allows yo
 
 ![Gulp](images/gulp.png)
 
-[Gulp](http://gulpjs.com/) takes a different approach. Instead of relying on configuration per plugin, you deal with actual code. Gulp builds on top of the concept of piping. If you are familiar with Unix, it's the same idea here. You have the following concepts:
+[Gulp](http://gulpjs.com/) takes a different approach. Instead of relying on configuration per plugin, you deal with actual code. If you are familiar with Unix and piping, you'll like Gulp. You have the following concepts:
 
 * *Sources* to match to files.
 * *Filters* to perform operations on sources (e.g., convert to JavaScript)
 * *Sinks* (e.g., your build directory) where to pipe your build results.
 
-Here's a sample *Gulpfile* to give you a better idea of the approach, taken from the project's README. It has been abbreviated a notch:
+Here's an abbreviated sample *Gulpfile* to give you a better idea of the approach, taken from the project's README:
 
 **Gulpfile.js**
 
@@ -178,8 +178,7 @@ const paths = {
 // Not all tasks need to use streams.
 // A gulpfile is another node program
 // and you can use all packages available on npm.
-gulp.task("clean", del.bind(null, ["build"]));
-
+gulp.task("clean", () => del(["build"]));
 gulp.task("scripts", ["clean"], () =>
   // Minify and copy all JavaScript (except vendor scripts)
   // with sourcemaps all the way down.
@@ -193,9 +192,7 @@ gulp.task("scripts", ["clean"], () =>
     .pipe(sourcemaps.write())
     .pipe(gulp.dest("build/js"))
 );
-
-// Rerun the task when a file changes.
-gulp.task("watch", gulp.watch.bind(null, paths.scripts, ["scripts"]));
+gulp.task("watch", () => gulp.watch(paths.scripts, ["scripts"]));
 
 // The default task (called when you run `gulp` from CLI).
 gulp.task("default", ["watch", "scripts"]);
