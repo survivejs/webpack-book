@@ -159,8 +159,6 @@ T> [grunt-webpack](https://www.npmjs.com/package/grunt-webpack) plugin allows yo
 * *Filters* to perform operations on sources (e.g., convert to JavaScript)
 * *Sinks* (e.g., your build directory) where to pipe your build results.
 
-{pagebreak}
-
 Here's a sample *Gulpfile* to give you a better idea of the approach, taken from the project's README. It has been abbreviated a notch:
 
 **Gulpfile.js**
@@ -206,8 +204,6 @@ gulp.task("default", ["watch", "scripts"]);
 Given the configuration is code, you can always hack it if you run into troubles. You can wrap existing Node packages as Gulp plugins, and so on. Compared to Grunt, you have a clearer idea of what's going on. You still end up writing a lot of boilerplate for casual tasks, though. That is where newer approaches come in.
 
 T> [webpack-stream](https://www.npmjs.com/package/webpack-stream) allows you to use webpack in a Gulp environment.
-
-T> [Fly](https://www.npmjs.com/package/fly) is a similar tool as Gulp. It relies on ES6 generators instead.
 
 {pagebreak}
 
