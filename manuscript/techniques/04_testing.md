@@ -155,7 +155,7 @@ On the downside, now you need a browser to examine the tests. *mocha-loader* is 
 
 To get started, install Karma, Mocha, *karma-mocha* reporter, and *karma-webpack*:
 
-```
+```bash
 npm install karma mocha karma-mocha karma-webpack --save-dev
 ```
 
@@ -173,22 +173,16 @@ module.exports = config => {
 
   config.set({
     frameworks: ["mocha"],
-
     files: [
       {
         pattern: tests,
       },
     ],
-
     preprocessors: {
       [tests]: ["webpack"],
     },
-
     webpack: parts.loadJavaScript(),
-
     singleRun: true,
-
-    browsers: ["PhantomJS"],
   });
 };
 ```
@@ -235,7 +229,7 @@ T> You can point Karma to specific browsers through the `browsers` field. Exampl
 
 Running tests through PhantomJS requires a couple of dependencies:
 
-```
+```bash
 npm install karma-phantomjs-launcher phantomjs-prebuilt --save-dev
 ```
 
@@ -249,7 +243,6 @@ module.exports = config => {
 
   config.set({
     ...
-
 leanpub-start-insert
     browsers: ["PhantomJS"],
 leanpub-end-insert
@@ -362,10 +355,8 @@ module.exports = config => {
 
   config.set({
     ...
-
 leanpub-start-insert
     reporters: ["coverage"],
-
     coverageReporter: {
       dir: "build",
       reporters: [{ type: "html" }, { type: "lcov" }],
