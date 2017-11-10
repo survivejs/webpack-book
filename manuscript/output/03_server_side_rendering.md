@@ -60,7 +60,7 @@ const SSR = <div onClick={() => alert("hello")}>Hello world</div>;
 if (typeof document === "undefined") {
   module.exports = SSR;
 } else {
-  ReactDOM.render(SSR, document.getElementById("app"));
+  ReactDOM.hydrate(SSR, document.getElementById("app"));
 }
 ```
 
@@ -203,7 +203,7 @@ leanpub-start-delete
   app.listen(port);
 leanpub-end-delete
 leanpub-start-insert
-  app.listen(port, () => process.send && process.send('online'));
+  app.listen(port, () => process.send && process.send("online"));
 leanpub-end-insert
 }
 
@@ -223,7 +223,7 @@ leanpub-end-insert
 
 The first change tells the client that the application is online and ready to go. The latter change attaches the client script to the output. *browser-refresh* manages the environment variable in question.
 
-Run `node_modules/.bin/browser-refresh ./server.js` in another terminal and open the browser at `http://localhost:8080` as earlier to test the setup. Remember to have webpack running in the watch mode at another terminal. If everything went right, any change you make to the demo client script (*app/ssr.js*) should show up in the browser or cause a failure at the server.
+Run `node_modules/.bin/browser-refresh ./server.js` in another terminal and open the browser at `http://localhost:8080` as earlier to test the setup. Remember to have webpack running in the watch mode at another terminal (`npm run build:ssr -- --watch`). If everything went right, any change you make to the demo client script (*app/ssr.js*) should show up in the browser or cause a failure at the server.
 
 If the server crashes, it loses the WebSocket connection. You have to force a refresh in the browser in this case. If the server was managed through webpack as well, the problem could have been avoided.
 
