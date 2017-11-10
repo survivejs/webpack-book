@@ -348,8 +348,6 @@ Input: ${JSON.stringify(input, null, 2)}
 };
 ```
 
-{pagebreak}
-
 To connect it to the runner, add it to the loader definition:
 
 **run-loader.js**
@@ -383,8 +381,6 @@ Input: {}
   fileDependencies: [],
   contextDependencies: [] }
 ```
-
-T> The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API in detail. You can see all fields available through `this` there.
 
 ## Caching with Loaders
 
@@ -421,6 +417,8 @@ module.exports.pitch = function() {
 ```
 
 A pitch loader can be used to attach metadata to the input to use later. In this example, cache was constructed during the pitching stage and it was accessed during normal execution.
+
+T> The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API in detail. You can see all fields available through `this` there.
 
 ## Conclusion
 
