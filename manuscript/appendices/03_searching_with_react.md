@@ -11,7 +11,7 @@ Doing this defers the loading and moves it to a place where it's more acceptable
 To implement code splitting, you need to decide where to put the split point, put it there, and then handle the `Promise`:
 
 ```javascript
-import('./asset').then(asset => ...).catch(err => ...)
+import("./asset").then(asset => ...).catch(err => ...)
 ```
 
 The nice thing is that this gives error handling in case something goes wrong (network is down etc.) and gives a chance to recover. You can also use `Promise` based utilities like `Promise.all` for composing more complicated queries.
@@ -23,7 +23,7 @@ In this case, you need to detect when the user selects the search element, load 
 **App.js**
 
 ```javascript
-import React from 'react';
+import React from "react";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -31,7 +31,7 @@ export default class App extends React.Component {
 
     this.state = {
       index: null,
-      value: '',
+      value: "",
       lines: [],
       results: [],
     };
@@ -46,7 +46,8 @@ export default class App extends React.Component {
           <input
             type="text"
             value={value}
-            onChange={e => this.onChange(e)} />
+            onChange={e => this.onChange(e)}
+          />
         </div>
         <div className="results-container">
           <Results results={results} />
@@ -61,7 +62,7 @@ export default class App extends React.Component {
     this.setState(() => ({ value }));
 
     // Search against lines and index if they exist
-    if(lines && index) {
+    if (lines && index) {
       return this.setState(() => ({
         results: this.search(lines, index, value),
       }));
@@ -70,28 +71,32 @@ export default class App extends React.Component {
     // If the index doesn't exist, it has to be set it up.
     // You could show loading indicator here as loading might
     // take a while depending on the size of the index.
-    loadIndex().then(({ index, lines }) => {
-      // Search against the index now.
-      this.setState(() => ({
-        index,
-        lines,
-        results: this.search(lines, index, value),
-      }));
-    }).catch(err => console.error(err));
+    loadIndex()
+      .then(({ index, lines }) => {
+        // Search against the index now.
+        this.setState(() => ({
+          index,
+          lines,
+          results: this.search(lines, index, value),
+        }));
+      })
+      .catch(err => console.error(err));
   }
   search(lines, index, query) {
     // Search against index and match README lines.
-    return index.search(query.trim()).map(
-      match => lines[match.ref],
-    );
+    return index
+      .search(query.trim())
+      .map(match => lines[match.ref]);
   }
-};
+}
 
-const Results = ({results}) => {
-  if(results.length) {
-    return (<ul>{
-      results.map((result, i) => <li key={i}>{result}</li>)
-    }</ul>);
+const Results = ({ results }) => {
+  if (results.length) {
+    return (
+      <ul>
+        {results.map((result, i) => <li key={i}>{result}</li>)}
+      </ul>
+    );
   }
 
   return <span>No results</span>;
@@ -104,8 +109,8 @@ function loadIndex() {
   // Note that you will need to shim Promise.all for
   // older browsers and Internet Explorer!
   return Promise.all([
-    import('lunr'),
-    import('../search_index.json')
+    import("lunr"),
+    import("../search_index.json"),
   ]).then(([{ Index }, { index, lines }]) => {
     return {
       index: Index.load(index),
