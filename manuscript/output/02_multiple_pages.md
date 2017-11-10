@@ -26,15 +26,13 @@ To initialize a page, it should receive page title, output path, and an optional
 ...
 leanpub-start-insert
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-leanpub-end-insert
 
-...
-
-leanpub-start-insert
 exports.page = (
   {
     path = "",
-    template = require.resolve("html-webpack-plugin/default_index.ejs"),
+    template = require.resolve(
+      "html-webpack-plugin/default_index.ejs"
+    ),
     title,
   } = {}
 ) => ({
@@ -94,7 +92,8 @@ leanpub-start-insert
     parts.page({ title: "Webpack demo" }),
     parts.page({ title: "Another demo", path: "another" }),
   ];
-  const config = env === "production" ? productionConfig : developmentConfig;
+  const config =
+    env === "production" ? productionConfig : developmentConfig;
 
   return pages.map(page => merge(commonConfig, config, page));
 leanpub-end-insert
@@ -110,10 +109,10 @@ The question is, how to inject a different script per each page. In the current 
 **app/another.js**
 
 ```javascript
-import './main.css';
-import component from './component';
+import "./main.css";
+import component from "./component";
 
-let demoComponent = component('Another');
+const demoComponent = component("Another");
 
 document.body.appendChild(demoComponent);
 ```
@@ -163,7 +162,8 @@ leanpub-start-insert
     }),
   ];
 leanpub-end-insert
-  const config = env === "production" ? productionConfig : developmentConfig;
+  const config =
+    env === "production" ? productionConfig : developmentConfig;
 
   return pages.map(page => merge(commonConfig, config, page));
 };
@@ -174,18 +174,19 @@ The tweak also requires a change at the related part so that `entry` gets includ
 **webpack.parts.js**
 
 ```javascript
-exports.page = (
-  {
-    ...
+leanpub-start-delete
+exports.page = ({ path = "", template, title } = {}) => ({
+leanpub-end-delete
 leanpub-start-insert
-    entry,
-leanpub-end-insert
-  } = {}
-) => ({
-leanpub-start-insert
+exports.page = ({ path = "", template, title, entry } = {}) => ({
   entry,
 leanpub-end-insert
-  ...
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: `${path && path + "/"}index.html`,
+      title,
+    }),
+  ],
 });
 ```
 
@@ -243,7 +244,8 @@ leanpub-start-insert
 leanpub-end-insert
     }),
   ];
-  const config = env === "production" ? productionConfig : developmentConfig;
+  const config =
+    env === "production" ? productionConfig : developmentConfig;
 
 leanpub-start-delete
   return pages.map(page => merge(commonConfig, config, page));
@@ -261,14 +263,14 @@ The page-specific configuration requires a small tweak as well:
 **webpack.parts.js**
 
 ```javascript
-exports.page = (
-  {
-    ...
+leanpub-start-delete
+exports.page = ({ path = "", template, title, entry } = {}) => ({
+leanpub-end-delete
 leanpub-start-insert
-    chunks,
-leanpub-end-insert
-  } = {}
+exports.page = (
+  { path = "", template, title, entry, chunks } = {}
 ) => ({
+leanpub-end-insert
   entry,
   plugins: [
     new HtmlWebpackPlugin({
