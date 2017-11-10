@@ -10,7 +10,10 @@ Sometimes packages do not follow the standard rules and their *package.json* con
 {
   resolve: {
     alias: {
-      demo: path.resolve(__dirname, "node_modules/demo/dist/demo.js"),
+      demo: path.resolve(
+        __dirname,
+        "node_modules/demo/dist/demo.js"
+      ),
     },
   },
 },
@@ -146,7 +149,10 @@ To bring specific locales to your project, you should use `ContextReplacementPlu
 ```javascript
 {
   plugins: [
-    new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /de|fi/),
+    new webpack.ContextReplacementPlugin(
+      /moment[\/\\]locale$/,
+      /de|fi/
+    ),
   ],
 },
 ```
