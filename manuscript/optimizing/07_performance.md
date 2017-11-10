@@ -37,7 +37,7 @@ Compared to *parallel-webpack*, HappyPack is a more involved option. The idea is
 
 ```javascript
 ...
-const HappyPack = require('happypack');
+const HappyPack = require("happypack");
 
 ...
 
@@ -117,11 +117,11 @@ exports.dontParse = ({ name, path }) => {
 
   return {
     module: {
-      noParse: [new RegExp(path)]
+      noParse: [new RegExp(path)],
     },
     resolve: {
-      alias
-    }
+      alias,
+    },
   };
 };
 ```
