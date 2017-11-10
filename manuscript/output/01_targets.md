@@ -33,6 +33,8 @@ There are desktop shells, such as [NW.js](https://nwjs.io/) (previously *node-we
 
 [electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate) is a good starting point if you want hot loading webpack setup for Electron and React based development. Using [the official quick start for Electron](https://github.com/electron/electron-quick-start) is one way.
 
+{pagebreak}
+
 ## Conclusion
 
 Webpack supports targets beyond the web. Based on this you can say name "webpack" is an understatement considering its capabilities.
