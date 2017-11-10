@@ -162,7 +162,9 @@ To implement the essential idea of *file-loader*, you have to do two things: emi
 const loaderUtils = require("loader-utils");
 
 module.exports = function(content) {
-  const url = loaderUtils.interpolateName(this, "[hash].[ext]", { content });
+  const url = loaderUtils.interpolateName(this, "[hash].[ext]", {
+    content,
+  });
 
   this.emitFile(url, content);
 
@@ -170,6 +172,7 @@ module.exports = function(content) {
 
   return `export default ${path}`;
 };
+
 ```
 
 Webpack provides two additional `emit` methods:
@@ -201,6 +204,14 @@ leanpub-start-delete
     loaders: [path.resolve(__dirname, "./loaders/demo-loader")],
 leanpub-end-delete
 leanpub-start-insert
+    loaders: [
+      {
+        loader: path.resolve(__dirname, "./loaders/demo-loader"),
+        options: {
+          name: "demo.[ext]",
+        },
+      },
+    ],
 leanpub-end-insert
     context: {
       emitFile: () => {},
@@ -208,27 +219,6 @@ leanpub-end-insert
     readResource: fs.readFile.bind(fs),
   },
   (err, result) => (err ? console.error(err) : console.log(result))
-);
-
-
-runLoaders({
-  resource: './demo.txt',
-  loaders: [
-leanpub-start-delete
-    path.resolve(__dirname, './loaders/demo-loader')
-leanpub-end-delete
-leanpub-start-insert
-    {
-      loader: path.resolve(__dirname, "./loaders/demo-loader"),
-      options: {
-        name: "demo.[ext]",
-      },
-    },
-leanpub-end-insert
-  ],
-  ...
-},
-...
 );
 ```
 
@@ -252,18 +242,16 @@ leanpub-start-insert
   const { name } = loaderUtils.getOptions(this);
 leanpub-end-insert
 leanpub-start-delete
-  const url = loaderUtils.interpolateName(this, "[hash].[ext]", { content });
+  const url = loaderUtils.interpolateName(this, "[hash].[ext]", {
+    content,
+  });
 leanpub-end-delete
 leanpub-start-insert
   const url = loaderUtils.interpolateName(this, name, { content });
 leanpub-end-insert
   );
 
-  this.emitFile(url, content);
-
-  const path = `__webpack_public_path__ + ${JSON.stringify(url)};`;
-
-  return `export default ${path}`;
+  ...
 };
 ```
 
@@ -304,7 +292,10 @@ const commonConfig = merge([
 leanpub-start-insert
     resolveLoader: {
       alias: {
-        "demo-loader": path.resolve(__dirname, "loaders/demo-loader.js"),
+        "demo-loader": path.resolve(
+          __dirname,
+          "loaders/demo-loader.js"
+        ),
       },
     },
 leanpub-end-insert
@@ -364,17 +355,18 @@ To connect it to the runner, add it to the loader definition:
 **run-loader.js**
 
 ```javascript
-runLoaders({
-  resource: "./demo.txt",
-  loaders: [
-    ...
+runLoaders(
+  {
+    resource: "./demo.txt",
+    loaders: [
+      ...
 leanpub-start-insert
-    path.resolve(__dirname, "./loaders/pitch-loader"),
+      path.resolve(__dirname, "./loaders/pitch-loader"),
 leanpub-end-insert
-  ],
-  ...
-},
-...
+    ],
+    ...
+  },
+  (err, result) => (err ? console.error(err) : console.log(result))
 );
 ```
 
