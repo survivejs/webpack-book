@@ -48,9 +48,9 @@ const target = "fi";
 import(`translations/${target}.json`).then(...).catch(...);
 ```
 
-The same idea works with `require` as long as webpack can analyze the situation statically.
+The same idea works with `require` as webpack can then performs static analysis.
 
-T> Any time you are using dynamic imports, it's a good idea to specify file extension in the path as that helps with performance by keeping the context smaller than otherwise.
+T> When using dynamic imports, specify file extension in the path as that helps with performance by keeping the context smaller.
 
 {pagebreak}
 
