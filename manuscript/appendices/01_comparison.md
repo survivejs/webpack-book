@@ -153,13 +153,9 @@ T> [grunt-webpack](https://www.npmjs.com/package/grunt-webpack) plugin allows yo
 
 ![Gulp](images/gulp.png)
 
-[Gulp](http://gulpjs.com/) takes a different approach. Instead of relying on configuration per plugin, you deal with actual code. If you are familiar with Unix and piping, you'll like Gulp. You have the following concepts:
+[Gulp](http://gulpjs.com/) takes a different approach. Instead of relying on configuration per plugin, you deal with actual code. If you are familiar with Unix and piping, you'll like Gulp. You have *sources* to match files, *filters* to operate on these sources, and *sinks* to pipe the build results.
 
-* *Sources* to match to files.
-* *Filters* to perform operations on sources (e.g., convert to JavaScript)
-* *Sinks* (e.g., your build directory) where to pipe your build results.
-
-Here's an abbreviated sample *Gulpfile* to give you a better idea of the approach, taken from the project's README:
+Here's an abbreviated sample *Gulpfile* adapted from the project's README to give you a better idea of the approach:
 
 **Gulpfile.js**
 
