@@ -128,8 +128,6 @@ After this change, the build should behave the same way as before. This time, ho
 
 You can add more targets by expanding the *package.json* definition and branching at *webpack.config.js* based on the need. *webpack.parts.js* grows to contain specific techniques you can then use to compose the configuration.
 
-T> Webpack 2 validates the configuration by default. If you make a mistake like a typo, it lets you know.
-
 ## Benefits of Composing Configuration
 
 Splitting configuration allows you to keep on expanding the setup. The biggest win is the fact that you can extract commonalities between different targets. You can also identify smaller configuration parts to compose. These configuration parts can be pushed to packages of their own to consume across projects.
