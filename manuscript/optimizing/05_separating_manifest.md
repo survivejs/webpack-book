@@ -97,6 +97,8 @@ T> `recordsInputPath` and `recordsOutputPath` give more granular control over in
 
 W> If you change the way webpack handles module IDs (i.e., remove `HashedModuleIdsPlugin`), possible existing records are still taken into account! If you want to use the new module ID scheme, you have to remove your records file as well.
 
+{pagebreak}
+
 ## Conclusion
 
 The project has basic caching behavior now. If you try to modify *app.js* or *component.js*, the vendor bundle should remain the same.
