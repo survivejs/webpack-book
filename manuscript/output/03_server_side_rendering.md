@@ -189,6 +189,8 @@ The remaining part is harder than what was done so far. How to make the server a
 npm install browser-refresh --save-dev
 ```
 
+{pagebreak}
+
 The client portion requires two small changes to the server code:
 
 **server.js**
@@ -226,6 +228,8 @@ The first change tells the client that the application is online and ready to go
 Run `node_modules/.bin/browser-refresh ./server.js` in another terminal and open the browser at `http://localhost:8080` as earlier to test the setup. Remember to have webpack running in the watch mode at another terminal (`npm run build:ssr -- --watch`). If everything went right, any change you make to the demo client script (*app/ssr.js*) should show up in the browser or cause a failure at the server.
 
 If the server crashes, it loses the WebSocket connection. You have to force a refresh in the browser in this case. If the server was managed through webpack as well, the problem could have been avoided.
+
+{pagebreak}
 
 To prove that SSR works, check out the browser inspector. You should see something familiar there:
 
