@@ -217,7 +217,7 @@ The following code combines the `entry` idea above with a basic `CommonsChunkPlu
 ```javascript
 ...
 leanpub-start-insert
-const webpack = require('webpack');
+const webpack = require("webpack");
 
 exports.extractBundles = bundles => ({
   plugins: bundles.map(
@@ -233,7 +233,7 @@ Given the function handles the entry, you can drop the `vendor`-related configur
 
 ```javascript
 leanpub-start-delete
-const webpack = require('webpack');
+const webpack = require("webpack");
 leanpub-end-delete
 
 ...

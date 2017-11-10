@@ -65,9 +65,9 @@ If you run the script now (`node run-loader.js`), you should see output:
 
 The output tells the `result` of the processing, the resource that was processed as a buffer, and other meta information. This is enough to develop more complicated loaders.
 
-T> If you want to capture the output to a file, use either `fs.writeFileSync('./output.txt', result.result)` or its asynchronous version as discussed in [Node documentation](https://nodejs.org/api/fs.html).
+T> If you want to capture the output to a file, use either `fs.writeFileSync("./output.txt", result.result)` or its asynchronous version as discussed in [Node documentation](https://nodejs.org/api/fs.html).
 
-T> It's possible to refer to loaders installed to the local project by name instead of resolving a full path to them. Example: `loaders: ['raw-loader']`.
+T> It's possible to refer to loaders installed to the local project by name instead of resolving a full path to them. Example: `loaders: ["raw-loader"]`.
 
 ## Implementing an Asynchronous Loader
 
@@ -235,7 +235,7 @@ To connect it to the loader, set it to capture `name` and pass it through webpac
 **loaders/demo-loader.js**
 
 ```javascript
-const loaderUtils = require('loader-utils');
+const loaderUtils = require("loader-utils");
 
 module.exports = function(content) {
 leanpub-start-insert
@@ -310,10 +310,10 @@ With this change the import can be simplified:
 
 ```javascript
 leanpub-start-delete
-import '!../loaders/demo-loader?name=foo!./main.css';
+import "!../loaders/demo-loader?name=foo!./main.css";
 leanpub-end-delete
 leanpub-start-insert
-import '!demo-loader?name=foo!./main.css';
+import "!demo-loader?name=foo!./main.css";
 leanpub-end-insert
 ```
 

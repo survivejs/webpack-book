@@ -105,7 +105,7 @@ require.ensure(
 
 If you had nested `require.ensure` definitions, you could pull a module to the parent chunk using either syntax. It's a similar idea as you saw in the *Bundle Splitting* chapter.
 
-T> The formats respect `output.publicPath` option. You can also use `output.chunkFilename` to shape where they output. Example: `chunkFilename: '[name].js'`.
+T> The formats respect `output.publicPath` option. You can also use `output.chunkFilename` to shape where they output. Example: `chunkFilename: "[name].js"`.
 
 {pagebreak}
 
@@ -136,7 +136,7 @@ leanpub-end-insert
 }
 ```
 
-W> If you are using ESLint, you should install `babel-eslint` and set `parser: 'babel-eslint'` in addition to `parserOptions.allowImportExportEverywhere: true` at ESLint configuration.
+W> If you are using ESLint, you should install `babel-eslint` and set `parser: "babel-eslint"` in addition to `parserOptions.allowImportExportEverywhere: true` at ESLint configuration.
 
 {pagebreak}
 
@@ -224,7 +224,7 @@ leanpub-start-insert
 import "./lazy.css";
 leanpub-end-insert
 
-export default 'Hello from lazy';
+export default "Hello from lazy";
 ```
 
 And to have a style definition to load, set up a rule:

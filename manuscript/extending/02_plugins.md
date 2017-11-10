@@ -235,7 +235,7 @@ T> Compilation has a set of hooks of its own as covered in [the official compila
 
 ## Managing Warnings and Errors
 
-Plugin execution can be caused to fail by throwing (`throw new Error('Message')`). If you validate options, you can use this method.
+Plugin execution can be caused to fail by throwing (`throw new Error("Message")`). If you validate options, you can use this method.
 
 In case you want to give the user a warning or an error message during compilation, you should use `compilation.warnings` and `compilation.errors`. Example:
 

@@ -32,7 +32,7 @@ The idea can be modeled as below:
 
 ```javascript
 leanpub-start-insert
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 exports.extractCSS = ({ include, exclude, use }) => {
   // Output extracted CSS to a file

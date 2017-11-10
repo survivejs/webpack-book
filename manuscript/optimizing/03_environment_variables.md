@@ -24,7 +24,7 @@ if (bar === "bar") {
 }
 ```
 
-If you replaced `bar` with a string like `'foobar'`, then you would end up with code as below:
+If you replaced `bar` with a string like `"foobar"`, then you would end up with code as below:
 
 ```javascript
 var foo;
@@ -40,7 +40,7 @@ if ("foobar" === "bar") {
 }
 ```
 
-Further analysis shows that `'foobar' === 'bar'` equals `false` so a minifier gives the following:
+Further analysis shows that `"foobar" === "bar"` equals `false` so a minifier gives the following:
 
 ```javascript
 var foo;
@@ -130,7 +130,7 @@ You went from 83 kB to 28 kB, and finally, to 8 kB. The final build is faster th
 
 Given the 8 kB can be served gzipped, it's somewhat reasonable. gzipping drops around another 40%, and it's well supported by browsers. It comes with a performance overhead on mobile usage, though.
 
-T> `webpack.EnvironmentPlugin(['NODE_ENV'])` is a shortcut that allows you to refer to environment variables. It uses `DefinePlugin` underneath and you can achieve the same effect by passing `process.env.NODE_ENV`.
+T> `webpack.EnvironmentPlugin(["NODE_ENV"])` is a shortcut that allows you to refer to environment variables. It uses `DefinePlugin` underneath and you can achieve the same effect by passing `process.env.NODE_ENV`.
 
 ## Replacing Free Variables Through Babel
 

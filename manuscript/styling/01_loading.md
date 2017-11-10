@@ -224,9 +224,9 @@ Consider the following configuration:
 To start using yeticss with Stylus, you must import it to one of your app's *.styl* files:
 
 ```javascript
-@import 'yeticss'
+@import "yeticss"
 //or
-@import 'yeticss/components/type'
+@import "yeticss/components/type"
 ```
 
 ## PostCSS

@@ -70,7 +70,7 @@ const commonConfig = merge([
 leanpub-start-delete
     plugins: [
       new HtmlWebpackPlugin({
-        title: 'Webpack demo',
+        title: "Webpack demo",
       }),
     ],
 leanpub-end-delete
