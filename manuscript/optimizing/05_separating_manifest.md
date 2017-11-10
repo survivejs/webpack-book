@@ -38,18 +38,18 @@ Version: webpack 3.8.1
 Time: 2798ms
                    Asset       Size  Chunks             Chunk Names
 leanpub-start-insert
-    manifest.95266dc7.js     1.5 kB       3  [emitted]  manifest
+    manifest.95266dc7.js    1.49 kB       3  [emitted]  manifest
 leanpub-end-insert
          app.801b7672.js  865 bytes    2, 3  [emitted]  app
 ...
     app.bf4d156d.css.map   93 bytes    2, 3  [emitted]  app
 leanpub-start-insert
-manifest.95266dc7.js.map    5.81 kB       3  [emitted]  manifest
+manifest.95266dc7.js.map   97 bytes       3  [emitted]  manifest
 leanpub-end-insert
               index.html  368 bytes          [emitted]
 [1Q41] ./app/main.css 41 bytes {2} [built]
 [2twT] ./app/index.js 217 bytes {2} [built]
-[KMic] ./app/lazy.css 1.17 kB {0} [built]
+[KMic] ./app/lazy.css 41 bytes {0} [built]
 ...
 ```
 
