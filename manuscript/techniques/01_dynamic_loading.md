@@ -56,11 +56,19 @@ const combineContexts = (...contexts) => {
     return matches[0] && matches[0](req);
   }
   webpackContext.keys = () =>
-    uniq(concat.apply(null, contexts.map(context => context.keys())));
+    uniq(
+      concat.apply(null, contexts.map(context => context.keys()))
+    );
 
   return webpackContext;
 };
 ```
+
+## Dealing with Dynamic Paths
+
+Given the approaches discussed here rely on static analysis and webpack has to find the files in question, it doesn't work for every possible case. If the files you need are on another server or have to be accessed through a particular end-point, then webpack isn't enough.
+
+Consider using browser-side loaders like [$script.js](https://www.npmjs.com/package/scriptjs) or [little-loader](https://www.npmjs.com/package/little-loader) on top of webpack in this case.
 
 {pagebreak}
 
@@ -79,14 +87,6 @@ import(`translations/${target}.json`).then(...).catch(...);
 The same idea works with `require` as long as webpack can analyze the situation statically.
 
 T> Any time you are using dynamic imports, it's a good idea to specify file extension in the path as that helps with performance by keeping the context smaller than otherwise.
-
-## Dealing with Dynamic Paths
-
-Given the approaches discussed here rely on static analysis and webpack has to find the files in question, it doesn't work for every possible case. If the files you need are on another server or have to be accessed through a particular end-point, then webpack isn't enough.
-
-Consider using browser-side loaders like [$script.js](https://www.npmjs.com/package/scriptjs) or [little-loader](https://www.npmjs.com/package/little-loader) on top of webpack in this case.
-
-{pagebreak}
 
 ## Conclusion
 
