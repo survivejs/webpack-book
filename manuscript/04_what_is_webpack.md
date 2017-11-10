@@ -67,12 +67,12 @@ At its core webpack relies on configuration. Here is a sample adapted from [the 
 **webpack.config.js**
 
 ```javascript
-const webpack = require('webpack');
+const webpack = require("webpack");
 
 module.exports = {
   // Where to start bundling
   entry: {
-    app: './entry.js',
+    app: "./entry.js",
   },
 
   // Where to output
@@ -81,7 +81,7 @@ module.exports = {
     path: __dirname,
 
     // Capture name from the entry using a pattern
-    filename: '[name].js',
+    filename: "[name].js",
   },
 
   // How to resolve encountered imports
@@ -89,11 +89,11 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: ["style-loader", "css-loader"],
       },
       {
         test: /\.js$/,
-        use: 'babel-loader',
+        use: "babel-loader",
         exclude: /node_modules/,
       },
     ],
