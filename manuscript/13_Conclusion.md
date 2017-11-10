@@ -6,15 +6,13 @@ As this book has demonstrated, webpack is a versatile tool. To make it easier to
 
 * **Source maps** allow you to debug your code in the browser during development. They can also give better quality stack traces during production usage if you capture the output. The *Source Maps* chapter delves into the topic.
 * To keep your builds fast, consider optimizing. The *Performance* chapter discusses a variety of strategies you can use to achieve this.
-* to keep your configuration maintainable, consider composing it. As webpack configuration is JavaScript code, it can be arranged in many ways. Find a way you are comfortable with and apply it. The *Composing Configuration* chapter discusses the topic.
+* To keep your configuration maintainable, consider composing it. As webpack configuration is JavaScript code, it can be arranged in many ways. The *Composing Configuration* chapter discusses the topic.
 * The way webpack consumes packages can be customized. The *Package Consuming Techniques* chapter covers specific techniques related to this.
 * Sometimes you have to extend webpack. The *Extending with Loaders* and *Extending with Plugins* chapters show how to achieve this. You can also work on top of webpack’s configuration definition and implement an abstraction of your own for it to suit your purposes.
 
-{pagebreak}
-
 ## Development Checklist
 
-* To get most out of webpack during development, use [webpack-dev-server](https://www.npmjs.com/package/webpack-dev-server) (WDS). You can also find middlewares which you can attach to your Node server during development. The *Automatic Browser Refresh* chapter covers WDS in greater detail.
+* To get most out of webpack during development, use *webpack-dev-server* (WDS). You can also find middlewares which you can attach to your Node server during development. The *Automatic Browser Refresh* chapter covers WDS in greater detail.
 * Webpack implements **Hot Module Replacement** (HMR). It allows you to replace modules without forcing a browser refresh while your application is running. The *Hot Module Replacement* appendix covers the topic in detail.
 
 ## Production Checklist
