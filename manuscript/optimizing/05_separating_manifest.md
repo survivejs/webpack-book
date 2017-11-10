@@ -4,10 +4,6 @@ When webpack writes bundles, it maintains a **manifest** as well. You can find i
 
 If the hashes webpack generates change, then the manifest changes as well. As a result, the contents of the vendor bundle change, and become invalidated. The problem can be eliminated by extracting the manifest to a file of its own or by writing it inline to the *index.html* of the project.
 
-T> To understand how a manifest is generated in detail, [read the technical explanation at Stack Overflow](https://stackoverflow.com/questions/39548175/can-someone-explain-webpacks-commonschunkplugin/39600793).
-
-{pagebreak}
-
 ## Extracting a Manifest
 
 Most of the work was done already when `extractBundles` was set up in the *Bundle Splitting* chapter. To extract the manifest, a single change is required to capture the remaining code which contains webpack bootstrap:
@@ -33,8 +29,6 @@ leanpub-end-insert
 ```
 
 The name `manifest` is used by convention. You can use any other name and it will still work. It's important that the definition is after others, though, as it has to capture what has not been extracted yet. `minChunks` is optional in this case and passing `Infinity` tells webpack **not** to move any modules to the resulting bundle.
-
-{pagebreak}
 
 If you build the project now (`npm run build`), you should see something:
 
@@ -70,6 +64,8 @@ Try adjusting *app/index.js* and see how the hashes change. This time around it 
 T> To integrate with asset pipelines, you can consider using plugins like [chunk-manifest-webpack-plugin](https://www.npmjs.com/package/chunk-manifest-webpack-plugin), [webpack-manifest-plugin](https://www.npmjs.com/package/webpack-manifest-plugin), [webpack-assets-manifest](https://www.npmjs.com/package/webpack-assets-manifest), or [webpack-rails-manifest-plugin](https://www.npmjs.com/package/webpack-rails-manifest-plugin). These solutions emit JSON that maps the original asset path to the new one.
 
 T> The build can be improved further by loading popular dependencies, such as React, through a CDN. That would decrease the size of the vendor bundle even further while adding an external dependency on the project. The idea is that if the user has hit the CDN earlier, caching can kick in like here.
+
+T> To understand how a manifest is generated in detail, [read the technical explanation at Stack Overflow](https://stackoverflow.com/questions/39548175/can-someone-explain-webpacks-commonschunkplugin/39600793).
 
 ## Using Records
 
