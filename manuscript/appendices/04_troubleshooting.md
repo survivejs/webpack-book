@@ -6,7 +6,7 @@ Using webpack can lead to a variety of runtime warnings or errors. Often a parti
 2. Study the origin of the error carefully. Sometimes you can infer what's wrong by context. If webpack fails to parse a module, it's likely not passing it through a loader you expect for example.
 3. Try to understand where the error stems from. Does it come from your code, a dependency, or webpack?
 4. Remove code until the error goes away and add code back till it appears again. Simplify as much as possible to isolate the problem as this helps in the later steps.
-5. If the code worked in another project, figure out what's different. It's possible the dependencies between the projects vary, or the setup differs somehow. It takes only one subtle difference. At the worst case, a package you rely upon has gained a regression. In that case, you have to fix the package version carefully. Using a Yarn *lockfile* is a good idea for this reason.
+5. If the code worked in another project, figure out what's different. It's possible the dependencies between the projects vary, or the setup differs somehow. It takes only one subtle difference. At the worst case, a package you rely upon has gained a regression. In that case, you have to fix the package version carefully. Using a *lockfile* is a good idea for this reason.
 6. Study the related packages carefully. Sometimes looking into the package *package.json* can yield insight. It's possible the package you are using does not resolve the way you expect.
 7. Search for the error online. Perhaps someone else has run into it. Ideally doing this leads to a quick solution. [Stack Overflow](https://stackoverflow.com/questions/tagged/webpack) and [the official issue tracker](https://github.com/webpack/webpack/issues) are good starting points.
 8. Enable `stats: 'verbose'` to get more information out of webpack. The [official documentation covers more flags](https://webpack.js.org/configuration/stats/).
@@ -20,17 +20,17 @@ You'll learn about the most common errors next and how to deal with them.
 
 ## ERROR in Entry module not found
 
-You can end up with this error if you make an entry path point at a place that does not exist. The error message is clear in this case and tells you what path webpack fails to find.
+You can end up with this error if you make an entry path point at a place that does not exist. The error message tells you what path webpack fails to find.
 
 ## ERROR ... Module not found
 
-You can get the error in two ways. Either by breaking a loader definition so that it points to a loader that does not exist, or by breaking an import path within your code so that it points to a module that doesn't exist. Reading the error message points out what to fix.
+You can get the error in two ways. Either by breaking a loader definition so that it points to a loader that does not exist, or by breaking an import path within your code so that it points to a module that doesn't exist. The message points out what to fix.
 
 ## Loader Not Found
 
 There's another subtle loader related error. If a package matching to a loader name that does not implement the loader interface exists, webpack matches to that and gives a runtime error that says the package is not a loader.
 
-This mistake can be made by writing `loader: 'eslint'` instead of `loader: 'eslint-loader'`. If the loader doesn't exist at all the previous 'Module not found' error will be raised.
+This mistake can be made by writing `loader: "eslint"` instead of `loader: "eslint-loader"`. If the loader doesn't exist at all, the `Module not found` error will be raised.
 
 ## Module parse failed
 
