@@ -222,13 +222,13 @@ leanpub-end-insert
 );
 ```
 
+{pagebreak}
+
 To capture the option, you need to use [loader-utils](https://www.npmjs.com/package/loader-utils). It has been designed to parse loader options and queries. Install it:
 
 ```bash
 npm install loader-utils --save-dev
 ```
-
-{pagebreak}
 
 To connect it to the loader, set it to capture `name` and pass it through webpack's interpolator:
 
