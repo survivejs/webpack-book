@@ -26,7 +26,6 @@ T> The loader definition could be pushed to webpack configuration. The inline fo
 
 ```javascript
 req.keys(); // ["./demo.md", "./another-demo.md"]
-
 req.id; // 42
 
 // {title: "Demo", body: "# Demo page\nDemo content\n\n"}
@@ -35,7 +34,23 @@ const demoPage = req("./demo.md");
 
 The technique can be valuable for other purposes, such as testing or adding files for webpack to watch. In that case, you would set up a `require.context` within a file which you then point to through a webpack `entry`.
 
-T> The information is enough for generating an entire site. This has been done with [Antwar](https://github.com/antwarjs/antwar).
+T> The information is enough for generating an entire site as showcased in [Antwar](https://github.com/antwarjs/antwar).
+
+## Dynamic Paths with a Dynamic `import`
+
+The same idea works with dynamic `import`. Instead of passing a complete path, you can pass a partial one. Webpack sets up a context internally. Here's a brief example:
+
+```javascript
+// Set up a target or derive this somehow
+const target = "fi";
+
+// Elsewhere in code
+import(`translations/${target}.json`).then(...).catch(...);
+```
+
+The same idea works with `require` as long as webpack can analyze the situation statically.
+
+T> Any time you are using dynamic imports, it's a good idea to specify file extension in the path as that helps with performance by keeping the context smaller than otherwise.
 
 {pagebreak}
 
@@ -71,22 +86,6 @@ Given the approaches discussed here rely on static analysis and webpack has to f
 Consider using browser-side loaders like [$script.js](https://www.npmjs.com/package/scriptjs) or [little-loader](https://www.npmjs.com/package/little-loader) on top of webpack in this case.
 
 {pagebreak}
-
-## Dynamic Paths with a Dynamic `import`
-
-The same idea works with dynamic `import`. Instead of passing a complete path, you can pass a partial one. Webpack sets up a context internally. Here's a brief example:
-
-```javascript
-// Set up a target or derive this somehow
-const target = "fi";
-
-// Elsewhere in code
-import(`translations/${target}.json`).then(...).catch(...);
-```
-
-The same idea works with `require` as long as webpack can analyze the situation statically.
-
-T> Any time you are using dynamic imports, it's a good idea to specify file extension in the path as that helps with performance by keeping the context smaller than otherwise.
 
 ## Conclusion
 
