@@ -197,11 +197,11 @@ leanpub-end-insert
 });
 ```
 
+{pagebreak}
+
 After these changes `/another` should show something familiar:
 
 ![Another page shows up](images/another.png)
-
-{pagebreak}
 
 ### Pros and Cons
 
