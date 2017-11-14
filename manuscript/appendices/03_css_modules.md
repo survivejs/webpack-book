@@ -8,12 +8,12 @@ Webpack's *css-loader* supports CSS Modules. You can enable it through a loader 
 
 ```javascript
 {
-  loader: "css-loader",
-leanpub-start-insert
-  options: {
-    modules: true,
+  use: {
+    loader: "css-loader",
+    options: {
+      modules: true,
+    },
   },
-leanpub-end-insert
 },
 ```
 
