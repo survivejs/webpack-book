@@ -323,6 +323,8 @@ W> Although using *loader-runner* can be convenient for developing and testing l
 
 ## Pitch Loaders
 
+![Webpack loader processing](images/loader-processing.png)
+
 Webpack evaluates loaders in two phases: pitching and running. If you are used to web event semantics, these map to capturing and bubbling. The idea is that webpack allows you to intercept execution during the pitching (capturing) phase. It goes through the loaders left to right first and executes them from right to left after that.
 
 A pitch loader allows you shape the request and even terminate it. Set it up:
