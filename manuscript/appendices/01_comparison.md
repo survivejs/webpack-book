@@ -212,6 +212,8 @@ The Browserify ecosystem is composed of a lot of small modules. In this way, Bro
 
 T> [Splittable](https://www.npmjs.com/package/splittable) is a Browserify wrapper that allows code splitting, supports ES6 out of the box, tree shaking, and more.
 
+T> [transform-loader](https://www.npmjs.com/package/transform-loader) allows you to use Browserify transforms with webpack.
+
 ## JSPM
 
 ![JSPM](images/jspm.png)
