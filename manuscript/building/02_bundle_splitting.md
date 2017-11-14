@@ -310,7 +310,7 @@ leanpub-end-insert
 
 This time webpack pulls only dependencies that are used in the project, and you don't have to maintain the list anymore.
 
-W> If you study the output, you will notice webpack pulled previously missing *css-loader* and *style-loader* code to the vendor bundle. You could implement a special check in the `minChunks` function to avoid this behavior.
+T> If you want a separate *vendor.css* for Vendor CSS instead of a single CSS bundle, you could relax the `minChunks` and drop the  `resource.match(/\.js$/),` check from it.
 
 ## Performing a More Granular Split
 
