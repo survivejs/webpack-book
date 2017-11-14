@@ -174,11 +174,18 @@ The tweak also requires a change at the related part so that `entry` gets includ
 **webpack.parts.js**
 
 ```javascript
-leanpub-start-delete
-exports.page = ({ path = "", template, title } = {}) => ({
-leanpub-end-delete
+exports.page = (
+  {
+    path = "",
+    template = require.resolve(
+      "html-webpack-plugin/default_index.ejs"
+    ),
+    title,
 leanpub-start-insert
-exports.page = ({ path = "", template, title, entry } = {}) => ({
+    entry,
+leanpub-end-insert
+  } = {}
+) => ({
   entry,
 leanpub-end-insert
   plugins: [
@@ -263,14 +270,19 @@ The page-specific configuration requires a small tweak as well:
 **webpack.parts.js**
 
 ```javascript
-leanpub-start-delete
-exports.page = ({ path = "", template, title, entry } = {}) => ({
-leanpub-end-delete
-leanpub-start-insert
 exports.page = (
-  { path = "", template, title, entry, chunks } = {}
-) => ({
+  {
+    path = "",
+    template = require.resolve(
+      "html-webpack-plugin/default_index.ejs"
+    ),
+    title,
+    entry,
+leanpub-start-insert
+    chunks,
 leanpub-end-insert
+  } = {}
+) => ({
   entry,
   plugins: [
     new HtmlWebpackPlugin({
@@ -314,4 +326,4 @@ To recap:
 * The multi-compiler configuration can run in parallel using external solutions, but it's harder to apply techniques such as bundle splitting against it.
 * A multi-page setup can lead to a **Progressive Web Application**. In this case you use various webpack techniques to come up with an application that is fast to load and that fetches functionality as required. Both two flavors of this technique have their own merits.
 
-You'll learn to implement Server Side Rendering in the next chapter.
+You'll learn to implement *Server Side Rendering* in the next chapter.
