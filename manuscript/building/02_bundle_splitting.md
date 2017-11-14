@@ -298,10 +298,7 @@ leanpub-end-delete
     {
       name: "vendor",
 leanpub-start-insert
-      minChunks: ({ resource }) =>
-        resource &&
-        resource.indexOf("node_modules") >= 0 &&
-        resource.match(/\.js$/),
+      minChunks: ({ resource }) => /node_modules/.test(resource),
 leanpub-end-insert
     },
   ]),
@@ -310,7 +307,7 @@ leanpub-end-insert
 
 This time webpack pulls only dependencies that are used in the project, and you don't have to maintain the list anymore.
 
-T> If you want a separate *vendor.css* for Vendor CSS instead of a single CSS bundle, you could relax the `minChunks` and drop the  `resource.match(/\.js$/),` check from it.
+T> To capture only JavaScript files, add `resource.match(/\.js$/),` check to the `minChunks` function as the current definition will generate a separate vendor CSS file as well
 
 ## Performing a More Granular Split
 
@@ -319,6 +316,8 @@ Sometimes having only an app and a vendor bundle isn't enough. Especially when y
 Consider [the example adapted from a GitHub comment](https://github.com/webpack/webpack/issues/2855#issuecomment-239606760) below where chunks are extracted from `login` and `app` entries:
 
 ```javascript
+const isVendor = ({ resource }) => /node_modules/.test(resource),
+
 const config = {
   ...
   plugins: [
@@ -360,7 +359,7 @@ parts.extractBundles([
   {
     name: "common",
     chunks: ["login", "app"],
-    minChunks: (module, count) => count >= 2 && isVendor(module),
+    minChunks: (module, count) => isVendor(module) && count >= 2,
   },
 ]),
 ```
