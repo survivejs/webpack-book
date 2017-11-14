@@ -82,6 +82,8 @@ Even though you can push the problem of deployment outside of webpack, there are
 * [webpack-s3-sync-plugin](https://www.npmjs.com/package/webpack-s3-sync-plugin) and [webpack-s3-plugin](https://www.npmjs.com/package/webpack-s3-plugin) sync the assets to Amazon S3.
 * [ssh-webpack-plugin](https://www.npmjs.com/package/ssh-webpack-plugin) has been designed for deployments over SSH.
 
+W> To make sure clients relying on the older bundles still work after deploying a new version, do **not** remove the old files until they are old enough. You can perform a specific check on what to remove when deploying instead of removing every old asset.
+
 {pagebreak}
 
 ## Resolving `output.publicPath` Dynamically
