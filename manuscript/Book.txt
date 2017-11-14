@@ -64,6 +64,7 @@ Backmatter.txt
 14_Appendices.md
 appendices/01_comparison.md
 appendices/02_hmr.md
-appendices/03_searching_with_react.md
-appendices/04_troubleshooting.md
-appendices/05_glossary.md
+appendices/03_css_modules.md
+appendices/04_searching_with_react.md
+appendices/05_troubleshooting.md
+appendices/06_glossary.md

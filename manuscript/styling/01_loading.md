@@ -88,67 +88,7 @@ You continue from here in the next chapter. Before that, though, you'll learn ab
 
 ![Hello cornsilk world](images/hello_02.png)
 
-## Understanding CSS Scoping and CSS Modules
-
-Perhaps the biggest challenge of CSS is that all rules exist within **global scope**, meaning that two classes with the same name will collide. The limitation is inherent to the CSS specification but projects have workarounds for the issue. [CSS Modules](https://github.com/css-modules/css-modules) introduces **local scope** for every module by making every class declared within unique by including a hash in their name that is globally unique to the module.
-
-Webpack's *css-loader* supports CSS Modules. You can enable it through a loader definition as above while enabling the support:
-
-```javascript
-{
-  loader: "css-loader",
-leanpub-start-insert
-  options: {
-    modules: true,
-  },
-leanpub-end-insert
-},
-```
-
-After this change, your class definitions remain local to the files. In case you want global class definitions, you need to wrap them within `:global(.redButton) { ... }` kind of declarations.
-
-{pagebreak}
-
-In this case, the `import` statement gives you the local classes you can then bind to elements. Assume you had CSS as below:
-
-**app/main.css**
-
-```css
-body {
-  background: cornsilk;
-}
-
-.redButton {
-  background: red;
-}
-```
-
-You could then bind the resulting class to a component:
-
-**app/component.js**
-
-```javascript
-import styles from "./main.css";
-
-...
-
-// Attach the generated class name
-element.className = styles.redButton;
-```
-
-`body` remains as a global declaration still. It's that `redButton` that makes the difference. You can build component-specific styles that don't leak elsewhere this way.
-
-CSS Modules provides additional features like composition to make it easier to work with your styles. You can also combine it with other loaders as long as you apply them before *css-loader*.
-
-T> CSS Modules behavior can be modified [as discussed in the official documentation](https://www.npmjs.com/package/css-loader#local-scope). You have control over the names it generates for instance.
-
-T> [eslint-plugin-css-modules](https://www.npmjs.com/package/eslint-plugin-css-modules) is handy for tracking CSS Modules related problems.
-
-### Using CSS Modules with Third Party Libraries and CSS
-
-If you are using CSS Modules in your project, you should process normal CSS through a separate loader definition without the `modules` option of *css-loader* enabled. Otherwise all classes will be scoped to their module. In the case of third party libraries this is almost certainly not what you want.
-
-You can solve the problem by processing third party CSS differently through an `include` definition against *node_modules*. Alternately, you could use a file extension (`.mcss`) to tell files using CSS Modules apart from the rest and then manage this situation in a loader `test`.
+T> The *CSS Modules* appendix discusses an approach that allows you to treat local to files by default. This avoids the scoping problem of CSS.
 
 ## Loading Less
 
@@ -347,12 +287,11 @@ The third option is to go through [bootstrap-loader](https://www.npmjs.com/packa
 
 ## Conclusion
 
-Webpack can load a variety of style formats. It even supports advanced specifications like [CSS Modules](https://github.com/css-modules/webpack-demo). The approaches covered here inline the styling by default.
+Webpack can load a variety of style formats. The approaches covered here inline the styling to JavaScript bundles by default.
 
 To recap:
 
 * *css-loader* evaluates the `@import` and `url()` definitions of your styling. *style-loader* converts it to JavaScript and implements webpack's Hot Module Replacement interface.
-* *css-loader* supports the CSS Modules specification. CSS Modules allow you maintain CSS in a local scope by default solving the biggest issue of CSS.
 * Webpack supports a large variety of formats compiling to CSS through loaders. These include Sass, Less, and Stylus.
 * PostCSS allows you to inject functionality to CSS in through its plugin system. cssnext is an example of a collection of plugins for PostCSS that implements future features of CSS.
 * *css-loader* doesn't touch absolute imports by default. It allows customization of loading behavior through the `importLoaders` option. You can perform lookups against *node_modules* by prefixing your imports with a tilde (`~`) character.
