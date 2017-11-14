@@ -220,8 +220,6 @@ The current configuration shares code by coincidence already due to the usage pa
 
 In a more complicated application, you should apply techniques covered in the *Bundle Splitting* chapter across the pages. Dropping the multi-compiler mode can be worthwhile then.
 
-{pagebreak}
-
 ### Adjusting Configuration
 
 To reach a code sharing setup, a minor adjustment is needed. Most of the code can remain the same. The way you expose it to webpack has to change so that it receives a single configuration object. As `HtmlWebpackPlugin` picks up all chunks by default, you have to adjust it to pick up only the chunks that are related to each page:
@@ -262,8 +260,6 @@ leanpub-start-insert
 leanpub-end-insert
 };
 ```
-
-{pagebreak}
 
 The page-specific configuration requires a small tweak as well:
 
