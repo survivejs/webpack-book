@@ -81,6 +81,8 @@ To get started, include the plugin to the project:
 npm install uglifyjs-webpack-plugin --save-dev
 ```
 
+{pagebreak}
+
 To attach it to the configuration, define a part for it first:
 
 **webpack.parts.js**
@@ -93,8 +95,6 @@ exports.minifyJavaScript = () => ({
   plugins: [new UglifyWebpackPlugin()],
 });
 ```
-
-{pagebreak}
 
 The plugin exposes more functionality, but having the possibility of toggling source maps is enough. Hook it up with the configuration:
 
