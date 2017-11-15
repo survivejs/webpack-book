@@ -179,6 +179,8 @@ This arrangement would make it faster to find configuration related to a categor
 
 Given all configuration is JavaScript, nothing prevents you from consuming it as a package or packages. It would be possible to package the shared configuration so that you can consume it across multiple projects. See the *SurviveJS - Maintenance* book for further information on how to achieve this.
 
+{pagebreak}
+
 ## Conclusion
 
 Even though the configuration is technically the same as before, now you have room to grow it.
