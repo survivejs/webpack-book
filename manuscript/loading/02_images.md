@@ -19,9 +19,11 @@ To load *.jpg*, *.png*, and *.svg* files while inlining files below 25kB, you wo
 ```javascript
 {
   test: /\.(jpg|png|svg)$/,
-  loader: "url-loader",
-  options: {
-    limit: 25000,
+  use: {
+    loader: "url-loader",
+    options: {
+      limit: 25000,
+    },
   },
 },
 ```
@@ -33,9 +35,11 @@ If you want to skip inlining altogether, you can use *file-loader* directly. The
 ```javascript
 {
   test: /\.(jpg|png|svg)$/,
-  loader: "file-loader",
-  options: {
-    name: "[path][name].[hash].[ext]",
+  use: {
+    loader: "file-loader",
+    options: {
+      name: "[path][name].[hash].[ext]",
+    },
   },
 },
 ```
