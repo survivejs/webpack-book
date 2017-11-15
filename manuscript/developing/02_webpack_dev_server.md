@@ -266,6 +266,7 @@ Alternately, you could have set up an Express server and use a middleware. There
 * [The official WDS middleware](https://webpack.js.org/guides/development/#webpack-dev-middleware)
 * [webpack-hot-middleware](https://www.npmjs.com/package/webpack-hot-middleware)
 * [webpack-universal-middleware](https://www.npmjs.com/package/webpack-universal-middleware)
+* [webpack-isomorphic-dev-middleware](https://www.npmjs.com/package/webpack-isomorphic-dev-middleware)
 
 There's also a [Node.js API](https://webpack.js.org/configuration/dev-server/) if you want more control and flexibility.
 
