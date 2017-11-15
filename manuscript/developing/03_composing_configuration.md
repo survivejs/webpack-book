@@ -15,15 +15,11 @@ You can manage webpack configuration in the following ways:
 
 These approaches can be combined to create a higher level configuration that is then composed of smaller parts. Those parts could then be added to a library which you then use through npm making it possible to consume the same configuration across multiple projects.
 
-{pagebreak}
-
 ## Composing Configuration by Merging
 
 If the configuration file is broken into separate pieces, they have to be combined together again somehow. Normally this means merging objects and arrays. To eliminate the problem of dealing with `Object.assign` and `Array.concat`, [webpack-merge](https://www.npmjs.org/package/webpack-merge) was developed.
 
-*webpack-merge* does two things: it concatenates arrays and merges objects instead of overriding them. Even though a basic idea, this allows you to compose configuration and gives a degree of abstraction.
-
-The example below shows the behavior in detail:
+*webpack-merge* does two things: it concatenates arrays and merges objects instead of overriding them allowing composition. The example below shows the behavior in detail:
 
 ```bash
 > merge = require('webpack-merge')
