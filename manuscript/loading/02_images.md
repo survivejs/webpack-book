@@ -216,6 +216,8 @@ const src = require(`./avatars/${avatar}`);
 }
 ```
 
+T> See [sprite-webpack-plugin](https://www.npmjs.com/package/sprite-webpack-plugin) for another option.
+
 ## Images and *css-loader* Source Map Gotcha
 
 If you are using images and *css-loader* with the `sourceMap` option enabled, it's important that you set `output.publicPath` to an absolute value pointing to your development server. Otherwise, images aren't going to work. See [the relevant webpack issue](https://github.com/webpack/style-loader/issues/55) for further explanation.
