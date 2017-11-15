@@ -2,6 +2,8 @@
 
 **Tree shaking** is a feature enabled by the ES2015 module definition. The idea is that given it's possible to analyze the module definition in a static way without running it, webpack can tell which parts of the code are being used and which are not. It's possible to verify this behavior by expanding the application and adding code there that should be eliminated.
 
+T> Tree shaking works to an extent through [webpack-common-shake](https://www.npmjs.com/package/webpack-common-shake) against CommonJS module definition. This is important as a majority of npm packages have been authored using the older definition.
+
 ## Demonstrating Tree Shaking
 
 To shake code, you have to define a module and use only a part of its code. Set one up:
