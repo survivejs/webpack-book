@@ -73,7 +73,7 @@ Minification in webpack can be enabled through `webpack -p` (same as `--optimize
 
 ### Setting Up JavaScript Minification
 
-[uglifyjs-webpack-plugin](https://www.npmjs.com/package/uglifyjs-webpack-plugin) allows you to use ES6 syntax out of the box and minify it.
+[uglifyjs-webpack-plugin](https://www.npmjs.com/package/uglifyjs-webpack-plugin) allows you to use ES2015 syntax out of the box and minify it.
 
 To get started, include the plugin to the project:
 

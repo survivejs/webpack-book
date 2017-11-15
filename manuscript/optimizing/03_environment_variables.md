@@ -158,7 +158,7 @@ if (process.env.NODE_ENV === "production") {
 }
 ```
 
-Webpack can pick the right code based on the `DefinePlugin` declaration and this code. You have to use CommonJS module definition style here as ES6 `import`s don't allow dynamic behavior by design.
+Webpack can pick the right code based on the `DefinePlugin` declaration and this code. You have to use CommonJS module definition style here as ES2015 `import`s don't allow dynamic behavior by design.
 
 T> A related technique, **aliasing**, is discussed in the *Package Consuming Techniques* chapter.
 

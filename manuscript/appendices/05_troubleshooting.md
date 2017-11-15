@@ -42,7 +42,7 @@ This error fits the same category. Parsing the file succeeded, but there was the
 
 ## SyntaxError: Unexpected token
 
-`SyntaxError` is another error for the same category. This error is possible if you use ES6 syntax that hasn't been transpiled alongside UglifyJS. As it encounters a syntax construct it does not recognize, it raises an error.
+`SyntaxError` is another error for the same category. This error is possible if you use ES2015 syntax that hasn't been transpiled alongside UglifyJS. As it encounters a syntax construct it does not recognize, it raises an error.
 
 ## Conclusion
 

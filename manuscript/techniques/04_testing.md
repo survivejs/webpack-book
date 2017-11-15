@@ -265,7 +265,7 @@ PhantomJS ...: Executed 1 of 1 SUCCESS (0.005 secs / 0.001 secs)
 
 Given running tests after the change can get boring after a while, Karma provides a watch mode.
 
-W> PhantomJS does not support ES6 features yet so you have to preprocess the code for tests using them. ES6 support is planned for PhantomJS 2.5.
+W> PhantomJS does not support ES2015 features yet so you have to preprocess the code for tests using them. ES2015 support is planned for PhantomJS 2.5.
 
 ### Watch Mode with Karma
 
@@ -290,7 +290,7 @@ To know how much of the code the tests cover, it can be a good idea to generate 
 
 T> LCOV integrates well with visualization services. You can send coverage information to an external service through a continuous integration environment and track the status in one place.
 
-[isparta](https://www.npmjs.com/package/isparta) is a popular, ES6 compatible code coverage tool. Connecting it with Karma requires configuration. Most importantly the code has to be instrumented through [babel-plugin-istanbul](https://www.npmjs.com/package/babel-plugin-istanbul). Doing this requires a small amount of webpack configuration as well due to the setup. [karma-coverage](https://www.npmjs.com/package/karma-coverage) is required for the reporting portion of the problem.
+[isparta](https://www.npmjs.com/package/isparta) is a popular, ES2015 compatible code coverage tool. Connecting it with Karma requires configuration. Most importantly the code has to be instrumented through [babel-plugin-istanbul](https://www.npmjs.com/package/babel-plugin-istanbul). Doing this requires a small amount of webpack configuration as well due to the setup. [karma-coverage](https://www.npmjs.com/package/karma-coverage) is required for the reporting portion of the problem.
 
 {pagebreak}
 

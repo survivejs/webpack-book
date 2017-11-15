@@ -4,7 +4,7 @@ Given webpack comes with specific nomenclature, the main terms and their explana
 
 ## Introduction
 
-* **Static analysis** - When a tool performs static analysis, it examines the code without running it. This is how tools like ESLint or webpack operate. Statically analyzable standards, like ES6 module definition, enable features like **tree shaking**.
+* **Static analysis** - When a tool performs static analysis, it examines the code without running it. This is how tools like ESLint or webpack operate. Statically analyzable standards, like ES2015 module definition, enable features like **tree shaking**.
 * **Resolving** is the process that happens when webpack encounters a module or a loader. When that happens, it tries to resolve it based on the given resolution rules.
 
 ## Developing
@@ -22,7 +22,7 @@ Given webpack comes with specific nomenclature, the main terms and their explana
 
 ## Building
 
-* **Source maps** describe the mapping between the original source code and the generated code, allowing browsers to provide a better debugging experience. For example, running ES6 code through Babel generates completely new ES5 code. Without a source map, a developer would lose the link from where something happens in the generated code and where it happens in the source code. The same is true for style sheets when they run through a pre or post-processor.
+* **Source maps** describe the mapping between the original source code and the generated code, allowing browsers to provide a better debugging experience. For example, running ES2015 code through Babel generates completely new ES5 code. Without a source map, a developer would lose the link from where something happens in the generated code and where it happens in the source code. The same is true for style sheets when they run through a pre or post-processor.
 * **Bundle** is the result of bundling. Bundling involves processing the source material of the application into a final bundle that is ready to use. A bundler can generate more than one bundle.
 * **Bundle splitting** offers one way of optimising a build, allowing webpack to generate multiple bundles for a single application. As a result, each bundle can be isolated from changes effecting others, reducing the amount of code that needs to be republished and therefore re-downloaded by the client and taking advantage of browser caching.
 * **Code splitting** produces more granular bundles than bundle splitting. To use it, the developer has to enable it through specific calls in the source code. Using a dynamic `import()` is one way.
@@ -31,7 +31,7 @@ Given webpack comes with specific nomenclature, the main terms and their explana
 ## Optimizing
 
 * **Minifying**, or minification, is an optimization technique in which code is written in a more compact form without losing meaning. Certain destructive transformations break code if you are not careful.
-* **Tree shaking** is the process of dropping unused code based on static analysis. A good ES6 module definition allows this process as it's possible to analyze in this particular manner.
+* **Tree shaking** is the process of dropping unused code based on static analysis. ES2015 module definition allows this process as it's possible to analyze in this particular manner.
 * **Hashing** refers to the process of generating a hash that is attached to the asset/bundle path to invalidate it on the client. Example of a hashed bundle name: *app.f6f78b2fd2c38e8200d.js*.
 
 ## Output
