@@ -52,6 +52,8 @@ For tools like webpack to allow tree shake npm packages, you should generate a b
 
 To get most out of tree shaking with external packages, you have to use [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-imports) to rewrite imports so that they work with webpack's tree shaking logic. See [webpack issue #2867](https://github.com/webpack/webpack/issues/2867) for more information.
 
+T> [SurviveJS - Maintenance](https://survivejs.com/maintenance/packaging/building/) covers how to write your  packages so that it's possible to apply tree shaking against them.
+
 ## Conclusion
 
 Tree shaking is a potentially powerful technique. For the source to benefit from tree shaking, npm packages have to be implemented using the ES2015 module syntax, and they have to expose the ES2015 version through *package.json* `module` field tools like webpack can pick up.
