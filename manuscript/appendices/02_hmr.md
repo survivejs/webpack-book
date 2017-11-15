@@ -47,6 +47,8 @@ W> *webpack-dev-server* can be picky about paths. Webpack [issue #675](https://g
 
 W> You should **not** enable HMR for your production configuration. It likely works, but it makes your bundles bigger than they should be.
 
+W> If you are using Babel, configure it so that it lets webpack control module generation as otherwise HMR logic won't work!
+
 ## Making the Module Ids More Debuggable
 
 When webpack generates a bundle, it needs to tell different modules apart. By default, it uses numbers for this purpose. The problem is that this makes it difficult to debug the code if you must inspect the resulting code.
