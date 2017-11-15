@@ -17,7 +17,7 @@ Sometimes optimizations come with a cost. They can make your configuration harde
 
 Webpack uses only a single instance by default meaning you aren't able to benefit from a multi-core processor without extra effort. This where third party solutions, such as [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) and [HappyPack](https://www.npmjs.com/package/happypack) come in.
 
-### parallel-webpack - Run Multiple Webpack's in Parallel
+### parallel-webpack - Run Multiple Webpack Instances in Parallel
 
 *parallel-webpack* allows you to parallelize webpack configuration in two ways. Assuming you have defined your webpack configuration as an array, it can run the configurations in parallel. In addition to this, *parallel-webpack* can generate builds based on given **variants**.
 
