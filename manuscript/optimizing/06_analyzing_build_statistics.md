@@ -24,6 +24,8 @@ leanpub-end-insert
 
 The above is the basic setup you need, regardless of your webpack configuration. Execute `npm run stats` now. After a while you should find *stats.json* at your project root. This file can be pushed through a variety of tools to understand better what's going on.
 
+T> To understand why webpack includes a specific module to the build while processing, pass `--display-reasons` flag to it. Example: `npm run build -- --display-reasons`.
+
 W> Given you piggyback on the production target in the current setup, this process cleans the build directory! If you want to avoid that, set up a separate target where you don't clean.
 
 ### Node API
