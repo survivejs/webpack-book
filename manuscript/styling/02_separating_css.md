@@ -134,6 +134,8 @@ Now styling has been pushed to a separate CSS file. Thus, the JavaScript bundle 
 
 T> If you are getting `Module build failed: CssSyntaxError:` or `Module build failed: Unknown word` error, make sure your `common` configuration doesn't have a CSS-related section set up.
 
+T> *Hot Module Replacement* can be combined with `ExtractTextPlugin` if you use [css-hot-loader](https://www.npmjs.com/package/css-hot-loader).
+
 T> [extract-loader](https://www.npmjs.com/package/extract-loader) is a light alternative to `ExtractTextPlugin`. It does less, but can be enough for basic extraction needs.
 
 {pagebreak}
