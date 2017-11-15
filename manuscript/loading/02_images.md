@@ -191,6 +191,8 @@ const Profile = () => (
 );
 ```
 
+{pagebreak}
+
 It's also possible to set up dynamic imports as discussed in the *Code Splitting* chapter. Here's a small example:
 
 ```javascript
@@ -199,8 +201,6 @@ const src = require(`./avatars/${avatar}`);
 
 ...
 ```
-
-{pagebreak}
 
 ## Loading Sprites
 
@@ -222,11 +222,11 @@ const src = require(`./avatars/${avatar}`);
 
 T> See [sprite-webpack-plugin](https://www.npmjs.com/package/sprite-webpack-plugin) for another option.
 
+{pagebreak}
+
 ## Images and *css-loader* Source Map Gotcha
 
 If you are using images and *css-loader* with the `sourceMap` option enabled, it's important that you set `output.publicPath` to an absolute value pointing to your development server. Otherwise, images aren't going to work. See [the relevant webpack issue](https://github.com/webpack/style-loader/issues/55) for further explanation.
-
-{pagebreak}
 
 ## Conclusion
 
