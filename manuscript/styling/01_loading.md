@@ -287,7 +287,7 @@ The third option is to go through [bootstrap-loader](https://www.npmjs.com/packa
 
 ## Conclusion
 
-Webpack can load a variety of style formats. The approaches covered here inline the styling to JavaScript bundles by default.
+Webpack can load a variety of style formats. The approaches covered here write the styling to JavaScript bundles by default.
 
 To recap:
 
@@ -298,4 +298,4 @@ To recap:
 * To use source maps, you have to enable `sourceMap` boolean through each style loader you are using except for *style-loader*. You should also set `output.publicPath` to an absolute url that points to your development server.
 * Using Bootstrap with webpack requires special care. You can either go through generic loaders or a bootstrap specific loader for more customization options.
 
-Although the loading approach covered here is enough for development purposes, it's not ideal for production as it inlines the styling to the JavaScript bundles. You'll learn to solve this problem in the next chapter by separating CSS from the source.
+Although the loading approach covered here is enough for development purposes, it's not ideal for production. You'll learn why and how to solve this in the next chapter by separating CSS from the source.
