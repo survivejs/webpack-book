@@ -101,6 +101,7 @@ There are a series of loader and plugin specific optimizations to consider:
 * Utilize caching through plugins like [hard-source-webpack-plugin](https://www.npmjs.com/package/hard-source-webpack-plugin) to avoid unnecessary work. The caching idea applies to loaders as well. For example, you can enable cache on *babel-loader*.
 * Use equivalent, but lighter alternatives, of plugins and loaders during development. Replacing `HtmlWebpackPlugin` with a [HtmlPlugin](https://gist.github.com/bebraw/5bd5ebbb2a06936e052886f5eb1e6874) that does far less is one direction.
 * Consider using parallel variants of plugins if they are available. [webpack-uglify-parallel](https://www.npmjs.com/package/webpack-uglify-parallel) is one example.
+* Cache the results of expensive loaders (e.g. image manipulation) to the disk using the [cache-loader](https://www.npmjs.com/package/cache-loader).
 
 ## Optimizing Rebundling Speed During Development
 
