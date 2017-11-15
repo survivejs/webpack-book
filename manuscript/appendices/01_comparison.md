@@ -274,6 +274,7 @@ You can find more alternatives as listed below:
 * [FuseBox](https://www.npmjs.com/package/fuse-box) is a bundler focusing on speed. It uses a zero-configuration approach and aims to be usable out of the box.
 * [StealJS](https://stealjs.com/) is a dependency loader and a build tool which has focused on performance and ease of use.
 * [Flipbox](https://www.npmjs.com/package/flipbox) wraps multiple bundlers behind a uniform interface.
+* [Blendid](https://www.npmjs.com/package/blendid) is a blend of Gulp and bundlers to form an asset pipeline.
 
 ## Conclusion
 
