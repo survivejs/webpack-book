@@ -217,14 +217,7 @@ const Profile = () => (
 );
 ```
 
-It's also possible to set up dynamic imports as discussed in the *Code Splitting* chapter. Here's a small example:
-
-```javascript
-// The name of the avatar is received from somewhere
-const src = require(`./avatars/${avatar}`);
-
-...
-```
+It's also possible to set up dynamic imports as discussed in the *Code Splitting* chapter. Here's a small example: `const src = require(`./avatars/${avatar}`);`.
 
 ## Images and *css-loader* Source Map Gotcha
 
