@@ -176,6 +176,8 @@ Webpack allows you to load images dynamically based on a condition. The techniqu
 
 Sometimes getting the only reference to an image isn't enough. [image-size-loader](https://www.npmjs.com/package/image-size-loader) emits image dimensions, type, and size in addition to the reference to the image itself.
 
+{pagebreak}
+
 ## Referencing to Images
 
 Webpack can pick up images from style sheets through `@import` and `url()` assuming *css-loader* has been configured. You can also refer to your images within code. In this case, you have to import the files explicitly:
@@ -196,8 +198,6 @@ const Profile = () => (
   <img src="avatar.png" />
 );
 ```
-
-{pagebreak}
 
 It's also possible to set up dynamic imports as discussed in the *Code Splitting* chapter. Here's a small example:
 
@@ -227,8 +227,6 @@ const src = require(`./avatars/${avatar}`);
 ```
 
 T> See [sprite-webpack-plugin](https://www.npmjs.com/package/sprite-webpack-plugin) for another option.
-
-{pagebreak}
 
 ## Images and *css-loader* Source Map Gotcha
 
