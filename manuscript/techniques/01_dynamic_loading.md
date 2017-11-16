@@ -52,8 +52,6 @@ The same idea works with `require` as webpack can then perform static analysis. 
 
 T> When using dynamic imports, specify file extension in the path as that helps with performance by keeping the context smaller.
 
-{pagebreak}
-
 ## Combining Multiple `require.context`s
 
 Multiple separate `require.context`s can be combined into one by wrapping them behind a function:
