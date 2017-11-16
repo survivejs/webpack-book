@@ -36,7 +36,7 @@ optimizing/02_tree_shaking.md
 optimizing/03_environment_variables.md
 optimizing/04_adding_hashes_to_filenames.md
 optimizing/05_separating_manifest.md
-optimizing/06_analyzing_build_statistics.md
+optimizing/06_build_analysis.md
 optimizing/07_performance.md
 
 10_Output.md

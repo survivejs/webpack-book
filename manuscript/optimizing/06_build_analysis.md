@@ -1,4 +1,4 @@
-# Analyzing Build Statistics
+# Build Analysis
 
 Analyzing build statistics is a good step towards understanding webpack better. Visualizing them helps you to understand the composition of your bundles.
 
