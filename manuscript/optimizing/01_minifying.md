@@ -188,7 +188,9 @@ Like for JavaScript, you can wrap the idea in a configuration part:
 
 ```javascript
 ...
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const OptimizeCSSAssetsPlugin = require(
+  "optimize-css-assets-webpack-plugin"
+);
 const cssnano = require("cssnano");
 
 exports.minifyCSS = ({ options }) => ({
