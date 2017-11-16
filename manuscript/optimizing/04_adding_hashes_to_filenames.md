@@ -153,13 +153,14 @@ There's one problem, though. If you change the application code, it invalidates 
 
 {pagebreak}
 
-## Enabling `HashedModuleIdsPlugin`
+## Enabling `NamedModulesPlugin`
 
-Webpack uses number based IDs for the module code it generates. The problem is that they are difficult to work with and can lead to difficult to debug issues, particularly with hashing. This is why webpack provides two plugins. `NamedModulesPlugin` replaces module IDs with paths to the modules making it ideal for development. `HashedModuleIdsPlugin` does the same except it hashes the result and hides the path information.
+Webpack uses number based IDs for the module code it generates. The problem is that they are difficult to work with and can lead to difficult to debug issues, particularly with hashing. This is why webpack provides two plugins:
 
-The process keeps module IDs stable as they aren't derived based on order. You sacrifice a couple of bytes for a cleaner setup, but the trade-off is well worth it.
+* `NamedModulesPlugin` replaces module IDs with paths to the modules making it ideal for development.
+* `HashedModuleIdsPlugin` does the same except it hashes the result and hides the path information.
 
-Tweak the configuration as follows:
+The process keeps module IDs stable as they aren't derived based on order. You sacrifice a couple of bytes for a cleaner setup, but the trade-off is well worth it. In this case, you can use `NamedModulesPlugin` to get a better development experience while fixing the module ID stability issue. Tweak the configuration as follows:
 
 **webpack.config.js**
 
@@ -169,11 +170,11 @@ const webpack = require("webpack");
 leanpub-end-insert
 ...
 
-const productionConfig = merge([
+const commonConfig = merge([
   {
     ...
 leanpub-start-insert
-    plugins: [new webpack.HashedModuleIdsPlugin()],
+    plugins: [new webpack.NamedModulesPlugin()],
 leanpub-end-insert
   },
   ...
@@ -203,13 +204,15 @@ Time: 2935ms
   app.bf4d156d.css.map   93 bytes       1  [emitted]  app
 vendor.3c78d233.js.map    38.3 kB       2  [emitted]  vendor
             index.html  301 bytes          [emitted]
-[1Q41] ./app/main.css 41 bytes {1} [built]
-[2twT] ./app/index.js 217 bytes {1} [built]
-[KMic] ./app/lazy.css 41 bytes {0} [built]
+[./app/main.css] ./app/main.css 41 bytes {1} [built]
+[./app/index.js] ./app/index.js 217 bytes {1} [built]
+[./app/lazy.css] ./app/lazy.css 41 bytes {0} [built]
 ...
 ```
 
-Note how the output has changed, though. Instead of numbers, you can see hashes. But this is expected given the change you made.
+Note how the output has changed, though. Instead of numbers, you can see file paths.
+
+T> If you want to hide the path information from the client, use `HashedModuleIdsPlugin`.
 
 T> `NamedChunksPlugin` achieves a similar result for split points. See [Predictable long term caching with Webpack](https://medium.com/webpack/predictable-long-term-caching-with-webpack-d3eee1d3fa31) by Tim Sebastian for further details.
 

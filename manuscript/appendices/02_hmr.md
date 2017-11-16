@@ -39,41 +39,17 @@ The following listing contains the most important parts related to this approach
 
 If you implement configuration like above without implementing the client interface, you will most likely end up with an error:
 
-![No refresh](images/no-refresh.png)
+![No refresh](images/no-refresh2.png)
 
-The numbers are cryptic but the problem can be fixed with the `NamedModulesPlugin`.
+The message tells that even though the HMR interface notified the client portion of the code of a hot update, nothing was done about it. This is something to fix next.
+
+T> The setup assumes you have enabled `NamedModulesPlugin`. See the *Adding Hashes to Filenames* chapter for further details.
 
 W> *webpack-dev-server* can be picky about paths. Webpack [issue #675](https://github.com/webpack/webpack/issues/675) discusses the problem in more detail.
 
 W> You should **not** enable HMR for your production configuration. It likely works, but it makes your bundles bigger than they should be.
 
 W> If you are using Babel, configure it so that it lets webpack control module generation as otherwise HMR logic won't work!
-
-## Making the Module Ids More Debuggable
-
-When webpack generates a bundle, it needs to tell different modules apart. By default, it uses numbers for this purpose. The problem is that this makes it difficult to debug the code if you must inspect the resulting code.
-
-To overcome this problem, it's a good idea to use an alternative module ID scheme. Webpack provides a plugin that's ideal for debugging. This plugin, `NamedModulesPlugin`, emits module paths over numeric IDs to make the output easier to understand.
-
-You can enable this better behavior as follows:
-
-```javascript
-{
-  plugins: [new webpack.NamedModulesPlugin()],
-}
-```
-
-{pagebreak}
-
-If you restart the development server (terminate it and run `npm start`), you should see something more familiar:
-
-![No refresh, but better output](images/no-refresh2.png)
-
-The message tells that even though the HMR interface notified the client portion of the code of a hot update, nothing was done about it. This is something to fix next.
-
-T> The same idea works for production usage as you see in the *Adding Hashes to Filenames* chapter.
-
-T> A similar effect can be achieved by setting `output.pathinfo = true`. It still uses number based indices while emitting the path to the module within a comment. This should be used for development purposes only.
 
 ## Implementing the HMR Interface
 
