@@ -146,14 +146,14 @@ $ inspectpack --action=duplicates --bundle=bundle.js
 
 ### Webpack Monitor
 
-[Webpack Monitor](http://webpackmonitor.com/) is another similar tool with an emphasis on a clear user interface. It is able to provide recommendations on what to improve in the build.
+[Webpack Monitor](http://webpackmonitor.com/) is another similar tool with an emphasis on a clear user interface. It's able to provide recommendations on what to improve in the build.
 
 ## Duplication Analysis
 
 In addition to inspectpack, there are other tools for figuring out duplicates:
 
 * [bundle-duplicates-plugin](https://www.npmjs.com/package/bundle-duplicates-plugin) operates on a function level.
-* [find-duplicate-dependencies](https://www.npmjs.com/package/find-duplicate-dependencies) achieves the same on a npm package level.
+* [find-duplicate-dependencies](https://www.npmjs.com/package/find-duplicate-dependencies) achieves the same on an npm package level.
 * [depcheck](https://www.npmjs.com/package/depcheck) goes further and warns if there are useless dependencies or dependencies missing from the project.
 * [bundle-buddy](https://www.npmjs.com/package/bundle-buddy) can find duplicates across bundles while providing a user interface to tune webpack code splitting behavior. [bundle-buddy-webpack-plugin](https://www.npmjs.com/package/bundle-buddy-webpack-plugin) makes it simpler to use.
 
