@@ -115,6 +115,10 @@ Webpack's configuration model can feel a bit opaque at times as the configuratio
 
 T> To understand webpack on source code level, check out [the artsy webpack tour](https://github.com/TheLarkInn/artsy-webpack-tour).
 
+## Asset Hashing
+
+With webpack, you can inject a hash to each bundle name (e.g., *app.d587bbd6.js*) to invalidate bundles on the client side as changes are made. Bundle-splitting allows the client to reload only a small part of the data in the ideal case.
+
 {pagebreak}
 
 ## Hot Module Replacement
@@ -129,10 +133,6 @@ Aside from the HMR feature, webpack’s bundling capabilities are extensive. Web
 
 Even small applications can benefit from code splitting, as it allows the users to get something useable in their hands faster. Performance is a feature, after all. Knowing the basic techniques is worthwhile.
 
-## Asset Hashing
-
-With webpack, you can inject a hash to each bundle name (e.g., *app.d587bbd6.js*) to invalidate bundles on the client side as changes are made. Bundle-splitting allows the client to reload only a small part of the data in the ideal case.
-
 {pagebreak}
 
 ## Conclusion
@@ -140,8 +140,6 @@ With webpack, you can inject a hash to each bundle name (e.g., *app.d587bbd6.js*
 Webpack comes with a significant learning curve. However it’s a tool worth learning, given it saves so much time and effort over the long term. To get a better idea how it compares to other tools, check out [the official comparison](https://webpack.js.org/get-started/why-webpack/#comparison).
 
 Webpack won’t solve everything, however, it does solve the problem of bundling. That’s one less worry during development. Using *package.json* and webpack alone can take you far.
-
-{pagebreak}
 
 To summarize:
 
