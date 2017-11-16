@@ -163,11 +163,9 @@ Even though `--env` allows to pass strings to the configuration, it can do a bit
 },
 ```
 
-Instead of a string, you should receive an object `{ target: "production" }` at configuration now. You could pass more key-value pairs, and they would go to the `env` object. If you set `--env foo` while setting `--env.target`, the string overrides the object.
+Instead of a string, you should receive an object `{ target: "production" }` at configuration now. You could pass more key-value pairs, and they would go to the `env` object. If you set `--env foo` while setting `--env.target`, the string wins.
 
-T> Webpack relies on *yargs* underneath. To understand the dot notation in greater detail, see [yargs documentation](http://yargs.js.org/docs/#parsing-tricks-dot-notation).
-
-{pagebreak}
+T> Webpack relies on [yargs](http://yargs.js.org/docs/#parsing-tricks-dot-notation) for parsing underneath.
 
 ## Enabling Error Overlay
 
@@ -190,6 +188,8 @@ leanpub-end-insert
 };
 ```
 
+{pagebreak}
+
 Run the server now (`npm start`) and break the code to see an overlay in the browser:
 
 ![Error overlay](images/error-overlay.png)
@@ -207,8 +207,6 @@ To access your server, you need to figure out the ip of your machine. On Unix, t
 ## Making It Faster to Develop Configuration
 
 WDS will handle restarting the server when you change a bundled file, but what about when you edit the webpack config? Restarting the development server each time you make a change tends to get boring after a while. This can be automated as [discussed in GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892) by using [nodemon](https://www.npmjs.com/package/nodemon) monitoring tool.
-
-{pagebreak}
 
 To get it to work, you have to install it first through `npm install nodemon --save-dev`. After that, you can make it watch webpack config and restart WDS on change. Here's the script if you want to give it a go:
 
@@ -296,8 +294,6 @@ The webpack plugin ecosystem is diverse and there are a lot of plugins that can 
 * [nyan-progress-webpack-plugin](https://www.npmjs.com/package/nyan-progress-webpack-plugin) can be used to get tidier output during the build process. Take care if you are using Continuous Integration (CI) systems like Travis as they can clobber the output. Webpack provides `ProgressPlugin` for the same purpose. No nyan there, though.
 * [react-dev-utils](https://www.npmjs.com/package/react-dev-utils) contains webpack utilities developed for [Create React App](https://www.npmjs.com/package/create-react-app). Despite its name, they can find use beyond React.
 * [webpack-dashboard](https://www.npmjs.com/package/webpack-dashboard) gives an entire terminal based dashboard over the standard webpack output. If you prefer clear visual output, this one comes in handy.
-
-{pagebreak}
 
 ## Conclusion
 
