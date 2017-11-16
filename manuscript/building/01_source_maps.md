@@ -58,7 +58,9 @@ leanpub-start-insert
         "webpack:///[absolute-resource-path]",
     },
   },
-  parts.generateSourceMaps({ type: "cheap-module-eval-source-map" }),
+  parts.generateSourceMaps({
+    type: "cheap-module-eval-source-map"
+  }),
 leanpub-end-insert
   ...
 ]);
