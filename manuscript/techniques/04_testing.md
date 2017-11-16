@@ -409,6 +409,8 @@ Given generating coverage reports comes with a performance overhead, enabling th
 
 Porting a webpack setup to Jest requires more effort especially if you rely on webpack specific features. [The official guide](https://facebook.github.io/jest/docs/en/webpack.html) covers quite a few of the common problems. You can also configure Jest to use Babel through [babel-jest](https://www.npmjs.com/package/babel-jest) as it allows you to use Babel plugins like [babel-plugin-module-resolver](https://www.npmjs.com/package/babel-plugin-module-resolver) to match webpack's functionality.
 
+T> [jest-webpack](https://www.npmjs.com/package/jest-webpack) provides an integration between webpack and Jest.
+
 ## AVA
 
 ![AVA](images/ava.png)
