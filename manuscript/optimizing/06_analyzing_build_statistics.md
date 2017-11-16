@@ -57,8 +57,6 @@ If you want to manage stats through a plugin, check out [stats-webpack-plugin](h
 
 [webpack-stats-plugin](https://www.npmjs.com/package/webpack-stats-plugin) is another option. It allows you to transform the data before outputting it.
 
-T> [bundle-duplicates-plugin](https://www.npmjs.com/package/bundle-duplicates-plugin) helps you to discover possible duplicate functions within your bundles. [find-duplicate-dependencies](https://www.npmjs.com/package/find-duplicate-dependencies) achieves the same on a npm package level.
-
 ## Available Analysis Tools
 
 Even though having a look at the file itself gives you idea of what's going on, often it's preferable to use a particular tool for that. Consider the following.
@@ -124,7 +122,7 @@ css-loader: 1.47 KB (1.17%)
 
 ### inspectpack
 
-[inspectpack](https://www.npmjs.com/package/inspectpack) can be used for figuring out specific places of code to improve.
+[inspectpack](https://www.npmjs.com/package/inspectpack) can be used for figuring out specific places of code to improve. The example below performs duplication analysis:
 
 ```bash
 $ inspectpack --action=duplicates --bundle=bundle.js
@@ -141,6 +139,15 @@ $ inspectpack --action=duplicates --bundle=bundle.js
 ```
 
 {pagebreak}
+
+## Duplication Analysis
+
+In addition to inspectpack, there are other tools for figuring out duplicates:
+
+* [bundle-duplicates-plugin](https://www.npmjs.com/package/bundle-duplicates-plugin) operates on a function level.
+* [find-duplicate-dependencies](https://www.npmjs.com/package/find-duplicate-dependencies) achieves the same on a npm package level.
+* [depcheck](https://www.npmjs.com/package/depcheck) goes further and warns if there are useless dependencies or dependencies missing from the project.
+* [bundle-buddy](https://www.npmjs.com/package/bundle-buddy) can find duplicates across bundles while providing a user interface to tune webpack code splitting behavior. [bundle-buddy-webpack-plugin](https://www.npmjs.com/package/bundle-buddy-webpack-plugin) makes it simpler to use.
 
 ## Independent Tools
 
