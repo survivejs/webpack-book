@@ -439,6 +439,8 @@ plugins: [
 ]
 ```
 
+{pagebreak}
+
 ## Conclusion
 
 Webpack can be configured to work with a large variety of testing tools. Each tool has its sweet spots, but they also have quite a bit of common ground.
