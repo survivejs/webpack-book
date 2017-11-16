@@ -127,7 +127,7 @@ It's preferable to go through `use`:
   use: {
     loader: "babel-loader",
     options: {
-      presets: ["react", "env"],
+      presets: ["env"],
     },
   },
 },
@@ -144,7 +144,7 @@ If you wanted to use more than one loader, you could pass an array to `use` and 
     {
       loader: "babel-loader",
       options: {
-        presets: ["react", "env"],
+        presets: ["env"],
       },
     },
     // Add more loaders here
