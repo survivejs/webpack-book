@@ -125,7 +125,7 @@ Webpack provides multiple inline source map variants. Often `eval` is the starti
 
 To get a better idea of the available options, they are listed below while providing a small example for each. The source code contains only a single `console.log('Hello world')` and `webpack.NamedModulesPlugin` is used to keep the output easier to understand. In practice, you would see a lot more code to handle the mapping.
 
-T> `webpack.NamedModulesPlugin` replaces number based module IDs with paths. It's discussed in the *Hot Module Replacement* appendix.
+T> `webpack.NamedModulesPlugin` replaces number based module IDs with paths. It's discussed in the *Adding Hashes to Filenames* chapter.
 
 ### `devtool: "eval"`
 
