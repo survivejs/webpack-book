@@ -4,25 +4,25 @@ Analyzing build statistics is a good step towards understanding webpack better. 
 
 ## Configuring Webpack
 
-To get suitable output, you need to do a couple of tweaks to the configuration. Most importantly, you have to enable two flags:
-
-* `--profile` to capture timing-related information. This is optional, but good to set.
-* `--json` to make webpack output statistics.
-
-Here's the line of code you need to pipe the output to a file:
+To get suitable output, you need to do a couple of tweaks to the configuration. At minimum, you should set the `--json` flag and pipe the output to a file as follows:
 
 **package.json**
 
 ```json
 "scripts": {
 leanpub-start-insert
-  "stats": "webpack --env production --profile --json > stats.json",
+  "build:stats": "webpack --env production --json > stats.json",
 leanpub-end-insert
   ...
 },
 ```
 
-The above is the basic setup you need, regardless of your webpack configuration. Execute `npm run stats` now. After a while you should find *stats.json* at your project root. This file can be pushed through a variety of tools to understand better what's going on.
+The above is the basic setup you need, regardless of your webpack configuration. Execute `npm run build:stats` now. After a while you should find *stats.json* at your project root. This file can be pushed through a variety of tools to understand better what's going on.
+
+You can also consider using the following flags:
+
+* `--profile` to capture timing-related information. This is optional, but good to set.
+* `--progress` to show how long webpack spent in different stages of the build.
 
 T> To understand why webpack includes a specific module to the build while processing, pass `--display-reasons` flag to it. Example: `npm run build -- --display-reasons`.
 
