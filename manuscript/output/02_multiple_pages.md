@@ -24,7 +24,6 @@ To initialize a page, it should receive page title, output path, and an optional
 
 ```javascript
 ...
-leanpub-start-insert
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 exports.page = (
@@ -44,7 +43,6 @@ exports.page = (
     }),
   ],
 });
-leanpub-end-insert
 ```
 
 {pagebreak}
