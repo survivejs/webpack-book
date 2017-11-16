@@ -100,6 +100,8 @@ There are a series of plugin specific optimizations to consider:
 * Use equivalent, but lighter alternatives, of plugins and loaders during development. Replacing `HtmlWebpackPlugin` with a [HtmlPlugin](https://gist.github.com/bebraw/5bd5ebbb2a06936e052886f5eb1e6874) that does far less is one direction.
 * Consider using parallel variants of plugins if they are available. [webpack-uglify-parallel](https://www.npmjs.com/package/webpack-uglify-parallel) is one example.
 
+{pagebreak}
+
 ### Loader Specific Optimizations
 
 Loaders have their own optimizations as well:
