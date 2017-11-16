@@ -92,16 +92,22 @@ Certain lower-level optimizations can be good to know. The key is to allow webpa
 * Disable the portions of the application you don't need during development. It can be a valid idea to compile only a small portion you are working on as then you have less to bundle.
 * Push bundles that change less to **Dynamically Loaded Libraries** (DLL) to avoid unnecessary processing. It's one more thing to worry about, but can lead to speed increases as there is less to bundle. The [official webpack example](https://github.com/webpack/webpack/tree/master/examples/dll-user) gets to the point while [Rob Knight's blog post](https://robertknight.github.io/posts/webpack-dll-plugins/) explains the idea further.
 
-### Loader and Plugin Specific Optimizations
+### Plugin Specific Optimizations
 
-There are a series of loader and plugin specific optimizations to consider:
+There are a series of plugin specific optimizations to consider:
+
+* Utilize caching through plugins like [hard-source-webpack-plugin](https://www.npmjs.com/package/hard-source-webpack-plugin) to avoid unnecessary work.
+* Use equivalent, but lighter alternatives, of plugins and loaders during development. Replacing `HtmlWebpackPlugin` with a [HtmlPlugin](https://gist.github.com/bebraw/5bd5ebbb2a06936e052886f5eb1e6874) that does far less is one direction.
+* Consider using parallel variants of plugins if they are available. [webpack-uglify-parallel](https://www.npmjs.com/package/webpack-uglify-parallel) is one example.
+
+### Loader Specific Optimizations
+
+Loaders have their own optimizations as well:
 
 * Perform less processing by skipping loaders during development. Especially if you are using a modern browser, you can skip using *babel-loader* or equivalent altogether.
 * Use either `include` or `exclude` with JavaScript specific loaders. Webpack traverses *node_modules* by default and executes *babel-loader* over the files unless it has been configured correctly.
-* Utilize caching through plugins like [hard-source-webpack-plugin](https://www.npmjs.com/package/hard-source-webpack-plugin) to avoid unnecessary work. The caching idea applies to loaders as well. For example, you can enable cache on *babel-loader*.
-* Use equivalent, but lighter alternatives, of plugins and loaders during development. Replacing `HtmlWebpackPlugin` with a [HtmlPlugin](https://gist.github.com/bebraw/5bd5ebbb2a06936e052886f5eb1e6874) that does far less is one direction.
-* Consider using parallel variants of plugins if they are available. [webpack-uglify-parallel](https://www.npmjs.com/package/webpack-uglify-parallel) is one example.
 * Cache the results of expensive loaders (e.g. image manipulation) to the disk using the [cache-loader](https://www.npmjs.com/package/cache-loader).
+* Parallelize the execution of expensive loaders using [thread-loader](https://www.npmjs.com/package/thread-loader). Given workers come with an overhead in Node, using *thread-loader* is worth it only if the parallelized operation is heavy.
 
 ## Optimizing Rebundling Speed During Development
 
