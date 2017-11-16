@@ -47,8 +47,6 @@ T> [babel-plugin-module-resolver](https://www.npmjs.com/package/babel-plugin-mod
 
 Browser dependencies, like jQuery, are often served through publicly available Content Delivery Networks (CDN). CDNs allow you to push the problem of loading popular packages elsewhere. If a package has been already loaded from a CDN and it's in the user cache, there is no need to load it.
 
-{pagebreak}
-
 To use this technique, you should first mark the dependency in question as an external:
 
 ```javascript
@@ -71,8 +69,6 @@ T> [html-webpack-cdn-plugin](https://www.npmjs.com/package/html-webpack-cdn-plug
 ## Dealing with Globals
 
 Sometimes modules depend on globals. `$` provided by jQuery is a good example. Webpack provides a few ways that allow you to handle them.
-
-{pagebreak}
 
 ### Injecting Globals
 
@@ -105,8 +101,6 @@ Webpack's `ProvidePlugin` allows webpack to resolve globals as it encounters the
 },
 ```
 
-{pagebreak}
-
 ### Exposing Globals to the Browser
 
 Sometimes you have to expose packages to third party scripts. [expose-loader](https://www.npmjs.com/package/expose-loader) allows this as follows:
@@ -134,8 +128,6 @@ T> [script-loader](https://www.npmjs.com/package/script-loader) allows you to ex
 
 Even though packages can work well out of the box, they bring too much code to your project sometimes. [Moment.js](https://www.npmjs.com/package/moment) is a popular example. It brings locale data to your project by default.
 
-{pagebreak}
-
 The easiest method to disable that behavior is to use `IgnorePlugin` to ignore locales:
 
 ```javascript
@@ -160,8 +152,6 @@ To bring specific locales to your project, you should use `ContextReplacementPlu
 ```
 
 T> There's a [Stack Overflow question](https://stackoverflow.com/questions/25384360/how-to-prevent-moment-js-from-loading-locales-with-webpack/25426019) that covers these ideas in detail.
-
-{pagebreak}
 
 ## Managing Pre-built Dependencies
 
