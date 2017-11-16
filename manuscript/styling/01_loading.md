@@ -293,7 +293,7 @@ Webpack can load a variety of style formats. The approaches covered here write t
 
 To recap:
 
-* *css-loader* evaluates the `@import` and `url()` definitions of your styling. *style-loader* converts it to JavaScript and implements webpack's Hot Module Replacement interface.
+* *css-loader* evaluates the `@import` and `url()` definitions of your styling. *style-loader* converts it to JavaScript and implements webpack's *Hot Module Replacement* interface.
 * Webpack supports a large variety of formats compiling to CSS through loaders. These include Sass, Less, and Stylus.
 * PostCSS allows you to inject functionality to CSS in through its plugin system. cssnext is an example of a collection of plugins for PostCSS that implements future features of CSS.
 * *css-loader* doesn't touch absolute imports by default. It allows customization of loading behavior through the `importLoaders` option. You can perform lookups against *node_modules* by prefixing your imports with a tilde (`~`) character.
