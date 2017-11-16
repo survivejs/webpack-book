@@ -176,7 +176,25 @@ Webpack allows you to load images dynamically based on a condition. The techniqu
 
 Sometimes getting the only reference to an image isn't enough. [image-size-loader](https://www.npmjs.com/package/image-size-loader) emits image dimensions, type, and size in addition to the reference to the image itself.
 
-{pagebreak}
+## Loading Sprites
+
+**Spriting** technique allows you to combine multiple smaller images into a single image. It has been used for games to describe animations and it's valuable for web development as well as you avoid request overhead.
+
+[webpack-spritesmith](https://www.npmjs.com/package/webpack-spritesmith) converts provided images into a sprite sheet and Sass/Less/Stylus mixins. You have to set up a `SpritesmithPlugin`, point it to target images, and set the name of the generated mixin. After that, your styling can pick it up:
+
+```sass
+@import "~sprite.sass";
+
+.close-button {
+  sprite($close);
+}
+
+.open-button {
+  sprite($open);
+}
+```
+
+T> See [sprite-webpack-plugin](https://www.npmjs.com/package/sprite-webpack-plugin) for another option.
 
 ## Referencing to Images
 
@@ -207,26 +225,6 @@ const src = require(`./avatars/${avatar}`);
 
 ...
 ```
-
-## Loading Sprites
-
-**Spriting** technique allows you to combine multiple smaller images into a single image. It has been used for games to describe animations and it's valuable for web development as well as you avoid request overhead.
-
-[webpack-spritesmith](https://www.npmjs.com/package/webpack-spritesmith) converts provided images into a sprite sheet and Sass/Less/Stylus mixins. You have to set up a `SpritesmithPlugin`, point it to target images, and set the name of the generated mixin. After that, your styling can pick it up:
-
-```sass
-@import "~sprite.sass";
-
-.close-button {
-  sprite($close);
-}
-
-.open-button {
-  sprite($open);
-}
-```
-
-T> See [sprite-webpack-plugin](https://www.npmjs.com/package/sprite-webpack-plugin) for another option.
 
 ## Images and *css-loader* Source Map Gotcha
 
