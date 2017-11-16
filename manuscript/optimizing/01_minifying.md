@@ -180,6 +180,8 @@ Out of the available solutions, `OptimizeCSSAssetsPlugin` composes the best. To 
 npm install optimize-css-assets-webpack-plugin cssnano --save-dev
 ```
 
+{pagebreak}
+
 Like for JavaScript, you can wrap the idea in a configuration part:
 
 **webpack.parts.js**
@@ -201,8 +203,6 @@ exports.minifyCSS = ({ options }) => ({
 ```
 
 W> If you use `--json` output with webpack as discussed in the *Build Analysis* chapter, you should set `canPrint: false` to avoid output. You can solve by exposing the flag as a parameter so you can control it based on the environment.
-
-{pagebreak}
 
 Then, connect with main configuration:
 
