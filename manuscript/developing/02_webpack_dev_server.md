@@ -138,7 +138,7 @@ module.exports = env => {
 leanpub-end-insert
 ```
 
-After this change, you can configure the server host and port options through environment parameters. The merging portion of the code (`Object.assign`) is beginning to look knotty and it will be fixed in the *Splitting Configuration* chapter.
+After this change, you can configure the server host and port options through environment parameters. The merging portion of the code (`Object.assign`) is tricky (shallow merge) and it will be fixed in the *Splitting Configuration* chapter.
 
 If you access through `http://localhost:8080/webpack-dev-server/`, WDS provides status information at the top. If your application relies on WebSockets and you use WDS proxying, you need to use this particular url as otherwise WDS logic interferes.
 
