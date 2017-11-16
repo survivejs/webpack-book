@@ -153,6 +153,8 @@ To bring specific locales to your project, you should use `ContextReplacementPlu
 
 T> There's a [Stack Overflow question](https://stackoverflow.com/questions/25384360/how-to-prevent-moment-js-from-loading-locales-with-webpack/25426019) that covers these ideas in detail.
 
+{pagebreak}
+
 ## Managing Pre-built Dependencies
 
 It's possible webpack gives the following warning with certain dependencies:
@@ -178,6 +180,8 @@ The warning can be eliminated by aliasing the package to a source version as dis
 
 W> Take care when disabling warnings as it can hide underlying issues. Consider alternatives first. There's a [webpack issue](https://github.com/webpack/webpack/issues/1617) that discusses the problem in detail.
 
+{pagebreak}
+
 ## Managing Symbolic Links
 
 Symbolic links, or symlinks, are an operating system level feature that allow you to point to other files through a file system without copying them. You can use `npm link` to create global symlinks for packages under development and then use `npm unlink` to remove the links.
@@ -188,13 +192,13 @@ T> You can disable webpack's symlink handling by setting `resolve.symlinks` as `
 
 ## Getting Insights on Packages
 
-To get more information about packages, npm provides `npm info <package>` command for basic queries. You can use it to check the metadata associated with packages while figuring out version related information.
+To get more information about packages, npm provides `npm info <package>` command for basic queries. You can use it to check the metadata associated with packages while figuring out version related information. Consider the following tools as well:
 
-[package-config-checker](https://www.npmjs.com/package/package-config-checker) goes a step further. It allows you to understand better which packages of your project have updated recently and it provides means to get insight into your dependencies. It can reveal which packages could use download size related improvements for example.
+* [package-config-checker](https://www.npmjs.com/package/package-config-checker) goes a step further. It allows you to understand better which packages of your project have updated recently and it provides means to get insight into your dependencies. It can reveal which packages could use download size related improvements for example.
+* [slow-deps](https://www.npmjs.com/package/slow-deps) can reveal which dependencies of a project are the slowest to install.
+* [weigh](https://www.npmjs.com/package/weigh) can be used figure out the approximate size of a package when it's served to a browser in different ways (uncompressed, minified, gzipped).
 
-[slow-deps](https://www.npmjs.com/package/slow-deps) can reveal which dependencies of a project are the slowest to install.
-
-[weigh](https://www.npmjs.com/package/weigh) can be used figure out the approximate size of a package when it's served to a browser in different ways (uncompressed, minified, gzipped).
+{pagebreak}
 
 ## Conclusion
 
