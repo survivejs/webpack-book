@@ -117,6 +117,8 @@ It's possible to optimize rebundling times during development by pointing the de
 
 `module.noParse` accepts a RegExp or an array of RegExps. In addition to telling webpack not to parse the minified file you want to use, you also have to point `react` to it by using `resolve.alias`. The aliasing idea is discussed in detail in the *Package Consuming Techniques* chapter.
 
+{pagebreak}
+
 It's possible to encapsulate the core idea within a function:
 
 ```javascript
@@ -134,8 +136,6 @@ exports.dontParse = ({ name, path }) => {
   };
 };
 ```
-
-{pagebreak}
 
 To use the function, you would call it as follows:
 
