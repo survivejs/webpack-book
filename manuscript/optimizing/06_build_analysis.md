@@ -157,6 +157,8 @@ In addition to inspectpack, there are other tools for figuring out duplicates:
 * [depcheck](https://www.npmjs.com/package/depcheck) goes further and warns if there are useless dependencies or dependencies missing from the project.
 * [bundle-buddy](https://www.npmjs.com/package/bundle-buddy) can find duplicates across bundles while providing a user interface to tune webpack code splitting behavior. [bundle-buddy-webpack-plugin](https://www.npmjs.com/package/bundle-buddy-webpack-plugin) makes it simpler to use.
 
+{pagebreak}
+
 ## Independent Tools
 
 In addition to tools that work with webpack output, there are a couple that are webpack agnostic and worth a mention.
