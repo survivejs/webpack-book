@@ -48,7 +48,7 @@ const target = "fi";
 import(`translations/${target}.json`).then(...).catch(...);
 ```
 
-The same idea works with `require` as webpack can then performs static analysis.
+The same idea works with `require` as webpack can then perform static analysis. For example, `require(`assets/modals/${imageSrc}.js`);` would generate a context and resolve against an image based on the `imageSrc` that was passed to the `require`.
 
 T> When using dynamic imports, specify file extension in the path as that helps with performance by keeping the context smaller.
 
