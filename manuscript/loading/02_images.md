@@ -158,8 +158,6 @@ In case you want to compress your images, use [image-webpack-loader](https://www
 
 Compression is particularly valuable for production builds as it decreases the amount of bandwidth required to download your image assets and speed up your site or application as a result.
 
-T> [image-trace-loader](https://www.npmjs.com/package/image-trace-loader) loads images and exposes the results as `image/svg+xml` URL encoded data.
-
 ## Utilizing `srcset`
 
 [resize-image-loader](https://www.npmjs.com/package/resize-image-loader) and [responsive-loader](https://www.npmjs.com/package/responsive-loader) allow you to generate `srcset` compatible collections of images for modern browsers. `srcset` gives more control to the browsers over what images to load and when resulting in higher performance.
@@ -167,6 +165,12 @@ T> [image-trace-loader](https://www.npmjs.com/package/image-trace-loader) loads 
 ## Loading Images Dynamically
 
 Webpack allows you to load images dynamically based on a condition. The techniques covered in the *Code Splitting* chapter are enough for this purpose. Doing this can save bandwidth and load images only when you need them or preload them while you have time.
+
+## Using Placeholders
+
+[image-trace-loader](https://www.npmjs.com/package/image-trace-loader) loads images and exposes the results as `image/svg+xml` URL encoded data. It can be used in conjunction with *file-loader* and *url-loader* for showing a placeholder while the actual image is being loaded.
+
+[lqip-loader](https://www.npmjs.com/package/lqip-loader) implements a similar idea. Instead of tracing, it provides a blurred image instead of a traced one.
 
 ## Getting Image Dimensions
 
