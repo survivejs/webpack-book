@@ -219,6 +219,8 @@ To get it to work, you have to install it first through `npm install nodemon --s
 
 It's possible WDS [will support the functionality](https://github.com/webpack/webpack/issues/3153) itself in the future. If you want to make it reload itself on change, you should implement this workaround for now.
 
+{pagebreak}
+
 ## Polling Instead of Watching Files
 
 Sometimes the file watching setup provided by WDS won't work on your system. It can be problematic on older versions of Windows, Ubuntu, Vagrant, and Docker. Enabling polling is a good option then:
@@ -277,8 +279,6 @@ WDS provides functionality beyond what was covered above. There are a couple of 
 * `devServer.headers` - Attach custom headers to your requests here.
 
 T> [The official documentation](https://webpack.js.org/configuration/dev-server/) covers more options.
-
-{pagebreak}
 
 ## Development Plugins
 
