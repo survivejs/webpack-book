@@ -31,7 +31,6 @@ The idea can be modeled as below:
 **webpack.parts.js**
 
 ```javascript
-leanpub-start-insert
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 exports.extractCSS = ({ include, exclude, use }) => {
@@ -61,7 +60,6 @@ exports.extractCSS = ({ include, exclude, use }) => {
     plugins: [plugin],
   };
 };
-leanpub-end-insert
 
 ...
 ```
