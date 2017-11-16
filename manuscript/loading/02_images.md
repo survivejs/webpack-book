@@ -164,7 +164,7 @@ Compression is particularly valuable for production builds as it decreases the a
 
 ## Loading Images Dynamically
 
-Webpack allows you to load images dynamically based on a condition. The techniques covered in the *Code Splitting* chapter are enough for this purpose. Doing this can save bandwidth and load images only when you need them or preload them while you have time.
+Webpack allows you to load images dynamically based on a condition. The techniques covered in the *Code Splitting* and *Dynamic Loading* chapters are enough for this purpose. Doing this can save bandwidth and load images only when you need them or preload them while you have time.
 
 ## Loading Sprites
 
