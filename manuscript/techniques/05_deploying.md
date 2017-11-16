@@ -79,14 +79,12 @@ ghpages.publish(path.join(__dirname, "build"), { add: true }, cb);
 Even though you can push the problem of deployment outside of webpack, there are a couple of webpack specific utilities that come in handy:
 
 * [webpack-deploy](https://www.npmjs.com/package/webpack-deploy) is a collection of deployment utilities and works even outside of webpack.
-* [webpack-s3-sync-plugin](https://www.npmjs.com/package/webpack-s3-sync-plugin) and [webpack-s3-plugin](https://www.npmjs.com/package/webpack-s3-plugin) sync the assets to Amazon S3.
+* [webpack-s3-sync-plugin](https://www.npmjs.com/package/webpack-s3-sync-plugin) and [webpack-s3-plugin](https://www.npmjs.com/package/webpack-s3-plugin) sync the assets to Amazon.
 * [ssh-webpack-plugin](https://www.npmjs.com/package/ssh-webpack-plugin) has been designed for deployments over SSH.
 
 T> To get access to the generated files and their paths, consider using [assets-webpack-plugin](https://www.npmjs.com/package/assets-webpack-plugin). The path information allows you to integrate webpack with other environments while deploying.
 
 W> To make sure clients relying on the older bundles still work after deploying a new version, do **not** remove the old files until they are old enough. You can perform a specific check on what to remove when deploying instead of removing every old asset.
-
-{pagebreak}
 
 ## Resolving `output.publicPath` Dynamically
 
