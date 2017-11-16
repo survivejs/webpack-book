@@ -243,7 +243,9 @@ leanpub-start-insert
     plugins: [
       // Ignore node_modules so CPU usage with poll
       // watching drops significantly.
-      new webpack.WatchIgnorePlugin([path.join(__dirname, "node_modules")]),
+      new webpack.WatchIgnorePlugin([
+        path.join(__dirname, "node_modules")
+      ]),
     ],
 leanpub-end-insert
   },
