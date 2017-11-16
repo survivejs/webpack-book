@@ -45,7 +45,7 @@ Set these up as follows:
 ```javascript
 const productionConfig = merge([
 leanpub-start-insert
-  parts.generateSourceMaps({ type: 'source-map' }),
+  parts.generateSourceMaps({ type: "source-map" }),
 leanpub-end-insert
   ...
 ]);
