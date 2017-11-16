@@ -233,7 +233,7 @@ Boolean based fields can be used to constrain these matchers further:
 
 ```javascript
 {
-  test: /\.css$/,
+  test: /\.png$/,
   oneOf: [
     {
       resourceQuery: /inline/,
