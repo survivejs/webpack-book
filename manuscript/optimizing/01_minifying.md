@@ -206,6 +206,8 @@ exports.minifyCSS = ({ options }) => ({
 
 W> If you use `--json` output with webpack as discussed in the *Build Analysis* chapter, you should set `canPrint: false` to avoid output. You can solve by exposing the flag as a parameter so you can control it based on the environment.
 
+{pagebreak}
+
 Then, connect with main configuration:
 
 **webpack.config.js**
