@@ -239,6 +239,12 @@ leanpub-end-insert
 
 If you consume HTML templates through your code using [html-loader](https://www.npmjs.com/package/html-loader), you can preprocess it through [posthtml](https://www.npmjs.com/package/posthtml) with [posthtml-loader](https://www.npmjs.com/package/posthtml-loader). You can use [posthtml-minifier](https://www.npmjs.com/package/posthtml-minifier) to minify your HTML through it.
 
+## Minifying Images
+
+Image size can be reduced by using [img-loader](https://www.npmjs.com/package/img-loader), [imagemin-webpack](https://www.npmjs.com/package/imagemin-webpack), and [imagemin-webpack-plugin](https://www.npmjs.com/package/imagemin-webpack-plugin). The packages use image optimizers underneath.
+
+It can be a good idea to use *cache-loader* and *thread-loader* with these as discussed in the *Performance* chapter given they can be heavy operations.
+
 ## Conclusion
 
 Minification is the easiest step you can take to make your build smaller. To recap:
@@ -246,6 +252,6 @@ Minification is the easiest step you can take to make your build smaller. To rec
 * **Minification** process analyzes your source code and turns it into a smaller form with the same meaning if you use safe transformations. Certain unsafe transformations allow you to reach even smaller results while potentially breaking code that relies, for example, on exact parameter naming.
 * **Performance budget** allows you to set limits to the build size. Maintaining a budget can keep developers more conscious of the size of the generated bundles.
 * Webpack includes `UglifyJsPlugin` for minification. Other solutions, such as *babel-minify-webpack-plugin*, provide similar functionality with costs of their own.
-* Besides JavaScript, it's possible to minify other assets, such as CSS and HTML, too. Minifying these requires specific technologies that have to be applied through loaders and plugins of their own.
+* Besides JavaScript, it's possible to minify other assets, such as CSS, HTML, and images, too. Minifying these requires specific technologies that have to be applied through loaders and plugins of their own.
 
 You'll learn to apply tree shaking against code in the next chapter.
