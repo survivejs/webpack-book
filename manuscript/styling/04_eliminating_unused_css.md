@@ -88,13 +88,11 @@ You also need PurifyCSS configuration as below:
 
 ```javascript
 ...
-leanpub-start-insert
 const PurifyCSSPlugin = require("purifycss-webpack");
 
 exports.purifyCSS = ({ paths }) => ({
   plugins: [new PurifyCSSPlugin({ paths })],
 });
-leanpub-end-insert
 ```
 
 Next, the part has to be connected with the configuration. It's important the plugin is used *after* the `ExtractTextPlugin`; otherwise it doesn't work:
