@@ -57,7 +57,7 @@ If you want to manage stats through a plugin, check out [stats-webpack-plugin](h
 
 [webpack-stats-plugin](https://www.npmjs.com/package/webpack-stats-plugin) is another option. It allows you to transform the data before outputting it.
 
-T> [bundle-duplicates-plugin](https://www.npmjs.com/package/bundle-duplicates-plugin) helps you to discover possible duplicate functions within your bundles
+T> [bundle-duplicates-plugin](https://www.npmjs.com/package/bundle-duplicates-plugin) helps you to discover possible duplicate functions within your bundles. [find-duplicate-dependencies](https://www.npmjs.com/package/find-duplicate-dependencies) achieves the same on a npm package level.
 
 ## Available Analysis Tools
 
