@@ -150,6 +150,7 @@ Although *uglifyjs-webpack-plugin* works for this use case, there are more optio
 
 Certain solutions allow you to preprocess code so that it will run faster. They complement the minification technique:
 
+* [webpack.optimize.ModuleConcatenationPlugin](https://webpack.js.org/plugins/module-concatenation-plugin/) hoists all modules to a single scope instead of writing a separate closure by each. Doing this slows down the build but gives you bundles that are faster to execute.
 * [prepack-webpack-plugin](https://www.npmjs.com/package/prepack-webpack-plugin) uses [Prepack](https://prepack.io/), a partial JavaScript evaluator. It rewrites computations that can be done compile-time and therefore speeds up code execution.
 * [optimize-js-plugin](https://www.npmjs.com/package/optimize-js-plugin) complements the other solutions by wrapping eager functions and it enhances the way your JavaScript code gets parsed initially. The plugin relies on [optimize-js](https://github.com/nolanlawson/optimize-js) by Nolan Lawson.
 
