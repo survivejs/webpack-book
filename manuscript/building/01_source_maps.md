@@ -127,7 +127,7 @@ To get a better idea of the available options, they are listed below while provi
 
 T> `webpack.NamedModulesPlugin` replaces number based module IDs with paths. It's discussed in the *Hot Module Replacement* appendix.
 
-### `devtool: 'eval'`
+### `devtool: "eval"`
 
 `eval` generates code in which each module is wrapped within an `eval` function:
 
@@ -141,7 +141,7 @@ webpackJsonp([1, 2], {
 
 {pagebreak}
 
-### `devtool: 'cheap-eval-source-map'`
+### `devtool: "cheap-eval-source-map"`
 
 `cheap-eval-source-map` goes a step further and it includes base64 encoded version of the code as a data url. The result includes only line data while losing column mappings.
 
@@ -172,7 +172,7 @@ If you decode that base64 string, you get output containing the mapping:
 
 {pagebreak}
 
-### `devtool: 'cheap-module-eval-source-map'`
+### `devtool: "cheap-module-eval-source-map"`
 
 `cheap-module-eval-source-map` is the same idea, except with higher quality and lower performance:
 
@@ -205,7 +205,7 @@ In this particular case, the difference between the options is minimal.
 
 {pagebreak}
 
-### `devtool: 'eval-source-map'`
+### `devtool: "eval-source-map"`
 
 `eval-source-map` is the highest quality option of the inline options. It's also the slowest one as it emits the most data:
 
@@ -246,7 +246,7 @@ Webpack can also generate production usage friendly source maps. These end up in
 
 `source-map` is a good default here. Even though it takes longer to generate the source maps this way, you get the best quality. If you don't care about production source maps, you can simply skip the setting there and get better performance in return.
 
-### `devtool: 'cheap-source-map'`
+### `devtool: "cheap-source-map"`
 
 `cheap-source-map` is similar to the cheap options above. The result is going to miss column mappings. Also, source maps from loaders, such as *css-loader*, are not going to be used.
 
@@ -269,7 +269,7 @@ Examining the `.map` file reveals the following output in this case:
 
 The original source contains `//# sourceMappingURL=app.9a...18.js.map` kind of comment at its end to map to this file.
 
-### `devtool: 'cheap-module-source-map'`
+### `devtool: "cheap-module-source-map"`
 
 `cheap-module-source-map` is the same as previous except source maps from loaders are simplified to a single mapping per line. It yields the following output in this case:
 
@@ -287,7 +287,7 @@ The original source contains `//# sourceMappingURL=app.9a...18.js.map` kind of c
 
 W> `cheap-module-source-map` is [currently broken if minification is used](https://github.com/webpack/webpack/issues/4176) and this is a good reason to avoid the option for now.
 
-### `devtool: 'hidden-source-map'`
+### `devtool: "hidden-source-map"`
 
 `hidden-source-map` is the same as `source-map` except it doesn't write references to the source maps to the source files. If you don't want to expose source maps to development tools directly while you want proper stack traces, this is handy.
 
@@ -295,7 +295,7 @@ T> [The official documentation](https://webpack.js.org/configuration/devtool/#de
 
 {pagebreak}
 
-### `devtool: 'source-map'`
+### `devtool: "source-map"`
 
 `source-map` provides the best quality with the complete result, but it's also the slowest option. The output reflects this:
 
@@ -359,7 +359,7 @@ Both plugins can allow more granular control over which portions of the code you
 
 Given webpack matches only `.js` and `.css` files by default for source maps, you can use `SourceMapDevToolPlugin` to overcome this issue. This can be achieved by passing a `test` pattern like `/\.(js|jsx|css)($|\?)/i`.
 
-`EvalSourceMapDevToolPlugin` accepts only `module` and `lineToLine` options as described above. Therefore it can be considered as an alias to `devtool: 'eval'` while allowing a notch more flexibility.
+`EvalSourceMapDevToolPlugin` accepts only `module` and `lineToLine` options as described above. Therefore it can be considered as an alias to `devtool: "eval"` while allowing a notch more flexibility.
 
 ## Changing Source Map Prefix
 
@@ -385,9 +385,9 @@ To recap:
 
 * **Source maps** can be helpful both during development and production. They provide more accurate information about what's going on and make it faster to debug possible problems.
 * Webpack supports a large variety of source map variants. They can be split into inline and separate source maps based on where they are generated. Inline source maps are handy during development due to their speed. Separate source maps work for production as then loading them becomes optional.
-* `devtool: 'source-map'` is the highest quality option making it valuable for production.
+* `devtool: "source-map"` is the highest quality option making it valuable for production.
 * `cheap-module-eval-source-map` is a good starting point for development.
-* If you want to get only stack traces during production, use `devtool: 'hidden-source-map'`. You can capture the output and send it to a third party service for you to examine. This way you can capture errors and fix them.
+* If you want to get only stack traces during production, use `devtool: "hidden-source-map"`. You can capture the output and send it to a third party service for you to examine. This way you can capture errors and fix them.
 * `SourceMapDevToolPlugin` and `EvalSourceMapDevToolPlugin` provide more control over the result than the `devtool` shortcut.
 * *source-map-loader* can come in handy if your dependencies provide source maps.
 * Enabling source maps for styling requires additional effort. You have to enable `sourceMap` option per styling related loader you are using.
