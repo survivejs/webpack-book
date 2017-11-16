@@ -198,6 +198,8 @@ Sometimes getting the only reference to an image isn't enough. [image-size-loade
 
 T> See [sprite-webpack-plugin](https://www.npmjs.com/package/sprite-webpack-plugin) for another option.
 
+{pagebreak}
+
 ## Referencing to Images
 
 Webpack can pick up images from style sheets through `@import` and `url()` assuming *css-loader* has been configured. You can also refer to your images within code. In this case, you have to import the files explicitly:
