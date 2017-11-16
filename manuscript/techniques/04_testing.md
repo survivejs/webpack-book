@@ -427,6 +427,18 @@ Mocking is a technique that allows you to replace test objects. Consider the sol
 * [inject-loader](https://www.npmjs.com/package/inject-loader) allows you to inject code to modules through their dependencies making it valuable for mocking.
 * [rewire-webpack](https://www.npmjs.com/package/rewire-webpack) allows mocking and overriding module globals. [babel-plugin-rewire](https://www.npmjs.com/package/babel-plugin-rewire) implements [rewire](https://www.npmjs.com/package/rewire) for Babel.
 
+## Removing Files From Tests
+
+If you execute tests through webpack, you may want to alter the way it treats assets like images. This can be done by matching them and then using a `noop` function to replace the modules as follows:
+
+```javascript
+plugins: [
+  new webpack.NormalModuleReplacementPlugin(
+    /\.(gif|png|scss|css)$/, "lodash/noop"
+  ),
+]
+```
+
 ## Conclusion
 
 Webpack can be configured to work with a large variety of testing tools. Each tool has its sweet spots, but they also have quite a bit of common ground.
