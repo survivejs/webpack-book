@@ -144,6 +144,10 @@ $ inspectpack --action=duplicates --bundle=bundle.js
 
 [webpack-runtime-analyzer](https://www.npmjs.com/package/webpack-runtime-analyzer) gives realtime analysis over webpack bundles. You can see bundle composition in multiple formats through the user interface, bundle sizes, and module details. It combines features of many aforementioned tools into a single one.
 
+### Webpack Monitor
+
+[Webpack Monitor](http://webpackmonitor.com/) is another similar tool with an emphasis on a clear user interface. It is able to provide recommendations on what to improve in the build.
+
 ## Duplication Analysis
 
 In addition to inspectpack, there are other tools for figuring out duplicates:
