@@ -202,8 +202,6 @@ To get more information about packages, npm provides `npm info <package>` comman
 * [slow-deps](https://www.npmjs.com/package/slow-deps) can reveal which dependencies of a project are the slowest to install.
 * [weigh](https://www.npmjs.com/package/weigh) can be used figure out the approximate size of a package when it's served to a browser in different ways (uncompressed, minified, gzipped).
 
-{pagebreak}
-
 ## Conclusion
 
 Webpack can consume most npm packages without a problem. Sometimes, though, patching is required using webpack's resolution mechanism.
