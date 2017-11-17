@@ -276,7 +276,7 @@ W> There are [slight differences](https://github.com/webpack/webpack-dev-server/
 
 WDS provides functionality beyond what was covered above. There are a couple of relevant fields that you should be aware of:
 
-* `devServer.contentBase` - Assuming you don't generate *index.html* dynamically and prefer to maintain it yourself in a specific directory, you need to point WDS to it. `contentBase` accepts either a path (e.g., `'build'`) or an array of paths (e.g., `["build", "images"]`). This defaults to the project root.
+* `devServer.contentBase` - Assuming you don't generate *index.html* dynamically and prefer to maintain it yourself in a specific directory, you need to point WDS to it. `contentBase` accepts either a path (e.g., `"build"`) or an array of paths (e.g., `["build", "images"]`). This defaults to the project root.
 * `devServer.proxy` - If you are using multiple servers, you have to proxy WDS to them. The proxy setting accepts an object of proxy mappings (e.g., `{ "/api": "http://localhost:3000/api" }`) that resolve matching queries to another server. Proxy settings are disabled by default.
 * `devServer.headers` - Attach custom headers to your requests here.
 
