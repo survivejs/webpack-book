@@ -25,11 +25,9 @@ To make sure you use a part of the code, alter the application entry point:
 
 ```javascript
 ...
-leanpub-start-insert
 import { bake } from "./shake";
 
 bake();
-leanpub-end-insert
 
 ...
 ```
