@@ -22,7 +22,7 @@ If the configuration file is broken into separate pieces, they have to be combin
 *webpack-merge* does two things: it concatenates arrays and merges objects instead of overriding them allowing composition. The example below shows the behavior in detail:
 
 ```bash
-> merge = require('webpack-merge')
+> merge = require("webpack-merge")
 ...
 > merge(
 ... { a: [1], b: 5, c: 20 },
