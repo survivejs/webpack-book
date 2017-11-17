@@ -204,20 +204,20 @@ Webpack can pick up images from style sheets through `@import` and `url()` assum
 import src from "./avatar.png";
 
 // Use the image in your code somehow now
-const Profile = () => (
-  <img src={src} />
-);
+const Profile = () => <img src={src} />;
 ```
 
 If you are using React, then you use [babel-plugin-transform-react-jsx-img-import](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-img-import) to generate the `require` automatically. In that case, you would end up with code:
 
 ```javascript
-const Profile = () => (
-  <img src="avatar.png" />
-);
+const Profile = () => <img src="avatar.png" />;
 ```
 
-It's also possible to set up dynamic imports as discussed in the *Code Splitting* chapter. Here's a small example: `const src = require(`./avatars/${avatar}`);`.
+It's also possible to set up dynamic imports as discussed in the *Code Splitting* chapter. Here's a small example:
+
+```javascript
+const src = require(`./avatars/${avatar}`);`.
+```
 
 ## Images and *css-loader* Source Map Gotcha
 
