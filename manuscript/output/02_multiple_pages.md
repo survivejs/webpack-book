@@ -184,6 +184,7 @@ leanpub-start-insert
 leanpub-end-insert
   } = {}
 ) => ({
+leanpub-start-insert
   entry,
 leanpub-end-insert
   plugins: [
