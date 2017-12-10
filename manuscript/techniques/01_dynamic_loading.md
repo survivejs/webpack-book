@@ -4,7 +4,7 @@ Even though you can get far with webpack's code splitting features covered in th
 
 ## Dynamic Loading with `require.context`
 
-[require.context](https://webpack.js.org/configuration/entry-context/#context) provides a general form of code splitting. Let's say you are writing a static site generator on top of webpack. You could model your site contents within a directory structure by having a `./pages/` directory which would contain the Markdown files.
+[require.context](https://webpack.js.org/api/module-methods/#require-context) provides a general form of code splitting. Let's say you are writing a static site generator on top of webpack. You could model your site contents within a directory structure by having a `./pages/` directory which would contain the Markdown files.
 
 Each of these files would have a YAML frontmatter for their metadata. The url of each page could be determined based on the filename and mapped as a site. To model the idea using `require.context`, you could end up with code as below:
 
