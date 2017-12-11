@@ -57,7 +57,7 @@ In case you know webpack well already, there is still something in the book for 
 
 ## Book Versioning
 
-Given this book receives a fair amount of maintenance and improvements due to the pace of innovation, there's a versioning scheme in place. Release notes for each new version are maintained at the [book blog](http://survivejs.com/blog/). You can also use GitHub *compare* tool for this purpose. Example:
+Given this book receives a fair amount of maintenance and improvements due to the pace of innovation, there's a versioning scheme in place. Release notes for each new version are maintained at the [book blog](https://survivejs.com/blog/). You can also use GitHub *compare* tool for this purpose. Example:
 
 ```
 https://github.com/survivejs/webpack-book/compare/v2.0.22...v2.1.1
