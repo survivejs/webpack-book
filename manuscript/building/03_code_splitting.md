@@ -296,7 +296,7 @@ class AsyncComponent extends React.Component {
     const { Component } = this.state;
     const { Placeholder, ...props } = this.props;
 
-    return Component ? <Component {...props} /> : <Placeholder>;
+    return Component ? <Component {...props} /> : <Placeholder />;
   }
 }
 AsyncComponent.propTypes = {
