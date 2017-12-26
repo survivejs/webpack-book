@@ -172,7 +172,7 @@ Webpack allows you to load images dynamically based on a condition. The techniqu
 
 [webpack-spritesmith](https://www.npmjs.com/package/webpack-spritesmith) converts provided images into a sprite sheet and Sass/Less/Stylus mixins. You have to set up a `SpritesmithPlugin`, point it to target images, and set the name of the generated mixin. After that, your styling can pick it up:
 
-```sass
+```scss
 @import "~sprite.sass";
 
 .close-button {
