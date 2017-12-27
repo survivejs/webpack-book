@@ -4,7 +4,7 @@ Tools, such as [LiveReload](http://livereload.com/) or [Browsersync](http://www.
 
 ## Webpack `watch` Mode and *webpack-dev-server*
 
-A good first step towards a better development environment is to use webpack in its **watch** mode. You can activate it through `webpack --watch`. Once enabled, it detects changes made to your files and recompiles automatically. *webpack-dev-server* (WDS) builds on top of the watch mode and goes even further.
+A good first step towards a better development environment is to use webpack in its **watch** mode. You can activate it through `webpack --watch`. Once enabled, it detects changes made to your files and recompiles automatically. *webpack-dev-server* (WDS) implements its own watch mode and goes even further.
 
 WDS is a development server running **in-memory**, meaning the bundle contents aren't written out to files, but stored in memory. This is an important distinction when trying to debug code and styles.
 
