@@ -63,7 +63,7 @@ T> You can use `--save` and `--save-dev` to separate application and development
 
 ## Directory Structure
 
-To move further, you can implement a site that loads JavaScript, which you then build using webpack. After you progress a bit, you end up with a directory structure below:
+To move further, you can implement a site that loads JavaScript, which you then build using webpack. After you progress a bit, you will end up with the directory structure below:
 
 * app/
   * index.js
@@ -72,7 +72,7 @@ To move further, you can implement a site that loads JavaScript, which you then 
 * package.json
 * webpack.config.js
 
-The idea is that you transform *app/* to a bundle below *build/*. To make this possible, you should set up the assets needed and configure webpack through *webpack.config.js*.
+The idea is that you transform *app/* to a bundle below *build/*. To make this possible, you should set up the assets needed and configure webpack through *webpack.config.js*. We'll set up the assets next.
 
 ## Setting Up Assets
 
