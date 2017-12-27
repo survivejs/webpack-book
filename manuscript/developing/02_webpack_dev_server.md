@@ -43,9 +43,7 @@ To integrate WDS to the project, define an npm script for launching it. To follo
 leanpub-start-insert
   "start": "webpack-dev-server",
 leanpub-end-insert
-leanpub-start-delete
   "build": "webpack"
-leanpub-end-delete
 },
 ```
 
