@@ -121,7 +121,7 @@ module.exports = env => {
 };
 ```
 
-Instead of returning a configuration directly, we return a function that captures `env`. This is a special parameter supported by webpack. To use it, *package.json* needs tweaking.
+Instead of returning a configuration directly, a function capturing `env` is returned. This is a special parameter supported by webpack. To use it, *package.json* needs tweaking.
 
 **package.json**
 

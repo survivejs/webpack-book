@@ -72,7 +72,7 @@ To move further, you can implement a site that loads JavaScript, which you then 
 * package.json
 * webpack.config.js
 
-The idea is that you transform *app/* to a bundle below *build/*. To make this possible, you should set up the assets needed and configure webpack through *webpack.config.js*. We'll set up the assets next.
+The idea is that you transform *app/* to a bundle below *build/*. To make this possible, you should set up the assets needed and configure webpack through *webpack.config.js*. The assets will be set up next.
 
 ## Setting Up Assets
 
