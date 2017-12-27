@@ -278,6 +278,8 @@ leanpub-end-insert
 };
 ```
 
+{pagebreak}
+
 The page-specific configuration requires a small tweak as well:
 
 **webpack.parts.js**
@@ -312,6 +314,8 @@ If you generate a build (`npm run build`), you should notice that something is d
 
 Studying the entry specific files in detail reveals more. You can see that they point to different parts of the manifest. The manifest runs different code depending on the entry. Multiple separate manifests are not needed.
 
+{pagebreak}
+
 ### Pros and Cons
 
 Compared to the earlier approach, something was gained, but also lost:
@@ -328,6 +332,8 @@ If you push the idea further by combining it with code splitting and smart routi
 App shell is loaded initially, and it manages the whole application including its routing. Page shells are more granular, and more are loaded as you use the application. The total size of the application is larger but conversely you can load initial content faster.
 
 PWA combines well with plugins like [offline-plugin](https://www.npmjs.com/package/offline-plugin) and [sw-precache-webpack-plugin](https://www.npmjs.com/package/sw-precache-webpack-plugin). Using [Service Workers](https://developer.mozilla.org/en/docs/Web/API/Service_Worker_API) and improves the offline experience.
+
+{pagebreak}
 
 ## Conclusion
 
