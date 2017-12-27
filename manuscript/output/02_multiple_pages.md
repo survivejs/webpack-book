@@ -226,6 +226,24 @@ To reach a code sharing setup, a minor adjustment is needed. Most of the code ca
 **webpack.config.js**
 
 ```javascript
+...
+
+const commonConfig = merge([
+  {
+    output: {
+      path: PATHS.build,
+      filename: "[name].js",
+leanpub-start-insert
+      // Needed for code splitting to work in nested paths
+      publicPath: "/",
+leanpub-end-insert
+    },
+  },
+  ...
+]);
+
+...
+
 module.exports = env => {
   const pages = [
     parts.page({

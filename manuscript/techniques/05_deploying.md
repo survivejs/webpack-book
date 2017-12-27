@@ -45,6 +45,10 @@ const productionConfig = merge([
     ...
     output: {
       ...
+leanpub-start-delete
+      // Needed for code splitting to work in nested paths
+      publicPath: "/",
+leanpub-end-delete
 leanpub-start-insert
       // Tweak this to match your GitHub project name
       publicPath: "/webpack-demo/",
