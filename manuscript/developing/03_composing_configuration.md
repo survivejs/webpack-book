@@ -11,7 +11,7 @@ You can manage webpack configuration in the following ways:
 * Maintain configuration in multiple files for each environment and point webpack to each through the `--config` parameter, sharing configuration through module imports. You can see this approach in action at [webpack/react-starter](https://github.com/webpack/react-starter).
 * Push configuration to a library, which you then consume. Examples: [hjs-webpack](https://www.npmjs.com/package/hjs-webpack), [Neutrino](https://neutrino.js.org/), [webpack-blocks](https://www.npmjs.com/package/webpack-blocks).
 * Push configuration to a tool. Examples: [create-react-app](https://www.npmjs.com/package/create-react-app), [kyt](https://www.npmjs.com/package/kyt), [nwb](https://www.npmjs.com/package/nwb).
-* Maintain all configuration within a single file and branch there and by relying on the `--env` parameter.
+* Maintain all configuration within a single file and branch there and rely on the `--env` parameter. This approach is explained in detail later in this chapter.
 
 These approaches can be combined to create a higher level configuration that is then composed of smaller parts. Those parts could then be added to a library which you then use through npm making it possible to consume the same configuration across multiple projects.
 
@@ -121,9 +121,41 @@ module.exports = env => {
 };
 ```
 
-After this change, the build should behave the same way as before. This time, however, you have room to expand, and you don't have to worry about how to combine different parts of the configuration.
+Instead of returning a configuration directly, we return a function that captures `env`. This is a special parameter supported by webpack. To use it, *package.json* needs tweaking.
+
+**package.json**
+
+```json
+"scripts": {
+leanpub-start-insert
+  "start": "webpack-dev-server --env development",
+  "build": "webpack --env production"
+leanpub-end-insert
+leanpub-start-delete
+  "start": "webpack-dev-server",
+  "build": "webpack"
+leanpub-end-delete
+},
+```
+
+After these changes, the build should behave the same way as before. This time, however, you have room to expand, and you don't have to worry about how to combine different parts of the configuration.
 
 You can add more targets by expanding the *package.json* definition and branching at *webpack.config.js* based on the need. *webpack.parts.js* grows to contain specific techniques you can then use to compose the configuration.
+
+### Understanding `--env`
+
+Even though `--env` allows to pass strings to the configuration, it can do a bit more. Consider the following example:
+
+**package.json**
+
+```json
+"scripts": {
+  "start": "webpack-dev-server --env development",
+  "build": "webpack --env.target production"
+},
+```
+
+Instead of a string, you should receive an object `{ target: "production" }` at configuration now. You could pass more key-value pairs, and they would go to the `env` object. If you set `--env foo` while setting `--env.target`, the string wins. Webpack relies on [yargs](http://yargs.js.org/docs/#parsing-tricks-dot-notation) for parsing underneath.
 
 ## Benefits of Composing Configuration
 
@@ -189,6 +221,7 @@ To recap:
 
 * Given webpack configuration is JavaScript code underneath, there are many ways to manage it.
 * You should choose a method to compose configuration that makes the most sense to you. [webpack-merge](https://www.npmjs.com/package/webpack-merge) was developed to provide a light approach for composition, but you can find many other options in the wild.
+* Webpack's `--env` parameter allows you to control configuration target through terminal. You receive the passed `env` through a function interface.
 * Composition can enable configuration sharing. Instead of having to maintain a custom configuration per repository, you can share it across repositories this way. Using npm packages enables this. Developing configuration is close to developing any other code. This time, however, you codify your practices as packages.
 
 The next parts of this book cover different techniques, and *webpack.parts.js* sees a lot of action as a result. The changes to *webpack.config.js* fortunately remain minimal.

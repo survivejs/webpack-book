@@ -34,15 +34,14 @@ As before, this command generates a command below the `npm bin` directory and yo
 
 ## Attaching WDS to the Project
 
-To integrate WDS to the project, define an npm script for launching it. To follow npm conventions, call it as *start*. To tell the targets apart, pass information about the environment to webpack configuration so you can specialize as needed:
+To integrate WDS to the project, define an npm script for launching it. To follow npm conventions, call it as *start* like below:
 
 **package.json**
 
 ```json
 "scripts": {
 leanpub-start-insert
-  "start": "webpack-dev-server --env development",
-  "build": "webpack --env production"
+  "start": "webpack-dev-server",
 leanpub-end-insert
 leanpub-start-delete
   "build": "webpack"
@@ -55,7 +54,7 @@ T> WDS picks up configuration like webpack itself. The same rules apply.
 If you execute either *npm run start* or *npm start* now, you should see something in the terminal:
 
 ```bash
-> webpack-dev-server --env development
+> webpack-dev-server
 
 Project is running at http://localhost:8080/
 webpack output is served from /
@@ -63,7 +62,7 @@ Hash: 2bf6813b1d90a3b0653a
 Version: webpack 3.8.1
 Time: 689ms
      Asset       Size  Chunks                    Chunk Names
-    app.js     328 kB       0  [emitted]  [big]  app
+    app.js     325 kB       0  [emitted]  [big]  app
 index.html  180 bytes          [emitted]
 ...
 webpack: bundle is now VALID.
@@ -92,78 +91,36 @@ Enable additional functionality as below:
 ```javascript
 ...
 
-leanpub-start-delete
 module.exports = {
-  // Entries have to resolve to files! It relies on Node.js
-  // convention by default so if a directory contains *index.js*,
-  // it resolves to that.
-leanpub-end-delete
-leanpub-start-insert
-const commonConfig = {
-leanpub-end-insert
   ...
-};
-
 leanpub-start-insert
-const productionConfig = () => commonConfig;
+  devServer: {
+    // Display only errors to reduce the amount of output.
+    stats: "errors-only",
 
-const developmentConfig = () => {
-  const config = {
-    devServer: {
-      // Display only errors to reduce the amount of output.
-      stats: "errors-only",
-
-      // Parse host and port from env to allow customization.
-      //
-      // If you use Docker, Vagrant or Cloud9, set
-      // host: options.host || "0.0.0.0";
-      //
-      // 0.0.0.0 is available to all network devices
-      // unlike default `localhost`.
-      host: process.env.HOST, // Defaults to `localhost`
-      port: process.env.PORT, // Defaults to 8080
-    },
-  };
-
-  return Object.assign({}, commonConfig, config);
-};
-
-module.exports = env => {
-  if (env === "production") {
-    return productionConfig();
-  }
-
-  return developmentConfig();
-};
+    // Parse host and port from env to allow customization.
+    //
+    // If you use Docker, Vagrant or Cloud9, set
+    // host: options.host || "0.0.0.0";
+    //
+    // 0.0.0.0 is available to all network devices
+    // unlike default `localhost`.
+    host: process.env.HOST, // Defaults to `localhost`
+    port: process.env.PORT, // Defaults to 8080
+  },
 leanpub-end-insert
+};
 ```
 
-After this change, you can configure the server host and port options through environment parameters. The merging portion of the code (`Object.assign`) is tricky (shallow merge) and it will be fixed in the *Splitting Configuration* chapter.
+After this change, you can configure the server host and port options through environment parameters (example: `PORT=3000 npm start`).
 
-If you access through `http://localhost:8080/webpack-dev-server/`, WDS provides status information at the top. If your application relies on WebSockets and you use WDS proxying, you need to use this particular url as otherwise WDS logic interferes.
+If you access the server through `http://localhost:8080/webpack-dev-server/`, WDS provides status information at the top. If your application relies on WebSockets and you use WDS proxying, you need to use this particular url as otherwise WDS logic interferes.
 
 ![Status information](images/status-information.png)
 
 T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environment variables through a *.env* file. *dotenv* allows you to control the host and port setting of the setup quickly.
 
 T> Enable `devServer.historyApiFallback` if you are using HTML5 History API based routing.
-
-{pagebreak}
-
-### Understanding `--env`
-
-Even though `--env` allows to pass strings to the configuration, it can do a bit more. Consider the following example:
-
-**package.json**
-
-```json
-"scripts": {
-  "start": "webpack-dev-server --env development",
-  "build": "webpack --env.target production"
-},
-```
-
-Instead of a string, you should receive an object `{ target: "production" }` at configuration now. You could pass more key-value pairs, and they would go to the `env` object. If you set `--env foo` while setting `--env.target`, the string wins. Webpack relies on [yargs](http://yargs.js.org/docs/#parsing-tricks-dot-notation) for parsing underneath.
 
 ## Enabling Error Overlay
 
@@ -172,7 +129,7 @@ WDS provides an overlay for capturing warnings and errors:
 **webpack.config.js**
 
 ```javascript
-const config = {
+module.exports = {
   devServer: {
     ...
 leanpub-start-insert
@@ -185,8 +142,6 @@ leanpub-end-insert
   },
 };
 ```
-
-{pagebreak}
 
 Run the server now (`npm start`) and break the code to see an overlay in the browser:
 
@@ -212,14 +167,12 @@ To get it to work, you have to install it first through `npm install nodemon --s
 
 ```json
 "scripts": {
-  "start": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --env development\"",
-  "build": "webpack --env production"
+  "start": "nodemon --watch webpack.config.js --exec \"webpack-dev-server\"",
+  "build": "webpack"
 },
 ```
 
 It's possible WDS [will support the functionality](https://github.com/webpack/webpack/issues/3153) itself in the future. If you want to make it reload itself on change, you should implement this workaround for now.
-
-{pagebreak}
 
 ## Polling Instead of Watching Files
 
@@ -228,29 +181,25 @@ Sometimes the file watching setup provided by WDS won't work on your system. It 
 **webpack.config.js**
 
 ```javascript
-const developmentConfig = merge([
-leanpub-start-insert
-  {
-    devServer: {
-      watchOptions: {
-        // Delay the rebuild after the first change
-        aggregateTimeout: 300,
-
-        // Poll using interval (in ms, accepts boolean too)
-        poll: 1000,
-      },
-    },
-    plugins: [
-      // Ignore node_modules so CPU usage with poll
-      // watching drops significantly.
-      new webpack.WatchIgnorePlugin([
-        path.join(__dirname, "node_modules")
-      ]),
-    ],
-leanpub-end-insert
-  },
+module.exports = {
   ...
-]);
+  devServer: {
+    watchOptions: {
+      // Delay the rebuild after the first change
+      aggregateTimeout: 300,
+
+      // Poll using interval (in ms, accepts boolean too)
+      poll: 1000,
+    },
+  },
+  plugins: [
+    // Ignore node_modules so CPU usage with poll
+    // watching drops significantly.
+    new webpack.WatchIgnorePlugin([
+      path.join(__dirname, "node_modules")
+    ]),
+  ],
+};
 ```
 
 The setup is more resource intensive than the default but it's worth trying out.
@@ -311,7 +260,6 @@ WDS complements webpack and makes it more friendly by developers by providing de
 To recap:
 
 * Webpack's `watch` mode is the first step towards a better development experience. You can have webpack compile bundles as you edit your source.
-* Webpack's `--env` parameter allows you to control configuration target through terminal. You receive the passed `env` through a function interface.
 * WDS can refresh the browser on change. It also implements **Hot Module Replacement**.
 * The default WDS setup can be problematic on certain systems. For this reason, more resource intensive polling is an alternative.
 * WDS can be integrated to an existing Node server using a middleware. This gives you more control than relying on the command line interface.
