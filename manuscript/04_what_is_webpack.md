@@ -10,7 +10,7 @@ T> If you want to understand build tools and their history in a better detail, c
 
 The smallest project you can bundle with webpack consists of **input** and **output**. The bundling process begins from user defined **entries**. Entries themselves are **modules** and can point to other modules through **imports**.
 
-When you bundle a project using webpack, it traverses through imports, constructing a **dependency graph** of the project and then generating the **output** based on the configuration. Additionally, it is possible to define **split points** generating separate bundles within the project code itself.
+When you bundle a project using webpack, it traverses through imports, constructing a **dependency graph** of the project and then generating the **output** based on the configuration. Additionally, it's possible to define **split points** generating separate bundles within the project code itself.
 
 Webpack supports ES2015, CommonJS, and AMD module formats out of the box. The loader mechanism works for CSS as well, with `@import` and `url()` support through *css-loader*. You can also find plugins for specific tasks, such as minification, internationalization, HMR, and so on.
 
@@ -135,7 +135,7 @@ Even small applications can benefit from code splitting, as it allows the users 
 
 ## Conclusion
 
-Webpack comes with a significant learning curve. However, it’s a tool worth learning, given how much time and effort it can saveover the long term. To get a better idea how it compares to other tools, check out [the official comparison](https://webpack.js.org/get-started/why-webpack/#comparison).
+Webpack comes with a significant learning curve. However, it’s a tool worth learning, given how much time and effort it can save over the long term. To get a better idea how it compares to other tools, check out [the official comparison](https://webpack.js.org/get-started/why-webpack/#comparison).
 
 Webpack won’t solve everything, however, it does solve the problem of bundling. That’s one less worry during development. Using *package.json* and webpack alone can take you far.
 
