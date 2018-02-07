@@ -40,6 +40,8 @@ npm install webpack --save-dev # -D if you want to save typing
 
 You should see webpack at your *package.json* `devDependencies` section after this. In addition to installing the package locally below the *node_modules* directory, npm also generates an entry for the executable.
 
+T> You can use `--save` and `--save-dev` to separate application and development dependencies. The former installs and writes to *package.json* `dependencies` field whereas the latter writes to `devDependencies` instead.
+
 ## Executing Webpack
 
 You can display the exact path of the executables using `npm bin`. Most likely it points at *./node_modules/.bin*. Try running webpack from there through the terminal using `node_modules/.bin/webpack` or a similar command.
@@ -58,8 +60,6 @@ To get a quick idea of webpack output, try this:
 1. Set up *app/index.js* so that it contains `console.log('Hello world');`.
 2. Execute `node_modules/.bin/webpack app/index.js build/index.js`.
 3. Examine *build/index.js*. You should see webpack bootstrap code that begins executing the code. Below the bootstrap you should find something familiar.
-
-T> You can use `--save` and `--save-dev` to separate application and development dependencies. The former installs and writes to *package.json* `dependencies` field whereas the latter writes to `devDependencies` instead.
 
 ## Directory Structure
 
