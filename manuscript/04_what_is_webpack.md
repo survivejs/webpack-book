@@ -2,7 +2,7 @@
 
 Webpack is a **module bundler**. Webpack can take care of bundling alongside a separate task runner, however, the line between bundler and task runner has become blurred thanks to community developed webpack plugins. Sometimes these plugins are used to perform tasks that are usually done outside of webpack, such as cleaning the build directory or deploying the build.
 
-React with **Hot Module Replacement** (HMR) helped to greatly popularize webpack and lead to webpack's usage in other environments, such as [Ruby on Rails](https://github.com/rails/webpacker). Despite its name, webpack is not limited to the web alone. It can bundle for other targets as well, as discussed in the *Build Targets* chapter.
+React with **Hot Module Replacement** (HMR) helped to greatly popularize webpack and led to webpack's usage in other environments, such as [Ruby on Rails](https://github.com/rails/webpacker). Despite its name, webpack is not limited to the web alone. It can bundle for other targets as well, as discussed in the *Build Targets* chapter.
 
 T> If you want to understand build tools and their history in a better detail, check out the *Comparison of Build Tools* appendix.
 
