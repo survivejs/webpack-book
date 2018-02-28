@@ -1,6 +1,6 @@
 # Autoprefixing
 
-It can be difficult to remember which vendor prefixes you have to use for specific CSS rules to support a large variety of users. **Autoprefixing** solves this problem. It can be enabled through PostCSS and the [autoprefixer](https://www.npmjs.com/package/autoprefixer) plugin. *autoprefixer* uses [Can I Use](http://caniuse.com/) service to figure out which rules should be prefixed and its behavior can be tuned further.
+It can be challenging to remember which vendor prefixes you have to use for specific CSS rules to support a large variety of users. **Autoprefixing** solves this problem. It can be enabled through PostCSS and the [autoprefixer](https://www.npmjs.com/package/autoprefixer) plugin. *autoprefixer* uses [Can I Use](http://caniuse.com/) service to figure out which rules should be prefixed and its behavior can be tuned further.
 
 ## Setting Up Autoprefixing
 
@@ -46,7 +46,7 @@ const productionConfig = merge([
 leanpub-end-insert
 ```
 
-To confirm that the setup works, there should be something to autoprefix. Adjust the CSS:
+To confirm that the setup works, we have to add something to autoprefix. Adjust the CSS:
 
 **app/main.css**
 
@@ -59,6 +59,16 @@ leanpub-end-insert
 }
 ```
 
+If you know what browsers you prefer to support, it's possible to set up a [.browserslistrc](https://www.npmjs.com/package/browserslist) file. Different tools pick up this definition, *autoprefixer* included. Set up a file as follows:
+
+**.browserslistrc**
+
+```
+> 1% # Browser usage over 1%
+Last 2 versions # Or last two versions
+IE 8 # Or IE 8
+```
+
 If you build the application now (`npm run build`) and examine the built CSS, you should be able to find a declaration there:
 
 ```css
@@ -68,18 +78,6 @@ body {
   display: -ms-flexbox;
   display: flex;
 }
-```
-
-As you can see, autoprefixing expands the rules. If you know what browsers you support, it's possible to set up a [.browserslistrc](https://www.npmjs.com/package/browserslist) file. Different tools pick up this definition, *autoprefixer* included.
-
-Consider the example below where you select only specific browsers:
-
-**.browserslistrc**
-
-```
-> 1% # Browser usage over 1%
-Last 2 versions # Or last two versions
-IE 8 # Or IE 8
 ```
 
 ## Conclusion
