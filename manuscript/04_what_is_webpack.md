@@ -1,20 +1,20 @@
 # What is Webpack
 
-Webpack is a **module bundler**. Webpack can take care of bundling alongside a separate task runner, however, the line between bundler and task runner has become blurred thanks to community developed webpack plugins. Sometimes these plugins are used to perform tasks that are usually done outside of webpack, such as cleaning the build directory or deploying the build.
+Webpack is a **module bundler**. Webpack can take care of bundling alongside a separate task runner. However, the line between bundler and task runner has become blurred thanks to community developed webpack plugins. Sometimes these plugins are used to perform tasks that are usually done outside of webpack, such as cleaning the build directory or deploying the build.
 
-React with **Hot Module Replacement** (HMR) helped to greatly popularize webpack and led to webpack's usage in other environments, such as [Ruby on Rails](https://github.com/rails/webpacker). Despite its name, webpack is not limited to the web alone. It can bundle for other targets as well, as discussed in the *Build Targets* chapter.
+React, and **Hot Module Replacement** (HMR) helped to popularize webpack and led to its usage in other environments, such as [Ruby on Rails](https://github.com/rails/webpacker). Despite its name, webpack is not limited to the web alone. It can bundle with other targets as well, as discussed in the *Build Targets* chapter.
 
-T> If you want to understand build tools and their history in a better detail, check out the *Comparison of Build Tools* appendix.
+T> If you want to understand build tools and their history in better detail, check out the *Comparison of Build Tools* appendix.
 
 ## Webpack Relies on Modules
 
-The smallest project you can bundle with webpack consists of **input** and **output**. The bundling process begins from user defined **entries**. Entries themselves are **modules** and can point to other modules through **imports**.
+The smallest project you can bundle with webpack consists of **input** and **output**. The bundling process begins from user-defined **entries**. Entries themselves are **modules** and can point to other modules through **imports**.
 
-When you bundle a project using webpack, it traverses through imports, constructing a **dependency graph** of the project and then generating the **output** based on the configuration. Additionally, it's possible to define **split points** generating separate bundles within the project code itself.
+When you bundle a project using webpack, it traverses through imports, constructing a **dependency graph** of the project and then generating the **output** based on the configuration. Additionally, it's possible to define **split points** creating separate bundles within the project code itself.
 
 Webpack supports ES2015, CommonJS, and AMD module formats out of the box. The loader mechanism works for CSS as well, with `@import` and `url()` support through *css-loader*. You can also find plugins for specific tasks, such as minification, internationalization, HMR, and so on.
 
-T> A dependency graph is a directed graph that describes how nodes relate to each other. In this case the graph definition is defined through references (`require`, `import`) between files. Webpack traverses this information in a static manner without executing the source to generate the graph it needs to create bundles.
+T> A dependency graph is a directed graph that describes how nodes relate to each other. In this case, the graph definition is defined through references (`require`, `import`) between files. Webpack statically traverses these without executing the source to generate the graph it needs to create bundles.
 
 ## Webpack's Execution Process
 
@@ -30,7 +30,7 @@ An entry itself is a module. When webpack encounters one, webpack tries to match
 
 If the resolution pass failed, webpack raises a runtime error. If webpack managed to resolve a file correctly, webpack performs processing over the matched file based on the loader definition. Each loader applies a specific transformation against the module contents.
 
-The way a loader gets matched against a resolved file can be configured in multiple ways, including by file type and by location within the file system. Webpack's flexibility even allows you to apply specific transformation against a file based on *where* it was imported to the project.
+The way a loader gets matched against a resolved file can be configured in multiple ways, including by file type and by location within the file system. Webpack's flexibility even allows you to apply a specific transformation to a file based on *where* it was imported into the project.
 
 The same resolution process is performed against webpack's loaders. Webpack allows you to apply similar logic when determining which loader it should use. Loaders have resolve configurations of their own for this reason. If webpack fails to perform a loader lookup, it will raise a runtime error.
 
@@ -44,11 +44,11 @@ Although webpack is used mainly to bundle JavaScript, it can capture assets like
 
 ### Evaluation Process
 
-Assuming all loaders were found, webpack evaluates the matched loaders from bottom to top and right to left (`styleLoader(cssLoader('./main.css'))`), running the module through each loader in turn. As a result, you get output which webpack will inject in the resulting **bundle**. The *Loader Definitions* chapter covers the topic in detail.
+Assuming all loaders were found, webpack evaluates the matched loaders from bottom to top and right to left (`styleLoader(cssLoader('./main.css'))`) while running the module through each loader in turn. As a result, you get output which webpack will inject in the resulting **bundle**. The *Loader Definitions* chapter covers the topic in detail.
 
 If all loader evaluation completed without a runtime error, webpack includes the source in the last bundle. **Plugins** allow you to intercept **runtime events** at different stages of the bundling process.
 
-Although loaders can do a lot, they don’t provide enough power for advanced tasks. Plugins can intercept **runtime events** provided by webpack. A good example is bundle extraction performed by the `ExtractTextPlugin` which, when used with a loader, extracts CSS files out of the bundle and into a separate file. Without this step, CSS would be inlined in the resulting JavaScript, as webpack treats all code as JavaScript by default. The extraction idea is discussed in the *Separating CSS* chapter.
+Although loaders can do a lot, they don’t provide enough power for advanced tasks. Plugins can intercept **runtime events** supplied by webpack. A good example is bundle extraction performed by the `ExtractTextPlugin` which, when used with a loader, extracts CSS files out of the bundle and into a separate file. Without this step, CSS would be inlined in the resulting JavaScript, as webpack treats all code as JavaScript by default. The extraction idea is discussed in the *Separating CSS* chapter.
 
 ### Finishing
 
@@ -99,7 +99,7 @@ module.exports = {
 
   // What extra processing to perform
   plugins: [
-    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.DefinePlugin({ ... }),
   ],
 
   // Adjust module resolution algorithm
@@ -109,9 +109,7 @@ module.exports = {
 };
 ```
 
-Webpack's configuration model can feel a bit opaque at times as the configuration file can appear monolithic. It can be difficult to understand what webpack is doing unless you understand the ideas behind it. Providing means to tame configuration is one of the main purposes why this book exists.
-
-T> To understand webpack on the source code level, check out [the artsy webpack tour](https://github.com/TheLarkInn/artsy-webpack-tour).
+Webpack's configuration model can feel a bit opaque at times as the configuration file can appear monolithic. It can be difficult to understand what webpack is doing unless you know the ideas behind it. Providing means to tame configuration is one of the primary purposes why this book exists.
 
 ## Asset Hashing
 
@@ -127,25 +125,25 @@ HMR is also available in Browserify via [livereactload](https://github.com/milan
 
 ## Code Splitting
 
-In addition to HMR, webpack’s bundling capabilities are extensive. Webpack allows you to split code in various ways. You can even load code dynamically as your application gets executed. This sort of lazy loading comes in handy especially for larger applications, as dependencies can be loaded on the fly as needed.
+In addition to HMR, webpack’s bundling capabilities are extensive. Webpack allows you to split code in various ways. You can even load code dynamically as your application gets executed. This sort of lazy loading comes in handy especially for broader applications, as dependencies can be loaded on the fly as needed.
 
-Even small applications can benefit from code splitting, as it allows the users to get something useable in their hands faster. Performance is a feature, after all. Knowing the basic techniques is worthwhile.
+Even small applications can benefit from code splitting, as it allows the users to get something usable in their hands faster. Performance is a feature, after all. Knowing the basic techniques is worthwhile.
 
 {pagebreak}
 
 ## Conclusion
 
-Webpack comes with a significant learning curve. However, it’s a tool worth learning, given how much time and effort it can save over the long term. To get a better idea how it compares to other tools, check out [the official comparison](https://webpack.js.org/get-started/why-webpack/#comparison).
+Webpack comes with a significant learning curve. However, it’s a tool worth learning, given how much time and effort it can save over the long term. To get a better idea how it compares to other tools, check out [the official comparison](https://webpack.js.org/comparison/).
 
-Webpack won’t solve everything, however, it does solve the problem of bundling. That’s one less worry during development. Using *package.json* and webpack alone can take you far.
+Webpack won’t solve everything. However, it does solve the problem of bundling. That’s one less worry during development. Using *package.json* and webpack alone can take you far.
 
 To summarize:
 
-* Webpack is a **module bundler**, but you can also use it for task running as well.
+* Webpack is a **module bundler**, but you can also use it running  tasks as well.
 * Webpack relies on a **dependency graph** underneath. Webpack traverses through the source to construct the graph, and it uses this information and configuration to generate bundles.
 * Webpack relies on **loaders** and **plugins**. Loaders operate on a module level, while plugins rely on hooks provided by webpack and have the best access to its execution process.
 * Webpack’s **configuration** describes how to transform assets of the graphs and what kind of output it should generate. Part of this information can be included in the source itself if features like **code splitting** are used.
 * **Hot Module Replacement** (HMR) helped to popularize webpack. It's a feature that can enhance the development experience by updating code in the browser without needing a full page refresh.
 * Webpack can generate **hashes** for filenames allowing you to invalidate past bundles as their contents change.
 
-In the next part of the book you'll learn to construct a development configuration using webpack while learning more about its basic concepts.
+In the next part of the book, you'll learn to construct a development configuration using webpack while learning more about its basic concepts.
