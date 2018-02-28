@@ -6,29 +6,31 @@ It's not the easiest tool to learn due to its configuration-driven approach, but
 
 ## What Is Webpack
 
-Web browsers are designed to consume HTML, CSS, and JavaScript. As a project grows, tracking and configuring all of these files grows too complex to manage without help. As an application develops, handling it becomes more difficult. Webpack was designed to counter these problems. Managing complexity is one of the fundamental issues of web development, and solving the problem well can help you a lot.
+Web browsers are designed to consume HTML, CSS, and JavaScript. As a project grows, tracking and configuring all of these files becomes too complicated to manage without help. Webpack was designed to counter these problems. Managing complexity is one of the fundamental issues of web development, and solving the problem well can help you a lot.
 
-Webpack isn’t the only solution for this problem, and a collection of different tools have emerged. Task runners, such as Grunt and Gulp, are good examples of higher level tools. Often the problem is that need to write the workflows by hand. Pushing that issue to a bundler, such as webpack, is a step forward.
+Webpack isn’t the only available bundler, and a collection of different tools have emerged. Task runners, such as Grunt and Gulp, are good examples of higher-level tools. Often the problem is that need to write the workflows by hand. Pushing that issue to a bundler, such as webpack, is a step forward.
 
 {pagebreak}
 
 ### How Webpack Changes The Situation
 
-Webpack takes another route. It allows you to treat your project as a dependency graph. You could have an *index.js* in your project that pulls in the dependencies the project needs through standard `require` or `import` statements. You can refer to your style files and other assets the same way if you want.
+Webpack takes another route. It allows you to treat your project as a dependency graph. You could have an *index.js* in your project that pulls in the dependencies the project needs through the standard `require` or `import` statements. You can refer to your style files and other assets the same way if you want.
 
-Webpack does all the preprocessing for you and gives you the bundles you specify through configuration and your code. This declarative approach is powerful, but it's difficult to learn. Webpack becomes an indispensable tool after you begin to understand how it works. This book has been designed to get through that initial learning curve and even go further.
+Webpack does all the preprocessing for you and gives you the bundles you specify through configuration and your code. This declarative approach is versatile, but it's difficult to learn.
+
+Webpack becomes an indispensable tool after you begin to understand how it works. This book has been designed to get through that initial learning curve and even go further.
 
 ## What Will You Learn
 
-This book has been designed to complement [the official documentation of webpack](https://webpack.js.org/). The official documentation goes deeper in many aspects, and this book can be considered a companion to it. This book is more like a quick walkthrough that eases the initial learning curve while giving food for thought to more advanced users.
+This book has been designed to complement [the official documentation of webpack](https://webpack.js.org/). This book can be considered a companion to it. The book is more like a quick walkthrough that eases the initial learning curve while giving food for thought to more advanced users.
 
-The book teaches you to develop a composable webpack configuration for both development and production purposes. Advanced techniques covered by the book allow you to get the most out of webpack 3.
+The book teaches you to develop a composable webpack configuration for both development and production purposes. Advanced techniques covered by the book allow you to get the most out of webpack 4.
 
 {pagebreak}
 
 ## How Is The Book Organized
 
-The book starts by explaining what webpack is. After that, you find multiple parts, each of which discusses webpack from a different direction. While going through those chapters, you develop your webpack configuration. The chapters also double as reference material.
+The book starts by explaining what webpack is. After that, you find multiple parts, each of which discusses webpack from a different direction. While going through those chapters, you will develop your webpack configuration while learning the techniques. The content also doubles as reference material.
 
 The book has been split into the following parts:
 
@@ -45,7 +47,7 @@ There's a short conclusion chapter after the main content that recaps the main p
 
 The appendices at the end of the book cover secondary topics and sometimes dig deeper into the main ones. You can approach them in any order you want depending on your interest.
 
-Given eventually webpack will give you an error, the *Troubleshooting* appendix at the end covers what to do then. It covers a basic process on what to do and how to debug the problem. When in doubt, study the appendix. If you are unsure of a term and its meaning, see the *Glossary* at the end of the book.
+The *Troubleshooting* appendix at the end covers what to do when webpack gives you an error. It covers a process, so you know what to do and how to debug the problem. When in doubt, study the appendix. If you are unsure of a term and its meaning, see the *Glossary* at the end of the book.
 
 ## Who Is The Book For
 
@@ -53,11 +55,11 @@ You should have basic knowledge of JavaScript, Node, and npm. If you know someth
 
 If you don’t know much about the topic, consider going carefully through the early parts. You can scan the rest to pick the bits you find worthwhile. If you know webpack already, skim and choose the techniques you find valuable.
 
-In case you know webpack well already, there is still something in the book for you. Skim through it and see if you can pick up new techniques. Read especially the summaries at the end of the chapters and the conclusion chapter.
+In case you know webpack well already, there is still something in the book for you. Skim through it and see if you can pick up new techniques. Read especially the summaries at the end of the chapters and the concluding chapter of the book.
 
 ## Book Versioning
 
-Given this book receives a fair amount of maintenance and improvements due to the pace of innovation, there's a versioning scheme in place. Release notes for each new version are maintained at the [book blog](https://survivejs.com/blog/). You can also use GitHub *compare* tool for this purpose. Example:
+Given this book receives a fair amount of maintenance and improvements due to the pace of innovation, there's a versioning scheme in place. Release notes for each new version are maintained at [the book blog](https://survivejs.com/blog/). You can also use GitHub *compare* tool for this purpose. Example:
 
 ```
 https://github.com/survivejs/webpack-book/compare/v2.0.22...v2.1.7
@@ -73,7 +75,7 @@ If you run into trouble or have questions related to the content, there are seve
 
 * Contact me through [GitHub Issue Tracker](https://github.com/survivejs/webpack-book/issues).
 * Join me at [Gitter Chat](https://gitter.im/survivejs/webpack).
-* Send me email at [info@survivejs.com](mailto:info@survivejs.com).
+* Send me an email at [info@survivejs.com](mailto:info@survivejs.com).
 * Ask me anything about webpack or React at [SurviveJS AmA](https://github.com/survivejs/ama/issues).
 
 If you post questions to Stack Overflow, tag them using **survivejs**. You can use the hashtag **#survivejs** on Twitter for the same result.
