@@ -1,14 +1,14 @@
 # Loading Images
 
-HTTP/1 application can be made slow by loading a lot of small assets. Each request comes with an overhead. HTTP/2 helps in this regard and changes the situation somewhat drastically. Till then you are stuck with different approaches. Webpack allows a couple of these. They are particularly relevant for loading images.
+HTTP/1 application can be made slow by loading a lot of small assets as each request comes with an overhead. HTTP/2 helps in this regard and changes the situation somewhat drastically. Till then you are stuck with different approaches. Webpack allows a few of these.
 
-Webpack allows you to inline assets by using [url-loader](https://www.npmjs.com/package/url-loader). It emits your images as base64 strings within your JavaScript bundles. The process decreases the number of requests needed while growing the bundle size. It's enough to use *url-loader* during development. You want to consider other alternatives for the production build, though.
+Webpack can inline assets by using [url-loader](https://www.npmjs.com/package/url-loader). It emits your images as base64 strings within your JavaScript bundles. The process decreases the number of requests needed while growing the bundle size. It's enough to use *url-loader* during development. You want to consider other alternatives for the production build, though.
 
 Webpack gives control over the inlining process and can defer loading to [file-loader](https://www.npmjs.com/package/file-loader). *file-loader* outputs image files and returns paths to them instead of inlining. This technique works with other assets types, such as fonts, as you see in the later chapters.
 
 ## Setting Up *url-loader*
 
-*url-loader* is a good starting point and it's the perfect option for development purposes, as you don't have to care about the size of the resulting bundle. It comes with a *limit* option that can be used to defer image generation to *file-loader* after a certain limit's reached. This way you can inline small files to your JavaScript bundles while generating separate files for the bigger ones.
+*url-loader* is a good starting point and it's the perfect option for development purposes, as you don't have to care about the size of the resulting bundle. It comes with a *limit* option that can be used to defer image generation to *file-loader* after an absolute limit is reached. This way you can inline small files to your JavaScript bundles while generating separate files for the bigger ones.
 
 If you use the limit option, you need to install both *url-loader* and *file-loader* to your project. Assuming you have configured your styles correctly, webpack resolves any `url()` statements your styling contains. You can point to the image assets through your JavaScript code as well.
 
@@ -78,7 +78,7 @@ exports.loadImages = ({ include, exclude, options } = {}) => ({
 });
 ```
 
-To attach it to the configuration, adjust as follows. The configuration defaults to *url-loader* during development and uses both *url-loader* and *file-loader* in production to maintain smaller bundle sizes. *url-loader* uses *file-loader* implicitly when `limit` is set and both have to be installed for the setup to work.
+To attach it to the configuration, adjust as follows. The configuration defaults to *url-loader* during development and uses both *url-loader* and *file-loader* in production to maintain smaller bundle sizes. *url-loader* uses *file-loader* implicitly when `limit` is set, and both have to be installed for the setup to work.
 
 {pagebreak}
 
@@ -107,7 +107,7 @@ leanpub-end-insert
 
 To test that the setup works, download an image or generate it (`convert -size 100x100 gradient:blue logo.png`) and refer to it from the project:
 
-**app/main.css**
+**src/main.css**
 
 ```css
 body {
@@ -142,7 +142,7 @@ Assuming you have set up your styling correctly, you can refer to your SVG files
 }
 ```
 
-The following loaders provide more options:
+Consider also the following loaders:
 
 * [raw-loader](https://www.npmjs.com/package/raw-loader) gives access to the raw SVG content.
 * [svg-inline-loader](https://www.npmjs.com/package/svg-inline-loader) goes a step further and eliminates unnecessary markup from your SVGs.
@@ -184,8 +184,6 @@ Webpack allows you to load images dynamically based on a condition. The techniqu
 }
 ```
 
-T> See [sprite-webpack-plugin](https://www.npmjs.com/package/sprite-webpack-plugin) for another option.
-
 ## Using Placeholders
 
 [image-trace-loader](https://www.npmjs.com/package/image-trace-loader) loads images and exposes the results as `image/svg+xml` URL encoded data. It can be used in conjunction with *file-loader* and *url-loader* for showing a placeholder while the actual image is being loaded.
@@ -198,7 +196,7 @@ Sometimes getting the only reference to an image isn't enough. [image-size-loade
 
 ## Referencing to Images
 
-Webpack can pick up images from style sheets through `@import` and `url()` assuming *css-loader* has been configured. You can also refer to your images within code. In this case, you have to import the files explicitly:
+Webpack can pick up images from style sheets through `@import` and `url()` assuming *css-loader* has been configured. You can also refer to your images within the code. In this case, you have to import the files explicitly:
 
 ```javascript
 import src from "./avatar.png";
