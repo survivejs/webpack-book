@@ -99,6 +99,8 @@ document.body.appendChild(component());
 
 Examine the output after building (`node_modules/.bin/webpack --mode development`). You should see both modules in the bundle that webpack wrote to the `dist` directory.
 
+To make the output clearer to examine, pass `--devtool false` parameter to webpack. Webpack will generate `eval` based source maps by default and doing this will disable the behavior. See the *Source Maps* chapter for more information.
+
 One problem remains, though. How can we test the application in the browser?
 
 ## Configuring *html-webpack-plugin*
@@ -175,8 +177,6 @@ The output tells a lot:
 * `Child html-webpack-plugin for "index.html":` - This is plugin-related output. In this case *html-webpack-plugin* is doing the output of its own.
 
 Examine the output below the `dist/` directory. If you look closely, you can see the same IDs within the source.
-
-T> If you want webpack to stop execution on the first error, set `bail: true` option. Setting it kills the entire webpack process. The behavior is desirable if you are building in a CI environment.
 
 T> In addition to a configuration object, webpack accepts an array of configurations. You can also return a `Promise` and eventually `resolve` to a configuration for example.
 
