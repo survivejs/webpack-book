@@ -75,9 +75,9 @@ Based on the right to left rule, the example can be split up while keeping it eq
 
 ### Enforcing Order
 
-Even though it would be possible to develop an arbitrary configuration using the rule above, it can be convenient to be able to force certain rules to be applied before or after regular ones. The `enforce` field can come in handy here. It can be set to either `pre` or `post` to push processing either before or after other loaders.
+Even though it would be possible to develop an arbitrary configuration using the rule above, it can be convenient to be able to force specific rules to be applied before or after regular ones. The `enforce` field can come in handy here. It can be set to either `pre` or `post` to push processing either before or after other loaders.
 
-Linting is a good example as the build should fail before it does anything else. Using `enforce: "post"` is rarer and it would imply you want to perform a check against the built source. Performing analysis against the built source is one potential example.
+Linting is a good example because the build should fail before it does anything else. Using `enforce: "post"` is rarer and it would imply you want to perform a check against the built source. Performing analysis against the built source is one potential example.
 
 {pagebreak}
 
@@ -199,7 +199,7 @@ import "url-loader!./foo.png";
 import "!!url-loader!./bar.png";
 ```
 
-The problem with this approach is that it couples your source with webpack. But it's a good form to know still. Since configuration entries go through the same mechanism, the same forms work there as well:
+The problem with this approach is that it couples your source with webpack. But it's an excellent form to know still. Since configuration entries go through the same mechanism, the same forms work there as well:
 
 ```javascript
 {
@@ -253,7 +253,7 @@ If you wanted to embed the context information to the filename, the rule could u
 
 ## Loading Based on `issuer`
 
-`issuer` can be used to control behavior based on where a resource was imported. In the example below adapted from [css-loader issue 287](https://github.com/webpack-contrib/css-loader/pull/287#issuecomment-261269199), *style-loader* is applied only when webpack captures a CSS file from a JavaScript import:
+`issuer` can be used to control behavior based on where a resource was imported. In the example below adapted from [css-loader issue 287](https://github.com/webpack-contrib/css-loader/pull/287#issuecomment-261269199), *style-loader* is applied when webpack captures a CSS file from a JavaScript import:
 
 ```javascript
 {
@@ -281,13 +281,13 @@ Loader behavior can be understood in greater detail by inspecting them. [loader-
 
 ## Conclusion
 
-Webpack provides multiple ways to set up loaders but sticking with `use` is enough in webpack 3. Be careful with loader ordering, as it's a common source of problems.
+Webpack provides multiple ways to setup loaders but sticking with `use` is enough in webpack 4. Be careful with loader ordering, as it's a common source of problems.
 
 To recap:
 
 * **Loaders** allow you determine what should happen when webpack's module resolution mechanism encounters a file.
 * A loader definition consists of **conditions** based on which to match and **actions** that should be performed when a match happens.
 * Webpack 2 introduced the `use` field. It combines the ideas of old `loader` and `loaders` fields into a single construct.
-* Webpack 3 provides multiple ways to match and alter loader behavior. You can, for example, match based on a **resource query** after a loader has been matched and route the loader to specific actions.
+* Webpack 4 provides multiple ways to match and alter loader behavior. You can, for example, match based on a **resource query** after a loader has been matched and route the loader to specific actions.
 
 In the next chapter, you'll learn to load images using webpack.
