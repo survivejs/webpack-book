@@ -4,7 +4,7 @@ Frameworks like [Bootstrap](https://getbootstrap.com/) tend to come with a lot o
 
 [PurifyCSS](https://www.npmjs.com/package/purifycss) is a tool that can achieve this by analyzing files. It walks through your code and figures out which CSS classes are being used. Often there is enough information for it to strip unused CSS from your project. It also works with single page applications to an extent.
 
-[uncss](https://www.npmjs.com/package/uncss) is a good alternative to PurifyCSS. It operates through PhantomJS and performs its work in a different manner. You can use uncss itself as a PostCSS plugin.
+[uncss](https://www.npmjs.com/package/uncss) is a good alternative to PurifyCSS. It operates through PhantomJS and performs its work differently. You can use uncss itself as a PostCSS plugin.
 
 W> You have to be careful if you are using CSS Modules. You have to **whitelist** the related classes as discussed in [purifycss-webpack readme](https://github.com/webpack-contrib/purifycss-webpack#usage-with-css-modules).
 
@@ -20,7 +20,7 @@ npm install purecss --save
 
 To make the project aware of Pure.css, `import` it:
 
-**app/index.js**
+**src/index.js**
 
 ```javascript
 leanpub-start-insert
@@ -31,7 +31,7 @@ leanpub-end-insert
 
 You should also make the demo component use a Pure.css class, so there is something to work with:
 
-**app/component.js**
+**src/component.js**
 
 ```javascript
 export default (text = "Hello world") => {
@@ -55,24 +55,22 @@ If you run the application (`npm start`), the "Hello world" should look like a b
 Building the application (`npm run build`) should yield output:
 
 ```bash
-Hash: 20c680ed670eff9c69c9
-Version: webpack 3.8.1
-Time: 1029ms
+Hash: 157cae197acf7ebd3a87
+Version: webpack 4.0.1
+Time: 1047ms
+Built at: 2/28/2018 4:23:29 PM
      Asset       Size  Chunks             Chunk Names
-    app.js    3.76 kB       0  [emitted]  app
-   app.css    16.9 kB       0  [emitted]  app
-index.html  218 bytes          [emitted]
-   [0] ./app/index.js 117 bytes {0} [built]
-   [2] ./app/main.css 41 bytes {0} [built]
-   [3] ./app/component.js 180 bytes {0} [built]
+   main.js  747 bytes       0  [emitted]  main
+  main.css   16.5 KiB       0  [emitted]  main
+index.html  220 bytes          [emitted]
 ...
 ```
 
-As you can see, the size of the CSS file grew. This is something to fix with PurifyCSS.
+As you can see, the size of the CSS file grew, and this is something to fix with PurifyCSS.
 
 ## Enabling PurifyCSS
 
-Using PurifyCSS can lead to significant savings. In the official example of the project, they purify and minify Bootstrap (140 kB) in an application using ~40% of its selectors to mere ~35 kB. That's a big difference.
+Using PurifyCSS can lead to significant savings. In the example of the project, they purify and minify Bootstrap (140 kB) in an application using ~40% of its selectors to mere ~35 kB. That's a big difference.
 
 [purifycss-webpack](https://www.npmjs.com/package/purifycss-webpack) allows to achieve similar results. You should use the `ExtractTextPlugin` with it for the best results. Install it and a [glob](https://www.npmjs.org/package/glob) helper first:
 
@@ -95,7 +93,7 @@ exports.purifyCSS = ({ paths }) => ({
 });
 ```
 
-Next, the part has to be connected with the configuration. It's important the plugin is used *after* the `ExtractTextPlugin`; otherwise it doesn't work:
+Next, the part has to be connected with the configuration. It's essential the plugin is used *after* the `ExtractTextPlugin`; otherwise, it doesn't work:
 
 **webpack.config.js**
 
@@ -126,30 +124,28 @@ W> The order matters. CSS extraction has to happen before purifying.
 If you execute `npm run build` now, you should see something:
 
 ```bash
-Hash: 20c680ed670eff9c69c9
-Version: webpack 3.8.1
-Time: 1126ms
+Hash: 157cae197acf7ebd3a87
+Version: webpack 4.0.1
+Time: 1410ms
+Built at: 2/28/2018 4:25:30 PM
      Asset       Size  Chunks             Chunk Names
-    app.js    3.76 kB       0  [emitted]  app
-   app.css    2.38 kB       0  [emitted]  app
-index.html  218 bytes          [emitted]
-   [0] ./app/index.js 117 bytes {0} [built]
-   [2] ./app/main.css 41 bytes {0} [built]
-   [3] ./app/component.js 180 bytes {0} [built]
+   main.js  747 bytes       0  [emitted]  main
+  main.css   2.32 KiB       0  [emitted]  main
+index.html  220 bytes          [emitted]
 ...
 ```
 
-The size of the style has decreased noticeably. Instead of 16k, you have roughly 2k now. The difference would be even bigger for heavier CSS frameworks.
+The size of the style has decreased noticeably. Instead of 16k, you have roughly 2k now. The difference would be even more significant for more massive CSS frameworks.
 
-PurifyCSS supports [additional options](https://github.com/purifycss/purifycss#the-optional-options-argument) including `minify`. You can enable these through the `purifyOptions` field when instantiating the plugin. Given PurifyCSS cannot pick all of the classes you are using always, you should use `purifyOptions.whitelist` array to define selectors which it should leave in the result no matter what.
+PurifyCSS supports [additional options](https://github.com/purifycss/purifycss#the-optional-options-argument) including `minify`. You can enable these through the `purifyOptions` field when instantiating the plugin. Given PurifyCSS cannot pick all of the classes you are always using, you should use `purifyOptions.whitelist` array to define selectors which it should leave in the result no matter what.
 
-W> Using PurifyCSS loses CSS source maps even if you have enabled them through loader specific configuration due to the way it works underneath.
+W> Using PurifyCSS loses CSS source maps even if you have enabled them with loader specific configuration due to the way it works underneath.
 
 {pagebreak}
 
 ### Critical Path Rendering
 
-The idea of [critical path rendering](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/) takes a look at CSS performance from a different angle. Instead of optimizing for size, it optimizes for render order and puts emphasis on **above-the-fold** CSS. This is done through rendering the page and then figuring out which rules are required to achieve the shown result.
+The idea of [critical path rendering](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/) takes a look at CSS performance from a different angle. Instead of optimizing for size, it optimizes for render order and emphasizes **above-the-fold** CSS. The result is achieved by rendering the page and then figuring out which rules are required to obtain the shown result.
 
 [webpack-critical](https://www.npmjs.com/package/webpack-critical) and [html-critical-webpack-plugin](https://www.npmjs.com/package/html-critical-webpack-plugin) implement the technique as a `HtmlWebpackPlugin` plugin. [isomorphic-style-loader](https://www.npmjs.com/package/isomorphic-style-loader) achieves the same using webpack and React.
 
@@ -157,11 +153,11 @@ The idea of [critical path rendering](https://developers.google.com/web/fundamen
 
 ## Conclusion
 
-Using PurifyCSS can lead to a significant decrease in file size. It's particularly valuable for static sites that rely on a heavy CSS framework. The more dynamic a site or an application becomes, the harder it becomes to analyze reliably.
+Using PurifyCSS can lead to a significant decrease in file size. It's mainly valuable for static sites that rely on a massive CSS framework. The more dynamic a site or an application becomes, the harder it becomes to analyze reliably.
 
 To recap:
 
 * Eliminating unused CSS is possible using PurifyCSS. It performs static analysis against the source.
-* The functionality can be enabled through *purifycss-webpack* and the plugin should be applied *after* `ExtractTextPlugin`.
+* The functionality can be enabled through *purifycss-webpack*, and the plugin should be applied *after* `ExtractTextPlugin`.
 * At best, PurifyCSS can eliminate most, if not all, unused CSS rules.
-* Critical path rendering is another CSS technique that puts emphasis on rendering the above-the-fold CSS first. The idea is to render something as fast as possible instead of waiting for all CSS to load.
+* Critical path rendering is another CSS technique that emphasizes rendering the above-the-fold CSS first. The idea is to render something as fast as possible instead of waiting for all CSS to load.
