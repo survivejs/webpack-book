@@ -24,7 +24,7 @@ You can tweak the generated *package.json* manually to make further changes to i
 
 T> You can set those `npm init` defaults at *~/.npmrc*.
 
-T> This is a good place to set up version control using [Git](https://git-scm.com/). You can create a commit per step and tag per chapter, so it's easier to move back and forth if you want.
+T> This is an excellent chance to set up version control using [Git](https://git-scm.com/). You can create a commit per step and tag per chapter, so it's easier to move back and forth if you want.
 
 ## Installing Webpack
 
@@ -35,7 +35,7 @@ Even though webpack can be installed globally (`npm install webpack -g`), it's a
 To add webpack to the project, execute:
 
 ```bash
-npm install webpack --save-dev # -D if you want to save typing
+npm install webpack webpack-cli --save-dev # -D if you want to save typing
 ```
 
 You should see webpack at your *package.json* `devDependencies` section after this. In addition to installing the package locally below the *node_modules* directory, npm also generates an entry for the executable.
@@ -50,35 +50,32 @@ After running, you should see a version, a link to the command line interface gu
 
 ```bash
 webpack-demo $ node_modules/.bin/webpack
-No configuration file found and no output filename configured via CLI option.
-A configuration file could be named 'webpack.config.js' in the current directory.
-Use --help to display the CLI options.
+Hash: 6736210d3313db05db58
+Version: webpack 4.0.1
+Time: 42ms
+Built at: 2/28/2018 12:14:44 PM
+
+WARNING in configuration
+The 'mode' option has not been set. Set 'mode' option to 'development' or 'production' to enable defaults for this environment.
+
+ERROR in Entry module not found: Error: Can't resolve './src' in '.../webpack-demo'
 ```
 
-To get a quick idea of webpack output, try this:
+The output tells that webpack cannot find the source to compile. It's also missing a `mode` parameter to apply development or production specific defaults.
 
-1. Set up *app/index.js* so that it contains `console.log('Hello world');`.
-2. Execute `node_modules/.bin/webpack app/index.js build/index.js`.
-3. Examine *build/index.js*. You should see webpack bootstrap code that begins executing the code. Below the bootstrap you should find something familiar.
+To get a quick idea of webpack output, we should fix both:
 
-## Directory Structure
+1. Set up *src/index.js* so that it contains `console.log("Hello world");`.
+2. Execute `node_modules/.bin/webpack --mode development`. Webpack will discover the source file by Node convention.
+3. Examine *dist/main.js*. You should see webpack bootstrap code that begins executing the code. Below the bootstrap, you should find something familiar.
 
-To move further, you can implement a site that loads JavaScript, which you then build using webpack. After you progress a bit, you will end up with the directory structure below:
-
-* app/
-  * index.js
-  * component.js
-* build/
-* package.json
-* webpack.config.js
-
-The idea is that you transform *app/* to a bundle below *build/*. To make this possible, you should set up the assets needed and configure webpack through *webpack.config.js*. The assets will be set up next.
+T> Try also `--mode production` and compare the output.
 
 ## Setting Up Assets
 
-As you never get tired of `Hello world`, you will model a variant of that. Set up a component:
+To make the build more involved, we can add another module to the project and start developing a small application:
 
-**app/component.js**
+**src/component.js**
 
 ```javascript
 export default (text = "Hello world") => {
@@ -90,11 +87,9 @@ export default (text = "Hello world") => {
 };
 ```
 
-{pagebreak}
+We also have to modify the original file to import the new file and render the application through the DOM:
 
-Next, you are going to need an entry point for the application. It uses `import` against the component and renders it through the DOM:
-
-**app/index.js**
+**src/index.js**
 
 ```javascript
 import component from "./component";
@@ -102,48 +97,28 @@ import component from "./component";
 document.body.appendChild(component());
 ```
 
-## Setting Up Webpack Configuration
+Examine the output after building (`node_modules/.bin/webpack --mode development`). You should see both modules in the bundle that webpack wrote to the `dist` directory.
 
-You need to tell webpack how to deal with the assets that were set up. For this purpose, you have to develop a *webpack.config.js* file. Webpack and its development server are able to discover this file through a convention.
+One problem remains, though. How can we test the application in the browser?
 
-To keep things convenient to maintain, you can use your first plugin: [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin). `HtmlWebpackPlugin` generates an *index.html* for the application and adds a `script` tag to load the generated bundle. Install it:
+## Configuring *html-webpack-plugin*
+
+The problem can be solved by writing an *index.html* file that points to the generated file. Instead of doing that on our own, we can use a plugin and webpack configuration to do this.
+
+To get started, install *html-webpack-plugin*:
 
 ```bash
-npm install html-webpack-plugin --save-dev
+npm install webpack-contrib/html-webpack-plugin --save-dev
 ```
 
-At a minimum, it's nice to have at least `entry` and `output` fields in your configuration. Often you see a lot more as you specify how webpack deals with different file types and how it resolves them.
-
-Entries tell webpack where to start parsing the application. In multi-page applications, you have an entry per page. Or you could have a configuration per entry as discussed later in this chapter.
-
-All output related paths you see in the configuration are resolved against the `output.path` field. If you had an output relation option somewhere and wrote `styles/[name].css`, that would be expanded so that you get `<output.path> + <specific path>`. Example: *~/webpack-demo/build/styles/main.css*.
-
-{pagebreak}
-
-To illustrate how to connect `entry` and `output` with `HtmlWebpackPlugin`, consider the code below:
+To connect the plugin with webpack, set up configuration as below:
 
 **webpack.config.js**
 
 ```javascript
-const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-const PATHS = {
-  app: path.join(__dirname, "app"),
-  build: path.join(__dirname, "build"),
-};
-
 module.exports = {
-  // Entries have to resolve to files! They rely on Node
-  // convention by default so if a directory contains *index.js*,
-  // it resolves to that.
-  entry: {
-    app: PATHS.app,
-  },
-  output: {
-    path: PATHS.build,
-    filename: "[name].js",
-  },
   plugins: [
     new HtmlWebpackPlugin({
       title: "Webpack demo",
@@ -152,67 +127,80 @@ module.exports = {
 };
 ```
 
-The `entry` path could be given as a relative one using the [context](https://webpack.js.org/configuration/entry-context/#context) field used to configure that lookup. However, given plenty of places expect absolute paths, preferring them over relative paths everywhere avoids confusion.
+Now that the configuration is done, you should try the following:
+
+1. Build the project using `node_modules/.bin/webpack --mode production`. You can try the `development` mode too.
+2. Enter the build directory using `cd dist`.
+3. Run the server using `serve` (`npm i serve -g`) or a similar command.
+4. Examine the result through a web browser. You should see something familiar there.
+
+![Hello world](images/hello_01.png)
 
 T> **Trailing commas** are used in the book examples on purpose as it gives cleaner diffs for the code examples.
 
-T> `[name]` is a placeholder. Placeholders are discussed in detail in the *Adding Hashes to Filenames* chapter, but they are effectively tokens that will be replaced when the string is evaluated. In this case `[name]` will be replaced by the name of the entry - 'app'.
+W> The book uses a custom version of the plugin as [the original html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) is waiting for specific updates to go through and isn't compatible with webpack 4 yet.
 
-If you execute `node_modules/.bin/webpack`, you should see output:
+## Examining the Output
+
+If you execute `node_modules/.bin/webpack --mode production`, you should see output:
 
 ```bash
-Hash: 922e1437a5b7761b926e
-Version: webpack 3.8.1
-Time: 344ms
+Hash: fe4992f1e526b28ecab7
+Version: webpack 4.0.1
+Time: 549ms
+Built at: 2/28/2018 12:35:48 PM
      Asset       Size  Chunks             Chunk Names
-    app.js    3.07 kB       0  [emitted]  app
-index.html  180 bytes          [emitted]
-   [0] ./app/index.js 77 bytes {0} [built]
-   [1] ./app/component.js 142 bytes {0} [built]
+   main.js  679 bytes       0  [emitted]  main
+index.html  181 bytes          [emitted]
+Entrypoint main = main.js
+   [0] ./src/index.js + 1 modules 219 bytes {0} [built]
+       | ./src/index.js 77 bytes [built]
+       | ./src/component.js 142 bytes [built]
 Child html-webpack-plugin for "index.html":
      1 asset
-       [2] (webpack)/buildin/global.js 488 bytes {0} [built]
-       [3] (webpack)/buildin/module.js 495 bytes {0} [built]
+    Entrypoint undefined = index.html
+       [0] (webpack)/buildin/module.js 519 bytes {0} [built]
+       [1] (webpack)/buildin/global.js 509 bytes {0} [built]
         + 2 hidden modules
 ```
 
 The output tells a lot:
 
-* `Hash: 922e1437a5b7761b926e` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. Hashing is discussed in detail in the *Adding Hashes to Filenames* chapter.
-* `Version: webpack 3.8.1` - Webpack version.
-* `Time: 344ms` - Time it took to execute the build.
-* `app.js    3.07 kB       0  [emitted]  app` - Name of the generated asset, size, the IDs of the **chunks** into which it's related, status information telling how it was generated, the name of the chunk.
-* `index.html  180 bytes          [emitted]` - Another generated asset that was emitted by the process.
-* `[0] ./app/index.js 77 bytes {0} [built]` - The ID of the entry asset, name, size, entry chunk ID, the way it was generated.
+* `Hash: fe4992f1e526b28ecab7` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. Hashing is discussed in detail in the *Adding Hashes to Filenames* chapter.
+* `Version: webpack 4.0.1` - Webpack version.
+* `Time: 549ms` - Time it took to execute the build.
+* `main.js  679 bytes       0  [emitted]  main` - Name of the generated asset, size, the IDs of the **chunks** into which it's related, status information telling how it was generated, the name of the chunk.
+* `index.html  181 bytes          [emitted]` - Another generated asset that was emitted by the process.
+* `[0] ./src/index.js + 1 modules 219 bytes {0} [built]` - The ID of the entry asset, name, size, entry chunk ID, the way it was generated.
 * `Child html-webpack-plugin for "index.html":` - This is plugin-related output. In this case *html-webpack-plugin* is doing the output of its own.
 
-Examine the output below `build/`. If you look closely, you can see the same IDs within the source. To see the application running, open the `build/index.html` file directly through a browser. On macOS `open ./build/index.html` works.
+Examine the output below the `dist/` directory. If you look closely, you can see the same IDs within the source.
 
 T> If you want webpack to stop execution on the first error, set `bail: true` option. Setting it kills the entire webpack process. The behavior is desirable if you are building in a CI environment.
 
-T> In addition to a configuration object, webpack accepts an array of configurations. You can also return a `Promise` and eventually `resolve` to a configuration.
+T> In addition to a configuration object, webpack accepts an array of configurations. You can also return a `Promise` and eventually `resolve` to a configuration for example.
 
 ## Adding a Build Shortcut
 
-Given executing `node_modules/.bin/webpack` is verbose, you should do something about it. This is where npm and *package.json* can be used for running tasks.
-
-Adjust the file as follows:
+Given executing `node_modules/.bin/webpack` is verbose, you should do something about it. Adjust *package.json* to run tasks as below:
 
 **package.json**
 
 ```json
 "scripts": {
-  "build": "webpack"
+  "build": "webpack --mode production"
 },
 ```
 
 {pagebreak}
 
-Run `npm run build` to see the same output as before. This works because npm adds *node_modules/.bin* temporarily to the path. As a result, rather than having to write `"build": "node_modules/.bin/webpack"`, you can do `"build": "webpack"`.
+Run `npm run build` to see the same output as before. npm adds *node_modules/.bin* temporarily to the path enabling this. As a result, rather than having to write `"build": "node_modules/.bin/webpack"`, you can do `"build": "webpack"`.
 
 You can execute this kind of scripts through *npm run* and you can use *npm run* anywhere within your project. If you run the command as is, it gives you the listing of available scripts.
 
 T> There are shortcuts like *npm start* and *npm test*. You can run these directly without *npm run* although that works too. For those in a hurry, you can use *npm t* to run your tests.
+
+T> To go one step further, set up system level aliases using the `alias` command in your terminal configuration. You could map `nrb` to `npm run build` for instance.
 
 ## `HtmlWebpackPlugin` Extensions
 
@@ -224,7 +212,7 @@ There are also specific plugins that extend `HtmlWebpackPlugin`'s functionality:
 * [script-ext-html-webpack-plugin](https://www.npmjs.com/package/script-ext-html-webpack-plugin) gives you more control over script tags and allows you to tune script loading further.
 * [multipage-webpack-plugin](https://www.npmjs.com/package/multipage-webpack-plugin) builds on top of *html-webpack-plugin* and makes it easier to manage multi-page configurations.
 * [resource-hints-webpack-plugin](https://www.npmjs.com/package/resource-hints-webpack-plugin) adds [resource hints](https://www.w3.org/TR/resource-hints/) to your HTML files to speed up loading time.
-* [preload-webpack-plugin](https://www.npmjs.com/package/preload-webpack-plugin) enables `rel=preload` capabilities for scripts. This helps with lazy loading and it combines well with techniques discussed in the *Building* part of this book.
+* [preload-webpack-plugin](https://www.npmjs.com/package/preload-webpack-plugin) enables `rel=preload` capabilities for scripts and helps with lazy loading, and it combines well with techniques discussed in the *Building* part of this book.
 * [webpack-cdn-plugin](https://www.npmjs.com/package/webpack-cdn-plugin) allows you to specify which dependencies to load through a Content Delivery Network (CDN). This common technique is used for speeding up loading of popular libraries.
 
 ## Conclusion
@@ -233,10 +221,10 @@ Even though you have managed to get webpack up and running, it does not do that 
 
 To recap:
 
-* It's a good idea to use a locally installed version of webpack over a globally installed one. This way you can be sure of what version you are using. The local dependency works also in a Continuous Integration environment.
-* Webpack provides a command line interface. You can use it even without configuration, but then you are limited by the options it provides.
+* It's a good idea to use a locally installed version of webpack over a globally installed one. This way you can be sure of what version you are using. The local dependency also works in a Continuous Integration environment.
+* Webpack provides a command line interface through the *webpack-cli* package. You can use it even without configuration, but any advanced usage requires configuration.
 * To write more complicated setups, you most likely have to write a separate *webpack.config.js* file.
 * `HtmlWebpackPlugin` can be used to generate an HTML entry point to your application. Later in the book, you see how to generate multiple separate pages using. The *Multiple Pages* chapter covers that.
 * It's handy to use npm *package.json* scripts to manage webpack. You can use it as a light task runner and use system features outside of webpack.
 
-In the next chapter you will learn how to improve the developer experience by enabling automatic browser refresh.
+In the next chapter, you will learn how to improve the developer experience by enabling automatic browser refresh.
