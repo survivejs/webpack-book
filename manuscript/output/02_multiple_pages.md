@@ -18,7 +18,7 @@ To generate multiple separate pages, they should be initialized somehow. You sho
 
 ### Abstracting Pages
 
-To initialize a page, it should receive page title, output path, and an optional template at least. Each page should receive optional output path, and a template for customization. The idea can be modeled as a configuration part:
+To initialize a page, it should receive page title, output path, and an optional template at least. Each page should receive optional output path and a template for customization. The idea can be modeled as a configuration part:
 
 **webpack.parts.js**
 
@@ -26,15 +26,13 @@ To initialize a page, it should receive page title, output path, and an optional
 ...
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-exports.page = (
-  {
-    path = "",
-    template = require.resolve(
-      "html-webpack-plugin/default_index.ejs"
-    ),
-    title,
-  } = {}
-) => ({
+exports.page = ({
+  path = "",
+  template = require.resolve(
+    "html-webpack-plugin/default_index.ejs"
+  ),
+  title,
+} = {}) => ({
   plugins: [
     new HtmlWebpackPlugin({
       filename: `${path && path + "/"}index.html`,
@@ -49,13 +47,12 @@ exports.page = (
 
 ### Integrating to Configuration
 
-To incorporate the idea to the configuration, the way it's composed has to change. Also, a page definition is required. To get started, let's reuse the same JavaScript logic for each page for now:
+To incorporate the idea into the configuration, the way it's composed has to change. Also, a page definition is required. To get started, let's reuse the same JavaScript logic for each page for now:
 
 **webpack.config.js**
 
 ```javascript
-const webpack = require("webpack");
-const path = require("path");
+...
 leanpub-start-delete
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 leanpub-end-delete
@@ -63,27 +60,27 @@ leanpub-end-delete
 
 
 const commonConfig = merge([
-  {
-    ...
 leanpub-start-delete
+  {
     plugins: [
       new HtmlWebpackPlugin({
         title: "Webpack demo",
       }),
     ],
-leanpub-end-delete
   },
+leanpub-end-delete
+  ...
 ]);
 
 ...
 
-module.exports = (env) => {
+module.exports = mode => {
 leanpub-start-delete
-  if (env === "production") {
-    return merge(commonConfig, productionConfig);
+  if (mode === "production") {
+    return merge(commonConfig, productionConfig, { mode });
   }
 
-  return merge(commonConfig, developmentConfig);
+  return merge(commonConfig, developmentConfig, { mode });
 leanpub-end-delete
 leanpub-start-insert
   const pages = [
@@ -91,9 +88,11 @@ leanpub-start-insert
     parts.page({ title: "Another demo", path: "another" }),
   ];
   const config =
-    env === "production" ? productionConfig : developmentConfig;
+    mode === "production" ? productionConfig : developmentConfig;
 
-  return pages.map(page => merge(commonConfig, config, page));
+  return pages.map(page =>
+    merge(commonConfig, config, page, { mode })
+  );
 leanpub-end-insert
 };
 ```
@@ -104,7 +103,7 @@ After this change you should have two pages in the application: `/` and `/anothe
 
 The question is, how to inject a different script per each page. In the current configuration, the same `entry` is shared by both. To solve the problem, you should move `entry` configuration to lower level and manage it per page. To have a script to test with, set up another entry point:
 
-**app/another.js**
+**src/another.js**
 
 ```javascript
 import "./main.css";
@@ -122,21 +121,23 @@ The file could go to a directory of its own. Here the existing code is reused to
 **webpack.config.js**
 
 ```javascript
+...
+
 const commonConfig = merge([
+leanpub-start-insert
   {
-leanpub-start-delete
-    entry: {
-      app: PATHS.app,
+    output: {
+      // Needed for code splitting to work in nested paths
+      publicPath: "/",
     },
-leanpub-end-delete
-    ...
   },
+leanpub-end-insert
   ...
 ]);
 
 ...
 
-module.exports = (env) => {
+module.exports = mode => {
 leanpub-start-delete
   const pages = [
     parts.page({ title: "Webpack demo" }),
@@ -161,9 +162,11 @@ leanpub-start-insert
   ];
 leanpub-end-insert
   const config =
-    env === "production" ? productionConfig : developmentConfig;
+    mode === "production" ? productionConfig : developmentConfig;
 
-  return pages.map(page => merge(commonConfig, config, page));
+    return pages.map(page =>
+      merge(commonConfig, config, page, { mode })
+    );
 };
 ```
 
@@ -208,43 +211,27 @@ If you build the application (`npm run build`), you should find *another/index.h
 
 * It's clear how to add more pages to the setup.
 * The generated assets are directly below the build root. The pages are an exception as those are handled by `HtmlWebpackPlugin`, but they still point to the assets below the root. It would be possible to add more abstraction in the form of *webpack.page.js* and manage the paths by exposing a function that accepts page configuration.
-* Records should be written separately per each page in files of their own. Currently, the configuration that writes the last, wins. The above solution would allow solving this.
-* Processes like linting and cleaning run twice currently. The *Targets* chapter discussed potential solutions to that problem.
+* Records should be written separately per each page in files of their own. Currently, the configuration that writes the last wins. The above solution would allow solving this.
+* Processes like linting and cleaning run twice now. The *Targets* chapter discussed potential solutions to that problem.
 
-The approach can be pushed to another direction by dropping the multi-compiler mode. Even though it's slower to process this kind of build, it enables code sharing, and the implementation of shells. The first step towards a shell setup is to rework the configuration so that it picks up the code shared between the pages.
+The approach can be pushed in another direction by dropping the multi-compiler mode. Even though it's slower to process this kind of build, it enables code sharing and the implementation of shells. The first step towards a shell setup is to rework the configuration so that it picks up the code shared between the pages.
 
 ## Generating Multiple Pages While Sharing Code
 
-The current configuration shares code by coincidence already due to the usage patterns. Only a small part of the code differs, and as a result only the page manifests, and the bundles mapping to their entries differ.
+The current configuration shares code by coincidence already due to the usage patterns. Only a small part of the code differs, and as a result, only the page manifests, and the bundles mapping to their entries differ.
 
 In a more complicated application, you should apply techniques covered in the *Bundle Splitting* chapter across the pages. Dropping the multi-compiler mode can be worthwhile then.
 
 ### Adjusting Configuration
 
-To reach a code sharing setup, a minor adjustment is needed. Most of the code can remain the same. The way you expose it to webpack has to change so that it receives a single configuration object. As `HtmlWebpackPlugin` picks up all chunks by default, you have to adjust it to pick up only the chunks that are related to each page:
+Adjustment is needed to share code between the pages. Most of the code can remain the same. The way you expose it to webpack has to change so that it receives a single configuration object. As `HtmlWebpackPlugin` picks up all chunks by default, you have to adjust it to pick up only the chunks that are related to each page:
 
 **webpack.config.js**
 
 ```javascript
 ...
 
-const commonConfig = merge([
-  {
-    output: {
-      path: PATHS.build,
-      filename: "[name].js",
-leanpub-start-insert
-      // Needed for code splitting to work in nested paths
-      publicPath: "/",
-leanpub-end-insert
-    },
-  },
-  ...
-]);
-
-...
-
-module.exports = env => {
+module.exports = mode => {
   const pages = [
     parts.page({
       title: "Webpack demo",
@@ -267,13 +254,15 @@ leanpub-end-insert
     }),
   ];
   const config =
-    env === "production" ? productionConfig : developmentConfig;
+    mode === "production" ? productionConfig : developmentConfig;
 
 leanpub-start-delete
-  return pages.map(page => merge(commonConfig, config, page));
+  return pages.map(page =>
+    merge(commonConfig, config, page, { mode })
+  );
 leanpub-end-delete
 leanpub-start-insert
-  return merge([commonConfig, config].concat(pages));
+  return merge([commonConfig, config, { mode }].concat(pages));
 leanpub-end-insert
 };
 ```
@@ -328,7 +317,7 @@ Compared to the earlier approach, something was gained, but also lost:
 
 If you push the idea further by combining it with code splitting and smart routing, you'll end up with the idea of Progressive Web Applications (PWA). [webpack-pwa](https://github.com/webpack/webpack-pwa) example illustrates how to implement the approach using webpack either through an app shell or a page shell.
 
-App shell is loaded initially, and it manages the whole application including its routing. Page shells are more granular, and more are loaded as you use the application. The total size of the application is larger but conversely you can load initial content faster.
+App shell is loaded initially, and it manages the whole application including its routing. Page shells are more granular, and more are loaded as the application is used. The total size of the application is larger in this case. Conversely, you can load initial content faster.
 
 PWA combines well with plugins like [offline-plugin](https://www.npmjs.com/package/offline-plugin) and [sw-precache-webpack-plugin](https://www.npmjs.com/package/sw-precache-webpack-plugin). Using [Service Workers](https://developer.mozilla.org/en/docs/Web/API/Service_Worker_API) and improves the offline experience.
 
@@ -336,12 +325,12 @@ PWA combines well with plugins like [offline-plugin](https://www.npmjs.com/packa
 
 ## Conclusion
 
-Webpack allows you to manage multiple page setups. The PWA approach allows the application to be loaded progressively as it's used and webpack allows implementing it.
+Webpack allows you to manage multiple page setups. The PWA approach allows the application to be loaded as it's used and webpack allows implementing it.
 
 To recap:
 
 * Webpack can be used to generate separate pages either through its multi-compiler mode or by including all the page configuration into one.
 * The multi-compiler configuration can run in parallel using external solutions, but it's harder to apply techniques such as bundle splitting against it.
-* A multi-page setup can lead to a **Progressive Web Application**. In this case you use various webpack techniques to come up with an application that is fast to load and that fetches functionality as required. Both two flavors of this technique have their own merits.
+* A multi-page setup can lead to a **Progressive Web Application**. In this case, you use various webpack techniques to come up with an application that is fast to load and that fetches functionality as required. Both two flavors of this technique have their own merits.
 
 You'll learn to implement *Server Side Rendering* in the next chapter.
