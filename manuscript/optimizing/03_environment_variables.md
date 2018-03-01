@@ -8,6 +8,8 @@ You can find packages that rely on this behavior. React is perhaps the most know
 
 Webpack 4 sets `process.env.NODE_ENV` based on the given mode. It's good to know the technique and how it works, though.
 
+{pagebreak}
+
 ## The Basic Idea of `DefinePlugin`
 
 To understand the idea of `DefinePlugin` better, consider the example below:
@@ -58,8 +60,6 @@ if (false) {
 }
 ```
 
-{pagebreak}
-
 A minifier eliminates the `if` statement as it has become dead code:
 
 ```javascript
@@ -91,8 +91,6 @@ exports.setFreeVariable = (key, value) => {
   };
 };
 ```
-
-{pagebreak}
 
 Connect this with the configuration:
 
@@ -166,8 +164,6 @@ You can find a collection of optimization-related plugins for webpack:
 * `webpack.optimize.AggressiveSplittingPlugin` allows you to split code into smaller bundles as discussed in the *Bundle Splitting* chapter. The result is ideal for an HTTP/2 environment.
 * `webpack.DefinePlugin` allows you to use feature flags in your code and eliminate the redundant code as discussed in this chapter.
 * [lodash-webpack-plugin](https://www.npmjs.com/package/lodash-webpack-plugin) creates smaller Lodash builds by replacing feature sets with smaller alternatives leading to more compact builds.
-
-{pagebreak}
 
 ## Conclusion
 
