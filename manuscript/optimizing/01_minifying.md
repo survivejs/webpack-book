@@ -55,6 +55,8 @@ If you execute `npm run build` now, you should see result close to the same as b
 
 T> Source maps are disabled by default. You can enable them through the `sourceMap` flag. You should check *uglifyjs-webpack-plugin* for more options.
 
+{pagebreak}
+
 ## Other Ways to Minify JavaScript
 
 Although the defaults and *uglifyjs-webpack-plugin* works for this use case, there are more options you can consider:
@@ -101,8 +103,6 @@ Out of the available solutions, `OptimizeCSSAssetsPlugin` composes the best. To 
 npm install optimize-css-assets-webpack-plugin cssnano --save-dev
 ```
 
-{pagebreak}
-
 Like for JavaScript, you can wrap the idea in a configuration part:
 
 **webpack.parts.js**
@@ -126,8 +126,6 @@ exports.minifyCSS = ({ options }) => ({
 ```
 
 W> If you use `--json` output with webpack as discussed in the *Build Analysis* chapter, you should set `canPrint: false` for the plugin.
-
-{pagebreak}
 
 Then, connect with the main configuration:
 
