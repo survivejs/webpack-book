@@ -2,11 +2,11 @@
 
 Even though webpack is used most commonly for bundling web applications, it can do more. You can use it to target Node or desktop environments, such as Electron. Webpack can also bundle as a library while writing an appropriate output wrapper making it possible to consume the library.
 
-Webpack's output target is controlled by the `target` field. You'll learn about the main targets next and dig into library specific options after that.
+Webpack's output target is controlled by the `target` field. You'll learn about the primary targets next and dig into library specific options after that.
 
 ## Web Targets
 
-Webpack uses the *web* target by default. This is ideal for a web application like the one you have developed in this book. Webpack bootstraps the application and load its modules. The initial list of modules to load is maintained in a manifest, and then the modules can load each other as defined.
+Webpack uses the *web* target by default. The target is ideal for a web application like the one you have developed in this book. Webpack bootstraps the application and loads its modules. The initial list of modules to load is maintained in a manifest, and then the modules can load each other as defined.
 
 ### Web Workers
 
@@ -41,7 +41,7 @@ Webpack supports targets beyond the web. Based on this you can say name "webpack
 
 To recap:
 
-* Webpack's output target can be controlled through the `target` field. It defaults to `web`, but accepts other options too.
+* Webpack's output target can be controlled through the `target` field. It defaults to `web` but accepts other options too.
 * Webpack can target the desktop, Node, and web workers in addition to its web target.
 * The Node targets come in handy if especially in Server Side Rendering setups.
 
