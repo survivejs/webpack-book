@@ -59,7 +59,11 @@ leanpub-end-insert
 }
 ```
 
-If you know what browsers you prefer to support, it's possible to set up a [.browserslistrc](https://www.npmjs.com/package/browserslist) file. Different tools pick up this definition, *autoprefixer* included. Set up a file as follows:
+If you know what browsers you prefer to support, it's possible to set up a [.browserslistrc](https://www.npmjs.com/package/browserslist) file. Different tools pick up this definition, *autoprefixer* included.
+
+{pagebreak}
+
+Set up a file as follows:
 
 **.browserslistrc**
 
