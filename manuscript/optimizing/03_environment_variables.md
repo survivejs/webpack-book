@@ -1,10 +1,12 @@
 # Environment Variables
 
-Sometimes a part of your code should execute only during development. Or you could have experimental features in your build that are not ready for production yet. This is where controlling **environment variables** becomes valuable as you can toggle functionality using them.
+Sometimes a part of your code should execute only during development. Or you could have experimental features in your build that are not ready for production yet. Controlling **environment variables** becomes valuable as you can toggle functionality using them.
 
 Since JavaScript minifiers can remove dead code (`if (false)`), you can build on top of this idea and write code that gets transformed into this form. Webpack's `DefinePlugin` enables replacing **free variables** so that you can convert `if (process.env.NODE_ENV === "development")` kind of code to `if (true)` or `if (false)` depending on the environment.
 
 You can find packages that rely on this behavior. React is perhaps the most known example of an early adopter of the technique. Using `DefinePlugin` can bring down the size of your React production build somewhat as a result, and you can see a similar effect with other packages as well.
+
+Webpack 4 sets `process.env.NODE_ENV` based on the given mode. It's good to know the technique and how it works, though.
 
 ## The Basic Idea of `DefinePlugin`
 
@@ -24,7 +26,7 @@ if (bar === "bar") {
 }
 ```
 
-If you replaced `bar` with a string like `"foobar"`, then you would end up with code as below:
+If you replaced `bar` with a string like `"foobar"`, then you would end up with the code as below:
 
 ```javascript
 var foo;
@@ -75,8 +77,6 @@ Elimination is the core idea of `DefinePlugin` and it allows toggling. A minifie
 
 ## Setting `process.env.NODE_ENV`
 
-Given you are using React in the project and it happens to use the technique, you can try to enable `DefinePlugin` and see what it does to the production build.
-
 As before, encapsulate this idea to a function. Due to the way webpack replaces the free variable, you should push it through `JSON.stringify`. You end up with a string like `'"demo"'` and then webpack inserts that into the slots it finds:
 
 **webpack.parts.js**
@@ -94,43 +94,39 @@ exports.setFreeVariable = (key, value) => {
 
 {pagebreak}
 
-You can connect this with the configuration:
+Connect this with the configuration:
 
 **webpack.config.js**
 
 ```javascript
-const productionConfig = merge([
+const commonConfig = merge([
   ...
 leanpub-start-insert
-  parts.setFreeVariable("process.env.NODE_ENV", "production"),
+  parts.setFreeVariable("HELLO", "hello from config"),
 leanpub-end-insert
 ]);
 ```
 
-Execute `npm run build` and you should see improved results:
+Finally, add something to replace:
 
-```bash
-Hash: 7ed744e79c0813f45427
-Version: webpack 3.8.1
-Time: 2740ms
-        Asset       Size  Chunks             Chunk Names
+**src/component.js**
+
+```javascript
+leanpub-start-delete
+export default (text = "Hello world") => {
+leanpub-end-delete
 leanpub-start-insert
-    vendor.js    8.36 kB       2  [emitted]  vendor
+export default (text = HELLO) => {
 leanpub-end-insert
-       app.js  802 bytes       1  [emitted]  app
-...
-   index.html  274 bytes          [emitted]
-   [4] ./~/object-assign/index.js 2.11 kB {2} [built]
-  [14] ./app/component.js 461 bytes {1} [built]
-  [15] ./app/shake.js 138 bytes {1} [built]
-...
+  const element = document.createElement("div");
+
+  ...
+};
 ```
 
-You went from 83 kB to 28 kB, and finally, to 8 kB. The final build is faster than the previous one as well.
+If you run the application, you should see a new message on the button.
 
-Given the 8 kB can be served gzipped, it's somewhat reasonable. gzipping drops around another 40%, and it's well supported by browsers. It comes with a performance overhead on mobile usage, though.
-
-T> `webpack.EnvironmentPlugin(["NODE_ENV"])` is a shortcut that allows you to refer to environment variables. It uses `DefinePlugin` underneath and you can achieve the same effect by passing `process.env.NODE_ENV`.
+T> `webpack.EnvironmentPlugin(["NODE_ENV"])` is a shortcut that allows you to refer to environment variables. It uses `DefinePlugin` underneath, and you can achieve the same effect by passing `process.env.NODE_ENV`.
 
 ## Replacing Free Variables Through Babel
 
@@ -164,11 +160,10 @@ T> A related technique, **aliasing**, is discussed in the *Package Consuming Tec
 
 ## Webpack Optimization Plugins
 
-Webpack includes a collection of optimization related plugins:
+You can find a collection of optimization-related plugins for webpack:
 
 * [compression-webpack-plugin](https://www.npmjs.com/package/compression-webpack-plugin) allows you to push the problem of generating compressed files to webpack to potentially save processing time on the server.
-* `webpack.optimize.UglifyJsPlugin` allows you to minify output using different heuristics. Certain of them break code unless you are careful.
-* `webpack.optimize.AggressiveSplittingPlugin` allows you to split code into smaller bundles as discussed in the *Bundle Splitting* chapter. The result is ideal for a HTTP/2 environment.
+* `webpack.optimize.AggressiveSplittingPlugin` allows you to split code into smaller bundles as discussed in the *Bundle Splitting* chapter. The result is ideal for an HTTP/2 environment.
 * `webpack.DefinePlugin` allows you to use feature flags in your code and eliminate the redundant code as discussed in this chapter.
 * [lodash-webpack-plugin](https://www.npmjs.com/package/lodash-webpack-plugin) creates smaller Lodash builds by replacing feature sets with smaller alternatives leading to more compact builds.
 
@@ -180,7 +175,7 @@ Setting environment variables is a technique that allows you to control which pa
 
 To recap:
 
-* Webpack allows you to set **environment variables** through `DefinePlugin` and `EnvironmentPlugin`. Latter maps system level environment variables to the source.
+* Webpack allows you to set **environment variables** through `DefinePlugin` and `EnvironmentPlugin`. Latter maps the system level environment variables to the source.
 * `DefinePlugin` operates based on **free variables** and it replaces them as webpack analyzes the source code. You can achieve similar results by using Babel plugins.
 * Given minifiers eliminate dead code, using the plugins allows you to remove the code from the resulting build.
 * The plugins enable module level patterns. By implementing a wrapper, you can choose which file webpack includes to the resulting build.
