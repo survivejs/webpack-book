@@ -57,6 +57,40 @@ If you want to manage stats through a plugin, check out [stats-webpack-plugin](h
 
 [webpack-stats-plugin](https://www.npmjs.com/package/webpack-stats-plugin) is another option. It allows you to transform the data before outputting it.
 
+## Enabling a Performance Budget
+
+Webpack allows you to define a **performance budget**. The idea is that it gives your build size constraint which it has to follow. The feature is disabled by default and the calculation includes extracted chunks to entry calculation. If a budget isn't met and it has been configured to emit an error, it would terminate the entire build.
+
+To integrate the feature into the project, adjust the configuration:
+
+**webpack.config.js**
+
+```javascript
+const productionConfig = merge([
+leanpub-start-insert
+  {
+    performance: {
+      hints: "warning", // "error" or false are valid too
+      maxEntrypointSize: 50000, // in bytes, default 250k
+      maxAssetSize: 450000, // in bytes
+    },
+  },
+leanpub-end-insert
+  ...
+]);
+```
+
+In practice you want to maintain lower limits. The current ones are enough for this demonstration. If you build now (`npm run build`), you should see a warning:
+
+```bash
+WARNING in entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (50 kB). This can impact web performance.
+Entrypoints:
+  app (89.5 kB)
+      vendor.js
+      app.js
+      app.css
+```
+
 ## Available Analysis Tools
 
 Even though having a look at the file itself gives you idea of what's going on, often it's preferable to use a particular tool for that. Consider the following.
@@ -183,6 +217,7 @@ To recap:
 
 * Webpack allows you to extract a JSON file containing information about the build. The information can include the build composition and timing.
 * The generated information can be analyzed using various tools that give insight into aspects such as the bundle composition.
+* **Performance budget** allows you to set limits to the build size. Maintaining a budget can keep developers more conscious of the size of the generated bundles.
 * Understanding the bundles is the key to insights on how to optimize the overall size, what to load and when. It can also reveal bigger issues, such as redundant data.
 * You can find third party tools that don't depend on webpack but are still valuable for analysis.
 
