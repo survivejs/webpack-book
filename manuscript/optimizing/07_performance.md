@@ -1,6 +1,6 @@
 # Performance
 
-Webpack's performance out of the box is often enough for small projects. That said, it begins to hit limits as your project grows in scale. It's a common topic in webpack's issue tracker. [Issue 1905](https://github.com/webpack/webpack/issues/1905) is a good example.
+Webpack's performance out of the box is often enough for small projects. That said, it begins to hit limits as your project grows in scale. It's a frequent topic in webpack's issue tracker. [Issue 1905](https://github.com/webpack/webpack/issues/1905) is a good example.
 
 There are a couple of ground rules when it comes to optimization:
 
@@ -9,13 +9,13 @@ There are a couple of ground rules when it comes to optimization:
 3. Perform more involved tweaks after.
 4. Measure impact.
 
-Sometimes optimizations come with a cost. They can make your configuration harder to understand or tie it to a particular solution. Often the best optimization is to do less work or do it in a smarter way. The basic directions are covered in the next sections, so you know where to look when it's time to work on performance.
+Sometimes optimizations come with a cost. They can make your configuration harder to understand or tie it to a particular solution. Often the best optimization is to do less work or do it more smartly. The basic directions are covered in the next sections, so you know where to look when it's time to work on performance.
 
 {pagebreak}
 
 ## High-Level Optimizations
 
-Webpack uses only a single instance by default meaning you aren't able to benefit from a multi-core processor without extra effort. This where third party solutions, such as [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) and [HappyPack](https://www.npmjs.com/package/happypack) come in.
+Webpack uses only a single instance by default meaning you aren't able to benefit from a multi-core processor without extra effort. This where third-party solutions, such as [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) and [HappyPack](https://www.npmjs.com/package/happypack) come in.
 
 ### parallel-webpack - Run Multiple Webpack Instances in Parallel
 
@@ -84,13 +84,13 @@ Perhaps the problem with HappyPack is that it couples your configuration with it
 
 ## Low-Level Optimizations
 
-Certain lower-level optimizations can be good to know. The key is to allow webpack to perform less work. You have already implemented a couple of these, but it's a good idea to enumerate them:
+Specific lower-level optimizations can be good to know. The key is to allow webpack to perform less work. You have already implemented a couple of these, but it's a good idea to enumerate them:
 
 * Consider using faster source map variants during development or skip them. Skipping is possible if you don't process the code in any way.
-* Use [babel-preset-env](https://www.npmjs.com/package/babel-preset-env) during development instead of source maps to transpile fewer features for modern browsers and make the code more readable and easier to debug.
+* Use [babel-preset-env](https://www.npmjs.com/package/babel-preset-env) during development instead of source maps to transpile fewer features for modern browsers and make the code more readable and more comfortable to debug.
 * Skip polyfills during development. Attaching a package, such as [babel-polyfill](https://www.npmjs.com/package/babel-polyfill), to the development version of an application adds to the overhead.
-* Disable the portions of the application you don't need during development. It can be a valid idea to compile only a small portion you are working on as then you have less to bundle.
-* Push bundles that change less to **Dynamically Loaded Libraries** (DLL) to avoid unnecessary processing. It's one more thing to worry about, but can lead to speed increases as there is less to bundle. The [official webpack example](https://github.com/webpack/webpack/tree/master/examples/dll-user) gets to the point while [Rob Knight's blog post](https://robertknight.github.io/posts/webpack-dll-plugins/) explains the idea further.
+* Disable the portions of the application you don't need during development. It can be a valid idea to compile only a small fraction you are working on as then you have less to bundle.
+* Push bundles that change less to **Dynamically Loaded Libraries** (DLL) to avoid unnecessary processing. It's one more thing to worry about but can lead to speed increases as there is less to bundle. The [official webpack example](https://github.com/webpack/webpack/tree/master/examples/dll-user) gets to the point while [Rob Knight's blog post](https://robertknight.github.io/posts/webpack-dll-plugins/) explains the idea further.
 
 ### Plugin Specific Optimizations
 
@@ -103,16 +103,16 @@ There are a series of plugin specific optimizations to consider:
 
 ### Loader Specific Optimizations
 
-Loaders have their own optimizations as well:
+Loaders have their optimizations as well:
 
 * Perform less processing by skipping loaders during development. Especially if you are using a modern browser, you can skip using *babel-loader* or equivalent altogether.
 * Use either `include` or `exclude` with JavaScript specific loaders. Webpack traverses *node_modules* by default and executes *babel-loader* over the files unless it has been configured correctly.
-* Cache the results of expensive loaders (e.g. image manipulation) to the disk using the [cache-loader](https://www.npmjs.com/package/cache-loader).
+* Cache the results of expensive loaders (e.g., image manipulation) to the disk using the [cache-loader](https://www.npmjs.com/package/cache-loader).
 * Parallelize the execution of expensive loaders using [thread-loader](https://www.npmjs.com/package/thread-loader). Given workers come with an overhead in Node, using *thread-loader* is worth it only if the parallelized operation is heavy.
 
 ## Optimizing Rebundling Speed During Development
 
-It's possible to optimize rebundling times during development by pointing the development setup to a minified version of a library, such as React. In React's case, you lose `propType`-based validation. But if speed is more important, this technique is worth a go.
+It's possible to optimize rebundling times during development by pointing the development setup to a minified version of a library, such as React. In React's case, you lose `propType`-based validation. If speed is important, this technique is worth it.
 
 `module.noParse` accepts a RegExp or an array of RegExps. In addition to telling webpack not to parse the minified file you want to use, you also have to point `react` to it by using `resolve.alias`. The aliasing idea is discussed in detail in the *Package Consuming Techniques* chapter.
 
@@ -147,7 +147,7 @@ dontParse({
 }),
 ```
 
-After this change, the application should be faster to rebuild depending on the underlying implementation. The technique can also be applied during production.
+After this change, the application should be faster to rebuild depending on the underlying implementation. The technique can also be applied to production.
 
 Given `module.noParse` accepts a regular expression if you wanted to ignore all `*.min.js` files, you could set it to `/\.min\.js/`.
 
@@ -155,7 +155,7 @@ W> Not all modules support `module.noParse`. They should not have a reference to
 
 ## Conclusion
 
-You can optimize webpack's performance in multiple ways. Often it's a good idea to start with easier techniques before moving to more involved ones. The exact methods you have to use, depend on the project.
+You can optimize webpack's performance in multiple ways. Often it's a good idea to start with more accessible techniques before moving to more involved ones. The exact methods you have to use, depend on the project.
 
 To recap:
 
