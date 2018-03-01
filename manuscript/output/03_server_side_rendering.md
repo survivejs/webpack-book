@@ -2,9 +2,9 @@
 
 **Server Side Rendering** (SSR) is a technique that allows you to serve an initial payload with HTML, JavaScript, CSS, and even application state. You serve a fully rendered HTML page that would make sense even without JavaScript enabled. In addition to providing potential performance benefits, this can help with Search Engine Optimization (SEO).
 
-Even though the idea does not sound that special, there is a technical cost involved, and you can find sharp corners. The approach was popularized by React. Since then frameworks encapsulating the tricky bits, such as [Next.js](https://www.npmjs.com/package/next), have appeared. [isomorphic-webpack](https://www.npmjs.com/package/isomorphic-webpack) is a good example of a solution designed on top of webpack.
+Even though the idea does not sound that unique, there is a technical cost. The approach was popularized by React. Since then frameworks encapsulating the tricky bits, such as [Next.js](https://www.npmjs.com/package/next), have appeared. [isomorphic-webpack](https://www.npmjs.com/package/isomorphic-webpack) is an excellent example of a solution designed on top of webpack.
 
-To demonstrate SSR, you can use webpack to compile a client-side build that then gets picked up by a server that renders it using React following the principle. This is enough to understand how it works and also where the problems begin.
+To demonstrate SSR, you can use webpack to compile a client-side build that then gets picked up by a server that renders it using React following the principle. Doing this is enough to understand how it works and also where the problems begin.
 
 ## Setting Up Babel with React
 
@@ -42,13 +42,13 @@ To make sure the project has the dependencies in place, install React and [react
 npm install react react-dom --save
 ```
 
-Next, the React code needs a small entry point. If you are on the browser side, you should mount `Hello world` `div` to the document. To prove it works, clicking it should give a dialog with a "hello" message. On server-side the React component is returned so the server can pick it up.
+Next, the React code needs a small entry point. If you are on the browser side, you should mount `Hello world` `div` to the document. To prove it works, clicking it should give a dialog with a "hello" message. On server-side, the React component is returned and the server can pick it up.
 
 {pagebreak}
 
 Adjust as follows:
 
-**app/ssr.js**
+**src/ssr.js**
 
 ```javascript
 const React = require("react");
@@ -72,7 +72,7 @@ W> Given ES2015 style imports and CommonJS exports cannot be mixed, the entry po
 
 ## Configuring Webpack
 
-To keep things nice and tidy, it's possible to push the demo configuration to a file of its own. A lot of the work has been done already. Given you have to consume the same output from multiple environments, using UMD as the library target makes sense:
+To keep things nice, we will define a separate configuration file. A lot of the work has been done already. Given you have to consume the same output from multiple environments, using UMD as the library target makes sense:
 
 **webpack.ssr.js**
 
@@ -84,11 +84,12 @@ const parts = require("./webpack.parts");
 
 const PATHS = {
   build: path.join(__dirname, "static"),
-  ssrDemo: path.join(__dirname, "app", "ssr.js"),
+  ssrDemo: path.join(__dirname, "src", "ssr.js"),
 };
 
 module.exports = merge([
   {
+    mode: "production",
     entry: {
       index: PATHS.ssrDemo,
     },
@@ -96,6 +97,7 @@ module.exports = merge([
       path: PATHS.build,
       filename: "[name].js",
       libraryTarget: "umd",
+      globalObject: "this",
     },
   },
   parts.loadJavaScript({ include: PATHS.ssrDemo }),
@@ -171,7 +173,7 @@ Run the server now (`node ./server.js`) and go below `http://localhost:8080`, yo
 
 {pagebreak}
 
-Even though there is a basic React application running now, it's difficult to develop. If you try to modify the code, nothing happens. This can be solved running webpack in a multi-compiler mode as earlier in this book. Another option is to run webpack in **watch mode** against the current configuration and set up a watcher for the server. You'll learn the latter setup next.
+Even though there is a React application running now, it's difficult to develop. If you try to modify the code, nothing happens. The problem can be solved running webpack in a multi-compiler mode as earlier in this book. Another option is to run webpack in **watch mode** against the current configuration and set up a watcher for the server. You'll learn the setup next.
 
 T> If you want to debug output from the server, set `export DEBUG=express:application`.
 
@@ -237,7 +239,7 @@ To prove that SSR works, check out the browser inspector. You should see somethi
 
 Instead of a `div` where to mount an application, you can see all related HTML there. It's not much in this particular case, but it's enough to showcase the approach.
 
-T> The implementation could be refined further by implementing a production mode for the server that would skip injecting the browser refresh script at a minimum. The server could inject initial data payload to the generated HTML. Doing this would avoid queries on the client-side.
+T> The implementation could be refined further by implementing a production mode for the server that would skip injecting the browser refresh script at a minimum. The server could inject initial data payload into the generated HTML. Doing this would avoid queries on the client-side.
 
 ## Open Questions
 
@@ -253,11 +255,11 @@ T> Routing is a big problem of its own solved by frameworks like Next.js. Patric
 
 ## Conclusion
 
-SSR comes with a technical challenge and for this reason specific solutions have appeared around it. Webpack is a good fit for SSR setups.
+SSR comes with a technical challenge, and for this reason, specific solutions have appeared around it. Webpack is a good fit for SSR setups.
 
 To recap:
 
 * **Server Side Rendering** can provide more for the browser to render initially. Instead of waiting for the JavaScript to load, you can display markup instantly.
 * Server Side Rendering also allows you to pass initial payload of data to the client to avoid unnecessary queries to the server.
-* Webpack can manage the client side portion of the problem. It can be used to generate the server as well if more integrated solution is required. Abstractions, such as Next.js, hide these details.
-* Server Side Rendering does not come without a cost and it leads to new problems as you need better approaches for dealing with aspects, such as styling or routing. The server and the client environment differ in important manners, so code has to be written so that it does not rely on platform-specific features too much.
+* Webpack can manage the client-side portion of the problem. It can be used to generate the server as well if a more integrated solution is required. Abstractions, such as Next.js, hide these details.
+* Server Side Rendering does not come without a cost, and it leads to new problems as you need better approaches for dealing with aspects, such as styling or routing. The server and the client environment differ in essential manners, so the code has to be written so that it does not rely on platform-specific features too much.
