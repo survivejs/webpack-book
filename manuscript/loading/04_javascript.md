@@ -129,7 +129,11 @@ Adjust the target definition as you like. As long as you follow [browserslist](h
 }
 ```
 
-If you execute `npm run build --devtool false --mode development` now and examine *dist/main.js*, you will see something different based on your `.browserslistrc` file. Try to include only a definition like `IE 8` there, and the code should change accordingly:
+If you execute `npm run build --devtool false --mode development` now and examine *dist/main.js*, you will see something different based on your `.browserslistrc` file.
+
+{pagebreak}
+
+Try to include only a definition like `IE 8` there, and the code should change accordingly:
 
 **dist/main.js**
 
@@ -170,6 +174,8 @@ Sometimes you want to use experimental features that fit your project. Although 
 
 Babel isn't the only option although it's the most popular one. [Buble](https://buble.surge.sh) by Rich Harris is another compiler worth checking out. There's experimental [buble-loader](https://www.npmjs.com/package/buble-loader) that allows you to use it with webpack. Buble doesn't support ES2015 modules, but that's not a problem as webpack provides that functionality.
 
+{pagebreak}
+
 ## Babel Presets and Plugins
 
 Perhaps the greatest thing about Babel is that it's possible to extend with presets and plugins:
@@ -189,8 +195,6 @@ T> It's possible to connect Babel with Node through [babel-register](https://www
 Babel allows you to control which presets and plugins are used per environment through its [env option](https://babeljs.io/docs/usage/babelrc/#env-option). You can manage Babel's behavior per build target this way.
 
 `env` checks both `NODE_ENV` and `BABEL_ENV` and functionality to your build based on that. If `BABEL_ENV` is set, it overrides any possible `NODE_ENV`.
-
-{pagebreak}
 
 Consider the example below:
 
@@ -226,8 +230,6 @@ leanpub-end-insert
 ```
 
 T> The way `env` works is subtle. Consider logging `env` and make sure it matches your Babel configuration or otherwise the functionality you expect is not applied to your build.
-
-{pagebreak}
 
 ## Setting Up TypeScript
 
