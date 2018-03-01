@@ -8,7 +8,7 @@ T> If you want a good starting point for a standalone loader or plugin project, 
 
 ## Debugging Loaders with *loader-runner*
 
-[loader-runner](https://www.npmjs.com/package/loader-runner) allows you to run loaders without webpack making it a good tool for learning more about loader development. Install it first:
+[loader-runner](https://www.npmjs.com/package/loader-runner) allows you to run loaders without webpack making it a useful tool for learning more about loader development. Install it first:
 
 ```bash
 npm install loader-runner --save-dev
@@ -63,7 +63,7 @@ If you run the script now (`node run-loader.js`), you should see output:
   contextDependencies: [] }
 ```
 
-The output tells the `result` of the processing, the resource that was processed as a buffer, and other meta information. This is enough to develop more complicated loaders.
+The output tells the `result` of the processing, the resource that was processed as a buffer, and other meta information. The data is enough to develop more complicated loaders.
 
 T> If you want to capture the output to a file, use either `fs.writeFileSync("./output.txt", result.result)` or its asynchronous version as discussed in [Node documentation](https://nodejs.org/api/fs.html).
 
@@ -71,9 +71,9 @@ T> It's possible to refer to loaders installed to the local project by name inst
 
 ## Implementing an Asynchronous Loader
 
-Even though you can implement a lot of loaders using the synchronous interface, there are times when asynchronous calculation is required. Wrapping a third party package as a loader can force you to this.
+Even though you can implement a lot of loaders using the synchronous interface, there are times when an asynchronous calculation is required. Wrapping a third party package as a loader can force you to this.
 
-The example above can be adapted to asynchronous form by using webpack specific API through `this.async()`. Webpack sets this and the function returns a callback following Node conventions (error first, result second).
+The example above can be adapted to asynchronous form by using webpack specific API through `this.async()`. Webpack sets this, and the function returns a callback following Node conventions (error first, result second).
 
 {pagebreak}
 
@@ -94,9 +94,9 @@ module.exports = function(input) {
 
 W> Given webpack injects its API through `this`, the shorter function form (`() => ...`) cannot be used here.
 
-T> If you want to pass a source map to webpack, pass it as the third parameter of the callback.
+T> If you want to pass a source map to webpack, give it as the third parameter of the callback.
 
-Running the demo script (`node run-loader.js`) again should give exactly the same result as before. To raise an error during execution, try the following:
+Running the demo script (`node run-loader.js`) again should give the same result as before. To raise an error during execution, try the following:
 
 **loaders/demo-loader.js**
 
@@ -114,7 +114,7 @@ The result should contain `Error: Demo error` with a stack trace showing where t
 
 ## Returning Only Output
 
-Loaders can be used to output code alone. You could have implementation as below:
+Loaders can be used to output code alone. You could have an implementation as below:
 
 **loaders/demo-loader.js**
 
@@ -124,7 +124,7 @@ module.exports = function() {
 };
 ```
 
-But what's the point? You can pass to loaders through webpack entries. Instead of pointing to pre-existing files as you would in majority of the cases, you could pass to a loader that generates code dynamically.
+But what's the point? You can pass to loaders through webpack entries. Instead of pointing to pre-existing files as you would in a majority of the cases, you could give to a loader that generates code dynamically.
 
 T> If you want to return `Buffer` output, set `module.exports.raw = true`. The flag overrides the default behavior which expects a string is returned.
 
@@ -154,7 +154,7 @@ leanpub-end-insert
 );
 ```
 
-To implement the essential idea of *file-loader*, you have to do two things: emit the file and return path to it. You could implement it as below:
+To implement the essential idea of *file-loader*, you have to do two things: emit the file and return path to it. You could apply it as below:
 
 **loaders/demo-loader.js**
 
@@ -182,7 +182,7 @@ Webpack provides two additional `emit` methods:
 
 These calls should be used over `console` based alternatives. As with `this.emitFile`, you have to mock them for *loader-runner* to work.
 
-The next question is, how to pass file name to the loader.
+The next question is, how to pass a file name to the loader.
 
 {pagebreak}
 
@@ -271,7 +271,7 @@ T> It's a good idea to validate options and rather fail hard than silently if th
 
 ## Connecting Custom Loaders with Webpack
 
-To get most out of loaders you have to connect them with webpack. To achieve this, you can go through imports:
+To get most out of loaders, you have to connect them with webpack. To achieve this, you can go through imports:
 
 **app/component.js**
 
@@ -281,7 +281,7 @@ import "!../loaders/demo-loader?name=foo!./main.css";
 leanpub-end-insert
 ```
 
-Given the definition is verbose, the loader can be aliased:
+Given the definition is verbose, the loader can be aliased as below:
 
 **webpack.config.js**
 
@@ -422,7 +422,7 @@ module.exports.pitch = function() {
 };
 ```
 
-A pitch loader can be used to attach metadata to the input to use later. In this example, cache was constructed during the pitching stage and it was accessed during normal execution.
+A pitch loader can be used to attach metadata to the input to use later. In this example, a cache was constructed during the pitching stage, and it was accessed during normal execution.
 
 T> The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API in detail. You can see all fields available through `this` there.
 
