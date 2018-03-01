@@ -4,7 +4,7 @@ Let's say you want to implement a rough little search for an application without
 
 The problem is that the index can be sizable depending on the amount of the content. The good thing is that you don't need the search index straight from the start. You can do something smarter instead. You can start loading the index when the user selects a search field.
 
-Doing this defers the loading and moves it to a place where it's more acceptable for performance. Given the initial search is slower than the subsequent ones, you should display a loading indicator. But that's fine from the user point of view. Webpack's *Code Splitting* feature allows to do this.
+Doing this defers the loading and moves it to a place where it's more acceptable for performance. The initial search is going to be slower than the subsequent ones, and you should display a loading indicator. But that's fine from the user point of view. Webpack's *Code Splitting* feature allows doing this.
 
 ## Implementing Search with Code Splitting
 
@@ -14,7 +14,7 @@ To implement code splitting, you need to decide where to put the split point, pu
 import("./asset").then(asset => ...).catch(err => ...)
 ```
 
-The nice thing is that this gives error handling in case something goes wrong (network is down etc.) and gives a chance to recover. You can also use `Promise` based utilities like `Promise.all` for composing more complicated queries.
+The beautiful thing is that this gives error handling in case something goes wrong (network is down etc.) and gives a chance to recover. You can also use `Promise` based utilities like `Promise.all` for composing more complicated queries.
 
 {pagebreak}
 
@@ -83,7 +83,7 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
   search(lines, index, query) {
-    // Search against index and match README lines.
+    // Search against the index and match README lines.
     return index
       .search(query.trim())
       .map(match => lines[match.ref]);
