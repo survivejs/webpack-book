@@ -115,8 +115,6 @@ Now the bundles look the way they should. The image below illustrates the curren
 
 ![App and vendor bundles after applying configuration](images/bundle_02.png)
 
-{pagebreak}
-
 ## Splitting and Merging Chunks
 
 Webpack provides more control over the generated chunks by two plugins: `AggressiveSplittingPlugin` and `AggressiveMergingPlugin`. The former allows you to emit more and smaller bundles. The behavior is handy with HTTP/2 due to the way the new standard works.
@@ -162,8 +160,6 @@ In the example above, you used different types of webpack chunks. Webpack treats
 * **Entry chunks** - Entry chunks contain webpack runtime and modules it then loads.
 * **Normal chunks** - Normal chunks **don't** contain webpack runtime. Instead, these can be loaded dynamically while the application is running. A suitable wrapper (JSONP for example) is generated for these. You generate a normal chunk in the next chapter as you set up code splitting.
 * **Initial chunks** - Initial chunks are normal chunks that count towards initial loading time of the application. As a user, you don't have to care about these. It's the split between entry chunks and normal chunks that is important.
-
-{pagebreak}
 
 ## Conclusion
 
