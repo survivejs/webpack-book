@@ -113,6 +113,8 @@ To get started, install *html-webpack-plugin*:
 npm install html-webpack-plugin --save-dev
 ```
 
+{pagebreak}
+
 To connect the plugin with webpack, set up configuration as below:
 
 **webpack.config.js**
