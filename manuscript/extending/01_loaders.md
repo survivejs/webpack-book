@@ -184,8 +184,6 @@ These calls should be used over `console` based alternatives. As with `this.emit
 
 The next question is, how to pass a file name to the loader.
 
-{pagebreak}
-
 ## Passing Options to Loaders
 
 To demonstrate passing options, the runner needs a small tweak:
@@ -221,8 +219,6 @@ leanpub-end-insert
   (err, result) => (err ? console.error(err) : console.log(result))
 );
 ```
-
-{pagebreak}
 
 To capture the option, you need to use [loader-utils](https://www.npmjs.com/package/loader-utils). It has been designed to parse loader options and queries. Install it:
 
@@ -304,8 +300,6 @@ leanpub-end-insert
 ]);
 ```
 
-{pagebreak}
-
 With this change the import can be simplified:
 
 ```javascript
@@ -350,8 +344,6 @@ Input: ${JSON.stringify(input, null, 2)}
 };
 ```
 
-{pagebreak}
-
 To connect it to the runner, add it to the loader definition:
 
 **run-loader.js**
@@ -385,8 +377,6 @@ Input: {}
   fileDependencies: [],
   contextDependencies: [] }
 ```
-
-{pagebreak}
 
 ## Caching with Loaders
 
