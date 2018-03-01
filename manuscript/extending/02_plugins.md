@@ -1,10 +1,10 @@
 # Extending with Plugins
 
-Compared to loaders, plugins are a more flexible means to extend webpack. You have access to webpack's **compiler** and **compilation** processes. It's possible to run child compilers and plugins can work in tandem with loaders as `ExtractTextPlugin` shows.
+Compared to loaders, plugins are a more flexible means to extend webpack. You have access to webpack's **compiler** and **compilation** processes. It's possible to run child compilers, and plugins can work in tandem with loaders as `ExtractTextPlugin` shows.
 
 Plugins allow you to intercept webpack's execution through hooks. Webpack itself has been implemented as a collection of plugins. Underneath it relies on [tapable](https://www.npmjs.com/package/tapable) plugin interface that allows webpack to apply plugins in different ways.
 
-You'll learn to develop a couple of small plugins next. Unlike for loaders, there is no separate environment where you can run plugins so you have to run them against webpack itself. It's possible to push smaller logic outside of the webpack facing portion, though, as this allows you to unit test it in isolation.
+You'll learn to develop a couple of small plugins next. Unlike for loaders, there is no separate environment where you can run plugins, so you have to run them against webpack itself. It's possible to push smaller logic outside of the webpack facing portion, though, as this allows you to unit test it in isolation.
 
 ## The Basic Flow of Webpack Plugins
 
@@ -43,7 +43,7 @@ module.exports = {
 };
 ```
 
-T> If you don't have a `lib` entry file set up yet, write one. The contents doesn't matter as long as it's JavaScript that webpack can parse.
+T> If you don't have a `lib` entry file set up yet, write one. The contents don't matter as long as it's JavaScript that webpack can parse.
 
 To make it convenient to run, set up a build shortcut:
 
@@ -60,11 +60,11 @@ leanpub-end-insert
 
 Executing it should result in an `Error: Cannot find module` failure as the actual plugin is still missing.
 
-T> If you want an interactive development environment, consider setting up [nodemon](https://www.npmjs.com/package/nodemon) against the build. Webpack's own watcher won't work in this case.
+T> If you want an interactive development environment, consider setting up [nodemon](https://www.npmjs.com/package/nodemon) against the build. Webpack's watcher won't work in this case.
 
 ## Implementing a Basic Plugin
 
-The simplest plugin should do two things: capture options and provide `apply` method:
+The most straightforward plugin should do two things: capture options and provide `apply` method:
 
 **plugins/demo-plugin.js**
 
@@ -76,7 +76,7 @@ module.exports = class DemoPlugin {
 };
 ```
 
-If you run the plugin (`npm run build:plugin`), you should see `applying` message at console. Given most plugins accept options, it's a good idea to capture those and pass them to `apply`.
+If you run the plugin (`npm run build:plugin`), you should see `applying` message at the console. Given most plugins accept options, it's a good idea to capture those and pass them to `apply`.
 
 {pagebreak}
 
@@ -122,7 +122,7 @@ Now you should see `apply { name: 'demo' }` after running.
 
 ## Understanding Compiler and Compilation
 
-`apply` receives webpack's compiler as a parameter. Printing reveals more:
+`apply` receives webpack's compiler as a parameter. Adjust as below:
 
 **plugins/demo-plugin.js**
 
@@ -139,7 +139,7 @@ module.exports = class DemoPlugin {
 
 After running, you should see a lot of data. Especially `options` should look familiar as it contains webpack configuration. You can also see familiar names like `records`.
 
-If you go through webpack's [plugin development documentation](https://webpack.js.org/api/plugins/), you'll see a compiler provides a large amount of hooks. Each hook corresponds with a specific stage. For example, to emit files, you could listen to the `emit` event and then write.
+If you go through webpack's [plugin development documentation](https://webpack.js.org/api/plugins/), you'll see a compiler provides a large number of hooks. Each hook corresponds to a specific stage. For example, to emit files, you could listen to the `emit` event and then write.
 
 Change the implementation to listen and capture `compilation`:
 
@@ -167,11 +167,11 @@ leanpub-end-insert
 
 W> Forgetting the callback and running the plugin makes webpack fail silently!
 
-Running the build should show more information than before. This is because a compilation object contains whole dependency graph traversed by webpack. You have access to everything related to it here including entries, chunks, modules, assets, and more.
+Running the build should show more information than before because a compilation object contains whole dependency graph traversed by webpack. You have access to everything related to it here including entries, chunks, modules, assets, and more.
 
-T> Many of the available hooks expose compilation, but sometimes they expose a more specific structure and it takes more specific study to understand those.
+T> Many of the available hooks expose compilation, but sometimes they reveal a more specific structure, and it takes a more particular study to understand those.
 
-T> Loaders have a dirty access to `compiler` and `compilation` through underscore (`this._compiler`/`this._compilation`).
+T> Loaders have dirty access to `compiler` and `compilation` through underscore (`this._compiler`/`this._compilation`).
 
 ## Writing Files Through Compilation
 
@@ -252,7 +252,7 @@ A plugin can provide hooks of its own. [html-webpack-plugin](https://www.npmjs.c
 
 ## Plugins Can Run Compilers of Their Own
 
-In special cases, like [offline-plugin](https://www.npmjs.com/package/offline-plugin), it makes sense to run a child compiler. This gives full control over related entries and output. Arthur Stolyar, the author of the plugin has explained [the idea of child compilers at Stack Overflow](https://stackoverflow.com/questions/38276028/webpack-child-compiler-change-configuration).
+In special cases, like [offline-plugin](https://www.npmjs.com/package/offline-plugin), it makes sense to run a child compiler. It gives full control over related entries and output. Arthur Stolyar, the author of the plugin, has explained [the idea of child compilers at Stack Overflow](https://stackoverflow.com/questions/38276028/webpack-child-compiler-change-configuration).
 
 ## Conclusion
 
@@ -261,8 +261,8 @@ When you begin to design a plugin, spend time studying existing plugins that are
 To recap:
 
 * **Plugins** can intercept webpack's execution and extend it making them more flexible than loaders.
-* Plugins can be combined with loaders. `ExtractTextPlugin` works this way. There loaders are used to mark assets to extract.
-* Plugins have access to webpack's **compiler** and **compilation** processes. Both provide hooks for different stages of webpack's execution flow and allow you to manipulate it. This is how webpack itself works.
+* Plugins can be combined with loaders. `ExtractTextPlugin` works this way. The accompanying loader is used to mark assets to extract.
+* Plugins have access to webpack's **compiler** and **compilation** processes. Both provide hooks for different stages of webpack's execution flow and allow you to manipulate it. Webpack itself works this way.
 * Plugins can emit new assets and shape existing assets.
-* Plugins can implement plugin systems of their own. `HtmlWebpackPlugin` is an example of a such plugin.
-* Plugins can run compilers of their own. The isolation gives more control and allows plugins like *offline-plugin* to be written.
+* Plugins can implement plugin systems of their own. `HtmlWebpackPlugin` is an example of such plugin.
+* Plugins can run compilers on their own. The isolation gives more control and allows plugins like *offline-plugin* to be written.
