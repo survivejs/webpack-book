@@ -84,6 +84,8 @@ body {
 }
 ```
 
+T> You can lint CSS through [Stylelint](http://stylelint.io/). It can be set up the same way through *postcss-loader* as autoprefixing above.
+
 ## Conclusion
 
 Autoprefixing is a convenient technique as it decreases the amount of work needed while crafting CSS. You can maintain minimum browser requirements within a *.browserslistrc* file. The tooling can then use that information to generate optimal output.
@@ -95,5 +97,3 @@ To recap:
 * *.browserslistrc* is a standard file that works with tooling beyond *autoprefixer*
 
 In the next chapter, you'll learn to eliminate unused CSS from the project.
-
-T> You can lint CSS through [Stylelint](http://stylelint.io/). It can be set up the same way through *postcss-loader* as autoprefixing above.
