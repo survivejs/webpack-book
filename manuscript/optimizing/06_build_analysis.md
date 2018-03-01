@@ -96,6 +96,8 @@ Entrypoints:
 
 You can increase the limit or remove the configuration to get rid of the warning. An attractive option would be to replace React with a lighter alternative as discussed in the *Consuming Packages* chapter.
 
+{pagebreak}
+
 ## Available Analysis Tools
 
 Even though having a look at the file itself gives you an idea of what's going on, often it's preferable to use a particular tool for that. Consider the following.
@@ -105,6 +107,8 @@ Even though having a look at the file itself gives you an idea of what's going o
 ![The Official Analyse Tool](images/analyse.png)
 
 [The official analyse tool](https://github.com/webpack/analyse) gives you recommendations and a good idea of your application's dependency graph. It can be run locally as well.
+
+{pagebreak}
 
 ### Webpack Visualizer
 
