@@ -1,10 +1,10 @@
 # Comparison of Build Tools
 
-Back in the day, it was enough to concatenate scripts together. Times have changed, though, and now distributing your JavaScript code can be a complicated endeavor. This problem has escalated with the rise of single page applications (SPAs). They tend to rely on many hefty libraries.
+Back in the day, it was enough to concatenate scripts together. Times have changed, though, and now distributing your JavaScript code can be a complicated endeavor. This problem has escalated with the rise of single-page applications (SPAs). They tend to rely on many hefty libraries.
 
 For this reason, there are multiple strategies on how to load them. You could load them all at once or consider loading libraries as you need them. Webpack supports many of these sorts of strategies.
 
-The popularity of Node and [npm](https://www.npmjs.com/), its package manager, provide more context. Before npm became popular, it was hard to consume dependencies. There was a period when people developed frontend specific package managers, but npm won in the end. Now dependency management is easier than before, although there are still challenges to overcome.
+The popularity of Node and [npm](https://www.npmjs.com/), its package manager, provide more context. Before npm became popular, it was hard to consume dependencies. There was a period when people developed frontend specific package managers, but npm won in the end. Now dependency management is more comfortable than before, although there are still challenges to overcome.
 
 ## Task Runners and Bundlers
 
@@ -111,9 +111,9 @@ Instead of `rm -rf`, you likely want to use utilities such as [rimraf](https://w
 
 ![Grunt](images/grunt.png)
 
-[Grunt](http://gruntjs.com/) was the first popular task runner for frontend developers. Its plugin architecture contributed towards its popularity. Plugins are often complex by themselves. As a result, when configuration grows, it can become difficult to understand what's going on.
+[Grunt](http://gruntjs.com/) was the first famous task runner for frontend developers. Its plugin architecture contributed towards its popularity. Plugins are often complicated by themselves. As a result, when configuration grows, it can become difficult to understand what's going on.
 
-Here's an example from [Grunt documentation](http://gruntjs.com/sample-gruntfile). In this configuration, you define a linting and a watcher tasks. When the *watch* task gets run, it triggers the *lint* task as well. This way, as you run Grunt, you get warnings in real-time in the terminal as you edit the source code.
+Here's an example from [Grunt documentation](http://gruntjs.com/sample-gruntfile). In this configuration, you define a linting and watcher tasks. When the *watch* task gets run, it triggers the *lint* task as well. This way, as you run Grunt, you get warnings in real-time in the terminal as you edit the source code.
 
 {pagebreak}
 
@@ -143,7 +143,7 @@ module.exports = grunt => {
 };
 ```
 
-In practice, you would have many small tasks for specific purposes, such as building the project. An important part of the power of Grunt is that it hides a lot of the wiring from you.
+In practice, you would have many small tasks for specific purposes, such as building the project. An essential part of the power of Grunt is that it hides a lot of the wiring from you.
 
 Taken too far, this can get problematic. It can become hard to understand what's going on under the hood. That's the architectural lesson to take from Grunt.
 
@@ -177,7 +177,7 @@ const paths = {
 gulp.task("clean", () => del(["build"]));
 gulp.task("scripts", ["clean"], () =>
   // Minify and copy all JavaScript (except vendor scripts)
-  // with sourcemaps all the way down.
+  // with source maps all the way down.
   gulp
     .src(paths.scripts)
     // Pipeline within pipeline
@@ -208,7 +208,7 @@ Dealing with JavaScript modules has always been a bit of a problem. The language
 
 [Browserify](http://browserify.org/) is one solution to the module problem. It allows CommonJS modules to be bundled together. You can hook it up with Gulp, and you can find smaller transformation tools that allow you to move beyond the basic usage. For example, [watchify](https://www.npmjs.com/package/watchify) provides a file watcher that creates bundles for you during development saving effort.
 
-The Browserify ecosystem is composed of a lot of small modules. In this way, Browserify adheres to the Unix philosophy. Browserify is easier to adopt than webpack, and is, in fact, a good alternative to it.
+The Browserify ecosystem is composed of a lot of small modules. In this way, Browserify adheres to the Unix philosophy. Browserify is more comfortable to adopt than webpack, and is, in fact, a good alternative to it.
 
 T> [Splittable](https://www.npmjs.com/package/splittable) is a Browserify wrapper that allows code splitting, supports ES2015 out of the box, tree shaking, and more.
 
@@ -218,7 +218,7 @@ T> [transform-loader](https://www.npmjs.com/package/transform-loader) allows you
 
 ![JSPM](images/jspm.png)
 
-Using [JSPM](http://jspm.io/) is quite different than previous tools. It comes with a command line tool of its own that is used to install new packages to the project, create a production bundle, and so on. It supports [SystemJS plugins](https://github.com/systemjs/systemjs#plugins) that allow you to load various formats to your project.
+Using [JSPM](http://jspm.io/) is entirely different than previous tools. It comes with a command line tool of its own that is used to install new packages to the project, create a production bundle, and so on. It supports [SystemJS plugins](https://github.com/systemjs/systemjs#plugins) that allow you to load various formats to your project.
 
 ## Brunch
 
@@ -258,7 +258,7 @@ T> There is an experimental [Hot Module Reloading runtime](https://www.npmjs.com
 
 ![webpack](images/webpack.png)
 
-You could say [webpack](https://webpack.js.org/) takes a more monolithic approach than Browserify. Whereas Browserify consists of multiple small tools, webpack comes with a core that provides a lot of functionality out of the box.
+You could say [webpack](https://webpack.js.org/) takes a more unified approach than Browserify. Whereas Browserify consists of multiple small tools, webpack comes with a core that provides a lot of functionality out of the box.
 
 Webpack core can be extended using specific *loaders* and *plugins*. It gives control over how it *resolves* the modules, making it possible to adapt your build to match specific situations and workaround packages that don't work correctly out of the box.
 
@@ -268,21 +268,21 @@ Compared to the other tools, webpack comes with initial complexity, but it makes
 
 You can find more alternatives as listed below:
 
-* [pundle](https://www.npmjs.com/package/pundle) advertises itself as a next generation bundler and notes particularly its performance.
+* [pundle](https://www.npmjs.com/package/pundle) advertises itself as a next-generation bundler and notes particularly its performance.
 * [Rollup](https://www.npmjs.com/package/rollup) focuses on bundling ES2015 code. *Tree shaking* is one of its selling points. You can use Rollup with webpack through [rollup-loader](https://www.npmjs.com/package/rollup-loader).
 * [AssetGraph](https://www.npmjs.com/package/assetgraph) takes an entirely different approach and builds on top of HTML semantics making it ideal for [hyperlink analysis](https://www.npmjs.com/package/hyperlink) or [structural analysis](https://www.npmjs.com/package/assetviz). [webpack-assetgraph-plugin](https://www.npmjs.com/package/webpack-assetgraph-plugin) bridges webpack and AssetGraph together.
 * [FuseBox](https://www.npmjs.com/package/fuse-box) is a bundler focusing on speed. It uses a zero-configuration approach and aims to be usable out of the box.
 * [StealJS](https://stealjs.com/) is a dependency loader and a build tool which has focused on performance and ease of use.
-* [Flipbox](https://www.npmjs.com/package/flipbox) wraps multiple bundlers behind a uniform interface.
+* [Flipbox](https://www.npmjs.com/package/flipbox) wraps many bundlers behind a uniform interface.
 * [Blendid](https://www.npmjs.com/package/blendid) is a blend of Gulp and bundlers to form an asset pipeline.
 
 ## Conclusion
 
-Historically there have been a lot of build tools for JavaScript. Each has tried to solve a specific problem in its own way. The standards have begun to catch up and less effort is required around basic semantics. Instead, tools can compete on a higher level and push towards better user experience. Often you can use a couple of separate solutions together.
+Historically there have been a lot of build tools for JavaScript. Each has tried to solve a specific problem in its way. The standards have begun to catch up, and less effort is required around basic semantics. Instead, tools can compete on a higher level and push towards better user experience. Often you can use a couple of separate solutions together.
 
 To recap:
 
-* **Task runners** and **bundlers** solve different problems. You can achieve similar results with both but often it's best to use them together to complement each other.
+* **Task runners** and **bundlers** solve different problems. You can achieve similar results with both, but often it's best to use them together to complement each other.
 * Older tools, such as Make or RequireJS, still have influence even if they aren't as popular in web development as they once were.
 * Bundlers like Browserify or webpack solve an important problem and help you to manage complex web applications.
-* A number of emerging technologies approach the problem from different angles. Sometimes they build on top of other tools and at times they can be used together.
+* Emerging technologies approach the problem from different angles. Sometimes they build on top of other tools, and at times they can be used together.
