@@ -1,14 +1,14 @@
 # Tree Shaking
 
-**Tree shaking** is a feature enabled by the ES2015 module definition. The idea is that given it's possible to analyze the module definition in a static way without running it, webpack can tell which parts of the code are being used and which are not. It's possible to verify this behavior by expanding the application and adding code there that should be eliminated.
+**Tree shaking** is a feature enabled by the ES2015 module definition. The idea is that given it's possible to analyze the module definition statically without running it, webpack can tell which parts of the code are being used and which are not. It's possible to verify this behavior by expanding the application and adding code there that should be eliminated.
 
-T> Tree shaking works to an extent through [webpack-common-shake](https://www.npmjs.com/package/webpack-common-shake) against CommonJS module definition. This is important as a majority of npm packages have been authored using the older definition.
+T> Tree shaking works to an extent through [webpack-common-shake](https://www.npmjs.com/package/webpack-common-shake) against CommonJS module definition. As a majority of npm packages have been authored using the older definition, the plugin has value.
 
 ## Demonstrating Tree Shaking
 
 To shake code, you have to define a module and use only a part of its code. Set one up:
 
-**app/shake.js**
+**src/shake.js**
 
 ```javascript
 const shake = () => console.log("shake");
@@ -32,7 +32,7 @@ bake();
 ...
 ```
 
-If you build the project again (`npm run build`) and examine the build (*build/app.js*), it should contain `console.log("bake")`, but miss `console.log("shake")`. That's tree shaking in action.
+If you build the project again (`npm run build`) and examine the build (*dist/main.js*), it should contain `console.log("bake")`, but miss `console.log("shake")`. That's tree shaking in action.
 
 To get a better idea of what webpack is using for tree shaking, run it through `npm run build -- --display-used-exports`. You should see additional output like `[no exports used]` or `[only some exports used: bake]` in the terminal.
 
@@ -42,13 +42,13 @@ T> There is a CSS Modules related tree shaking proof of concept at [dead-css-loa
 
 ## Tree Shaking on Package Level
 
-The same idea works with dependencies that use the ES2015 module definition. Given the related packaging standards are still emerging, you have to be careful when consuming such packages. Webpack tries to resolve *package.json* `module` field for this reason.
+The same idea works with dependencies that use the ES2015 module definition. Given the related packaging, standards are still emerging, you have to be careful when consuming such packages. Webpack tries to resolve *package.json* `module` field for this reason.
 
 For tools like webpack to allow tree shake npm packages, you should generate a build that has transpiled everything else except the ES2015 module definitions and then point to it through *package.json* `module` field. In Babel terms, you have to let webpack to manage ES2015 modules by setting `"modules": false`.
 
 To get most out of tree shaking with external packages, you have to use [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-imports) to rewrite imports so that they work with webpack's tree shaking logic. See [webpack issue #2867](https://github.com/webpack/webpack/issues/2867) for more information.
 
-T> [SurviveJS - Maintenance](https://survivejs.com/maintenance/packaging/building/) covers how to write your  packages so that it's possible to apply tree shaking against them.
+T> [SurviveJS - Maintenance](https://survivejs.com/maintenance/packaging/building/) covers how to write your packages so that it's possible to apply tree shaking against them.
 
 ## Conclusion
 
