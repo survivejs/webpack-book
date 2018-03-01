@@ -2,17 +2,19 @@
 
 ![Source maps in Chrome](images/sourcemaps.png)
 
-When your source code has gone through any transformations, debugging becomes a problem. When debugging in a browser, how to tell where the original code is? **Source maps** solve this problem by providing a mapping between the original and the transformed source code. In addition to source compiling to JavaScript, this works for styling as well.
+When your source code has gone through transformations, debugging becomes a problem. When debugging in a browser, how to tell where the original code is? **Source maps** solve this problem by providing a mapping between the original and the transformed source code. In addition to source compiling to JavaScript, this works for styling as well.
 
-One approach is to simply skip source maps during development and rely on browser support of language features. If you use ES2015 without any extensions and develop using a modern browser, this can work. The advantage of doing this is that you avoid all the problems related to source maps while gaining better performance.
+One approach is to skip source maps during development and rely on browser support of language features. If you use ES2015 without any extensions and develop using a modern browser, this can work. The advantage of doing this is that you avoid all the problems related to source maps while gaining better performance.
+
+If you are using webpack 4 and the new `mode` option, the tool will generate source maps automatically for you in `development` mode. Production usage requires attention, though.
 
 T> If you want to understand the ideas behind source maps in greater detail, [read Ryan Seddon's introduction to the topic](https://www.html5rocks.com/en/tutorials/developertools/sourcemaps/).
 
 ## Inline Source Maps and Separate Source Maps
 
-Webpack can generate both inline source maps included within bundles or separate source map files. The former are valuable during development due to better performance while the latter are handy for production usage as it keeps the bundle size small. In this case, loading source maps is optional.
+Webpack can generate both inline or separate source map files. The inline ones are valuable during development due to better performance while the separate ones are handy for production use as it keeps the bundle size small. In this case, loading source maps is optional.
 
-It's possible you **don't** want to generate a source map for your production bundle as this makes it effortless to inspect your application. By disabling them you are performing a sort of obfuscation. Whether or not you want to enable source maps for production, they are handy for staging. Skipping source maps entirely speeds up your build as generating source maps at the best quality can be a complex operation.
+It's possible you **don't** want to generate a source map for your production bundle as this makes it effortless to inspect your application. By disabling source maps, you are performing a sort of obfuscation. Whether or not you want to enable source maps for production, they are handy for staging. Skipping source maps speeds up your build as generating source maps at the best quality can be a complicated operation.
 
 **Hidden source maps** give stack trace information only. You can connect them with a monitoring service to get traces as the application crashes allowing you to fix the problematic situations. While this isn't ideal, it's better to know about possible problems than not.
 
@@ -36,9 +38,7 @@ exports.generateSourceMaps = ({ type }) => ({
 });
 ```
 
-Webpack supports a wide variety of source map types. These vary based on quality and build speed. For now, you can enable `eval-source-map` for development and `source-map` for production. This way you get good quality while trading off performance, especially during development.
-
-Set these up as follows:
+Webpack supports a wide variety of source map types. These vary based on quality and build speed. For now, you enable `source-map` for production and let webpack use the default for development. Set it up as follows:
 
 **webpack.config.js**
 
@@ -49,53 +49,28 @@ leanpub-start-insert
 leanpub-end-insert
   ...
 ]);
-
-const developmentConfig = merge([
-leanpub-start-insert
-  {
-    output: {
-      devtoolModuleFilenameTemplate:
-        "webpack:///[absolute-resource-path]",
-    },
-  },
-  parts.generateSourceMaps({
-    type: "cheap-module-eval-source-map"
-  }),
-leanpub-end-insert
-  ...
-]);
 ```
-
-`eval-source-map` builds slowly initially, but it provides fast rebuild speed. More rapid development specific options, such as `cheap-module-eval-source-map` and `eval`, produce lower quality source maps. All `eval` options emit source maps as a part of your JavaScript code.
 
 `source-map` is the slowest and highest quality option of them all, but that's fine for a production build.
 
 If you build the project now (`npm run build`), you should see source maps in the output:
 
 ```bash
-Hash: 28afad28226615c16e12
-Version: webpack 3.8.1
-Time: 2006ms
-        Asset       Size  Chunks                    Chunk Names
-  ...font.eot     166 kB          [emitted]
-...font.woff2    77.2 kB          [emitted]
- ...font.woff      98 kB          [emitted]
-  ...font.svg     444 kB          [emitted]  [big]
-  ...font.ttf     166 kB          [emitted]
-       app.js    4.46 kB       0  [emitted]         app
-      app.css    3.89 kB       0  [emitted]         app
-leanpub-start-insert
-   app.js.map    4.15 kB       0  [emitted]         app
-  app.css.map   84 bytes       0  [emitted]         app
-leanpub-end-insert
-   index.html  218 bytes          [emitted]
-   [0] ./app/index.js 160 bytes {0} [built]
-   [3] ./app/main.css 41 bytes {0} [built]
-   [4] ./app/component.js 275 bytes {0} [built]
+Hash: abc2357ece17f871fe81
+Version: webpack 4.0.1
+Time: 1261ms
+Built at: 3/1/2018 9:56:15 AM
+       Asset       Size  Chunks             Chunk Names
+     main.js  838 bytes       0  [emitted]  main
+    main.css   3.52 KiB       0  [emitted]  main
+ main.js.map   3.75 KiB       0  [emitted]  main
+main.css.map   85 bytes       0  [emitted]  main
+  index.html  220 bytes          [emitted]
+Entrypoint main = main.js main.css main.js.map main.css.map
 ...
 ```
 
-Take a good look at those *.map* files. That's where the mapping between the generated and the original source happens. During development, it writes the mapping information in the bundle itself.
+Take a good look at those *.map* files. That's where the mapping between the generated and the source happens. During development, it writes the mapping information in the bundle.
 
 ### Enabling Source Maps in Browsers
 
@@ -113,9 +88,9 @@ W> If you want to use breakpoints (i.e., a `debugger;` statement or ones set thr
 Source map types supported by webpack can be split into two categories:
 
 * **Inline** source maps add the mapping data directly to the generated files.
-* **Separate** source maps emit the mapping data to separate source map files and link the original source to them using a comment. Hidden source maps omit the comment on purpose.
+* **Separate** source maps emit the mapping data to separate source map files and link the source to them using a comment. Hidden source maps omit the comment on purpose.
 
-Thanks to their speed, inline source maps are ideal for development. Given they make the bundles big, separate source maps are the preferable solution for production. Separate source maps work during development as well if the performance overhead is acceptable.
+Thanks to their speed, inline source maps are ideal for development. Given they make the bundles big, separate source maps are the preferred solution for production. Separate source maps work during development as well if the performance overhead is acceptable.
 
 {pagebreak}
 
@@ -143,7 +118,7 @@ webpackJsonp([1, 2], {
 
 ### `devtool: "cheap-eval-source-map"`
 
-`cheap-eval-source-map` goes a step further and it includes base64 encoded version of the code as a data url. The result includes only line data while losing column mappings.
+`cheap-eval-source-map` goes a step further and it includes base64 encoded version of the code as a data url. The result contains only line data while losing column mappings.
 
 ```javascript
 webpackJsonp([1, 2], {
@@ -244,7 +219,7 @@ This time around there's more mapping data available for the browser:
 
 Webpack can also generate production usage friendly source maps. These end up in separate files ending with `.map` extension and are loaded by the browser only when required. This way your users get good performance while it's easier for you to debug the application.
 
-`source-map` is a good default here. Even though it takes longer to generate the source maps this way, you get the best quality. If you don't care about production source maps, you can simply skip the setting there and get better performance in return.
+`source-map` is a reasonable default here. Even though it takes longer to generate the source maps this way, you get the best quality. If you don't care about production source maps, you can skip the setting there and get better performance in return.
 
 ### `devtool: "cheap-source-map"`
 
@@ -267,7 +242,7 @@ Examining the `.map` file reveals the following output in this case:
 }
 ```
 
-The original source contains `//# sourceMappingURL=app.9a...18.js.map` kind of comment at its end to map to this file.
+The source contains `//# sourceMappingURL=app.9a...18.js.map` kind of comment at its end to map to this file.
 
 ### `devtool: "cheap-module-source-map"`
 
@@ -285,11 +260,11 @@ The original source contains `//# sourceMappingURL=app.9a...18.js.map` kind of c
 }
 ```
 
-W> `cheap-module-source-map` is [currently broken if minification is used](https://github.com/webpack/webpack/issues/4176) and this is a good reason to avoid the option for now.
+W> `cheap-module-source-map` is [currently broken if minification is used](https://github.com/webpack/webpack/issues/4176) and this is an excellent reason to avoid the option for now.
 
 ### `devtool: "hidden-source-map"`
 
-`hidden-source-map` is the same as `source-map` except it doesn't write references to the source maps to the source files. If you don't want to expose source maps to development tools directly while you want proper stack traces, this is handy.
+`hidden-source-map` is the same as `source-map` except it doesn't write references to the source maps to the source files. If you don't want to expose source maps to development tools directly while you wish proper stack traces, this is handy.
 
 T> [The official documentation](https://webpack.js.org/configuration/devtool/#devtool) contains more information about `devtool` options.
 
@@ -349,7 +324,7 @@ There are a couple of other options that affect source map generation:
 
 T> The [official documentation](https://webpack.js.org/configuration/output/#output-sourcemapfilename) digs into `output` specifics.
 
-W> If you are using any `UglifyJsPlugin` and still want source maps, you need to enable `sourceMap: true` for the plugin. Otherwise, the result isn't be what you expect because UglifyJS will perform a further transformation on the code, breaking the mapping. The same has to be done with other plugins and loaders performing transformations. *css-loader* and related loaders are a good example.
+W> If you are using `UglifyJsPlugin` and still want source maps, you need to enable `sourceMap: true` for the plugin. Otherwise, the result isn't what you expect because UglifyJS will perform a further transformation of the code, breaking the mapping. The same has to be done with other plugins and loaders performing changes. *css-loader* and related loaders are a good example.
 
 ## `SourceMapDevToolPlugin` and `EvalSourceMapDevToolPlugin`
 
@@ -363,7 +338,7 @@ Given webpack matches only `.js` and `.css` files by default for source maps, yo
 
 ## Changing Source Map Prefix
 
-You can prefix a source map option with a **pragma** character that gets injected to the source map reference. Webpack uses `#` by default that is supported by modern browsers so you don't have to set it.
+You can prefix a source map option with a **pragma** character that gets injected into the source map reference. Webpack uses `#` by default that is supported by modern browsers, so you don't have to set it.
 
 To override this, you have to prefix your source map option with it (e.g., `@source-map`). After the change, you should see `//@` kind of reference to the source map over `//#` in your JavaScript files assuming a separate source map type was used.
 
@@ -375,7 +350,7 @@ Assuming you are using a package that uses inline source maps in its distributio
 
 If you want to enable source maps for styling files, you can achieve this by enabling the `sourceMap` option. The same idea works with style loaders such as *css-loader*, *sass-loader*, and *less-loader*.
 
-The *css-loader* is [known to have issues](https://github.com/webpack-contrib/css-loader/issues/232) when you are using relative paths in imports. To overcome this problem, you should set `output.publicPath` to resolve against the server url.
+The *css-loader* is [known to have issues](https://github.com/webpack-contrib/css-loader/issues/232) when you are using relative paths in imports. To overcome this problem, you should set `output.publicPath` to resolve the server url.
 
 ## Conclusion
 
@@ -392,4 +367,4 @@ To recap:
 * *source-map-loader* can come in handy if your dependencies provide source maps.
 * Enabling source maps for styling requires additional effort. You have to enable `sourceMap` option per styling related loader you are using.
 
-In the next chapter, you'll learn to split bundles and separate the current bundle into application and vendor bundles.
+In the next chapter, you'll learn to split bundles and separate the current one into application and vendor bundles.
