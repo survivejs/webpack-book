@@ -1,10 +1,10 @@
 # Build Analysis
 
-Analyzing build statistics is a good step towards understanding webpack better. Visualizing them helps you to understand the composition of your bundles.
+Analyzing build statistics is a good step towards understanding webpack better. Visualizing webpack output helps you to understand the composition of your bundles.
 
 ## Configuring Webpack
 
-To get suitable output, you need to do a couple of tweaks to the configuration. At minimum, you should set the `--json` flag and pipe the output to a file as follows:
+To get suitable output, you need to do a couple of tweaks to the configuration. At a minimum, you should set the `--json` flag and pipe the output to a file as follows:
 
 **package.json**
 
@@ -21,12 +21,12 @@ The above is the basic setup you need, regardless of your webpack configuration.
 
 You can also consider using the following flags:
 
-* `--profile` to capture timing-related information. This is optional, but good to set.
+* `--profile` to capture timing-related information. The setting is optional but good to set.
 * `--progress` to show how long webpack spent in different stages of the build.
 
 T> To understand why webpack includes a specific module to the build while processing, pass `--display-reasons` flag to it. Example: `npm run build -- --display-reasons`.
 
-W> Given you piggyback on the production target in the current setup, this process cleans the build directory! If you want to avoid that, set up a separate target where you don't clean.
+W> Given you piggyback on the production target in the current setup; this process cleans the build directory! If you want to avoid that, set up a separate destination where you don't clean.
 
 ### Node API
 
@@ -53,7 +53,7 @@ This technique can be valuable if you want to do further processing on stats alt
 
 ### `StatsWebpackPlugin` and `WebpackStatsPlugin`
 
-If you want to manage stats through a plugin, check out [stats-webpack-plugin](https://www.npmjs.com/package/stats-webpack-plugin). It gives you a bit more control over the output. You can use it to exclude certain dependencies from the output.
+If you want to manage stats through a plugin, check out [stats-webpack-plugin](https://www.npmjs.com/package/stats-webpack-plugin). It gives you a bit more control over the output. You can use it to exclude specific dependencies from the output.
 
 [webpack-stats-plugin](https://www.npmjs.com/package/webpack-stats-plugin) is another option. It allows you to transform the data before outputting it.
 
@@ -80,20 +80,25 @@ leanpub-end-insert
 ]);
 ```
 
-In practice you want to maintain lower limits. The current ones are enough for this demonstration. If you build now (`npm run build`), you should see a warning:
+In practice, you want to maintain lower limits. The current ones are enough for this demonstration. If you build now (`npm run build`), you should see a warning:
 
 ```bash
-WARNING in entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (50 kB). This can impact web performance.
+WARNING in entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (48.8 KiB). This can impact web performance.
 Entrypoints:
-  app (89.5 kB)
-      vendor.js
-      app.js
-      app.css
+  main (103 KiB)
+      manifest.3fd9a1eb.js
+      manifest.d41d8cd9.css
+      vendor.0a4df2ff.js
+      vendor.3dd53418.css
+      main.9043ef51.js
+      main.d5d711b1.css
 ```
+
+You can increase the limit or remove the configuration to get rid of the warning. An attractive option would be to replace React with a lighter alternative as discussed in the *Consuming Packages* chapter.
 
 ## Available Analysis Tools
 
-Even though having a look at the file itself gives you idea of what's going on, often it's preferable to use a particular tool for that. Consider the following.
+Even though having a look at the file itself gives you an idea of what's going on, often it's preferable to use a particular tool for that. Consider the following.
 
 ### The Official Analyse Tool
 
@@ -176,11 +181,11 @@ $ inspectpack --action=duplicates --bundle=bundle.js
 
 ### webpack-runtime-analyzer
 
-[webpack-runtime-analyzer](https://www.npmjs.com/package/webpack-runtime-analyzer) gives realtime analysis over webpack bundles. You can see bundle composition in multiple formats through the user interface, bundle sizes, and module details. It combines features of many aforementioned tools into a single one.
+[webpack-runtime-analyzer](https://www.npmjs.com/package/webpack-runtime-analyzer) gives real-time analysis over webpack bundles. You can see bundle composition in multiple formats through the user interface, bundle sizes, and module details. It combines features of many tools above into a single one.
 
 ### Webpack Monitor
 
-[Webpack Monitor](http://webpackmonitor.com/) is another similar tool with an emphasis on a clear user interface. It's able to provide recommendations on what to improve in the build.
+[Webpack Monitor](http://webpackmonitor.com/) is another similar tool with an emphasis on a clear user interface. It's able to provide recommendations on what to improve the build.
 
 ## Duplication Analysis
 
@@ -188,7 +193,7 @@ In addition to inspectpack, there are other tools for figuring out duplicates:
 
 * [bundle-duplicates-plugin](https://www.npmjs.com/package/bundle-duplicates-plugin) operates on a function level.
 * [find-duplicate-dependencies](https://www.npmjs.com/package/find-duplicate-dependencies) achieves the same on an npm package level.
-* [depcheck](https://www.npmjs.com/package/depcheck) goes further and warns if there are useless dependencies or dependencies missing from the project.
+* [depcheck](https://www.npmjs.com/package/depcheck) goes further and warns if there are redundant dependencies or dependencies missing from the project.
 * [bundle-buddy](https://www.npmjs.com/package/bundle-buddy) can find duplicates across bundles while providing a user interface to tune webpack code splitting behavior. [bundle-buddy-webpack-plugin](https://www.npmjs.com/package/bundle-buddy-webpack-plugin) makes it simpler to use.
 
 {pagebreak}
@@ -199,7 +204,7 @@ In addition to tools that work with webpack output, there are a couple that are 
 
 ### source-map-explorer
 
-[source-map-explorer](https://www.npmjs.com/package/source-map-explorer) is a tool independent from webpack. It allows you to get insight into your build by using source maps. It gives a treemap based visualization showing what code contributes to the result.
+[source-map-explorer](https://www.npmjs.com/package/source-map-explorer) is a tool independent of webpack. It allows you to get insight into your build by using source maps. It gives a treemap based visualization showing what code contributes to the result.
 
 ### madge
 
@@ -211,14 +216,14 @@ In addition to tools that work with webpack output, there are a couple that are 
 
 ## Conclusion
 
-When you are optimizing the size of your bundle output, these tools are invaluable. The official tool has the most functionality, but even a basic visualization can reveal problem spots. You can use the same technique with old projects to understand their composition.
+When you are optimizing the size of your bundle output, these tools are invaluable. The official tool has the most functionality, but even a rudimentary visualization can reveal problem spots. You can use the same technique with old projects to understand their composition.
 
 To recap:
 
-* Webpack allows you to extract a JSON file containing information about the build. The information can include the build composition and timing.
-* The generated information can be analyzed using various tools that give insight into aspects such as the bundle composition.
+* Webpack allows you to extract a JSON file containing information about the build. The data can include the build composition and timing.
+* The generated data can be analyzed using various tools that give insight into aspects such as the bundle composition.
 * **Performance budget** allows you to set limits to the build size. Maintaining a budget can keep developers more conscious of the size of the generated bundles.
-* Understanding the bundles is the key to insights on how to optimize the overall size, what to load and when. It can also reveal bigger issues, such as redundant data.
-* You can find third party tools that don't depend on webpack but are still valuable for analysis.
+* Understanding the bundles is the key to insights on how to optimize the overall size, what to load and when. It can also reveal more significant issues, such as redundant data.
+* You can find third-party tools that don't depend on webpack but are still valuable for analysis.
 
 You'll learn to tune webpack performance in the next chapter.
