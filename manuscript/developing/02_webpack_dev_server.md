@@ -79,6 +79,8 @@ If you try modifying the code, you should see the output in your terminal. The b
 
 T> WDS tries to run in another port in case the default one is being used. The terminal output tells you where it ends up running. You can debug the situation with a command like `netstat -na | grep 8080`. If something is running on the port 8080, it should display a message on Unix.
 
+T> In addition to `production` and `development`, there's a third mode, `none`, which disables everything and is close to the behavior you had in versions before webpack 4.
+
 ## Configuring WDS Through Webpack Configuration
 
 WDS functionality can be customized through the `devServer` field at webpack configuration. You can set most of these options through the CLI as well, but managing them through webpack is a decent approach.
