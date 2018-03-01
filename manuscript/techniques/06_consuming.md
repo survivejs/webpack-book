@@ -1,6 +1,6 @@
 # Consuming Packages
 
-Sometimes packages have not been packaged the way you expect and you have to tweak the way webpack interprets them. Webpack provides multiple ways to achieve this.
+Sometimes packages have not been packaged the way you expect, and you have to tweak the way webpack interprets them. Webpack provides multiple ways to achieve this.
 
 ## Tweaking Module Resolution
 
@@ -21,7 +21,7 @@ Sometimes packages do not follow the standard rules and their *package.json* con
 
 The idea is that if webpack resolver matches `demo` in the beginning, it resolves from the target. You can constrain the process to an exact name by using a pattern like `demo$`.
 
-Light React alternatives, such as [Preact](https://www.npmjs.com/package/preact), [react-lite](https://www.npmjs.com/package/react-lite), or [Inferno](https://www.npmjs.com/package/inferno), offer smaller size while trading off functionality like `propTypes` and synthetic event handling. Replacing React with a lighter alternative can save a significant amount of space but you should test well if you do this.
+Light React alternatives, such as [Preact](https://www.npmjs.com/package/preact), [react-lite](https://www.npmjs.com/package/react-lite), or [Inferno](https://www.npmjs.com/package/inferno), offer smaller size while trading off functionality like `propTypes` and synthetic event handling. Replacing React with a lighter alternative can save a significant amount of space, but you should test well if you do this.
 
 If you are using *react-lite*, configure it as below:
 
@@ -37,7 +37,7 @@ If you are using *react-lite*, configure it as below:
 },
 ```
 
-T> The same technique works with loaders too. You can use `resolveLoader.alias` similarly. You can use the technique to adapt a RequireJS project to work with webpack.
+T> The same technique works with loaders too. You can use `resolveLoader.alias` similarly. You can use the method to adapt a RequireJS project to work with webpack.
 
 T> Specific plugins like [directory-named-webpack-plugin](https://www.npmjs.com/package/directory-named-webpack-plugin) allow you to enhance webpack's module resolution. You can attach these to your setup through the `resolve.plugins` field.
 
@@ -55,7 +55,7 @@ externals: {
 },
 ```
 
-You still have to point to a CDN and ideally provide a local fallback so there is something to load if the CDN does not work for the client:
+You still have to point to a CDN and ideally provide a local fallback, so there is something to load if the CDN does not work for the client:
 
 ```html
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -68,7 +68,7 @@ T> [html-webpack-cdn-plugin](https://www.npmjs.com/package/html-webpack-cdn-plug
 
 ## Dealing with Globals
 
-Sometimes modules depend on globals. `$` provided by jQuery is a good example. Webpack provides a few ways that allow you to handle them.
+Sometimes modules depend on globals. `$` provided by jQuery is a good example. Webpack offers a few ways that allow you to handle them.
 
 ### Injecting Globals
 
@@ -105,7 +105,7 @@ Webpack's `ProvidePlugin` allows webpack to resolve globals as it encounters the
 
 ### Exposing Globals to the Browser
 
-Sometimes you have to expose packages to third party scripts. [expose-loader](https://www.npmjs.com/package/expose-loader) allows this as follows:
+Sometimes you have to expose packages to third-party scripts. [expose-loader](https://www.npmjs.com/package/expose-loader) allows this as follows:
 
 ```javascript
 {
@@ -188,15 +188,15 @@ W> Take care when disabling warnings as it can hide underlying issues. Consider 
 
 ## Managing Symbolic Links
 
-Symbolic links, or symlinks, are an operating system level feature that allow you to point to other files through a file system without copying them. You can use `npm link` to create global symlinks for packages under development and then use `npm unlink` to remove the links.
+Symbolic links, or symlinks, are an operating system level feature that allows you to point to other files through a file system without copying them. You can use `npm link` to create global symlinks for packages under development and then use `npm unlink` to remove the links.
 
-Webpack resolves symlinks to their full path like Node does. The problem is that if you are unaware of this fact, the behavior can surprise you especially if you rely on webpack processing. It's possible to work around the behavior as discussed in webpack issues [#1643](https://github.com/webpack/webpack/issues/1643) and [#985](https://github.com/webpack/webpack/issues/985). Webpack core behavior may improve in the future to make these workarounds unnecessary.
+Webpack resolves symlinks to their full path as Node does. The problem is that if you are unaware of this fact, the behavior can surprise you especially if you rely on webpack processing. It's possible to work around the behavior as discussed in webpack issues [#1643](https://github.com/webpack/webpack/issues/1643) and [#985](https://github.com/webpack/webpack/issues/985). Webpack core behavior may improve in the future to make these workarounds unnecessary.
 
 T> You can disable webpack's symlink handling by setting `resolve.symlinks` as `false`.
 
 ## Getting Insights on Packages
 
-To get more information about packages, npm provides `npm info <package>` command for basic queries. You can use it to check the metadata associated with packages while figuring out version related information. Consider the following tools as well:
+To get more information, npm provides `npm info <package>` command for basic queries. You can use it to check the metadata associated with packages while figuring out version related information. Consider the following tools as well:
 
 * [package-config-checker](https://www.npmjs.com/package/package-config-checker) goes a step further. It allows you to understand better which packages of your project have updated recently and it provides means to get insight into your dependencies. It can reveal which packages could use download size related improvements for example.
 * [slow-deps](https://www.npmjs.com/package/slow-deps) can reveal which dependencies of a project are the slowest to install.
@@ -209,4 +209,4 @@ Webpack can consume most npm packages without a problem. Sometimes, though, patc
 To recap:
 
 * Use webpack's module resolution to your benefit. Sometimes you can work around issues by tweaking resolution. Often it's a good idea to try to push improvements upstream to the projects themselves, though.
-* Webpack allows you to patch resolved modules. Given certain dependencies expect globals, you can inject them. You can also expose modules as globals as this is necessary for certain development tooling to work.
+* Webpack allows you to patch resolved modules. Given specific dependencies expect globals, you can inject them. You can also expose modules as globals as this is necessary for certain development tooling to work.
