@@ -77,7 +77,11 @@ leanpub-end-insert
 ]);
 ```
 
-If you used `chunkhash` for the extracted CSS as well, this would lead to problems as the code points to the CSS through JavaScript bringing it to the same entry. That means if the application code or CSS changed, it would invalidate both. Therefore, instead of `chunkhash`, you can use `contenthash` that is generated based on the extracted content:
+If you used `chunkhash` for the extracted CSS as well, this would lead to problems as the code points to the CSS through JavaScript bringing it to the same entry. That means if the application code or CSS changed, it would invalidate both.
+
+{pagebreak}
+
+Therefore, instead of `chunkhash`, you can use `contenthash` that is generated based on the extracted content:
 
 **webpack.parts.js**
 
@@ -100,8 +104,6 @@ leanpub-end-insert
 ```
 
 W> The hashes have been sliced to make the output fit better in the book. In practice, you can skip slicing them.
-
-{pagebreak}
 
 If you generate a build now (`npm run build`), you should see something:
 
@@ -126,8 +128,6 @@ Entrypoint main = vendor.3b5f19b6.js vendor.3dd53418.css ...
 The files have neat hashes now. To prove that it works for styling, you could try altering *src/main.css* and see what happens to the hashes when you rebuild.
 
 There's one problem, though. If you change the application code, it invalidates the vendor file as well! Solving this requires extracting a **manifest**, but before that, you can improve the way the production build handles module IDs.
-
-{pagebreak}
 
 ## Enabling `NamedModulesPlugin`
 
@@ -157,8 +157,6 @@ leanpub-end-insert
 ]);
 ```
 
-{pagebreak}
-
 As you can see in the build output, the difference is negligible:
 
 ```bash
@@ -184,8 +182,6 @@ Note how the output has changed, though. Instead of numbers, you can see file pa
 T> If you want to hide the path information from the client, use `HashedModuleIdsPlugin`.
 
 T> `NamedChunksPlugin` achieves a similar result for split points. See [Predictable long-term caching with Webpack](https://medium.com/webpack/predictable-long-term-caching-with-webpack-d3eee1d3fa31) by Tim Sebastian for further details.
-
-{pagebreak}
 
 ## Conclusion
 
