@@ -112,8 +112,6 @@ W> Take care with SVG images if you have SVG specific image setup in place alrea
 
 [google-fonts-webpack-plugin](https://www.npmjs.com/package/google-fonts-webpack-plugin) can download Google Fonts to webpack build directory or connect to them using a CDN.
 
-{pagebreak}
-
 ## Conclusion
 
 Loading fonts is similar to loading other assets. You have to consider the browsers you want to support and choose the loading strategy based on that.
