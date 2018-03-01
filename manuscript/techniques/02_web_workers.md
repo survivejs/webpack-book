@@ -1,6 +1,6 @@
 # Web Workers
 
-[Web workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) allow you to push work outside of main execution thread of JavaScript making them convenient for long running computations and background work.
+[Web workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) allow you to push work outside of main execution thread of JavaScript making them convenient for lengthy computations and background work.
 
 Moving data between the main thread and the worker comes with communication-related overhead. The split provides isolation that forces workers to focus on logic only as they cannot manipulate the user interface directly.
 
@@ -32,7 +32,7 @@ self.onmessage = ({ data: { text } }) => {
 
 ## Setting Up a Host
 
-The host has to instantiate the worker and the communicate with it. The idea is almost the same except the host has the control:
+The host has to instantiate the worker and then communicate with it. The idea is almost the same except the host has the control:
 
 **app/component.js**
 
@@ -62,12 +62,12 @@ T> [webworkify-webpack](https://www.npmjs.com/package/webworkify-webpack) is an 
 
 ## Conclusion
 
-The important thing to note is that the worker cannot access the DOM. You can perform computation and queries in a worker, but it cannot manipulate the user interface directly.
+The critical thing to note is that the worker cannot access the DOM. You can perform computation and queries in a worker, but it cannot manipulate the user interface directly.
 
 To recap:
 
 * Web workers allow you to push work out of the main thread of the browser. This separation is valuable especially if performance is an issue.
-* Web workers cannot manipulate the DOM. Instead, it's best to use them for long running computations and requests.
+* Web workers cannot manipulate the DOM. Instead, it's best to use them for lengthy computations and requests.
 * The isolation provided by web workers can be used for architectural benefit. It forces the programmers to stay within a specific sandbox.
 * Communicating with web workers comes with an overhead that makes them less practical. As the specification evolves, this can change in the future.
 
