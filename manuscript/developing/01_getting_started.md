@@ -87,6 +87,8 @@ export default (text = "Hello world") => {
 };
 ```
 
+{pagebreak}
+
 We also have to modify the original file to import the new file and render the application through the DOM:
 
 **src/index.js**
