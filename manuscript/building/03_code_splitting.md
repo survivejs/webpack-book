@@ -158,8 +158,6 @@ T> [bundle-loader](https://www.npmjs.com/package/bundle-loader) gives similar re
 
 T> The *Dynamic Loading* chapter covers other techniques that come in handy when you have to deal with more complicated splits.
 
-{pagebreak}
-
 ## Code Splitting in React
 
 The splitting pattern can be wrapped into a React component. Airbnb uses the following solution [as described by Joe Lencioni](https://gist.github.com/lencioni/643a78712337d255f5c031bfc81ca4cf):
