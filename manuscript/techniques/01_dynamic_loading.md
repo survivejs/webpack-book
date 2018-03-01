@@ -6,11 +6,11 @@ Even though you can get far with webpack's code splitting features covered in th
 
 [require.context](https://webpack.js.org/api/module-methods/#require-context) provides a general form of code splitting. Let's say you are writing a static site generator on top of webpack. You could model your site contents within a directory structure by having a `./pages/` directory which would contain the Markdown files.
 
-Each of these files would have a YAML frontmatter for their metadata. The url of each page could be determined based on the filename and mapped as a site. To model the idea using `require.context`, you could end up with code as below:
+Each of these files would have a YAML frontmatter for their metadata. The url of each page could be determined based on the filename and mapped as a site. To model the idea using `require.context`, you could end up with the code as below:
 
 ```javascript
 // Process pages through `yaml-frontmatter-loader` and `json-loader`.
-// The first one extracts the frontmatter and the body and the latter
+// The first one extracts the front matter and the body and the latter
 // converts it into a JSON structure to use later. Markdown
 // hasn't been processed yet.
 const req = require.context(
@@ -85,11 +85,11 @@ Consider using browser-side loaders like [$script.js](https://www.npmjs.com/pack
 
 ## Conclusion
 
-Even though `require.context` is a niche feature, it's good to be aware of it. It becomes valuable if you have to perform lookups against multiple files available within the file system. If your lookup is more complex than that, you have to resort to other alternatives that allow you to perform loading runtime.
+Even though `require.context` is a niche feature, it's good to be aware of it. It becomes valuable if you have to perform lookups against multiple files available within the file system. If your lookup is more complicated than that, you have to resort to other alternatives that allow you to perform loading runtime.
 
 To recap:
 
-* `require.context` is an advanced feature that's often hidden behind the scenes. If you have to perform a lookup against a large amount of files, use it.
+* `require.context` is an advanced feature that's often hidden behind the scenes. Use it if you have to perform a lookup against a large number of files.
 * If you write a dynamic `import` in a certain form, webpack generates a `require.context` call. The code reads slightly better in this case.
 * The techniques work only against the file system. If you have to operate against urls, you should look into client-side solutions.
 
