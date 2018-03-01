@@ -1,6 +1,6 @@
 # Adding Hashes to Filenames
 
-Even though the build generates fine now, the naming it uses is problematic. It doesn't allow to leverage client level cache effectively as there's no way tell whether or not a file has changed. Cache invalidation can be achieved by including a hash to filenames.
+Even though the build generates fine now, the naming it uses is problematic. It doesn't allow to leverage client level cache efficiently as there's no way tell whether or not a file has changed. Cache invalidation can be achieved by including a hash to the filenames.
 
 ## Placeholders
 
@@ -10,7 +10,7 @@ Webpack provides **placeholders** for this purpose. These strings are used to at
 * `[name]` - Returns the file name.
 * `[ext]` - Returns the extension. `[ext]` works for most available fields. `ExtractTextPlugin` is a notable exception to this rule.
 * `[hash]` - Returns the build hash. If any portion of the build changes, this changes as well.
-* `[chunkhash]` - Returns an entry chunk-specific hash. Each `entry` defined at the configuration receives a hash of its own. If any portion of the entry changes, the hash changes as well. `[chunkhash]` is more granular than `[hash]` by definition.
+* `[chunkhash]` - Returns an entry chunk-specific hash. Each `entry` defined in the configuration receives a hash of its own. If any portion of the entry changes, the hash will change as well. `[chunkhash]` is more granular than `[hash]` by definition.
 * `[contenthash]` - Returns a hash specific to content. `[contenthash]` is available for `ExtractTextPlugin` only and is the most specific option available.
 
 It's preferable to use particularly `hash` and `chunkhash` only for production purposes as hashing doesn't do much good during development.
@@ -21,7 +21,7 @@ T> There are more options available, and you can even modify the hashing and dig
 
 ### Example Placeholders
 
-Assuming you have the following configuration:
+Assume you have the following configuration:
 
 ```javascript
 {
@@ -32,14 +32,14 @@ Assuming you have the following configuration:
 },
 ```
 
-Webpack would generate filenames like these:
+Webpack would generate filenames like these based on it:
 
 ```bash
 app.d587bbd6e38337f5accd.js
 vendor.dc746a5db4ed650296e1.js
 ```
 
-If the file contents related to a chunk are different, the hash changes as well, thus invalidating the cache. More accurately, the browser sends a new request for the new file. If only `app` bundle gets updated, only that file needs to be requested again.
+If the file contents related to a chunk are different, the hash changes as well, thus the cache gets invalidated. More accurately, the browser sends a new request for the new file. If only `app` bundle gets updated, only that file needs to be requested again.
 
 The same result can be achieved by generating static filenames and invalidating the cache through a querystring (i.e., `app.js?d587bbd6e38337f5accd`). The part behind the question mark invalidates the cache. According to [Steve Souders](http://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/), attaching the hash to the filename is the most performant option.
 
@@ -52,31 +52,15 @@ The build needs tweaking to generate proper hashes. Images and fonts should rece
 **webpack.config.js**
 
 ```javascript
-const commonConfig = {
-  ...
-  parts.loadFonts({
-    options: {
-leanpub-start-delete
-      name: "[name].[ext]",
-leanpub-end-delete
-leanpub-start-insert
-      name: "[name].[hash:8].[ext]",
-leanpub-end-insert
-    },
-  }),
-  ...
-};
-
 const productionConfig = merge([
-  {
-    ...
 leanpub-start-insert
+  {
     output: {
       chunkFilename: "[name].[chunkhash:8].js",
       filename: "[name].[chunkhash:8].js",
     },
-leanpub-end-insert
   },
+leanpub-end-insert
   ...
   parts.loadImages({
     options: {
@@ -93,7 +77,7 @@ leanpub-end-insert
 ]);
 ```
 
-If you used `chunkhash` for the extracted CSS as well, this would lead to problems as the code points to the CSS through JavaScript bringing it to the same entry. That means if the application code or CSS changed, it would invalidate both. Therefore, instead of `chunkhash`, you can use `contenthash` that's generated based on the extracted content:
+If you used `chunkhash` for the extracted CSS as well, this would lead to problems as the code points to the CSS through JavaScript bringing it to the same entry. That means if the application code or CSS changed, it would invalidate both. Therefore, instead of `chunkhash`, you can use `contenthash` that is generated based on the extracted content:
 
 **webpack.parts.js**
 
@@ -122,31 +106,24 @@ W> The hashes have been sliced to make the output fit better in the book. In pra
 If you generate a build now (`npm run build`), you should see something:
 
 ```bash
-Hash: beb8471fa36469ac48c7
-Version: webpack 3.8.1
-Time: 3204ms
-                 Asset       Size  Chunks             Chunk Names
-    vendor.ad7a8b28.js    8.42 kB       2  [emitted]  vendor
-  ...font.674f50d2.eot     166 kB          [emitted]
-...font.af7ae505.woff2    77.2 kB          [emitted]
- ...font.fee66e71.woff      98 kB          [emitted]
-  ...font.912ec66d.svg     444 kB          [emitted]
-         0.470796d5.js  222 bytes       0  [emitted]
-       app.e0f59512.js  805 bytes       1  [emitted]  app
-  ...font.b06871f2.ttf     166 kB          [emitted]
-      app.bf4d156d.css    2.54 kB       1  [emitted]  app
-     0.470796d5.js.map    2.08 kB       0  [emitted]
-   app.e0f59512.js.map    2.33 kB       1  [emitted]  app
-  app.bf4d156d.css.map   93 bytes       1  [emitted]  app
-vendor.f897ca59.js.map    38.3 kB       2  [emitted]  vendor
-            index.html  301 bytes          [emitted]
-  [0] ./app/index.js 217 bytes {1} [built]
- [10] ./app/main.css 41 bytes {1} [built]
- [11] ./app/component.js 464 bytes {1} [built]
+Hash: 3d74e35d7f69c1738a2b
+Version: webpack 4.0.1
+Time: 2556ms
+Built at: 3/1/2018 3:00:46 PM
+                  Asset       Size  Chunks             Chunk Names
+          0.08477a8d.js  126 bytes       0  [emitted]
+     vendor.3b5f19b6.js   96.2 KiB       1  [emitted]  vendor
+       main.ae19a118.js   2.21 KiB       2  [emitted]  main
+      main.d5d711b1.css   1.26 KiB       2  [emitted]  main
+    vendor.3dd53418.css   1.38 KiB       1  [emitted]  vendor
+vendor.3dd53418.css.map   96 bytes       1  [emitted]  vendor
+  main.d5d711b1.css.map   94 bytes       2  [emitted]  main
+             index.html  353 bytes          [emitted]
+Entrypoint main = vendor.3b5f19b6.js vendor.3dd53418.css ...
 ...
 ```
 
-The files have neat hashes now. To prove that it works for styling, you could try altering *app/main.css* and see what happens to the hashes when you rebuild.
+The files have neat hashes now. To prove that it works for styling, you could try altering *src/main.css* and see what happens to the hashes when you rebuild.
 
 There's one problem, though. If you change the application code, it invalidates the vendor file as well! Solving this requires extracting a **manifest**, but before that, you can improve the way the production build handles module IDs.
 
@@ -154,7 +131,7 @@ There's one problem, though. If you change the application code, it invalidates 
 
 ## Enabling `NamedModulesPlugin`
 
-Webpack uses number based IDs for the module code it generates. The problem is that they are difficult to work with and can lead to difficult to debug issues, particularly with hashing. This is why webpack provides two plugins:
+Webpack uses number based IDs for the module code it generates. The problem is that they are difficult to work with and can lead to painful to debug issues, particularly with hashing. For this reason webpack provides two plugins:
 
 * `NamedModulesPlugin` replaces module IDs with paths to the modules making it ideal for development.
 * `HashedModuleIdsPlugin` does the same except it hashes the result and hides the path information.
@@ -185,27 +162,20 @@ leanpub-end-insert
 As you can see in the build output, the difference is negligible:
 
 ```bash
-Hash: 410229e400dbfd95d622
-Version: webpack 3.8.1
-Time: 2935ms
-                 Asset       Size  Chunks             Chunk Names
-    vendor.12f5b764.js    8.48 kB       2  [emitted]  vendor
-  ...font.912ec66d.svg     444 kB          [emitted]
-  ...font.674f50d2.eot     166 kB          [emitted]
- ...font.fee66e71.woff      98 kB          [emitted]
-...font.af7ae505.woff2    77.2 kB          [emitted]
-         0.b2a1fec0.js  230 bytes       0  [emitted]
-       app.4330d101.js  874 bytes       1  [emitted]  app
-  ...font.b06871f2.ttf     166 kB          [emitted]
-      app.bf4d156d.css    2.54 kB       1  [emitted]  app
-     0.b2a1fec0.js.map    2.08 kB       0  [emitted]
-   app.4330d101.js.map    2.34 kB       1  [emitted]  app
-  app.bf4d156d.css.map   93 bytes       1  [emitted]  app
-vendor.3c78d233.js.map    38.3 kB       2  [emitted]  vendor
-            index.html  301 bytes          [emitted]
-[./app/main.css] ./app/main.css 41 bytes {1} [built]
-[./app/index.js] ./app/index.js 217 bytes {1} [built]
-[./app/lazy.css] ./app/lazy.css 41 bytes {0} [built]
+Hash: 7c3f5a49e2cb31e1072e
+Version: webpack 4.0.1
+Time: 2628ms
+Built at: 3/1/2018 3:02:18 PM
+                  Asset       Size  Chunks             Chunk Names
+          0.554ab1b6.js  141 bytes       0  [emitted]
+     vendor.369742c8.js   97.6 KiB       1  [emitted]  vendor
+       main.b1814756.js   2.38 KiB       2  [emitted]  main
+      main.d5d711b1.css   1.26 KiB       2  [emitted]  main
+    vendor.3dd53418.css   1.38 KiB       1  [emitted]  vendor
+vendor.3dd53418.css.map   96 bytes       1  [emitted]  vendor
+  main.d5d711b1.css.map   94 bytes       2  [emitted]  main
+             index.html  353 bytes          [emitted]
+Entrypoint main = vendor.369742c8.js vendor.3dd53418.css ...
 ...
 ```
 
@@ -213,11 +183,9 @@ Note how the output has changed, though. Instead of numbers, you can see file pa
 
 T> If you want to hide the path information from the client, use `HashedModuleIdsPlugin`.
 
-T> `NamedChunksPlugin` achieves a similar result for split points. See [Predictable long term caching with Webpack](https://medium.com/webpack/predictable-long-term-caching-with-webpack-d3eee1d3fa31) by Tim Sebastian for further details.
+T> `NamedChunksPlugin` achieves a similar result for split points. See [Predictable long-term caching with Webpack](https://medium.com/webpack/predictable-long-term-caching-with-webpack-d3eee1d3fa31) by Tim Sebastian for further details.
 
 {pagebreak}
-
-T> The *Hot Module Replacement* appendix shows how to set up `NamedModulesPlugin` as it can be used for debugging HMR.
 
 ## Conclusion
 
@@ -228,6 +196,6 @@ To recap:
 * Webpack's **placeholders** allow you to shape filenames and enable you to include hashes to them.
 * The most valuable placeholders are `[name]`, `[chunkhash]`, and `[ext]`. A chunk hash is derived based on the entry in which the asset belongs.
 * If you are using `ExtractTextPlugin`, you should use `[contenthash]`. This way the generated assets get invalidated only if their content changes.
-* `HashedModuleIdsPlugin` generates module IDs based on module paths. This is more stable than relying on the default order based numeric module IDs.
+* `HashedModuleIdsPlugin` generates module IDs based on module paths. Doing this is more stable than relying on the default order based numeric module IDs.
 
 Even though the project generates hashes now, the output isn't flawless. The problem is that if the application changes, it invalidates the vendor bundle as well. The next chapter digs deeper into the topic and shows you how to extract a **manifest** to resolve the issue.
