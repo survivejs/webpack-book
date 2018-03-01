@@ -64,7 +64,7 @@ T> If you want an interactive development environment, consider setting up [node
 
 ## Implementing a Basic Plugin
 
-The most straightforward plugin should do two things: capture options and provide `apply` method:
+The simplest plugin should do two things: capture options and provide `apply` method:
 
 **plugins/demo-plugin.js**
 

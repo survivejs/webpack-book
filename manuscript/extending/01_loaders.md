@@ -8,7 +8,7 @@ T> If you want a good starting point for a standalone loader or plugin project, 
 
 ## Debugging Loaders with *loader-runner*
 
-[loader-runner](https://www.npmjs.com/package/loader-runner) allows you to run loaders without webpack making it a useful tool for learning more about loader development. Install it first:
+[loader-runner](https://www.npmjs.com/package/loader-runner) allows you to run loaders without webpack allowing you to learn more about loader development. Install it first:
 
 ```bash
 npm install loader-runner --save-dev
