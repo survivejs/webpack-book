@@ -65,8 +65,6 @@ T> To integrate with asset pipelines, you can consider using plugins like [chunk
 
 T> The build can be improved further by loading popular dependencies, such as React, through a CDN. That would decrease the size of the vendor bundle even further while adding an external dependency on the project. The idea is that if the user has hit the CDN earlier, caching can kick in like here.
 
-T> To understand how a manifest is generated in detail, [read the technical explanation at Stack Overflow](https://stackoverflow.com/questions/39548175/can-someone-explain-webpacks-commonschunkplugin/39600793).
-
 ## Using Records
 
 As mentioned in the *Bundle Splitting* chapter, plugins such as `AggressiveSplittingPlugin` use **records** to implement caching. The approaches discussed above are still valid, but records go one step further.
@@ -107,7 +105,6 @@ To recap:
 
 * Webpack maintains a **manifest** containing information needed to run the application.
 * If the manifest changes, the change invalidates the containing bundle.
-* To overcome this problem, the manifest can be extracted to a bundle of its own using the `CommonsChunkPlugin`.
 * Certain plugins allow you to write the manifest to the generated *index.html*. It's also possible to extract the information to a JSON file. The JSON comes in handy with *Server Side Rendering*.
 * **Records** allow you to store module IDs across builds. As a downside you have to track the records file.
 

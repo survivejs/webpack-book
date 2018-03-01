@@ -323,7 +323,6 @@ Compared to the earlier approach, something was gained, but also lost:
 * Given the configuration isn't in the multi-compiler form anymore, processing can be slower.
 * Plugins such as `CleanWebpackPlugin` don't work without additional consideration now.
 * Instead of multiple manifests, only one remains. The result is not a problem, though, as the entries use it differently based on their setup.
-* `CommonsChunkPlugin` related setup required careful thought to avoid problems with styling. The earlier approach avoided this issue through isolation.
 
 ## Progressive Web Applications
 
