@@ -110,7 +110,7 @@ The problem can be solved by writing an *index.html* file that points to the gen
 To get started, install *html-webpack-plugin*:
 
 ```bash
-npm install webpack-contrib/html-webpack-plugin --save-dev
+npm install html-webpack-plugin --save-dev
 ```
 
 To connect the plugin with webpack, set up configuration as below:
@@ -139,8 +139,6 @@ Now that the configuration is done, you should try the following:
 ![Hello world](images/hello_01.png)
 
 T> **Trailing commas** are used in the book examples on purpose as it gives cleaner diffs for the code examples.
-
-W> The book uses a custom version of the plugin as [the original html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) is waiting for specific updates to go through and isn't compatible with webpack 4 yet.
 
 ## Examining the Output
 
