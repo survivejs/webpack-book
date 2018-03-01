@@ -36,6 +36,15 @@ Connect it with the project:
 **webpack.config.js**
 
 ```javascript
+const PATHS = {
+  app: path.join(__dirname, "src"),
+leanpub-start-insert
+  build: path.join(__dirname, "dist"),
+leanpub-end-insert
+};
+
+...
+
 const productionConfig = merge([
 leanpub-start-insert
   parts.clean(PATHS.build),
@@ -66,6 +75,7 @@ Then define a part to wrap the idea:
 
 ```javascript
 ...
+const webpack = require("webpack");
 const GitRevisionPlugin = require("git-revision-webpack-plugin");
 
 exports.attachRevision = () => ({
@@ -96,11 +106,13 @@ If you build the project (`npm run build`), you should notice the built files co
 
 The output can be customized further by adjusting the banner. You can also pass revision information to the application using `webpack.DefinePlugin`. This technique is discussed in detail in the *Environment Variables* chapter.
 
+W> [The plugin is broken in production mode in webpack 4](https://github.com/webpack/webpack/issues/6630)!
+
 W> The code expects you run it within a Git repository! Otherwise, you get a `fatal: Not a git repository (or any of the parent directories): .git` error. If you are not using Git, you can replace the banner with other data.
 
 ## Copying Files
 
-Copying files is another common operation you can handle with webpack. [copy-webpack-plugin](https://www.npmjs.com/package/copy-webpack-plugin) can be handy if you need to bring external files to your build without having webpack pointing at them directly.
+Copying files is another ordinary operation you can handle with webpack. [copy-webpack-plugin](https://www.npmjs.com/package/copy-webpack-plugin) can be handy if you need to bring external data to your build without having webpack pointing at them directly.
 
 [cpy-cli](https://www.npmjs.com/package/cpy-cli) is a good option if you want to copy outside of webpack in a cross-platform way. Plugins should be cross-platforms by definition.
 
@@ -112,5 +124,5 @@ To recap:
 
 * You can find many small plugins that work as tasks and push webpack closer to a task runner.
 * These tasks include cleaning the build and deployment. The *Deploying Applications* chapter discusses the latter topic in detail.
-* It can be a good idea to include small comments to the production build to tell what version has been deployed. This way you can debug potential issues faster.
+* It can be a good idea to add small comments to the production build to tell what version has been deployed. This way you can debug potential issues faster.
 * Secondary tasks like these can be performed outside of webpack. If you are using a multi-page setup as discussed in the *Multiple Pages* chapter, this becomes a necessity.
