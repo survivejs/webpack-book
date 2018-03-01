@@ -6,18 +6,18 @@ HMR is possible with JavaScript too, but due to application state, it's harder. 
 
 ## Enabling HMR
 
-To enable HMR, the following things have to happen:
+The following things have to happen for HMR to work:
 
-1. WDS has to run in hot mode to expose the hot module replacement interface to the client.
-2. Webpack has to provide hot updates to the server. This is achieved using `webpack.HotModuleReplacementPlugin`.
-3. The client has to run specific scripts provided by the WDS. They are injected automatically but can be enabled explicitly through entry configuration.
+1. WDS has to run in the hot mode to expose the hot module replacement interface to the client.
+2. Webpack has to provide hot updates to the server and can be achieved using `webpack.HotModuleReplacementPlugin`.
+3. The client has to run specific scripts provided by the WDS. They will be injected automatically but can be enabled explicitly through entry configuration.
 4. The client has to implement the HMR interface through `module.hot.accept`.
 
-Using `webpack-dev-server --hot` solves the first two problems. In this case you have to handle only the last one yourself if you want to patch JavaScript application code. Skipping the `--hot` flag and going through webpack configuration gives more flexibility.
+Using `webpack-dev-server --hot` solves the first two problems. In this case, you have to handle only the last one yourself if you want to patch JavaScript application code. Skipping the `--hot` flag and going through webpack configuration gives more flexibility.
 
 {pagebreak}
 
-The following listing contains the most important parts related to this approach. You will have to adapt from here to match your configuration style:
+The following listing contains the essential parts related to this approach. You will have to adapt from here to match your configuration style:
 
 ```javascript
 {
@@ -41,15 +41,15 @@ If you implement configuration like above without implementing the client interf
 
 ![No refresh](images/no-refresh2.png)
 
-The message tells that even though the HMR interface notified the client portion of the code of a hot update, nothing was done about it. This is something to fix next.
+The message tells that even though the HMR interface notified the client portion of the code of a hot update, nothing was done about it and this is something to fix next.
 
 T> The setup assumes you have enabled `NamedModulesPlugin`. See the *Adding Hashes to Filenames* chapter for further details.
 
 W> *webpack-dev-server* can be picky about paths. Webpack [issue #675](https://github.com/webpack/webpack/issues/675) discusses the problem in more detail.
 
-W> You should **not** enable HMR for your production configuration. It likely works, but it makes your bundles bigger than they should be.
+W> You should **not** enable HMR for your production configuration. It likely works, but it makes your bundles more significant than they should be.
 
-W> If you are using Babel, configure it so that it lets webpack control module generation as otherwise HMR logic won't work!
+W> If you are using Babel, configure it so that it lets webpack control module generation as otherwise, HMR logic won't work!
 
 ## Implementing the HMR Interface
 
