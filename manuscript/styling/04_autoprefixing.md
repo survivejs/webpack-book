@@ -30,12 +30,11 @@ To connect the loader with `ExtractTextPlugin`, hook it up as follows:
 **webpack.config.js**
 
 ```javascript
-leanpub-start-delete
 const productionConfig = merge([
+leanpub-start-delete
   parts.extractCSS({
     use: "css-loader",
   }),
-]);
 leanpub-end-delete
 leanpub-start-insert
 const productionConfig = merge([
@@ -44,6 +43,7 @@ const productionConfig = merge([
   }),
 ]);
 leanpub-end-insert
+]);
 ```
 
 To confirm that the setup works, we have to add something to autoprefix. Adjust the CSS:
@@ -61,6 +61,8 @@ leanpub-end-insert
 ```
 
 If you know what browsers you prefer to support, it's possible to set up a [.browserslistrc](https://www.npmjs.com/package/browserslist) file. Different tools pick up this definition, *autoprefixer* included.
+
+T> You can lint CSS through [Stylelint](http://stylelint.io/). It can be set up the same way through *postcss-loader* as autoprefixing above.
 
 {pagebreak}
 
@@ -87,8 +89,6 @@ leanpub-start-insert
 }
 leanpub-end-insert
 ```
-
-T> You can lint CSS through [Stylelint](http://stylelint.io/). It can be set up the same way through *postcss-loader* as autoprefixing above.
 
 ## Conclusion
 
