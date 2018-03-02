@@ -75,6 +75,8 @@ if (foo === "bar") {
 
 Elimination is the core idea of `DefinePlugin` and it allows toggling. A minifier performs analysis and toggles entire portions of the code.
 
+{pagebreak}
+
 ## Setting `process.env.NODE_ENV`
 
 As before, encapsulate this idea to a function. Due to the way webpack replaces the free variable, you should push it through `JSON.stringify`. You end up with a string like `'"demo"'` and then webpack inserts that into the slots it finds:
@@ -164,6 +166,8 @@ You can find a collection of optimization-related plugins for webpack:
 * `webpack.optimize.AggressiveSplittingPlugin` allows you to split code into smaller bundles as discussed in the *Bundle Splitting* chapter. The result is ideal for an HTTP/2 environment.
 * `webpack.DefinePlugin` allows you to use feature flags in your code and eliminate the redundant code as discussed in this chapter.
 * [lodash-webpack-plugin](https://www.npmjs.com/package/lodash-webpack-plugin) creates smaller Lodash builds by replacing feature sets with smaller alternatives leading to more compact builds.
+
+{pagebreak}
 
 ## Conclusion
 
