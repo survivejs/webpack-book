@@ -136,7 +136,11 @@ Webpack uses number based IDs for the module code it generates. The problem is t
 * `NamedModulesPlugin` replaces module IDs with paths to the modules making it ideal for development.
 * `HashedModuleIdsPlugin` does the same except it hashes the result and hides the path information.
 
-The process keeps module IDs stable as they aren't derived based on order. You sacrifice a couple of bytes for a cleaner setup, but the trade-off is well worth it. In this case, you can use `NamedModulesPlugin` to get a better development experience while fixing the module ID stability issue. Tweak the configuration as follows:
+The process keeps module IDs stable as they aren't derived based on order. You sacrifice a couple of bytes for a cleaner setup, but the trade-off is well worth it. In this case, you can use `NamedModulesPlugin` to get a better development experience while fixing the module ID stability issue.
+
+{pagebreak}
+
+Tweak the configuration as follows:
 
 **webpack.config.js**
 
