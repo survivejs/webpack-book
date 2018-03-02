@@ -15,8 +15,8 @@ developing/03_composing_configuration.md
 06_Styling.md
 styling/01_loading.md
 styling/02_separating_css.md
-styling/03_autoprefixing.md
-styling/04_eliminating_unused_css.md
+styling/03_eliminating_unused_css.md
+styling/04_autoprefixing.md
 
 07_Loading.md
 loading/01_loader_definitions.md

@@ -161,3 +161,5 @@ To recap:
 * The functionality can be enabled through *purifycss-webpack*, and the plugin should be applied *after* `ExtractTextPlugin`.
 * At best, PurifyCSS can eliminate most, if not all, unused CSS rules.
 * Critical path rendering is another CSS technique that emphasizes rendering the above-the-fold CSS first. The idea is to render something as fast as possible instead of waiting for all CSS to load.
+
+In the next chapter, you'll learn to **autoprefix**. Enabling the feature makes it more convenient to develop complicated CSS setups that work with older browsers as well.

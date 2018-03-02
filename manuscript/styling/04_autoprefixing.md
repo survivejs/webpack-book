@@ -51,12 +51,13 @@ To confirm that the setup works, we have to add something to autoprefix. Adjust 
 **app/main.css**
 
 ```css
-body {
-  background: cornsilk;
+...
+
 leanpub-start-insert
-  display: flex;
-leanpub-end-insert
+.pure-button {
+  border-radius: 1em;
 }
+leanpub-end-insert
 ```
 
 If you know what browsers you prefer to support, it's possible to set up a [.browserslistrc](https://www.npmjs.com/package/browserslist) file. Different tools pick up this definition, *autoprefixer* included.
@@ -76,12 +77,15 @@ IE 8 # Or IE 8
 If you build the application now (`npm run build`) and examine the built CSS, you should be able to find a declaration there:
 
 ```css
-body {
-  background: cornsilk;
+...
+
+leanpub-start-insert
+.pure-button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
+leanpub-end-insert
 ```
 
 T> You can lint CSS through [Stylelint](http://stylelint.io/). It can be set up the same way through *postcss-loader* as autoprefixing above.
@@ -95,5 +99,3 @@ To recap:
 * Autoprefixing can be enabled through the *autoprefixer* PostCSS plugin.
 * Autoprefixing writes missing CSS definitions based on your minimum browser definition.
 * *.browserslistrc* is a standard file that works with tooling beyond *autoprefixer*
-
-In the next chapter, you'll learn to eliminate unused CSS from the project.
