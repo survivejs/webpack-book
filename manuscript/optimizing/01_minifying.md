@@ -103,6 +103,8 @@ Out of the available solutions, `OptimizeCSSAssetsPlugin` composes the best. To 
 npm install optimize-css-assets-webpack-plugin cssnano --save-dev
 ```
 
+{pagebreak}
+
 Like for JavaScript, you can wrap the idea in a configuration part:
 
 **webpack.parts.js**
@@ -171,6 +173,8 @@ vendor.css.map   87 bytes       1  [emitted]  vendor
     index.html  317 bytes          [emitted]
 ...
 ```
+
+{pagebreak}
 
 ## Minifying Images
 
