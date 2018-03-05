@@ -55,7 +55,7 @@ To confirm that the setup works, we have to add something to autoprefix. Adjust 
 
 leanpub-start-insert
 .pure-button {
-  border-radius: 1em;
+  display: flex;
 }
 leanpub-end-insert
 ```
