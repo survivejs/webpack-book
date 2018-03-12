@@ -85,6 +85,7 @@ Even though you can push the problem of deployment outside of webpack, there are
 * [webpack-deploy](https://www.npmjs.com/package/webpack-deploy) is a collection of deployment utilities and works even outside of webpack.
 * [webpack-s3-sync-plugin](https://www.npmjs.com/package/webpack-s3-sync-plugin) and [webpack-s3-plugin](https://www.npmjs.com/package/webpack-s3-plugin) sync the assets to Amazon.
 * [ssh-webpack-plugin](https://www.npmjs.com/package/ssh-webpack-plugin) has been designed for deployments over SSH.
+* [now-loader](https://www.npmjs.com/package/now-loader) operates on resource level and allows you to deploy specific resources to Now hosting service.
 
 T> To get access to the generated files and their paths, consider using [assets-webpack-plugin](https://www.npmjs.com/package/assets-webpack-plugin). The path information allows you to integrate webpack with other environments while deploying.
 
