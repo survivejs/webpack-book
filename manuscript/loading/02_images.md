@@ -28,6 +28,8 @@ To load *.jpg*, *.png*, and *.svg* files while inlining files below 25kB, you wo
 },
 ```
 
+T> If you prefer to use some other loader than *file-loader* as the *limit* is reached, set `fallback: "some-loader"`. Then webpack will resolve to that instead of the default.
+
 ## Setting Up *file-loader*
 
 If you want to skip inlining altogether, you can use *file-loader* directly. The following setup customizes the resulting filename. By default, *file-loader* returns the MD5 hash of the file's contents with the original extension:
