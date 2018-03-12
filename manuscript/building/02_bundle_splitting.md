@@ -70,7 +70,7 @@ leanpub-start-insert
   {
     optimization: {
       splitChunks: {
-        chunks: "all",
+        chunks: "initial",
       },
     },
   },
@@ -126,7 +126,7 @@ leanpub-start-insert
           commons: {
             test: /[\\/]node_modules[\\/]/,
             name: "vendor",
-            chunks: "all",
+            chunks: "initial",
           },
         },
       },
