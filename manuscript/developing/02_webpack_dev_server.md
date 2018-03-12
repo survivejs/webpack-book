@@ -109,6 +109,7 @@ leanpub-start-insert
     // unlike default `localhost`.
     host: process.env.HOST, // Defaults to `localhost`
     port: process.env.PORT, // Defaults to 8080
+    open: true, // Open the page in browser
   },
 leanpub-end-insert
   ...
