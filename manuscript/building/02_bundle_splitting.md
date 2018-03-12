@@ -70,13 +70,7 @@ leanpub-start-insert
   {
     optimization: {
       splitChunks: {
-        cacheGroups: {
-          commons: {
-            test: /[\\/]node_modules[\\/]/,
-            name: "vendor",
-            chunks: "all",
-          },
-        },
+        chunks: "all",
       },
     },
   },
@@ -114,6 +108,35 @@ Entrypoint main = vendor.js vendor.css vendor.js.map ...
 Now the bundles look the way they should. The image below illustrates the current situation.
 
 ![App and vendor bundles after applying configuration](images/bundle_02.png)
+
+## Controlling Bundle Splitting
+
+The configuration above can be rewritten with an explicit test against *node_modules* as below:
+
+**webpack.config.js**
+
+```javascript
+const productionConfig = merge([
+  ...
+leanpub-start-insert
+  {
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          commons: {
+            test: /[\\/]node_modules[\\/]/,
+            name: "vendor",
+            chunks: "all",
+          },
+        },
+      },
+    },
+  },
+leanpub-end-insert
+]);
+```
+
+Following this format gives you more control over the splitting process if you don't prefer to rely on automation.
 
 ## Splitting and Merging Chunks
 
