@@ -51,6 +51,10 @@ webpack(config, (err, stats) => {
 
 This technique can be valuable if you want to do further processing on stats although often the other solutions are enough.
 
+T> If you want JSON output from `stats`, use `stats.toJson()`. To get *verbose* output, use `stats.toJson("verbose")`. It follows all stat options webpack supports.
+
+T> To mimic the `--json` flag, use `console.log(JSON.stringify(stats.toJson(), null, 2));`. The output is formatted to be readable.
+
 ### `StatsWebpackPlugin` and `WebpackStatsPlugin`
 
 If you want to manage stats through a plugin, check out [stats-webpack-plugin](https://www.npmjs.com/package/stats-webpack-plugin). It gives you a bit more control over the output. You can use it to exclude specific dependencies from the output.
