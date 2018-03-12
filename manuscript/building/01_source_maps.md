@@ -10,6 +10,8 @@ If you are using webpack 4 and the new `mode` option, the tool will generate sou
 
 T> If you want to understand the ideas behind source maps in greater detail, [read Ryan Seddon's introduction to the topic](https://www.html5rocks.com/en/tutorials/developertools/sourcemaps/).
 
+T> To see how webpack handles source maps, see [source-map-visualization](https://sokra.github.io/source-map-visualization/) by the author of the tool.
+
 ## Inline Source Maps and Separate Source Maps
 
 Webpack can generate both inline or separate source map files. The inline ones are valuable during development due to better performance while the separate ones are handy for production use as it keeps the bundle size small. In this case, loading source maps is optional.
