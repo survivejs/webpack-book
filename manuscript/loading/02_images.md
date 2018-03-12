@@ -28,7 +28,7 @@ To load *.jpg*, *.png*, and *.svg* files while inlining files below 25kB, you wo
 },
 ```
 
-T> If you prefer to use some other loader than *file-loader* as the *limit* is reached, set `fallback: "some-loader"`. Then webpack will resolve to that instead of the default.
+T> If you prefer to use another loader than *file-loader* as the *limit* is reached, set `fallback: "some-loader"`. Then webpack will resolve to that instead of the default.
 
 ## Setting Up *file-loader*
 
