@@ -10,25 +10,22 @@
     "test": "npm run textlint && npm run remark",
     "test:links": "check-markdown-links manuscript",
     "proselint": "proselintjs \"manuscript/**/*.md\"",
-    "textlint": "textlint \"manuscript/*.md\" && textlint \"manuscript/**/*.md\"",
+    "textlint":
+      "textlint \"manuscript/*.md\" && textlint \"manuscript/**/*.md\"",
     "keywords": "node ./utils/keywords",
     "remark": "remark manuscript",
+    "precommit": "npm test",
     "prepush": "npm test",
     "push": "git push && npm run preview"
   },
   "remarkConfig": {
-    "plugins": [
-      "preset-survivejs"
-    ]
+    "plugins": ["preset-survivejs"]
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/survivejs/webpack-book.git"
   },
-  "keywords": [
-    "react",
-    "webpack"
-  ],
+  "keywords": ["react", "webpack"],
   "author": "",
   "license": "CC BY-NC-ND",
   "bugs": {
