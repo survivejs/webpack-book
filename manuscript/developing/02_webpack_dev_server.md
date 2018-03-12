@@ -148,6 +148,8 @@ Run the server now (`npm start`) and break the code to see an overlay in the bro
 
 ![Error overlay](images/error-overlay.png)
 
+T> If you want even better output, consider [error-overlay-webpack-plugin](https://www.npmjs.com/package/error-overlay-webpack-plugin) as it shows the origin of the error better.
+
 ## Enabling Hot Module Replacement
 
 Hot Module Replacement is one of those features that set webpack apart. Implementing it requires additional effort on both server and client-side. The *Hot Module Replacement* appendix discusses the topic in greater detail. If you want to integrate HMR to your project, give it a look. It won't be needed to complete the tutorial, though.
