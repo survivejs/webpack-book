@@ -176,9 +176,9 @@ Babel isn't the only option although it's the most popular one. [Buble](https://
 
 {pagebreak}
 
-## Babel Presets and Plugins
+## Babel Plugins
 
-Perhaps the greatest thing about Babel is that it's possible to extend with presets and plugins:
+Perhaps the greatest thing about Babel is that it's possible to extend with plugins:
 
 * [babel-plugin-import](https://www.npmjs.com/package/babel-plugin-import) rewrites module imports so that you can use a form such as `import { Button } from "antd";` instead of pointing to the module through an exact path.
 * [babel-plugin-import-asserts](https://www.npmjs.com/package/babel-plugin-import-asserts) asserts that your imports have been defined.
