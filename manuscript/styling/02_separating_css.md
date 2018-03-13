@@ -6,9 +6,9 @@ The current solution doesn't allow cache CSS. You can also get a **Flash of Unst
 
 Webpack provides a means to generate a separate CSS bundles using [ExtractTextPlugin](https://www.npmjs.com/package/extract-text-webpack-plugin). It can aggregate multiple CSS files into one. For this reason, it comes with a loader that handles the extraction process. The plugin then picks up the result aggregated by the loader and emits a separate file.
 
-Due to this process, `ExtractTextPlugin` comes with overhead during the compilation phase. It doesn't work with Hot Module Replacement by design. Given the plugin is used only for production, that is not a problem.
+Due to this process, `ExtractTextPlugin` comes with overhead during the compilation phase. It doesn't work with Hot Module Replacement (HMR) by design. Given the plugin is used only for production, that is not a problem.
 
-T> This same technique can be employed with other assets, like templates, too.
+T> [css-hot-loader](https://www.npmjs.com/package/css-hot-loader) can be used with `ExtractTextPlugin` to enable HMR.
 
 W> It can be potentially dangerous to use inline styles within JavaScript in production as it represents an attack vector. **Critical path rendering** embraces the idea and inlines the critical CSS to the initial HTML payload improving the perceived performance of the site. In limited contexts inlining a small amount of CSS can be a viable option to speed up the initial load (fewer requests).
 
@@ -130,8 +130,6 @@ Entrypoint main = main.js main.css
 Now styling has been pushed to a separate CSS file. Thus, the JavaScript bundle has become slightly smaller. You also avoid the FOUC problem. The browser doesn't have to wait for JavaScript to load to get styling information. Instead, it can process the CSS separately, avoiding the flash.
 
 T> If you are getting `Module build failed: CssSyntaxError:` or `Module build failed: Unknown word` error, make sure your `common` configuration doesn't have a CSS-related section set up.
-
-T> *Hot Module Replacement* can be combined with `ExtractTextPlugin` if you use [css-hot-loader](https://www.npmjs.com/package/css-hot-loader).
 
 T> [extract-loader](https://www.npmjs.com/package/extract-loader) is a light alternative to `ExtractTextPlugin`. It does less, but can be enough for basic extraction needs.
 
