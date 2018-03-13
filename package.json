@@ -14,7 +14,7 @@
       "textlint \"manuscript/*.md\" && textlint \"manuscript/**/*.md\"",
     "keywords": "node ./utils/keywords",
     "remark": "remark manuscript",
-    "precommit": "npm test",
+    "postcommit": "npm test",
     "prepush": "npm test",
     "push": "git push && npm run preview"
   },
