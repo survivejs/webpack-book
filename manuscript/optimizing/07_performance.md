@@ -90,7 +90,7 @@ Specific lower-level optimizations can be good to know. The key is to allow webp
 * Use [babel-preset-env](https://www.npmjs.com/package/babel-preset-env) during development instead of source maps to transpile fewer features for modern browsers and make the code more readable and more comfortable to debug.
 * Skip polyfills during development. Attaching a package, such as [babel-polyfill](https://www.npmjs.com/package/babel-polyfill), to the development version of an application adds to the overhead.
 * Disable the portions of the application you don't need during development. It can be a valid idea to compile only a small fraction you are working on as then you have less to bundle.
-* Push bundles that change less to **Dynamically Loaded Libraries** (DLL) to avoid unnecessary processing. It's one more thing to worry about but can lead to speed increases as there is less to bundle. The [official webpack example](https://github.com/webpack/webpack/tree/master/examples/dll-user) gets to the point while [Rob Knight's blog post](https://robertknight.github.io/posts/webpack-dll-plugins/) explains the idea further.
+* Push bundles that change less to **Dynamically Loaded Libraries** (DLL) to avoid unnecessary processing. The [official webpack example](https://github.com/webpack/webpack/tree/master/examples/dll-user) gets to the point while [Rob Knight's blog post](https://robertknight.github.io/posts/webpack-dll-plugins/) explains the idea further. [autodll-webpack-plugin](https://www.npmjs.com/package/autodll-webpack-plugin) can automate the process.
 
 ### Plugin Specific Optimizations
 
