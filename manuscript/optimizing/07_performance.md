@@ -163,3 +163,5 @@ To recap:
 * Lower level techniques are more involved but come with their wins.
 * Since webpack runs using a single instance by default, parallelizing is worthwhile.
 * Especially during development, skipping work can be acceptable thanks to modern browsers.
+
+T> [The official build performance guide](https://webpack.js.org/guides/build-performance/) has more tips.
