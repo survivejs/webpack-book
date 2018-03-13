@@ -59,6 +59,8 @@ Loaders are transformations that are applied to source files, and return the new
 
 T> If you want to disable *css-loader* `url` parsing, set `url: false`. The same idea applies to `@import` as to disable parsing imports you can set `import: false` through the loader options.
 
+T> In case you don't need HMR capability, support for old Internet Explorer, and source maps, consider using [micro-style-loader](https://www.npmjs.com/package/micro-style-loader) instead of *style-loader*.
+
 ## Setting Up the Initial CSS
 
 You are missing the CSS still:
