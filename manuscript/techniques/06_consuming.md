@@ -39,9 +39,12 @@ If you are using *react-lite*, configure it as below:
 
 T> The same technique works with loaders too. You can use `resolveLoader.alias` similarly. You can use the method to adapt a RequireJS project to work with webpack.
 
-T> Specific plugins like [directory-named-webpack-plugin](https://www.npmjs.com/package/directory-named-webpack-plugin) allow you to enhance webpack's module resolution. You can attach these to your setup through the `resolve.plugins` field.
+## Using `resolve.plugins`
 
-T> [babel-plugin-module-resolver](https://www.npmjs.com/package/babel-plugin-module-resolver) allows you to achieve the same behavior through Babel.
+Webpack allows you to intercept module resolution behavior as seen before. The most powerful way to achieve this is to use the `resolve.plugins` field. Consider the following plugin examples:
+
+* [directory-named-webpack-plugin](https://www.npmjs.com/package/directory-named-webpack-plugin) maps imports made against directories to files matching the directory name. For example, it would map `import foo from "./foo";` to `import foo from "./foo/foo.js";`. The pattern is popular with React and using the plugin will allow you to simplify your code. [babel-plugin-module-resolver](https://www.npmjs.com/package/babel-plugin-module-resolver) achieves the same behavior through Babel.
+* [webpack-resolve-short-path-plugin](https://www.npmjs.com/package/webpack-resolve-short-path-plugin) was designed to avoid deeply nested imports like `import foo from "../../../foo";` by adding support for tilde (`~`) syntax. `import foo from "~foo"` would resolve against the project root if the plugin is used.
 
 ## Consuming Packages Outside of Webpack
 
