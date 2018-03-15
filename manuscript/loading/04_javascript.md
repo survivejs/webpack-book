@@ -84,7 +84,7 @@ leanpub-end-insert
 
 leanpub-start-insert
 const PATHS = {
-  app: "./src",
+  app: path.join(__dirname, "src"),
 };
 leanpub-end-insert
 
