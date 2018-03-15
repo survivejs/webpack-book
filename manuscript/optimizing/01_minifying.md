@@ -129,6 +129,8 @@ exports.minifyCSS = ({ options }) => ({
 
 W> If you use `--json` output with webpack as discussed in the *Build Analysis* chapter, you should set `canPrint: false` for the plugin.
 
+{pagebreak}
+
 Then, connect with the main configuration:
 
 **webpack.config.js**
