@@ -26,8 +26,6 @@ T> It's a good idea to study the documentation of the loaders you are using to s
 
 Webpack provides two ways to enable source maps. There's a `devtool` shortcut field. You can also find two plugins that give more options to tweak. The plugins are going to be discussed briefly at the end of this chapter. Beyond webpack, you also have to enable support for source maps at the browsers you are using for development.
 
-{pagebreak}
-
 ### Enabling Source Maps in Webpack
 
 To get started, you can wrap the core idea within a configuration part. You can convert this to use the plugins later if you want:
@@ -54,6 +52,8 @@ leanpub-end-insert
 ```
 
 `source-map` is the slowest and highest quality option of them all, but that's fine for a production build.
+
+{pagebreak}
 
 If you build the project now (`npm run build`), you should see source maps in the output:
 
@@ -94,8 +94,6 @@ Source map types supported by webpack can be split into two categories:
 
 Thanks to their speed, inline source maps are ideal for development. Given they make the bundles big, separate source maps are the preferred solution for production. Separate source maps work during development as well if the performance overhead is acceptable.
 
-{pagebreak}
-
 ## Inline Source Map Types
 
 Webpack provides multiple inline source map variants. Often `eval` is the starting point and [webpack issue #2145](https://github.com/webpack/webpack/issues/2145#issuecomment-294361203) recommends `cheap-module-eval-source-map` as it's a good compromise between speed and quality while working reliably in Chrome and Firefox browsers.
@@ -103,6 +101,8 @@ Webpack provides multiple inline source map variants. Often `eval` is the starti
 To get a better idea of the available options, they are listed below while providing a small example for each. The source code contains only a single `console.log('Hello world')` and `webpack.NamedModulesPlugin` is used to keep the output easier to understand. In practice, you would see a lot more code to handle the mapping.
 
 T> `webpack.NamedModulesPlugin` replaces number based module IDs with paths. It's discussed in the *Adding Hashes to Filenames* chapter.
+
+{pagebreak}
 
 ### `devtool: "eval"`
 
