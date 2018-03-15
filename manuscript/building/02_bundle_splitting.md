@@ -140,6 +140,8 @@ Following this format gives you more control over the splitting process if you d
 
 Webpack provides more control over the generated chunks by two plugins: `AggressiveSplittingPlugin` and `AggressiveMergingPlugin`. The former allows you to emit more and smaller bundles. The behavior is handy with HTTP/2 due to the way the new standard works.
 
+{pagebreak}
+
 Here's the basic idea of aggressive splitting:
 
 ```javascript
