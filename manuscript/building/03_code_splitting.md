@@ -14,7 +14,7 @@ Code splitting can be done in two primary ways in webpack: through a dynamic `im
 
 The goal is to end up with a split point that gets loaded on demand. There can be splits inside splits, and you can structure an entire application based on splits. The advantage of doing this is that then the initial payload of your application can be smaller than it would be otherwise.
 
-![Code splitting](images/dynamic.png)
+![Code splitting](images/code-splitting.png)
 
 ### Dynamic `import`
 
