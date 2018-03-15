@@ -41,6 +41,8 @@ T> Given that [Node supports the ES2015 specification well](http://node.green/) 
 
 W> If you use *webpack.config.babel.js*, take care with the `"modules": false,` setting. If you want to use ES2015 modules, you could skip the setting in your global Babel configuration and then configure it per environment as discussed below.
 
+{pagebreak}
+
 ### Setting Up *babel-loader*
 
 The first step towards configuring Babel to work with webpack is to set up [babel-loader](https://www.npmjs.com/package/babel-loader). It takes the code and turns it into a format older browsers can understand. Install *babel-loader* and include its peer dependency *babel-core*:
