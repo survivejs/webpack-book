@@ -78,8 +78,6 @@ leanpub-end-insert
 ]);
 ```
 
-{pagebreak}
-
 If you try to generate a build now (`npm run build`), you should see something along this:
 
 ```bash
@@ -175,8 +173,6 @@ It's possible to get good caching behavior with these plugins if a webpack **rec
 `webpack.optimize` contains `LimitChunkCountPlugin` and `MinChunkSizePlugin` which give further control over chunk size.
 
 T> Tobias Koppers discusses [aggressive merging in detail at the official blog of webpack](https://medium.com/webpack/webpack-http-2-7083ec3f3ce6).
-
-{pagebreak}
 
 ## Chunk Types in Webpack
 
