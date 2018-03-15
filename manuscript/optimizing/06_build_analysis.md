@@ -24,7 +24,7 @@ You can also consider using the following flags:
 * `--profile` to capture timing-related information. The setting is optional but good to set.
 * `--progress` to show how long webpack spent in different stages of the build.
 
-T> To understand why webpack includes a specific module to the build while processing, use [webpack-why](https://www.npmjs.com/package/webpack-why). `--display-reasons` flag gives more information as well. Example: `npm run build -- --display-reasons`.
+T> To understand why webpack includes a specific module to the build while processing, use [whybundled](https://www.npmjs.com/package/whybundled) or [webpack-why](https://www.npmjs.com/package/webpack-why). `--display-reasons` flag gives more information as well. Example: `npm run build -- --display-reasons`.
 
 W> Given you piggyback on the production target in the current setup; this process cleans the build directory! If you want to avoid that, set up a separate destination where you don't clean.
 
