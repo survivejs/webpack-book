@@ -6,8 +6,6 @@ It's possible to get a more controlled environment by using a solution such as [
 
 T> The completed configuration is available at [GitHub](https://github.com/survivejs-demos/webpack-demo).
 
-{pagebreak}
-
 ## Setting Up the Project
 
 To get a starting point, you should create a directory for the project and set up a *package.json* there. npm uses that to manage project dependencies. Here are the basic commands:
@@ -29,8 +27,6 @@ T> The book examples have been formatted using [Prettier](https://www.npmjs.com/
 ## Installing Webpack
 
 Even though webpack can be installed globally (`npm install webpack -g`), it's a good idea to maintain it as a dependency of your project to avoid issues, as then you have control over the exact version you are running. The approach works nicely in **Continuous Integration** (CI) setups as well. A CI system can install your local dependencies, compile your project using them, and then push the result to a server.
-
-{pagebreak}
 
 To add webpack to the project, execute:
 
@@ -87,8 +83,6 @@ export default (text = "Hello world") => {
 };
 ```
 
-{pagebreak}
-
 We also have to modify the original file to import the new file and render the application through the DOM:
 
 **src/index.js**
@@ -114,8 +108,6 @@ To get started, install *html-webpack-plugin*:
 ```bash
 npm install html-webpack-plugin --save-dev
 ```
-
-{pagebreak}
 
 To connect the plugin with webpack, set up configuration as below:
 
@@ -195,8 +187,6 @@ Given executing `node_modules/.bin/webpack` is verbose, you should do something 
   "build": "webpack --mode production"
 },
 ```
-
-{pagebreak}
 
 Run `npm run build` to see the same output as before. npm adds *node_modules/.bin* temporarily to the path enabling this. As a result, rather than having to write `"build": "node_modules/.bin/webpack"`, you can do `"build": "webpack"`.
 
