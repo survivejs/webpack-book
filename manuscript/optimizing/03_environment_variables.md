@@ -164,15 +164,6 @@ Webpack can pick the right code based on the `DefinePlugin` declaration and this
 
 T> A related technique, **aliasing**, is discussed in the *Package Consuming Techniques* chapter.
 
-## Webpack Optimization Plugins
-
-You can find a collection of optimization-related plugins for webpack:
-
-* [compression-webpack-plugin](https://www.npmjs.com/package/compression-webpack-plugin) allows you to push the problem of generating compressed files to webpack to potentially save processing time on the server.
-* `webpack.optimize.AggressiveSplittingPlugin` allows you to split code into smaller bundles as discussed in the *Bundle Splitting* chapter. The result is ideal for an HTTP/2 environment.
-* `webpack.DefinePlugin` allows you to use feature flags in your code and eliminate the redundant code as discussed in this chapter.
-* [lodash-webpack-plugin](https://www.npmjs.com/package/lodash-webpack-plugin) creates smaller Lodash builds by replacing feature sets with smaller alternatives leading to more compact builds.
-
 ## Conclusion
 
 Setting environment variables is a technique that allows you to control which paths of the source are included in the build.
