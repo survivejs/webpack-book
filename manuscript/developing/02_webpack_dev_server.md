@@ -214,6 +214,8 @@ module.exports = {
 
 The setup is more resource intensive than the default, but it's worth trying out.
 
+{pagebreak}
+
 ## Alternate Ways to Use *webpack-dev-server*
 
 You could have passed the WDS options through a terminal. It's clearer to manage the options within webpack configuration as that helps to keep *package.json* nice and tidy. It's also easier to understand what's going on as you don't need to dig out the answers from the webpack source.
