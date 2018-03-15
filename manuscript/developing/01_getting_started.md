@@ -69,6 +69,8 @@ To get a quick idea of webpack output, we should fix both:
 
 T> Try also `--mode production` and compare the output.
 
+{pagebreak}
+
 ## Setting Up Assets
 
 To make the build more involved, we can add another module to the project and start developing a small application:
