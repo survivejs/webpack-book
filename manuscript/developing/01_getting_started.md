@@ -180,6 +180,8 @@ T> In addition to a configuration object, webpack accepts an array of configurat
 
 T> If you want a light alternative to *html-webpack-plugin*, see [mini-html-webpack-plugin](https://www.npmjs.com/package/mini-html-webpack-plugin). It does less but it's also simpler to understand.
 
+{pagebreak}
+
 ## Adding a Build Shortcut
 
 Given executing `node_modules/.bin/webpack` is verbose, you should do something about it. Adjust *package.json* to run tasks as below:
@@ -200,6 +202,8 @@ T> There are shortcuts like *npm start* and *npm test*. You can run these direct
 
 T> To go one step further, set up system level aliases using the `alias` command in your terminal configuration. You could map `nrb` to `npm run build` for instance.
 
+{pagebreak}
+
 ## `HtmlWebpackPlugin` Extensions
 
 Although you can replace `HtmlWebpackPlugin` template with your own, there are premade ones like [html-webpack-template](https://www.npmjs.com/package/html-webpack-template) or [html-webpack-template-pug](https://www.npmjs.com/package/html-webpack-template-pug).
@@ -212,6 +216,8 @@ There are also specific plugins that extend `HtmlWebpackPlugin`'s functionality:
 * [resource-hints-webpack-plugin](https://www.npmjs.com/package/resource-hints-webpack-plugin) adds [resource hints](https://www.w3.org/TR/resource-hints/) to your HTML files to speed up loading time.
 * [preload-webpack-plugin](https://www.npmjs.com/package/preload-webpack-plugin) enables `rel=preload` capabilities for scripts and helps with lazy loading, and it combines well with techniques discussed in the *Building* part of this book.
 * [webpack-cdn-plugin](https://www.npmjs.com/package/webpack-cdn-plugin) allows you to specify which dependencies to load through a Content Delivery Network (CDN). This common technique is used for speeding up loading of popular libraries.
+
+{pagebreak}
 
 ## Conclusion
 
