@@ -82,8 +82,6 @@ exports.loadImages = ({ include, exclude, options } = {}) => ({
 
 To attach it to the configuration, adjust as follows. The configuration defaults to *url-loader* during development and uses both *url-loader* and *file-loader* in production to maintain smaller bundle sizes. *url-loader* uses *file-loader* implicitly when `limit` is set, and both have to be installed for the setup to work.
 
-{pagebreak}
-
 **webpack.config.js**
 
 ```javascript
@@ -163,8 +161,6 @@ Compression is particularly valuable for production builds as it decreases the a
 ## Utilizing `srcset`
 
 [resize-image-loader](https://www.npmjs.com/package/resize-image-loader) and [responsive-loader](https://www.npmjs.com/package/responsive-loader) allow you to generate `srcset` compatible collections of images for modern browsers. `srcset` gives more control to the browsers over what images to load and when resulting in higher performance.
-
-{pagebreak}
 
 ## Loading Images Dynamically
 
