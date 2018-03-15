@@ -124,7 +124,7 @@ T> Enable `devServer.historyApiFallback` if you are using HTML5 History API base
 
 ## Enabling Error Overlay
 
-WDS provides an overlay for capturing warnings and errors:
+WDS provides an overlay for capturing compilation related warnings and errors:
 
 **webpack.config.js**
 
@@ -149,6 +149,8 @@ Run the server now (`npm start`) and break the code to see an overlay in the bro
 ![Error overlay](images/error-overlay.png)
 
 T> If you want even better output, consider [error-overlay-webpack-plugin](https://www.npmjs.com/package/error-overlay-webpack-plugin) as it shows the origin of the error better.
+
+W> WDS overlay does *not* capture runtime errors of the application.
 
 ## Enabling Hot Module Replacement
 
