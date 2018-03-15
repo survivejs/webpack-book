@@ -260,6 +260,8 @@ T> There is an experimental [Hot Module Replacement runtime](https://www.npmjs.c
 
 [Parcel](https://parceljs.org/) is a performant bundler, that unlike its predecessors, doesn't require configuration. The *zero configuration* approach has made it popular within the community. The idea is that you set up an *index.html* and Parcel will begin the bundling process based on that. It supports Hot Module Replacement out of the box.
 
+T> There's a whole category of zero configuration bundlers like Parcel. These tools include [microbundle](https://www.npmjs.com/package/microbundle), [sfo](https://www.npmjs.com/package/sfo), [bili](https://www.npmjs.com/package/bili), [ovi](https://www.npmjs.com/package/ovi), and [asbundle](https://www.npmjs.com/package/asbundle).
+
 ### Webpack
 
 ![webpack](images/webpack.png)
