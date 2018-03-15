@@ -102,6 +102,8 @@ Even though you have Babel installed and set up, you are still missing one bit: 
 
 W> If you try to import files **outside** of your configuration root directory and then process them through *babel-loader*, this fails. It's [a known issue](https://github.com/babel/babel-loader/issues/313), and there are workarounds including maintaining *.babelrc* at a higher level in the project and resolving against Babel presets through `require.resolve` at webpack configuration.
 
+{pagebreak}
+
 ### Setting Up *.babelrc*
 
 At a minimum, you need [babel-preset-env](https://www.npmjs.com/package/babel-preset-env). It's a Babel preset that enables the required plugins based on the optional environment definition you pass to it.
@@ -257,6 +259,8 @@ If you use React, the React specific Babel preset does most of the work through 
 There's also [babel-plugin-typecheck](https://www.npmjs.com/package/babel-plugin-typecheck) that allows you to perform runtime checks based on your Flow annotations. [flow-runtime](https://codemix.github.io/flow-runtime/) goes a notch further and provides more functionality. These approaches complement Flow static checker and allow you to catch even more issues.
 
 T> [flow-coverage-report](https://www.npmjs.com/package/flow-coverage-report) shows how much of your code is covered by Flow type annotations.
+
+{pagebreak}
 
 ## Conclusion
 
