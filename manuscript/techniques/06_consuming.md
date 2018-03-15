@@ -2,7 +2,7 @@
 
 Sometimes packages have not been packaged the way you expect, and you have to tweak the way webpack interprets them. Webpack provides multiple ways to achieve this.
 
-## Tweaking Module Resolution
+## `resolve.alias`
 
 Sometimes packages do not follow the standard rules and their *package.json* contains a faulty `main` field. It can be missing altogether. `resolve.alias` is the field to use here as in the example below:
 
@@ -39,7 +39,33 @@ If you are using *react-lite*, configure it as below:
 
 T> The same technique works with loaders too. You can use `resolveLoader.alias` similarly. You can use the method to adapt a RequireJS project to work with webpack.
 
-## Using `resolve.plugins`
+## `resolve.extensions`
+
+By default, webpack will resolve only against `.js` and `.json` files while importing without an extension, to tune this to include JSX files, adjust as below:
+
+```javascript
+{
+  resolve: {
+    extensions: [".js", ".json", ".jsx"],
+  },
+},
+```
+
+## `resolve.modules`
+
+The module resolution process can be altered by changing where webpack looks for modules. By default, it will look only within the *node_modules* directory. If you want to override packages there, you could tell webpack to look into other directories first:
+
+```javascript
+{
+  resolve: {
+    extensions: ["my_modules", "node_modules"],
+  },
+},
+```
+
+After the change, webpack will try to look into the *my_modules* directory first. The method can be applicable in large projects where you want to customize behavior.
+
+## `resolve.plugins`
 
 Webpack allows you to customize the module resolution behavior using the `resolve.plugins` field. Consider the following plugin examples:
 
