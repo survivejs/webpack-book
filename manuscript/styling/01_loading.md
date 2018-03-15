@@ -126,8 +126,6 @@ Webpack doesn't need much configuration:
 
 T> If you want more performance, especially during development, check out [fast-sass-loader](https://www.npmjs.com/package/fast-sass-loader).
 
-{pagebreak}
-
 ## Loading Stylus and Yeticss
 
 ![Stylus](images/stylus.png)
