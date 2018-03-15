@@ -102,8 +102,6 @@ To get a better idea of the available options, they are listed below while provi
 
 T> `webpack.NamedModulesPlugin` replaces number based module IDs with paths. It's discussed in the *Adding Hashes to Filenames* chapter.
 
-{pagebreak}
-
 ### `devtool: "eval"`
 
 `eval` generates code in which each module is wrapped within an `eval` function:
