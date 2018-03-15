@@ -98,8 +98,6 @@ T> The *CSS Modules* appendix discusses an approach that allows you to treat loc
 
 [Less](http://lesscss.org/) is a CSS processor packed with functionality. Using Less doesn't take a lot of effort through webpack as [less-loader](https://www.npmjs.com/package/less-loader) deals with the heavy lifting. You should install [less](https://www.npmjs.com/package/less) as well given it's a peer dependency of *less-loader*.
 
-{pagebreak}
-
 Consider the following minimal setup:
 
 ```javascript
@@ -117,8 +115,6 @@ The loader supports Less plugins, source maps, and so on. To understand how thos
 
 [Sass](http://sass-lang.com/) is a widely used CSS preprocessor. You should use [sass-loader](https://www.npmjs.com/package/sass-loader) with it. Remember to install [node-sass](https://www.npmjs.com/package/node-sass) to your project as it's a peer dependency.
 
-{pagebreak}
-
 Webpack doesn't need much configuration:
 
 ```javascript
@@ -129,6 +125,8 @@ Webpack doesn't need much configuration:
 ```
 
 T> If you want more performance, especially during development, check out [fast-sass-loader](https://www.npmjs.com/package/fast-sass-loader).
+
+{pagebreak}
 
 ## Loading Stylus and Yeticss
 
