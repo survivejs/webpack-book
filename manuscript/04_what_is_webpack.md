@@ -147,3 +147,5 @@ To summarize:
 * Webpack can generate **hashes** for filenames allowing you to invalidate past bundles as their contents change.
 
 In the next part of the book, you'll learn to construct a development configuration using webpack while learning more about its basic concepts.
+
+T> If you are still unsure of webpack or why bundlers are required, read [Why would I use a Webpack?](http://tinselcity.net/whys/packers).
