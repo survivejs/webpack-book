@@ -44,6 +44,8 @@ if ("foobar" === "bar") {
 }
 ```
 
+{pagebreak}
+
 Further analysis shows that `"foobar" === "bar"` equals `false` so a minifier gives the following:
 
 ```javascript
@@ -107,6 +109,8 @@ leanpub-end-insert
 ]);
 ```
 
+{pagebreak}
+
 Finally, add something to replace:
 
 **src/component.js**
@@ -131,6 +135,8 @@ T> `webpack.EnvironmentPlugin(["NODE_ENV"])` is a shortcut that allows you to re
 ## Replacing Free Variables Through Babel
 
 [babel-plugin-transform-inline-environment-variables](https://www.npmjs.com/package/babel-plugin-transform-inline-environment-variables) can be used to achieve the same effect. [babel-plugin-transform-define](https://www.npmjs.com/package/babel-plugin-transform-define) and [babel-plugin-minify-replace](https://www.npmjs.com/package/babel-plugin-minify-replace) are other alternatives for Babel.
+
+{pagebreak}
 
 ## Choosing Which Module to Use
 
@@ -166,8 +172,6 @@ You can find a collection of optimization-related plugins for webpack:
 * `webpack.optimize.AggressiveSplittingPlugin` allows you to split code into smaller bundles as discussed in the *Bundle Splitting* chapter. The result is ideal for an HTTP/2 environment.
 * `webpack.DefinePlugin` allows you to use feature flags in your code and eliminate the redundant code as discussed in this chapter.
 * [lodash-webpack-plugin](https://www.npmjs.com/package/lodash-webpack-plugin) creates smaller Lodash builds by replacing feature sets with smaller alternatives leading to more compact builds.
-
-{pagebreak}
 
 ## Conclusion
 
