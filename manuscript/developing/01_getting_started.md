@@ -6,6 +6,8 @@ It's possible to get a more controlled environment by using a solution such as [
 
 T> The completed configuration is available at [GitHub](https://github.com/survivejs-demos/webpack-demo).
 
+{pagebreak}
+
 ## Setting Up the Project
 
 To get a starting point, you should create a directory for the project and set up a *package.json* there. npm uses that to manage project dependencies. Here are the basic commands:
