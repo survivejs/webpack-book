@@ -187,6 +187,10 @@ $ inspectpack --action=duplicates --bundle=bundle.js
 
 {pagebreak}
 
+### Jarvis
+
+[Jarvis](https://www.npmjs.com/package/webpack-jarvis) is a user interface that has been designed to show all information relevant to your webpack build. For example, it shows the amount of treeshakeable modules in the project and how well your assets perform against different connection types.
+
 ### webpack-runtime-analyzer
 
 [webpack-runtime-analyzer](https://www.npmjs.com/package/webpack-runtime-analyzer) gives real-time analysis over webpack bundles. You can see bundle composition in multiple formats through the user interface, bundle sizes, and module details. It combines features of many tools above into a single one.
