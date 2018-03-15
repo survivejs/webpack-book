@@ -14,11 +14,11 @@ If you use the limit option, you need to install both *url-loader* and *file-loa
 
 In case the `limit` option is used, *url-loader* passes possible additional options to *file-loader* making it possible to configure its behavior further.
 
-To load *.jpg*, *.png*, and *.svg* files while inlining files below 25kB, you would have to set up a loader:
+To load *.jpg* and *.png* files while inlining files below 25kB, you would have to set up a loader:
 
 ```javascript
 {
-  test: /\.(jpg|png|svg)$/,
+  test: /\.(jpg|png)$/,
   use: {
     loader: "url-loader",
     options: {
@@ -36,7 +36,7 @@ If you want to skip inlining altogether, you can use *file-loader* directly. The
 
 ```javascript
 {
-  test: /\.(jpg|png|svg)$/,
+  test: /\.(jpg|png)$/,
   use: {
     loader: "file-loader",
     options: {
@@ -67,7 +67,7 @@ exports.loadImages = ({ include, exclude, options } = {}) => ({
   module: {
     rules: [
       {
-        test: /\.(png|jpg|svg)$/,
+        test: /\.(png|jpg)$/,
         include,
         exclude,
         use: {
