@@ -8,7 +8,7 @@ Webpack provides a means to generate a separate CSS bundles using [ExtractTextPl
 
 Due to this process, `ExtractTextPlugin` comes with overhead during the compilation phase. It doesn't work with Hot Module Replacement (HMR) by design. Given the plugin is used only for production, that is not a problem.
 
-T> [css-hot-loader](https://www.npmjs.com/package/css-hot-loader) can be used with `ExtractTextPlugin` to enable HMR.
+T> [css-hot-loader](https://www.npmjs.com/package/css-hot-loader) and [extracted-loader](https://www.npmjs.com/package/extracted-loader) can be used with `ExtractTextPlugin` to enable HMR.
 
 W> It can be potentially dangerous to use inline styles within JavaScript in production as it represents an attack vector. **Critical path rendering** embraces the idea and inlines the critical CSS to the initial HTML payload improving the perceived performance of the site. In limited contexts inlining a small amount of CSS can be a viable option to speed up the initial load (fewer requests).
 
