@@ -57,10 +57,9 @@ Even though npm CLI wasn't primarily designed to be used as a task runner, it wo
 
 ```json
 "scripts": {
-  "stats": "webpack --env production --json > stats.json",
   "start": "webpack-dev-server --env development",
-  "deploy": "gh-pages -d build",
-  "build": "webpack --env production"
+  "build": "webpack --env production",
+  "build:stats": "webpack --env production --json > stats.json"
 },
 ```
 
