@@ -6,17 +6,11 @@ For this reason, there are multiple strategies on how to load them. You could lo
 
 The popularity of Node and [npm](https://www.npmjs.com/), its package manager, provide more context. Before npm became popular, it was hard to consume dependencies. There was a period when people developed frontend specific package managers, but npm won in the end. Now dependency management is more comfortable than before, although there are still challenges to overcome.
 
-## Task Runners and Bundlers
+## Task Runners
 
 Historically speaking, there have been many build tools. *Make* is perhaps the best known, and it's still a viable option. Specialized *task runners*, such as Grunt and Gulp were created particularly with JavaScript developers in mind. Plugins available through npm made both task runners powerful and extendable. It's possible to use even npm `scripts` as a task runner. That's common, particularly with webpack.
 
-Task runners are great tools on a high level. They allow you to perform operations in a cross-platform manner. The problems begin when you need to splice various assets together and produce bundles. *bundlers*, such as Browserify, Brunch, or webpack, exist for this reason.
-
-{pagebreak}
-
-For a while, [RequireJS](http://requirejs.org/) was popular. The idea was to provide an asynchronous module definition and build on top of that. The format, AMD, is covered in greater detail later in this chapter. Fortunately, the standards have caught up, and RequireJS seems more like a curiosity now.
-
-## Make
+### Make
 
 [Make](https://en.wikipedia.org/wiki/Make_%28software%29) goes way back, as it was initially released in 1977. Even though it's an old tool, it has remained relevant. Make allows you to write separate tasks for various purposes. For instance, you could have different tasks for creating a production build, minifying your JavaScript or running tests. You can find the same idea in many other tools.
 
@@ -55,40 +49,7 @@ clean:
 
 With Make, you model your tasks using Make-specific syntax and terminal commands making it possible to integrate with webpack.
 
-## RequireJS
-
-[RequireJS](http://requirejs.org/) was perhaps the first script loader that became genuinely popular. It gave the first proper look at what modular JavaScript on the web could be. Its greatest attraction was AMD. It introduced a `define` wrapper:
-
-```javascript
-define(["./MyModule.js"], function (MyModule) {
-  return function() {}; // Export at module root
-});
-
-// or
-define(["./MyModule.js"], function (MyModule) {
-  return {
-    hello: function() {...}, // Export as a module function
-  };
-});
-```
-
-{pagebreak}
-
-Incidentally, it's possible to use `require` within the wrapper:
-
-```javascript
-define(["require"], function (require) {
-  var MyModule = require("./MyModule.js");
-
-  return function() {...};
-});
-```
-
-This latter approach eliminates a part of the clutter. You still end up with code that feels redundant. ES2015 and other standards solve this.
-
-T> Jamund Ferguson has written an excellent blog series on how to port from [RequireJS to webpack](https://gist.github.com/xjamundx/b1c800e9282e16a6a18e).
-
-## npm `scripts` as a Task Runner
+### npm `scripts` as a Task Runner
 
 Even though npm CLI wasn't primarily designed to be used as a task runner, it works as such thanks to *package.json* `scripts` field. Consider the example below:
 
@@ -107,7 +68,7 @@ These scripts can be listed using `npm run` and then executed using `npm run <sc
 
 Instead of `rm -rf`, you likely want to use utilities such as [rimraf](https://www.npmjs.com/package/rimraf) and so on. It's possible to invoke other tasks runners here to hide the fact that you are using one. This way you can refactor your tooling while keeping the interface as the same.
 
-## Grunt
+### Grunt
 
 ![Grunt](images/grunt.png)
 
@@ -149,7 +110,7 @@ Taken too far, this can get problematic. It can become hard to understand what's
 
 T> [grunt-webpack](https://www.npmjs.com/package/grunt-webpack) plugin allows you to use webpack in a Grunt environment while you leave the heavy lifting to webpack.
 
-## Gulp
+### Gulp
 
 ![Gulp](images/gulp.png)
 
@@ -198,9 +159,48 @@ Given the configuration is code, you can always hack it if you run into troubles
 
 T> [webpack-stream](https://www.npmjs.com/package/webpack-stream) allows you to use webpack in a Gulp environment.
 
+## Script Loaders
+
+For a while, [RequireJS](http://requirejs.org/), a script loader, was popular. The idea was to provide an asynchronous module definition and build on top of that. Fortunately, the standards have caught up, and RequireJS seems more like a curiosity now.
+
+### RequireJS
+
+[RequireJS](http://requirejs.org/) was perhaps the first script loader that became genuinely popular. It gave the first proper look at what modular JavaScript on the web could be. Its greatest attraction was AMD. It introduced a `define` wrapper:
+
+```javascript
+define(["./MyModule.js"], function (MyModule) {
+  return function() {}; // Export at module root
+});
+
+// or
+define(["./MyModule.js"], function (MyModule) {
+  return {
+    hello: function() {...}, // Export as a module function
+  };
+});
+```
+
 {pagebreak}
 
-## Browserify
+Incidentally, it's possible to use `require` within the wrapper:
+
+```javascript
+define(["require"], function (require) {
+  var MyModule = require("./MyModule.js");
+
+  return function() {...};
+});
+```
+
+This latter approach eliminates a part of the clutter. You still end up with code that feels redundant. ES2015 and other standards solve this.
+
+T> Jamund Ferguson has written an excellent blog series on how to port from [RequireJS to webpack](https://gist.github.com/xjamundx/b1c800e9282e16a6a18e).
+
+## Bundlers
+
+Task runners are great tools on a high level. They allow you to perform operations in a cross-platform manner. The problems begin when you need to splice various assets together and produce bundles. *bundlers*, such as Browserify, Brunch, or webpack, exist for this reason and they operate on a lower level of abstraction. Instead of operating on files, they operate on modules and assets.
+
+### Browserify
 
 ![Browserify](images/browserify.png)
 
@@ -214,13 +214,13 @@ T> [Splittable](https://www.npmjs.com/package/splittable) is a Browserify wrappe
 
 T> [ify-loader](https://www.npmjs.com/package/ify-loader) and [transform-loader](https://www.npmjs.com/package/transform-loader) allow you to use Browserify transforms with webpack.
 
-## JSPM
+### JSPM
 
 ![JSPM](images/jspm.png)
 
 Using [JSPM](http://jspm.io/) is entirely different than previous tools. It comes with a command line tool of its own that is used to install new packages to the project, create a production bundle, and so on. It supports [SystemJS plugins](https://github.com/systemjs/systemjs#plugins) that allow you to load various formats to your project.
 
-## Brunch
+### Brunch
 
 ![Brunch](images/brunch.png)
 
@@ -252,9 +252,15 @@ module.exports = {
 
 Brunch comes with commands like `brunch new`, `brunch watch --server`, and `brunch build --production`. It contains a lot out of the box and can be extended using plugins.
 
-T> There is an experimental [Hot Module Reloading runtime](https://www.npmjs.com/package/hmr-brunch) for Brunch.
+T> There is an experimental [Hot Module Replacement runtime](https://www.npmjs.com/package/hmr-brunch) for Brunch.
 
-## Webpack
+### Parcel
+
+![Parcel](images/parcel.png)
+
+[Parcel](https://parceljs.org/) is a performant bundler, that unlike its predecessors, doesn't require configuration. The *zero configuration* approach has made it popular within the community. The idea is that you set up an *index.html* and Parcel will begin the bundling process based on that. It supports Hot Module Replacement out of the box.
+
+### Webpack
 
 ![webpack](images/webpack.png)
 
