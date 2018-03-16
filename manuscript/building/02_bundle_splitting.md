@@ -39,15 +39,15 @@ leanpub-end-insert
 Execute `npm run build` to get a baseline build. You should end up with something as below:
 
 ```bash
-Hash: 436945c5084fdcad74a6
-Version: webpack 4.0.1
-Time: 3061ms
-Built at: 3/1/2018 10:16:36 AM
+Hash: 80f9bb6fc04c54949644
+Version: webpack 4.1.1
+Time: 3276ms
+Built at: 3/16/2018 4:59:25 PM
        Asset       Size  Chunks             Chunk Names
 leanpub-start-insert
-     main.js     97 KiB       0  [emitted]  main
+     main.js   97.5 KiB       0  [emitted]  main
 leanpub-end-insert
-    main.css   3.52 KiB       0  [emitted]  main
+    main.css   3.49 KiB       0  [emitted]  main
  main.js.map    240 KiB       0  [emitted]  main
 main.css.map   85 bytes       0  [emitted]  main
   index.html  220 bytes          [emitted]
@@ -81,25 +81,25 @@ leanpub-end-insert
 If you try to generate a build now (`npm run build`), you should see something along this:
 
 ```bash
-Hash: 215c041bec0feb9efbda
-Version: webpack 4.0.1
-Time: 1542ms
-Built at: 3/1/2018 10:20:25 AM
-         Asset       Size  Chunks             Chunk Names
+Hash: 6c499f10237fdbb07378
+Version: webpack 4.1.1
+Time: 3172ms
+Built at: 3/16/2018 5:00:03 PM
+               Asset       Size  Chunks             Chunk Names
 leanpub-start-insert
-     vendor.js   96.3 KiB       0  [emitted]  vendor
+     vendors~main.js   96.8 KiB       0  [emitted]  vendors~main
 leanpub-end-insert
-       main.js   1.35 KiB       1  [emitted]  main
-      main.css   1.29 KiB       1  [emitted]  main
+             main.js   1.35 KiB       1  [emitted]  main
+            main.css   1.27 KiB       1  [emitted]  main
 leanpub-start-insert
-    vendor.css   2.26 KiB       0  [emitted]  vendor
- vendor.js.map    235 KiB       0  [emitted]  vendor
-vendor.css.map   87 bytes       0  [emitted]  vendor
+    vendors~main.css   2.27 KiB       0  [emitted]  vendors~main
+ vendors~main.js.map    235 KiB       0  [emitted]  vendors~main
+vendors~main.css.map   93 bytes       0  [emitted]  vendors~main
 leanpub-end-insert
-   main.js.map   7.11 KiB       1  [emitted]  main
-  main.css.map   85 bytes       1  [emitted]  main
-    index.html  317 bytes          [emitted]
-Entrypoint main = vendor.js vendor.css vendor.js.map ...
+         main.js.map   7.11 KiB       1  [emitted]  main
+        main.css.map   85 bytes       1  [emitted]  main
+          index.html  329 bytes          [emitted]
+Entrypoint main = vendors~main.js vendors~main.css ...
 ...
 ```
 
