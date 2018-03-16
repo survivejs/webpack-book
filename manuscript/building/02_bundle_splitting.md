@@ -107,6 +107,8 @@ Now the bundles look the way they should. The image below illustrates the curren
 
 ![App and vendor bundles after applying configuration](images/bundle_02.png)
 
+{pagebreak}
+
 ## Controlling Bundle Splitting
 
 The configuration above can be rewritten with an explicit test against *node_modules* as below:
