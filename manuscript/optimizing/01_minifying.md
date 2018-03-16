@@ -27,12 +27,11 @@ To attach it to the configuration, define a part for it first:
 **webpack.parts.js**
 
 ```javascript
-...
 const UglifyWebpackPlugin = require("uglifyjs-webpack-plugin");
 
 exports.minifyJavaScript = () => ({
   optimization: {
-    minimizer: [new UglifyWebpackPlugin()],
+    minimizer: [new UglifyWebpackPlugin({ sourceMap: true })],
   },
 });
 ```
@@ -110,7 +109,6 @@ Like for JavaScript, you can wrap the idea in a configuration part:
 **webpack.parts.js**
 
 ```javascript
-...
 const OptimizeCSSAssetsPlugin = require(
   "optimize-css-assets-webpack-plugin"
 );
@@ -158,21 +156,20 @@ leanpub-end-insert
 If you build the project now (`npm run build`), you should notice that CSS has become smaller as it's missing comments:
 
 ```bash
-Hash: bdc71f42a302af2a3e93
-Version: webpack 4.0.1
-Time: 2723ms
-Built at: 3/1/2018 11:54:46 AM
-         Asset       Size  Chunks             Chunk Names
-          0.js  126 bytes       0  [emitted]
-     vendor.js   96.2 KiB       1  [emitted]  vendor
-       main.js   2.16 KiB       2  [emitted]  main
+Hash: f51ecf99e0da4db99834
+Version: webpack 4.1.1
+Time: 3125ms
+Built at: 3/16/2018 5:32:55 PM
+           Asset       Size  Chunks             Chunk Names
+      chunk.0.js  162 bytes       0  [emitted]
+      chunk.1.js   96.8 KiB       1  [emitted]  vendors~main
+         main.js   2.19 KiB       2  [emitted]  main
 leanpub-start-insert
-      main.css   1.25 KiB       2  [emitted]  main
-    vendor.css   1.37 KiB       1  [emitted]  vendor
+        main.css    1.2 KiB       2  [emitted]  main
+vendors~main.css   1.32 KiB       1  [emitted]  vendors~main
 leanpub-end-insert
-vendor.css.map   87 bytes       1  [emitted]  vendor
-  main.css.map   85 bytes       2  [emitted]  main
-    index.html  317 bytes          [emitted]
+  chunk.0.js.map  204 bytes       0  [emitted]
+  chunk.1.js.map    235 KiB       1  [emitted]  vendors~main
 ...
 ```
 
