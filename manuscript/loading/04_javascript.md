@@ -79,17 +79,6 @@ Adjust as below:
 **webpack.config.js**
 
 ```javascript
-leanpub-start-insert
-const path = require("path");
-leanpub-end-insert
-...
-
-leanpub-start-insert
-const PATHS = {
-  app: path.join(__dirname, "src"),
-};
-leanpub-end-insert
-
 const commonConfig = merge([
   ...
 leanpub-start-insert
