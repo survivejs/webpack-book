@@ -143,13 +143,6 @@ leanpub-end-insert
              main.js    2.2 KiB       2  [emitted]  main
             main.css   1.27 KiB       2  [emitted]  main
     vendors~main.css   2.27 KiB       1  [emitted]  vendors~main
-     vendors~main.js   96.8 KiB       1  [emitted]  vendors~main
- vendors~main.js.map    235 KiB       1  [emitted]  vendors~main
-vendors~main.css.map   93 bytes       1  [emitted]  vendors~main
-         main.js.map   11.1 KiB       2  [emitted]  main
-        main.css.map   85 bytes       2  [emitted]  main
-          index.html  329 bytes          [emitted]
-Entrypoint main = vendors~main.js vendors~main.css ...
 ...
 ```
 
@@ -160,6 +153,8 @@ T> If you want to adjust the name of the chunk, set `output.chunkFilename`. For 
 T> [bundle-loader](https://www.npmjs.com/package/bundle-loader) gives similar results, but through a loader interface. It supports bundle naming through its `name` option.
 
 T> The *Dynamic Loading* chapter covers other techniques that come in handy when you have to deal with more complicated splits.
+
+{pagebreak}
 
 ## Code Splitting in React
 
