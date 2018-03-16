@@ -43,7 +43,7 @@ If you implement configuration like above without implementing the client interf
 
 The message tells that even though the HMR interface notified the client portion of the code of a hot update, nothing was done about it and this is something to fix next.
 
-T> The setup assumes you have enabled `NamedModulesPlugin`. See the *Adding Hashes to Filenames* chapter for further details.
+T> The setup assumes you have enabled `webpack.NamedModulesPlugin()`. If you run webpack in `development` mode, it will be on by default.
 
 W> *webpack-dev-server* can be picky about paths. Webpack [issue #675](https://github.com/webpack/webpack/issues/675) discusses the problem in more detail.
 
