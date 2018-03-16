@@ -31,18 +31,15 @@ To connect the loader with `ExtractTextPlugin`, hook it up as follows:
 
 ```javascript
 const productionConfig = merge([
-leanpub-start-delete
   parts.extractCSS({
+leanpub-start-delete
     use: "css-loader",
-  }),
 leanpub-end-delete
 leanpub-start-insert
-const productionConfig = merge([
-  parts.extractCSS({
     use: ["css-loader", parts.autoprefix()],
-  }),
-]);
 leanpub-end-insert
+  }),
+  ...
 ]);
 ```
 
@@ -55,6 +52,7 @@ To confirm that the setup works, we have to add something to autoprefix. Adjust 
 
 leanpub-start-insert
 .pure-button {
+  -webkit-border-radius: 1em;
   border-radius: 1em;
 }
 leanpub-end-insert
@@ -76,19 +74,19 @@ Last 2 versions # Or last two versions
 IE 8 # Or IE 8
 ```
 
-If you build the application now (`npm run build`) and examine the built CSS, you should be able to find a declaration there:
+If you build the application now (`npm run build`) and examine the built CSS, you should be able to find a declaration there without the webkit portion:
 
 ```css
 ...
 
 leanpub-start-insert
 .pure-button {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  border-radius: 1em;
 }
 leanpub-end-insert
 ```
+
+*autoprefixer* is able to **remove** unnecessary rules and also add rules which are required based on the browser definition.
 
 ## Conclusion
 

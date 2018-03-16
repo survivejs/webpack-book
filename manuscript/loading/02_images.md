@@ -117,7 +117,6 @@ leanpub-start-insert
   background-repeat: no-repeat;
   background-position: center;
 leanpub-end-insert
-  display: flex;
 }
 ```
 
