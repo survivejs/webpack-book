@@ -47,11 +47,11 @@ You can display the exact path of the executables using `npm bin`. Most likely i
 After running, you should see a version, a link to the command line interface guide and an extensive list of options. Most aren't used in this project, but it's good to know that this tool is packed with functionality if nothing else.
 
 ```bash
-webpack-demo $ node_modules/.bin/webpack
+$ node_modules/.bin/webpack
 Hash: 6736210d3313db05db58
-Version: webpack 4.0.1
-Time: 42ms
-Built at: 2/28/2018 12:14:44 PM
+Version: webpack 4.1.1
+Time: 88ms
+Built at: 3/16/2018 3:35:07 PM
 
 WARNING in configuration
 The 'mode' option has not been set. Set 'mode' option to 'development' or 'production' to enable defaults for this environment.
@@ -145,10 +145,10 @@ T> **Trailing commas** are used in the book examples on purpose as it gives clea
 If you execute `node_modules/.bin/webpack --mode production`, you should see output:
 
 ```bash
-Hash: fe4992f1e526b28ecab7
-Version: webpack 4.0.1
-Time: 549ms
-Built at: 2/28/2018 12:35:48 PM
+Hash: aafe36ba210b0fbb7073
+Version: webpack 4.1.1
+Time: 338ms
+Built at: 3/16/2018 3:40:14 PM
      Asset       Size  Chunks             Chunk Names
    main.js  679 bytes       0  [emitted]  main
 index.html  181 bytes          [emitted]
@@ -166,9 +166,9 @@ Child html-webpack-plugin for "index.html":
 
 The output tells a lot:
 
-* `Hash: fe4992f1e526b28ecab7` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. Hashing is discussed in detail in the *Adding Hashes to Filenames* chapter.
-* `Version: webpack 4.0.1` - Webpack version.
-* `Time: 549ms` - Time it took to execute the build.
+* `Hash: aafe36ba210b0fbb7073` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. Hashing is discussed in detail in the *Adding Hashes to Filenames* chapter.
+* `Version: webpack 4.1.1` - Webpack version.
+* `Time: 338ms` - Time it took to execute the build.
 * `main.js  679 bytes       0  [emitted]  main` - Name of the generated asset, size, the IDs of the **chunks** into which it's related, status information telling how it was generated, the name of the chunk.
 * `index.html  181 bytes          [emitted]` - Another generated asset that was emitted by the process.
 * `[0] ./src/index.js + 1 modules 219 bytes {0} [built]` - The ID of the entry asset, name, size, entry chunk ID, the way it was generated.
