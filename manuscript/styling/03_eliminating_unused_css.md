@@ -55,13 +55,13 @@ If you run the application (`npm start`), the "Hello world" should look like a b
 Building the application (`npm run build`) should yield output:
 
 ```bash
-Hash: 157cae197acf7ebd3a87
-Version: webpack 4.0.1
-Time: 1047ms
-Built at: 2/28/2018 4:23:29 PM
+Hash: 36bff4e71a3f746d46fa
+Version: webpack 4.1.1
+Time: 739ms
+Built at: 3/16/2018 4:26:49 PM
      Asset       Size  Chunks             Chunk Names
    main.js  747 bytes       0  [emitted]  main
-  main.css   16.5 KiB       0  [emitted]  main
+  main.css   16.1 KiB       0  [emitted]  main
 index.html  220 bytes          [emitted]
 ...
 ```
@@ -100,10 +100,17 @@ Next, the part has to be connected with the configuration. It's essential the pl
 ```javascript
 ...
 leanpub-start-insert
+const path = require("path");
 const glob = require("glob");
 leanpub-end-insert
 
 const parts = require("./webpack.parts");
+
+leanpub-start-insert
+const PATHS = {
+  app: path.join(__dirname, "src"),
+};
+leanpub-end-insert
 
 ...
 
@@ -124,13 +131,13 @@ W> The order matters. CSS extraction has to happen before purifying.
 If you execute `npm run build` now, you should see something:
 
 ```bash
-Hash: 157cae197acf7ebd3a87
-Version: webpack 4.0.1
-Time: 1410ms
-Built at: 2/28/2018 4:25:30 PM
+Hash: 36bff4e71a3f746d46fa
+Version: webpack 4.1.1
+Time: 695ms
+Built at: 3/16/2018 4:29:54 PM
      Asset       Size  Chunks             Chunk Names
    main.js  747 bytes       0  [emitted]  main
-  main.css   2.32 KiB       0  [emitted]  main
+  main.css   2.07 KiB       0  [emitted]  main
 index.html  220 bytes          [emitted]
 ...
 ```
