@@ -109,20 +109,21 @@ W> The hashes have been sliced to make the output fit better in the book. In pra
 If you generate a build now (`npm run build`), you should see something:
 
 ```bash
-Hash: 3d74e35d7f69c1738a2b
-Version: webpack 4.0.1
-Time: 2556ms
-Built at: 3/1/2018 3:00:46 PM
-                  Asset       Size  Chunks             Chunk Names
-          0.08477a8d.js  126 bytes       0  [emitted]
-     vendor.3b5f19b6.js   96.2 KiB       1  [emitted]  vendor
-       main.ae19a118.js   2.21 KiB       2  [emitted]  main
-      main.d5d711b1.css   1.26 KiB       2  [emitted]  main
-    vendor.3dd53418.css   1.38 KiB       1  [emitted]  vendor
-vendor.3dd53418.css.map   96 bytes       1  [emitted]  vendor
-  main.d5d711b1.css.map   94 bytes       2  [emitted]  main
-             index.html  353 bytes          [emitted]
-Entrypoint main = vendor.3b5f19b6.js vendor.3dd53418.css ...
+Hash: f492af56bc3de2483089
+Version: webpack 4.1.1
+Time: 3367ms
+Built at: 3/16/2018 5:56:13 PM
+                       Asset       Size  Chunks             Chunk Names
+               0.08477a8d.js  165 bytes       0  [emitted]
+    vendors~main.d2f18460.js   96.8 KiB       1  [emitted]  vendors~main
+            main.81d930ed.js   2.25 KiB       2  [emitted]  main
+           main.55241f81.css    1.2 KiB       2  [emitted]  main
+   vendors~main.3dd53418.css   1.32 KiB       1  [emitted]  vendors~main
+           0.08477a8d.js.map  207 bytes       0  [emitted]
+vendors~main.d2f18460.js.map    235 KiB       1  [emitted]  vendors~main
+        main.81d930ed.js.map   11.4 KiB       2  [emitted]  main
+                  index.html  365 bytes          [emitted]
+Entrypoint main = vendors~main.d2f18460.js ...
 ...
 ```
 
@@ -165,20 +166,20 @@ leanpub-end-insert
 As you can see in the build output, the difference is negligible:
 
 ```bash
-Hash: 7c3f5a49e2cb31e1072e
-Version: webpack 4.0.1
-Time: 2628ms
-Built at: 3/1/2018 3:02:18 PM
-                  Asset       Size  Chunks             Chunk Names
-          0.554ab1b6.js  141 bytes       0  [emitted]
-     vendor.369742c8.js   97.6 KiB       1  [emitted]  vendor
-       main.b1814756.js   2.38 KiB       2  [emitted]  main
-      main.d5d711b1.css   1.26 KiB       2  [emitted]  main
-    vendor.3dd53418.css   1.38 KiB       1  [emitted]  vendor
-vendor.3dd53418.css.map   96 bytes       1  [emitted]  vendor
-  main.d5d711b1.css.map   94 bytes       2  [emitted]  main
-             index.html  353 bytes          [emitted]
-Entrypoint main = vendor.369742c8.js vendor.3dd53418.css ...
+Hash: 0e805e52b6ef85243486
+Version: webpack 4.1.1
+Time: 3005ms
+Built at: 3/16/2018 5:57:00 PM
+                       Asset       Size  Chunks             Chunk Names
+               0.554ab1b6.js  180 bytes       0  [emitted]
+    vendors~main.dc19f0a1.js   98.2 KiB       1  [emitted]  vendors~main
+            main.7155a3f2.js   2.43 KiB       2  [emitted]  main
+           main.55241f81.css    1.2 KiB       2  [emitted]  main
+   vendors~main.3dd53418.css   1.32 KiB       1  [emitted]  vendors~main
+           0.554ab1b6.js.map  207 bytes       0  [emitted]
+vendors~main.dc19f0a1.js.map    235 KiB       1  [emitted]  vendors~main
+        main.7155a3f2.js.map   11.4 KiB       2  [emitted]  main
+Entrypoint main = vendors~main.dc19f0a1.js ...
 ...
 ```
 
