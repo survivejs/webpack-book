@@ -149,7 +149,7 @@ const commonConfig = merge([
   {
     entry: {
       ...
-      style: glob.sync("./app/**/*.css"),
+      style: glob.sync("./src/**/*.css"),
     },
     ...
   },

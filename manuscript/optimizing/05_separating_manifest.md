@@ -34,29 +34,24 @@ The name `manifest` is used by convention. You can use any other name, and it wi
 If you build the project now (`npm run build`), you should see something:
 
 ```bash
-Hash: aef6533295e5656c0377
-Version: webpack 4.0.1
-Time: 2577ms
-Built at: 3/1/2018 3:15:20 PM
-                    Asset       Size  Chunks             Chunk Names
-      vendor.3dd53418.css   1.38 KiB       2  [emitted]  vendor
-            0.554ab1b6.js  141 bytes       0  [emitted]
-       vendor.0a4df2ff.js   97.6 KiB       2  [emitted]  vendor
-         main.9043ef51.js  680 bytes       3  [emitted]  main
-        main.d5d711b1.css   1.26 KiB       3  [emitted]  main
+Hash: 5d794c19e0b27f19afd6
+Version: webpack 4.1.1
+Time: 2937ms
+Built at: 3/16/2018 5:57:51 PM
+                       Asset       Size  Chunks             Chunk Names
+   vendors~main.3dd53418.css   1.32 KiB       2  [emitted]  vendors~main
+               0.554ab1b6.js  180 bytes       0  [emitted]
+    vendors~main.d2adbb61.js   98.2 KiB       2  [emitted]  vendors~main
+            main.fc6ec0c8.js  729 bytes       3  [emitted]  main
+           main.55241f81.css    1.2 KiB       3  [emitted]  main
 leanpub-start-insert
-     manifest.3fd9a1eb.js   1.77 KiB       1  [emitted]  manifest
-    manifest.d41d8cd9.css   64 bytes       1  [emitted]  manifest
-manifest.d41d8cd9.css.map   98 bytes       1  [emitted]  manifest
+        manifest.3fd9a1eb.js   1.82 KiB       1  [emitted]  manifest
+       manifest.d41d8cd9.css    0 bytes       1  [emitted]  manifest
 leanpub-end-insert
-  vendor.3dd53418.css.map   96 bytes       2  [emitted]  vendor
-    main.d5d711b1.css.map   94 bytes       3  [emitted]  main
-               index.html  472 bytes          [emitted]
-Entrypoint main = manifest.3fd9a1eb.js manifest.d41d8cd9.css ...
-[./src/index.js] ./src/index.js + 2 modules 807 bytes {3} [built]
-       | ./src/index.js 193 bytes [built]
-       | ./src/component.js 443 bytes [built]
-       | ./src/shake.js 151 bytes [built]
+           0.554ab1b6.js.map  207 bytes       0  [emitted]
+leanpub-start-insert
+    manifest.3fd9a1eb.js.map     10 KiB       1  [emitted]  manifest
+leanpub-end-insert
 ...
 ```
 
@@ -64,7 +59,7 @@ This change gave a separate file that contains the manifest. In the output above
 
 Plugins, such as [inline-manifest-webpack-plugin](https://www.npmjs.com/package/inline-manifest-webpack-plugin) and [html-webpack-inline-chunk-plugin](https://www.npmjs.com/package/html-webpack-inline-chunk-plugin), [assets-webpack-plugin](https://www.npmjs.com/package/assets-webpack-plugin), work with `HtmlWebpackPlugin` and allow you to write the manifest within *index.html* to avoid a request.
 
-Try adjusting *app/index.js* and see how the hashes change. This time around it should **not** invalidate the vendor bundle, and only the manifest and app bundle names should become different.
+Try adjusting *src/index.js* and see how the hashes change. This time around it should **not** invalidate the vendor bundle, and only the manifest and app bundle names should become different.
 
 T> To get a better idea of the manifest contents, run the build in development mode or pass `none` to mode through configuration. You should see something familiar there.
 
@@ -106,7 +101,7 @@ W> If you change the way webpack handles module IDs (i.e., remove `HashedModuleI
 
 ## Conclusion
 
-The project has basic caching behavior now. If you try to modify *app.js* or *component.js*, the vendor bundle should remain the same.
+The project has basic caching behavior now. If you try to modify *index.js* or *component.js*, the vendor bundle should remain the same.
 
 To recap:
 

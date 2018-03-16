@@ -22,7 +22,7 @@ Instead of pushing the loader definition to webpack configuration, you can use i
 
 A worker has to do two things: listen to messages and respond. Between those two actions, it can perform a computation. In this case, you accept text data, append it to itself, and send the result:
 
-**app/worker.js**
+**src/worker.js**
 
 ```javascript
 self.onmessage = ({ data: { text } }) => {
@@ -34,7 +34,7 @@ self.onmessage = ({ data: { text } }) => {
 
 The host has to instantiate the worker and then communicate with it. The idea is almost the same except the host has the control:
 
-**app/component.js**
+**src/component.js**
 
 ```javascript
 import Worker from "worker-loader!./worker";

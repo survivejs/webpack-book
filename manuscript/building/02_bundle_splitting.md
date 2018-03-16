@@ -10,7 +10,7 @@ T> To invalidate the bundles correctly, you have to attach hashes to the generat
 
 With bundle splitting, you can push the vendor dependencies to a bundle of their own and benefit from client level caching. The process can be done in such a way that the whole size of the application remains the same. Given there are more requests to perform, there's a slight overhead. But the benefit of caching makes up for this cost.
 
-To give you a quick example, instead of having *app.js* (100 kB), you could end up with *app.js* (10 kB) and *vendor.js* (90 kB). Now changes made to the application are cheap for the clients that have already used the application earlier.
+To give you a quick example, instead of having *main.js* (100 kB), you could end up with *main.js* (10 kB) and *vendor.js* (90 kB). Now changes made to the application are cheap for the clients that have already used the application earlier.
 
 Caching comes with its problems. One of those is cache invalidation. A potential approach related to that is discussed in the *Adding Hashes to Filenames* chapter.
 
@@ -55,7 +55,7 @@ Entrypoint main = main.js main.css main.js.map main.css.map
 ...
 ```
 
-As you can see, *app.js* is big. That is something to fix next.
+As you can see, *main.js* is big. That is something to fix next.
 
 ## Setting Up a `vendor` Bundle
 
@@ -105,7 +105,7 @@ Entrypoint main = vendors~main.js vendors~main.css ...
 
 Now the bundles look the way they should. The image below illustrates the current situation.
 
-![App and vendor bundles after applying configuration](images/bundle_02.png)
+![Main and vendor bundles after applying configuration](images/bundle_02.png)
 
 {pagebreak}
 
@@ -188,7 +188,7 @@ In the example above, you used different types of webpack chunks. Webpack treats
 
 ## Conclusion
 
-The situation is better now compared to the earlier. Note how small `app` bundle compared to the `vendor` bundle. To benefit from this split, you set up caching in the next part of this book in the *Adding Hashes to Filenames* chapter.
+The situation is better now compared to the earlier. Note how small `main` bundle compared to the `vendor` bundle. To benefit from this split, you set up caching in the next part of this book in the *Adding Hashes to Filenames* chapter.
 
 To recap:
 
