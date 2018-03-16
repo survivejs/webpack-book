@@ -34,24 +34,29 @@ The name `manifest` is used by convention. You can use any other name, and it wi
 If you build the project now (`npm run build`), you should see something:
 
 ```bash
-Hash: 5d794c19e0b27f19afd6
+Hash: 2e1c61341de0fd7e0e5c
 Version: webpack 4.1.1
-Time: 2937ms
-Built at: 3/16/2018 5:57:51 PM
-                       Asset       Size  Chunks             Chunk Names
-   vendors~main.3dd53418.css   1.32 KiB       2  [emitted]  vendors~main
-               0.554ab1b6.js  180 bytes       0  [emitted]
-    vendors~main.d2adbb61.js   98.2 KiB       2  [emitted]  vendors~main
-            main.fc6ec0c8.js  729 bytes       3  [emitted]  main
-           main.55241f81.css    1.2 KiB       3  [emitted]  main
+Time: 3347ms
+Built at: 3/16/2018 6:24:51 PM
+                   Asset       Size  Chunks             Chunk Names
 leanpub-start-insert
-        manifest.3fd9a1eb.js   1.82 KiB       1  [emitted]  manifest
-       manifest.d41d8cd9.css    0 bytes       1  [emitted]  manifest
+       manifest.d41d.css    0 bytes       1  [emitted]  manifest
 leanpub-end-insert
-           0.554ab1b6.js.map  207 bytes       0  [emitted]
+               0.73a8.js  160 bytes       0  [emitted]
+    vendors~main.3af5.js   96.8 KiB       2  [emitted]  vendors~main
+            main.8da2.js  546 bytes       3  [emitted]  main
+           main.5524.css    1.2 KiB       3  [emitted]  main
+   vendors~main.3dd5.css   1.32 KiB       2  [emitted]  vendors~main
 leanpub-start-insert
-    manifest.3fd9a1eb.js.map     10 KiB       1  [emitted]  manifest
+        manifest.8cac.js   1.81 KiB       1  [emitted]  manifest
 leanpub-end-insert
+           0.73a8.js.map  203 bytes       0  [emitted]
+leanpub-start-insert
+    manifest.8cac.js.map     10 KiB       1  [emitted]  manifest
+leanpub-end-insert
+vendors~main.3af5.js.map    235 KiB       2  [emitted]  vendors~main
+        main.8da2.js.map   1.45 KiB       3  [emitted]  main
+              index.html  460 bytes          [emitted]
 ...
 ```
 
