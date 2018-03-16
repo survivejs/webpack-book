@@ -21,7 +21,7 @@ export { shake, bake };
 
 To make sure you use a part of the code, alter the application entry point:
 
-**app/index.js**
+**src/index.js**
 
 ```javascript
 ...
