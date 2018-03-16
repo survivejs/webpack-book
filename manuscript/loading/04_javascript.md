@@ -122,7 +122,7 @@ Adjust the target definition as you like. As long as you follow [browserslist](h
 }
 ```
 
-If you execute `npm run build --devtool false --mode development` now and examine *dist/main.js*, you will see something different based on your `.browserslistrc` file.
+If you execute `npm run build -- --devtool false --mode development` now and examine *dist/main.js*, you will see something different based on your `.browserslistrc` file.
 
 {pagebreak}
 
