@@ -77,6 +77,8 @@ const combineContexts = (...contexts) => {
 };
 ```
 
+{pagebreak}
+
 ## Dealing with Dynamic Paths
 
 Given the approaches discussed here rely on static analysis and webpack has to find the files in question, it doesn't work for every possible case. If the files you need are on another server or have to be accessed through a particular end-point, then webpack isn't enough.
