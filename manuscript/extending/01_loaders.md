@@ -128,8 +128,6 @@ But what's the point? You can pass to loaders through webpack entries. Instead o
 
 T> If you want to return `Buffer` output, set `module.exports.raw = true`. The flag overrides the default behavior which expects a string is returned.
 
-{pagebreak}
-
 ## Writing Files
 
 Loaders, like *file-loader*, emit files. Webpack provides a single method, `this.emitFile`, for this. Given *loader-runner* does not implement it, you have to mock it:
@@ -154,6 +152,8 @@ leanpub-end-insert
 );
 ```
 
+{pagebreak}
+
 To implement the essential idea of *file-loader*, you have to do two things: emit the file and return path to it. You could apply it as below:
 
 **loaders/demo-loader.js**
@@ -173,8 +173,6 @@ module.exports = function(content) {
   return `export default ${path}`;
 };
 ```
-
-{pagebreak}
 
 Webpack provides two additional `emit` methods:
 
