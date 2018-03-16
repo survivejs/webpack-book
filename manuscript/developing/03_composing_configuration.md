@@ -58,10 +58,7 @@ exports.devServer = ({ host, port } = {}) => ({
     host, // Defaults to `localhost`
     port, // Defaults to 8080
     open: true,
-    overlay: {
-      errors: true,
-      warnings: true,
-    },
+    overlay: true,
   },
 });
 ```
