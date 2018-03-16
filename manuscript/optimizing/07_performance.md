@@ -142,7 +142,7 @@ To use the function, you would call it as follows:
 dontParse({
   name: "react",
   path: path.resolve(
-    __dirname, "node_modules/react/dist/react.min.js",
+    __dirname, "node_modules/react/cjs/react.production.min.js",
   ),
 }),
 ```
