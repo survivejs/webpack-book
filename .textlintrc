@@ -68,8 +68,6 @@
         // ["ES7", "ES2016"],
 
         // Words and phrases
-        "ID", // http://stackoverflow.com/questions/1151338/id-or-id-on-user-interface
-        ["id['’]?s", "IDs"],
         ["back[- ]end(\\w*)", "backend$1"],
         ["front[- ]end(\\w*)", "frontend$1"],
         ["hot[- ]key", "hotkey"],
