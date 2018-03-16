@@ -58,10 +58,10 @@ If you execute either *npm run start* or *npm start* now, you should see somethi
 
 ℹ ｢wds｣: Project is running at http://localhost:8080/
 ℹ ｢wds｣: webpack output is served from /
-ℹ ｢wdm｣: Hash: 1a862fabf201d9556efa
-Version: webpack 4.0.1
-Time: 11685ms
-Built at: 2/28/2018 2:46:53 PM
+ℹ ｢wdm｣: Hash: eb06816060088d633767
+Version: webpack 4.1.1
+Time: 608ms
+Built at: 3/16/2018 3:44:04 PM
      Asset       Size  Chunks                    Chunk Names
    main.js    338 KiB    main  [emitted]  [big]  main
 index.html  181 bytes          [emitted]
