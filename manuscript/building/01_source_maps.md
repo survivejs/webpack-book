@@ -108,10 +108,10 @@ T> `webpack.NamedModulesPlugin` replaces number based module IDs with paths. It'
 
 ```javascript
 webpackJsonp([1, 2], {
-  "./app/index.js": function(module, exports) {
-    eval("console.log('Hello world');\n\n//////////////////\n// WEBPACK FOOTER\n// ./app/index.js\n// module id = ./app/index.js\n// module chunks = 1\n\n//# sourceURL=webpack:///./app/index.js?")
+  "./src/index.js": function(module, exports) {
+    eval("console.log('Hello world');\n\n//////////////////\n// WEBPACK FOOTER\n// ./src/index.js\n// module id = ./src/index.js\n// module chunks = 1\n\n//# sourceURL=webpack:///./src/index.js?")
   }
-}, ["./app/index.js"]);
+}, ["./src/index.js"]);
 ```
 
 ### `devtool: "cheap-eval-source-map"`
@@ -120,10 +120,10 @@ webpackJsonp([1, 2], {
 
 ```javascript
 webpackJsonp([1, 2], {
-  "./app/index.js": function(module, exports) {
+  "./src/index.js": function(module, exports) {
     eval("console.log('Hello world');//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9hcHAvaW5kZXguanMuanMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9hcHAvaW5kZXguanM/MGUwNCJdLCJzb3VyY2VzQ29udGVudCI6WyJjb25zb2xlLmxvZygnSGVsbG8gd29ybGQnKTtcblxuXG4vLy8vLy8vLy8vLy8vLy8vLy9cbi8vIFdFQlBBQ0sgRk9PVEVSXG4vLyAuL2FwcC9pbmRleC5qc1xuLy8gbW9kdWxlIGlkID0gLi9hcHAvaW5kZXguanNcbi8vIG1vZHVsZSBjaHVua3MgPSAxIl0sIm1hcHBpbmdzIjoiQUFBQSIsInNvdXJjZVJvb3QiOiIifQ==")
   }
-}, ["./app/index.js"]);
+}, ["./src/index.js"]);
 ```
 
 {pagebreak}
@@ -132,14 +132,14 @@ If you decode that base64 string, you get output containing the mapping:
 
 ```json
 {
-  "file": "./app/index.js.js",
+  "file": "./src/index.js",
   "mappings": "AAAA",
   "sourceRoot": "",
   "sources": [
-    "webpack:///./app/index.js?0e04"
+    "webpack:///./src/index.js?0e04"
   ],
   "sourcesContent": [
-    "console.log('Hello world');\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./app/index.js\n// module id = ./app/index.js\n// module chunks = 1"
+    "console.log('Hello world');\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./src/index.js\n// module id = ./src/index.js\n// module chunks = 1"
   ],
   "version": 3
 }
@@ -151,10 +151,10 @@ If you decode that base64 string, you get output containing the mapping:
 
 ```javascript
 webpackJsonp([1, 2], {
-  "./app/index.js": function(module, exports) {
+  "./src/index.js": function(module, exports) {
     eval("console.log('Hello world');//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9hcHAvaW5kZXguanMuanMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vYXBwL2luZGV4LmpzPzIwMTgiXSwic291cmNlc0NvbnRlbnQiOlsiY29uc29sZS5sb2coJ0hlbGxvIHdvcmxkJyk7XG5cblxuLy8gV0VCUEFDSyBGT09URVIgLy9cbi8vIGFwcC9pbmRleC5qcyJdLCJtYXBwaW5ncyI6IkFBQUEiLCJzb3VyY2VSb290IjoiIn0=")
   }
-}, ["./app/index.js"]);
+}, ["./src/index.js"]);
 ```
 
 {pagebreak}
@@ -163,14 +163,14 @@ Again, decoding the data reveals more:
 
 ```json
 {
-  "file": "./app/index.js.js",
+  "file": "./src/index.js",
   "mappings": "AAAA",
   "sourceRoot": "",
   "sources": [
-    "webpack:///app/index.js?2018"
+    "webpack:///src/index.js?2018"
   ],
   "sourcesContent": [
-    "console.log('Hello world');\n\n\n// WEBPACK FOOTER //\n// app/index.js"
+    "console.log('Hello world');\n\n\n// WEBPACK FOOTER //\n// src/index.js"
   ],
   "version": 3
 }
@@ -184,10 +184,10 @@ In this particular case, the difference between the options is minimal.
 
 ```javascript
 webpackJsonp([1, 2], {
-  "./app/index.js": function(module, exports) {
+  "./src/index.js": function(module, exports) {
     eval("console.log('Hello world');//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9hcHAvaW5kZXguanM/ZGFkYyJdLCJuYW1lcyI6WyJjb25zb2xlIiwibG9nIl0sIm1hcHBpbmdzIjoiQUFBQUEsUUFBUUMsR0FBUixDQUFZLGFBQVoiLCJmaWxlIjoiLi9hcHAvaW5kZXguanMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJjb25zb2xlLmxvZygnSGVsbG8gd29ybGQnKTtcblxuXG4vLyBXRUJQQUNLIEZPT1RFUiAvL1xuLy8gLi9hcHAvaW5kZXguanMiXSwic291cmNlUm9vdCI6IiJ9")
   }
-}, ["./app/index.js"]);
+}, ["./src/index.js"]);
 ```
 
 {pagebreak}
@@ -196,7 +196,7 @@ This time around there's more mapping data available for the browser:
 
 ```json
 {
-  "file": "./app/index.js.js",
+  "file": "./src/index.js",
   "mappings": "AAAAA,QAAQC,GAAR,CAAY,aAAZ",
   "names": [
     "console",
@@ -204,10 +204,10 @@ This time around there's more mapping data available for the browser:
   ],
   "sourceRoot": "",
   "sources": [
-    "webpack:///./app/index.js?dadc"
+    "webpack:///./src/index.js?dadc"
   ],
   "sourcesContent": [
-    "console.log('Hello world');\n\n\n// WEBPACK FOOTER //\n// ./app/index.js"
+    "console.log('Hello world');\n\n\n// WEBPACK FOOTER //\n// ./src/index.js"
   ],
   "version": 3
 }
@@ -229,20 +229,20 @@ Examining the `.map` file reveals the following output in this case:
 
 ```json
 {
-  "file": "app.9aff3b1eced1f089ef18.js",
+  "file": "main.9aff3b1eced1f089ef18.js",
   "mappings": "AAAA",
   "sourceRoot": "",
   "sources": [
-    "webpack:///app.9aff3b1eced1f089ef18.js"
+    "webpack:///main.9aff3b1eced1f089ef18.js"
   ],
   "sourcesContent": [
-    "webpackJsonp([1,2],{\"./app/index.js\":function(o,n){console.log(\"Hello world\")}},[\"./app/index.js\"]);\n\n\n// WEBPACK FOOTER //\n// app.9aff3b1eced1f089ef18.js"
+    "webpackJsonp([1,2],{\"./src/index.js\":function(o,n){console.log(\"Hello world\")}},[\"./src/index.js\"]);\n\n\n// WEBPACK FOOTER //\n// main.9aff3b1eced1f089ef18.js"
   ],
   "version": 3
 }
 ```
 
-The source contains `//# sourceMappingURL=app.9a...18.js.map` kind of comment at its end to map to this file.
+The source contains `//# sourceMappingURL=main.9a...18.js.map` kind of comment at its end to map to this file.
 
 {pagebreak}
 
@@ -252,11 +252,11 @@ The source contains `//# sourceMappingURL=app.9a...18.js.map` kind of comment at
 
 ```json
 {
-  "file": "app.9aff3b1eced1f089ef18.js",
+  "file": "main.9aff3b1eced1f089ef18.js",
   "mappings": "AAAA",
   "sourceRoot": "",
   "sources": [
-    "webpack:///app.9aff3b1eced1f089ef18.js"
+    "webpack:///main.9aff3b1eced1f089ef18.js"
   ],
   "version": 3
 }
@@ -278,11 +278,11 @@ T> [The official documentation](https://webpack.js.org/configuration/devtool/#de
 
 ```json
 {
-  "file": "app.9aff3b1eced1f089ef18.js",
+  "file": "main.9aff3b1eced1f089ef18.js",
   "mappings": "AAAAA,cAAc,EAAE,IAEVC,iBACA,SAAUC,EAAQC,GCHxBC,QAAQC,IAAI,kBDST",
   "names": [
     "webpackJsonp",
-    "./app/index.js",
+    "./src/index.js",
     "module",
     "exports",
     "console",
@@ -290,12 +290,12 @@ T> [The official documentation](https://webpack.js.org/configuration/devtool/#de
   ],
   "sourceRoot": "",
   "sources": [
-    "webpack:///app.9aff3b1eced1f089ef18.js",
-    "webpack:///./app/index.js"
+    "webpack:///main.9aff3b1eced1f089ef18.js",
+    "webpack:///./src/index.js"
   ],
   "sourcesContent": [
-    "webpackJsonp([1,2],{\n\n/***/ \"./app/index.js\":\n/***/ (function(module, exports) {\n\nconsole.log('Hello world');\n\n/***/ })\n\n},[\"./app/index.js\"]);\n\n\n// WEBPACK FOOTER //\n// app.9aff3b1eced1f089ef18.js",
-    "console.log('Hello world');\n\n\n// WEBPACK FOOTER //\n// ./app/index.js"
+    "webpackJsonp([1,2],{\n\n/***/ \"./src/index.js\":\n/***/ (function(module, exports) {\n\nconsole.log('Hello world');\n\n/***/ })\n\n},[\"./src/index.js\"]);\n\n\n// WEBPACK FOOTER //\n// main.9aff3b1eced1f089ef18.js",
+    "console.log('Hello world');\n\n\n// WEBPACK FOOTER //\n// ./src/index.js"
   ],
   "version": 3
 }

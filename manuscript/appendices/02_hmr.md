@@ -59,7 +59,7 @@ Webpack exposes the HMR interface through a global variable: `module.hot`. It pr
 
 The following implementation illustrates the idea against the tutorial application:
 
-**app/index.js**
+**src/index.js**
 
 ```javascript
 import component from "./component";
@@ -82,7 +82,7 @@ if (module.hot) {
 }
 ```
 
-If you refresh the browser, try to modify *app/component.js* after this change, and alter the text to something else, you should notice that the browser does not refresh at all. Instead, it should replace the DOM node while retaining the rest of the application as is.
+If you refresh the browser, try to modify *src/component.js* after this change, and alter the text to something else, you should notice that the browser does not refresh at all. Instead, it should replace the DOM node while retaining the rest of the application as is.
 
 {pagebreak}
 

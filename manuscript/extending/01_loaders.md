@@ -270,7 +270,7 @@ T> It's a good idea to validate options and rather fail hard than silently if th
 
 To get most out of loaders, you have to connect them with webpack. To achieve this, you can go through imports:
 
-**app/component.js**
+**src/component.js**
 
 ```javascript
 leanpub-start-insert
