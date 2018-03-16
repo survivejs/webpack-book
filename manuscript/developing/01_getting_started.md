@@ -33,7 +33,7 @@ Even though webpack can be installed globally (`npm install webpack -g`), it's a
 To add webpack to the project, execute:
 
 ```bash
-npm install webpack webpack-cli --save-dev # -D if you want to save typing
+npm install webpack webpack-cli --save-dev # -D to type less
 ```
 
 You should see webpack at your *package.json* `devDependencies` section after this. In addition to installing the package locally below the *node_modules* directory, npm also generates an entry for the executable.
