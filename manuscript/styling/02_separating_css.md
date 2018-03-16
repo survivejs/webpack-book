@@ -112,9 +112,9 @@ After running `npm run build`, you should see output similar to the following:
 
 ```bash
 Hash: 45a5e26cc963eb12db02
-Version: webpack 4.0.1
-Time: 764ms
-Built at: 2/28/2018 3:49:40 PM
+Version: webpack 4.1.1
+Time: 752ms
+Built at: 3/16/2018 4:24:40 PM
      Asset       Size  Chunks             Chunk Names
    main.js  700 bytes       0  [emitted]  main
   main.css   33 bytes       0  [emitted]  main
