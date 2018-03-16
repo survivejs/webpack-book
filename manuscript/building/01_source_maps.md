@@ -58,13 +58,13 @@ leanpub-end-insert
 If you build the project now (`npm run build`), you should see source maps in the output:
 
 ```bash
-Hash: abc2357ece17f871fe81
-Version: webpack 4.0.1
-Time: 1261ms
-Built at: 3/1/2018 9:56:15 AM
+Hash: b59445cb2b9ae4cea11b
+Version: webpack 4.1.1
+Time: 1347ms
+Built at: 3/16/2018 4:58:14 PM
        Asset       Size  Chunks             Chunk Names
      main.js  838 bytes       0  [emitted]  main
-    main.css   3.52 KiB       0  [emitted]  main
+    main.css   3.49 KiB       0  [emitted]  main
  main.js.map   3.75 KiB       0  [emitted]  main
 main.css.map   85 bytes       0  [emitted]  main
   index.html  220 bytes          [emitted]
