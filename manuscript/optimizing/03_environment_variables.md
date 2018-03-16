@@ -86,6 +86,8 @@ As before, encapsulate this idea to a function. Due to the way webpack replaces 
 **webpack.parts.js**
 
 ```javascript
+const webpack = require("webpack");
+
 exports.setFreeVariable = (key, value) => {
   const env = {};
   env[key] = JSON.stringify(value);
