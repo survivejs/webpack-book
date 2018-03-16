@@ -195,6 +195,12 @@ This latter approach eliminates a part of the clutter. You still end up with cod
 
 T> Jamund Ferguson has written an excellent blog series on how to port from [RequireJS to webpack](https://gist.github.com/xjamundx/b1c800e9282e16a6a18e).
 
+### JSPM
+
+![JSPM](images/jspm.png)
+
+Using [JSPM](http://jspm.io/) is entirely different than previous tools. It comes with a command line tool of its own that is used to install new packages to the project, create a production bundle, and so on. It supports [SystemJS plugins](https://github.com/systemjs/systemjs#plugins) that allow you to load various formats to your project.
+
 ## Bundlers
 
 Task runners are great tools on a high level. They allow you to perform operations in a cross-platform manner. The problems begin when you need to splice various assets together and produce bundles. *bundlers*, such as Browserify, Brunch, or webpack, exist for this reason and they operate on a lower level of abstraction. Instead of operating on files, they operate on modules and assets.
@@ -212,12 +218,6 @@ The Browserify ecosystem is composed of a lot of small modules. In this way, Bro
 T> [Splittable](https://www.npmjs.com/package/splittable) is a Browserify wrapper that allows code splitting, supports ES2015 out of the box, tree shaking, and more. [bankai](https://www.npmjs.com/package/bankai) is another option to consider.
 
 T> [ify-loader](https://www.npmjs.com/package/ify-loader) and [transform-loader](https://www.npmjs.com/package/transform-loader) allow you to use Browserify transforms with webpack.
-
-### JSPM
-
-![JSPM](images/jspm.png)
-
-Using [JSPM](http://jspm.io/) is entirely different than previous tools. It comes with a command line tool of its own that is used to install new packages to the project, create a production bundle, and so on. It supports [SystemJS plugins](https://github.com/systemjs/systemjs#plugins) that allow you to load various formats to your project.
 
 ### Parcel
 
