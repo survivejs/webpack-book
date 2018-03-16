@@ -10,6 +10,8 @@ The popularity of Node and [npm](https://www.npmjs.com/), its package manager, p
 
 Historically speaking, there have been many build tools. *Make* is perhaps the best known, and it's still a viable option. Specialized *task runners*, such as Grunt and Gulp were created particularly with JavaScript developers in mind. Plugins available through npm made both task runners powerful and extendable. It's possible to use even npm `scripts` as a task runner. That's common, particularly with webpack.
 
+{pagebreak}
+
 ### Make
 
 [Make](https://en.wikipedia.org/wiki/Make_%28software%29) goes way back, as it was initially released in 1977. Even though it's an old tool, it has remained relevant. Make allows you to write separate tasks for various purposes. For instance, you could have different tasks for creating a production build, minifying your JavaScript or running tests. You can find the same idea in many other tools.
@@ -179,8 +181,6 @@ define(["./MyModule.js"], function (MyModule) {
 });
 ```
 
-{pagebreak}
-
 Incidentally, it's possible to use `require` within the wrapper:
 
 ```javascript
@@ -219,6 +219,14 @@ T> [ify-loader](https://www.npmjs.com/package/ify-loader) and [transform-loader]
 
 Using [JSPM](http://jspm.io/) is entirely different than previous tools. It comes with a command line tool of its own that is used to install new packages to the project, create a production bundle, and so on. It supports [SystemJS plugins](https://github.com/systemjs/systemjs#plugins) that allow you to load various formats to your project.
 
+### Parcel
+
+![Parcel](images/parcel.png)
+
+[Parcel](https://parceljs.org/) is a performant bundler, that unlike its predecessors, doesn't require configuration. The *zero configuration* approach has made it popular within the community. The idea is that you set up an *index.html* and Parcel will begin the bundling process based on that. It supports Hot Module Replacement out of the box.
+
+T> There's a whole category of zero configuration bundlers like Parcel. These tools include [microbundle](https://www.npmjs.com/package/microbundle), [sfo](https://www.npmjs.com/package/sfo), [bili](https://www.npmjs.com/package/bili), [ovi](https://www.npmjs.com/package/ovi), and [asbundle](https://www.npmjs.com/package/asbundle).
+
 ### Brunch
 
 ![Brunch](images/brunch.png)
@@ -252,14 +260,6 @@ module.exports = {
 Brunch comes with commands like `brunch new`, `brunch watch --server`, and `brunch build --production`. It contains a lot out of the box and can be extended using plugins.
 
 T> There is an experimental [Hot Module Replacement runtime](https://www.npmjs.com/package/hmr-brunch) for Brunch.
-
-### Parcel
-
-![Parcel](images/parcel.png)
-
-[Parcel](https://parceljs.org/) is a performant bundler, that unlike its predecessors, doesn't require configuration. The *zero configuration* approach has made it popular within the community. The idea is that you set up an *index.html* and Parcel will begin the bundling process based on that. It supports Hot Module Replacement out of the box.
-
-T> There's a whole category of zero configuration bundlers like Parcel. These tools include [microbundle](https://www.npmjs.com/package/microbundle), [sfo](https://www.npmjs.com/package/sfo), [bili](https://www.npmjs.com/package/bili), [ovi](https://www.npmjs.com/package/ovi), and [asbundle](https://www.npmjs.com/package/asbundle).
 
 ### Webpack
 
