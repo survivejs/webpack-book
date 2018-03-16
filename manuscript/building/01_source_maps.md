@@ -43,14 +43,12 @@ Webpack supports a wide variety of source map types. These vary based on quality
 **webpack.config.js**
 
 ```javascript
-leanpub-start-delete
-const productionConfig = merge([]);
-leanpub-end-delete
-leanpub-start-insert
 const productionConfig = merge([
+leanpub-start-insert
   parts.generateSourceMaps({ type: "source-map" }),
-]);
 leanpub-end-insert
+  ...
+]);
 ```
 
 `source-map` is the slowest and highest quality option of them all, but that's fine for a production build.
