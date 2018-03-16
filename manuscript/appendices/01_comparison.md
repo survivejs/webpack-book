@@ -271,6 +271,8 @@ Webpack core can be extended using specific *loaders* and *plugins*. It gives co
 
 Compared to the other tools, webpack comes with initial complexity, but it makes up for this through its broad feature set. It's an advanced tool that requires patience. But once you understand the basic ideas behind it, webpack becomes powerful.
 
+{pagebreak}
+
 ## Other Options
 
 You can find more alternatives as listed below:
@@ -282,6 +284,8 @@ You can find more alternatives as listed below:
 * [StealJS](https://stealjs.com/) is a dependency loader and a build tool which has focused on performance and ease of use.
 * [Flipbox](https://www.npmjs.com/package/flipbox) wraps many bundlers behind a uniform interface.
 * [Blendid](https://www.npmjs.com/package/blendid) is a blend of Gulp and bundlers to form an asset pipeline.
+
+{pagebreak}
 
 ## Conclusion
 
