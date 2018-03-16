@@ -6,6 +6,7 @@ Even though the build generates fine now, the naming it uses is problematic. It 
 
 Webpack provides **placeholders** for this purpose. These strings are used to attach specific information to webpack output. The most valuable ones are:
 
+* `[id]` - Returns the chunk id.
 * `[path]` - Returns the file path.
 * `[name]` - Returns the file name.
 * `[ext]` - Returns the extension. `[ext]` works for most available fields. `ExtractTextPlugin` is a notable exception to this rule.
