@@ -99,6 +99,8 @@ T> [html-webpack-cdn-plugin](https://www.npmjs.com/package/html-webpack-cdn-plug
 
 Sometimes modules depend on globals. `$` provided by jQuery is a good example. Webpack offers a few ways that allow you to handle them.
 
+{pagebreak}
+
 ### Injecting Globals
 
 [imports-loader](https://www.npmjs.com/package/imports-loader) allows you to inject globals as below:
