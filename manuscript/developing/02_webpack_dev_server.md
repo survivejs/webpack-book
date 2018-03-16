@@ -133,11 +133,7 @@ module.exports = {
   devServer: {
     ...
 leanpub-start-insert
-    // overlay: true is equivalent
-    overlay: {
-      errors: true,
-      warnings: true,
-    },
+    overlay: true,
 leanpub-end-insert
   },
   ...
