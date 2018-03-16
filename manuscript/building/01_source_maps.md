@@ -244,6 +244,8 @@ Examining the `.map` file reveals the following output in this case:
 
 The source contains `//# sourceMappingURL=app.9a...18.js.map` kind of comment at its end to map to this file.
 
+{pagebreak}
+
 ### `devtool: "cheap-module-source-map"`
 
 `cheap-module-source-map` is the same as previous except source maps from loaders are simplified to a single mapping per line. It yields the following output in this case:
