@@ -110,7 +110,7 @@ export default (text = "Hello world") => {
   element.className = "pure-button";
   element.innerHTML = text;
 leanpub-start-insert
-  element.onclick = () => {
+  element.onclick = () =>
     import("./lazy")
       .then(lazy => {
         element.textContent = lazy.default;
@@ -118,7 +118,6 @@ leanpub-start-insert
       .catch(err => {
         console.error(err);
       });
-  };
 leanpub-end-insert
 
   return element;
@@ -132,29 +131,31 @@ If you open up the application (`npm start`) and click the button, you should se
 If you run `npm run build`, you should see something:
 
 ```bash
-Hash: bdc71f42a302af2a3e93
-Version: webpack 4.0.1
-Time: 3225ms
-Built at: 3/1/2018 10:49:53 AM
-         Asset       Size  Chunks             Chunk Names
+Hash: 063e54c36163f79e8c90
+Version: webpack 4.1.1
+Time: 3185ms
+Built at: 3/16/2018 5:04:04 PM
+               Asset       Size  Chunks             Chunk Names
 leanpub-start-insert
-      0.js.map  198 bytes       0  [emitted]
-          0.js  156 bytes       0  [emitted]
+            0.js.map  198 bytes       0  [emitted]
+                0.js  156 bytes       0  [emitted]
 leanpub-end-insert
-       main.js   2.19 KiB       2  [emitted]  main
-      main.css   1.29 KiB       2  [emitted]  main
-    vendor.css   2.26 KiB       1  [emitted]  vendor
-     vendor.js   96.3 KiB       1  [emitted]  vendor
- vendor.js.map    235 KiB       1  [emitted]  vendor
-vendor.css.map   87 bytes       1  [emitted]  vendor
-   main.js.map   11.1 KiB       2  [emitted]  main
-  main.css.map   85 bytes       2  [emitted]  main
-    index.html  317 bytes          [emitted]
-Entrypoint main = vendor.js vendor.css vendor.js.map ...
+             main.js    2.2 KiB       2  [emitted]  main
+            main.css   1.27 KiB       2  [emitted]  main
+    vendors~main.css   2.27 KiB       1  [emitted]  vendors~main
+     vendors~main.js   96.8 KiB       1  [emitted]  vendors~main
+ vendors~main.js.map    235 KiB       1  [emitted]  vendors~main
+vendors~main.css.map   93 bytes       1  [emitted]  vendors~main
+         main.js.map   11.1 KiB       2  [emitted]  main
+        main.css.map   85 bytes       2  [emitted]  main
+          index.html  329 bytes          [emitted]
+Entrypoint main = vendors~main.js vendors~main.css ...
 ...
 ```
 
 That *0.js* is your split point. Examining the file reveals that webpack has wrapped the code in a `webpackJsonp` block and processed the code bit.
+
+T> If you want to adjust the name of the chunk, set `output.chunkFilename`. For example, setting it to `"chunk.[id].js"` would prefix each split chunk with the word "chunk".
 
 T> [bundle-loader](https://www.npmjs.com/package/bundle-loader) gives similar results, but through a loader interface. It supports bundle naming through its `name` option.
 
