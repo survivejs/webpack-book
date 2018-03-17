@@ -29,6 +29,8 @@ leanpub-end-insert
 ...
 ```
 
+T> The `import` works because webpack will resolve against `"browser": "build/pure-min.css",` field in the *package.json* file of Pure.css due to [resolve.mainFields](https://webpack.js.org/configuration/resolve/#resolve-mainfields). Webpack will try to resolve possible `browser` and `module` fields before looking into `main`.
+
 You should also make the demo component use a Pure.css class, so there is something to work with:
 
 **src/component.js**
