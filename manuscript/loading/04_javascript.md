@@ -201,7 +201,7 @@ Consider the example below:
   "env": {
     "development": {
       "plugins": [
-        "annotate-console-log)"
+        "annotate-console-log"
       ]
     }
   }
