@@ -132,6 +132,8 @@ leanpub-end-insert
 
 If you run the application, you should see a new message on the button.
 
+T> [webpack-conditional-loader](https://www.npmjs.com/package/webpack-conditional-loader) performs something similar based on code comments. It can be used to eliminate entire blocks of code.
+
 T> `webpack.EnvironmentPlugin(["NODE_ENV"])` is a shortcut that allows you to refer to environment variables. It uses `DefinePlugin` underneath, and you can achieve the same effect by passing `process.env.NODE_ENV`.
 
 ## Replacing Free Variables Through Babel
