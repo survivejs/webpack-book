@@ -76,7 +76,7 @@ If you run into trouble or have questions related to the content, there are seve
 * Contact me through [GitHub Issue Tracker](https://github.com/survivejs/webpack-book/issues).
 * Join me at [Gitter Chat](https://gitter.im/survivejs/webpack).
 * Send me an email at [info@survivejs.com](mailto:info@survivejs.com).
-* Ask me anything about webpack or React at [SurviveJS AmA](https://github.com/survivejs/ama/issues).
+* Ask me anything about webpack at [SurviveJS AmA](https://github.com/survivejs/ama/issues).
 
 If you post questions to Stack Overflow, tag them using **survivejs**. You can use the hashtag **#survivejs** on Twitter for the same result.
 
