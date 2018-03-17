@@ -125,8 +125,6 @@ leanpub-end-insert
 
 W> The order matters. CSS extraction has to happen before purifying.
 
-{pagebreak}
-
 If you execute `npm run build` now, you should see something:
 
 ```bash
