@@ -52,8 +52,6 @@ If you run the application (`npm start`), the "Hello world" should look like a b
 
 ![Styled hello](images/styled-button.png)
 
-{pagebreak}
-
 Building the application (`npm run build`) should yield output:
 
 ```bash
