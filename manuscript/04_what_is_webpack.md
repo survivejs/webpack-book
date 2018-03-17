@@ -58,8 +58,6 @@ After every module has been evaluated, webpack writes **output**. The output inc
 
 That’s not all there is to the bundling process. For example, you can define specific **split points** where webpack generates separate bundles that are loaded based on application logic. This idea is discussed in the *Code Splitting* chapter.
 
-{pagebreak}
-
 ## Webpack Is Configuration Driven
 
 At its core, webpack relies on configuration. Here is a sample configuration adapted from [the official webpack tutorial](https://webpack.js.org/get-started/) that covers the main points:
@@ -117,8 +115,6 @@ Webpack's configuration model can feel a bit opaque at times as the configuratio
 
 With webpack, you can inject a hash to each bundle name (e.g., *app.d587bbd6.js*) to invalidate bundles on the client side as changes are made. Bundle-splitting allows the client to reload only a small part of the data in the ideal case.
 
-{pagebreak}
-
 ## Hot Module Replacement
 
 You are likely familiar with tools, such as [LiveReload](http://livereload.com/) or [BrowserSync](http://www.browsersync.io/), already. These tools refresh the browser automatically as you make changes. *Hot Module Replacement* (HMR) takes things one step further. In the case of React, it allows the application to maintain its state without forcing a refresh. While this does not sound all that special, it can make a big difference in practice.
@@ -130,8 +126,6 @@ HMR is also available in Browserify via [livereactload](https://github.com/milan
 In addition to HMR, webpack’s bundling capabilities are extensive. Webpack allows you to split code in various ways. You can even load code dynamically as your application gets executed. This sort of lazy loading comes in handy especially for broader applications, as dependencies can be loaded on the fly as needed.
 
 Even small applications can benefit from code splitting, as it allows the users to get something usable in their hands faster. Performance is a feature, after all. Knowing the basic techniques is worthwhile.
-
-{pagebreak}
 
 ## Conclusion
 
