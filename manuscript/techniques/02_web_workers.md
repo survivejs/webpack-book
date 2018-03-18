@@ -8,6 +8,8 @@ The idea of workers is valuable on a more general level. [parallel-webpack](http
 
 As discussed in the *Build Targets* chapter, webpack allows you to build your application as a worker itself. To get the idea of web workers better, you'll learn how to build a small worker using [worker-loader](https://www.npmjs.com/package/worker-loader).
 
+T> Sharing data between the host and the worker may become easier in the future thanks to technologies such as [SharedArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer).
+
 ## Setting Up Worker Loader
 
 To get started, install *worker-loader* to the project:
