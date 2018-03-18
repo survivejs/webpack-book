@@ -120,6 +120,17 @@ entry: {
 },
 ```
 
+## HMR and Dynamic Loading
+
+Assuming you are using *Dynamic Loading* through `require.context`, HMR requires extra effort:
+
+```javascript
+const req = require.context("./pages", true, /^(.*\.(jsx$))[^.]*$/gim);
+
+// Replace modules here as above
+module.hot.accept(req.id, ...);
+```
+
 ## Conclusion
 
 HMR is one of those aspects of webpack that makes it attractive for developers and webpack has taken its implementation far. To work, HMR requires both client and server side support. For this purpose, webpack-dev-server provides both. Often you have to implement the client side interface although loaders like *style-loader* implement it for you.
