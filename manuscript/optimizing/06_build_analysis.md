@@ -201,6 +201,10 @@ $ inspectpack --action=duplicates --bundle=bundle.js
 
 [Webpack Monitor](http://webpackmonitor.com/) is another similar tool with an emphasis on a clear user interface. It's able to provide recommendations on what to improve the build.
 
+### webpack-deps-tree
+
+[webpack-deps-tree](https://restrry.github.io/webpack-deps-tree/static/) displays webpack module graph. Using it you can understand how modules of your bundles are related to each other.
+
 ## Duplication Analysis
 
 In addition to inspectpack, there are other tools for figuring out duplicates:
