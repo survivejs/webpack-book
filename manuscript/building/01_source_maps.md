@@ -266,6 +266,10 @@ W> `cheap-module-source-map` is [currently broken if minification is used](https
 
 `hidden-source-map` is the same as `source-map` except it doesn't write references to the source maps to the source files. If you don't want to expose source maps to development tools directly while you wish proper stack traces, this is handy.
 
+### `devtool: "nosources-source-map"`
+
+`nosources-source-map` creates a source map without `sourcesContent` in it. You still get stack traces, though. The option is useful if you don't want to expose your source code to the client.
+
 T> [The official documentation](https://webpack.js.org/configuration/devtool/#devtool) contains more information about `devtool` options.
 
 {pagebreak}
