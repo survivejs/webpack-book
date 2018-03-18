@@ -6,6 +6,8 @@ Even though the idea does not sound that unique, there is a technical cost. The 
 
 To demonstrate SSR, you can use webpack to compile a client-side build that then gets picked up by a server that renders it using React following the principle. Doing this is enough to understand how it works and also where the problems begin.
 
+T> SSR isn't the only solution to the SEO problem. **Prerendering** is an alternate technique that is easier to implement if it fits your use case. The approach won't work well with highly dynamic data. [prerender-spa-plugin](https://www.npmjs.com/package/prerender-spa-plugin) allows you to implement it with webpack.
+
 ## Setting Up Babel with React
 
 The *Loading JavaScript* chapter covers the essentials of using Babel with webpack. There's setup that is particular to React you should perform, though. Given most of React projects rely on [JSX](https://facebook.github.io/jsx/) format, you have to enable it through Babel.
