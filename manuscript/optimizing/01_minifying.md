@@ -54,6 +54,8 @@ If you execute `npm run build` now, you should see result close to the same as b
 
 T> Source maps are disabled by default. You can enable them through the `sourceMap` flag. You should check *uglifyjs-webpack-plugin* for more options.
 
+T> To strip `console.log` calls from the resulting source, set `uglifyOptions.compress.drop_console` to `true` as [discussed on Stack Overflow](https://stackoverflow.com/questions/49101152/webpack-v4-remove-console-logs-with-webpack-uglify).
+
 {pagebreak}
 
 ## Other Ways to Minify JavaScript
