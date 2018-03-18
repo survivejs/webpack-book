@@ -317,6 +317,8 @@ App shell is loaded initially, and it manages the whole application including it
 
 PWA combines well with plugins like [offline-plugin](https://www.npmjs.com/package/offline-plugin) and [sw-precache-webpack-plugin](https://www.npmjs.com/package/sw-precache-webpack-plugin). Using [Service Workers](https://developer.mozilla.org/en/docs/Web/API/Service_Worker_API) and improves the offline experience.
 
+T> [Twitter case study](https://developers.google.com/web/showcase/2017/twitter) illustrates how the PWA approach can improve a platform.
+
 ## Conclusion
 
 Webpack allows you to manage multiple page setups. The PWA approach allows the application to be loaded as it's used and webpack allows implementing it.
