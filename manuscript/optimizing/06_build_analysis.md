@@ -205,6 +205,8 @@ $ inspectpack --action=duplicates --bundle=bundle.js
 
 [webpack-deps-tree](https://restrry.github.io/webpack-deps-tree/static/) displays webpack module graph. Using it you can understand how modules of your bundles are related to each other.
 
+{pagebreak}
+
 ## Duplication Analysis
 
 In addition to inspectpack, there are other tools for figuring out duplicates:
@@ -213,8 +215,6 @@ In addition to inspectpack, there are other tools for figuring out duplicates:
 * [find-duplicate-dependencies](https://www.npmjs.com/package/find-duplicate-dependencies) achieves the same on an npm package level.
 * [depcheck](https://www.npmjs.com/package/depcheck) goes further and warns if there are redundant dependencies or dependencies missing from the project.
 * [bundle-buddy](https://www.npmjs.com/package/bundle-buddy) can find duplicates across bundles while providing a user interface to tune webpack code splitting behavior. [bundle-buddy-webpack-plugin](https://www.npmjs.com/package/bundle-buddy-webpack-plugin) makes it simpler to use.
-
-{pagebreak}
 
 ## Independent Tools
 
