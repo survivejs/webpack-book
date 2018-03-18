@@ -78,6 +78,8 @@ leanpub-end-insert
 ]);
 ```
 
+W> `[hash]` is defined differently for *file-loader* than for the rest of webpack. It's calculated based on file **content**. See [file-loader documentation](https://www.npmjs.com/package/file-loader#placeholders) for further information.
+
 If you used `chunkhash` for the extracted CSS as well, this would lead to problems as the code points to the CSS through JavaScript bringing it to the same entry. That means if the application code or CSS changed, it would invalidate both.
 
 {pagebreak}
