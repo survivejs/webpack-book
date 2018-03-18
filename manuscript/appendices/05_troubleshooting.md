@@ -44,6 +44,12 @@ This error fits the same category. Parsing the file succeeded, but there was the
 
 `SyntaxError` is another error for the same category. This error is possible if you use ES2015 syntax that hasn't been transpiled alongside UglifyJS. As it encounters a syntax construct it does not recognize, it raises an error.
 
+## DeprecationWarning
+
+Node may give a `DeprecationWarning` especially after webpack has been updated to a new major version. A plugin or a loader you are using may require updates. Often the changes required are minimal. To figure out where the warning is coming from, run webpack through Node: `node --trace-deprecation node_modules/.bin/webpack --env production`.
+
+It's important to pass the `--trace-deprecation` flag to Node to see where the warning originates from. Using `--trace-warnings` is another way and it will capture the tracing information for all warnings, not only deprecations.
+
 ## Conclusion
 
 These are only examples of errors. Specific errors happen on the webpack side, but the rest comes from the packages it uses through loaders and plugins. Simplifying your project is a good step as that makes it easier to understand where the error happens.
