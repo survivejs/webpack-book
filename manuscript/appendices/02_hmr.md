@@ -37,6 +37,8 @@ The following listing contains the essential parts related to this approach. You
 }
 ```
 
+{pagebreak}
+
 If you implement configuration like above without implementing the client interface, you will most likely end up with an error:
 
 ![No refresh](images/no-refresh2.png)
@@ -54,8 +56,6 @@ W> If you are using Babel, configure it so that it lets webpack control module g
 ## Implementing the HMR Interface
 
 Webpack exposes the HMR interface through a global variable: `module.hot`. It provides updates through `module.hot.accept(<path to watch>, <handler>)` function and you need to patch the application there.
-
-{pagebreak}
 
 The following implementation illustrates the idea against the tutorial application:
 
@@ -120,13 +120,12 @@ entry: {
 
 ## HMR and Dynamic Loading
 
-Assuming you are using *Dynamic Loading* through `require.context`, HMR requires extra effort:
+*Dynamic Loading* through `require.context` and HMR requires extra effort:
 
 ```javascript
-const req = require.context("./pages", true, /^(.*\.(jsx$))[^.]*$/gim);
+const req = require.context("./pages", true, /^(.*\.(jsx$))[^.]*$/g);
 
-// Replace modules here as above
-module.hot.accept(req.id, ...);
+module.hot.accept(req.id, ...); // Replace modules here as above
 ```
 
 ## Conclusion
