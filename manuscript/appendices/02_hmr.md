@@ -4,6 +4,8 @@
 
 HMR is possible with JavaScript too, but due to application state, it's harder. [react-hot-loader](https://github.com/gaearon/react-hot-loader/) and [vue-hot-reload-api](https://www.npmjs.com/package/vue-hot-reload-api) are good examples.
 
+T> Given HMR can be complex to implement, a good compromise is to store application state to `localStorage` and then hydrate the application based on that after a refresh. Doing this pushes the problem to the application side.
+
 ## Enabling HMR
 
 The following things have to happen for HMR to work:
