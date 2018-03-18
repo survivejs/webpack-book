@@ -129,6 +129,8 @@ You can add more targets by expanding the *package.json* definition and branchin
 
 T> `productionConfig` is a stub for now and it will grow later as we expand the configuration further.
 
+T> The [process](https://nodejs.org/api/process.html) module used in the code is exposed by Node as a global. In addition to `env`, it provides plenty of other functionality that allows you to get more information of the host system.
+
 {pagebreak}
 
 ### Understanding `--env`
