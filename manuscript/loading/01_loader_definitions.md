@@ -271,6 +271,26 @@ If you wanted to embed the context information to the filename, the rule could u
 },
 ```
 
+Another approach would be to mix `issuer` and `not`:
+
+```javascript
+{
+  test: /\.css$/,
+
+  rules: [
+    // CSS imported from other modules is added to the DOM
+    {
+      issuer: { not: /\.css$/ },
+      use: "style-loader",
+    },
+    // Apply css-loader against CSS imports to return CSS
+    {
+      use: "css-loader",
+    },
+  ],
+}
+```
+
 ## Understanding Loader Behavior
 
 Loader behavior can be understood in greater detail by inspecting them. [loader-runner](https://www.npmjs.com/package/loader-runner) allows you to run them in isolation without webpack. Webpack uses this package internally and *Extending with Loaders* chapter covers it in detail.
