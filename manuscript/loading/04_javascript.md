@@ -91,8 +91,6 @@ Even though you have Babel installed and set up, you are still missing one bit: 
 
 W> If you try to import files **outside** of your configuration root directory and then process them through *babel-loader*, this fails. It's [a known issue](https://github.com/babel/babel-loader/issues/313), and there are workarounds including maintaining *.babelrc* at a higher level in the project and resolving against Babel presets through `require.resolve` at webpack configuration.
 
-{pagebreak}
-
 ### Setting Up *.babelrc*
 
 At a minimum, you need [babel-preset-env](https://www.npmjs.com/package/babel-preset-env). It's a Babel preset that enables the required plugins based on the optional environment definition you pass to it.
