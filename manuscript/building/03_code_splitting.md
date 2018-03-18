@@ -192,6 +192,26 @@ AsyncComponent.propTypes = {
 
 T> [react-async-component](https://www.npmjs.com/package/react-async-component) wraps the pattern in a `createAsyncComponent` call and provides server side rendering specific functionality. [loadable-components](https://www.npmjs.com/package/loadable-components) is another option.
 
+## Disabling Code Splitting
+
+Although code splitting is good behavior to have by default, it's not correct always, especially on server-side usage. For this reason, it can be disabled as below:
+
+```javascript
+const webpack = require("webpack");
+
+...
+
+module.exports = {
+  plugins: [
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 1,
+    }),
+  ],
+};
+```
+
+T> See [Glenn Reyes' detailed explanation](https://medium.com/@glennreyes/how-to-disable-code-splitting-in-webpack-1c0b1754a3c5).
+
 ## Conclusion
 
 Code splitting is a feature that allows you to push your application a notch further. You can load code when you need it to gain faster initial load times and improved user experience especially in a mobile context where bandwidth is limited.
@@ -202,6 +222,7 @@ To recap:
 * To use dynamic `import` syntax, both Babel and ESLint require careful tweaks. Webpack supports the syntax out of the box.
 * Use naming to pull separate split points into the same bundles.
 * The techniques can be used within modern frameworks and libraries like React. You can wrap related logic to a specific component that handles the loading process in a user-friendly manner.
+* To disable code splitting, use `webpack.optimize.LimitChunkCountPlugin` with `maxChunks` set to one.
 
 You'll learn to tidy up the build in the next chapter.
 
