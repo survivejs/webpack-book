@@ -12,13 +12,13 @@ T> SSR isn't the only solution to the SEO problem. **Prerendering** is an altern
 
 The *Loading JavaScript* chapter covers the essentials of using Babel with webpack. There's setup that is particular to React you should perform, though. Given most of React projects rely on [JSX](https://facebook.github.io/jsx/) format, you have to enable it through Babel.
 
+{pagebreak}
+
 To get React, and particularly JSX, work with Babel, install the preset first:
 
 ```bash
 npm install babel-preset-react --save-dev
 ```
-
-{pagebreak}
 
 Connect the preset with Babel configuration as follows:
 
