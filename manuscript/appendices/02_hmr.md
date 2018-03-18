@@ -17,8 +17,6 @@ The following things have to happen for HMR to work:
 
 Using `webpack-dev-server --hot` solves the first two problems. In this case, you have to handle only the last one yourself if you want to patch JavaScript application code. Skipping the `--hot` flag and going through webpack configuration gives more flexibility.
 
-{pagebreak}
-
 The following listing contains the essential parts related to this approach. You will have to adapt from here to match your configuration style:
 
 ```javascript
