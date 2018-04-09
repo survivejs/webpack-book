@@ -4,7 +4,7 @@ Webpack provides multiple ways to set up module loaders. Webpack 2 simplified th
 
 The other way is to set `context` field as this gives a similar effect and affects the way entry points and loaders are resolved. It doesn't have an impact on the output, though, and you still need to use an absolute path or `/` there.
 
-Assuming you set an `include` or `exclude` rule, packages loaded from *node_modules* still work as the assumption is that they have been compiled in such way that they work out of the box. If they don't, then you have to apply techniques covered in the *Consuming Packages* chapter.
+Assuming you set an `include` or `exclude` rule, packages loaded from *node_modules* still work as the assumption is that they have been compiled in such a way that they work out of the box. If they don't, then you have to apply techniques covered in the *Consuming Packages* chapter.
 
 T> `include`/`exclude` is handy with *node_modules* as webpack processes and traverses the installed packages by default when you import JavaScript files to your project. Therefore you need to configure it to avoid that behavior. Other file types don't suffer from this issue.
 
@@ -94,7 +94,7 @@ The basic syntax goes as below:
 },
 ```
 
-It would be possible to write the same configuration without `enforce` if you chained the declaration with other loaders related to the `test` carefully. Using `enforce` removes the necessity for that allows you to split loader execution into separate stages that are easier to compose.
+It would be possible to write the same configuration without `enforce` if you chained the declaration with other loaders related to the `test` carefully. Using `enforce` removes the necessity for that and allows you to split loader execution into separate stages that are easier to compose.
 
 ## Passing Parameters to a Loader
 
@@ -199,7 +199,7 @@ import "url-loader!./foo.png";
 import "!!url-loader!./bar.png";
 ```
 
-The problem with this approach is that it couples your source with webpack. But it's an excellent form to know still. Since configuration entries go through the same mechanism, the same forms work there as well:
+The problem with this approach is that it couples your source with webpack. Nonetheless, it's still an excellent form to know. Since configuration entries go through the same mechanism, the same forms work there as well:
 
 ```javascript
 {
