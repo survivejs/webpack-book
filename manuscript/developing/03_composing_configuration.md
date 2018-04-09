@@ -158,7 +158,7 @@ Each approach comes with its pros and cons. The composition-based approach is a 
 
 Perhaps the biggest problem is that with composition you need to know what you are doing, and it's possible you aren't going to get the composition right the first time around. But that's a software engineering problem that goes beyond webpack.
 
-You can always iterate on the interfaces and find better ones. By passing in a configuration object instead of multiple arguments, you can change the behavior of a part without affecting its API. You can expose API as you need it.
+You can always iterate on the interfaces and find better ones. By passing in a configuration object instead of multiple arguments you can change the behavior of a part without affecting its API, effectively exposing the API as you need it.
 
 ## Configuration Layouts
 
