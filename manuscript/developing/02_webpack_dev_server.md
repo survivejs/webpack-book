@@ -14,7 +14,7 @@ By default, WDS refreshes content automatically in the browser while you develop
 
 HMR allows patching the browser state without a full refresh making it particularly handy with libraries like React where an update blows away the application state. The *Hot Module Replacement* appendix covers the feature in detail.
 
-WDS provides an interface that makes it possible to patch code on the fly, however for this to work efficiently; you have to implement this interface for the client-side code. It's trivial for something like CSS because it's stateless, but the problem is harder with JavaScript frameworks and libraries.
+WDS provides an interface that makes it possible to patch code on the fly, however for this to work efficiently you have to implement this interface for the client-side code. It's trivial for something like CSS because it's stateless, but the problem is harder with JavaScript frameworks and libraries.
 
 ## Emitting Files from WDS
 
@@ -83,7 +83,7 @@ T> In addition to `production` and `development`, there's a third mode, `none`, 
 
 ## Configuring WDS Through Webpack Configuration
 
-WDS functionality can be customized through the `devServer` field at webpack configuration. You can set most of these options through the CLI as well, but managing them through webpack is a decent approach.
+WDS functionality can be customized through the `devServer` field in the webpack configuration. You can set most of these options through the CLI as well, but managing them through webpack is a decent approach.
 
 {pagebreak}
 
