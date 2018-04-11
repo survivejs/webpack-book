@@ -1,14 +1,14 @@
 # Introduction
 
-[Webpack](https://webpack.js.org/) simplifies web development by solving a fundamental problem: bundling. It takes in various assets, such as JavaScript, CSS, and HTML, and then transforms these assets into a format that’s convenient to consume through a browser. Doing this well takes away a significant amount of pain from web development.
+[Webpack](https://webpack.js.org/) simplifies web development by solving a fundamental problem: bundling. It takes in various assets, such as JavaScript, CSS, and HTML, and transforms them into a format that’s convenient to consume through a browser. Doing this well takes a significant amount of pain away from web development.
 
-It's not the easiest tool to learn due to its configuration-driven approach, but it's incredibly powerful. The purpose of this guide is to help you get started with webpack and then to go beyond the basics.
+It's not the easiest tool to learn due to its configuration-driven approach, but it's incredibly powerful. The purpose of this guide is to help you get started with webpack and then go beyond the basics.
 
 ## What Is Webpack
 
-Web browsers are designed to consume HTML, CSS, and JavaScript. As a project grows, tracking and configuring all of these files becomes too complicated to manage without help. Webpack was designed to counter these problems. Managing complexity is one of the fundamental issues of web development, and solving the problem well can help you a lot.
+Web browsers are designed to consume HTML, CSS, and JavaScript. As a project grows, tracking and configuring all of these files becomes too complicated to manage without help. Webpack was designed to address these problems. Managing complexity is one of the fundamental issues of web development, and solving this problem well helps significantly.
 
-Webpack isn’t the only available bundler, and a collection of different tools have emerged. Task runners, such as Grunt and Gulp, are good examples of higher-level tools. Often the problem is that need to write the workflows by hand. Pushing that issue to a bundler, such as webpack, is a step forward.
+Webpack isn’t the only available bundler, and a collection of different tools have emerged. Task runners, such as Grunt and Gulp, are good examples of higher-level tools. Often the problem is that you need to write the workflows by hand. Pushing that issue to a bundler, such as webpack, is a step forward.
 
 {pagebreak}
 
@@ -22,7 +22,7 @@ Webpack becomes an indispensable tool after you begin to understand how it works
 
 ## What Will You Learn
 
-This book has been designed to complement [the official documentation of webpack](https://webpack.js.org/). This book can be considered a companion to it. The book is more like a quick walkthrough that eases the initial learning curve while giving food for thought to more advanced users.
+This book has been designed to complement [the official documentation of webpack](https://webpack.js.org/). This book can be considered a companion to it. This book has been designed to get through that initial learning curve and go even further.
 
 The book teaches you to develop a composable webpack configuration for both development and production purposes. Advanced techniques covered by the book allow you to get the most out of webpack 4.
 
@@ -30,20 +30,20 @@ The book teaches you to develop a composable webpack configuration for both deve
 
 ## How Is The Book Organized
 
-The book starts by explaining what webpack is. After that, you find multiple parts, each of which discusses webpack from a different direction. While going through those chapters, you will develop your webpack configuration while learning the techniques. The content also doubles as reference material.
+The book starts by explaining what webpack is. After that, you will find multiple chapters that discuss webpack from a different viewpoint. As you go through these chapters, you will develop your own webpack configuration while at the same time learning essential techniques.
 
 The book has been split into the following parts:
 
 * **Developing** gets you up and running with webpack. This part goes through features such as automatic browser refresh and explains how to compose your configuration so that it remains maintainable.
-* **Styling** puts heavy emphasis on styling related topics. You will learn how to load styles with webpack and how to introduce techniques such as autoprefixing to your setup.
+* **Styling** puts heavy emphasis on styling related topics. You will learn how to load styles with webpack and how to introduce techniques such as autoprefixing into your setup.
 * **Loading** explains webpack’s loader definitions in detail and shows you how to load assets such as images, fonts, and JavaScript.
 * **Building** introduces source maps and the ideas of bundle and code splitting. You will learn to tidy up your build.
 * **Optimizing** pushes your build to production quality level and introduces many smaller tweaks to make it smaller. You will learn to tune webpack for performance.
 * **Output** discusses webpack’s output related techniques. Despite its name, it’s not only for the web. You see how to manage multiple page setups with webpack and pick up the basic idea of Server Side Rendering.
-* **Techniques** discusses several specific ideas including dynamic loading, web workers, internationalization, deploying your applications, consuming npm packages through webpack.
-* **Extending** shows how to extend webpack with your loaders and plugins.
+* **Techniques** discusses several specific ideas including dynamic loading, web workers, internationalization, deploying your applications, and consuming npm packages through webpack.
+* **Extending** shows how to extend webpack with loaders and plugins.
 
-There's a short conclusion chapter after the main content that recaps the main points of the book. It contains checklists that allow you to go through your projects against the book techniques.
+Finally, there is a short conclusion chapter that recaps the main points of the book. It contains checklists of techniques from this book that allow you to methodically go through your projects.
 
 The appendices at the end of the book cover secondary topics and sometimes dig deeper into the main ones. You can approach them in any order you want depending on your interest.
 
@@ -55,7 +55,7 @@ You should have basic knowledge of JavaScript, Node, and npm. If you know someth
 
 If you don’t know much about the topic, consider going carefully through the early parts. You can scan the rest to pick the bits you find worthwhile. If you know webpack already, skim and choose the techniques you find valuable.
 
-In case you know webpack well already, there is still something in the book for you. Skim through it and see if you can pick up new techniques. Read especially the summaries at the end of the chapters and the concluding chapter of the book.
+In case you know webpack well already, there is still something in the book for you. Skim through it and see if you can pick up new techniques. Especially read the summaries at the end of the chapters and the concluding chapter of the book.
 
 ## Book Versioning
 
@@ -92,10 +92,10 @@ You can find more related material from the following sources:
 
 ## Acknowledgments
 
-Big thanks to [Christian Alfoni](http://www.christianalfoni.com/) for helping me craft the first version of this book. That inspired the whole SurviveJS effort. The version you see now is a complete rewrite.
+Big thanks to [Christian Alfoni](http://www.christianalfoni.com/) for helping me craft the first version of this book. This is what inspired the entire SurviveJS effort. The version you see now is a complete rewrite.
 
-The book wouldn’t be half as good as it's without patient editing and feedback by my editors [Jesús Rodríguez](https://github.com/Foxandxss), [Artem Sapegin](https://github.com/sapegin), and [Pedr Browne](https://github.com/Undistraction). Thank you.
+This book wouldn’t be half as good as it's without patient editing and feedback by my editors [Jesús Rodríguez](https://github.com/Foxandxss), [Artem Sapegin](https://github.com/sapegin), and [Pedr Browne](https://github.com/Undistraction). Thank you.
 
 This book wouldn’t have been possible without the original "SurviveJS - Webpack and React" effort. Anyone who contributed to it deserves my thanks. You can check that book for more accurate attributions.
 
-Thanks to Mike "Pomax" Kamermans, Cesar Andreu, Dan Palmer, Viktor Jančík, Tom Byrer, Christian Hettlage, David A. Lee, Alexandar Castaneda, Marcel Olszewski, Steve Schwartz, Chris Sanders, Charles Ju, Aditya Bhardwaj, Rasheed Bustamam, José Menor, Ben Gale, Jake Goulding, Andrew Ferk, gabo, Giang Nguyen, @Coaxial, @khronic, Henrik Raitasola, Gavin Orland, David Riccitelli, Stephen Wright, Majky Bašista, Gunnari Auvinen, Jón Levy, Alexander Zaytsev, Richard Muller, Ava Mallory (Fiverr), Sun Zheng’an, Nancy (Fiverr), Aluan Haddad, Steve Mao, Craig McKenna, Tobias Koppers, Stefan Frede, Vladimir Grenaderov, Scott Thompson, Rafael De Leon, Gil Forcada Codinachs, Jason Aller, @pikeshawn, Stephan Klinger, Daniel Carral, Nick Yianilos, Stephen Bolton, Felipe Reis, Rodolfo Rodriguez, Vicky Koblinski, Pyotr Ermishkin, Ken Gregory, Dmitry Kaminski, John Darryl Pelingo, Brian Cui, @st-sloth, Nathan Klatt, Muhamadamin Ibragimov, Kema Akpala, Roberto Fuentes, and many others who have contributed direct feedback for this book!
+Thanks to Mike "Pomax" Kamermans, Cesar Andreu, Dan Palmer, Viktor Jančík, Tom Byrer, Christian Hettlage, David A. Lee, Alexandar Castaneda, Marcel Olszewski, Steve Schwartz, Chris Sanders, Charles Ju, Aditya Bhardwaj, Rasheed Bustamam, José Menor, Ben Gale, Jake Goulding, Andrew Ferk, gabo, Giang Nguyen, @Coaxial, @khronic, Henrik Raitasola, Gavin Orland, David Riccitelli, Stephen Wright, Majky Bašista, Gunnari Auvinen, Jón Levy, Alexander Zaytsev, Richard Muller, Ava Mallory (Fiverr), Sun Zheng’an, Nancy (Fiverr), Aluan Haddad, Steve Mao, Craig McKenna, Tobias Koppers, Stefan Frede, Vladimir Grenaderov, Scott Thompson, Rafael De Leon, Gil Forcada Codinachs, Jason Aller, @pikeshawn, Stephan Klinger, Daniel Carral, Nick Yianilos, Stephen Bolton, Felipe Reis, Rodolfo Rodriguez, Vicky Koblinski, Pyotr Ermishkin, Ken Gregory, Dmitry Kaminski, John Darryl Pelingo, Brian Cui, @st-sloth, Nathan Klatt, Muhamadamin Ibragimov, Kema Akpala, Roberto Fuentes, Eric Johnson, and many others who have contributed direct feedback for this book!
