@@ -11,6 +11,10 @@ There are a couple of ground rules when it comes to optimization:
 
 Sometimes optimizations come with a cost. They can make your configuration harder to understand or tie it to a particular solution. Often the best optimization is to do less work or do it more smartly. The basic directions are covered in the next sections, so you know where to look when it's time to work on performance.
 
+## Measuring Impact
+
+As discussed in the previous chapter, generating stats is one way to measure impact. [speed-measure-webpack-plugin](https://www.npmjs.com/package/speed-measure-webpack-plugin) gives more granular information per plugin and loader so you know which take most of the time in your process.
+
 {pagebreak}
 
 ## High-Level Optimizations
