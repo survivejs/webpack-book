@@ -34,17 +34,19 @@ A more elaborate approach to achieve a similar result that includes *.woff2* and
 {
   // Match woff2 in addition to patterns like .woff?v=1.1.1.
   test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-  use: "url-loader",
-  options: {
-    // Limit at 50k. Above that it emits separate files
-    limit: 50000,
+  use: {
+    loader: "url-loader",
+    options: {
+      // Limit at 50k. Above that it emits separate files
+      limit: 50000,
 
-    // url-loader sets mimetype if it's passed.
-    // Without this it derives it from the file extension
-    mimetype: "application/font-woff",
+      // url-loader sets mimetype if it's passed.
+      // Without this it derives it from the file extension
+      mimetype: "application/font-woff",
 
-    // Output below fonts directory
-    name: "./fonts/[name].[ext]",
+      // Output below fonts directory
+      name: "./fonts/[name].[ext]",
+    }
   },
 },
 ```
@@ -58,9 +60,11 @@ In case you want to make sure the site looks good on a maximum amount of browser
 ```javascript
 {
   test: /\.(ttf|eot|woff|woff2)$/,
-  loader: "file-loader",
-  options: {
-    name: "fonts/[name].[ext]",
+  use: {
+    loader: "file-loader",
+    options: {
+      name: "fonts/[name].[ext]",
+    },
   },
 },
 ```
@@ -92,12 +96,14 @@ Furthermore, it's possible to manipulate `publicPath` and override the default p
 {
   // Match woff2 and patterns like .woff?v=1.1.1.
   test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/,
-  loader: "url-loader",
-  options: {
-    limit: 50000,
-    mimetype: "application/font-woff",
-    name: "./fonts/[name].[ext]", // Output below ./fonts
-    publicPath: "../", // Take the directory into account
+  use: {
+    loader: "url-loader",
+    options: {
+      limit: 50000,
+      mimetype: "application/font-woff",
+      name: "./fonts/[name].[ext]", // Output below ./fonts
+      publicPath: "../", // Take the directory into account
+    },
   },
 },
 ```
