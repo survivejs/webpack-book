@@ -19,7 +19,7 @@ As this book has demonstrated, webpack is a versatile tool. To make it easier to
 
 ### Styling
 
-* Webpack inlines style definitions to JavaScript by default. To avoid this, separate CSS to a file of its own using `ExtractTextPlugin` or an equivalent solution. The *Separating CSS* chapter covers how to achieve this.
+* Webpack inlines style definitions to JavaScript by default. To avoid this, separate CSS to a file of its own using `MiniCssExtractPlugin` or an equivalent solution. The *Separating CSS* chapter covers how to achieve this.
 * To decrease the number of CSS rules to write, consider **autoprefixing** your rules. The *Autoprefixing* chapter shows how to do this.
 * Unused CSS rules can be eliminated based on static analysis. The *Eliminating Unused CSS* chapter explains the basic idea of this technique.
 

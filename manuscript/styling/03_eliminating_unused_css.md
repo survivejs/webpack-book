@@ -74,7 +74,7 @@ Using PurifyCSS can lead to significant savings. In the example of the project, 
 
 {pagebreak}
 
-[purifycss-webpack](https://www.npmjs.com/package/purifycss-webpack) allows to achieve similar results. You should use the `ExtractTextPlugin` with it for the best results. Install it and a [glob](https://www.npmjs.org/package/glob) helper first:
+[purifycss-webpack](https://www.npmjs.com/package/purifycss-webpack) allows to achieve similar results. You should use the `MiniCssExtractPlugin` with it for the best results. Install it and a [glob](https://www.npmjs.org/package/glob) helper first:
 
 ```bash
 npm install glob purifycss-webpack purify-css --save-dev
@@ -92,7 +92,7 @@ exports.purifyCSS = ({ paths }) => ({
 });
 ```
 
-Next, the part has to be connected with the configuration. It's essential the plugin is used *after* the `ExtractTextPlugin`; otherwise, it doesn't work:
+Next, the part has to be connected with the configuration. It's essential the plugin is used *after* the `MiniCssExtractPlugin`; otherwise, it doesn't work:
 
 **webpack.config.js**
 
@@ -162,7 +162,7 @@ Using PurifyCSS can lead to a significant decrease in file size. It's mainly val
 To recap:
 
 * Eliminating unused CSS is possible using PurifyCSS. It performs static analysis against the source.
-* The functionality can be enabled through *purifycss-webpack*, and the plugin should be applied *after* `ExtractTextPlugin`.
+* The functionality can be enabled through *purifycss-webpack*, and the plugin should be applied *after* `MiniCssExtractPlugin`.
 * At best, PurifyCSS can eliminate most, if not all, unused CSS rules.
 * Critical path rendering is another CSS technique that emphasizes rendering the above-the-fold CSS first. The idea is to render something as fast as possible instead of waiting for all CSS to load.
 

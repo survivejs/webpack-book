@@ -1,6 +1,6 @@
 # Extending with Plugins
 
-Compared to loaders, plugins are a more flexible means to extend webpack. You have access to webpack's **compiler** and **compilation** processes. It's possible to run child compilers, and plugins can work in tandem with loaders as `ExtractTextPlugin` shows.
+Compared to loaders, plugins are a more flexible means to extend webpack. You have access to webpack's **compiler** and **compilation** processes. It's possible to run child compilers, and plugins can work in tandem with loaders as `MiniCssExtractPlugin` shows.
 
 Plugins allow you to intercept webpack's execution through hooks. Webpack itself has been implemented as a collection of plugins. Underneath it relies on [tapable](https://www.npmjs.com/package/tapable) plugin interface that allows webpack to apply plugins in different ways.
 
@@ -261,7 +261,7 @@ When you begin to design a plugin, spend time studying existing plugins that are
 To recap:
 
 * **Plugins** can intercept webpack's execution and extend it making them more flexible than loaders.
-* Plugins can be combined with loaders. `ExtractTextPlugin` works this way. The accompanying loader is used to mark assets to extract.
+* Plugins can be combined with loaders. `MiniCssExtractPlugin` works this way. The accompanying loader is used to mark assets to extract.
 * Plugins have access to webpack's **compiler** and **compilation** processes. Both provide hooks for different stages of webpack's execution flow and allow you to manipulate it. Webpack itself works this way.
 * Plugins can emit new assets and shape existing assets.
 * Plugins can implement plugin systems of their own. `HtmlWebpackPlugin` is an example of such plugin.

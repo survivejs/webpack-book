@@ -10,7 +10,7 @@ To load CSS, you need to use [css-loader](https://www.npmjs.com/package/css-load
 
 The matched files can be processed through loaders like [file-loader](https://www.npmjs.com/package/file-loader) or [url-loader](https://www.npmjs.com/package/url-loader), and these possibilities are discussed in the *Loading Assets* part of the book.
 
-Since inlining CSS isn't a good idea for production usage, it makes sense to use `ExtractTextPlugin` to generate a separate CSS file. You will do this in the next chapter.
+Since inlining CSS isn't a good idea for production usage, it makes sense to use `MiniCssExtractPlugin` to generate a separate CSS file. You will do this in the next chapter.
 
 {pagebreak}
 

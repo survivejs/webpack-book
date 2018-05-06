@@ -9,10 +9,10 @@ Webpack provides **placeholders** for this purpose. These strings are used to at
 * `[id]` - Returns the chunk id.
 * `[path]` - Returns the file path.
 * `[name]` - Returns the file name.
-* `[ext]` - Returns the extension. `[ext]` works for most available fields. `ExtractTextPlugin` is a notable exception to this rule.
+* `[ext]` - Returns the extension. `[ext]` works for most available fields. `MiniCssExtractPlugin` is a notable exception to this rule.
 * `[hash]` - Returns the build hash. If any portion of the build changes, this changes as well.
 * `[chunkhash]` - Returns an entry chunk-specific hash. Each `entry` defined in the configuration receives a hash of its own. If any portion of the entry changes, the hash will change as well. `[chunkhash]` is more granular than `[hash]` by definition.
-* `[contenthash]` - Returns a hash specific to content. `[contenthash]` is available for `ExtractTextPlugin` only and is the most specific option available.
+* `[contenthash]` - Returns a hash generated based on content.
 
 It's preferable to use particularly `hash` and `chunkhash` only for production purposes as hashing doesn't do much good during development.
 
@@ -91,9 +91,7 @@ Therefore, instead of `chunkhash`, you can use `contenthash` that is generated b
 ```javascript
 exports.extractCSS = ({ include, exclude, use }) => {
   // Output extracted CSS to a file
-  const plugin = new ExtractTextPlugin({
-    // `allChunks` is needed to extract from extracted chunks as well.
-    allChunks: true,
+  const plugin = new MiniCssExtractPlugin({
 leanpub-start-delete
     filename: "[name].css",
 leanpub-end-delete
@@ -141,6 +139,6 @@ To recap:
 
 * Webpack's **placeholders** allow you to shape filenames and enable you to include hashes to them.
 * The most valuable placeholders are `[name]`, `[chunkhash]`, and `[ext]`. A chunk hash is derived based on the entry in which the asset belongs.
-* If you are using `ExtractTextPlugin`, you should use `[contenthash]`. This way the generated assets get invalidated only if their content changes.
+* If you are using `MiniCssExtractPlugin`, you should use `[contenthash]`. This way the generated assets get invalidated only if their content changes.
 
 Even though the project generates hashes now, the output isn't flawless. The problem is that if the application changes, it invalidates the vendor bundle as well. The next chapter digs deeper into the topic and shows you how to extract a **manifest** to resolve the issue.

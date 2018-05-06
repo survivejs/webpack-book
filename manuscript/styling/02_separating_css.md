@@ -4,40 +4,32 @@ Even though there is a nice build set up now, where did all the CSS go? As per c
 
 The current solution doesn't allow cache CSS. You can also get a **Flash of Unstyled Content** (FOUC). FOUC happens because the browser takes a while to load JavaScript and the styles would be applied only then. Separating CSS to a file of its own avoids the problem by letting the browser to manage it separately.
 
-Webpack provides a means to generate a separate CSS bundles using [ExtractTextPlugin](https://www.npmjs.com/package/extract-text-webpack-plugin). It can aggregate multiple CSS files into one. For this reason, it comes with a loader that handles the extraction process. The plugin then picks up the result aggregated by the loader and emits a separate file.
+Webpack provides a means to generate a separate CSS bundles using [mini-css-extract-plugin](https://www.npmjs.com/package/mini-css-extract-plugin) (MCEP). It can aggregate multiple CSS files into one. For this reason, it comes with a loader that handles the extraction process. The plugin then picks up the result aggregated by the loader and emits a separate file.
 
-Due to this process, `ExtractTextPlugin` comes with overhead during the compilation phase. It doesn't work with Hot Module Replacement (HMR) by design. Given the plugin is used only for production, that is not a problem.
-
-T> [css-hot-loader](https://www.npmjs.com/package/css-hot-loader) and [extracted-loader](https://www.npmjs.com/package/extracted-loader) can be used with `ExtractTextPlugin` to enable HMR.
+Due to this process, `MiniCssExtractPlugin` comes with overhead during the compilation phase. It doesn't work with Hot Module Replacement (HMR) yet. Given the plugin is used only for production, that is not a problem.
 
 W> It can be potentially dangerous to use inline styles within JavaScript in production as it represents an attack vector. **Critical path rendering** embraces the idea and inlines the critical CSS to the initial HTML payload improving the perceived performance of the site. In limited contexts inlining a small amount of CSS can be a viable option to speed up the initial load (fewer requests).
 
-## Setting Up `ExtractTextPlugin`
+## Setting Up `MiniCssExtractPlugin`
 
 Install the plugin first:
 
 ```bash
-npm install extract-text-webpack-plugin@next --save-dev
+npm install mini-css-extract-plugin --save-dev
 ```
 
-`ExtractTextPlugin` includes a loader, `ExtractTextPlugin.extract` that marks the assets to be extracted. Then a plugin performs its work based on this annotation.
-
-`ExtractTextPlugin.extract` accepts `use` and `fallback` definitions. `ExtractTextPlugin` processes content through `use` only from **initial chunks** by default and it uses `fallback` for the rest. It doesn't touch any split bundles unless `allChunks: true` is set true. The *Bundle Splitting* chapter digs into greater detail.
-
-If you wanted to extract CSS from a more involved format, like Sass, you would have to pass multiple loaders to the `use` option. Both `use` and `fallback` accept a loader (string), a loader definition, or an array of loader definitions.
+`MiniCssExtractPlugin` includes a loader, `MiniCssExtractPlugin.loader` that marks the assets to be extracted. Then a plugin performs its work based on this annotation.
 
 Add the configuration below to the beginning of your configuration:
 
 **webpack.parts.js**
 
 ```javascript
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-exports.extractCSS = ({ include, exclude, use }) => {
+exports.extractCSS = ({ include, exclude, use = [] }) => {
   // Output extracted CSS to a file
-  const plugin = new ExtractTextPlugin({
-    // `allChunks` is needed to extract from extracted chunks as well.
-    allChunks: true,
+  const plugin = new MiniCssExtractPlugin({
     filename: "[name].css",
   });
 
@@ -49,10 +41,9 @@ exports.extractCSS = ({ include, exclude, use }) => {
           include,
           exclude,
 
-          use: plugin.extract({
-            use,
-            fallback: "style-loader",
-          }),
+          use: [
+            MiniCssExtractPlugin.loader,
+          ].concat(use),
         },
       ],
     },
@@ -62,8 +53,6 @@ exports.extractCSS = ({ include, exclude, use }) => {
 ```
 
 That `[name]` placeholder uses the name of the entry where the CSS is referred. Placeholders and hashing are discussed in detail in the *Adding Hashes to Filenames* chapter.
-
-It would be possible to have multiple `plugin.extract` calls against different file types. Doing this would allow you to aggregate them into a single CSS file. Another option would be to extract multiple CSS files through separate plugin definitions and then concatenate them using [merge-files-webpack-plugin](https://www.npmjs.com/package/merge-files-webpack-plugin).
 
 T> If you wanted to output the resulting file to a specific directory, you could do it by passing a path. Example: `filename: "styles/[name].css"`.
 
@@ -131,8 +120,6 @@ Now styling has been pushed to a separate CSS file. Thus, the JavaScript bundle 
 
 T> If you are getting `Module build failed: CssSyntaxError:` or `Module build failed: Unknown word` error, make sure your `common` configuration doesn't have a CSS-related section set up.
 
-T> [extract-loader](https://www.npmjs.com/package/extract-loader) is a light alternative to `ExtractTextPlugin`. It does less, but can be enough for basic extraction needs.
-
 {pagebreak}
 
 ## Managing Styles Outside of JavaScript
@@ -163,16 +150,15 @@ As a result, you should get both *style.css* and *style.js*. The latter file con
 
 If you want strict control over the ordering, you can set up a single CSS entry and then use `@import` to bring the rest to the project through it. Another option would be to set up a JavaScript entry and go through `import` to get the same effect.
 
-T> [css-entry-webpack-plugin](https://www.npmjs.com/package/css-entry-webpack-plugin) has been designed to help with this usage pattern. The plugin can extract a CSS bundle from entry without `ExtractTextPlugin`.
+T> [css-entry-webpack-plugin](https://www.npmjs.com/package/css-entry-webpack-plugin) has been designed to help with this usage pattern. The plugin can extract a CSS bundle from entry without MCEP.
 
 ## Conclusion
 
-The current setup separates styling from JavaScript neatly. Even though the technique is most valuable with CSS, it can be used to extract HTML templates or any other files types you consume. The hard part about `ExtractTextPlugin` has to do with its setup, but the complexity can be hidden behind an abstraction.
+The current setup separates styling from JavaScript neatly. Even though the technique is most valuable with CSS, it can be used to extract HTML templates or any other files types you consume. The hard part about `MiniCssExtractPlugin` has to do with its setup, but the complexity can be hidden behind an abstraction.
 
 To recap:
 
-* Using `ExtractTextPlugin` with styling solves the problem of Flash of Unstyled Content (FOUC). Separating CSS from JavaScript also improves caching behavior and removes a potential attack vector.
-* `ExtractTextPlugin` is not the only solution. *extract-loader* can give the same result in more limited contexts.
+* Using `MiniCssExtractPlugin` with styling solves the problem of Flash of Unstyled Content (FOUC). Separating CSS from JavaScript also improves caching behavior and removes a potential attack vector.
 * If you don't prefer to maintain references to styling through JavaScript, an alternative is to handle them through an entry. You have to be careful with style ordering in this case, though.
 
 In the next chapter, you'll learn to eliminate unused CSS from the project.

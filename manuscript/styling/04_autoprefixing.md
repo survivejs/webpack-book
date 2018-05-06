@@ -25,7 +25,7 @@ exports.autoprefix = () => ({
 
 {pagebreak}
 
-To connect the loader with `ExtractTextPlugin`, hook it up as follows:
+To connect the loader with CSS extraction, hook it up as follows:
 
 **webpack.config.js**
 
