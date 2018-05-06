@@ -108,12 +108,14 @@ Sometimes modules depend on globals. `$` provided by jQuery is a good example. W
 ```javascript
 {
   module: {
-    rules: {
-      // Resolve against package path.
-      // require.resolve returns a path to it.
-      test: require.resolve("jquery-plugin"),
-      loader: "imports-loader?$=jquery",
-    },
+    rules: [
+      {
+        // Resolve against package path.
+        // require.resolve returns a path to it.
+        test: require.resolve("jquery-plugin"),
+        loader: "imports-loader?$=jquery",
+      },
+    ],
   },
 },
 ```
