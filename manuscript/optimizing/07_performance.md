@@ -13,7 +13,7 @@ Sometimes optimizations come with a cost. They can make your configuration harde
 
 ## Measuring Impact
 
-As discussed in the previous chapter, generating stats is one way to measure impact. [speed-measure-webpack-plugin](https://www.npmjs.com/package/speed-measure-webpack-plugin) gives more granular information per plugin and loader so you know which take most of the time in your process.
+As discussed in the previous chapter, generating stats can be used to measure build time. [speed-measure-webpack-plugin](https://www.npmjs.com/package/speed-measure-webpack-plugin) gives more granular information per plugin and loader so you know which take most of the time in your process.
 
 {pagebreak}
 
