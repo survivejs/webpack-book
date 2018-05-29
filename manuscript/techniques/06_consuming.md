@@ -58,7 +58,7 @@ The module resolution process can be altered by changing where webpack looks for
 ```javascript
 {
   resolve: {
-    extensions: ["my_modules", "node_modules"],
+    modules: ["my_modules", "node_modules"],
   },
 },
 ```
