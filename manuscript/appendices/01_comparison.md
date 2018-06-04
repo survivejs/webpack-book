@@ -240,7 +240,7 @@ module.exports = {
   },
   plugins: {
     babel: {
-      presets: [react", "env"],
+      presets: ["react", "env"],
     },
     postcss: {
       processors: [require("autoprefixer")],
