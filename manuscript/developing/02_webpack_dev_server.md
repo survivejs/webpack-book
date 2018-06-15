@@ -186,8 +186,8 @@ Sometimes the file watching setup provided by WDS won't work on your system. It 
 **webpack.config.js**
 
 ```javascript
-const webpack = require("webpack");
 const path = require("path");
+const webpack = require("webpack");
 
 module.exports = {
   devServer: {
