@@ -24,7 +24,7 @@ As no book is perfect, you will likely come by issues and might have some questi
 * Send me email at [info@survivejs.com](mailto:info@survivejs.com)
 * Ask me anything about webpack or React at [SurviveJS AmA](https://github.com/survivejs/ama/issues)
 
-If you post questions to [Stack Overflow](https://stackoverflow.com/search?q=survivejs), tag them using [**survivejs**](https://stackoverflow.com/questions/tagged/survivejs) so I will get notified of them. You can also use the hashtag **#survivejs** at Twitter.
+If you post questions to [Stack Overflow](https://stackoverflow.com/search?q=survivejs), tag them using [**survivejs**](https://stackoverflow.com/questions/tagged/survivejs) so I will get notified of them. You can also use the hashtag [**#survivejs**](https://twitter.com/hashtag/survivejs?src=hash) at Twitter.
 
 ## Announcements
 
