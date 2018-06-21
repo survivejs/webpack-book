@@ -1,6 +1,6 @@
 # Foreword
 
-It’s a funny story how I started with webpack. Before getting addicted to JavaScript, I also developed in Java. I tried GWT (Google Web Toolkit) in that time. GWT is a Java-to-JavaScript Compiler, which has a great feature: [code splitting](http://www.gwtproject.org/doc/latest/DevGuideCodeSplitting.html). I liked this feature and missed it in existing JavaScript tooling. I made [a pull request](https://github.com/medikoo/modules-webmake/issues/7) to an existing module bundler, but it did not go through. Webpack was born.
+It’s a funny story how I started with webpack. Before getting addicted to JavaScript, I also developed in Java. I tried GWT (Google Web Toolkit) in that time. GWT is a Java-to-JavaScript Compiler, which has a great feature: [code splitting](http://www.gwtproject.org/doc/latest/DevGuideCodeSplitting.html). I liked this feature and missed it in existing JavaScript tooling. I open [an issue](https://github.com/medikoo/modules-webmake/issues/7) to an existing module bundler, but it did not go through. Webpack was born.
 
 Somehow the Instagram frontend team discovered an early version of webpack and started to use it for instagram.com. Pete Hunt, Facebook employee managing the Instagram web team, gave [the first significant talk about webpack](https://www.youtube.com/watch?v=VkTCL6Nqm6Y) at OSCON 2014. The talk boosted the popularity of webpack. One of the reasons for adoption of webpack by Instagram was **code splitting**.
 
