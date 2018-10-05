@@ -17,7 +17,7 @@ The *Loading JavaScript* chapter covers the essentials of using Babel with webpa
 To get React, and particularly JSX, work with Babel, install the preset first:
 
 ```bash
-npm install babel-preset-react --save-dev
+npm install @babel/preset-react --save-dev
 ```
 
 Connect the preset with Babel configuration as follows:
@@ -29,7 +29,7 @@ Connect the preset with Babel configuration as follows:
   ...
   "presets": [
 leanpub-start-insert
-    "react",
+    "@babel/preset-react",
 leanpub-end-insert
     ...
   ]
