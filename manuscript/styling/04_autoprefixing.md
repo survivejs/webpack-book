@@ -45,7 +45,7 @@ leanpub-end-insert
 
 To confirm that the setup works, we have to add something to autoprefix. Adjust the CSS:
 
-**app/main.css**
+**src/main.css**
 
 ```css
 ...
