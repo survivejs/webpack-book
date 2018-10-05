@@ -45,10 +45,10 @@ W> If you use *webpack.config.babel.js*, take care with the `"modules": false,` 
 
 ### Setting Up *babel-loader*
 
-The first step towards configuring Babel to work with webpack is to set up [babel-loader](https://www.npmjs.com/package/babel-loader). It takes the code and turns it into a format older browsers can understand. Install *babel-loader* and include its peer dependency *babel-core*:
+The first step towards configuring Babel to work with webpack is to set up [babel-loader](https://www.npmjs.com/package/babel-loader). It takes the code and turns it into a format older browsers can understand. Install *babel-loader* and include its peer dependency *@babel/core*:
 
 ```bash
-npm install babel-loader babel-core --save-dev
+npm install babel-loader @babel/core --save-dev
 ```
 
 As usual, let's define a function for Babel:
@@ -98,7 +98,7 @@ At a minimum, you need [babel-preset-env](https://www.npmjs.com/package/babel-pr
 Install the preset first:
 
 ```bash
-npm install babel-preset-env --save-dev
+npm install @babel/preset-env --save-dev
 ```
 
 To make Babel aware of the preset, you need to write a *.babelrc*. Given webpack supports ES2015 modules out of the box, you can tell Babel to skip processing them. Jumping over this step would break webpack's HMR mechanism although the production build would still work. You can also constrain the build output to work only in recent versions of Chrome.
@@ -111,7 +111,7 @@ Adjust the target definition as you like. As long as you follow [browserslist](h
 {
   "presets": [
     [
-      "env",
+      "@babel/preset-env",
       {
         "modules": false,
       }

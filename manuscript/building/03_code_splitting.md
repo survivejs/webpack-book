@@ -64,12 +64,12 @@ To demonstrate the idea of code splitting, you can use dynamic `import`. The Bab
 
 ### Configuring Babel
 
-Given Babel doesn't support the dynamic `import` syntax out of the box, it needs [babel-plugin-syntax-dynamic-import](https://www.npmjs.com/package/babel-plugin-syntax-dynamic-import) to work.
+Given Babel doesn't support the dynamic `import` syntax out of the box, it needs [@babel/plugin-syntax-dynamic-import](https://www.npmjs.com/package/@babel/plugin-syntax-dynamic-import) to work.
 
 Install it first:
 
 ```bash
-npm install babel-plugin-syntax-dynamic-import --save-dev
+npm install @babel/plugin-syntax-dynamic-import --save-dev
 ```
 
 To connect it with the project, adjust the configuration as follows:
@@ -79,7 +79,7 @@ To connect it with the project, adjust the configuration as follows:
 ```json
 {
 leanpub-start-insert
-  "plugins": ["syntax-dynamic-import"],
+  "plugins": ["@babel/plugin-syntax-dynamic-import"],
 leanpub-end-insert
   ...
 }
