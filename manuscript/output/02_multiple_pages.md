@@ -239,7 +239,7 @@ module.exports = mode => {
         app: PATHS.app,
       },
 leanpub-start-insert
-      chunks: ["app", "manifest", "vendor"],
+      chunks: ["app", "manifest"],
 leanpub-end-insert
     }),
     parts.page({
@@ -249,7 +249,7 @@ leanpub-end-insert
         another: path.join(PATHS.app, "another.js"),
       },
 leanpub-start-insert
-      chunks: ["another", "manifest", "vendor"],
+      chunks: ["another", "manifest"],
 leanpub-end-insert
     }),
   ];
