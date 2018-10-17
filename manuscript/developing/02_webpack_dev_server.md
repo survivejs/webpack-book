@@ -103,7 +103,7 @@ leanpub-start-insert
     // Parse host and port from env to allow customization.
     //
     // If you use Docker, Vagrant or Cloud9, set
-    // host: options.host || "0.0.0.0";
+    // host: "0.0.0.0";
     //
     // 0.0.0.0 is available to all network devices
     // unlike default `localhost`.
