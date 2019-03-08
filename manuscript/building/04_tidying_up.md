@@ -27,7 +27,7 @@ Next, you need to define a function to wrap the basic idea. You could use the pl
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 exports.clean = path => ({
-  plugins: [new CleanWebpackPlugin([path])],
+  plugins: [new CleanWebpackPlugin()],
 });
 ```
 
@@ -36,18 +36,11 @@ Connect it with the project:
 **webpack.config.js**
 
 ```javascript
-const PATHS = {
-  app: path.join(__dirname, "src"),
-leanpub-start-insert
-  build: path.join(__dirname, "dist"),
-leanpub-end-insert
-};
-
 ...
 
 const productionConfig = merge([
 leanpub-start-insert
-  parts.clean(PATHS.build),
+  parts.clean(),
 leanpub-end-insert
   ...
 ]);
