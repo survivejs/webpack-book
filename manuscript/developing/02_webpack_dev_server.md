@@ -262,8 +262,6 @@ There are also plugins that make the webpack output easier to notice and underst
 * [friendly-errors-webpack-plugin](https://www.npmjs.com/package/friendly-errors-webpack-plugin) improves on error reporting of webpack. It captures common errors and displays them in a friendlier manner.
 * [webpack-dashboard](https://www.npmjs.com/package/webpack-dashboard) gives an entire terminal based dashboard over the standard webpack output. If you prefer clear visual output, this one comes in handy.
 
-{pagebreak}
-
 ## Conclusion
 
 WDS complements webpack and makes it more friendly for developers by providing development oriented functionality.
