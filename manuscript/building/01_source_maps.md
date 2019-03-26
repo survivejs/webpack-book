@@ -328,7 +328,7 @@ There are a couple of other options that affect source map generation:
 
 T> The [official documentation](https://webpack.js.org/configuration/output/#output-sourcemapfilename) digs into `output` specifics.
 
-W> If you are using `UglifyJsPlugin` and still want source maps, you need to enable `sourceMap: true` for the plugin. Otherwise, the result isn't what you expect because UglifyJS will perform a further transformation of the code, breaking the mapping. The same has to be done with other plugins and loaders performing changes. *css-loader* and related loaders are a good example.
+W> If you are using *terser-webpack-plugin* and still want source maps, you need to enable `sourceMap: true` for the plugin. Otherwise, the result isn't what you expect because terser will perform a further transformation of the code, breaking the mapping. The same has to be done with other plugins and loaders performing changes. *css-loader* and related loaders are a good example.
 
 ## `SourceMapDevToolPlugin` and `EvalSourceMapDevToolPlugin`
 

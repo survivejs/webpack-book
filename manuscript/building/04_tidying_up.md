@@ -99,8 +99,6 @@ If you build the project (`npm run build`), you should notice the built files co
 
 The output can be customized further by adjusting the banner. You can also pass revision information to the application using `webpack.DefinePlugin`. This technique is discussed in detail in the *Environment Variables* chapter.
 
-W> [The plugin is broken in production mode in webpack 4](https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/222)!
-
 W> The code expects you run it within a Git repository! Otherwise, you get a `fatal: Not a git repository (or any of the parent directories): .git` error. If you are not using Git, you can replace the banner with other data.
 
 ## Copying Files

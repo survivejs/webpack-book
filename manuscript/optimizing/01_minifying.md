@@ -1,6 +1,8 @@
 # Minifying
 
-Since webpack 4, the production output gets minified using UglifyJS by default. That said, it's good to understand the technique and further possibilities.
+Since webpack 4, the production output gets minified using [terser](https://www.npmjs.com/package/terser) by default. Terser is an ES2015+ compatible JavaScript-minifier. Compared to UglifyJS, the earlier standard for many projects, it's a future oriented option. There was a fork of UglifyJS, *uglify-es*, but as it's not maintained anymore, terser was born as an independent fork.
+
+Althouogh webpack 4 minifies the output by default, it's good to understand how to customize the behavior should you want to adjust it further or replace the minifier.
 
 ## Minifying JavaScript
 
@@ -12,12 +14,12 @@ Unsafe transformations can break code as they can lose something implicit the un
 
 In webpack 4, minification process is controlled through two configuration fields: `optimization.minimize` flag to toggle it and `optimization.minimizer` array to configure the process.
 
-To tune the defaults, we'll attach [uglifyjs-webpack-plugin](https://www.npmjs.com/package/uglifyjs-webpack-plugin) to the project so that it's possible to tune it.
+To tune the defaults, we'll attach [terser-webpack-plugin](hhttps://www.npmjs.com/package/terser-webpack-plugin) to the project so that it's possible to adjust it.
 
 To get started, include the plugin to the project:
 
 ```bash
-npm install uglifyjs-webpack-plugin --save-dev
+npm install terser-webpack-plugin --save-dev
 ```
 
 {pagebreak}
@@ -27,11 +29,11 @@ To attach it to the configuration, define a part for it first:
 **webpack.parts.js**
 
 ```javascript
-const UglifyWebpackPlugin = require("uglifyjs-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 
 exports.minifyJavaScript = () => ({
   optimization: {
-    minimizer: [new UglifyWebpackPlugin({ sourceMap: true })],
+    minimizer: [new TerserPlugin({ sourceMap: true })],
   },
 });
 ```
@@ -50,19 +52,19 @@ leanpub-end-insert
 ]);
 ```
 
-If you execute `npm run build` now, you should see result close to the same as before. The outcome may be a slightly better as you are likely using a newer version of UglifyJS this way.
+If you execute `npm run build` now, you should see result close to the same as before.
 
-T> Source maps are disabled by default. You can enable them through the `sourceMap` flag. You should check *uglifyjs-webpack-plugin* for more options.
+T> Source maps are disabled by default. You can enable them through the `sourceMap` flag. You should check *terser-webpack-plugin* for more options.
 
-T> To strip `console.log` calls from the resulting source, set `uglifyOptions.compress.drop_console` to `true` as [discussed on Stack Overflow](https://stackoverflow.com/questions/49101152/webpack-v4-remove-console-logs-with-webpack-uglify).
+T> To adjust Terser, attach `terserOptions` with the related options to the plugin.
 
 {pagebreak}
 
 ## Other Ways to Minify JavaScript
 
-Although the defaults and *uglifyjs-webpack-plugin* works for this use case, there are more options you can consider:
+Although the defaults and *terser-webpack-plugin* works for this use case, there are more options you can consider:
 
-* [babel-minify-webpack-plugin](https://www.npmjs.com/package/babel-minify-webpack-plugin) relies on [babel-preset-minify](https://www.npmjs.com/package/babel-preset-minify) underneath and it has been developed by the Babel team. It's slower than UglifyJS, though.
+* [babel-minify-webpack-plugin](https://www.npmjs.com/package/babel-minify-webpack-plugin) relies on [babel-preset-minify](https://www.npmjs.com/package/babel-preset-minify) underneath and it has been developed by the Babel team.
 * [webpack-closure-compiler](https://www.npmjs.com/package/webpack-closure-compiler) runs parallel and gives even smaller result than *babel-minify-webpack-plugin* at times. [closure-webpack-plugin](https://www.npmjs.com/package/closure-webpack-plugin) is another option.
 * [butternut-webpack-plugin](https://www.npmjs.com/package/butternut-webpack-plugin) uses Rich Harris' experimental [butternut](https://www.npmjs.com/package/butternut) minifier underneath.
 
@@ -186,7 +188,7 @@ It can be a good idea to use *cache-loader* and *thread-loader* with these as di
 Minification is the most comfortable step you can take to make your build smaller. To recap:
 
 * **Minification** process analyzes your source code and turns it into a smaller form with the same meaning if you use safe transformations. Specific unsafe transformations allow you to reach even smaller results while potentially breaking code that relies, for example, on exact parameter naming.
-* Webpack performs minification in production mode using UglifyJS by default. Other solutions, such as *babel-minify-webpack-plugin*, provide similar functionality with costs of their own.
+* Webpack performs minification in production mode using Terser by default. Other solutions, such as *babel-minify-webpack-plugin*, provide similar functionality with costs of their own.
 * Besides JavaScript, it's possible to minify other assets, such as CSS, HTML, and images, too. Minifying these requires specific technologies that have to be applied through loaders and plugins of their own.
 
 You'll learn to apply tree shaking against code in the next chapter.
