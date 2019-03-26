@@ -237,6 +237,10 @@ WDS provides functionality beyond what was covered above. There are a couple of 
 
 T> [The official documentation](https://webpack.js.org/configuration/dev-server/) covers more options.
 
+## **webpack-plugin-serve** - Alternative to **webpack-dev-server**
+
+[webpack-plugin-serve](https://www.npmjs.com/package/webpack-plugin-serve) wraps the development related functionality within a webpack plugin. To work, it assumes you run webpack in the watch mode. It matches the features of **webpack-dev-server** closely while providing unique features such as fully functional **Hot Module Replacement** even when webpack is used in a multi-compiler mode (i.e., when you give an array of configurations to it). Status overlay is one of the convenience helpers included.
+
 ## Development Plugins
 
 The webpack plugin ecosystem is diverse, and there are a lot of plugins that can help specifically with development:
