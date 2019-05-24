@@ -187,6 +187,8 @@ $ inspectpack --action=duplicates --bundle=bundle.js
     * Pct of Bundle Size:  15 %
 ```
 
+The tool also comes with a plugin you can attach directly to your configuration in case you prefer to perform the check during the build.
+
 {pagebreak}
 
 ### Jarvis
