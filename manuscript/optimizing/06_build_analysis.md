@@ -114,6 +114,10 @@ Even though having a look at the file itself gives you an idea of what's going o
 
 [The official analyse tool](https://github.com/webpack/analyse) gives you recommendations and a good idea of your application's dependency graph. It can be run locally as well.
 
+### webpack-xray
+
+[webpack-xray](https://github.com/akx/webpack-xray) is a similar to the official analyse tool while having a modernized UI and support for drilling down in the data.
+
 {pagebreak}
 
 ### Webpack Visualizer
