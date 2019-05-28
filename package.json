@@ -45,7 +45,7 @@
     "nlcst-to-string": "^2.0.0",
     "prettier": "^1.17.1",
     "proselint": "^0.1.7",
-    "remark-cli": "^3.0.0",
+    "remark-cli": "^6.0.1",
     "remark-preset-survivejs": "^0.2.1",
     "retext": "^5.0.0",
     "retext-keywords": "^4.0.0",
