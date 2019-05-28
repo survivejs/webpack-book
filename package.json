@@ -43,6 +43,7 @@
     "husky": "^0.13.2",
     "leanpub-cli": "^0.2.0",
     "nlcst-to-string": "^2.0.0",
+    "prettier": "^1.17.1",
     "proselint": "^0.1.7",
     "remark-cli": "^3.0.0",
     "remark-preset-survivejs": "^0.2.1",
