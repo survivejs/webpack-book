@@ -9,7 +9,7 @@ Mainmatter.txt
 
 05_Developing.md
 developing/01_getting_started.md
-developing/02_webpack_dev_server.md
+developing/02_development_server.md
 developing/03_composing_configuration.md
 
 06_Styling.md

@@ -1,20 +1,24 @@
-# webpack-dev-server
+# Development Server
 
-Tools, such as [LiveReload](http://livereload.com/) or [Browsersync](http://www.browsersync.io/), allow refreshing the browser as you develop the application and avoid a refresh for CSS changes. It's possible to setup Browsersync to work with webpack through [browser-sync-webpack-plugin](https://www.npmjs.com/package/browser-sync-webpack-plugin), but webpack has more tricks in store.
+When developing a frontend without any special tooling, you often end up having to refresh the browser to see changes. Given having to manually refresh gets annoying fast, there's tooling to remedy the problem. The first tools in the market were [LiveReload](http://livereload.com/) and [Browsersync](http://www.browsersync.io/).
 
-## Webpack `watch` Mode and *webpack-dev-server*
+The point of either is to allow refreshing the browser automatically as you develop. They also pick up CSS changes and apply the new style without a hard refresh that loses the state of the browser. It's possible to setup Browsersync to work with webpack through [browser-sync-webpack-plugin](https://www.npmjs.com/package/browser-sync-webpack-plugin), but webpack has more tricks in store in form of a `watch` mode, and a development server.
 
-A good first step towards a better development environment is to use webpack in its **watch** mode. You can activate it by passing the `--watch` to webpack. Example: `npm run build -- --watch`.
+## Webpack `watch` Mode
 
-Once enabled, the watch mode detects changes made to your files and recompiles automatically. *webpack-dev-server* (WDS) implements a watch mode and goes even further.
+Webpack implements a `watch` mode that operates against the project files bundled by webpack. You can activate it by passing the `--watch` to webpack. Example: `npm run build -- --watch`. After this, any change made to a file captured by a webpack will trigger a rebuild.
 
-WDS is a development server running **in-memory**, meaning the bundle contents aren't written out to files but stored in memory. The distinction is important when trying to debug code and styles.
+Although this solves the problem of recompiling your source on change, it does nothing on the frontend side. That's where further solutions are required.
 
-By default, WDS refreshes content automatically in the browser while you develop your application, so you don't have to do it yourself. However it also supports an advanced webpack feature, **Hot Module Replacement** (HMR).
+## *webpack-plugin-serve*
 
-HMR allows patching the browser state without a full refresh making it particularly handy with libraries like React where an update blows away the application state. The *Hot Module Replacement* appendix covers the feature in detail.
+[webpack-plugin-serve](https://www.npmjs.com/package/webpack-plugin-serve) is a third-party plugin that wraps the logic required to update the browser into a webpack plugin. Underneath it relies on webpack's watch mode and it builds on top of that while implementing **Hot Module Replacement** (HMR) and other features seen in the official solution provided for webpack. There's also functionality that goes beyond the official development server including support for webpack's multi-compiler mode (i.e., when you give an array of configurations to it) and a status overlay.
 
-WDS provides an interface that makes it possible to patch code on the fly, however for this to work efficiently you have to implement this interface for the client-side code. It's trivial for something like CSS because it's stateless, but the problem is harder with JavaScript frameworks and libraries.
+T> To learn mode about HMR, read the *Hot Module Replacement* appendix. You can learn the fundamentals of the technique and why people use it. Applying it won't be necessary to complete the tutorial, though.
+
+## *webpack-dev-server*
+
+[webpack-dev-server](https://www.npmjs.com/package/webpack-dev-server) (WDS) is the officially maintained solution for webpack. WDS is a development server running **in-memory**, meaning the bundle contents aren't written out to files but stored in memory. The distinction is important when trying to debug code and styles.
 
 ## Emitting Files from WDS
 
@@ -148,10 +152,6 @@ T> If you want even better output, consider [error-overlay-webpack-plugin](https
 
 W> WDS overlay does *not* capture runtime errors of the application.
 
-## Enabling Hot Module Replacement
-
-Hot Module Replacement is one of those features that set webpack apart. Implementing it requires additional effort on both server and client-side. The *Hot Module Replacement* appendix discusses the topic in greater detail. If you want to integrate HMR to your project, give it a look. It won't be needed to complete the tutorial, though.
-
 ## Accessing the Development Server from Network
 
 It's possible to customize host and port settings through the environment in the setup (i.e., `export PORT=3000` on Unix or `SET PORT=3000` on Windows). The default settings are enough on most platforms.
@@ -236,10 +236,6 @@ WDS provides functionality beyond what was covered above. There are a couple of 
 * `devServer.headers` - Attach custom headers to your requests here.
 
 T> [The official documentation](https://webpack.js.org/configuration/dev-server/) covers more options.
-
-## **webpack-plugin-serve** - Alternative to **webpack-dev-server**
-
-[webpack-plugin-serve](https://www.npmjs.com/package/webpack-plugin-serve) wraps the development related functionality within a webpack plugin. To work, it assumes you run webpack in the watch mode. It matches the features of **webpack-dev-server** closely while providing unique features such as fully functional **Hot Module Replacement** even when webpack is used in a multi-compiler mode (i.e., when you give an array of configurations to it). Status overlay is one of the convenience helpers included.
 
 {pagebreak}
 
