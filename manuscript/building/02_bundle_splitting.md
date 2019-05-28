@@ -157,7 +157,7 @@ Here's the basic idea of aggressive splitting:
 },
 ```
 
-There's a trade-off as you lose out in caching if you split to multiple small bundles. You also get request overhead in HTTP/1 environment. For now, the approach doesn't work when `HtmlWebpackPlugin` is enabled due to [a bug in the plugin](https://github.com/ampedandwired/html-webpack-plugin/issues/446).
+There's a trade-off as you lose out in caching if you split to multiple small bundles. You also get request overhead in HTTP/1 environment.
 
 The aggressive merging plugin works the opposite way and allows you to combine small bundles into bigger ones:
 
@@ -177,6 +177,8 @@ It's possible to get good caching behavior with these plugins if a webpack **rec
 `webpack.optimize` contains `LimitChunkCountPlugin` and `MinChunkSizePlugin` which give further control over chunk size.
 
 T> Tobias Koppers discusses [aggressive merging in detail at the official blog of webpack](https://medium.com/webpack/webpack-http-2-7083ec3f3ce6).
+
+W> If you are using *html-webpack-plugin*, make sure to use at least version 4 or newer of the plugin for the functionality to work correctly.
 
 ## Chunk Types in Webpack
 

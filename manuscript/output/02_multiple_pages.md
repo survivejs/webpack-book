@@ -1,14 +1,14 @@
 # Multiple Pages
 
-Even though webpack is often used for bundling single page applications, it's possible to use it with multiple separate pages as well. The idea is similar to the way you generated multiple output files in the *Targets* chapter. This time, however, you have to generate separate pages. That's achievable through `HtmlWebpackPlugin` and a bit of configuration.
+Even though webpack is often used for bundling single page applications, it's possible to use it with multiple separate pages as well. The idea is similar to the way you generated multiple output files in the _Targets_ chapter. This time, however, you have to generate separate pages. That's achievable through `HtmlWebpackPlugin` and a bit of configuration.
 
 ## Possible Approaches
 
 When generating multiple pages with webpack, you have a couple of possibilities:
 
-* Go through the *multi-compiler mode* and return an array of configurations. The approach would work as long as the pages are separate and there is a minimal need for sharing code across them. The benefit of this approach is that you can process it through [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) to improve build performance.
-* Set up a single configuration and extract the commonalities. The way you do this can differ depending on how you chunk it up.
-* If you follow the idea of [Progressive Web Applications](https://developers.google.com/web/progressive-web-apps/) (PWA), you can end up with either an **app shell** or a **page shell** and load portions of the application as it's used.
+- Go through the _multi-compiler mode_ and return an array of configurations. The approach would work as long as the pages are separate and there is a minimal need for sharing code across them. The benefit of this approach is that you can process it through [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) to improve build performance.
+- Set up a single configuration and extract the commonalities. The way you do this can differ depending on how you chunk it up.
+- If you follow the idea of [Progressive Web Applications](https://developers.google.com/web/progressive-web-apps/) (PWA), you can end up with either an **app shell** or a **page shell** and load portions of the application as it's used.
 
 In practice, you have more dimensions. For example, you have to generate i18n variants for pages. These ideas grow on top of the basic approaches.
 
@@ -24,20 +24,16 @@ To initialize a page, it should receive page title, output path, and an optional
 
 ```javascript
 ...
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniHtmlWebpackPlugin = require("mini-html-webpack-plugin");
 
-exports.page = ({
-  path = "",
-  template = require.resolve(
-    "html-webpack-plugin/default_index.ejs"
-  ),
-  title,
-} = {}) => ({
+exports.page = ({ path = "", template, title } = {}) => ({
   plugins: [
-    new HtmlWebpackPlugin({
+    new MiniHtmlWebpackPlugin({
       filename: `${path && path + "/"}index.html`,
+      context: {
+        title,
+      },
       template,
-      title,
     }),
   ],
 });
@@ -54,7 +50,7 @@ To incorporate the idea into the configuration, the way it's composed has to cha
 ```javascript
 ...
 leanpub-start-delete
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniHtmlWebpackPlugin = require("mini-html-webpack-plugin");
 leanpub-end-delete
 ...
 
@@ -63,8 +59,10 @@ const commonConfig = merge([
 leanpub-start-delete
   {
     plugins: [
-      new HtmlWebpackPlugin({
-        title: "Webpack demo",
+      new MiniHtmlWebpackPlugin({
+        context: {
+          title: "Webpack demo",
+        },
       }),
     ],
   },
@@ -175,25 +173,22 @@ The tweak also requires a change at the related part so that `entry` gets includ
 **webpack.parts.js**
 
 ```javascript
-exports.page = (
-  {
-    path = "",
-    template = require.resolve(
-      "html-webpack-plugin/default_index.ejs"
-    ),
-    title,
+leanpub-start-delete
+exports.page = ({ path = "", template, title } = {}) => ({
+leanpub-end-delete
 leanpub-start-insert
-    entry,
+exports.page = ({ path = "", template, title, entry } = {}) => ({
 leanpub-end-insert
-  } = {}
-) => ({
 leanpub-start-insert
   entry,
 leanpub-end-insert
   plugins: [
-    new HtmlWebpackPlugin({
+    new MiniHtmlWebpackPlugin({
       filename: `${path && path + "/"}index.html`,
-      title,
+      context: {
+        title,
+      },
+      template,
     }),
   ],
 });
@@ -207,12 +202,12 @@ After these changes `/another` should show something familiar:
 
 ### Pros and Cons
 
-If you build the application (`npm run build`), you should find *another/index.html*. Based on the generated code, you can make the following observations:
+If you build the application (`npm run build`), you should find _another/index.html_. Based on the generated code, you can make the following observations:
 
-* It's clear how to add more pages to the setup.
-* The generated assets are directly below the build root. The pages are an exception as those are handled by `HtmlWebpackPlugin`, but they still point to the assets below the root. It would be possible to add more abstraction in the form of *webpack.page.js* and manage the paths by exposing a function that accepts page configuration.
-* Records should be written separately per each page in files of their own. Currently, the configuration that writes the last wins. The above solution would allow solving this.
-* Processes like linting and cleaning run twice now. The *Targets* chapter discussed potential solutions to that problem.
+- It's clear how to add more pages to the setup.
+- The generated assets are directly below the build root. The pages are an exception as those are handled by `HtmlWebpackPlugin`, but they still point to the assets below the root. It would be possible to add more abstraction in the form of _webpack.page.js_ and manage the paths by exposing a function that accepts page configuration.
+- Records should be written separately per each page in files of their own. Currently, the configuration that writes the last wins. The above solution would allow solving this.
+- Processes like linting and cleaning run twice now. The _Targets_ chapter discussed potential solutions to that problem.
 
 The approach can be pushed in another direction by dropping the multi-compiler mode. Even though it's slower to process this kind of build, it enables code sharing and the implementation of shells. The first step towards a shell setup is to rework the configuration so that it picks up the code shared between the pages.
 
@@ -220,11 +215,11 @@ The approach can be pushed in another direction by dropping the multi-compiler m
 
 The current configuration shares code by coincidence already due to the usage patterns. Only a small part of the code differs, and as a result, only the page manifests, and the bundles mapping to their entries differ.
 
-In a more complicated application, you should apply techniques covered in the *Bundle Splitting* chapter across the pages. Dropping the multi-compiler mode can be worthwhile then.
+In a more complicated application, you should apply techniques covered in the _Bundle Splitting_ chapter across the pages. Dropping the multi-compiler mode can be worthwhile then.
 
 ### Adjusting Configuration
 
-Adjustment is needed to share code between the pages. Most of the code can remain the same. The way you expose it to webpack has to change so that it receives a single configuration object. As `HtmlWebpackPlugin` picks up all chunks by default, you have to adjust it to pick up only the chunks that are related to each page:
+Adjustment is needed to share code between the pages. Most of the code can remain the same. The way you expose it to webpack has to change so that it receives a single configuration object. As _mini-html-webpack-plugin_ picks up all chunks by default, you have to adjust it to pick up only the chunks that are related to each page:
 
 **webpack.config.js**
 
@@ -272,22 +267,15 @@ The page-specific configuration requires a small tweak as well:
 **webpack.parts.js**
 
 ```javascript
-exports.page = (
-  {
-    path = "",
-    template = require.resolve(
-      "html-webpack-plugin/default_index.ejs"
-    ),
-    title,
-    entry,
+leanpub-start-delete
+exports.page = ({ path = "", template, title, entry } = {}) => ({
+leanpub-end-delete
 leanpub-start-insert
-    chunks,
+exports.page = ({ path = "", template, title, entry, chunks } = {}) => ({
 leanpub-end-insert
-  } = {}
-) => ({
   entry,
   plugins: [
-    new HtmlWebpackPlugin({
+    new MiniHtmlWebpackPlugin({
 leanpub-start-insert
       chunks,
 leanpub-end-insert
@@ -303,9 +291,9 @@ If you generate a build (`npm run build`), you should notice that something is d
 
 Compared to the earlier approach, something was gained, but also lost:
 
-* Given the configuration isn't in the multi-compiler form anymore, processing can be slower.
-* Plugins such as `CleanWebpackPlugin` don't work without additional consideration now.
-* Instead of multiple manifests, only one remains. The result is not a problem, though, as the entries use it differently based on their setup.
+- Given the configuration isn't in the multi-compiler form anymore, processing can be slower.
+- Plugins such as `CleanWebpackPlugin` don't work without additional consideration now.
+- Instead of multiple manifests, only one remains. The result is not a problem, though, as the entries use it differently based on their setup.
 
 ## Progressive Web Applications
 
@@ -323,8 +311,8 @@ Webpack allows you to manage multiple page setups. The PWA approach allows the a
 
 To recap:
 
-* Webpack can be used to generate separate pages either through its multi-compiler mode or by including all the page configuration into one.
-* The multi-compiler configuration can run in parallel using external solutions, but it's harder to apply techniques such as bundle splitting against it.
-* A multi-page setup can lead to a **Progressive Web Application**. In this case, you use various webpack techniques to come up with an application that is fast to load and that fetches functionality as required. Both two flavors of this technique have their own merits.
+- Webpack can be used to generate separate pages either through its multi-compiler mode or by including all the page configuration into one.
+- The multi-compiler configuration can run in parallel using external solutions, but it's harder to apply techniques such as bundle splitting against it.
+- A multi-page setup can lead to a **Progressive Web Application**. In this case, you use various webpack techniques to come up with an application that is fast to load and that fetches functionality as required. Both two flavors of this technique have their own merits.
 
-You'll learn to implement *Server Side Rendering* in the next chapter.
+You'll learn to implement _Server Side Rendering_ in the next chapter.
