@@ -54,7 +54,8 @@
         ["I'll", ""],
         ["I've", ""],
         ["they'll", ""],
-        ["It is", "It's"],
+        // ["it is", "it's"], // Too strict
+        // ["It is", "It's"], // Too strict
         // ["I", ""], // This should be skipped for foreword/preface
         // ["may", ""], // This should be a warning
 
