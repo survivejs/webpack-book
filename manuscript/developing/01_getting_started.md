@@ -28,6 +28,8 @@ T> The book examples have been formatted using [Prettier](https://www.npmjs.com/
 
 ## Installing Webpack
 
+- TODO: Mention webpack-nano as an option
+
 Even though webpack can be installed globally (`npm add webpack -g`), it's a good idea to maintain it as a dependency of your project to avoid issues, as then you have control over the exact version you are running. The approach works nicely in **Continuous Integration** (CI) setups as well. A CI system can install your local dependencies, compile your project using them, and then push the result to a server.
 
 To add webpack to the project, execute:
@@ -125,7 +127,7 @@ To connect the plugin with webpack, set up configuration as below:
 **webpack.config.js**
 
 ```javascript
-const MiniHtmlWebpackPlugin = require("mini-html-webpack-plugin");
+const { MiniHtmlWebpackPlugin } = require("mini-html-webpack-plugin");
 
 module.exports = {
   plugins: [

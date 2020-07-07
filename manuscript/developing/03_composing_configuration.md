@@ -1,5 +1,7 @@
 # Composing Configuration
 
+- TODO: Mention https://github.com/namics/webpack-config-plugins
+
 Even though not a lot has been done with webpack yet, the amount of configuration is starting to feel substantial. Now you have to be careful about the way you compose it as you have separate production and development targets in the project. The situation can only get worse as you want to add more functionality to the project.
 
 Using a single monolithic configuration file impacts comprehension and removes any potential for reusability. As the needs of your project grow, you have to figure out the means to manage webpack configuration more effectively.
@@ -22,7 +24,7 @@ If the configuration file is broken into separate pieces, they have to be combin
 _webpack-merge_ does two things: it concatenates arrays and merges objects instead of overriding them allowing composition. The example below shows the behavior in detail:
 
 ```bash
-> merge = require("webpack-merge")
+> { merge } = require("webpack-merge")
 ...
 > merge(
 ... { a: [1], b: 5, c: 20 },
@@ -44,7 +46,7 @@ T> [webpack-chain](https://www.npmjs.com/package/webpack-chain) provides a fluen
 To get started, add _webpack-merge_ to the project:
 
 ```bash
-npm install webpack-merge --save-dev
+npm add webpack-merge --save-dev
 ```
 
 To give a degree of abstraction, you can define _webpack.config.js_ for higher level configuration and _webpack.parts.js_ for configuration parts to consume. Here are the parts with small function-based interfaces extracted from the existing code:
@@ -72,8 +74,8 @@ To connect this configuration part, set up _webpack.config.js_ as in the code ex
 **webpack.config.js**
 
 ```javascript
-const merge = require("webpack-merge");
-const MiniHtmlWebpackPlugin = require("mini-html-webpack-plugin");
+const { merge } = require("webpack-merge");
+const { MiniHtmlWebpackPlugin } = require("mini-html-webpack-plugin");
 
 const parts = require("./webpack.parts");
 

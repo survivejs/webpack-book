@@ -1,6 +1,6 @@
 # Minifying
 
-Since webpack 4, the production output gets minified using [terser](https://www.npmjs.com/package/terser) by default. Terser is an ES2015+ compatible JavaScript-minifier. Compared to UglifyJS, the earlier standard for many projects, it's a future oriented option. There was a fork of UglifyJS, *uglify-es*, but as it's not maintained anymore, terser was born as an independent fork.
+Since webpack 4, the production output gets minified using [terser](https://www.npmjs.com/package/terser) by default. Terser is an ES2015+ compatible JavaScript-minifier. Compared to UglifyJS, the earlier standard for many projects, it's a future oriented option. There was a fork of UglifyJS, _uglify-es_, but as it's not maintained anymore, terser was born as an independent fork.
 
 Althouogh webpack 4 minifies the output by default, it's good to understand how to customize the behavior should you want to adjust it further or replace the minifier.
 
@@ -19,7 +19,7 @@ To tune the defaults, we'll attach [terser-webpack-plugin](hhttps://www.npmjs.co
 To get started, include the plugin to the project:
 
 ```bash
-npm install terser-webpack-plugin --save-dev
+npm add terser-webpack-plugin --save-dev
 ```
 
 {pagebreak}
@@ -54,7 +54,7 @@ leanpub-end-insert
 
 If you execute `npm run build` now, you should see result close to the same as before.
 
-T> Source maps are disabled by default. You can enable them through the `sourceMap` flag. You should check *terser-webpack-plugin* for more options.
+T> Source maps are disabled by default. You can enable them through the `sourceMap` flag. You should check _terser-webpack-plugin_ for more options.
 
 T> To adjust Terser, attach `terserOptions` with the related options to the plugin.
 
@@ -62,11 +62,11 @@ T> To adjust Terser, attach `terserOptions` with the related options to the plug
 
 ## Other Ways to Minify JavaScript
 
-Although the defaults and *terser-webpack-plugin* works for this use case, there are more options you can consider:
+Although the defaults and _terser-webpack-plugin_ works for this use case, there are more options you can consider:
 
-* [babel-minify-webpack-plugin](https://www.npmjs.com/package/babel-minify-webpack-plugin) relies on [babel-preset-minify](https://www.npmjs.com/package/babel-preset-minify) underneath and it has been developed by the Babel team.
-* [webpack-closure-compiler](https://www.npmjs.com/package/webpack-closure-compiler) runs parallel and gives even smaller result than *babel-minify-webpack-plugin* at times. [closure-webpack-plugin](https://www.npmjs.com/package/closure-webpack-plugin) is another option.
-* [butternut-webpack-plugin](https://www.npmjs.com/package/butternut-webpack-plugin) uses Rich Harris' experimental [butternut](https://www.npmjs.com/package/butternut) minifier underneath.
+- [babel-minify-webpack-plugin](https://www.npmjs.com/package/babel-minify-webpack-plugin) relies on [babel-preset-minify](https://www.npmjs.com/package/babel-preset-minify) underneath and it has been developed by the Babel team.
+- [webpack-closure-compiler](https://www.npmjs.com/package/webpack-closure-compiler) runs parallel and gives even smaller result than _babel-minify-webpack-plugin_ at times. [closure-webpack-plugin](https://www.npmjs.com/package/closure-webpack-plugin) is another option.
+- [butternut-webpack-plugin](https://www.npmjs.com/package/butternut-webpack-plugin) uses Rich Harris' experimental [butternut](https://www.npmjs.com/package/butternut) minifier underneath.
 
 ## Speeding Up JavaScript Execution
 
@@ -76,7 +76,7 @@ Specific solutions allow you to preprocess code so that it will run faster. They
 
 Since webpack 4, it applies scope hoisting in production mode by default. It hoists all modules to a single scope instead of writing a separate closure for each. Doing this slows down the build but gives you bundles that are faster to execute. [Read more about scope hoisting](https://medium.com/webpack/brief-introduction-to-scope-hoisting-in-webpack-8435084c171f) at the webpack blog.
 
-T>  Pass `--display-optimization-bailout` flag to webpack to gain debugging information related to hoisting results.
+T> Pass `--display-optimization-bailout` flag to webpack to gain debugging information related to hoisting results.
 
 ### Pre-evaluation
 
@@ -101,7 +101,7 @@ If you consume HTML templates through your code using [html-loader](https://www.
 Out of the available solutions, `OptimizeCSSAssetsPlugin` composes the best. To attach it to the setup, install it and [cssnano](http://cssnano.co/) first:
 
 ```bash
-npm install optimize-css-assets-webpack-plugin cssnano --save-dev
+npm add optimize-css-assets-webpack-plugin cssnano --save-dev
 ```
 
 {pagebreak}
@@ -111,9 +111,7 @@ Like for JavaScript, you can wrap the idea in a configuration part:
 **webpack.parts.js**
 
 ```javascript
-const OptimizeCSSAssetsPlugin = require(
-  "optimize-css-assets-webpack-plugin"
-);
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const cssnano = require("cssnano");
 
 exports.minifyCSS = ({ options }) => ({
@@ -127,7 +125,7 @@ exports.minifyCSS = ({ options }) => ({
 });
 ```
 
-W> If you use `--json` output with webpack as discussed in the *Build Analysis* chapter, you should set `canPrint: false` for the plugin.
+W> If you use `--json` output with webpack as discussed in the _Build Analysis_ chapter, you should set `canPrint: false` for the plugin.
 
 {pagebreak}
 
@@ -181,14 +179,14 @@ T> [compression-webpack-plugin](https://www.npmjs.com/package/compression-webpac
 
 Image size can be reduced by using [img-loader](https://www.npmjs.com/package/img-loader), [imagemin-webpack](https://www.npmjs.com/package/imagemin-webpack), and [imagemin-webpack-plugin](https://www.npmjs.com/package/imagemin-webpack-plugin). The packages use image optimizers underneath.
 
-It can be a good idea to use *cache-loader* and *thread-loader* with these as discussed in the *Performance* chapter given they can be substantial operations.
+It can be a good idea to use _cache-loader_ and _thread-loader_ with these as discussed in the _Performance_ chapter given they can be substantial operations.
 
 ## Conclusion
 
 Minification is the most comfortable step you can take to make your build smaller. To recap:
 
-* **Minification** process analyzes your source code and turns it into a smaller form with the same meaning if you use safe transformations. Specific unsafe transformations allow you to reach even smaller results while potentially breaking code that relies, for example, on exact parameter naming.
-* Webpack performs minification in production mode using Terser by default. Other solutions, such as *babel-minify-webpack-plugin*, provide similar functionality with costs of their own.
-* Besides JavaScript, it's possible to minify other assets, such as CSS, HTML, and images, too. Minifying these requires specific technologies that have to be applied through loaders and plugins of their own.
+- **Minification** process analyzes your source code and turns it into a smaller form with the same meaning if you use safe transformations. Specific unsafe transformations allow you to reach even smaller results while potentially breaking code that relies, for example, on exact parameter naming.
+- Webpack performs minification in production mode using Terser by default. Other solutions, such as _babel-minify-webpack-plugin_, provide similar functionality with costs of their own.
+- Besides JavaScript, it's possible to minify other assets, such as CSS, HTML, and images, too. Minifying these requires specific technologies that have to be applied through loaders and plugins of their own.
 
 You'll learn to apply tree shaking against code in the next chapter.

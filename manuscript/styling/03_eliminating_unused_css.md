@@ -1,5 +1,8 @@
 # Eliminating Unused CSS
 
+- TODO: Replace with PurgeCSS
+- TODO: Mention https://www.npmjs.com/package/dropcss
+
 Frameworks like [Bootstrap](https://getbootstrap.com/) tend to come with a lot of CSS. Often you use only a small part of it. Typically, you bundle even the unused CSS. It's possible, however, to eliminate the portions you aren't using.
 
 [PurifyCSS](https://www.npmjs.com/package/purifycss) is a tool that can achieve this by analyzing files. It walks through your code and figures out which CSS classes are being used. Often there is enough information for it to strip unused CSS from your project. It also works with single page applications to an extent.
@@ -13,7 +16,7 @@ W> You have to be careful if you are using CSS Modules. You have to **whitelist*
 To make the demo more realistic, let's install [Pure.css](http://purecss.io/), a small CSS framework, as well and refer to it from the project so that you can see PurifyCSS in action. These two projects aren't related in any way despite the naming.
 
 ```bash
-npm install purecss --save
+npm add purecss
 ```
 
 {pagebreak}
@@ -29,7 +32,7 @@ leanpub-end-insert
 ...
 ```
 
-T> The `import` works because webpack will resolve against `"browser": "build/pure-min.css",` field in the *package.json* file of Pure.css due to [resolve.mainFields](https://webpack.js.org/configuration/resolve/#resolve-mainfields). Webpack will try to resolve possible `browser` and `module` fields before looking into `main`.
+T> The `import` works because webpack will resolve against `"browser": "build/pure-min.css",` field in the _package.json_ file of Pure.css due to [resolve.mainFields](https://webpack.js.org/configuration/resolve/#resolve-mainfields). Webpack will try to resolve possible `browser` and `module` fields before looking into `main`.
 
 You should also make the demo component use a Pure.css class, so there is something to work with:
 
@@ -39,9 +42,9 @@ You should also make the demo component use a Pure.css class, so there is someth
 export default (text = "Hello world") => {
   const element = document.createElement("div");
 
-leanpub-start-insert
+  leanpub - start - insert;
   element.className = "pure-button";
-leanpub-end-insert
+  leanpub - end - insert;
   element.innerHTML = text;
 
   return element;
@@ -77,7 +80,7 @@ Using PurifyCSS can lead to significant savings. In the example of the project, 
 [purifycss-webpack](https://www.npmjs.com/package/purifycss-webpack) allows to achieve similar results. You should use the `MiniCssExtractPlugin` with it for the best results. Install it and a [glob](https://www.npmjs.org/package/glob) helper first:
 
 ```bash
-npm install glob purifycss-webpack purify-css --save-dev
+npm add glob purifycss-webpack purify-css --save-dev
 ```
 
 You also need PurifyCSS configuration as below:
@@ -92,7 +95,7 @@ exports.purifyCSS = ({ paths }) => ({
 });
 ```
 
-Next, the part has to be connected with the configuration. It's essential the plugin is used *after* the `MiniCssExtractPlugin`; otherwise, it doesn't work:
+Next, the part has to be connected with the configuration. It's essential the plugin is used _after_ the `MiniCssExtractPlugin`; otherwise, it doesn't work:
 
 **webpack.config.js**
 
@@ -161,9 +164,9 @@ Using PurifyCSS can lead to a significant decrease in file size. It's mainly val
 
 To recap:
 
-* Eliminating unused CSS is possible using PurifyCSS. It performs static analysis against the source.
-* The functionality can be enabled through *purifycss-webpack*, and the plugin should be applied *after* `MiniCssExtractPlugin`.
-* At best, PurifyCSS can eliminate most, if not all, unused CSS rules.
-* Critical path rendering is another CSS technique that emphasizes rendering the above-the-fold CSS first. The idea is to render something as fast as possible instead of waiting for all CSS to load.
+- Eliminating unused CSS is possible using PurifyCSS. It performs static analysis against the source.
+- The functionality can be enabled through _purifycss-webpack_, and the plugin should be applied _after_ `MiniCssExtractPlugin`.
+- At best, PurifyCSS can eliminate most, if not all, unused CSS rules.
+- Critical path rendering is another CSS technique that emphasizes rendering the above-the-fold CSS first. The idea is to render something as fast as possible instead of waiting for all CSS to load.
 
 In the next chapter, you'll learn to **autoprefix**. Enabling the feature makes it more convenient to develop complicated CSS setups that work with older browsers as well.

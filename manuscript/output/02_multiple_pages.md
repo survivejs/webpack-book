@@ -24,7 +24,7 @@ To initialize a page, it should receive page title, output path, and an optional
 
 ```javascript
 ...
-const MiniHtmlWebpackPlugin = require("mini-html-webpack-plugin");
+const { MiniHtmlWebpackPlugin } = require("mini-html-webpack-plugin");
 
 exports.page = ({ path = "", template, title } = {}) => ({
   plugins: [
@@ -50,7 +50,7 @@ To incorporate the idea into the configuration, the way it's composed has to cha
 ```javascript
 ...
 leanpub-start-delete
-const MiniHtmlWebpackPlugin = require("mini-html-webpack-plugin");
+const { MiniHtmlWebpackPlugin } = require("mini-html-webpack-plugin");
 leanpub-end-delete
 ...
 

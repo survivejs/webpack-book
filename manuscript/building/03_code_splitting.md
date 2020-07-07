@@ -37,15 +37,14 @@ The optional name allows you to pull multiple split points into a single bundle.
 The interface allows composition, and you could load multiple resources in parallel:
 
 ```javascript
-Promise.all([
-  import("lunr"),
-  import("../search_index.json"),
-]).then(([lunr, search]) => {
-  return {
-    index: lunr.Index.load(search.index),
-    lines: search.lines,
-  };
-});
+Promise.all([import("lunr"), import("../search_index.json")]).then(
+  ([lunr, search]) => {
+    return {
+      index: lunr.Index.load(search.index),
+      lines: search.lines,
+    };
+  }
+);
 ```
 
 The code above creates separate bundles to a request. If you wanted only one, you would have to use naming or define an intermediate module to `import`.
@@ -54,7 +53,7 @@ W> The syntax works only with JavaScript after configuring it the right way. If 
 
 T> There's an older syntax, [require.ensure](https://webpack.js.org/api/module-methods/#require-ensure). In practice the new syntax can cover the same functionality. See also [require.include](https://webpack.js.org/api/module-methods/#require-include).
 
-T> [webpack-pwa](https://github.com/webpack/webpack-pwa) illustrates the idea on a larger scale and discusses different shell based approaches. You get back to this topic in the *Multiple Pages* chapter.
+T> [webpack-pwa](https://github.com/webpack/webpack-pwa) illustrates the idea on a larger scale and discusses different shell based approaches. You get back to this topic in the _Multiple Pages_ chapter.
 
 {pagebreak}
 
@@ -69,7 +68,7 @@ Given Babel doesn't support the dynamic `import` syntax out of the box, it needs
 Install it first:
 
 ```bash
-npm install @babel/plugin-syntax-dynamic-import --save-dev
+npm add @babel/plugin-syntax-dynamic-import --save-dev
 ```
 
 To connect it with the project, adjust the configuration as follows:
@@ -109,7 +108,7 @@ export default (text = "Hello world") => {
 
   element.className = "pure-button";
   element.innerHTML = text;
-leanpub-start-insert
+  leanpub - start - insert;
   element.onclick = () =>
     import("./lazy")
       .then(lazy => {
@@ -118,7 +117,7 @@ leanpub-start-insert
       .catch(err => {
         console.error(err);
       });
-leanpub-end-insert
+  leanpub - end - insert;
 
   return element;
 };
@@ -146,13 +145,13 @@ leanpub-end-insert
 ...
 ```
 
-That *0.js* is your split point. Examining the file reveals that webpack has wrapped the code in a `webpackJsonp` block and processed the code bit.
+That _0.js_ is your split point. Examining the file reveals that webpack has wrapped the code in a `webpackJsonp` block and processed the code bit.
 
 T> If you want to adjust the name of the chunk, set `output.chunkFilename`. For example, setting it to `"chunk.[id].js"` would prefix each split chunk with the word "chunk".
 
 T> [bundle-loader](https://www.npmjs.com/package/bundle-loader) gives similar results, but through a loader interface. It supports bundle naming through its `name` option.
 
-T> The *Dynamic Loading* chapter covers other techniques that come in handy when you have to deal with more complicated splits.
+T> The _Dynamic Loading_ chapter covers other techniques that come in handy when you have to deal with more complicated splits.
 
 {pagebreak}
 
@@ -164,7 +163,7 @@ The splitting pattern can be wrapped into a React component. Airbnb uses the fol
 import React from "react";
 
 // Somewhere in code
-<AsyncComponent loader={() => import("./SomeComponent")} />
+<AsyncComponent loader={() => import("./SomeComponent")} />;
 
 class AsyncComponent extends React.Component {
   constructor(props) {
@@ -173,9 +172,7 @@ class AsyncComponent extends React.Component {
     this.state = { Component: null };
   }
   componentDidMount() {
-    this.props.loader().then(
-      Component => this.setState({ Component })
-    );
+    this.props.loader().then(Component => this.setState({ Component }));
   }
   render() {
     const { Component } = this.state;
@@ -220,12 +217,12 @@ Code splitting is a feature that allows you to push your application a notch fur
 
 To recap:
 
-* **Code splitting** comes with extra effort as you have to decide what to split and where. Often, you find good split points within a router. Or you notice that specific functionality is required only when a particular feature is used. Charting is an excellent example of this.
-* To use dynamic `import` syntax, both Babel and ESLint require careful tweaks. Webpack supports the syntax out of the box.
-* Use naming to pull separate split points into the same bundles.
-* The techniques can be used within modern frameworks and libraries like React. You can wrap related logic to a specific component that handles the loading process in a user-friendly manner.
-* To disable code splitting, use `webpack.optimize.LimitChunkCountPlugin` with `maxChunks` set to one.
+- **Code splitting** comes with extra effort as you have to decide what to split and where. Often, you find good split points within a router. Or you notice that specific functionality is required only when a particular feature is used. Charting is an excellent example of this.
+- To use dynamic `import` syntax, both Babel and ESLint require careful tweaks. Webpack supports the syntax out of the box.
+- Use naming to pull separate split points into the same bundles.
+- The techniques can be used within modern frameworks and libraries like React. You can wrap related logic to a specific component that handles the loading process in a user-friendly manner.
+- To disable code splitting, use `webpack.optimize.LimitChunkCountPlugin` with `maxChunks` set to one.
 
 You'll learn to tidy up the build in the next chapter.
 
-T> The *Searching with React* appendix contains a complete example of code splitting. It shows how to set up a static site index that's loaded when the user searches information.
+T> The _Searching with React_ appendix contains a complete example of code splitting. It shows how to set up a static site index that's loaded when the user searches information.

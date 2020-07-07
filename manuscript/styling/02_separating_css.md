@@ -1,5 +1,7 @@
 # Separating CSS
 
+- TODO: https://github.com/faceyspacey/extract-css-chunks-webpack-plugin
+
 Even though there is a nice build set up now, where did all the CSS go? As per configuration, it has been inlined to JavaScript! Even though this can be convenient during development, it doesn't sound ideal.
 
 The current solution doesn't allow cache CSS. You can also get a **Flash of Unstyled Content** (FOUC). FOUC happens because the browser takes a while to load JavaScript and the styles would be applied only then. Separating CSS to a file of its own avoids the problem by letting the browser to manage it separately.
@@ -15,7 +17,7 @@ W> It can be potentially dangerous to use inline styles within JavaScript in pro
 Install the plugin first:
 
 ```bash
-npm install mini-css-extract-plugin --save-dev
+npm add mini-css-extract-plugin --save-dev
 ```
 
 `MiniCssExtractPlugin` includes a loader, `MiniCssExtractPlugin.loader` that marks the assets to be extracted. Then a plugin performs its work based on this annotation.
@@ -41,9 +43,7 @@ exports.extractCSS = ({ include, exclude, use = [] }) => {
           include,
           exclude,
 
-          use: [
-            MiniCssExtractPlugin.loader,
-          ].concat(use),
+          use: [MiniCssExtractPlugin.loader].concat(use),
         },
       ],
     },
@@ -52,7 +52,7 @@ exports.extractCSS = ({ include, exclude, use = [] }) => {
 };
 ```
 
-That `[name]` placeholder uses the name of the entry where the CSS is referred. Placeholders and hashing are discussed in detail in the *Adding Hashes to Filenames* chapter.
+That `[name]` placeholder uses the name of the entry where the CSS is referred. Placeholders and hashing are discussed in detail in the _Adding Hashes to Filenames_ chapter.
 
 T> If you wanted to output the resulting file to a specific directory, you could do it by passing a path. Example: `filename: "styles/[name].css"`.
 
@@ -93,7 +93,7 @@ leanpub-end-insert
 
 Using this setup, you can still benefit from the HMR during development. For a production build, it's possible to generate a separate CSS, though. `HtmlWebpackPlugin` picks it up automatically and injects it into `index.html`.
 
-T> If you are using *CSS Modules*, remember to tweak `use` accordingly as discussed in the *Loading Styles* chapter. You can maintain separate setups for standard CSS and CSS Modules so that they get loaded through discrete logic.
+T> If you are using _CSS Modules_, remember to tweak `use` accordingly as discussed in the _Loading Styles_ chapter. You can maintain separate setups for standard CSS and CSS Modules so that they get loaded through discrete logic.
 
 {pagebreak}
 
@@ -146,7 +146,7 @@ const commonConfig = merge([
 
 After this type of change, you would not have to refer to styling from your application code. It also means that CSS Modules stop working. You have to be careful with CSS ordering as well.
 
-As a result, you should get both *style.css* and *style.js*. The latter file contains content like `webpackJsonp([1,3],[function(n,c){}]);` and it doesn't do anything as discussed in the [webpack issue 1967](https://github.com/webpack/webpack/issues/1967).
+As a result, you should get both _style.css_ and _style.js_. The latter file contains content like `webpackJsonp([1,3],[function(n,c){}]);` and it doesn't do anything as discussed in the [webpack issue 1967](https://github.com/webpack/webpack/issues/1967).
 
 If you want strict control over the ordering, you can set up a single CSS entry and then use `@import` to bring the rest to the project through it. Another option would be to set up a JavaScript entry and go through `import` to get the same effect.
 
@@ -158,7 +158,7 @@ The current setup separates styling from JavaScript neatly. Even though the tech
 
 To recap:
 
-* Using `MiniCssExtractPlugin` with styling solves the problem of Flash of Unstyled Content (FOUC). Separating CSS from JavaScript also improves caching behavior and removes a potential attack vector.
-* If you don't prefer to maintain references to styling through JavaScript, an alternative is to handle them through an entry. You have to be careful with style ordering in this case, though.
+- Using `MiniCssExtractPlugin` with styling solves the problem of Flash of Unstyled Content (FOUC). Separating CSS from JavaScript also improves caching behavior and removes a potential attack vector.
+- If you don't prefer to maintain references to styling through JavaScript, an alternative is to handle them through an entry. You have to be careful with style ordering in this case, though.
 
 In the next chapter, you'll learn to eliminate unused CSS from the project.

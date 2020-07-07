@@ -6,12 +6,12 @@ You'll learn to develop a couple of small loaders next. But before that, it's go
 
 T> If you want a good starting point for a standalone loader or plugin project, consider using [webpack-defaults](https://github.com/webpack-contrib/webpack-defaults). It provides an opinionated starting point that comes with linting, testing, and other goodies.
 
-## Debugging Loaders with *loader-runner*
+## Debugging Loaders with _loader-runner_
 
 [loader-runner](https://www.npmjs.com/package/loader-runner) allows you to run loaders without webpack allowing you to learn more about loader development. Install it first:
 
 ```bash
-npm install loader-runner --save-dev
+npm add loader-runner --save-dev
 ```
 
 {pagebreak}
@@ -32,7 +32,7 @@ Set up a file to process:
 foobar
 ```
 
-There's nothing webpack specific in the code yet. The next step is to run the loader through *loader-runner*:
+There's nothing webpack specific in the code yet. The next step is to run the loader through _loader-runner_:
 
 **run-loader.js**
 
@@ -132,7 +132,7 @@ T> If you want to return `Buffer` output, set `module.exports.raw = true`. The f
 
 ## Writing Files
 
-Loaders, like *file-loader*, emit files. Webpack provides a single method, `this.emitFile`, for this. Given *loader-runner* does not implement it, you have to mock it:
+Loaders, like _file-loader_, emit files. Webpack provides a single method, `this.emitFile`, for this. Given _loader-runner_ does not implement it, you have to mock it:
 
 **run-loader.js**
 
@@ -154,7 +154,7 @@ leanpub-end-insert
 );
 ```
 
-To implement the essential idea of *file-loader*, you have to do two things: emit the file and return path to it. You could apply it as below:
+To implement the essential idea of _file-loader_, you have to do two things: emit the file and return path to it. You could apply it as below:
 
 **loaders/demo-loader.js**
 
@@ -176,10 +176,10 @@ module.exports = function(content) {
 
 Webpack provides two additional `emit` methods:
 
-* `this.emitWarning(<string>)`
-* `this.emitError(<string>)`
+- `this.emitWarning(<string>)`
+- `this.emitError(<string>)`
 
-These calls should be used over `console` based alternatives. As with `this.emitFile`, you have to mock them for *loader-runner* to work.
+These calls should be used over `console` based alternatives. As with `this.emitFile`, you have to mock them for _loader-runner_ to work.
 
 The next question is, how to pass a file name to the loader.
 
@@ -222,7 +222,7 @@ leanpub-end-insert
 To capture the option, you need to use [loader-utils](https://www.npmjs.com/package/loader-utils). It has been designed to parse loader options and queries. Install it:
 
 ```bash
-npm install loader-utils --save-dev
+npm add loader-utils --save-dev
 ```
 
 To connect it to the loader, set it to capture `name` and pass it through webpack's interpolator:
@@ -273,9 +273,9 @@ To get most out of loaders, you have to connect them with webpack. To achieve th
 **src/component.js**
 
 ```javascript
-leanpub-start-insert
+leanpub - start - insert;
 import "!../loaders/demo-loader?name=foo!./main.css";
-leanpub-end-insert
+leanpub - end - insert;
 ```
 
 {pagebreak}
@@ -314,9 +314,9 @@ import "!demo-loader?name=foo!./main.css";
 leanpub-end-insert
 ```
 
-You could also handle the loader definition through `rules`. Once the loader is stable enough, set up a project based on *webpack-defaults*, push the logic there, and begin to consume the loader as a package.
+You could also handle the loader definition through `rules`. Once the loader is stable enough, set up a project based on _webpack-defaults_, push the logic there, and begin to consume the loader as a package.
 
-W> Although using *loader-runner* can be convenient for developing and testing loaders, implement integration tests that run against webpack. Subtle differences between environments make this essential.
+W> Although using _loader-runner_ can be convenient for developing and testing loaders, implement integration tests that run against webpack. Subtle differences between environments make this essential.
 
 ## Pitch Loaders
 
@@ -431,12 +431,12 @@ Writing loaders is fun in the sense that they describe transformations from a fo
 
 To recap:
 
-* *loader-runner* is a valuable tool for understanding how loaders work. Use it for debugging how loaders work.
-* Webpack **loaders** accept input and produce output based on it.
-* Loaders can be either synchronous or asynchronous. In the latter case, you should use `this.async()` webpack API to capture the callback exposed by webpack.
-* If you want to generate code dynamically for webpack entries, that's where loaders can come in handy. A loader does not have to accept input. It's acceptable that it returns only output in this case.
-* Use **loader-utils** to parse possible options passed to a loader and consider validating them using **schema-utils**.
-* When developing loaders locally, consider setting up a `resolveLoader.alias` to clean up references.
-* Pitching stage complements the default behavior allowing you to intercept and to attach metadata.
+- _loader-runner_ is a valuable tool for understanding how loaders work. Use it for debugging how loaders work.
+- Webpack **loaders** accept input and produce output based on it.
+- Loaders can be either synchronous or asynchronous. In the latter case, you should use `this.async()` webpack API to capture the callback exposed by webpack.
+- If you want to generate code dynamically for webpack entries, that's where loaders can come in handy. A loader does not have to accept input. It's acceptable that it returns only output in this case.
+- Use **loader-utils** to parse possible options passed to a loader and consider validating them using **schema-utils**.
+- When developing loaders locally, consider setting up a `resolveLoader.alias` to clean up references.
+- Pitching stage complements the default behavior allowing you to intercept and to attach metadata.
 
 You'll learn to write plugins in the next chapter. Plugins allow you to intercept webpack's execution process and they can be combined with loaders to develop more advanced functionality.

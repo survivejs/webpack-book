@@ -14,12 +14,12 @@ You can find a lot of testing tools for JavaScript. The most popular options wor
 
 [mocha-loader](https://www.npmjs.com/package/mocha-loader) allows running Mocha tests through webpack. [mocha-webpack](https://www.npmjs.com/package/mocha-webpack) is another option that aims to provide more functionality.
 
-### Configuring *mocha-loader* with Webpack
+### Configuring _mocha-loader_ with Webpack
 
-To get started, include Mocha and *mocha-loader* to your project:
+To get started, include Mocha and _mocha-loader_ to your project:
 
 ```bash
-npm install mocha mocha-loader --save-dev
+npm add mocha mocha-loader --save-dev
 ```
 
 {pagebreak}
@@ -80,7 +80,7 @@ T> `--grep <pattern>` can be used for constraining the behavior if you want to f
 
 Webpack can provide similar functionality through a web interface. The hard parts of the problem have been solved earlier in this book, what remains is combining those solutions through configuration.
 
-To tell webpack which tests to run, they need to be imported somehow. The *Dynamic Loading* chapter discussed `require.context` that allows to aggregate files based on a rule. It's ideal here. Set up an entry point as follows:
+To tell webpack which tests to run, they need to be imported somehow. The _Dynamic Loading_ chapter discussed `require.context` that allows to aggregate files based on a rule. It's ideal here. Set up an entry point as follows:
 
 **tests/index.js**
 
@@ -104,7 +104,7 @@ A small change is required on webpack side:
 
 ```javascript
 const path = require("path");
-const merge = require("webpack-merge");
+const { merge } = require("webpack-merge");
 
 const parts = require("./webpack.parts");
 
@@ -119,7 +119,7 @@ module.exports = merge([
 ]);
 ```
 
-T> See the *Composing Configuration* chapter for the full `devServer` setup. The page setup is explained in the *Multiple Pages* chapter.
+T> See the _Composing Configuration_ chapter for the full `devServer` setup. The page setup is explained in the _Multiple Pages_ chapter.
 
 Add a helper script to make it convenient to run:
 
@@ -133,7 +133,7 @@ Add a helper script to make it convenient to run:
 },
 ```
 
-T> If you want to understand what `--hot` does better, see the *Hot Module Replacement* appendix.
+T> If you want to understand what `--hot` does better, see the _Hot Module Replacement_ appendix.
 
 If you execute the server now and navigate to `http://localhost:8080/`, you should see the test:
 
@@ -143,10 +143,10 @@ Adjusting either the test or the code should lead to a change in the browser. Yo
 
 Compared to the vanilla Mocha setup, configuring Mocha through webpack comes with a couple of advantages:
 
-* It's possible to adjust module resolution. Webpack aliasing and other techniques work now, but this would also tie the code to webpack.
-* You can use webpack's processing to compile your code as you wish. With vanilla Mocha that would imply more setup outside of it.
+- It's possible to adjust module resolution. Webpack aliasing and other techniques work now, but this would also tie the code to webpack.
+- You can use webpack's processing to compile your code as you wish. With vanilla Mocha that would imply more setup outside of it.
 
-On the downside, now you need a browser to examine the tests. *mocha-loader* is at its best as a development helper. The problem can be solved by running the tests through a headless browser.
+On the downside, now you need a browser to examine the tests. _mocha-loader_ is at its best as a development helper. The problem can be solved by running the tests through a headless browser.
 
 ## Karma and Mocha
 
@@ -154,10 +154,10 @@ On the downside, now you need a browser to examine the tests. *mocha-loader* is 
 
 [Karma](https://karma-runner.github.io/) is a test runner that allows you to run tests on real devices and [PhantomJS](http://phantomjs.org/), a headless browser. [karma-webpack](https://www.npmjs.com/package/karma-webpack) is a Karma preprocessor that allows you to connect Karma with webpack. The same benefits as before apply still. This time around, however, there is more control over the test environment.
 
-To get started, install Karma, Mocha, *karma-mocha* reporter, and *karma-webpack*:
+To get started, install Karma, Mocha, _karma-mocha_ reporter, and _karma-webpack_:
 
 ```bash
-npm install karma mocha karma-mocha karma-webpack --save-dev
+npm add karma mocha karma-mocha karma-webpack --save-dev
 ```
 
 {pagebreak}
@@ -231,7 +231,7 @@ T> You can point Karma to specific browsers through the `browsers` field. Exampl
 Running tests through PhantomJS requires a couple of dependencies:
 
 ```bash
-npm install karma-phantomjs-launcher phantomjs-prebuilt --save-dev
+npm add karma-phantomjs-launcher phantomjs-prebuilt --save-dev
 ```
 
 To make Karma run tests through Phantom, adjust its configuration as follows:
@@ -297,7 +297,7 @@ T> LCOV integrates well with visualization services. You can send coverage infor
 Install the dependencies first:
 
 ```
-npm install babel-plugin-istanbul karma-coverage --save-dev
+npm add babel-plugin-istanbul karma-coverage --save-dev
 ```
 
 Connect the Babel plugin so that the instrumentation happens when Karma is run:
@@ -338,9 +338,9 @@ leanpub-end-insert
 };
 ```
 
-T> If you want to understand the `env` idea, see the *Loading JavaScript* chapter.
+T> If you want to understand the `env` idea, see the _Loading JavaScript_ chapter.
 
-On Karma side, reporting has to be set up, and Karma configuration has to be connected with webpack. *karma-webpack* provides two fields for this purpose: `webpack` and `webpackMiddleware`. You should use the former in this case to make sure the code gets processed through Babel.
+On Karma side, reporting has to be set up, and Karma configuration has to be connected with webpack. _karma-webpack_ provides two fields for this purpose: `webpack` and `webpackMiddleware`. You should use the former in this case to make sure the code gets processed through Babel.
 
 **karma.conf.js**
 
@@ -369,7 +369,7 @@ leanpub-end-insert
 
 T> If you want to emit the reports to specific directories below `dir`, set `subdir` per each report.
 
-If you execute karma now (`npm run test:karma`), you should see a new directory below *build* containing coverage reports. The HTML report can be examined through the browser.
+If you execute karma now (`npm run test:karma`), you should see a new directory below _build_ containing coverage reports. The HTML report can be examined through the browser.
 
 ![Coverage in browser](images/coverage.png)
 
@@ -386,10 +386,10 @@ Jest tests follow [Jasmine](https://www.npmjs.com/package/jasmine) test framewor
 Install Jest first:
 
 ```
-npm install jest --save-dev
+npm add jest --save-dev
 ```
 
-Jest captures tests through *package.json* [configuration](https://facebook.github.io/jest/docs/en/configuration.html). It detects tests within a *__tests__* directory it also happens to capture the naming pattern the project is using by default:
+Jest captures tests through _package.json_ [configuration](https://facebook.github.io/jest/docs/en/configuration.html). It detects tests within a _**tests**_ directory it also happens to capture the naming pattern the project is using by default:
 
 **package.json**
 
@@ -403,7 +403,7 @@ leanpub-end-insert
 },
 ```
 
-Now you have two new commands: one to run tests once and other to run them in a watch mode. To capture coverage information, you have to set `"collectCoverage": true` at `"jest"` settings in *package.json* or pass `--coverage` flag to Jest. It emits the coverage reports below *coverage* directory by default.
+Now you have two new commands: one to run tests once and other to run them in a watch mode. To capture coverage information, you have to set `"collectCoverage": true` at `"jest"` settings in _package.json_ or pass `--coverage` flag to Jest. It emits the coverage reports below _coverage_ directory by default.
 
 Given generating coverage reports comes with a performance overhead, enabling the behavior through the flag can be a good idea. This way you can control exactly when to capture the information.
 
@@ -423,9 +423,9 @@ The main idea is to run both webpack and AVA in watch mode to push the problem o
 
 Mocking is a technique that allows you to replace test objects. Consider the solutions below:
 
-* [Sinon](https://www.npmjs.com/package/sinon) provides mocks, stubs, and spies. It works well with webpack since version 2.0.
-* [inject-loader](https://www.npmjs.com/package/inject-loader) allows you to inject code into modules through their dependencies making it valuable for mocking.
-* [rewire-webpack](https://www.npmjs.com/package/rewire-webpack) allows mocking and overriding module globals. [babel-plugin-rewire](https://www.npmjs.com/package/babel-plugin-rewire) implements [rewire](https://www.npmjs.com/package/rewire) for Babel.
+- [Sinon](https://www.npmjs.com/package/sinon) provides mocks, stubs, and spies. It works well with webpack since version 2.0.
+- [inject-loader](https://www.npmjs.com/package/inject-loader) allows you to inject code into modules through their dependencies making it valuable for mocking.
+- [rewire-webpack](https://www.npmjs.com/package/rewire-webpack) allows mocking and overriding module globals. [babel-plugin-rewire](https://www.npmjs.com/package/babel-plugin-rewire) implements [rewire](https://www.npmjs.com/package/rewire) for Babel.
 
 ## Removing Files From Tests
 
@@ -434,9 +434,10 @@ If you execute tests through webpack, you may want to alter the way it treats as
 ```javascript
 plugins: [
   new webpack.NormalModuleReplacementPlugin(
-    /\.(gif|png|scss|css)$/, "lodash/noop"
+    /\.(gif|png|scss|css)$/,
+    "lodash/noop"
   ),
-]
+];
 ```
 
 {pagebreak}
@@ -447,8 +448,8 @@ Webpack can be configured to work with a large variety of testing tools. Each to
 
 To recap:
 
-* Running testing tools allows you to benefit from webpack's module resolution mechanism.
-* Sometimes the test setup can be quite involved. Tools like Jest remove most of the boilerplate and allow you to develop tests with minimal configuration.
-* You can find multiple mocking tools for webpack. They allow you to shape test environment. Sometimes you can avoid mocking through design, though.
+- Running testing tools allows you to benefit from webpack's module resolution mechanism.
+- Sometimes the test setup can be quite involved. Tools like Jest remove most of the boilerplate and allow you to develop tests with minimal configuration.
+- You can find multiple mocking tools for webpack. They allow you to shape test environment. Sometimes you can avoid mocking through design, though.
 
 You'll learn to deploy applications using webpack in the next chapter.

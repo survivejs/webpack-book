@@ -180,7 +180,7 @@ The `assets` object of compilation can be used for writing new files. You can al
 To write an asset, you have to use [webpack-sources](https://www.npmjs.com/package/webpack-sources) file abstraction. Install it first:
 
 ```bash
-npm install webpack-sources --save-dev
+npm add webpack-sources --save-dev
 ```
 
 {pagebreak}
@@ -229,7 +229,7 @@ lib.js   2.9 kB       0  [emitted]  lib
    [0] ./app/shake.js 107 bytes {0} [built]
 ```
 
-If you examine *build/demo* file, you'll see it contains the word *demo* as per code above.
+If you examine _build/demo_ file, you'll see it contains the word _demo_ as per code above.
 
 T> Compilation has a set of hooks of its own as covered in [the official compilation reference](https://webpack.js.org/api/plugins/compiler/).
 
@@ -248,7 +248,7 @@ There is no way pass information messages to webpack yet although there is [a lo
 
 ## Plugins Can Have Plugins
 
-A plugin can provide hooks of its own. [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) uses plugins to extend itself as discussed in the *Getting Started* chapter.
+A plugin can provide hooks of its own. [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) uses plugins to extend itself as discussed in the _Getting Started_ chapter.
 
 ## Plugins Can Run Compilers of Their Own
 
@@ -260,9 +260,9 @@ When you begin to design a plugin, spend time studying existing plugins that are
 
 To recap:
 
-* **Plugins** can intercept webpack's execution and extend it making them more flexible than loaders.
-* Plugins can be combined with loaders. `MiniCssExtractPlugin` works this way. The accompanying loader is used to mark assets to extract.
-* Plugins have access to webpack's **compiler** and **compilation** processes. Both provide hooks for different stages of webpack's execution flow and allow you to manipulate it. Webpack itself works this way.
-* Plugins can emit new assets and shape existing assets.
-* Plugins can implement plugin systems of their own. `HtmlWebpackPlugin` is an example of such plugin.
-* Plugins can run compilers on their own. The isolation gives more control and allows plugins like *offline-plugin* to be written.
+- **Plugins** can intercept webpack's execution and extend it making them more flexible than loaders.
+- Plugins can be combined with loaders. `MiniCssExtractPlugin` works this way. The accompanying loader is used to mark assets to extract.
+- Plugins have access to webpack's **compiler** and **compilation** processes. Both provide hooks for different stages of webpack's execution flow and allow you to manipulate it. Webpack itself works this way.
+- Plugins can emit new assets and shape existing assets.
+- Plugins can implement plugin systems of their own. `HtmlWebpackPlugin` is an example of such plugin.
+- Plugins can run compilers on their own. The isolation gives more control and allows plugins like _offline-plugin_ to be written.

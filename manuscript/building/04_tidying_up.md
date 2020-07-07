@@ -1,6 +1,6 @@
 # Tidying Up
 
-The current setup doesn't clean the *build* directory between builds. As a result, it keeps on accumulating files as the project changes. Given this can get annoying, you should clean it up in between.
+The current setup doesn't clean the _build_ directory between builds. As a result, it keeps on accumulating files as the project changes. Given this can get annoying, you should clean it up in between.
 
 Another nice touch would be to include information about the build itself to the generated bundles as a small comment at the top of each file including version information at least.
 
@@ -13,7 +13,7 @@ This issue can be resolved either by using a webpack plugin or solving it outsid
 Install the [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin) first:
 
 ```bash
-npm install clean-webpack-plugin --save-dev
+npm add clean-webpack-plugin --save-dev
 ```
 
 {pagebreak}
@@ -59,7 +59,7 @@ Attaching information related to the current build revision to the build files t
 To get started, install the revision plugin:
 
 ```bash
-npm install git-revision-webpack-plugin --save-dev
+npm add git-revision-webpack-plugin --save-dev
 ```
 
 Then define a part to wrap the idea:
@@ -97,7 +97,7 @@ leanpub-end-insert
 
 If you build the project (`npm run build`), you should notice the built files contain comments like `/*! 0b5bb05 */` or `/*! v1.7.0-9-g5f82fe8 */` in the beginning.
 
-The output can be customized further by adjusting the banner. You can also pass revision information to the application using `webpack.DefinePlugin`. This technique is discussed in detail in the *Environment Variables* chapter.
+The output can be customized further by adjusting the banner. You can also pass revision information to the application using `webpack.DefinePlugin`. This technique is discussed in detail in the _Environment Variables_ chapter.
 
 W> The code expects you run it within a Git repository! Otherwise, you get a `fatal: Not a git repository (or any of the parent directories): .git` error. If you are not using Git, you can replace the banner with other data.
 
@@ -113,7 +113,7 @@ Often, you work with webpack by identifying a problem and then finding a plugin 
 
 To recap:
 
-* You can find many small plugins that work as tasks and push webpack closer to a task runner.
-* These tasks include cleaning the build and deployment. The *Deploying Applications* chapter discusses the latter topic in detail.
-* It can be a good idea to add small comments to the production build to tell what version has been deployed. This way you can debug potential issues faster.
-* Secondary tasks like these can be performed outside of webpack. If you are using a multi-page setup as discussed in the *Multiple Pages* chapter, this becomes a necessity.
+- You can find many small plugins that work as tasks and push webpack closer to a task runner.
+- These tasks include cleaning the build and deployment. The _Deploying Applications_ chapter discusses the latter topic in detail.
+- It can be a good idea to add small comments to the production build to tell what version has been deployed. This way you can debug potential issues faster.
+- Secondary tasks like these can be performed outside of webpack. If you are using a multi-page setup as discussed in the _Multiple Pages_ chapter, this becomes a necessity.

@@ -29,26 +29,26 @@ T> Given sometimes extending existing presets is not enough, [modify-babel-prese
 
 ## Using Babel with Webpack Configuration
 
-Even though Babel can be used standalone, as you can see in the *SurviveJS - Maintenance* book, you can hook it up with webpack as well. During development, it can make sense to skip processing if you are using language features supported by your browser.
+Even though Babel can be used standalone, as you can see in the _SurviveJS - Maintenance_ book, you can hook it up with webpack as well. During development, it can make sense to skip processing if you are using language features supported by your browser.
 
 Skipping processing is a good option primarily if you don't rely on any custom language features and work using a modern browser. Processing through Babel becomes almost a necessity when you compile your code for production, though.
 
 You can use Babel with webpack through [babel-loader](https://www.npmjs.com/package/babel-loader). It can pick up project level Babel configuration, or you can configure it at the webpack loader itself. [babel-webpack-plugin](https://www.npmjs.com/package/babel-webpack-plugin) is another lesser-known option.
 
-Connecting Babel with a project allows you to process webpack configuration through it. To achieve this, name your webpack configuration using the *webpack.config.babel.js* convention. [interpret](https://www.npmjs.com/package/interpret) package enables this, and it supports other compilers as well.
+Connecting Babel with a project allows you to process webpack configuration through it. To achieve this, name your webpack configuration using the _webpack.config.babel.js_ convention. [interpret](https://www.npmjs.com/package/interpret) package enables this, and it supports other compilers as well.
 
 T> Given that [Node supports the ES2015 specification well](http://node.green/) these days, you can use a lot of ES2015 features without having to process configuration through Babel.
 
-W> If you use *webpack.config.babel.js*, take care with the `"modules": false,` setting. If you want to use ES2015 modules, you could skip the setting in your global Babel configuration and then configure it per environment as discussed below.
+W> If you use _webpack.config.babel.js_, take care with the `"modules": false,` setting. If you want to use ES2015 modules, you could skip the setting in your global Babel configuration and then configure it per environment as discussed below.
 
 {pagebreak}
 
-### Setting Up *babel-loader*
+### Setting Up _babel-loader_
 
-The first step towards configuring Babel to work with webpack is to set up [babel-loader](https://www.npmjs.com/package/babel-loader). It takes the code and turns it into a format older browsers can understand. Install *babel-loader* and include its peer dependency *@babel/core*:
+The first step towards configuring Babel to work with webpack is to set up [babel-loader](https://www.npmjs.com/package/babel-loader). It takes the code and turns it into a format older browsers can understand. Install _babel-loader_ and include its peer dependency _@babel/core_:
 
 ```bash
-npm install babel-loader @babel/core --save-dev
+npm add babel-loader @babel/core --save-dev
 ```
 
 As usual, let's define a function for Babel:
@@ -87,21 +87,21 @@ leanpub-end-insert
 ]);
 ```
 
-Even though you have Babel installed and set up, you are still missing one bit: Babel configuration. The configuration can be set up using a *.babelrc* dotfile as then other tooling can use the same.
+Even though you have Babel installed and set up, you are still missing one bit: Babel configuration. The configuration can be set up using a _.babelrc_ dotfile as then other tooling can use the same.
 
-W> If you try to import files **outside** of your configuration root directory and then process them through *babel-loader*, this fails. It's [a known issue](https://github.com/babel/babel-loader/issues/313), and there are workarounds including maintaining *.babelrc* at a higher level in the project and resolving against Babel presets through `require.resolve` at webpack configuration.
+W> If you try to import files **outside** of your configuration root directory and then process them through _babel-loader_, this fails. It's [a known issue](https://github.com/babel/babel-loader/issues/313), and there are workarounds including maintaining _.babelrc_ at a higher level in the project and resolving against Babel presets through `require.resolve` at webpack configuration.
 
-### Setting Up *.babelrc*
+### Setting Up _.babelrc_
 
 At a minimum, you need [@babel/preset-env](https://www.npmjs.com/package/@babel/preset-env). It's a Babel preset that enables the required plugins based on the optional environment definition you pass to it.
 
 Install the preset first:
 
 ```bash
-npm install @babel/preset-env --save-dev
+npm add @babel/preset-env --save-dev
 ```
 
-To make Babel aware of the preset, you need to write a *.babelrc*. Given webpack supports ES2015 modules out of the box, you can tell Babel to skip processing them. Jumping over this step would break webpack's HMR mechanism although the production build would still work. You can also constrain the build output to work only in recent versions of Chrome.
+To make Babel aware of the preset, you need to write a _.babelrc_. Given webpack supports ES2015 modules out of the box, you can tell Babel to skip processing them. Jumping over this step would break webpack's HMR mechanism although the production build would still work. You can also constrain the build output to work only in recent versions of Chrome.
 
 Adjust the target definition as you like. As long as you follow [browserslist](https://www.npmjs.com/package/browserslist), it should work. Here's a sample configuration:
 
@@ -113,14 +113,14 @@ Adjust the target definition as you like. As long as you follow [browserslist](h
     [
       "@babel/preset-env",
       {
-        "modules": false,
+        "modules": false
       }
     ]
   ]
 }
 ```
 
-If you execute `npm run build -- --devtool false --mode development` now and examine *dist/main.js*, you will see something different based on your `.browserslistrc` file.
+If you execute `npm run build -- --devtool false --mode development` now and examine _dist/main.js_, you will see something different based on your `.browserslistrc` file.
 
 {pagebreak}
 
@@ -151,15 +151,15 @@ Note especially how the function was transformed. You can try out different brow
 
 ## Polyfilling Features
 
-*@babel/preset-env* allows you to polyfill certain language features for older browsers. For this to work, you should enable its `useBuiltIns` option (`"useBuiltIns": true` or `"useBuiltIns": "usage"`) and install [@babel/polyfill](https://babeljs.io/docs/usage/polyfill/). You have to include it in your project either through an import or an entry (`app: ["@babel/polyfill", PATHS.app]`). *@babel/preset-env* rewrites the import based on your browser definition and loads only the polyfills that are needed.
+_@babel/preset-env_ allows you to polyfill certain language features for older browsers. For this to work, you should enable its `useBuiltIns` option (`"useBuiltIns": true` or `"useBuiltIns": "usage"`) and install [@babel/polyfill](https://babeljs.io/docs/usage/polyfill/). You have to include it in your project either through an import or an entry (`app: ["@babel/polyfill", PATHS.app]`). _@babel/preset-env_ rewrites the import based on your browser definition and loads only the polyfills that are needed.
 
-*@babel/polyfill* pollutes the global scope with objects like `Promise`. Given this can be problematic for library authors, there's [@babel/plugin-transform-runtime](https://babeljs.io/docs/plugins/transform-runtime/) option. It can be enabled as a Babel plugin, and it avoids the problem of globals by rewriting the code in such way that they aren't be needed.
+_@babel/polyfill_ pollutes the global scope with objects like `Promise`. Given this can be problematic for library authors, there's [@babel/plugin-transform-runtime](https://babeljs.io/docs/plugins/transform-runtime/) option. It can be enabled as a Babel plugin, and it avoids the problem of globals by rewriting the code in such way that they aren't be needed.
 
-W> Certain webpack features, such as *Code Splitting*, write `Promise` based code to webpack's bootstrap after webpack has processed loaders. The problem can be solved by applying a shim before your application code is executed. Example: `entry: { app: ["core-js/es/promise", PATHS.app] }`.
+W> Certain webpack features, such as _Code Splitting_, write `Promise` based code to webpack's bootstrap after webpack has processed loaders. The problem can be solved by applying a shim before your application code is executed. Example: `entry: { app: ["core-js/es/promise", PATHS.app] }`.
 
 ## Babel Tips
 
-There are other possible [*.babelrc* options](https://babeljs.io/docs/usage/options/) beyond the ones covered here. Like ESLint, *.babelrc* supports [JSON5](https://www.npmjs.com/package/json5) as its configuration format meaning you can include comments in your source, use single quoted strings, and so on.
+There are other possible [_.babelrc_ options](https://babeljs.io/docs/usage/options/) beyond the ones covered here. Like ESLint, _.babelrc_ supports [JSON5](https://www.npmjs.com/package/json5) as its configuration format meaning you can include comments in your source, use single quoted strings, and so on.
 
 Sometimes you want to use experimental features that fit your project. Although you can find a lot of them within so-called stage presets, it's a good idea to enable them one by one and even organize them to a preset of their own unless you are working on a throwaway project. If you expect your project to live a long time, it's better to document the features you are using well.
 
@@ -171,15 +171,15 @@ Babel isn't the only option although it's the most popular one. [Buble](https://
 
 Perhaps the greatest thing about Babel is that it's possible to extend with plugins:
 
-* [babel-plugin-import](https://www.npmjs.com/package/babel-plugin-import) rewrites module imports so that you can use a form such as `import { Button } from "antd";` instead of pointing to the module through an exact path.
-* [babel-plugin-import-asserts](https://www.npmjs.com/package/babel-plugin-import-asserts) asserts that your imports have been defined.
-* [babel-plugin-jsdoc-to-assert](https://www.npmjs.com/package/babel-plugin-jsdoc-to-assert) converts [JSDoc](http://usejsdoc.org/) annotations to runnable assertions.
-* [babel-plugin-log-deprecated](https://www.npmjs.com/package/babel-plugin-log-deprecated) adds `console.warn` to functions that have `@deprecate` annotation in their comment.
-* [babel-plugin-annotate-console-log](https://www.npmjs.com/package/babel-plugin-annotate-console-log) annotates `console.log` calls with information about invocation context, so it's easier to see where they logged.
-* [babel-plugin-sitrep](https://www.npmjs.com/package/babel-plugin-sitrep) logs all assignments of a function and prints them.
-* [babel-plugin-webpack-loaders](https://www.npmjs.com/package/babel-plugin-webpack-loaders) allows you to use certain webpack loaders through Babel.
-* [babel-plugin-syntax-trailing-function-commas](https://www.npmjs.com/package/babel-plugin-syntax-trailing-function-commas) adds trailing comma support for functions.
-* [babel-plugin-transform-react-remove-prop-types](https://www.npmjs.com/package/babel-plugin-transform-react-remove-prop-types) allows you to remove `propType` related code from your production build. It also allows component authors to generate code that's wrapped so that setting environment at `DefinePlugin` can kick in as discussed in the book.
+- [babel-plugin-import](https://www.npmjs.com/package/babel-plugin-import) rewrites module imports so that you can use a form such as `import { Button } from "antd";` instead of pointing to the module through an exact path.
+- [babel-plugin-import-asserts](https://www.npmjs.com/package/babel-plugin-import-asserts) asserts that your imports have been defined.
+- [babel-plugin-jsdoc-to-assert](https://www.npmjs.com/package/babel-plugin-jsdoc-to-assert) converts [JSDoc](http://usejsdoc.org/) annotations to runnable assertions.
+- [babel-plugin-log-deprecated](https://www.npmjs.com/package/babel-plugin-log-deprecated) adds `console.warn` to functions that have `@deprecate` annotation in their comment.
+- [babel-plugin-annotate-console-log](https://www.npmjs.com/package/babel-plugin-annotate-console-log) annotates `console.log` calls with information about invocation context, so it's easier to see where they logged.
+- [babel-plugin-sitrep](https://www.npmjs.com/package/babel-plugin-sitrep) logs all assignments of a function and prints them.
+- [babel-plugin-webpack-loaders](https://www.npmjs.com/package/babel-plugin-webpack-loaders) allows you to use certain webpack loaders through Babel.
+- [babel-plugin-syntax-trailing-function-commas](https://www.npmjs.com/package/babel-plugin-syntax-trailing-function-commas) adds trailing comma support for functions.
+- [babel-plugin-transform-react-remove-prop-types](https://www.npmjs.com/package/babel-plugin-transform-react-remove-prop-types) allows you to remove `propType` related code from your production build. It also allows component authors to generate code that's wrapped so that setting environment at `DefinePlugin` can kick in as discussed in the book.
 
 T> It's possible to connect Babel with Node through [babel-register](https://www.npmjs.com/package/babel-register) or [babel-cli](https://www.npmjs.com/package/babel-cli). These packages can be handy if you want to execute your code through Babel without using webpack.
 
@@ -234,8 +234,8 @@ Compared to Facebook's type checker Flow, TypeScript is a more secure option. As
 
 You can use TypeScript with webpack using the following loaders:
 
-* [ts-loader](https://www.npmjs.com/package/ts-loader)
-* [awesome-typescript-loader](https://www.npmjs.com/package/awesome-typescript-loader)
+- [ts-loader](https://www.npmjs.com/package/ts-loader)
+- [awesome-typescript-loader](https://www.npmjs.com/package/awesome-typescript-loader)
 
 T> There's a [TypeScript parser for ESLint](https://www.npmjs.com/package/typescript-eslint-parser). It's also possible to lint it through [tslint](https://www.npmjs.com/package/tslint).
 
@@ -257,7 +257,7 @@ Babel has become an indispensable tool for developers given it bridges the stand
 
 To recap:
 
-* Babel gives you control over what browsers to support. It can compile ES2015+ features to a form the older browser understand. *babel-preset-env* is valuable as it can choose which features to compile and which polyfills to enable based on your browser definition.
-* Babel allows you to use experimental language features. You can find numerous plugins that improve development experience and the production build through optimizations.
-* Babel functionality can be enabled per development target. This way you can be sure you are using the correct plugins at the right place.
-* Besides Babel, webpack supports other solutions like TypeScript or Flow. Flow can complement Babel while TypeScript represents an entire language compiling to JavaScript.
+- Babel gives you control over what browsers to support. It can compile ES2015+ features to a form the older browser understand. _@babel/preset-env_ is valuable as it can choose which features to compile and which polyfills to enable based on your browser definition.
+- Babel allows you to use experimental language features. You can find numerous plugins that improve development experience and the production build through optimizations.
+- Babel functionality can be enabled per development target. This way you can be sure you are using the correct plugins at the right place.
+- Besides Babel, webpack supports other solutions like TypeScript or Flow. Flow can complement Babel while TypeScript represents an entire language compiling to JavaScript.

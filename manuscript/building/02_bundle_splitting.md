@@ -4,24 +4,24 @@ Currently, the production version of the application is a single JavaScript file
 
 It would be better to download only the changed portion. If the vendor dependencies change, then the client should fetch only the vendor dependencies. The same goes for actual application code. **Bundle splitting** can be achieved using `optimization.splitChunks.cacheGroups`. When running in production mode, [webpack 4 can perform a series of splits out of the box](https://gist.github.com/sokra/1522d586b8e5c0f5072d7565c2bee693) but in this case, we'll do something manually.
 
-T> To invalidate the bundles correctly, you have to attach hashes to the generated bundles as discussed in the *Adding Hashes to Filenames* chapter.
+T> To invalidate the bundles correctly, you have to attach hashes to the generated bundles as discussed in the _Adding Hashes to Filenames_ chapter.
 
 ## The Idea of Bundle Splitting
 
 With bundle splitting, you can push the vendor dependencies to a bundle of their own and benefit from client level caching. The process can be done in such a way that the whole size of the application remains the same. Given there are more requests to perform, there's a slight overhead. But the benefit of caching makes up for this cost.
 
-To give you a quick example, instead of having *main.js* (100 kB), you could end up with *main.js* (10 kB) and *vendor.js* (90 kB). Now changes made to the application are cheap for the clients that have already used the application earlier.
+To give you a quick example, instead of having _main.js_ (100 kB), you could end up with _main.js_ (10 kB) and _vendor.js_ (90 kB). Now changes made to the application are cheap for the clients that have already used the application earlier.
 
-Caching comes with its problems. One of those is cache invalidation. A potential approach related to that is discussed in the *Adding Hashes to Filenames* chapter.
+Caching comes with its problems. One of those is cache invalidation. A potential approach related to that is discussed in the _Adding Hashes to Filenames_ chapter.
 
-Bundle splitting isn't the only way out. The *Code Splitting* chapter discusses another, more granular way.
+Bundle splitting isn't the only way out. The _Code Splitting_ chapter discusses another, more granular way.
 
 ## Adding Something to Split
 
 Given there's not much to split into the vendor bundle yet, you should add something there. Add React to the project first:
 
 ```bash
-npm install react react-dom --save
+npm add react react-dom
 ```
 
 Then make the project depend on it:
@@ -55,11 +55,11 @@ Entrypoint main = main.js main.css main.js.map main.css.map
 ...
 ```
 
-As you can see, *main.js* is big. That is something to fix next.
+As you can see, _main.js_ is big. That is something to fix next.
 
 ## Setting Up a `vendor` Bundle
 
-Before webpack 4, there used to be `CommonsChunkPlugin` for managing bundle splitting. The plugin has been replaced with automation and configuration. To extract a vendor bundle from the *node_modules* directory, adjust the code as follows:
+Before webpack 4, there used to be `CommonsChunkPlugin` for managing bundle splitting. The plugin has been replaced with automation and configuration. To extract a vendor bundle from the _node_modules_ directory, adjust the code as follows:
 
 **webpack.config.js**
 
@@ -111,7 +111,7 @@ Now the bundles look the way they should. The image below illustrates the curren
 
 ## Controlling Bundle Splitting
 
-The configuration above can be rewritten with an explicit test against *node_modules* as below:
+The configuration above can be rewritten with an explicit test against _node_modules_ as below:
 
 **webpack.config.js**
 
@@ -172,31 +172,31 @@ The aggressive merging plugin works the opposite way and allows you to combine s
 },
 ```
 
-It's possible to get good caching behavior with these plugins if a webpack **records** are used. The idea is discussed in detail in the *Adding Hashes to Filenames* chapter.
+It's possible to get good caching behavior with these plugins if a webpack **records** are used. The idea is discussed in detail in the _Adding Hashes to Filenames_ chapter.
 
 `webpack.optimize` contains `LimitChunkCountPlugin` and `MinChunkSizePlugin` which give further control over chunk size.
 
 T> Tobias Koppers discusses [aggressive merging in detail at the official blog of webpack](https://medium.com/webpack/webpack-http-2-7083ec3f3ce6).
 
-W> If you are using *html-webpack-plugin*, make sure to use at least version 4 or newer of the plugin for the functionality to work correctly.
+W> If you are using _html-webpack-plugin_, make sure to use at least version 4 or newer of the plugin for the functionality to work correctly.
 
 ## Chunk Types in Webpack
 
 In the example above, you used different types of webpack chunks. Webpack treats chunks in three types:
 
-* **Entry chunks** - Entry chunks contain webpack runtime and modules it then loads.
-* **Normal chunks** - Normal chunks **don't** contain webpack runtime. Instead, these can be loaded dynamically while the application is running. A suitable wrapper (JSONP for example) is generated for these. You generate a normal chunk in the next chapter as you set up code splitting.
-* **Initial chunks** - Initial chunks are normal chunks that count towards initial loading time of the application. As a user, you don't have to care about these. It's the split between entry chunks and normal chunks that is important.
+- **Entry chunks** - Entry chunks contain webpack runtime and modules it then loads.
+- **Normal chunks** - Normal chunks **don't** contain webpack runtime. Instead, these can be loaded dynamically while the application is running. A suitable wrapper (JSONP for example) is generated for these. You generate a normal chunk in the next chapter as you set up code splitting.
+- **Initial chunks** - Initial chunks are normal chunks that count towards initial loading time of the application. As a user, you don't have to care about these. It's the split between entry chunks and normal chunks that is important.
 
 ## Conclusion
 
-The situation is better now compared to the earlier. Note how small `main` bundle compared to the `vendor` bundle. To benefit from this split, you set up caching in the next part of this book in the *Adding Hashes to Filenames* chapter.
+The situation is better now compared to the earlier. Note how small `main` bundle compared to the `vendor` bundle. To benefit from this split, you set up caching in the next part of this book in the _Adding Hashes to Filenames_ chapter.
 
 To recap:
 
-* Webpack allows you to split bundles from configuration entries through the `optimization.splitChunks.cacheGroups` field. It performs bundle splitting by default in production mode as well.
-* A vendor bundle contains the third party code of your project. The vendor dependencies can be detected by inspecting where the modules are imported.
-* Webpack offers more control over chunking through specific plugins, such as `AggressiveSplittingPlugin` and `AggressiveMergingPlugin`. Mainly the splitting plugin can be handy in HTTP/2 oriented setups.
-* Internally webpack relies on three chunk types: entry, normal, and initial chunks.
+- Webpack allows you to split bundles from configuration entries through the `optimization.splitChunks.cacheGroups` field. It performs bundle splitting by default in production mode as well.
+- A vendor bundle contains the third party code of your project. The vendor dependencies can be detected by inspecting where the modules are imported.
+- Webpack offers more control over chunking through specific plugins, such as `AggressiveSplittingPlugin` and `AggressiveMergingPlugin`. Mainly the splitting plugin can be handy in HTTP/2 oriented setups.
+- Internally webpack relies on three chunk types: entry, normal, and initial chunks.
 
 In the next chapter, you'll learn about code splitting and loading code on demand.
