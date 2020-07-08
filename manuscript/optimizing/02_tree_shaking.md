@@ -8,6 +8,7 @@
 - TODO: https://developers.google.com/web/fundamentals/performance/optimizing-javascript/tree-shaking/?authuser=0
 - TODO: https://stackoverflow.com/questions/49160752/what-does-webpack-4-expect-from-a-package-with-sideeffects-false
 - TODO: https://github.com/TypeStrong/ts-loader/issues/453#issuecomment-295925931
+- TODO: https://github.com/webpack/webpack/pull/6129/commits/5cbd6b20dddc58133313b544c0dfbef124b8ceaa#diff-b968d7026d16261e6e3fddfa5a949155
 
 **Tree shaking** is a feature enabled by the ES2015 module definition. The idea is that given it's possible to analyze the module definition statically without running it, webpack can tell which parts of the code are being used and which are not. It's possible to verify this behavior by expanding the application and adding code there that should be eliminated.
 

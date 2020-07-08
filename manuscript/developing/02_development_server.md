@@ -1,6 +1,7 @@
 # Development Server
 
 TODO: https://webpack.js.org/configuration/dev-server/#devserverwritetodisk-
+TODO: https://github.com/niieani/node-webpackify
 
 When developing a frontend without any special tooling, you often end up having to refresh the browser to see changes. Given having to manually refresh gets annoying fast, there's tooling to remedy the problem. The first tools in the market were [LiveReload](http://livereload.com/) and [Browsersync](http://www.browsersync.io/).
 

@@ -106,6 +106,8 @@ Specific lower-level optimizations can be good to know. The key is to allow webp
 - Polyfill less of Node and provide nothing instead. For example, a package could use Node `process` which in turn will bloat your bundle. To disable it, set `node.process` to `false`. To disable polyfilling entirely, set `node` to `false` directly. [See webpack documentation](https://webpack.js.org/configuration/node/) for the default values.
 - Push bundles that change less to **Dynamically Loaded Libraries** (DLL) to avoid unnecessary processing. The [official webpack example](https://github.com/webpack/webpack/tree/master/examples/dll-user) gets to the point while [Rob Knight's blog post](https://robertknight.me.uk/posts/webpack-dll-plugins/) explains the idea further. [autodll-webpack-plugin](https://www.npmjs.com/package/autodll-webpack-plugin) can automate the process.
 
+TODO: https://medium.com/@emilycoco/how-to-use-the-dll-plugin-to-speed-up-your-webpack-build-dbf330d3b13c
+
 ### Plugin Specific Optimizations
 
 There are a series of plugin specific optimizations to consider:

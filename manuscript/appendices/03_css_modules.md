@@ -1,10 +1,12 @@
 # CSS Modules
 
+- TODO: https://www.npmjs.com/package/eslint-plugin-css-modules
+
 Perhaps the most significant challenge of CSS is that all rules exist within **global scope**, meaning that two classes with the same name will collide. The limitation is inherent to the CSS specification, but projects have workarounds for the issue. [CSS Modules](https://github.com/css-modules/css-modules) introduces **local scope** for every module by making every class declared within unique by including a hash in their name that is globally unique to the module.
 
-## CSS Modules Through *css-loader*
+## CSS Modules Through _css-loader_
 
-Webpack's *css-loader* supports CSS Modules. You can enable it through a loader definition as above while enabling the support:
+Webpack's _css-loader_ supports CSS Modules. You can enable it through a loader definition as above while enabling the support:
 
 ```javascript
 {
@@ -50,7 +52,7 @@ element.className = styles.redButton;
 
 `body` remains as a global declaration still. It's that `redButton` that makes the difference. You can build component-specific styles that don't leak elsewhere this way.
 
-CSS Modules provides additional features like composition to make it easier to work with your styles. You can also combine it with other loaders as long as you apply them before *css-loader*.
+CSS Modules provides additional features like composition to make it easier to work with your styles. You can also combine it with other loaders as long as you apply them before _css-loader_.
 
 T> CSS Modules behavior can be modified [as discussed in the official documentation](https://www.npmjs.com/package/css-loader#local-scope). You have control over the names it generates for instance.
 
@@ -58,9 +60,9 @@ T> [eslint-plugin-css-modules](https://www.npmjs.com/package/eslint-plugin-css-m
 
 ## Using CSS Modules with Third Party Libraries and CSS
 
-If you are using CSS Modules in your project, you should process standard CSS through a separate loader definition without the `modules` option of *css-loader* enabled. Otherwise, all classes will be scoped to their module. In the case of third-party libraries, this is almost certainly not what you want.
+If you are using CSS Modules in your project, you should process standard CSS through a separate loader definition without the `modules` option of _css-loader_ enabled. Otherwise, all classes will be scoped to their module. In the case of third-party libraries, this is almost certainly not what you want.
 
-You can solve the problem by processing third-party CSS differently through an `include` definition against *node_modules*. Alternately, you could use a file extension (`.mcss`) to tell files using CSS Modules apart from the rest and then manage this situation in a loader `test`.
+You can solve the problem by processing third-party CSS differently through an `include` definition against _node_modules_. Alternately, you could use a file extension (`.mcss`) to tell files using CSS Modules apart from the rest and then manage this situation in a loader `test`.
 
 ## Conclusion
 
