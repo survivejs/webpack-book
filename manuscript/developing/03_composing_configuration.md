@@ -1,6 +1,8 @@
 # Composing Configuration
 
 - TODO: Mention https://github.com/namics/webpack-config-plugins
+- TODO: Mention https://www.npmjs.com/package/@webpack-contrib/config-loader
+- TODO: Mention https://www.npmjs.com/package/backpack-core
 
 Even though not a lot has been done with webpack yet, the amount of configuration is starting to feel substantial. Now you have to be careful about the way you compose it as you have separate production and development targets in the project. The situation can only get worse as you want to add more functionality to the project.
 

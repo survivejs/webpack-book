@@ -1,8 +1,13 @@
 # Loading Styles
 
+- TODO: Check if https://medium.com/webpack/the-new-css-workflow-step-1-79583bd107d7 is still valid.
+- TODO: Check https://github.com/NMFR/optimize-css-assets-webpack-plugin
+
 Webpack doesn't handle styling out of the box, and you will have to use loaders and plugins to allow loading style files. In this chapter, you will set up CSS with the project and see how it works out with automatic browser refreshing. When you make a change to the CSS webpack doesn't have to force a full refresh. Instead, it can patch the CSS without one.
 
 ## Loading CSS
+
+- TODO: Check https://github.com/webpack-contrib/css-loader/releases/tag/v1.0.0 and adapt
 
 To load CSS, you need to use [css-loader](https://www.npmjs.com/package/css-loader) and [style-loader](https://www.npmjs.com/package/style-loader). _css-loader_ goes through possible `@import` and `url()` lookups within the matched files and treats them as a regular ES2015 `import`. If an `@import` points to an external resource, _css-loader_ skips it as only internal resources get processed further by webpack.
 

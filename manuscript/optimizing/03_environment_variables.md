@@ -1,5 +1,8 @@
 # Environment Variables
 
+- TODO: mention EnvPlugin shortcut
+- TODO: https://www.npmjs.com/package/dotenv-webpack
+
 Sometimes a part of your code should execute only during development. Or you could have experimental features in your build that are not ready for production yet. Controlling **environment variables** becomes valuable as you can toggle functionality using them.
 
 Since JavaScript minifiers can remove dead code (`if (false)`), you can build on top of this idea and write code that gets transformed into this form. Webpack's `DefinePlugin` enables replacing **free variables** so that you can convert `if (process.env.NODE_ENV === "development")` kind of code to `if (true)` or `if (false)` depending on the environment.
@@ -154,7 +157,7 @@ The techniques discussed in this chapter can be used to choose entire modules de
     └── store.prod.js
 ```
 
-The idea is that you choose either `dev` or `prod` version of the store depending on the environment. It's that *index.js* which does the hard work:
+The idea is that you choose either `dev` or `prod` version of the store depending on the environment. It's that _index.js_ which does the hard work:
 
 ```javascript
 if (process.env.NODE_ENV === "production") {
@@ -166,7 +169,7 @@ if (process.env.NODE_ENV === "production") {
 
 Webpack can pick the right code based on the `DefinePlugin` declaration and this code. You have to use CommonJS module definition style here as ES2015 `import`s don't allow dynamic behavior by design.
 
-T> A related technique, **aliasing**, is discussed in the *Consuming Packages* chapter.
+T> A related technique, **aliasing**, is discussed in the _Consuming Packages_ chapter.
 
 {pagebreak}
 
@@ -176,10 +179,10 @@ Setting environment variables is a technique that allows you to control which pa
 
 To recap:
 
-* Webpack allows you to set **environment variables** through `DefinePlugin` and `EnvironmentPlugin`. Latter maps the system level environment variables to the source.
-* `DefinePlugin` operates based on **free variables** and it replaces them as webpack analyzes the source code. You can achieve similar results by using Babel plugins.
-* Given minifiers eliminate dead code, using the plugins allows you to remove the code from the resulting build.
-* The plugins enable module level patterns. By implementing a wrapper, you can choose which file webpack includes to the resulting build.
-* In addition to these plugins, you can find other optimization related plugins that allow you to control the build result in many ways.
+- Webpack allows you to set **environment variables** through `DefinePlugin` and `EnvironmentPlugin`. Latter maps the system level environment variables to the source.
+- `DefinePlugin` operates based on **free variables** and it replaces them as webpack analyzes the source code. You can achieve similar results by using Babel plugins.
+- Given minifiers eliminate dead code, using the plugins allows you to remove the code from the resulting build.
+- The plugins enable module level patterns. By implementing a wrapper, you can choose which file webpack includes to the resulting build.
+- In addition to these plugins, you can find other optimization related plugins that allow you to control the build result in many ways.
 
 To ensure the build has good cache invalidation behavior, you'll learn to include hashes to the generated filenames in the next chapter. This way the client notices if assets have changed and can fetch the updated versions.

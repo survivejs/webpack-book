@@ -1,5 +1,7 @@
 # Extending with Loaders
 
+- TODO: you can pass data between these loaders with `this.loaders[i].data.value = 1`
+
 As you have seen so far, loaders are one of the building blocks of webpack. If you want to load an asset, you most likely need to set up a matching loader definition. Even though there are a lot of [available loaders](https://webpack.js.org/loaders/), it's possible you are missing one fitting your purposes.
 
 You'll learn to develop a couple of small loaders next. But before that, it's good to understand how to debug them in isolation.

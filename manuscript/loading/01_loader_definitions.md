@@ -1,16 +1,30 @@
 # Loader Definitions
 
+TODO: Cover below
+
+```
+rules: [
+  { test: /\.css$/,
+    use: [
+      info => ({
+        loader: createLoader(info),
+        options: createOptions(info)
+      })
+    ]
+]
+```
+
 Webpack provides multiple ways to set up module loaders. Webpack 2 simplified the situation by introducing the `use` field. It can be a good idea to prefer absolute paths here as they allow you to move configuration without breaking assumptions.
 
 The other way is to set `context` field as this gives a similar effect and affects the way entry points and loaders are resolved. It doesn't have an impact on the output, though, and you still need to use an absolute path or `/` there.
 
-Assuming you set an `include` or `exclude` rule, packages loaded from *node_modules* still work as the assumption is that they have been compiled in such a way that they work out of the box. If they don't, then you have to apply techniques covered in the *Consuming Packages* chapter.
+Assuming you set an `include` or `exclude` rule, packages loaded from _node_modules_ still work as the assumption is that they have been compiled in such a way that they work out of the box. If they don't, then you have to apply techniques covered in the _Consuming Packages_ chapter.
 
-T> `include`/`exclude` is handy with *node_modules* as webpack processes and traverses the installed packages by default when you import JavaScript files to your project. Therefore you need to configure it to avoid that behavior. Other file types don't suffer from this issue.
+T> `include`/`exclude` is handy with _node_modules_ as webpack processes and traverses the installed packages by default when you import JavaScript files to your project. Therefore you need to configure it to avoid that behavior. Other file types don't suffer from this issue.
 
 ## Anatomy of a Loader
 
-Webpack supports a large variety of formats through *loaders*. Also, it supports a couple of JavaScript module formats out of the box. The idea is the same. You always set up a loader, or loaders, and connect those with your directory structure.
+Webpack supports a large variety of formats through _loaders_. Also, it supports a couple of JavaScript module formats out of the box. The idea is the same. You always set up a loader, or loaders, and connect those with your directory structure.
 
 {pagebreak}
 
@@ -213,19 +227,19 @@ The problem with this approach is that it couples your source with webpack. None
 
 `test` combined with `include` or `exclude` to constrain the match is the most common approach to match files. These accept the data types as listed below:
 
-* `test` - Match against a RegExp, string, function, an object, or an array of conditions like these.
-* `include` - The same.
-* `exclude` - The same, except the output is the inverse of `include`.
-* `resource: /inline/` - Match against a resource path including the query. Examples: `/path/foo.inline.js`, `/path/bar.png?inline`.
-* `issuer: /bar.js/` - Match against a resource requested from the match. Example: `/path/foo.png` would match if it was requested from `/path/bar.js`.
-* `resourcePath: /inline/` - Match against a resource path without its query. Example: `/path/foo.inline.png`.
-* `resourceQuery: /inline/` - Match against a resource based on its query. Example: `/path/foo.png?inline`.
+- `test` - Match against a RegExp, string, function, an object, or an array of conditions like these.
+- `include` - The same.
+- `exclude` - The same, except the output is the inverse of `include`.
+- `resource: /inline/` - Match against a resource path including the query. Examples: `/path/foo.inline.js`, `/path/bar.png?inline`.
+- `issuer: /bar.js/` - Match against a resource requested from the match. Example: `/path/foo.png` would match if it was requested from `/path/bar.js`.
+- `resourcePath: /inline/` - Match against a resource path without its query. Example: `/path/foo.inline.png`.
+- `resourceQuery: /inline/` - Match against a resource based on its query. Example: `/path/foo.png?inline`.
 
 Boolean based fields can be used to constrain these matchers further:
 
-* `not` - Do **not** match against a condition (see `test` for accepted values).
-* `and` - Match against an array of conditions. All must match.
-* `or` - Match against an array while any must match.
+- `not` - Do **not** match against a condition (see `test` for accepted values).
+- `and` - Match against an array of conditions. All must match.
+- `or` - Match against an array while any must match.
 
 ## Loading Based on `resourceQuery`
 
@@ -253,7 +267,7 @@ If you wanted to embed the context information to the filename, the rule could u
 
 ## Loading Based on `issuer`
 
-`issuer` can be used to control behavior based on where a resource was imported. In the example below adapted from [css-loader issue 287](https://github.com/webpack-contrib/css-loader/pull/287#issuecomment-261269199), *style-loader* is applied when webpack captures a CSS file from a JavaScript import:
+`issuer` can be used to control behavior based on where a resource was imported. In the example below adapted from [css-loader issue 287](https://github.com/webpack-contrib/css-loader/pull/287#issuecomment-261269199), _style-loader_ is applied when webpack captures a CSS file from a JavaScript import:
 
 ```javascript
 {
@@ -293,9 +307,9 @@ Another approach would be to mix `issuer` and `not`:
 
 ## Understanding Loader Behavior
 
-Loader behavior can be understood in greater detail by inspecting them. [loader-runner](https://www.npmjs.com/package/loader-runner) allows you to run them in isolation without webpack. Webpack uses this package internally and *Extending with Loaders* chapter covers it in detail.
+Loader behavior can be understood in greater detail by inspecting them. [loader-runner](https://www.npmjs.com/package/loader-runner) allows you to run them in isolation without webpack. Webpack uses this package internally and _Extending with Loaders_ chapter covers it in detail.
 
-[inspect-loader](https://www.npmjs.com/package/inspect-loader) allows you to inspect what's being passed between loaders. Instead of having to insert `console.log`s within *node_modules*, you can attach this loader to your configuration and inspect the flow there.
+[inspect-loader](https://www.npmjs.com/package/inspect-loader) allows you to inspect what's being passed between loaders. Instead of having to insert `console.log`s within _node_modules_, you can attach this loader to your configuration and inspect the flow there.
 
 ## Conclusion
 
@@ -303,9 +317,9 @@ Webpack provides multiple ways to setup loaders but sticking with `use` is enoug
 
 To recap:
 
-* **Loaders** allow you determine what should happen when webpack's module resolution mechanism encounters a file.
-* A loader definition consists of **conditions** based on which to match and **actions** that should be performed when a match happens.
-* Webpack 2 introduced the `use` field. It combines the ideas of old `loader` and `loaders` fields into a single construct.
-* Webpack 4 provides multiple ways to match and alter loader behavior. You can, for example, match based on a **resource query** after a loader has been matched and route the loader to specific actions.
+- **Loaders** allow you determine what should happen when webpack's module resolution mechanism encounters a file.
+- A loader definition consists of **conditions** based on which to match and **actions** that should be performed when a match happens.
+- Webpack 2 introduced the `use` field. It combines the ideas of old `loader` and `loaders` fields into a single construct.
+- Webpack 4 provides multiple ways to match and alter loader behavior. You can, for example, match based on a **resource query** after a loader has been matched and route the loader to specific actions.
 
 In the next chapter, you'll learn to load images using webpack.

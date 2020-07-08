@@ -221,6 +221,8 @@ Although _mini-html-webpack-plugin_ is enough for basic use cases, there can be 
 - [webpack-cdn-plugin](https://www.npmjs.com/package/webpack-cdn-plugin) allows you to specify which dependencies to load through a Content Delivery Network (CDN). This common technique is used for speeding up loading of popular libraries.
 - [dynamic-cdn-webpack-plugin](https://www.npmjs.com/package/dynamic-cdn-webpack-plugin) achieves a similar result.
 
+- TODO: https://www.npmjs.com/package/webpack-cdn-plugin
+
 {pagebreak}
 
 ## Conclusion

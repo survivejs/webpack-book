@@ -1,5 +1,7 @@
 # Testing
 
+- TODO: https://www.npmjs.com/package/istanbul-instrumenter-loader
+
 Testing is a vital part of development. Even though techniques, such as linting, can help to spot and solve issues, they have their limitations. Testing can be applied to the code and an application on many different levels.
 
 You can **unit test** a specific piece of code, or you can look at the application from the user's point of view through **acceptance testing**. **Integration testing** fits between these ends of the spectrum and is concerned about how separate units of code operate together.
@@ -147,82 +149,6 @@ Compared to the vanilla Mocha setup, configuring Mocha through webpack comes wit
 - You can use webpack's processing to compile your code as you wish. With vanilla Mocha that would imply more setup outside of it.
 
 On the downside, now you need a browser to examine the tests. _mocha-loader_ is at its best as a development helper. The problem can be solved by running the tests through a headless browser.
-
-## Karma and Mocha
-
-![Karma](images/karma.png)
-
-[Karma](https://karma-runner.github.io/) is a test runner that allows you to run tests on real devices and [PhantomJS](http://phantomjs.org/), a headless browser. [karma-webpack](https://www.npmjs.com/package/karma-webpack) is a Karma preprocessor that allows you to connect Karma with webpack. The same benefits as before apply still. This time around, however, there is more control over the test environment.
-
-To get started, install Karma, Mocha, _karma-mocha_ reporter, and _karma-webpack_:
-
-```bash
-npm add karma mocha karma-mocha karma-webpack --save-dev
-```
-
-{pagebreak}
-
-Like webpack, Karma relies on a configuration convention as well. Set up a file as follows to make it pick up the tests:
-
-**karma.conf.js**
-
-```javascript
-const parts = require("./webpack.parts");
-
-module.exports = config => {
-  const tests = "tests/*.test.js";
-
-  config.set({
-    frameworks: ["mocha"],
-    files: [
-      {
-        pattern: tests,
-      },
-    ],
-    preprocessors: {
-      [tests]: ["webpack"],
-    },
-    webpack: parts.loadJavaScript(),
-    singleRun: true,
-  });
-};
-```
-
-W> The setup generates a bundle per each test. If you have a large number of tests and want to improve performance, set up `require.context` as for Mocha above. See [karma-webpack issue 23](https://github.com/webpack-contrib/karma-webpack/issues/23) for more details.
-
-{pagebreak}
-
-Add an npm shortcut:
-
-```json
-...
-"scripts": {
-  "test:karma": "karma start",
-  ...
-},
-...
-```
-
-If you execute `npm run test:karma` now, you should see the terminal output:
-
-```
-...
-webpack: Compiled successfully.
-...:INFO [karma]: Karma v1.7.1 server started at http://0.0.0.0:9876/
-```
-
-The above means Karma is waiting and you have to visit that url to run the tests. As per configuration (`singleRun: true`), Karma terminates execution after that:
-
-```
-...
-...:INFO [karma]: Karma v1.7.1 server started at http://0.0.0.0:9876/
-...:INFO [Chrome 61...]: Connected on socket D...A with id manual-73
-Chrome 61...): Executed 1 of 1 SUCCESS (0.003 secs / 0 secs)
-```
-
-Given running tests this way can become annoying, it's a good idea to configure alternative ways. Using PhantomJS is one option.
-
-T> You can point Karma to specific browsers through the `browsers` field. Example: `browsers: ['Chrome']`.
 
 {pagebreak}
 

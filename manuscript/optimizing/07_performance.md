@@ -1,6 +1,7 @@
 # Performance
 
 - TODO: Mention https://github.com/jantimon/cpuprofile-webpack-plugin
+- TODO: Mention https://webpack.js.org/plugins/profiling-plugin/
 
 Webpack's performance out of the box is often enough for small projects. That said, it begins to hit limits as your project grows in scale. It's a frequent topic in webpack's issue tracker. [Issue 1905](https://github.com/webpack/webpack/issues/1905) is a good example.
 

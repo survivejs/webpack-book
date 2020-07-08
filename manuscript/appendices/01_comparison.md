@@ -3,6 +3,15 @@
 - TODO: Add https://poi.js.org/
 - TODO: Add https://github.com/ronami/minipack
 - TODO: Mention SystemJS properly
+- TODO: Link to https://dev.to/netlify/choosing-a-javascript-build-tool-to-config-or-not-config-2ia8
+- TODO: https://medium.com/rollup/rollup-now-has-code-splitting-and-we-need-your-help-46defd901c82
+- TODO: Mention Snowpack, https://www.snowpack.dev/#snowpack
+- TODO: https://blog.logrocket.com/snowpack-vs-webpack/
+- TODO: https://bundlers.tooling.report
+- TODO: https://github.com/evanw/esbuild
+- TODO: https://github.com/ryanelian/instapack
+- TODO: https://github.com/vitejs/vite
+- TODO: https://github.com/aholachek/bundle-wizard
 
 Back in the day, it was enough to concatenate scripts together. Times have changed, though, and now distributing your JavaScript code can be a complicated endeavor. This problem has escalated with the rise of single-page applications (SPAs). They tend to rely on many hefty libraries.
 

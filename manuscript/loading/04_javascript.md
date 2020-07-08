@@ -1,5 +1,7 @@
 # Loading JavaScript
 
+- TODO: https://www.npmjs.com/package/babel-plugin-webpack-alias
+
 Webpack processes ES2015 module definitions by default and transforms them into code. It does **not** transform specific syntax, such as `const`, though. The resulting code can be problematic especially in the older browsers.
 
 To get a better idea of the default transform, consider the example output below (`npm run build -- --devtool false --mode development`):
@@ -232,10 +234,9 @@ Microsoft's [TypeScript](http://www.typescriptlang.org/) is a compiled language 
 
 Compared to Facebook's type checker Flow, TypeScript is a more secure option. As a result, you find more premade type definitions for it, and overall, the quality of support should be better.
 
-You can use TypeScript with webpack using the following loaders:
+[ts-loader](https://www.npmjs.com/package/ts-loader) is the recommended option for TypeScript. You can also compile TypeScript with Babel although this comes with small caveats you should know.
 
-- [ts-loader](https://www.npmjs.com/package/ts-loader)
-- [awesome-typescript-loader](https://www.npmjs.com/package/awesome-typescript-loader)
+TODO: Explain on Babel caveats.
 
 T> There's a [TypeScript parser for ESLint](https://www.npmjs.com/package/typescript-eslint-parser). It's also possible to lint it through [tslint](https://www.npmjs.com/package/tslint).
 

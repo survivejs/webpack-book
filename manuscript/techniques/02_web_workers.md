@@ -1,6 +1,7 @@
 # Web Workers
 
 - TODO: Mention https://github.com/developit/workerize-loader
+- TODO: Mention workbox + workbox plugin setup
 
 [Web workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) allow you to push work outside of main execution thread of JavaScript making them convenient for lengthy computations and background work.
 

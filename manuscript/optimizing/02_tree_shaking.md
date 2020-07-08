@@ -1,6 +1,10 @@
 # Tree Shaking
 
 - TODO: Mention `"sideEffects": "false"` requirement per package + link to the docs for further explanation.
+- TODO: add a note about https://survivejs.com/webpack/loading/javascript/#setting-up-babelrc- to the tree shaking chapter
+- TODO: Link to https://stackoverflow.com/questions/49160752/what-does-webpack-4-expect-from-a-package-with-sideeffects-false
+- TODO: Link to https://webpack.js.org/guides/tree-shaking/
+- TODO: Link to https://github.com/blacksonic/typescript-webpack-tree-shaking
 
 **Tree shaking** is a feature enabled by the ES2015 module definition. The idea is that given it's possible to analyze the module definition statically without running it, webpack can tell which parts of the code are being used and which are not. It's possible to verify this behavior by expanding the application and adding code there that should be eliminated.
 

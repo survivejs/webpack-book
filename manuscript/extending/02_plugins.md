@@ -1,5 +1,11 @@
 # Extending with Plugins
 
+- TODO: use the new hooks api
+- TODO: build-module hook for plugins
+- TODO: show how to write a resolver plugin
+- TODO: mention resolve plugins in the plugin extension chapter
+- TODO: mention minifier plugins in the plugin extension chapter
+
 Compared to loaders, plugins are a more flexible means to extend webpack. You have access to webpack's **compiler** and **compilation** processes. It's possible to run child compilers, and plugins can work in tandem with loaders as `MiniCssExtractPlugin` shows.
 
 Plugins allow you to intercept webpack's execution through hooks. Webpack itself has been implemented as a collection of plugins. Underneath it relies on [tapable](https://www.npmjs.com/package/tapable) plugin interface that allows webpack to apply plugins in different ways.

@@ -170,7 +170,7 @@ To get it to work, you have to install it first through `npm add nodemon --save-
 
 ```json
 "scripts": {
-  "start": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --mode development\"",
+  "start": "nodemon --watch webpack.* --exec \"webpack-dev-server --mode development\"",
   "build": "webpack --mode production"
 },
 ```
@@ -217,6 +217,9 @@ You could have passed the WDS options through a terminal. It's clearer to manage
 
 Alternately, you could have set up an Express server and use a middleware. There are a couple of options:
 
+TODO: webpack-dev-middleware with writeToDisk
+TODO: https://www.npmjs.com/package/koa-webpack
+
 - [The official WDS middleware](https://webpack.js.org/guides/development/#using-webpack-dev-middleware)
 - [webpack-hot-middleware](https://www.npmjs.com/package/webpack-hot-middleware)
 - [webpack-isomorphic-dev-middleware](https://www.npmjs.com/package/webpack-isomorphic-dev-middleware)
@@ -249,6 +252,8 @@ The webpack plugin ecosystem is diverse, and there are a lot of plugins that can
 ## Output Plugins
 
 There are also plugins that make the webpack output easier to notice and understand:
+
+TODO: Mention https://github.com/posva/sounds-webpack-plugin
 
 - [system-bell-webpack-plugin](https://www.npmjs.com/package/system-bell-webpack-plugin) rings the system bell on failure instead of letting webpack fail silently.
 - [webpack-notifier](https://www.npmjs.com/package/webpack-notifier) uses system notifications to let you know of webpack status.

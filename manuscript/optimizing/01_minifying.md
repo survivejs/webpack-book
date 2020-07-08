@@ -1,5 +1,8 @@
 # Minifying
 
+- TODO: Mention gzip
+- TODO: https://www.npmjs.com/package/brotli-webpack-plugin
+
 Since webpack 4, the production output gets minified using [terser](https://www.npmjs.com/package/terser) by default. Terser is an ES2015+ compatible JavaScript-minifier. Compared to UglifyJS, the earlier standard for many projects, it's a future oriented option. There was a fork of UglifyJS, _uglify-es_, but as it's not maintained anymore, terser was born as an independent fork.
 
 Althouogh webpack 4 minifies the output by default, it's good to understand how to customize the behavior should you want to adjust it further or replace the minifier.
@@ -81,10 +84,6 @@ T> Pass `--display-optimization-bailout` flag to webpack to gain debugging infor
 ### Pre-evaluation
 
 [prepack-webpack-plugin](https://www.npmjs.com/package/prepack-webpack-plugin) uses [Prepack](https://prepack.io/), a partial JavaScript evaluator. It rewrites computations that can be done compile-time and therefore speeds up code execution. See also [val-loader](https://www.npmjs.com/package/val-loader) and [babel-plugin-preval](https://www.npmjs.com/package/babel-plugin-preval) for alternative solutions.
-
-### Improving Parsing
-
-[optimize-js-plugin](https://www.npmjs.com/package/optimize-js-plugin) complements the other solutions by wrapping eager functions, and it enhances the way your JavaScript code gets parsed initially. The plugin relies on [optimize-js](https://github.com/nolanlawson/optimize-js) by Nolan Lawson.
 
 ## Minifying HTML
 
