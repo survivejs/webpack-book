@@ -3,8 +3,8 @@
 - TODO: hmr - mention that normal require does not have a live binding
 - TODO: https://github.com/pmmmwh/react-refresh-webpack-plugin
 - TODO: http://blog.jakoblind.no/webpack-hmr/
-- TODO: https://github.com/pmmmwh/react-refresh-webpack-plugin
 - TODO: https://github.com/WebHotelier/webpack-fast-refresh
+- TODO: https://mariosfakiolas.com/blog/what-the-heck-is-react-fast-refresh/
 
 **Hot Module Replacement** (HMR) builds on top of the WDS. It enables an interface that makes it possible to swap modules live. For example, _style-loader_ can update your CSS without forcing a refresh. Implementing HMR for styles is ideal because CSS is stateless by design.
 

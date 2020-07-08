@@ -107,6 +107,7 @@ Specific lower-level optimizations can be good to know. The key is to allow webp
 - Push bundles that change less to **Dynamically Loaded Libraries** (DLL) to avoid unnecessary processing. The [official webpack example](https://github.com/webpack/webpack/tree/master/examples/dll-user) gets to the point while [Rob Knight's blog post](https://robertknight.me.uk/posts/webpack-dll-plugins/) explains the idea further. [autodll-webpack-plugin](https://www.npmjs.com/package/autodll-webpack-plugin) can automate the process.
 
 TODO: https://medium.com/@emilycoco/how-to-use-the-dll-plugin-to-speed-up-your-webpack-build-dbf330d3b13c
+TODO: https://www.npmjs.com/package/webpack-build-dll-plugin
 
 ### Plugin Specific Optimizations
 

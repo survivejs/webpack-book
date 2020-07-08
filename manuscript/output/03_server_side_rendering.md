@@ -1,5 +1,12 @@
 # Server Side Rendering
 
+TODO: add cross-reference to https://survivejs.com/webpack/loading/javascript/ for loadJavaScript
+TODO: https://medium.com/faceyspacey/announcing-react-universal-component-2-0-babel-plugin-universal-import-5702d59ec1f4
+TODO: https://github.com/faceyspacey/babel-plugin-universal-import
+TODO: https://github.com/faceyspacey/react-universal-component
+TODO: https://github.com/faceyspacey/universal-demo
+TODO: https://github.com/jhnns/spa-vs-universal
+
 **Server Side Rendering** (SSR) is a technique that allows you to serve an initial payload with HTML, JavaScript, CSS, and even application state. You serve a fully rendered HTML page that would make sense even without JavaScript enabled. In addition to providing potential performance benefits, this can help with Search Engine Optimization (SEO).
 
 Even though the idea does not sound that unique, there is a technical cost. The approach was popularized by React. Since then frameworks encapsulating the tricky bits, such as [Next.js](https://www.npmjs.com/package/next) and [razzle](https://www.npmjs.com/package/razzle), have appeared.

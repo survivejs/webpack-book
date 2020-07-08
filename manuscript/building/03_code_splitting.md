@@ -3,6 +3,7 @@
 TODO: Move before he bundle splitting chapter
 TODO: use await for code splitting
 TODO: https://medium.com/webpack/webpack-4-import-and-commonjs-d619d626b655
+TODO: dynamic import mention to code splitting chapter
 
 Web applications tend to grow big as features are developed. The longer it takes for your application to load, the more frustrating it's to the user. This problem is amplified in a mobile environment where the connections can be slow.
 

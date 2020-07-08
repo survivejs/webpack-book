@@ -156,6 +156,9 @@ Note especially how the function was transformed. You can try out different brow
 
 ## Polyfilling Features
 
+TODO: https://babeljs.io/docs/plugins/transform-runtime/
+TODO: https://www.npmjs.com/package/corejs-upgrade-webpack-plugin
+
 _@babel/preset-env_ allows you to polyfill certain language features for older browsers. For this to work, you should enable its `useBuiltIns` option (`"useBuiltIns": true` or `"useBuiltIns": "usage"`) and install [@babel/polyfill](https://babeljs.io/docs/usage/polyfill/). You have to include it in your project either through an import or an entry (`app: ["@babel/polyfill", PATHS.app]`). _@babel/preset-env_ rewrites the import based on your browser definition and loads only the polyfills that are needed.
 
 _@babel/polyfill_ pollutes the global scope with objects like `Promise`. Given this can be problematic for library authors, there's [@babel/plugin-transform-runtime](https://babeljs.io/docs/plugins/transform-runtime/) option. It can be enabled as a Babel plugin, and it avoids the problem of globals by rewriting the code in such way that they aren't be needed.

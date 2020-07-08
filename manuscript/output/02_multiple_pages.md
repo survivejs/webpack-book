@@ -1,6 +1,7 @@
 # Multiple Pages
 
 - TODO: `runtimeChunk: 'single'`
+- TODO: https://www.npmjs.com/package/directory-tree-webpack-plugin
 
 Even though webpack is often used for bundling single page applications, it's possible to use it with multiple separate pages as well. The idea is similar to the way you generated multiple output files in the _Targets_ chapter. This time, however, you have to generate separate pages. That's achievable through `HtmlWebpackPlugin` and a bit of configuration.
 
