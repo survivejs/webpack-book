@@ -303,6 +303,8 @@ LCOV requires specific tooling to work. You can find editor plugins such as [lco
 
 ## Jest
 
+TODO: "babel-core": "7.0.0-bridge.0",
+
 ![Jest](images/jest.png)
 
 Facebook's [Jest](https://facebook.github.io/jest/) is an opinionated alternative that encapsulates functionality, including coverage and mocking, with minimal setup. It can capture snapshots of data making it valuable for projects where you have the behavior you would like to record and retain.

@@ -1,12 +1,12 @@
 # Separating a Manifest
 
-When webpack writes bundles, it maintains a **manifest** as well. You can find it in the generated *vendor* bundle in this project. The manifest describes what files webpack should load. It's possible to extract it and start loading the files of the project faster instead of having to wait for the *vendor* bundle to be loaded.
+When webpack writes bundles, it maintains a **manifest** as well. You can find it in the generated _vendor_ bundle in this project. The manifest describes what files webpack should load. It's possible to extract it and start loading the files of the project faster instead of having to wait for the _vendor_ bundle to be loaded.
 
-If the hashes webpack generates change, then the manifest changes as well. As a result, the contents of the vendor bundle change, and become invalidated. The problem can be eliminated by extracting the manifest to a file of its own or by writing it inline to the *index.html* of the project.
+If the hashes webpack generates change, then the manifest changes as well. As a result, the contents of the vendor bundle change, and become invalidated. The problem can be eliminated by extracting the manifest to a file of its own or by writing it inline to the _index.html_ of the project.
 
 ## Extracting a Manifest
 
-Most of the work was done already when `extractBundles` was set up in the *Bundle Splitting* chapter. To extract the manifest, define `optimization.runtimeChunk` as follows:
+Most of the work was done already when `extractBundles` was set up in the _Bundle Splitting_ chapter. To extract the manifest, define `optimization.runtimeChunk` as follows:
 
 **webpack.config.js**
 
@@ -60,25 +60,25 @@ vendors~main.3af5.js.map    235 KiB       2  [emitted]  vendors~main
 ...
 ```
 
-This change gave a separate file that contains the manifest. In the output above it has been marked with `manifest` chunk name. Because the setup is using `HtmlWebpackPlugin`, there is no need to worry about loading the manifest ourselves as the plugin adds a reference to *index.html*.
+This change gave a separate file that contains the manifest. In the output above it has been marked with `manifest` chunk name. Because the setup is using `HtmlWebpackPlugin`, there is no need to worry about loading the manifest ourselves as the plugin adds a reference to _index.html_.
 
-Plugins, such as [inline-manifest-webpack-plugin](https://www.npmjs.com/package/inline-manifest-webpack-plugin) and [html-webpack-inline-chunk-plugin](https://www.npmjs.com/package/html-webpack-inline-chunk-plugin), [assets-webpack-plugin](https://www.npmjs.com/package/assets-webpack-plugin), work with `HtmlWebpackPlugin` and allow you to write the manifest within *index.html* to avoid a request.
+Plugins, such as [inline-manifest-webpack-plugin](https://www.npmjs.com/package/inline-manifest-webpack-plugin) and [html-webpack-inline-chunk-plugin](https://www.npmjs.com/package/html-webpack-inline-chunk-plugin), [assets-webpack-plugin](https://www.npmjs.com/package/assets-webpack-plugin), work with `HtmlWebpackPlugin` and allow you to write the manifest within _index.html_ to avoid a request.
 
-Try adjusting *src/index.js* and see how the hashes change. This time around it should **not** invalidate the vendor bundle, and only the manifest and app bundle names should become different.
+Try adjusting _src/index.js_ and see how the hashes change. This time around it should **not** invalidate the vendor bundle, and only the manifest and app bundle names should become different.
 
 T> To get a better idea of the manifest contents, run the build in development mode or pass `none` to mode through configuration. You should see something familiar there.
 
-T> To integrate with asset pipelines, you can consider using plugins like [chunk-manifest-webpack-plugin](https://www.npmjs.com/package/chunk-manifest-webpack-plugin), [webpack-manifest-plugin](https://www.npmjs.com/package/webpack-manifest-plugin), [webpack-assets-manifest](https://www.npmjs.com/package/webpack-assets-manifest), or [webpack-rails-manifest-plugin](https://www.npmjs.com/package/webpack-rails-manifest-plugin). These solutions emit JSON that maps the original asset path to the new one.
+T> To integrate with asset pipelines, you can consider using plugins like [webpack-manifest-plugin](https://www.npmjs.com/package/webpack-manifest-plugin), [webpack-assets-manifest](https://www.npmjs.com/package/webpack-assets-manifest), or [webpack-rails-manifest-plugin](https://www.npmjs.com/package/webpack-rails-manifest-plugin). These solutions emit JSON that maps the original asset path to the new one.
 
 T> The build can be improved further by loading popular dependencies, such as React, through a CDN. That would decrease the size of the vendor bundle even further while adding an external dependency on the project. The idea is that if the user has hit the CDN earlier, caching can kick in like here.
 
 ## Using Records
 
-As mentioned in the *Bundle Splitting* chapter, plugins such as `AggressiveSplittingPlugin` use **records** to implement caching. The approaches discussed above are still valid, but records go one step further.
+As mentioned in the _Bundle Splitting_ chapter, plugins such as `AggressiveSplittingPlugin` use **records** to implement caching. The approaches discussed above are still valid, but records go one step further.
 
 Records are used for storing module IDs across separate builds. The problem is that you need to save this file. If you build locally, one option is to include it in your version control.
 
-To generate a *records.json* file, adjust the configuration as follows:
+To generate a _records.json_ file, adjust the configuration as follows:
 
 **webpack.config.js**
 
@@ -94,7 +94,7 @@ leanpub-end-insert
 ]);
 ```
 
-If you build the project (`npm run build`), you should see a new file, *records.json*, at the project root. The next time webpack builds, it picks up the information and rewrites the file if it has changed.
+If you build the project (`npm run build`), you should see a new file, _records.json_, at the project root. The next time webpack builds, it picks up the information and rewrites the file if it has changed.
 
 Records are particularly valuable if you have a complicated setup with code splitting and want to make sure the split parts gain correct caching behavior. The biggest problem is maintaining the record file.
 
@@ -106,13 +106,13 @@ W> If you change the way webpack handles module IDs (i.e., remove `HashedModuleI
 
 ## Conclusion
 
-The project has basic caching behavior now. If you try to modify *index.js* or *component.js*, the vendor bundle should remain the same.
+The project has basic caching behavior now. If you try to modify _index.js_ or _component.js_, the vendor bundle should remain the same.
 
 To recap:
 
-* Webpack maintains a **manifest** containing information needed to run the application.
-* If the manifest changes, the change invalidates the containing bundle.
-* Certain plugins allow you to write the manifest to the generated *index.html*. It's also possible to extract the information to a JSON file. The JSON comes in handy with *Server Side Rendering*.
-* **Records** allow you to store module IDs across builds. As a downside, you have to track the records file.
+- Webpack maintains a **manifest** containing information needed to run the application.
+- If the manifest changes, the change invalidates the containing bundle.
+- Certain plugins allow you to write the manifest to the generated _index.html_. It's also possible to extract the information to a JSON file. The JSON comes in handy with _Server Side Rendering_.
+- **Records** allow you to store module IDs across builds. As a downside, you have to track the records file.
 
 You'll learn to analyze the build in the next chapter as it's essential for understanding and improving your build.

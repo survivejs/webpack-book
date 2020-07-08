@@ -1,5 +1,9 @@
 # Code Splitting
 
+TODO: Move before he bundle splitting chapter
+TODO: use await for code splitting
+TODO: https://medium.com/webpack/webpack-4-import-and-commonjs-d619d626b655
+
 Web applications tend to grow big as features are developed. The longer it takes for your application to load, the more frustrating it's to the user. This problem is amplified in a mobile environment where the connections can be slow.
 
 Even though splitting bundles can help a notch, they are not the only solution, and you can still end up having to download a lot of data. Fortunately, it's possible to do better thanks to **code splitting**. It allows loading code lazily as you need it.
@@ -156,6 +160,9 @@ T> The _Dynamic Loading_ chapter covers other techniques that come in handy when
 {pagebreak}
 
 ## Code Splitting in React
+
+TODO: https://github.com/theKashey/react-imported-component
+TODO: https://github.com/gregberge/loadable-components
 
 The splitting pattern can be wrapped into a React component. Airbnb uses the following solution [as described by Joe Lencioni](https://gist.github.com/lencioni/643a78712337d255f5c031bfc81ca4cf):
 

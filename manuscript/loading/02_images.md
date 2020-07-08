@@ -4,6 +4,8 @@
 - TODO: Mention https://www.npmjs.com/package/babel-plugin-transform-react-jsx-img-import
 - TODO: Mention https://svgr.now.sh/
 - TODO: Mention https://github.com/jhamlet/svg-react-loader
+- TODO: Mention https://www.npmjs.com/package/responsive-loader
+- TODO: Mention https://github.com/thegc/html-webpack-inline-svg-plugin
 
 HTTP/1 application can be made slow by loading a lot of small assets as each request comes with an overhead. HTTP/2 helps in this regard and changes the situation somewhat drastically. Till then you are stuck with different approaches. Webpack allows a few of these.
 

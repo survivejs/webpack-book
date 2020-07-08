@@ -4,6 +4,7 @@
 - TODO: https://www.npmjs.com/package/subfont
 - TODO: https://github.com/Munter/subfont
 - TODO: https://github.com/patrickhulce/fontmin-webpack
+- TODO: https://www.npmjs.com/package/iconfont-webpack-plugin
 
 Loading fonts is similar to loading images. It does come with unique challenges, though. How to know what font formats to support? There can be up to four font formats to worry about if you want to provide first class support to each browser.
 

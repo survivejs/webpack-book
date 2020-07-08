@@ -1,6 +1,7 @@
 # Loading JavaScript
 
 - TODO: https://www.npmjs.com/package/babel-plugin-webpack-alias
+- TODO: https://github.com/babel/babel-upgrade
 
 Webpack processes ES2015 module definitions by default and transforms them into code. It does **not** transform specific syntax, such as `const`, though. The resulting code can be problematic especially in the older browsers.
 
@@ -237,6 +238,11 @@ Compared to Facebook's type checker Flow, TypeScript is a more secure option. As
 [ts-loader](https://www.npmjs.com/package/ts-loader) is the recommended option for TypeScript. You can also compile TypeScript with Babel although this comes with small caveats you should know.
 
 TODO: Explain on Babel caveats.
+TODO: https://github.com/Realytics/fork-ts-checker-webpack-plugin
+TODO: https://www.npmjs.com/package/@types/webpack-env
+TODO: https://www.npmjs.com/package/@types/webpack
+TODO: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/6170
+TODO: webpack.config.ts
 
 T> There's a [TypeScript parser for ESLint](https://www.npmjs.com/package/typescript-eslint-parser). It's also possible to lint it through [tslint](https://www.npmjs.com/package/tslint).
 

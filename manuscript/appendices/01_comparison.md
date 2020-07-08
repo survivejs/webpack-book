@@ -12,6 +12,8 @@
 - TODO: https://github.com/ryanelian/instapack
 - TODO: https://github.com/vitejs/vite
 - TODO: https://github.com/aholachek/bundle-wizard
+- TODO: https://github.com/rollup/rollup-starter-code-splitting
+- TODO: https://github.com/evanw/esbuild/
 
 Back in the day, it was enough to concatenate scripts together. Times have changed, though, and now distributing your JavaScript code can be a complicated endeavor. This problem has escalated with the rise of single-page applications (SPAs). They tend to rely on many hefty libraries.
 

@@ -254,6 +254,8 @@ The webpack plugin ecosystem is diverse, and there are a lot of plugins that can
 There are also plugins that make the webpack output easier to notice and understand:
 
 TODO: Mention https://github.com/posva/sounds-webpack-plugin
+TODO: Mention https://www.npmjs.com/package/webpackbar
+TODO: Mention https://www.npmjs.com/package/webpack-stylish
 
 - [system-bell-webpack-plugin](https://www.npmjs.com/package/system-bell-webpack-plugin) rings the system bell on failure instead of letting webpack fail silently.
 - [webpack-notifier](https://www.npmjs.com/package/webpack-notifier) uses system notifications to let you know of webpack status.

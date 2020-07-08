@@ -13,6 +13,8 @@
 - TODO: Mention https://www.npmjs.com/package/webpack-stats-plugin
 - TODO: Mention https://github.com/marketplace/js-bundle-analyzer
 - TODO: Mention https://github.com/smikula/webpack-bundle-diff
+- TODO: Mention https://github.com/GoogleChromeLabs/size-plugin
+- TODO: Mention https://github.com/Auxpack/Auxpack
 
 Analyzing build statistics is a good step towards understanding webpack better. Visualizing webpack output helps you to understand the composition of your bundles.
 

@@ -66,6 +66,9 @@ T> You can lint CSS through [Stylelint](http://stylelint.io/). It can be set up 
 
 Set up a file as follows:
 
+TODO: https://jamie.build/last-2-versions
+TODO: Check browserslist 4
+
 **.browserslistrc**
 
 ```
