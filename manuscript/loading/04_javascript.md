@@ -96,6 +96,8 @@ W> If you try to import files **outside** of your configuration root directory a
 
 ### Setting Up _.babelrc_
 
+TODO: https://github.com/babel/preset-modules - bugfixes: true
+
 At a minimum, you need [@babel/preset-env](https://www.npmjs.com/package/@babel/preset-env). It's a Babel preset that enables the required plugins based on the optional environment definition you pass to it.
 
 Install the preset first:
@@ -243,6 +245,7 @@ TODO: https://www.npmjs.com/package/@types/webpack-env
 TODO: https://www.npmjs.com/package/@types/webpack
 TODO: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/6170
 TODO: webpack.config.ts
+TODO: https://twitter.com/jaredpalmer/status/1265298834906910729
 
 T> There's a [TypeScript parser for ESLint](https://www.npmjs.com/package/typescript-eslint-parser). It's also possible to lint it through [tslint](https://www.npmjs.com/package/tslint).
 

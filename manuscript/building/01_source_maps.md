@@ -364,6 +364,8 @@ To override this, you have to prefix your source map option with it (e.g., `@sou
 
 ## Using Dependency Source Maps
 
+TODO: https://github.com/facebook/create-react-app/pull/8227/files
+
 Assuming you are using a package that uses inline source maps in its distribution, you can use [source-map-loader](https://www.npmjs.com/package/source-map-loader) to make webpack aware of them. Without setting it up against the package, you get minified debug output. Often you can skip this step as it's a special case.
 
 ## Source Maps for Styling

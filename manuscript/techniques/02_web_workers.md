@@ -3,6 +3,8 @@
 - TODO: Mention https://github.com/developit/workerize-loader
 - TODO: Mention workbox + workbox plugin setup
 - TODO: https://codeburst.io/workboxjs-produces-service-workers-for-you-also-through-webpack-52e9e204c3a8
+- TODO: https://github.com/andywer/threads-plugin
+- TODO: https://github.com/GoogleChromeLabs/worker-plugin
 
 [Web workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) allow you to push work outside of main execution thread of JavaScript making them convenient for lengthy computations and background work.
 

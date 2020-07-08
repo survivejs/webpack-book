@@ -1,5 +1,7 @@
 # Development Server
 
+TODO: https://webpack.js.org/configuration/dev-server/#devserverwritetodisk-
+
 When developing a frontend without any special tooling, you often end up having to refresh the browser to see changes. Given having to manually refresh gets annoying fast, there's tooling to remedy the problem. The first tools in the market were [LiveReload](http://livereload.com/) and [Browsersync](http://www.browsersync.io/).
 
 The point of either is to allow refreshing the browser automatically as you develop. They also pick up CSS changes and apply the new style without a hard refresh that loses the state of the browser. It's possible to setup Browsersync to work with webpack through [browser-sync-webpack-plugin](https://www.npmjs.com/package/browser-sync-webpack-plugin), but webpack has more tricks in store in form of a `watch` mode, and a development server.
@@ -256,6 +258,7 @@ There are also plugins that make the webpack output easier to notice and underst
 TODO: Mention https://github.com/posva/sounds-webpack-plugin
 TODO: Mention https://www.npmjs.com/package/webpackbar
 TODO: Mention https://www.npmjs.com/package/webpack-stylish
+TODO: Mention https://www.npmjs.com/package/test-webpack-reporter-plugin
 
 - [system-bell-webpack-plugin](https://www.npmjs.com/package/system-bell-webpack-plugin) rings the system bell on failure instead of letting webpack fail silently.
 - [webpack-notifier](https://www.npmjs.com/package/webpack-notifier) uses system notifications to let you know of webpack status.

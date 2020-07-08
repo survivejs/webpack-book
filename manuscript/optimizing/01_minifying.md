@@ -3,6 +3,7 @@
 - TODO: Mention gzip, https://www.npmjs.com/package/compression-webpack-plugin
 - TODO: https://www.npmjs.com/package/brotli-webpack-plugin
 - TODO: https://github.com/javascript-obfuscator/obfuscator-loader
+- TODO: https://www.npmjs.com/package/posthtml-minify-classnames
 
 Since webpack 4, the production output gets minified using [terser](https://www.npmjs.com/package/terser) by default. Terser is an ES2015+ compatible JavaScript-minifier. Compared to UglifyJS, the earlier standard for many projects, it's a future oriented option. There was a fork of UglifyJS, _uglify-es_, but as it's not maintained anymore, terser was born as an independent fork.
 

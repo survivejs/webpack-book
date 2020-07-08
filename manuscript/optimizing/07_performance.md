@@ -2,6 +2,10 @@
 
 - TODO: Mention https://github.com/jantimon/cpuprofile-webpack-plugin
 - TODO: Mention https://webpack.js.org/plugins/profiling-plugin/
+- TODO: Mention https://twitter.com/swyx/status/1218173290579136512?s=20
+- TODO: node --max-old-space-size=4096 node_modules/.bin/webpack-dev-server --env development
+- TODO: https://medium.com/@kenneth_chau/speeding-up-webpack-typescript-incremental-builds-by-7x-3912ba4c1d15
+- TODO: https://www.npmjs.com/package/webpack-plugin-ramdisk
 
 Webpack's performance out of the box is often enough for small projects. That said, it begins to hit limits as your project grows in scale. It's a frequent topic in webpack's issue tracker. [Issue 1905](https://github.com/webpack/webpack/issues/1905) is a good example.
 
@@ -21,6 +25,8 @@ As discussed in the previous chapter, generating stats can be used to measure bu
 {pagebreak}
 
 ## High-Level Optimizations
+
+TODO: Check if using happypack makes sense still - mention thread-loader
 
 Webpack uses only a single instance by default meaning you aren't able to benefit from a multi-core processor without extra effort. This where third-party solutions, such as [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) and [HappyPack](https://www.npmjs.com/package/happypack) come in.
 
@@ -117,6 +123,8 @@ Loaders have their optimizations as well:
 - Use either `include` or `exclude` with JavaScript specific loaders. Webpack traverses _node_modules_ by default and executes _babel-loader_ over the files unless it has been configured correctly.
 - Cache the results of expensive loaders (e.g., image manipulation) to the disk using the [cache-loader](https://www.npmjs.com/package/cache-loader).
 - Parallelize the execution of expensive loaders using [thread-loader](https://www.npmjs.com/package/thread-loader). Given workers come with an overhead in Node, using _thread-loader_ is worth it only if the parallelized operation is heavy.
+
+TODO: https://blog.johnnyreilly.com/2018/12/you-might-not-need-thread-loader.html
 
 ## Optimizing Rebundling Speed During Development
 

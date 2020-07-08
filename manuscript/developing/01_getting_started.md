@@ -210,6 +210,8 @@ T> To go one step further, set up system level aliases using the `alias` command
 
 ## `HtmlWebpackPlugin` and Its Extensions
 
+TODO: https://github.com/trevorblades/emoji-favicon/tree/master/packages/emoji-favicon-webpack-plugin
+
 Although _mini-html-webpack-plugin_ is enough for basic use cases, there can be times when you need more functionality. That's where [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) and its extensions come in:
 
 - [html-webpack-template](https://www.npmjs.com/package/html-webpack-template) goes beyond the default template of _html-webpack-plugin_.
@@ -222,6 +224,7 @@ Although _mini-html-webpack-plugin_ is enough for basic use cases, there can be 
 - [dynamic-cdn-webpack-plugin](https://www.npmjs.com/package/dynamic-cdn-webpack-plugin) achieves a similar result.
 
 - TODO: https://www.npmjs.com/package/webpack-cdn-plugin
+- TODO: https://www.npmjs.com/package/chunks-webpack-plugin
 
 {pagebreak}
 

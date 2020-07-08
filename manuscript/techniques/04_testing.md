@@ -1,6 +1,7 @@
 # Testing
 
 - TODO: https://www.npmjs.com/package/istanbul-instrumenter-loader
+- TODO: Show how to use Puppeteer
 
 Testing is a vital part of development. Even though techniques, such as linting, can help to spot and solve issues, they have their limitations. Testing can be applied to the code and an application on many different levels.
 
