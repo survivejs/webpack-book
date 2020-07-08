@@ -2,6 +2,7 @@
 
 - TODO: mention EnvPlugin shortcut
 - TODO: https://www.npmjs.com/package/dotenv-webpack
+- TODO: https://blog.johnnyreilly.com/2018/03/its-not-dead-webpack-and-dead-code.html
 
 Sometimes a part of your code should execute only during development. Or you could have experimental features in your build that are not ready for production yet. Controlling **environment variables** becomes valuable as you can toggle functionality using them.
 

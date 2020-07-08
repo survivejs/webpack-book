@@ -1,6 +1,7 @@
 # CSS Modules
 
 - TODO: https://www.npmjs.com/package/eslint-plugin-css-modules
+- TODO: https://adamrackis.dev/css-modules/
 
 Perhaps the most significant challenge of CSS is that all rules exist within **global scope**, meaning that two classes with the same name will collide. The limitation is inherent to the CSS specification, but projects have workarounds for the issue. [CSS Modules](https://github.com/css-modules/css-modules) introduces **local scope** for every module by making every class declared within unique by including a hash in their name that is globally unique to the module.
 

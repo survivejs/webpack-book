@@ -1,6 +1,7 @@
 # Separating CSS
 
 - TODO: https://github.com/faceyspacey/extract-css-chunks-webpack-plugin
+- TODO: Mention `publicPath` for MCEP
 
 Even though there is a nice build set up now, where did all the CSS go? As per configuration, it has been inlined to JavaScript! Even though this can be convenient during development, it doesn't sound ideal.
 

@@ -68,6 +68,7 @@ Set up a file as follows:
 
 TODO: https://jamie.build/last-2-versions
 TODO: Check browserslist 4
+TODO: https://mobile.twitter.com/alexsavinme/status/1057291273294528512
 
 **.browserslistrc**
 
