@@ -153,7 +153,7 @@ T> **Trailing commas** are used in the book examples on purpose as it gives clea
 
 T> See [mini-html-webpack-plugin](https://www.npmjs.com/package/mini-html-webpack-plugin) documentation for further options. You can override the HTML template fully and process individual parts injected to it freely.
 
-## Examining the Output
+## Examining the output
 
 If you execute `node_modules/.bin/webpack --mode production`, you should see output:
 
@@ -184,9 +184,21 @@ Examine the output below the `dist/` directory. If you look closely, you can see
 
 T> In addition to a configuration object, webpack accepts an array of configurations. You can also return a `Promise` and eventually `resolve` to a configuration for example. Latter is useful if you are fetching configuration related data from a third party source.
 
+## Webpack output plugins
+
+Given the output given by webpack can be difficult to decipher, multiple options exist:
+
+- [webpack-stylish](https://www.npmjs.com/package/webpack-stylish) is a webpack plugin that formats webpack's output in a visually more attractive manner.
+- [friendly-errors-webpack-plugin](https://www.npmjs.com/package/friendly-errors-webpack-plugin) improves on error reporting of webpack. It captures common errors and displays them in a friendly manner.
+- [webpackbar](https://www.npmjs.com/package/webpackbar) has been made especially for tracking build progress. `webpack.ProgressPlugin` is included out of the box and can be used as well.
+- [webpack-dashboard](https://www.npmjs.com/package/webpack-dashboard) gives an entire terminal based dashboard over the standard webpack output. If you prefer clear visual output, this one comes in handy.
+- [test-webpack-reporter-plugin](https://www.npmjs.com/package/test-webpack-reporter-plugin) abstracts webpack's internals to make it easier to write your own reporters.
+
+Give the above options a go if you want to go beyond default output.
+
 {pagebreak}
 
-## Adding a Build Shortcut
+## Adding a build shortcut
 
 Given executing `node_modules/.bin/webpack` gets boring after a while, lets adjust _package.json_ to run tasks as below:
 
@@ -208,7 +220,7 @@ T> To go one step further, set up system level aliases using the `alias` command
 
 {pagebreak}
 
-## `HtmlWebpackPlugin` and Its Extensions
+## `HtmlWebpackPlugin` and its extensions
 
 Although _mini-html-webpack-plugin_ is enough for basic use cases, there can be times when you want more functionality. That's where [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) and its extensions come in:
 
