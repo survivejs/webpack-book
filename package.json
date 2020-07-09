@@ -13,9 +13,13 @@
     "textlint": "textlint \"manuscript/*.md\" && textlint \"manuscript/**/*.md\"",
     "keywords": "node ./utils/keywords",
     "remark": "remark manuscript",
-    "precommit": "npm test",
-    "prepush": "npm test",
     "push": "git push && npm run preview"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test",
+      "pre-push": "npm test"
+    }
   },
   "remarkConfig": {
     "plugins": [
@@ -40,7 +44,7 @@
   "devDependencies": {
     "check-markdown-links": "^0.1.1",
     "glob": "^7.1.1",
-    "husky": "^0.13.2",
+    "husky": "^4.2.5",
     "leanpub-cli": "^0.2.0",
     "nlcst-to-string": "^2.0.0",
     "prettier": "^1.17.1",
