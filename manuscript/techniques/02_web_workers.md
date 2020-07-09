@@ -21,7 +21,7 @@ T> Sharing data between the host and the worker may become easier in the future 
 To get started, install _worker-loader_ to the project:
 
 ```bash
-npm add worker-loader --save-dev
+npm add worker-loader -D
 ```
 
 Instead of pushing the loader definition to webpack configuration, you can use inline loader definitions to keep the demonstration minimal. See the _Loader Definitions_ chapter for more information about the alternatives.

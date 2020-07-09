@@ -7,7 +7,7 @@ It can be challenging to remember which vendor prefixes you have to use for spec
 Achieving autoprefixing takes a small addition to the current setup. Install _postcss-loader_ and _autoprefixer_ first:
 
 ```bash
-npm add postcss-loader autoprefixer --save-dev
+npm add postcss-loader autoprefixer -D
 ```
 
 Add a fragment enabling autoprefixing:

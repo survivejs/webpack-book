@@ -1,30 +1,25 @@
 # Composing Configuration
 
-- TODO: Mention https://github.com/namics/webpack-config-plugins
-- TODO: Mention https://www.npmjs.com/package/@webpack-contrib/config-loader
-- TODO: Mention https://www.npmjs.com/package/backpack-core
-- TODO: Mention https://www.npmjs.com/package/cross-env - mention in “composing configuration” chapter as a reliable alternative
-
-Even though not a lot has been done with webpack yet, the amount of configuration is starting to feel substantial. Now you have to be careful about the way you compose it as you have separate production and development targets in the project. The situation can only get worse as you want to add more functionality to the project.
+Even though not a lot has been done with webpack yet, the amount of configuration is starting to feel substantial. Now you have to be careful about the way you compose it as you have separate production and development targets in the project. The situation can only get worse as you want to add more functionality for testing and other purposes.
 
 Using a single monolithic configuration file impacts comprehension and removes any potential for reusability. As the needs of your project grow, you have to figure out the means to manage webpack configuration more effectively.
 
-## Possible Ways to Manage Configuration
+## Possible ways to manage configuration
 
 You can manage webpack configuration in the following ways:
 
 - Maintain configuration within multiple files for each environment and point webpack to each through the `--config` parameter, sharing configuration through module imports.
-- Push configuration to a library, which you then consume. Examples: [hjs-webpack](https://www.npmjs.com/package/hjs-webpack), [Neutrino](https://neutrino.js.org/), [webpack-blocks](https://www.npmjs.com/package/webpack-blocks).
+- Push configuration to a library, which you then consume. Examples: [webpack-config-plugins](https://github.com/namics/webpack-config-plugins), [Neutrino](https://neutrino.js.org/), [webpack-blocks](https://www.npmjs.com/package/webpack-blocks).
 - Push configuration to a tool. Examples: [create-react-app](https://www.npmjs.com/package/create-react-app), [kyt](https://www.npmjs.com/package/kyt), [nwb](https://www.npmjs.com/package/nwb).
 - Maintain all configuration within a single file and branch there and rely on the `--env` parameter. The approach is explained in detail later in this chapter.
 
-These approaches can be combined to create a higher level configuration that is then composed of smaller parts. Those parts could then be added to a library which you then use through npm making it possible to consume the same configuration across multiple projects.
+My preferred approach is to compose webpack configuration out of smaller functions that I put together. The development of this book motivated the direction as it gives you something you can approach piece-wise while giving you a small API over webpack configuration and related techniques.
 
-## Composing Configuration by Merging
+## Composing configuration by merging
 
-If the configuration file is broken into separate pieces, they have to be combined again somehow. Normally this means merging objects and arrays. To eliminate the problem of dealing with `Object.assign` and `Array.concat`, [webpack-merge](https://www.npmjs.org/package/webpack-merge) was developed.
+In composition based approach, you split webpack configuration and then merge it together. The problem is that a normal way of merging objects using a feature such as `Object.assign` doesn't do the right thing with arrays as if two objects have arrays attached to them, it's going to lose data. It's for this reason that I developed [webpack-merge](https://www.npmjs.org/package/webpack-merge).
 
-_webpack-merge_ does two things: it concatenates arrays and merges objects instead of overriding them allowing composition. The example below shows the behavior in detail:
+At its core, _webpack-merge_ does two things: it concatenates arrays and merges objects instead of overriding them allowing composition. The example below shows the behavior in detail:
 
 ```bash
 > { merge } = require("webpack-merge")
@@ -44,15 +39,15 @@ T> [webpack-chain](https://www.npmjs.com/package/webpack-chain) provides a fluen
 
 {pagebreak}
 
-## Setting Up _webpack-merge_
+## Setting up _webpack-merge_
 
 To get started, add _webpack-merge_ to the project:
 
 ```bash
-npm add webpack-merge --save-dev
+npm add webpack-merge -D
 ```
 
-To give a degree of abstraction, you can define _webpack.config.js_ for higher level configuration and _webpack.parts.js_ for configuration parts to consume. Here are the parts with small function-based interfaces extracted from the existing code:
+To give a degree of abstraction, you can define _webpack.config.js_ for higher level configuration and _webpack.parts.js_ for configuration parts to consume. Here is the development server as a function:
 
 **webpack.parts.js**
 
@@ -70,6 +65,8 @@ exports.devServer = ({ host, port } = {}) => ({
 
 T> The same `stats` idea works for production configuration as well. See [the official documentation](https://webpack.js.org/configuration/stats/) for all the available options.
 
+T> For the sake of simplicity, we'll develop all of the configuration using JavaScript. It would be possible to use TypeScript (TS) here as well as if you have it installed correctly, webpack is able to detect _webpack.config.ts_ and run the code through TS for additional type safety.
+
 {pagebreak}
 
 To connect this configuration part, set up _webpack.config.js_ as in the code example below:
@@ -78,7 +75,9 @@ To connect this configuration part, set up _webpack.config.js_ as in the code ex
 
 ```javascript
 const { merge } = require("webpack-merge");
-const { MiniHtmlWebpackPlugin } = require("mini-html-webpack-plugin");
+const {
+  MiniHtmlWebpackPlugin,
+} = require("mini-html-webpack-plugin");
 
 const parts = require("./webpack.parts");
 
@@ -104,12 +103,15 @@ const developmentConfig = merge([
   }),
 ]);
 
-module.exports = mode => {
-  if (mode === "production") {
-    return merge(commonConfig, productionConfig, { mode });
+module.exports = (mode) => {
+  switch (mode) {
+    case "production":
+      return merge(commonConfig, productionConfig, { mode });
+    case "development":
+      return merge(commonConfig, developmentConfig, { mode });
+    default:
+      throw new Error(`Trying to use an unknown mode, ${mode}`);
   }
-
-  return merge(commonConfig, developmentConfig, { mode });
 };
 ```
 
@@ -149,29 +151,27 @@ Even though `--env` allows to pass strings to the configuration, it can do a bit
 ```json
 "scripts": {
   "start": "webpack-dev-server --env development",
-  "build": "webpack --env.target production"
+  "build": "webpack --env.mode production"
 },
 ```
 
-Instead of a string, you should receive an object `{ target: "production" }` at configuration now. You could pass more key-value pairs, and they would go to the `env` object. If you set `--env foo` while setting `--env.target`, the string wins. Webpack relies on [yargs](http://yargs.js.org/docs/#parsing-tricks-dot-notation) for parsing underneath.
+Instead of a string, you should receive an object `{ mode: "production" }` at configuration now. You could pass more key-value pairs, and they would go to the `env` object. If you set `--env foo` while setting `--env.target`, the string wins. Webpack relies on [yargs](http://yargs.js.org/docs/#parsing-tricks-dot-notation) for parsing underneath.
 
-## Benefits of Composing Configuration
+## Benefits of composing configuration
 
-Configuration splitting allows you to keep on expanding the setup. The most significant win is the fact that you can extract commonalities between different targets. You can also identify smaller configuration parts to compose. These configuration parts can be pushed to packages of their own to consume across projects.
+There are several benefits to composing configuration:
 
-Instead of duplicating similar configuration across multiple projects, you can manage configuration as a dependency now. As you figure out better ways to perform tasks, all your projects receive the improvements.
+- Splitting configuration into smaller functions lets you keep on expanding the setup.
+- You can type the functions assuming you are using a language such as TypeScript.
+- If you consume the configuration across multiple projects, you can publish the configuration as a package and then have only one place to optimize and upgrade as the underlying configuration changes. [SurviveJS - Maintenance](https://survivejs.com/maintenance/) covers practices related to the approach.
+- Treating configuration as a package allows you to version it as any other and deliver changelogs to document the changes to the consumers.
+- Taken far enough, you can end up with your own **create-react-app** that can be used to bootstrap projects quickly with your preferred setup.
 
-Each approach comes with its pros and cons. The composition-based approach is a good starting point. In addition to composition, it gives you a limited amount of code to scan through, but it's a good idea to check out how other people do it too. You can find something that works the best based on your tastes.
-
-Perhaps the biggest problem is that with composition you need to know what you are doing, and it's possible you aren't going to get the composition right the first time around. But that's a software engineering problem that goes beyond webpack.
-
-You can always iterate on the interfaces and find better ones. By passing in a configuration object instead of multiple arguments you can change the behavior of a part without affecting its API, effectively exposing the API as you need it.
-
-## Configuration Layouts
+## Configuration layouts
 
 In the book project, you will push all of the configuration into two files: _webpack.config.js_ and _webpack.parts.js_. The former contains higher level configuration while the lower level isolates you from webpack specifics. The chosen approach allows more file layouts than the one we have.
 
-### Split per Configuration Target
+### Split per configuration target
 
 If you split the configuration per target, you could end up with a file structure as below:
 
@@ -188,7 +188,7 @@ In this case, you would point to the targets through webpack `--config` paramete
 
 {pagebreak}
 
-### Split Parts per Purpose
+### Split parts per purpose
 
 To add hierarchy to the way configuration parts are managed, you could decompose _webpack.parts.js_ per category:
 
@@ -196,24 +196,20 @@ To add hierarchy to the way configuration parts are managed, you could decompose
 .
 └── config
     ├── parts
-    │   ├── devserver.js
+    │   ├── devserver.js
     ...
-    │   ├── index.js
-    │   └── javascript.js
+    │   ├── index.js
+    │   └── javascript.js
     └── ...
 ```
 
 This arrangement would make it faster to find configuration related to a category. A good option would be to arrange the parts within a single file and use comments to split it up.
 
-### Pushing Parts to Packages
-
-Given all configuration is JavaScript, nothing prevents you from consuming it as a package or packages. It would be possible to package the shared configuration so that you can consume it across multiple projects. See the [SurviveJS - Maintenance](https://survivejs.com/maintenance/) book for further information on how to achieve this.
-
 {pagebreak}
 
 ## Conclusion
 
-Even though the configuration is technically the same as before, now you have room to grow it.
+Even though the configuration is technically the same as before, now you have room to grow it through composition.
 
 To recap:
 

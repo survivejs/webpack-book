@@ -157,16 +157,14 @@ module.exports = class DemoPlugin {
     this.options = options;
   }
   apply(compiler) {
-leanpub-start-delete
-    console.log(compiler);
-leanpub-end-delete
-leanpub-start-insert
+    leanpub - start - delete console.log(compiler);
+    leanpub - end - delete leanpub - start - insert;
     compiler.plugin("emit", (compilation, cb) => {
       console.log(compilation);
 
       cb();
     });
-leanpub-end-insert
+    leanpub - end - insert;
   }
 };
 ```
@@ -186,7 +184,7 @@ The `assets` object of compilation can be used for writing new files. You can al
 To write an asset, you have to use [webpack-sources](https://www.npmjs.com/package/webpack-sources) file abstraction. Install it first:
 
 ```bash
-npm add webpack-sources --save-dev
+npm add webpack-sources -D
 ```
 
 {pagebreak}
@@ -196,26 +194,24 @@ Adjust the code as follows to write through `RawSource`:
 **plugins/demo-plugin.js**
 
 ```javascript
-leanpub-start-insert
+leanpub - start - insert;
 const { RawSource } = require("webpack-sources");
-leanpub-end-insert
+leanpub - end - insert;
 
 module.exports = class DemoPlugin {
   constructor(options) {
     this.options = options;
   }
   apply(compiler) {
-leanpub-start-insert
+    leanpub - start - insert;
     const { name } = this.options;
-leanpub-end-insert
+    leanpub - end - insert;
 
     compiler.plugin("emit", (compilation, cb) => {
-leanpub-start-delete
-      console.log(compilation);
-leanpub-end-delete
-leanpub-start-insert
+      leanpub - start - delete console.log(compilation);
+      leanpub - end - delete leanpub - start - insert;
       compilation.assets[name] = new RawSource("demo");
-leanpub-end-insert
+      leanpub - end - insert;
 
       cb();
     });

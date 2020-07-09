@@ -35,12 +35,12 @@ The approach works nicely with **Continuous Integration** (CI) setups as well as
 To add webpack to the project, execute:
 
 ```bash
-npm add webpack webpack-cli -D # -D === --save-dev
+npm add webpack webpack-cli -D # -D === -D
 ```
 
 You should see webpack at your _package.json_ `devDependencies` section after this. In addition to installing the package locally below the _node_modules_ directory, npm also generates an entry for the executable you can find at `node_modules/.bin` directory.
 
-T> If you run `npm add`, it will write the dependencies to _package.json_ `dependencies`. The `-D` (`--save-dev`) flag writes them to `devDependencies` instead. The split allows you to communicate which dependencies are application specific and which are required for developing it. It's optional to follow this convention and it's more important for npm package authors as it defines which packages depend on the one they are distributing.
+T> If you run `npm add`, it will write the dependencies to _package.json_ `dependencies`. The `-D` (`-D`) flag writes them to `devDependencies` instead. The split allows you to communicate which dependencies are application specific and which are required for developing it. It's optional to follow this convention and it's more important for npm package authors as it defines which packages depend on the one they are distributing.
 
 T> [webpack-cli](https://www.npmjs.com/package/webpack-cli) comes with additional functionality including `init` and `migrate` commands that allow you to create new webpack configuration fast and update from an older version to a newer one.
 

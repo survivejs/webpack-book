@@ -63,7 +63,7 @@ W> Be careful not to apply both loaders on images at the same time! Use the `inc
 The ideas above can be wrapped in a small helper that can be incorporated into the book project. To get started, install the dependencies:
 
 ```bash
-npm add file-loader url-loader --save-dev
+npm add file-loader url-loader -D
 ```
 
 Set up a function as below:

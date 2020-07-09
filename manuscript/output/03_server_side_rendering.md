@@ -22,7 +22,7 @@ The _Loading JavaScript_ chapter covers the essentials of using Babel with webpa
 To get React, and particularly JSX, work with Babel, install the preset first:
 
 ```bash
-npm add @babel/preset-react --save-dev
+npm add @babel/preset-react -D
 ```
 
 Connect the preset with Babel configuration as follows:
@@ -133,7 +133,7 @@ If you build the SSR demo (`npm run build:ssr`), you should see a new file at _.
 To keep things clear to understand, you can set up a standalone Express server that picks up the generated bundle and renders it following the SSR principle. Install Express first:
 
 ```bash
-npm add express --save-dev
+npm add express -D
 ```
 
 Then, to get something running, implement a server as follows:
@@ -195,7 +195,7 @@ The remaining part is harder than what was done so far. How to make the server a
 [browser-refresh](https://www.npmjs.com/package/browser-refresh) can come in handy as it solves both of the problems. Install it first:
 
 ```bash
-npm add browser-refresh --save-dev
+npm add browser-refresh -D
 ```
 
 {pagebreak}

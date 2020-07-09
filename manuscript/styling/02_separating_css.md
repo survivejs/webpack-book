@@ -18,7 +18,7 @@ W> It can be potentially dangerous to use inline styles within JavaScript in pro
 Install the plugin first:
 
 ```bash
-npm add mini-css-extract-plugin --save-dev
+npm add mini-css-extract-plugin -D
 ```
 
 `MiniCssExtractPlugin` includes a loader, `MiniCssExtractPlugin.loader` that marks the assets to be extracted. Then a plugin performs its work based on this annotation.

@@ -22,7 +22,7 @@ You can find a lot of testing tools for JavaScript. The most popular options wor
 To get started, include Mocha and _mocha-loader_ to your project:
 
 ```bash
-npm add mocha mocha-loader --save-dev
+npm add mocha mocha-loader -D
 ```
 
 {pagebreak}
@@ -158,7 +158,7 @@ On the downside, now you need a browser to examine the tests. _mocha-loader_ is 
 Running tests through PhantomJS requires a couple of dependencies:
 
 ```bash
-npm add karma-phantomjs-launcher phantomjs-prebuilt --save-dev
+npm add karma-phantomjs-launcher phantomjs-prebuilt -D
 ```
 
 To make Karma run tests through Phantom, adjust its configuration as follows:
@@ -224,7 +224,7 @@ T> LCOV integrates well with visualization services. You can send coverage infor
 Install the dependencies first:
 
 ```
-npm add babel-plugin-istanbul karma-coverage --save-dev
+npm add babel-plugin-istanbul karma-coverage -D
 ```
 
 Connect the Babel plugin so that the instrumentation happens when Karma is run:
@@ -315,7 +315,7 @@ Jest tests follow [Jasmine](https://www.npmjs.com/package/jasmine) test framewor
 Install Jest first:
 
 ```
-npm add jest --save-dev
+npm add jest -D
 ```
 
 Jest captures tests through _package.json_ [configuration](https://facebook.github.io/jest/docs/en/configuration.html). It detects tests within a _**tests**_ directory it also happens to capture the naming pattern the project is using by default:

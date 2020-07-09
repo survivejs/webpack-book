@@ -24,7 +24,7 @@ To tune the defaults, we'll attach [terser-webpack-plugin](hhttps://www.npmjs.co
 To get started, include the plugin to the project:
 
 ```bash
-npm add terser-webpack-plugin --save-dev
+npm add terser-webpack-plugin -D
 ```
 
 {pagebreak}
@@ -102,7 +102,7 @@ If you consume HTML templates through your code using [html-loader](https://www.
 Out of the available solutions, `OptimizeCSSAssetsPlugin` composes the best. To attach it to the setup, install it and [cssnano](http://cssnano.co/) first:
 
 ```bash
-npm add optimize-css-assets-webpack-plugin cssnano --save-dev
+npm add optimize-css-assets-webpack-plugin cssnano -D
 ```
 
 {pagebreak}

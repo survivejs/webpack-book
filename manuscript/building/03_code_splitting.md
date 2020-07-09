@@ -73,7 +73,7 @@ Given Babel doesn't support the dynamic `import` syntax out of the box, it needs
 Install it first:
 
 ```bash
-npm add @babel/plugin-syntax-dynamic-import --save-dev
+npm add @babel/plugin-syntax-dynamic-import -D
 ```
 
 To connect it with the project, adjust the configuration as follows:
@@ -116,10 +116,10 @@ export default (text = "Hello world") => {
   leanpub - start - insert;
   element.onclick = () =>
     import("./lazy")
-      .then(lazy => {
+      .then((lazy) => {
         element.textContent = lazy.default;
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
       });
   leanpub - end - insert;
@@ -180,7 +180,9 @@ class AsyncComponent extends React.Component {
     this.state = { Component: null };
   }
   componentDidMount() {
-    this.props.loader().then(Component => this.setState({ Component }));
+    this.props
+      .loader()
+      .then((Component) => this.setState({ Component }));
   }
   render() {
     const { Component } = this.state;

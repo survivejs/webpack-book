@@ -81,7 +81,7 @@ Using PurifyCSS can lead to significant savings. In the example of the project, 
 [purifycss-webpack](https://www.npmjs.com/package/purifycss-webpack) allows to achieve similar results. You should use the `MiniCssExtractPlugin` with it for the best results. Install it and a [glob](https://www.npmjs.org/package/glob) helper first:
 
 ```bash
-npm add glob purifycss-webpack purify-css --save-dev
+npm add glob purifycss-webpack purify-css -D
 ```
 
 You also need PurifyCSS configuration as below:

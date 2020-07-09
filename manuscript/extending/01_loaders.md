@@ -13,7 +13,7 @@ T> If you want a good starting point for a standalone loader or plugin project, 
 [loader-runner](https://www.npmjs.com/package/loader-runner) allows you to run loaders without webpack allowing you to learn more about loader development. Install it first:
 
 ```bash
-npm add loader-runner --save-dev
+npm add loader-runner -D
 ```
 
 {pagebreak}
@@ -23,7 +23,7 @@ To have something to test with, set up a loader that returns twice what's passed
 **loaders/demo-loader.js**
 
 ```javascript
-module.exports = input => input + input;
+module.exports = (input) => input + input;
 ```
 
 Set up a file to process:
@@ -84,7 +84,7 @@ Tweak as follows:
 **loaders/demo-loader.js**
 
 ```javascript
-module.exports = function(input) {
+module.exports = function (input) {
   const callback = this.async();
 
   // No callback -> return synchronous results
@@ -103,7 +103,7 @@ Running the demo script (`node run-loader.js`) again should give the same result
 **loaders/demo-loader.js**
 
 ```javascript
-module.exports = function(input) {
+module.exports = function (input) {
   const callback = this.async();
 
   callback(new Error("Demo error"));
@@ -121,7 +121,7 @@ Loaders can be used to output code alone. You could have an implementation as be
 **loaders/demo-loader.js**
 
 ```javascript
-module.exports = function() {
+module.exports = function () {
   return "foobar";
 };
 ```
@@ -163,7 +163,7 @@ To implement the essential idea of _file-loader_, you have to do two things: emi
 ```javascript
 const loaderUtils = require("loader-utils");
 
-module.exports = function(content) {
+module.exports = function (content) {
   const url = loaderUtils.interpolateName(this, "[hash].[ext]", {
     content,
   });
@@ -224,7 +224,7 @@ leanpub-end-insert
 To capture the option, you need to use [loader-utils](https://www.npmjs.com/package/loader-utils). It has been designed to parse loader options and queries. Install it:
 
 ```bash
-npm add loader-utils --save-dev
+npm add loader-utils -D
 ```
 
 To connect it to the loader, set it to capture `name` and pass it through webpack's interpolator:
@@ -335,12 +335,16 @@ A pitch loader allows you shape the request and even terminate it. Set it up:
 ```javascript
 const loaderUtils = require("loader-utils");
 
-module.exports = function(input) {
+module.exports = function (input) {
   const { text } = loaderUtils.getOptions(this);
 
   return input + text;
 };
-module.exports.pitch = function(remainingReq, precedingReq, input) {
+module.exports.pitch = function (
+  remainingReq,
+  precedingReq,
+  input
+) {
   console.log(`
 Remaining request: ${remainingReq}
 Preceding request: ${precedingReq}
@@ -394,16 +398,16 @@ Although webpack caches loaders by default unless they set `this.cacheable(false
 ```javascript
 const cache = new Map();
 
-module.exports = function(content) {
+module.exports = function (content) {
   // Calls only once for given resourcePath
   const callbacks = cache.get(this.resourcePath);
-  callbacks.forEach(callback => callback(null, content));
+  callbacks.forEach((callback) => callback(null, content));
 
   cache.set(this.resourcePath, content);
 
   return content;
 };
-module.exports.pitch = function() {
+module.exports.pitch = function () {
   if (cache.has(this.resourcePath)) {
     const item = cache.get(this.resourcePath);
 
