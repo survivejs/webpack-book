@@ -30,7 +30,7 @@ Add the configuration below to the beginning of your configuration:
 ```javascript
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-exports.extractCSS = ({ options = {} } = {}) => {
+exports.extractCSS = ({ options = {}, loaders = [] } = {}) => {
   return {
     module: {
       rules: [
@@ -39,7 +39,7 @@ exports.extractCSS = ({ options = {} } = {}) => {
           use: [
             { loader: MiniCssExtractPlugin.loader, options },
             "css-loader",
-          ],
+          ].concat(loaders),
         },
       ],
     },
