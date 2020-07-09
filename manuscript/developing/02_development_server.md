@@ -43,7 +43,7 @@ As before, this command generates a command below the `npm bin` directory, and y
 
 ## Attaching WDS to the project
 
-To integrate WDS to the project, define a npm script for launching it. To follow npm conventions, call it as _start_ like below:
+To integrate WDS to the project, define an npm script for launching it. To follow npm conventions, call it as _start_ like below:
 
 **package.json**
 
