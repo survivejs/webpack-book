@@ -10,7 +10,7 @@ Web browsers are designed to consume HTML, CSS, and JavaScript. As a project gro
 
 Webpack isn’t the only available bundler, and a collection of different tools have emerged. Task runners, such as Grunt and Gulp, are good examples of higher-level tools. Often the problem is that you need to write the workflows by hand. Pushing that issue to a bundler, such as webpack, is a step forward.
 
-Framework specific abstractions, such as [create-react-app](https://www.npmjs.com/package/create-react-app) or [@angular/cli](https://www.npmjs.com/package/@angular/cli), use webpack underneath. Often the usage is hidden and you might be using webpack without knowing it. That said, there's still value in understanding the tool in case you have to customize the setup.
+Framework specific abstractions, such as [create-react-app](https://www.npmjs.com/package/create-react-app) or [@angular/cli](https://www.npmjs.com/package/@angular/cli), use webpack underneath. Often the usage is hidden and you could be using webpack without knowing it. That said, there's still value in understanding the tool in case you have to customize the setup.
 
 {pagebreak}
 
@@ -82,7 +82,7 @@ If you run into trouble or have questions related to the content, there are seve
 
 If you post questions to Stack Overflow, tag them using **survivejs**. You can use the hashtag **#survivejs** on Twitter for the same result.
 
-I am available for commercial consulting. In my past work, I've helped companies to optimize their usage of webpack. The work has impact on both developer experience and the end users in the form of a more performant and optimized build.
+I am available for commercial consulting. In my past work, I have helped companies to optimize their usage of webpack. The work has impact on both developer experience and the end users in the form of a more performant and optimized build.
 
 ## Where to find additional material
 
