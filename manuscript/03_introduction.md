@@ -1,20 +1,20 @@
 # Introduction
 
-TODO: mention consulting in book intro
-
 [Webpack](https://webpack.js.org/) simplifies web development by solving a fundamental problem: bundling. It takes in various assets, such as JavaScript, CSS, and HTML, and transforms them into a format that’s convenient to consume through a browser. Doing this well takes a significant amount of pain away from web development.
 
 It's not the easiest tool to learn due to its configuration-driven approach, but it's incredibly powerful. The purpose of this guide is to help you get started with webpack and then go beyond the basics.
 
-## What Is Webpack
+## What is webpack
 
 Web browsers are designed to consume HTML, CSS, and JavaScript. As a project grows, tracking and configuring all of these files becomes too complicated to manage without help. Webpack was designed to address these problems. Managing complexity is one of the fundamental issues of web development, and solving this problem well helps significantly.
 
 Webpack isn’t the only available bundler, and a collection of different tools have emerged. Task runners, such as Grunt and Gulp, are good examples of higher-level tools. Often the problem is that you need to write the workflows by hand. Pushing that issue to a bundler, such as webpack, is a step forward.
 
+Framework specific abstractions, such as [create-react-app](https://www.npmjs.com/package/create-react-app) or [@angular/cli](https://www.npmjs.com/package/@angular/cli), use webpack underneath. Often the usage is hidden and you might be using webpack without knowing it. That said, there's still value in understanding the tool in case you have to customize the setup.
+
 {pagebreak}
 
-### How Webpack Changes The Situation
+### How webpack changes the situation
 
 Webpack takes another route. It allows you to treat your project as a dependency graph. You could have an _index.js_ in your project that pulls in the dependencies the project needs through the standard `require` or `import` statements. You can refer to your style files and other assets the same way if you want.
 
@@ -22,7 +22,7 @@ Webpack does all the preprocessing for you and gives you the bundles you specify
 
 Webpack becomes an indispensable tool after you begin to understand how it works. This book has been designed to get through that initial learning curve and even go further.
 
-## What Will You Learn
+## What will you learn
 
 This book has been designed to complement [the official documentation of webpack](https://webpack.js.org/). This book can be considered a companion to it. This book has been designed to get through that initial learning curve and go even further.
 
@@ -30,7 +30,7 @@ The book teaches you to develop a composable webpack configuration for both deve
 
 {pagebreak}
 
-## How Is The Book Organized
+## How is the book organized
 
 The book starts by explaining what webpack is. After that, you will find multiple chapters that discuss webpack from a different viewpoint. As you go through these chapters, you will develop your own webpack configuration while at the same time learning essential techniques.
 
@@ -51,7 +51,7 @@ The appendices at the end of the book cover secondary topics and sometimes dig d
 
 The _Troubleshooting_ appendix at the end covers what to do when webpack gives you an error. It covers a process, so you know what to do and how to debug the problem. When in doubt, study the appendix. If you are unsure of a term and its meaning, see the _Glossary_ at the end of the book.
 
-## Who Is The Book For
+## Who is the book for
 
 You should have basic knowledge of JavaScript, Node, and npm. If you know something about webpack, that’s great. By reading this book, you deepen your understanding of these tools.
 
@@ -59,7 +59,7 @@ If you don’t know much about the topic, consider going carefully through the e
 
 In case you know webpack well already, there is still something in the book for you. Skim through it and see if you can pick up new techniques. Especially read the summaries at the end of the chapters and the concluding chapter of the book.
 
-## Book Versioning
+## How is the book versioned
 
 Given this book receives a fair amount of maintenance and improvements due to the pace of innovation, there's a versioning scheme in place. Release notes for each new version are maintained at [the book blog](https://survivejs.com/blog/). You can also use GitHub _compare_ tool for this purpose. Example:
 
@@ -71,7 +71,7 @@ The page shows you the individual commits that went to the project between the g
 
 The current version of the book is **2.4.9**.
 
-## Getting Support
+## How to get support
 
 If you run into trouble or have questions related to the content, there are several options:
 
@@ -82,7 +82,9 @@ If you run into trouble or have questions related to the content, there are seve
 
 If you post questions to Stack Overflow, tag them using **survivejs**. You can use the hashtag **#survivejs** on Twitter for the same result.
 
-## Additional Material
+I am available for commercial consulting. In my past work, I've helped companies to optimize their usage of webpack. The work has impact on both developer experience and the end users in the form of a more performant and optimized build.
+
+## Where to find additional material
 
 You can find more related material from the following sources:
 
