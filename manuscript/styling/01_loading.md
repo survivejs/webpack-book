@@ -1,16 +1,12 @@
 # Loading Styles
 
-- TODO: Check if https://medium.com/webpack/the-new-css-workflow-step-1-79583bd107d7 is still valid.
-- TODO: Check https://github.com/NMFR/optimize-css-assets-webpack-plugin
-
 Webpack doesn't handle styling out of the box, and you will have to use loaders and plugins to allow loading style files. In this chapter, you will set up CSS with the project and see how it works out with automatic browser refreshing. When you make a change to the CSS webpack doesn't have to force a full refresh. Instead, it can patch the CSS without one.
 
 ## Loading CSS
 
-- TODO: Check https://github.com/webpack-contrib/css-loader/releases/tag/v1.0.0 and adapt
-- TODO: css-loader locals
+To load CSS, you need to use [css-loader](https://www.npmjs.com/package/css-loader) and [style-loader](https://www.npmjs.com/package/style-loader).
 
-To load CSS, you need to use [css-loader](https://www.npmjs.com/package/css-loader) and [style-loader](https://www.npmjs.com/package/style-loader). _css-loader_ goes through possible `@import` and `url()` lookups within the matched files and treats them as a regular ES2015 `import`. If an `@import` points to an external resource, _css-loader_ skips it as only internal resources get processed further by webpack.
+_css-loader_ goes through possible `@import` and `url()` lookups within the matched files and treats them as a regular ES2015 `import`. If an `@import` points to an external resource, _css-loader_ skips it as only internal resources get processed further by webpack.
 
 _style-loader_ injects the styling through a `style` element. The way it does this can be customized. It also implements the _Hot Module Replacement_ interface providing for a pleasant development experience.
 
@@ -38,13 +34,16 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
         test: /\.css$/,
         include,
         exclude,
-
         use: ["style-loader", "css-loader"],
       },
     ],
   },
 });
 ```
+
+The added configuration means that files ending with `.css` should invoke the given loaders.
+
+Loaders are transformations that are applied to source files, and return the new source and can be chained together like a pipe in Unix. They are evaluated from right to left. This means that `loaders: ["style-loader", "css-loader"]` can be read as `styleLoader(cssLoader(input))`.
 
 You also need to connect the fragment to the primary configuration:
 
@@ -59,15 +58,7 @@ leanpub-end-insert
 ]);
 ```
 
-The added configuration means that files ending with `.css` should invoke the given loaders. `test` matches against a JavaScript-style regular expression.
-
-Loaders are transformations that are applied to source files, and return the new source and can be chained together like a pipe in Unix. They are evaluated from right to left. This means that `loaders: ["style-loader", "css-loader"]` can be read as `styleLoader(cssLoader(input))`.
-
-T> If you want to disable _css-loader_ `url` parsing set `url: false`. The same idea applies to `@import`. To disable parsing imports you can set `import: false` through the loader options.
-
-T> In case you don't need HMR capability, support for old Internet Explorer, and source maps, consider using [micro-style-loader](https://www.npmjs.com/package/micro-style-loader) instead of _style-loader_.
-
-## Setting Up the Initial CSS
+## Setting up the initial CSS
 
 You are missing the CSS still:
 
@@ -79,7 +70,7 @@ body {
 }
 ```
 
-Also, you need to make webpack aware of it. Without having an entry pointing to it somehow, webpack is not able to find the file:
+To make webpack aware of the CSS, we have to refer to it from our source code:-
 
 **src/index.js**
 
@@ -92,86 +83,19 @@ leanpub-end-insert
 
 Execute `npm start` and browse to `http://localhost:8080` if you are using the default port and open up _main.css_ and change the background color to something like `lime` (`background: lime`).
 
-You continue from here in the next chapter. Before that, though, you'll learn about styling-related techniques.
-
 ![Hello cornsilk world](images/hello_02.png)
 
+## Using CSS preprocessors
+
+Webpack provides support for the most popular styling approaches as listed below:
+
+- To use Less preprocessor, see [less-loader](https://www.npmjs.com/package/less-loader).
+- Sass requires [sass-loader](https://www.npmjs.com/package/sass-loader) or [fast-sass-loader](https://www.npmjs.com/package/fast-sass-loader) (more performant). In both cases you would add the loader after **css-loader** within the loader definition.
+- For Stylus, see [stylus-loader](https://www.npmjs.com/package/stylus-loader).
+
+For anything css-in-js related, please refer to the documentation of the specific solution. Often webpack is well supported by the options.
+
 T> The _CSS Modules_ appendix discusses an approach that allows you to treat local to files by default. It avoids the scoping problem of CSS.
-
-## Loading Less
-
-![Less](images/less.png)
-
-[Less](http://lesscss.org/) is a CSS processor packed with functionality. Using Less doesn't take a lot of effort through webpack as [less-loader](https://www.npmjs.com/package/less-loader) deals with the heavy lifting. You should install [less](https://www.npmjs.com/package/less) as well given it's a peer dependency of _less-loader_.
-
-Consider the following minimal setup:
-
-```javascript
-{
-  test: /\.less$/,
-  use: ["style-loader", "css-loader", "less-loader"],
-},
-```
-
-The loader supports Less plugins, source maps, and so on. To understand how those work you should check out the project itself.
-
-## Loading Sass
-
-![Sass](images/sass.png)
-
-[Sass](http://sass-lang.com/) is a widely used CSS preprocessor. You should use [sass-loader](https://www.npmjs.com/package/sass-loader) with it. Remember to install [node-sass](https://www.npmjs.com/package/node-sass) to your project as it's a peer dependency.
-
-Webpack doesn't need much configuration:
-
-```javascript
-{
-  test: /\.scss$/,
-  use: ["style-loader", "css-loader", "sass-loader"],
-},
-```
-
-T> If you want more performance, especially during development, check out [fast-sass-loader](https://www.npmjs.com/package/fast-sass-loader).
-
-## Loading Stylus and Yeticss
-
-![Stylus](images/stylus.png)
-
-[Stylus](http://stylus-lang.com/) is yet another example of a CSS processor. It works well through [stylus-loader](https://www.npmjs.com/package/stylus-loader). [yeticss](https://www.npmjs.com/package/yeticss) is a pattern library that works well with it.
-
-{pagebreak}
-
-Consider the following configuration:
-
-```javascript
-{
-  ...
-  module: {
-    rules: [
-      {
-        test: /\.styl$/,
-        use: [
-          "style-loader",
-          "css-loader",
-          {
-            loader: "stylus-loader",
-            options: {
-              use: [require("yeticss")],
-            },
-          },
-        ],
-      },
-    ],
-  },
-},
-```
-
-To start using yeticss with Stylus, you must import it to one of your app's _.styl_ files:
-
-```javascript
-@import "yeticss"
-//or
-@import "yeticss/components/type"
-```
 
 ## PostCSS
 
@@ -204,17 +128,19 @@ You have to remember to include [autoprefixer](https://www.npmjs.com/package/aut
 
 T> PostCSS supports _postcss.config.js_ based configuration. It relies on [cosmiconfig](https://www.npmjs.com/package/cosmiconfig) internally for other formats.
 
-## Understanding Lookups
+## Understanding **css-loader** lookups
 
-To get most out of _css-loader_, you should understand how it performs its lookups. Even though _css-loader_ handles relative imports by default, it doesn't touch absolute imports (`url("/static/img/demo.png")`). If you rely on this kind of imports, you have to copy the files to your project.
+To get most out of **css-loader**, you should understand how it performs its lookups. Even though _css-loader_ handles relative imports by default, it doesn't touch absolute imports (`url("/static/img/demo.png")`). If you rely on this kind of imports, you have to copy the files to your project.
 
 [copy-webpack-plugin](https://www.npmjs.com/package/copy-webpack-plugin) works for this purpose, but you can also copy the files outside of webpack. The benefit of the former approach is that webpack-dev-server can pick that up.
 
+Any other lookup will go through webpack and it will try to evaluate the `url` and `@import` expressions. To disable this default behavior, set **css-loader** `url: false` and `import: false` through the loader options.
+
 T> [resolve-url-loader](https://www.npmjs.com/package/resolve-url-loader) comes in handy if you use Sass or Less. It adds support for relative imports to the environments.
 
-### Processing _css-loader_ Imports
+### Processing **css-loader** imports
 
-If you want to process _css-loader_ imports in a specific way, you should set up `importLoaders` option to a number that tells the loader how many loaders before the _css-loader_ should be executed against the imports found. If you import other CSS files from your CSS through the `@import` statement and want to process the imports through specific loaders, this technique is essential.
+If you want to process **css-loader** imports in a specific way, you should set up `importLoaders` option to a number that tells the loader how many loaders before the _css-loader_ should be executed against the imports found. If you import other CSS files from your CSS through the `@import` statement and want to process the imports through specific loaders, this technique is essential.
 
 {pagebreak}
 
@@ -244,7 +170,7 @@ To process the Sass file, you would have to write configuration:
 
 If you added more loaders, such as _postcss-loader_, to the chain, you would have to adjust the `importLoaders` option accordingly.
 
-### Loading from _node_modules_ Directory
+### Loading from _node_modules_ directory
 
 You can load files directly from your node_modules directory. Consider Bootstrap and its usage for example:
 
@@ -256,11 +182,11 @@ The tilde character (`~`) tells webpack that it's not a relative import as by de
 
 W> If you are using _postcss-loader_, you can skip using `~` as discussed in [postcss-loader issue tracker](https://github.com/postcss/postcss-loader/issues/166). _postcss-loader_ can resolve the imports without a tilde.
 
-## Enabling Source Maps
+## Enabling source maps
 
 If you want to enable source maps for CSS, you should enable `sourceMap` option for _css-loader_ and set `output.publicPath` to an absolute url pointing to your development server. If you have multiple loaders in a chain, you have to enable source maps separately for each. _css-loader_ [issue 29](https://github.com/webpack/css-loader/issues/29) discusses this problem further.
 
-## Converting CSS to Strings
+## Converting CSS to strings
 
 Especially with Angular 2, it can be convenient if you can get CSS in a string format that can be pushed to components. [css-to-string-loader](https://www.npmjs.com/package/css-to-string-loader) achieves exactly this.
 
