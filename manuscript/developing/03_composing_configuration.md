@@ -164,7 +164,7 @@ There are several benefits to composing configuration:
 - Splitting configuration into smaller functions lets you keep on expanding the setup.
 - You can type the functions assuming you are using a language such as TypeScript.
 - If you consume the configuration across multiple projects, you can publish the configuration as a package and then have only one place to optimize and upgrade as the underlying configuration changes. [SurviveJS - Maintenance](https://survivejs.com/maintenance/) covers practices related to the approach.
-- Treating configuration as a package allows you to version it as any other and deliver changelogs to document the changes to the consumers.
+- Treating configuration as a package allows you to version it as any other and deliver change logs to document the changes to the consumers.
 - Taken far enough, you can end up with your own **create-react-app** that can be used to bootstrap projects quickly with your preferred setup.
 
 ## Configuration layouts
