@@ -14,7 +14,7 @@ When you bundle a project using webpack, it traverses the imports, constructing 
 
 Internally webpack manages the bundling process using what's called **chunks** and the term often comes up in webpack related documentation. Chunks are smaller pieces of code that are included in the bundles seen in webpack output.
 
-Webpack supports ES2015, CommonJS, and AMD module formats out of the box. There's also support for [WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly), a new way of running low level code in the browser. The loader mechanism works for CSS as well, with `@import` and `url()` support through _css-loader_. You can find plugins for specific tasks, such as minification, internationalization, HMR, and so on.
+Webpack supports ES2015, CommonJS, MJS, and AMD module formats out of the box. There's also support for [WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly), a new way of running low level code in the browser. The loader mechanism works for CSS as well, with `@import` and `url()` support through _css-loader_. You can find plugins for specific tasks, such as minification, internationalization, HMR, and so on.
 
 T> A dependency graph is a directed graph that describes how nodes relate to each other. In this case, the graph definition is defined through references (`require`, `import`) between files. Webpack statically traverses these without executing the source to generate the graph it needs to create bundles.
 
