@@ -6,13 +6,13 @@ Even though the generated build works the file names it uses is problematic. It 
 
 Webpack provides **placeholders** for this purpose. These strings are used to attach specific information to webpack output. The most valuable ones are:
 
-* `[id]` - Returns the chunk id.
-* `[path]` - Returns the file path.
-* `[name]` - Returns the file name.
-* `[ext]` - Returns the extension. `[ext]` works for most available fields. `MiniCssExtractPlugin` is a notable exception to this rule.
-* `[hash]` - Returns the build hash. If any portion of the build changes, this changes as well.
-* `[chunkhash]` - Returns an entry chunk-specific hash. Each `entry` defined in the configuration receives a hash of its own. If any portion of the entry changes, the hash will change as well. `[chunkhash]` is more granular than `[hash]` by definition.
-* `[contenthash]` - Returns a hash generated based on content.
+- `[id]` - Returns the chunk id.
+- `[path]` - Returns the file path.
+- `[name]` - Returns the file name.
+- `[ext]` - Returns the extension. `[ext]` works for most available fields. `MiniCssExtractPlugin` is a notable exception to this rule.
+- `[hash]` - Returns the build hash. If any portion of the build changes, this changes as well.
+- `[chunkhash]` - Returns an entry chunk-specific hash. Each `entry` defined in the configuration receives a hash of its own. If any portion of the entry changes, the hash will change as well. `[chunkhash]` is more granular than `[hash]` by definition.
+- `[contenthash]` - Returns a hash generated based on content.
 
 It's preferable to use particularly `hash` and `chunkhash` only for production purposes as hashing doesn't do much good during development.
 
@@ -20,7 +20,7 @@ T> It's possible to slice `hash` and `chunkhash` using specific syntax: `[chunkh
 
 T> There are more options available, and you can even modify the hashing and digest type as discussed at [loader-utils](https://www.npmjs.com/package/loader-utils#interpolatename) documentation.
 
-### Example Placeholders
+### Example placeholders
 
 Assume you have the following configuration:
 
@@ -46,7 +46,7 @@ The same result can be achieved by generating static filenames and invalidating 
 
 {pagebreak}
 
-## Setting Up Hashing
+## Setting up hashing
 
 The build needs tweaking to generate proper hashes. Images and fonts should receive `hash` while chunks should use `chunkhash` in their names to invalidate them correctly:
 
@@ -78,7 +78,7 @@ leanpub-end-insert
 ]);
 ```
 
-W> `[hash]` is defined differently for *file-loader* than for the rest of webpack. It's calculated based on file **content**. See [file-loader documentation](https://www.npmjs.com/package/file-loader#placeholders) for further information.
+W> `[hash]` is defined differently for _file-loader_ than for the rest of webpack. It's calculated based on file **content**. See [file-loader documentation](https://www.npmjs.com/package/file-loader#placeholders) for further information.
 
 If you used `chunkhash` for the extracted CSS as well, this would lead to problems as the code points to the CSS through JavaScript bringing it to the same entry. That means if the application code or CSS changed, it would invalidate both.
 
@@ -89,18 +89,20 @@ Therefore, instead of `chunkhash`, you can use `contenthash` that is generated b
 **webpack.parts.js**
 
 ```javascript
-exports.extractCSS = ({ include, exclude, use }) => {
-  // Output extracted CSS to a file
-  const plugin = new MiniCssExtractPlugin({
+exports.extractCSS = ({ options = {}, loaders = [] } = {}) => {
+  return {
+    ...
+    plugins: [
+      new MiniCssExtractPlugin({
 leanpub-start-delete
-    filename: "[name].css",
+        filename: "[name].css",
 leanpub-end-delete
 leanpub-start-insert
-    filename: "[name].[contenthash:4].css",
+        filename: "[name].[contenthash:4].css",
 leanpub-end-insert
-  });
-
-  ...
+      }),
+    ],
+  };
 };
 ```
 
@@ -109,25 +111,23 @@ W> The hashes have been sliced to make the output fit better in the book. In pra
 If you generate a build now (`npm run build`), you should see something:
 
 ```bash
-Hash: fb67c5fd35454da1d6ff
-Version: webpack 4.1.1
-Time: 3034ms
-Built at: 3/16/2018 6:18:07 PM
-                   Asset       Size  Chunks             Chunk Names
-               0.0847.js  161 bytes       0  [emitted]
-    vendors~main.d2f1.js   96.8 KiB       1  [emitted]  vendors~main
-            main.745c.js   2.25 KiB       2  [emitted]  main
-           main.5524.css    1.2 KiB       2  [emitted]  main
-   vendors~main.3dd5.css   1.32 KiB       1  [emitted]  vendors~main
-           0.0847.js.map  203 bytes       0  [emitted]
-vendors~main.d2f1.js.map    235 KiB       1  [emitted]  vendors~main
-        main.745c.js.map   11.4 KiB       2  [emitted]  main
-              index.html  349 bytes          [emitted]
-Entrypoint main = vendors~main.d2f1.js ...
-...
+Hash: d165393a1d50d17e439d
+Version: webpack 4.43.0
+Time: 3676ms
+Built at: 07/10/2020 4:07:37 PM
+                     Asset       Size  Chunks                         Chunk Names
+                 2.426a.js  191 bytes       2  [emitted] [immutable]
+     2.426a.js.LICENSE.txt   15 bytes          [emitted]
+                index.html  285 bytes          [emitted]
+             main.0166.css   1.61 KiB       0  [emitted] [immutable]  main
+              main.492e.js   2.73 KiB       0  [emitted] [immutable]  main
+  main.492e.js.LICENSE.txt   15 bytes          [emitted]
+            vendor.2ef5.js    126 KiB       1  [emitted] [immutable]  vendor
+vendor.2ef5.js.LICENSE.txt  806 bytes          [emitted]
+Entrypoint main = vendor.2ef5.js main.0166.css main.492e.js
 ```
 
-The files have neat hashes now. To prove that it works for styling, you could try altering *src/main.css* and see what happens to the hashes when you rebuild.
+The files have neat hashes now. To prove that it works for styling, you could try altering _src/main.css_ and see what happens to the hashes when you rebuild.
 
 There's one problem, though. If you change the application code, it invalidates the vendor file as well! Solving this requires extracting a **manifest**, but before that, you can improve the way the production build handles module IDs.
 
@@ -137,8 +137,8 @@ Including hashes related to the file contents to their names allows to invalidat
 
 To recap:
 
-* Webpack's **placeholders** allow you to shape filenames and enable you to include hashes to them.
-* The most valuable placeholders are `[name]`, `[chunkhash]`, and `[ext]`. A chunk hash is derived based on the entry in which the asset belongs.
-* If you are using `MiniCssExtractPlugin`, you should use `[contenthash]`. This way the generated assets get invalidated only if their content changes.
+- Webpack's **placeholders** allow you to shape filenames and enable you to include hashes to them.
+- The most valuable placeholders are `[name]`, `[chunkhash]`, and `[ext]`. A chunk hash is derived based on the entry in which the asset belongs.
+- If you are using `MiniCssExtractPlugin`, you should use `[contenthash]`. This way the generated assets get invalidated only if their content changes.
 
 Even though the project generates hashes now, the output isn't flawless. The problem is that if the application changes, it invalidates the vendor bundle as well. The next chapter digs deeper into the topic and shows you how to extract a **manifest** to resolve the issue.
