@@ -1,20 +1,10 @@
 # Tree Shaking
 
-- TODO: Mention `"sideEffects": "false"` requirement per package + link to the docs for further explanation.
-- TODO: add a note about https://survivejs.com/webpack/loading/javascript/#setting-up-babelrc- to the tree shaking chapter
-- TODO: Link to https://stackoverflow.com/questions/49160752/what-does-webpack-4-expect-from-a-package-with-sideeffects-false
-- TODO: Link to https://webpack.js.org/guides/tree-shaking/
-- TODO: Link to https://github.com/blacksonic/typescript-webpack-tree-shaking
-- TODO: https://developers.google.com/web/fundamentals/performance/optimizing-javascript/tree-shaking/?authuser=0
-- TODO: https://stackoverflow.com/questions/49160752/what-does-webpack-4-expect-from-a-package-with-sideeffects-false
-- TODO: https://github.com/TypeStrong/ts-loader/issues/453#issuecomment-295925931
-- TODO: https://github.com/webpack/webpack/pull/6129/commits/5cbd6b20dddc58133313b544c0dfbef124b8ceaa#diff-b968d7026d16261e6e3fddfa5a949155
-
 **Tree shaking** is a feature enabled by the ES2015 module definition. The idea is that given it's possible to analyze the module definition statically without running it, webpack can tell which parts of the code are being used and which are not. It's possible to verify this behavior by expanding the application and adding code there that should be eliminated.
 
 T> Tree shaking works to an extent through [webpack-common-shake](https://www.npmjs.com/package/webpack-common-shake) against CommonJS module definition. As a majority of npm packages have been authored using the older definition, the plugin has value.
 
-## Demonstrating Tree Shaking
+## Demonstrating tree shaking
 
 To shake code, you have to define a module and use only a part of its code. Set one up:
 
@@ -50,15 +40,21 @@ T> If you are using _terser-webpack-plugin_, enable warnings for a similar effec
 
 T> There is a CSS Modules related tree shaking proof of concept at [dead-css-loader](https://github.com/simlrh/dead-css-loader).
 
-## Tree Shaking on Package Level
+## Tree shaking on package level
 
 The same idea works with dependencies that use the ES2015 module definition. Given the related packaging, standards are still emerging, you have to be careful when consuming such packages. Webpack tries to resolve _package.json_ `module` field for this reason.
 
 For tools like webpack to allow tree shake npm packages, you should generate a build that has transpiled everything else except the ES2015 module definitions and then point to it through _package.json_ `module` field. In Babel terms, you have to let webpack to manage ES2015 modules by setting `"modules": false`.
 
+Another important point is to set `"sideEffects": false` to state that when the code is executing, it doesn't modify anything outside of its own scope. The property also accepts an array of file paths if you want to be more specific. The [Stack Overflow question related to this explains in detail why](https://stackoverflow.com/questions/49160752/what-does-webpack-4-expect-from-a-package-with-sideeffects-false).
+
+## Tree shaking with external packages
+
 To get most out of tree shaking with external packages, you have to use [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-imports) to rewrite imports so that they work with webpack's tree shaking logic. See [webpack issue #2867](https://github.com/webpack/webpack/issues/2867) for more information.
 
-T> [SurviveJS - Maintenance](https://survivejs.com/maintenance/packaging/building/) covers how to write your packages so that it's possible to apply tree shaking against them.
+T> It's possible to force `"sideEffects": false` at webpack configuration by setting up a loader definition with `test: path.resolve(__dirname, "node_modules/package")` and `sideEffects: false` fields.
+
+T> [SurviveJS - Maintenance](https://survivejs.com/maintenance/packaging/building/) delves deeper to the topic from the package point of view.
 
 ## Conclusion
 
@@ -68,6 +64,6 @@ To recap:
 
 - **Tree shaking** drops unused pieces of code based on static code analysis. Webpack performs this process for you as it traverses the dependency graph.
 - To benefit from tree shaking, you have to use ES2015 module definition.
-- As a package author, you can provide a version of your package that contains ES2015 modules, while the rest has been transpiled to ES5.
+- As a package author, you can provide a version of your package that contains ES2015 modules, while the rest has been transpiled to ES5. It's important to set `"sideEffects": false` as after that webpack knows it's safe to tree shake the package.
 
 You'll learn how to manage environment variables using webpack in the next chapter.
