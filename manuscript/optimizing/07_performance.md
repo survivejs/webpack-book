@@ -6,6 +6,7 @@
 - TODO: node --max-old-space-size=4096 node_modules/.bin/webpack-dev-server --env development
 - TODO: https://medium.com/@kenneth_chau/speeding-up-webpack-typescript-incremental-builds-by-7x-3912ba4c1d15
 - TODO: https://www.npmjs.com/package/webpack-plugin-ramdisk
+- TODO: https://twitter.com/jaredpalmer/status/1265298834906910729
 
 Webpack's performance out of the box is often enough for small projects. That said, it begins to hit limits as your project grows in scale. It's a frequent topic in webpack's issue tracker. [Issue 1905](https://github.com/webpack/webpack/issues/1905) is a good example.
 

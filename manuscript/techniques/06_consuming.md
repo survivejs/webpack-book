@@ -4,7 +4,7 @@ Sometimes packages have not been packaged the way you expect, and you have to tw
 
 ## `resolve.alias`
 
-Sometimes packages do not follow the standard rules and their *package.json* contains a faulty `main` field. It can be missing altogether. `resolve.alias` is the field to use here as in the example below:
+Sometimes packages do not follow the standard rules and their _package.json_ contains a faulty `main` field. It can be missing altogether. `resolve.alias` is the field to use here as in the example below:
 
 ```javascript
 {
@@ -23,7 +23,7 @@ The idea is that if webpack resolver matches `demo` in the beginning, it resolve
 
 Light React alternatives, such as [Preact](https://www.npmjs.com/package/preact), [react-lite](https://www.npmjs.com/package/react-lite), or [Inferno](https://www.npmjs.com/package/inferno), offer smaller size while trading off functionality like `propTypes` and synthetic event handling. Replacing React with a lighter alternative can save a significant amount of space, but you should test well if you do this.
 
-If you are using *react-lite*, configure it as below:
+If you are using _react-lite_, configure it as below:
 
 ```javascript
 {
@@ -39,6 +39,8 @@ If you are using *react-lite*, configure it as below:
 
 T> The same technique works with loaders too. You can use `resolveLoader.alias` similarly. You can use the method to adapt a RequireJS project to work with webpack.
 
+T> If you are using Babel, [babel-plugin-webpack-alias](https://www.npmjs.com/package/babel-plugin-webpack-alias) mimics the aliasing behavior.
+
 ## `resolve.extensions`
 
 By default, webpack will resolve only against `.js` and `.json` files while importing without an extension, to tune this to include JSX files, adjust as below:
@@ -53,7 +55,7 @@ By default, webpack will resolve only against `.js` and `.json` files while impo
 
 ## `resolve.modules`
 
-The module resolution process can be altered by changing where webpack looks for modules. By default, it will look only within the *node_modules* directory. If you want to override packages there, you could tell webpack to look into other directories first:
+The module resolution process can be altered by changing where webpack looks for modules. By default, it will look only within the _node_modules_ directory. If you want to override packages there, you could tell webpack to look into other directories first:
 
 ```javascript
 {
@@ -63,14 +65,14 @@ The module resolution process can be altered by changing where webpack looks for
 },
 ```
 
-After the change, webpack will try to look into the *my_modules* directory first. The method can be applicable in large projects where you want to customize behavior.
+After the change, webpack will try to look into the _my_modules_ directory first. The method can be applicable in large projects where you want to customize behavior.
 
 ## `resolve.plugins`
 
 Webpack allows you to customize the module resolution behavior using the `resolve.plugins` field. Consider the following plugin examples:
 
-* [directory-named-webpack-plugin](https://www.npmjs.com/package/directory-named-webpack-plugin) maps imports made against directories to files matching the directory name. For example, it would map `import foo from "./foo";` to `import foo from "./foo/foo.js";`. The pattern is popular with React and using the plugin will allow you to simplify your code. [babel-plugin-module-resolver](https://www.npmjs.com/package/babel-plugin-module-resolver) achieves the same behavior through Babel.
-* [webpack-resolve-short-path-plugin](https://www.npmjs.com/package/webpack-resolve-short-path-plugin) was designed to avoid deeply nested imports like `import foo from "../../../foo";` by adding support for tilde (`~`) syntax. `import foo from "~foo"` would resolve against the project root if the plugin is used.
+- [directory-named-webpack-plugin](https://www.npmjs.com/package/directory-named-webpack-plugin) maps imports made against directories to files matching the directory name. For example, it would map `import foo from "./foo";` to `import foo from "./foo/foo.js";`. The pattern is popular with React and using the plugin will allow you to simplify your code. [babel-plugin-module-resolver](https://www.npmjs.com/package/babel-plugin-module-resolver) achieves the same behavior through Babel.
+- [webpack-resolve-short-path-plugin](https://www.npmjs.com/package/webpack-resolve-short-path-plugin) was designed to avoid deeply nested imports like `import foo from "../../../foo";` by adding support for tilde (`~`) syntax. `import foo from "~foo"` would resolve against the project root if the plugin is used.
 
 ## Consuming Packages Outside of Webpack
 
@@ -89,7 +91,10 @@ You still have to point to a CDN and ideally provide a local fallback, so there 
 ```html
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
-    window.jQuery || document.write('<script src="js/jquery-3.1.1.min.js"><\/script>')
+  window.jQuery ||
+    document.write(
+      '<script src="js/jquery-3.1.1.min.js"><\/script>'
+    );
 </script>
 ```
 
@@ -155,7 +160,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 ```
 
-T> It can be a good idea to install [React Developer Tools](https://github.com/facebook/react-devtools) to Chrome for even more information as it allows you to inspect *props* and *state* of your application.
+T> It can be a good idea to install [React Developer Tools](https://github.com/facebook/react-devtools) to Chrome for even more information as it allows you to inspect _props_ and _state_ of your application.
 
 T> [script-loader](https://www.npmjs.com/package/script-loader) allows you to execute scripts in a global context. You have to do this if the scripts you are using rely on a global registration setup.
 
@@ -231,9 +236,9 @@ T> You can disable webpack's symlink handling by setting `resolve.symlinks` as `
 
 To get more information, npm provides `npm info <package>` command for basic queries. You can use it to check the metadata associated with packages while figuring out version related information. Consider the following tools as well:
 
-* [package-config-checker](https://www.npmjs.com/package/package-config-checker) goes a step further. It allows you to understand better which packages of your project have updated recently and it provides means to get insight into your dependencies. It can reveal which packages could use download size related improvements for example.
-* [slow-deps](https://www.npmjs.com/package/slow-deps) can reveal which dependencies of a project are the slowest to install.
-* [weigh](https://www.npmjs.com/package/weigh) can be used figure out the approximate size of a package when it's served to a browser in different ways (uncompressed, minified, gzipped).
+- [package-config-checker](https://www.npmjs.com/package/package-config-checker) goes a step further. It allows you to understand better which packages of your project have updated recently and it provides means to get insight into your dependencies. It can reveal which packages could use download size related improvements for example.
+- [slow-deps](https://www.npmjs.com/package/slow-deps) can reveal which dependencies of a project are the slowest to install.
+- [weigh](https://www.npmjs.com/package/weigh) can be used figure out the approximate size of a package when it's served to a browser in different ways (uncompressed, minified, gzipped).
 
 ## Conclusion
 
@@ -241,5 +246,5 @@ Webpack can consume most npm packages without a problem. Sometimes, though, patc
 
 To recap:
 
-* Use webpack's module resolution to your benefit. Sometimes you can work around issues by tweaking resolution. Often it's a good idea to try to push improvements upstream to the projects themselves, though.
-* Webpack allows you to patch resolved modules. Given specific dependencies expect globals, you can inject them. You can also expose modules as globals as this is necessary for certain development tooling to work.
+- Use webpack's module resolution to your benefit. Sometimes you can work around issues by tweaking resolution. Often it's a good idea to try to push improvements upstream to the projects themselves, though.
+- Webpack allows you to patch resolved modules. Given specific dependencies expect globals, you can inject them. You can also expose modules as globals as this is necessary for certain development tooling to work.
