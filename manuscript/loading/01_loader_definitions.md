@@ -1,30 +1,10 @@
 # Loader Definitions
 
-TODO: Cover below
+Webpack provides multiple ways to set up module loaders. The idea of a loader itself is straight-forward as each loader is a function accepting input and returning output. Loaders can also have side effects as they can emit to the file system and even intercept execution to implement ideas such as caching.
 
-```
-rules: [
-  { test: /\.css$/,
-    use: [
-      info => ({
-        loader: createLoader(info),
-        options: createOptions(info)
-      })
-    ]
-]
-```
+## Anatomy of a loader
 
-Webpack provides multiple ways to set up module loaders. Webpack 2 simplified the situation by introducing the `use` field. It can be a good idea to prefer absolute paths here as they allow you to move configuration without breaking assumptions.
-
-The other way is to set `context` field as this gives a similar effect and affects the way entry points and loaders are resolved. It doesn't have an impact on the output, though, and you still need to use an absolute path or `/` there.
-
-Assuming you set an `include` or `exclude` rule, packages loaded from _node_modules_ still work as the assumption is that they have been compiled in such a way that they work out of the box. If they don't, then you have to apply techniques covered in the _Consuming Packages_ chapter.
-
-T> `include`/`exclude` is handy with _node_modules_ as webpack processes and traverses the installed packages by default when you import JavaScript files to your project. Therefore you need to configure it to avoid that behavior. Other file types don't suffer from this issue.
-
-## Anatomy of a Loader
-
-Webpack supports a large variety of formats through _loaders_. Also, it supports a couple of JavaScript module formats out of the box. The idea is the same. You always set up a loader, or loaders, and connect those with your directory structure.
+Webpack supports common JavaScript formats out of the box and other formats can be loaded by setting up specific **loaders**. The idea is the same. You always set up a loader, or loaders, and connect those with your directory structure.
 
 {pagebreak}
 
@@ -61,7 +41,7 @@ module.exports = {
 
 T> If you are not sure how a particular RegExp matches, consider using an online tool, such as [regex101](https://regex101.com/), [RegExr](http://regexr.com/), or [Regexper](https://regexper.com).
 
-## Loader Evaluation Order
+## Loader evaluation order
 
 It's good to keep in mind that webpack's loaders are always evaluated from right to left and from bottom to top (separate definitions). The right-to-left rule is easier to remember when you think about as functions. You can read definition `use: ["style-loader", "css-loader"]` as `style(css(input))` based on this rule.
 
@@ -87,7 +67,7 @@ Based on the right to left rule, the example can be split up while keeping it eq
 },
 ```
 
-### Enforcing Order
+### Enforcing order
 
 Even though it would be possible to develop an arbitrary configuration using the rule above, it can be convenient to be able to force specific rules to be applied before or after regular ones. The `enforce` field can come in handy here. It can be set to either `pre` or `post` to push processing either before or after other loaders.
 
@@ -110,7 +90,7 @@ The basic syntax goes as below:
 
 It would be possible to write the same configuration without `enforce` if you chained the declaration with other loaders related to the `test` carefully. Using `enforce` removes the necessity for that and allows you to split loader execution into separate stages that are easier to compose.
 
-## Passing Parameters to a Loader
+## Passing parameters to a loader
 
 There's a query format that allows passing parameters to loaders:
 
@@ -153,7 +133,6 @@ If you wanted to use more than one loader, you could pass an array to `use` and 
 {
   test: /\.js$/,
   include: PATHS.app,
-
   use: [
     {
       loader: "babel-loader",
@@ -168,7 +147,7 @@ If you wanted to use more than one loader, you could pass an array to `use` and 
 
 {pagebreak}
 
-## Branching at `use` Using a Function
+## Branching at `use` using a function
 
 In the book setup, you compose configuration on a higher level. Another option to achieve similar results would be to branch at `use` as webpack's loader definitions accept functions that allow you to branch depending on the environment. Consider the example below:
 
@@ -200,7 +179,7 @@ In the book setup, you compose configuration on a higher level. Another option t
 
 Carefully applied, this technique allows different means of composition.
 
-## Inline Definitions
+## Inline definitions
 
 Even though configuration level loader definitions are preferable, it's possible to write loader definitions inline:
 
@@ -223,7 +202,7 @@ The problem with this approach is that it couples your source with webpack. None
 },
 ```
 
-## Alternate Ways to Match Files
+## Alternate ways to match files
 
 `test` combined with `include` or `exclude` to constrain the match is the most common approach to match files. These accept the data types as listed below:
 
@@ -241,7 +220,7 @@ Boolean based fields can be used to constrain these matchers further:
 - `and` - Match against an array of conditions. All must match.
 - `or` - Match against an array while any must match.
 
-## Loading Based on `resourceQuery`
+## Loading based on `resourceQuery`
 
 `oneOf` field makes it possible to route webpack to a specific loader based on a resource related match:
 
@@ -265,14 +244,13 @@ If you wanted to embed the context information to the filename, the rule could u
 
 {pagebreak}
 
-## Loading Based on `issuer`
+## Loading based on `issuer`
 
 `issuer` can be used to control behavior based on where a resource was imported. In the example below adapted from [css-loader issue 287](https://github.com/webpack-contrib/css-loader/pull/287#issuecomment-261269199), _style-loader_ is applied when webpack captures a CSS file from a JavaScript import:
 
 ```javascript
 {
   test: /\.css$/,
-
   rules: [
     {
       issuer: /\.js$/,
@@ -290,7 +268,6 @@ Another approach would be to mix `issuer` and `not`:
 ```javascript
 {
   test: /\.css$/,
-
   rules: [
     // CSS imported from other modules is added to the DOM
     {
@@ -305,7 +282,45 @@ Another approach would be to mix `issuer` and `not`:
 }
 ```
 
-## Understanding Loader Behavior
+## Loading with `info` object
+
+Webpack provides advanced access to compilation if you pass a function as a loader definition for the `use` field. It expects you to return a loader from the call:
+
+```javascript
+{
+  rules: [
+    {
+      test: /\.js$/,
+      include: PATHS.app,
+      use: [
+        (info) =>
+          console.log(info) || {
+            loader: "babel-loader",
+            options: {
+              presets: ["env"],
+            },
+          },
+      ],
+    },
+  ];
+}
+```
+
+If you execute code like this, you'll see a print in the console:
+
+```bash
+{
+  resource: '/webpack-demo/src/main.css',
+  realResource: '/webpack-demo/src/main.css',
+  resourceQuery: '',
+  issuer: '',
+  compiler: 'mini-css-extract-plugin /webpack-demo/node_modules/css-loader/dist/cjs.js!/webpack-demo/node_modules/postcss-loader/src/index.js??ref--4-2!/webpack-demo/node_modules/postcss-loader/src/index.js??ref--4-3!/webpack-demo/src/main.css'
+}
+```
+
+The function is an escape hatch for customizing loaders further.
+
+## Understanding loader behavior
 
 Loader behavior can be understood in greater detail by inspecting them. [loader-runner](https://www.npmjs.com/package/loader-runner) allows you to run them in isolation without webpack. Webpack uses this package internally and _Extending with Loaders_ chapter covers it in detail.
 
@@ -313,13 +328,12 @@ Loader behavior can be understood in greater detail by inspecting them. [loader-
 
 ## Conclusion
 
-Webpack provides multiple ways to setup loaders but sticking with `use` is enough in webpack 4. Be careful with loader ordering, as it's a common source of problems.
+Webpack provides multiple ways to setup loaders but sticking with `use` is enough starting from webpack 4. Be careful with loader ordering, as it's a common source of problems.
 
 To recap:
 
 - **Loaders** allow you determine what should happen when webpack's module resolution mechanism encounters a file.
 - A loader definition consists of **conditions** based on which to match and **actions** that should be performed when a match happens.
-- Webpack 2 introduced the `use` field. It combines the ideas of old `loader` and `loaders` fields into a single construct.
-- Webpack 4 provides multiple ways to match and alter loader behavior. You can, for example, match based on a **resource query** after a loader has been matched and route the loader to specific actions.
+- Webpack provides multiple ways to match and alter loader behavior. You can, for example, match based on a **resource query** after a loader has been matched and route the loader to specific actions.
 
 In the next chapter, you'll learn to load images using webpack.
