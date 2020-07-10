@@ -4,11 +4,11 @@ The current setup doesn't clean the _build_ directory between builds. As a resul
 
 Another nice touch would be to include information about the build itself to the generated bundles as a small comment at the top of each file including version information at least.
 
-## Cleaning the Build Directory
+## Cleaning the build directory
 
 This issue can be resolved either by using a webpack plugin or solving it outside of it. You could trigger `rm -rf ./build && webpack` or `rimraf ./build && webpack` in an npm script to keep it cross-platform. A task runner could work for this purpose as well.
 
-### Setting Up `CleanWebpackPlugin`
+### Setting up `CleanWebpackPlugin`
 
 Install the [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin) first:
 
@@ -24,7 +24,7 @@ Next, you need to define a function to wrap the basic idea. You could use the pl
 
 ```javascript
 ...
-const CleanWebpackPlugin = require("clean-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 exports.clean = path => ({
   plugins: [new CleanWebpackPlugin()],
@@ -50,11 +50,11 @@ After this change, the `build` directory should remain nice and tidy while build
 
 {pagebreak}
 
-## Attaching a Revision to the Build
+## Attaching a revision to the build
 
 Attaching information related to the current build revision to the build files themselves can be used for debugging. [webpack.BannerPlugin](https://webpack.js.org/plugins/banner-plugin/) allows you to achieve this. It can be used in combination with [git-revision-webpack-plugin](https://www.npmjs.com/package/git-revision-webpack-plugin) to generate a small comment at the beginning of the generated files.
 
-### Setting Up `BannerPlugin` and `GitRevisionPlugin`
+### Setting up `BannerPlugin` and `GitRevisionPlugin`
 
 To get started, install the revision plugin:
 
@@ -101,7 +101,7 @@ The output can be customized further by adjusting the banner. You can also pass 
 
 W> The code expects you run it within a Git repository! Otherwise, you get a `fatal: Not a git repository (or any of the parent directories): .git` error. If you are not using Git, you can replace the banner with other data.
 
-## Copying Files
+## Copying files
 
 Copying files is another ordinary operation you can handle with webpack. [copy-webpack-plugin](https://www.npmjs.com/package/copy-webpack-plugin) can be handy if you need to bring external data to your build without having webpack pointing at them directly.
 
