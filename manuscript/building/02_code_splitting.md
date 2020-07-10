@@ -1,20 +1,16 @@
 # Code Splitting
 
-TODO: use await for code splitting
-TODO: https://medium.com/webpack/webpack-4-import-and-commonjs-d619d626b655
-TODO: dynamic import mention to code splitting chapter
-
 Web applications tend to grow big as features are developed. The longer it takes for your application to load, the more frustrating it's to the user. This problem is amplified in a mobile environment where the connections can be slow.
 
-Even though splitting bundles can help a notch, they are not the only solution, and you can still end up having to download a lot of data. Fortunately, it's possible to do better thanks to **code splitting**. It allows loading code lazily as you need it.
+Even though splitting bundles can help a notch, they are not the only solution, and you can still end up having to download a lot of data. Fortunately, it's possible to do better thanks to **code splitting** as it allows loading code lazily when you need it.
 
 You can load more code as the user enters a new view of the application. You can also tie loading to a specific action like scrolling or clicking a button. You could also try to predict what the user is trying to do next and load code based on your guess. This way the functionality would be already there as the user tries to access it.
 
 T> Incidentally, it's possible to implement Google's [PRPL pattern](https://developers.google.com/web/fundamentals/performance/prpl-pattern/) using webpack's lazy loading. PRPL (Push, Render, Pre-cache, Lazy-load) has been designed with mobile web in mind.
 
-## Code Splitting Formats
+## Code splitting formats
 
-Code splitting can be done in two primary ways in webpack: through a dynamic `import` or `require.ensure` syntax. The former is used in this project.
+Code splitting can be done in two primary ways in webpack: through a dynamic `import` or `require.ensure` syntax. The former is used in this project and `require.ensure` is considered the legacy syntax.
 
 The goal is to end up with a split point that gets loaded on demand. There can be splits inside splits, and you can structure an entire application based on splits. The advantage of doing this is that then the initial payload of your application can be smaller than it would be otherwise.
 
@@ -55,40 +51,11 @@ The code above creates separate bundles to a request. If you wanted only one, yo
 
 W> The syntax works only with JavaScript after configuring it the right way. If you use another environment you may have to use alternatives covered in the following sections.
 
+T> [Webpack 4: import() and CommonJs](https://medium.com/webpack/webpack-4-import-and-commonjs-d619d626b655) article goes into detail on how `import()` works in different cases.
+
 T> There's an older syntax, [require.ensure](https://webpack.js.org/api/module-methods/#require-ensure). In practice the new syntax can cover the same functionality. See also [require.include](https://webpack.js.org/api/module-methods/#require-include).
 
 T> [webpack-pwa](https://github.com/webpack/webpack-pwa) illustrates the idea on a larger scale and discusses different shell based approaches. You get back to this topic in the _Multiple Pages_ chapter.
-
-{pagebreak}
-
-## Setting Up Code Splitting
-
-To demonstrate the idea of code splitting, you can use dynamic `import`. The Babel setup of the project needs additions to make the syntax work.
-
-### Configuring Babel
-
-Given Babel doesn't support the dynamic `import` syntax out of the box, it needs [@babel/plugin-syntax-dynamic-import](https://www.npmjs.com/package/@babel/plugin-syntax-dynamic-import) to work.
-
-Install it first:
-
-```bash
-npm add @babel/plugin-syntax-dynamic-import -D
-```
-
-To connect it with the project, adjust the configuration as follows:
-
-**.babelrc**
-
-```json
-{
-leanpub-start-insert
-  "plugins": ["@babel/plugin-syntax-dynamic-import"],
-leanpub-end-insert
-  ...
-}
-```
-
-W> If you are using ESLint, you should install `babel-eslint` and set `parser: "babel-eslint"` in addition to `parserOptions.allowImportExportEverywhere: true` at ESLint configuration.
 
 {pagebreak}
 
@@ -110,9 +77,8 @@ You also need to point the application to this file, so the application knows to
 export default (text = "Hello world") => {
   const element = document.createElement("div");
 
-  element.className = "pure-button";
+  element.className = "rounded bg-red-100 border max-w-md m-4 p-4";
   element.innerHTML = text;
-  leanpub - start - insert;
   element.onclick = () =>
     import("./lazy")
       .then((lazy) => {
@@ -121,7 +87,6 @@ export default (text = "Hello world") => {
       .catch((err) => {
         console.error(err);
       });
-  leanpub - end - insert;
 
   return element;
 };
@@ -129,27 +94,26 @@ export default (text = "Hello world") => {
 
 If you open up the application (`npm start`) and click the button, you should see the new text in the button.
 
-![Lazy loaded content](images/lazy.png)
-
-If you run `npm run build`, you should see something:
+After executing `npm run build`, you should see something:
 
 ```bash
-Hash: 063e54c36163f79e8c90
-Version: webpack 4.1.1
-Time: 3185ms
-Built at: 3/16/2018 5:04:04 PM
-               Asset       Size  Chunks             Chunk Names
+Hash: 23034e6ca912f0dace72
+Version: webpack 4.43.0
+Time: 2708ms
+Built at: 07/10/2020 2:48:54 PM
+     Asset       Size  Chunks             Chunk Names
 leanpub-start-insert
-            0.js.map  198 bytes       0  [emitted]
-                0.js  156 bytes       0  [emitted]
+      1.js  127 bytes       1  [emitted]
 leanpub-end-insert
-             main.js    2.2 KiB       2  [emitted]  main
-            main.css   1.27 KiB       2  [emitted]  main
-    vendors~main.css   2.27 KiB       1  [emitted]  vendors~main
+
+index.html  237 bytes          [emitted]
+  main.css    8.5 KiB       0  [emitted]  main
+   main.js   2.43 KiB       0  [emitted]  main
+Entrypoint main = main.css main.js
 ...
 ```
 
-That _0.js_ is your split point. Examining the file reveals that webpack has wrapped the code in a `webpackJsonp` block and processed the code bit.
+That _1.js_ is your split point. Examining the file reveals that webpack has wrapped the code in a `webpackJsonp` block and processed the code bit.
 
 T> If you want to adjust the name of the chunk, set `output.chunkFilename`. For example, setting it to `"chunk.[id].js"` would prefix each split chunk with the word "chunk".
 
@@ -159,44 +123,12 @@ T> The _Dynamic Loading_ chapter covers other techniques that come in handy when
 
 {pagebreak}
 
-## Code Splitting in React
+## Code splitting in React
 
-TODO: https://github.com/theKashey/react-imported-component
-TODO: https://github.com/gregberge/loadable-components
+There are React specific solutions that wrap the pattern behind a small npm package:
 
-The splitting pattern can be wrapped into a React component. Airbnb uses the following solution [as described by Joe Lencioni](https://gist.github.com/lencioni/643a78712337d255f5c031bfc81ca4cf):
-
-```javascript
-import React from "react";
-
-// Somewhere in code
-<AsyncComponent loader={() => import("./SomeComponent")} />;
-
-class AsyncComponent extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { Component: null };
-  }
-  componentDidMount() {
-    this.props
-      .loader()
-      .then((Component) => this.setState({ Component }));
-  }
-  render() {
-    const { Component } = this.state;
-    const { Placeholder, ...props } = this.props;
-
-    return Component ? <Component {...props} /> : <Placeholder />;
-  }
-}
-AsyncComponent.propTypes = {
-  loader: PropTypes.func.isRequired,
-  Placeholder: PropTypes.node.isRequired,
-};
-```
-
-T> [react-async-component](https://www.npmjs.com/package/react-async-component) wraps the pattern in a `createAsyncComponent` call and provides server side rendering specific functionality. [loadable-components](https://www.npmjs.com/package/loadable-components) is another option.
+- [@loadable/component](https://www.npmjs.com/package/@loadable/component) wraps the pattern in a `createAsyncComponent` call and provides server side rendering specific functionality.
+- [react-imported-component](https://www.npmjs.com/package/react-imported-component) is another full featured solution based on hooks.
 
 ## Disabling Code Splitting
 
@@ -227,7 +159,6 @@ Code splitting is a feature that allows you to push your application a notch fur
 To recap:
 
 - **Code splitting** comes with extra effort as you have to decide what to split and where. Often, you find good split points within a router. Or you notice that specific functionality is required only when a particular feature is used. Charting is an excellent example of this.
-- To use dynamic `import` syntax, both Babel and ESLint require careful tweaks. Webpack supports the syntax out of the box.
 - Use naming to pull separate split points into the same bundles.
 - The techniques can be used within modern frameworks and libraries like React. You can wrap related logic to a specific component that handles the loading process in a user-friendly manner.
 - To disable code splitting, use `webpack.optimize.LimitChunkCountPlugin` with `maxChunks` set to one.
