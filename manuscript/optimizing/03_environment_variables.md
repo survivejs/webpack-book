@@ -1,8 +1,6 @@
 # Environment Variables
 
-- TODO: mention EnvPlugin shortcut
 - TODO: https://www.npmjs.com/package/dotenv-webpack
-- TODO: https://blog.johnnyreilly.com/2018/03/its-not-dead-webpack-and-dead-code.html
 
 Sometimes a part of your code should execute only during development. Or you could have experimental features in your build that are not ready for production yet. Controlling **environment variables** becomes valuable as you can toggle functionality using them.
 
@@ -140,6 +138,8 @@ T> [webpack-conditional-loader](https://www.npmjs.com/package/webpack-conditiona
 
 T> `webpack.EnvironmentPlugin(["NODE_ENV"])` is a shortcut that allows you to refer to environment variables. It uses `DefinePlugin` underneath, and you can achieve the same effect by passing `process.env.NODE_ENV`.
 
+T> [dotenv-webpack](https://www.npmjs.com/package/dotenv-webpack) goes a step further and maps environment variables from a dotfile (`.env`) to a build using `DefinePlugin` underneath.
+
 ## Replacing Free Variables Through Babel
 
 [babel-plugin-transform-inline-environment-variables](https://www.npmjs.com/package/babel-plugin-transform-inline-environment-variables) can be used to achieve the same effect. [babel-plugin-transform-define](https://www.npmjs.com/package/babel-plugin-transform-define) and [babel-plugin-minify-replace](https://www.npmjs.com/package/babel-plugin-minify-replace) are other alternatives for Babel.
@@ -171,6 +171,8 @@ if (process.env.NODE_ENV === "production") {
 Webpack can pick the right code based on the `DefinePlugin` declaration and this code. You have to use CommonJS module definition style here as ES2015 `import`s don't allow dynamic behavior by design.
 
 T> A related technique, **aliasing**, is discussed in the _Consuming Packages_ chapter.
+
+W> You have to be careful when doing a check against `process.env.NODE_ENV` in complex pieces of code. [Johnny Reilly gives a good example of a problematic case](https://blog.johnnyreilly.com/2018/03/its-not-dead-webpack-and-dead-code.html).
 
 {pagebreak}
 
