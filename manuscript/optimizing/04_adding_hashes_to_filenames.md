@@ -129,7 +129,7 @@ Entrypoint main = vendor.2ef5.js main.0166.css main.492e.js
 
 The files have neat hashes now. To prove that it works for styling, you could try altering _src/main.css_ and see what happens to the hashes when you rebuild.
 
-There's one problem, though. If you change the application code, it invalidates the vendor file as well! Solving this requires extracting a **manifest**, but before that, you can improve the way the production build handles module IDs.
+There's one problem, though. If you change the application code, it invalidates the vendor file as well! Solving this requires extracting a webpack **runtime**, but before that, you can improve the way the production build handles module IDs.
 
 ## Conclusion
 
@@ -141,4 +141,4 @@ To recap:
 - The most valuable placeholders are `[name]`, `[chunkhash]`, and `[ext]`. A chunk hash is derived based on the entry in which the asset belongs.
 - If you are using `MiniCssExtractPlugin`, you should use `[contenthash]`. This way the generated assets get invalidated only if their content changes.
 
-Even though the project generates hashes now, the output isn't flawless. The problem is that if the application changes, it invalidates the vendor bundle as well. The next chapter digs deeper into the topic and shows you how to extract a **manifest** to resolve the issue.
+Even though the project generates hashes now, the output isn't flawless. The problem is that if the application changes, it invalidates the vendor bundle as well. The next chapter digs deeper into the topic and shows you how to extract webpack **runtime** to resolve the issue.
