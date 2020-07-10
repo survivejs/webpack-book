@@ -163,6 +163,6 @@ To recap:
 - The techniques can be used within modern frameworks and libraries like React. You can wrap related logic to a specific component that handles the loading process in a user-friendly manner.
 - To disable code splitting, use `webpack.optimize.LimitChunkCountPlugin` with `maxChunks` set to one.
 
-You'll learn to tidy up the build in the next chapter.
+In the next chapter, you'll learn how to split a vendor bundle without setting up an explicit split point in the code.
 
 T> The _Searching with React_ appendix contains a complete example of code splitting. It shows how to set up a static site index that's loaded when the user searches information.

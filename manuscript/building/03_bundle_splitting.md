@@ -1,16 +1,12 @@
 # Bundle Splitting
 
-TODO: Mention https://medium.com/dailyjs/webpack-4-splitchunks-plugin-d9fbbe091fd0
-TODO: Mention https://github.com/lencioni/webpack-splitchunks-playground
-TODO: Mention https://wanago.io/2018/06/04/code-splitting-with-splitchunksplugin-in-webpack-4/
-
 Currently, the production version of the application is a single JavaScript file. If the application is changed, the client must download vendor dependencies as well.
 
 It would be better to download only the changed portion. If the vendor dependencies change, then the client should fetch only the vendor dependencies. The same goes for actual application code. **Bundle splitting** can be achieved using `optimization.splitChunks.cacheGroups`. When running in production mode, [webpack 4 can perform a series of splits out of the box](https://gist.github.com/sokra/1522d586b8e5c0f5072d7565c2bee693) but in this case, we'll do something manually.
 
 T> To invalidate the bundles correctly, you have to attach hashes to the generated bundles as discussed in the _Adding Hashes to Filenames_ chapter.
 
-## The Idea of Bundle Splitting
+## The idea of bundle splitting
 
 With bundle splitting, you can push the vendor dependencies to a bundle of their own and benefit from client level caching. The process can be done in such a way that the whole size of the application remains the same. Given there are more requests to perform, there's a slight overhead. But the benefit of caching makes up for this cost.
 
@@ -18,7 +14,7 @@ To give you a quick example, instead of having _main.js_ (100 kB), you could end
 
 Caching comes with its problems. One of those is cache invalidation. A potential approach related to that is discussed in the _Adding Hashes to Filenames_ chapter.
 
-## Adding Something to Split
+## Adding something to split
 
 Given there's not much to split into the vendor bundle yet, you should add something there. Add React to the project first:
 
@@ -41,25 +37,22 @@ leanpub-end-insert
 Execute `npm run build` to get a baseline build. You should end up with something as below:
 
 ```bash
-Hash: 80f9bb6fc04c54949644
-Version: webpack 4.1.1
-Time: 3276ms
-Built at: 3/16/2018 4:59:25 PM
-       Asset       Size  Chunks             Chunk Names
-leanpub-start-insert
-     main.js   97.5 KiB       0  [emitted]  main
-leanpub-end-insert
-    main.css   3.49 KiB       0  [emitted]  main
- main.js.map    240 KiB       0  [emitted]  main
-main.css.map   85 bytes       0  [emitted]  main
-  index.html  220 bytes          [emitted]
-Entrypoint main = main.js main.css main.js.map main.css.map
+Hash: 8243e4d4e821c80ebf23
+Version: webpack 4.43.0
+Time: 3440ms
+Built at: 07/10/2020 3:00:42 PM
+     Asset       Size  Chunks             Chunk Names
+      1.js  127 bytes       1  [emitted]
+index.html  237 bytes          [emitted]
+  main.css    8.5 KiB       0  [emitted]  main
+   main.js    129 KiB       0  [emitted]  main
+Entrypoint main = main.css main.js
 ...
 ```
 
 As you can see, _main.js_ is big. That is something to fix next.
 
-## Setting Up a `vendor` Bundle
+## Setting up a `vendor` bundle
 
 Before webpack 4, there used to be `CommonsChunkPlugin` for managing bundle splitting. The plugin has been replaced with automation and configuration. To extract a vendor bundle from the _node_modules_ directory, adjust the code as follows:
 
@@ -83,25 +76,17 @@ leanpub-end-insert
 If you try to generate a build now (`npm run build`), you should see something along this:
 
 ```bash
-Hash: 6c499f10237fdbb07378
-Version: webpack 4.1.1
-Time: 3172ms
-Built at: 3/16/2018 5:00:03 PM
-               Asset       Size  Chunks             Chunk Names
-leanpub-start-insert
-     vendors~main.js   96.8 KiB       0  [emitted]  vendors~main
-leanpub-end-insert
-             main.js   1.35 KiB       1  [emitted]  main
-            main.css   1.27 KiB       1  [emitted]  main
-leanpub-start-insert
-    vendors~main.css   2.27 KiB       0  [emitted]  vendors~main
- vendors~main.js.map    235 KiB       0  [emitted]  vendors~main
-vendors~main.css.map   93 bytes       0  [emitted]  vendors~main
-leanpub-end-insert
-         main.js.map   7.11 KiB       1  [emitted]  main
-        main.css.map   85 bytes       1  [emitted]  main
-          index.html  329 bytes          [emitted]
-Entrypoint main = vendors~main.js vendors~main.css ...
+Hash: 7d26879955396fd4464f
+Version: webpack 4.43.0
+Time: 3442ms
+Built at: 07/10/2020 3:01:31 PM
+          Asset       Size  Chunks             Chunk Names
+           2.js  127 bytes       2  [emitted]
+     index.html  276 bytes          [emitted]
+       main.css    8.5 KiB       0  [emitted]  main
+        main.js   2.65 KiB       0  [emitted]  main
+vendors~main.js    127 KiB       1  [emitted]  vendors~main
+Entrypoint main = vendors~main.js main.css main.js
 ...
 ```
 
@@ -111,7 +96,7 @@ Now the bundles look the way they should. The image below illustrates the curren
 
 {pagebreak}
 
-## Controlling Bundle Splitting
+## Controlling bundle splitting
 
 The configuration above can be rewritten with an explicit test against _node_modules_ as below:
 
@@ -140,7 +125,7 @@ leanpub-end-insert
 
 Following this format gives you more control over the splitting process if you don't prefer to rely on automation.
 
-## Splitting and Merging Chunks
+## Splitting and merging chunks
 
 Webpack provides more control over the generated chunks by two plugins: `AggressiveSplittingPlugin` and `AggressiveMergingPlugin`. The former allows you to emit more and smaller bundles. The behavior is handy with HTTP/2 due to the way the new standard works.
 
@@ -180,9 +165,7 @@ It's possible to get good caching behavior with these plugins if a webpack **rec
 
 T> Tobias Koppers discusses [aggressive merging in detail at the official blog of webpack](https://medium.com/webpack/webpack-http-2-7083ec3f3ce6).
 
-W> If you are using _html-webpack-plugin_, make sure to use at least version 4 or newer of the plugin for the functionality to work correctly.
-
-## Chunk Types in Webpack
+## Chunk types in webpack
 
 In the example above, you used different types of webpack chunks. Webpack treats chunks in three types:
 
@@ -201,4 +184,4 @@ To recap:
 - Webpack offers more control over chunking through specific plugins, such as `AggressiveSplittingPlugin` and `AggressiveMergingPlugin`. Mainly the splitting plugin can be handy in HTTP/2 oriented setups.
 - Internally webpack relies on three chunk types: entry, normal, and initial chunks.
 
-In the next chapter, you'll learn about code splitting and loading code on demand.
+You'll learn to tidy up the build in the next chapter.
