@@ -1,6 +1,5 @@
 # Code Splitting
 
-TODO: Move before he bundle splitting chapter
 TODO: use await for code splitting
 TODO: https://medium.com/webpack/webpack-4-import-and-commonjs-d619d626b655
 TODO: dynamic import mention to code splitting chapter

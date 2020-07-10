@@ -18,8 +18,6 @@ To give you a quick example, instead of having _main.js_ (100 kB), you could end
 
 Caching comes with its problems. One of those is cache invalidation. A potential approach related to that is discussed in the _Adding Hashes to Filenames_ chapter.
 
-Bundle splitting isn't the only way out. The _Code Splitting_ chapter discusses another, more granular way.
-
 ## Adding Something to Split
 
 Given there's not much to split into the vendor bundle yet, you should add something there. Add React to the project first:
