@@ -1,11 +1,5 @@
 # Loading Fonts
 
-- TODO: Simplify woff test
-- TODO: https://www.npmjs.com/package/subfont
-- TODO: https://github.com/Munter/subfont
-- TODO: https://github.com/patrickhulce/fontmin-webpack
-- TODO: https://www.npmjs.com/package/iconfont-webpack-plugin
-
 Loading fonts is similar to loading images. It does come with unique challenges, though. How to know what font formats to support? There can be up to four font formats to worry about if you want to provide first class support to each browser.
 
 The problem can be solved by deciding a set of browsers and platforms that should receive first class service. The rest can use system fonts.
@@ -14,7 +8,7 @@ You can approach the problem in several ways through webpack. You can still use 
 
 T> [canifont](https://www.npmjs.com/package/canifont) helps you to figure out which font formats you should support. It accepts a **.browserslistrc** definition and then checks font support of each browser based on the definition.
 
-## Choosing One Format
+## Choosing format to support
 
 If you exclude Opera Mini, all browsers support the _.woff_ format. Its newer version, _.woff2_, is widely supported by modern browsers and can be a good alternative.
 
@@ -39,7 +33,7 @@ A more elaborate approach to achieve a similar result that includes _.woff2_ and
 ```javascript
 {
   // Match woff2 in addition to patterns like .woff?v=1.1.1.
-  test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+  test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/,
   use: {
     loader: "url-loader",
     options: {
@@ -59,7 +53,7 @@ A more elaborate approach to achieve a similar result that includes _.woff2_ and
 
 {pagebreak}
 
-## Supporting Multiple Formats
+## Supporting multiple formats
 
 In case you want to make sure the site looks good on a maximum amount of browsers, you can use _file-loader_ and forget about inlining. Again, it's a trade-off as you get extra requests, but perhaps it's the right move. Here you could end up with a loader configuration:
 
@@ -81,8 +75,9 @@ The way you write your CSS definition matters. To make sure you are getting the 
 @font-face {
   font-family: "myfontfamily";
   src: url("./fonts/myfontfile.woff2") format("woff2"), url("./fonts/myfontfile.woff")
-      format("woff"), url("./fonts/myfontfile.eot") format("embedded-opentype"),
-    url("./fonts/myfontfile.ttf") format("truetype");
+      format("woff"),
+    url("./fonts/myfontfile.eot") format("embedded-opentype"), url("./fonts/myfontfile.ttf")
+      format("truetype");
   /* Add other formats as you see fit */
 }
 ```
@@ -91,7 +86,7 @@ T> [MDN discusses the font-family rule](https://developer.mozilla.org/en/docs/We
 
 {pagebreak}
 
-## Manipulating _file-loader_ Output Path and `publicPath`
+## Manipulating _file-loader_ output path and `publicPath`
 
 As discussed above and in [webpack issue tracker](https://github.com/webpack/file-loader/issues/32#issuecomment-250622904), _file-loader_ allows shaping the output. This way you can output your fonts below `fonts/`, images below `images/`, and so on over using the root.
 
@@ -113,7 +108,7 @@ Furthermore, it's possible to manipulate `publicPath` and override the default p
 },
 ```
 
-## Generating Font Files Based on SVGs
+## Generating font files based on SVGs
 
 If you prefer to use SVG based fonts, they can be bundled as a single font file by using [webfonts-loader](https://www.npmjs.com/package/webfonts-loader).
 
@@ -121,11 +116,17 @@ W> Take care with SVG images if you have SVG specific image setup in place alrea
 
 ## Using Google Fonts
 
-[google-fonts-webpack-plugin](https://www.npmjs.com/package/google-fonts-webpack-plugin) can download Google Fonts to webpack build directory or connect to them using a CDN.
+[@beyonk/google-fonts-webpack-plugin](https://www.npmjs.com/package/@beyonk/google-fonts-webpack-plugin) can download Google Fonts to webpack build directory or connect to them using a CDN.
 
-## Using Icon Fonts
+## Using icon fonts
 
 [iconfont-webpack-plugin](https://www.npmjs.com/package/iconfont-webpack-plugin) was designed to simplify loading icon based fonts. It inlines SVG references within CSS files.
+
+To make sure you are including only the icons that are only needed, use [fontmin-webpack](https://www.npmjs.com/package/fontmin-webpack).
+
+## Eliminating unused characters
+
+[subfont](https://www.npmjs.com/package/subfont) is a tool that performs static analysis against webpack's HTML output and then rewrites the fonts to include only glyphs that are used. The subsetting process can reduce the size of the font files dramatically.
 
 ## Conclusion
 
