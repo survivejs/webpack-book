@@ -12,7 +12,7 @@ Webpack 4 sets `process.env.NODE_ENV` based on the given mode. It's good to know
 
 {pagebreak}
 
-## The Basic Idea of `DefinePlugin`
+## The basic idea of `DefinePlugin`
 
 To understand the idea of `DefinePlugin` better, consider the example below:
 
@@ -140,13 +140,13 @@ T> `webpack.EnvironmentPlugin(["NODE_ENV"])` is a shortcut that allows you to re
 
 T> [dotenv-webpack](https://www.npmjs.com/package/dotenv-webpack) goes a step further and maps environment variables from a dotfile (`.env`) to a build using `DefinePlugin` underneath.
 
-## Replacing Free Variables Through Babel
+## Replacing free variables through Babel
 
 [babel-plugin-transform-inline-environment-variables](https://www.npmjs.com/package/babel-plugin-transform-inline-environment-variables) can be used to achieve the same effect. [babel-plugin-transform-define](https://www.npmjs.com/package/babel-plugin-transform-define) and [babel-plugin-minify-replace](https://www.npmjs.com/package/babel-plugin-minify-replace) are other alternatives for Babel.
 
 {pagebreak}
 
-## Choosing Which Module to Use
+## Choosing which module to use
 
 The techniques discussed in this chapter can be used to choose entire modules depending on the environment. As seen above, `DefinePlugin` based splitting allows you to choose which branch of code to use and which to discard. This idea can be used to implement branching on module level. Consider the file structure below:
 
