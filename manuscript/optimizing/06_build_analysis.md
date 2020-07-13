@@ -10,7 +10,6 @@
 - TODO: Mention https://www.npmjs.com/package/whybundled
 - TODO: Mention Packtracker
 - TODO: Mention https://github.com/aholachek/bundle-wizard
-- TODO: Mention https://www.npmjs.com/package/webpack-stats-plugin
 - TODO: Mention https://github.com/marketplace/js-bundle-analyzer
 - TODO: Mention https://github.com/smikula/webpack-bundle-diff
 - TODO: Mention https://github.com/GoogleChromeLabs/size-plugin
@@ -20,7 +19,7 @@
 
 Analyzing build statistics is a good step towards understanding webpack better. Visualizing webpack output helps you to understand the composition of your bundles.
 
-## Configuring Webpack
+## Configuring webpack
 
 To get suitable output, you need to do a couple of tweaks to the configuration. At a minimum, you should set the `--json` flag and pipe the output to a file as follows:
 
@@ -79,7 +78,7 @@ If you want to manage stats through a plugin, check out [stats-webpack-plugin](h
 
 [webpack-stats-plugin](https://www.npmjs.com/package/webpack-stats-plugin) is another option. It allows you to transform the data before outputting it.
 
-## Enabling a Performance Budget
+## Enabling a performance budget
 
 Webpack allows you to define a **performance budget**. The idea is that it gives your build size constraint which it has to follow. The feature is disabled by default and the calculation includes extracted chunks to entry calculation. If a budget isn't met and it has been configured to emit an error, it would terminate the entire build.
 
@@ -96,7 +95,7 @@ leanpub-start-insert
     performance: {
       hints: "warning", // "error" or false are valid too
       maxEntrypointSize: 50000, // in bytes, default 250k
-      maxAssetSize: 450000, // in bytes
+      maxAssetSize: 100000, // in bytes
     },
   },
 leanpub-end-insert
@@ -104,31 +103,29 @@ leanpub-end-insert
 ]);
 ```
 
-In practice, you want to maintain lower limits. The current ones are enough for this demonstration. If you build now (`npm run build`), you should see a warning:
+In case your project exceeds the limits, you should see a warning similar to below:
 
 ```bash
 WARNING in entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (48.8 KiB). This can impact web performance.
 Entrypoints:
-  main (103 KiB)
-      manifest.3fd9a1eb.js
-      manifest.d41d8cd9.css
-      vendor.0a4df2ff.js
-      vendor.3dd53418.css
-      main.9043ef51.js
-      main.d5d711b1.css
+  main (130 KiB)
+      runtime.b241.js
+      vendor.3be8.js
+      main.0166.css
+      main.8406.js
 ```
 
-You can increase the limit or remove the configuration to get rid of the warning. An attractive option would be to replace React with a lighter alternative as discussed in the _Consuming Packages_ chapter.
+If you want to enforce a strict limit in a CI environment, set `hints` to `error`. Doing this will fail the build in case a limit is reached and force the developers either go below the limit or raise a discussion about good limits.
 
 {pagebreak}
 
-## Available Analysis Tools
+## Available analysis tools
 
-Even though having a look at the file itself gives you an idea of what's going on, often it's preferable to use a particular tool for that. Consider the following.
+Even though having a look at the stats file itself gives you an idea of what's going on, often it's preferable to use a particular tool for analysis. Consider the following.
 
-### The Official Analyse Tool
+### The Official analyse tool
 
-![The Official Analyse Tool](images/analyse.png)
+![The official analyse tool](images/analyse.png)
 
 [The official analyse tool](https://github.com/webpack/analyse) gives you recommendations and a good idea of your application's dependency graph. It can be run locally as well.
 
@@ -191,6 +188,22 @@ css-loader: 1.47 KB (1.17%)
 <self>: 572 B (0.445%)
 ```
 
+### Jarvis
+
+[Jarvis](https://www.npmjs.com/package/webpack-jarvis) is a user interface that has been designed to show all information relevant to your webpack build. For example, it shows the amount of treeshakeable modules in the project and how well your assets perform against different connection types.
+
+### webpack-runtime-analyzer
+
+[webpack-runtime-analyzer](https://www.npmjs.com/package/webpack-runtime-analyzer) gives real-time analysis over webpack bundles. You can see bundle composition in multiple formats through the user interface, bundle sizes, and module details. It combines features of many tools above into a single one.
+
+### Webpack Monitor
+
+[Webpack Monitor](http://webpackmonitor.com/) is another similar tool with an emphasis on a clear user interface. It's able to provide recommendations on what to improve the build.
+
+### webpack-deps-tree
+
+[webpack-deps-tree](https://restrry.github.io/webpack-deps-tree/static/) displays webpack module graph. Using it you can understand how modules of your bundles are related to each other.
+
 ### inspectpack
 
 [inspectpack](https://www.npmjs.com/package/inspectpack) can be used for figuring out specific places of code to improve. The example below performs duplication analysis:
@@ -211,27 +224,7 @@ $ inspectpack --action=duplicates --bundle=bundle.js
 
 The tool also comes with a plugin you can attach directly to your configuration in case you prefer to perform the check during the build.
 
-{pagebreak}
-
-### Jarvis
-
-[Jarvis](https://www.npmjs.com/package/webpack-jarvis) is a user interface that has been designed to show all information relevant to your webpack build. For example, it shows the amount of treeshakeable modules in the project and how well your assets perform against different connection types.
-
-### webpack-runtime-analyzer
-
-[webpack-runtime-analyzer](https://www.npmjs.com/package/webpack-runtime-analyzer) gives real-time analysis over webpack bundles. You can see bundle composition in multiple formats through the user interface, bundle sizes, and module details. It combines features of many tools above into a single one.
-
-### Webpack Monitor
-
-[Webpack Monitor](http://webpackmonitor.com/) is another similar tool with an emphasis on a clear user interface. It's able to provide recommendations on what to improve the build.
-
-### webpack-deps-tree
-
-[webpack-deps-tree](https://restrry.github.io/webpack-deps-tree/static/) displays webpack module graph. Using it you can understand how modules of your bundles are related to each other.
-
-{pagebreak}
-
-## Duplication Analysis
+## Duplication analysis
 
 In addition to inspectpack, there are other tools for figuring out duplicates:
 
@@ -240,7 +233,7 @@ In addition to inspectpack, there are other tools for figuring out duplicates:
 - [depcheck](https://www.npmjs.com/package/depcheck) goes further and warns if there are redundant dependencies or dependencies missing from the project.
 - [bundle-buddy](https://www.npmjs.com/package/bundle-buddy) can find duplicates across bundles while providing a user interface to tune webpack code splitting behavior. [bundle-buddy-webpack-plugin](https://www.npmjs.com/package/bundle-buddy-webpack-plugin) makes it simpler to use.
 
-## Independent Tools
+## Independent tools
 
 In addition to tools that work with webpack output, there are a couple that are webpack agnostic and worth a mention.
 
