@@ -1,22 +1,5 @@
 # Build Analysis
 
-- TODO: Mention https://www.npmjs.com/package/circular-dependency-plugin
-- TODO: Mention https://www.npmjs.com/package/unused-webpack-plugin
-- TODO: Mention https://www.npmjs.com/package/webpack-unused-scaner
-- TODO: Mention https://www.npmjs.com/package/dependency-cruiser
-- TODO: Mention https://www.npmjs.com/package/@mixer/webpack-bundle-compare
-- TODO: Mention https://github.com/tomchentw/unused-files-webpack-plugin
-- TODO: Mention https://www.bundle-analyzer.com
-- TODO: Mention https://www.npmjs.com/package/whybundled
-- TODO: Mention Packtracker
-- TODO: Mention https://github.com/aholachek/bundle-wizard
-- TODO: Mention https://github.com/marketplace/js-bundle-analyzer
-- TODO: Mention https://github.com/smikula/webpack-bundle-diff
-- TODO: Mention https://github.com/GoogleChromeLabs/size-plugin
-- TODO: Mention https://github.com/Auxpack/Auxpack
-- TODO: Mention https://github.com/MatthieuLemoine/remnants
-- TODO: Mention https://www.npmjs.com/package/dependency-cruiser
-
 Analyzing build statistics is a good step towards understanding webpack better. Visualizing webpack output helps you to understand the composition of your bundles.
 
 ## Configuring webpack
@@ -78,6 +61,8 @@ If you want to manage stats through a plugin, check out [stats-webpack-plugin](h
 
 [webpack-stats-plugin](https://www.npmjs.com/package/webpack-stats-plugin) is another option. It allows you to transform the data before outputting it.
 
+[webpack-bundle-tracker](https://www.npmjs.com/package/webpack-bundle-tracker) can capture data while webpack is compiling. It uses JSON for this purpose.
+
 ## Enabling a performance budget
 
 Webpack allows you to define a **performance budget**. The idea is that it gives your build size constraint which it has to follow. The feature is disabled by default and the calculation includes extracted chunks to entry calculation. If a budget isn't met and it has been configured to emit an error, it would terminate the entire build.
@@ -119,9 +104,9 @@ If you want to enforce a strict limit in a CI environment, set `hints` to `error
 
 {pagebreak}
 
-## Available analysis tools
+## Web UIs
 
-Even though having a look at the stats file itself gives you an idea of what's going on, often it's preferable to use a particular tool for analysis. Consider the following.
+TODO
 
 ### The Official analyse tool
 
@@ -133,6 +118,10 @@ Even though having a look at the stats file itself gives you an idea of what's g
 
 [webpack-xray](https://github.com/akx/webpack-xray) is a similar to the official analyse tool while having a modernized UI and support for drilling down in the data.
 
+### Auxpack
+
+https://github.com/Auxpack/Auxpack
+
 {pagebreak}
 
 ### Webpack Visualizer
@@ -141,19 +130,11 @@ Even though having a look at the stats file itself gives you an idea of what's g
 
 [Webpack Visualizer](https://chrisbateman.github.io/webpack-visualizer/) provides a pie chart showing your bundle composition allowing to understand which dependencies contribute to the size of the overall result.
 
-### `DuplicatePackageCheckerPlugin`
-
-[duplicate-package-checker-webpack-plugin](https://www.npmjs.com/package/duplicate-package-checker-webpack-plugin) warns you if it finds single package multiple times in your build. This situation can be hard to spot otherwise.
-
 ### Webpack Chart
 
 ![Webpack Chart](images/webpack-chart.png)
 
 [Webpack Chart](https://alexkuz.github.io/webpack-chart/) is another similar visualization.
-
-### webpack-unused
-
-[webpack-unused](https://www.npmjs.com/package/webpack-unused) prints out unused files and can be used to understand which assets are no longer used and can be removed from the project.
 
 ### Stellar Webpack
 
@@ -161,17 +142,21 @@ Even though having a look at the stats file itself gives you an idea of what's g
 
 [Stellar Webpack](https://alexkuz.github.io/stellar-webpack/) gives a universe based visualization and allows you to examine your application in a 3D form.
 
-### webpack-bundle-tracker
-
-[webpack-bundle-tracker](https://www.npmjs.com/package/webpack-bundle-tracker) can capture data while webpack is compiling. It uses JSON for this purpose.
-
 ### webpack-bundle-analyzer
 
 ![webpack-bundle-analyzer](images/webpack-bundle-analyzer.jpg)
 
 [webpack-bundle-analyzer](https://www.npmjs.com/package/webpack-bundle-analyzer) provides a zoomable treemap.
 
-{pagebreak}
+### Webpack Monitor
+
+[Webpack Monitor](http://webpackmonitor.com/) is another similar tool with an emphasis on a clear user interface. It's able to provide recommendations on what to improve the build.
+
+### webpack-deps-tree
+
+[webpack-deps-tree](https://restrry.github.io/webpack-deps-tree/static/) displays webpack module graph. Using it you can understand how modules of your bundles are related to each other.
+
+## Command line utilities
 
 ### webpack-bundle-size-analyzer
 
@@ -187,22 +172,6 @@ object-assign: 1.95 KB (1.55%)
 css-loader: 1.47 KB (1.17%)
 <self>: 572 B (0.445%)
 ```
-
-### Jarvis
-
-[Jarvis](https://www.npmjs.com/package/webpack-jarvis) is a user interface that has been designed to show all information relevant to your webpack build. For example, it shows the amount of treeshakeable modules in the project and how well your assets perform against different connection types.
-
-### webpack-runtime-analyzer
-
-[webpack-runtime-analyzer](https://www.npmjs.com/package/webpack-runtime-analyzer) gives real-time analysis over webpack bundles. You can see bundle composition in multiple formats through the user interface, bundle sizes, and module details. It combines features of many tools above into a single one.
-
-### Webpack Monitor
-
-[Webpack Monitor](http://webpackmonitor.com/) is another similar tool with an emphasis on a clear user interface. It's able to provide recommendations on what to improve the build.
-
-### webpack-deps-tree
-
-[webpack-deps-tree](https://restrry.github.io/webpack-deps-tree/static/) displays webpack module graph. Using it you can understand how modules of your bundles are related to each other.
 
 ### inspectpack
 
@@ -224,6 +193,29 @@ $ inspectpack --action=duplicates --bundle=bundle.js
 
 The tool also comes with a plugin you can attach directly to your configuration in case you prefer to perform the check during the build.
 
+## Online services
+
+- TODO: Mention https://www.bundle-analyzer.com
+- TODO: Mention https://packtracker.io/
+
+## Bundle comparison
+
+- TODO: Mention https://www.npmjs.com/package/@mixer/webpack-bundle-compare
+  https://github.com/smikula/webpack-bundle-diff
+  https://github.com/GoogleChromeLabs/size-plugin
+
+## Circular dependency analysis
+
+- TODO: Mention https://www.npmjs.com/package/circular-dependency-plugin
+
+## Unused files analysis
+
+- TODO: Mention https://www.npmjs.com/package/unused-webpack-plugin
+- TODO: Mention https://github.com/tomchentw/unused-files-webpack-plugin
+  https://www.npmjs.com/package/remnants
+
+[webpack-unused](https://www.npmjs.com/package/webpack-unused) prints out unused files and can be used to understand which assets are no longer used and can be removed from the project.
+
 ## Duplication analysis
 
 In addition to inspectpack, there are other tools for figuring out duplicates:
@@ -233,9 +225,23 @@ In addition to inspectpack, there are other tools for figuring out duplicates:
 - [depcheck](https://www.npmjs.com/package/depcheck) goes further and warns if there are redundant dependencies or dependencies missing from the project.
 - [bundle-buddy](https://www.npmjs.com/package/bundle-buddy) can find duplicates across bundles while providing a user interface to tune webpack code splitting behavior. [bundle-buddy-webpack-plugin](https://www.npmjs.com/package/bundle-buddy-webpack-plugin) makes it simpler to use.
 
+[duplicate-package-checker-webpack-plugin](https://www.npmjs.com/package/duplicate-package-checker-webpack-plugin) warns you if it finds single package multiple times in your build. This situation can be hard to spot otherwise.
+
+## Understanding why a module was bundled
+
+https://www.npmjs.com/package/whybundled
+
 ## Independent tools
 
 In addition to tools that work with webpack output, there are a couple that are webpack agnostic and worth a mention.
+
+### dependency-cruiser
+
+- TODO: Mention https://www.npmjs.com/package/dependency-cruiser
+
+### bundle-wizard
+
+https://www.npmjs.com/package/bundle-wizard
 
 ### source-map-explorer
 
