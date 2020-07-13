@@ -1,11 +1,10 @@
 # Multiple Pages
 
-- TODO: `runtimeChunk: 'single'`
-- TODO: https://www.npmjs.com/package/directory-tree-webpack-plugin
-
 Even though webpack is often used for bundling single page applications, it's possible to use it with multiple separate pages as well. The idea is similar to the way you generated multiple output files in the _Targets_ chapter. This time, however, you have to generate separate pages. That's achievable through `HtmlWebpackPlugin` and a bit of configuration.
 
-## Possible Approaches
+T> If you want to map a directory tree as a website, see [directory-tree-webpack-plugin](https://www.npmjs.com/package/directory-tree-webpack-plugin).
+
+## Possible approaches
 
 When generating multiple pages with webpack, you have a couple of possibilities:
 
@@ -15,11 +14,11 @@ When generating multiple pages with webpack, you have a couple of possibilities:
 
 In practice, you have more dimensions. For example, you have to generate i18n variants for pages. These ideas grow on top of the basic approaches.
 
-## Generating Multiple Pages
+## Generating multiple pöages
 
 To generate multiple separate pages, they should be initialized somehow. You should also be able to return a configuration for each page, so webpack picks them up and process them through the multi-compiler mode.
 
-### Abstracting Pages
+### Abstracting pages
 
 To initialize a page, it should receive page title, output path, and an optional template at least. Each page should receive optional output path and a template for customization. The idea can be modeled as a configuration part:
 
@@ -44,7 +43,7 @@ exports.page = ({ path = "", template, title } = {}) => ({
 
 {pagebreak}
 
-### Integrating to Configuration
+### Integrating to configuration
 
 To incorporate the idea into the configuration, the way it's composed has to change. Also, a page definition is required. To get started, let's reuse the same JavaScript logic for each page for now:
 
@@ -100,9 +99,7 @@ leanpub-end-insert
 
 After this change you should have two pages in the application: `/` and `/another`. It should be possible to navigate to both while seeing the same output.
 
-### Injecting Different Script per Page
-
-- TODO: fix code example (chunks)
+### Injecting a different script per page
 
 The question is, how to inject a different script per each page. In the current configuration, the same `entry` is shared by both. To solve the problem, you should move `entry` configuration to lower level and manage it per page. To have a script to test with, set up another entry point:
 
@@ -205,7 +202,7 @@ After these changes `/another` should show something familiar:
 
 ![Another page shows up](images/another.png)
 
-### Pros and Cons
+### Pros and cons
 
 If you build the application (`npm run build`), you should find _another/index.html_. Based on the generated code, you can make the following observations:
 
@@ -216,13 +213,13 @@ If you build the application (`npm run build`), you should find _another/index.h
 
 The approach can be pushed in another direction by dropping the multi-compiler mode. Even though it's slower to process this kind of build, it enables code sharing and the implementation of shells. The first step towards a shell setup is to rework the configuration so that it picks up the code shared between the pages.
 
-## Generating Multiple Pages While Sharing Code
+## Generating multiple pages while sharing code
 
 The current configuration shares code by coincidence already due to the usage patterns. Only a small part of the code differs, and as a result, only the page manifests, and the bundles mapping to their entries differ.
 
 In a more complicated application, you should apply techniques covered in the _Bundle Splitting_ chapter across the pages. Dropping the multi-compiler mode can be worthwhile then.
 
-### Adjusting Configuration
+### Adjusting configuration
 
 Adjustment is needed to share code between the pages. Most of the code can remain the same. The way you expose it to webpack has to change so that it receives a single configuration object. As _mini-html-webpack-plugin_ picks up all chunks by default, you have to adjust it to pick up only the chunks that are related to each page:
 
@@ -239,7 +236,7 @@ module.exports = mode => {
         app: PATHS.app,
       },
 leanpub-start-insert
-      chunks: ["app", "runtime", "vendors~app"],
+      chunks: ["app", "runtime", "vendor"],
 leanpub-end-insert
     }),
     parts.page({
@@ -249,7 +246,7 @@ leanpub-end-insert
         another: path.join(PATHS.app, "another.js"),
       },
 leanpub-start-insert
-      chunks: ["another", "runtime", "vendors~app"],
+      chunks: ["another", "runtime", "vendor"],
 leanpub-end-insert
     }),
   ];
@@ -290,9 +287,11 @@ leanpub-end-insert
 });
 ```
 
-If you generate a build (`npm run build`), you should notice that something is different compared to the first multiple page build. Instead of two manifest files, there's only one. Because of the new setup, the manifest contains references to all of the bundles that were generated. In turn, the entry specific files point to different parts of the manifest and the manifest runs different code depending on the entry. Multiple separate manifests are not therefore needed.
+If you generate a build (`npm run build`), you should notice that something is different compared to the first multiple page build. Instead of two manifest files, there's only one. Because of the new setup, the manifest contains references to all of the bundles that were generated.
 
-### Pros and Cons
+In turn, the entry specific files point to different parts of the manifest and the manifest runs different code depending on the entry. Multiple separate manifests are not therefore needed.
+
+### Pros and cons
 
 Compared to the earlier approach, something was gained, but also lost:
 
@@ -300,7 +299,7 @@ Compared to the earlier approach, something was gained, but also lost:
 - Plugins such as `CleanWebpackPlugin` don't work without additional consideration now.
 - Instead of multiple manifests, only one remains. The result is not a problem, though, as the entries use it differently based on their setup.
 
-## Progressive Web Applications
+## Progressive web applications
 
 If you push the idea further by combining it with code splitting and smart routing, you'll end up with the idea of Progressive Web Applications (PWA). [webpack-pwa](https://github.com/webpack/webpack-pwa) example illustrates how to implement the approach using webpack either through an app shell or a page shell.
 
