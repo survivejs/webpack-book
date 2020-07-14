@@ -1,27 +1,14 @@
 # Comparison of Build Tools
 
-- TODO: Add https://poi.js.org/
-- TODO: Add https://github.com/ronami/minipack
-- TODO: Mention SystemJS properly
-- TODO: Link to https://dev.to/netlify/choosing-a-javascript-build-tool-to-config-or-not-config-2ia8
-- TODO: https://medium.com/rollup/rollup-now-has-code-splitting-and-we-need-your-help-46defd901c82
-- TODO: Mention Snowpack, https://www.snowpack.dev/#snowpack
-- TODO: https://blog.logrocket.com/snowpack-vs-webpack/
-- TODO: https://bundlers.tooling.report
-- TODO: https://github.com/evanw/esbuild
-- TODO: https://github.com/ryanelian/instapack
-- TODO: https://github.com/vitejs/vite
-- TODO: https://github.com/aholachek/bundle-wizard
-- TODO: https://github.com/rollup/rollup-starter-code-splitting
-- TODO: https://github.com/evanw/esbuild/
-
 Back in the day, it was enough to concatenate scripts together. Times have changed, though, and now distributing your JavaScript code can be a complicated endeavor. This problem has escalated with the rise of single-page applications (SPAs). They tend to rely on many hefty libraries.
 
 For this reason, there are multiple strategies on how to load them. You could load them all at once or consider loading libraries as you need them. Webpack supports many of these sorts of strategies.
 
 The popularity of Node and [npm](https://www.npmjs.com/), its package manager, provide more context. Before npm became popular, it was hard to consume dependencies. There was a period when people developed frontend specific package managers, but npm won in the end. Now dependency management is more comfortable than before, although there are still challenges to overcome.
 
-## Task Runners
+T> [Tooling.Report](https://bundlers.tooling.report/) provides a feature comparison of the most popular build tools.
+
+## Task runners
 
 Historically speaking, there have been many build tools. _Make_ is perhaps the best known, and it's still a viable option. Specialized _task runners_, such as Grunt and Gulp were created particularly with JavaScript developers in mind. Plugins available through npm made both task runners powerful and extendable. It's possible to use even npm `scripts` as a task runner. That's common, particularly with webpack.
 
@@ -66,7 +53,7 @@ clean:
 
 With Make, you model your tasks using Make-specific syntax and terminal commands making it possible to integrate with webpack.
 
-### npm `scripts` as a Task Runner
+### npm `scripts` as a task runner
 
 Even though npm CLI wasn't primarily designed to be used as a task runner, it works as such thanks to _package.json_ `scripts` field. Consider the example below:
 
@@ -97,7 +84,7 @@ Here's an example from [Grunt documentation](http://gruntjs.com/sample-gruntfile
 **Gruntfile.js**
 
 ```javascript
-module.exports = grunt => {
+module.exports = (grunt) => {
   grunt.initConfig({
     lint: {
       files: ["Gruntfile.js", "src/**/*.js", "test/**/*.js"],
@@ -145,7 +132,10 @@ const sourcemaps = require("gulp-sourcemaps");
 const del = require("del");
 
 const paths = {
-  scripts: ["client/js/**/*.coffee", "!client/external/**/*.coffee"],
+  scripts: [
+    "client/js/**/*.coffee",
+    "!client/external/**/*.coffee",
+  ],
 };
 
 // Not all tasks need to use streams.
@@ -175,7 +165,7 @@ Given the configuration is code, you can always hack it if you run into troubles
 
 T> [webpack-stream](https://www.npmjs.com/package/webpack-stream) allows you to use webpack in a Gulp environment.
 
-## Script Loaders
+## Script loaders
 
 For a while, [RequireJS](http://requirejs.org/), a script loader, was popular. The idea was to provide an asynchronous module definition and build on top of that. Fortunately, the standards have caught up, and RequireJS seems more like a curiosity now.
 
@@ -268,17 +258,13 @@ Brunch comes with commands like `brunch new`, `brunch watch --server`, and `brun
 
 T> There is an experimental [Hot Module Replacement runtime](https://www.npmjs.com/package/hmr-brunch) for Brunch.
 
-### Parcel
+### Rollup
 
-![Parcel](images/parcel.png)
+[Rollup](https://www.npmjs.com/package/rollup) focuses on bundling ES2015 code. _Tree shaking_ is one of its selling points and it supports code splitting as well. You can use Rollup with webpack through [rollup-loader](https://www.npmjs.com/package/rollup-loader).
 
-[Parcel](https://parceljs.org/) is a performant bundler, that unlike its predecessors, doesn't require configuration. The _zero configuration_ approach has made it popular within the community. The idea is that you set up an _index.html_ and Parcel will begin the bundling process based on that. It supports Hot Module Replacement out of the box.
-
-T> There's a whole category of zero configuration bundlers like Parcel. These tools include [microbundle](https://www.npmjs.com/package/microbundle), [sfo](https://www.npmjs.com/package/sfo), [bili](https://www.npmjs.com/package/bili), [ovi](https://www.npmjs.com/package/ovi), and [asbundle](https://www.npmjs.com/package/asbundle).
+[vite](https://www.npmjs.com/package/vite) is an opinionated wrapper built on top of Rollup.
 
 ### Webpack
-
-![webpack](images/webpack.png)
 
 You could say [webpack](https://webpack.js.org/) takes a more unified approach than Browserify. Whereas Browserify consists of multiple small tools, webpack comes with a core that provides a lot of functionality out of the box.
 
@@ -286,18 +272,25 @@ Webpack core can be extended using specific _loaders_ and _plugins_. It gives co
 
 Compared to the other tools, webpack comes with initial complexity, but it makes up for this through its broad feature set. It's an advanced tool that requires patience. But once you understand the basic ideas behind it, webpack becomes powerful.
 
-{pagebreak}
+To make it easier to use, tools such as [create-react-app](https://www.npmjs.com/package/create-react-app), [poi](https://poi.js.org/), and [instapack](https://www.npmjs.com/package/instapack) have been built around it.
+
+## Zero configuration bundlers
+
+There's a whole category of so called _zero configuration_ bundlers. The idea is that they work out of the box without any extra setup. [Parcel](https://parceljs.org/) is perhaps the famous of them.
+
+[FuseBox](https://www.npmjs.com/package/fuse-box) is a bundler focusing on speed. It uses a zero-configuration approach and aims to be usable out of the box.
+
+These tools include [microbundle](https://www.npmjs.com/package/microbundle), [bili](https://www.npmjs.com/package/bili), [asbundle](https://www.npmjs.com/package/asbundle), and [tsdx](https://www.npmjs.com/package/tsdx).
 
 ## Other Options
 
 You can find more alternatives as listed below:
 
-- [pundle](https://www.npmjs.com/package/pundle) advertises itself as a next-generation bundler and notes particularly its performance.
-- [Rollup](https://www.npmjs.com/package/rollup) focuses on bundling ES2015 code. _Tree shaking_ is one of its selling points and it supports code splitting as well. You can use Rollup with webpack through [rollup-loader](https://www.npmjs.com/package/rollup-loader).
+- [Rome](https://romefrontend.dev/) is an entire toolchain built around the problems of linting, compiling, and bundling.
+- [Snowpack](https://www.snowpack.dev/) is a lightweight toolchain for web development. [Drew Powers explains well how it differs from webpack](https://blog.logrocket.com/snowpack-vs-webpack/).
+- [esbuild](https://www.npmjs.com/package/esbuild) is a performance oriented bundler written in Go.
 - [AssetGraph](https://www.npmjs.com/package/assetgraph) takes an entirely different approach and builds on top of HTML semantics making it ideal for [hyperlink analysis](https://www.npmjs.com/package/hyperlink) or [structural analysis](https://www.npmjs.com/package/assetviz). [webpack-assetgraph-plugin](https://www.npmjs.com/package/webpack-assetgraph-plugin) bridges webpack and AssetGraph together.
-- [FuseBox](https://www.npmjs.com/package/fuse-box) is a bundler focusing on speed. It uses a zero-configuration approach and aims to be usable out of the box.
 - [StealJS](https://stealjs.com/) is a dependency loader and a build tool which has focused on performance and ease of use.
-- [Flipbox](https://www.npmjs.com/package/flipbox) wraps many bundlers behind a uniform interface.
 - [Blendid](https://www.npmjs.com/package/blendid) is a blend of Gulp and bundlers to form an asset pipeline.
 
 {pagebreak}
