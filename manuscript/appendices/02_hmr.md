@@ -1,14 +1,8 @@
 # Hot Module Replacement
 
-- TODO: hmr - mention that normal require does not have a live binding
-- TODO: https://github.com/pmmmwh/react-refresh-webpack-plugin
-- TODO: http://blog.jakoblind.no/webpack-hmr/
-- TODO: https://github.com/WebHotelier/webpack-fast-refresh
-- TODO: https://mariosfakiolas.com/blog/what-the-heck-is-react-fast-refresh/
-
 **Hot Module Replacement** (HMR) builds on top of the WDS. It enables an interface that makes it possible to swap modules live. For example, _style-loader_ can update your CSS without forcing a refresh. Implementing HMR for styles is ideal because CSS is stateless by design.
 
-HMR is possible with JavaScript too, but due to application state, it's harder. [react-hot-loader](https://github.com/gaearon/react-hot-loader/) and [vue-hot-reload-api](https://www.npmjs.com/package/vue-hot-reload-api) are good examples.
+HMR is possible with JavaScript too, but due to application state, it's harder. [react-refresh-webpack-plugin](https://www.npmjs.com/package/react-refresh-webpack-plugin) and [vue-hot-reload-api](https://www.npmjs.com/package/vue-hot-reload-api) are good examples.
 
 T> Given HMR can be complex to implement, a good compromise is to store application state to `localStorage` and then hydrate the application based on that after a refresh. Doing this pushes the problem to the application side.
 
@@ -51,17 +45,13 @@ If you implement configuration like above without implementing the client interf
 
 The message tells that even though the HMR interface notified the client portion of the code of a hot update, nothing was done about it and this is something to fix next.
 
-TODO: NamedModulesPlugin -> optimization.namedModules
+T> The setup assumes you have enabled `optimization.namedModules`. If you run webpack in `development` mode, it will be on by default.
 
-T> The setup assumes you have enabled `webpack.NamedModulesPlugin()`. If you run webpack in `development` mode, it will be on by default.
+W> You should **not** enable HMR for your production configuration. It likely works, but it makes your bundles larger than they should be.
 
-W> _webpack-dev-server_ can be picky about paths. Webpack [issue #675](https://github.com/webpack/webpack/issues/675) discusses the problem in more detail.
+W> If you are using Babel, configure it so that it lets webpack control module generation as otherwise, HMR logic won't work! See the _Loading JavaScript_ chapter for the exact setup.
 
-W> You should **not** enable HMR for your production configuration. It likely works, but it makes your bundles more significant than they should be.
-
-W> If you are using Babel, configure it so that it lets webpack control module generation as otherwise, HMR logic won't work!
-
-## Implementing the HMR Interface
+## Implementing the HMR interface
 
 Webpack exposes the HMR interface through a global variable: `module.hot`. It provides updates through `module.hot.accept(<path to watch>, <handler>)` function and you need to patch the application there.
 
@@ -106,7 +96,7 @@ T> The `if(module.hot)` block is eliminated entirely from the production build a
 
 {pagebreak}
 
-## Setting WDS Entry Points Manually
+## Setting WDS entry points manually
 
 In the setup above, the WDS-related entries were injected automatically. Assuming you are using WDS through Node, you would have to set them yourself as the Node API doesn't support injecting. The example below illustrates how to achieve this:
 
@@ -126,7 +116,7 @@ entry: {
 },
 ```
 
-## HMR and Dynamic Loading
+## HMR and dynamic loading
 
 _Dynamic Loading_ through `require.context` and HMR requires extra effort:
 
@@ -138,4 +128,4 @@ module.hot.accept(req.id, ...); // Replace modules here as above
 
 ## Conclusion
 
-HMR is one of those aspects of webpack that makes it attractive for developers and webpack has taken its implementation far. To work, HMR requires both client and server side support. For this purpose, webpack-dev-server provides both. Often you have to implement the client side interface although loaders like _style-loader_ implement it for you.
+HMR is one of those aspects of webpack that makes it attractive for developers and webpack has taken its implementation far. To work, HMR requires both client and server side support. For this purpose, webpack-dev-server provides both. You will have to take care with the client-side, though, and either find a solution that implements the HMR interface or implement it yourself.
