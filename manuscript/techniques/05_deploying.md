@@ -8,7 +8,7 @@ A project built with webpack can be deployed to a variety of environments. A pub
 
 Despite its name, the package works with other services that support hosting from a Git repository as well. But given GitHub is so popular, it can be used to demonstrate the idea. In practice, you would likely have more complicated setup in place that would push the result to another service through a Continuous Integration system.
 
-### Setting Up _gh-pages_
+### Setting up _gh-pages_
 
 To get started, execute
 
@@ -65,7 +65,7 @@ T> If you need a more elaborate setup, use the Node API that _gh-pages_ provides
 
 T> GitHub Pages allows you to choose the branch where you deploy. It's possible to use the `master` branch even as it's enough for minimal sites that don't need bundling. You can also point below the _./docs_ directory within your `master` branch and maintain your site.
 
-### Archiving Old Versions
+### Archiving old versions
 
 _gh-pages_ provides an `add` option for archival purposes. The idea goes as follows:
 
@@ -78,7 +78,7 @@ _gh-pages_ provides an `add` option for archival purposes. The idea goes as foll
 ghpages.publish(path.join(__dirname, "build"), { add: true }, cb);
 ```
 
-## Deploying to Other Environments
+## Deploying to other environments
 
 Even though you can push the problem of deployment outside of webpack, there are a couple of webpack specific utilities that come in handy:
 
@@ -91,7 +91,7 @@ T> To get access to the generated files and their paths, consider using [assets-
 
 W> To make sure clients relying on the older bundles still work after deploying a new version, do **not** remove the old files until they are old enough. You can perform a specific check on what to remove when deploying instead of removing every old asset.
 
-## Resolving `output.publicPath` Dynamically
+## Resolving `output.publicPath` dynamically
 
 If you don't know `publicPath` beforehand, it's possible to resolve it based on the environment by following these steps:
 
