@@ -21,29 +21,26 @@ Sometimes packages do not follow the standard rules and their _package.json_ con
 
 The idea is that if webpack resolver matches `demo` in the beginning, it resolves from the target. You can constrain the process to an exact name by using a pattern like `demo$`.
 
-Light React alternatives, such as [Preact](https://www.npmjs.com/package/preact), [react-lite](https://www.npmjs.com/package/react-lite), or [Inferno](https://www.npmjs.com/package/inferno), offer smaller size while trading off functionality like `propTypes` and synthetic event handling. Replacing React with a lighter alternative can save a significant amount of space, but you should test well if you do this.
+Light React alternatives, such as [Preact](https://www.npmjs.com/package/preact) or [Inferno](https://www.npmjs.com/package/inferno), offer smaller size while trading off functionality like `propTypes` and synthetic event handling. Replacing React with a lighter alternative can save a significant amount of space, but you should test well if you do this.
 
-If you are using _react-lite_, configure it as below:
+With Preact, the basic setup looks like this:
 
 ```javascript
-{
+const config = {
   resolve: {
     alias: {
-      // Swap the target based on your need
-      react: "react-lite",
-      "react-dom": "react-lite",
+      react: "preact-compat",
+      "react-dom": "preact-compat",
     },
   },
-},
+};
 ```
 
 T> The same technique works with loaders too. You can use `resolveLoader.alias` similarly. You can use the method to adapt a RequireJS project to work with webpack.
 
-T> If you are using Babel, [babel-plugin-webpack-alias](https://www.npmjs.com/package/babel-plugin-webpack-alias) mimics the aliasing behavior.
-
 ## `resolve.extensions`
 
-By default, webpack will resolve only against `.js` and `.json` files while importing without an extension, to tune this to include JSX files, adjust as below:
+By default, webpack will resolve only against `.js`, `.mjs`, and `.json` files while importing without an extension, to tune this to include JSX files, adjust as below:
 
 ```javascript
 {
@@ -74,7 +71,7 @@ Webpack allows you to customize the module resolution behavior using the `resolv
 - [directory-named-webpack-plugin](https://www.npmjs.com/package/directory-named-webpack-plugin) maps imports made against directories to files matching the directory name. For example, it would map `import foo from "./foo";` to `import foo from "./foo/foo.js";`. The pattern is popular with React and using the plugin will allow you to simplify your code. [babel-plugin-module-resolver](https://www.npmjs.com/package/babel-plugin-module-resolver) achieves the same behavior through Babel.
 - [webpack-resolve-short-path-plugin](https://www.npmjs.com/package/webpack-resolve-short-path-plugin) was designed to avoid deeply nested imports like `import foo from "../../../foo";` by adding support for tilde (`~`) syntax. `import foo from "~foo"` would resolve against the project root if the plugin is used.
 
-## Consuming Packages Outside of Webpack
+## Consuming packages outside of webpack
 
 Browser dependencies, like jQuery, are often served through publicly available Content Delivery Networks (CDN). CDNs allow you to push the problem of loading popular packages elsewhere. If a package has been already loaded from a CDN and it's in the user cache, there is no need to load it.
 
@@ -98,15 +95,13 @@ You still have to point to a CDN and ideally provide a local fallback, so there 
 </script>
 ```
 
-T> [html-webpack-cdn-plugin](https://www.npmjs.com/package/html-webpack-cdn-plugin) is one option if you are using `HtmlWebpackPlugin` and want to inject a `script` tag automatically.
-
-## Dealing with Globals
+## Dealing with globals
 
 Sometimes modules depend on globals. `$` provided by jQuery is a good example. Webpack offers a few ways that allow you to handle them.
 
 {pagebreak}
 
-### Injecting Globals
+### Injecting globals
 
 [imports-loader](https://www.npmjs.com/package/imports-loader) allows you to inject globals as below:
 
@@ -125,7 +120,7 @@ Sometimes modules depend on globals. `$` provided by jQuery is a good example. W
 },
 ```
 
-### Resolving Globals
+### Resolving globals
 
 Webpack's `ProvidePlugin` allows webpack to resolve globals as it encounters them:
 
@@ -141,7 +136,7 @@ Webpack's `ProvidePlugin` allows webpack to resolve globals as it encounters the
 
 {pagebreak}
 
-### Exposing Globals to the Browser
+### Exposing globals to the browser
 
 Sometimes you have to expose packages to third-party scripts. [expose-loader](https://www.npmjs.com/package/expose-loader) allows this as follows:
 
@@ -166,7 +161,7 @@ T> [script-loader](https://www.npmjs.com/package/script-loader) allows you to ex
 
 {pagebreak}
 
-## Removing Unused Modules
+## Removing unused modules
 
 Even though packages can work well out of the box, they bring too much code to your project sometimes. [Moment.js](https://www.npmjs.com/package/moment) is a popular example. It brings locale data to your project by default.
 
@@ -197,7 +192,7 @@ T> There's a [Stack Overflow question](https://stackoverflow.com/questions/25384
 
 {pagebreak}
 
-## Managing Pre-built Dependencies
+## Managing pre-built dependencies
 
 It's possible webpack gives the following warning with certain dependencies:
 
@@ -224,7 +219,7 @@ W> Take care when disabling warnings as it can hide underlying issues. Consider 
 
 {pagebreak}
 
-## Managing Symbolic Links
+## Managing symbolic links
 
 Symbolic links, or symlinks, are an operating system level feature that allows you to point to other files through a file system without copying them. You can use `npm link` to create global symlinks for packages under development and then use `npm unlink` to remove the links.
 
@@ -232,7 +227,7 @@ Webpack resolves symlinks to their full path as Node does. The problem is that i
 
 T> You can disable webpack's symlink handling by setting `resolve.symlinks` as `false`.
 
-## Getting Insights on Packages
+## Getting insights on packages
 
 To get more information, npm provides `npm info <package>` command for basic queries. You can use it to check the metadata associated with packages while figuring out version related information. Consider the following tools as well:
 
