@@ -108,6 +108,8 @@ Furthermore, it's possible to manipulate `publicPath` and override the default p
 },
 ```
 
+T> In the example above, the usage of _file-loader_ is obscured _url-loader_. It uses _file-loader_ underneath with the `limit` option.
+
 ## Generating font files based on SVGs
 
 If you prefer to use SVG based fonts, they can be bundled as a single font file by using [webfonts-loader](https://www.npmjs.com/package/webfonts-loader).
