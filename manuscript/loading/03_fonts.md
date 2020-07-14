@@ -108,7 +108,7 @@ Furthermore, it's possible to manipulate `publicPath` and override the default p
 },
 ```
 
-T> In the example above, the usage of _file-loader_ is obscured _url-loader_. It uses _file-loader_ underneath with the `limit` option.
+T> In the example above, the usage of _file-loader_ is obscured _url-loader_. It uses _file-loader_ underneath with the `limit` option. The loader options are passed to it. You can override the behavior by using the `fallback` option.
 
 ## Generating font files based on SVGs
 
