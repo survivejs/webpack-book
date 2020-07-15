@@ -1,18 +1,12 @@
 # Extending with Plugins
 
-- TODO: use the new hooks api
-- TODO: build-module hook for plugins
-- TODO: show how to write a resolver plugin
-- TODO: mention resolve plugins in the plugin extension chapter
-- TODO: mention minifier plugins in the plugin extension chapter
-
 Compared to loaders, plugins are a more flexible means to extend webpack. You have access to webpack's **compiler** and **compilation** processes. It's possible to run child compilers, and plugins can work in tandem with loaders as `MiniCssExtractPlugin` shows.
 
 Plugins allow you to intercept webpack's execution through hooks. Webpack itself has been implemented as a collection of plugins. Underneath it relies on [tapable](https://www.npmjs.com/package/tapable) plugin interface that allows webpack to apply plugins in different ways.
 
 You'll learn to develop a couple of small plugins next. Unlike for loaders, there is no separate environment where you can run plugins, so you have to run them against webpack itself. It's possible to push smaller logic outside of the webpack facing portion, though, as this allows you to unit test it in isolation.
 
-## The Basic Flow of Webpack Plugins
+## The basic flow of webpack plugins
 
 A webpack plugin is expected to expose an `apply(compiler)` method. JavaScript allows multiple ways to do this. You could use a function and then attach methods to its `prototype`. To follow the newest syntax, you could use a `class` to model the same idea.
 
@@ -22,7 +16,7 @@ When the plugin is connected to webpack configuration, webpack will run its cons
 
 T> [webpack-defaults](https://www.npmjs.com/package/webpack-defaults) works as a starting point for webpack plugins. It contains the infrastructure used to develop official webpack loaders and plugins.
 
-## Setting Up a Development Environment
+## Setting up a development environment
 
 Since plugins have to be run against webpack, you have to set up one to run a demo plugin that will be developed further:
 
@@ -68,9 +62,9 @@ Executing it should result in an `Error: Cannot find module` failure as the actu
 
 T> If you want an interactive development environment, consider setting up [nodemon](https://www.npmjs.com/package/nodemon) against the build. Webpack's watcher won't work in this case.
 
-## Implementing a Basic Plugin
+## Implementing a basic plugin
 
-The simplest plugin should do two things: capture options and provide `apply` method:
+The most basic plugin should do two things: capture options and provide `apply` method:
 
 **plugins/demo-plugin.js**
 
@@ -86,7 +80,7 @@ If you run the plugin (`npm run build:plugin`), you should see `applying` messag
 
 {pagebreak}
 
-## Capturing Options
+## Capturing options
 
 Options can be captured through a `constructor`:
 
@@ -126,7 +120,7 @@ Now you should see `apply { name: 'demo' }` after running.
 
 {pagebreak}
 
-## Understanding Compiler and Compilation
+## Understanding compiler and compilation
 
 `apply` receives webpack's compiler as a parameter. Adjust as below:
 
@@ -157,27 +151,24 @@ module.exports = class DemoPlugin {
     this.options = options;
   }
   apply(compiler) {
-    leanpub - start - delete console.log(compiler);
-    leanpub - end - delete leanpub - start - insert;
-    compiler.plugin("emit", (compilation, cb) => {
+    compiler.hooks.emit.tapSync("DemoPlugin", (compilation, cb) => {
       console.log(compilation);
 
       cb();
     });
-    leanpub - end - insert;
   }
 };
 ```
 
 W> Forgetting the callback and running the plugin makes webpack fail silently!
 
-Running the build should show more information than before because a compilation object contains whole dependency graph traversed by webpack. You have access to everything related to it here including entries, chunks, modules, assets, and more.
+Running the build should show more information than before because a compilation object contains the whole dependency graph traversed by webpack. You have access to everything related to it here, including entries, chunks, modules, assets, and more.
 
 T> Many of the available hooks expose compilation, but sometimes they reveal a more specific structure, and it takes a more particular study to understand those.
 
 T> Loaders have dirty access to `compiler` and `compilation` through underscore (`this._compiler`/`this._compilation`).
 
-## Writing Files Through Compilation
+## Writing files through compilation
 
 The `assets` object of compilation can be used for writing new files. You can also capture already created assets, manipulate them, and write them back.
 
@@ -203,15 +194,10 @@ module.exports = class DemoPlugin {
     this.options = options;
   }
   apply(compiler) {
-    leanpub - start - insert;
     const { name } = this.options;
-    leanpub - end - insert;
 
-    compiler.plugin("emit", (compilation, cb) => {
-      leanpub - start - delete console.log(compilation);
-      leanpub - end - delete leanpub - start - insert;
+    compiler.hooks.emit.tapSync("DemoPlugin", (compilation, cb) => {
       compilation.assets[name] = new RawSource("demo");
-      leanpub - end - insert;
 
       cb();
     });
@@ -235,7 +221,7 @@ If you examine _build/demo_ file, you'll see it contains the word _demo_ as per 
 
 T> Compilation has a set of hooks of its own as covered in [the official compilation reference](https://webpack.js.org/api/plugins/compiler/).
 
-## Managing Warnings and Errors
+## Managing warnings and errors
 
 Plugin execution can be caused to fail by throwing (`throw new Error("Message")`). If you validate options, you can use this method.
 
@@ -246,13 +232,21 @@ compilation.warnings.push("warning");
 compilation.errors.push("error");
 ```
 
-There is no way pass information messages to webpack yet although there is [a logging proposal](https://github.com/webpack/webpack/issues/3996). If you want to use `console.log` for this purpose, push it behind a `verbose` flag. The problem is that `console.log` will print to stdout and it will end up in webpack's `--json` output as a result. A flag will allow the user to work around this problem.
+There's a logging API that lets you pass messages to webpack. Consider the API below:
 
-## Plugins Can Have Plugins
+```javascript
+const logger = compiler.getInfrastructureLogger("Demo Plugin");
 
-A plugin can provide hooks of its own. [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) uses plugins to extend itself as discussed in the _Getting Started_ chapter.
+logger.log("hello from compiler");
+```
 
-## Plugins Can Run Compilers of Their Own
+You can use the API familiar from `console` so `warning`, `error`, and `group` amongst other methods will work. See [the logging documentation](https://webpack.js.org/api/logging/) for further details.
+
+## Plugins can have plugins
+
+A plugin can provide hooks of its own. [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) is a nice example of a plugin providing its own plugin interface.
+
+## Plugins can run compilers of their own
 
 In special cases, like [offline-plugin](https://www.npmjs.com/package/offline-plugin), it makes sense to run a child compiler. It gives full control over related entries and output. Arthur Stolyar, the author of the plugin, has explained [the idea of child compilers at Stack Overflow](https://stackoverflow.com/questions/38276028/webpack-child-compiler-change-configuration).
 
@@ -266,5 +260,5 @@ To recap:
 - Plugins can be combined with loaders. `MiniCssExtractPlugin` works this way. The accompanying loader is used to mark assets to extract.
 - Plugins have access to webpack's **compiler** and **compilation** processes. Both provide hooks for different stages of webpack's execution flow and allow you to manipulate it. Webpack itself works this way.
 - Plugins can emit new assets and shape existing assets.
-- Plugins can implement plugin systems of their own. `HtmlWebpackPlugin` is an example of such plugin.
+- Plugins can implement plugin systems of their own. `HtmlWebpackPlugin` is an example of such a plugin.
 - Plugins can run compilers on their own. The isolation gives more control and allows plugins like _offline-plugin_ to be written.
