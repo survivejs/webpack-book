@@ -1,7 +1,5 @@
 # Environment Variables
 
-- TODO: https://www.npmjs.com/package/dotenv-webpack
-
 Sometimes a part of your code should execute only during development. Or you could have experimental features in your build that are not ready for production yet. Controlling **environment variables** becomes valuable as you can toggle functionality using them.
 
 Since JavaScript minifiers can remove dead code (`if (false)`), you can build on top of this idea and write code that gets transformed into this form. Webpack's `DefinePlugin` enables replacing **free variables** so that you can convert `if (process.env.NODE_ENV === "development")` kind of code to `if (true)` or `if (false)` depending on the environment.
@@ -133,8 +131,6 @@ leanpub-end-insert
 ```
 
 If you run the application, you should see a new message on the button.
-
-T> [webpack-conditional-loader](https://www.npmjs.com/package/webpack-conditional-loader) performs something similar based on code comments. It can be used to eliminate entire blocks of code.
 
 T> `webpack.EnvironmentPlugin(["NODE_ENV"])` is a shortcut that allows you to refer to environment variables. It uses `DefinePlugin` underneath, and you can achieve the same effect by passing `process.env.NODE_ENV`.
 
