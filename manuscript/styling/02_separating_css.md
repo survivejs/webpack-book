@@ -1,11 +1,8 @@
 # Separating CSS
 
-- TODO: https://github.com/faceyspacey/extract-css-chunks-webpack-plugin
-- TODO: Mention `publicPath` for MCEP
+Even though there is a nice build set up now, where did all the CSS go? As per configuration, it has been inlined to JavaScript! Although this can be convenient during development, it doesn't sound ideal.
 
-Even though there is a nice build set up now, where did all the CSS go? As per configuration, it has been inlined to JavaScript! Even though this can be convenient during development, it doesn't sound ideal.
-
-The current solution doesn't allow caching CSS. You can also get a **Flash of Unstyled Content** (FOUC). FOUC happens because the browser takes a while to load JavaScript and the styles would be applied only then. Separating CSS to a file of its own avoids the problem by letting the browser to manage it separately.
+The current solution doesn't allow caching CSS. You can also get a **Flash of Unstyled Content** (FOUC). FOUC happens because the browser takes a while to load JavaScript, and the styles would be applied only then. Separating CSS to a file of its own avoids the problem by letting the browser to manage it separately.
 
 Webpack provides a means to generate a separate CSS bundles using [mini-css-extract-plugin](https://www.npmjs.com/package/mini-css-extract-plugin) (MCEP). It can aggregate multiple CSS files into one. For this reason, it comes with a loader that handles the extraction process. The plugin then picks up the result aggregated by the loader and emits a separate file with the styling.
 
@@ -13,7 +10,7 @@ W> It can be potentially dangerous to use inline styles within JavaScript in pro
 
 T> [extract-css-chunks-webpack-plugin](https://github.com/faceyspacey/extract-css-chunks-webpack-plugin) is a community maintained alternative to **mini-css-extract-plugin** designed especially server side rendering in mind.
 
-## Setting Up `MiniCssExtractPlugin`
+## Setting up `MiniCssExtractPlugin`
 
 Install the plugin first:
 
@@ -23,7 +20,7 @@ npm add mini-css-extract-plugin -D
 
 `MiniCssExtractPlugin` includes a loader, `MiniCssExtractPlugin.loader` that marks the assets to be extracted. Then a plugin performs its work based on this annotation.
 
-Add the configuration below to the beginning of your configuration:
+Add configuration as below:
 
 **webpack.parts.js**
 
@@ -58,7 +55,7 @@ T> If you wanted to output the resulting file to a specific directory, you could
 
 {pagebreak}
 
-### Connecting with Configuration
+### Connecting with configuration
 
 Connect the function with the configuration as below:
 
@@ -91,7 +88,7 @@ leanpub-end-insert
 
 Using this setup, you can still benefit from the HMR during development. For a production build, it's possible to generate a separate CSS, though. `HtmlWebpackPlugin` picks it up automatically and injects it into `index.html`.
 
-T> If you are using _CSS Modules_, remember to tweak `use` accordingly as discussed in the _Loading Styles_ chapter. You can maintain separate setups for standard CSS and CSS Modules so that they get loaded through discrete logic.
+T> If you are using _CSS Modules_, remember to tweak `use` as discussed in the _Loading Styles_ chapter. You can maintain separate setups for standard CSS and CSS Modules so that they get loaded through discrete logic.
 
 T> You can drop the `loadCSS` function now as it won't be needed anymore. The setup above replaces it entirely.
 
@@ -117,11 +114,11 @@ Entrypoint main = main.css main.js
 ...
 ```
 
-Now styling has been pushed to a separate CSS file. Thus, the JavaScript bundle has become slightly smaller and you avoid the FOUC problem. The browser doesn't have to wait for JavaScript to load to get styling information. Instead, it can process the CSS separately, avoiding the flash.
+Now styling has been pushed to a separate CSS file. Thus, the JavaScript bundle has become slightly smaller, and you avoid the FOUC problem. The browser doesn't have to wait for JavaScript to load to get styling information. Instead, it can process the CSS separately, avoiding the flash.
 
 {pagebreak}
 
-## Managing Styles Outside of JavaScript
+## Managing styles outside of JavaScript
 
 Even though referring to styling through JavaScript and then bundling is the recommended option, it's possible to achieve the same result through an `entry` and [globbing](https://www.npmjs.com/package/glob) the CSS files through an entry:
 
@@ -151,7 +148,7 @@ If you want strict control over the ordering, you can set up a single CSS entry 
 
 ## Conclusion
 
-The current setup separates styling from JavaScript neatly. Even though the technique is most valuable with CSS, it can be used to extract HTML templates or any other files types you consume. The hard part about `MiniCssExtractPlugin` has to do with its setup, but the complexity can be hidden behind an abstraction.
+The current setup separates styling from JavaScript neatly. Even though the technique is most valuable with CSS, it can be used to extract any type of modules to a separate file. The hard part of `MiniCssExtractPlugin` has to do with its setup, but the complexity can be hidden behind an abstraction.
 
 To recap:
 
