@@ -11,7 +11,7 @@ Analyzing build statistics is a good step towards understanding webpack better. 
 
 ## Configuring webpack
 
-To get suitable output, you need to do a couple of tweaks to the configuration. At a minimum, you should set the `--json` flag and pipe the output to a file as follows:
+To make webpack emit analysis information, you should set the `--json` flag and pipe the output to a file as follows:
 
 **package.json**
 
@@ -70,7 +70,7 @@ If you want to manage stats through a plugin, check out [webpack-stats-plugin](h
 
 ## Enabling a performance budget
 
-Webpack allows you to define a **performance budget**. The idea is that it gives your build size constraint which it has to follow. The feature is disabled by default and the calculation includes extracted chunks to entry calculation.
+Webpack allows you to define a **performance budget**. The idea is that it gives your build size constraint, which it has to follow. The feature is disabled by default, and the calculation includes extracted chunks to entry calculation.
 
 {pagebreak}
 
@@ -105,13 +105,13 @@ Entrypoints:
       main.8406.js
 ```
 
-If you want to enforce a strict limit in a CI environment, set `hints` to `error`. Doing this will fail the build in case a limit is reached and force the developers either go below the limit or raise a discussion about good limits.
+If you want to enforce a strict limit in a CI environment, set `hints` to `error`. Doing this will fail the build in case it is reached and force the developers either go below the limit or raise a discussion about good limits.
 
 {pagebreak}
 
 ## Dependency analysis
 
-It's possible to analyze bundle dependencies in a graphical manner and many tools exist for this purpose.
+It's possible to analyze bundle dependencies in a graphical manner, and many tools exist for this purpose.
 
 ### The Official analyse tool
 
@@ -131,11 +131,11 @@ It's possible to analyze bundle dependencies in a graphical manner and many tool
 
 ### webpack-deps-tree
 
-[webpack-deps-tree](https://restrry.github.io/webpack-deps-tree/static/) displays webpack module graph. Using it you can understand how modules of your bundles are related to each other.
+[webpack-deps-tree](https://restrry.github.io/webpack-deps-tree/static/) displays webpack module graph. Using the tool you can understand how modules of your bundles are related to each other.
 
 ### circular-dependency-plugin
 
-[circular-dependency-plugin](https://www.npmjs.com/package/circular-dependency-plugin) lets you detect cycles in the module graph. Often the existence of a cycle implies a bug and it can be a good idea to refactor cycles out.
+[circular-dependency-plugin](https://www.npmjs.com/package/circular-dependency-plugin) lets you detect cycles in the module graph. Often this implies a bug, and it can be a good idea to refactor cycles out.
 
 ### dependency-cruiser
 
@@ -151,13 +151,13 @@ It's possible to analyze bundle dependencies in a graphical manner and many tool
 
 ## Composition analysis
 
-Pie charts, treemaps, and command line tools let you visualize bundle composition. Studying the generated graphics can generate insights and understand what's contributing to the bundle size.
+Pie charts, treemaps, and command-line tools let you visualize bundle composition. Studying the generated graphics can generate insights and understand what's contributing to the bundle size.
 
 ### Pie charts
 
 ![Webpack Visualizer](images/webpack-visualizer.png)
 
-[Webpack Visualizer](https://chrisbateman.github.io/webpack-visualizer/) provides a pie chart showing your bundle composition allowing to understand which dependencies contribute to the size of the overall result. [Webpack Chart](https://alexkuz.github.io/webpack-chart/) is another similar option.
+[Webpack Visualizer](https://chrisbateman.github.io/webpack-visualizer/) provides a pie chart showing your bundle composition, allowing to understand which dependencies contribute to the size of the overall result. [Webpack Chart](https://alexkuz.github.io/webpack-chart/) is another similar option.
 
 In addition to providing a pie chart visualization, [Auxpack](http://auxpack.com/) is able to track bundle size over time.
 
@@ -188,7 +188,7 @@ css-loader: 1.47 KB (1.17%)
 
 ## Online services
 
-It's possible to integrate bundle analysis to your build process by using [Bundle Analyzer](https://www.bundle-analyzer.com) (free) and [Packtracker](https://packtracker.io/) (commercial). The services integrate well with GitHub and will show up in your pull requests as it's valuable to have the information visible there.
+It's possible to integrate bundle analysis to your build process by using [Bundle Analyzer](https://www.bundle-analyzer.com) (free) and [Packtracker](https://packtracker.io/) (commercial). The services integrate well with GitHub and will show up in your pull requests, as it's valuable to have the information visible there.
 
 ## Bundle comparison
 
@@ -196,7 +196,7 @@ It's possible to integrate bundle analysis to your build process by using [Bundl
 
 [webpack-bundle-diff](https://github.com/smikula/webpack-bundle-diff) operates on a lower level and emits a JSON file with the difference. It could work well with a custom visualization.
 
-[size-plugin](https://github.com/GoogleChromeLabs/size-plugin) prints out the size difference since the last build and it can be useful during local development.
+[size-plugin](https://github.com/GoogleChromeLabs/size-plugin) prints out the size difference since the last build, and it can be useful during local development.
 
 ## Unused files analysis
 
@@ -239,13 +239,13 @@ The tool also comes with a plugin you can attach directly to your configuration 
 
 ## Conclusion
 
-When you are optimizing the size of your bundle output, these tools are invaluable. The official tool has the most functionality, but even a rudimentary visualization can reveal problem spots. You can use the same technique with old projects to understand their composition.
+When you are optimizing the size of your bundle output, these tools are invaluable. The official tool has the most functionality, but even basic visualization can reveal problem spots. You can use the same technique with old projects to understand their composition.
 
 To recap:
 
-- Webpack allows you to extract a JSON file containing information about the build. The data can include the build composition and timing.
+- Webpack allows you to extract a JSON file containing information about the build. The data can include build composition and timing.
 - The generated data can be analyzed using various tools that give insight into aspects such as the bundle composition.
 - **Performance budget** allows you to set limits to the build size. Maintaining a budget can keep developers more conscious of the size of the generated bundles.
-- Understanding the bundles is the key to insights on how to optimize the overall size, what to load and when. It can also reveal more significant issues, such as redundant data.
+- Understanding the bundles is the key to optimizing the overall size, what to load and when. It can also reveal more significant issues, such as redundant data.
 
 You'll learn to tune webpack performance in the next chapter.
