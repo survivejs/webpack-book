@@ -1,16 +1,14 @@
 # Extending with Loaders
 
-- TODO: you can pass data between these loaders with `this.loaders[i].data.value = 1`
-
 As you have seen so far, loaders are one of the building blocks of webpack. If you want to load an asset, you most likely need to set up a matching loader definition. Even though there are a lot of [available loaders](https://webpack.js.org/loaders/), it's possible you are missing one fitting your purposes.
 
 You'll learn to develop a couple of small loaders next. But before that, it's good to understand how to debug them in isolation.
 
 T> If you want a good starting point for a standalone loader or plugin project, consider using [webpack-defaults](https://github.com/webpack-contrib/webpack-defaults). It provides an opinionated starting point that comes with linting, testing, and other goodies.
 
-## Debugging Loaders with _loader-runner_
+## Debugging loaders with _loader-runner_
 
-[loader-runner](https://www.npmjs.com/package/loader-runner) allows you to run loaders without webpack allowing you to learn more about loader development. Install it first:
+[loader-runner](https://www.npmjs.com/package/loader-runner) allows you to run loaders without webpack, allowing you to learn more about loader development. Install it first:
 
 ```bash
 npm add loader-runner -D
@@ -71,9 +69,9 @@ T> If you want to capture the output to a file, use either `fs.writeFileSync("./
 
 T> It's possible to refer to loaders installed to the local project by name instead of resolving a full path to them. Example: `loaders: ["raw-loader"]`.
 
-## Implementing an Asynchronous Loader
+## Implementing an asynchronous loader
 
-Even though you can implement a lot of loaders using the synchronous interface, there are times when an asynchronous calculation is required. Wrapping a third party package as a loader can force you to this.
+Even though you can implement a lot of loaders using the synchronous interface, there are times when an asynchronous calculation is required. Wrapping a third-party package as a loader can force you to this.
 
 The example above can be adapted to asynchronous form by using webpack specific API through `this.async()`. Webpack sets this, and the function returns a callback following Node conventions (error first, result second).
 
@@ -114,7 +112,7 @@ The result should contain `Error: Demo error` with a stack trace showing where t
 
 {pagebreak}
 
-## Returning Only Output
+## Returning only output
 
 Loaders can be used to output code alone. You could have an implementation as below:
 
@@ -128,11 +126,11 @@ module.exports = function () {
 
 But what's the point? You can pass to loaders through webpack entries. Instead of pointing to pre-existing files as you would in a majority of the cases, you could give to a loader that generates code dynamically.
 
-T> If you want to return `Buffer` output, set `module.exports.raw = true`. The flag overrides the default behavior which expects a string is returned.
+T> If you want to return `Buffer` output, set `module.exports.raw = true`. The flag overrides the default behavior, which expects a string is returned.
 
 {pagebreak}
 
-## Writing Files
+## Writing files
 
 Loaders, like _file-loader_, emit files. Webpack provides a single method, `this.emitFile`, for this. Given _loader-runner_ does not implement it, you have to mock it:
 
@@ -183,9 +181,9 @@ Webpack provides two additional `emit` methods:
 
 These calls should be used over `console` based alternatives. As with `this.emitFile`, you have to mock them for _loader-runner_ to work.
 
-The next question is, how to pass a file name to the loader.
+The next question is how to pass a file name to the loader.
 
-## Passing Options to Loaders
+## Passing options to loaders
 
 To demonstrate passing options, the runner needs a small tweak:
 
@@ -268,9 +266,9 @@ You can see that the result matches what the loader should have returned. You ca
 
 T> It's a good idea to validate options and rather fail hard than silently if the options aren't what you expect. [schema-utils](https://www.npmjs.com/package/schema-utils) has been designed for this purpose.
 
-## Connecting Custom Loaders with Webpack
+## Connecting custom loaders with webpack
 
-To get most out of loaders, you have to connect them with webpack. To achieve this, you can go through imports:
+To get the most out of loaders, you have to connect them with webpack. To achieve this, you can use imports:
 
 **src/component.js**
 
@@ -320,7 +318,7 @@ You could also handle the loader definition through `rules`. Once the loader is 
 
 W> Although using _loader-runner_ can be convenient for developing and testing loaders, implement integration tests that run against webpack. Subtle differences between environments make this essential.
 
-## Pitch Loaders
+## Pitch loaders
 
 ![Webpack loader processing](images/loader-processing.png)
 
@@ -391,7 +389,7 @@ Input: {}
   contextDependencies: [] }
 ```
 
-## Caching with Loaders
+## Caching with loaders
 
 Although webpack caches loaders by default unless they set `this.cacheable(false)`, writing a caching loader can be a good exercise as it helps you to understand how loader stages can work together. The example below shows how to achieve this (courtesy of Vladimir Grenaderov):
 
@@ -445,4 +443,4 @@ To recap:
 - When developing loaders locally, consider setting up a `resolveLoader.alias` to clean up references.
 - Pitching stage complements the default behavior allowing you to intercept and to attach metadata.
 
-You'll learn to write plugins in the next chapter. Plugins allow you to intercept webpack's execution process and they can be combined with loaders to develop more advanced functionality.
+You'll learn to write plugins in the next chapter. Plugins allow you to intercept webpack's execution process, and they can be combined with loaders to develop more advanced functionality.
