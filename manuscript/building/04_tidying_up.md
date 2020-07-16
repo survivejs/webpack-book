@@ -2,7 +2,7 @@
 
 The current setup doesn't clean the _build_ directory between builds. As a result, it keeps on accumulating files as the project changes. Given this can get annoying, you should clean it up in between.
 
-Another nice touch would be to include information about the build itself to the generated bundles as a small comment at the top of each file including version information at least.
+Another nice touch would be to include information about the build itself to the generated bundles as a small comment at the top of each file, including version information at least.
 
 ## Cleaning the build directory
 
@@ -46,7 +46,7 @@ leanpub-end-insert
 ]);
 ```
 
-After this change, the `build` directory should remain nice and tidy while building. You can verify this by building the project and making sure no old files remained in the output directory.
+After this change, the `build` directory should remain tidy while building. You can verify this by building the project and making sure no old files remained in the output directory.
 
 {pagebreak}
 
@@ -105,15 +105,15 @@ W> The code expects you run it within a Git repository! Otherwise, you get a `fa
 
 Copying files is another ordinary operation you can handle with webpack. [copy-webpack-plugin](https://www.npmjs.com/package/copy-webpack-plugin) can be handy if you need to bring external data to your build without having webpack pointing at them directly.
 
-[cpy-cli](https://www.npmjs.com/package/cpy-cli) is a good option if you want to copy outside of webpack in a cross-platform way. Plugins should be cross-platforms by definition.
+[cpy-cli](https://www.npmjs.com/package/cpy-cli) is a good option if you want to copy outside of webpack in a cross-platform way. Plugins should be cross-platform by definition.
 
 ## Conclusion
 
-Often, you work with webpack by identifying a problem and then finding a plugin to tackle it. It's entirely acceptable to solve these types of issues outside of webpack, but webpack can often handle them as well.
+Often, you work with webpack by identifying a problem and then discovering a plugin to tackle it. It's entirely acceptable to solve these types of issues outside of webpack, but webpack can often handle them as well.
 
 To recap:
 
 - You can find many small plugins that work as tasks and push webpack closer to a task runner.
 - These tasks include cleaning the build and deployment. The _Deploying Applications_ chapter discusses the latter topic in detail.
 - It can be a good idea to add small comments to the production build to tell what version has been deployed. This way you can debug potential issues faster.
-- Secondary tasks like these can be performed outside of webpack. If you are using a multi-page setup as discussed in the _Multiple Pages_ chapter, this becomes a necessity.
+- Secondary tasks, like these, can be performed outside of webpack. If you are using a multi-page setup as discussed in the _Multiple Pages_ chapter, this becomes a necessity.
