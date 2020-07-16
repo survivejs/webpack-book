@@ -14,9 +14,9 @@ Webpack provides **placeholders** for this purpose. These strings are used to at
 - `[chunkhash]` - Returns an entry chunk-specific hash. Each `entry` defined in the configuration receives a hash of its own. If any portion of the entry changes, the hash will change as well. `[chunkhash]` is more granular than `[hash]` by definition.
 - `[contenthash]` - Returns a hash generated based on content.
 
-It's preferable to use particularly `hash` and `chunkhash` only for production purposes as hashing doesn't do much good during development.
+It's preferable to use particularly `hash` and `contenthash` only for production purposes as hashing doesn't do much good during development.
 
-T> It's possible to slice `hash` and `chunkhash` using specific syntax: `[chunkhash:4]`. Instead of a hash like `8c4cbfdb91ff93f3f3c5` this would yield `8c4c`.
+T> It's possible to slice `hash` and `contenthash` using specific syntax: `[contenthash:4]`. Instead of a hash like `8c4cbfdb91ff93f3f3c5` this would yield `8c4c`.
 
 T> There are more options available, and you can even modify the hashing and digest type as discussed at [loader-utils](https://www.npmjs.com/package/loader-utils#interpolatename) documentation.
 
@@ -28,7 +28,7 @@ Assume you have the following configuration:
 {
   output: {
     path: PATHS.build,
-    filename: "[name].[chunkhash].js",
+    filename: "[name].[contenthash].js",
   },
 },
 ```
@@ -48,7 +48,7 @@ The same result can be achieved by generating static filenames and invalidating 
 
 ## Setting up hashing
 
-The build needs tweaking to generate proper hashes. Images and fonts should receive `hash` while chunks should use `chunkhash` in their names to invalidate them correctly:
+The build needs tweaking to generate proper hashes. Adjust as follows:
 
 **webpack.config.js**
 
@@ -57,8 +57,8 @@ const productionConfig = merge([
 leanpub-start-insert
   {
     output: {
-      chunkFilename: "[name].[chunkhash:4].js",
-      filename: "[name].[chunkhash:4].js",
+      chunkFilename: "[name].[contenthash:4].js",
+      filename: "[name].[contenthash:4].js",
     },
   },
 leanpub-end-insert
@@ -70,7 +70,7 @@ leanpub-start-delete
       name: "[name].[ext]",
 leanpub-end-delete
 leanpub-start-insert
-      name: "[name].[hash:4].[ext]",
+      name: "[name].[contenthash:4].[ext]",
 leanpub-end-insert
     },
   }),
@@ -78,13 +78,9 @@ leanpub-end-insert
 ]);
 ```
 
-W> `[hash]` is defined differently for _file-loader_ than for the rest of webpack. It's calculated based on file **content**. See [file-loader documentation](https://www.npmjs.com/package/file-loader#placeholders) for further information.
-
-If you used `chunkhash` for the extracted CSS as well, this would lead to problems as the code points to the CSS through JavaScript bringing it to the same entry. That means if the application code or CSS changed, it would invalidate both.
-
 {pagebreak}
 
-Therefore, instead of `chunkhash`, you can use `contenthash` that is generated based on the extracted content:
+To make sure extracted CSS receives hashes as well, adjust:
 
 **webpack.parts.js**
 
@@ -138,7 +134,7 @@ Including hashes related to the file contents to their names allows to invalidat
 To recap:
 
 - Webpack's **placeholders** allow you to shape filenames and enable you to include hashes to them.
-- The most valuable placeholders are `[name]`, `[chunkhash]`, and `[ext]`. A chunk hash is derived based on the entry in which the asset belongs.
-- If you are using `MiniCssExtractPlugin`, you should use `[contenthash]`. This way the generated assets get invalidated only if their content changes.
+- The most valuable placeholders are `[name]`, `[contenthash]`, and `[ext]`. A content hash is derived based on the chunk content.
+- If you are using `MiniCssExtractPlugin`, you should use `[contenthash]` as well. This way the generated assets get invalidated only if their content changes.
 
 Even though the project generates hashes now, the output isn't flawless. The problem is that if the application changes, it invalidates the vendor bundle as well. The next chapter digs deeper into the topic and shows you how to extract webpack **runtime** to resolve the issue.
