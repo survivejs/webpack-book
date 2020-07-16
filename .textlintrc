@@ -15,7 +15,7 @@
         "Stylelint",
         "CSSLint",
         "Internet Explorer",
-        ["Node[ .]js", "Node"], // Official is Node.js, but it’s way too complicated
+        ["Node[ .]js", "Node"], // Official is Node.js, but it's way too complicated
         ["React[ .]js", "React"],
         ["a npm", "an npm"],
         "npm",

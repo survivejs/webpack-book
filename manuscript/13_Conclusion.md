@@ -8,7 +8,7 @@ As this book has demonstrated, webpack is a versatile tool. To make it easier to
 - To keep your builds fast, consider optimizing. The _Performance_ chapter discusses a variety of strategies you can use to achieve this.
 - To keep your configuration maintainable, consider composing it. As webpack configuration is JavaScript code, it can be arranged in many ways. The _Composing Configuration_ chapter discusses the topic.
 - The way webpack consumes packages can be customized. The _Consuming Packages_ chapter covers specific techniques related to this.
-- Sometimes you have to extend webpack. The _Extending with Loaders_ and _Extending with Plugins_ chapters show how to achieve this. You can also work on top of webpack’s configuration definition and implement an abstraction of your own for it to suit your purposes.
+- Sometimes you have to extend webpack. The _Extending with Loaders_ and _Extending with Plugins_ chapters show how to achieve this. You can also work on top of webpack's configuration definition and implement an abstraction of your own for it to suit your purposes.
 
 ## Development Checklist
 
@@ -32,8 +32,8 @@ As this book has demonstrated, webpack is a versatile tool. To make it easier to
 ### Caching
 
 - To benefit from client caching, split a vendor bundle out of your application. This way the client has less to download in the ideal case. The _Bundle Splitting_ chapter discusses the topic. The _Adding Hashes to Filenames_ chapter shows how to achieve cache invalidation on top of that.
-- Use webpack’s **code splitting** functionality to load code on demand. The technique is handy if you don’t need all the code at once and instead can push it behind a logical trigger such as clicking a user interface element. The _Code Splitting_ chapter covers the technique in detail. The _Dynamic Loading_ chapter shows how to handle more advanced scenarios.
-- Add hashes to filenames as covered in the _Adding Hashes to Filenames_ chapter to benefit from caching and separate a manifest to improve the solution further as discussed in the _Separating a Runtime_ chapter.
+- Use webpack's **code splitting** functionality to load code on demand. The technique is handy if you don't need all the code at once and instead can push it behind a logical trigger such as clicking a user interface element. The _Code Splitting_ chapter covers the technique in detail. The _Dynamic Loading_ chapter shows how to handle more advanced scenarios.
+- Add hashes to filenames as covered in the _Adding Hashes to Filenames_ chapter to benefit from caching and separate a runtime to improve the solution further as discussed in the _Separating a Runtime_ chapter.
 
 ### Optimization
 
@@ -48,4 +48,4 @@ As this book has demonstrated, webpack is a versatile tool. To make it easier to
 
 ## Conclusion
 
-Webpack allows you to use a lot of different techniques to splice up your build. It supports multiple output formats as discussed in the _Output_ part of the book. Despite its name, it’s not only for the web. That’s where most people use it, but the tool does far more than that.
+Webpack allows you to use a lot of different techniques to splice up your build. It supports multiple output formats as discussed in the _Output_ part of the book. Despite its name, it's not only for the web. That's where most people use it, but the tool does far more than that.
