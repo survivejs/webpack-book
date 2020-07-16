@@ -140,6 +140,8 @@ T> `productionConfig` is a stub for now and it will grow later as we expand the 
 
 T> The [process](https://nodejs.org/api/process.html) module used in the code is exposed by Node as a global. In addition to `env`, it provides plenty of other functionality that allows you to get more information of the host system.
 
+W> [Webpack does not set global NODE_ENV](https://github.com/webpack/webpack/issues/7074) based on `mode` by default. If you have any external tooling, such as Babel, relying on it, make sure to set it explicitly. To do this, set `process.env.NODE_ENV = mode;` within the webpack configuration function.
+
 {pagebreak}
 
 ### Understanding `--env`

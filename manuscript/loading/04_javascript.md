@@ -217,6 +217,8 @@ It's possible to pass the webpack environment to Babel with a tweak:
 ```javascript
 module.exports = mode => {
 leanpub-start-insert
+  // You could use NODE_ENV here as well
+  // for a more generic solution.
   process.env.BABEL_ENV = mode;
 leanpub-end-insert
 
