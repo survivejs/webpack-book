@@ -197,6 +197,7 @@ Mocking is a technique that allows you to replace test objects. Consider the sol
 
 - [Sinon](https://www.npmjs.com/package/sinon) provides mocks, stubs, and spies. Sinon works well with webpack.
 - [inject-loader](https://www.npmjs.com/package/inject-loader) allows you to inject code into modules through their dependencies making it valuable for mocking.
+- [webpack-inject-plugin](https://www.npmjs.com/package/webpack-inject-plugin) is a plugin for injecting code on a bundle level.
 
 ## Removing files from tests
 
