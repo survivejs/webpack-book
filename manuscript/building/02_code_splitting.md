@@ -18,8 +18,6 @@ The goal is to end up with a split point that gets loaded on demand. There can b
 
 ### Dynamic `import`
 
-The [dynamic `import` syntax](https://github.com/tc39/proposal-dynamic-import) isn't in the official language specification yet. Minor tweaks are needed especially at the Babel setup for this reason.
-
 Dynamic imports are defined as `Promise`s:
 
 ```javascript
@@ -30,9 +28,13 @@ import(/* webpackChunkName: "optional-name" */ "./module").then(
 );
 ```
 
-{pagebreak}
+Webpack provides extra control through a comment. In the example, we've renamed the resulting chunk. Giving multiple chunks the same name will group them to the same bundle. In addition `webpackMode`, `webpackPrefetch`, and `webpackPreload` are good to know options as they let you define when the import will get triggered and how the browser should treat it.
 
-The optional name allows you to pull multiple split points into a single bundle. As long as they have the same name, they will be grouped. Each split point generates a separate bundle by default.
+Mode lets you define what happens on `import()`. Out of the available options, `weak` is suitable for server side rendering (SSR) as using it means the `Promise` will reject unless the module was loaded another way. In the SSR case, that would be ideal.
+
+Prefetching tells the browser that the resource will be needed in the future while preloading means the browser will need the resource within the current page. Based on these tips the browser can then choose to load the data optimistically. [Webpack documentation explains the available options in greater detail](https://webpack.js.org/api/module-methods/#magic-comments).
+
+{pagebreak}
 
 The interface allows composition, and you could load multiple resources in parallel:
 
