@@ -1,6 +1,6 @@
 # Multiple Pages
 
-Even though webpack is often used for bundling single page applications, it's possible to use it with multiple separate pages as well. The idea is similar to the way you generated multiple output files in the _Targets_ chapter. This time, however, you have to generate separate pages. That's achievable through `HtmlWebpackPlugin` and a bit of configuration.
+Even though webpack is often used for bundling single-page applications, it's possible to use it with multiple separate pages as well. The idea is similar to the way you generated many output files in the _Targets_ chapter. That's achievable through `MiniHtmlWebpackPlugin` and a bit of configuration.
 
 T> If you want to map a directory tree as a website, see [directory-tree-webpack-plugin](https://www.npmjs.com/package/directory-tree-webpack-plugin).
 
@@ -8,7 +8,7 @@ T> If you want to map a directory tree as a website, see [directory-tree-webpack
 
 When generating multiple pages with webpack, you have a couple of possibilities:
 
-- Go through the _multi-compiler mode_ and return an array of configurations. The approach would work as long as the pages are separate and there is a minimal need for sharing code across them. The benefit of this approach is that you can process it through [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) to improve build performance.
+- Go through the _multi-compiler mode_ and return an array of configurations. The approach would work as long as the pages are separate, and there is a minimal need for sharing code across them. The benefit of this approach is that you can process it through [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) to improve build performance.
 - Set up a single configuration and extract the commonalities. The way you do this can differ depending on how you chunk it up.
 - If you follow the idea of [Progressive Web Applications](https://developers.google.com/web/progressive-web-apps/) (PWA), you can end up with either an **app shell** or a **page shell** and load portions of the application as it's used.
 
@@ -20,7 +20,7 @@ To generate multiple separate pages, they should be initialized somehow. You sho
 
 ### Abstracting pages
 
-To initialize a page, it should receive page title, output path, and an optional template at least. Each page should receive optional output path and a template for customization. The idea can be modeled as a configuration part:
+To initialize a page, it should receive page title, output path, and an optional template, at least. Each page should receive an optional output path and a template for customization. The idea can be modeled as a configuration part:
 
 **webpack.parts.js**
 
@@ -101,7 +101,7 @@ After this change you should have two pages in the application: `/` and `/anothe
 
 ### Injecting a different script per page
 
-The question is, how to inject a different script per each page. In the current configuration, the same `entry` is shared by both. To solve the problem, you should move `entry` configuration to lower level and manage it per page. To have a script to test with, set up another entry point:
+The question is how to inject a different script per each page. In the current configuration, the same `entry` is shared by both. To solve the problem, you should move the `entry` configuration to a lower level and manage it per page. To have a script to test with, set up another entry point:
 
 **src/another.js**
 
@@ -207,8 +207,8 @@ After these changes `/another` should show something familiar:
 If you build the application (`npm run build`), you should find _another/index.html_. Based on the generated code, you can make the following observations:
 
 - It's clear how to add more pages to the setup.
-- The generated assets are directly below the build root. The pages are an exception as those are handled by `HtmlWebpackPlugin`, but they still point to the assets below the root. It would be possible to add more abstraction in the form of _webpack.page.js_ and manage the paths by exposing a function that accepts page configuration.
-- Records should be written separately per each page in files of their own. Currently, the configuration that writes the last wins. The above solution would allow solving this.
+- The generated assets are directly below the build root. The pages are an exception as those are handled by `MiniHtmlWebpackPlugin`. It would be possible to add more abstraction in the form of _webpack.page.js_ and manage the paths by exposing a function that accepts page configuration.
+- Records should be written separately per each page in files of their own. Currently, the last configuration wins. The above solution would allow solving this.
 - Processes like linting and cleaning run twice now. The _Targets_ chapter discussed potential solutions to that problem.
 
 The approach can be pushed in another direction by dropping the multi-compiler mode. Even though it's slower to process this kind of build, it enables code sharing and the implementation of shells. The first step towards a shell setup is to rework the configuration so that it picks up the code shared between the pages.
@@ -217,7 +217,7 @@ The approach can be pushed in another direction by dropping the multi-compiler m
 
 The current configuration shares code by coincidence already due to the usage patterns. Only a small part of the code differs, and as a result, only the page manifests, and the bundles mapping to their entries differ.
 
-In a more complicated application, you should apply techniques covered in the _Bundle Splitting_ chapter across the pages. Dropping the multi-compiler mode can be worthwhile then.
+In a complex application, you should apply techniques covered in the _Bundle Splitting_ chapter across the pages. Dropping the multi-compiler mode can be worthwhile then.
 
 ### Adjusting configuration
 
@@ -303,13 +303,15 @@ Compared to the earlier approach, something was gained, but also lost:
 
 If you push the idea further by combining it with code splitting and smart routing, you'll end up with the idea of Progressive Web Applications (PWA). [webpack-pwa](https://github.com/webpack/webpack-pwa) example illustrates how to implement the approach using webpack either through an app shell or a page shell.
 
-App shell is loaded initially, and it manages the whole application including its routing. Page shells are more granular, and more are loaded as the application is used. The total size of the application is larger in this case. Conversely, you can load initial content faster.
+App shell is loaded initially, and it manages the whole application, including its routing. Page shells are more granular, and more are loaded as the application is used. The total size of the application is larger in this case. Conversely, you can load initial content faster.
 
-PWA combines well with plugins like [offline-plugin](https://www.npmjs.com/package/offline-plugin) and [sw-precache-webpack-plugin](https://www.npmjs.com/package/sw-precache-webpack-plugin). Using [Service Workers](https://developer.mozilla.org/en/docs/Web/API/Service_Worker_API) and improves the offline experience.
+PWA combines well with plugins like [offline-plugin](https://www.npmjs.com/package/offline-plugin) and [sw-precache-webpack-plugin](https://www.npmjs.com/package/sw-precache-webpack-plugin). Using [Service Workers](https://developer.mozilla.org/en/docs/Web/API/Service_Worker_API) and improves offline experience.
 
-Especially [Workbox](https://developers.google.com/web/tools/workbox/) and its associated [workbox-webpack-plugin](https://www.npmjs.com/package/workbox-webpack-plugin) can be useful for setting up Service Workers with a minimal effort.
+Especially [Workbox](https://developers.google.com/web/tools/workbox/) and its associated [workbox-webpack-plugin](https://www.npmjs.com/package/workbox-webpack-plugin) can be useful for setting up Service Workers with minimal effort.
 
 T> [Twitter](https://developers.google.com/web/showcase/2017/twitter) and [Tinder](https://medium.com/@addyosmani/a-tinder-progressive-web-app-performance-case-study-78919d98ece0) case studies illustrate how the PWA approach can improve platforms.
+
+T> [HNPWA](https://hnpwa.com/) provides implementations of a Hacker News reader application written in different PWA approaches.
 
 ## Conclusion
 
