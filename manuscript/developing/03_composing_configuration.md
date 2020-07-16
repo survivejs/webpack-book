@@ -65,7 +65,7 @@ exports.devServer = ({ host, port } = {}) => ({
 
 T> The same `stats` idea works for production configuration as well. See [the official documentation](https://webpack.js.org/configuration/stats/) for all the available options.
 
-T> For the sake of simplicity, we'll develop all of the configuration using JavaScript. It would be possible to use TypeScript (TS) here as well as if you have it installed correctly, webpack is able to detect _webpack.config.ts_ and run the code through TS for additional type safety.
+T> For the sake of simplicity, we'll develop all of the configuration using JavaScript. It would be possible to use TypeScript here as well. If you want to go that route, see the _Loading JavaScript_ chapter for the required TypeScript setup.
 
 {pagebreak}
 

@@ -236,7 +236,7 @@ Compared to Facebook's type checker Flow, TypeScript is a safer option in terms 
 
 You can also compile TypeScript with Babel through [@babel/plugin-transform-typescript](https://www.npmjs.com/package/@babel/plugin-transform-typescript) although this comes with small [caveats](https://babeljs.io/docs/en/next/babel-plugin-transform-typescript.html#caveats).
 
-T> If you have set up TypeScript to your project, you can write your configuration in TypeScript by naming the configuration file as **webpack.config.ts**. Webpack is able to detect this automatically and run it correctly.
+T> If you have set up TypeScript to your project, you can write your configuration in TypeScript by naming the configuration file as **webpack.config.ts**. Webpack is able to detect this automatically and run it correctly. Remember to install [ts-node](https://www.npmjs.com/package/ts-node) as webpack requires that to execute the configuration.
 
 T> You can find types for webpack behind [@types/webpack](https://www.npmjs.com/package/@types/webpack) and [@types/webpack-env](https://www.npmjs.com/package/@types/webpack-env). Webpack 5 includes TypeScript support out of the box.
 
