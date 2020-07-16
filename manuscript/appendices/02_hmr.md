@@ -45,7 +45,7 @@ If you implement configuration like above without implementing the client interf
 
 The message tells that even though the HMR interface notified the client portion of the code of a hot update, nothing was done about it and this is something to fix next.
 
-T> The setup assumes you have enabled `optimization.namedModules`. If you run webpack in `development` mode, it will be on by default.
+T> The setup assumes you have set `optimization.moduleIds = 'named'`. If you run webpack in `development` mode, it will be on by default.
 
 W> You should **not** enable HMR for your production configuration. It likely works, but it makes your bundles larger than they should be.
 
