@@ -1,8 +1,6 @@
 # Comparison of Build Tools
 
-Back in the day, it was enough to concatenate scripts together. Times have changed, though, and now distributing your JavaScript code can be a complicated endeavor. This problem has escalated with the rise of single-page applications (SPAs). They tend to rely on many hefty libraries.
-
-For this reason, there are multiple strategies on how to load them. You could load them all at once or consider loading libraries as you need them. Webpack supports many of these sorts of strategies.
+Back in the day, it was enough to concatenate scripts together. Times have changed, though, and distributing your JavaScript code can be a complicated endeavor. This problem has escalated with the rise of single-page applications (SPAs) as they tend to rely on many big libraries. For this reason, many loading strategies exist. The basic idea is to defer loading instead of loading all at once.
 
 The popularity of Node and [npm](https://www.npmjs.com/), its package manager, provide more context. Before npm became popular, it was hard to consume dependencies. There was a period when people developed frontend specific package managers, but npm won in the end. Now dependency management is more comfortable than before, although there are still challenges to overcome.
 
@@ -75,7 +73,7 @@ Instead of `rm -rf`, you likely want to use utilities such as [rimraf](https://w
 
 ![Grunt](images/grunt.png)
 
-[Grunt](http://gruntjs.com/) was the first famous task runner for frontend developers. Its plugin architecture contributed towards its popularity. Plugins are often complicated by themselves. As a result, when configuration grows, it can become difficult to understand what's going on.
+[Grunt](http://gruntjs.com/) was the first famous task runner for frontend developers. Its plugin architecture contributed towards its popularity. Plugins are often complicated by themselves. As a result, when configuration grows, it can become tricky to understand what's going on.
 
 Here's an example from [Grunt documentation](http://gruntjs.com/sample-gruntfile). In this configuration, you define a linting and watcher tasks. When the _watch_ task gets run, it triggers the _lint_ task as well. This way, as you run Grunt, you get warnings in real-time in the terminal as you edit the source code.
 
@@ -204,7 +202,7 @@ T> Jamund Ferguson has written an excellent blog series on how to port from [Req
 
 ![JSPM](images/jspm.png)
 
-Using [JSPM](http://jspm.io/) is entirely different than previous tools. It comes with a command line tool of its own that is used to install new packages to the project, create a production bundle, and so on. It supports [SystemJS plugins](https://github.com/systemjs/systemjs#plugins) that allow you to load various formats to your project.
+Using [JSPM](http://jspm.io/) is entirely different than previous tools. It comes with a command-line tool of its own that is used to install new packages to the project, create a production bundle, and so on. It supports [SystemJS plugins](https://github.com/systemjs/systemjs#plugins) that allow you to load various formats to your project.
 
 ## Bundlers
 
@@ -276,7 +274,7 @@ To make it easier to use, tools such as [create-react-app](https://www.npmjs.com
 
 ## Zero configuration bundlers
 
-There's a whole category of so called _zero configuration_ bundlers. The idea is that they work out of the box without any extra setup. [Parcel](https://parceljs.org/) is perhaps the famous of them.
+There's a whole category of _zero configuration_ bundlers. The idea is that they work out of the box without any extra setup. [Parcel](https://parceljs.org/) is perhaps the famous of them.
 
 [FuseBox](https://www.npmjs.com/package/fuse-box) is a bundler focusing on speed. It uses a zero-configuration approach and aims to be usable out of the box.
 
@@ -288,10 +286,11 @@ You can find more alternatives as listed below:
 
 - [Rome](https://romefrontend.dev/) is an entire toolchain built around the problems of linting, compiling, and bundling.
 - [Snowpack](https://www.snowpack.dev/) is a lightweight toolchain for web development. [Drew Powers explains well how it differs from webpack](https://blog.logrocket.com/snowpack-vs-webpack/).
-- [esbuild](https://www.npmjs.com/package/esbuild) is a performance oriented bundler written in Go.
+- [esbuild](https://www.npmjs.com/package/esbuild) is a performance-oriented bundler written in Go.
 - [AssetGraph](https://www.npmjs.com/package/assetgraph) takes an entirely different approach and builds on top of HTML semantics making it ideal for [hyperlink analysis](https://www.npmjs.com/package/hyperlink) or [structural analysis](https://www.npmjs.com/package/assetviz). [webpack-assetgraph-plugin](https://www.npmjs.com/package/webpack-assetgraph-plugin) bridges webpack and AssetGraph together.
-- [StealJS](https://stealjs.com/) is a dependency loader and a build tool which has focused on performance and ease of use.
+- [StealJS](https://stealjs.com/) is a dependency loader and a build tool focusing on performance and ease of use.
 - [Blendid](https://www.npmjs.com/package/blendid) is a blend of Gulp and bundlers to form an asset pipeline.
+- [swc](https://swc-project.github.io/) is a JavaScript/TypeScript compiler focusing on performance.
 
 {pagebreak}
 
