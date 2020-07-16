@@ -1,10 +1,10 @@
 # Development Server
 
-When developing a frontend without any special tooling, you often end up having to refresh the browser to see changes. Given having to manually refresh gets annoying fast, there's tooling to remedy the problem.
+When developing a frontend without any special tooling, you often end up having to refresh the browser to see changes. Given this gets annoying fast, there's tooling to remedy the problem.
 
 The first tools in the market were [LiveReload](http://livereload.com/) and [Browsersync](http://www.browsersync.io/). The point of either is to allow refreshing the browser automatically as you develop. They also pick up CSS changes and apply the new style without a hard refresh that loses the state of the browser.
 
-It's possible to setup Browsersync to work with webpack through [browser-sync-webpack-plugin](https://www.npmjs.com/package/browser-sync-webpack-plugin), but webpack has more tricks in store in form of a `watch` mode, and a development server.
+It's possible to setup Browsersync to work with webpack through [browser-sync-webpack-plugin](https://www.npmjs.com/package/browser-sync-webpack-plugin), but webpack has more tricks in store in the form of a `watch` mode, and a development server.
 
 ## Webpack `watch` mode
 
@@ -14,13 +14,13 @@ Although this solves the problem of recompiling your source on change, it does n
 
 ## _webpack-plugin-serve_
 
-[webpack-plugin-serve](https://www.npmjs.com/package/webpack-plugin-serve) is a third-party plugin that wraps the logic required to update the browser into a webpack plugin. Underneath it relies on webpack's watch mode and it builds on top of that while implementing **Hot Module Replacement** (HMR) and other features seen in the official solution provided for webpack. There's also functionality that goes beyond the official development server including support for webpack's multi-compiler mode (i.e., when you give an array of configurations to it) and a status overlay.
+[webpack-plugin-serve](https://www.npmjs.com/package/webpack-plugin-serve) is a third-party plugin that wraps the logic required to update the browser into a webpack plugin. Underneath it relies on webpack's watch mode, and it builds on top of that while implementing **Hot Module Replacement** (HMR) and other features seen in the official solution provided for webpack. There's also functionality that goes beyond the official development server, including support for webpack's multi-compiler mode (i.e., when you give an array of configurations to it) and a status overlay.
 
 T> To learn mode about HMR, read the _Hot Module Replacement_ appendix. You can learn the fundamentals of the technique and why people use it. Applying it won't be necessary to complete the tutorial, though.
 
 ## _webpack-dev-server_
 
-[webpack-dev-server](https://www.npmjs.com/package/webpack-dev-server) (WDS) is the officially maintained solution for webpack. WDS is a development server running **in-memory**, meaning the bundle contents aren't written out to files but stored in memory. The distinction is important when trying to debug code and styles.
+[webpack-dev-server](https://www.npmjs.com/package/webpack-dev-server) (WDS) is the officially maintained solution for webpack. WDS is a development server running **in-memory**, meaning the bundle contents aren't written out to files but stored in memory. The distinction is vital when trying to debug code and styles.
 
 T> To integrate with another server, it's possible to emit files from WDS to the file system by setting `devServer.writeToDisk` property to `true`.
 
@@ -140,7 +140,7 @@ To access your server, you need to figure out the ip of your machine. On Unix, t
 
 ## Making it faster to develop configuration
 
-WDS will handle restarting the server when you change a bundled file, but it's oblivious to changes made to webpack configuration and you have to restart the WDS when configuration is changed. The process can be automated as [discussed in GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892) by using [nodemon](https://www.npmjs.com/package/nodemon) monitoring tool.
+WDS will handle restarting the server when you change a bundled file. It's oblivious to changes made to webpack configuration, though, and you have to restart the WDS whenever a change occurs. The process can be automated as [discussed in GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892) by using [nodemon](https://www.npmjs.com/package/nodemon) monitoring tool.
 
 To get it to work, you have to install it first through `npm add nodemon -D`. Here's the script if you want to give it a go:
 
@@ -187,13 +187,13 @@ module.exports = {
 };
 ```
 
-The setup is more resource intensive than the default, but it's worth trying out if the default setup doesn't work for you.
+The setup is more resource-intensive than the default, but it's worth trying out if the default setup doesn't work for you.
 
 {pagebreak}
 
 ## Webpack middlewares for server integration
 
-Given it's possible your frontend is tighly coupled with a backend, multiple server middlewares exist to make integration easier:
+Given it's possible your frontend is tightly coupled with a backend, multiple server middlewares exist to make integration easier:
 
 - [webpack-dev-middleware](https://www.npmjs.com/package/webpack-dev-middleware)
 - [webpack-hot-middleware](https://www.npmjs.com/package/webpack-hot-middleware)
@@ -201,6 +201,12 @@ Given it's possible your frontend is tighly coupled with a backend, multiple ser
 - [koa-webpack](https://www.npmjs.com/package/koa-webpack)
 
 There's also a [Node API](https://webpack.js.org/configuration/dev-server/) if you want more control and flexibility.
+
+## Watching files outside of webpack's module graph
+
+It's possible your project depends indirectly on files, and webpack isn't aware of this. To alleviate the problem, I implemented a small plugin called [webpack-add-dependency-plugin](https://www.npmjs.com/package/webpack-add-dependency-plugin) that lets you handle the issue.
+
+The situation can occur, for example, when you are using `MiniHtmlWebpackPlugin` and have customized its template logic to load external files.
 
 ## Other features of WDS
 
@@ -218,22 +224,22 @@ T> [The official documentation](https://webpack.js.org/configuration/dev-server/
 
 The webpack plugin ecosystem is diverse, and there are a lot of plugins that can help specifically with development:
 
-- [case-sensitive-paths-webpack-plugin](https://www.npmjs.com/package/case-sensitive-paths-webpack-plugin) can be handy when you are developing on case-insensitive environments like macOS or Windows but using case-sensitive environment like Linux for production.
-- [npm-install-webpack-plugin](https://www.npmjs.com/package/npm-install-webpack-plugin) allows webpack to install and wire the installed packages with your _package.json_ as you import new packages to your project.
+- [case-sensitive-paths-webpack-plugin](https://www.npmjs.com/package/case-sensitive-paths-webpack-plugin) can be handy when you are developing on mixed environments. For example, Windows, Linux, and MacOS have different expectations when it comes to path naming.
+- [npm-install-webpack-plugin](https://www.npmjs.com/package/npm-install-webpack-plugin) allows webpack to install and wire the installed packages with your _package.json_ as you import new ones to your project.
 - [react-dev-utils](https://www.npmjs.com/package/react-dev-utils) contains webpack utilities developed for [Create React App](https://www.npmjs.com/package/create-react-app). Despite its name, they can find use beyond React. If you want only webpack message formatting, consider [webpack-format-messages](https://www.npmjs.com/package/webpack-format-messages).
 - [webpack-notifier](https://www.npmjs.com/package/webpack-notifier) uses system notifications to let you know of webpack status.
 - [sounds-webpack-plugin](https://www.npmjs.com/package/sounds-webpack-plugin) rings the system bell on failure instead of letting webpack fail silently.
 
 ## Conclusion
 
-WDS complements webpack and makes it more friendly for developers by providing development oriented functionality.
+WDS complements webpack and makes it more friendly for developers by providing development-oriented functionality.
 
 To recap:
 
 - Webpack's `watch` mode is the first step towards a better development experience. You can have webpack compile bundles as you edit your source.
 - WDS can refresh the browser on change. It also implements **Hot Module Replacement**.
-- The default WDS setup can be problematic on specific systems. For this reason, more resource intensive polling is an alternative.
+- The default WDS setup can be problematic on specific systems. For this reason, more resource-intensive polling is an alternative.
 - WDS can be integrated into an existing Node server using a middleware. Doing this gives you more control than relying on the command line interface.
-- WDS does far more than refreshing and HMR. For example proxying allows you to connect it to other servers.
+- WDS does far more than refreshing and HMR. For example, proxying allows you to connect it to other servers.
 
 In the next chapter, you learn to compose configuration so that it can be developed further later in the book.
