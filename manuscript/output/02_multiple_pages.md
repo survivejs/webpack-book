@@ -307,7 +307,7 @@ App shell is loaded initially, and it manages the whole application, including i
 
 PWA combines well with plugins like [offline-plugin](https://www.npmjs.com/package/offline-plugin) and [sw-precache-webpack-plugin](https://www.npmjs.com/package/sw-precache-webpack-plugin). Using [Service Workers](https://developer.mozilla.org/en/docs/Web/API/Service_Worker_API) and improves offline experience.
 
-Especially [Workbox](https://developers.google.com/web/tools/workbox/) and its associated [workbox-webpack-plugin](https://www.npmjs.com/package/workbox-webpack-plugin) can be useful for setting up Service Workers with minimal effort. See also [service-worker-loader](https://www.npmjs.com/package/service-worker-loader).
+Especially [Workbox](https://developers.google.com/web/tools/workbox/) and its associated [workbox-webpack-plugin](https://www.npmjs.com/package/workbox-webpack-plugin) can be useful for setting up Service Workers with minimal effort. See also [service-worker-loader](https://www.npmjs.com/package/service-worker-loader) and [app-manifest-loader](https://www.npmjs.com/package/app-manifest-loader).
 
 T> [Twitter](https://developers.google.com/web/showcase/2017/twitter) and [Tinder](https://medium.com/@addyosmani/a-tinder-progressive-web-app-performance-case-study-78919d98ece0) case studies illustrate how the PWA approach can improve platforms.
 
