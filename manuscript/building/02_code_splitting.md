@@ -152,6 +152,10 @@ T> See [Glenn Reyes' detailed explanation](https://medium.com/@glennreyes/how-to
 
 {pagebreak}
 
+## Controlling code splitting on runtime
+
+Especially in a complex environment with third-party dependencies and an advanced deployment setup you may want to control where split code is loaded from. [webpack-require-from](https://www.npmjs.com/package/webpack-require-from) has been designed to address the problem and it's able to rewrite the import paths.
+
 ## Conclusion
 
 Code splitting is a feature that allows you to push your application a notch further. You can load code when you need it to gain faster initial load times and improved user experience especially in a mobile context where bandwidth is limited.
