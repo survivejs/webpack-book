@@ -65,7 +65,7 @@ leanpub-start-insert
   {
     optimization: {
       splitChunks: {
-        chunks: "initial",
+        chunks: "all",
       },
     },
   },
@@ -93,6 +93,8 @@ Entrypoint main = vendors~main.js main.css main.js
 Now the bundles look the way they should. The image below illustrates the current situation.
 
 ![Main and vendor bundles after applying configuration](images/bundle_02.png)
+
+T> `chunks: "initial"` would give the same result in this case. You can see the difference after _Code Splitting_ as the `all` option is able to extract commonalities even chunks that have been code split while `initial` doesn't go as far.
 
 {pagebreak}
 
