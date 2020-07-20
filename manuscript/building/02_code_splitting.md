@@ -160,6 +160,10 @@ T> See [Glenn Reyes' detailed explanation](https://medium.com/@glennreyes/how-to
 
 Especially in a complex environment with third-party dependencies and an advanced deployment setup you may want to control where split code is loaded from. [webpack-require-from](https://www.npmjs.com/package/webpack-require-from) has been designed to address the problem and it's able to rewrite the import paths.
 
+## Machine learning driven prefetching
+
+Often users use an application in a specific way. The fact means that it makes sense to load specific portions of the application even before the user has accessed them. [guess-webpack](https://www.npmjs.com/package/guess-webpack) builds on this idea of prediction based preloading. [Minko Gechev explains the approach in detail in his article](https://blog.mgechev.com/2018/03/18/machine-learning-data-driven-bundling-webpack-javascript-markov-chain-angular-react/).
+
 ## Conclusion
 
 Code splitting is a feature that allows you to push your application a notch further. You can load code when you need it to gain faster initial load times and improved user experience especially in a mobile context where bandwidth is limited.
