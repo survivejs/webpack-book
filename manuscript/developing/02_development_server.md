@@ -130,6 +130,8 @@ T> Enable `devServer.historyApiFallback` if you are using HTML5 History API base
 
 T> If you want even better output, consider [error-overlay-webpack-plugin](https://www.npmjs.com/package/error-overlay-webpack-plugin) as it shows the origin of the error better.
 
+W> Using `0.0.0.0` as `host` by itself is [considered a security issue](https://github.com/webpack/webpack-dev-server/issues/882). In that case you should set `disableHostCheck: true` in addition if you want to use the IP.
+
 ## Accessing WDS from the network
 
 It's possible to customize host and port settings through the environment in the setup (i.e., `export PORT=3000` on Unix or `SET PORT=3000` on Windows). The default settings are enough on most platforms.
