@@ -207,6 +207,50 @@ To add hierarchy to the way configuration parts are managed, you could decompose
 
 This arrangement would make it faster to find configuration related to a category. A good option would be to arrange the parts within a single file and use comments to split it up.
 
+### Guidelines for building your own configuration packages
+
+If you go with the configuration package approach I mentioned, consider the guidelines below:
+
+- It can make sense to develop the package using TypeScript to document the interface well. It's particularly useful if you are authoring your configuration in TypeScript as discussed in the _Loading JavaScript_ chapter.
+- Expose functions that cover only one piece of functionality at a time. Doing this allows you to replace a _Hot Module Replacement_ implementation easily for example.
+- Provide enough customization options through function parameters. It can be a good idea to expose an object as that lets you mimic named parameters in JavaScript. You can then destructure the parameters from that while combining this with good defaults and TypeScript types.
+- Include all related dependencies within the configuration package. In specific cases you could use `peerDependencies` if you want that the consumer is able to control specific versions. Doing this means you'll likely download more dependencies that you would need but it's a good compromise.
+- For parameters that have a loader string within them, use `require.resolve` to resolve against a loader within the configuration package. Otherwise the build can fail as it's looking into the wrong place for the loaders.
+- When wrapping loaders, use the associated TypeScript type in function parameters.
+- Consider testing the package by using snapshots (`expect().toMatchSnapshot()` in Jest) to assert output changes. The trick is to use [memory-fs](https://www.npmjs.com/package/memory-fs) in combination with `compiler.outputFileSystem` as below:
+
+```javascript
+const webpack = require("webpack");
+const MemoryFs = require("memory-fs");
+const _ = require("lodash");
+const config = require("./webpack.config");
+
+const compiler = webpack(config);
+
+compiler.outputFileSystem = new MemoryFs();
+
+compiler.run((err, stats) => {
+  // 1. Handle possible err and stats.hasErrors() case
+  if (err || stats.hasErrors()) {
+    // stats.toString("errors-only") contains the errors
+    return reject(err);
+  }
+
+  // 2. Check compile.outputFileSystem
+  const pathParts = compiler.outputFileSystem
+    .pathToArray(__dirname)
+    .concat(["dist", "main.js"]);
+
+  // https://lodash.com/docs/4.17.15#get
+  const file = _.get(
+    compiler.outputFileSystem.data,
+    pathParts
+  ).toString();
+
+  // 3. Assert the file using your testing framework.
+});
+```
+
 {pagebreak}
 
 ## Conclusion
