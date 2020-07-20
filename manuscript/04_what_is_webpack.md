@@ -14,9 +14,11 @@ When you bundle a project using webpack, it traverses the imports, constructing 
 
 Internally webpack manages the bundling process using what's called **chunks** and the term often comes up in webpack related documentation. Chunks are smaller pieces of code that are included in the bundles seen in webpack output.
 
-Webpack supports ES2015, CommonJS, MJS, and AMD module formats out of the box. There's also support for [WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly), a new way of running low level code in the browser. The loader mechanism works for CSS as well, with `@import` and `url()` support through _css-loader_. You can find plugins for specific tasks, such as minification, internationalization, HMR, and so on.
+Webpack supports ES2015, CommonJS, MJS, and AMD module formats out of the box. There's also support for [WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly), a new way of running low-level code in the browser. The loader mechanism works for CSS as well, with `@import` and `url()` support through _css-loader_. You can find plugins for specific tasks, such as minification, internationalization, HMR, and so on.
 
 T> A dependency graph is a directed graph that describes how nodes relate to each other. In this case, the graph definition is defined through references (`require`, `import`) between files. Webpack statically traverses these without executing the source to generate the graph it needs to create bundles.
+
+T> Starting from webpack 5, there's support for [experiments](https://webpack.js.org/configuration/experiments/#experiments). These represent future functionality that's hidden behind a feature flag and allows early testing of the functionality.
 
 ## Webpack's execution process
 
@@ -28,11 +30,11 @@ Webpack begins its work from **entries**. Often these are JavaScript modules whe
 
 ### Resolution process
 
-An entry itself is a module and when webpack encounters one, it tries to match the entry against the file system using the `resolve` configuration. For example, you can tell webpack to perform the lookup against specific directories in addition to _node_modules_.
+An entry itself is a module and when webpack encounters one, it tries to match the module against the file system using the `resolve` configuration. For example, you can tell webpack to perform the lookup against specific directories in addition to _node_modules_.
 
 T> It's possible to adjust the way webpack matches against file extensions, and you can define specific aliases for directories. The _Consuming Packages_ chapter covers these ideas in greater detail.
 
-If the resolution pass failed, webpack will raise a runtime error. If webpack managed to resolve a file correctly, webpack performs processing over the matched file based on the loader definition. Each loader applies a specific transformation against the module contents.
+If the resolution pass failed, webpack will raise a runtime error. If webpack managed to resolve a file, webpack performs processing over the matched file based on the loader definition. Each loader applies a specific transformation against the module contents.
 
 The way a loader gets matched against a resolved file can be configured in multiple ways, including by file type and by location within the file system. Webpack's flexibility even allows you to apply a specific transformation to a file based on _where_ it was imported into the project.
 
@@ -44,7 +46,7 @@ T> To resolve, webpack relies on [enhanced-resolve](https://www.npmjs.com/packag
 
 Webpack will resolve each module it encounters while constructing the dependency graph. If an entry contains dependencies, the process will be performed recursively against each dependency until the traversal has completed. Webpack can perform this process against any file type, unlike specialized tools like the Babel or Sass compiler.
 
-Webpack gives you control over how to treat different assets it encounters. For example, you can decide to **inline** assets to your JavaScript bundles to avoid requests. Webpack also allows you to use techniques like CSS Modules to couple styling with components. Webpack ecosystem is filled with plugins that allow you to extend its capabilities.
+Webpack gives you control over how to treat different assets it encounters. For example, you can decide to **inline** assets to your JavaScript bundles to avoid requests. Webpack also allows you to use techniques like CSS Modules to couple styling with components. Webpack ecosystem is filled with plugins that extend its capabilities.
 
 Although webpack is used mainly to bundle JavaScript, it can capture assets like images or fonts and emit separate files for them. Entries are only a starting point of the bundling process and what webpack emits depends entirely on the way you configure it.
 
@@ -64,7 +66,7 @@ That's not all there is to the bundling process. For example, you can define spe
 
 ## Webpack is configuration driven
 
-At its core, webpack relies on configuration. Here is a sample configuration adapted from [the official webpack tutorial](https://webpack.js.org/get-started/) and expanded to cover the main points:
+At its core, webpack relies on configuration. Here is a sample adapted from [the official webpack tutorial](https://webpack.js.org/get-started/) and expanded to cover the main points:
 
 **webpack.config.js**
 
