@@ -47,6 +47,6 @@ To recap:
 
 - Webpack's output target can be controlled through the `target` field. It defaults to `web` but accepts other options too.
 - Webpack can target the desktop, Node, and web workers in addition to its web target.
-- The Node targets come in handy if especially in Server Side Rendering setups.
+- The Node targets come in handy if especially in _Server Side Rendering_ setups.
 
 You'll learn how to handle multi-page setups in the next chapter.

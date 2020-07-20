@@ -34,6 +34,8 @@ Mode lets you define what happens on `import()`. Out of the available options, `
 
 Prefetching tells the browser that the resource will be needed in the future while preloading means the browser will need the resource within the current page. Based on these tips the browser can then choose to load the data optimistically. [Webpack documentation explains the available options in greater detail](https://webpack.js.org/api/module-methods/#magic-comments).
 
+T> [webpack.PrefetchPlugin](https://webpack.js.org/plugins/prefetch-plugin/) allows you to prefetch but on the level of any module.
+
 {pagebreak}
 
 The interface allows composition, and you could load multiple resources in parallel:

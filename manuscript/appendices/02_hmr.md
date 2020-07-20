@@ -128,4 +128,4 @@ module.hot.accept(req.id, ...); // Replace modules here as above
 
 ## Conclusion
 
-HMR is one of those aspects of webpack that makes it attractive for developers and webpack has taken its implementation far. To work, HMR requires both client and server side support. For this purpose, webpack-dev-server provides both. You will have to take care with the client-side, though, and either find a solution that implements the HMR interface or implement it yourself.
+HMR is one of those aspects of webpack that makes it attractive for developers and webpack has taken its implementation far. To work, HMR requires both client and server-side support. For this purpose, webpack-dev-server provides both. You will have to take care with the client-side, though, and either find a solution that implements the HMR interface or implement it yourself.
