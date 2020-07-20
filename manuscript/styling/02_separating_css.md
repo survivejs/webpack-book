@@ -146,6 +146,8 @@ As a result, you should get both _style.css_ and _style.js_. The latter file con
 
 If you want strict control over the ordering, you can set up a single CSS entry and then use `@import` to bring the rest to the project through it. Another option would be to set up a JavaScript entry and go through `import` to get the same effect.
 
+T> [webpack-watched-glob-entries-plugin](https://www.npmjs.com/package/webpack-watched-glob-entries-plugin) provides a helper for achieving the same. As a bonus, it supports webpack's watch mode so when you modify the entries, webpack will notice.
+
 ## Conclusion
 
 The current setup separates styling from JavaScript neatly. Even though the technique is most valuable with CSS, it can be used to extract any type of modules to a separate file. The hard part of `MiniCssExtractPlugin` has to do with its setup, but the complexity can be hidden behind an abstraction.
