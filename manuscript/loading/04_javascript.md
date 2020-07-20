@@ -229,7 +229,7 @@ leanpub-end-insert
 
 T> The way `env` works is subtle. Consider logging `env` and make sure it matches your Babel configuration or otherwise the functionality you expect is not applied to your build.
 
-## Setting up TypeScript
+## TypeScript
 
 Microsoft's [TypeScript](http://www.typescriptlang.org/) is a compiled language that follows a similar setup as Babel. The neat thing is that in addition to JavaScript, it can emit type definitions. A good editor can pick those up and provide enhanced editing experience. Stronger typing is valuable for development as it becomes easier to state your type contracts.
 
@@ -245,7 +245,7 @@ T> You can find types for webpack behind [@types/webpack](https://www.npmjs.com/
 
 T> There's a [TypeScript parser for ESLint](https://www.npmjs.com/package/typescript-eslint-parser). It's also possible to lint it through [tslint](https://www.npmjs.com/package/tslint).
 
-## Setting up Flow
+## Flow
 
 [Flow](https://flow.org/) performs static analysis based on your code and its type annotations. You have to install it as a separate tool and then run it against your code.
 
@@ -254,6 +254,12 @@ If you use React, the React specific Babel preset does most of the work through 
 [flow-runtime](https://www.npmjs.com/package/flow-runtime) allows runtime checks based on our Flow annotations. The approaches complement Flow static checker and allow you to catch even more issues.
 
 T> [flow-coverage-report](https://www.npmjs.com/package/flow-coverage-report) shows how much of your code is covered by Flow type annotations.
+
+## WebAssembly
+
+[WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly) allows developers to compile to a low-level representation of code that runs within the browser. It complements JavaScript and provides one path of potential optimization. The technology can also be useful when you want to run an old application without porting it entirely to JavaScript.
+
+Starting from webpack 5, the tool supports new style asynchronous WebAssembly. The official examples, [wasm-simple](https://github.com/webpack/webpack/tree/master/examples/wasm-simple) and [wasm-complex](https://github.com/webpack/webpack/tree/master/examples/wasm-complex), illustrate the experimental functionality well.
 
 {pagebreak}
 
