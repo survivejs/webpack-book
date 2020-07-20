@@ -117,6 +117,8 @@ module.exports = {
 
 Webpack's configuration model can feel a bit opaque at times as the configuration file can appear monolithic and itt can be difficult to understand what webpack is doing unless you know the ideas behind it. It's the reason why the book exists as once you know the concepts and what each part of the configuration is doing, webpack makes more sense and you can get more out of it.
 
+W> Webpack's plugins are registered from top to bottom but loaders follow the opposite rule. That means if you add a loader definition after the existing ones and it matches the same `test`, it will be evaluated first. See the _Loader Definitions_ chapter to understand the different possibilities better.
+
 ## Asset hashing
 
 With webpack, you can inject a hash to each bundle name (e.g., _app.d587bbd6.js_) to invalidate bundles on the client side as changes are made. **Bundle splitting** allows the client to reload only a small part of the data in the ideal case.
