@@ -218,6 +218,8 @@ T> There are shortcuts like _npm start_ and _npm test_. You can run these direct
 
 T> To go one step further, set up system level aliases using the `alias` command in your terminal configuration. You could map `nrb` to `npm run build` for instance.
 
+T> If you want to run multiple commands concurrently, see the [concurrently](https://www.npmjs.com/package/concurrently) package. It has been designed to allow that while providing neat output.
+
 {pagebreak}
 
 ## `HtmlWebpackPlugin` and its extensions
