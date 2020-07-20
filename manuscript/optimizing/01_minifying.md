@@ -167,6 +167,8 @@ Entrypoint main = vendor.js main.css main.js
 
 T> [compression-webpack-plugin](https://www.npmjs.com/package/compression-webpack-plugin) allows you to push the problem of generating compressed files to webpack to potentially save processing time on the server.
 
+T> Using [last-call-webpack-plugin](https://www.npmjs.com/package/last-call-webpack-plugin) is a more generic approach and you can use it to define which processing to use against which file format before webpack finishes processing.
+
 ## Compressing bundles
 
 Compression techniques, such as gzip or brotli, can be used to reduce the file size further. The downside of using additional compression is that it will lead to extra computation on the client side but on the plus side you save bandwidth. Often the compression setup can be done on server-side although it's possible to perform preprocessing using webpack using the following plugins:
