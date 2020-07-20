@@ -2,7 +2,7 @@
 
 Even though webpack is used most commonly for bundling web applications, it can do more. You can use it to target Node or desktop environments, such as Electron. Webpack can also bundle as a library while writing an appropriate output wrapper making it possible to consume the library.
 
-Webpack's output target is controlled by the `target` field. You'll learn about the primary targets next and dig into library specific options after that.
+Webpack's output target is controlled by the `target` field. You'll learn about the primary targets next and dig into library-specific options after that.
 
 ## Web targets
 
@@ -31,7 +31,11 @@ There are desktop shells, such as [NW.js](https://nwjs.io/) (previously _node-we
 - `atom`, `electron`, `electron-main` - Targets [Electron main process](https://github.com/electron/electron/blob/master/docs/tutorial/quick-start.md).
 - `electron-renderer` - Targets Electron renderer process.
 
-[electron-react-boilerplate](https://github.com/electron-react-boilerplate/electron-react-boilerplate) is a good starting point if you want hot loading webpack setup for Electron and React based development. Using [the official quick start for Electron](https://github.com/electron/electron-quick-start) is one way.
+[electron-react-boilerplate](https://github.com/electron-react-boilerplate/electron-react-boilerplate) is a good starting point if you want hot loading webpack setup for Electron and React-based development. Using [the official quick start for Electron](https://github.com/electron/electron-quick-start) is one way.
+
+## Targeted builds
+
+Webpack is often used to compile a single target by either returning a configuration object, a `Promise` resolving to one, or a function returning one. In addition, it allows you to specify multiple targets at once in case you return an array of configurations. The technique is useful when generating _Multiple Pages_ or with _Internationalization_. [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) is able to run multiple instances of webpack in parallel to speed this kind of usage.
 
 {pagebreak}
 
