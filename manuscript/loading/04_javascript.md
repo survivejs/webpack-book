@@ -151,11 +151,13 @@ T> [@babel/preset-modules](https://www.npmjs.com/package/@babel/preset-modules) 
 
 ## Polyfilling features
 
-_@babel/preset-env_ allows you to polyfill certain language features for older browsers. For this to work, you should enable its `useBuiltIns` option and install [@babel/polyfill](https://babeljs.io/docs/usage/polyfill/). You have to include it in your project either through an import or an entry (`app: ["@babel/polyfill", PATHS.app]`). _@babel/preset-env_ rewrites the import based on your browser definition and loads only the polyfills that are needed.
+_@babel/preset-env_ allows you to polyfill certain language features for older browsers. For this to work, you should enable its `useBuiltIns` option and install [core-js](https://www.npmjs.com/package/core-js). If you are using `async` functions and want to support older browsers, then [regenerator-runtime](https://www.npmjs.com/package/regenerator-runtime) is required as well.
 
-_@babel/polyfill_ pollutes the global scope with objects like `Promise`. Given this can be problematic for library authors, there's [@babel/plugin-transform-runtime](https://babeljs.io/docs/plugins/transform-runtime/) option. It can be enabled as a Babel plugin, and it avoids the problem of globals by rewriting the code in such way that they aren't be needed.
+You have to include **core-js** to your project either through an import or an entry (`app: ["core-js", PATHS.app]`). _@babel/preset-env_ rewrites the import based on your browser definition and loads only the polyfills that are needed.
 
 T> [corejs-upgrade-webpack-plugin](https://www.npmjs.com/package/corejs-upgrade-webpack-plugin) makes sure you are using the newest **core-js** polyfills. Using it can help to reduce the size of the output.
+
+W> **core-js** pollutes the global scope with objects like `Promise`. Given this can be problematic for library authors, there's [@babel/plugin-transform-runtime](https://babeljs.io/docs/plugins/transform-runtime/) option. It can be enabled as a Babel plugin, and it avoids the problem of globals by rewriting the code in a such way that they aren't be needed.
 
 W> Certain webpack features, such as _Code Splitting_, write `Promise` based code to webpack's bootstrap after webpack has processed loaders. The problem can be solved by applying a shim before your application code is executed. Example: `entry: { app: ["core-js/es/promise", PATHS.app] }`.
 
