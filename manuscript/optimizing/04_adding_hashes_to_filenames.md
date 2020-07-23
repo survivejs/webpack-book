@@ -40,7 +40,7 @@ main.d587bbd6e38337f5accd.js
 vendor.dc746a5db4ed650296e1.js
 ```
 
-If the file contents related to a chunk are different, the hash changes as well, thus the cache gets invalidated. More accurately, the browser sends a new request for the new file. If only `main` bundle gets updated, only that file needs to be requested again.
+If the file contents related to a chunk are different, the hash changes as well, thus the cache gets invalidated. More accurately, the browser sends a new request for the file. If only `main` bundle gets updated, only that file needs to be requested again.
 
 The same result can be achieved by generating static filenames and invalidating the cache through a querystring (i.e., `main.js?d587bbd6e38337f5accd`). The part behind the question mark invalidates the cache. According to [Steve Souders](http://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/), attaching the hash to the filename is the most performant option.
 
@@ -129,7 +129,7 @@ There's one problem, though. If you change the application code, it invalidates 
 
 ## Conclusion
 
-Including hashes related to the file contents to their names allows to invalidate them on the client side. If a hash has changed, the client is forced to download the asset again.
+Including hashes related to the file contents to their names allows to invalidate them on the client-side. If a hash has changed, the client is forced to download the asset again.
 
 To recap:
 
