@@ -38,6 +38,8 @@ Prefetching tells the browser that the resource will be needed in the future whi
 
 T> [webpack.PrefetchPlugin](https://webpack.js.org/plugins/prefetch-plugin/) allows you to prefetch but on the level of any module.
 
+T> `webpackChunkName` accepts `[index]` and `[request]` placeholders in case you want to let webpack define the name or a part of it.
+
 {pagebreak}
 
 The interface allows composition, and you could load multiple resources in parallel:
@@ -138,7 +140,7 @@ There are React specific solutions that wrap the pattern behind a small npm pack
 
 ## Disabling Code Splitting
 
-Although code splitting is good behavior to have by default, it's not correct always, especially on server-side usage. For this reason, it can be disabled as below:
+Although code splitting is a good behavior to have by default, it's not correct always, especially on server-side usage. For this reason, it can be disabled as below:
 
 ```javascript
 const webpack = require("webpack");
