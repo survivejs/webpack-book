@@ -151,7 +151,7 @@ Now that the configuration is done, you should try the following:
 
 T> **Trailing commas** are used in the book examples on purpose as it gives cleaner diffs for the code examples.
 
-T> See [mini-html-webpack-plugin](https://www.npmjs.com/package/mini-html-webpack-plugin) documentation for further options. You can override the HTML template fully and process individual parts injected to it freely.
+T> See [mini-html-webpack-plugin](https://www.npmjs.com/package/mini-html-webpack-plugin) documentation for further options. You can override the HTML template fully, and process individual parts injected to it freely.
 
 ## Examining the output
 
@@ -214,9 +214,11 @@ Run `npm run build` to see the same output as before. npm adds _node_modules/.bi
 
 You can execute this kind of scripts through _npm run_ and you can use the command anywhere within your project. If you run the command without any parameters (_npm run_), it gives you the listing of available scripts.
 
+T> If you don't want to use the default configuration name, use `--config <configuration file>`. Run `webpack --help` to see all the available options.
+
 T> There are shortcuts like _npm start_ and _npm test_. You can run these directly without _npm run_ although that works too. For those in a hurry, you can use _npm t_ to run your tests.
 
-T> To go one step further, set up system level aliases using the `alias` command in your terminal configuration. You could map `nrb` to `npm run build` for instance.
+T> To go one step further, set up system-level aliases using the `alias` command in your terminal configuration. You could map `nrb` to `npm run build`, for instance.
 
 T> If you want to run multiple commands concurrently, see the [concurrently](https://www.npmjs.com/package/concurrently) package. It has been designed to allow that while providing neat output.
 
