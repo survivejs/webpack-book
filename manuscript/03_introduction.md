@@ -53,11 +53,11 @@ The _Troubleshooting_ appendix at the end covers what to do when webpack gives y
 
 ## Who is the book for
 
-You should have basic knowledge of JavaScript, Node, and npm. If you know something about webpack, that's great. By reading this book, you deepen your understanding of these tools.
+The book has been written mainly beginner and intermediate developers in mind. For experts that already know webpack well, there's value in the form of techniques. The book summaries included in each chapter and at the _Conclusion_ chapter, make it fast to skim and pick up the ideas.
 
-If you don't know much about the topic, consider going carefully through the early parts. You can scan the rest to pick the bits you find worthwhile. If you know webpack already, skim and choose the techniques you find valuable.
+Especially at the beginning and intermediate levels it can make sense to follow the book tutorial and develop your own webpack configuration from scratch and then check the chapters that feel most relevant to you. The only expectation is that you have a basic knowledge of JavaScript, Node, and npm.
 
-In case you know webpack well already, there is still something in the book for you. Skim through it and see if you can pick up new techniques. Especially read the summaries at the end of the chapters and the concluding chapter of the book.
+Even if you use webpack through an abstraction such as Create React App, it can be valuable to understand the tool in case you have to extend your setup one day. Many of the techniques discussed go beyond webpack itself and are useful to know in daily development if and when you have to optimize your web application or site for example.
 
 ## What are the book conventions
 
