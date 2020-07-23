@@ -1,18 +1,20 @@
 # Code Splitting
 
-Web applications tend to grow big as features are developed. The longer it takes for your application to load, the more frustrating it's to the user. This problem is amplified in a mobile environment where the connections can be slow.
+Web applications tend to grow big as features are developed. The longer it takes for your site to load, the more frustrating it's to the user. This problem is amplified in a mobile environment where the connections can be slow.
 
 Even though splitting bundles can help a notch, they are not the only solution, and you can still end up having to download a lot of data. Fortunately, it's possible to do better thanks to **code splitting** as it allows loading code lazily when you need it.
 
-You can load more code as the user enters a new view of the application. You can also tie loading to a specific action like scrolling or clicking a button. You could also try to predict what the user is trying to do next and load code based on your guess. This way the functionality would be already there as the user tries to access it.
+You can load more code as the user enters a new view of the application. You can also tie loading to a specific action like scrolling or clicking a button. You could also try to predict what the user is trying to do next and load code based on your guess. This way, the functionality would be already there as the user tries to access it.
 
-T> Incidentally, it's possible to implement Google's [PRPL pattern](https://developers.google.com/web/fundamentals/performance/prpl-pattern/) using webpack's lazy loading. PRPL (Push, Render, Pre-cache, Lazy-load) has been designed with mobile web in mind.
+T> Incidentally, it's possible to implement Google's [PRPL pattern](https://developers.google.com/web/fundamentals/performance/prpl-pattern/) using webpack's lazy loading. PRPL (Push, Render, Pre-cache, Lazy-load) has been designed with the mobile web in mind.
+
+T> Philip Walton's [idle until urgent technique](https://philipwalton.com/articles/idle-until-urgent/) complements code splitting and lets you optimize application loading performance further. The idea is to defer work to the future until it makes sense to perform.
 
 ## Code splitting formats
 
 Code splitting can be done in two primary ways in webpack: through a dynamic `import` or `require.ensure` syntax. The former is used in this project and `require.ensure` is considered the legacy syntax.
 
-The goal is to end up with a split point that gets loaded on demand. There can be splits inside splits, and you can structure an entire application based on splits. The advantage of doing this is that then the initial payload of your application can be smaller than it would be otherwise.
+The goal is to end up with a split point that gets loaded on demand. There can be splits inside splits, and you can structure an entire application based on splits. The advantage of doing this is that then the initial payload of your site can be smaller than it would be otherwise.
 
 ![Code splitting](images/code-splitting.png)
 
@@ -53,13 +55,13 @@ Promise.all([import("lunr"), import("../search_index.json")]).then(
 
 The code above creates separate bundles to a request. If you wanted only one, you would have to use naming or define an intermediate module to `import`.
 
-W> The syntax works only with JavaScript after configuring it the right way. If you use another environment you may have to use alternatives covered in the following sections.
+W> The syntax works only with JavaScript after configuring it the right way. If you use another environment, you may have to use alternatives covered in the following sections.
 
 T> [Webpack 4: import() and CommonJs](https://medium.com/webpack/webpack-4-import-and-commonjs-d619d626b655) article goes into detail on how `import()` works in different cases.
 
 T> There's an older syntax, [require.ensure](https://webpack.js.org/api/module-methods/#require-ensure). In practice the new syntax can cover the same functionality. See also [require.include](https://webpack.js.org/api/module-methods/#require-include).
 
-T> [webpack-pwa](https://github.com/webpack/webpack-pwa) illustrates the idea on a larger scale and discusses different shell based approaches. You get back to this topic in the _Multiple Pages_ chapter.
+T> [webpack-pwa](https://github.com/webpack/webpack-pwa) illustrates the idea on a larger scale and discusses different shell-based approaches. You get back to this topic in the _Multiple Pages_ chapter.
 
 {pagebreak}
 
@@ -96,7 +98,7 @@ export default (text = "Hello world") => {
 };
 ```
 
-If you open up the application (`npm start`) and click the button, you should see the new text in the button.
+If you open up the application (`npm start`) and click the button, you should see the new text in it.
 
 After executing `npm run build`, you should see something:
 
@@ -117,7 +119,7 @@ Entrypoint main = main.css main.js
 ...
 ```
 
-That _1.js_ is your split point. Examining the file reveals that webpack has wrapped the code in a `webpackJsonp` block and processed the code bit.
+That _1.js_ is your split point. Examining the file reveals webpack has wrapped the code in a `webpackJsonp` block and processed the code bit.
 
 T> If you want to adjust the name of the chunk, set `output.chunkFilename`. For example, setting it to `"chunk.[id].js"` would prefix each split chunk with the word "chunk".
 
@@ -158,7 +160,7 @@ T> See [Glenn Reyes' detailed explanation](https://medium.com/@glennreyes/how-to
 
 ## Controlling code splitting on runtime
 
-Especially in a complex environment with third-party dependencies and an advanced deployment setup you may want to control where split code is loaded from. [webpack-require-from](https://www.npmjs.com/package/webpack-require-from) has been designed to address the problem and it's able to rewrite the import paths.
+Especially in a complex environment with third-party dependencies and an advanced deployment setup, you may want to control where split code is loaded from. [webpack-require-from](https://www.npmjs.com/package/webpack-require-from) has been designed to address the problem, and it's able to rewrite the import paths.
 
 ## Machine learning driven prefetching
 
@@ -175,6 +177,6 @@ To recap:
 - The techniques can be used within modern frameworks and libraries like React. You can wrap related logic to a specific component that handles the loading process in a user-friendly manner.
 - To disable code splitting, use `webpack.optimize.LimitChunkCountPlugin` with `maxChunks` set to one.
 
-In the next chapter, you'll learn how to split a vendor bundle without setting up an explicit split point in the code.
+In the next chapter, you'll learn how to split a vendor bundle without through webpack configuration.
 
 T> The _Searching with React_ appendix contains a complete example of code splitting. It shows how to set up a static site index that's loaded when the user searches information.
