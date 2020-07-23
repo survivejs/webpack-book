@@ -59,11 +59,48 @@ If you don't know much about the topic, consider going carefully through the ear
 
 In case you know webpack well already, there is still something in the book for you. Skim through it and see if you can pick up new techniques. Especially read the summaries at the end of the chapters and the concluding chapter of the book.
 
+## What are the book conventions
+
+The book uses several conventions to keep the content accessible. I've listed examples below:
+
+> This is a tip. Often you can find auxiliary information and further references in tips.
+
+W> This is a warning that's highlighting unexpected behavior or a common problem point that you should know.
+
+Especially in the early part of the book, the code is written in a tutorial form. For this reason, the following syntax is used:
+
+```javascript
+// You might see insertions
+leanpub-start-insert
+const webpack = require("webpack");
+leanpub-end-insert
+
+// You might see deletions as well
+leanpub-start-delete
+const { MiniHtmlWebpackPlugin } = require("mini-html-webpack-plugin");
+leanpub-end-delete
+
+// Or combinations of both
+leanpub-start-delete
+const { MiniHtmlWebpackPlugin } = require("mini-html-webpack-plugin");
+leanpub-end-delete
+leanpub-start-insert
+const webpack = require("webpack");
+leanpub-end-insert
+
+// If content has been omitted, then ellipsis is used
+...
+```
+
+Sometimes the code assumes addition without the highlighting for insertion and many examples of the book work without by themselves and I've crosslinked to prerequisites where possible.
+
+You'll also see `code` within sentences and occasionally important terms have been **highlighted**. You can find the definition of these terms at the _Glossary_.
+
 ## How is the book versioned
 
 The book uses a versioning scheme, and release notes for each new version are maintained at [the book blog](https://survivejs.com/blog/). You can also use GitHub _compare_ tool for this purpose. Example:
 
-`“ https://github.com/survivejs/webpack-book/compare/v2.1.7...v2.4.9`“
+`https://github.com/survivejs/webpack-book/compare/v2.1.7...v2.4.9`
 
 The page shows you the individual commits that went to the project between the given version range. You can also see the lines that have changed in the book.
 

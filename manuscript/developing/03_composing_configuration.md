@@ -121,14 +121,14 @@ Instead of returning a configuration directly, a function capturing the passed `
 
 ```json
 "scripts": {
-leanpub-start-insert
-  "start": "webpack-dev-server --env development",
-  "build": "webpack --env production"
-leanpub-end-insert
 leanpub-start-delete
   "start": "webpack-dev-server --mode development",
   "build": "webpack --mode production"
 leanpub-end-delete
+leanpub-start-insert
+  "start": "webpack-dev-server --env development",
+  "build": "webpack --env production"
+leanpub-end-insert
 },
 ```
 

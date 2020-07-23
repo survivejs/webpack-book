@@ -4,9 +4,9 @@ Let's say you want to implement a rough little search for an application without
 
 The problem is that the index can be sizable depending on the amount of the content. The good thing is that you don't need the search index straight from the start. You can do something smarter instead. You can start loading the index when the user selects a search field.
 
-Doing this defers the loading and moves it to a place where it's more acceptable for performance. The initial search is going to be slower than the subsequent ones, and you should display a loading indicator. But that's fine from the user point of view. Webpack's *Code Splitting* feature allows doing this.
+Doing this defers the loading and moves it to a place where it's more acceptable for performance. The initial search is going to be slower than the subsequent ones, and you should display a loading indicator. But that's fine from the user point of view. Webpack's _Code Splitting_ feature allows doing this.
 
-## Implementing Search with Code Splitting
+## Implementing search with code splitting
 
 To implement code splitting, you need to decide where to put the split point, put it there, and then handle the `Promise`:
 
@@ -46,7 +46,7 @@ export default class App extends React.Component {
           <input
             type="text"
             value={value}
-            onChange={e => this.onChange(e)}
+            onChange={(e) => this.onChange(e)}
           />
         </div>
         <div className="results-container">
@@ -80,13 +80,13 @@ export default class App extends React.Component {
           results: this.search(lines, index, value),
         }));
       })
-      .catch(err => console.error(err));
+      .catch((err) => console.error(err));
   }
   search(lines, index, query) {
     // Search against the index and match README lines.
     return index
       .search(query.trim())
-      .map(match => lines[match.ref]);
+      .map((match) => lines[match.ref]);
   }
 }
 
@@ -94,7 +94,9 @@ const Results = ({ results }) => {
   if (results.length) {
     return (
       <ul>
-        {results.map((result, i) => <li key={i}>{result}</li>)}
+        {results.map((result, i) => (
+          <li key={i}>{result}</li>
+        ))}
       </ul>
     );
   }
@@ -132,7 +134,7 @@ You can find a [full example](https://github.com/survivejs-demos/lunr-demo) show
 
 To recap:
 
-* If your dataset is small and static, client-side search is a good option.
-* You can index your content using a solution like [lunr](http://lunrjs.com/) and then perform a search against it.
-* Webpack's *code splitting* feature is ideal for loading a search index on demand.
-* Code splitting can be combined with a UI solution like React to implement the whole user interface.
+- If your dataset is small and static, client-side search is a good option.
+- You can index your content using a solution like [lunr](http://lunrjs.com/) and then perform a search against it.
+- Webpack's **code splitting** feature is ideal for loading a search index on demand.
+- Code splitting can be combined with a UI solution like React to implement the whole user interface.
