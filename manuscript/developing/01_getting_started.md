@@ -153,6 +153,8 @@ T> **Trailing commas** are used in the book examples on purpose as it gives clea
 
 T> See [mini-html-webpack-plugin](https://www.npmjs.com/package/mini-html-webpack-plugin) documentation for further options. You can override the HTML template fully, and process individual parts injected to it freely.
 
+W> Webpack has default configuration for its entries and output. It looks for source from `./src` by default and its emits output to `./dist`. You can control these through `entry` and `output` respectively as seen in the _What is Webpack_ chapter.
+
 ## Examining the output
 
 If you execute `node_modules/.bin/webpack --mode production`, you should see output:
