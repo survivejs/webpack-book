@@ -136,7 +136,7 @@ exports.eliminateUnusedCSS = () => ({
       extractors: [
         {
           extractor: (content) =>
-            content.match(/[\w-/.:]+(?<!:)/g) || [],
+            content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || [],
           extensions: ["html"],
         },
       ],
