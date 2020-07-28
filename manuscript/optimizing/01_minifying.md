@@ -132,12 +132,12 @@ const productionConfig = merge([
 leanpub-start-insert
   parts.minifyCSS({
     options: {
-      discardComments: {
-        removeAll: true,
-      },
-      // Run cssnano in safe mode to avoid
-      // potentially unsafe transformations.
-      safe: true,
+      preset: [
+        "default",
+        discardComments: {
+          removeAll: true,
+        },
+      ],
     },
   }),
 leanpub-end-insert
