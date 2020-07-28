@@ -237,6 +237,76 @@ leanpub-end-insert
 
 T> The way `env` works is subtle. Consider logging `env` and make sure it matches your Babel configuration or otherwise the functionality you expect is not applied to your build.
 
+## Generating differential builds
+
+To benefit from the support for modern language features and to support legacy browsers, it's possible to use webpack to generate two bundles and then write bootstrapping code that's detected by the browsers so that they use the correct ones. Doing this gives smaller bundles for modern browsers while improving JavaScript parsing time. Legacy browsers will still work as well.
+
+As [discussed by Philip Walton](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/), on browser-side you should use HTML like this:
+
+```html
+<!-- Browsers with ES module support load this file. -->
+<script type="module" src="main.mjs"></script>
+
+<!-- Older browsers load this file (and module-supporting -->
+<!-- browsers know *not* to load this file). -->
+<script nomodule src="main.es5.js"></script>
+```
+
+The fallback isn't without problems as in the worst case it can force the browser to load the module **twice**. Therefore relying on a user agent may be a better option as [highlighted by John Stewart in his example](https://github.com/johnstew/differential-serving). To solve the issue, [Andrea Giammarchi has developed a universal bundle loader](https://medium.com/@WebReflection/a-universal-bundle-loader-6d7f3e628f93).
+
+On webpack side, you will have to take care to generate two builds with differing browserslist definitions and names. In addition, you have to make sure the HTML template receives the `script` tags as above so it's able to load them. To give you a better idea, to implement the technique consider the following, set up a browserslist as below:
+
+**.browserslistrc**
+
+```
+# Let's support old IE
+[legacy]
+IE 8
+
+# Make this more specific if you want
+[modern]
+> 1% # Browser usage over 1%
+```
+
+The idea is to then write webpack configuration to control which target is chosen like this:
+
+**webpack.config.js**
+
+```javascript
+...
+
+module.exports = (mode) => {
+  switch (mode) {
+    case "production:legacy":
+      process.env.BROWSERSLIST_ENV = 'legacy';
+
+      return merge(commonConfig, productionConfig, { mode });
+    case "production:modern":
+      process.env.BROWSERSLIST_ENV = 'modern';
+
+      return merge(commonConfig, productionConfig, { mode });
+    ...
+    default:
+      throw new Error(`Trying to use an unknown mode, ${mode}`);
+  }
+};
+```
+
+Above would expect the following target:
+
+**package.json**
+
+```json
+"scripts": {
+  "build": "webpack --env production:legacy && webpack --env production:modern",
+  ...
+},
+```
+
+To complete the setup, you have to write a script reference to your HTML using one of the techniques outlined above. The webpack builds can run parallel and you could use for example use the [concurrently](https://www.npmjs.com/package/concurrently) package to speed up the execution.
+
+T> These days it's possible to go one step further and [use native JavaScript modules directly in the browser](https://philipwalton.com/articles/using-native-javascript-modules-in-production-today/).
+
 ## TypeScript
 
 Microsoft's [TypeScript](http://www.typescriptlang.org/) is a compiled language that follows a similar setup as Babel. The neat thing is that in addition to JavaScript, it can emit type definitions. A good editor can pick those up and provide enhanced editing experience. Stronger typing is valuable for development as it becomes easier to state your type contracts.
