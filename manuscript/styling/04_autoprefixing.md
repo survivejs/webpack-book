@@ -44,7 +44,7 @@ W> The order of the loaders matters since autoprefixing should occur after Tailw
 
 **autoprefixer** relies on a [browserslist](https://www.npmjs.com/package/browserslist) definition to work.
 
-To define which browsers you want to support, set up a [.browserslistrc](https://www.npmjs.com/package/browserslist) file. Different tools pick up this definition, _autoprefixer_ included.
+To define which browsers you want to support, set up a `.browserslistrc` file. Different tools pick up this definition, _autoprefixer_ included.
 
 Create a file as follows:
 
@@ -59,6 +59,8 @@ IE 8 # Or IE 8
 If you build the application now (`npm run build`) and examine the built CSS, you should see that CSS was added to support older browsers. Try adjusting the definition to see what difference it makes on the build output.
 
 T> You can lint CSS through [Stylelint](http://stylelint.io/). It can be set up the same way through _postcss-loader_ as autoprefixing above.
+
+T> It's possible to define a browserslist per development target (`BROWSERSLIST_ENV` or `NODE_ENV` in the environment) by using `[development]` kind of syntax between the declarations. See [browserslist documentation](https://www.npmjs.com/package/browserslist#configuring-for-different-environments) for further information and options.
 
 ## Conclusion
 

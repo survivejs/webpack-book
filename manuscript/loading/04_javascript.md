@@ -125,6 +125,8 @@ Adjust the target definition as you like. As long as you follow [browserslist](h
 
 If you execute `npm run build -- --mode none` now and examine _dist/main.js_, you will see something different based on your `.browserslistrc` file.
 
+T> See the _Autoprefixing_ chapter for an expanded discussion of browserslist.
+
 {pagebreak}
 
 Try to include only a definition like `IE 8` there, and the code should change accordingly:
