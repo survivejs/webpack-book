@@ -61,7 +61,7 @@ W> The syntax works only with JavaScript after configuring it the right way. If 
 
 T> [Webpack 4: import() and CommonJs](https://medium.com/webpack/webpack-4-import-and-commonjs-d619d626b655) article goes into detail on how `import()` works in different cases.
 
-T> There's an older syntax, [require.ensure](https://webpack.js.org/api/module-methods/#require-ensure). In practice the new syntax can cover the same functionality. See also [require.include](https://webpack.js.org/api/module-methods/#require-include).
+T> There's an older syntax, [require.ensure](https://webpack.js.org/api/module-methods/#require-ensure). In practice the new syntax can cover the same functionality while giving error handling.
 
 T> [webpack-pwa](https://github.com/webpack/webpack-pwa) illustrates the idea on a larger scale and discusses different shell-based approaches. You get back to this topic in the _Multiple Pages_ chapter.
 

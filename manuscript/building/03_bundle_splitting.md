@@ -167,6 +167,8 @@ It's possible to get good caching behavior with these plugins if a webpack **rec
 
 T> Tobias Koppers discusses [aggressive merging in detail at the official blog of webpack](https://medium.com/webpack/webpack-http-2-7083ec3f3ce6).
 
+T> Starting from webpack 5, it's possible to define `minSize` per asset type. For example, you could set `minSize.javascript: 10000` and then `minSize.style` separately.
+
 ## Chunk types in webpack
 
 In the example above, you used different types of webpack chunks. Webpack treats chunks in three types:

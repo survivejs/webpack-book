@@ -2,6 +2,8 @@
 
 Even though the generated build works the file names it uses is problematic. It doesn't allow to leverage client level cache efficiently as there's no way tell whether or not a file has changed. Cache invalidation can be achieved by including a hash to the filenames.
 
+T> Starting from version 5, webpack is using a deterministic way of generating filenames that's a good compromise between bundle size and long time caching. The behavior is controllable through `optimization.moduleIds` and `optimization.chunkIds`. Latter applies to _Code Splitting_.
+
 ## Placeholders
 
 Webpack provides **placeholders** for this purpose. These strings are used to attach specific information to webpack output. The most valuable ones are:
@@ -10,8 +12,8 @@ Webpack provides **placeholders** for this purpose. These strings are used to at
 - `[path]` - Returns the file path.
 - `[name]` - Returns the file name.
 - `[ext]` - Returns the extension. `[ext]` works for most available fields. `MiniCssExtractPlugin` is a notable exception to this rule.
-- `[hash]` - Returns the build hash. If any portion of the build changes, this changes as well.
-- `[chunkhash]` - Returns an entry chunk-specific hash. Each `entry` defined in the configuration receives a hash of its own. If any portion of the entry changes, the hash will change as well. `[chunkhash]` is more granular than `[hash]` by definition.
+- `[fullhash]` - Returns the build hash. If any portion of the build changes, this changes as well. In webpack 5 or before, this was `[hash]`.
+- `[chunkhash]` - Returns an entry chunk-specific hash. Each `entry` defined in the configuration receives a hash of its own. If any portion of the entry changes, the hash will change as well. `[chunkhash]` is more granular than `[fullhash]` by definition.
 - `[contenthash]` - Returns a hash generated based on content.
 
 It's preferable to use particularly `hash` and `contenthash` only for production purposes as hashing doesn't do much good during development.

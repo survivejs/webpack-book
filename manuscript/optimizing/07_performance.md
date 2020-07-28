@@ -49,8 +49,10 @@ Specific lower-level optimizations can be nice to know. The key is to allow webp
 - Use [@babel/preset-env](https://www.npmjs.com/package/@babel/preset-env) during development instead of source maps to transpile fewer features for modern browsers and make the code more readable and more comfortable to debug.
 - Skip polyfills during development. Attaching a package, such as [core-js](https://www.npmjs.com/package/core-js), to the development version of an application adds processing overhead.
 - Disable the portions of the application you don't need during development. It can be a valid idea to compile only a small fraction you are working on as then you have less to bundle.
-- Polyfill less of Node and provide nothing instead. For example, a package could be using Node `process` which in turn will bloat your bundle. To disable it, set `node.process` to `false`. To disable polyfilling entirely, set `node` to `false` directly. [See webpack documentation](https://webpack.js.org/configuration/node/) for the default values.
+- Polyfill less of Node and provide nothing instead. For example, a package could be using Node `process` which in turn will bloat your bundle if polyfilled. [See webpack documentation](https://webpack.js.org/configuration/node/) for the default values.
 - Push bundles that change less to **Dynamically Loaded Libraries** (DLL) to avoid unnecessary processing and to speed up recompilation time. The [official webpack example](https://github.com/webpack/webpack/tree/master/examples/dll-user) gets to the point while [Rob Knight's blog post](https://robertknight.me.uk/posts/webpack-dll-plugins/) explains the idea further. [autodll-webpack-plugin](https://www.npmjs.com/package/autodll-webpack-plugin) can automate the process, and it's going to be made redundant by webpack 5.
+
+T> Starting from version 5, there's a file system level cache that can be enabled by setting `cache.type = "filesystem"`. To invalidate it on configuration change, you should set `cache.buildDependencies.config = [__filename]`. Webpack handles anything watched by the build automatically including plugins, loaders, and project files.
 
 {pagebreak}
 

@@ -100,8 +100,8 @@ Webpack provides multiple inline source map variants. Often `eval` is the starti
 
 To get a better idea of the available options, they are listed below while providing a small example for each. The examples are generated with the following extra webpack setup:
 
-- `optimization.moduleIds = 'named'` is set to improve readability
-- `mode` is set to `none` to avoid webpack's default processing
+- `optimization.moduleIds = "named"` is set to improve readability. It's a good idea to set `optimization.chunkIds` as well in case you are using _Code Splitting_.
+- `mode` is set to `false` to avoid webpack's default processing
 
 ### `devtool: "eval"`
 
