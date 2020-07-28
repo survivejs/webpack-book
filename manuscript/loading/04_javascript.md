@@ -305,6 +305,8 @@ Above would expect the following target:
 
 To complete the setup, you have to write a script reference to your HTML using one of the techniques outlined above. The webpack builds can run parallel and you could use for example use the [concurrently](https://www.npmjs.com/package/concurrently) package to speed up the execution.
 
+T> [webpack-babel-multi-target-plugin](https://www.npmjs.com/package/webpack-babel-multi-target-plugin) wraps the idea of differential builds within a webpack plugin that relies on Babel for generating the targets.
+
 T> These days it's possible to go one step further and [use native JavaScript modules directly in the browser](https://philipwalton.com/articles/using-native-javascript-modules-in-production-today/).
 
 ## TypeScript
