@@ -20,6 +20,8 @@ T> It's possible to slice `hash` and `contenthash` using specific syntax: `[cont
 
 T> There are more options available, and you can even modify the hashing and digest type as discussed at [loader-utils](https://www.npmjs.com/package/loader-utils#interpolatename) documentation.
 
+W> If you are using webpack 4, be careful with `contenthash` as [it's not fully reliable](https://github.com/webpack/webpack/issues/11146). There `chunkhash` may be the preferable option. Webpack 5 provides a better solution for this.
+
 ### Example placeholders
 
 Assume you have the following configuration:
