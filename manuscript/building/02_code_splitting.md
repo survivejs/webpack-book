@@ -137,8 +137,9 @@ There are React specific solutions that wrap the pattern behind a small npm pack
 
 - [@loadable/component](https://www.npmjs.com/package/@loadable/component) wraps the pattern in a `createAsyncComponent` call and provides server side rendering specific functionality.
 - [react-imported-component](https://www.npmjs.com/package/react-imported-component) is another full featured solution based on hooks.
+- See [React's official documentation](https://reactjs.org/docs/code-splitting.html) to learn about the code splitting APIs included out of the box. The most important ones are `React.lazy` and `React.Suspense`. Currently these don't support server side rendering.
 
-## Disabling Code Splitting
+## Disabling code splitting
 
 Although code splitting is a good behavior to have by default, it's not correct always, especially on server-side usage. For this reason, it can be disabled as below:
 
