@@ -130,7 +130,7 @@ T> PostCSS supports _postcss.config.js_ based configuration. It relies on [cosmi
 
 ## Understanding **css-loader** lookups
 
-To get most out of **css-loader**, you should understand how it performs its lookups. Even though _css-loader_ handles relative imports by default, it doesn't touch absolute imports (`url("/static/img/demo.png")`). If you rely on this kind of imports, you have to copy the files to your project.
+To get most out of **css-loader**, you should understand how it performs its lookups. Even though _css-loader_ handles relative imports by default, it doesn't touch absolute imports (`url("/static/img/demo.png")`) nor root relative imports (`url("https://mydomain.com/static/demo.png")`). If you rely on this kind of imports, you have to copy the files to your project.
 
 [copy-webpack-plugin](https://www.npmjs.com/package/copy-webpack-plugin) works for this purpose, but you can also copy the files outside of webpack. The benefit of the former approach is that webpack-dev-server can pick that up.
 
