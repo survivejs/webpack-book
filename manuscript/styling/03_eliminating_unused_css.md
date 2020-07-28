@@ -204,6 +204,8 @@ index.html  237 bytes          [emitted]
 
 The size of the style has decreased noticeably. Instead of 1.32, you have roughly 7k now. The difference would be even more significant for more massive CSS frameworks.
 
+W> Tailwind includes PurgeCSS out of the box and it can be preferable to use that. See [Tailwind documentation](https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css) for more information. The example above is enough to illustrate the idea, and it works universally.
+
 {pagebreak}
 
 ### Critical Path Rendering
