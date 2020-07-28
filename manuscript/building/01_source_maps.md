@@ -329,26 +329,25 @@ T> [The official documentation](https://webpack.js.org/configuration/devtool/#de
 There are a couple of other options that affect source map generation:
 
 ```javascript
-{
+const config = {
   output: {
     // Modify the name of the generated source map file.
     // You can use [file], [id], and [hash] replacements here.
     // The default option is enough for most use cases.
-    sourceMapFilename: '[file].map', // Default
+    sourceMapFilename: "[file].map", // Default
 
     // This is the source map filename template. It's default
     // format depends on the devtool option used. You don't
     // need to modify this often.
     devtoolModuleFilenameTemplate:
-      'webpack:///[resource-path]?[loaders]'
+      "webpack:///[resource-path]?[loaders]",
 
     // create-react-app uses the following as it shows up well
     // in developer tools
-    devtoolModuleFilenameTemplate: (info) => (
-      path.resolve(info.absoluteResourcePath)
-    )
+    devtoolModuleFilenameTemplate: (info) =>
+      path.resolve(info.absoluteResourcePath),
   },
-}
+};
 ```
 
 T> The [official documentation](https://webpack.js.org/configuration/output/#output-sourcemapfilename) digs into `output` specifics.
@@ -367,11 +366,25 @@ Given webpack matches only `.js` and `.css` files by default for source maps, yo
 
 You can prefix a source map option with a **pragma** character that gets injected into the source map reference. Webpack uses `#` by default that is supported by modern browsers, so you don't have to set it.
 
-To override this, you have to prefix your source map option with it (e.g., `@source-map`). After the change, you should see `//@` kind of reference to the source map over `//#` in your JavaScript files assuming a separate source map type was used.
+To override this, you have to prefix your source map option with it (e.g., `@source-map`). After the change, you should see `//@` kind of reference to the source map over `//#` in your JavaScript files, assuming a separate source map type was used.
 
 ## Using dependency source maps
 
-Assuming you are using a package that uses inline source maps in its distribution, you can use [source-map-loader](https://www.npmjs.com/package/source-map-loader) to make webpack aware of them. Without setting it up against the package, you get minified debug output. Often you can skip this step as it's a special case.
+Assuming you are using a package that uses inline source maps in its distribution, you can use [source-map-loader](https://www.npmjs.com/package/source-map-loader) to make webpack aware of them. Without setting it up against the package, you get a minified debug output. Often you can skip this step as it's a special case.
+
+## Ignoring source map related warnings
+
+Sometimes third-party dependencies lead to source map related warnings in the browser inspector. Webpack allows you to filter the messages as follows:
+
+```javascript
+const config = {
+  {
+    stats: {
+      warningsFilter: [/Failed to parse source map/],
+    },
+  },
+}
+```
 
 ## Source maps for styling
 
