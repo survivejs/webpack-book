@@ -23,6 +23,8 @@ Webpack provides two Node-specific targets: `node` and `async-node`. It uses sta
 
 The main use case for using the Node target is _Server Side Rendering_ (SSR). The idea is discussed in the _Server Side Rendering_ chapter.
 
+T> To learn more about the topic, read [James Long's series](https://jlongster.com/Backend-Apps-with-Webpack--Part-I) about developing backend applications with webpack.
+
 ## Desktop targets
 
 There are desktop shells, such as [NW.js](https://nwjs.io/) (previously _node-webkit_) and [Electron](http://electron.atom.io/) (previously _Atom_). Webpack can target these as follows:

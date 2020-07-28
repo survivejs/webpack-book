@@ -392,6 +392,10 @@ If you want to enable source maps for styling files, you can achieve this by ena
 
 The _css-loader_ is [known to have issues](https://github.com/webpack-contrib/css-loader/issues/232) when you are using relative paths in imports. To overcome this problem, you should set `output.publicPath` to resolve the server url.
 
+## Source maps on backend
+
+If you are using Node target with webpack as discussed in the _Build Targets_ chapter, you should still take of generating source maps. The trick is to use `output.devtoolModuleFilenameTemplate` and set it to `[absolute-resource-path]` and `webpack.SourceMapDevToolPlugin`. Thanks to Eric Hill for discovering this!
+
 {pagebreak}
 
 ## Conclusion
