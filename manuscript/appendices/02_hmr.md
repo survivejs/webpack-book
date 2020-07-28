@@ -47,7 +47,7 @@ The message tells that even though the HMR interface notified the client portion
 
 T> The setup assumes you have set `optimization.moduleIds = 'named'`. If you run webpack in `development` mode, it will be on by default.
 
-W> You should **not** enable HMR for your production configuration. It likely works, but it makes your bundles larger than they should be.
+W> You should **not** enable HMR for your production configuration. It likely works, but it makes your bundles bigger than they should be.
 
 W> If you are using Babel, configure it so that it lets webpack control module generation as otherwise, HMR logic won't work! See the _Loading JavaScript_ chapter for the exact setup.
 
@@ -95,6 +95,8 @@ The idea is the same with styling, React, Redux, and other technologies. Sometim
 T> To prove that HMR retains application state, set up [a checkbox](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox) based component next to the original. The `module.hot.accept` code has to evolve to capture changes to it as well.
 
 T> The `if(module.hot)` block is eliminated entirely from the production build as minifier picks it up. The _Minifying_ chapter delves deeper into this topic.
+
+T> [hot-accept-webpack-plugin](https://www.npmjs.com/package/hot-accept-webpack-plugin) allows you to write `if (module.hot) { module.hot.accept(); }` for each module that was matched. It's useful in case you have modules that should accept hot loading without implementing the patching behavior.
 
 {pagebreak}
 
