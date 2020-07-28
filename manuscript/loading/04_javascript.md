@@ -25,21 +25,23 @@ __webpack_require__.r(__webpack_exports__);
 
 The problem can be worked around by processing the code through [Babel](https://babeljs.io/), a famous JavaScript compiler that supports ES2015+ features and more. It resembles ESLint in that it's built on top of presets and plugins. Presets are collections of plugins, and you can define your own as well.
 
+T> Babel isn't the only option although it's the most popular one. [esbuild-loader](https://www.npmjs.com/package/esbuild-loader) and [swc-loader](https://www.npmjs.com/package/swc-loader) are worth checking out if you don't need any specific Babel presets or plugins.
+
 T> Given sometimes extending existing presets is not enough, [modify-babel-preset](https://www.npmjs.com/package/modify-babel-preset) allows you to go a step further and configure the base preset in a more flexible way.
 
 ## Using Babel with webpack configuration
 
 Even though Babel can be used standalone, as you can see in the _SurviveJS - Maintenance_ book, you can hook it up with webpack as well. During development, it can make sense to skip processing if you are using language features supported by your browser.
 
-Skipping processing is a good option primarily if you don't rely on any custom language features and work using a modern browser. Processing through Babel becomes almost a necessity when you compile your code for production, though.
+Skipping processing is a good option, primarily if you don't rely on any custom language features and work using a modern browser. Processing through Babel becomes almost a necessity when you compile your code for production, though.
 
-You can use Babel with webpack through [babel-loader](https://www.npmjs.com/package/babel-loader). It can pick up project level Babel configuration, or you can configure it at the webpack loader itself. [babel-webpack-plugin](https://www.npmjs.com/package/babel-webpack-plugin) is another lesser-known option.
+You can use Babel with webpack through [babel-loader](https://www.npmjs.com/package/babel-loader). It can pick up project-level Babel configuration, or you can configure it at the webpack loader itself. [babel-webpack-plugin](https://www.npmjs.com/package/babel-webpack-plugin) is another lesser-known option.
 
 Connecting Babel with a project allows you to process webpack configuration through it. To achieve this, name your webpack configuration using the _webpack.config.babel.js_ convention. [interpret](https://www.npmjs.com/package/interpret) package enables this, and it supports other compilers as well.
 
 T> Given that [Node supports the ES2015 specification well](http://node.green/) these days, you can use a lot of ES2015 features without having to process configuration through Babel.
 
-W> If you use _webpack.config.babel.js_, take care with the `"modules": false,` setting. If you want to use ES2015 modules, you could skip the setting in your global Babel configuration and then configure it per environment as discussed below.
+W> If you use _webpack.config.babel.js_, take care with the `"modules": false,` setting. If you want to use ES2015 modules, you could skip the setting in your global Babel configuration and then configure it per environment, as discussed below.
 
 {pagebreak}
 
