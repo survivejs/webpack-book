@@ -8,11 +8,11 @@ To demonstrate SSR, you can use webpack to compile a client-side build that then
 
 ## Setting up Babel with React
 
-The _Loading JavaScript_ chapter covers the essentials of using Babel with webpack and you should make sure you've completed the setup before continuing here. To use React, we require further configuration.
+The _Composing Configuration_ chapter covers the configuration approach and the _Loading JavaScript_ chapter covers the essentials of using Babel with webpack. You should make sure you've completed the basic setup before continuing here.
 
 {pagebreak}
 
-Given most of React projects rely on [JSX](https://facebook.github.io/jsx/) format, you have to enable it through Babel:
+To use React, we require further configuration. Given most of React projects rely on [JSX](https://facebook.github.io/jsx/) format, you have to enable it through Babel:
 
 ```bash
 npm add @babel/preset-react -D
