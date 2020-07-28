@@ -101,6 +101,8 @@ If you don't know `publicPath` beforehand, it's possible to resolve it based on 
 
 When you compile, webpack picks up `__webpack_public_path__` and rewrites it so that it points to webpack logic.
 
+T> See [webpack documentation](https://webpack.js.org/api/module-variables/) for other webpack specific variables available at the module level.
+
 ## Conclusion
 
 Even though webpack isn't a deployment tool, you can find plugins for it.
