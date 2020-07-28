@@ -251,6 +251,8 @@ compiler.run((err, stats) => {
 });
 ```
 
+T> [See Stack Overflow](https://stackoverflow.com/questions/39923743/is-there-a-way-to-get-the-output-of-webpack-node-api-as-a-string) for related discussion.
+
 {pagebreak}
 
 ## Conclusion
