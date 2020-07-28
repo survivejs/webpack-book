@@ -9,9 +9,9 @@ There are a couple of ground rules when it comes to optimization:
 3. Perform more involved tweaks after.
 4. Measure the impact as you go.
 
-Sometimes optimizations come with a cost. You could, for example, trade memory for performance or end up making your configuration more complex.
+Sometimes optimizations come with a cost. You could, for example, trade memory for performance or end up making your configuration more complicated.
 
-T> If you hit memory limits with webpack, you can give it more memory with `node --max-old-space-size=4096 node_modules/.bin/webpack-dev-server --env development` kind of invocation. Size is given is megabytes, and in the example you would give 4 gigabytes of memory to the process.
+T> If you hit memory limits with webpack, you can give it more memory with `node --max-old-space-size=4096 node_modules/.bin/webpack-dev-server --env development` kind of invocation. Size is given in megabytes, and in the example you would give 4 gigabytes of memory to the process.
 
 ## Measuring impact
 
@@ -25,25 +25,25 @@ As discussed in the previous chapter, generating stats can be used to measure bu
 
 Webpack uses only a single instance by default, meaning you aren't able to benefit from a multi-core processor without extra effort. This where [thread-loader](https://www.npmjs.com/package/thread-loader) and third-party solutions, such as [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) and [HappyPack](https://www.npmjs.com/package/happypack) come in.
 
-### _parallel-webpack_ - run multiple webpack instances in parallel
+### **parallel-webpack** - run multiple webpack instances in parallel
 
-_parallel-webpack_ allows you to parallelize webpack configuration in two ways. Assuming you have defined your webpack configuration as an array, it can run the configurations in parallel. In addition to this, _parallel-webpack_ can generate builds based on given **variants**.
+**parallel-webpack** allows you to parallelize webpack configuration in two ways. Assuming you have defined your webpack configuration as an array, it can run them in parallel. In addition to this, **parallel-webpack** can generate builds based on given **variants**.
 
-Using variants allows you to generate both production and development builds at once. Variants let you to generate bundles with different targets to make them easier to consume depending on the environment. They can be used to implement feature flags when combined with `DefinePlugin` as discussed in the _Environment Variables_ chapter.
+Variants allow you to generate both production and development builds at once. They let you to create bundles with different targets to make them easier to consume depending on the environment. Variants can be used to implement feature flags when combined with `DefinePlugin` as discussed in the _Environment Variables_ chapter.
 
-The underlying idea can be implemented using a [worker-farm](https://www.npmjs.com/package/worker-farm). In fact, _parallel-webpack_ relies on _worker-farm_ underneath.
+The underlying idea can be implemented using a [worker-farm](https://www.npmjs.com/package/worker-farm). In fact, **parallel-webpack** relies on _worker-farm_ underneath.
 
-_parallel-webpack_ can be used by installing it to your project as a development dependency and then replacing `webpack` command with `parallel-webpack`.
+**parallel-webpack** can be used by installing it to your project as a development dependency and then replacing `webpack` command with `parallel-webpack`.
 
 {pagebreak}
 
-### _thread-loader_ and _happypack_ - module level parallelism
+### **thread-loader** and _happypack_ - module level parallelism
 
-_thread-loader_ and _parallel-webpack_ let you parallelize execution on a module level. _thread-loader_ fits into a loader chain. [Using it doesn't always guarantee speed improvements, though](https://blog.johnnyreilly.com/2018/12/you-might-not-need-thread-loader.html). _happypack_ is a more involved approach that's in maintenance mode, and it's worth checking out if parallelization with _thread-loader_ doesn't work.
+**thread-loader** and **parallel-webpack** let you parallelize execution on a module level. **thread-loader** fits into a loader chain. [Using it doesn't always guarantee speed improvements, though](https://blog.johnnyreilly.com/2018/12/you-might-not-need-thread-loader.html). _happypack_ is a more involved approach that's in maintenance mode, and it's worth checking out if parallelization with **thread-loader** doesn't work.
 
 ## Low-Level Optimizations
 
-Specific lower-level optimizations can be good to know. The key is to allow webpack to perform less work. Consider the examples below:
+Specific lower-level optimizations can be nice to know. The key is to allow webpack to perform less work. Consider the examples below:
 
 - Consider using faster source map variants during development or skip them. Skipping is possible if you don't process the code in any way.
 - Use [@babel/preset-env](https://www.npmjs.com/package/@babel/preset-env) during development instead of source maps to transpile fewer features for modern browsers and make the code more readable and more comfortable to debug.
@@ -58,10 +58,10 @@ Specific lower-level optimizations can be good to know. The key is to allow webp
 
 Loaders have their optimizations as well:
 
-- Perform less processing by skipping loaders during development. Especially if you are using a modern browser, you can skip using _babel-loader_ or equivalent altogether.
-- Use either `include` or `exclude` with JavaScript specific loaders. Webpack traverses _node_modules_ by default, and executes _babel-loader_ over the files unless it has been configured correctly.
+- Perform less processing by skipping loaders during development. Especially if you are using a modern browser, you can skip using **babel-loader** or equivalent altogether.
+- Use either `include` or `exclude` with JavaScript specific loaders. Webpack traverses _node_modules_ by default, and executes **babel-loader** over the files unless it has been configured correctly.
 - Cache the results of expensive loaders (e.g., image manipulation) to the disk using the [cache-loader](https://www.npmjs.com/package/cache-loader).
-- Parallelize the execution of expensive loaders using [thread-loader](https://www.npmjs.com/package/thread-loader). Given workers come with an overhead in Node, using _thread-loader_ is worth it only if the parallelized operation is heavy.
+- Parallelize the execution of expensive loaders using [thread-loader](https://www.npmjs.com/package/thread-loader). Given workers come with an overhead in Node, using **thread-loader** is worth it only if the parallelized operation is heavy.
 
 ## Optimizing rebundling speed during development
 
@@ -100,7 +100,7 @@ dontParse({
 }),
 ```
 
-After this change, the application should be faster to rebuild depending on the underlying implementation. The technique can also be applied to production.
+After this change, the application should be faster to rebuild, depending on the underlying implementation. The technique can also be applied to production.
 
 Given `module.noParse` accepts a regular expression if you wanted to ignore all `*.min.js` files, you could set it to `/\.min\.js/`.
 
@@ -117,7 +117,7 @@ There are various webpack 4 specific tricks to improve performance:
 
 ## Conclusion
 
-You can optimize webpack's performance in multiple ways. Often it's a good idea to start with more accessible techniques before moving to more involved ones. The exact methods you have to use, depend on the project.
+You can optimize webpack's performance in multiple ways. Often it's a good idea to start with more accessible techniques before moving to more involved ones. The exact methods you have to use depend on the project.
 
 To recap:
 

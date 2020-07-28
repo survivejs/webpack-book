@@ -45,9 +45,9 @@ W> If you use _webpack.config.babel.js_, take care with the `"modules": false,` 
 
 {pagebreak}
 
-### Setting up _babel-loader_
+### Setting up **babel-loader**
 
-The first step towards configuring Babel to work with webpack is to set up [babel-loader](https://www.npmjs.com/package/babel-loader). It takes the code and turns it into a format older browsers can understand. Install _babel-loader_ and include its peer dependency _@babel/core_:
+The first step towards configuring Babel to work with webpack is to set up [babel-loader](https://www.npmjs.com/package/babel-loader). It takes the code and turns it into a format older browsers can understand. Install **babel-loader** and include its peer dependency _@babel/core_:
 
 ```bash
 npm add babel-loader @babel/core -D
@@ -92,7 +92,7 @@ leanpub-end-insert
 
 Even though you have Babel installed and set up, you are still missing one bit: Babel configuration. The configuration can be set up using a _.babelrc_ dotfile as then other tooling can use the same.
 
-W> If you try to import files **outside** of your configuration root directory and then process them through _babel-loader_, this fails. It's [a known issue](https://github.com/babel/babel-loader/issues/313), and there are workarounds including maintaining _.babelrc_ at a higher level in the project and resolving against Babel presets through `require.resolve` at webpack configuration.
+W> If you try to import files **outside** of your configuration root directory and then process them through **babel-loader**, this fails. It's [a known issue](https://github.com/babel/babel-loader/issues/313), and there are workarounds including maintaining _.babelrc_ at a higher level in the project and resolving against Babel presets through `require.resolve` at webpack configuration.
 
 ### Setting up _.babelrc_
 
