@@ -14,7 +14,7 @@ Unsafe transformations can break code as they can lose something implicit the un
 
 In webpack, minification process is controlled through two configuration fields: `optimization.minimize` flag to toggle it and `optimization.minimizer` array to configure the process.
 
-To tune the defaults, we'll attach [terser-webpack-plugin](hhttps://www.npmjs.com/package/terser-webpack-plugin) to the project so that it's possible to adjust it.
+To tune the defaults, we'll attach [terser-webpack-plugin](https://www.npmjs.com/package/terser-webpack-plugin) to the project so that it's possible to adjust it.
 
 To get started, include the plugin to the project:
 
