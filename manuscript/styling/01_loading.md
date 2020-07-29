@@ -70,7 +70,7 @@ body {
 }
 ```
 
-To make webpack aware of the CSS, we have to refer to it from our source code:-
+To make webpack aware of the CSS, we have to refer to it from our source code:
 
 **src/index.js**
 

@@ -24,7 +24,7 @@ Webpack becomes an indispensable tool after you begin to understand how it works
 
 ## What will you learn
 
-This book has written to complement [the official documentation of webpack](https://webpack.js.org/), and it can be considered a companion to it. The book helps you to get through the initial learning curve and go further.
+This book has been written to complement [the official documentation of webpack](https://webpack.js.org/), and it can be considered a companion to it. The book helps you to get through the initial learning curve and go further.
 
 You will learn to develop a composable webpack configuration for both development and production purposes. Advanced techniques covered by the book allow you to get the most out of webpack.
 
