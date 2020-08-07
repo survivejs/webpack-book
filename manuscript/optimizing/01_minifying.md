@@ -86,11 +86,11 @@ If you consume HTML templates through your code using [html-loader](https://www.
 
 [clean-css-loader](https://www.npmjs.com/package/clean-css-loader) allows you to use a popular CSS minifier [clean-css](https://www.npmjs.com/package/clean-css).
 
-[optimize-css-assets-webpack-plugin](https://www.npmjs.com/package/optimize-css-assets-webpack-plugin) is a plugin based option that applies a chosen minifier on CSS assets. Using `MiniCssExtractPlugin` can lead to duplicated CSS given it only merges text chunks. `OptimizeCSSAssetsPlugin` avoids this problem by operating on the generated result and thus can lead to a better outcome.
+[optimize-css-assets-webpack-plugin](https://www.npmjs.com/package/optimize-css-assets-webpack-plugin) is a plugin-based option that applies a chosen minifier on CSS assets. Using `MiniCssExtractPlugin` can lead to duplicated CSS given it only merges text chunks. `OptimizeCSSAssetsPlugin` avoids this problem by operating on the generated result and thus can lead to a better outcome.
 
 ### Setting Up CSS minification
 
-Out of the available solutions, `OptimizeCSSAssetsPlugin` composes the best. To attach it to the setup, install it and [cssnano](http://cssnano.co/) first:
+Out of the available solutions, `OptimizeCSSAssetsPlugin` is the most flexible one and using it allows you connect other packages with webpack. To attach it to the setup, install the plugin and [cssnano](http://cssnano.co/) first:
 
 ```bash
 npm add optimize-css-assets-webpack-plugin cssnano -D
