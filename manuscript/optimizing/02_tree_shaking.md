@@ -40,7 +40,7 @@ To get a better idea of what webpack is using for tree shaking, run it through `
 
 T> If you are using _terser-webpack-plugin_, enable warnings for a similar effect. In addition to other messages, you should see lines like `Dropping unused variable treeShakingDemo [./src/component.js:17,6]`.
 
-T> There is a CSS Modules related tree shaking proof of concept at [dead-css-loader](https://github.com/simlrh/dead-css-loader).
+W> For tree shaking to work with TypeScript, you have to set `compilerOptions.module` to `es2015` or equivalent. The idea is to retain ES2015 module definitions for webpack to process as it needs the information for tree shaking.
 
 ## Tree shaking on package level
 
