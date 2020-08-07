@@ -101,9 +101,9 @@ T> The _CSS Modules_ appendix discusses an approach that allows you to treat loc
 
 ![PostCSS](images/postcss.png)
 
-[PostCSS](http://postcss.org/) allows you to perform transformations over CSS through JavaScript plugins. You can even find plugins that provide you Sass-like features. PostCSS is the equivalent of Babel for styling. [postcss-loader](https://www.npmjs.com/package/postcss-loader) allows using it with webpack.
+[PostCSS](http://postcss.org/) allows you to perform transformations over CSS through JavaScript plugins. PostCSS is the equivalent of Babel for styling and you can find plugins for many purposes. It can mimic Sass syntax ([precss](https://www.npmjs.com/package/precss)) and even fix browser bugs like `100vh` behavior on Safari [postcss-100vh-fix](https://www.npmjs.com/package/postcss-100vh-fix).
 
-The example below illustrates how to set up autoprefixing using PostCSS. It also sets up [precss](https://www.npmjs.com/package/precss), a PostCSS plugin that allows you to use Sass-like markup in your CSS. You can mix this technique with other loaders to enable autoprefixing there.
+The example below illustrates how to set up autoprefixing using PostCSS with [postcss-loader](https://www.npmjs.com/package/postcss-loader). You can mix this technique with other loaders to enable autoprefixing for any CSS flow.
 
 ```javascript
 {
