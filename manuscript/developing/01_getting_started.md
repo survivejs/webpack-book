@@ -122,6 +122,8 @@ To get started, install **mini-html-webpack-plugin**:
 npm add mini-html-webpack-plugin -D
 ```
 
+{pagebreak}
+
 To connect the plugin with webpack, set up configuration as below:
 
 **webpack.config.js**
@@ -186,7 +188,7 @@ The output tells a lot:
 
 Examine the output below the `dist/` directory. If you look closely, you can see the same IDs within the source.
 
-T> In addition to a configuration object, webpack accepts an array of configurations. You can also return a `Promise` and eventually `resolve` to a configuration for example. Latter is useful if you are fetching configuration related data from a third party source.
+T> In addition to a configuration object, webpack accepts an array of configurations. You can also return a `Promise` and eventually `resolve` to a configuration for example. Latter is useful if you are fetching configuration related data from a third-party source.
 
 ## Webpack output plugins
 
@@ -200,8 +202,6 @@ Given the output given by webpack can be difficult to decipher, multiple options
 - [test-webpack-reporter-plugin](https://www.npmjs.com/package/test-webpack-reporter-plugin) abstracts webpack's internals to make it easier to write your own reporters.
 
 Give the above options a go if you want to go beyond default output.
-
-{pagebreak}
 
 ## Adding a build shortcut
 

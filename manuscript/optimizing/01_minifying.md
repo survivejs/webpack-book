@@ -16,6 +16,8 @@ In webpack, minification process is controlled through two configuration fields:
 
 To tune the defaults, we'll attach [terser-webpack-plugin](https://www.npmjs.com/package/terser-webpack-plugin) to the project so that it's possible to adjust it.
 
+{pagebreak}
+
 To get started, include the plugin to the project:
 
 ```bash

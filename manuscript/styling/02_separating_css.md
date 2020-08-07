@@ -114,6 +114,8 @@ Entrypoint main = main.css main.js
 
 Now styling has been pushed to a separate CSS file. Thus, the JavaScript bundle has become slightly smaller, and you avoid the FOUC problem. The browser doesn't have to wait for JavaScript to load to get styling information. Instead, it can process the CSS separately, avoiding the flash.
 
+{pagebreak}
+
 ## Managing styles outside of JavaScript
 
 Even though referring to styling through JavaScript and then bundling is the recommended option, it's possible to achieve the same result through an `entry` and [globbing](https://www.npmjs.com/package/glob) the CSS files through an entry:
@@ -121,8 +123,6 @@ Even though referring to styling through JavaScript and then bundling is the rec
 ```javascript
 ...
 const glob = require("glob");
-
-...
 
 const commonConfig = merge([
   {

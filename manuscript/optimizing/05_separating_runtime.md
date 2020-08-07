@@ -71,7 +71,9 @@ As mentioned in the _Bundle Splitting_ chapter, plugins such as `AggressiveSplit
 
 Records are used for storing module IDs across separate builds. The problem is that you need to save this file. If you build locally, one option is to include it in your version control.
 
-To generate a _records.json_ file, adjust the configuration as follows:
+{pagebreak}
+
+To generate a `records.json` file, adjust the configuration as follows:
 
 **webpack.config.js**
 

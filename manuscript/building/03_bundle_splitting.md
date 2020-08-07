@@ -180,6 +180,8 @@ In the example above, you used different types of webpack chunks. Webpack treats
 - **Normal chunks** - Normal chunks **don't** contain webpack runtime. Instead, these can be loaded dynamically while the application is running. A suitable wrapper (JSONP for example) is generated for these. You generate a normal chunk in the next chapter as you set up code splitting.
 - **Initial chunks** - Initial chunks are normal chunks that count towards initial loading time of the application. As a user, you don't have to care about these. It's the split between entry chunks and normal chunks that is important.
 
+{pagebreak}
+
 ## Conclusion
 
 The situation is better now compared to the earlier. Note how small `main` bundle compared to the `vendor` bundle. To benefit from this split, you set up caching in the next part of this book in the _Adding Hashes to Filenames_ chapter.
@@ -187,7 +189,7 @@ The situation is better now compared to the earlier. Note how small `main` bundl
 To recap:
 
 - Webpack allows you to split bundles from configuration entries through the `optimization.splitChunks.cacheGroups` field. It performs bundle splitting by default in production mode as well.
-- A vendor bundle contains the third party code of your project. The vendor dependencies can be detected by inspecting where the modules are imported.
+- A vendor bundle contains the third-party code of your project. The vendor dependencies can be detected by inspecting where the modules are imported.
 - Webpack offers more control over chunking through specific plugins, such as `AggressiveSplittingPlugin` and `AggressiveMergingPlugin`. Mainly the splitting plugin can be handy in HTTP/2 oriented setups.
 - Internally webpack relies on three chunk types: entry, normal, and initial chunks.
 

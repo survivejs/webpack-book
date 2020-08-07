@@ -110,6 +110,8 @@ Furthermore, it's possible to manipulate `publicPath` and override the default p
 
 T> In the example above, the usage of **file-loader** is obscured _url-loader_. It uses **file-loader** underneath with the `limit` option. The loader options are passed to it. You can override the behavior by using the `fallback` option.
 
+{pagebreak}
+
 ## Generating font files based on SVGs
 
 If you prefer to use SVG based fonts, they can be bundled as a single font file by using [webfonts-loader](https://www.npmjs.com/package/webfonts-loader).

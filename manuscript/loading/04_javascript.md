@@ -123,6 +123,8 @@ If you execute `npm run build -- --mode none` now and examine _dist/main.js_, yo
 
 T> See the _Autoprefixing_ chapter for an expanded discussion of browserslist.
 
+{pagebreak}
+
 Try to include only a definition like `IE 8` there, and the code should change accordingly:
 
 **dist/main.js**
@@ -149,9 +151,9 @@ T> [@babel/preset-modules](https://www.npmjs.com/package/@babel/preset-modules) 
 
 ## Polyfilling features
 
-_@babel/preset-env_ allows you to polyfill certain language features for older browsers. For this to work, you should enable its `useBuiltIns` option and install [core-js](https://www.npmjs.com/package/core-js). If you are using `async` functions and want to support older browsers, then [regenerator-runtime](https://www.npmjs.com/package/regenerator-runtime) is required as well.
+**@babel/preset-env** allows you to polyfill certain language features for older browsers. For this to work, you should enable its `useBuiltIns` option and install [core-js](https://www.npmjs.com/package/core-js). If you are using `async` functions and want to support older browsers, then [regenerator-runtime](https://www.npmjs.com/package/regenerator-runtime) is required as well.
 
-You have to include **core-js** to your project either through an import or an entry (`app: ["core-js", PATHS.app]`), except if you're using `useBuiltIns: 'usage'` to configure `@babel/preset-env`. _@babel/preset-env_ rewrites the import based on your browser definition and loads only the polyfills that are needed.
+You have to include **core-js** to your project either through an import or an entry (`app: ["core-js", PATHS.app]`), except if you're using `useBuiltIns: 'usage'` to configure `@babel/preset-env`. **@babel/preset-env** rewrites the import based on your browser definition and loads only the polyfills that are needed.
 
 T> To learn more about **core-js** and why it's needed, [read core-js 3 release post](https://github.com/zloirock/core-js/blob/master/docs/2019-03-19-core-js-3-babel-and-a-look-into-the-future.md).
 
@@ -161,6 +163,8 @@ W> **core-js** pollutes the global scope with objects like `Promise`. Given this
 
 W> Certain webpack features, such as _Code Splitting_, write `Promise` based code to webpack's bootstrap after webpack has processed loaders. The problem can be solved by applying a shim before your application code is executed. Example: `entry: { app: ["core-js/es/promise", PATHS.app] }`.
 
+{pagebreak}
+
 ## Babel tips
 
 There are other possible [_.babelrc_ options](https://babeljs.io/docs/usage/options/) beyond the ones covered here. Like ESLint, _.babelrc_ supports [JSON5](https://www.npmjs.com/package/json5) as its configuration format meaning you can include comments in your source, use single quoted strings, and so on.
@@ -168,8 +172,6 @@ There are other possible [_.babelrc_ options](https://babeljs.io/docs/usage/opti
 Sometimes you want to use experimental features that fit your project. Although you can find a lot of them within so-called stage presets, it's a good idea to enable them one by one and even organize them to a preset of their own unless you are working on a throwaway project. If you expect your project to live a long time, it's better to document the features you are using well.
 
 Babel isn't the only option although it's the most popular one. [Buble](https://buble.surge.sh) by Rich Harris is another compiler worth checking out. There's experimental [buble-loader](https://www.npmjs.com/package/buble-loader) that allows you to use it with webpack. Buble doesn't support ES2015 modules, but that's not a problem as webpack provides that functionality.
-
-{pagebreak}
 
 ## Babel plugins
 
@@ -210,8 +212,6 @@ Consider the example below:
 ```
 
 Any shared presets and plugins are available to all targets still. `env` allows you to specialize your Babel configuration further.
-
-{pagebreak}
 
 It's possible to pass the webpack environment to Babel with a tweak:
 
@@ -362,7 +362,7 @@ Babel has become an indispensable tool for developers given it bridges the stand
 
 To recap:
 
-- Babel gives you control over what browsers to support. It can compile ES2015+ features to a form the older browser understand. _@babel/preset-env_ is valuable as it can choose which features to compile and which polyfills to enable based on your browser definition.
+- Babel gives you control over what browsers to support. It can compile ES2015+ features to a form the older browser understand. **@babel/preset-env** is valuable as it can choose which features to compile and which polyfills to enable based on your browser definition.
 - Babel allows you to use experimental language features. You can find numerous plugins that improve development experience and the production build through optimizations.
 - Babel functionality can be enabled per development target. This way you can be sure you are using the correct plugins at the right place.
 - Besides Babel, webpack supports other solutions like TypeScript or Flow. Flow can complement Babel while TypeScript represents an entire language compiling to JavaScript.
