@@ -319,13 +319,31 @@ Compared to Facebook's type checker Flow, TypeScript is a safer option in terms 
 
 You can also compile TypeScript with Babel through [@babel/plugin-transform-typescript](https://www.npmjs.com/package/@babel/plugin-transform-typescript) although this comes with small [caveats](https://babeljs.io/docs/en/next/babel-plugin-transform-typescript.html#caveats).
 
-T> If you have set up TypeScript to your project, you can write your configuration in TypeScript by naming the configuration file as **webpack.config.ts**. Webpack is able to detect this automatically and run it correctly. Remember to install [ts-node](https://www.npmjs.com/package/ts-node) as webpack requires that to execute the configuration.
-
 T> You can find types for webpack behind [@types/webpack](https://www.npmjs.com/package/@types/webpack) and [@types/webpack-env](https://www.npmjs.com/package/@types/webpack-env). Webpack 5 includes TypeScript support out of the box.
 
 T> To split TypeScript configuration, use the `extends` property (`"extends": "./tsconfig.common"`) and then use **ts-loader** `configFile` to control which file to use through webpack.
 
 T> There's a [TypeScript parser for ESLint](https://www.npmjs.com/package/typescript-eslint-parser). It's also possible to lint it through [tslint](https://www.npmjs.com/package/tslint).
+
+### Using TypeScript to write webpack configuration
+
+If you have set up TypeScript to your project, you can write your configuration in TypeScript by naming the configuration file as **webpack.config.ts**. Webpack is able to detect this automatically and run it correctly.
+
+For this to work, you need to have [ts-node](https://www.npmjs.com/package/ts-node) or [ts-node-dev](https://www.npmjs.com/package/ts-node-dev) installed to your project as webpack uses it to execute the configuration.
+
+If you run webpack in watch mode or through webpack-dev-server, by default compilation errors can cause the build to fail. To avoid this, consider using **ts-node** in `transpileOnly` mode like this:
+
+**tsconfig.json**
+
+```json
+{
+  "ts-node": {
+    "transpileOnly": true
+  }
+}
+```
+
+The above assumes you handle type-checking another way. For example, you could run `tsc` using a separate script. Often editor tooling can catch type issues as you are developing as well.
 
 ## Flow
 
