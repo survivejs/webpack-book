@@ -161,7 +161,11 @@ It's possible WDS [will support the functionality](https://github.com/webpack/we
 
 ## Polling instead of watching files
 
-It's possible the file watching setup provided by WDS won't work on your system. It can be problematic on older versions of Windows, Ubuntu, Vagrant, and Docker. Enabling polling is a good option then:
+It's possible the file watching setup provided by WDS won't work on your system. It can be problematic on older versions of Windows and Ubuntu.
+
+Polling is almost mandatory when using Vagrant, Docker, or any other solution that doesn't forward events for changes on a file located in a folder shared with the virtualized machine where webpack is running. [vagrant-notify-forwarder](https://github.com/mhallin/vagrant-notify-forwarder) solves the problem for MacOS and Unix.
+
+For any of these cases, enabling polling is a good option:
 
 **webpack.config.js**
 
@@ -177,15 +181,10 @@ module.exports = {
 
       // Poll using interval (in ms, accepts boolean too)
       poll: 1000,
+      // Ignore node_modules to decrease CPU usage
+      ignored: /node_modules/,
     },
   },
-  plugins: [
-    // Ignore node_modules so CPU usage with poll
-    // watching drops significantly.
-    new webpack.WatchIgnorePlugin([
-      path.join(__dirname, "node_modules"),
-    ]),
-  ],
 };
 ```
 

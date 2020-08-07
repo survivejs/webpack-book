@@ -6,7 +6,7 @@ The current solution doesn't allow caching CSS. You can also get a **Flash of Un
 
 Webpack provides a means to generate a separate CSS bundles using [mini-css-extract-plugin](https://www.npmjs.com/package/mini-css-extract-plugin) (MCEP). It can aggregate multiple CSS files into one. For this reason, it comes with a loader that handles the extraction process. The plugin then picks up the result aggregated by the loader and emits a separate file with the styling.
 
-W> It can be potentially dangerous to use inline styles within JavaScript in production as it represents an attack vector. **Critical path rendering** embraces the idea and inlines the critical CSS to the initial HTML payload improving the perceived performance of the site. In limited contexts inlining a small amount of CSS can be a viable option to speed up the initial load (fewer requests).
+W> It can be potentially dangerous to load inline styles with JavaScript in production as it represents an attack vector. **Critical path rendering** embraces the idea of rendering the critical CSS with inline styles in the initial HTML payload, improving the perceived performance of the site. In limited contexts inlining a small amount of CSS can be a viable option to speed up the initial load due to fewer requests.
 
 T> [extract-css-chunks-webpack-plugin](https://github.com/faceyspacey/extract-css-chunks-webpack-plugin) is a community maintained alternative to **mini-css-extract-plugin** designed especially server side rendering in mind.
 

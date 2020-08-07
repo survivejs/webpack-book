@@ -205,7 +205,7 @@ To add hierarchy to the way configuration parts are managed, you could decompose
     └── ...
 ```
 
-This arrangement would make it faster to find configuration related to a category. A good option would be to arrange the parts within a single file and use comments to split it up.
+This arrangement can make it faster to find configuration related to a category. Additionally, it can also reduce your build time if you're consuming parts from a published package as then only the required plugins will have to be loaded. A good alternative for better readability would be to arrange the functions within a single file and use comments to split it up.
 
 ### Guidelines for building your own configuration packages
 

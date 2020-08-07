@@ -54,13 +54,15 @@ Although webpack is used mainly to bundle JavaScript, it can capture assets like
 
 Assuming all loaders were found, webpack evaluates the matched loaders from bottom to top and right to left (`styleLoader(cssLoader('./main.css'))`) while running the module through each loader in turn. As a result, you get output which webpack will inject in the resulting **bundle**. The _Loader Definitions_ chapter covers the topic in detail.
 
-If loader evaluation completed without a runtime error, webpack includes the source in the last bundle. **Plugins** allow you to intercept **runtime events** at different stages of the bundling process.
+If loader evaluation completed without a runtime error, webpack includes the source in the bundle. Although loaders can do a lot, they don't provide enough power for advanced tasks. Plugins can intercept **runtime events** supplied by webpack.
 
-Although loaders can do a lot, they don't provide enough power for advanced tasks. Plugins can intercept **runtime events** supplied by webpack. A good example is bundle extraction performed by the `MiniCssExtractPlugin` which, when used with a loader, extracts CSS files out of the bundle and into a separate file. Without this step, CSS would be inlined in the resulting JavaScript, as webpack treats all code as JavaScript by default. The extraction idea is discussed in the _Separating CSS_ chapter.
+A good example is bundle extraction performed by the `MiniCssExtractPlugin` which, when used with a loader, extracts CSS files out of the bundle and into a separate file. Without this step, CSS would be inlined in the resulting JavaScript, as webpack treats all code as JavaScript by default. The extraction idea is discussed in the _Separating CSS_ chapter.
 
 ### Finishing
 
-After every module has been evaluated, webpack writes **output**. The output includes a bootstrap script with a manifest that describes how to begin executing the result in the browser. The manifest can be extracted to a file of its own, as discussed later in the book. The output differs based on the build target you are using (targeting the web is not the only option).
+After every module has been evaluated, webpack writes **output**. The output includes a bootstrap script. It is a small runtime that executes the result in a browser and a manifest listing bundles to load.
+
+The manifest can be extracted to a file of its own, as discussed later in the book. The output differs based on the build target you are using (targeting the web is not the only option).
 
 That's not all there is to the bundling process. For example, you can define specific **split points** where webpack generates separate bundles that are loaded based on application logic. This idea is discussed in the _Code Splitting_ chapter.
 
@@ -85,6 +87,7 @@ module.exports = {
     path: __dirname,
 
     // Capture name from the entry using a pattern
+    // In the example, it will result as app.js.
     filename: "[name].js",
   },
 

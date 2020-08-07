@@ -25,7 +25,7 @@ __webpack_require__.r(__webpack_exports__);
 
 The problem can be worked around by processing the code through [Babel](https://babeljs.io/), a famous JavaScript compiler that supports ES2015+ features and more. It resembles ESLint in that it's built on top of presets and plugins. Presets are collections of plugins, and you can define your own as well.
 
-T> Babel isn't the only option although it's the most popular one. [esbuild-loader](https://www.npmjs.com/package/esbuild-loader) and [swc-loader](https://www.npmjs.com/package/swc-loader) are worth checking out if you don't need any specific Babel presets or plugins.
+T> Babel isn't the only option, although it's the most popular one. [esbuild-loader](https://www.npmjs.com/package/esbuild-loader) and [swc-loader](https://www.npmjs.com/package/swc-loader) are worth checking out if you don't need any specific Babel presets or plugins.
 
 T> Given sometimes extending existing presets is not enough, [modify-babel-preset](https://www.npmjs.com/package/modify-babel-preset) allows you to go a step further and configure the base preset in a more flexible way.
 
@@ -157,7 +157,7 @@ T> [@babel/preset-modules](https://www.npmjs.com/package/@babel/preset-modules) 
 
 _@babel/preset-env_ allows you to polyfill certain language features for older browsers. For this to work, you should enable its `useBuiltIns` option and install [core-js](https://www.npmjs.com/package/core-js). If you are using `async` functions and want to support older browsers, then [regenerator-runtime](https://www.npmjs.com/package/regenerator-runtime) is required as well.
 
-You have to include **core-js** to your project either through an import or an entry (`app: ["core-js", PATHS.app]`). _@babel/preset-env_ rewrites the import based on your browser definition and loads only the polyfills that are needed.
+You have to include **core-js** to your project either through an import or an entry (`app: ["core-js", PATHS.app]`), except if you're using `useBuiltIns: 'usage'` to configure `@babel/preset-env`. _@babel/preset-env_ rewrites the import based on your browser definition and loads only the polyfills that are needed.
 
 T> To learn more about **core-js** and why it's needed, [read core-js 3 release post](https://github.com/zloirock/core-js/blob/master/docs/2019-03-19-core-js-3-babel-and-a-look-into-the-future.md).
 
@@ -196,7 +196,7 @@ T> It's possible to connect Babel with Node through [babel-register](https://www
 
 Babel allows you to control which presets and plugins are used per environment through its [env option](https://babeljs.io/docs/usage/babelrc/#env-option). You can manage Babel's behavior per build target this way.
 
-`env` checks both `NODE_ENV` and `BABEL_ENV` and adds functionality to your build based on that. If `BABEL_ENV` is set, it overrides any possible `NODE_ENV`.
+`env` checks both `NODE_ENV` and `BABEL_ENV` and adds functionality to your build based on that. If both `BABEL_ENV` and `NODE_ENV` are set, the former takes precedence to resolve `env`.
 
 Consider the example below:
 
