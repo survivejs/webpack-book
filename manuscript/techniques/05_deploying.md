@@ -18,7 +18,7 @@ npm add gh-pages -D
 
 {pagebreak}
 
-You are also going to need a script in _package.json_:
+You are also going to need a script in `package.json`:
 
 **package.json**
 

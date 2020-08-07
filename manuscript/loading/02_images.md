@@ -6,15 +6,15 @@ For smaller scale usage, webpack is a good option as it can both consume and pro
 
 Webpack can **inline** assets by using [url-loader](https://www.npmjs.com/package/url-loader). It emits your images as base64 strings within your JavaScript bundles. The process decreases the number of requests needed while growing the bundle size.
 
-Webpack gives control over the inlining process and can defer loading to [file-loader](https://www.npmjs.com/package/file-loader). _file-loader_ outputs image files and returns paths to them instead of inlining. This technique works with other asset types, such as fonts, as you see in the later chapters.
+Webpack gives control over the inlining process and can defer loading to [file-loader](https://www.npmjs.com/package/file-loader). **file-loader** outputs image files and returns paths to them instead of inlining. This technique works with other asset types, such as fonts, as you see in the later chapters.
 
 ## Setting up _url-loader_
 
-_url-loader_ is a good starting point, and it's the perfect option for development purposes, as you don't have to care about the size of the resulting bundle. It comes with a _limit_ option that can be used to defer image generation to _file-loader_ after an absolute limit is reached. This way you can inline small files to your JavaScript bundles while generating separate files for the bigger ones.
+_url-loader_ is a good starting point, and it's the perfect option for development purposes, as you don't have to care about the size of the resulting bundle. It comes with a _limit_ option that can be used to defer image generation to **file-loader** after an absolute limit is reached. This way you can inline small files to your JavaScript bundles while generating separate files for the bigger ones.
 
-If you use the `limit` option, you need to install both _url-loader_ and _file-loader_ to your project. Assuming you have configured your styles correctly, webpack resolves any `url()` statements your styling contains. You can point to the image assets through your JavaScript code as well.
+If you use the `limit` option, you need to install both _url-loader_ and **file-loader** to your project. Assuming you have configured your styles correctly, webpack resolves any `url()` statements your styling contains. You can point to the image assets through your JavaScript code as well.
 
-In case the `limit` option is used, _url-loader_ passes possible additional options to _file-loader_ making it possible to configure its behavior further.
+In case the `limit` option is used, _url-loader_ passes possible additional options to **file-loader** making it possible to configure its behavior further.
 
 To load _.jpg_ and _.png_ files while inlining files below 25kB, you would have to set up a loader:
 
@@ -30,11 +30,11 @@ To load _.jpg_ and _.png_ files while inlining files below 25kB, you would have 
 },
 ```
 
-T> If you prefer to use another loader than _file-loader_ as the _limit_ is reached, set `fallback: "some-loader"`. Then webpack will resolve to that instead of the default.
+T> If you prefer to use another loader than **file-loader** as the _limit_ is reached, set `fallback: "some-loader"`. Then webpack will resolve to that instead of the default.
 
-## Setting up _file-loader_
+## Setting up **file-loader**
 
-If you want to skip inlining altogether, you can use _file-loader_ directly. The following setup customizes the resulting filename. By default, _file-loader_ returns the MD5 hash of the file's contents with the original extension:
+If you want to skip inlining altogether, you can use **file-loader** directly. The following setup customizes the resulting filename. By default, **file-loader** returns the MD5 hash of the file's contents with the original extension:
 
 ```javascript
 {
@@ -115,11 +115,11 @@ leanpub-end-insert
 }
 ```
 
-The behavior changes depending on the `limit` you set. Below the limit, it should inline the image while above it should emit a separate asset and a path to it. The CSS lookup works because of _css-loader_. You can also try importing the image from JavaScript code and see what happens.
+The behavior changes depending on the `limit` you set. Below the limit, it should inline the image while above it should emit a separate asset and a path to it. The CSS lookup works because of **css-loader**. You can also try importing the image from JavaScript code and see what happens.
 
 ## Loading SVGs
 
-Webpack allows a [couple ways](https://github.com/webpack/webpack/issues/595) to load SVGs. However, the easiest way is through _file-loader_ as follows:
+Webpack allows a [couple ways](https://github.com/webpack/webpack/issues/595) to load SVGs. However, the easiest way is through **file-loader** as follows:
 
 ```javascript
 {
@@ -180,7 +180,7 @@ Webpack allows you to load images dynamically based on a condition. The techniqu
 
 ## Using placeholders
 
-[image-trace-loader](https://www.npmjs.com/package/image-trace-loader) loads images and exposes the results as `image/svg+xml` URL encoded data. It can be used in conjunction with _file-loader_ and _url-loader_ for showing a placeholder while the actual image is being loaded.
+[image-trace-loader](https://www.npmjs.com/package/image-trace-loader) loads images and exposes the results as `image/svg+xml` URL encoded data. It can be used in conjunction with **file-loader** and _url-loader_ for showing a placeholder while the actual image is being loaded.
 
 [lqip-loader](https://www.npmjs.com/package/lqip-loader) implements a similar idea. Instead of tracing, it provides a blurred image instead of a traced one.
 
@@ -194,7 +194,7 @@ Modern browsers support `srcset` attribute that lets you define an image in diff
 
 ## Referencing to images
 
-Webpack can pick up images from style sheets through `@import` and `url()` assuming _css-loader_ has been configured. You can also refer to your images within the code. In this case, you have to import the files explicitly:
+Webpack can pick up images from style sheets through `@import` and `url()` assuming **css-loader** has been configured. You can also refer to your images within the code. In this case, you have to import the files explicitly:
 
 ```javascript
 import src from "./avatar.png";
@@ -215,9 +215,9 @@ It's also possible to set up dynamic imports as discussed in the _Code Splitting
 const src = require(`./avatars/${avatar}`);`.
 ```
 
-## Images and _css-loader_ source map gotcha
+## Images and **css-loader** source map gotcha
 
-If you are using images and _css-loader_ with the `sourceMap` option enabled, it's important that you set `output.publicPath` to an absolute value pointing to your development server. Otherwise, images aren't going to work. See [the relevant webpack issue](https://github.com/webpack/style-loader/issues/55) for further explanation.
+If you are using images and **css-loader** with the `sourceMap` option enabled, it's important that you set `output.publicPath` to an absolute value pointing to your development server. Otherwise, images aren't going to work. See [the relevant webpack issue](https://github.com/webpack/style-loader/issues/55) for further explanation.
 
 ## Conclusion
 
@@ -225,8 +225,8 @@ Webpack allows you to inline images within your bundles when needed. Figuring ou
 
 To recap:
 
-- _url-loader_ inlines the assets within JavaScript. It comes with a `limit` option that allows you to defer assets above it to _file-loader_.
-- _file-loader_ emits image assets and returns paths to them to the code. It allows hashing the asset names.
+- _url-loader_ inlines the assets within JavaScript. It comes with a `limit` option that allows you to defer assets above it to **file-loader**.
+- **file-loader** emits image assets and returns paths to them to the code. It allows hashing the asset names.
 - You can find image optimization related loaders and plugins that allow you to tune their size further.
 - It's possible to generate **sprite sheets** out of smaller images to combine them into a single request.
 - Webpack allows you to load images dynamically based on a given condition.

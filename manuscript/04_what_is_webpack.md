@@ -14,19 +14,19 @@ When you bundle a project using webpack, it traverses the imports, constructing 
 
 Internally webpack manages the bundling process using what's called **chunks** and the term often comes up in webpack related documentation. Chunks are smaller pieces of code that are included in the bundles seen in webpack output.
 
-Webpack supports ES2015, CommonJS, MJS, and AMD module formats out of the box. There's also support for [WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly), a new way of running low-level code in the browser. The loader mechanism works for CSS as well, with `@import` and `url()` support through _css-loader_. You can find plugins for specific tasks, such as minification, internationalization, HMR, and so on.
+Webpack supports ES2015, CommonJS, MJS, and AMD module formats out of the box. There's also support for [WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly), a new way of running low-level code in the browser. The loader mechanism works for CSS as well, with `@import` and `url()` support through **css-loader**. You can find plugins for specific tasks, such as minification, internationalization, HMR, and so on.
 
 T> A dependency graph is a directed graph that describes how nodes relate to each other. In this case, the graph definition is defined through references (`require`, `import`) between files. Webpack statically traverses these without executing the source to generate the graph it needs to create bundles.
 
 T> Starting from webpack 5, there's support for [experiments](https://webpack.js.org/configuration/experiments/#experiments). These represent future functionality that's hidden behind a feature flag and allows early testing of the functionality.
+
+{pagebreak}
 
 ## Webpack's execution process
 
 ![Webpack's execution process](images/webpack-process.png)
 
 Webpack begins its work from **entries**. Often these are JavaScript modules where webpack begins its traversal process. During this process, webpack evaluates entry matches against **loader** configurations that tell webpack how to transform each match.
-
-{pagebreak}
 
 ### Resolution process
 

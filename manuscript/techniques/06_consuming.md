@@ -4,7 +4,7 @@ Sometimes packages have not been packaged the way you expect, and you have to tw
 
 ## `resolve.alias`
 
-Sometimes packages do not follow the standard rules and their _package.json_ contains a faulty `main` field. It can be missing altogether. `resolve.alias` is the field to use here as in the example below:
+Sometimes packages do not follow the standard rules and their `package.json` contains a faulty `main` field. It can be missing altogether. `resolve.alias` is the field to use here as in the example below:
 
 ```javascript
 {

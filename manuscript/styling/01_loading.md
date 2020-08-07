@@ -6,9 +6,9 @@ Webpack doesn't handle styling out of the box, and you will have to use loaders 
 
 To load CSS, you need to use [css-loader](https://www.npmjs.com/package/css-loader) and [style-loader](https://www.npmjs.com/package/style-loader).
 
-_css-loader_ goes through possible `@import` and `url()` lookups within the matched files and treats them as a regular ES2015 `import`. If an `@import` points to an external resource, _css-loader_ skips it as only internal resources get processed further by webpack.
+**css-loader** goes through possible `@import` and `url()` lookups within the matched files and treats them as a regular ES2015 `import`. If an `@import` points to an external resource, **css-loader** skips it as only internal resources get processed further by webpack.
 
-_style-loader_ injects the styling through a `style` element. The way it does this can be customized. It also implements the _Hot Module Replacement_ interface providing for a pleasant development experience.
+**style-loader** injects the styling through a `style` element. The way it does this can be customized. It also implements the _Hot Module Replacement_ interface providing for a pleasant development experience.
 
 The matched files can be processed through loaders like [file-loader](https://www.npmjs.com/package/file-loader) or [url-loader](https://www.npmjs.com/package/url-loader), and these possibilities are discussed in the _Loading Assets_ part of the book.
 
@@ -44,6 +44,8 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
 The added configuration means that files ending with `.css` should invoke the given loaders.
 
 Loaders return the new source files with transformations applied on them. They can be chained together like a pipe in Unix, and are evaluated from right to left. This means that `loaders: ["style-loader", "css-loader"]` can be read as `styleLoader(cssLoader(input))`.
+
+{pagebreak}
 
 You also need to connect the fragment to the primary configuration:
 
@@ -130,9 +132,12 @@ T> PostCSS supports _postcss.config.js_ based configuration. It relies on [cosmi
 
 ## Understanding **css-loader** lookups
 
-To get most out of **css-loader**, you should understand how it performs its lookups. Even though _css-loader_ handles relative imports by default, it doesn't touch absolute imports (`url("/static/img/demo.png")`) nor root relative imports (`url("https://mydomain.com/static/demo.png")`). If you rely on this kind of imports, you have to copy the files to your project.
+To get most out of **css-loader**, you should understand how it performs its lookups. Even though **css-loader** handles relative imports by default, it doesn't work with the following cases:
 
-[copy-webpack-plugin](https://www.npmjs.com/package/copy-webpack-plugin) works for this purpose, but you can also copy the files outside of webpack. The benefit of the former approach is that webpack-dev-server can pick that up.
+- Absolute imports - `url("/static/img/demo.png")`
+- Root relative imports `url("https://mydomain.com/static/demo.png")`
+
+If you rely on these kind of imports, you have to copy the files to your project as discussed in the _Tidying Up_ chapter. [copy-webpack-plugin](https://www.npmjs.com/package/copy-webpack-plugin) works for this purpose, but you can also copy the files outside of webpack. The benefit of the former approach is that **webpack-dev-server** can pick that up.
 
 Any other lookup will go through webpack and it will try to evaluate the `url` and `@import` expressions. To disable this default behavior, set **css-loader** `url: false` and `import: false` through the loader options.
 
@@ -140,7 +145,7 @@ T> [resolve-url-loader](https://www.npmjs.com/package/resolve-url-loader) comes 
 
 ### Processing **css-loader** imports
 
-If you want to process **css-loader** imports in a specific way, you should set up `importLoaders` option to a number that tells the loader how many loaders before the _css-loader_ should be executed against the imports found. If you import other CSS files from your CSS through the `@import` statement and want to process the imports through specific loaders, this technique is essential.
+If you want to process **css-loader** imports in a specific way, you should set up `importLoaders` option to a number that tells the loader how many loaders before the **css-loader** should be executed against the imports found. If you import other CSS files from your CSS through the `@import` statement and want to process the imports through specific loaders, this technique is essential.
 
 {pagebreak}
 
@@ -184,7 +189,7 @@ W> If you are using _postcss-loader_, you can skip using `~` as discussed in [po
 
 ## Enabling source maps
 
-If you want to enable source maps for CSS, you should enable `sourceMap` option for _css-loader_ and set `output.publicPath` to an absolute url pointing to your development server. If you have multiple loaders in a chain, you have to enable source maps separately for each. _css-loader_ [issue 29](https://github.com/webpack/css-loader/issues/29) discusses this problem further.
+If you want to enable source maps for CSS, you should enable `sourceMap` option for **css-loader** and set `output.publicPath` to an absolute url pointing to your development server. If you have multiple loaders in a chain, you have to enable source maps separately for each. **css-loader** [issue 29](https://github.com/webpack/css-loader/issues/29) discusses this problem further.
 
 ## Converting CSS to strings
 
@@ -204,11 +209,11 @@ Webpack can load a variety of style formats. The approaches covered here write t
 
 To recap:
 
-- _css-loader_ evaluates the `@import` and `url()` definitions of your styling. _style-loader_ converts it to JavaScript and implements webpack's _Hot Module Replacement_ interface.
+- **css-loader** evaluates the `@import` and `url()` definitions of your styling. **style-loader** converts it to JavaScript and implements webpack's _Hot Module Replacement_ interface.
 - Webpack supports a large variety of formats compiling to CSS through loaders. These include Sass, Less, and Stylus.
 - PostCSS allows you to inject functionality to CSS in through its plugin system. cssnext is an example of a collection of plugins for PostCSS that implements future features of CSS.
-- _css-loader_ doesn't touch absolute imports by default. It allows customization of loading behavior through the `importLoaders` option. You can perform lookups against _node_modules_ by prefixing your imports with a tilde (`~`) character.
-- To use source maps, you have to enable `sourceMap` boolean through each style loader you are using except for _style-loader_. You should also set `output.publicPath` to an absolute url that points to your development server.
+- **css-loader** doesn't touch absolute imports by default. It allows customization of loading behavior through the `importLoaders` option. You can perform lookups against _node_modules_ by prefixing your imports with a tilde (`~`) character.
+- To use source maps, you have to enable `sourceMap` boolean through each style loader you are using except for **style-loader**. You should also set `output.publicPath` to an absolute url that points to your development server.
 - Using Bootstrap with webpack requires special care. You can either go through generic loaders or a bootstrap specific loader for more customization options.
 
 Although the loading approach covered here is enough for development purposes, it's not ideal for production. You'll learn why and how to solve this in the next chapter by separating CSS from the source.

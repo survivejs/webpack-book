@@ -6,8 +6,6 @@ Webpack provides multiple ways to set up module loaders. The idea of a loader it
 
 Webpack supports common JavaScript formats out of the box and other formats can be loaded by setting up specific **loaders**. The idea is the same. You always set up a loader, or loaders, and connect those with your directory structure.
 
-{pagebreak}
-
 Consider the example below where webpack processes JavaScript through Babel:
 
 **webpack.config.js**
@@ -74,8 +72,6 @@ Based on the right to left rule, the example can be split up while keeping it eq
 Even though it would be possible to develop an arbitrary configuration using the rule above, it can be convenient to be able to force specific rules to be applied before or after regular ones. The `enforce` field can come in handy here. It can be set to either `pre` or `post` to push processing either before or after other loaders.
 
 Linting is a good example because the build should fail before it does anything else. Using `enforce: "post"` is rarer and it would imply you want to perform a check against the built source. Performing analysis against the built source is one potential example.
-
-{pagebreak}
 
 The basic syntax goes as below:
 
@@ -146,8 +142,6 @@ If you wanted to use more than one loader, you could pass an array to `use` and 
   ],
 },
 ```
-
-{pagebreak}
 
 ## Branching at `use` using a function
 
@@ -244,11 +238,9 @@ Boolean based fields can be used to constrain these matchers further:
 
 If you wanted to embed the context information to the filename, the rule could use `resourcePath` over `resourceQuery`.
 
-{pagebreak}
-
 ## Loading based on `issuer`
 
-`issuer` can be used to control behavior based on where a resource was imported. In the example below adapted from [css-loader issue 287](https://github.com/webpack-contrib/css-loader/pull/287#issuecomment-261269199), _style-loader_ is applied when webpack captures a CSS file from a JavaScript import:
+`issuer` can be used to control behavior based on where a resource was imported. In the example below adapted from [css-loader issue 287](https://github.com/webpack-contrib/css-loader/pull/287#issuecomment-261269199), **style-loader** is applied when webpack captures a CSS file from a JavaScript import:
 
 ```javascript
 {
@@ -326,7 +318,7 @@ The function is an escape hatch for customizing loaders further.
 
 Loader behavior can be understood in greater detail by inspecting them. [loader-runner](https://www.npmjs.com/package/loader-runner) allows you to run them in isolation without webpack. Webpack uses this package internally and _Extending with Loaders_ chapter covers it in detail.
 
-[inspect-loader](https://www.npmjs.com/package/inspect-loader) allows you to inspect what's being passed between loaders. Instead of having to insert `console.log`s within _node_modules_, you can attach this loader to your configuration and inspect the flow there.
+[inspect-loader](https://www.npmjs.com/package/inspect-loader) allows you to inspect what's being passed between loaders. Instead of having to insert `console.log`s within `node_modules`, you can attach this loader to your configuration and inspect the flow there.
 
 ## Conclusion
 

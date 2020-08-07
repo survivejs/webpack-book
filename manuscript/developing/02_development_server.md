@@ -26,6 +26,8 @@ T> To integrate with another server, it's possible to emit files from WDS to the
 
 W> You should use WDS strictly for development. If you want to host your application, consider other standard solutions, such as Apache or Nginx.
 
+{pagebreak}
+
 ## Getting started with WDS
 
 To get started with WDS, install it first:
@@ -35,8 +37,6 @@ npm add webpack-dev-server -D
 ```
 
 As before, this command generates a command below the `npm bin` directory, and you could run _webpack-dev-server_ from there. After running the WDS, you have a development server running at `http://localhost:8080`. Automatic browser refresh is in place now, although at a fundamental level.
-
-{pagebreak}
 
 ## Attaching WDS to the project
 
@@ -76,8 +76,6 @@ Entrypoint main = main.js
 ...
 ```
 
-{pagebreak}
-
 The server is running, and if you open `http://localhost:8080/` at your browser, you should see something familiar:
 
 ![Hello world](images/hello_01.png)
@@ -89,8 +87,6 @@ T> WDS tries to run in another port in case the default one is being used. The t
 ## Configuring WDS through webpack configuration
 
 WDS functionality can be customized through the `devServer` field in the webpack configuration. You can set most of these options through the CLI as well, but managing them through webpack is a decent approach.
-
-{pagebreak}
 
 Enable additional functionality as below:
 
@@ -138,8 +134,6 @@ It's possible to customize host and port settings through the environment in the
 
 To access your server, you need to figure out the ip of your machine. On Unix, this can be achieved using `ifconfig | grep inet`. On Windows, `ipconfig` can be utilized. An npm package, such as [node-ip](https://www.npmjs.com/package/node-ip) come in handy as well. Especially on Windows, you need to set your `HOST` to match your ip to make it accessible.
 
-{pagebreak}
-
 ## Making it faster to develop configuration
 
 WDS will handle restarting the server when you change a bundled file. It's oblivious to changes made to webpack configuration, though, and you have to restart the WDS whenever a change occurs. The process can be automated as [discussed in GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892) by using [nodemon](https://www.npmjs.com/package/nodemon) monitoring tool.
@@ -156,8 +150,6 @@ To get it to work, you have to install it first through `npm add nodemon -D`. He
 ```
 
 It's possible WDS [will support the functionality](https://github.com/webpack/webpack-cli/issues/15) itself in the future. If you want to make it reload itself on change, you should implement this workaround for now.
-
-{pagebreak}
 
 ## Polling instead of watching files
 
@@ -190,8 +182,6 @@ module.exports = {
 
 The setup is more resource-intensive than the default, but it's worth trying out if the default setup doesn't work for you.
 
-{pagebreak}
-
 ## Webpack middlewares for server integration
 
 Given it's possible your frontend is tightly coupled with a backend, multiple server middlewares exist to make integration easier:
@@ -219,14 +209,12 @@ WDS provides functionality beyond what was covered above. There are a couple of 
 
 T> [The official documentation](https://webpack.js.org/configuration/dev-server/) covers more options.
 
-{pagebreak}
-
 ## Development plugins
 
 The webpack plugin ecosystem is diverse, and there are a lot of plugins that can help specifically with development:
 
 - [case-sensitive-paths-webpack-plugin](https://www.npmjs.com/package/case-sensitive-paths-webpack-plugin) can be handy when you are developing on mixed environments. For example, Windows, Linux, and MacOS have different expectations when it comes to path naming.
-- [npm-install-webpack-plugin](https://www.npmjs.com/package/npm-install-webpack-plugin) allows webpack to install and wire the installed packages with your _package.json_ as you import new ones to your project.
+- [npm-install-webpack-plugin](https://www.npmjs.com/package/npm-install-webpack-plugin) allows webpack to install and wire the installed packages with your `package.json` as you import new ones to your project.
 - [react-dev-utils](https://www.npmjs.com/package/react-dev-utils) contains webpack utilities developed for [Create React App](https://www.npmjs.com/package/create-react-app). Despite its name, they can find use beyond React. If you want only webpack message formatting, consider [webpack-format-messages](https://www.npmjs.com/package/webpack-format-messages).
 - [webpack-notifier](https://www.npmjs.com/package/webpack-notifier) uses system notifications to let you know of webpack status.
 - [sounds-webpack-plugin](https://www.npmjs.com/package/sounds-webpack-plugin) rings the system bell on failure instead of letting webpack fail silently.

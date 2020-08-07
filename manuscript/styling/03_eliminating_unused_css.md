@@ -8,6 +8,8 @@ Frameworks like [Bootstrap](https://getbootstrap.com/) or [Tailwind](https://tai
 
 Given PurgeCSS works the best with webpack, we'll demonstrate the usage in this chapter.
 
+{pagebreak}
+
 ## Setting up Tailwind
 
 To make the demo more realistic, let's install Tailwind to the project.
@@ -15,8 +17,6 @@ To make the demo more realistic, let's install Tailwind to the project.
 ```bash
 npm add tailwindcss postcss-loader -D
 ```
-
-{pagebreak}
 
 To load Tailwind, we'll have to use PostCSS:
 
@@ -205,8 +205,6 @@ index.html  237 bytes          [emitted]
 The size of the style has decreased noticeably. Instead of 1.32, you have roughly 7k now. The difference would be even more significant for more massive CSS frameworks.
 
 W> Tailwind includes PurgeCSS out of the box and it can be preferable to use that. See [Tailwind documentation](https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css) for more information. The example above is enough to illustrate the idea, and it works universally.
-
-{pagebreak}
 
 ### Critical Path Rendering
 

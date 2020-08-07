@@ -44,9 +44,9 @@ W> For tree shaking to work with TypeScript, you have to set `compilerOptions.mo
 
 ## Tree shaking on package level
 
-The same idea works with dependencies that use the ES2015 module definition. Given the related packaging, standards are still emerging, you have to be careful when consuming such packages. Webpack tries to resolve _package.json_ `module` field for this reason.
+The same idea works with dependencies that use the ES2015 module definition. Given the related packaging, standards are still emerging, you have to be careful when consuming such packages. Webpack tries to resolve `package.json` `module` field for this reason.
 
-For tools like webpack to allow tree shake npm packages, you should generate a build that has transpiled everything else except the ES2015 module definitions and then point to it through _package.json_ `module` field. In Babel terms, you have to let webpack to manage ES2015 modules by setting `"modules": false`.
+For tools like webpack to allow tree shake npm packages, you should generate a build that has transpiled everything else except the ES2015 module definitions and then point to it through `package.json` `module` field. In Babel terms, you have to let webpack to manage ES2015 modules by setting `"modules": false`.
 
 Another important point is to set `"sideEffects": false` to state that when the code is executing, it doesn't modify anything outside of its own scope. The property also accepts an array of file paths if you want to be more specific. The [Stack Overflow question related to this explains in detail why](https://stackoverflow.com/questions/49160752/what-does-webpack-4-expect-from-a-package-with-sideeffects-false).
 
@@ -60,7 +60,7 @@ T> [SurviveJS - Maintenance](https://survivejs.com/maintenance/packaging/buildin
 
 ## Conclusion
 
-Tree shaking is a potentially powerful technique. For the source to benefit from tree shaking, npm packages have to be implemented using the ES2015 module syntax, and they have to expose the ES2015 version through _package.json_ `module` field tools like webpack can pick up.
+Tree shaking is a potentially powerful technique. For the source to benefit from tree shaking, npm packages have to be implemented using the ES2015 module syntax, and they have to expose the ES2015 version through `package.json` `module` field tools like webpack can pick up.
 
 To recap:
 

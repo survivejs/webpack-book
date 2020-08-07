@@ -6,7 +6,7 @@ You'll learn to develop a couple of small loaders next. But before that, it's go
 
 T> If you want a good starting point for a standalone loader or plugin project, consider using [webpack-defaults](https://github.com/webpack-contrib/webpack-defaults). It provides an opinionated starting point that comes with linting, testing, and other goodies.
 
-## Debugging loaders with _loader-runner_
+## Debugging loaders with **loader-runner**
 
 [loader-runner](https://www.npmjs.com/package/loader-runner) allows you to run loaders without webpack, allowing you to learn more about loader development. Install it first:
 
@@ -32,7 +32,7 @@ Set up a file to process:
 foobar
 ```
 
-There's nothing webpack specific in the code yet. The next step is to run the loader through _loader-runner_:
+There's nothing webpack specific in the code yet. The next step is to run the loader through **loader-runner**:
 
 **run-loader.js**
 
@@ -132,7 +132,7 @@ T> If you want to return `Buffer` output, set `module.exports.raw = true`. The f
 
 ## Writing files
 
-Loaders, like _file-loader_, emit files. Webpack provides a single method, `this.emitFile`, for this. Given _loader-runner_ does not implement it, you have to mock it:
+Loaders, like **file-loader**, emit files. Webpack provides a single method, `this.emitFile`, for this. Given **loader-runner** does not implement it, you have to mock it:
 
 **run-loader.js**
 
@@ -154,7 +154,7 @@ leanpub-end-insert
 );
 ```
 
-To implement the essential idea of _file-loader_, you have to do two things: emit the file and return path to it. You could apply it as below:
+To implement the essential idea of **file-loader**, you have to do two things: emit the file and return path to it. You could apply it as below:
 
 **loaders/demo-loader.js**
 
@@ -179,7 +179,7 @@ Webpack provides two additional `emit` methods:
 - `this.emitWarning(<string>)`
 - `this.emitError(<string>)`
 
-These calls should be used over `console` based alternatives. As with `this.emitFile`, you have to mock them for _loader-runner_ to work.
+These calls should be used over `console` based alternatives. As with `this.emitFile`, you have to mock them for **loader-runner** to work.
 
 The next question is how to pass a file name to the loader.
 
@@ -316,7 +316,7 @@ leanpub-end-insert
 
 You could also handle the loader definition through `rules`. Once the loader is stable enough, set up a project based on _webpack-defaults_, push the logic there, and begin to consume the loader as a package.
 
-W> Although using _loader-runner_ can be convenient for developing and testing loaders, implement integration tests that run against webpack. Subtle differences between environments make this essential.
+W> Although using **loader-runner** can be convenient for developing and testing loaders, implement integration tests that run against webpack. Subtle differences between environments make this essential.
 
 ## Pitch loaders
 
@@ -435,7 +435,7 @@ Writing loaders is fun in the sense that they describe transformations from a fo
 
 To recap:
 
-- _loader-runner_ is a valuable tool for understanding how loaders work. Use it for debugging how loaders work.
+- **loader-runner** is a valuable tool for understanding how loaders work. Use it for debugging how loaders work.
 - Webpack **loaders** accept input and produce output based on it.
 - Loaders can be either synchronous or asynchronous. In the latter case, you should use `this.async()` webpack API to capture the callback exposed by webpack.
 - If you want to generate code dynamically for webpack entries, that's where loaders can come in handy. A loader does not have to accept input. It's acceptable that it returns only output in this case.

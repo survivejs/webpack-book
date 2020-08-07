@@ -10,6 +10,8 @@ W> It can be potentially dangerous to load inline styles with JavaScript in prod
 
 T> [extract-css-chunks-webpack-plugin](https://github.com/faceyspacey/extract-css-chunks-webpack-plugin) is a community maintained alternative to **mini-css-extract-plugin** designed especially server side rendering in mind.
 
+{pagebreak}
+
 ## Setting up `MiniCssExtractPlugin`
 
 Install the plugin first:

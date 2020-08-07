@@ -10,7 +10,7 @@ T> The completed configuration is available at [GitHub](https://github.com/survi
 
 ## Setting up the project
 
-To get a starting point, you should create a directory for the project and set up a _package.json_ there. npm uses that to manage project dependencies. Here are the basic commands:
+To get a starting point, you should create a directory for the project and set up a `package.json` there. npm uses that to manage project dependencies. Here are the basic commands:
 
 ```bash
 mkdir webpack-demo
@@ -18,7 +18,7 @@ cd webpack-demo
 npm init -y # -y generates *package.json*, skip for more control
 ```
 
-You can tweak the generated _package.json_ manually to make further changes to it even though a part of the operations modify the file automatically for you. The official documentation explains [package.json options](https://docs.npmjs.com/files/package.json) in more detail.
+You can tweak the generated `package.json` manually to make further changes to it even though a part of the operations modify the file automatically for you. The official documentation explains [package.json options](https://docs.npmjs.com/files/package.json) in more detail.
 
 T> You can set those `npm init` defaults at _~/.npmrc_.
 
@@ -38,9 +38,9 @@ To add webpack to the project, execute:
 npm add webpack webpack-cli -D # -D === -D
 ```
 
-You should see webpack at your _package.json_ `devDependencies` section after this. In addition to installing the package locally below the _node_modules_ directory, npm also generates an entry for the executable you can find at `node_modules/.bin` directory.
+You should see webpack at your `package.json` `devDependencies` section after this. In addition to installing the package locally below the _node_modules_ directory, npm also generates an entry for the executable you can find at `node_modules/.bin` directory.
 
-T> If you run `npm add`, it will write the dependencies to _package.json_ `dependencies`. The `-D` (`-D`) flag writes them to `devDependencies` instead. The split allows you to communicate which dependencies are application specific and which are required for developing it. It's optional to follow this convention and it's more important for npm package authors as it defines which packages depend on the one they are distributing.
+T> If you run `npm add`, it will write the dependencies to `package.json` `dependencies`. The `-D` (`-D`) flag writes them to `devDependencies` instead. The split allows you to communicate which dependencies are application specific and which are required for developing it. It's optional to follow this convention and it's more important for npm package authors as it defines which packages depend on the one they are distributing.
 
 T> [webpack-cli](https://www.npmjs.com/package/webpack-cli) comes with additional functionality including `init` and `migrate` commands that allow you to create new webpack configuration fast and update from an older version to a newer one.
 
@@ -48,7 +48,7 @@ T> [webpack-nano](https://www.npmjs.com/package/webpack-nano) is a light option 
 
 ## Executing webpack
 
-You can display the exact path of the executables using `npm bin`. Most likely it points at _./node_modules/.bin_. Try running webpack from there through the terminal using `node_modules/.bin/webpack` or a similar command.
+You can display the exact path of the executables using `npm bin`. Most likely it points to `./node_modules/.bin`. Try running webpack from there through the terminal using `node_modules/.bin/webpack` or a similar command.
 
 After running, you should see a version, a link to the command line interface guide and an extensive list of options. Most aren't used in this project, but it's good to know that this tool is packed with functionality if nothing else.
 
@@ -80,8 +80,6 @@ To make webpack compile, do the following:
 
 T> There's third mode, `--mode none`, that doesn't apply any defaults. The main use for this one is debugging your output without any additional processing applied by the main targets.
 
-{pagebreak}
-
 ## Setting up assets
 
 To make the build more complex, we can add another module to the project and start developing a small application:
@@ -110,11 +108,11 @@ document.body.appendChild(component());
 
 Examine the output after building the project with one of the commands above. You should see both modules in the bundle that webpack wrote to the `dist` directory. One problem remains, though. How can we test the application in the browser?
 
-## Configuring _mini-html-webpack-plugin_
+## Configuring **mini-html-webpack-plugin**
 
-The problem can be solved by writing an _index.html_ file that points to the generated file. Instead of doing that on our own, we can use a plugin and webpack configuration to do this.
+The problem can be solved by writing an `index.html` file that points to the generated file. Instead of doing that on our own, we can use a plugin and webpack configuration to do this.
 
-To get started, install _mini-html-webpack-plugin_:
+To get started, install **mini-html-webpack-plugin**:
 
 ```bash
 npm add mini-html-webpack-plugin -D
@@ -202,7 +200,7 @@ Give the above options a go if you want to go beyond default output.
 
 ## Adding a build shortcut
 
-Given executing `node_modules/.bin/webpack` gets boring after a while, lets adjust _package.json_ to run tasks as below:
+Given executing `node_modules/.bin/webpack` gets boring after a while, lets adjust `package.json` to run tasks as below:
 
 **package.json**
 
@@ -224,18 +222,14 @@ T> To go one step further, set up system-level aliases using the `alias` command
 
 T> If you want to run multiple commands concurrently, see the [concurrently](https://www.npmjs.com/package/concurrently) package. It has been designed to allow that while providing neat output.
 
-{pagebreak}
-
 ## `HtmlWebpackPlugin` and its extensions
 
-Although _mini-html-webpack-plugin_ is enough for basic use cases, there can be times when you want more functionality. That's where [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) and its extensions come in:
+Although **mini-html-webpack-plugin** is enough for basic use cases, there can be times when you want more functionality. That's where [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) and its extensions come in:
 
 - [favicons-webpack-plugin](https://www.npmjs.com/package/favicons-webpack-plugin) is able to generate favicons.
 - [script-ext-html-webpack-plugin](https://www.npmjs.com/package/script-ext-html-webpack-plugin) gives you more control over script tags and allows you to tune script loading further.
 - [webpack-cdn-plugin](https://www.npmjs.com/package/webpack-cdn-plugin) allows you to specify which dependencies to load through a Content Delivery Network (CDN). This common technique is used for speeding up loading of popular libraries.
 - [dynamic-cdn-webpack-plugin](https://www.npmjs.com/package/dynamic-cdn-webpack-plugin) achieves a similar result.
-
-{pagebreak}
 
 ## Conclusion
 
@@ -244,9 +238,9 @@ Even though you have managed to get webpack up and running, it does not do that 
 To recap:
 
 - It's a good idea to use a locally installed version of webpack over a globally installed one. This way you can be sure of what version you are using. The local dependency also works in a Continuous Integration environment.
-- Webpack provides a command line interface through the _webpack-cli_ package. You can use it even without configuration, but any advanced usage requires work.
-- To write more complicated setups, you most likely have to write a separate _webpack.config.js_ file.
-- _mini-html-webpack-plugin_ and _html-webpack-plugin_ can be used to generate an HTML entry point to your application. In the _Multiple Pages_ chapter you will see how to generate multiple separate pages using the plugin.
-- It's handy to use npm _package.json_ scripts to manage webpack. You can use it as a light task runner and use system features outside of webpack.
+- Webpack provides a command line interface through the **webpack-cli** package. You can use it even without configuration, but any advanced usage requires work.
+- To write more complicated setups, you most likely have to write a separate `webpack.config.js` file.
+- **mini-html-webpack-plugin** and **html-webpack-plugin** can be used to generate an HTML entry point to your application. In the _Multiple Pages_ chapter you will see how to generate multiple separate pages using the plugin.
+- It's handy to use npm `package.json` scripts to manage webpack. You can use it as a light task runner and use system features outside of webpack.
 
 In the next chapter, you will learn how to improve the developer experience by enabling automatic browser refresh.

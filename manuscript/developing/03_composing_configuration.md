@@ -115,7 +115,7 @@ module.exports = (mode) => {
 };
 ```
 
-Instead of returning a configuration directly, a function capturing the passed `env` is returned. The function returns configuration based on it and also maps webpack `mode` to it. Doing this means _package.json_ needs a modification:
+Instead of returning a configuration directly, a function capturing the passed `env` is returned. The function returns configuration based on it and also maps webpack `mode` to it. Doing this means `package.json` needs a modification:
 
 **package.json**
 
@@ -134,15 +134,13 @@ leanpub-end-insert
 
 After these changes, the build should behave the same way as before. This time, however, you have room to expand, and you don't have to worry about how to combine different parts of the configuration.
 
-You can add more targets by expanding the _package.json_ definition and branching at _webpack.config.js_ based on the need. _webpack.parts.js_ grows to contain specific techniques you can then use to compose the configuration.
+You can add more targets by expanding the `package.json` definition and branching at _webpack.config.js_ based on the need. _webpack.parts.js_ grows to contain specific techniques you can then use to compose the configuration.
 
 T> `productionConfig` is a stub for now and it will grow later as we expand the configuration further.
 
 T> The [process](https://nodejs.org/api/process.html) module used in the code is exposed by Node as a global. In addition to `env`, it provides plenty of other functionality that allows you to get more information of the host system.
 
 W> [Webpack does not set global NODE_ENV](https://github.com/webpack/webpack/issues/7074) based on `mode` by default. If you have any external tooling, such as Babel, relying on it, make sure to set it explicitly. To do this, set `process.env.NODE_ENV = mode;` within the webpack configuration function.
-
-{pagebreak}
 
 ### Understanding `--env`
 
@@ -187,8 +185,6 @@ If you split the configuration per target, you could end up with a file structur
 ```
 
 In this case, you would point to the targets through webpack `--config` parameter and `merge` common configuration through `module.exports = merge(common, config);`.
-
-{pagebreak}
 
 ### Split parts per purpose
 
@@ -252,8 +248,6 @@ compiler.run((err, stats) => {
 ```
 
 T> [See Stack Overflow](https://stackoverflow.com/questions/39923743/is-there-a-way-to-get-the-output-of-webpack-node-api-as-a-string) for related discussion.
-
-{pagebreak}
 
 ## Conclusion
 

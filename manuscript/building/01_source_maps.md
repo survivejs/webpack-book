@@ -224,7 +224,7 @@ Webpack can also generate production usage friendly source maps. These end up in
 
 ### `devtool: "cheap-source-map"`
 
-`cheap-source-map` is similar to the cheap options above. The result is going to miss column mappings. Also, source maps from loaders, such as _css-loader_, are not going to be used.
+`cheap-source-map` is similar to the cheap options above. The result is going to miss column mappings. Also, source maps from loaders, such as **css-loader**, are not going to be used.
 
 Examining the `.map` file reveals the following output in this case:
 
@@ -388,9 +388,9 @@ const config = {
 
 ## Source maps for styling
 
-If you want to enable source maps for styling files, you can achieve this by enabling the `sourceMap` option. The same idea works with style loaders such as _css-loader_, _sass-loader_, and _less-loader_.
+If you want to enable source maps for styling files, you can achieve this by enabling the `sourceMap` option. The same idea works with style loaders such as **css-loader**, _sass-loader_, and _less-loader_.
 
-The _css-loader_ is [known to have issues](https://github.com/webpack-contrib/css-loader/issues/232) when you are using relative paths in imports. To overcome this problem, you should set `output.publicPath` to resolve the server url.
+The **css-loader** is [known to have issues](https://github.com/webpack-contrib/css-loader/issues/232) when you are using relative paths in imports. To overcome this problem, you should set `output.publicPath` to resolve the server url.
 
 ## Source maps on backend
 

@@ -53,7 +53,7 @@ With Make, you model your tasks using Make-specific syntax and terminal commands
 
 ### npm `scripts` as a task runner
 
-Even though npm CLI wasn't primarily designed to be used as a task runner, it works as such thanks to _package.json_ `scripts` field. Consider the example below:
+Even though npm CLI wasn't primarily designed to be used as a task runner, it works as such thanks to `package.json` `scripts` field. Consider the example below:
 
 **package.json**
 
