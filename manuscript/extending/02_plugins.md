@@ -16,6 +16,8 @@ When the plugin is connected to webpack configuration, webpack will run its cons
 
 T> [webpack-defaults](https://www.npmjs.com/package/webpack-defaults) works as a starting point for webpack plugins. It contains the infrastructure used to develop official webpack loaders and plugins.
 
+T> To understand the plugin flow in detail, see [Under the hood webpack: core library behind the event-driven architecture](https://codecrumbs.io/stories/webpack-tapable-core) for specific analysis.
+
 ## Setting up a development environment
 
 Since plugins have to be run against webpack, you have to set up one to run a demo plugin that will be developed further:
@@ -244,15 +246,15 @@ You can use the API familiar from `console` so `warning`, `error`, and `group` a
 
 ## Plugins can have plugins
 
-A plugin can provide hooks of its own. [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) is a nice example of a plugin providing its own plugin interface.
+A plugin can provide hooks of its own. [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) is a good example of a plugin providing its own plugin interface.
 
 ## Plugins can run compilers of their own
 
-In special cases, like [offline-plugin](https://www.npmjs.com/package/offline-plugin), it makes sense to run a child compiler. It gives full control over related entries and output. Arthur Stolyar, the author of the plugin, has explained [the idea of child compilers at Stack Overflow](https://stackoverflow.com/questions/38276028/webpack-child-compiler-change-configuration).
+In specific cases, like [offline-plugin](https://www.npmjs.com/package/offline-plugin), it makes sense to run a child compiler. It gives full control over related entries and output. Arthur Stolyar, the author of the plugin, has explained [the idea of child compilers at Stack Overflow](https://stackoverflow.com/questions/38276028/webpack-child-compiler-change-configuration).
 
 ## Conclusion
 
-When you begin to design a plugin, spend time studying existing plugins that are close enough. Develop plugins piece-wise so that you validate one piece at a time. Studying webpack source can give more insight given it's a collection of plugins itself.
+When you begin to design a plugin, spend time studying existing plugins that are close enough. Develop plugins piece-wise so that you validate one piece at a time. Studying webpack source can give more insight, given it's a collection of plugins itself.
 
 To recap:
 
