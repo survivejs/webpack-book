@@ -1,16 +1,16 @@
 # Loading Images
 
-Image loading and processing can be a major concern when developing sites and applications. The problem can be solved by pushing the images to a separate service that then takes care of optimizing them and provides a good interface for consuming them.
+Image loading and processing can be a concern when developing sites and applications. The problem can be solved by pushing the images to a separate service that then takes care of optimizing them and provides an interface for consuming them.
 
-For smaller scale usage, webpack is a good option as it can both consume and process images although especially processing comes with build overhead depending on the types of operations you are performing.
+For smaller scale usage, webpack is a good option as it can both consume and process images. Doing this comes with build overhead depending on the types of operations you are performing.
 
 Webpack can **inline** assets by using [url-loader](https://www.npmjs.com/package/url-loader). It emits your images as base64 strings within your JavaScript bundles. The process decreases the number of requests needed while growing the bundle size.
 
-Webpack gives control over the inlining process and can defer loading to [file-loader](https://www.npmjs.com/package/file-loader). _file-loader_ outputs image files and returns paths to them instead of inlining. This technique works with other assets types, such as fonts, as you see in the later chapters.
+Webpack gives control over the inlining process and can defer loading to [file-loader](https://www.npmjs.com/package/file-loader). _file-loader_ outputs image files and returns paths to them instead of inlining. This technique works with other asset types, such as fonts, as you see in the later chapters.
 
 ## Setting up _url-loader_
 
-_url-loader_ is a good starting point and it's the perfect option for development purposes, as you don't have to care about the size of the resulting bundle. It comes with a _limit_ option that can be used to defer image generation to _file-loader_ after an absolute limit is reached. This way you can inline small files to your JavaScript bundles while generating separate files for the bigger ones.
+_url-loader_ is a good starting point, and it's the perfect option for development purposes, as you don't have to care about the size of the resulting bundle. It comes with a _limit_ option that can be used to defer image generation to _file-loader_ after an absolute limit is reached. This way you can inline small files to your JavaScript bundles while generating separate files for the bigger ones.
 
 If you use the `limit` option, you need to install both _url-loader_ and _file-loader_ to your project. Assuming you have configured your styles correctly, webpack resolves any `url()` statements your styling contains. You can point to the image assets through your JavaScript code as well.
 
