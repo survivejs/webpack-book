@@ -20,7 +20,7 @@ npm init -y # -y generates *package.json*, skip for more control
 
 You can tweak the generated `package.json` manually to make further changes to it even though a part of the operations modify the file automatically for you. The official documentation explains [package.json options](https://docs.npmjs.com/files/package.json) in more detail.
 
-T> You can set those `npm init` defaults at _~/.npmrc_.
+T> You can set those `npm init` defaults at `~/.npmrc`.
 
 T> This is an excellent chance to set up version control using [Git](https://git-scm.com/). You can create a commit per step and tag per chapter, so it's easier to move back and forth if you want.
 
@@ -76,9 +76,9 @@ The output tells that webpack cannot find the source to compile. Ideally we woul
 
 To make webpack compile, do the following:
 
-1. Set up _src/index.js_ so that it contains `console.log("Hello world");`.
+1. Set up `src/index.js` so that it contains `console.log("Hello world");`.
 2. Execute `node_modules/.bin/webpack --mode development`. Webpack will discover the source file by Node convention. If you skip `--mode`, you'll get **production** output instead.
-3. Examine _dist/main.js_. You should see webpack bootstrap code that begins executing the code. Below the bootstrap, you should find something familiar.
+3. Examine `dist/main.js`. You should see webpack bootstrap code that begins executing the code. Below the bootstrap, you should find something familiar.
 
 T> There's third mode, `--mode none`, that doesn't apply any defaults. The main use for this one is debugging your output without any additional processing applied by the main targets.
 
