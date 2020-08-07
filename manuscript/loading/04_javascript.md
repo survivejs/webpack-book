@@ -331,19 +331,20 @@ If you have set up TypeScript to your project, you can write your configuration 
 
 For this to work, you need to have [ts-node](https://www.npmjs.com/package/ts-node) or [ts-node-dev](https://www.npmjs.com/package/ts-node-dev) installed to your project as webpack uses it to execute the configuration.
 
-If you run webpack in watch mode or through webpack-dev-server, by default compilation errors can cause the build to fail. To avoid this, consider using **ts-node** in `transpileOnly` mode like this:
+If you run webpack in watch mode or through webpack-dev-server, by default compilation errors can cause the build to fail. To avoid this, use the following configuration:
 
 **tsconfig.json**
 
 ```json
 {
   "ts-node": {
+    "logError": true,
     "transpileOnly": true
   }
 }
 ```
 
-The above assumes you handle type-checking another way. For example, you could run `tsc` using a separate script. Often editor tooling can catch type issues as you are developing as well.
+Especially the `logError` portion is important as without this **ts-node** would crash the build on error. `transpileOnly` is useful to set if you want to handle type-checking outside of the process. For example, you could run `tsc` using a separate script. Often editor tooling can catch type issues as you are developing as well eliminating the need to check through **ts-node**.
 
 ## Flow
 
