@@ -130,6 +130,8 @@ To make sure you are including only the icons that are only needed, use [fontmin
 
 [subfont](https://www.npmjs.com/package/subfont) is a tool that performs static analysis against webpack's HTML output and then rewrites the fonts to include only glyphs that are used. The subsetting process can reduce the size of the font files dramatically.
 
+{pagebreak}
+
 ## Conclusion
 
 Loading fonts is similar to loading other assets. You have to consider the browsers you want to support and choose the loading strategy based on that.

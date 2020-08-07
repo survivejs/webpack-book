@@ -41,6 +41,8 @@ T> If you are not sure how a particular RegExp matches, consider using an online
 
 T> In webpack 5, there's an experimental syntax available. To access it, set `experiments.assets` to `true`. After that you can use `type: "asset"` instead of having to define a loader and webpack will do the right thing out of the box. webpack's [simple asset example](https://github.com/webpack/webpack/tree/master/examples/asset-simple) and [complex asset example](https://github.com/webpack/webpack/tree/master/examples/asset-advanced) illustrate the usage.
 
+{pagebreak}
+
 ## Loader evaluation order
 
 It's good to keep in mind that webpack's loaders are always evaluated from right to left and from bottom to top (separate definitions). The right-to-left rule is easier to remember when you think about as functions. You can read definition `use: ["style-loader", "css-loader"]` as `style(css(input))` based on this rule.

@@ -19,7 +19,7 @@ My preferred approach is to compose webpack configuration out of smaller functio
 
 In composition based approach, you split webpack configuration and then merge it together. The problem is that a normal way of merging objects using a feature such as `Object.assign` doesn't do the right thing with arrays as if two objects have arrays attached to them, it's going to lose data. It's for this reason that I developed [webpack-merge](https://www.npmjs.org/package/webpack-merge).
 
-At its core, _webpack-merge_ does two things: it concatenates arrays and merges objects instead of overriding them allowing composition. The example below shows the behavior in detail:
+At its core, **webpack-merge** does two things: it concatenates arrays and merges objects instead of overriding them allowing composition. The example below shows the behavior in detail:
 
 ```bash
 > { merge } = require("webpack-merge")
@@ -31,17 +31,17 @@ At its core, _webpack-merge_ does two things: it concatenates arrays and merges 
 { a: [ 1, 2 ], b: 10, c: 20, d: 421 }
 ```
 
-_webpack-merge_ provides even more control through strategies that enable you to control its behavior per field. They allow you to force it to append, prepend, or replace content.
+**webpack-merge** provides even more control through strategies that enable you to control its behavior per field. They allow you to force it to append, prepend, or replace content.
 
-Even though _webpack-merge_ was designed for this book, it has proven to be an invaluable tool beyond it. You can consider it as a learning tool and pick it up in your work if you find it handy.
+Even though **webpack-merge** was designed for this book, it has proven to be an invaluable tool beyond it. You can consider it as a learning tool and pick it up in your work if you find it handy.
 
 T> [webpack-chain](https://www.npmjs.com/package/webpack-chain) provides a fluent API for configuring webpack allowing you to avoid configuration shape-related problems while enabling composition.
 
 {pagebreak}
 
-## Setting up _webpack-merge_
+## Setting up **webpack-merge**
 
-To get started, add _webpack-merge_ to the project:
+To get started, add **webpack-merge** to the project:
 
 ```bash
 npm add webpack-merge -D
@@ -120,16 +120,19 @@ Instead of returning a configuration directly, a function capturing the passed `
 **package.json**
 
 ```json
-"scripts": {
+{
+  "scripts": {
 leanpub-start-delete
-  "start": "webpack-dev-server --mode development",
-  "build": "webpack --mode production"
+    "start": "webpack-dev-server --mode development",
+    "build": "webpack --mode production"
 leanpub-end-delete
 leanpub-start-insert
-  "start": "webpack-dev-server --env development",
-  "build": "webpack --env production"
+    "start": "webpack-dev-server --env development",
+    "build": "webpack --env production"
 leanpub-end-insert
-},
+  },
+  ...
+}
 ```
 
 After these changes, the build should behave the same way as before. This time, however, you have room to expand, and you don't have to worry about how to combine different parts of the configuration.
@@ -149,10 +152,13 @@ Even though `--env` allows to pass strings to the configuration, it can do a bit
 **package.json**
 
 ```json
-"scripts": {
-  "start": "webpack-dev-server --env development",
-  "build": "webpack --env.mode production"
-},
+{
+  "scripts": {
+    "start": "webpack-dev-server --env development",
+    "build": "webpack --env.mode production"
+  },
+  ...
+}
 ```
 
 Instead of a string, you should receive an object `{ mode: "production" }` at configuration now. You could pass more key-value pairs, and they would go to the `env` object. If you set `--env foo` while setting `--env.target`, the string wins. Webpack relies on [yargs](http://yargs.js.org/docs/#parsing-tricks-dot-notation) for parsing underneath.

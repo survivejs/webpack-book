@@ -12,13 +12,13 @@ Webpack implements a `watch` mode that operates against the project files bundle
 
 Although this solves the problem of recompiling your source on change, it does nothing on the frontend side and browser updates. That's where further solutions are required.
 
-## _webpack-plugin-serve_
+## **webpack-plugin-serve**
 
 [webpack-plugin-serve](https://www.npmjs.com/package/webpack-plugin-serve) is a third-party plugin that wraps the logic required to update the browser into a webpack plugin. Underneath it relies on webpack's watch mode, and it builds on top of that while implementing **Hot Module Replacement** (HMR) and other features seen in the official solution provided for webpack. There's also functionality that goes beyond the official development server, including support for webpack's multi-compiler mode (i.e., when you give an array of configurations to it) and a status overlay.
 
 T> To learn mode about HMR, read the _Hot Module Replacement_ appendix. You can learn the fundamentals of the technique and why people use it. Applying it won't be necessary to complete the tutorial, though.
 
-## _webpack-dev-server_
+## **webpack-dev-server**
 
 [webpack-dev-server](https://www.npmjs.com/package/webpack-dev-server) (WDS) is the officially maintained solution for webpack. WDS is a development server running **in-memory**, meaning the bundle contents aren't written out to files but stored in memory. The distinction is vital when trying to debug code and styles.
 
@@ -36,7 +36,7 @@ To get started with WDS, install it first:
 npm add webpack-dev-server -D
 ```
 
-As before, this command generates a command below the `npm bin` directory, and you could run _webpack-dev-server_ from there. After running the WDS, you have a development server running at `http://localhost:8080`. Automatic browser refresh is in place now, although at a fundamental level.
+As before, this command generates a command below the `npm bin` directory, and you could run **webpack-dev-server** from there. After running the WDS, you have a development server running at `http://localhost:8080`. Automatic browser refresh is in place now, although at a fundamental level.
 
 ## Attaching WDS to the project
 
@@ -45,12 +45,15 @@ To integrate WDS to the project, define an npm script for launching it. To follo
 **package.json**
 
 ```json
-"scripts": {
+{
+  "scripts": {
 leanpub-start-insert
-  "start": "webpack-dev-server --mode development",
+    "start": "webpack-dev-server --mode development",
 leanpub-end-insert
-  "build": "webpack --mode production"
-},
+    "build": "webpack --mode production"
+  },
+  ...
+}
 ```
 
 T> WDS picks up configuration like webpack itself. The same rules apply.
@@ -182,7 +185,7 @@ module.exports = {
 
 The setup is more resource-intensive than the default, but it's worth trying out if the default setup doesn't work for you.
 
-## Webpack middlewares for server integration
+## Integrating with servers using middlewares
 
 Given it's possible your frontend is tightly coupled with a backend, multiple server middlewares exist to make integration easier:
 

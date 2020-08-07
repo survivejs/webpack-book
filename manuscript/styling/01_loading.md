@@ -101,9 +101,9 @@ T> The _CSS Modules_ appendix discusses an approach that allows you to treat loc
 
 ## PostCSS
 
-![PostCSS](images/postcss.png)
-
 [PostCSS](http://postcss.org/) allows you to perform transformations over CSS through JavaScript plugins. PostCSS is the equivalent of Babel for styling and you can find plugins for many purposes. It can mimic Sass syntax ([precss](https://www.npmjs.com/package/precss)) and even fix browser bugs like `100vh` behavior on Safari [postcss-100vh-fix](https://www.npmjs.com/package/postcss-100vh-fix).
+
+{pagebreak}
 
 The example below illustrates how to set up autoprefixing using PostCSS with [postcss-loader](https://www.npmjs.com/package/postcss-loader). You can mix this technique with other loaders to enable autoprefixing for any CSS flow.
 
@@ -129,6 +129,8 @@ The example below illustrates how to set up autoprefixing using PostCSS with [po
 You have to remember to include [autoprefixer](https://www.npmjs.com/package/autoprefixer) and [precss](https://www.npmjs.com/package/precss) to your project for this to work. The technique is discussed in detail in the _Autoprefixing_ chapter.
 
 T> PostCSS supports _postcss.config.js_ based configuration. It relies on [cosmiconfig](https://www.npmjs.com/package/cosmiconfig) internally for other formats.
+
+{pagebreak}
 
 ## Understanding **css-loader** lookups
 
@@ -199,9 +201,11 @@ Especially with Angular 2, it can be convenient if you can get CSS in a string f
 
 There are a couple of ways to use [Bootstrap](https://getbootstrap.com/) through webpack. One option is to point to the [npm version](https://www.npmjs.com/package/bootstrap) and perform loader configuration as above.
 
-The [Sass version](https://www.npmjs.com/package/bootstrap-sass) is another option. In this case, you should set `precision` option of _sass-loader_ to at least 8. This is [a known issue](https://www.npmjs.com/package/bootstrap-sass#sass-number-precision) explained at _bootstrap-sass_.
+The [Sass version](https://www.npmjs.com/package/bootstrap-sass) is another option. In this case, you should set `precision` option of **sass-loader** to at least 8. This is [a known issue](https://www.npmjs.com/package/bootstrap-sass#sass-number-precision) explained at _bootstrap-sass_.
 
 The third option is to go through [bootstrap-loader](https://www.npmjs.com/package/bootstrap-loader). It does a lot more but allows customization.
+
+{pagebreak}
 
 ## Conclusion
 

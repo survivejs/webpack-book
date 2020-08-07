@@ -117,6 +117,8 @@ leanpub-end-insert
 
 The behavior changes depending on the `limit` you set. Below the limit, it should inline the image while above it should emit a separate asset and a path to it. The CSS lookup works because of **css-loader**. You can also try importing the image from JavaScript code and see what happens.
 
+{pagebreak}
+
 ## Loading SVGs
 
 Webpack allows a [couple ways](https://github.com/webpack/webpack/issues/595) to load SVGs. However, the easiest way is through **file-loader** as follows:

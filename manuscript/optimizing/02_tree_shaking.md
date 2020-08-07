@@ -6,6 +6,8 @@ T> Starting from webpack 5, tree shaking has been greatly improved and it works 
 
 T> Tree shaking works to an extent through [webpack-common-shake](https://www.npmjs.com/package/webpack-common-shake) against CommonJS module definition. As a majority of npm packages have been authored using the older definition, the plugin has value if you are using webpack 4.
 
+{pagebreak}
+
 ## Demonstrating tree shaking
 
 To shake code, you have to define a module and use only a part of its code. Set one up:
@@ -18,8 +20,6 @@ const bake = () => console.log("bake");
 
 export { shake, bake };
 ```
-
-{pagebreak}
 
 To make sure you use a part of the code, alter the application entry point:
 

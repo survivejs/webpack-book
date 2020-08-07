@@ -40,8 +40,6 @@ T> [webpack.PrefetchPlugin](https://webpack.js.org/plugins/prefetch-plugin/) all
 
 T> `webpackChunkName` accepts `[index]` and `[request]` placeholders in case you want to let webpack define the name or a part of it.
 
-{pagebreak}
-
 The interface allows composition, and you could load multiple resources in parallel:
 
 ```javascript
@@ -64,8 +62,6 @@ T> [Webpack 4: import() and CommonJs](https://medium.com/webpack/webpack-4-impor
 T> There's an older syntax, [require.ensure](https://webpack.js.org/api/module-methods/#require-ensure). In practice the new syntax can cover the same functionality while giving error handling.
 
 T> [webpack-pwa](https://github.com/webpack/webpack-pwa) illustrates the idea on a larger scale and discusses different shell-based approaches. You get back to this topic in the _Multiple Pages_ chapter.
-
-{pagebreak}
 
 ### Defining a Split Point Using a Dynamic `import`
 
@@ -129,8 +125,6 @@ T> [bundle-loader](https://www.npmjs.com/package/bundle-loader) gives similar re
 
 T> The _Dynamic Loading_ chapter covers other techniques that come in handy when you have to deal with more complicated splits.
 
-{pagebreak}
-
 ## Code splitting in React
 
 There are React specific solutions that wrap the pattern behind a small npm package:
@@ -158,8 +152,6 @@ module.exports = {
 ```
 
 T> See [Glenn Reyes' detailed explanation](https://medium.com/@glennreyes/how-to-disable-code-splitting-in-webpack-1c0b1754a3c5).
-
-{pagebreak}
 
 ## Controlling code splitting on runtime
 

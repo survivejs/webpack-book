@@ -72,6 +72,8 @@ ERROR in Entry module not found: Error: Can't resolve './src' in '/tmp/webpack-d
 
 The output tells that webpack cannot find the source to compile. Ideally we would pass `mode` parameter to it as well to define which defaults we want.
 
+{pagebreak}
+
 To make webpack compile, do the following:
 
 1. Set up _src/index.js_ so that it contains `console.log("Hello world");`.
@@ -190,7 +192,8 @@ Given the output given by webpack can be difficult to decipher, multiple options
 
 - [webpack-stylish](https://www.npmjs.com/package/webpack-stylish) is a webpack plugin that formats webpack's output in a visually more attractive manner.
 - [friendly-errors-webpack-plugin](https://www.npmjs.com/package/friendly-errors-webpack-plugin) improves on error reporting of webpack. It captures common errors and displays them in a friendly manner.
-- [webpackbar](https://www.npmjs.com/package/webpackbar) has been made especially for tracking build progress. `webpack.ProgressPlugin` is included out of the box and can be used as well.
+- [webpackbar](https://www.npmjs.com/package/webpackbar) has been made especially for tracking build progress.
+- `webpack.ProgressPlugin` is included out of the box and can be used as well.
 - [webpack-dashboard](https://www.npmjs.com/package/webpack-dashboard) gives an entire terminal based dashboard over the standard webpack output. If you prefer clear visual output, this one comes in handy.
 - [test-webpack-reporter-plugin](https://www.npmjs.com/package/test-webpack-reporter-plugin) abstracts webpack's internals to make it easier to write your own reporters.
 
@@ -205,9 +208,11 @@ Given executing `node_modules/.bin/webpack` gets boring after a while, lets adju
 **package.json**
 
 ```json
-"scripts": {
-  "build": "webpack --mode production"
-},
+{
+  "scripts": {
+    "build": "webpack --mode production"
+  }
+}
 ```
 
 Run `npm run build` to see the same output as before. npm adds _node_modules/.bin_ temporarily to the path enabling this. As a result, rather than having to write `"build": "node_modules/.bin/webpack"`, you can do `"build": "webpack"`.

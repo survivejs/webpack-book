@@ -43,8 +43,6 @@ T> Given that [Node supports the ES2015 specification well](http://node.green/) 
 
 W> If you use _webpack.config.babel.js_, take care with the `"modules": false,` setting. If you want to use ES2015 modules, you could skip the setting in your global Babel configuration and then configure it per environment, as discussed below.
 
-{pagebreak}
-
 ### Setting up **babel-loader**
 
 The first step towards configuring Babel to work with webpack is to set up [babel-loader](https://www.npmjs.com/package/babel-loader). It takes the code and turns it into a format older browsers can understand. Install **babel-loader** and include its peer dependency _@babel/core_:
@@ -74,8 +72,6 @@ exports.loadJavaScript = () => ({
 ```
 
 Next, you need to connect this to the main configuration. If you are using a modern browser for development, you can consider processing only the production code through Babel. It's used for both production and development environments in this case. Also, only application code is processed through Babel.
-
-{pagebreak}
 
 Adjust as below:
 
@@ -126,8 +122,6 @@ Adjust the target definition as you like. As long as you follow [browserslist](h
 If you execute `npm run build -- --mode none` now and examine _dist/main.js_, you will see something different based on your `.browserslistrc` file.
 
 T> See the _Autoprefixing_ chapter for an expanded discussion of browserslist.
-
-{pagebreak}
 
 Try to include only a definition like `IE 8` there, and the code should change accordingly:
 
@@ -361,8 +355,6 @@ T> [flow-coverage-report](https://www.npmjs.com/package/flow-coverage-report) sh
 [WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly) allows developers to compile to a low-level representation of code that runs within the browser. It complements JavaScript and provides one path of potential optimization. The technology can also be useful when you want to run an old application without porting it entirely to JavaScript.
 
 Starting from webpack 5, the tool supports new style asynchronous WebAssembly. The official examples, [wasm-simple](https://github.com/webpack/webpack/tree/master/examples/wasm-simple) and [wasm-complex](https://github.com/webpack/webpack/tree/master/examples/wasm-complex), illustrate the experimental functionality well.
-
-{pagebreak}
 
 ## Conclusion
 

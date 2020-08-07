@@ -22,8 +22,6 @@ To get started, include the plugin to the project:
 npm add terser-webpack-plugin -D
 ```
 
-{pagebreak}
-
 To attach it to the configuration, define a part for it first:
 
 **webpack.parts.js**
@@ -56,9 +54,7 @@ If you execute `npm run build` now, you should see result close to the same as b
 
 T> Source maps are disabled by default. You can enable them through the `sourceMap` flag. You should check **terser-webpack-plugin** documentation for further options.
 
-T> To adjust Terser, attach `terserOptions` with the related options to the plugin.
-
-{pagebreak}
+T> To adjust Terser behavior, attach `terserOptions` with the related options to the plugin.
 
 ## Minifying JavaScript with Closure Compiler
 
@@ -96,8 +92,6 @@ Out of the available solutions, `OptimizeCSSAssetsPlugin` is the most flexible o
 npm add optimize-css-assets-webpack-plugin cssnano -D
 ```
 
-{pagebreak}
-
 Like for JavaScript, you can wrap the idea in a configuration part:
 
 **webpack.parts.js**
@@ -118,8 +112,6 @@ exports.minifyCSS = ({ options }) => ({
 ```
 
 W> If you use `--json` output with webpack as discussed in the _Build Analysis_ chapter, you should set `canPrint: false` for the plugin.
-
-{pagebreak}
 
 Then, connect with the main configuration:
 

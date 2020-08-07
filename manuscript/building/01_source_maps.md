@@ -103,6 +103,8 @@ To get a better idea of the available options, they are listed below while provi
 - `optimization.moduleIds = "named"` is set to improve readability. It's a good idea to set `optimization.chunkIds` as well in case you are using _Code Splitting_.
 - `mode` is set to `false` to avoid webpack's default processing
 
+{pagebreak}
+
 ### `devtool: "eval"`
 
 `eval` generates code in which each module is wrapped within an `eval` function:
@@ -130,8 +132,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mai
 
 /***/ }),
 ```
-
-{pagebreak}
 
 If you decode that base64 string, you get output containing the mapping:
 
@@ -161,8 +161,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mai
 
 /***/ }),
 ```
-
-{pagebreak}
 
 Again, decoding the data reveals more:
 
@@ -196,8 +194,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mai
 
 ```
 
-{pagebreak}
-
 This time around there's more mapping data available for the browser:
 
 ```json
@@ -219,8 +215,6 @@ This time around there's more mapping data available for the browser:
 Webpack can also generate production usage friendly source maps. These end up in separate files ending with `.map` extension and are loaded by the browser only when required. This way your users get good performance while it's easier for you to debug the application.
 
 `source-map` is a reasonable default here. Even though it takes longer to generate the source maps this way, you get the best quality. If you don't care about production source maps, you can skip the setting there and get better performance in return.
-
-{pagebreak}
 
 ### `devtool: "cheap-source-map"`
 
@@ -248,8 +242,6 @@ Examining the `.map` file reveals the following output in this case:
 ```
 
 The source contains `//# sourceMappingURL=main.js.map` kind of comment at its end to map to this file.
-
-{pagebreak}
 
 ### `devtool: "cheap-module-source-map"`
 
@@ -286,8 +278,6 @@ W> `cheap-module-source-map` is [currently broken if minification is used](https
 
 T> [The official documentation](https://webpack.js.org/configuration/devtool/#devtool) contains more information about `devtool` options.
 
-{pagebreak}
-
 ### `devtool: "source-map"`
 
 `source-map` provides the best quality with the complete result, but it's also the slowest option. The output reflects this:
@@ -321,8 +311,6 @@ T> [The official documentation](https://webpack.js.org/configuration/devtool/#de
   "sourceRoot": ""
 }
 ```
-
-{pagebreak}
 
 ## Other Source Map Options
 
@@ -388,15 +376,15 @@ const config = {
 
 ## Source maps for styling
 
-If you want to enable source maps for styling files, you can achieve this by enabling the `sourceMap` option. The same idea works with style loaders such as **css-loader**, _sass-loader_, and _less-loader_.
+If you want to enable source maps for styling files, you can achieve this by enabling the `sourceMap` option. The same idea works with style loaders such as **css-loader**, **sass-loader**, and **less-loader**.
 
 The **css-loader** is [known to have issues](https://github.com/webpack-contrib/css-loader/issues/232) when you are using relative paths in imports. To overcome this problem, you should set `output.publicPath` to resolve the server url.
 
 ## Source maps on backend
 
-If you are using Node target with webpack as discussed in the _Build Targets_ chapter, you should still take of generating source maps. The trick is to use `output.devtoolModuleFilenameTemplate` and set it to `[absolute-resource-path]` and `webpack.SourceMapDevToolPlugin`. Thanks to Eric Hill for discovering this!
+If you are using Node target with webpack as discussed in the _Build Targets_ chapter, you should still take of generating source maps.
 
-{pagebreak}
+The trick is to use `output.devtoolModuleFilenameTemplate` and set it to `[absolute-resource-path]` and `webpack.SourceMapDevToolPlugin`. Thanks to Eric Hill for discovering this!
 
 ## Conclusion
 
@@ -408,9 +396,9 @@ To recap:
 - Webpack supports a large variety of source map variants. They can be split into inline and separate source maps based on where they are generated. Inline source maps are handy during development due to their speed. Separate source maps work for production as then loading them becomes optional.
 - `devtool: "source-map"` is the highest quality option making it valuable for production.
 - `inline-module-source-map` is a good starting point for development.
-- If you want to get only stack traces during production, use `devtool: "hidden-source-map"`. You can capture the output and send it to a third party service for you to examine. This way you can capture errors and fix them.
+- Use `devtool: "hidden-source-map"` to get only stack traces during production. You can capture the output and send it to a third party service for you to examine later and fix.
 - `SourceMapDevToolPlugin` and `EvalSourceMapDevToolPlugin` provide more control over the result than the `devtool` shortcut.
-- _source-map-loader_ can come in handy if your dependencies provide source maps.
+- **source-map-loader** can come in handy if your dependencies provide source maps.
 - Enabling source maps for styling requires additional effort. You have to enable `sourceMap` option per styling related loader you are using.
 
 In the next chapter, you'll learn the art of code splitting.

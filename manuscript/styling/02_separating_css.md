@@ -55,8 +55,6 @@ That `[name]` placeholder uses the name of the entry where the CSS is referred. 
 
 T> If you wanted to output the resulting file to a specific directory, you could do it by passing a path. Example: `filename: "styles/[name].css"`.
 
-{pagebreak}
-
 ### Connecting with configuration
 
 Connect the function with the configuration as below:
@@ -94,8 +92,6 @@ T> If you are using _CSS Modules_, remember to tweak `use` as discussed in the _
 
 T> You can drop the `loadCSS` function now as it won't be needed anymore. The setup above replaces it entirely.
 
-{pagebreak}
-
 After running `npm run build`, you should see output similar to the following:
 
 ```bash
@@ -117,8 +113,6 @@ Entrypoint main = main.css main.js
 ```
 
 Now styling has been pushed to a separate CSS file. Thus, the JavaScript bundle has become slightly smaller, and you avoid the FOUC problem. The browser doesn't have to wait for JavaScript to load to get styling information. Instead, it can process the CSS separately, avoiding the flash.
-
-{pagebreak}
 
 ## Managing styles outside of JavaScript
 

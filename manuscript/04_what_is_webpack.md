@@ -66,6 +66,8 @@ The manifest can be extracted to a file of its own, as discussed later in the bo
 
 That's not all there is to the bundling process. For example, you can define specific **split points** where webpack generates separate bundles that are loaded based on application logic. This idea is discussed in the _Code Splitting_ chapter.
 
+{pagebreak}
+
 ## Webpack is configuration driven
 
 At its core, webpack relies on configuration. Here is a sample adapted from [the official webpack tutorial](https://webpack.js.org/get-started/) and expanded to cover the main points:
@@ -76,13 +78,10 @@ At its core, webpack relies on configuration. Here is a sample adapted from [the
 const webpack = require("webpack");
 
 module.exports = {
-  // Where to start bundling
-  entry: {
+  entry: { // Where to start bundling
     app: "./entry.js",
   },
-
-  // Where to output
-  output: {
+  output: { // Where to output
     // Output to the same directory
     path: __dirname,
 
@@ -90,9 +89,7 @@ module.exports = {
     // In the example, it will result as app.js.
     filename: "[name].js",
   },
-
-  // How to resolve encountered imports
-  module: {
+  module: { // How to resolve encountered imports
     rules: [
       {
         test: /\.css$/,
@@ -105,14 +102,10 @@ module.exports = {
       },
     ],
   },
-
-  // What extra processing to perform
-  plugins: [
+  plugins: [ // What extra processing to perform
     new webpack.DefinePlugin({ ... }),
   ],
-
-  // Adjust module resolution algorithm
-  resolve: {
+  resolve: { // Adjust module resolution algorithm
     alias: { ... },
   },
 };
