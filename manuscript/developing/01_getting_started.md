@@ -98,6 +98,8 @@ export default (text = "Hello world") => {
 };
 ```
 
+{pagebreak}
+
 We also have to modify the original file to import the new file and render the application through the DOM:
 
 **src/index.js**
@@ -235,6 +237,8 @@ Although **mini-html-webpack-plugin** is enough for basic use cases, there can b
 - [script-ext-html-webpack-plugin](https://www.npmjs.com/package/script-ext-html-webpack-plugin) gives you more control over script tags and allows you to tune script loading further.
 - [webpack-cdn-plugin](https://www.npmjs.com/package/webpack-cdn-plugin) allows you to specify which dependencies to load through a Content Delivery Network (CDN). This common technique is used for speeding up loading of popular libraries.
 - [dynamic-cdn-webpack-plugin](https://www.npmjs.com/package/dynamic-cdn-webpack-plugin) achieves a similar result.
+
+{pagebreak}
 
 ## Conclusion
 

@@ -322,6 +322,8 @@ Loader behavior can be understood in greater detail by inspecting them. [loader-
 
 [inspect-loader](https://www.npmjs.com/package/inspect-loader) allows you to inspect what's being passed between loaders. Instead of having to insert `console.log`s within `node_modules`, you can attach this loader to your configuration and inspect the flow there.
 
+{pagebreak}
+
 ## Conclusion
 
 Webpack provides multiple ways to setup loaders but sticking with `use` is enough starting from webpack 4. Be careful with loader ordering, as it's a common source of problems.

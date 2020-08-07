@@ -1,10 +1,10 @@
 # Autoprefixing
 
-It can be challenging to remember which vendor prefixes you have to use for specific CSS rules to support a large variety of users. **Autoprefixing** solves this problem. It can be enabled through PostCSS and the [autoprefixer](https://www.npmjs.com/package/autoprefixer) plugin. _autoprefixer_ uses [Can I Use](http://caniuse.com/) service to figure out which rules should be prefixed and its behavior can be tuned further.
+It can be challenging to remember which vendor prefixes you have to use for specific CSS rules to support a large variety of users. **Autoprefixing** solves this problem. It can be enabled through PostCSS and the [autoprefixer](https://www.npmjs.com/package/autoprefixer) plugin. **autoprefixer** uses [Can I Use](http://caniuse.com/) service to figure out which rules should be prefixed and its behavior can be tuned further.
 
 ## Setting up autoprefixing
 
-Achieving autoprefixing takes a small addition to the current setup. Install _postcss-loader_ and _autoprefixer_ first:
+Achieving autoprefixing takes a small addition to the current setup. Install _postcss-loader_ and **autoprefixer** first:
 
 ```bash
 npm add postcss-loader autoprefixer -D
@@ -44,7 +44,7 @@ W> The order of the loaders matters since autoprefixing should occur after Tailw
 
 **autoprefixer** relies on a [browserslist](https://www.npmjs.com/package/browserslist) definition to work.
 
-To define which browsers you want to support, set up a `.browserslistrc` file. Different tools pick up this definition, _autoprefixer_ included.
+To define which browsers you want to support, set up a `.browserslistrc` file. Different tools pick up this definition, **autoprefixer** included.
 
 Create a file as follows:
 
@@ -68,6 +68,6 @@ Autoprefixing is a convenient technique as it decreases the amount of work neede
 
 To recap:
 
-- Autoprefixing can be enabled through the _autoprefixer_ PostCSS plugin.
+- Autoprefixing can be enabled through the **autoprefixer** PostCSS plugin.
 - Autoprefixing writes missing CSS definitions based on your minimum browser definition.
-- _.browserslistrc_ is a standard file that works with tooling beyond _autoprefixer_
+- _.browserslistrc_ is a standard file that works with tooling beyond **autoprefixer**

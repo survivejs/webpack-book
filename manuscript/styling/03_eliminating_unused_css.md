@@ -70,7 +70,7 @@ body {
 
 ## Using Tailwind classes
 
-You should also make the demo component use a Pure.css class, so there is something to work with:
+You should also make the demo component use Tailwind classes, so there is something to work with:
 
 **src/component.js**
 

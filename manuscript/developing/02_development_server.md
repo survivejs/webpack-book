@@ -58,6 +58,8 @@ leanpub-end-insert
 
 T> WDS picks up configuration like webpack itself. The same rules apply.
 
+{pagebreak}
+
 If you execute either _npm run start_ or _npm start_ now, you should see something in the terminal:
 
 ```bash
