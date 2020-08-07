@@ -34,7 +34,9 @@ const demoPage = req("./demo.md");
 
 The technique can be valuable for other purposes, such as testing or adding files for webpack to watch. In that case, you would set up a `require.context` within a file which you then point to through a webpack `entry`.
 
-T> The information is enough for generating an entire site as showcased in [Antwar](https://github.com/antwarjs/antwar).
+T> The information is enough for generating an entire site as showcased in [Antwar](https://antwar.js.org/).
+
+W> If you are using TypeScript, make sure you have installed [@types/webpack-env](https://www.npmjs.com/package/@types/webpack-env) for `require.context` to work.
 
 ## Dynamic paths with a dynamic `import`
 
@@ -50,7 +52,7 @@ import(`translations/${target}.json`).then(...).catch(...);
 
 The same idea works with `require` as webpack can then perform static analysis. For example, `require(`assets/modals/\${imageSrc}.js`);` would generate a context and resolve against an image based on the `imageSrc` that was passed to the `require`.
 
-T> When using dynamic imports, specify file extension in the path as that helps with performance by keeping the context smaller.
+T> When using dynamic imports, specify file extension in the path as that keeps the context smaller and helps with performance.
 
 ## Combining multiple `require.context`s
 
