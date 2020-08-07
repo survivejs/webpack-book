@@ -345,7 +345,7 @@ const config = {
     // create-react-app uses the following as it shows up well
     // in developer tools
     devtoolModuleFilenameTemplate: (info) =>
-      path.resolve(info.absoluteResourcePath),
+      path.resolve(info.absoluteResourcePath).replace(/\\/g, "/"),
   },
 };
 ```
