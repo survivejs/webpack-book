@@ -1,6 +1,6 @@
 # Adding Hashes to Filenames
 
-Even though the generated build works the file names it uses is problematic. It doesn't allow to leverage client level cache efficiently as there's no way tell whether or not a file has changed. Cache invalidation can be achieved by including a hash to the filenames.
+Even though the generated build works, the file names it uses is problematic. It doesn't allow to leverage client level cache efficiently as there's no way tell whether or not a file has changed. Cache invalidation can be achieved by including a hash to the filenames.
 
 T> Starting from version 5, webpack is using a deterministic way of generating filenames that's a good compromise between bundle size and long time caching. The behavior is controllable through `optimization.moduleIds` and `optimization.chunkIds`. Latter applies to _Code Splitting_.
 

@@ -23,7 +23,7 @@ As discussed in the previous chapter, generating stats can be used to measure bu
 
 ## High-level optimizations
 
-Webpack uses only a single instance by default, meaning you aren't able to benefit from a multi-core processor without extra effort. This where [thread-loader](https://www.npmjs.com/package/thread-loader) and third-party solutions, such as [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) and [HappyPack](https://www.npmjs.com/package/happypack) come in.
+Webpack uses only a single instance by default, meaning you aren't able to benefit from a multi-core processor without extra effort. This is where [thread-loader](https://www.npmjs.com/package/thread-loader) and third-party solutions, such as [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) and [HappyPack](https://www.npmjs.com/package/happypack) come in.
 
 ### **parallel-webpack** - run multiple webpack instances in parallel
 

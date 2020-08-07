@@ -252,9 +252,9 @@ As [discussed by Philip Walton](https://philipwalton.com/articles/deploying-es20
 <script nomodule src="main.es5.js"></script>
 ```
 
-The fallback isn't without problems as in the worst case it can force the browser to load the module **twice**. Therefore relying on a user agent may be a better option as [highlighted by John Stewart in his example](https://github.com/johnstew/differential-serving). To solve the issue, [Andrea Giammarchi has developed a universal bundle loader](https://medium.com/@WebReflection/a-universal-bundle-loader-6d7f3e628f93).
+The fallback isn't without problems as in the worst case, it can force the browser to load the module **twice**. Therefore relying on a user agent may be a better option as [highlighted by John Stewart in his example](https://github.com/johnstew/differential-serving). To solve the issue, [Andrea Giammarchi has developed a universal bundle loader](https://medium.com/@WebReflection/a-universal-bundle-loader-6d7f3e628f93).
 
-On webpack side, you will have to take care to generate two builds with differing browserslist definitions and names. In addition, you have to make sure the HTML template receives the `script` tags as above so it's able to load them. To give you a better idea, to implement the technique consider the following, set up a browserslist as below:
+On webpack side, you will have to take care to generate two builds with differing browserslist definitions and names. In addition, you have to make sure the HTML template receives the `script` tags as above so it's able to load them. To give you a better idea on how to implement the technique, consider the following and set up a browserslist as below:
 
 **.browserslistrc**
 
