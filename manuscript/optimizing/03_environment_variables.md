@@ -6,7 +6,7 @@ Since JavaScript minifiers can remove dead code (`if (false)`), you can build on
 
 You can find packages that rely on this behavior. React is perhaps the most known example of an early adopter of the technique. Using `DefinePlugin` can bring down the size of your React production build somewhat as a result, and you can see a similar effect with other packages as well.
 
-Webpack 4 sets `process.env.NODE_ENV` within the build based on the given mode but not globally.
+Starting from webpack 4, `process.env.NODE_ENV` is set within the build based on the given mode but not globally. To pass the variable to other tools, you'll have to set it explicitly outside of webpack or within webpack configuration.
 
 {pagebreak}
 

@@ -178,21 +178,19 @@ T> You can use the same mechanism to work around problematic dependencies. Examp
 To bring specific locales to your project, you should use `ContextReplacementPlugin`:
 
 ```javascript
-{
+const config = {
   plugins: [
     new webpack.ContextReplacementPlugin(
       /moment[\/\\]locale$/,
       /de|fi/
     ),
   ],
-},
+};
 ```
 
 T> There's a [Stack Overflow question](https://stackoverflow.com/questions/25384360/how-to-prevent-moment-js-from-loading-locales-with-webpack/25426019) that covers these ideas in detail. See also [Ivan Akulov's explanation of `ContextReplacementPlugin`](https://iamakulov.com/notes/webpack-contextreplacementplugin/).
 
 T> [webpack-libs-optimizations)](https://github.com/GoogleChromeLabs/webpack-libs-optimizations) lists further library specific optimizations as above.
-
-{pagebreak}
 
 ## Managing pre-built dependencies
 

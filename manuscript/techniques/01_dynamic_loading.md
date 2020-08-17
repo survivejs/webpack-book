@@ -38,6 +38,8 @@ T> The information is enough for generating an entire site as showcased in [Antw
 
 W> If you are using TypeScript, make sure you have installed [@types/webpack-env](https://www.npmjs.com/package/@types/webpack-env) for `require.context` to work.
 
+{pagebreak}
+
 ## Dynamic paths with a dynamic `import`
 
 The same idea works with dynamic `import`. Instead of passing a complete path, you can pass a partial one. Webpack sets up a context internally. Here's a brief example:
@@ -53,6 +55,8 @@ import(`translations/${target}.json`).then(...).catch(...);
 The same idea works with `require` as webpack can then perform static analysis. For example, `require(`assets/modals/\${imageSrc}.js`);` would generate a context and resolve against an image based on the `imageSrc` that was passed to the `require`.
 
 T> When using dynamic imports, specify file extension in the path as that keeps the context smaller and helps with performance.
+
+{pagebreak}
 
 ## Combining multiple `require.context`s
 
@@ -97,7 +101,7 @@ Even though `require.context` is a niche feature, it's good to be aware of it. I
 To recap:
 
 - `require.context` is an advanced feature that's often hidden behind the scenes. Use it if you have to perform a lookup against a large number of files.
-- If you write a dynamic `import` in a certain form, webpack generates a `require.context` call. The code reads slightly better in this case.
+- A dynamic `import` written in a certain form generates a `require.context` call. The code reads slightly better in this case.
 - The techniques work only against the file system. If you have to operate against urls, you should look into client-side solutions.
 
 The next chapter shows how to use web workers with webpack.

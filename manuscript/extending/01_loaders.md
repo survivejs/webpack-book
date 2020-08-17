@@ -183,6 +183,8 @@ These calls should be used over `console` based alternatives. As with `this.emit
 
 The next question is how to pass a file name to the loader.
 
+{pagebreak}
+
 ## Passing options to loaders
 
 To demonstrate passing options, the runner needs a small tweak:
@@ -372,8 +374,6 @@ leanpub-end-insert
   (err, result) => (err ? console.error(err) : console.log(result))
 );
 ```
-
-{pagebreak}
 
 If you run (`node ./run-loader.js`) now, the pitch loader should log intermediate data and intercept the execution:
 

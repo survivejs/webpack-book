@@ -70,8 +70,6 @@ If you want to manage stats through a plugin, check out [webpack-stats-plugin](h
 
 Webpack allows you to define a **performance budget**. The idea is that it gives your build size constraint, which it has to follow. The feature is disabled by default, and the calculation includes extracted chunks to entry calculation.
 
-{pagebreak}
-
 To integrate the feature into the project, adjust the configuration as below:
 
 **webpack.config.js**

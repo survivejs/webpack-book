@@ -98,8 +98,6 @@ There's a query format that allows passing parameters to loaders:
 
 This style of configuration works in entries and source imports too as webpack picks it up. The format comes in handy in certain individual cases, but often you are better off using more readable alternatives.
 
-{pagebreak}
-
 It's preferable to go through `use`:
 
 ```javascript
@@ -117,6 +115,8 @@ It's preferable to go through `use`:
   },
 },
 ```
+
+{pagebreak}
 
 If you wanted to use more than one loader, you could pass an array to `use` and expand from there:
 

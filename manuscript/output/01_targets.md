@@ -39,8 +39,6 @@ There are desktop shells, such as [NW.js](https://nwjs.io/) (previously _node-we
 
 Webpack is often used to compile a single target by either returning a configuration object, a `Promise` resolving to one, or a function returning one. In addition, it allows you to specify multiple targets at once in case you return an array of configurations. The technique is useful when generating _Multiple Pages_ or with _Internationalization_. [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) is able to run multiple instances of webpack in parallel to speed this kind of usage.
 
-{pagebreak}
-
 ## Conclusion
 
 Webpack supports targets beyond the web. Based on this you can say name "webpack" is an understatement considering its capabilities.

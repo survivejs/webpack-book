@@ -177,7 +177,9 @@ Entrypoint main = main.js
     | ./src/component.js 143 bytes [built]
 ```
 
-The output tells a lot:
+{pagebreak}
+
+The output is revealing:
 
 - `Hash: 4a1682d15fc37fdfcce1` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. Hashing is discussed in detail in the _Adding Hashes to Filenames_ chapter.
 - `Version: webpack 4.43.0` - Webpack version.

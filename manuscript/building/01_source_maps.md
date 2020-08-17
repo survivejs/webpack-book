@@ -384,9 +384,18 @@ The **css-loader** is [known to have issues](https://github.com/webpack-contrib/
 
 ## Source maps on backend
 
-If you are using Node target with webpack as discussed in the _Build Targets_ chapter, you should still generate source maps.
+If you are using Node target with webpack as discussed in the _Build Targets_ chapter, you should still generate source maps. The trick is to configure as follows:
 
-The trick is to use `output.devtoolModuleFilenameTemplate` and set it to `[absolute-resource-path]` and `webpack.SourceMapDevToolPlugin`. Thanks to Eric Hill for discovering this!
+```javascript
+const config = {
+  output: {
+    devtoolModuleFilenameTemplate: "[absolute-resource-path]",
+  },
+  plugins: [webpack.SourceMapDevToolPlugin({})],
+};
+```
+
+Thanks to Eric Hill for discovering this!
 
 ## Conclusion
 

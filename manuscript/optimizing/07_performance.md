@@ -41,7 +41,7 @@ The underlying idea can be implemented using a [worker-farm](https://www.npmjs.c
 
 **thread-loader** and **parallel-webpack** let you parallelize execution on a module level. **thread-loader** fits into a loader chain. [Using it doesn't always guarantee speed improvements, though](https://blog.johnnyreilly.com/2018/12/you-might-not-need-thread-loader.html). _happypack_ is a more involved approach that's in maintenance mode, and it's worth checking out if parallelization with **thread-loader** doesn't work.
 
-## Low-Level Optimizations
+## Low-level optimizations
 
 Specific lower-level optimizations can be nice to know. The key is to allow webpack to perform less work. Consider the examples below:
 

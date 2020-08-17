@@ -292,6 +292,8 @@ module.exports = (mode) => {
 };
 ```
 
+{pagebreak}
+
 Above would expect the following target:
 
 **package.json**
