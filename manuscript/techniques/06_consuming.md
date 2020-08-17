@@ -50,6 +50,8 @@ By default, webpack will resolve only against `.js`, `.mjs`, and `.json` files w
 },
 ```
 
+{pagebreak}
+
 ## `resolve.modules`
 
 The module resolution process can be altered by changing where webpack looks for modules. By default, it will look only within the _node_modules_ directory. If you want to override packages there, you could tell webpack to look into other directories first:
@@ -66,10 +68,12 @@ After the change, webpack will try to look into the _my_modules_ directory first
 
 ## `resolve.plugins`
 
-Webpack allows you to customize the module resolution behavior using the `resolve.plugins` field. Consider the following plugin examples:
+`resolve.plugins` field allows you to customize the way webpack resolves modules. Consider the following plugin examples:
 
 - [directory-named-webpack-plugin](https://www.npmjs.com/package/directory-named-webpack-plugin) maps imports made against directories to files matching the directory name. For example, it would map `import foo from "./foo";` to `import foo from "./foo/foo.js";`. The pattern is popular with React and using the plugin will allow you to simplify your code. [babel-plugin-module-resolver](https://www.npmjs.com/package/babel-plugin-module-resolver) achieves the same behavior through Babel.
 - [webpack-resolve-short-path-plugin](https://www.npmjs.com/package/webpack-resolve-short-path-plugin) was designed to avoid deeply nested imports like `import foo from "../../../foo";` by adding support for tilde (`~`) syntax. `import foo from "~foo"` would resolve against the project root if the plugin is used.
+
+{pagebreak}
 
 ## Consuming packages outside of webpack
 

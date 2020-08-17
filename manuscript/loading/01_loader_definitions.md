@@ -187,8 +187,6 @@ import "!!url-loader!./bar.png";
 
 The problem with this approach is that it couples your source with webpack. Nonetheless, it's still an excellent form to know.
 
-{pagebreak}
-
 Since configuration entries go through the same mechanism, the same forms work there as well:
 
 ```javascript
@@ -198,6 +196,8 @@ Since configuration entries go through the same mechanism, the same forms work t
   },
 },
 ```
+
+{pagebreak}
 
 ## Alternate ways to match files
 
@@ -216,6 +216,8 @@ Boolean based fields can be used to constrain these matchers further:
 - `not` - Do **not** match against a condition (see `test` for accepted values).
 - `and` - Match against an array of conditions. All must match.
 - `or` - Match against an array while any must match.
+
+{pagebreak}
 
 ## Loading based on `resourceQuery`
 
@@ -238,6 +240,8 @@ Boolean based fields can be used to constrain these matchers further:
 ```
 
 If you wanted to embed the context information to the filename, the rule could use `resourcePath` over `resourceQuery`.
+
+{pagebreak}
 
 ## Loading based on `issuer`
 

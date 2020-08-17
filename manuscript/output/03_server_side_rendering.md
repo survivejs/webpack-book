@@ -262,6 +262,8 @@ SSR isn't the only solution to the SEO problem. **Prerendering** is an alternate
 - [prerender-spa-plugin](https://www.npmjs.com/package/prerender-spa-plugin) uses [Puppeteer](https://www.npmjs.com/package/puppeteer) underneath.
 - [prerender-loader](https://www.npmjs.com/package/prerender-loader) integrates with _html-webpack-plugin_ but also works without it against HTML files. The loader is flexible and can be customized to fit your use case (i.e. React or other framework).
 
+{pagebreak}
+
 ## Conclusion
 
 SSR comes with a technical challenge, and for this reason, specific solutions have appeared around it. Webpack is a good fit for SSR setups.

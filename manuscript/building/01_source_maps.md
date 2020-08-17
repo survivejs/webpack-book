@@ -324,8 +324,6 @@ T> [The official documentation](https://webpack.js.org/configuration/devtool/#de
 }
 ```
 
-{pagebreak}
-
 ## Other source map options
 
 There are a couple of other options that affect source map generation:
@@ -353,6 +351,8 @@ const config = {
 ```
 
 T> The [official documentation](https://webpack.js.org/configuration/output/#output-sourcemapfilename) digs into `output` specifics.
+
+{pagebreak}
 
 ## `SourceMapDevToolPlugin` and `EvalSourceMapDevToolPlugin`
 
@@ -406,10 +406,6 @@ const config = {
   plugins: [webpack.SourceMapDevToolPlugin({})],
 };
 ```
-
-Thanks to Eric Hill for discovering this!
-
-{pagebreak}
 
 ## Conclusion
 
