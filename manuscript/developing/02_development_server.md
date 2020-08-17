@@ -12,6 +12,8 @@ Webpack implements a `watch` mode that operates against the project files bundle
 
 Although this solves the problem of recompiling your source on change, it does nothing on the frontend side and browser updates. That's where further solutions are required.
 
+{pagebreak}
+
 ## **webpack-plugin-serve**
 
 [webpack-plugin-serve](https://www.npmjs.com/package/webpack-plugin-serve) is a third-party plugin that wraps the logic required to update the browser into a webpack plugin. Underneath it relies on webpack's watch mode, and it builds on top of that while implementing **Hot Module Replacement** (HMR) and other features seen in the official solution provided for webpack. There's also functionality that goes beyond the official development server, including support for webpack's multi-compiler mode (i.e., when you give an array of configurations to it) and a status overlay.

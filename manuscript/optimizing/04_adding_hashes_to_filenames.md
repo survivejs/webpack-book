@@ -11,7 +11,7 @@ Webpack provides **placeholders** for this purpose. These strings are used to at
 - `[id]` - Returns the chunk id.
 - `[path]` - Returns the file path.
 - `[name]` - Returns the file name.
-- `[ext]` - Returns the extension. `[ext]` works for most available fields. `MiniCssExtractPlugin` is a notable exception to this rule.
+- `[ext]` - Returns the extension. `[ext]` works for most available fields.
 - `[fullhash]` - Returns the build hash. If any portion of the build changes, this changes as well. In webpack 5 or before, this was `[hash]`.
 - `[chunkhash]` - Returns an entry chunk-specific hash. Each `entry` defined in the configuration receives a hash of its own. If any portion of the entry changes, the hash will change as well. `[chunkhash]` is more granular than `[fullhash]` by definition.
 - `[contenthash]` - Returns a hash generated based on content.

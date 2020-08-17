@@ -18,8 +18,7 @@ module.exports = {
         // **Conditions** to match files using RegExp, function.
         test: /\.js$/,
 
-        // **Restrict** matching to a directory. Also an array of
-        // paths or a function is accepted. The same applies to `exclude`.
+        // **Restrict** matching to a directory.
         include: path.join(__dirname, "app"),
         exclude: (path) => path.match(/node_modules/);
 
@@ -34,8 +33,6 @@ module.exports = {
 T> If you are not sure how a particular RegExp matches, consider using an online tool, such as [regex101](https://regex101.com/), [RegExr](http://regexr.com/), or [Regexper](https://regexper.com).
 
 T> In webpack 5, there's an experimental syntax available. To access it, set `experiments.assets` to `true`. After that you can use `type: "asset"` instead of having to define a loader and webpack will do the right thing out of the box. webpack's [simple asset example](https://github.com/webpack/webpack/tree/master/examples/asset-simple) and [complex asset example](https://github.com/webpack/webpack/tree/master/examples/asset-advanced) illustrate the usage.
-
-{pagebreak}
 
 ## Loader evaluation order
 

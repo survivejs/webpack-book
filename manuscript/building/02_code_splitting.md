@@ -100,6 +100,8 @@ export default (text = "Hello world") => {
 
 If you open up the application (`npm start`) and click the button, you should see the new text in it.
 
+{pagebreak}
+
 After executing `npm run build`, you should see something:
 
 ```bash
@@ -126,6 +128,8 @@ T> If you want to adjust the name of the chunk, set `output.chunkFilename`. For 
 T> [bundle-loader](https://www.npmjs.com/package/bundle-loader) gives similar results, but through a loader interface. It supports bundle naming through its `name` option.
 
 T> The _Dynamic Loading_ chapter covers other techniques that come in handy when you have to deal with more complicated splits.
+
+{pagebreak}
 
 ## Code splitting in React
 

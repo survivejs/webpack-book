@@ -384,7 +384,9 @@ The **css-loader** is [known to have issues](https://github.com/webpack-contrib/
 
 ## Source maps on backend
 
-If you are using Node target with webpack as discussed in the _Build Targets_ chapter, you should still generate source maps. The trick is to use `output.devtoolModuleFilenameTemplate` and set it to `[absolute-resource-path]` and `webpack.SourceMapDevToolPlugin`. Thanks to Eric Hill for discovering this!
+If you are using Node target with webpack as discussed in the _Build Targets_ chapter, you should still generate source maps.
+
+The trick is to use `output.devtoolModuleFilenameTemplate` and set it to `[absolute-resource-path]` and `webpack.SourceMapDevToolPlugin`. Thanks to Eric Hill for discovering this!
 
 ## Conclusion
 
@@ -392,13 +394,13 @@ Source maps can be convenient during development. They provide better means to d
 
 To recap:
 
-- **Source maps** can be helpful both during development and production. They provide more accurate information about what's going on and make it faster to debug possible problems.
-- Webpack supports a large variety of source map variants. They can be split into inline and separate source maps based on where they are generated. Inline source maps are handy during development due to their speed. Separate source maps work for production as then loading them becomes optional.
-- `devtool: "source-map"` is the highest quality option making it valuable for production.
+- **Source maps** can be helpful both during development and production. They provide information about what's going on and speed up debugging.
+- Webpack supports many source map variants in inline and separate categories. Inline source maps are handy during development due to their speed. Separate source maps work for production as then loading them becomes optional.
+- `devtool: "source-map"` is the highest quality option valuable for production.
 - `inline-module-source-map` is a good starting point for development.
-- Use `devtool: "hidden-source-map"` to get only stack traces during production. You can capture the output and send it to a third-party service for you to examine later and fix.
+- Use `devtool: "hidden-source-map"` to get only stack traces during production and to send it to a third-party service for you to examine later and fix.
 - `SourceMapDevToolPlugin` and `EvalSourceMapDevToolPlugin` provide more control over the result than the `devtool` shortcut.
-- **source-map-loader** can come in handy if your dependencies provide source maps.
+- You should use **source-map-loader** with third-party dependencies.
 - Enabling source maps for styling requires additional effort. You have to enable `sourceMap` option per styling related loader you are using.
 
 In the next chapter, you'll learn the art of code splitting.

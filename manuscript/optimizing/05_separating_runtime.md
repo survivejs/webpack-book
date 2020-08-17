@@ -67,7 +67,7 @@ T> The build can be improved further by loading popular dependencies, such as Re
 
 ## Using records
 
-As mentioned in the _Bundle Splitting_ chapter, plugins such as `AggressiveSplittingPlugin` use **records** to implement caching. The approaches discussed above are still valid, but records go one step further.
+As hinted in the _Bundle Splitting_ chapter, `AggressiveSplittingPlugin` and others use **records** to implement caching. The approaches discussed above are still valid, but records go one step further.
 
 Records are used for storing module IDs across separate builds. The problem is that you need to save this file. If you build locally, one option is to include it in your version control.
 
@@ -96,6 +96,8 @@ Records are particularly valuable if you have a complicated setup with code spli
 T> `recordsInputPath` and `recordsOutputPath` give more granular control over input and output, but often setting only `recordsPath` is enough.
 
 W> If you change the way webpack handles module IDs, possible existing records are still taken into account! If you want to use the new module ID scheme, you have to delete your records file as well.
+
+{pagebreak}
 
 ## Integrating with asset pipelines
 

@@ -149,6 +149,8 @@ Note especially how the function was transformed. You can try out different brow
 
 T> [@babel/preset-modules](https://www.npmjs.com/package/@babel/preset-modules) goes beyond **@babel/preset-env** by fixing bugs in modern browsers. A part of the work has been ported to **@babel/preset-env** as well and can be enabled by setting the `bugfixes` flag to `true`. The preset is useful only for modern browsers!
 
+{pagebreak}
+
 ## Polyfilling features
 
 **@babel/preset-env** allows you to polyfill certain language features for older browsers. For this to work, you should enable its `useBuiltIns` option and install [core-js](https://www.npmjs.com/package/core-js). If you are using `async` functions and want to support older browsers, then [regenerator-runtime](https://www.npmjs.com/package/regenerator-runtime) is required as well.
@@ -194,6 +196,8 @@ Babel allows you to control which presets and plugins are used per environment t
 
 `env` checks both `NODE_ENV` and `BABEL_ENV` and adds functionality to your build based on that. If both `BABEL_ENV` and `NODE_ENV` are set, the former takes precedence to resolve `env`.
 
+{pagebreak}
+
 Consider the example below:
 
 **.babelrc**
@@ -230,6 +234,8 @@ leanpub-end-insert
 ```
 
 T> The way `env` works is subtle. Consider logging `env` and make sure it matches your Babel configuration or otherwise the functionality you expect is not applied to your build.
+
+{pagebreak}
 
 ## Generating differential builds
 

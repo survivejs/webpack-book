@@ -94,6 +94,8 @@ Out of the available solutions, `OptimizeCSSAssetsPlugin` is the most flexible o
 npm add optimize-css-assets-webpack-plugin cssnano -D
 ```
 
+{pagebreak}
+
 Like for JavaScript, you can wrap the idea in a configuration part:
 
 **webpack.parts.js**
@@ -162,6 +164,8 @@ Entrypoint main = vendor.js main.css main.js
 T> [compression-webpack-plugin](https://www.npmjs.com/package/compression-webpack-plugin) allows you to push the problem of generating compressed files to webpack to potentially save processing time on the server.
 
 T> Using [last-call-webpack-plugin](https://www.npmjs.com/package/last-call-webpack-plugin) is a more generic approach and you can use it to define which processing to use against which file format before webpack finishes processing.
+
+{pagebreak}
 
 ## Compressing bundles
 
