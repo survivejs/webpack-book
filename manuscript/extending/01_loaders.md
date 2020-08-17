@@ -318,8 +318,6 @@ You could also handle the loader definition through `rules`. Once the loader is 
 
 W> Although using **loader-runner** can be convenient for developing and testing loaders, implement integration tests that run against webpack. Subtle differences between environments make this essential.
 
-{pagebreak}
-
 ## Pitch loaders
 
 ![Webpack loader processing](images/loader-processing.png)
