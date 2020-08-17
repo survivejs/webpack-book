@@ -154,6 +154,8 @@ leanpub-end-insert
 );
 ```
 
+{pagebreak}
+
 To implement the essential idea of **file-loader**, you have to do two things: emit the file and return path to it. You could apply it as below:
 
 **loaders/demo-loader.js**
@@ -252,8 +254,6 @@ leanpub-end-insert
 };
 ```
 
-{pagebreak}
-
 After running (`node ./run-loader.js`), you should see something:
 
 ```javascript
@@ -267,6 +267,8 @@ After running (`node ./run-loader.js`), you should see something:
 You can see that the result matches what the loader should have returned. You can try to pass more options to the loader or use query parameters to see what happens with different combinations.
 
 T> It's a good idea to validate options and rather fail hard than silently if the options aren't what you expect. [schema-utils](https://www.npmjs.com/package/schema-utils) has been designed for this purpose.
+
+{pagebreak}
 
 ## Connecting custom loaders with webpack
 
@@ -354,6 +356,8 @@ Input: ${JSON.stringify(input, null, 2)}
   return "pitched";
 };
 ```
+
+{pagebreak}
 
 To connect it to the runner, add it to the loader definition:
 

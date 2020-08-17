@@ -268,13 +268,11 @@ Another approach would be to mix `issuer` and `not`:
 {
   test: /\.css$/,
   rules: [
-    // CSS imported from other modules is added to the DOM
-    {
+    { // CSS imported from other modules is added to the DOM
       issuer: { not: /\.css$/ },
       use: "style-loader",
     },
-    // Apply css-loader against CSS imports to return CSS
-    {
+    { // Apply css-loader against CSS imports to return CSS
       use: "css-loader",
     },
   ],
