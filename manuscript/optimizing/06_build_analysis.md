@@ -207,6 +207,8 @@ In addition to inspectpack, there are other tools for figuring out duplicates:
 
 [duplicate-package-checker-webpack-plugin](https://www.npmjs.com/package/duplicate-package-checker-webpack-plugin) warns you if it finds single package multiple times in your build. This situation can be hard to spot otherwise.
 
+{pagebreak}
+
 [inspectpack](https://www.npmjs.com/package/inspectpack) can be used for figuring out specific places of code to improve. The example below performs duplication analysis:
 
 ```bash

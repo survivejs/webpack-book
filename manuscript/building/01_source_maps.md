@@ -200,6 +200,8 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mai
 
 ```
 
+{pagebreak}
+
 This time around there's more mapping data available for the browser:
 
 ```json
@@ -226,6 +228,8 @@ Webpack can also generate production usage friendly source maps. These end up in
 
 `cheap-source-map` is similar to the cheap options above. The result is going to miss column mappings. Also, source maps from loaders, such as **css-loader**, are not going to be used.
 
+{pagebreak}
+
 Examining the `.map` file reveals the following output in this case:
 
 ```json
@@ -248,6 +252,8 @@ Examining the `.map` file reveals the following output in this case:
 ```
 
 The source contains `//# sourceMappingURL=main.js.map` kind of comment at its end to map to this file.
+
+{pagebreak}
 
 ### `devtool: "cheap-module-source-map"`
 
@@ -402,6 +408,8 @@ const config = {
 ```
 
 Thanks to Eric Hill for discovering this!
+
+{pagebreak}
 
 ## Conclusion
 

@@ -86,8 +86,6 @@ exports.dontParse = ({ name, path }) => ({
 });
 ```
 
-{pagebreak}
-
 To use the function, you would call it as follows:
 
 ```javascript
@@ -98,6 +96,8 @@ dontParse({
   ),
 }),
 ```
+
+{pagebreak}
 
 After this change, the application should be faster to rebuild, depending on the underlying implementation. The technique can also be applied to production.
 

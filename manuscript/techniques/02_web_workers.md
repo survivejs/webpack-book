@@ -72,6 +72,8 @@ The API of [webworkify-webpack](https://www.npmjs.com/package/webworkify-webpack
 
 [threads.js](https://threads.js.org/) provides a comprehensive solution for more complex setups and it includes features such as observables and thread pools out of the box. There's a custom [threads-plugin](https://github.com/andywer/threads-plugin) you can use to integrate it with webpack.
 
+{pagebreak}
+
 ## Conclusion
 
 The critical thing to note is that the worker cannot access the DOM. You can perform computation and queries in a worker, but it cannot manipulate the user interface directly.

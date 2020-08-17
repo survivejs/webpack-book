@@ -1,8 +1,8 @@
 # Separating a Runtime
 
-When webpack writes bundles, it maintains a **runtime** as well. You can find it in the generated _vendor_ bundle in this project. The runtime describes what files webpack should load. It's possible to extract it and start loading the files of the project faster instead of having to wait for the _vendor_ bundle to be loaded.
+When webpack writes bundles, it maintains a **runtime** as well. The runtime includes a manifest of the files to be loaded initially. If the names of the files change, then the manifest changes and the change invalidates the file in which it is contained.
 
-If the hashes webpack generates change, then the runtime changes as well. As a result, the contents of the vendor bundle change, and become invalidated. The problem can be eliminated by extracting the runtime to a file of its own or by writing it inline to the _index.html_ of the project.
+For this reason, it can be a good idea to write the runtime to a file of its own or inline the manifest information to the _index.html_ file of the project.
 
 ## Extracting a runtime
 

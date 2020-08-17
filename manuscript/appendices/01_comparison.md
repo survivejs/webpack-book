@@ -256,6 +256,8 @@ Brunch comes with commands like `brunch new`, `brunch watch --server`, and `brun
 
 T> There is an experimental [Hot Module Replacement runtime](https://www.npmjs.com/package/hmr-brunch) for Brunch.
 
+{pagebreak}
+
 ### Rollup
 
 [Rollup](https://www.npmjs.com/package/rollup) focuses on bundling ES2015 code. _Tree shaking_ is one of its selling points and it supports code splitting as well. You can use Rollup with webpack through [rollup-loader](https://www.npmjs.com/package/rollup-loader).
@@ -271,6 +273,8 @@ Webpack core can be extended using specific _loaders_ and _plugins_. It gives co
 Compared to the other tools, webpack comes with initial complexity, but it makes up for this through its broad feature set. It's an advanced tool that requires patience. But once you understand the basic ideas behind it, webpack becomes powerful.
 
 To make it easier to use, tools such as [create-react-app](https://www.npmjs.com/package/create-react-app), [poi](https://poi.js.org/), and [instapack](https://www.npmjs.com/package/instapack) have been built around it.
+
+{pagebreak}
 
 ## Zero configuration bundlers
 
@@ -291,8 +295,6 @@ You can find more alternatives as listed below:
 - [StealJS](https://stealjs.com/) is a dependency loader and a build tool focusing on performance and ease of use.
 - [Blendid](https://www.npmjs.com/package/blendid) is a blend of Gulp and bundlers to form an asset pipeline.
 - [swc](https://swc-project.github.io/) is a JavaScript/TypeScript compiler focusing on performance.
-
-{pagebreak}
 
 ## Conclusion
 

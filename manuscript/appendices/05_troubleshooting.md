@@ -6,8 +6,8 @@ Using webpack can lead to a variety of runtime warnings or errors. Often a parti
 2. Study the origin of the error carefully. Sometimes you can infer what's wrong with context. If webpack fails to parse a module, it's likely not passing it through a loader you expect for example.
 3. Try to understand where the error stems. Does it come from your code, a dependency, or webpack?
 4. Remove code until the error goes away and add code back till it appears again. Simplify as much as possible to isolate the problem.
-5. If the code worked in another project, figure out what's different. It's possible the dependencies between the projects vary, or the setup differs somehow. At the worst case, a package you rely upon has gained a regression. Using a *lockfile* is a good idea for this reason.
-6. Study the related packages carefully. Sometimes looking into the package *package.json* can yield insight. It's possible the package you are using does not resolve the way you expect.
+5. If the code worked in another project, figure out what's different. It's possible the dependencies between the projects vary, or the setup differs somehow. At the worst case, a package you rely upon has gained a regression. Using a _lockfile_ is a good idea for this reason.
+6. Study the related packages carefully. Sometimes looking into the package _package.json_ can yield insight. It's possible the package you are using does not resolve the way you expect.
 7. Search for the error online. Perhaps someone else has run into it. [Stack Overflow](https://stackoverflow.com/questions/tagged/webpack) and [the official issue tracker](https://github.com/webpack/webpack/issues) are good starting points.
 8. Enable `stats: "verbose"` to get more information out of webpack. The [official documentation covers more flags](https://webpack.js.org/configuration/stats/).
 9. Add a temporary `console.log` near the error to get more insight into the problem. A heavier option is to [debug webpack through Chrome Dev Tools](https://medium.com/webpack/webpack-bits-learn-and-debug-webpack-with-chrome-dev-tools-da1c5b19554).
@@ -34,7 +34,7 @@ Even though webpack could resolve to your modules fine, it can still fail to bui
 
 There's another subtle loader related error. If a package matching to a loader name that does not implement the loader interface exists, webpack matches to that and gives a runtime error that says the package is not a loader.
 
-This mistake can be made by writing `loader: "eslint"` instead of `loader: "eslint-loader"`. If the loader doesn't exist at all, the `Module not found` error will be raised.
+If you write `loader: "eslint"` instead of `loader: "eslint-loader"`, you'll receive this error. If the package doesn't exist at all, then `Module not found` error will be raised.
 
 ## Module build failed: Unknown word
 

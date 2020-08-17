@@ -136,6 +136,8 @@ If you wanted to use more than one loader, you could pass an array to `use` and 
 },
 ```
 
+{pagebreak}
+
 ## Branching at `use` using a function
 
 In the book setup, you compose configuration on a higher level. Another option to achieve similar results would be to branch at `use` as webpack's loader definitions accept functions that allow you to branch depending on the environment. Consider the example below:
@@ -167,6 +169,8 @@ In the book setup, you compose configuration on a higher level. Another option t
 ```
 
 Carefully applied, this technique allows different means of composition.
+
+{pagebreak}
 
 ## Inline definitions
 
