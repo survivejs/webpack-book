@@ -103,8 +103,6 @@ Entrypoints:
 
 If you want to enforce a strict limit in a CI environment, set `hints` to `error`. Doing this will fail the build in case it is reached and force the developers either go below the limit or raise a discussion about good limits.
 
-{pagebreak}
-
 ## Dependency analysis
 
 It's possible to analyze bundle dependencies in a graphical manner, and many tools exist for this purpose.
@@ -142,8 +140,6 @@ It's possible to analyze bundle dependencies in a graphical manner, and many too
 ![madge](images/madge.png)
 
 [madge](https://www.npmjs.com/package/madge) is another independent tool that can output a graph based on module input. The graph output allows you to understand the dependencies of your project in greater detail.
-
-{pagebreak}
 
 ## Composition analysis
 
@@ -232,8 +228,6 @@ The tool also comes with a plugin you can attach directly to your configuration 
 [whybundled](https://www.npmjs.com/package/whybundled) has been designed to answer the question why a specific module was included to the bundles.
 
 T> `--display-reasons` flag gives more information as well. Example: `npm run build -- --display-reasons`. Another option is to set `stats.reasons` to `true` through webpack configuration.
-
-{pagebreak}
 
 ## Conclusion
 

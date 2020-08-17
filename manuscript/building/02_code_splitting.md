@@ -167,6 +167,8 @@ Especially in a complex environment with third-party dependencies and an advance
 
 Often users use an application in a specific way. The fact means that it makes sense to load specific portions of the application even before the user has accessed them. [guess-webpack](https://www.npmjs.com/package/guess-webpack) builds on this idea of prediction based preloading. [Minko Gechev explains the approach in detail in his article](https://blog.mgechev.com/2018/03/18/machine-learning-data-driven-bundling-webpack-javascript-markov-chain-angular-react/).
 
+{pagebreak}
+
 ## Conclusion
 
 Code splitting is a feature that allows you to push your application a notch further. You can load code when you need it to gain faster initial load times and improved user experience especially in a mobile context where bandwidth is limited.

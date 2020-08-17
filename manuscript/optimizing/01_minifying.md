@@ -117,8 +117,6 @@ exports.minifyCSS = ({ options }) => ({
 
 W> If you use `--json` output with webpack as discussed in the _Build Analysis_ chapter, you should set `canPrint: false` for the plugin.
 
-{pagebreak}
-
 Then, connect with the main configuration:
 
 **webpack.config.js**
@@ -166,8 +164,6 @@ Entrypoint main = vendor.js main.css main.js
 T> [compression-webpack-plugin](https://www.npmjs.com/package/compression-webpack-plugin) allows you to push the problem of generating compressed files to webpack to potentially save processing time on the server.
 
 T> Using [last-call-webpack-plugin](https://www.npmjs.com/package/last-call-webpack-plugin) is a more generic approach and you can use it to define which processing to use against which file format before webpack finishes processing.
-
-{pagebreak}
 
 ## Compressing bundles
 

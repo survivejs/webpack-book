@@ -97,8 +97,6 @@ T> `recordsInputPath` and `recordsOutputPath` give more granular control over in
 
 W> If you change the way webpack handles module IDs, possible existing records are still taken into account! If you want to use the new module ID scheme, you have to delete your records file as well.
 
-{pagebreak}
-
 ## Integrating with asset pipelines
 
 To integrate with asset pipelines, you can consider using plugins like [webpack-manifest-plugin](https://www.npmjs.com/package/webpack-manifest-plugin), or [webpack-assets-manifest](https://www.npmjs.com/package/webpack-assets-manifest). These solutions emit JSON that maps the original asset path to the new one.

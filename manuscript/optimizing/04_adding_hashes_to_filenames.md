@@ -48,8 +48,6 @@ If the file contents related to a chunk are different, the hash changes as well,
 
 The same result can be achieved by generating static filenames and invalidating the cache through a querystring (i.e., `main.js?d587bbd6e38337f5accd`). The part behind the question mark invalidates the cache. According to [Steve Souders](http://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/), attaching the hash to the filename is the most performant option.
 
-{pagebreak}
-
 ## Setting up hashing
 
 The build needs tweaking to generate proper hashes. Adjust as follows:
@@ -81,8 +79,6 @@ leanpub-end-insert
   ...
 ]);
 ```
-
-{pagebreak}
 
 To make sure extracted CSS receives hashes as well, adjust:
 

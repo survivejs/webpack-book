@@ -1,10 +1,10 @@
 # Loader Definitions
 
-Webpack provides multiple ways to set up module loaders. The idea of a loader itself is straight-forward as each loader is a function accepting input and returning output. Loaders can also have side effects as they can emit to the file system and even intercept execution to implement ideas such as caching.
+Webpack provides multiple ways to set up module loaders. Each loader is a function accepting input and returning output. They can have side effects as they can emit to the file system and are able to intercept execution to implement ideas such as caching.
 
 ## Anatomy of a loader
 
-Webpack supports common JavaScript formats out of the box and other formats can be loaded by setting up specific **loaders**. The idea is the same. You always set up a loader, or loaders, and connect those with your directory structure.
+Webpack supports common JavaScript formats out of the box. Other formats can be handled using **loaders** by setting up a loader, or loaders, and connecting those with your directory structure.
 
 Consider the example below where webpack processes JavaScript through Babel:
 
@@ -46,6 +46,8 @@ To see the rule in action, consider the example below:
   use: ["style-loader", "css-loader"],
 },
 ```
+
+{pagebreak}
 
 Based on the right to left rule, the example can be split up while keeping it equivalent:
 
@@ -269,6 +271,8 @@ Another approach would be to mix `issuer` and `not`:
 }
 ```
 
+{pagebreak}
+
 ## Loading with `info` object
 
 Webpack provides advanced access to compilation if you pass a function as a loader definition for the `use` field. It expects you to return a loader from the call:
@@ -293,8 +297,6 @@ Webpack provides advanced access to compilation if you pass a function as a load
 }
 ```
 
-{pagebreak}
-
 If you execute code like this, you'll see a print in the console:
 
 ```bash
@@ -314,8 +316,6 @@ The function is an escape hatch for customizing loaders further.
 Loader behavior can be understood in greater detail by inspecting them. [loader-runner](https://www.npmjs.com/package/loader-runner) allows you to run them in isolation without webpack. Webpack uses this package internally and _Extending with Loaders_ chapter covers it in detail.
 
 [inspect-loader](https://www.npmjs.com/package/inspect-loader) allows you to inspect what's being passed between loaders. Instead of having to insert `console.log`s within `node_modules`, you can attach this loader to your configuration and inspect the flow there.
-
-{pagebreak}
 
 ## Conclusion
 

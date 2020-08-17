@@ -182,10 +182,10 @@ Perhaps the greatest thing about Babel is that it's possible to extend with plug
 - [babel-plugin-import](https://www.npmjs.com/package/babel-plugin-import) rewrites module imports so that you can use a form such as `import { Button } from "antd";` instead of pointing to the module through an exact path.
 - [babel-plugin-import-asserts](https://www.npmjs.com/package/babel-plugin-import-asserts) asserts that your imports have been defined.
 - [babel-plugin-jsdoc-to-assert](https://www.npmjs.com/package/babel-plugin-jsdoc-to-assert) converts [JSDoc](http://usejsdoc.org/) annotations to runnable assertions.
-- [babel-plugin-log-deprecated](https://www.npmjs.com/package/babel-plugin-log-deprecated) adds `console.warn` to functions that have `@deprecate` annotation in their comment.
+- [babel-plugin-log-deprecated](https://www.npmjs.com/package/babel-plugin-log-deprecated) uses `@deprecate` annotation to add `console.warn` to functions that have it.
 - [babel-plugin-annotate-console-log](https://www.npmjs.com/package/babel-plugin-annotate-console-log) annotates `console.log` calls with information about invocation context, so it's easier to see where they logged.
 - [babel-plugin-sitrep](https://www.npmjs.com/package/babel-plugin-sitrep) logs all assignments of a function and prints them.
-- [babel-plugin-transform-react-remove-prop-types](https://www.npmjs.com/package/babel-plugin-transform-react-remove-prop-types) allows you to remove `propType` related code from your production build. It also allows component authors to generate code that's wrapped so that setting environment at `DefinePlugin` can kick in as discussed in the book.
+- [babel-plugin-transform-react-remove-prop-types](https://www.npmjs.com/package/babel-plugin-transform-react-remove-prop-types) removes `propType` related code from your production build. It also allows component authors to generate code that's wrapped so that setting environment at `DefinePlugin` can kick in as discussed in the _Environment Variables_ chapter.
 - [babel-plugin-macros](https://www.npmjs.com/package/babel-plugin-macros) provides a runtime environment for small Babel modifications without requiring additional plugin setup.
 
 T> It's possible to connect Babel with Node through [babel-register](https://www.npmjs.com/package/babel-register) or [babel-cli](https://www.npmjs.com/package/babel-cli). These packages can be handy if you want to execute your code through Babel without using webpack.
@@ -254,7 +254,11 @@ As [discussed by Philip Walton](https://philipwalton.com/articles/deploying-es20
 
 The fallback isn't without problems as in the worst case, it can force the browser to load the module **twice**. Therefore relying on a user agent may be a better option as [highlighted by John Stewart in his example](https://github.com/johnstew/differential-serving). To solve the issue, [Andrea Giammarchi has developed a universal bundle loader](https://medium.com/@WebReflection/a-universal-bundle-loader-6d7f3e628f93).
 
-On webpack side, you will have to take care to generate two builds with differing browserslist definitions and names. In addition, you have to make sure the HTML template receives the `script` tags as above so it's able to load them. To give you a better idea on how to implement the technique, consider the following and set up a browserslist as below:
+On webpack side, you will have to take care to generate two builds with differing browserslist definitions and names. In addition, you have to make sure the HTML template receives the `script` tags as above so it's able to load them.
+
+{pagebreak}
+
+To give you a better idea on how to implement the technique, consider the following and set up a browserslist as below:
 
 **.browserslistrc**
 

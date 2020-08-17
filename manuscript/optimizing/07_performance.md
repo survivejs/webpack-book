@@ -54,8 +54,6 @@ Specific lower-level optimizations can be nice to know. The key is to allow webp
 
 T> Starting from version 5, there's a file system level cache that can be enabled by setting `cache.type = "filesystem"`. To invalidate it on configuration change, you should set `cache.buildDependencies.config = [__filename]`. Webpack handles anything watched by the build automatically including plugins, loaders, and project files.
 
-{pagebreak}
-
 ### Loader specific optimizations
 
 Loaders have their optimizations as well:
@@ -70,8 +68,6 @@ Loaders have their optimizations as well:
 It's possible to optimize rebundling times during development by pointing the development setup to a minified version of a library, such as React. In React's case, you lose `propType`-based validation. If speed is paramount, this technique is worth it.
 
 `module.noParse` accepts a RegExp or an array of RegExps. In addition to telling webpack not to parse the minified file you want to use, you also have to point `react` to it by using `resolve.alias`. The aliasing idea is discussed in detail in the _Consuming Packages_ chapter.
-
-{pagebreak}
 
 It's possible to encapsulate the core idea within a function:
 
@@ -116,8 +112,6 @@ There are various webpack 4 specific tricks to improve performance:
 - Sometimes there are version related performance regressions which can be fixed in the user space [Kenneth Chau](https://medium.com/@kenneth_chau/speeding-up-webpack-typescript-incremental-builds-by-7x-3912ba4c1d15) has compiled a great list of them for webpack 4. The main ideas are related to simplifying `stats.toJson` using _ts-loader_ with `experimentalWatchApi` and setting `output.pathinfo` to `false`.
 - [Jared Palmer mentions](https://twitter.com/jaredpalmer/status/1265298834906910729) that setting `optimization` property and its `splitChunks`, `removeAvailableModules`, and `removeEmptyChunks` properties to `false` can improve performance in the `development` mode.
 - [webpack-plugin-ramdisk](https://www.npmjs.com/package/webpack-plugin-ramdisk) writes the build output to a RAM disk and it can help during development and in case you have to perform many successive builds.
-
-{pagebreak}
 
 ## Conclusion
 

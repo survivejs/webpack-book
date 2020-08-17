@@ -4,7 +4,7 @@ Loading fonts is similar to loading images. It does come with unique challenges,
 
 The problem can be solved by deciding a set of browsers and platforms that should receive first class service. The rest can use system fonts.
 
-You can approach the problem in several ways through webpack. You can still use _url-loader_ and **file-loader** as with images. Font `test` patterns tend to be more complicated, though, and you have to worry about font file related lookups.
+You can approach the problem in several ways through webpack. You can still use **url-loader** and **file-loader** as with images. Font `test` patterns tend to be more complicated, though, and you have to worry about font file related lookups.
 
 T> [canifont](https://www.npmjs.com/package/canifont) helps you to figure out which font formats you should support. It accepts a **.browserslistrc** definition and then checks font support of each browser based on the definition.
 
@@ -14,7 +14,7 @@ If you exclude Opera Mini, all browsers support the _.woff_ format. Its newer ve
 
 {pagebreak}
 
-Going with one format, you can use a similar setup as for images and rely on both **file-loader** and _url-loader_ while using the limit option:
+Going with one format, you can use a similar setup as for images and rely on both **file-loader** and **url-loader** while using the limit option:
 
 ```javascript
 {
@@ -108,7 +108,7 @@ Furthermore, it's possible to manipulate `publicPath` and override the default p
 },
 ```
 
-T> In the example above, the usage of **file-loader** is obscured _url-loader_. It uses **file-loader** underneath with the `limit` option. The loader options are passed to it. You can override the behavior by using the `fallback` option.
+T> In the example above, the usage of **file-loader** is obscured **url-loader**. It uses **file-loader** underneath with the `limit` option. The loader options are passed to it. You can override the behavior by using the `fallback` option.
 
 {pagebreak}
 

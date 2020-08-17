@@ -8,13 +8,13 @@ Webpack can **inline** assets by using [url-loader](https://www.npmjs.com/packag
 
 Webpack gives control over the inlining process and can defer loading to [file-loader](https://www.npmjs.com/package/file-loader). **file-loader** outputs image files and returns paths to them instead of inlining. This technique works with other asset types, such as fonts, as you see in the later chapters.
 
-## Setting up _url-loader_
+## Setting up **url-loader**
 
-_url-loader_ is a good starting point, and it's the perfect option for development purposes, as you don't have to care about the size of the resulting bundle. It comes with a _limit_ option that can be used to defer image generation to **file-loader** after an absolute limit is reached. This way you can inline small files to your JavaScript bundles while generating separate files for the bigger ones.
+**url-loader** is a good starting point, and it's the perfect option for development purposes, as you don't have to care about the size of the resulting bundle. It comes with a _limit_ option that can be used to defer image generation to **file-loader** after an absolute limit is reached. This way you can inline small files to your JavaScript bundles while generating separate files for the bigger ones.
 
-If you use the `limit` option, you need to install both _url-loader_ and **file-loader** to your project. Assuming you have configured your styles correctly, webpack resolves any `url()` statements your styling contains. You can point to the image assets through your JavaScript code as well.
+If you use the `limit` option, you need to install both **url-loader** and **file-loader** to your project. Assuming you have configured your styles correctly, webpack resolves any `url()` statements your styling contains. You can point to the image assets through your JavaScript code as well.
 
-In case the `limit` option is used, _url-loader_ passes possible additional options to **file-loader** making it possible to configure its behavior further.
+In case the `limit` option is used, **url-loader** passes possible additional options to **file-loader** making it possible to configure its behavior further.
 
 To load _.jpg_ and _.png_ files while inlining files below 25kB, you would have to set up a loader:
 
@@ -50,7 +50,7 @@ If you want to skip inlining altogether, you can use **file-loader** directly. T
 
 T> If you want to output your images below a particular directory, set it up with `name: "./images/[hash].[ext]"`.
 
-W> Be careful not to apply both loaders on images at the same time! Use the `include` field for further control if _url-loader_ `limit` isn't enough.
+W> Be careful not to apply both loaders on images at the same time! Use the `include` field for further control if **url-loader** `limit` isn't enough.
 
 ## Integrating images to the project
 
@@ -146,7 +146,7 @@ Consider also the following loaders:
 - [svg-url-loader](https://www.npmjs.com/package/svg-url-loader) loads SVGs as UTF-8 encoded data urls. The result is smaller and faster to parse than base64.
 - [@svgr/webpack](https://www.npmjs.com/package/@svgr/webpack) exposes imported SVGs as React components to consume.
 
-T> You can still use _url-loader_ and the tips above with SVGs too.
+T> You can still use **url-loader** and the tips above with SVGs too.
 
 ## Optimizing images
 
@@ -182,7 +182,7 @@ Webpack allows you to load images dynamically based on a condition. The techniqu
 
 ## Using placeholders
 
-[image-trace-loader](https://www.npmjs.com/package/image-trace-loader) loads images and exposes the results as `image/svg+xml` URL encoded data. It can be used in conjunction with **file-loader** and _url-loader_ for showing a placeholder while the actual image is being loaded.
+[image-trace-loader](https://www.npmjs.com/package/image-trace-loader) loads images and exposes the results as `image/svg+xml` URL encoded data. It can be used in conjunction with **file-loader** and **url-loader** for showing a placeholder while the actual image is being loaded.
 
 [lqip-loader](https://www.npmjs.com/package/lqip-loader) implements a similar idea. Instead of tracing, it provides a blurred image instead of a traced one.
 
@@ -227,7 +227,7 @@ Webpack allows you to inline images within your bundles when needed. Figuring ou
 
 To recap:
 
-- _url-loader_ inlines the assets within JavaScript. It comes with a `limit` option that allows you to defer assets above it to **file-loader**.
+- **url-loader** inlines the assets within JavaScript. It comes with a `limit` option that allows you to defer assets above it to **file-loader**.
 - **file-loader** emits image assets and returns paths to them to the code. It allows hashing the asset names.
 - You can find image optimization related loaders and plugins that allow you to tune their size further.
 - It's possible to generate **sprite sheets** out of smaller images to combine them into a single request.

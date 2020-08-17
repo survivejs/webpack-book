@@ -148,6 +148,8 @@ If you decode that base64 string, you get output containing the mapping:
 }
 ```
 
+{pagebreak}
+
 ### `devtool: "cheap-module-eval-source-map"`
 
 `cheap-module-eval-source-map` is the same idea, except with higher quality and lower performance:
@@ -193,6 +195,8 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mai
 /***/ }),
 
 ```
+
+{pagebreak}
 
 This time around there's more mapping data available for the browser:
 
@@ -396,6 +400,8 @@ const config = {
 ```
 
 Thanks to Eric Hill for discovering this!
+
+{pagebreak}
 
 ## Conclusion
 
