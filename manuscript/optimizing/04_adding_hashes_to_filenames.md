@@ -102,8 +102,6 @@ leanpub-end-insert
 };
 ```
 
-W> The hashes have been sliced to make the output fit better in the book. In practice, you can skip slicing them.
-
 If you generate a build now (`npm run build`), you should see something:
 
 ```bash
@@ -126,6 +124,8 @@ Entrypoint main = vendor.2ef5.js main.0166.css main.492e.js
 The files have neat hashes now. To prove that it works for styling, you could try altering _src/main.css_ and see what happens to the hashes when you rebuild.
 
 There's one problem, though. If you change the application code, it invalidates the vendor file as well! Solving this requires extracting a webpack **runtime**, but before that, you can improve the way the production build handles module IDs.
+
+W> The hashes have been sliced to make the output fit better in the book. In practice, you can skip slicing them.
 
 ## Conclusion
 

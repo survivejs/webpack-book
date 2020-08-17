@@ -67,27 +67,26 @@ Loaders have their optimizations as well:
 
 ## Optimizing rebundling speed during development
 
-It's possible to optimize rebundling times during development by pointing the development setup to a minified version of a library, such as React. In React's case, you lose `propType`-based validation. If speed is paramount, this technique is worth it.
+Rebundling times during development can be improved by pointing the development setup to a minified version of a library, such as React. In React's case, you lose `propType`-based validation but if speed is paramount, this technique is worth it.
 
-`module.noParse` accepts a RegExp or an array of RegExps. In addition to telling webpack not to parse the minified file you want to use, you also have to point `react` to it by using `resolve.alias`. The aliasing idea is discussed in detail in the _Consuming Packages_ chapter.
+`module.noParse` accepts a RegExp or an array of RegExps. In addition to telling webpack not to parse the minified file you want to use, you have to point `react` to it by using `resolve.alias`. The idea is discussed in detail in the _Consuming Packages_ chapter.
 
-It's possible to encapsulate the core idea within a function:
+You can encapsulate the idea within a function:
 
 ```javascript
-exports.dontParse = ({ name, path }) => {
-  const alias = {};
-  alias[name] = path;
-
-  return {
-    module: {
-      noParse: [new RegExp(path)],
+exports.dontParse = ({ name, path }) => ({
+  module: {
+    noParse: [new RegExp(path)],
+  },
+  resolve: {
+    alias: {
+      [name]: path,
     },
-    resolve: {
-      alias,
-    },
-  };
-};
+  },
+});
 ```
+
+{pagebreak}
 
 To use the function, you would call it as follows:
 

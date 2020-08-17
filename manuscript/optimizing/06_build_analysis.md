@@ -163,6 +163,8 @@ In addition to providing a pie chart visualization, [Auxpack](http://auxpack.com
 
 [source-map-explorer](https://www.npmjs.com/package/source-map-explorer) is a tool independent of webpack. It allows you to get insight into your build by using source maps. It gives a treemap based visualization showing what code contributes to the result. [bundle-wizard](https://www.npmjs.com/package/bundle-wizard) is another similar tool.
 
+{pagebreak}
+
 ### Command line utilities
 
 [webpack-bundle-size-analyzer](https://www.npmjs.com/package/webpack-bundle-size-analyzer) gives a text based composition.

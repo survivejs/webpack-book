@@ -183,6 +183,8 @@ Again, decoding the data reveals more:
 
 In this particular case, the difference between the options is minimal.
 
+{pagebreak}
+
 ### `devtool: "eval-source-map"`
 
 `eval-source-map` is the highest quality option of the inline options. It's also the slowest one as it emits the most data:

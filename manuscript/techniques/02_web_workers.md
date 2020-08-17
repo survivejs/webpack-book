@@ -30,6 +30,8 @@ self.onmessage = ({ data: { text } }) => {
 };
 ```
 
+{pagebreak}
+
 ## Setting up a host
 
 The host has to instantiate the worker and then communicate with it. The idea is almost the same except the host has the control:
@@ -58,6 +60,8 @@ export default () => {
 
 After you have these two set up, it should work. As you click the text, it should mutate the application state as the worker completes its execution. To demonstrate the asynchronous nature of workers, you could try adding delay to the answer and see what happens.
 
+{pagebreak}
+
 ## Sharing data between the host and the worker
 
 Due to the cost of serialization, passing data between the host and the worker can be expensive. The cost can be minimized by using [Transferable objects](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers#Passing_data_by_transferring_ownershi) and in the future sharing data will become possible thanks to [SharedArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer).
@@ -67,8 +71,6 @@ Due to the cost of serialization, passing data between the host and the worker c
 The API of [webworkify-webpack](https://www.npmjs.com/package/webworkify-webpack) allows you to use the worker as a regular JavaScript module as well given you avoid the `self` requirement visible in the example solution. [workerize-loader](https://github.com/developit/workerize-loader) and [worker-plugin](https://github.com/GoogleChromeLabs/worker-plugin) are other options with slightly different APIs.
 
 [threads.js](https://threads.js.org/) provides a comprehensive solution for more complex setups and it includes features such as observables and thread pools out of the box. There's a custom [threads-plugin](https://github.com/andywer/threads-plugin) you can use to integrate it with webpack.
-
-{pagebreak}
 
 ## Conclusion
 
