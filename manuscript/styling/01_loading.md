@@ -41,11 +41,9 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
 });
 ```
 
-The added configuration means that files ending with `.css` should invoke the given loaders.
+Above means that files ending with `.css` should invoke the given loaders.
 
 Loaders return the new source files with transformations applied on them. They can be chained together like a pipe in Unix, and are evaluated from right to left. This means that `loaders: ["style-loader", "css-loader"]` can be read as `styleLoader(cssLoader(input))`.
-
-{pagebreak}
 
 You also need to connect the fragment to the primary configuration:
 

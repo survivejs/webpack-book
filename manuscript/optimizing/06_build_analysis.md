@@ -229,6 +229,8 @@ The tool also comes with a plugin you can attach directly to your configuration 
 
 T> `--display-reasons` flag gives more information as well. Example: `npm run build -- --display-reasons`. Another option is to set `stats.reasons` to `true` through webpack configuration.
 
+{pagebreak}
+
 ## Conclusion
 
 When you are optimizing the size of your bundle output, these tools are invaluable. The official tool has the most functionality, but even basic visualization can reveal problem spots. You can use the same technique with old projects to understand their composition.

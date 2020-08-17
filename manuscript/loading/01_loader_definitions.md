@@ -1,12 +1,10 @@
 # Loader Definitions
 
-Webpack provides multiple ways to set up module loaders. Each loader is a function accepting input and returning output. They can have side effects as they can emit to the file system and are able to intercept execution to implement ideas such as caching.
+Webpack provides multiple ways to set up module loaders. Each loader is a function accepting input and returning output. They can have side effects as they can emit to the file system and can intercept execution to implement caching.
 
 ## Anatomy of a loader
 
-Webpack supports common JavaScript formats out of the box. Other formats can be handled using **loaders** by setting up a loader, or loaders, and connecting those with your directory structure.
-
-Consider the example below where webpack processes JavaScript through Babel:
+Webpack supports common JavaScript formats out of the box. Other formats can be handled using **loaders** by setting up a loader, or loaders, and connecting those with your directory structure. In the example below, webpack processes JavaScript through Babel:
 
 **webpack.config.js**
 
@@ -183,7 +181,11 @@ import "url-loader!./foo.png";
 import "!!url-loader!./bar.png";
 ```
 
-The problem with this approach is that it couples your source with webpack. Nonetheless, it's still an excellent form to know. Since configuration entries go through the same mechanism, the same forms work there as well:
+The problem with this approach is that it couples your source with webpack. Nonetheless, it's still an excellent form to know.
+
+{pagebreak}
+
+Since configuration entries go through the same mechanism, the same forms work there as well:
 
 ```javascript
 {

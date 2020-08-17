@@ -16,7 +16,9 @@ Although this solves the problem of recompiling your source on change, it does n
 
 ## **webpack-plugin-serve**
 
-[webpack-plugin-serve](https://www.npmjs.com/package/webpack-plugin-serve) is a third-party plugin that wraps the logic required to update the browser into a webpack plugin. Underneath it relies on webpack's watch mode, and it builds on top of that while implementing **Hot Module Replacement** (HMR) and other features seen in the official solution provided for webpack. There's also functionality that goes beyond the official development server, including support for webpack's multi-compiler mode (i.e., when you give an array of configurations to it) and a status overlay.
+[webpack-plugin-serve](https://www.npmjs.com/package/webpack-plugin-serve) is a third-party plugin that wraps the logic required to update the browser into a webpack plugin. Underneath it relies on webpack's watch mode, and it builds on top of that while implementing **Hot Module Replacement** (HMR) and other features seen in the official solution provided for webpack.
+
+There's also functionality that goes beyond the official development server, including support for webpack's multi-compiler mode (i.e., when you give an array of configurations to it) and a status overlay.
 
 T> To learn mode about HMR, read the _Hot Module Replacement_ appendix. You can learn the fundamentals of the technique and why people use it. Applying it won't be necessary to complete the tutorial, though.
 
@@ -100,8 +102,6 @@ Enable additional functionality as below:
 **webpack.config.js**
 
 ```javascript
-...
-
 module.exports = {
 leanpub-start-insert
   devServer: {
@@ -109,12 +109,9 @@ leanpub-start-insert
     stats: "errors-only",
 
     // Parse host and port from env to allow customization.
+    // If you use Docker, Vagrant or Cloud9, set host: "0.0.0.0";
     //
-    // If you use Docker, Vagrant or Cloud9, set
-    // host: "0.0.0.0";
-    //
-    // 0.0.0.0 is available to all network devices
-    // unlike default `localhost`.
+    // 0.0.0.0 is available to all network devices unlike default.
     host: process.env.HOST, // Defaults to `localhost`
     port: process.env.PORT, // Defaults to 8080
     open: true, // Open the page in browser

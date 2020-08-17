@@ -164,6 +164,8 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mai
 /***/ }),
 ```
 
+{pagebreak}
+
 Again, decoding the data reveals more:
 
 ```json
@@ -195,8 +197,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mai
 /***/ }),
 
 ```
-
-{pagebreak}
 
 This time around there's more mapping data available for the browser:
 
@@ -400,8 +400,6 @@ const config = {
 ```
 
 Thanks to Eric Hill for discovering this!
-
-{pagebreak}
 
 ## Conclusion
 

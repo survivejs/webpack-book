@@ -63,6 +63,8 @@ Loaders have their optimizations as well:
 - Cache the results of expensive loaders (e.g., image manipulation) to the disk using the [cache-loader](https://www.npmjs.com/package/cache-loader).
 - Parallelize the execution of expensive loaders using [thread-loader](https://www.npmjs.com/package/thread-loader). Given workers come with an overhead in Node, using **thread-loader** is worth it only if the parallelized operation is heavy.
 
+{pagebreak}
+
 ## Optimizing rebundling speed during development
 
 It's possible to optimize rebundling times during development by pointing the development setup to a minified version of a library, such as React. In React's case, you lose `propType`-based validation. If speed is paramount, this technique is worth it.

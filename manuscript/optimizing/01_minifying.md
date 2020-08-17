@@ -176,6 +176,8 @@ Compression techniques, such as gzip or brotli, can be used to reduce the file s
 
 To make it more tricky for third parties to use your code, [obfuscator-loader](https://github.com/javascript-obfuscator/obfuscator-loader) can be applied. Although protecting code is difficult when it's shared with the client, the code can be made much harder to use.
 
+{pagebreak}
+
 ## Conclusion
 
 Minification is the most comfortable step you can take to make your build smaller. To recap:
