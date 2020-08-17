@@ -133,6 +133,8 @@ In addition to HMR, webpack's bundling capabilities are extensive. Webpack allow
 
 Even small applications can benefit from **code splitting**, as it allows the users to get something usable in their hands faster. Performance is a feature, after all. Knowing the basic techniques is worthwhile.
 
+{pagebreak}
+
 ## Conclusion
 
 Webpack comes with a significant learning curve. However, it's a tool worth learning, given how much time and effort it can save over the long term. To get a better idea how it compares to others, check out the _Comparison of Build Tools_ appendix.

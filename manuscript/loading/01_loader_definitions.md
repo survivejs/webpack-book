@@ -12,22 +12,16 @@ Consider the example below where webpack processes JavaScript through Babel:
 
 ```javascript
 module.exports = {
-  ...
   module: {
     rules: [
       {
         // **Conditions** to match files using RegExp, function.
         test: /\.js$/,
 
-        // **Restrictions**
-        // Restrict matching to a directory. This
-        // also accepts an array of paths or a function.
-        // The same applies to `exclude`.
+        // **Restrict** matching to a directory. Also an array of
+        // paths or a function is accepted. The same applies to `exclude`.
         include: path.join(__dirname, "app"),
-        exclude(path) {
-          // You can perform more complicated checks  as well.
-          return path.match(/node_modules/);
-        },
+        exclude: (path) => path.match(/node_modules/);
 
         // **Actions** to apply loaders to the matched files.
         use: "babel-loader",
@@ -301,6 +295,8 @@ Webpack provides advanced access to compilation if you pass a function as a load
   ];
 }
 ```
+
+{pagebreak}
 
 If you execute code like this, you'll see a print in the console:
 
