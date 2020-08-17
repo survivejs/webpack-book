@@ -135,6 +135,8 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mai
 /***/ }),
 ```
 
+{pagebreak}
+
 If you decode that base64 string, you get output containing the mapping:
 
 ```json
@@ -376,20 +378,6 @@ To override this, you have to prefix your source map option with it (e.g., `@sou
 
 Assuming you are using a package that uses inline source maps in its distribution, you can use [source-map-loader](https://www.npmjs.com/package/source-map-loader) to make webpack aware of them. Without setting it up against the package, you get a minified debug output. Often you can skip this step as it's a special case.
 
-## Ignoring source map related warnings
-
-Sometimes third-party dependencies lead to source map related warnings in the browser inspector. Webpack allows you to filter the messages as follows:
-
-```javascript
-const config = {
-  {
-    stats: {
-      warningsFilter: [/Failed to parse source map/],
-    },
-  },
-}
-```
-
 ## Source maps for styling
 
 If you want to enable source maps for styling files, you can achieve this by enabling the `sourceMap` option. The same idea works with style loaders such as **css-loader**, **sass-loader**, and **less-loader**.
@@ -406,6 +394,18 @@ const config = {
     devtoolModuleFilenameTemplate: "[absolute-resource-path]",
   },
   plugins: [webpack.SourceMapDevToolPlugin({})],
+};
+```
+
+## Ignoring source map related warnings
+
+Sometimes third-party dependencies lead to source map related warnings in the browser inspector. Webpack allows you to filter the messages as follows:
+
+```javascript
+const config = {
+  stats: {
+    warningsFilter: [/Failed to parse source map/],
+  },
 };
 ```
 

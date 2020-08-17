@@ -277,12 +277,8 @@ To get the most out of loaders, you have to connect them with webpack. To achiev
 **src/component.js**
 
 ```javascript
-leanpub - start - insert;
 import "!../loaders/demo-loader?name=foo!./main.css";
-leanpub - end - insert;
 ```
-
-{pagebreak}
 
 Given the definition is verbose, the loader can be aliased as below:
 
@@ -321,6 +317,8 @@ leanpub-end-insert
 You could also handle the loader definition through `rules`. Once the loader is stable enough, set up a project based on _webpack-defaults_, push the logic there, and begin to consume the loader as a package.
 
 W> Although using **loader-runner** can be convenient for developing and testing loaders, implement integration tests that run against webpack. Subtle differences between environments make this essential.
+
+{pagebreak}
 
 ## Pitch loaders
 
