@@ -37,19 +37,15 @@ Hash: 78dfb4662ef4977a2fde
 Version: webpack 4.43.0
 Time: 3641ms
 Built at: 07/10/2020 4:10:48 PM
-                      Asset       Size  Chunks                         Chunk Names
-                  3.b965.js  191 bytes       3  [emitted] [immutable]
-      3.b965.js.LICENSE.txt   15 bytes          [emitted]
-                 index.html  324 bytes          [emitted]
-              main.0166.css   1.61 KiB       0  [emitted] [immutable]  main
-               main.8406.js  580 bytes       0  [emitted] [immutable]  main
-   main.8406.js.LICENSE.txt   15 bytes          [emitted]
+          Asset       Size  Chunks                         Chunk Names
+      3.b965.js  191 bytes       3  [emitted] [immutable]
+     index.html  324 bytes          [emitted]
+  main.0166.css   1.61 KiB       0  [emitted] [immutable]  main
+   main.8406.js  580 bytes       0  [emitted] [immutable]  main
 leanpub-start-insert
-            runtime.b241.js   2.29 KiB       1  [emitted] [immutable]  runtime
+runtime.b241.js   2.29 KiB       1  [emitted] [immutable]  runtime
 leanpub-end-insert
-runtime.b241.js.LICENSE.txt   15 bytes          [emitted]
-             vendor.3be8.js    126 KiB       2  [emitted] [immutable]  vendor
- vendor.3be8.js.LICENSE.txt  806 bytes          [emitted]
+ vendor.3be8.js    126 KiB       2  [emitted] [immutable]  vendor
 Entrypoint main = runtime.b241.js vendor.3be8.js main.0166.css main.8406.js
 ...
 ```
