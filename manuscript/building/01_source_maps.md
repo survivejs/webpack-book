@@ -156,21 +156,7 @@ If you decode that base64 string, you get output containing the mapping:
 
 ### `devtool: "cheap-module-eval-source-map"`
 
-`cheap-module-eval-source-map` is the same idea, except with higher quality and lower performance:
-
-```javascript
-/***/ "./src/index.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _main_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(\"./src/main.css\");\n/* harmony import */ var _main_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_main_css__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(\"./src/component.js\");\n\n\ndocument.body.appendChild(Object(_component__WEBPACK_IMPORTED_MODULE_1__[\"default\"])());//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvaW5kZXguanMuanMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvaW5kZXguanM/YjYzNSJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgJy4vbWFpbi5jc3MnO1xuaW1wb3J0IGNvbXBvbmVudCBmcm9tIFwiLi9jb21wb25lbnRcIjtcblxuZG9jdW1lbnQuYm9keS5hcHBlbmRDaGlsZChjb21wb25lbnQoKSk7XG4iXSwibWFwcGluZ3MiOiJBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFDQTtBQUVBIiwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/index.js\n");
-
-/***/ }),
-```
-
-{pagebreak}
-
-Again, decoding the data reveals more:
+`cheap-module-eval-source-map` is the same idea, except with higher quality and lower performance and decoding the data reveals more:
 
 ```json
 {
@@ -187,26 +173,9 @@ Again, decoding the data reveals more:
 
 In this particular case, the difference between the options is minimal.
 
-{pagebreak}
-
 ### `devtool: "eval-source-map"`
 
-`eval-source-map` is the highest quality option of the inline options. It's also the slowest one as it emits the most data:
-
-```javascript
-/***/ "./src/index.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _main_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(\"./src/main.css\");\n/* harmony import */ var _main_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_main_css__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(\"./src/component.js\");\n\n\ndocument.body.appendChild(Object(_component__WEBPACK_IMPORTED_MODULE_1__[\"default\"])());//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvaW5kZXguanM/YjYzNSJdLCJuYW1lcyI6WyJkb2N1bWVudCIsImJvZHkiLCJhcHBlbmRDaGlsZCIsImNvbXBvbmVudCJdLCJtYXBwaW5ncyI6IkFBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUNBO0FBRUFBLFFBQVEsQ0FBQ0MsSUFBVCxDQUFjQyxXQUFkLENBQTBCQywwREFBUyxFQUFuQyIsImZpbGUiOiIuL3NyYy9pbmRleC5qcy5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCAnLi9tYWluLmNzcyc7XG5pbXBvcnQgY29tcG9uZW50IGZyb20gXCIuL2NvbXBvbmVudFwiO1xuXG5kb2N1bWVudC5ib2R5LmFwcGVuZENoaWxkKGNvbXBvbmVudCgpKTtcbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/index.js\n");
-
-/***/ }),
-
-```
-
-{pagebreak}
-
-This time around there's more mapping data available for the browser:
+`eval-source-map` is the highest quality option of the inline options. It's also the slowest one as it emits the most data. This time around there's more mapping data available for the browser:
 
 ```json
 {
@@ -256,8 +225,6 @@ Examining the `.map` file reveals the following output in this case:
 ```
 
 The source contains `//# sourceMappingURL=main.js.map` kind of comment at its end to map to this file.
-
-{pagebreak}
 
 ### `devtool: "cheap-module-source-map"`
 
