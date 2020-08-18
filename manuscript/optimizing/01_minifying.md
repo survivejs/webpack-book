@@ -130,12 +130,7 @@ const productionConfig = merge([
 leanpub-start-insert
   parts.minifyCSS({
     options: {
-      preset: [
-        "default",
-        discardComments: {
-          removeAll: true,
-        },
-      ],
+      preset: ["default"],
     },
   }),
 leanpub-end-insert
@@ -143,7 +138,7 @@ leanpub-end-insert
 ]);
 ```
 
-If you build the project now (`npm run build`), you should notice that CSS has become smaller as it's missing comments:
+If you build the project now (`npm run build`), you should notice that CSS has become smaller as it's missing comments and has been concatenated:
 
 ```bash
 Hash: 4aec3cf57b570ddd492a
@@ -154,7 +149,7 @@ Built at: 07/10/2020 3:34:23 PM
                  2.js  186 bytes       2  [emitted]
      2.js.LICENSE.txt   15 bytes          [emitted]
            index.html  270 bytes          [emitted]
-             main.css   1.61 KiB       0  [emitted]  main
+             main.css   2.39 KiB       0  [emitted]  main
               main.js   2.71 KiB       0  [emitted]  main
   main.js.LICENSE.txt   15 bytes          [emitted]
             vendor.js    126 KiB       1  [emitted]  vendor
