@@ -119,8 +119,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mai
 /***/ }),
 ```
 
-{pagebreak}
-
 ### `devtool: "cheap-eval-source-map"`
 
 `cheap-eval-source-map` goes a step further and it includes base64 encoded version of the code as a data url. The result contains only line data while losing column mappings. If you decode the resulting base64 string, you get output containing the mapping:
@@ -184,8 +182,6 @@ Webpack can also generate production usage friendly source maps. These end up in
 ### `devtool: "cheap-source-map"`
 
 `cheap-source-map` is similar to the cheap options above. The result is going to miss column mappings. Also, source maps from loaders, such as **css-loader**, are not going to be used.
-
-{pagebreak}
 
 Examining the `.map` file reveals the following output in this case:
 
