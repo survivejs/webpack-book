@@ -23,30 +23,45 @@ To load Tailwind, we'll have to use PostCSS:
 **webpack.parts.js**
 
 ```javascript
-exports.extractCSS = ({ options = {} } = {}) => {
-  return {
-    module: {
-      rules: [
-        {
-          test: /\.css$/,
-          use: [
-            { loader: MiniCssExtractPlugin.loader, options },
-            "css-loader",
+exports.tailwind = () => ({
+  loader: "postcss-loader",
+  options: {
+    plugins: [require("tailwindcss")()],
+  },
+});
+```
+
+The new configuration still needs to be connected:
+
+**webpack.config.js**
+
+```javascript
 leanpub-start-insert
-            {
-              loader: "postcss-loader",
-              options: {
-                plugins: [require("tailwindcss")()],
-              },
-            },
+const cssLoaders = [parts.tailwind()];
 leanpub-end-insert
-          ],
-        },
-      ],
-    },
-    ...
-  };
-};
+
+leanpub-start-delete
+const productionConfig = merge([parts.extractCSS()]);
+leanpub-end-delete
+leanpub-start-insert
+const productionConfig = merge([
+  parts.extractCSS({ loaders: cssLoaders }),
+]);
+leanpub-end-insert
+
+const developmentConfig = merge([
+  parts.devServer({
+    // Customize host/port here if needed
+    host: process.env.HOST,
+    port: process.env.PORT,
+  }),
+leanpub-start-delete
+  parts.extractCSS({ options: { hmr: true } }),
+leanpub-end-delete
+leanpub-start-insert
+  parts.extractCSS({ options: { hmr: true }, loaders: cssLoaders }),
+leanpub-end-insert
+]);
 ```
 
 {pagebreak}
@@ -149,13 +164,6 @@ exports.eliminateUnusedCSS = () => ({
     }),
   ],
 });
-
-exports.tailwind = () => ({
-  loader: "postcss-loader",
-  options: {
-    plugins: [require("tailwindcss")()],
-  },
-});
 ```
 
 Next, the part has to be connected with the configuration. It's essential the plugin is used _after_ the `MiniCssExtractPlugin`; otherwise, it doesn't work:
@@ -163,31 +171,10 @@ Next, the part has to be connected with the configuration. It's essential the pl
 **webpack.config.js**
 
 ```javascript
-leanpub-start-insert
-const cssLoaders = [parts.tailwind()];
-leanpub-end-insert
-
-leanpub-start-delete
-const productionConfig = merge([parts.extractCSS()]);
-leanpub-end-delete
-leanpub-start-insert
 const productionConfig = merge([
   parts.extractCSS({ loaders: cssLoaders }),
-  parts.eliminateUnusedCSS(),
-]);
-leanpub-end-insert
-
-const developmentConfig = merge([
-  parts.devServer({
-    // Customize host/port here if needed
-    host: process.env.HOST,
-    port: process.env.PORT,
-  }),
-leanpub-start-delete
-  parts.extractCSS({ options: { hmr: true } }),
-leanpub-end-delete
 leanpub-start-insert
-  parts.extractCSS({ options: { hmr: true }, loaders: cssLoaders }),
+  parts.eliminateUnusedCSS(),
 leanpub-end-insert
 ]);
 ```
