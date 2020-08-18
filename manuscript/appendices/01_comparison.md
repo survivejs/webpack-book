@@ -295,6 +295,7 @@ You can find more alternatives as listed below:
 - [StealJS](https://stealjs.com/) is a dependency loader and a build tool focusing on performance and ease of use.
 - [Blendid](https://www.npmjs.com/package/blendid) is a blend of Gulp and bundlers to form an asset pipeline.
 - [swc](https://swc-project.github.io/) is a JavaScript/TypeScript compiler focusing on performance.
+- [Sucrase](https://www.npmjs.com/package/sucrase) is a light JavaScript/TypeScript compiler focusing on performance and recent language features.
 
 ## Conclusion
 

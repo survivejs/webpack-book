@@ -25,7 +25,7 @@ __webpack_require__.r(__webpack_exports__);
 
 The problem can be worked around by processing the code through [Babel](https://babeljs.io/), a famous JavaScript compiler that supports ES2015+ features and more. It resembles ESLint in that it's built on top of presets and plugins. Presets are collections of plugins, and you can define your own as well.
 
-T> Babel isn't the only option, although it's the most popular one. [esbuild-loader](https://www.npmjs.com/package/esbuild-loader) and [swc-loader](https://www.npmjs.com/package/swc-loader) are worth checking out if you don't need any specific Babel presets or plugins.
+T> Babel isn't the only option, although it's the most popular one. [esbuild-loader](https://www.npmjs.com/package/esbuild-loader), [swc-loader](https://www.npmjs.com/package/swc-loader), and [@sucrase/webpack-loader](https://www.npmjs.com/package/@sucrase/webpack-loader) are worth checking out if you don't need any specific Babel presets or plugins.
 
 T> Given sometimes extending existing presets is not enough, [modify-babel-preset](https://www.npmjs.com/package/modify-babel-preset) allows you to go a step further and configure the base preset in a more flexible way.
 
