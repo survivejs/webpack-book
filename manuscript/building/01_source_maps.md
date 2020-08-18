@@ -119,9 +119,11 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mai
 /***/ }),
 ```
 
+{pagebreak}
+
 ### `devtool: "cheap-eval-source-map"`
 
-`cheap-eval-source-map` goes a step further and it includes base64 encoded version of the code as a data url. The result contains only line data while losing column mappings. If you decode the resulting base64 string, you get output containing the mapping:
+`cheap-eval-source-map` goes a step further and it includes base64 encoded version of the code as a data url. The result contains only line data while losing column mappings. If you decode the resulting base64 string, you get following output:
 
 ```json
 {
@@ -155,6 +157,8 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mai
 
 In this particular case, the difference between the options is minimal.
 
+{pagebreak}
+
 ### `devtool: "eval-source-map"`
 
 `eval-source-map` is the highest quality option of the inline options. It's also the slowest one as it emits the most data. This time around there's more mapping data available for the browser:
@@ -178,6 +182,8 @@ In this particular case, the difference between the options is minimal.
 Webpack can also generate production usage friendly source maps. These end up in separate files ending with `.map` extension and are loaded by the browser only when required. This way your users get good performance while it's easier for you to debug the application.
 
 `source-map` is a reasonable default here. Even though it takes longer to generate the source maps this way, you get the best quality. If you don't care about production source maps, you can skip the setting there and get better performance in return.
+
+{pagebreak}
 
 ### `devtool: "cheap-source-map"`
 
@@ -205,6 +211,8 @@ Examining the `.map` file reveals the following output in this case:
 ```
 
 The source contains `//# sourceMappingURL=main.js.map` kind of comment at its end to map to this file.
+
+{pagebreak}
 
 ### `devtool: "cheap-module-source-map"`
 
@@ -241,6 +249,8 @@ W> `cheap-module-source-map` is [currently broken if minification is used](https
 
 T> [The official documentation](https://webpack.js.org/configuration/devtool/#devtool) contains more information about `devtool` options.
 
+{pagebreak}
+
 ### `devtool: "source-map"`
 
 `source-map` provides the best quality with the complete result, but it's also the slowest option. The output reflects this:
@@ -274,6 +284,8 @@ T> [The official documentation](https://webpack.js.org/configuration/devtool/#de
   "sourceRoot": ""
 }
 ```
+
+{pagebreak}
 
 ## Other source map options
 
