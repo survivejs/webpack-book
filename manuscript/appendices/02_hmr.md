@@ -92,11 +92,15 @@ The image below shows possible output:
 
 The idea is the same with styling, React, Redux, and other technologies. Sometimes you don't have to implement the interface yourself even as available tooling takes care of that for you.
 
+T> `module.hot.dispose` allows you to clean module state before it's discarded.
+
 T> To prove that HMR retains application state, set up [a checkbox](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox) based component next to the original. The `module.hot.accept` code has to evolve to capture changes to it as well.
 
 T> The `if(module.hot)` block is eliminated entirely from the production build as minifier picks it up. The _Minifying_ chapter delves deeper into this topic.
 
-T> [hot-accept-webpack-plugin](https://www.npmjs.com/package/hot-accept-webpack-plugin) allows you to write `if (module.hot) { module.hot.accept(); }` for each module that was matched. It's useful in case you have modules that should accept hot loading without implementing the patching behavior.
+T> [hot-accept-webpack-plugin](https://www.npmjs.com/package/hot-accept-webpack-plugin) and [module-hot-accept-loader](https://www.npmjs.com/package/module-hot-accept-loader) allow you to write `if (module.hot) { module.hot.accept(); }` for each module that was matched. It's useful in case you have modules that should accept hot loading without implementing the patching behavior.
+
+T> [Deep dive into Hot Module Replacement by Stanimira Vlaeva](https://nativescript.org/blog/deep-dive-into-hot-module-replacement-with-webpack-part-two-handling-updates/) discusses the topic in greater detail.
 
 {pagebreak}
 
