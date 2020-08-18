@@ -25,7 +25,6 @@ leanpub-start-insert
 leanpub-end-insert
     },
   },
-  ...
 ]);
 ```
 
@@ -78,6 +77,12 @@ To generate a `records.json` file, adjust the configuration as follows:
 **webpack.config.js**
 
 ```javascript
+leanpub-start-insert
+const path = require('path');
+leanpub-end-insert
+
+...
+
 const productionConfig = merge([
   {
     ...
