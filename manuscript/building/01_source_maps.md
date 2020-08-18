@@ -185,11 +185,9 @@ Webpack can also generate production usage friendly source maps. These end up in
 
 {pagebreak}
 
-### `devtool: "nosources-source-map"`
+### `devtool: "hidden-source-map"`
 
-`nosources-source-map` creates a source map without `sourcesContent` in it. You still get stack traces, though. The option is useful if you don't want to expose your source code to the client.
-
-T> [The official documentation](https://webpack.js.org/configuration/devtool/#devtool) contains more information about `devtool` options.
+`hidden-source-map` is the same as `source-map` except it doesn't write references to the source maps to the source files. If you don't want to expose source maps to development tools directly while you wish proper stack traces, this is handy.
 
 ### `devtool: "cheap-source-map"`
 
@@ -245,9 +243,11 @@ The source contains `//# sourceMappingURL=main.js.map` kind of comment at its en
 
 W> `cheap-module-source-map` is [currently broken if minification is used](https://github.com/webpack/webpack/issues/4176) and this is an excellent reason to avoid the option for now.
 
-### `devtool: "hidden-source-map"`
+### `devtool: "nosources-source-map"`
 
-`hidden-source-map` is the same as `source-map` except it doesn't write references to the source maps to the source files. If you don't want to expose source maps to development tools directly while you wish proper stack traces, this is handy.
+`nosources-source-map` creates a source map without `sourcesContent` in it. You still get stack traces, though. The option is useful if you don't want to expose your source code to the client.
+
+T> [The official documentation](https://webpack.js.org/configuration/devtool/#devtool) contains more information about `devtool` options.
 
 {pagebreak}
 
