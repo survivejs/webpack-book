@@ -136,8 +136,8 @@ T> PostCSS supports _postcss.config.js_ based configuration. It relies on [cosmi
 
 To get most out of **css-loader**, you should understand how it performs its lookups. Even though **css-loader** handles relative imports by default, it doesn't work with the following cases:
 
-- Absolute imports - `url("/static/img/demo.png")`
-- Root relative imports `url("https://mydomain.com/static/demo.png")`
+- Absolute imports - `url("https://mydomain.com/static/demo.png")`
+- Root relative imports - `url("/static/img/demo.png")`
 
 If you rely on these kind of imports, you have to copy the files to your project as discussed in the _Tidying Up_ chapter. [copy-webpack-plugin](https://www.npmjs.com/package/copy-webpack-plugin) works for this purpose, but you can also copy the files outside of webpack. The benefit of the former approach is that **webpack-dev-server** can pick that up.
 
@@ -216,7 +216,7 @@ To recap:
 - **css-loader** evaluates the `@import` and `url()` definitions of your styling. **style-loader** converts it to JavaScript and implements webpack's _Hot Module Replacement_ interface.
 - Webpack supports a large variety of formats compiling to CSS through loaders. These include Sass, Less, and Stylus.
 - PostCSS allows you to inject functionality to CSS in through its plugin system. cssnext is an example of a collection of plugins for PostCSS that implements future features of CSS.
-- **css-loader** doesn't touch absolute imports by default. It allows customization of loading behavior through the `importLoaders` option. You can perform lookups against _node_modules_ by prefixing your imports with a tilde (`~`) character.
+- **css-loader** doesn't touch absolute nor root relative imports by default. It allows customization of loading behavior through the `importLoaders` option. You can perform lookups against _node_modules_ by prefixing your imports with a tilde (`~`) character.
 - To use source maps, you have to enable `sourceMap` for each style loader you are using except for **style-loader** and you should set `output.publicPath` to an absolute url that points to your development server.
 - Using Bootstrap with webpack requires special care. You can either go through generic loaders or a bootstrap specific loader for more customization options.
 
