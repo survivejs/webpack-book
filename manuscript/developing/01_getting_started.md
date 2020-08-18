@@ -35,7 +35,7 @@ The approach works nicely with **Continuous Integration** (CI) setups as well as
 To add webpack to the project, execute:
 
 ```bash
-npm add webpack webpack-cli -D # -D === -D
+npm add webpack webpack-cli -D # -D === --develop
 ```
 
 You should see webpack at your `package.json` `devDependencies` section after this. In addition to installing the package locally below the _node_modules_ directory, npm also generates an entry for the executable you can find at `node_modules/.bin` directory.
