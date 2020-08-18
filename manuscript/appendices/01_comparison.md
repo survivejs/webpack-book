@@ -262,7 +262,7 @@ T> There is an experimental [Hot Module Replacement runtime](https://www.npmjs.c
 
 [Rollup](https://www.npmjs.com/package/rollup) focuses on bundling ES2015 code. _Tree shaking_ is one of its selling points and it supports code splitting as well. You can use Rollup with webpack through [rollup-loader](https://www.npmjs.com/package/rollup-loader).
 
-[vite](https://www.npmjs.com/package/vite) is an opinionated wrapper built on top of Rollup and it has been designed especially with Vue 3 in mind.
+[vite](https://www.npmjs.com/package/vite) is an opinionated wrapper built on top of Rollup and it has been designed especially with Vue 3 in mind. [nollup](https://www.npmjs.com/package/nollup) is another wrapper and it comes with features like _Hot Module Replacement_ out of the box.
 
 ### Webpack
 
