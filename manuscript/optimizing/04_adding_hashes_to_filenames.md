@@ -131,6 +131,8 @@ There's one problem, though. If you change the application code, it invalidates 
 
 W> The hashes have been sliced to make the output fit better in the book. In practice, you can skip slicing them.
 
+{pagebreak}
+
 ## Conclusion
 
 Including hashes related to the file contents to their names allows to invalidate them on the client-side. If a hash has changed, the client is forced to download the asset again.

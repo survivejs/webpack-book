@@ -117,8 +117,6 @@ exports.minifyCSS = ({ options }) => ({
 
 W> If you use `--json` output with webpack as discussed in the _Build Analysis_ chapter, you should set `canPrint: false` for the plugin.
 
-{pagebreak}
-
 Then, connect with the main configuration:
 
 **webpack.config.js**
@@ -137,6 +135,8 @@ leanpub-end-insert
   ...
 ]);
 ```
+
+{pagebreak}
 
 If you build the project now (`npm run build`), you should notice that CSS has become smaller as it's missing comments and has been concatenated:
 
@@ -172,8 +172,6 @@ Compression techniques, such as gzip or brotli, can be used to reduce the file s
 ## Obfuscating output
 
 To make it more tricky for third parties to use your code, [obfuscator-loader](https://github.com/javascript-obfuscator/obfuscator-loader) can be applied. Although protecting code is difficult when it's shared with the client, the code can be made much harder to use.
-
-{pagebreak}
 
 ## Conclusion
 
