@@ -177,7 +177,7 @@ In this particular case, the difference between the options is minimal.
 }
 ```
 
-## Separate Source Map Types
+## Separate source map types
 
 Webpack can also generate production usage friendly source maps. These end up in separate files ending with `.map` extension and are loaded by the browser only when required. This way your users get good performance while it's easier for you to debug the application.
 
