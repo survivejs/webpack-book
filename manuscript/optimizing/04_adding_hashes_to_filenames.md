@@ -113,25 +113,19 @@ Hash: d165393a1d50d17e439d
 Version: webpack 4.43.0
 Time: 3676ms
 Built at: 07/10/2020 4:07:37 PM
-                     Asset       Size  Chunks                         Chunk Names
-                 2.426a.js  191 bytes       2  [emitted] [immutable]
-     2.426a.js.LICENSE.txt   15 bytes          [emitted]
-                index.html  285 bytes          [emitted]
-             main.0166.css   1.61 KiB       0  [emitted] [immutable]  main
-              main.492e.js   2.73 KiB       0  [emitted] [immutable]  main
-  main.492e.js.LICENSE.txt   15 bytes          [emitted]
-            vendor.2ef5.js    126 KiB       1  [emitted] [immutable]  vendor
-vendor.2ef5.js.LICENSE.txt  806 bytes          [emitted]
+                Asset       Size  Chunks                         Chunk Names
+            2.426a.js  191 bytes       2  [emitted] [immutable]
+2.426a.js.LICENSE.txt   15 bytes          [emitted]
+           index.html  285 bytes          [emitted]
+        main.0166.css   1.61 KiB       0  [emitted] [immutable]  main
+         main.492e.js   2.73 KiB       0  [emitted] [immutable]  main
+       vendor.2ef5.js    126 KiB       1  [emitted] [immutable]  vendor
 Entrypoint main = vendor.2ef5.js main.0166.css main.492e.js
 ```
 
 The files have neat hashes now. To prove that it works for styling, you could try altering _src/main.css_ and see what happens to the hashes when you rebuild.
 
-There's one problem, though. If you change the application code, it invalidates the vendor file as well! Solving this requires extracting a webpack **runtime**, but before that, you can improve the way the production build handles module IDs.
-
 W> The hashes have been sliced to make the output fit better in the book. In practice, you can skip slicing them.
-
-{pagebreak}
 
 ## Conclusion
 
