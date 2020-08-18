@@ -181,8 +181,6 @@ leanpub-end-insert
 
 The order of the CSS related calls doesn't matter as the plugins will register to different parts of the build.
 
-{pagebreak}
-
 If you execute `npm run build` now, you should see something:
 
 ```bash
@@ -206,8 +204,6 @@ W> Tailwind includes PurgeCSS out of the box and it can be preferable to use tha
 The idea of [critical path rendering](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/) takes a look at CSS performance from a different angle. Instead of optimizing for size, it optimizes for render order and emphasizes **above-the-fold** CSS. The result is achieved by rendering the page and then figuring out which rules are required to obtain the shown result.
 
 [critical-path-css-tools](https://github.com/addyosmani/critical-path-css-tools) by Addy Osmani lists tools related to the approach.
-
-{pagebreak}
 
 ## Conclusion
 
