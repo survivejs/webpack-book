@@ -1,6 +1,6 @@
 # Minifying
 
-Since webpack 4, the production output gets minified using [terser](https://www.npmjs.com/package/terser) by default. Terser is an ES2015+ compatible JavaScript-minifier. Compared to UglifyJS, the earlier standard for many projects, it's a future oriented option.
+Since webpack 4, the production output gets minified using [terser](https://www.npmjs.com/package/terser) by default. Terser is an ES2015+ compatible JavaScript-minifier. Compared to UglifyJS, the earlier standard for many projects, it's a future-oriented option.
 
 Although webpack minifies the output by default, it's good to understand how to customize the behavior should you want to adjust it further or replace the minifier.
 
