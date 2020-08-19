@@ -221,6 +221,8 @@ leanpub-end-insert
 );
 ```
 
+{pagebreak}
+
 To connect it to the loader, set it to capture `name` and pass it through webpack's interpolator:
 
 **loaders/demo-loader.js**
@@ -256,6 +258,8 @@ After running (`node ./run-loader.js`), you should see something:
 You can see that the result matches what the loader should have returned. You can try to pass more options to the loader or use query parameters to see what happens with different combinations.
 
 T> It's a good idea to validate options and rather fail hard than silently if the options aren't what you expect. [schema-utils](https://www.npmjs.com/package/schema-utils) has been designed for this purpose.
+
+{pagebreak}
 
 ## Connecting custom loaders with webpack
 
@@ -409,6 +413,8 @@ module.exports.pitch = function () {
 A pitch loader can be used to attach metadata to the input to use later. In this example, a cache was constructed during the pitching stage, and it was accessed during normal execution.
 
 T> The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API in detail. You can see all fields available through `this` there. For example, `mode` is exposed.
+
+{pagebreak}
 
 ## Conclusion
 
