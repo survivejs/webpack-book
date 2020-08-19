@@ -19,7 +19,7 @@ T> Web workers and their usage are discussed in detail in the _Web Workers_ chap
 
 ## Node targets
 
-Webpack provides two Node-specific targets: `node` and `async-node`. It uses standard Node `require` to load chunks unless async mode is used. In that case, it wraps modules so that they are loaded asynchronously through Node `fs` and `vm` modules.
+Webpack provides two Node-specific targets: `node` and `async-node`. It uses standard Node `require` to load chunks unless the async mode is used. In that case, it wraps modules so that they are loaded asynchronously through Node `fs` and `vm` modules.
 
 The main use case for using the Node target is _Server Side Rendering_ (SSR). The idea is discussed in the _Server Side Rendering_ chapter.
 
@@ -41,7 +41,7 @@ Webpack is often used to compile a single target by either returning a configura
 
 ## Conclusion
 
-Webpack supports targets beyond the web. Based on this you can say name "webpack" is an understatement considering its capabilities.
+Webpack supports targets beyond the web. Based on this, you can say name "webpack" is an understatement considering its capabilities.
 
 To recap:
 
