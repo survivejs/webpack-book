@@ -110,13 +110,15 @@ const demoComponent = component("Another");
 document.body.appendChild(demoComponent);
 ```
 
-The file could go to a directory of its own. Here the existing code is reused to get something to show up. Webpack configuration has to point to this file:
+The file could go to a directory of its own. Here the existing code is reused to get something to show up.
+
+{pagebreak}
+
+Webpack configuration has to point to this file still:
 
 **webpack.config.js**
 
 ```javascript
-...
-
 const commonConfig = merge([
 leanpub-start-insert
   {
@@ -142,17 +144,11 @@ leanpub-start-insert
   const pages = [
     parts.page({
       title: "Webpack demo",
-      entry: {
-        app: path.join(__dirname, "src", "index.js"),
-      },
+      ...
     }),
     parts.page({
       title: "Another demo",
-      path: "another",
-      entry: {
-        another: path.join(__dirname, "src", "another.js"),
-      },
-    }),
+      ...
   ];
 leanpub-end-insert
   const config =
@@ -178,6 +174,8 @@ If you build the application (`npm run build`), you should find _another/index.h
 - Processes like linting and cleaning run twice now. The _Targets_ chapter discussed potential solutions to that problem.
 
 The approach can be pushed in another direction by dropping the multi-compiler mode. Even though it's slower to process this kind of build, it enables code sharing and the implementation of shells. The first step towards a shell setup is to rework the configuration so that it picks up the code shared between the pages.
+
+{pagebreak}
 
 ## Generating multiple pages while sharing code
 
