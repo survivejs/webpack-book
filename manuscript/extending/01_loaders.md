@@ -14,8 +14,6 @@ T> If you want a good starting point for a standalone loader or plugin project, 
 npm add loader-runner -D
 ```
 
-{pagebreak}
-
 To have something to test with, set up a loader that returns twice what's passed to it:
 
 **loaders/demo-loader.js**
@@ -156,7 +154,15 @@ leanpub-end-insert
 
 {pagebreak}
 
-To implement the essential idea of **file-loader**, you have to do two things: emit the file and return path to it. You could apply it as below:
+To implement the essential idea of **file-loader**, you have to do two things: emit the file and return path to it.
+
+To interpolate the file name, you need to use [loader-utils](https://www.npmjs.com/package/loader-utils). It has also utilities to parse loader options and queries. Install it:
+
+```bash
+npm add loader-utils -D
+```
+
+You could apply the logic as below:
 
 **loaders/demo-loader.js**
 
@@ -223,12 +229,6 @@ leanpub-end-insert
 );
 ```
 
-To capture the option, you need to use [loader-utils](https://www.npmjs.com/package/loader-utils). It has been designed to parse loader options and queries. Install it:
-
-```bash
-npm add loader-utils -D
-```
-
 To connect it to the loader, set it to capture `name` and pass it through webpack's interpolator:
 
 **loaders/demo-loader.js**
@@ -237,18 +237,15 @@ To connect it to the loader, set it to capture `name` and pass it through webpac
 const loaderUtils = require("loader-utils");
 
 module.exports = function(content) {
-leanpub-start-insert
-  const { name } = loaderUtils.getOptions(this);
-leanpub-end-insert
 leanpub-start-delete
   const url = loaderUtils.interpolateName(this, "[hash].[ext]", {
     content,
   });
 leanpub-end-delete
 leanpub-start-insert
+  const { name } = loaderUtils.getOptions(this);
   const url = loaderUtils.interpolateName(this, name, { content });
 leanpub-end-insert
-  );
 
   ...
 };
