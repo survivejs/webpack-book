@@ -6,6 +6,8 @@ Moving data between the main thread and the worker comes with communication-rela
 
 As discussed in the _Build Targets_ chapter, webpack allows you to build your application as a worker itself. To get the idea of web workers better, you'll learn how to develop a small worker using [worker-loader](https://www.npmjs.com/package/worker-loader).
 
+{pagebreak}
+
 ## Setting up **worker-loader**
 
 To get started, install _worker-loader_ to the project:
