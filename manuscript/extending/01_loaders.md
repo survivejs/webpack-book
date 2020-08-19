@@ -376,6 +376,8 @@ Input: {}
   contextDependencies: [] }
 ```
 
+{pagebreak}
+
 ## Caching with loaders
 
 Although webpack caches loaders by default unless they set `this.cacheable(false)`, writing a caching loader can be a good exercise as it helps you to understand how loader stages can work together. The example below shows how to achieve this (courtesy of Vladimir Grenaderov):
@@ -387,7 +389,6 @@ module.exports = function (content) {
   // Calls only once for given resourcePath
   const callbacks = cache.get(this.resourcePath);
   callbacks.forEach((callback) => callback(null, content));
-
   cache.set(this.resourcePath, content);
 
   return content;
@@ -397,15 +398,12 @@ module.exports.pitch = function () {
     const item = cache.get(this.resourcePath);
 
     if (item instanceof Array) {
-      // Load to cache
-      item.push(this.async());
+      item.push(this.async()); // Load to cache
     } else {
-      // Hit cache
-      return item;
+      return item; // Hit cache
     }
   } else {
-    // Missed cache
-    cache.set(this.resourcePath, []);
+    cache.set(this.resourcePath, []); // Missed cache
   }
 };
 ```
