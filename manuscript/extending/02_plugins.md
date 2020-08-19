@@ -38,6 +38,8 @@ module.exports = {
 
 T> If you don't have a `lib` entry file set up yet, write one. The contents don't matter as long as it's JavaScript that webpack can parse.
 
+{pagebreak}
+
 To make it convenient to run, set up a build shortcut:
 
 **package.json**
@@ -133,6 +135,8 @@ module.exports = class DemoPlugin {
 After running, you should see a lot of data. Especially `options` should look familiar as it contains webpack configuration. You can also see familiar names like `records`.
 
 If you go through webpack's [plugin development documentation](https://webpack.js.org/api/plugins/), you'll see a compiler provides a large number of hooks. Each hook corresponds to a specific stage. For example, to emit files, you could listen to the `emit` event and then write.
+
+{pagebreak}
 
 Change the implementation to listen and capture `compilation`:
 
