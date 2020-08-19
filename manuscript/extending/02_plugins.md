@@ -235,6 +235,8 @@ compilation.warnings.push("warning");
 compilation.errors.push("error");
 ```
 
+{pagebreak}
+
 There's a logging API that lets you pass messages to webpack. Consider the API below:
 
 ```javascript
@@ -252,6 +254,8 @@ A plugin can provide hooks of its own. [html-webpack-plugin](https://www.npmjs.c
 ## Plugins can run compilers of their own
 
 In specific cases, like [offline-plugin](https://www.npmjs.com/package/offline-plugin), it makes sense to run a child compiler. It gives full control over related entries and output. Arthur Stolyar, the author of the plugin, has explained [the idea of child compilers at Stack Overflow](https://stackoverflow.com/questions/38276028/webpack-child-compiler-change-configuration).
+
+{pagebreak}
 
 ## Conclusion
 
