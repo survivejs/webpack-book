@@ -28,9 +28,11 @@ To initialize a page, it should receive page title, output path, and an optional
 ...
 const { MiniHtmlWebpackPlugin } = require("mini-html-webpack-plugin");
 
-exports.page = ({ path = "", template, title } = {}) => ({
+exports.page = ({ path = "", template, title, entry, chunks } = {}) => ({
+  entry,
   plugins: [
     new MiniHtmlWebpackPlugin({
+      chunks,
       filename: `${path && path + "/"}index.html`,
       context: {
         title,
@@ -40,6 +42,8 @@ exports.page = ({ path = "", template, title } = {}) => ({
   ],
 });
 ```
+
+T> The `chunks` and `entry` fields will be used later in this chapter to control which script gets associated with the page.
 
 {pagebreak}
 
@@ -74,15 +78,8 @@ leanpub-end-delete
 
 ...
 
-module.exports = mode => {
-leanpub-start-delete
-  if (mode === "production") {
-    return merge(commonConfig, productionConfig, { mode });
-  }
-
-  return merge(commonConfig, developmentConfig, { mode });
-leanpub-end-delete
 leanpub-start-insert
+module.exports = mode => {
   const pages = [
     parts.page({ title: "Webpack demo" }),
     parts.page({ title: "Another demo", path: "another" }),
@@ -93,11 +90,13 @@ leanpub-start-insert
   return pages.map(page =>
     merge(commonConfig, config, page, { mode })
   );
-leanpub-end-insert
 };
+leanpub-end-insert
 ```
 
 After this change you should have two pages in the application: `/` and `/another`. It should be possible to navigate to both while seeing the same output.
+
+T> You could add a check against the mode and throw and an error in case it's not found.
 
 ### Injecting a different script per page
 
@@ -149,14 +148,14 @@ leanpub-start-insert
     parts.page({
       title: "Webpack demo",
       entry: {
-        app: PATHS.app,
+        app: path.join(__dirname, "src", "index.js"),
       },
     }),
     parts.page({
       title: "Another demo",
       path: "another",
       entry: {
-        another: path.join(PATHS.app, "another.js"),
+        another: path.join(__dirname, "src", "another.js"),
       },
     }),
   ];
@@ -169,34 +168,6 @@ leanpub-end-insert
     );
 };
 ```
-
-The tweak also requires a change at the related part so that `entry` gets included in the configuration:
-
-**webpack.parts.js**
-
-```javascript
-leanpub-start-delete
-exports.page = ({ path = "", template, title } = {}) => ({
-leanpub-end-delete
-leanpub-start-insert
-exports.page = ({ path = "", template, title, entry } = {}) => ({
-leanpub-end-insert
-leanpub-start-insert
-  entry,
-leanpub-end-insert
-  plugins: [
-    new MiniHtmlWebpackPlugin({
-      filename: `${path && path + "/"}index.html`,
-      context: {
-        title,
-      },
-      template,
-    }),
-  ],
-});
-```
-
-{pagebreak}
 
 After these changes `/another` should show something familiar:
 
@@ -221,7 +192,7 @@ In a complex application, you should apply techniques covered in the _Bundle Spl
 
 ### Adjusting configuration
 
-Adjustment is needed to share code between the pages. Most of the code can remain the same. The way you expose it to webpack has to change so that it receives a single configuration object. As _mini-html-webpack-plugin_ picks up all chunks by default, you have to adjust it to pick up only the chunks that are related to each page:
+Adjustment is needed to share code between the pages. Most of the code can remain the same. The way you expose it to webpack has to change so that it receives a single configuration object. As **mini-html-webpack-plugin** picks up all chunks by default, you have to adjust it to pick up only the chunks that are related to each page:
 
 **webpack.config.js**
 
@@ -233,7 +204,7 @@ module.exports = mode => {
     parts.page({
       title: "Webpack demo",
       entry: {
-        app: PATHS.app,
+        app: path.join(__dirname, "src", "index.js"),
       },
 leanpub-start-insert
       chunks: ["app", "runtime", "vendor"],
@@ -243,7 +214,7 @@ leanpub-end-insert
       title: "Another demo",
       path: "another",
       entry: {
-        another: path.join(PATHS.app, "another.js"),
+        another: path.join(__dirname, "src", "another.js"),
       },
 leanpub-start-insert
       chunks: ["another", "runtime", "vendor"],
@@ -262,29 +233,6 @@ leanpub-start-insert
   return merge([commonConfig, config, { mode }].concat(pages));
 leanpub-end-insert
 };
-```
-
-The page-specific configuration requires a small tweak as well:
-
-**webpack.parts.js**
-
-```javascript
-leanpub-start-delete
-exports.page = ({ path = "", template, title, entry } = {}) => ({
-leanpub-end-delete
-leanpub-start-insert
-exports.page = ({ path = "", template, title, entry, chunks } = {}) => ({
-leanpub-end-insert
-  entry,
-  plugins: [
-    new MiniHtmlWebpackPlugin({
-leanpub-start-insert
-      chunks,
-leanpub-end-insert
-      ...
-    }),
-  ],
-});
 ```
 
 If you generate a build (`npm run build`), you should notice that something is different compared to the first multiple page build. Instead of two manifest files, there's only one. Because of the new setup, the manifest contains references to all of the bundles that were generated.
