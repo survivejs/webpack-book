@@ -14,6 +14,8 @@ T> If you want a good starting point for a standalone loader or plugin project, 
 npm add loader-runner -D
 ```
 
+{pagebreak}
+
 To have something to test with, set up a loader that returns twice what's passed to it:
 
 **loaders/demo-loader.js**
@@ -126,8 +128,6 @@ But what's the point? You can pass to loaders through webpack entries. Instead o
 
 T> If you want to return `Buffer` output, set `module.exports.raw = true`. The flag overrides the default behavior, which expects a string is returned.
 
-{pagebreak}
-
 ## Writing files
 
 Loaders, like **file-loader**, emit files. Webpack provides a single method, `this.emitFile`, for this. Given **loader-runner** does not implement it, you have to mock it:
@@ -151,8 +151,6 @@ leanpub-end-insert
   (err, result) => (err ? console.error(err) : console.log(result))
 );
 ```
-
-{pagebreak}
 
 To implement the essential idea of **file-loader**, you have to do two things: emit the file and return path to it.
 
@@ -190,8 +188,6 @@ Webpack provides two additional `emit` methods:
 These calls should be used over `console` based alternatives. As with `this.emitFile`, you have to mock them for **loader-runner** to work.
 
 The next question is how to pass a file name to the loader.
-
-{pagebreak}
 
 ## Passing options to loaders
 
@@ -265,8 +261,6 @@ You can see that the result matches what the loader should have returned. You ca
 
 T> It's a good idea to validate options and rather fail hard than silently if the options aren't what you expect. [schema-utils](https://www.npmjs.com/package/schema-utils) has been designed for this purpose.
 
-{pagebreak}
-
 ## Connecting custom loaders with webpack
 
 To get the most out of loaders, you have to connect them with webpack. To achieve this, you can use imports:
@@ -321,8 +315,6 @@ W> Although using **loader-runner** can be convenient for developing and testing
 
 Webpack evaluates loaders in two phases: pitching and evaluating. If you are used to web event semantics, these map to capturing and bubbling. The idea is that webpack allows you to intercept execution during the pitching (capturing) phase. It goes through the loaders left to right first and executes them from right to left after that.
 
-{pagebreak}
-
 A pitch loader allows you shape the request and even terminate it. Set it up:
 
 **loaders/pitch-loader.js**
@@ -349,8 +341,6 @@ Input: ${JSON.stringify(input, null, 2)}
   return "pitched";
 };
 ```
-
-{pagebreak}
 
 To connect it to the runner, add it to the loader definition:
 
@@ -423,8 +413,6 @@ module.exports.pitch = function () {
 A pitch loader can be used to attach metadata to the input to use later. In this example, a cache was constructed during the pitching stage, and it was accessed during normal execution.
 
 T> The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API in detail. You can see all fields available through `this` there. For example, `mode` is exposed.
-
-{pagebreak}
 
 ## Conclusion
 
