@@ -28,20 +28,11 @@ Since plugins have to be run against webpack, you have to set up one to run a de
 const path = require("path");
 const DemoPlugin = require("./plugins/demo-plugin.js");
 
-const PATHS = {
-  lib: path.join(__dirname, "app", "shake.js"),
-  build: path.join(__dirname, "build"),
-};
-
 module.exports = {
   entry: {
-    lib: PATHS.lib,
+    lib: path.join(__dirname, "src", "shake.js"),
   },
-  output: {
-    path: PATHS.build,
-    filename: "[name].js",
-  },
-  plugins: [new DemoPlugin()],
+  plugins: [new DemoPlugin({ name: "demo" })],
 };
 ```
 
@@ -153,11 +144,14 @@ module.exports = class DemoPlugin {
     this.options = options;
   }
   apply(compiler) {
-    compiler.hooks.emit.tapSync("DemoPlugin", (compilation, cb) => {
-      console.log(compilation);
+    compiler.hooks.emit.tapAsync(
+      "DemoPlugin",
+      (compilation, cb) => {
+        console.log(compilation);
 
-      cb();
-    });
+        cb();
+      }
+    );
   }
 };
 ```
@@ -187,9 +181,7 @@ Adjust the code as follows to write through `RawSource`:
 **plugins/demo-plugin.js**
 
 ```javascript
-leanpub - start - insert;
 const { RawSource } = require("webpack-sources");
-leanpub - end - insert;
 
 module.exports = class DemoPlugin {
   constructor(options) {
@@ -198,11 +190,14 @@ module.exports = class DemoPlugin {
   apply(compiler) {
     const { name } = this.options;
 
-    compiler.hooks.emit.tapSync("DemoPlugin", (compilation, cb) => {
-      compilation.assets[name] = new RawSource("demo");
+    compiler.hooks.emit.tapAsync(
+      "DemoPlugin",
+      (compilation, cb) => {
+        compilation.assets[name] = new RawSource("demo");
 
-      cb();
-    });
+        cb();
+      }
+    );
   }
 };
 ```
@@ -210,16 +205,18 @@ module.exports = class DemoPlugin {
 After building, you should see output:
 
 ```bash
-Hash: d698e1dab6472ba42525
-Version: webpack 3.8.1
-Time: 51ms
- Asset     Size  Chunks             Chunk Names
-lib.js   2.9 kB       0  [emitted]  lib
-  demo  4 bytes          [emitted]
-   [0] ./app/shake.js 107 bytes {0} [built]
+Hash: 83bfa70a7d07c82ea551
+Version: webpack 4.44.1
+Time: 48ms
+Built at: 08/19/2020 1:54:23 PM
+ Asset      Size  Chunks             Chunk Names
+  demo   4 bytes          [emitted]
+lib.js  1.06 KiB       0  [emitted]  lib
+Entrypoint lib = lib.js
+[0] ./src/shake.js 106 bytes {0} [built]
 ```
 
-If you examine _build/demo_ file, you'll see it contains the word _demo_ as per code above.
+If you examine _dist/demo_ file, you'll see it contains the word _demo_ as per code above.
 
 T> Compilation has a set of hooks of its own as covered in [the official compilation reference](https://webpack.js.org/api/plugins/compiler/).
 
