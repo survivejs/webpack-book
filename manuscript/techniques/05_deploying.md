@@ -25,7 +25,7 @@ You are also going to need a script in `package.json`:
 ```json
 "scripts": {
 leanpub-start-insert
-  "deploy": "gh-pages -d build",
+  "deploy": "gh-pages -d dist",
 leanpub-end-insert
   ...
 },
@@ -59,7 +59,7 @@ leanpub-end-insert
 ]);
 ```
 
-After building (`npm run build`) and deploying (`npm run deploy`), you should have your application from the `build/` directory hosted on GitHub Pages. You should find it at `https://<name>.github.io/<project>` assuming everything went fine.
+After building (`npm run build`) and deploying (`npm run deploy`), you should have your application from the `dist/` directory hosted on GitHub Pages. You should find it at `https://<name>.github.io/<project>` assuming everything went fine.
 
 T> If you need a more elaborate setup, use the Node API that _gh-pages_ provides. The default command line tool it gives is enough for essential purposes, though.
 
@@ -71,11 +71,11 @@ _gh-pages_ provides an `add` option for archival purposes. The idea goes as foll
 
 1. Copy the old version of the site in a temporary directory and remove _archive_ directory from it. You can name the archival directory as you want.
 2. Clean and build the project.
-3. Copy the old version below _build/archive/<version>_
+3. Copy the old version below dist/archive/<version>\_
 4. Set up a script to call _gh-pages_ through Node as below and capture possible errors in the callback:
 
 ```javascript
-ghpages.publish(path.join(__dirname, "build"), { add: true }, cb);
+ghpages.publish(path.join(__dirname, "dist"), { add: true }, cb);
 ```
 
 ## Deploying to other environments
