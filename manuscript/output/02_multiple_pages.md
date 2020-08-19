@@ -89,6 +89,8 @@ module.exports = mode => {
 leanpub-end-insert
 ```
 
+{pagebreak}
+
 After this change you should have two pages in the application: `/` and `/another`. It should be possible to navigate to both while seeing the same output.
 
 T> You could add a check against the mode and throw and an error in case it's not found.
@@ -107,8 +109,6 @@ const demoComponent = component("Another");
 
 document.body.appendChild(demoComponent);
 ```
-
-{pagebreak}
 
 The file could go to a directory of its own. Here the existing code is reused to get something to show up. Webpack configuration has to point to this file:
 
