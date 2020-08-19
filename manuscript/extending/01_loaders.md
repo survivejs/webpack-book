@@ -315,6 +315,8 @@ W> Although using **loader-runner** can be convenient for developing and testing
 
 Webpack evaluates loaders in two phases: pitching and evaluating. If you are used to web event semantics, these map to capturing and bubbling. The idea is that webpack allows you to intercept execution during the pitching (capturing) phase. It goes through the loaders left to right first and executes them from right to left after that.
 
+{pagebreak}
+
 A pitch loader allows you shape the request and even terminate it. Set it up:
 
 **loaders/pitch-loader.js**
@@ -323,9 +325,7 @@ A pitch loader allows you shape the request and even terminate it. Set it up:
 const loaderUtils = require("loader-utils");
 
 module.exports = function (input) {
-  const { text } = loaderUtils.getOptions(this);
-
-  return input + text;
+  return input + loaderUtils.getOptions(this).text;
 };
 module.exports.pitch = function (
   remainingReq,
