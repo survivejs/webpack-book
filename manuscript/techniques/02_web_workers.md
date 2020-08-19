@@ -6,8 +6,6 @@ Moving data between the main thread and the worker comes with communication-rela
 
 As discussed in the _Build Targets_ chapter, webpack allows you to build your application as a worker itself. To get the idea of web workers better, you'll learn how to develop a small worker using [worker-loader](https://www.npmjs.com/package/worker-loader).
 
-{pagebreak}
-
 ## Setting up **worker-loader**
 
 To get started, install _worker-loader_ to the project:
@@ -17,6 +15,8 @@ npm add worker-loader -D
 ```
 
 Instead of pushing the loader definition to webpack configuration, you can use inline loader definitions to keep the demonstration minimal. See the _Loader Definitions_ chapter for more information about the alternatives.
+
+{pagebreak}
 
 ## Setting up a worker
 
@@ -67,8 +67,6 @@ Due to the cost of serialization, passing data between the host and the worker c
 The API of [webworkify-webpack](https://www.npmjs.com/package/webworkify-webpack) allows you to use the worker as a regular JavaScript module as well given you avoid the `self` requirement visible in the example solution. [workerize-loader](https://github.com/developit/workerize-loader) and [worker-plugin](https://github.com/GoogleChromeLabs/worker-plugin) are other options with slightly different APIs.
 
 [threads.js](https://threads.js.org/) provides a comprehensive solution for more complex setups and it includes features such as observables and thread pools out of the box. There's a custom [threads-plugin](https://github.com/andywer/threads-plugin) you can use to integrate it with webpack.
-
-{pagebreak}
 
 ## Conclusion
 
