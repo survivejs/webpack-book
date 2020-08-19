@@ -14,7 +14,7 @@ When generating multiple pages with webpack, you have a couple of possibilities:
 
 In practice, you have more dimensions. For example, you have to generate i18n variants for pages. These ideas grow on top of the basic approaches.
 
-## Generating multiple pöages
+## Generating multiple pages
 
 To generate multiple separate pages, they should be initialized somehow. You should also be able to return a configuration for each page, so webpack picks them up and process them through the multi-compiler mode.
 
