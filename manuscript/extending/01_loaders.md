@@ -119,9 +119,7 @@ Loaders can be used to output code alone. You could have an implementation as be
 **loaders/demo-loader.js**
 
 ```javascript
-module.exports = function () {
-  return "foobar";
-};
+module.exports = () => "foobar";
 ```
 
 But what's the point? You can pass to loaders through webpack entries. Instead of pointing to pre-existing files as you would in a majority of the cases, you could give to a loader that generates code dynamically.
@@ -135,8 +133,6 @@ Loaders, like **file-loader**, emit files. Webpack provides a single method, `th
 **run-loader.js**
 
 ```javascript
-...
-
 runLoaders(
   {
     resource: "./demo.txt",
