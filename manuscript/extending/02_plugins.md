@@ -178,8 +178,6 @@ To write an asset, you have to use [webpack-sources](https://www.npmjs.com/packa
 npm add webpack-sources -D
 ```
 
-{pagebreak}
-
 Adjust the code as follows to write through `RawSource`:
 
 **plugins/demo-plugin.js**
@@ -205,6 +203,8 @@ module.exports = class DemoPlugin {
   }
 };
 ```
+
+{pagebreak}
 
 After building, you should see output:
 
