@@ -54,21 +54,16 @@ To incorporate the idea into the configuration, the way it's composed has to cha
 **webpack.config.js**
 
 ```javascript
-...
 leanpub-start-delete
 const { MiniHtmlWebpackPlugin } = require("mini-html-webpack-plugin");
 leanpub-end-delete
-...
-
 
 const commonConfig = merge([
 leanpub-start-delete
   {
     plugins: [
       new MiniHtmlWebpackPlugin({
-        context: {
-          title: "Webpack demo",
-        },
+...
       }),
     ],
   },
