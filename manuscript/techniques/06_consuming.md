@@ -172,12 +172,17 @@ Even though packages can work well out of the box, they bring too much code to y
 The easiest method to disable that behavior is to use `IgnorePlugin` to ignore locales:
 
 ```javascript
-{
-  plugins: [new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)],
-},
+const config = {
+  plugins: [
+    new webpack.IgnorePlugin({
+      resourceRegExp: /^\.\/locale$/,
+      contextRegExp: /moment$/,
+    }),
+  ],
+};
 ```
 
-T> You can use the same mechanism to work around problematic dependencies. Example: `new webpack.IgnorePlugin(/^(buffertools)$/)`.
+T> You can use the same mechanism to work around problematic dependencies. Example: `new webpack.IgnorePlugin({ resourceRegExp: /^(buffertools)$/ })`.
 
 To bring specific locales to your project, you should use `ContextReplacementPlugin`:
 
