@@ -14,7 +14,7 @@ Webpack provides **placeholders** for this purpose. These strings are used to at
 - `[ext]` - Returns the extension. `[ext]` works for most available fields.
 - `[fullhash]` - Returns the build hash. If any portion of the build changes, this changes as well. In webpack 5 or before, this was `[hash]`.
 - `[chunkhash]` - Returns an entry chunk-specific hash. Each `entry` defined in the configuration receives a hash of its own. If any portion of the entry changes, the hash will change as well. `[chunkhash]` is more granular than `[fullhash]` by definition.
-- `[contenthash]` - Returns a hash generated based on content.
+- `[contenthash]` - Returns a hash generated based on content. It's the new default in production mode starting from webpack 5.
 
 It's preferable to use particularly `hash` and `contenthash` only for production purposes as hashing doesn't do much good during development.
 
