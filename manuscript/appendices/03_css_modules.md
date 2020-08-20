@@ -60,7 +60,7 @@ T> [eslint-plugin-css-modules](https://www.npmjs.com/package/eslint-plugin-css-m
 
 If you are using CSS Modules in your project, you should process standard CSS through a separate loader definition without the `modules` option of **css-loader** enabled. Otherwise, all classes will be scoped to their module. In the case of third-party libraries, this is almost certainly not what you want.
 
-You can solve the problem by processing third-party CSS differently through an `include` definition against _node_modules_. Alternately, you could use a file extension (`.mcss`) to tell files using CSS Modules apart from the rest and then manage this situation in a loader `test`.
+You can solve the problem by processing third-party CSS differently through an `include` definition against `node_modules`. Alternately, you could use a file extension (`.mcss`) to tell files using CSS Modules apart from the rest and then manage this situation in a loader `test`.
 
 ## Conclusion
 

@@ -54,7 +54,7 @@ By default, webpack will resolve only against `.js`, `.mjs`, and `.json` files w
 
 ## `resolve.modules`
 
-The module resolution process can be altered by changing where webpack looks for modules. By default, it will look only within the _node_modules_ directory. If you want to override packages there, you could tell webpack to look into other directories first:
+The module resolution process can be altered by changing where webpack looks for modules. By default, it will look only within the `node_modules` directory. If you want to override packages there, you could tell webpack to look into other directories first:
 
 ```javascript
 {

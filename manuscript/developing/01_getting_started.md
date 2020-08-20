@@ -38,7 +38,7 @@ To add webpack to the project, execute:
 npm add webpack webpack-cli -D # -D === --develop
 ```
 
-You should see webpack at your `package.json` `devDependencies` section after this. In addition to installing the package locally below the _node_modules_ directory, npm also generates an entry for the executable you can find at `node_modules/.bin` directory.
+You should see webpack at your `package.json` `devDependencies` section after this. In addition to installing the package locally below the `node_modules` directory, npm also generates an entry for the executable you can find at `node_modules/.bin` directory.
 
 T> If you want to use webpack 5 to run the examples, use `npm add webpack@next webpack-cli@beta -D` instead.
 

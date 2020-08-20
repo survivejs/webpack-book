@@ -30,7 +30,7 @@ Webpack begins its work from **entries**. Often these are JavaScript modules whe
 
 ### Resolution process
 
-An entry itself is a module and when webpack encounters one, it tries to match the module against the file system using the `resolve` configuration. For example, you can tell webpack to perform the lookup against specific directories in addition to _node_modules_.
+An entry itself is a module and when webpack encounters one, it tries to match the module against the file system using the `resolve` configuration. For example, you can tell webpack to perform the lookup against specific directories in addition to `node_modules`.
 
 T> It's possible to adjust the way webpack matches against file extensions, and you can define specific aliases for directories. The _Consuming Packages_ chapter covers these ideas in greater detail.
 

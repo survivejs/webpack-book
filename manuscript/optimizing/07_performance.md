@@ -59,7 +59,7 @@ T> Starting from version 5, there's a file system level cache that can be enable
 Loaders have their optimizations as well:
 
 - Perform less processing by skipping loaders during development. Especially if you are using a modern browser, you can skip using **babel-loader** or equivalent altogether.
-- Use either `include` or `exclude` with JavaScript specific loaders. Webpack traverses _node_modules_ by default, and executes **babel-loader** over the files unless it has been configured correctly.
+- Use either `include` or `exclude` with JavaScript specific loaders. Webpack traverses `node_modules` by default, and executes **babel-loader** over the files unless it has been configured correctly.
 - Cache the results of expensive loaders (e.g., image manipulation) to the disk using the [cache-loader](https://www.npmjs.com/package/cache-loader).
 - Parallelize the execution of expensive loaders using [thread-loader](https://www.npmjs.com/package/thread-loader). Given workers come with an overhead in Node, using **thread-loader** is worth it only if the parallelized operation is heavy.
 

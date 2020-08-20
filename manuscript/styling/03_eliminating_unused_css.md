@@ -166,6 +166,8 @@ exports.eliminateUnusedCSS = () => ({
 });
 ```
 
+{pagebreak}
+
 Next, the part has to be connected with the configuration. It's essential the plugin is used _after_ the `MiniCssExtractPlugin`; otherwise, it doesn't work:
 
 **webpack.config.js**

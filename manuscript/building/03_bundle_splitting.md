@@ -54,7 +54,7 @@ As you can see, _main.js_ is big. That is something to fix next.
 
 ## Setting up a `vendor` bundle
 
-Before webpack 4, there used to be `CommonsChunkPlugin` for managing bundle splitting. The plugin has been replaced with automation and configuration. To extract a vendor bundle from the _node_modules_ directory, adjust the code as follows:
+Before webpack 4, there used to be `CommonsChunkPlugin` for managing bundle splitting. The plugin has been replaced with automation and configuration. To extract a vendor bundle from the `node_modules` directory, adjust the code as follows:
 
 **webpack.config.js**
 
@@ -100,7 +100,7 @@ T> `chunks: "initial"` would give the same result in this case. You can see the 
 
 ## Controlling bundle splitting
 
-The configuration above can be rewritten with an explicit test against _node_modules_ as below:
+The configuration above can be rewritten with an explicit test against `node_modules` as below:
 
 **webpack.config.js**
 
