@@ -247,7 +247,7 @@ Even though the demo illustrates the basic idea of SSR, it still leaves open que
 
 - How to deal with styles? Node doesn't understand CSS related imports.
 - How to deal with anything other than JavaScript? If the server side is processed through webpack, this is less of an issue as you can patch it at webpack.
-- How to run the server through something else other than Node? One option would be to wrap the Node instance in a service you then run through your host environment. Ideally, the results would be cached, and you can find more specific solutions for this particular per platform.
+- How to run the server through something else other than Node? One option would be to wrap the Node instance in a service you then run through your host environment. Ideally, the results would be cached, and you can find more specific solutions for this particular per platform (i.e. Java and others).
 
 Questions like these are the reason why solutions such as Next.js or razzle exist. They have been designed to solve SSR-specific problems like these.
 
