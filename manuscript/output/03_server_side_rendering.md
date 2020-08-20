@@ -173,7 +173,7 @@ Run the server now (`node ./server.js`) and go below `http://localhost:8080`, yo
 
 {pagebreak}
 
-Even though there is a React application running now, it's difficult to develop. If you try to modify the code, nothing happens. The problem can be solved running webpack in a multi-compiler mode as earlier in this book. Another option is to run webpack in **watch mode** against the current configuration and set up a watcher for the server. You'll learn the setup next.
+Even though there is a React application running now, it's difficult to develop. If you try to modify the code, nothing happens. The problem can be solved running webpack in a multi-compiler mode as discussed in the _Multiple Pages_ chapter. Another option is to run webpack in **watch mode** against the current configuration and set up a watcher for the server. You'll learn the setup next.
 
 T> If you want to debug output from the server, set `export DEBUG=express:application`.
 
