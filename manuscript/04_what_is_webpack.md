@@ -133,6 +133,8 @@ In addition to HMR, webpack's bundling capabilities are extensive. Webpack allow
 
 Even small applications can benefit from **code splitting**, as it allows the users to get something usable in their hands faster. Performance is a feature, after all. Knowing the basic techniques is worthwhile.
 
+{pagebreak}
+
 ## Webpack 5
 
 Webpack 5 is a new version of the tool that promises the following changes:

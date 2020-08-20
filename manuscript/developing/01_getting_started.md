@@ -74,8 +74,6 @@ ERROR in Entry module not found: Error: Can't resolve './src' in '/tmp/webpack-d
 
 The output tells that webpack cannot find the source to compile. Ideally we would pass `mode` parameter to it as well to define which defaults we want.
 
-{pagebreak}
-
 To make webpack compile, do the following:
 
 1. Set up `src/index.js` so that it contains `console.log("Hello world");`.
