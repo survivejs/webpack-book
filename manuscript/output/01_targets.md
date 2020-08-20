@@ -21,7 +21,7 @@ T> Web workers and their usage are discussed in detail in the _Web Workers_ chap
 
 Webpack provides two Node-specific targets: `node` and `async-node`. It uses standard Node `require` to load chunks unless the async mode is used. In that case, it wraps modules so that they are loaded asynchronously through Node `fs` and `vm` modules.
 
-The main use case for using the Node target is _Server Side Rendering_ (SSR). The idea is discussed in the _Server Side Rendering_ chapter.
+The main use case for using the Node target is _Server-Side Rendering_ (SSR).
 
 T> To learn more about the topic, read [James Long's series](https://jlongster.com/Backend-Apps-with-Webpack--Part-I) about developing backend applications with webpack.
 
@@ -47,6 +47,6 @@ To recap:
 
 - Webpack's output target can be controlled through the `target` field. It defaults to `web` but accepts other options too.
 - Webpack can target the desktop, Node, and web workers in addition to its web target.
-- The Node targets come in handy if especially in _Server Side Rendering_ setups.
+- The Node targets come in handy if especially in _Server-Side Rendering_ setups.
 
 You'll learn how to handle multi-page setups in the next chapter.

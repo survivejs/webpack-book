@@ -1,6 +1,6 @@
-# Server Side Rendering
+# Server-Side Rendering
 
-**Server Side Rendering** (SSR) is a technique that allows you to serve an initial payload with HTML, JavaScript, CSS, and even application state. You serve a fully rendered HTML page that would make sense even without JavaScript enabled. In addition to providing potential performance benefits, this can help with Search Engine Optimization (SEO).
+**Server-Side Rendering** (SSR) is a technique that allows you to serve an initial payload with HTML, JavaScript, CSS, and even application state. You serve a fully rendered HTML page that would make sense even without JavaScript enabled. In addition to providing potential performance benefits, this can help with Search Engine Optimization (SEO).
 
 Even though the idea does not sound that unique, there is a technical cost. The approach was popularized by React. Since then frameworks encapsulating the tricky bits, such as [Next.js](https://www.npmjs.com/package/next) and [razzle](https://www.npmjs.com/package/razzle), have appeared.
 
@@ -79,28 +79,22 @@ To keep things nice, we will define a separate configuration file. A lot of the 
 ```javascript
 const path = require("path");
 const { merge } = require("webpack-merge");
-
 const parts = require("./webpack.parts");
-
-const PATHS = {
-  build: path.join(__dirname, "static"),
-  ssrDemo: path.join(__dirname, "src", "ssr.js"),
-};
 
 module.exports = merge([
   {
     mode: "production",
     entry: {
-      index: PATHS.ssrDemo,
+      index: path.join(__dirname, "src", "ssr.js"),
     },
     output: {
-      path: PATHS.build,
+      path: path.join(__dirname, "static"),
       filename: "[name].js",
       libraryTarget: "umd",
       globalObject: "this",
     },
   },
-  parts.loadJavaScript({ include: PATHS.ssrDemo }),
+  parts.loadJavaScript(),
 ]);
 ```
 
@@ -270,7 +264,7 @@ SSR comes with a technical challenge, and for this reason, specific solutions ha
 
 To recap:
 
-- **Server Side Rendering** (SSR) can provide more for the browser to render initially. Instead of waiting for the JavaScript to load, you can display markup instantly.
+- **Server-Side Rendering** (SSR) can provide more for the browser to render initially. Instead of waiting for the JavaScript to load, you can display markup instantly.
 - SSR also allows you to pass initial payload of data to the client to avoid unnecessary queries to the server.
 - Webpack can manage the client-side portion of the problem. It can be used to generate the server as well if a more integrated solution is required. Abstractions, such as Next.js, hide these details.
 - SSR does not come without a cost, and it leads to new problems as you need better approaches for dealing with aspects, such as styling or routing. The server and the client environment differ in essential manners, so the code has to be written so that it does not rely on platform-specific features too much.

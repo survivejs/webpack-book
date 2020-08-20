@@ -8,7 +8,7 @@ Webpack provides a means to generate a separate CSS bundles using [mini-css-extr
 
 W> It can be potentially dangerous to load inline styles with JavaScript in production as it represents an attack vector. **Critical path rendering** embraces the idea of rendering the critical CSS with inline styles in the initial HTML payload, improving the perceived performance of the site. In limited contexts inlining a small amount of CSS can be a viable option to speed up the initial load due to fewer requests.
 
-T> [extract-css-chunks-webpack-plugin](https://github.com/faceyspacey/extract-css-chunks-webpack-plugin) is a community maintained alternative to **mini-css-extract-plugin** designed especially server side rendering in mind.
+T> [extract-css-chunks-webpack-plugin](https://github.com/faceyspacey/extract-css-chunks-webpack-plugin) is a community maintained alternative to **mini-css-extract-plugin** designed especially server-side rendering in mind.
 
 {pagebreak}
 

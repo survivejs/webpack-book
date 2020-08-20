@@ -110,7 +110,7 @@ To recap:
 
 - Webpack maintains a **runtime** containing information needed to run the application.
 - If the runtime manifest changes, the change invalidates the containing bundle.
-- Certain plugins allow you to write the runtime to the generated _index.html_. It's also possible to extract the information to a JSON file. The JSON comes in handy with _Server Side Rendering_.
+- Certain plugins allow you to write the runtime to the generated _index.html_. It's also possible to extract the information to a JSON file. The JSON comes in handy with _Server-Side Rendering_.
 - **Records** allow you to store module IDs across builds. As a downside, you have to track the records file.
 
 You'll learn to analyze the build in the next chapter as it's essential for understanding and improving your build.

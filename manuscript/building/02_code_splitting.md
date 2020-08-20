@@ -32,7 +32,7 @@ import(/* webpackChunkName: "optional-name" */ "./module").then(
 
 Webpack provides extra control through a comment. In the example, we've renamed the resulting chunk. Giving multiple chunks the same name will group them to the same bundle. In addition `webpackMode`, `webpackPrefetch`, and `webpackPreload` are good to know options as they let you define when the import will get triggered and how the browser should treat it.
 
-Mode lets you define what happens on `import()`. Out of the available options, `weak` is suitable for server side rendering (SSR) as using it means the `Promise` will reject unless the module was loaded another way. In the SSR case, that would be ideal.
+Mode lets you define what happens on `import()`. Out of the available options, `weak` is suitable for server-side rendering (SSR) as using it means the `Promise` will reject unless the module was loaded another way. In the SSR case, that would be ideal.
 
 Prefetching tells the browser that the resource will be needed in the future while preloading means the browser will need the resource within the current page. Based on these tips the browser can then choose to load the data optimistically. [Webpack documentation explains the available options in greater detail](https://webpack.js.org/api/module-methods/#magic-comments).
 
@@ -135,9 +135,9 @@ T> The _Dynamic Loading_ chapter covers other techniques that come in handy when
 
 There are React specific solutions that wrap the pattern behind a small npm package:
 
-- [@loadable/component](https://www.npmjs.com/package/@loadable/component) wraps the pattern in a `createAsyncComponent` call and provides server side rendering specific functionality.
+- [@loadable/component](https://www.npmjs.com/package/@loadable/component) wraps the pattern in a `createAsyncComponent` call and provides server-side rendering specific functionality.
 - [react-imported-component](https://www.npmjs.com/package/react-imported-component) is another full featured solution based on hooks.
-- See [React's official documentation](https://reactjs.org/docs/code-splitting.html) to learn about the code splitting APIs included out of the box. The most important ones are `React.lazy` and `React.Suspense`. Currently these don't support server side rendering.
+- See [React's official documentation](https://reactjs.org/docs/code-splitting.html) to learn about the code splitting APIs included out of the box. The most important ones are `React.lazy` and `React.Suspense`. Currently these don't support server-side rendering.
 
 ## Disabling code splitting
 
