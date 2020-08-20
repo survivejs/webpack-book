@@ -35,6 +35,8 @@ There are desktop shells, such as [NW.js](https://nwjs.io/) (previously _node-we
 
 [electron-react-boilerplate](https://github.com/electron-react-boilerplate/electron-react-boilerplate) is a good starting point if you want hot loading webpack setup for Electron and React-based development. Using [the official quick start for Electron](https://github.com/electron/electron-quick-start) is one way.
 
+{pagebreak}
+
 ## Targeted builds
 
 Webpack is often used to compile a single target by either returning a configuration object, a `Promise` resolving to one, or a function returning one. In addition, it allows you to specify multiple targets at once in case you return an array of configurations. The technique is useful when generating _Multiple Pages_ or with _Internationalization_. [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) is able to run multiple instances of webpack in parallel to speed this kind of usage.
