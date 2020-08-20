@@ -66,8 +66,6 @@ As hinted in the _Bundle Splitting_ chapter, `AggressiveSplittingPlugin` and oth
 
 Records are used for storing module IDs across separate builds. The problem is that you need to save this file. If you build locally, one option is to include it in your version control.
 
-{pagebreak}
-
 To generate a `records.json` file, adjust the configuration as follows:
 
 **webpack.config.js**
@@ -89,6 +87,8 @@ leanpub-end-insert
   ...
 ]);
 ```
+
+{pagebreak}
 
 If you build the project (`npm run build`), you should see a new file, _records.json_, at the project root. The next time webpack builds, it picks up the information and rewrites the file if it has changed.
 
