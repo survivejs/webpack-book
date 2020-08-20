@@ -147,9 +147,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mai
   "version": 3,
   "file": "./src/index.js.js",
   "sources": ["webpack:///./src/index.js?b635"],
-  "sourcesContent": [
-    "import './main.css';\nimport component from \"./component\";\n\ndocument.body.appendChild(component());\n"
-  ],
+  "sourcesContent": ["import './main.css';\nimport component ..."],
   "mappings": "AAAA;AAAA;AAAA;AAAA;AAAA;AACA;AAEA",
   "sourceRoot": ""
 }
@@ -159,7 +157,7 @@ In this particular case, the difference between the options is minimal.
 
 ### `devtool: "eval-source-map"`
 
-`eval-source-map` is the highest quality option of the inline options. It's also the slowest one as it emits the most data. This time around there's more mapping data available for the browser:
+`eval-source-map` is the highest quality option of the inline options. It's also the slowest one as it emits the most data:
 
 ```json
 {
@@ -168,9 +166,7 @@ In this particular case, the difference between the options is minimal.
   "names": ["document", "body", "appendChild", "component"],
   "mappings": "AAAA;AAAA;AAAA;AAAA;AAAA;AACA;AAEAA,QAAQ,CAACC,IAAT,CAAcC,WAAd,CAA0BC,0DAAS,EAAnC",
   "file": "./src/index.js.js",
-  "sourcesContent": [
-    "import './main.css';\nimport component from \"./component\";\n\ndocument.body.appendChild(component());\n"
-  ],
+  "sourcesContent": ["import './main.css';\nimport component ..."],
   "sourceRoot": ""
 }
 ```
@@ -186,6 +182,14 @@ Webpack can also generate production usage friendly source maps. These end up in
 ### `devtool: "hidden-source-map"`
 
 `hidden-source-map` is the same as `source-map` except it doesn't write references to the source maps to the source files. If you don't want to expose source maps to development tools directly while you wish proper stack traces, this is handy.
+
+### `devtool: "nosources-source-map"`
+
+`nosources-source-map` creates a source map without `sourcesContent` in it. You still get stack traces, though. The option is useful if you don't want to expose your source code to the client.
+
+T> [The official documentation](https://webpack.js.org/configuration/devtool/#devtool) contains more information about `devtool` options.
+
+{pagebreak}
 
 ### `devtool: "cheap-source-map"`
 
@@ -214,6 +218,8 @@ Examining the `.map` file reveals the following output in this case:
 
 The source contains `//# sourceMappingURL=main.js.map` kind of comment at its end to map to this file.
 
+{pagebreak}
+
 ### `devtool: "cheap-module-source-map"`
 
 `cheap-module-source-map` is the same as previous except source maps from loaders are simplified to a single mapping per line. It yields the following output in this case:
@@ -239,11 +245,7 @@ The source contains `//# sourceMappingURL=main.js.map` kind of comment at its en
 
 W> `cheap-module-source-map` is [currently broken if minification is used](https://github.com/webpack/webpack/issues/4176) and this is an excellent reason to avoid the option for now.
 
-### `devtool: "nosources-source-map"`
-
-`nosources-source-map` creates a source map without `sourcesContent` in it. You still get stack traces, though. The option is useful if you don't want to expose your source code to the client.
-
-T> [The official documentation](https://webpack.js.org/configuration/devtool/#devtool) contains more information about `devtool` options.
+{pagebreak}
 
 ### `devtool: "source-map"`
 
@@ -278,6 +280,8 @@ T> [The official documentation](https://webpack.js.org/configuration/devtool/#de
   "sourceRoot": ""
 }
 ```
+
+{pagebreak}
 
 ## Other source map options
 
