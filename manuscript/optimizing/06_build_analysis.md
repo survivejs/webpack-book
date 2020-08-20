@@ -141,6 +141,8 @@ It's possible to analyze bundle dependencies in a graphical manner, and many too
 
 [madge](https://www.npmjs.com/package/madge) is another independent tool that can output a graph based on module input. The graph output allows you to understand the dependencies of your project in greater detail.
 
+{pagebreak}
+
 ## Composition analysis
 
 Pie charts, treemaps, and command-line tools let you visualize bundle composition. Studying the generated graphics can generate insights and understand what's contributing to the bundle size.

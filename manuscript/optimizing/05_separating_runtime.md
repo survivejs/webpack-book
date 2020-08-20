@@ -102,6 +102,8 @@ W> If you change the way webpack handles module IDs, possible existing records a
 
 To integrate with asset pipelines, you can consider using plugins like [webpack-manifest-plugin](https://www.npmjs.com/package/webpack-manifest-plugin), or [webpack-assets-manifest](https://www.npmjs.com/package/webpack-assets-manifest). These solutions emit JSON that maps the original asset path to the new one.
 
+{pagebreak}
+
 ## Conclusion
 
 The project has basic caching behavior now. If you try to modify _index.js_ or _component.js_, the vendor bundle should remain the same.
