@@ -90,6 +90,8 @@ export default (text = "Hello world") => {
 };
 ```
 
+{pagebreak}
+
 We also have to modify the original file to import the new file and render the application through the DOM:
 
 **src/index.js**
@@ -105,8 +107,6 @@ Examine the output after building the project with one of the commands above. Yo
 ## Configuring **mini-html-webpack-plugin**
 
 The problem can be solved by writing an `index.html` file that points to the generated file. Instead of doing that on our own, we can use a plugin and webpack configuration to do this.
-
-{pagebreak}
 
 To get started, install [mini-html-webpack-plugin](https://www.npmjs.com/package/mini-html-webpack-plugin):
 
@@ -142,8 +142,6 @@ Now that the configuration is done, you should try the following:
 2. Enter the build directory using `cd dist`.
 3. Run the server using `serve` (`npm add serve -g` or `npx serve`) or a similar command you are familiar with.
 
-{pagebreak}
-
 See the result through a web browser. You should see something familiar there.
 
 ![Hello world](images/hello_01.png)
@@ -168,8 +166,6 @@ If you execute `node_modules/.bin/wp --mode production`, you should see output:
       | ./src/index.js 77 bytes [built]
       | ./src/component.js 142 bytes [built]
 ```
-
-{pagebreak}
 
 The output is revealing:
 
@@ -225,8 +221,6 @@ Although **mini-html-webpack-plugin** is enough for basic use cases, there can b
 - [script-ext-html-webpack-plugin](https://www.npmjs.com/package/script-ext-html-webpack-plugin) gives you more control over script tags and allows you to tune script loading further.
 - [webpack-cdn-plugin](https://www.npmjs.com/package/webpack-cdn-plugin) allows you to specify which dependencies to load through a Content Delivery Network (CDN). This common technique is used to load popular libraries faster.
 - [dynamic-cdn-webpack-plugin](https://www.npmjs.com/package/dynamic-cdn-webpack-plugin) achieves a similar result.
-
-{pagebreak}
 
 ## Conclusion
 
