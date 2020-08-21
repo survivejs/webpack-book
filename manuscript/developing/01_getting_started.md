@@ -140,14 +140,15 @@ module.exports = {
 };
 ```
 
-{pagebreak}
-
 Now that the configuration is done, you should try the following:
 
 1. Build the project using `node_modules/.bin/wp --mode production`. You can try the `development` and `none` modes too.
 2. Enter the build directory using `cd dist`.
 3. Run the server using `serve` (`npm add serve -g` or `npx serve`) or a similar command you are familiar with.
-4. Examine the result through a web browser. You should see something familiar there.
+
+{pagebreak}
+
+See the result through a web browser. You should see something familiar there.
 
 ![Hello world](images/hello_01.png)
 
