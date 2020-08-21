@@ -188,21 +188,6 @@ Examine the output below the `dist/` directory. If you look closely, you can see
 
 T> In addition to a configuration object, webpack accepts an array of configurations. You can also return a `Promise` and eventually `resolve` to a configuration for example. Latter is useful if you are fetching configuration related data from a third-party source.
 
-{pagebreak}
-
-## Webpack output plugins
-
-Given the output given by webpack can be difficult to decipher, multiple options exist:
-
-- [webpack-stylish](https://www.npmjs.com/package/webpack-stylish) is a webpack plugin that formats webpack's output in a visually more attractive manner.
-- [friendly-errors-webpack-plugin](https://www.npmjs.com/package/friendly-errors-webpack-plugin) improves on error reporting of webpack. It captures common errors and displays them in a friendly manner.
-- [webpackbar](https://www.npmjs.com/package/webpackbar) has been made especially for tracking build progress.
-- `webpack.ProgressPlugin` is included out of the box and can be used as well.
-- [webpack-dashboard](https://www.npmjs.com/package/webpack-dashboard) gives an entire terminal-based dashboard over the standard webpack output. If you prefer clear visual output, this one comes in handy.
-- [test-webpack-reporter-plugin](https://www.npmjs.com/package/test-webpack-reporter-plugin) abstracts webpack's internals to make it easier to write your own reporters.
-
-Give the above options a go if you want to go beyond default output.
-
 ## Adding a build shortcut
 
 Given executing `node_modules/.bin/wp` gets boring after a while, let's adjust `package.json` to run tasks as below:
@@ -222,6 +207,19 @@ Run `npm run build` to see the same output as before. npm adds _node_modules/.bi
 You can execute this kind of scripts through _npm run_ and you can use the command anywhere within your project. If you run the command without any parameters (_npm run_), it gives you the listing of available scripts.
 
 T> If you want to run multiple commands concurrently, see the [concurrently](https://www.npmjs.com/package/concurrently) package. It has been designed to allow that while providing neat output.
+
+## Webpack output plugins
+
+Given the output given by webpack can be difficult to decipher, multiple options exist:
+
+- [webpack-stylish](https://www.npmjs.com/package/webpack-stylish) is a webpack plugin that formats webpack's output in a visually more attractive manner.
+- [friendly-errors-webpack-plugin](https://www.npmjs.com/package/friendly-errors-webpack-plugin) improves on error reporting of webpack. It captures common errors and displays them in a friendly manner.
+- [webpackbar](https://www.npmjs.com/package/webpackbar) has been made especially for tracking build progress.
+- `webpack.ProgressPlugin` is included out of the box and can be used as well.
+- [webpack-dashboard](https://www.npmjs.com/package/webpack-dashboard) gives an entire terminal-based dashboard over the standard webpack output. If you prefer clear visual output, this one comes in handy.
+- [test-webpack-reporter-plugin](https://www.npmjs.com/package/test-webpack-reporter-plugin) abstracts webpack's internals to make it easier to write your own reporters.
+
+Give the above options a go if you want to go beyond default output.
 
 ## Conclusion
 
