@@ -10,8 +10,6 @@ T> [Tooling.Report](https://bundlers.tooling.report/) provides a feature compari
 
 Historically speaking, there have been many build tools. _Make_ is perhaps the best known, and it's still a viable option. Specialized _task runners_, such as Grunt and Gulp were created particularly with JavaScript developers in mind. Plugins available through npm made both task runners powerful and extendable. It's possible to use even npm `scripts` as a task runner. That's common, particularly with webpack.
 
-{pagebreak}
-
 ### Make
 
 [Make](https://en.wikipedia.org/wiki/Make_%28software%29) goes way back, as it was initially released in 1977. Even though it's an old tool, it has remained relevant. Make allows you to write separate tasks for various purposes. For instance, you could have different tasks for creating a production build, minifying your JavaScript or running tests. You can find the same idea in many other tools.
@@ -71,13 +69,9 @@ Instead of `rm -rf`, you likely want to use utilities such as [rimraf](https://w
 
 ### Grunt
 
-![Grunt](images/grunt.png)
-
 [Grunt](http://gruntjs.com/) was the first famous task runner for frontend developers. Its plugin architecture contributed towards its popularity. Plugins are often complicated by themselves. As a result, when configuration grows, it can become tricky to understand what's going on.
 
 Here's an example from [Grunt documentation](http://gruntjs.com/sample-gruntfile). In this configuration, you define a linting and watcher tasks. When the _watch_ task gets run, it triggers the _lint_ task as well. This way, as you run Grunt, you get warnings in real-time in the terminal as you edit the source code.
-
-{pagebreak}
 
 **Gruntfile.js**
 
@@ -112,8 +106,6 @@ Taken too far, this can get problematic. It can become hard to understand what's
 T> [grunt-webpack](https://www.npmjs.com/package/grunt-webpack) plugin allows you to use webpack in a Grunt environment while you leave the heavy lifting to webpack.
 
 ### Gulp
-
-![Gulp](images/gulp.png)
 
 [Gulp](http://gulpjs.com/) takes a different approach. Instead of relying on configuration per plugin, you deal with actual code. If you are familiar with Unix and piping, you'll like Gulp. You have _sources_ to match files, _filters_ to operate on these sources, and _sinks_ to pipe the build results.
 
@@ -200,8 +192,6 @@ T> Jamund Ferguson has written an excellent blog series on how to port from [Req
 
 ### JSPM
 
-![JSPM](images/jspm.png)
-
 Using [JSPM](http://jspm.io/) is entirely different than previous tools. It comes with a command-line tool of its own that is used to install new packages to the project, create a production bundle, and so on. It supports [SystemJS plugins](https://github.com/systemjs/systemjs#plugins) that allow you to load various formats to your project.
 
 ## Bundlers
@@ -209,8 +199,6 @@ Using [JSPM](http://jspm.io/) is entirely different than previous tools. It come
 Task runners are great tools on a high level. They allow you to perform operations in a cross-platform manner. The problems begin when you need to splice various assets together and produce bundles. _bundlers_, such as Browserify, Brunch, or webpack, exist for this reason and they operate on a lower level of abstraction. Instead of operating on files, they operate on modules and assets.
 
 ### Browserify
-
-![Browserify](images/browserify.png)
 
 Dealing with JavaScript modules has always been a bit of a problem. The language itself didn't have the concept of modules till ES2015. Ergo, the language was stuck in the '90s when it comes to browser environments. Various solutions, including [AMD](http://requirejs.org/docs/whyamd.html), have been proposed.
 
@@ -223,8 +211,6 @@ T> [Splittable](https://www.npmjs.com/package/splittable) is a Browserify wrappe
 T> [ify-loader](https://www.npmjs.com/package/ify-loader) and [transform-loader](https://www.npmjs.com/package/transform-loader) allow you to use Browserify transforms with webpack.
 
 ### Brunch
-
-![Brunch](images/brunch.png)
 
 Compared to Gulp, [Brunch](http://brunch.io/) operates on a higher level of abstraction. It uses a declarative approach similar to webpack's. To give you an example, consider the following configuration adapted from the Brunch site:
 
@@ -256,8 +242,6 @@ Brunch comes with commands like `brunch new`, `brunch watch --server`, and `brun
 
 T> There is an experimental [Hot Module Replacement runtime](https://www.npmjs.com/package/hmr-brunch) for Brunch.
 
-{pagebreak}
-
 ### Rollup
 
 [Rollup](https://www.npmjs.com/package/rollup) focuses on bundling ES2015 code. _Tree shaking_ is one of its selling points and it supports code splitting as well. You can use Rollup with webpack through [rollup-loader](https://www.npmjs.com/package/rollup-loader).
@@ -273,8 +257,6 @@ Webpack core can be extended using specific _loaders_ and _plugins_. It gives co
 Compared to the other tools, webpack comes with initial complexity, but it makes up for this through its broad feature set. It's an advanced tool that requires patience. But once you understand the basic ideas behind it, webpack becomes powerful.
 
 To make it easier to use, tools such as [create-react-app](https://www.npmjs.com/package/create-react-app), [poi](https://poi.js.org/), and [instapack](https://www.npmjs.com/package/instapack) have been built around it.
-
-{pagebreak}
 
 ## Zero configuration bundlers
 
