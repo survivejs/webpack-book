@@ -12,6 +12,8 @@ In this chapter, you'll see a few ways to run testing tools with webpack as that
 
 [Mocha](https://mochajs.org/) is a popular test framework for Node. While Mocha provides test infrastructure, you have to bring your asserts to it. Even though [Node `assert`](https://nodejs.org/api/assert.html) can be enough, it works with other assertion libraries as well. [mocha-loader](https://www.npmjs.com/package/mocha-loader) allows running Mocha tests through webpack.
 
+{pagebreak}
+
 ### Configuring _mocha-loader_ with webpack
 
 To get started, include Mocha and _mocha-loader_ to your project:
@@ -44,6 +46,8 @@ describe("Demo", () => {
   });
 });
 ```
+
+{pagebreak}
 
 ### Configuring Mocha
 
