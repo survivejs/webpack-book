@@ -130,8 +130,7 @@ Add a helper script to make it convenient to run:
 
 ```json
 "scripts": {
-  "test:mocha:watch":
-    "wp --config webpack.mocha.js",
+  "test:mocha:watch": "wp --config webpack.mocha.js",
   ...
 },
 ```
