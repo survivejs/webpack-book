@@ -8,7 +8,7 @@ T> The completed configuration is available at [GitHub](https://github.com/survi
 
 ## Setting up the project
 
-To get a starting point, you should create a directory for the project and set up a `package.json` there. npm uses that to manage project dependencies. Here are the basic commands:
+To get a starting point, create a directory for the project, and set up a `package.json` there as npm uses that to manage project dependencies.
 
 ```bash
 mkdir webpack-demo
