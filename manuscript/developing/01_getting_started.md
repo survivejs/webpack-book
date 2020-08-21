@@ -88,8 +88,6 @@ export default (text = "Hello world") => {
 };
 ```
 
-{pagebreak}
-
 We also have to modify the original file to import the new file and render the application through the DOM:
 
 **src/index.js**
@@ -113,8 +111,6 @@ npm add mini-html-webpack-plugin -D
 ```
 
 T> [html-webpack-plugin](https://www.npmjs.com/package/mini-html-webpack-plugin) is a versatile option that can be expanded with plugins. For anything beyond basic usage, it's a good option.
-
-{pagebreak}
 
 To connect the plugin with webpack, set up configuration as below:
 
@@ -146,8 +142,6 @@ Now that the configuration is done, you should try the following:
 
 T> The `none` mode doesn't apply any defaults. Use it for debugging.
 
-{pagebreak}
-
 See the result through a web browser. You should see a hello message there:
 
 ![Hello world](images/hello_01.png)
@@ -172,8 +166,6 @@ If you execute `node_modules/.bin/wp --mode production`, you should see output:
       | ./src/index.js 77 bytes [built]
       | ./src/component.js 142 bytes [built]
 ```
-
-{pagebreak}
 
 The output is revealing:
 
