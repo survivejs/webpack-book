@@ -14,9 +14,9 @@ In this chapter, you'll see a few ways to run testing tools with webpack as that
 
 {pagebreak}
 
-### Configuring _mocha-loader_ with webpack
+### Configuring **mocha-loader** with webpack
 
-To get started, include Mocha and _mocha-loader_ to your project:
+To get started, include Mocha and **mocha-loader** to your project:
 
 ```bash
 npm add mocha mocha-loader -D
@@ -152,7 +152,7 @@ Compared to the vanilla Mocha setup, configuring Mocha through webpack comes wit
 - It's possible to adjust module resolution. Webpack aliasing and other techniques work now with the caveat of tying the code to webpack.
 - You can use webpack's processing to compile your code as you wish. With vanilla Mocha that would imply more setup outside of it. On the downside, now you need a browser to examine the tests.
 
-_mocha-loader_ is at its best as a development helper. The problem can be solved by running the tests through a headless browser.
+**mocha-loader** is at its best as a development helper. The problem can be solved by running the tests through a headless browser.
 
 ## Jest
 
