@@ -6,8 +6,6 @@ It's possible to get a more controlled environment by using a solution such as [
 
 T> The completed configuration is available at [GitHub](https://github.com/survivejs-demos/webpack-demo).
 
-{pagebreak}
-
 ## Setting up the project
 
 To get a starting point, you should create a directory for the project and set up a `package.json` there. npm uses that to manage project dependencies. Here are the basic commands:
@@ -17,6 +15,8 @@ mkdir webpack-demo
 cd webpack-demo
 npm init -y # -y generates *package.json*, skip for more control
 ```
+
+{pagebreak}
 
 You can tweak the generated `package.json` manually to make further changes to it even though a part of the operations modify the file automatically for you. The official documentation explains [package.json options](https://docs.npmjs.com/files/package.json) in more detail.
 
@@ -106,8 +106,6 @@ document.body.appendChild(component());
 
 Examine the output after building the project with one of the commands above. You should see both modules in the bundle that webpack wrote to the `dist` directory. One problem remains, though. How can we test the application in the browser?
 
-{pagebreak}
-
 ## Configuring **mini-html-webpack-plugin**
 
 The problem can be solved by writing an `index.html` file that points to the generated file. Instead of doing that on our own, we can use a plugin and webpack configuration to do this.
@@ -152,8 +150,6 @@ Now that the configuration is done, you should try the following:
 T> See [mini-html-webpack-plugin](https://www.npmjs.com/package/mini-html-webpack-plugin) documentation for further options. You can override the HTML template fully, and process individual parts injected to it freely.
 
 W> Webpack has default configuration for its entries and output. It looks for source from `./src` by default and its emits output to `./dist`. You can control these through `entry` and `output` respectively as seen in the _What is Webpack_ chapter.
-
-{pagebreak}
 
 ## Examining the output
 
@@ -200,8 +196,6 @@ Given the output given by webpack can be difficult to decipher, multiple options
 
 Give the above options a go if you want to go beyond default output.
 
-{pagebreak}
-
 ## Adding a build shortcut
 
 Given executing `node_modules/.bin/wp` gets boring after a while, lets adjust `package.json` to run tasks as below:
@@ -221,8 +215,6 @@ Run `npm run build` to see the same output as before. npm adds _node_modules/.bi
 You can execute this kind of scripts through _npm run_ and you can use the command anywhere within your project. If you run the command without any parameters (_npm run_), it gives you the listing of available scripts.
 
 T> If you want to run multiple commands concurrently, see the [concurrently](https://www.npmjs.com/package/concurrently) package. It has been designed to allow that while providing neat output.
-
-{pagebreak}
 
 ## `HtmlWebpackPlugin` and its extensions
 
