@@ -50,11 +50,7 @@ const productionConfig = merge([
 leanpub-end-insert
 
 const developmentConfig = merge([
-  parts.devServer({
-    // Customize host/port here if needed
-    host: process.env.HOST,
-    port: process.env.PORT,
-  }),
+  parts.devServer(),
 leanpub-start-delete
   parts.extractCSS({ options: { hmr: true } }),
 leanpub-end-delete
