@@ -131,8 +131,31 @@ If you wanted to use more than one loader, you could pass an array to `use` and 
         presets: ["env"],
       },
     },
-    // Add more loaders here
   ],
+},
+```
+
+## Inline definitions
+
+Even though configuration level loader definitions are preferable, it's possible to write loader definitions inline:
+
+```javascript
+// Process foo.png through url-loader and other possible ones.
+import "url-loader!./foo.png";
+
+// Override possible higher level match completely
+import "!!url-loader!./bar.png";
+```
+
+The problem with this approach is that it couples your source with webpack. Nonetheless, it's still an excellent form to know.
+
+Since configuration entries go through the same mechanism, the same forms work there as well:
+
+```javascript
+{
+  entry: {
+    app: "babel-loader!./app",
+  },
 },
 ```
 
@@ -169,33 +192,6 @@ In the book setup, you compose configuration on a higher level. Another option t
 ```
 
 Carefully applied, this technique allows different means of composition.
-
-{pagebreak}
-
-## Inline definitions
-
-Even though configuration level loader definitions are preferable, it's possible to write loader definitions inline:
-
-```javascript
-// Process foo.png through url-loader and other
-// possible matches.
-import "url-loader!./foo.png";
-
-// Override possible higher level match completely
-import "!!url-loader!./bar.png";
-```
-
-The problem with this approach is that it couples your source with webpack. Nonetheless, it's still an excellent form to know.
-
-Since configuration entries go through the same mechanism, the same forms work there as well:
-
-```javascript
-{
-  entry: {
-    app: "babel-loader!./app",
-  },
-},
-```
 
 {pagebreak}
 
