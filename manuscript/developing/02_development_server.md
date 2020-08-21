@@ -119,6 +119,8 @@ If you execute either _npm run start_ or _npm start_ now, you should see somethi
 ...
 ```
 
+{pagebreak}
+
 The server is running, and if you open `http://localhost:8080/` at your browser, you should see something familiar:
 
 ![Hello world](images/hello_01.png)
