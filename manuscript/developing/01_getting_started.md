@@ -203,7 +203,7 @@ Give the above options a go if you want to go beyond default output.
 
 ## Adding a build shortcut
 
-Given executing `node_modules/.bin/wp` gets boring after a while, lets adjust `package.json` to run tasks as below:
+Given executing `node_modules/.bin/wp` gets boring after a while, let's adjust `package.json` to run tasks as below:
 
 **package.json**
 
