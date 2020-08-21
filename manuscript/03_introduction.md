@@ -100,6 +100,8 @@ You'll also see `code` within sentences and occasionally important terms have be
 
 T> **Trailing commas** are used in the book examples on purpose as it gives cleaner diffs for the code examples.
 
+T> The book examples have been formatted using [Prettier](https://www.npmjs.com/package/prettier) with `"printWidth": 68` to make the examples fit the book pages.
+
 ## How is the book versioned
 
 The book uses a versioning scheme, and release notes for each new version are maintained at [the book blog](https://survivejs.com/blog/). You can also use GitHub _compare_ tool for this purpose. Example:

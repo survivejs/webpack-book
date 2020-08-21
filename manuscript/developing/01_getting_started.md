@@ -24,8 +24,6 @@ T> You can set those `npm init` defaults at `~/.npmrc`.
 
 T> This is an excellent chance to set up version control using [Git](https://git-scm.com/). You can create a commit per step and tag per chapter, so it's easier to move back and forth if you want.
 
-T> The book examples have been formatted using [Prettier](https://www.npmjs.com/package/prettier) with `"printWidth": 68` to make the examples fit the book pages.
-
 ## Installing webpack
 
 Even though webpack can be installed globally (`npm add webpack -g`), it's a good idea to maintain it as a dependency of your project to avoid issues, as then you have control over the exact version you are running.
@@ -229,6 +227,8 @@ Although **mini-html-webpack-plugin** is enough for basic use cases, there can b
 - [script-ext-html-webpack-plugin](https://www.npmjs.com/package/script-ext-html-webpack-plugin) gives you more control over script tags and allows you to tune script loading further.
 - [webpack-cdn-plugin](https://www.npmjs.com/package/webpack-cdn-plugin) allows you to specify which dependencies to load through a Content Delivery Network (CDN). This common technique is used to load popular libraries faster.
 - [dynamic-cdn-webpack-plugin](https://www.npmjs.com/package/dynamic-cdn-webpack-plugin) achieves a similar result.
+
+{pagebreak}
 
 ## Conclusion
 
