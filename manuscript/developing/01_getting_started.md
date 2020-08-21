@@ -110,6 +110,8 @@ Examine the output after building the project with one of the commands above. Yo
 
 The problem can be solved by writing an `index.html` file that points to the generated file. Instead of doing that on our own, we can use a plugin and webpack configuration to do this.
 
+{pagebreak}
+
 To get started, install **mini-html-webpack-plugin**:
 
 ```bash
@@ -137,6 +139,8 @@ module.exports = {
   ],
 };
 ```
+
+{pagebreak}
 
 Now that the configuration is done, you should try the following:
 
