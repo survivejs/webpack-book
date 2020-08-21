@@ -12,7 +12,7 @@ As this book has demonstrated, webpack is a versatile tool. To make it easier to
 
 ## Development Checklist
 
-- To get most out of webpack during development, use **webpack-dev-server** (WDS). You can also find middlewares which you can attach to your Node server during development. The _Automatic Browser Refresh_ chapter covers WDS in greater detail.
+- To get most out of webpack during development, use **webpack-plugin-serve** (WPS) or **webpack-dev-server** (WDS). You can also find middlewares which you can attach to your Node server during development. The _Development Server_ chapter covers both in greater detail.
 - Webpack implements **Hot Module Replacement** (HMR). It allows you to replace modules without forcing a browser refresh while your application is running. The _Hot Module Replacement_ appendix covers the topic in detail.
 
 ## Production Checklist

@@ -144,11 +144,7 @@ There are React specific solutions that wrap the pattern behind a small npm pack
 Although code splitting is a good behavior to have by default, it's not correct always, especially on server-side usage. For this reason, it can be disabled as below:
 
 ```javascript
-const webpack = require("webpack");
-
-...
-
-module.exports = {
+const config = {
   plugins: [
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1,

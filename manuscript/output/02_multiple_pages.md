@@ -20,16 +20,27 @@ To generate multiple separate pages, they should be initialized somehow. You sho
 
 ### Abstracting pages
 
-To initialize a page, it should receive page title, output path, and an optional template, at least. Each page should receive an optional output path and a template for customization. The idea can be modeled as a configuration part:
+To initialize a page, it should receive page title, output path, and an optional template, at least. Each page should receive an optional output path and a template for customization. The idea can be modeled as a configuration part and you replace the possible previous implementation with this one:
 
 **webpack.parts.js**
 
 ```javascript
-...
-const { MiniHtmlWebpackPlugin } = require("mini-html-webpack-plugin");
+const {
+  MiniHtmlWebpackPlugin,
+} = require("mini-html-webpack-plugin");
 
-exports.page = ({ path = "", template, title, entry, chunks } = {}) => ({
+exports.page = ({
+  path = "",
+  template,
+  title,
   entry,
+  chunks,
+  mode,
+} = {}) => ({
+  entry:
+    mode === "development"
+      ? addEntryToAll(entry, "webpack-plugin-serve/client")
+      : entry,
   plugins: [
     new MiniHtmlWebpackPlugin({
       chunks,
@@ -41,6 +52,16 @@ exports.page = ({ path = "", template, title, entry, chunks } = {}) => ({
     }),
   ],
 });
+
+function addEntryToAll(entries, entry) {
+  const ret = {};
+
+  Object.keys(entries).forEach((key) => {
+    ret[key] = entries[key].concat(entry);
+  });
+
+  return ret;
+}
 ```
 
 T> The `chunks` and `entry` fields will be used later in this chapter to control which script gets associated with the page.
@@ -54,19 +75,10 @@ To incorporate the idea into the configuration, the way it's composed has to cha
 **webpack.config.js**
 
 ```javascript
-leanpub-start-delete
-const { MiniHtmlWebpackPlugin } = require("mini-html-webpack-plugin");
-leanpub-end-delete
-
 const commonConfig = merge([
+  ...
 leanpub-start-delete
-  {
-    plugins: [
-      new MiniHtmlWebpackPlugin({
-...
-      }),
-    ],
-  },
+  parts.page({ title: "Webpack demo" }),
 leanpub-end-delete
   ...
 ]);
@@ -74,7 +86,7 @@ leanpub-end-delete
 ...
 
 leanpub-start-insert
-module.exports = mode => {
+const getConfig = mode => {
   const pages = [
     parts.page({ title: "Webpack demo" }),
     parts.page({ title: "Another demo", path: "another" }),
@@ -87,6 +99,8 @@ module.exports = mode => {
   );
 };
 leanpub-end-insert
+
+module.exports = getConfig(mode);
 ```
 
 {pagebreak}
@@ -133,7 +147,7 @@ leanpub-end-insert
 
 ...
 
-module.exports = mode => {
+const getConfig = (mode) => {
 leanpub-start-delete
   const pages = [
     parts.page({ title: "Webpack demo" }),
@@ -192,7 +206,7 @@ Adjustment is needed to share code between the pages. Most of the code can remai
 ```javascript
 ...
 
-module.exports = mode => {
+const getConfig = (mode) => {
   const pages = [
     parts.page({
       title: "Webpack demo",

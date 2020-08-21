@@ -222,7 +222,7 @@ It's possible to pass the webpack environment to Babel with a tweak:
 **webpack.config.js**
 
 ```javascript
-module.exports = mode => {
+const getConfig = (mode) => {
 leanpub-start-insert
   // You could use NODE_ENV here as well
   // for a more generic solution.
@@ -277,9 +277,7 @@ The idea is to then write webpack configuration to control which target is chose
 **webpack.config.js**
 
 ```javascript
-...
-
-module.exports = (mode) => {
+const getConfig = (mode) => {
   switch (mode) {
     case "production:legacy":
       process.env.BROWSERSLIST_ENV = 'legacy';
@@ -304,7 +302,7 @@ Above would expect the following target:
 
 ```json
 "scripts": {
-  "build": "webpack --env production:legacy && webpack --env production:modern",
+  "build": "wp --mode production:legacy && wp --mode production:modern",
   ...
 },
 ```
@@ -337,7 +335,7 @@ If you have set up TypeScript to your project, you can write your configuration 
 
 For this to work, you need to have [ts-node](https://www.npmjs.com/package/ts-node) or [ts-node-dev](https://www.npmjs.com/package/ts-node-dev) installed to your project as webpack uses it to execute the configuration.
 
-If you run webpack in watch mode or through webpack-dev-server, by default compilation errors can cause the build to fail. To avoid this, use the following configuration:
+If you run webpack in watch mode or through **webpack-dev-server**, by default compilation errors can cause the build to fail. To avoid this, use the following configuration:
 
 **tsconfig.json**
 

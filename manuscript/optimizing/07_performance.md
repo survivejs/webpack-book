@@ -11,7 +11,7 @@ There are a couple of ground rules when it comes to optimization:
 
 Sometimes optimizations come with a cost. You could, for example, trade memory for performance or end up making your configuration more complicated.
 
-T> If you hit memory limits with webpack, you can give it more memory with `node --max-old-space-size=4096 node_modules/.bin/webpack-dev-server --env development` kind of invocation. Size is given in megabytes, and in the example you would give 4 gigabytes of memory to the process.
+T> If you hit memory limits with webpack, you can give it more memory with `node --max-old-space-size=4096 node_modules/.bin/wp --mode development` kind of invocation. Size is given in megabytes, and in the example you would give 4 gigabytes of memory to the process.
 
 ## Measuring impact
 

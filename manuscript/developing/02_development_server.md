@@ -14,37 +14,44 @@ Although this solves the problem of recompiling your source on change, it does n
 
 {pagebreak}
 
-## **webpack-plugin-serve**
-
-[webpack-plugin-serve](https://www.npmjs.com/package/webpack-plugin-serve) is a third-party plugin that wraps the logic required to update the browser into a webpack plugin. Underneath it relies on webpack's watch mode, and it builds on top of that while implementing **Hot Module Replacement** (HMR) and other features seen in the official solution provided for webpack.
-
-There's also functionality that goes beyond the official development server, including support for webpack's multi-compiler mode (i.e., when you give an array of configurations to it) and a status overlay.
-
-T> To learn mode about HMR, read the _Hot Module Replacement_ appendix. You can learn the fundamentals of the technique and why people use it. Applying it won't be necessary to complete the tutorial, though.
-
 ## **webpack-dev-server**
 
 [webpack-dev-server](https://www.npmjs.com/package/webpack-dev-server) (WDS) is the officially maintained solution for webpack. WDS is a development server running **in-memory**, meaning the bundle contents aren't written out to files but stored in memory. The distinction is vital when trying to debug code and styles.
+
+If you go with WDS, there are a couple of relevant fields that you should be aware of:
+
+- `devServer.historyApiFallback` should be set if you rely on HTML5 History API based routing.
+- `devServer.contentBase` - Assuming you don't generate _index.html_ dynamically and prefer to maintain it yourself in a specific directory, you need to point WDS to it. `contentBase` accepts either a path (e.g., `"build"`) or an array of paths (e.g., `["build", "images"]`). The value defaults to the project root.
+- `devServer.proxy` - If you are using multiple servers, you have to proxy WDS to them. The proxy setting accepts an object of proxy mappings (e.g., `{ "/api": "http://localhost:3000/api" }`) that resolve matching queries to another server. Proxy settings are disabled by default.
+- `devServer.headers` - Attach custom headers to your requests here.
+
+T> [The official documentation](https://webpack.js.org/configuration/dev-server/) covers more options.
 
 T> To integrate with another server, it's possible to emit files from WDS to the file system by setting `devServer.writeToDisk` property to `true`.
 
 W> You should use WDS strictly for development. If you want to host your application, consider other standard solutions, such as Apache or Nginx.
 
+W> WDS depends implicitly on **webpack-cli** in command line usage. Make sure you have both installed in this case.
+
+## **webpack-plugin-serve**
+
+[webpack-plugin-serve](https://www.npmjs.com/package/webpack-plugin-serve) (WPS) is a third-party plugin that wraps the logic required to update the browser into a webpack plugin. Underneath it relies on webpack's watch mode, and it builds on top of that while implementing **Hot Module Replacement** (HMR) and other features seen in the official solution provided for webpack.
+
+There's also functionality that goes beyond the official development server, including support for webpack's multi-compiler mode (i.e., when you give an array of configurations to it) and a status overlay.
+
+T> To learn mode about HMR, read the _Hot Module Replacement_ appendix. You can learn the fundamentals of the technique and why people use it. Applying it won't be necessary to complete the tutorial, though.
+
 {pagebreak}
 
-## Getting started with WDS
+## Getting started with WPS
 
-To get started with WDS, install it first:
+To get started with WPS, install it first:
 
 ```bash
-npm add webpack-dev-server -D
+npm add webpack-plugin-serve -D
 ```
 
-As before, this command generates a command below the `npm bin` directory, and you could run **webpack-dev-server** from there. After running the WDS, you have a development server running at `http://localhost:8080`. Automatic browser refresh is in place now, although at a fundamental level.
-
-## Attaching WDS to the project
-
-To integrate WDS to the project, define an npm script for launching it. To follow npm conventions, call it as _start_ like below:
+To integrate WPS to the project, define an npm script for launching it. To follow npm conventions, call it as _start_ like below:
 
 **package.json**
 
@@ -52,36 +59,63 @@ To integrate WDS to the project, define an npm script for launching it. To follo
 {
   "scripts": {
 leanpub-start-insert
-    "start": "webpack-dev-server --mode development",
+    "start": "wp --mode development",
 leanpub-end-insert
-    "build": "webpack --mode production"
+    "build": "wp --mode production"
   },
   ...
 }
 ```
 
-T> WDS picks up configuration like webpack itself. The same rules apply.
+In addition, WPS has to be connected to webpack configuration. In this case we'll run it in `liveReload` mode and refresh the browser on change. In addiiton we'll make it possible to pass `PORT` to the process (i.e. `PORT=3000 npm start`):
 
-{pagebreak}
+**webpack.config.js**
+
+```javascript
+const { mode } = require("webpack-nano/argv");
+const {
+  MiniHtmlWebpackPlugin,
+} = require("mini-html-webpack-plugin");
+const { WebpackPluginServe } = require("webpack-plugin-serve");
+
+module.exports = {
+  watch: mode === "development",
+  entry: ["./src", "webpack-plugin-serve/client"],
+  mode,
+  plugins: [
+    new MiniHtmlWebpackPlugin({
+      context: {
+        title: "Webpack demo",
+      },
+    }),
+    new WebpackPluginServe({
+      port: process.env.PORT || 8080,
+      static: "./dist",
+      liveReload: true,
+    }),
+  ],
+};
+```
 
 If you execute either _npm run start_ or _npm start_ now, you should see something in the terminal:
 
 ```bash
-> webpack-dev-server --mode development
+> wp --mode development
 
 ...
+> wp --mode development
 
-ℹ ｢wds｣: Project is running at http://localhost:8080/
-ℹ ｢wds｣: webpack output is served from /
-ℹ ｢wds｣: Content not from webpack is served from /tmp/webpack-demo
-ℹ ｢wdm｣: Hash: 2c24763e2dd29b2684e6
-Version: webpack 4.43.0
-Time: 289ms
-Built at: 07/09/2020 12:37:16 PM
-     Asset       Size  Chunks             Chunk Names
-index.html  198 bytes          [emitted]
-   main.js    362 KiB    main  [emitted]  main
-Entrypoint main = main.js
+⬡ webpack: Watching Files
+⬡ wps: Server Listening on: http://[::]:8080
+
+⬡ webpack: Hash: 6135f8cbee061c80be05
+  Version: webpack 4.44.1
+  Time: 108ms
+  Built at: 08/21/2020 9:54:33 AM
+       Asset       Size  Chunks             Chunk Names
+  index.html  198 bytes          [emitted]
+     main.js   63.4 KiB    main  [emitted]  main
+  Entrypoint main = main.js
 ...
 ```
 
@@ -91,48 +125,13 @@ The server is running, and if you open `http://localhost:8080/` at your browser,
 
 If you try modifying the code, you should see the output in your terminal. The browser should also perform a hard refresh so that you can see the change.
 
-T> WDS tries to run in another port in case the default one is being used. The terminal output tells you where it ends up running. You can debug the situation with a command like `netstat -na | grep 8080`. If something is running on the port 8080, it should display a message on Unix.
-
-## Configuring WDS through webpack configuration
-
-WDS functionality can be customized through the `devServer` field in the webpack configuration. You can set most of these options through the CLI as well, but managing them through webpack is a decent approach.
-
-Enable additional functionality as below:
-
-**webpack.config.js**
-
-```javascript
-module.exports = {
-leanpub-start-insert
-  devServer: {
-    // Display only errors to reduce the amount of output.
-    stats: "errors-only",
-
-    // Parse host and port from env to allow customization.
-    // If you use Docker, Vagrant or Cloud9, set host: "0.0.0.0";
-    //
-    // 0.0.0.0 is available to all network devices unlike default.
-    host: process.env.HOST, // Defaults to `localhost`
-    port: process.env.PORT, // Defaults to 8080
-    open: true, // Open the page in browser
-    overlay: true, // Show error overlay in browser
-  },
-leanpub-end-insert
-  ...
-};
-```
-
-After this change, you can configure the server host and port options through environment parameters (example: `PORT=3000 npm start`).
-
 T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environment variables through a _.env_ file. _dotenv_ allows you to control the host and port setting of the setup quickly.
 
-T> Enable `devServer.historyApiFallback` if you are using HTML5 History API based routing.
+T> Enable the `historyFallback` flag if you are using HTML5 History API based routing.
 
 T> If you want even better output, consider [error-overlay-webpack-plugin](https://www.npmjs.com/package/error-overlay-webpack-plugin) as it shows the origin of the error better.
 
-W> Using `0.0.0.0` as `host` by itself is [considered a security issue](https://github.com/webpack/webpack-dev-server/issues/882). In that case you should set `disableHostCheck: true` in addition if you want to use the IP.
-
-## Accessing WDS from the network
+## Accessing development server from the network
 
 It's possible to customize host and port settings through the environment in the setup (i.e., `export PORT=3000` on Unix or `SET PORT=3000` on Windows). The default settings are enough on most platforms.
 
@@ -148,12 +147,10 @@ To get it to work, you have to install it first through `npm add nodemon -D`. He
 
 ```json
 "scripts": {
-  "start": "nodemon --watch webpack.* --exec \"webpack-dev-server --mode development\"",
-  "build": "webpack --mode production"
+  "start": "nodemon --watch webpack.* --exec \"wp --mode development\"",
+  "build": "wp --mode production"
 },
 ```
-
-It's possible WDS [will support the functionality](https://github.com/webpack/webpack-cli/issues/15) itself in the future. If you want to make it reload itself on change, you should implement this workaround for now.
 
 ## Polling instead of watching files
 
@@ -169,16 +166,14 @@ For any of these cases, enabling polling is a good option:
 
 ```javascript
 module.exports = {
-  devServer: {
-    watchOptions: {
-      // Delay the rebuild after the first change
-      aggregateTimeout: 300,
+  watchOptions: {
+    // Delay the rebuild after the first change
+    aggregateTimeout: 300,
 
-      // Poll using interval (in ms, accepts boolean too)
-      poll: 1000,
-      // Ignore node_modules to decrease CPU usage
-      ignored: /node_modules/,
-    },
+    // Poll using interval (in ms, accepts boolean too)
+    poll: 1000,
+    // Ignore node_modules to decrease CPU usage
+    ignored: /node_modules/,
   },
 };
 ```
@@ -201,16 +196,6 @@ There's also a [Node API](https://webpack.js.org/configuration/dev-server/) if y
 It's possible your project depends indirectly on files, and webpack isn't aware of this. To alleviate the problem, I implemented a small plugin called [webpack-add-dependency-plugin](https://www.npmjs.com/package/webpack-add-dependency-plugin) that lets you handle the issue.
 
 The situation can occur, for example, when you are using `MiniHtmlWebpackPlugin` and have customized its template logic to load external files.
-
-## Other features of WDS
-
-WDS provides functionality beyond what was covered above. There are a couple of relevant fields that you should be aware of:
-
-- `devServer.contentBase` - Assuming you don't generate _index.html_ dynamically and prefer to maintain it yourself in a specific directory, you need to point WDS to it. `contentBase` accepts either a path (e.g., `"build"`) or an array of paths (e.g., `["build", "images"]`). The value defaults to the project root.
-- `devServer.proxy` - If you are using multiple servers, you have to proxy WDS to them. The proxy setting accepts an object of proxy mappings (e.g., `{ "/api": "http://localhost:3000/api" }`) that resolve matching queries to another server. Proxy settings are disabled by default.
-- `devServer.headers` - Attach custom headers to your requests here.
-
-T> [The official documentation](https://webpack.js.org/configuration/dev-server/) covers more options.
 
 ## Development plugins
 

@@ -35,18 +35,18 @@ The approach works nicely with **Continuous Integration** (CI) setups as well as
 To add webpack to the project, execute:
 
 ```bash
-npm add webpack webpack-cli -D # -D === --develop
+npm add webpack webpack-nano -D # -D === --develop
 ```
 
-You should see webpack at your `package.json` `devDependencies` section after this. In addition to installing the package locally below the `node_modules` directory, npm also generates an entry for the executable you can find at `node_modules/.bin` directory.
+You should see **webpack** and **webpack-nano** in your `package.json` `devDependencies` section after this. In addition to installing the package locally below the `node_modules` directory, npm also generates an entry for the executable you can find at `node_modules/.bin` directory.
 
-T> If you want to use webpack 5 to run the examples, use `npm add webpack@next webpack-cli@beta -D` instead.
+We're using **webpack-nano** over the official [webpack-cli](https://www.npmjs.com/package/webpack-cli) as it has enough features for the book project while being directly compatible with webpack 4 and 5.
 
-T> If you run `npm add`, it will write the dependencies to `package.json` `dependencies`. The `-D` flag writes them to `devDependencies` instead. The split allows you to communicate which dependencies are application specific and which are required for developing it. It's optional to follow this convention and it's important for npm package authors as it defines which packages depend on the one they are distributing.
+**webpack-cli** comes with additional functionality, including `init` and `migrate` commands that allow you to create new webpack configuration fast and update from an older version to a newer one.
 
-T> [webpack-cli](https://www.npmjs.com/package/webpack-cli) comes with additional functionality including `init` and `migrate` commands that allow you to create new webpack configuration fast and update from an older version to a newer one.
+T> If you want to use webpack 5 to run the examples, use `npm add webpack@next` instead.
 
-T> [webpack-nano](https://www.npmjs.com/package/webpack-nano) is a light option to **webpack-cli**.
+T> If you run `npm add`, it will write the dependencies to `package.json` `dependencies`. The `-D` flag writes them to `devDependencies` instead. The split allows you to communicate which dependencies are application-specific and which are required for developing it. If you are authoring npm packages, you should follow the split.
 
 ## Executing webpack
 
@@ -55,15 +55,13 @@ You can display the exact path of the executables using `npm bin`. Most likely i
 After running, you should see a version, a link to the command line interface guide and an extensive list of options. Most aren't used in this project, but it's good to know that this tool is packed with functionality if nothing else.
 
 ```bash
-$ node_modules/.bin/webpack
+$ node_modules/.bin/wp
 
-Insufficient number of arguments or no entry found.
-Alternatively, run 'webpack(-cli) --help' for usage info.
-
-Hash: 825466854a76efce42e4
-Version: webpack 4.43.0
-Time: 28ms
-Built at: 07/09/2020 10:48:13 AM
+⬡ webpack: Build Finished
+⬡ webpack: Hash: 80f545d7d31df2164016
+  Version: webpack 4.44.1
+  Time: 29ms
+  Built at: 08/21/2020 9:24:56 AM
 
 WARNING in configuration
 The 'mode' option has not been set, webpack will fallback to 'production' for this value. Set 'mode' option to 'development' or 'production' to enable defaults for each environment.
@@ -77,7 +75,7 @@ The output tells that webpack cannot find the source to compile. Ideally we woul
 To make webpack compile, do the following:
 
 1. Set up `src/index.js` so that it contains `console.log("Hello world");`.
-2. Execute `node_modules/.bin/webpack --mode development`. Webpack will discover the source file by Node convention. If you skip `--mode`, you'll get **production** output instead.
+2. Execute `node_modules/.bin/wp --mode development`. Webpack will discover the source file by Node convention. If you skip `--mode`, you'll get **production** output instead.
 3. Examine `dist/main.js`. You should see webpack bootstrap code that begins executing the code. Below the bootstrap, you should find something familiar.
 
 T> There's third mode, `--mode none`, that doesn't apply any defaults. The main use for this one is debugging your output without any additional processing applied by the main targets.
@@ -129,11 +127,13 @@ To connect the plugin with webpack, set up configuration as below:
 **webpack.config.js**
 
 ```javascript
+const { mode } = require("webpack-nano/argv");
 const {
   MiniHtmlWebpackPlugin,
 } = require("mini-html-webpack-plugin");
 
 module.exports = {
+  mode,
   plugins: [
     new MiniHtmlWebpackPlugin({
       context: {
@@ -146,7 +146,7 @@ module.exports = {
 
 Now that the configuration is done, you should try the following:
 
-1. Build the project using `node_modules/.bin/webpack --mode production`. You can try the `development` and `none` modes too.
+1. Build the project using `node_modules/.bin/wp --mode production`. You can try the `development` and `none` modes too.
 2. Enter the build directory using `cd dist`.
 3. Run the server using `serve` (`npm add serve -g` or `npx serve`) or a similar command you are familiar with.
 4. Examine the result through a web browser. You should see something familiar there.
@@ -161,32 +161,33 @@ W> Webpack has default configuration for its entries and output. It looks for so
 
 ## Examining the output
 
-If you execute `node_modules/.bin/webpack --mode production`, you should see output:
+If you execute `node_modules/.bin/wp --mode production`, you should see output:
 
 ```bash
-Hash: 4a1682d15fc37fdfcce1
-Version: webpack 4.43.0
-Time: 168ms
-Built at: 07/09/2020 11:09:21 AM
-     Asset       Size  Chunks             Chunk Names
-index.html  198 bytes          [emitted]
-   main.js   1.04 KiB       0  [emitted]  main
-Entrypoint main = main.js
-[0] ./src/index.js + 1 modules 220 bytes {0} [built]
-    | ./src/index.js 77 bytes [built]
-    | ./src/component.js 143 bytes [built]
+⬡ webpack: Build Finished
+⬡ webpack: Hash: b3d548da335f2c806f02
+  Version: webpack 4.44.1
+  Time: 60ms
+  Built at: 08/21/2020 9:29:03 AM
+       Asset       Size  Chunks             Chunk Names
+  index.html  198 bytes          [emitted]
+     main.js   1.04 KiB       0  [emitted]  main
+  Entrypoint main = main.js
+  [0] ./src/index.js + 1 modules 219 bytes {0} [built]
+      | ./src/index.js 77 bytes [built]
+      | ./src/component.js 142 bytes [built]
 ```
 
 {pagebreak}
 
 The output is revealing:
 
-- `Hash: 4a1682d15fc37fdfcce1` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. Hashing is discussed in detail in the _Adding Hashes to Filenames_ chapter.
-- `Version: webpack 4.43.0` - Webpack version.
-- `Time: 168ms` - Time it took to execute the build.
+- `Hash: b3d548da335f2c806f02` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. Hashing is discussed in detail in the _Adding Hashes to Filenames_ chapter.
+- `Version: webpack 4.44.1` - Webpack version.
+- `Time: 60ms` - Time it took to execute the build.
 - `index.html 198 bytes [emitted]` - Another generated asset that was emitted by the process.
 - `main.js 1.04 KiB 0 [emitted] main` - Name of the generated asset, size, the IDs of the **chunks** into which it's related, status information telling how it was generated, the name of the chunk.
-- `[0] ./src/index.js + 1 modules 220 bytes {0} [built]` - The ID of the entry asset, name, size, entry chunk ID, the way it was generated.
+- `[0] ./src/index.js + 1 modules 219 bytes {0} [built]` - The ID of the entry asset, name, size, entry chunk ID, the way it was generated.
 
 Examine the output below the `dist/` directory. If you look closely, you can see the same IDs within the source.
 
@@ -200,7 +201,7 @@ Given the output given by webpack can be difficult to decipher, multiple options
 - [friendly-errors-webpack-plugin](https://www.npmjs.com/package/friendly-errors-webpack-plugin) improves on error reporting of webpack. It captures common errors and displays them in a friendly manner.
 - [webpackbar](https://www.npmjs.com/package/webpackbar) has been made especially for tracking build progress.
 - `webpack.ProgressPlugin` is included out of the box and can be used as well.
-- [webpack-dashboard](https://www.npmjs.com/package/webpack-dashboard) gives an entire terminal based dashboard over the standard webpack output. If you prefer clear visual output, this one comes in handy.
+- [webpack-dashboard](https://www.npmjs.com/package/webpack-dashboard) gives an entire terminal-based dashboard over the standard webpack output. If you prefer clear visual output, this one comes in handy.
 - [test-webpack-reporter-plugin](https://www.npmjs.com/package/test-webpack-reporter-plugin) abstracts webpack's internals to make it easier to write your own reporters.
 
 Give the above options a go if you want to go beyond default output.
@@ -214,7 +215,7 @@ Given executing `node_modules/.bin/webpack` gets boring after a while, lets adju
 ```json
 {
   "scripts": {
-    "build": "webpack --mode production"
+    "build": "wp --mode production"
   }
 }
 ```
@@ -237,7 +238,7 @@ Although **mini-html-webpack-plugin** is enough for basic use cases, there can b
 
 - [favicons-webpack-plugin](https://www.npmjs.com/package/favicons-webpack-plugin) is able to generate favicons.
 - [script-ext-html-webpack-plugin](https://www.npmjs.com/package/script-ext-html-webpack-plugin) gives you more control over script tags and allows you to tune script loading further.
-- [webpack-cdn-plugin](https://www.npmjs.com/package/webpack-cdn-plugin) allows you to specify which dependencies to load through a Content Delivery Network (CDN). This common technique is used for speeding up loading of popular libraries.
+- [webpack-cdn-plugin](https://www.npmjs.com/package/webpack-cdn-plugin) allows you to specify which dependencies to load through a Content Delivery Network (CDN). This common technique is used to load popular libraries faster.
 - [dynamic-cdn-webpack-plugin](https://www.npmjs.com/package/dynamic-cdn-webpack-plugin) achieves a similar result.
 
 {pagebreak}
@@ -249,7 +250,7 @@ Even though you have managed to get webpack up and running, it does not do that 
 To recap:
 
 - It's a good idea to use a locally installed version of webpack over a globally installed one. This way you can be sure of what version you are using. The local dependency also works in a Continuous Integration environment.
-- Webpack provides a command line interface through the **webpack-cli** package. You can use it even without configuration, but any advanced usage requires work.
+- Webpack provides a command line interface through the **webpack-cli** package. You can use it even without configuration, but any advanced usage requires work. **webpack-nano** is a good alternative for basic usage.
 - To write more complicated setups, you most likely have to write a separate `webpack.config.js` file.
 - **mini-html-webpack-plugin** and **html-webpack-plugin** can be used to generate an HTML entry point to your application. In the _Multiple Pages_ chapter you will see how to generate multiple separate pages using the plugin.
 - It's handy to use npm `package.json` scripts to manage webpack. You can use it as a light task runner and use system features outside of webpack.

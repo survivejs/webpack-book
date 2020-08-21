@@ -46,7 +46,7 @@ This error fits the same category. Parsing the file succeeded, but there was the
 
 ## DeprecationWarning
 
-Node may give a `DeprecationWarning` especially after webpack has been updated to a new major version. A plugin or a loader you are using may require updates. Often the changes required are minimal. To figure out where the warning is coming from, run webpack through Node: `node --trace-deprecation node_modules/.bin/webpack --env production`.
+Node may give a `DeprecationWarning` especially after webpack has been updated to a new major version. A plugin or a loader you are using may require updates. Often the changes required are minimal. To figure out where the warning is coming from, run webpack through Node: `node --trace-deprecation node_modules/.bin/wp --mode production`.
 
 It's important to pass the `--trace-deprecation` flag to Node to see where the warning originates from. Using `--trace-warnings` is another way and it will capture the tracing information for all warnings, not only deprecations.
 

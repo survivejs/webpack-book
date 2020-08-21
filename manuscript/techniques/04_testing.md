@@ -109,6 +109,9 @@ const { merge } = require("webpack-merge");
 const parts = require("./webpack.parts");
 
 module.exports = merge([
+  {
+    mode: "development",
+  },
   parts.devServer(),
   parts.page({
     title: "Mocha demo",
@@ -128,7 +131,7 @@ Add a helper script to make it convenient to run:
 ```json
 "scripts": {
   "test:mocha:watch":
-    "webpack-dev-server --hot --config webpack.mocha.js",
+    "wp --config webpack.mocha.js",
   ...
 },
 ```

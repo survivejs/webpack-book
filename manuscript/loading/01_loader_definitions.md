@@ -9,7 +9,7 @@ Webpack supports common JavaScript formats out of the box. Other formats can be 
 **webpack.config.js**
 
 ```javascript
-module.exports = {
+const config = {
   module: {
     rules: [
       {

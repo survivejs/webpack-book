@@ -18,7 +18,7 @@ To make webpack emit analysis information, you should set the `--json` flag and 
 ```json
 "scripts": {
 leanpub-start-insert
-  "build:stats": "webpack --env production --json > stats.json",
+  "build:stats": "wp --mode production --json > stats.json",
 leanpub-end-insert
   ...
 },

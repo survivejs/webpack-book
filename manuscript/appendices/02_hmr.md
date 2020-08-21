@@ -10,12 +10,12 @@ T> Given HMR can be complex to implement, a good compromise is to store applicat
 
 The following steps need to be enabled for HMR to work:
 
-1. WDS has to run in the hot mode to expose the hot module replacement interface to the client.
+1. The development server has to run in the hot mode to expose the hot module replacement interface to the client.
 2. Webpack has to provide hot updates to the server and can be achieved using `webpack.HotModuleReplacementPlugin`.
-3. The client has to run specific scripts provided by the WDS. They will be injected automatically but can be enabled explicitly through entry configuration.
+3. The client has to run specific scripts provided by the development server. They will be injected automatically but can be enabled explicitly through entry configuration.
 4. The client has to implement the HMR interface through `module.hot.accept` and optionally `module.hot.dispose` to clean module before replacing it.
 
-Using `webpack-dev-server --hot` solves the first two problems. In this case, you have to handle only the last one yourself if you want to patch JavaScript application code. Skipping the `--hot` flag and going through webpack configuration gives more flexibility.
+Using `webpack-dev-server --hot` or running **webpack-plugin-serve** in `hot` mode solves the first two problems. In this case, you have to handle only the last one yourself if you want to patch JavaScript application code. Skipping the `--hot` flag and going through webpack configuration gives more flexibility.
 
 The following listing contains the essential parts related to this approach. You will have to adapt from here to match your configuration style:
 

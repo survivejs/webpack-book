@@ -11,7 +11,7 @@ You can manage webpack configuration in the following ways:
 - Maintain configuration within multiple files for each environment and point webpack to each through the `--config` parameter, sharing configuration through module imports.
 - Push configuration to a library, which you then consume. Examples: [webpack-config-plugins](https://github.com/namics/webpack-config-plugins), [Neutrino](https://neutrino.js.org/), [webpack-blocks](https://www.npmjs.com/package/webpack-blocks).
 - Push configuration to a tool. Examples: [create-react-app](https://www.npmjs.com/package/create-react-app), [kyt](https://www.npmjs.com/package/kyt), [nwb](https://www.npmjs.com/package/nwb).
-- Maintain all configuration within a single file and branch there and rely on the `--env` parameter. The approach is explained in detail later in this chapter.
+- Maintain all configuration within a single file and branch there and rely on the `--mode` parameter. The approach is explained in detail later in this chapter.
 
 My preferred approach is to compose webpack configuration out of smaller functions that I put together. The development of this book motivated the direction as it gives you something you can approach piece-wise while giving you a small API over webpack configuration and related techniques.
 
@@ -52,18 +52,32 @@ To give a degree of abstraction, you can define _webpack.config.js_ for higher l
 **webpack.parts.js**
 
 ```javascript
-exports.devServer = ({ host, port } = {}) => ({
-  devServer: {
-    stats: "errors-only",
-    host, // Defaults to `localhost`
-    port, // Defaults to 8080
-    open: true,
-    overlay: true,
-  },
+const { WebpackPluginServe } = require("webpack-plugin-serve");
+const {
+  MiniHtmlWebpackPlugin,
+} = require("mini-html-webpack-plugin");
+
+exports.devServer = () => ({
+  watch: true,
+  plugins: [
+    new WebpackPluginServe({
+      port: process.env.PORT || 8080,
+      static: "./dist", // Expose if output.path changes
+      liveReload: true,
+    }),
+  ],
+});
+
+exports.page = ({ title }) => ({
+  plugins: [
+    new MiniHtmlWebpackPlugin({
+      context: {
+        title,
+      },
+    }),
+  ],
 });
 ```
-
-T> The same `stats` idea works for production configuration as well. See [the official documentation](https://webpack.js.org/configuration/stats/) for all the available options.
 
 T> For the sake of simplicity, we'll develop all of the configuration using JavaScript. It would be possible to use TypeScript here as well. If you want to go that route, see the _Loading JavaScript_ chapter for the required TypeScript setup.
 
@@ -74,23 +88,15 @@ To connect this configuration part, set up _webpack.config.js_ as in the code ex
 **webpack.config.js**
 
 ```javascript
+const { mode } = require("webpack-nano/argv");
 const { merge } = require("webpack-merge");
-const {
-  MiniHtmlWebpackPlugin,
-} = require("mini-html-webpack-plugin");
-
 const parts = require("./webpack.parts");
 
 const commonConfig = merge([
   {
-    plugins: [
-      new MiniHtmlWebpackPlugin({
-        context: {
-          title: "Webpack demo",
-        },
-      }),
-    ],
+    entry: ["./src", "webpack-plugin-serve/client"],
   },
+  parts.page({ title: "Webpack demo" }),
 ]);
 
 const productionConfig = merge([]);
@@ -103,7 +109,7 @@ const developmentConfig = merge([
   }),
 ]);
 
-module.exports = (mode) => {
+const getConfig = (mode) => {
   switch (mode) {
     case "production":
       return merge(commonConfig, productionConfig, { mode });
@@ -113,6 +119,8 @@ module.exports = (mode) => {
       throw new Error(`Trying to use an unknown mode, ${mode}`);
   }
 };
+
+module.exports = getConfig(mode);
 ```
 
 Instead of returning a configuration directly, a function capturing the passed `env` is returned. The function returns configuration based on it and also maps webpack `mode` to it. Doing this means `package.json` needs a modification:
@@ -123,12 +131,12 @@ Instead of returning a configuration directly, a function capturing the passed `
 {
   "scripts": {
 leanpub-start-delete
-    "start": "webpack-dev-server --mode development",
-    "build": "webpack --mode production"
+    "start": "wp --mode development",
+    "build": "wp --mode production"
 leanpub-end-delete
 leanpub-start-insert
-    "start": "webpack-dev-server --env development",
-    "build": "webpack --env production"
+    "start": "wp --mode development",
+    "build": "wp --mode production"
 leanpub-end-insert
   },
   ...
@@ -144,24 +152,6 @@ T> `productionConfig` is a stub for now and it will grow later as we expand the 
 T> The [process](https://nodejs.org/api/process.html) module used in the code is exposed by Node as a global. In addition to `env`, it provides plenty of other functionality that allows you to get more information of the host system.
 
 W> [Webpack does not set global NODE_ENV](https://github.com/webpack/webpack/issues/7074) based on `mode` by default. If you have any external tooling, such as Babel, relying on it, make sure to set it explicitly. To do this, set `process.env.NODE_ENV = mode;` within the webpack configuration function.
-
-### Understanding `--env`
-
-Even though `--env` allows to pass strings to the configuration, it can do a bit more. Consider the following example:
-
-**package.json**
-
-```json
-{
-  "scripts": {
-    "start": "webpack-dev-server --env development",
-    "build": "webpack --env.mode production"
-  },
-  ...
-}
-```
-
-Instead of a string, you should receive an object `{ mode: "production" }` at configuration now. You could pass more key-value pairs, and they would go to the `env` object. If you set `--env foo` while setting `--env.target`, the string wins. Webpack relies on [yargs](http://yargs.js.org/docs/#parsing-tricks-dot-notation) for parsing underneath.
 
 ## Benefits of composing configuration
 
@@ -267,7 +257,6 @@ To recap:
 
 - Given webpack configuration is JavaScript code underneath, there are many ways to manage it.
 - You should choose a method to compose configuration that makes the most sense to you. [webpack-merge](https://www.npmjs.com/package/webpack-merge) was developed to provide a light approach for composition, but you can find many other options in the wild.
-- Webpack's `--env` parameter allows you to control configuration target through terminal. You receive the passed `env` through a function interface.
 - Composition can enable configuration sharing. Instead of having to maintain a custom configuration per repository, you can share it across repositories this way. Using npm packages allows this. Developing configuration is close to developing any other code. This time, however, you codify your practices as packages.
 
 The next parts of this book cover different techniques, and _webpack.parts.js_ sees a lot of action as a result. The changes to _webpack.config.js_, fortunately, remain minimal.
