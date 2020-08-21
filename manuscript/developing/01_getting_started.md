@@ -112,7 +112,7 @@ The problem can be solved by writing an `index.html` file that points to the gen
 
 {pagebreak}
 
-To get started, install **mini-html-webpack-plugin**:
+To get started, install [mini-html-webpack-plugin](https://www.npmjs.com/package/mini-html-webpack-plugin):
 
 ```bash
 npm add mini-html-webpack-plugin -D
@@ -152,11 +152,7 @@ See the result through a web browser. You should see something familiar there.
 
 ![Hello world](images/hello_01.png)
 
-T> See [mini-html-webpack-plugin](https://www.npmjs.com/package/mini-html-webpack-plugin) documentation for further options. You can override the HTML template fully, and process individual parts injected to it freely.
-
 W> Webpack has default configuration for its entries and output. It looks for source from `./src` by default and its emits output to `./dist`. You can control these through `entry` and `output` respectively as seen in the _What is Webpack_ chapter.
-
-{pagebreak}
 
 ## Examining the output
 
@@ -176,6 +172,8 @@ If you execute `node_modules/.bin/wp --mode production`, you should see output:
       | ./src/index.js 77 bytes [built]
       | ./src/component.js 142 bytes [built]
 ```
+
+{pagebreak}
 
 The output is revealing:
 
@@ -202,8 +200,6 @@ Given the output given by webpack can be difficult to decipher, multiple options
 - [test-webpack-reporter-plugin](https://www.npmjs.com/package/test-webpack-reporter-plugin) abstracts webpack's internals to make it easier to write your own reporters.
 
 Give the above options a go if you want to go beyond default output.
-
-{pagebreak}
 
 ## Adding a build shortcut
 
