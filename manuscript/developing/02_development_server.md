@@ -156,6 +156,8 @@ It's possible the file watching setup provided with webpack won't work on your s
 
 Polling is almost mandatory when using Vagrant, Docker, or any other solution that doesn't forward events for changes on a file located in a folder shared with the virtualized machine where webpack is running. [vagrant-notify-forwarder](https://github.com/mhallin/vagrant-notify-forwarder) solves the problem for MacOS and Unix.
 
+{pagebreak}
+
 For any of these cases, enabling polling is a good option:
 
 **webpack.config.js**
