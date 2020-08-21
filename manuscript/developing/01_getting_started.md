@@ -148,7 +148,7 @@ Now that the configuration is done, you should try the following:
 
 {pagebreak}
 
-See the result through a web browser. You should see something familiar there.
+See the result through a web browser. You should see a hello message there:
 
 ![Hello world](images/hello_01.png)
 
@@ -187,6 +187,8 @@ The output is revealing:
 Examine the output below the `dist/` directory. If you look closely, you can see the same IDs within the source.
 
 T> In addition to a configuration object, webpack accepts an array of configurations. You can also return a `Promise` and eventually `resolve` to a configuration for example. Latter is useful if you are fetching configuration related data from a third-party source.
+
+{pagebreak}
 
 ## Webpack output plugins
 
