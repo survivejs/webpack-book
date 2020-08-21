@@ -137,7 +137,7 @@ To access your server, you need to figure out the ip of your machine. On Unix, t
 
 ## Making it faster to develop configuration
 
-WDS will handle restarting the server when you change a bundled file. It's oblivious to changes made to webpack configuration, though, and you have to restart the WDS whenever a change occurs. The process can be automated as [discussed in GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892) by using [nodemon](https://www.npmjs.com/package/nodemon) monitoring tool.
+WPS will handle restarting the server when you change a bundled file. It's oblivious to changes made to webpack configuration, though, and you have to restart the WPS whenever a change occurs. The process can be automated as [discussed in GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892) by using [nodemon](https://www.npmjs.com/package/nodemon) monitoring tool.
 
 To get it to work, you have to install it first through `npm add nodemon -D`. Here's the script if you want to give it a go:
 
@@ -152,7 +152,7 @@ To get it to work, you have to install it first through `npm add nodemon -D`. He
 
 ## Polling instead of watching files
 
-It's possible the file watching setup provided by WDS won't work on your system. It can be problematic on older versions of Windows and Ubuntu.
+It's possible the file watching setup provided with webpack won't work on your system. It can be problematic on older versions of Windows and Ubuntu.
 
 Polling is almost mandatory when using Vagrant, Docker, or any other solution that doesn't forward events for changes on a file located in a folder shared with the virtualized machine where webpack is running. [vagrant-notify-forwarder](https://github.com/mhallin/vagrant-notify-forwarder) solves the problem for MacOS and Unix.
 
@@ -205,14 +205,14 @@ The webpack plugin ecosystem is diverse, and there are a lot of plugins that can
 
 ## Conclusion
 
-WDS complements webpack and makes it more friendly for developers by providing development-oriented functionality.
+WPS and WDS complement webpack and makes it more friendly for developers by providing development-oriented functionality.
 
 To recap:
 
 - Webpack's `watch` mode is the first step towards a better development experience. You can have webpack compile bundles as you edit your source.
-- WDS can refresh the browser on change. It also implements **Hot Module Replacement**.
-- The default WDS setup can be problematic on specific systems. For this reason, more resource-intensive polling is an alternative.
+- WPS and WDS can refresh the browser on change. It also implements **Hot Module Replacement**.
+- The default webpack watching setup can be problematic on specific systems. For this reason, more resource-intensive polling is an alternative.
 - WDS can be integrated into an existing Node server using a middleware. Doing this gives you more control than relying on the command line interface.
-- WDS does far more than refreshing and HMR. For example, proxying allows you to connect it to other servers.
+- WPS and WDS do far more than refreshing and HMR. For example, proxying allows you to connect it to other servers.
 
 In the next chapter, you learn to compose configuration so that it can be developed further later in the book.
