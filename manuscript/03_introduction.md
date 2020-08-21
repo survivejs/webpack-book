@@ -59,8 +59,6 @@ Especially at the beginning and intermediate levels it can make sense to follow 
 
 Even if you use webpack through an abstraction such as Create React App, it can be valuable to understand the tool in case you have to extend your setup one day. Many of the techniques discussed go beyond webpack itself and are useful to know in daily development if and when you have to optimize your web application or site for example.
 
-{pagebreak}
-
 ## What are the book conventions
 
 The book uses several conventions to keep the content accessible. I've listed examples below:
@@ -68,6 +66,8 @@ The book uses several conventions to keep the content accessible. I've listed ex
 > This is a tip. Often you can find auxiliary information and further references in tips.
 
 W> This is a warning that's highlighting unexpected behavior or a common problem point that you should know.
+
+{pagebreak}
 
 Especially in the early part of the book, the code is written in a tutorial form. For this reason, the following syntax is used:
 
@@ -134,8 +134,6 @@ You can find more related material from the following sources:
 - Subscribe to the [blog RSS](https://survivejs.com/atom.xml) to get access to interviews and more.
 - Subscribe to the [Youtube channel](https://www.youtube.com/SurviveJS).
 - Check out [SurviveJS related presentation slides](https://presentations.survivejs.com/).
-
-{pagebreak}
 
 ## Acknowledgments
 
