@@ -81,8 +81,6 @@ exports.page = ({ title }) => ({
 
 T> For the sake of simplicity, we'll develop all of the configuration using JavaScript. It would be possible to use TypeScript here as well. If you want to go that route, see the _Loading JavaScript_ chapter for the required TypeScript setup.
 
-{pagebreak}
-
 To connect this configuration part, set up _webpack.config.js_ as in the code example below:
 
 **webpack.config.js**
@@ -167,8 +165,6 @@ There are several benefits to composing configuration:
 
 In the book project, you will push all of the configuration into two files: _webpack.config.js_ and _webpack.parts.js_. The former contains higher level configuration while the lower level isolates you from webpack specifics. The chosen approach allows more file layouts than the one we have.
 
-{pagebreak}
-
 ### Split per configuration target
 
 If you split the configuration per target, you could end up with a file structure as below:
@@ -246,8 +242,6 @@ compiler.run((err, stats) => {
 ```
 
 T> [See Stack Overflow](https://stackoverflow.com/questions/39923743/is-there-a-way-to-get-the-output-of-webpack-node-api-as-a-string) for related discussion.
-
-{pagebreak}
 
 ## Conclusion
 
