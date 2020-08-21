@@ -41,8 +41,6 @@ There's also functionality that goes beyond the official development server, inc
 
 T> To learn mode about HMR, read the _Hot Module Replacement_ appendix. You can learn the fundamentals of the technique and why people use it. Applying it won't be necessary to complete the tutorial, though.
 
-{pagebreak}
-
 ## Getting started with WPS
 
 To get started with WPS, install it first:
@@ -50,6 +48,8 @@ To get started with WPS, install it first:
 ```bash
 npm add webpack-plugin-serve -D
 ```
+
+{pagebreak}
 
 To integrate WPS to the project, define an npm script for launching it. To follow npm conventions, call it as _start_ like below:
 
@@ -158,8 +158,6 @@ It's possible the file watching setup provided by WDS won't work on your system.
 
 Polling is almost mandatory when using Vagrant, Docker, or any other solution that doesn't forward events for changes on a file located in a folder shared with the virtualized machine where webpack is running. [vagrant-notify-forwarder](https://github.com/mhallin/vagrant-notify-forwarder) solves the problem for MacOS and Unix.
 
-{pagebreak}
-
 For any of these cases, enabling polling is a good option:
 
 **webpack.config.js**
@@ -206,8 +204,6 @@ The webpack plugin ecosystem is diverse, and there are a lot of plugins that can
 - [react-dev-utils](https://www.npmjs.com/package/react-dev-utils) contains webpack utilities developed for [Create React App](https://www.npmjs.com/package/create-react-app). Despite its name, they can find use beyond React. If you want only webpack message formatting, consider [webpack-format-messages](https://www.npmjs.com/package/webpack-format-messages).
 - [webpack-notifier](https://www.npmjs.com/package/webpack-notifier) uses system notifications to let you know of webpack status.
 - [sounds-webpack-plugin](https://www.npmjs.com/package/sounds-webpack-plugin) rings the system bell on failure instead of letting webpack fail silently.
-
-{pagebreak}
 
 ## Conclusion
 
