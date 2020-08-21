@@ -207,7 +207,11 @@ If you go with the configuration package approach I mentioned, consider the guid
 - Include all related dependencies within the configuration package. In specific cases you could use `peerDependencies` if you want that the consumer is able to control specific versions. Doing this means you'll likely download more dependencies that you would need but it's a good compromise.
 - For parameters that have a loader string within them, use `require.resolve` to resolve against a loader within the configuration package. Otherwise the build can fail as it's looking into the wrong place for the loaders.
 - When wrapping loaders, use the associated TypeScript type in function parameters.
-- Consider testing the package by using snapshots (`expect().toMatchSnapshot()` in Jest) to assert output changes. The trick is to use [memory-fs](https://www.npmjs.com/package/memory-fs) in combination with `compiler.outputFileSystem` as below:
+- Consider testing the package by using snapshots (`expect().toMatchSnapshot()` in Jest) to assert output changes.
+
+{pagebreak}
+
+The trick is to use [memory-fs](https://www.npmjs.com/package/memory-fs) in combination with `compiler.outputFileSystem` as below:
 
 ```javascript
 const webpack = require("webpack");
@@ -216,9 +220,7 @@ const _ = require("lodash");
 const config = require("./webpack.config");
 
 const compiler = webpack(config);
-
 compiler.outputFileSystem = new MemoryFs();
-
 compiler.run((err, stats) => {
   // 1. Handle possible err and stats.hasErrors() case
   if (err || stats.hasErrors()) {
@@ -226,8 +228,7 @@ compiler.run((err, stats) => {
     return reject(err);
   }
 
-  // 2. Check compile.outputFileSystem
-  const pathParts = compiler.outputFileSystem
+  const pathParts = compiler.outputFileSystem // Check webpack fs
     .pathToArray(__dirname)
     .concat(["dist", "main.js"]);
 
@@ -237,11 +238,13 @@ compiler.run((err, stats) => {
     pathParts
   ).toString();
 
-  // 3. Assert the file using your testing framework.
+  // 3. TODO: Assert the file using your testing framework.
 });
 ```
 
 T> [See Stack Overflow](https://stackoverflow.com/questions/39923743/is-there-a-way-to-get-the-output-of-webpack-node-api-as-a-string) for related discussion.
+
+{pagebreak}
 
 ## Conclusion
 
