@@ -102,9 +102,6 @@ If you execute either _npm run start_ or _npm start_ now, you should see somethi
 ```bash
 > wp --mode development
 
-...
-> wp --mode development
-
 ⬡ webpack: Watching Files
 ⬡ wps: Server Listening on: http://[::]:8080
 
@@ -116,14 +113,13 @@ If you execute either _npm run start_ or _npm start_ now, you should see somethi
   index.html  198 bytes          [emitted]
      main.js   63.4 KiB    main  [emitted]  main
   Entrypoint main = main.js
-...
 ```
-
-{pagebreak}
 
 The server is running, and if you open `http://localhost:8080/` at your browser, you should see a hello:
 
 ![Hello world](images/hello_01.png)
+
+{pagebreak}
 
 If you try modifying the code, you should see the output in your terminal. The browser should also perform a hard refresh so that you can see the change.
 
