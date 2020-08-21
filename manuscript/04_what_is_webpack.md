@@ -18,15 +18,13 @@ Webpack supports ES2015, CommonJS, MJS, and AMD module formats out of the box. T
 
 T> A dependency graph is a directed graph that describes how nodes relate to each other. In this case, the graph definition is defined through references (`require`, `import`) between files. Webpack statically traverses these without executing the source to generate the graph it needs to create bundles.
 
-T> Starting from webpack 5, there's support for [experiments](https://webpack.js.org/configuration/experiments/#experiments). These represent future functionality that's hidden behind a feature flag and allows early testing of the functionality.
-
-{pagebreak}
-
 ## Webpack's execution process
 
 ![Webpack's execution process](images/webpack-process.png)
 
 Webpack begins its work from **entries**. Often these are JavaScript modules where webpack begins its traversal process. During this process, webpack evaluates entry matches against **loader** configurations that tell webpack how to transform each match.
+
+T> Starting from webpack 5, there's support for [experiments](https://webpack.js.org/configuration/experiments/#experiments). These represent future functionality that's hidden behind a feature flag and allows early testing.
 
 ### Resolution process
 
