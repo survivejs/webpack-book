@@ -166,6 +166,8 @@ Install Jest first:
 npm add jest -D
 ```
 
+{pagebreak}
+
 Jest captures tests through `package.json` [configuration](https://facebook.github.io/jest/docs/en/configuration.html). It detects tests within a _**tests**_ directory it also happens to capture the naming pattern the project is using by default:
 
 **package.json**
@@ -191,6 +193,8 @@ Porting a webpack setup to Jest requires more effort especially if you rely on w
 
 The main idea is to run both webpack and AVA in watch mode to push the problem of processing code to webpack while allowing AVA to consume the processed code. The `require.context` idea discussed with Mocha comes in handy here as you have to capture tests for webpack to handle somehow.
 
+{pagebreak}
+
 ## Mocking
 
 Mocking is a technique that allows you to replace test objects. Consider the solutions below:
@@ -198,8 +202,6 @@ Mocking is a technique that allows you to replace test objects. Consider the sol
 - [Sinon](https://www.npmjs.com/package/sinon) provides mocks, stubs, and spies. Sinon works well with webpack.
 - [inject-loader](https://www.npmjs.com/package/inject-loader) allows you to inject code into modules through their dependencies making it valuable for mocking.
 - [webpack-inject-plugin](https://www.npmjs.com/package/webpack-inject-plugin) is a plugin for injecting code on a bundle level.
-
-{pagebreak}
 
 ## Removing files from tests
 
