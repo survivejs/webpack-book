@@ -146,6 +146,8 @@ See the result through a web browser. You should see a hello message there:
 
 ![Hello world](images/hello_01.png)
 
+T> In addition to a configuration object, webpack accepts an array of configurations. You can also return a `Promise` and eventually `resolve` to a configuration for example. Latter is useful if you are fetching configuration related data from a third-party source.
+
 W> Webpack has default configuration for its entries and output. It looks for source from `./src` by default and its emits output to `./dist`. You can control these through `entry` and `output` respectively as seen in the _What is Webpack_ chapter.
 
 {pagebreak}
