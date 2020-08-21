@@ -47,7 +47,7 @@ To get started, add **webpack-merge** to the project:
 npm add webpack-merge -D
 ```
 
-To give a degree of abstraction, you can define _webpack.config.js_ for higher level configuration and _webpack.parts.js_ for configuration parts to consume. Here is the development server as a function:
+To give a degree of abstraction, you can define `webpack.config.js` for higher level configuration and `webpack.parts.js` for configuration parts to consume. Here is the development server as a function:
 
 **webpack.parts.js**
 
@@ -81,7 +81,7 @@ exports.page = ({ title }) => ({
 
 T> For the sake of simplicity, we'll develop all of the configuration using JavaScript. It would be possible to use TypeScript here as well. If you want to go that route, see the _Loading JavaScript_ chapter for the required TypeScript setup.
 
-To connect this configuration part, set up _webpack.config.js_ as in the code example below:
+To connect this configuration part, set up `webpack.config.js` as in the code example below:
 
 **webpack.config.js**
 
@@ -99,13 +99,7 @@ const commonConfig = merge([
 
 const productionConfig = merge([]);
 
-const developmentConfig = merge([
-  parts.devServer({
-    // Customize host/port here if needed
-    host: process.env.HOST,
-    port: process.env.PORT,
-  }),
-]);
+const developmentConfig = merge([parts.devServer()]);
 
 const getConfig = (mode) => {
   switch (mode) {
@@ -143,7 +137,7 @@ leanpub-end-insert
 
 After these changes, the build should behave the same way as before. This time, however, you have room to expand, and you don't have to worry about how to combine different parts of the configuration.
 
-You can add more targets by expanding the `package.json` definition and branching at _webpack.config.js_ based on the need. _webpack.parts.js_ grows to contain specific techniques you can then use to compose the configuration.
+You can add more targets by expanding the `package.json` definition and branching at `webpack.config.js` based on the need. `webpack.parts.js` grows to contain specific techniques you can then use to compose the configuration.
 
 T> `productionConfig` is a stub for now and it will grow later as we expand the configuration further.
 
@@ -163,7 +157,7 @@ There are several benefits to composing configuration:
 
 ## Configuration layouts
 
-In the book project, you will push all of the configuration into two files: _webpack.config.js_ and _webpack.parts.js_. The former contains higher level configuration while the lower level isolates you from webpack specifics. The chosen approach allows more file layouts than the one we have.
+In the book project, you will push all of the configuration into two files: `webpack.config.js` and `webpack.parts.js`. The former contains higher level configuration while the lower level isolates you from webpack specifics. The chosen approach allows more file layouts than the one we have.
 
 ### Split per configuration target
 
@@ -182,7 +176,7 @@ In this case, you would point to the targets through webpack `--config` paramete
 
 ### Split parts per purpose
 
-To add hierarchy to the way configuration parts are managed, you could decompose _webpack.parts.js_ per category:
+To add hierarchy to the way configuration parts are managed, you could decompose `webpack.parts.js` per category:
 
 ```bash
 .
@@ -256,4 +250,4 @@ To recap:
 - You should choose a method to compose configuration that makes the most sense to you. [webpack-merge](https://www.npmjs.com/package/webpack-merge) was developed to provide a light approach for composition, but you can find many other options in the wild.
 - Composition can enable configuration sharing. Instead of having to maintain a custom configuration per repository, you can share it across repositories this way. Using npm packages allows this. Developing configuration is close to developing any other code. This time, however, you codify your practices as packages.
 
-The next parts of this book cover different techniques, and _webpack.parts.js_ sees a lot of action as a result. The changes to _webpack.config.js_, fortunately, remain minimal.
+The next parts of this book cover different techniques, and `webpack.parts.js` sees a lot of action as a result. The changes to `webpack.config.js`, fortunately, remain minimal.
