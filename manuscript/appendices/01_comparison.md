@@ -71,6 +71,8 @@ Instead of `rm -rf`, you likely want to use utilities such as [rimraf](https://w
 
 [Grunt](http://gruntjs.com/) was the first famous task runner for frontend developers. Its plugin architecture contributed towards its popularity. Plugins are often complicated by themselves. As a result, when configuration grows, it can become tricky to understand what's going on.
 
+{pagebreak}
+
 Here's an example from [Grunt documentation](http://gruntjs.com/sample-gruntfile). In this configuration, you define a linting and watcher tasks. When the _watch_ task gets run, it triggers the _lint_ task as well. This way, as you run Grunt, you get warnings in real-time in the terminal as you edit the source code.
 
 **Gruntfile.js**
@@ -158,6 +160,8 @@ T> [webpack-stream](https://www.npmjs.com/package/webpack-stream) allows you to 
 ## Script loaders
 
 For a while, [RequireJS](http://requirejs.org/), a script loader, was popular. The idea was to provide an asynchronous module definition and build on top of that. Fortunately, the standards have caught up, and RequireJS seems more like a curiosity now.
+
+{pagebreak}
 
 ### RequireJS
 
