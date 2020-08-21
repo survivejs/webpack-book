@@ -50,7 +50,7 @@ T> If you run `npm add`, it will write the dependencies to `package.json` `depen
 
 ## Executing webpack
 
-You can display the exact path of the executables using `npm bin`. Most likely it points to `./node_modules/.bin`. Try running webpack from there through the terminal using `node_modules/.bin/webpack` or a similar command.
+You can display the exact path of the executables using `npm bin`. Most likely it points to `./node_modules/.bin`. Try running webpack from there through the terminal using `node_modules/.bin/wp` or a similar command.
 
 After running, you should see a version, a link to the command line interface guide and an extensive list of options. Most aren't used in this project, but it's good to know that this tool is packed with functionality if nothing else.
 
@@ -149,11 +149,11 @@ Now that the configuration is done, you should try the following:
 
 ![Hello world](images/hello_01.png)
 
-T> **Trailing commas** are used in the book examples on purpose as it gives cleaner diffs for the code examples.
-
 T> See [mini-html-webpack-plugin](https://www.npmjs.com/package/mini-html-webpack-plugin) documentation for further options. You can override the HTML template fully, and process individual parts injected to it freely.
 
 W> Webpack has default configuration for its entries and output. It looks for source from `./src` by default and its emits output to `./dist`. You can control these through `entry` and `output` respectively as seen in the _What is Webpack_ chapter.
+
+{pagebreak}
 
 ## Examining the output
 
@@ -200,9 +200,11 @@ Given the output given by webpack can be difficult to decipher, multiple options
 
 Give the above options a go if you want to go beyond default output.
 
+{pagebreak}
+
 ## Adding a build shortcut
 
-Given executing `node_modules/.bin/webpack` gets boring after a while, lets adjust `package.json` to run tasks as below:
+Given executing `node_modules/.bin/wp` gets boring after a while, lets adjust `package.json` to run tasks as below:
 
 **package.json**
 
@@ -214,17 +216,13 @@ Given executing `node_modules/.bin/webpack` gets boring after a while, lets adju
 }
 ```
 
-Run `npm run build` to see the same output as before. npm adds _node_modules/.bin_ temporarily to the path enabling this. As a result, rather than having to write `"build": "node_modules/.bin/webpack"`, you can do `"build": "webpack"`.
+Run `npm run build` to see the same output as before. npm adds _node_modules/.bin_ temporarily to the path enabling this. As a result, rather than having to write `"build": "node_modules/.bin/wp"`, you can do `"build": "wp"`.
 
 You can execute this kind of scripts through _npm run_ and you can use the command anywhere within your project. If you run the command without any parameters (_npm run_), it gives you the listing of available scripts.
 
-T> If you don't want to use the default configuration name, use `--config <configuration file>`. Run `webpack --help` to see all the available options.
-
-T> There are shortcuts like _npm start_ and _npm test_. You can run these directly without _npm run_ although that works too. For those in a hurry, you can use _npm t_ to run your tests.
-
-T> To go one step further, set up system-level aliases using the `alias` command in your terminal configuration. You could map `nrb` to `npm run build`, for instance.
-
 T> If you want to run multiple commands concurrently, see the [concurrently](https://www.npmjs.com/package/concurrently) package. It has been designed to allow that while providing neat output.
+
+{pagebreak}
 
 ## `HtmlWebpackPlugin` and its extensions
 

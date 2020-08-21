@@ -98,6 +98,8 @@ Sometimes the code assumes addition without the highlighting for insertion and m
 
 You'll also see `code` within sentences and occasionally important terms have been **highlighted**. You can find the definition of these terms at the _Glossary_.
 
+T> **Trailing commas** are used in the book examples on purpose as it gives cleaner diffs for the code examples.
+
 ## How is the book versioned
 
 The book uses a versioning scheme, and release notes for each new version are maintained at [the book blog](https://survivejs.com/blog/). You can also use GitHub _compare_ tool for this purpose. Example:
