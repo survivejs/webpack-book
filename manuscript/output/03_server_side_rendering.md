@@ -107,7 +107,7 @@ To make it convenient to generate a build, add a helper script:
 ```json
 "scripts": {
 leanpub-start-insert
-  "build:ssr": "webpack --config webpack.ssr.js",
+  "build:ssr": "wp --config webpack.ssr.js",
 leanpub-end-insert
   ...
 },

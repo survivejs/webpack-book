@@ -29,6 +29,7 @@ const path = require("path");
 const DemoPlugin = require("./plugins/demo-plugin.js");
 
 module.exports = {
+  mode: "development",
   entry: {
     lib: path.join(__dirname, "src", "shake.js"),
   },
@@ -47,7 +48,7 @@ To make it convenient to run, set up a build shortcut:
 ```json
 "scripts": {
 leanpub-start-insert
-  "build:plugin": "webpack --config webpack.plugin.js",
+  "build:plugin": "wp --config webpack.plugin.js",
 leanpub-end-insert
   ...
 },
