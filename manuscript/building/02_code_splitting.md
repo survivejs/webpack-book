@@ -119,7 +119,9 @@ T> If you want to adjust the name of the chunk, set `output.chunkFilename`. For 
 
 T> [bundle-loader](https://www.npmjs.com/package/bundle-loader) gives similar results, but through a loader interface. It supports bundle naming through its `name` option.
 
-T> The _Dynamic Loading_ chapter covers other techniques that come in handy when you have to deal with more complicated splits.
+## Controlling code splitting on runtime
+
+Especially in a complex environment with third-party dependencies and an advanced deployment setup, you may want to control where split code is loaded from. [webpack-require-from](https://www.npmjs.com/package/webpack-require-from) has been designed to address the problem, and it's able to rewrite the import paths.
 
 {pagebreak}
 
@@ -146,10 +148,6 @@ const config = {
 ```
 
 T> See [Glenn Reyes' detailed explanation](https://medium.com/@glennreyes/how-to-disable-code-splitting-in-webpack-1c0b1754a3c5).
-
-## Controlling code splitting on runtime
-
-Especially in a complex environment with third-party dependencies and an advanced deployment setup, you may want to control where split code is loaded from. [webpack-require-from](https://www.npmjs.com/package/webpack-require-from) has been designed to address the problem, and it's able to rewrite the import paths.
 
 ## Machine learning driven prefetching
 
