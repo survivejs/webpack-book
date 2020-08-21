@@ -149,6 +149,8 @@ import "!!url-loader!./bar.png";
 
 The problem with this approach is that it couples your source with webpack. Nonetheless, it's still an excellent form to know.
 
+{pagebreak}
+
 Since configuration entries go through the same mechanism, the same forms work there as well:
 
 ```javascript
@@ -158,6 +160,24 @@ Since configuration entries go through the same mechanism, the same forms work t
   },
 },
 ```
+
+## Alternate ways to match files
+
+`test` combined with `include` or `exclude` to constrain the match is the most common approach to match files. These accept the data types as listed below:
+
+- `test` - Match against a RegExp, string, function, an object, or an array of conditions like these.
+- `include` - The same.
+- `exclude` - The same, except the output is the inverse of `include`.
+- `resource: /inline/` - Match against a resource path including the query. Examples: `/path/foo.inline.js`, `/path/bar.png?inline`.
+- `issuer: /bar.js/` - Match against a resource requested from the match. Example: `/path/foo.png` would match if it was requested from `/path/bar.js`.
+- `resourcePath: /inline/` - Match against a resource path without its query. Example: `/path/foo.inline.png`.
+- `resourceQuery: /inline/` - Match against a resource based on its query. Example: `/path/foo.png?inline`.
+
+Boolean based fields can be used to constrain these matchers further:
+
+- `not` - Do **not** match against a condition (see `test` for accepted values).
+- `and` - Match against an array of conditions. All must match.
+- `or` - Match against an array while any must match.
 
 {pagebreak}
 
@@ -192,50 +212,6 @@ In the book setup, you compose configuration on a higher level. Another option t
 ```
 
 Carefully applied, this technique allows different means of composition.
-
-{pagebreak}
-
-## Alternate ways to match files
-
-`test` combined with `include` or `exclude` to constrain the match is the most common approach to match files. These accept the data types as listed below:
-
-- `test` - Match against a RegExp, string, function, an object, or an array of conditions like these.
-- `include` - The same.
-- `exclude` - The same, except the output is the inverse of `include`.
-- `resource: /inline/` - Match against a resource path including the query. Examples: `/path/foo.inline.js`, `/path/bar.png?inline`.
-- `issuer: /bar.js/` - Match against a resource requested from the match. Example: `/path/foo.png` would match if it was requested from `/path/bar.js`.
-- `resourcePath: /inline/` - Match against a resource path without its query. Example: `/path/foo.inline.png`.
-- `resourceQuery: /inline/` - Match against a resource based on its query. Example: `/path/foo.png?inline`.
-
-Boolean based fields can be used to constrain these matchers further:
-
-- `not` - Do **not** match against a condition (see `test` for accepted values).
-- `and` - Match against an array of conditions. All must match.
-- `or` - Match against an array while any must match.
-
-{pagebreak}
-
-## Loading based on `resourceQuery`
-
-`oneOf` field makes it possible to route webpack to a specific loader based on a resource related match:
-
-```javascript
-{
-  test: /\.png$/,
-  oneOf: [
-    {
-      resourceQuery: /inline/,
-      use: "url-loader",
-    },
-    {
-      resourceQuery: /external/,
-      use: "file-loader",
-    },
-  ],
-},
-```
-
-If you wanted to embed the context information to the filename, the rule could use `resourcePath` over `resourceQuery`.
 
 {pagebreak}
 
@@ -314,6 +290,28 @@ If you execute code like this, you'll see a print in the console:
 ```
 
 The function is an escape hatch for customizing loaders further.
+
+## Loading based on `resourceQuery`
+
+`oneOf` field makes it possible to route webpack to a specific loader based on a resource related match:
+
+```javascript
+{
+  test: /\.png$/,
+  oneOf: [
+    {
+      resourceQuery: /inline/,
+      use: "url-loader",
+    },
+    {
+      resourceQuery: /external/,
+      use: "file-loader",
+    },
+  ],
+},
+```
+
+If you wanted to embed the context information to the filename, the rule could use `resourcePath` over `resourceQuery`.
 
 ## Understanding loader behavior
 
