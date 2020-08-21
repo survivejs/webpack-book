@@ -212,8 +212,6 @@ The Browserify ecosystem is composed of a lot of small modules. In this way, Bro
 
 T> [Splittable](https://www.npmjs.com/package/splittable) is a Browserify wrapper that allows code splitting, supports ES2015 out of the box, tree shaking, and more. [bankai](https://www.npmjs.com/package/bankai) is another option to consider.
 
-T> [ify-loader](https://www.npmjs.com/package/ify-loader) and [transform-loader](https://www.npmjs.com/package/transform-loader) allow you to use Browserify transforms with webpack.
-
 ### Brunch
 
 Compared to Gulp, [Brunch](http://brunch.io/) operates on a higher level of abstraction. It uses a declarative approach similar to webpack's. To give you an example, consider the following configuration adapted from the Brunch site:
@@ -243,8 +241,6 @@ module.exports = {
 ```
 
 Brunch comes with commands like `brunch new`, `brunch watch --server`, and `brunch build --production`. It contains a lot out of the box and can be extended using plugins.
-
-T> There is an experimental [Hot Module Replacement runtime](https://www.npmjs.com/package/hmr-brunch) for Brunch.
 
 ### Rollup
 
