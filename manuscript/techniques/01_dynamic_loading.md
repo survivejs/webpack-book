@@ -34,11 +34,7 @@ const demoPage = req("./demo.md");
 
 The technique can be valuable for other purposes, such as testing or adding files for webpack to watch. In that case, you would set up a `require.context` within a file which you then point to through a webpack `entry`.
 
-T> The information is enough for generating an entire site as showcased in [Antwar](https://antwar.js.org/).
-
 W> If you are using TypeScript, make sure you have installed [@types/webpack-env](https://www.npmjs.com/package/@types/webpack-env) for `require.context` to work.
-
-{pagebreak}
 
 ## Dynamic paths with a dynamic `import`
 
