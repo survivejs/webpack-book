@@ -44,8 +44,6 @@ We're using **webpack-nano** over the official [webpack-cli](https://www.npmjs.c
 
 T> If you want to use webpack 5 to run the examples, use `npm add webpack@next` instead.
 
-T> If you run `npm add`, it will write the dependencies to `package.json` `dependencies`. The `-D` flag writes them to `devDependencies` instead. The split allows you to communicate which dependencies are application-specific and which are required for developing it. If you are authoring npm packages, you should follow the split.
-
 ## Executing webpack
 
 You can display the exact path of the executables using `npm bin`. Most likely it points to `./node_modules/.bin`. Try running webpack from there through the terminal using `node_modules/.bin/wp` or a similar command.
