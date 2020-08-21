@@ -86,11 +86,11 @@ leanpub-end-insert
 ]);
 ```
 
-Even though you have Babel installed and set up, you are still missing one bit: Babel configuration. The configuration can be set up using a _.babelrc_ dotfile as then other tooling can use the same.
+Even though you have Babel installed and set up, you are still missing one bit: Babel configuration. The configuration can be set up using a `.babelrc` dotfile as then other tooling can use the same.
 
-W> If you try to import files **outside** of your configuration root directory and then process them through **babel-loader**, this fails. It's [a known issue](https://github.com/babel/babel-loader/issues/313), and there are workarounds including maintaining _.babelrc_ at a higher level in the project and resolving against Babel presets through `require.resolve` at webpack configuration.
+W> If you try to import files **outside** of your configuration root directory and then process them through **babel-loader**, this fails. It's [a known issue](https://github.com/babel/babel-loader/issues/313), and there are workarounds including maintaining `.babelrc` at a higher level in the project and resolving against Babel presets through `require.resolve` at webpack configuration.
 
-### Setting up _.babelrc_
+### Setting up `.babelrc`
 
 At a minimum, you need [@babel/preset-env](https://www.npmjs.com/package/@babel/preset-env). It's a Babel preset that enables the required plugins based on the optional environment definition you pass to it.
 
@@ -100,7 +100,7 @@ Install the preset first:
 npm add @babel/preset-env -D
 ```
 
-To make Babel aware of the preset, you need to write a _.babelrc_. Given webpack supports ES2015 modules out of the box, you can tell Babel to skip processing them. Jumping over this step would break webpack's HMR mechanism although the production build would still work. You can also constrain the build output to work only in recent versions of Chrome.
+To make Babel aware of the preset, you need to write a `.babelrc`. Given webpack supports ES2015 modules out of the box, you can tell Babel to skip processing them. Jumping over this step would break webpack's HMR mechanism although the production build would still work. You can also constrain the build output to work only in recent versions of Chrome.
 
 Adjust the target definition as you like. As long as you follow [browserslist](https://www.npmjs.com/package/browserslist), it should work. Here's a sample configuration:
 
@@ -169,7 +169,7 @@ W> Certain webpack features, such as _Code Splitting_, write `Promise` based cod
 
 ## Babel tips
 
-There are other possible [_.babelrc_ options](https://babeljs.io/docs/usage/options/) beyond the ones covered here. Like ESLint, _.babelrc_ supports [JSON5](https://www.npmjs.com/package/json5) as its configuration format meaning you can include comments in your source, use single quoted strings, and so on.
+There are other possible [`.babelrc` options](https://babeljs.io/docs/usage/options/) beyond the ones covered here. Like ESLint, `.babelrc` supports [JSON5](https://www.npmjs.com/package/json5) as its configuration format meaning you can include comments in your source, use single quoted strings, and so on.
 
 Sometimes you want to use experimental features that fit your project. Although you can find a lot of them within so-called stage presets, it's a good idea to enable them one by one and even organize them to a preset of their own unless you are working on a throwaway project. If you expect your project to live a long time, it's better to document the features you are using well.
 

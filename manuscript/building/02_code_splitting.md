@@ -57,12 +57,6 @@ The code above creates separate bundles to a request. If you wanted only one, yo
 
 W> The syntax works only with JavaScript after configuring it the right way. If you use another environment, you may have to use alternatives covered in the following sections.
 
-T> [Webpack 4: import() and CommonJs](https://medium.com/webpack/webpack-4-import-and-commonjs-d619d626b655) article goes into detail on how `import()` works in different cases.
-
-T> There's an older syntax, [require.ensure](https://webpack.js.org/api/module-methods/#require-ensure). In practice the new syntax can cover the same functionality while giving error handling.
-
-T> [webpack-pwa](https://github.com/webpack/webpack-pwa) illustrates the idea on a larger scale and discusses different shell-based approaches. You get back to this topic in the _Multiple Pages_ chapter.
-
 ### Defining a Split Point Using a Dynamic `import`
 
 The idea can be demonstrated by setting up a module that contains a string that replaces the text of the demo button:
@@ -72,8 +66,6 @@ The idea can be demonstrated by setting up a module that contains a string that 
 ```javascript
 export default "Hello from lazy";
 ```
-
-{pagebreak}
 
 You also need to point the application to this file, so the application knows to load it by binding the loading process to click. Whenever the user happens to click the button, you trigger the loading process and replace the content:
 
@@ -162,8 +154,6 @@ Especially in a complex environment with third-party dependencies and an advance
 ## Machine learning driven prefetching
 
 Often users use an application in a specific way. The fact means that it makes sense to load specific portions of the application even before the user has accessed them. [guess-webpack](https://www.npmjs.com/package/guess-webpack) builds on this idea of prediction based preloading. [Minko Gechev explains the approach in detail in his article](https://blog.mgechev.com/2018/03/18/machine-learning-data-driven-bundling-webpack-javascript-markov-chain-angular-react/).
-
-{pagebreak}
 
 ## Conclusion
 
