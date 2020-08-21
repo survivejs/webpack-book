@@ -158,32 +158,9 @@ _mocha-loader_ is at its best as a development helper. The problem can be solved
 
 Facebook's [Jest](https://facebook.github.io/jest/) is an opinionated alternative that encapsulates functionality, including coverage and mocking, with minimal setup. It can capture snapshots of data making it valuable for projects where you have the behavior you would like to record and retain.
 
-Jest tests follow [Jasmine](https://www.npmjs.com/package/jasmine) test framework semantics, and it supports Jasmine-style assertions out of the box. Especially the suite definition is close enough to Mocha so that the current test should work without any adjustments to the test code itself. Jest provides [jest-codemods](https://www.npmjs.com/package/jest-codemods) for migrating more complicated projects to Jest semantics.
+Jest follows [Jasmine](https://www.npmjs.com/package/jasmine) test framework semantics, and it supports Jasmine-style assertions out of the box. Especially the suite definition is close enough to Mocha so that the current test should work without any adjustments to the test code itself. Jest provides [jest-codemods](https://www.npmjs.com/package/jest-codemods) for migrating more complicated projects to Jest semantics.
 
-Install Jest first:
-
-```
-npm add jest -D
-```
-
-{pagebreak}
-
-Jest captures tests through `package.json` [configuration](https://facebook.github.io/jest/docs/en/configuration.html). It detects tests within a _**tests**_ directory it also happens to capture the naming pattern the project is using by default:
-
-**package.json**
-
-```json
-"scripts": {
-leanpub-start-insert
-  "test:jest": "jest",
-leanpub-end-insert
-  ...
-},
-```
-
-You can run the tests in watch mode by using `npm run test:jest -- --watch`. Another option is to wrap this behind another script in `package.json`.
-
-To capture test coverage information, you have to set `"collectCoverage": true` at `"jest"` settings in `package.json` or pass `--coverage` flag to Jest. It emits the coverage reports below _coverage_ directory by default.
+Jest captures tests through `package.json` [configuration](https://facebook.github.io/jest/docs/en/configuration.html). It detects tests within a _**tests**_ directory automatically. To capture test coverage information, you have to set `"collectCoverage": true` at `"jest"` settings in `package.json` or pass `--coverage` flag to Jest. It emits the coverage reports below _coverage_ directory by default.
 
 Porting a webpack setup to Jest requires more effort especially if you rely on webpack specific features. [The official guide](https://jestjs.io/docs/en/webpack.html) covers quite a few of the common problems. You can configure Jest to use Babel through [babel-jest](https://www.npmjs.com/package/babel-jest) as it allows you to use Babel plugins like [babel-plugin-module-resolver](https://www.npmjs.com/package/babel-plugin-module-resolver) to match webpack's functionality.
 
@@ -192,8 +169,6 @@ Porting a webpack setup to Jest requires more effort especially if you rely on w
 [AVA](https://www.npmjs.com/package/ava) is a test runner that has been designed to take advantage of parallel execution. It comes with a test suite definition of its own. [webpack-ava-recipe](https://github.com/greyepoxy/webpack-ava-recipe) covers how to connect it with webpack.
 
 The main idea is to run both webpack and AVA in watch mode to push the problem of processing code to webpack while allowing AVA to consume the processed code. The `require.context` idea discussed with Mocha comes in handy here as you have to capture tests for webpack to handle somehow.
-
-{pagebreak}
 
 ## Mocking
 
