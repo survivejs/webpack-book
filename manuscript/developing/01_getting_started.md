@@ -114,6 +114,8 @@ To get started, install [mini-html-webpack-plugin](https://www.npmjs.com/package
 npm add mini-html-webpack-plugin -D
 ```
 
+T> [html-webpack-plugin](https://www.npmjs.com/package/mini-html-webpack-plugin) is a versatile option that can be expanded with plugins. For anything beyond basic usage, it's a good option.
+
 {pagebreak}
 
 To connect the plugin with webpack, set up configuration as below:
@@ -171,6 +173,8 @@ If you execute `node_modules/.bin/wp --mode production`, you should see output:
       | ./src/component.js 142 bytes [built]
 ```
 
+{pagebreak}
+
 The output is revealing:
 
 - `Hash: b3d548da335f2c806f02` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. Hashing is discussed in detail in the _Adding Hashes to Filenames_ chapter.
@@ -216,15 +220,6 @@ Run `npm run build` to see the same output as before. npm adds _node_modules/.bi
 You can execute this kind of scripts through _npm run_ and you can use the command anywhere within your project. If you run the command without any parameters (_npm run_), it gives you the listing of available scripts.
 
 T> If you want to run multiple commands concurrently, see the [concurrently](https://www.npmjs.com/package/concurrently) package. It has been designed to allow that while providing neat output.
-
-## `HtmlWebpackPlugin` and its extensions
-
-Although **mini-html-webpack-plugin** is enough for basic use cases, there can be times when you want more functionality. That's where [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) and its extensions come in:
-
-- [favicons-webpack-plugin](https://www.npmjs.com/package/favicons-webpack-plugin) is able to generate favicons.
-- [script-ext-html-webpack-plugin](https://www.npmjs.com/package/script-ext-html-webpack-plugin) gives you more control over script tags and allows you to tune script loading further.
-- [webpack-cdn-plugin](https://www.npmjs.com/package/webpack-cdn-plugin) allows you to specify which dependencies to load through a Content Delivery Network (CDN). This common technique is used to load popular libraries faster.
-- [dynamic-cdn-webpack-plugin](https://www.npmjs.com/package/dynamic-cdn-webpack-plugin) achieves a similar result.
 
 ## Conclusion
 
