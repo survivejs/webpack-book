@@ -71,10 +71,8 @@ The output tells that webpack cannot find the source to compile. Ideally we woul
 To make webpack compile, do the following:
 
 1. Set up `src/index.js` so that it contains `console.log("Hello world");`.
-2. Execute `node_modules/.bin/wp --mode development`. Webpack will discover the source file by Node convention. If you skip `--mode`, you'll get **production** output instead.
+2. Execute `node_modules/.bin/wp`. Webpack will discover the source file by Node convention.
 3. Examine `dist/main.js`. You should see webpack bootstrap code that begins executing the code. Below the bootstrap, you should find something familiar.
-
-T> There's third mode, `--mode none`, that doesn't apply any defaults. The main use for this one is debugging your output without any additional processing applied by the main targets.
 
 ## Setting up assets
 
@@ -145,6 +143,8 @@ Now that the configuration is done, you should try the following:
 1. Build the project using `node_modules/.bin/wp --mode production`. You can try the `development` and `none` modes too.
 2. Enter the build directory using `cd dist`.
 3. Run the server using `serve` (`npm add serve -g` or `npx serve`) or a similar command you are familiar with.
+
+T> The `none` mode doesn't apply any defaults. Use it for debugging.
 
 {pagebreak}
 
