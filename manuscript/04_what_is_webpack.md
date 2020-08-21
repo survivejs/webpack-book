@@ -64,8 +64,6 @@ The manifest can be extracted to a file of its own, as discussed later in the bo
 
 That's not all there is to the bundling process. For example, you can define specific **split points** where webpack generates separate bundles that are loaded based on application logic. This idea is discussed in the _Code Splitting_ chapter.
 
-{pagebreak}
-
 ## Webpack is configuration driven
 
 At its core, webpack relies on configuration. Here is a sample adapted from [the official webpack tutorial](https://webpack.js.org/get-started/) and expanded to cover the main points:
@@ -131,8 +129,6 @@ In addition to HMR, webpack's bundling capabilities are extensive. Webpack allow
 
 Even small applications can benefit from **code splitting**, as it allows the users to get something usable in their hands faster. Performance is a feature, after all. Knowing the basic techniques is worthwhile.
 
-{pagebreak}
-
 ## Webpack 5
 
 Webpack 5 is a new version of the tool that promises the following changes:
@@ -151,8 +147,6 @@ It's possible that a project will run without any changes to the configuration b
 At the time of writing, webpack 5 is in beta and the book examples work with it although you may see deprecation warnings occasionally.
 
 T> To learn more about module federation, [see module federation examples](https://github.com/module-federation/module-federation-examples/) and [Zack Jackson's article about the topic](https://medium.com/swlh/webpack-5-module-federation-a-game-changer-to-javascript-architecture-bcdd30e02669).
-
-{pagebreak}
 
 ## Conclusion
 
