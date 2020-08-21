@@ -159,6 +159,8 @@ There are several benefits to composing configuration:
 
 In the book project, you will push all of the configuration into two files: `webpack.config.js` and `webpack.parts.js`. The former contains higher level configuration while the lower level isolates you from webpack specifics. The chosen approach allows more file layouts than the one we have.
 
+{pagebreak}
+
 ### Split per configuration target
 
 If you split the configuration per target, you could end up with a file structure as below:
@@ -190,6 +192,8 @@ To add hierarchy to the way configuration parts are managed, you could decompose
 ```
 
 This arrangement can make it faster to find configuration related to a category. Additionally, it can also reduce your build time if you're consuming parts from a published package as then only the required plugins will have to be loaded. A good alternative for better readability would be to arrange the functions within a single file and use comments to split it up.
+
+{pagebreak}
 
 ### Guidelines for building your own configuration packages
 
