@@ -89,14 +89,10 @@ To make the build more complex, we can add another module to the project and sta
 ```javascript
 export default (text = "Hello world") => {
   const element = document.createElement("div");
-
   element.innerHTML = text;
-
   return element;
 };
 ```
-
-{pagebreak}
 
 We also have to modify the original file to import the new file and render the application through the DOM:
 
@@ -110,6 +106,8 @@ document.body.appendChild(component());
 
 Examine the output after building the project with one of the commands above. You should see both modules in the bundle that webpack wrote to the `dist` directory. One problem remains, though. How can we test the application in the browser?
 
+{pagebreak}
+
 ## Configuring **mini-html-webpack-plugin**
 
 The problem can be solved by writing an `index.html` file that points to the generated file. Instead of doing that on our own, we can use a plugin and webpack configuration to do this.
@@ -119,8 +117,6 @@ To get started, install **mini-html-webpack-plugin**:
 ```bash
 npm add mini-html-webpack-plugin -D
 ```
-
-{pagebreak}
 
 To connect the plugin with webpack, set up configuration as below:
 
@@ -177,8 +173,6 @@ If you execute `node_modules/.bin/wp --mode production`, you should see output:
       | ./src/index.js 77 bytes [built]
       | ./src/component.js 142 bytes [built]
 ```
-
-{pagebreak}
 
 The output is revealing:
 
@@ -240,8 +234,6 @@ Although **mini-html-webpack-plugin** is enough for basic use cases, there can b
 - [script-ext-html-webpack-plugin](https://www.npmjs.com/package/script-ext-html-webpack-plugin) gives you more control over script tags and allows you to tune script loading further.
 - [webpack-cdn-plugin](https://www.npmjs.com/package/webpack-cdn-plugin) allows you to specify which dependencies to load through a Content Delivery Network (CDN). This common technique is used to load popular libraries faster.
 - [dynamic-cdn-webpack-plugin](https://www.npmjs.com/package/dynamic-cdn-webpack-plugin) achieves a similar result.
-
-{pagebreak}
 
 ## Conclusion
 

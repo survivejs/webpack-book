@@ -123,7 +123,6 @@ leanpub-start-insert
 export default (text = HELLO) => {
 leanpub-end-insert
   const element = document.createElement("div");
-
   ...
 };
 ```
