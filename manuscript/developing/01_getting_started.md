@@ -148,6 +148,8 @@ See the result through a web browser. You should see a hello message there:
 
 W> Webpack has default configuration for its entries and output. It looks for source from `./src` by default and its emits output to `./dist`. You can control these through `entry` and `output` respectively as seen in the _What is Webpack_ chapter.
 
+{pagebreak}
+
 ## Examining the output
 
 If you execute `node_modules/.bin/wp --mode production`, you should see output:
@@ -178,8 +180,6 @@ The output is revealing:
 
 Examine the output below the `dist/` directory. If you look closely, you can see the same IDs within the source.
 
-T> In addition to a configuration object, webpack accepts an array of configurations. You can also return a `Promise` and eventually `resolve` to a configuration for example. Latter is useful if you are fetching configuration related data from a third-party source.
-
 ## Adding a build shortcut
 
 Given executing `node_modules/.bin/wp` gets boring after a while, let's adjust `package.json` to run tasks as below:
@@ -204,14 +204,10 @@ T> If you want to run multiple commands concurrently, see the [concurrently](htt
 
 Given the output given by webpack can be difficult to decipher, multiple options exist:
 
-- [webpack-stylish](https://www.npmjs.com/package/webpack-stylish) is a webpack plugin that formats webpack's output in a visually more attractive manner.
-- [friendly-errors-webpack-plugin](https://www.npmjs.com/package/friendly-errors-webpack-plugin) improves on error reporting of webpack. It captures common errors and displays them in a friendly manner.
 - [webpackbar](https://www.npmjs.com/package/webpackbar) has been made especially for tracking build progress.
 - `webpack.ProgressPlugin` is included out of the box and can be used as well.
 - [webpack-dashboard](https://www.npmjs.com/package/webpack-dashboard) gives an entire terminal-based dashboard over the standard webpack output. If you prefer clear visual output, this one comes in handy.
 - [test-webpack-reporter-plugin](https://www.npmjs.com/package/test-webpack-reporter-plugin) abstracts webpack's internals to make it easier to write your own reporters.
-
-Give the above options a go if you want to go beyond default output.
 
 ## Conclusion
 

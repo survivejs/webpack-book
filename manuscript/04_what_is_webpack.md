@@ -111,6 +111,8 @@ Webpack's configuration model can feel a bit opaque at times as the configuratio
 
 T> Often webpack's property definitions are flexible and it's the best to look at either the documentation or TypeScript definitions to see what's allowed. For example, `entry` can be a function and an asynchronous one even. Sometimes there are multiple ways to achieve the same and this applies especially to loaders.
 
+T> In addition to a configuration object, webpack accepts an array of configurations. You can also return a `Promise` and eventually `resolve` to a configuration for example. Latter is useful if you are fetching configuration related data from a third-party source.
+
 W> Webpack's plugins are registered from top to bottom but loaders follow the opposite rule. That means if you add a loader definition after the existing ones and it matches the same `test`, it will be evaluated first. See the _Loader Definitions_ chapter to understand the different possibilities better.
 
 ## Asset hashing
