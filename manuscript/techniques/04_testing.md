@@ -10,8 +10,6 @@ In this chapter, you'll see a few ways to run testing tools with webpack as that
 
 ## Mocha
 
-![Mocha](images/mocha.png)
-
 [Mocha](https://mochajs.org/) is a popular test framework for Node. While Mocha provides test infrastructure, you have to bring your asserts to it. Even though [Node `assert`](https://nodejs.org/api/assert.html) can be enough, it works with other assertion libraries as well. [mocha-loader](https://www.npmjs.com/package/mocha-loader) allows running Mocha tests through webpack.
 
 ### Configuring _mocha-loader_ with webpack
@@ -21,8 +19,6 @@ To get started, include Mocha and _mocha-loader_ to your project:
 ```bash
 npm add mocha mocha-loader -D
 ```
-
-{pagebreak}
 
 ### Setting up code to test
 
@@ -150,11 +146,7 @@ Compared to the vanilla Mocha setup, configuring Mocha through webpack comes wit
 
 _mocha-loader_ is at its best as a development helper. The problem can be solved by running the tests through a headless browser.
 
-{pagebreak}
-
 ## Jest
-
-![Jest](images/jest.png)
 
 Facebook's [Jest](https://facebook.github.io/jest/) is an opinionated alternative that encapsulates functionality, including coverage and mocking, with minimal setup. It can capture snapshots of data making it valuable for projects where you have the behavior you would like to record and retain.
 
@@ -187,8 +179,6 @@ Porting a webpack setup to Jest requires more effort especially if you rely on w
 
 ## AVA
 
-![AVA](images/ava.png)
-
 [AVA](https://www.npmjs.com/package/ava) is a test runner that has been designed to take advantage of parallel execution. It comes with a test suite definition of its own. [webpack-ava-recipe](https://github.com/greyepoxy/webpack-ava-recipe) covers how to connect it with webpack.
 
 The main idea is to run both webpack and AVA in watch mode to push the problem of processing code to webpack while allowing AVA to consume the processed code. The `require.context` idea discussed with Mocha comes in handy here as you have to capture tests for webpack to handle somehow.
@@ -213,8 +203,6 @@ plugins: [
   ),
 ];
 ```
-
-{pagebreak}
 
 ## Conclusion
 
