@@ -115,26 +115,6 @@ const getConfig = (mode) => {
 module.exports = getConfig(mode);
 ```
 
-Instead of returning a configuration directly, a function capturing the passed `env` is returned. The function returns configuration based on it and also maps webpack `mode` to it. Doing this means `package.json` needs a modification:
-
-**package.json**
-
-```json
-{
-  "scripts": {
-leanpub-start-delete
-    "start": "wp --mode development",
-    "build": "wp --mode production"
-leanpub-end-delete
-leanpub-start-insert
-    "start": "wp --mode development",
-    "build": "wp --mode production"
-leanpub-end-insert
-  },
-  ...
-}
-```
-
 After these changes, the build should behave the same way as before. This time, however, you have room to expand, and you don't have to worry about how to combine different parts of the configuration.
 
 You can add more targets by expanding the `package.json` definition and branching at `webpack.config.js` based on the need. `webpack.parts.js` grows to contain specific techniques you can then use to compose the configuration.
