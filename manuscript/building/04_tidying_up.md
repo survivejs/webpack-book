@@ -38,7 +38,7 @@ Connect it with the project:
 ```javascript
 ...
 
-const productionConfig = merge([
+const commonConfig = merge([
 leanpub-start-insert
   parts.clean(),
 leanpub-end-insert
@@ -46,7 +46,7 @@ leanpub-end-insert
 ]);
 ```
 
-After this change, the `build` directory should remain tidy while building. You can verify this by building the project and making sure no old files remained in the output directory.
+After this change, the `build` directory should remain tidy while building and developing. You can verify this by building the project and making sure no old files remained in the output directory.
 
 W> For webpack 5 to work with the plugin, you have to set `output.path` explicitly. In this case, set it to `path.resolve(process.cwd(), "dist")` in **webpack.config.js**.
 

@@ -92,6 +92,7 @@ module.exports = {
       port: process.env.PORT || 8080,
       static: "./dist",
       liveReload: true,
+      waitForBuild: true,
     }),
   ],
 };

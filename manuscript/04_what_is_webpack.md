@@ -134,7 +134,7 @@ Even small applications can benefit from **code splitting**, as it allows the us
 Webpack 5 is a new version of the tool that promises the following changes:
 
 - There's better caching behavior during development - now it reuses disk-based cache between separate runs.
-- Micro frontend style development is supported through [module federation](https://webpack.js.org/concepts/module-federation/).
+- Micro frontend style development is supported through _Module Federation_ and you can learn more about it in the chapter.
 - Internal APIs (esp. plugins) have been improved and older APIs have been deprecated.
 - The development and production targets have better defaults. For example now `contenthash` is used for production resulting in predictable caching behavior. The topic is discussed in detail at the _Adding Hashes to Filename_ chapter.
 
@@ -145,8 +145,6 @@ There's [an official migration guide](https://webpack.js.org/migrate/5/) that li
 It's possible that a project will run without any changes to the configuration but that you'll receive deprecation warnings. To find out where they are coming from, use `node --trace-deprecation node_modules/webpack/bin/webpack.js` when running webpack.
 
 At the time of writing, webpack 5 is in beta and the book examples work with it although you may see deprecation warnings occasionally.
-
-T> To learn more about module federation, [see module federation examples](https://github.com/module-federation/module-federation-examples/) and [Zack Jackson's article about the topic](https://medium.com/swlh/webpack-5-module-federation-a-game-changer-to-javascript-architecture-bcdd30e02669).
 
 ## Conclusion
 

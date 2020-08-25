@@ -57,7 +57,9 @@ function addEntryToAll(entries, entry) {
   const ret = {};
 
   Object.keys(entries).forEach((key) => {
-    ret[key] = entries[key].concat(entry);
+    const e = entries[key];
+
+    ret[key] = (Array.isArray(e) ? e : [e]).concat(entry);
   });
 
   return ret;
@@ -88,8 +90,7 @@ leanpub-end-delete
 leanpub-start-insert
 const getConfig = mode => {
   const pages = [
-    parts.page({ title: "Webpack demo" }),
-    parts.page({ title: "Another demo", path: "another" }),
+    parts.page({ title: "Webpack demo", mode }),
   ];
   const config =
     mode === "production" ? productionConfig : developmentConfig;
@@ -150,19 +151,26 @@ leanpub-end-insert
 const getConfig = (mode) => {
 leanpub-start-delete
   const pages = [
-    parts.page({ title: "Webpack demo" }),
-    parts.page({ title: "Another demo", path: "another" }),
+    parts.page({ title: "Webpack demo", mode }),
   ];
 leanpub-end-delete
 leanpub-start-insert
   const pages = [
     parts.page({
       title: "Webpack demo",
-      ...
+      entry: {
+        app: path.join(__dirname, "src", "index.js"),
+      },
+      mode,
     }),
     parts.page({
       title: "Another demo",
-      ...
+      path: "another",
+      entry: {
+        app: path.join(__dirname, "src", "another.js"),
+      },
+      mode,
+    }),
   ];
 leanpub-end-insert
   const config =
@@ -213,6 +221,7 @@ const getConfig = (mode) => {
       entry: {
         app: path.join(__dirname, "src", "index.js"),
       },
+      mode,
 leanpub-start-insert
       chunks: ["app", "runtime", "vendor"],
 leanpub-end-insert
@@ -223,6 +232,7 @@ leanpub-end-insert
       entry: {
         another: path.join(__dirname, "src", "another.js"),
       },
+      mode,
 leanpub-start-insert
       chunks: ["another", "runtime", "vendor"],
 leanpub-end-insert

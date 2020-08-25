@@ -64,6 +64,7 @@ exports.devServer = () => ({
       port: process.env.PORT || 8080,
       static: "./dist", // Expose if output.path changes
       liveReload: true,
+      waitForBuild: true,
     }),
   ],
 });

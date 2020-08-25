@@ -44,7 +44,6 @@ Hook it up to the configuration:
 
 ```javascript
 const productionConfig = merge([
-  parts.clean(),
 leanpub-start-insert
   parts.minifyJavaScript(),
 leanpub-end-insert
