@@ -180,13 +180,67 @@ If you `npm run start:mf`, you should be able to see the application running. In
 
 ## Breaking the monolith
 
-The next step is breakin
+The next step is breaking the monolith into separate modules. In practice, these portions can be different projects and developing in different technologies.
 
-TODO: Use the example from the multiple pages chapter as a basis.
+To get started, let's split the header section of the application into a module of its own and load it during runtime through module federation.
 
-TODO: show a small react app + a DOM based one + how to bundle them together
+As a first step, we should separate the `header` portion to a module of its own:
 
-src/index.js, src/another.js
+**src/header.js**
+
+```javascript
+import React from "react";
+
+function Header() {
+  return (
+    <header className="h-32 flex flex-wrap content-center">
+      <h1 className="text-xl">Module federation demo</h1>
+    </header>
+  );
+}
+
+export default Header;
+```
+
+Next we should modify the application entry point:
+
+**src/mf.js**
+
+```javascript
+...
+
+leanpub-start-insert
+import Header from "mf/header";
+leanpub-end-insert
+
+function App() {
+  ...
+
+  return (
+    <main className="max-w-md mx-auto space-y-8">
+leanpub-start-delete
+      <header className="h-32 flex flex-wrap content-center">
+        <h1 className="text-xl">Module federation demo</h1>
+      </header>
+leanpub-end-delete
+leanpub-start-insert
+      <Header />
+leanpub-end-insert
+      ...
+    </main>
+  );
+}
+
+...
+```
+
+To make the code work again, let's modify webpack configuration so that the code picks up `mf/header` through module federation:
+
+**webpack.mf.js**
+
+```javascript
+TODO;
+```
 
 TODO: Link to https://webpack.js.org/concepts/module-federation/
 TODO: Link to https://github.com/module-federation/module-federation-examples/
@@ -202,5 +256,7 @@ TODO: Images
 - https://medium.com/swlh/webpack-5-module-federation-a-game-changer-to-javascript-architecture-bcdd30e02669
 - https://dev.to/marais/webpack-5-and-module-federation-4j1i
 - https://www.angulararchitects.io/aktuelles/getting-out-of-version-mismatch-hell-with-micro-frontends-based-upon-webpack-module-federation/
+- https://github.com/brandonvilla21/module-federation
+- https://blog.bitsrc.io/state-of-micro-frontends-9c0c604ed13a
 
 ## Conclusion
