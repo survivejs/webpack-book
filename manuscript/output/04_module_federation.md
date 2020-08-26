@@ -10,6 +10,8 @@ Starting from webpack 5, there's built-in functionality to develop micro fronten
 
 T> To learn more about module federation, [see module federation examples](https://github.com/module-federation/module-federation-examples/) and [Zack Jackson's article about the topic](https://medium.com/swlh/webpack-5-module-federation-a-game-changer-to-javascript-architecture-bcdd30e02669).
 
+{pagebreak}
+
 ## Module federation example
 
 To get started with module federation, let's build a small application that we'll then split into specific bundles loaded using the technique. The basic requirements of the application are as follows:
@@ -80,7 +82,7 @@ const configs = {
 module.exports = merge(commonConfig, configs[mode], { mode });
 ```
 
-The configuration is a subset of what we've used in the book so far. It relies on the following `.babelrc`.
+The configuration is a subset of what we've used in the book so far. It relies on the following `.babelrc`:
 
 **.babelrc**
 
