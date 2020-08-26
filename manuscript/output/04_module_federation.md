@@ -40,6 +40,8 @@ Above could be modeled as HTML markup along this:
 
 The idea would be that as any button is clicked, the content is updated to match the text within the button.
 
+{pagebreak}
+
 ## Adding webpack configuration
 
 Set up webpack configuration for the project as follows:
