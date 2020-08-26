@@ -125,6 +125,8 @@ T> The [process](https://nodejs.org/api/process.html) module used in the code is
 
 W> [Webpack does not set global NODE_ENV](https://github.com/webpack/webpack/issues/7074) based on `mode` by default. If you have any external tooling, such as Babel, relying on it, make sure to set it explicitly. To do this, set `process.env.NODE_ENV = mode;` within the webpack configuration function.
 
+{pagebreak}
+
 ## Benefits of composing configuration
 
 There are several benefits to composing configuration:
