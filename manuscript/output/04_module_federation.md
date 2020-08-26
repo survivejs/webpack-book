@@ -181,7 +181,7 @@ W> Before proceeding further, make sure you have webpack 5 installed and set up 
 
 {pagebreak}
 
-## Separating a bootstrap
+## Separating bootstrap
 
 The next step is breaking the monolith into separate modules. In practice, these portions can be different projects and developing in different technologies.
 
