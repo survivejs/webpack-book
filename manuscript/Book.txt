@@ -43,6 +43,7 @@ optimizing/07_performance.md
 output/01_targets.md
 output/02_multiple_pages.md
 output/03_server_side_rendering.md
+output/04_module_federation.md
 
 11_Techniques.md
 
