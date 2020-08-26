@@ -179,6 +179,8 @@ If you `npm run start:mf`, you should be able to see the application running. In
 
 W> Before proceeding further, make sure you have webpack 5 installed and set up in your project.
 
+{pagebreak}
+
 ## Separating a bootstrap
 
 The next step is breaking the monolith into separate modules. In practice, these portions can be different projects and developing in different technologies.
@@ -246,7 +248,9 @@ To get started, let's split the header section of the application into a module 
 
 Note the `singleton` bits in the code above. In this case, we'll treat the current code as a host and mark **react** and **react-dom** as a singleton for each federated module to make sure each is using the same version to avoid problems with React rendering.
 
-## Separating the header
+{pagebreak}
+
+## Separating header
 
 Now we're in a spot where we can begin breaking the monolith. Set up a file with the header code as follows:
 
