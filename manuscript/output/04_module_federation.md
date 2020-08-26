@@ -421,9 +421,14 @@ const getConfig = (mode) => {
     ]),
   };
 
-  return merge(commonConfig, configs[mode], componentConfigs[component], {
-    mode,
-  });
+  return merge(
+    commonConfig,
+    configs[mode],
+    componentConfigs[component],
+    {
+      mode,
+    }
+  );
 };
 
 module.exports = getConfig(mode);
@@ -433,6 +438,8 @@ leanpub-end-insert
 To test, compile the header component first using `npm run build:mf -- --component header`. Then, to run the built module against the shell, use `npm run start:mf -- --component app`.
 
 If everything went well, you should still get the same outcome.
+
+{pagebreak}
 
 ## Pros and cons
 
@@ -451,6 +458,8 @@ Consider the following resources to learn more:
 - [mizx/module-federation-examples](https://github.com/mizx/module-federation-examples)
 - [Webpack 5 and Module Federation - A Microfrontend Revolution](https://dev.to/marais/webpack-5-and-module-federation-4j1i)
 - [The State of Micro Frontends](https://blog.bitsrc.io/state-of-micro-frontends-9c0c604ed13a)
+
+{pagebreak}
 
 ## Conclusion
 
