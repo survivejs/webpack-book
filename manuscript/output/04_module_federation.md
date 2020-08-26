@@ -64,25 +64,20 @@ const commonConfig = merge([
   }),
 ]);
 
-const developmentConfig = merge([
-  parts.devServer(),
-  parts.extractCSS({ loaders: cssLoaders }),
-]);
-
-const productionConfig = merge([
-  parts.extractCSS({ options: { hmr: true }, loaders: cssLoaders }),
-]);
-
-const getConfig = (mode) => {
-  switch (mode) {
-    case "development":
-      return merge(commonConfig, developmentConfig, { mode });
-    case "production":
-      return merge(commonConfig, productionConfig, { mode });
-  }
+const configs = {
+  development: merge([
+    parts.devServer(),
+    parts.extractCSS({ loaders: cssLoaders }),
+  ]),
+  production: merge([
+    parts.extractCSS({
+      options: { hmr: true },
+      loaders: cssLoaders,
+    }),
+  ]),
 };
 
-module.exports = getConfig(mode);
+module.exports = merge(commonConfig, configs[mode], { mode });
 ```
 
 The configuration is a subset of what we've used in the book so far. It relies on the following `.babelrc`.
@@ -178,13 +173,78 @@ The styling portion sets up Tailwind for styling so we can make the demonstratio
 
 If you `npm run start:mf`, you should be able to see the application running. In case you click on any of the buttons,
 
-## Breaking the monolith
+W> Before proceeding further, make sure you have webpack 5 installed and set up in your project.
+
+## Separating a bootstrap
 
 The next step is breaking the monolith into separate modules. In practice, these portions can be different projects and developing in different technologies.
 
+As a first step, we should use webpack's `ModuleFederationPlugin` and load the application asynchronously. The change in loading is due to the way module federation works. As it's a runtime operation, a small bootstrap is needed.
+
+Add a bootstrap file to the project like this:
+
+**src/bootstrap.js**
+
+```javascript
+import("./mf");
+```
+
+It's using the syntax you likely remember from the _Code Splitting_ chapter and although it feels trivial, we need to do this step as otherwise the application would emit an error while loading with `ModuleFederationPlugin`.
+
+To test the new bootstrap and the plugin, adjust webpack configuration as follows:
+
+```javascript
+leanpub-start-insert
+const { ModuleFederationPlugin } = require("webpack").container;
+leanpub-end-insert
+
+...
+
+const commonConfig = merge([
+  parts.clean(),
+  parts.loadJavaScript(),
+  parts.loadImages(),
+  parts.page({
+    entry: {
+leanpub-start-delete
+      app: path.join(__dirname, "src", "mf.js"),
+leanpub-end-delete
+leanpub-start-insert
+      app: path.join(__dirname, "src", "bootstrap.js"),
+leanpub-end-insert
+    },
+    mode,
+  }),
+leanpub-start-insert
+  {
+    plugins: [
+      new ModuleFederationPlugin({
+        name: "app",
+        remotes: {},
+        shared: {
+          react: { singleton: true },
+          "react-dom": { singleton: true },
+        },
+      }),
+    ],
+  },
+leanpub-end-insert
+]);
+
+...
+```
+
+If you run the application (`npm run start:mf`), it should still look the same.
+
+In case you change the entry to the original file, you'll receive an `Uncaught Error: Shared module is not available for eager consumption` error in the browser.
+
 To get started, let's split the header section of the application into a module of its own and load it during runtime through module federation.
 
-As a first step, we should separate the `header` portion to a module of its own:
+Note the `singleton` bits in the code above. In this case, we'll treat the current code as a host and mark **react** and **react-dom** as a singleton for each federated module to make sure each is using the same version to avoid problems with React rendering.
+
+## Separating the header
+
+Now we're in a spot where we can begin breaking the monolith. Set up a file with the header code as follows:
 
 **src/header.js**
 
@@ -202,7 +262,7 @@ function Header() {
 export default Header;
 ```
 
-Next we should modify the application entry point:
+We should also alter the application to use the new component. We'll go through a custom namespace, `mf`, which we'll manage through module federation:
 
 **src/mf.js**
 
@@ -234,29 +294,163 @@ leanpub-end-insert
 ...
 ```
 
-To make the code work again, let's modify webpack configuration so that the code picks up `mf/header` through module federation:
+Next we should connect the federated module with our configuration. It's here where things gets more complex as we have to either run webpack in multi-compiler mode (array of configurations) or compile modules separately. Given it works better with the current setup, I've gone with the latter approach.
+
+To make the changes easier, we should define a configuration part encapsulating the module federation concern and then consume that:
+
+**webpack.parts.js**
+
+```javascript
+const { ModuleFederationPlugin } = require("webpack").container;
+
+exports.federateModule = ({
+  name,
+  filename,
+  exposes,
+  remotes,
+  shared,
+}) => ({
+  plugins: [
+    new ModuleFederationPlugin({
+      name,
+      filename,
+      exposes,
+      remotes,
+      shared,
+    }),
+  ],
+});
+```
+
+The next step is more involved as we'll have to set up two builds. We'll reuse the current target and pass `--component` parameter to it to define which one to compile. That gives enough flexibility for the project.
+
+Change webpack configuration as below:
 
 **webpack.mf.js**
 
 ```javascript
-TODO;
+leanpub-start-delete
+const { component, mode } = require("webpack-nano/argv");
+const { ModuleFederationPlugin } = require("webpack").container;
+leanpub-end-delete
+leanpub-start-insert
+const { component, mode } = require("webpack-nano/argv");
+leanpub-end-insert
+
+...
+
+const commonConfig = merge([
+  parts.clean(),
+  parts.loadJavaScript(),
+  parts.loadImages(),
+leanpub-start-delete
+  parts.page({
+    entry: {
+      app: path.join(__dirname, "src", "mf.js"),
+    },
+    mode,
+  }),
+  {
+    plugins: [
+      new ModuleFederationPlugin({
+        name: "app",
+        remotes: {},
+        shared: {
+          react: {
+            singleton: true,
+          },
+          "react-dom": {
+            singleton: true,
+          },
+        },
+      }),
+    ],
+  },
+leanpub-end-delete
+]);
+
+...
+
+leanpub-start-delete
+module.exports = merge(commonConfig, configs[mode], { mode });
+leanpub-end-delete
+leanpub-start-insert
+
+const getConfig = (mode) => {
+  const shared = {
+    react: { singleton: true },
+    "react-dom": { singleton: true },
+  };
+
+  const componentConfigs = {
+    app: merge([
+      parts.page({
+        entry: {
+          app: path.join(__dirname, "src", "bootstrap.js"),
+        },
+        mode,
+      }),
+      parts.federateModule({
+        name: "app",
+        remotes: {
+          mf: "mf@/mf.js",
+        },
+        shared,
+      }),
+    ]),
+    header: merge([
+      {
+        entry: path.join(__dirname, "src", "header.js"),
+      },
+      parts.federateModule({
+        name: "mf",
+        filename: "mf.js",
+        exposes: {
+          "./header": "./src/header",
+        },
+        shared,
+      }),
+    ]),
+  };
+
+  return merge(commonConfig, configs[mode], componentConfigs[component], {
+    mode,
+  });
+};
+
+module.exports = getConfig(mode);
+leanpub-end-insert
 ```
 
-TODO: Link to https://webpack.js.org/concepts/module-federation/
-TODO: Link to https://github.com/module-federation/module-federation-examples/
+To test, compile the header component first using `npm run build:mf -- --component header`. Then, to run the built module against the shell, use `npm run start:mf -- --component app`.
 
-TODO: Integrate to introduction + conclusion + link from the previous chapter
-TODO: Images
+If everything went well, you should still get the same outcome.
 
-- [module federation](https://webpack.js.org/concepts/module-federation/)
-- https://github.com/mizx/module-federation-examples
-- https://github.com/webpack/webpack/tree/master/examples/module-federation
-- https://drive.google.com/file/d/1rQT8j5DWfjp5rmlSMbd9uB7eu-_iSi-l/view
-- https://github.com/sokra/slides/blob/master/content/ModuleFederationWebpack5.md
-- https://medium.com/swlh/webpack-5-module-federation-a-game-changer-to-javascript-architecture-bcdd30e02669
-- https://dev.to/marais/webpack-5-and-module-federation-4j1i
-- https://www.angulararchitects.io/aktuelles/getting-out-of-version-mismatch-hell-with-micro-frontends-based-upon-webpack-module-federation/
-- https://github.com/brandonvilla21/module-federation
-- https://blog.bitsrc.io/state-of-micro-frontends-9c0c604ed13a
+## Pros and cons
+
+You could say our build process is a notch more complex now so what did we gain? Using the setup, we've essentially split our application in two parts that can be developed independently. The configuration doesn't have to exist in the same repository and the code could be developed using different technologies.
+
+Given module federation is a runtime process, it gives a degree of flexibility that would be hard to achieve otherwise. For example, you could run experiments and see what happens if a piece of functionality is replaced without having to rebuild your entire project.
+
+On a team level, the approach lets you have feature teams that work only a specific portion of the application. For a single developer, a monolith may still be a good option unless you find the possibility to AB test and to defer compilation valuable.
+
+## Learn more
+
+Consider the following resources to learn more:
+
+- [Module federation at the official documentation](https://webpack.js.org/concepts/module-federation/)
+- [module-federation/module-federation-examples](https://github.com/module-federation/module-federation-examples/)
+- [mizx/module-federation-examples](https://github.com/mizx/module-federation-examples)
+- [Webpack 5 and Module Federation - A Microfrontend Revolution](https://dev.to/marais/webpack-5-and-module-federation-4j1i)
+- [The State of Micro Frontends](https://blog.bitsrc.io/state-of-micro-frontends-9c0c604ed13a)
 
 ## Conclusion
+
+Module federation introduced in webpack 5 provides infrastructure-level solution for developing micro frontends.
+
+To recap:
+
+- **Module federation** is a tool-based implementation of micro frontend architecture
+- `ModuleFederationPlugin` is the technical implementation of the solution
+- When converting project to use the plugin, set up an asynchronously loaded entry point
+- Using the approach brings complexity but at the same time allows you to split your project in ways not possible before
