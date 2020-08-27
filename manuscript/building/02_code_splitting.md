@@ -119,6 +119,8 @@ T> If you want to adjust the name of the chunk, set `output.chunkFilename`. For 
 
 T> [bundle-loader](https://www.npmjs.com/package/bundle-loader) gives similar results, but through a loader interface. It supports bundle naming through its `name` option.
 
+W> If you are using TypeScript, make sure to set `compilerOptions.module` to `esnext` or `es2020` for code splitting to work correctly.
+
 ## Controlling code splitting on runtime
 
 Especially in a complex environment with third-party dependencies and an advanced deployment setup, you may want to control where split code is loaded from. [webpack-require-from](https://www.npmjs.com/package/webpack-require-from) has been designed to address the problem, and it's able to rewrite the import paths.
