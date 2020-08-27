@@ -256,6 +256,8 @@ If you generate a build (`npm run build`), you should notice that something is d
 
 In turn, the entry specific files point to different parts of the manifest and the manifest runs different code depending on the entry. Multiple separate manifests are not therefore needed.
 
+W> The setup won't work in development mode without an adjustment to how **webpack-plugin-serve** is set up. For it to work, you'll need to run it as a server and then attach it to each of the configurations. [See the full example](https://github.com/shellscape/webpack-plugin-serve/blob/master/test/fixtures/multi/webpack.config.js) at the documentation to understand how to do this.
+
 ### Pros and cons
 
 Compared to the earlier approach, something was gained, but also lost:

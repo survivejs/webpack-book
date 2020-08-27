@@ -304,6 +304,8 @@ leanpub-end-insert
 
 Next we should connect the federated module with our configuration. It's here where things gets more complex as we have to either run webpack in multi-compiler mode (array of configurations) or compile modules separately. Given it works better with the current setup, I've gone with the latter approach.
 
+T> It's possible to make the setup work in a multi-compiler setup as well. In that case you should either use **webpack-dev-server** or run **webpack-plugin-serve** in a server mode. [See the full example](https://github.com/shellscape/webpack-plugin-serve/blob/master/test/fixtures/multi/webpack.config.js) at their documentation.
+
 To make the changes easier, we should define a configuration part encapsulating the module federation concern and then consume that:
 
 **webpack.parts.js**
