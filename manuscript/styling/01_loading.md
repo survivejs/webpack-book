@@ -19,7 +19,7 @@ Since inlining CSS isn't a good idea for production usage, it makes sense to use
 To get started, invoke
 
 ```bash
-npm add css-loader style-loader -D
+npm add css-loader style-loader --develop
 ```
 
 Now let's make sure webpack is aware of them. Add a new function at the end of the part definition:

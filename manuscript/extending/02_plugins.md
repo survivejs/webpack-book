@@ -178,7 +178,7 @@ To write an asset, you have to use [webpack-sources](https://www.npmjs.com/packa
 If you are using webpack 4 or below, install it first:
 
 ```bash
-npm add webpack-sources -D
+npm add webpack-sources --develop
 ```
 
 Adjust the code as follows to write through `RawSource`:

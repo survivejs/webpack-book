@@ -19,7 +19,7 @@ In this chapter, you'll see a few ways to run testing tools with webpack as that
 To get started, include Mocha and **mocha-loader** to your project:
 
 ```bash
-npm add mocha mocha-loader -D
+npm add mocha mocha-loader --develop
 ```
 
 ### Setting up code to test

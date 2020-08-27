@@ -46,7 +46,7 @@ T> To learn mode about HMR, read the _Hot Module Replacement_ appendix. You can 
 To get started with WPS, install it first:
 
 ```bash
-npm add webpack-plugin-serve -D
+npm add webpack-plugin-serve --develop
 ```
 
 {pagebreak}
@@ -140,7 +140,7 @@ To access your server, you need to figure out the ip of your machine. On Unix, t
 
 WPS will handle restarting the server when you change a bundled file. It's oblivious to changes made to webpack configuration, though, and you have to restart the WPS whenever a change occurs. The process can be automated as [discussed in GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892) by using [nodemon](https://www.npmjs.com/package/nodemon) monitoring tool.
 
-To get it to work, you have to install it first through `npm add nodemon -D`. Here's the script if you want to give it a go:
+To get it to work, you have to install it first through `npm add nodemon --develop`. Here's the script if you want to give it a go:
 
 **package.json**
 

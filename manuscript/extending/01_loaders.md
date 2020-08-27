@@ -11,7 +11,7 @@ T> If you want a good starting point for a standalone loader or plugin project, 
 [loader-runner](https://www.npmjs.com/package/loader-runner) allows you to run loaders without webpack, allowing you to learn more about loader development. Install it first:
 
 ```bash
-npm add loader-runner -D
+npm add loader-runner --develop
 ```
 
 {pagebreak}
@@ -153,7 +153,7 @@ To implement the essential idea of **file-loader**, you have to do two things: e
 To interpolate the file name, you need to use [loader-utils](https://www.npmjs.com/package/loader-utils). It has also utilities to parse loader options and queries. Install it:
 
 ```bash
-npm add loader-utils -D
+npm add loader-utils --develop
 ```
 
 You could apply the logic as below:

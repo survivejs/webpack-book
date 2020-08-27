@@ -13,7 +13,7 @@ This issue can be resolved either by using a webpack plugin or solving it outsid
 Install the [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin) first:
 
 ```bash
-npm add clean-webpack-plugin -D
+npm add clean-webpack-plugin --develop
 ```
 
 {pagebreak}
@@ -61,7 +61,7 @@ Attaching information related to the current build revision to the build files t
 To get started, install the revision plugin:
 
 ```bash
-npm add git-revision-webpack-plugin -D
+npm add git-revision-webpack-plugin --develop
 ```
 
 Then define a part to wrap the idea:

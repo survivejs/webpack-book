@@ -11,7 +11,7 @@ As discussed in the _Build Targets_ chapter, webpack allows you to build your ap
 To get started, install _worker-loader_ to the project:
 
 ```bash
-npm add worker-loader -D
+npm add worker-loader --develop
 ```
 
 Instead of pushing the loader definition to webpack configuration, you can use inline loader definitions to keep the demonstration minimal. See the _Loader Definitions_ chapter for more information about the alternatives.

@@ -33,7 +33,7 @@ The approach works nicely with **Continuous Integration** (CI) setups as well as
 To add webpack to the project, execute:
 
 ```bash
-npm add webpack webpack-nano -D # -D === --develop
+npm add webpack webpack-nano --develop # --develop === -D
 ```
 
 You should see **webpack** and **webpack-nano** in your `package.json` `devDependencies` section after this. In addition to installing the package locally below the `node_modules` directory, npm also generates an entry for the executable you can find at `node_modules/.bin` directory.
@@ -107,7 +107,7 @@ The problem can be solved by writing an `index.html` file that points to the gen
 To get started, install [mini-html-webpack-plugin](https://www.npmjs.com/package/mini-html-webpack-plugin):
 
 ```bash
-npm add mini-html-webpack-plugin -D
+npm add mini-html-webpack-plugin --develop
 ```
 
 T> [html-webpack-plugin](https://www.npmjs.com/package/mini-html-webpack-plugin) is a versatile option that can be expanded with plugins. For anything beyond basic usage, it's a good option.

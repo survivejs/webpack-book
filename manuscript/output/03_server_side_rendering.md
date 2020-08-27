@@ -15,7 +15,7 @@ The _Composing Configuration_ chapter covers the configuration approach and the 
 To use React, we require further configuration. Given most of React projects rely on [JSX](https://facebook.github.io/jsx/) format, you have to enable it through Babel:
 
 ```bash
-npm add @babel/preset-react -D
+npm add @babel/preset-react --develop
 ```
 
 Connect the preset with Babel configuration as follows:
@@ -120,7 +120,7 @@ If you build the SSR demo (`npm run build:ssr`), you should see a new file at _.
 To keep things clear to understand, you can set up a standalone Express server that picks up the generated bundle and renders it following the SSR principle. Install Express first:
 
 ```bash
-npm add express -D
+npm add express --develop
 ```
 
 Then, to get something running, implement a server as follows:
@@ -182,7 +182,7 @@ The remaining part is harder than what was done so far. How to make the server a
 [browser-refresh](https://www.npmjs.com/package/browser-refresh) can come in handy as it solves both of the problems. Install it first:
 
 ```bash
-npm add browser-refresh -D
+npm add browser-refresh --develop
 ```
 
 {pagebreak}

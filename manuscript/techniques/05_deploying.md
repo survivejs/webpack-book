@@ -13,7 +13,7 @@ Despite its name, the package works with other services that support hosting fro
 To get started, execute
 
 ```bash
-npm add gh-pages -D
+npm add gh-pages --develop
 ```
 
 {pagebreak}

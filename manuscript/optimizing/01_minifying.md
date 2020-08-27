@@ -21,7 +21,7 @@ To tune the defaults, we'll attach [terser-webpack-plugin](https://www.npmjs.com
 To get started, include the plugin to the project:
 
 ```bash
-npm add terser-webpack-plugin -D
+npm add terser-webpack-plugin --develop
 ```
 
 To attach it to the configuration, define a part for it first:
@@ -90,7 +90,7 @@ If you consume HTML templates through your code using [html-loader](https://www.
 Out of the available solutions, `OptimizeCSSAssetsPlugin` is the most flexible one and using it allows you connect other packages with webpack. To attach it to the setup, install the plugin and [cssnano](http://cssnano.co/) first:
 
 ```bash
-npm add optimize-css-assets-webpack-plugin cssnano -D
+npm add optimize-css-assets-webpack-plugin cssnano --develop
 ```
 
 {pagebreak}

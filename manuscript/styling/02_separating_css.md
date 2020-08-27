@@ -17,7 +17,7 @@ T> [extract-css-chunks-webpack-plugin](https://github.com/faceyspacey/extract-cs
 Install the plugin first:
 
 ```bash
-npm add mini-css-extract-plugin -D
+npm add mini-css-extract-plugin --develop
 ```
 
 `MiniCssExtractPlugin` includes a loader, `MiniCssExtractPlugin.loader` that marks the assets to be extracted. Then a plugin performs its work based on this annotation.

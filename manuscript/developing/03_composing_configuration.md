@@ -44,7 +44,7 @@ T> [webpack-chain](https://www.npmjs.com/package/webpack-chain) provides a fluen
 To get started, add **webpack-merge** to the project:
 
 ```bash
-npm add webpack-merge -D
+npm add webpack-merge --develop
 ```
 
 To give a degree of abstraction, you can define `webpack.config.js` for higher level configuration and `webpack.parts.js` for configuration parts to consume. Here is the development server as a function:
