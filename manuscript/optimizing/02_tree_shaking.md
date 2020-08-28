@@ -17,6 +17,8 @@ const bake = () => console.log("bake");
 export { shake, bake };
 ```
 
+{pagebreak}
+
 To make sure you use a part of the code, alter the application entry point:
 
 **src/index.js**
