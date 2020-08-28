@@ -17,8 +17,6 @@ const bake = () => console.log("bake");
 export { shake, bake };
 ```
 
-{pagebreak}
-
 To make sure you use a part of the code, alter the application entry point:
 
 **src/index.js**
@@ -28,19 +26,15 @@ To make sure you use a part of the code, alter the application entry point:
 import { bake } from "./shake";
 
 bake();
-
-...
 ```
 
-If you build the project again (`npm run build`) and examine the build (_dist/main.js_), it should contain `console.log("bake")`, but miss `console.log("shake")`. That's tree shaking in action.
+If you build the project again (`npm run build`) and examine the build (`dist/main.js`), it should contain `console.log("bake")`, but miss `console.log("shake")`. That's tree shaking in action.
 
 To get a better idea of what webpack is using for tree shaking, run it through `npm run build -- --display-used-exports`. You should see additional output like `[no exports used]` or `[only some exports used: bake]` in the terminal.
 
 T> If you are using **terser-webpack-plugin**, enable warnings for a similar effect. In addition to other messages, you should see lines like `Dropping unused variable treeShakingDemo [./src/component.js:17,6]`.
 
 W> For tree shaking to work with TypeScript, you have to set `compilerOptions.module` to `es2015` or equivalent. The idea is to retain ES2015 module definitions for webpack to process as it needs the information for tree shaking.
-
-T> Tree shaking works to an extent through [webpack-common-shake](https://www.npmjs.com/package/webpack-common-shake) against CommonJS module definition. As a majority of npm packages have been authored using the older definition, the plugin has value if you are using webpack 4.
 
 ## Tree shaking on package level
 
@@ -54,7 +48,7 @@ Another important point is to set `"sideEffects": false` to state that when the 
 
 To get most out of tree shaking with external packages, you have to use [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-imports) to rewrite imports so that they work with webpack's tree shaking logic. See [webpack issue #2867](https://github.com/webpack/webpack/issues/2867) for more information.
 
-T> It's possible to force `"sideEffects": false` at webpack configuration by setting up a loader definition with `test: path.resolve(__dirname, "node_modules/package")` and `sideEffects: false` fields.
+It's possible to force `"sideEffects": false` at webpack configuration by setting up a loader definition with `test: path.resolve(__dirname, "node_modules/package")` and `sideEffects: false` fields.
 
 T> [SurviveJS - Maintenance](https://survivejs.com/maintenance/packaging/building/) delves deeper to the topic from the package point of view.
 
