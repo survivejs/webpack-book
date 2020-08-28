@@ -180,6 +180,8 @@ In the example above, you used different types of webpack chunks. Webpack treats
 - **Normal chunks** - Normal chunks **don't** contain webpack runtime. Instead, these can be loaded dynamically while the application is running. A suitable wrapper (JSONP for example) is generated for these. You generate a normal chunk in the next chapter as you set up code splitting.
 - **Initial chunks** - Initial chunks are normal chunks that count towards initial loading time of the application. As a user, you don't have to care about these. It's the split between entry chunks and normal chunks that is important.
 
+{pagebreak}
+
 ## Bundle splitting at entry configuration
 
 Starting from webpack 5, it's possible to define bundle splitting using entry configuration:
