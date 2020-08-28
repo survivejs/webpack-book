@@ -2,11 +2,7 @@
 
 **Tree shaking** is a feature enabled by the ES2015 module definition. The idea is that given it's possible to analyze the module definition statically without running it, webpack can tell which parts of the code are being used and which are not. It's possible to verify this behavior by expanding the application and adding code there that should be eliminated.
 
-T> Starting from webpack 5, tree shaking has been greatly improved and it works in cases where it didn't work before including nested module definitions and CommonJS.
-
-T> Tree shaking works to an extent through [webpack-common-shake](https://www.npmjs.com/package/webpack-common-shake) against CommonJS module definition. As a majority of npm packages have been authored using the older definition, the plugin has value if you are using webpack 4.
-
-{pagebreak}
+Starting from webpack 5, tree shaking has been greatly improved and it works in cases where it didn't work before including nested module definitions and CommonJS.
 
 ## Demonstrating tree shaking
 
@@ -41,6 +37,8 @@ To get a better idea of what webpack is using for tree shaking, run it through `
 T> If you are using _terser-webpack-plugin_, enable warnings for a similar effect. In addition to other messages, you should see lines like `Dropping unused variable treeShakingDemo [./src/component.js:17,6]`.
 
 W> For tree shaking to work with TypeScript, you have to set `compilerOptions.module` to `es2015` or equivalent. The idea is to retain ES2015 module definitions for webpack to process as it needs the information for tree shaking.
+
+T> Tree shaking works to an extent through [webpack-common-shake](https://www.npmjs.com/package/webpack-common-shake) against CommonJS module definition. As a majority of npm packages have been authored using the older definition, the plugin has value if you are using webpack 4.
 
 ## Tree shaking on package level
 
