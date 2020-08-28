@@ -1,14 +1,14 @@
 # Deploying Applications
 
-A project built with webpack can be deployed to a variety of environments. A public project that doesn't rely on a backend can be pushed to GitHub Pages using the _gh-pages_ package. Also, there are a variety of webpack plugins that can target other environments, such as S3.
+A project built with webpack can be deployed to a variety of environments. A public project that doesn't rely on a backend can be pushed to GitHub Pages using the **gh-pages** package. Also, there are a variety of webpack plugins that can target other environments, such as S3.
 
-## Deploying with _gh-pages_
+## Deploying with **gh-pages**
 
 [gh-pages](https://www.npmjs.com/package/gh-pages) allows you to host stand-alone applications on GitHub Pages easily. It has to be pointed to a build directory first. It picks up the contents and pushes them to the `gh-pages` branch.
 
 Despite its name, the package works with other services that support hosting from a Git repository as well. But given GitHub is so popular, it can be used to demonstrate the idea. In practice, you would likely have more complicated setup in place that would push the result to another service through a Continuous Integration system.
 
-### Setting up _gh-pages_
+### Setting up **gh-pages**
 
 To get started, execute
 
@@ -61,18 +61,18 @@ leanpub-end-insert
 
 After building (`npm run build`) and deploying (`npm run deploy`), you should have your application from the `dist/` directory hosted on GitHub Pages. You should find it at `https://<name>.github.io/<project>` assuming everything went fine.
 
-T> If you need a more elaborate setup, use the Node API that _gh-pages_ provides. The default command line tool it gives is enough for essential purposes, though.
+T> If you need a more elaborate setup, use the Node API that **gh-pages** provides. The default command line tool it gives is enough for essential purposes, though.
 
 T> GitHub Pages allows you to choose the branch where you deploy. It's possible to use the `master` branch even as it's enough for minimal sites that don't need bundling. You can also point below the _./docs_ directory within your `master` branch and maintain your site.
 
 ### Archiving old versions
 
-_gh-pages_ provides an `add` option for archival purposes. The idea goes as follows:
+**gh-pages** provides an `add` option for archival purposes. The idea goes as follows:
 
 1. Copy the old version of the site in a temporary directory and remove _archive_ directory from it. You can name the archival directory as you want.
 2. Clean and build the project.
 3. Copy the old version below dist/archive/<version>\_
-4. Set up a script to call _gh-pages_ through Node as below and capture possible errors in the callback:
+4. Set up a script to call **gh-pages** through Node as below and capture possible errors in the callback:
 
 ```javascript
 ghpages.publish(path.join(__dirname, "dist"), { add: true }, cb);
