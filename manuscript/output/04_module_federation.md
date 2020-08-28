@@ -1,10 +1,10 @@
 # Module Federation
 
-[Micro frontends](https://micro-frontends.org/) take the idea of microservices to frontend development. Instead of developing the application or a site as a monolith, the point is to split it as smaller portions developed separately that are then tied together during runtime.
+[Micro frontends](https://micro-frontends.org/) take the idea of microservices to frontend development. Instead of developing the application or a site as a monolith, the point is to split it as smaller portions programmed separately that are then tied together during runtime.
 
-Using the approach means you can use different technologies to develop the parts of the application and have different teams developing them. The reasoning is that splitting up development this way avoids the maintenance costs associated to a traditional monolith.
+With the approach, you can use different technologies to develop other parts of the application and have separate teams developing them. The reasoning is that splitting up development this way avoids the maintenance costs associated with a traditional monolith.
 
-As a side effect, it enables new types of collaboration between backend and frontend developers as they can focus on a specific slice of an application as a cohesive team. For example, you could have a team that's focusing only on the search functionality or other business critical portion around a core feature.
+As a side effect, it enables new types of collaboration between backend and frontend developers as they can focus on a specific slice of an application as a cohesive team. For example, you could have a team focusing only on the search functionality or other business-critical portion around a core feature.
 
 Starting from webpack 5, there's built-in functionality to develop micro frontends. **Module federation** and gives you enough functionality to tackle the workflow required by the micro frontend approach.
 
@@ -16,9 +16,9 @@ T> To learn more about module federation, [see module federation examples](https
 
 To get started with module federation, let's build a small application that we'll then split into specific bundles loaded using the technique. The basic requirements of the application are as follows:
 
-1. There should be a control with a list of items. Clicking on an item should show related information within the main section of the application.
+1. There should be a UI control with a list of items. Clicking on an item should show related information.
 2. There should be a header with the application title.
-3. From the requirement 1., it follows that there should be a main section which will be connected to the control.
+3. From requirement 1., it follows that there should be a main section which will be connected to the control.
 
 Above could be modeled as HTML markup along this:
 
@@ -38,7 +38,7 @@ Above could be modeled as HTML markup along this:
 </body>
 ```
 
-The idea would be that as any button is clicked, the content is updated to match the text within the button.
+The idea is that as any button is clicked, the content is updated to match the text.
 
 {pagebreak}
 
@@ -117,9 +117,9 @@ Set up npm scripts as follows:
 }
 ```
 
-The idea is to have on script to run the project and one to build it.
+The idea is to have one script to run the project and one to build it.
 
-If you want to improve the setup further, add _Hot Module Replacement_ to it as discussed in the related chapter.
+If you want to improve the setup further, add _Hot Module Replacement_ to it, as discussed in the related chapter.
 
 T> If you haven't completed the book examples, [check out the demonstration from GitHub](https://github.com/survivejs-demos/webpack-demo) to find the configuration.
 
@@ -175,7 +175,7 @@ ReactDOM.render(<App />, container);
 
 The styling portion sets up Tailwind for styling so we can make the demonstration look better. I've disabled the background image applied to `body` in an earlier demonstration from the _Loading Images_ chapter to make the output look neater.
 
-If you `npm run start:mf`, you should be able to see the application running. In case you click on any of the buttons,
+If you `npm run start:mf`, you should see the application running. In case you click on any of the buttons,
 
 W> Before proceeding further, make sure you have webpack 5 installed and set up in your project.
 
@@ -183,7 +183,7 @@ W> Before proceeding further, make sure you have webpack 5 installed and set up 
 
 ## Separating bootstrap
 
-The next step is breaking the monolith into separate modules. In practice, these portions can be different projects and developing in different technologies.
+The next step is breaking the monolith into separate modules. In practice, these portions can be different projects and developed in various technologies.
 
 As a first step, we should use webpack's `ModuleFederationPlugin` and load the application asynchronously. The change in loading is due to the way module federation works. As it's a runtime operation, a small bootstrap is needed.
 
@@ -195,7 +195,7 @@ Add a bootstrap file to the project like this:
 import("./mf");
 ```
 
-It's using the syntax you likely remember from the _Code Splitting_ chapter and although it feels trivial, we need to do this step as otherwise the application would emit an error while loading with `ModuleFederationPlugin`.
+It's using the syntax you likely remember from the _Code Splitting_ chapter. Although it feels trivial, we need to do this step as otherwise, the application would emit an error while loading with `ModuleFederationPlugin`.
 
 To test the new bootstrap and the plugin, adjust webpack configuration as follows:
 
@@ -246,7 +246,7 @@ In case you change the entry to the original file, you'll receive an `Uncaught E
 
 To get started, let's split the header section of the application into a module of its own and load it during runtime through module federation.
 
-Note the `singleton` bits in the code above. In this case, we'll treat the current code as a host and mark **react** and **react-dom** as a singleton for each federated module to make sure each is using the same version to avoid problems with React rendering.
+Note the `singleton` bits in the code above. In this case, we'll treat the current code as a host and mark **react** and **react-dom** as a singleton for each federated module to ensure each is using the same version to avoid problems with React rendering.
 
 {pagebreak}
 
@@ -302,11 +302,11 @@ leanpub-end-insert
 ...
 ```
 
-Next we should connect the federated module with our configuration. It's here where things gets more complex as we have to either run webpack in multi-compiler mode (array of configurations) or compile modules separately. Given it works better with the current setup, I've gone with the latter approach.
+Next, we should connect the federated module with our configuration. It's here where things get more complicated as we have to either run webpack in multi-compiler mode (array of configurations) or compile modules separately. Given it works better with the current setup, I've gone with the latter approach.
 
-T> It's possible to make the setup work in a multi-compiler setup as well. In that case you should either use **webpack-dev-server** or run **webpack-plugin-serve** in a server mode. [See the full example](https://github.com/shellscape/webpack-plugin-serve/blob/master/test/fixtures/multi/webpack.config.js) at their documentation.
+T> It's possible to make the setup work in a multi-compiler setup as well. In that case, you should either use **webpack-dev-server** or run **webpack-plugin-serve** in a server mode. [See the full example](https://github.com/shellscape/webpack-plugin-serve/blob/master/test/fixtures/multi/webpack.config.js) at their documentation.
 
-To make the changes easier, we should define a configuration part encapsulating the module federation concern and then consume that:
+To make the changes more manageable, we should define a configuration part encapsulating the module federation concern and then consume that:
 
 **webpack.parts.js**
 
@@ -332,9 +332,9 @@ exports.federateModule = ({
 });
 ```
 
-The next step is more involved as we'll have to set up two builds. We'll reuse the current target and pass `--component` parameter to it to define which one to compile. That gives enough flexibility for the project.
+The next step is more involved, as we'll have to set up two builds. We'll reuse the current target and pass `--component` parameter to it to define which one to compile. That gives enough flexibility for the project.
 
-Change webpack configuration as below:
+Change the webpack configuration as below:
 
 **webpack.mf.js**
 
@@ -445,11 +445,11 @@ If everything went well, you should still get the same outcome.
 
 ## Pros and cons
 
-You could say our build process is a notch more complex now so what did we gain? Using the setup, we've essentially split our application in two parts that can be developed independently. The configuration doesn't have to exist in the same repository and the code could be developed using different technologies.
+You could say our build process is a notch more complex now, so what did we gain? Using the setup, we've essentially split our application into two parts that can be developed independently. The configuration doesn't have to exist in the same repository, and the code could be created using different technologies.
 
-Given module federation is a runtime process, it gives a degree of flexibility that would be hard to achieve otherwise. For example, you could run experiments and see what happens if a piece of functionality is replaced without having to rebuild your entire project.
+Given module federation is a runtime process, it provides a degree of flexibility that would be hard to achieve otherwise. For example, you could run experiments and see what happens if a piece of functionality is replaced without rebuilding your entire project.
 
-On a team level, the approach lets you have feature teams that work only a specific portion of the application. For a single developer, a monolith may still be a good option unless you find the possibility to AB test and to defer compilation valuable.
+On a team level, the approach lets you have feature teams that work only a specific portion of the application. A monolith may still be a good option for a single developer unless you find the possibility to AB test and to defer compilation valuable.
 
 ## Learn more
 
@@ -465,11 +465,11 @@ Consider the following resources to learn more:
 
 ## Conclusion
 
-Module federation introduced in webpack 5 provides infrastructure-level solution for developing micro frontends.
+Module federation, introduced in webpack 5, provides an infrastructure-level solution for developing micro frontends.
 
 To recap:
 
 - **Module federation** is a tool-based implementation of micro frontend architecture
 - `ModuleFederationPlugin` is the technical implementation of the solution
-- When converting project to use the plugin, set up an asynchronously loaded entry point
+- When converting a project to use the plugin, set up an asynchronously loaded entry point
 - Using the approach brings complexity but at the same time allows you to split your project in ways not possible before
