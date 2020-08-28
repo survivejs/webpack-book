@@ -2,7 +2,7 @@
 
 As this book has demonstrated, webpack is a versatile tool. To make it easier to recap the content and techniques, go through the checklists below.
 
-## General Checklist
+## General checklist
 
 - **Source maps** allow you to debug your code in the browser during development. They can also give better quality stack traces during production usage if you capture the output. The _Source Maps_ chapter delves into the topic.
 - To keep your builds fast, consider optimizing. The _Performance_ chapter discusses a variety of strategies you can use to achieve this.
@@ -10,12 +10,13 @@ As this book has demonstrated, webpack is a versatile tool. To make it easier to
 - The way webpack consumes packages can be customized. The _Consuming Packages_ chapter covers specific techniques related to this.
 - Sometimes you have to extend webpack. The _Extending with Loaders_ and _Extending with Plugins_ chapters show how to achieve this. You can also work on top of webpack's configuration definition and implement an abstraction of your own for it to suit your purposes.
 
-## Development Checklist
+## Development checklist
 
 - To get most out of webpack during development, use **webpack-plugin-serve** (WPS) or **webpack-dev-server** (WDS). You can also find middlewares which you can attach to your Node server during development. The _Development Server_ chapter covers both in greater detail.
 - Webpack implements **Hot Module Replacement** (HMR). It allows you to replace modules without forcing a browser refresh while your application is running. The _Hot Module Replacement_ appendix covers the topic in detail.
+- Consider using _Module Federation_ when a project gains complexity and it's using multiple different technologies or it has multiple teams working on various functionalities. The approach takes microservices to frontend development and allows you to align your frontend with microbackends.
 
-## Production Checklist
+## Production checklist
 
 ### Styling
 
