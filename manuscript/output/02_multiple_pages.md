@@ -197,8 +197,6 @@ If you build the application (`npm run build`), you should find _another/index.h
 
 The approach can be pushed in another direction by dropping the multi-compiler mode. Even though it's slower to process this kind of build, it enables code sharing and the implementation of shells. The first step towards a shell setup is to rework the configuration so that it picks up the code shared between the pages.
 
-{pagebreak}
-
 ## Generating multiple pages while sharing code
 
 The current configuration shares code by coincidence already due to the usage patterns. Only a small part of the code differs, and as a result, only the page manifests, and the bundles mapping to their entries differ.

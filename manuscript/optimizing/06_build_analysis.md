@@ -107,7 +107,7 @@ If you want to enforce a strict limit in a CI environment, set `hints` to `error
 
 It's possible to analyze bundle dependencies in a graphical manner, and many tools exist for this purpose.
 
-### The Official analyse tool
+### The official analyse tool
 
 ![The official analyse tool](images/analyse.png)
 

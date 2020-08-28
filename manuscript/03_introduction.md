@@ -67,8 +67,6 @@ The book uses several conventions to keep the content accessible. I've listed ex
 
 W> This is a warning that's highlighting unexpected behavior or a common problem point that you should know.
 
-{pagebreak}
-
 Especially in the early part of the book, the code is written in a tutorial form. For this reason, the following syntax is used:
 
 ```javascript

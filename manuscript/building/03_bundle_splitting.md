@@ -200,6 +200,8 @@ If you have this configuration in place, you can drop `optimization.splitChunks`
 
 W> To use the approach with **webpack-plugin-serve**, you'll have to inject `webpack-plugin-serve/client` within `app.import` in this case. Doing this will require an extra check in `addEntryToAll`. The function was introduced in the _Multiple Pages_ chapter.
 
+{pagebreak}
+
 ## Conclusion
 
 The situation is better now compared to the earlier. Note how small `main` bundle compared to the `vendor` bundle. To benefit from this split, you set up caching in the next part of this book in the _Adding Hashes to Filenames_ chapter.

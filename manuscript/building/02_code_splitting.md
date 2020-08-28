@@ -125,8 +125,6 @@ W> If you are using TypeScript, make sure to set `compilerOptions.module` to `es
 
 Especially in a complex environment with third-party dependencies and an advanced deployment setup, you may want to control where split code is loaded from. [webpack-require-from](https://www.npmjs.com/package/webpack-require-from) has been designed to address the problem, and it's able to rewrite the import paths.
 
-{pagebreak}
-
 ## Code splitting in React
 
 There are React specific solutions that wrap the pattern behind a small npm package:

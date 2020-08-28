@@ -226,8 +226,6 @@ The warning can be eliminated by aliasing the package to a source version as dis
 
 W> Take care when disabling warnings as it can hide underlying issues. Consider alternatives first. There's a [webpack issue](https://github.com/webpack/webpack/issues/1617) that discusses the problem in detail.
 
-{pagebreak}
-
 ## Managing symbolic links
 
 Symbolic links, or symlinks, are an operating system level feature that allows you to point to other files through a file system without copying them. You can use `npm link` to create global symlinks for packages under development and then use `npm unlink` to remove the links.
