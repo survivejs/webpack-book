@@ -199,7 +199,7 @@ W> Tailwind includes PurgeCSS out of the box and it can be preferable to use tha
 
 {pagebreak}
 
-### Critical Path Rendering
+### Critical path rendering
 
 The idea of [critical path rendering](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/) takes a look at CSS performance from a different angle. Instead of optimizing for size, it optimizes for render order and emphasizes **above-the-fold** CSS. The result is achieved by rendering the page and then figuring out which rules are required to obtain the shown result.
 
