@@ -170,6 +170,8 @@ It's possible to get good caching behavior with these plugins if a webpack **rec
 
 T> Tobias Koppers discusses [aggressive merging in detail at the official blog of webpack](https://medium.com/webpack/webpack-http-2-7083ec3f3ce6).
 
+T> [webpack-cascade-optimizer-plugin](https://www.npmjs.com/package/webpack-cascade-optimizer-plugin) provides an approach of distributing code along output files in a smart order. The plugin allows you to get the benefits of bundle splitting without splitting.
+
 ## Chunk types in webpack
 
 In the example above, you used different types of webpack chunks. Webpack treats chunks in three types:
