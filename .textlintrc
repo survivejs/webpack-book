@@ -21,6 +21,7 @@
         "npm",
         "pull request",
 
+        ["MacOS", "macOS"],
         ["uglify", "UglifyJS"],
         ["sourcemap", "sourcemap"],
         ["sourcemaps", "source maps"],

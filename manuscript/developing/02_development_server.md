@@ -8,7 +8,7 @@ It's possible to setup Browsersync to work with webpack through [browser-sync-we
 
 ## Webpack `watch` mode
 
-Webpack’s `watch` mode rebuilds the bundle on any change of the project files. To activate it, pass the `--watch` switch to webpack:
+Webpack's `watch` mode rebuilds the bundle on any change of the project files. To activate it, pass the `--watch` switch to webpack:
 
 ```bash
 npm run build -- --watch
@@ -39,15 +39,15 @@ W> WDS depends implicitly on **webpack-cli** in command line usage. Make sure yo
 
 ## **webpack-plugin-serve**
 
-[webpack-plugin-serve](https://www.npmjs.com/package/webpack-plugin-serve) (WPS) is a third-party plugin that wraps the logic required to update the browser into a webpack plugin. Underneath it relies on webpack's watch mode, and it builds on top of that while implementing **Hot Module Replacement** (HMR) and other features seen in the **official solution provided for webpack (AS: which one do you mean here? WDS or --watch?)**.
+[webpack-plugin-serve](https://www.npmjs.com/package/webpack-plugin-serve) (WPS) is a third-party plugin that wraps the logic required to update the browser into a webpack plugin. Underneath it relies on webpack's watch mode, and it builds on top of that while implementing **Hot Module Replacement** (HMR) and other features seen in WDS.
 
 WPS also supports webpack's multi-compiler mode (i.e., when you give an array of configurations to it) and a status overlay.
 
-**AS: if it's based on --watch, does it mean it works on disk files and slower than WDS?**
-
-**AS: worth mentioning this info from the docs: This module requires an Active LTS Node version (v10.0.0+). The client scripts in this module require browsers which support async/await. Users may also choose to compile the client script via an appropriately configured Babel webpack loader for use in older browsers.**
+Given webpack's watch mode emits to the file system by default, WPS provides an option for [webpack-plugin-ramdisk](https://www.npmjs.com/package/webpack-plugin-ramdisk) to write to the RAM instead. Using the option improves performance while avoiding excessive writes to the file system.
 
 T> Learn more about HMR in the _Hot Module Replacement_ appendix. Applying it won't be necessary to complete the tutorial, though.
+
+W> WPS requires an Active LTS version of Node to work. The attached client scripts have been written with modern browsers in mind (`async`/`await`). It's possible to transpile them for older browsers, though.
 
 ### Getting started with **webpack-plugin-serve**
 
@@ -75,7 +75,7 @@ leanpub-end-insert
 }
 ```
 
-**AS: at this point it's not clear where `wp` is coming from. Even if you explain it in some previous chapter, it's worth mentioning it again for folks who are coming from search engines, for example.**
+T> `wp` stands for [webpack-nano](https://www.npmjs.com/package/webpack-nano). If you are using **webpack-cli** or another option, adjust the script to your liking.
 
 In addition, WPS has to be connected to webpack configuration. In this case we'll run it in `liveReload` mode and refresh the browser on changes. In addition we'll make it possible to change the port by passing an environmental variable, like `PORT=3000 npm start`:
 
@@ -144,7 +144,7 @@ T> If you want even better output, consider [error-overlay-webpack-plugin](https
 
 To access your development server from the network, you need to figure out the IP address of your machine. For example, using `ifconfig | grep inet` on Unix, or `ipconfig` on Windows. An npm package, such as [node-ip](https://www.npmjs.com/package/node-ip), come in handy as well.
 
-On Windows you need to set your `HOST` to match your IP to make it accessible. **AS: how?**
+On Windows you need to set your `HOST` to match your IP to make it accessible. Example: `HOST=<ip goes here> npm start`.
 
 ## Making it faster to develop webpack configuration
 
@@ -190,9 +190,7 @@ The setup is more resource-intensive than the file watching, but it's worth tryi
 
 ## Integrating with servers using middlewares
 
-**AS: totally unclear what problem these tools are solving ;-/**
-
-Given it's possible your frontend is tightly coupled with a backend, multiple server middlewares exist to make integration easier:
+In case you are developing your entire project against a Node server without a separate frontend build, then one option is to run webpack using a middleware:
 
 - [webpack-dev-middleware](https://www.npmjs.com/package/webpack-dev-middleware)
 - [webpack-hot-middleware](https://www.npmjs.com/package/webpack-hot-middleware)
@@ -205,8 +203,7 @@ There's also a [Node API](https://webpack.js.org/configuration/dev-server/) if y
 
 By default webpack only watches files that your project depends on directly, for example, when you are using `MiniHtmlWebpackPlugin` and have customized it to load the template from a file.
 
-I’ve created the [webpack-add-dependency-plugin](https://www.npmjs.com/package/webpack-add-dependency-plugin) that makes webpack watch additional files.
-
+I've created the [webpack-add-dependency-plugin](https://www.npmjs.com/package/webpack-add-dependency-plugin) that makes webpack watch additional files.
 
 ## Development plugins
 
