@@ -49,6 +49,8 @@ T> Learn more about HMR in the _Hot Module Replacement_ appendix. Applying it wo
 
 W> WPS requires an Active LTS version of Node to work. The attached client scripts have been written with modern browsers in mind (`async`/`await`). It's possible to transpile them for older browsers, though.
 
+{pagebreak}
+
 ### Getting started with **webpack-plugin-serve**
 
 To get started with WPS, install it first:
@@ -56,8 +58,6 @@ To get started with WPS, install it first:
 ```bash
 npm add webpack-plugin-serve --develop
 ```
-
-{pagebreak}
 
 To integrate WPS to the project, define an npm script for launching it. To follow npm conventions, call it as _start_ like below:
 
@@ -130,8 +130,6 @@ The server is running, and if you open `http://localhost:8080/` at your browser,
 
 ![Hello world](images/hello_01.png)
 
-{pagebreak}
-
 If you try modifying the code, you should see the output in your terminal. The browser should also perform a hard refresh so that you can see the change.
 
 T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environment variables through a _.env_ file. _dotenv_ allows you to control the host and port setting of the setup quickly.
@@ -166,8 +164,6 @@ To get it to work, you have to install it first through `npm add nodemon --devel
 Webpack's file watching may not work on certain systems, for example on older versions of Windows and Ubuntu.
 
 Polling is almost mandatory when using Vagrant, Docker, or any other solution that doesn't forward events for changes on a file located in a folder shared with the virtualized machine where webpack is running. [vagrant-notify-forwarder](https://github.com/mhallin/vagrant-notify-forwarder) solves the problem for macOS and Unix.
-
-{pagebreak}
 
 For any of these cases, polling is a good option:
 
