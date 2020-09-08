@@ -20,7 +20,7 @@ Although this solves the problem of recompiling your source on change, it does n
 
 ## **webpack-dev-server**
 
-[webpack-dev-server](https://www.npmjs.com/package/webpack-dev-server) (WDS) is the officially maintained development server running **in-memory**, meaning the bundle contents isn't written out to files but stored in memory. The distinction is vital when trying to debug code and styles.
+[webpack-dev-server](https://www.npmjs.com/package/webpack-dev-server) (WDS) is the officially maintained development server running **in-memory**, meaning the bundle contents aren't written out to files but stored in memory. The distinction is vital when trying to debug code and styles.
 
 If you go with WDS, there are a couple of relevant fields that you should be aware of:
 
