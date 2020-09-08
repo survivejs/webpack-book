@@ -77,7 +77,9 @@ leanpub-end-insert
 
 T> `wp` stands for [webpack-nano](https://www.npmjs.com/package/webpack-nano). If you are using **webpack-cli** or another option, adjust the script to your liking.
 
-In addition, WPS has to be connected to webpack configuration. In this case we'll run it in `liveReload` mode and refresh the browser on changes. In addition we'll make it possible to change the port by passing an environmental variable, like `PORT=3000 npm start`:
+{pagebreak}
+
+In addition, WPS has to be connected to webpack configuration. In this case we'll run it in `liveReload` mode and refresh the browser on changes. We'll make it possible to change the port by passing an environmental variable, like `PORT=3000 npm start`:
 
 **webpack.config.js**
 
@@ -107,6 +109,8 @@ module.exports = {
   ],
 };
 ```
+
+{pagebreak}
 
 If you execute either _npm run start_ or _npm start_ now, you should see something similar to this in the terminal:
 
@@ -143,6 +147,8 @@ T> If you want even better output, consider [error-overlay-webpack-plugin](https
 To access your development server from the network, you need to figure out the IP address of your machine. For example, using `ifconfig | grep inet` on Unix, or `ipconfig` on Windows. An npm package, such as [node-ip](https://www.npmjs.com/package/node-ip), come in handy as well.
 
 On Windows you need to set your `HOST` to match your IP to make it accessible. Example: `HOST=<ip goes here> npm start`.
+
+{pagebreak}
 
 ## Making it faster to develop webpack configuration
 
