@@ -18,7 +18,9 @@ Add a fragment enabling autoprefixing:
 exports.autoprefix = () => ({
   loader: "postcss-loader",
   options: {
-    plugins: [require("autoprefixer")()],
+    postcssOptions: {
+      plugins: [require("autoprefixer")()],
+    },
   },
 });
 ```
