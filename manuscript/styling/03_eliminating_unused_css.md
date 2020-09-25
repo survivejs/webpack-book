@@ -26,7 +26,9 @@ To load Tailwind, we'll have to use PostCSS:
 exports.tailwind = () => ({
   loader: "postcss-loader",
   options: {
-    plugins: [require("tailwindcss")()],
+    postcssOptions: {
+      plugins: [require("tailwindcss")()],
+    },
   },
 });
 ```
