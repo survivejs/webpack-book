@@ -25,6 +25,8 @@ The main use case for using the Node target is _Server-Side Rendering_ (SSR).
 
 T> To learn more about the topic, read [James Long's series](https://jlongster.com/Backend-Apps-with-Webpack--Part-I) about developing backend applications with webpack.
 
+T> If you develop a server using webpack, see [nodemon-webpack-plugin](https://www.npmjs.com/package/nodemon-webpack-plugin). The plugin is able to restart your server process without having to set up an external watcher.
+
 ## Desktop targets
 
 There are desktop shells, such as [NW.js](https://nwjs.io/) (previously _node-webkit_) and [Electron](http://electron.atom.io/) (previously _Atom_). Webpack can target these as follows:
