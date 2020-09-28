@@ -78,8 +78,10 @@ To incorporate the idea into the configuration, the way it's composed has to cha
 
 ```javascript
 const commonConfig = merge([
-  ...
 leanpub-start-delete
+  {
+    entry: ["./src"],
+  }
   parts.page({ title: "Webpack demo" }),
 leanpub-end-delete
   ...
@@ -90,7 +92,7 @@ leanpub-end-delete
 leanpub-start-insert
 const getConfig = mode => {
   const pages = [
-    parts.page({ title: "Webpack demo", mode }),
+    parts.page({ title: "Webpack demo", entry: "./src", mode }),
   ];
   const config =
     mode === "production" ? productionConfig : developmentConfig;
@@ -151,7 +153,7 @@ leanpub-end-insert
 const getConfig = (mode) => {
 leanpub-start-delete
   const pages = [
-    parts.page({ title: "Webpack demo", mode }),
+    parts.page({ title: "Webpack demo", entry: "./src", mode }),
   ];
 leanpub-end-delete
 leanpub-start-insert
