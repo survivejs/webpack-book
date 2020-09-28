@@ -146,6 +146,8 @@ It's possible that a project will run without any changes to the configuration b
 
 At the time of writing, webpack 5 is in beta and the book examples work with it although you may see deprecation warnings occasionally.
 
+{pagebreak}
+
 ## Conclusion
 
 Webpack comes with a significant learning curve. However, it's a tool worth learning, given how much time and effort it can save over the long term. To get a better idea how it compares to others, check out the _Comparison of Build Tools_ appendix.
@@ -162,5 +164,3 @@ To summarize:
 - Webpack can generate **hashes** for filenames allowing you to invalidate past bundles as their contents change.
 
 In the next part of the book, you'll learn to construct a development configuration using webpack while learning more about its basic concepts.
-
-T> If you are still unsure of webpack or why bundlers are required, read [Why would I use a Webpack?](http://tinselcity.net/whys/packers).
