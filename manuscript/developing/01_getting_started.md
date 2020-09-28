@@ -44,6 +44,8 @@ We're using **webpack-nano** over the official [webpack-cli](https://www.npmjs.c
 
 T> If you want to use webpack 5 to run the examples, use `npm add webpack@next` instead.
 
+T> `npm add` is an alias for `npm install`. It's used in the book as it aligns well with Yarn and `yarn add`. You can use which one you prefer.
+
 ## Executing webpack
 
 You can display the exact path of the executables using `npm bin`. Most likely it points to `./node_modules/.bin`. Try running webpack from there through the terminal using `node_modules/.bin/wp` or a similar command.
