@@ -26,7 +26,7 @@ Next, you need to define a function to wrap the basic idea. You could use the pl
 ...
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
-exports.clean = path => ({
+exports.clean = () => ({
   plugins: [new CleanWebpackPlugin()],
 });
 ```
