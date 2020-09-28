@@ -185,6 +185,8 @@ These calls should be used over `console` based alternatives. As with `this.emit
 
 The next question is how to pass a file name to the loader.
 
+T> `loader-utils` contains utilities beyond name interpolation. A good example is `loaderUtils.parseQuery(this.resourceQuery)` that allows you to parse query parameters passed to the loader and control its behavior in another way.
+
 ## Passing options to loaders
 
 To demonstrate passing options, the runner needs a small tweak:
