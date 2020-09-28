@@ -150,7 +150,6 @@ const ALL_FILES = glob.sync(path.join(__dirname, "src/*.js"));
 exports.eliminateUnusedCSS = () => ({
   plugins: [
     new PurgeCSSPlugin({
-      whitelistPatterns: [], // Example: /^svg-/
       paths: ALL_FILES, // Consider extracting as a parameter
       extractors: [
         {
@@ -163,6 +162,8 @@ exports.eliminateUnusedCSS = () => ({
   ],
 });
 ```
+
+T> For exceptions, [PurgeCSS 3.0](https://github.com/FullHuman/purgecss/releases/tag/v3.0.0) includes **safelist** and **blocklist** options.
 
 {pagebreak}
 
