@@ -39,6 +39,10 @@ exports.extractCSS = ({ options = {}, loaders = [] } = {}) => {
             { loader: MiniCssExtractPlugin.loader, options },
             "css-loader",
           ].concat(loaders),
+          // If you distribute your code as a package and want to
+          // use _Tree Shaking_, then you should mark CSS extraction
+          // to emit side effects. For most use cases, you don't
+          // have to worry about setting flag.
           sideEffects: true,
         },
       ],
