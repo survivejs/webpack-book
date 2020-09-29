@@ -2,7 +2,7 @@
 
 Before getting started, make sure you are using a recent version of [Node](http://nodejs.org/). You should use at least the most current LTS (long-term support) version as the configuration of the book has been written with the LTS Node features in mind. You should have `node` and `npm` commands available at your terminal. [Yarn](https://yarnpkg.com/) is a good alternative to npm and works for the tutorial as well.
 
-T> To get a more controlled environment, use [Docker](https://www.docker.com/), [Vagrant](https://www.vagrantup.com/), [nvm](https://www.npmjs.com/package/nvm) or a similar tool. Vagrant comes with a performance penalty as it relies on a virtual machine. Vagrant is valuable in a team: each developer can have the same environment that is usually close to production.
+T> To get a more controlled environment, use [Docker](https://www.docker.com/), [nvm](https://www.npmjs.com/package/nvm) or a similar tool.
 
 T> The completed configuration is available at [GitHub](https://github.com/survivejs-demos/webpack-demo).
 
