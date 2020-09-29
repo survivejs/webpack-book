@@ -13,7 +13,7 @@ To get a starting point, create a directory for the project, and set up a `packa
 ```bash
 mkdir webpack-demo
 cd webpack-demo
-npm init -y # -y generates `package.json` with default values, skip for more control
+npm init -y # -y generates a `package.json` with default values, skip for more control
 ```
 
 {pagebreak}
@@ -50,7 +50,7 @@ T> `npm add` is an alias for `npm install`. It's used in the book as it aligns w
 
 Type `npx wp` to run locally installed **webpack-nano**.
 
-T> You can display the exact path of the executables using `npm bin`. Most likely it points to `./node_modules/.bin`. 
+T> You can display the exact path of the executables using `npm bin`. Most likely it points to `./node_modules/.bin`.
 
 T> `npx` is installed with npm and could be used to run npm packages without installation, as well as to run locally installed packages.
 
