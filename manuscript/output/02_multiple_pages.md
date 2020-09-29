@@ -94,8 +94,14 @@ const getConfig = mode => {
   const pages = [
     parts.page({ title: "Webpack demo", entry: "./src", mode }),
   ];
-  const config =
-    mode === "production" ? productionConfig : developmentConfig;
+  let config;
+  switch (mode) {
+    case "production":
+      config = productionConfig;
+    case "development":
+    default:
+      config = developmentConfig;
+  }
 
   return pages.map(page =>
     merge(commonConfig, config, page, { mode })
@@ -175,12 +181,18 @@ leanpub-start-insert
     }),
   ];
 leanpub-end-insert
-  const config =
-    mode === "production" ? productionConfig : developmentConfig;
+  let config;
+  switch (mode) {
+    case "production":
+      config = productionConfig;
+    case "development":
+    default:
+      config = developmentConfig;
+  };
 
-    return pages.map(page =>
-      merge(commonConfig, config, page, { mode })
-    );
+  return pages.map(page =>
+    merge(commonConfig, config, page, { mode })
+  );
 };
 ```
 
@@ -238,8 +250,14 @@ leanpub-start-insert
 leanpub-end-insert
     }),
   ];
-  const config =
-    mode === "production" ? productionConfig : developmentConfig;
+  let config;
+  switch (mode) {
+    case "production":
+      config = productionConfig;
+    case "development":
+    default:
+      config = developmentConfig;
+  };
 
 leanpub-start-delete
   return pages.map(page =>
