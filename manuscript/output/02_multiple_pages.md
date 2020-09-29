@@ -200,6 +200,8 @@ After these changes `/another` should show something familiar:
 
 ![Another page shows up](images/another.png)
 
+{pagebreak}
+
 ### Pros and cons
 
 If you build the application (`npm run build`), you should find _another/index.html_. Based on the generated code, you can make the following observations:
