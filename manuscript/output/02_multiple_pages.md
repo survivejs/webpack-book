@@ -98,6 +98,7 @@ const getConfig = mode => {
   switch (mode) {
     case "production":
       config = productionConfig;
+      break;
     case "development":
     default:
       config = developmentConfig;
@@ -185,6 +186,7 @@ leanpub-end-insert
   switch (mode) {
     case "production":
       config = productionConfig;
+      break;
     case "development":
     default:
       config = developmentConfig;
@@ -258,6 +260,7 @@ leanpub-end-insert
   switch (mode) {
     case "production":
       config = productionConfig;
+      break;
     case "development":
     default:
       config = developmentConfig;
