@@ -188,11 +188,11 @@ It's possible to integrate bundle analysis to your build process by using [Bundl
 
 ## Bundle comparison
 
-[@mixer/webpack-bundle-compare](https://www.npmjs.com/package/@mixer/webpack-bundle-compare) lets you compare bundle size over time through a user interface.
+There are multiple packages which let you compare webpack bundles over time:
 
-[webpack-bundle-diff](https://github.com/smikula/webpack-bundle-diff) operates on a lower level and emits a JSON file with the difference. It could work well with a custom visualization.
-
-[size-plugin](https://github.com/GoogleChromeLabs/size-plugin) prints out the size difference since the last build, and it can be useful during local development.
+- [bundle-stats-webpack-plugin](https://www.npmjs.com/package/bundle-stats-webpack-plugin) lets you generate graphical bundle reports and compare them across builds.
+- [webpack-bundle-diff](https://github.com/smikula/webpack-bundle-diff) operates on a lower level and emits a JSON file with the difference. It could work well with a custom visualization.
+- [size-plugin](https://www.npmjs.com/package/size-plugin) prints out the size difference since the last build, and it can be useful during local development.
 
 ## Unused files analysis
 
