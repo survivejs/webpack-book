@@ -141,9 +141,7 @@ const commonConfig = merge([
 ]);
 ```
 
-After this type of change, you would not have to refer to styling from your application code. In this approach, you have to be careful with CSS ordering.
-
-As a result, you should get both _style.css_ and _style.js_. The latter file contains content like `webpackJsonp([1,3],[function(n,c){}]);` and it doesn't do anything as discussed in the [webpack issue 1967](https://github.com/webpack/webpack/issues/1967). The limitation will go away in webpack 5 as it won't emit JavaScript files for anything that would be empty.
+After this change, you don't have to refer to styling from your application code anymore. In this approach, you have to be careful with CSS ordering, though.
 
 If you want strict control over the ordering, you can set up a single CSS entry and then use `@import` to bring the rest to the project through it. Another option would be to set up a JavaScript entry and go through `import` to get the same effect.
 
