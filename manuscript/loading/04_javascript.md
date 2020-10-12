@@ -364,7 +364,7 @@ T> [flow-coverage-report](https://www.npmjs.com/package/flow-coverage-report) sh
 
 [WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly) allows developers to compile to a low-level representation of code that runs within the browser. It complements JavaScript and provides one path of potential optimization. The technology can also be useful when you want to run an old application without porting it entirely to JavaScript.
 
-Starting from webpack 5, the tool supports new style asynchronous WebAssembly. The official examples, [wasm-simple](https://github.com/webpack/webpack/tree/master/examples/wasm-simple) and [wasm-complex](https://github.com/webpack/webpack/tree/master/examples/wasm-complex), illustrate the experimental functionality well.
+Starting from webpack 5, the tool supports new style asynchronous WebAssembly. The official examples, [wasm-simple](https://github.com/webpack/webpack/tree/master/examples/wasm-simple) and [wasm-complex](https://github.com/webpack/webpack/tree/master/examples/wasm-complex), illustrate the experimental functionality well. [wasmpack's webpack tutorial](https://rustwasm.github.io/docs/wasm-pack/tutorials/hybrid-applications-with-webpack/index.html) shows how to package Rust code using WebAssembly to be consumed through webpack.
 
 ## Conclusion
 
