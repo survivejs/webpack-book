@@ -27,6 +27,8 @@ T> To learn more about the topic, read [James Long's series](https://jlongster.c
 
 T> If you develop a server using webpack, see [nodemon-webpack-plugin](https://www.npmjs.com/package/nodemon-webpack-plugin). The plugin is able to restart your server process without having to set up an external watcher.
 
+T> It can be useful to use `__non_webpack_require__(path)` to separate imports that should be evaluated outside of webpack. See the [issue #4175](https://github.com/webpack/webpack/issues/4175) for more information.
+
 ## Desktop targets
 
 There are desktop shells, such as [NW.js](https://nwjs.io/) (previously _node-webkit_) and [Electron](http://electron.atom.io/) (previously _Atom_). Webpack can target these as follows:
