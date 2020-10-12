@@ -42,8 +42,6 @@ We're using [webpack-nano](https://www.npmjs.com/package/webpack-nano) over the 
 
 **webpack-cli** comes with additional functionality, including `init` and `migrate` commands that allow you to create new webpack configuration fast and update from an older version to a newer one.
 
-T> If you want to use webpack 5 to run the examples, use `npm add webpack@next` instead.
-
 T> `npm add` is an alias for `npm install`. It's used in the book as it aligns well with Yarn and `yarn add`. You can use which one you prefer.
 
 ## Running webpack

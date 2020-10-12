@@ -138,13 +138,11 @@ Webpack 5 is a new version of the tool that promises the following changes:
 - Internal APIs (esp. plugins) have been improved and older APIs have been deprecated.
 - The development and production targets have better defaults. For example now `contenthash` is used for production resulting in predictable caching behavior. The topic is discussed in detail at the _Adding Hashes to Filename_ chapter.
 
-[Webpack 5 changelog](https://github.com/webpack/changelog-v5) lists all the major changes. Apart from the caching improvements and module federation, it can be considered a clean up release.
+[Webpack 5 release post](https://webpack.js.org/blog/2020-10-10-webpack-5-release/) lists all the major changes. Apart from the caching improvements and _Module Federation_, it can be considered a clean up release.
 
 There's [an official migration guide](https://webpack.js.org/migrate/5/) that lists all of the changes that have to be done to port a project from webpack 4 to 5.
 
 It's possible that a project will run without any changes to the configuration but that you'll receive deprecation warnings. To find out where they are coming from, use `node --trace-deprecation node_modules/webpack/bin/webpack.js` when running webpack.
-
-At the time of writing, webpack 5 is in beta and the book examples work with it although you may see deprecation warnings occasionally.
 
 {pagebreak}
 
