@@ -211,6 +211,17 @@ If you are using React, then you use [babel-plugin-transform-react-jsx-img-impor
 const Profile = () => <img src="avatar.png" />;
 ```
 
+Starting from webpack 5, it's possible to achieve the same without an import like this:
+
+```javascript
+// Use the image in your code somehow now
+const Profile = () => (
+  <img src={new URL("./avatar.png", import.meta.url)} />
+);
+```
+
+The benefit of using the [URL interface](https://developer.mozilla.org/en-US/docs/Web/API/URL) is that it lets the code work without using a bundler.
+
 It's also possible to set up dynamic imports as discussed in the _Code Splitting_ chapter. Here's a small example:
 
 ```javascript
