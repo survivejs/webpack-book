@@ -319,7 +319,7 @@ Both plugins can allow more granular control over which portions of the code you
 
 Given webpack matches only `.js` and `.css` files by default for source maps, you can use `SourceMapDevToolPlugin` to overcome this issue. This can be achieved by passing a `test` pattern like `/\.(js|jsx|css)($|\?)/i`.
 
-`EvalSourceMapDevToolPlugin` accepts only `module` and `lineToLine` options as described above. Therefore it can be considered as an alias to `devtool: "eval"` while allowing a notch more flexibility.
+`EvalSourceMapDevToolPlugin` accepts only `module` field. Therefore it can be considered as an alias to `devtool: "eval"` while allowing a notch more flexibility.
 
 ## Changing source map prefix
 
