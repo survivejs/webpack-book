@@ -187,8 +187,6 @@ Webpack can also generate production usage friendly source maps. These end up in
 
 `nosources-source-map` creates a source map without `sourcesContent` in it. You still get stack traces, though. The option is useful if you don't want to expose your source code to the client.
 
-T> [The official documentation](https://webpack.js.org/configuration/devtool/#devtool) contains more information about `devtool` options.
-
 {pagebreak}
 
 ### `devtool: "cheap-source-map"`
@@ -280,6 +278,8 @@ W> `cheap-module-source-map` is [currently broken if minification is used](https
   "sourceRoot": ""
 }
 ```
+
+T> [The official documentation](https://webpack.js.org/configuration/devtool/#devtool) contains more information about `devtool` options.
 
 {pagebreak}
 
