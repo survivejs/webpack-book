@@ -177,7 +177,7 @@ If you execute `npx wp --mode production`, you should see output:
 
 The output is revealing:
 
-- `Hash: b3d548da335f2c806f02` - The hash of the build. You can use this to invalidate assets through `[hash]` placeholder. Hashing is discussed in detail in the _Adding Hashes to Filenames_ chapter.
+- `Hash: b3d548da335f2c806f02` - The hash of the build. You can use this to invalidate assets through `[fullhash]` placeholder. Hashing is discussed in detail in the _Adding Hashes to Filenames_ chapter.
 - `Version: webpack 4.44.1` - Webpack version.
 - `Time: 60ms` - Time it took to execute the build.
 - `main.js 1.04 KiB 0 [emitted] main` - Name of the generated asset, size, the IDs of the **chunks** into which it's related, status information telling how it was generated, the name of the chunk.
