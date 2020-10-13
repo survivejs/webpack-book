@@ -4,6 +4,8 @@ When webpack writes bundles, it maintains a **runtime** as well. The runtime inc
 
 For this reason, it can be a good idea to write the runtime to a file of its own or inline the manifest information to the _index.html_ file of the project.
 
+T> Starting from webpack 5, the tool will take your browserslist definition into account when generating the runtime. See the _Autoprefixing_ chapter for an expanded discussion.
+
 ## Extracting a runtime
 
 Most of the work was done already when `extractBundles` was set up in the _Bundle Splitting_ chapter. To extract the runtime, define `optimization.runtimeChunk` as follows:
