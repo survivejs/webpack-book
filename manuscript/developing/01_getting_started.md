@@ -13,7 +13,7 @@ To get a starting point, create a directory for the project, and set up a `packa
 ```bash
 mkdir webpack-demo
 cd webpack-demo
-npm init -y # -y generates a `package.json` with default values, skip for more control
+npm init -y # -y generates a `package.json` with default values
 ```
 
 {pagebreak}
