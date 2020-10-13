@@ -99,6 +99,8 @@ You still have to point to a CDN and ideally provide a local fallback, so there 
 </script>
 ```
 
+T> Starting from webpack 5, the tool supports [externalsType](https://webpack.js.org/configuration/externals/#externalstype) field to customize the loading behavior. For example, using `"promise"` string as its value would load the externals asynchronously and `"import"` would use browser `import()` to load the externals. This can be configured per external as well instead of using a global setting. To load jQuery asynchronously, you would set it to `["jquery", "promise"]` in the example above.
+
 ## Dealing with globals
 
 Sometimes modules depend on globals. `$` provided by jQuery is a good example. Webpack offers a few ways that allow you to handle them.
