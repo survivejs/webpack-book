@@ -8,6 +8,8 @@ Webpack's output target is controlled by the `target` field. You'll learn about 
 
 Webpack uses the _web_ target by default. The target is ideal for a web application like the one you have developed in this book. Webpack bootstraps the application and loads its modules. The initial list of modules to load is maintained in a manifest, and then the modules can load each other as defined.
 
+Starting from webpack 5, the default is set to _browserslist_ in case a browserslist configuration has been found. The change means that webpack will compile its runtime to match the setting instead of generating code that will work in legacy browsers as well.
+
 ### Web workers
 
 The _webworker_ target wraps your application as a [web worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API). Using web workers is valuable if you want to execute computation outside of the main thread of the application without slowing down the user interface. There are a couple of limitations you should be aware of:
