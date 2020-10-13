@@ -37,6 +37,8 @@ The following listing contains the essential parts related to this approach. You
 }
 ```
 
+T> Starting from webpack 5, there's an alternative to `module.hot`. `import.meta.webpackHot` has been designed with ES2015 modules and Node mjs file extension in mind as it doesn't allow mixing CommonJS and ES2015 syntax.
+
 {pagebreak}
 
 If you implement configuration like above without implementing the client interface, you will most likely end up with an error:
