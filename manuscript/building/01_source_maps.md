@@ -357,7 +357,7 @@ Sometimes third-party dependencies lead to source map related warnings in the br
 ```javascript
 const config = {
   stats: {
-    warningsFilter: [/Failed to parse source map/],
+    ignoreWarnings: { message: /Failed to parse source map/ },
   },
 };
 ```
