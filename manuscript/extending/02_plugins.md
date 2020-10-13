@@ -173,21 +173,14 @@ T> Loaders have dirty access to `compiler` and `compilation` through underscore 
 
 The `assets` object of compilation can be used for writing new files. You can also capture already created assets, manipulate them, and write them back.
 
-To write an asset, you have to use [webpack-sources](https://www.npmjs.com/package/webpack-sources) file abstraction.
-
-If you are using webpack 4 or below, install it first:
-
-```bash
-npm add webpack-sources --develop
-```
+To write an asset, you have to use [webpack-sources](https://www.npmjs.com/package/webpack-sources) file abstraction. It's included to webpack by default starting from version 5.
 
 Adjust the code as follows to write through `RawSource`:
 
 **plugins/demo-plugin.js**
 
 ```javascript
-// In webpack 5, you can use require("webpack").sources
-const { RawSource } = require("webpack-sources");
+const { RawSource } = require("webpack").sources;
 
 module.exports = class DemoPlugin {
   constructor(options) {
