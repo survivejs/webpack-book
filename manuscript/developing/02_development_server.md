@@ -158,6 +158,8 @@ To get it to work, you have to install it first through `npm add nodemon --devel
 },
 ```
 
+{pagebreak}
+
 ## Polling instead of watching files
 
 Webpack's file watching may not work on certain systems, for example on older versions of Windows and Ubuntu.
@@ -182,6 +184,8 @@ module.exports = {
 ```
 
 The setup is more resource-intensive than the file watching, but it's worth trying out if the file watching doesn't work for you.
+
+{pagebreak}
 
 ## Integrating with servers using middlewares
 
