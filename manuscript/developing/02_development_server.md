@@ -8,11 +8,7 @@ It's possible to setup Browsersync to work with webpack through [browser-sync-we
 
 ## Webpack `watch` mode
 
-Webpack's `watch` mode rebuilds the bundle on any change of the project files. To activate it, pass the `--watch` switch to webpack:
-
-```bash
-npm run build -- --watch
-```
+Webpack's `watch` mode rebuilds the bundle on any change of the project files. It can be activated either by setting `watch` field `true` in webpack configuration or by passing the `--watch` to webpack-cli.
 
 Although this solves the problem of recompiling your source on change, it does nothing on the frontend side and browser updates. That's where further solutions are required.
 
@@ -35,7 +31,7 @@ T> To integrate with another server, it's possible to emit files from WDS to the
 
 W> You should use WDS strictly for development. If you want to host your application, consider other solutions, such as Apache or Nginx.
 
-W> WDS depends implicitly on **webpack-cli** in command line usage. Make sure you have both installed.
+W> WDS depends implicitly on **webpack-cli** in command line usage.
 
 ## **webpack-plugin-serve**
 
@@ -74,8 +70,6 @@ leanpub-end-insert
   ...
 }
 ```
-
-T> `wp` stands for [webpack-nano](https://www.npmjs.com/package/webpack-nano). If you are using **webpack-cli** or another option, adjust the script to your liking.
 
 {pagebreak}
 
@@ -117,17 +111,24 @@ If you execute either _npm run start_ or _npm start_ now, you should see somethi
 ```bash
 > wp --mode development
 
-⬡ webpack: Watching Files
 ⬡ wps: Server Listening on: http://[::]:8080
 
-⬡ webpack: Hash: 6135f8cbee061c80be05
-  Version: webpack 4.44.1
-  Time: 108ms
-  Built at: 08/21/2020 9:54:33 AM
-       Asset       Size  Chunks             Chunk Names
-  index.html  198 bytes          [emitted]
-     main.js   63.4 KiB    main  [emitted]  main
-  Entrypoint main = main.js
+⬡ webpack: asset main.js 73.1 KiB [emitted] (name: main)
+  asset index.html 198 bytes [compared for emit]
+  runtime modules 25.2 KiB 11 modules
+  cacheable modules 25 KiB
+    modules by path ./node_modules/webpack-plugin-serve/lib/client/ 23.7 KiB
+      modules by path ./node_modules/webpack-plugin-serve/lib/client/*.js 8.02 KiB 4 modules
+      modules by path ./node_modules/webpack-plugin-serve/lib/client/overlays/*.js 15.7 KiB
+        ./node_modules/webpack-plugin-serve/lib/client/overlays/progress-minimal.js 2.38 KiB [built] [code generated]
+        ./node_modules/webpack-plugin-serve/lib/client/overlays/progress.js 3.88 KiB [built] [code generated]
+        ./node_modules/webpack-plugin-serve/lib/client/overlays/status.js 8.27 KiB [built] [code generated]
+        ./node_modules/webpack-plugin-serve/lib/client/overlays/util.js 1.17 KiB [built] [code generated]
+    modules by path ./src/*.js 217 bytes
+      ./src/index.js 77 bytes [built] [code generated]
+      ./src/component.js 140 bytes [built] [code generated]
+    ./node_modules/webpack-plugin-serve/client.js 1.05 KiB [built] [code generated]
+  0 (webpack 5.1.0) compiled successfully in 157 ms
 ```
 
 The server is running, and if you open `http://localhost:8080/` at your browser, you should see a hello:
@@ -139,8 +140,6 @@ If you try modifying the code, you should see the output in your terminal. The b
 T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environment variables through a _.env_ file. _dotenv_ allows you to control the host and port setting of the setup quickly.
 
 T> Enable the `historyFallback` flag if you are using HTML5 History API based routing.
-
-T> If you want even better output, consider [error-overlay-webpack-plugin](https://www.npmjs.com/package/error-overlay-webpack-plugin) as it shows the origin of the error better.
 
 ## Accessing development server from the network
 
