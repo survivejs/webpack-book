@@ -45,6 +45,8 @@ T> Learn more about HMR in the _Hot Module Replacement_ appendix. Applying it wo
 
 W> WPS requires an Active LTS version of Node to work. The attached client scripts have been written with modern browsers in mind (`async`/`await`). It's possible to transpile them for older browsers, though.
 
+{pagebreak}
+
 ### Getting started with **webpack-plugin-serve**
 
 To get started with WPS, install it first:
@@ -52,8 +54,6 @@ To get started with WPS, install it first:
 ```bash
 npm add webpack-plugin-serve --develop
 ```
-
-{pagebreak}
 
 To integrate WPS to the project, define an npm script for launching it. To follow npm conventions, call it as _start_ like below:
 
