@@ -137,6 +137,8 @@ module.exports = {
 };
 ```
 
+{pagebreak}
+
 Now that the configuration is done, try the following:
 
 1. Build the project using `npx wp --mode production`. You can try the `development` and `none` modes too.
@@ -161,29 +163,14 @@ If you execute `npx wp --mode production`, you should see output:
 
 ```bash
 ⬡ webpack: Build Finished
-⬡ webpack: Hash: b3d548da335f2c806f02
-  Version: webpack 4.44.1
-  Time: 60ms
-  Built at: 08/21/2020 9:29:03 AM
-       Asset       Size  Chunks             Chunk Names
-  index.html  198 bytes          [emitted]
-     main.js   1.04 KiB       0  [emitted]  main
-  Entrypoint main = main.js
-  [0] ./src/index.js + 1 modules 219 bytes {0} [built]
-      | ./src/index.js 77 bytes [built]
-      | ./src/component.js 142 bytes [built]
+⬡ webpack: asset index.html 198 bytes [compared for emit]
+  asset main.js 136 bytes [compared for emit] [minimized] (name: main)
+  orphan modules 140 bytes [orphan] 1 module
+  ./src/index.js + 1 modules 217 bytes [built] [code generated]
+  webpack 5.1.0 compiled successfully in 193 ms
 ```
 
-The output is revealing:
-
-- `Hash: b3d548da335f2c806f02` - The hash of the build. You can use this to invalidate assets through `[fullhash]` placeholder. Hashing is discussed in detail in the _Adding Hashes to Filenames_ chapter.
-- `Version: webpack 4.44.1` - Webpack version.
-- `Time: 60ms` - Time it took to execute the build.
-- `main.js 1.04 KiB 0 [emitted] main` - Name of the generated asset, size, the IDs of the **chunks** into which it's related, status information telling how it was generated, the name of the chunk.
-- `index.html 198 bytes [emitted]` - Another generated asset that was emitted by the process.
-- `[0] ./src/index.js + 1 modules 219 bytes {0} [built]` - The ID of the entry asset, name, size, entry chunk ID, the way it was generated.
-
-Examine the output inside the `dist/` directory. If you look closely, you can see the same IDs within the source.
+Starting from webpack 5, the output has been simplified and it's largely self-explanatory. The default output has improved as well as you can see by studying `dist/main.js`. Earlier it contained an entire webpack runtime but starting from webpack 5, the tool is able to optimize the result to a minimum required.
 
 ## Adding a build shortcut
 
