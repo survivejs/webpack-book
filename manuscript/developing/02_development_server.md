@@ -45,8 +45,6 @@ T> Learn more about HMR in the _Hot Module Replacement_ appendix. Applying it wo
 
 W> WPS requires an Active LTS version of Node to work. The attached client scripts have been written with modern browsers in mind (`async`/`await`). It's possible to transpile them for older browsers, though.
 
-{pagebreak}
-
 ### Getting started with **webpack-plugin-serve**
 
 To get started with WPS, install it first:
@@ -54,6 +52,8 @@ To get started with WPS, install it first:
 ```bash
 npm add webpack-plugin-serve --develop
 ```
+
+{pagebreak}
 
 To integrate WPS to the project, define an npm script for launching it. To follow npm conventions, call it as _start_ like below:
 
@@ -70,8 +70,6 @@ leanpub-end-insert
   ...
 }
 ```
-
-{pagebreak}
 
 In addition, WPS has to be connected to webpack configuration. In this case we'll run it in `liveReload` mode and refresh the browser on changes. We'll make it possible to change the port by passing an environmental variable, like `PORT=3000 npm start`:
 
@@ -103,8 +101,6 @@ module.exports = {
   ],
 };
 ```
-
-{pagebreak}
 
 If you execute either _npm run start_ or _npm start_ now, you should see something similar to this in the terminal:
 
@@ -147,8 +143,6 @@ To access your development server from the network, you need to figure out the I
 
 On Windows you need to set your `HOST` to match your IP to make it accessible. Example: `HOST=<ip goes here> npm start`.
 
-{pagebreak}
-
 ## Making it faster to develop webpack configuration
 
 WPS will handle restarting the server when you change a bundled file. It's oblivious to changes made to webpack configuration, though, and you have to restart the WPS whenever you change something. The process can be automated as [discussed on GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892) by using [nodemon](https://www.npmjs.com/package/nodemon) monitoring tool.
@@ -169,8 +163,6 @@ To get it to work, you have to install it first through `npm add nodemon --devel
 Webpack's file watching may not work on certain systems, for example on older versions of Windows and Ubuntu.
 
 Polling is almost mandatory when using Vagrant, Docker, or any other solution that doesn't forward events for changes on a file located in a folder shared with the virtualized machine where webpack is running. [vagrant-notify-forwarder](https://github.com/mhallin/vagrant-notify-forwarder) solves the problem for macOS and Unix.
-
-{pagebreak}
 
 For any of these cases, polling is a good option:
 
