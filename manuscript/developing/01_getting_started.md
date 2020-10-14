@@ -13,14 +13,14 @@ To get a starting point, create a directory for the project, and set up a `packa
 ```bash
 mkdir webpack-demo
 cd webpack-demo
-npm init -y # -y generates a `package.json` with default values
+# -y generates a `package.json` with default values
+# Set the defaults at ~/.npmrc
+npm init -y
 ```
-
-{pagebreak}
 
 You can tweak the generated `package.json` manually to make further changes to it even though a part of the operations modify the file automatically for you. The official documentation explains [package.json options](https://docs.npmjs.com/files/package.json) in more detail.
 
-T> You can set those `npm init` defaults at `~/.npmrc`.
+{pagebreak}
 
 T> This is an excellent chance to set up version control using [Git](https://git-scm.com/). You can create a commit per step and tag per chapter, so it's easier to move back and forth if you want.
 
@@ -46,9 +46,7 @@ T> `npm add` is an alias for `npm install`. It's used in the book as it aligns w
 
 ## Running webpack
 
-Type `npx wp` to run locally installed **webpack-nano**.
-
-T> You can display the exact path of the executables using `npm bin`. Most likely it points to `./node_modules/.bin`.
+Type `npx wp` to run the locally installed **webpack-nano**.
 
 T> `npx` is installed with npm and could be used to run npm packages without installation, as well as to run locally installed packages.
 
@@ -56,18 +54,17 @@ After running, you should see a version, a link to the command line interface gu
 
 ```bash
 $ npx wp
-
 ⬡ webpack: Build Finished
-⬡ webpack: Hash: 80f545d7d31df2164016
-  Version: webpack 4.44.1
-  Time: 29ms
-  Built at: 08/21/2020 9:24:56 AM
+⬡ webpack: assets by status 0 bytes [cached] 1 asset
 
-WARNING in configuration
-The 'mode' option has not been set, webpack will fallback to 'production' for this value. Set 'mode' option to 'development' or 'production' to enable defaults for each environment.
-You can also set it to 'none' to disable any default behavior. Learn more: https://webpack.js.org/configuration/mode/
+  WARNING in configuration
+  The 'mode' option has not been set, webpack will fallback to 'production' for this value. Set 'mode' option to 'development' or 'production' to enable defaults for each environment.
+  You can also set it to 'none' to disable any default behavior. Learn more: https://webpack.js.org/configuration/mode/
 
-ERROR in Entry module not found: Error: Can't resolve './src' in '/tmp/webpack-demo'
+  ERROR in main
+  Module not found: Error: Can't resolve './src' in 'tmp/wp5-demo'
+
+  webpack 5.1.0 compiled with 1 error and 1 warning in 115 ms
 ```
 
 The output tells that webpack cannot find the source to compile. Ideally we would pass `mode` parameter to it as well to define which defaults we want.
@@ -77,6 +74,8 @@ To make webpack compile, do the following:
 1. Set up `src/index.js` with something like `console.log("Hello world");`.
 2. Execute `npx wp`. Webpack will discover the source file by convention.
 3. Examine `dist/main.js`. You should see webpack bootstrap code that begins executing the code. Below the bootstrap, you should find something familiar.
+
+T> You can display the exact path of the executables using `npm bin`. Most likely it points to `./node_modules/.bin`.
 
 ## Setting up assets
 
