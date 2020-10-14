@@ -62,7 +62,7 @@ $ npx wp
   You can also set it to 'none' to disable any default behavior. Learn more: https://webpack.js.org/configuration/mode/
 
   ERROR in main
-  Module not found: Error: Can't resolve './src' in 'tmp/wp5-demo'
+  Module not found: Error: Can't resolve './src' in 'tmp/webpack-demo'
 
   webpack 5.1.0 compiled with 1 error and 1 warning in 115 ms
 ```
@@ -191,15 +191,6 @@ Run `npm run build` to see the same output as before. npm adds `node_modules/.bi
 You can execute this kind of scripts through `npm run` and you can use the command anywhere within your project. If you run the command without any parameters (`npm run`), it gives you the listing of available scripts.
 
 T> If you want to run multiple commands concurrently, see the [concurrently](https://www.npmjs.com/package/concurrently) package. It has been designed to allow that while providing neat output.
-
-## Webpack output plugins
-
-There are multiple plugins to make the webpack output easier to understand and more convenient:
-
-- [webpackbar](https://www.npmjs.com/package/webpackbar) has been made especially for tracking build progress.
-- `webpack.ProgressPlugin` is included out of the box and can be used as well.
-- [webpack-dashboard](https://www.npmjs.com/package/webpack-dashboard) gives an entire terminal-based dashboard over the standard webpack output. If you prefer clear visual output, this one comes in handy.
-- [test-webpack-reporter-plugin](https://www.npmjs.com/package/test-webpack-reporter-plugin) abstracts webpack's internals to make it easier to write your own reporters.
 
 ## Conclusion
 

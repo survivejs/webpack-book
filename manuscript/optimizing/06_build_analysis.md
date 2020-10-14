@@ -169,7 +169,7 @@ In addition to providing a pie chart visualization, [Auxpack](http://auxpack.com
 
 ### Command line utilities
 
-[webpack-bundle-size-analyzer](https://www.npmjs.com/package/webpack-bundle-size-analyzer) gives a text based composition.
+[webpack-bundle-size-analyzer](https://www.npmjs.com/package/webpack-bundle-size-analyzer) emits a text based composition.
 
 ```bash
 $ webpack-bundle-size-analyzer stats.json
@@ -181,6 +181,15 @@ object-assign: 1.95 KB (1.55%)
 css-loader: 1.47 KB (1.17%)
 <self>: 572 B (0.445%)
 ```
+
+## Output plugins
+
+There are multiple plugins to make the webpack output easier to understand and more convenient:
+
+- [webpackbar](https://www.npmjs.com/package/webpackbar) has been made especially for tracking build progress.
+- `webpack.ProgressPlugin` is included out of the box and can be used as well.
+- [webpack-dashboard](https://www.npmjs.com/package/webpack-dashboard) gives an entire terminal-based dashboard over the standard webpack output. If you prefer clear visual output, this one comes in handy.
+- [test-webpack-reporter-plugin](https://www.npmjs.com/package/test-webpack-reporter-plugin) abstracts webpack's internals to make it easier to write your own reporters.
 
 ## Online services
 
