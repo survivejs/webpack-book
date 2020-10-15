@@ -33,6 +33,8 @@ You can also consider using the following flags:
 - `--profile` to capture timing-related information. The setting is optional but good to set.
 - `--progress` to show how long webpack spent in different stages of the build.
 
+T> [0x](https://www.npmjs.com/package/0x) can generate a flamegraph of webpack execution to understand where time is spent.
+
 ### Node API
 
 Stats can be captured through Node. Since stats can contain errors, so it's a good idea to handle that case separately:
