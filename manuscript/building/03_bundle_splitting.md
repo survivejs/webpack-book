@@ -127,6 +127,22 @@ leanpub-end-insert
 
 Following this format gives you more control over the splitting process if you don't prefer to rely on automation.
 
+Starting from webpack 5, there's more control over chunking based on asset type. Consider the following example:
+
+```javascript
+const config = {
+  optimization: {
+    splitChunks: {
+      minSize: {
+        javascript: 20000,
+        // This type is injected by mini-css-extract-plugin
+        "css/mini-extra": 10000,
+      },
+    },
+  },
+};
+```
+
 ## Splitting and merging chunks
 
 Webpack provides more control over the generated chunks by two plugins:
