@@ -58,6 +58,8 @@ export default () => {
 
 After you have these two set up, it should work. As you click the text, it should mutate the application state as the worker completes its execution. To demonstrate the asynchronous nature of workers, you could try adding delay to the answer and see what happens.
 
+T> Starting from webpack 5, the tool supports standard worker syntax out of the box. Example: `new Worker(new URL("./worker.js", import.meta.url))`. The benefit of the new syntax is that it follows the standards and doesn't necessarily require a bundler to work.
+
 ## Sharing data between the host and the worker
 
 Due to the cost of serialization, passing data between the host and the worker can be expensive. The cost can be minimized by using [Transferable objects](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers#Passing_data_by_transferring_ownershi) and in the future, sharing data will become possible thanks to [SharedArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer).
