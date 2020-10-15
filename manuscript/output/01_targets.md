@@ -10,6 +10,8 @@ Webpack uses the _web_ target by default. The target is ideal for a web applicat
 
 Starting from webpack 5, the default is set to _browserslist_ in case a browserslist configuration has been found. The change means that webpack will compile its runtime to match the setting instead of generating code that will work in legacy browsers as well.
 
+T> Starting from webpack 5, webpack can target specific language specifications (i.e. `es2020`) and also an array of targets is possible (i.e. `["web", "es2020"]`).
+
 ### Web workers
 
 The _webworker_ target wraps your application as a [web worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API). Using web workers is valuable if you want to execute computation outside of the main thread of the application without slowing down the user interface. There are a couple of limitations you should be aware of:
@@ -24,6 +26,8 @@ T> Web workers and their usage are discussed in detail in the _Web Workers_ chap
 Webpack provides two Node-specific targets: `node` and `async-node`. It uses standard Node `require` to load chunks unless the async mode is used. In that case, it wraps modules so that they are loaded asynchronously through Node `fs` and `vm` modules.
 
 The main use case for using the Node target is _Server-Side Rendering_ (SSR).
+
+T> Starting from webpack 5, it's possible to target a specific version of Node using for example `node10.13`.
 
 T> To learn more about the topic, read [James Long's series](https://jlongster.com/Backend-Apps-with-Webpack--Part-I) about developing backend applications with webpack.
 
