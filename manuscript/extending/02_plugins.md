@@ -215,23 +215,31 @@ Adjust the code as follows to write through `RawSource`:
 **plugins/demo-plugin.js**
 
 ```javascript
-const { RawSource } = require("webpack").sources;
+const { sources } = require("webpack");
 
 module.exports = class DemoPlugin {
   constructor(options) {
     this.options = options;
   }
   apply(compiler) {
+    const pluginName = "DemoPlugin";
     const { name } = this.options;
 
-    compiler.hooks.emit.tapAsync(
-      "DemoPlugin",
-      (compilation, cb) => {
-        compilation.assets[name] = new RawSource("demo");
-
-        cb();
-      }
-    );
+    compiler.hooks.compilation.tap(pluginName, (compilation) => {
+      compilation.hooks.processAssets.tapPromise(
+        {
+          name: pluginName,
+          // See lib/Compilation.js in webpack to understand different stages
+          stage: Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
+        },
+        () => {
+          compilation.emitAsset(
+            name,
+            new sources.RawSource("demo", true)
+          );
+        }
+      );
+    });
   }
 };
 ```
