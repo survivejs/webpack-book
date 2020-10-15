@@ -58,6 +58,41 @@ Executing it should result in an `Error: Cannot find module` failure as the actu
 
 T> If you want an interactive development environment, consider setting up [nodemon](https://www.npmjs.com/package/nodemon) against the build. Webpack's watcher won't work in this case.
 
+TODO: Integrate below with the test harness above and use memfs instead of memory-fs
+
+The trick is to use [memory-fs](https://www.npmjs.com/package/memory-fs) in combination with `compiler.outputFileSystem` as below:
+
+```javascript
+const webpack = require("webpack");
+const MemoryFs = require("memory-fs");
+const _ = require("lodash");
+const config = require("./webpack.config");
+
+const compiler = webpack(config);
+compiler.outputFileSystem = new MemoryFs();
+compiler.run((err, stats) => {
+  // 1. Handle possible err and stats.hasErrors() case
+  if (err || stats.hasErrors()) {
+    // stats.toString("errors-only") contains the errors
+    return reject(err);
+  }
+
+  const pathParts = compiler.outputFileSystem // Check webpack fs
+    .pathToArray(__dirname)
+    .concat(["dist", "main.js"]);
+
+  // https://lodash.com/docs/4.17.15#get
+  const file = _.get(
+    compiler.outputFileSystem.data,
+    pathParts
+  ).toString();
+
+  // 3. TODO: Assert the file using your testing framework.
+});
+```
+
+T> [See Stack Overflow](https://stackoverflow.com/questions/39923743/is-there-a-way-to-get-the-output-of-webpack-node-api-as-a-string) for related discussion.
+
 ## Implementing a basic plugin
 
 The most basic plugin should do two things: capture options and provide `apply` method:

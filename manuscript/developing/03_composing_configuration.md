@@ -193,42 +193,7 @@ If you go with the configuration package approach I mentioned, consider the guid
 - Include all related dependencies within the configuration package. In specific cases you could use `peerDependencies` if you want that the consumer is able to control specific versions. Doing this means you'll likely download more dependencies that you would need but it's a good compromise.
 - For parameters that have a loader string within them, use `require.resolve` to resolve against a loader within the configuration package. Otherwise the build can fail as it's looking into the wrong place for the loaders.
 - When wrapping loaders, use the associated TypeScript type in function parameters.
-- Consider testing the package by using snapshots (`expect().toMatchSnapshot()` in Jest) to assert output changes.
-
-{pagebreak}
-
-The trick is to use [memory-fs](https://www.npmjs.com/package/memory-fs) in combination with `compiler.outputFileSystem` as below:
-
-```javascript
-const webpack = require("webpack");
-const MemoryFs = require("memory-fs");
-const _ = require("lodash");
-const config = require("./webpack.config");
-
-const compiler = webpack(config);
-compiler.outputFileSystem = new MemoryFs();
-compiler.run((err, stats) => {
-  // 1. Handle possible err and stats.hasErrors() case
-  if (err || stats.hasErrors()) {
-    // stats.toString("errors-only") contains the errors
-    return reject(err);
-  }
-
-  const pathParts = compiler.outputFileSystem // Check webpack fs
-    .pathToArray(__dirname)
-    .concat(["dist", "main.js"]);
-
-  // https://lodash.com/docs/4.17.15#get
-  const file = _.get(
-    compiler.outputFileSystem.data,
-    pathParts
-  ).toString();
-
-  // 3. TODO: Assert the file using your testing framework.
-});
-```
-
-T> [See Stack Overflow](https://stackoverflow.com/questions/39923743/is-there-a-way-to-get-the-output-of-webpack-node-api-as-a-string) for related discussion.
+- Consider testing the package by using snapshots (`expect().toMatchSnapshot()` in Jest) to assert output changes. See the _Extending with Plugins_ chapters for an example of a test harness.
 
 {pagebreak}
 
