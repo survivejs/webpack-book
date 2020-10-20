@@ -44,10 +44,10 @@ Webpack supports a wide variety of source map types. These vary based on quality
 
 ```javascript
 const productionConfig = merge([
+  ...
 leanpub-start-insert
   parts.generateSourceMaps({ type: "source-map" }),
 leanpub-end-insert
-  ...
 ]);
 ```
 
@@ -55,24 +55,7 @@ leanpub-end-insert
 
 {pagebreak}
 
-If you build the project now (`npm run build`), you should see source maps in the output:
-
-```bash
-Hash: 53d2c4e897619ee2a33f
-Version: webpack 4.43.0
-Time: 2775ms
-Built at: 07/10/2020 2:02:04 PM
-       Asset       Size  Chunks                   Chunk Names
-  index.html  237 bytes          [emitted]
-    main.css   8.53 KiB       0  [emitted]        main
-main.css.map   85 bytes       0  [emitted] [dev]  main
-     main.js   1.21 KiB       0  [emitted]        main
- main.js.map   5.13 KiB       0  [emitted] [dev]  main
-Entrypoint main = main.css main.js main.css.map main.js.map
-...
-```
-
-Take a good look at those _.map_ files. That's where the mapping between the generated and the source happens. During development, it writes the mapping information in the bundle.
+If you build the project now (`npm run build`), you should see source maps in the project output at the `dist` directory. Take a good look at those _.map_ files. That's where the mapping between the generated and the source happens. During development, it writes the mapping information in the bundle.
 
 ### Enabling source maps in browsers
 
