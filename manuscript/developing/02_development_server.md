@@ -124,7 +124,7 @@ If you execute either _npm run start_ or _npm start_ now, you should see somethi
       ./src/index.js 77 bytes [built] [code generated]
       ./src/component.js 140 bytes [built] [code generated]
     ./node_modules/webpack-plugin-serve/client.js 1.05 KiB [built] [code generated]
-  0 (webpack 5.1.0) compiled successfully in 157 ms
+  0 (webpack 5.1.3) compiled successfully in 157 ms
 ```
 
 The server is running, and if you open `http://localhost:8080/` at your browser, you should see a hello:
