@@ -107,20 +107,16 @@ If you run the application (`npm start`), the "Hello world" should look like a b
 Building the application (`npm run build`) should yield output:
 
 ```bash
-Hash: 6ed243a3e5aade0133d5
-Version: webpack 4.43.0
-Time: 1282ms
-Built at: 07/09/2020 4:24:36 PM
-     Asset       Size  Chunks                    Chunk Names
-index.html  237 bytes          [emitted]
-  main.css   1.32 MiB       0  [emitted]  [big]  main
-   main.js   1.12 KiB       0  [emitted]         main
-Entrypoint main [big] = main.css main.js
-[0] ./src/main.css 39 bytes {0} [built]
-[1] ./src/index.js + 1 modules 315 bytes {0} [built]
-    | ./src/index.js 99 bytes [built]
-    | ./src/component.js 211 bytes [built]
-    + 1 hidden module
+⬡ webpack: Build Finished
+⬡ webpack: asset main.css 1.99 MiB [emitted] [big] (name: main)
+  asset index.html 237 bytes [compared for emit]
+  asset main.js 193 bytes [emitted] [minimized] (name: main)
+  Entrypoint main [big] 1.99 MiB = main.css 1.99 MiB main.js 193 bytes
+  orphan modules 261 bytes [orphan] 2 modules
+  code generated modules 309 bytes (javascript) 1.99 MiB (css/mini-extract) [code generated]
+    ./src/index.js + 1 modules 309 bytes [built] [code generated]
+    css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[0].use[2]!./src/main.css 1.99 MiB [code generated]
+
 ...
 ```
 
@@ -185,18 +181,20 @@ The order of the CSS related calls doesn't matter as the plugins will register t
 If you execute `npm run build` now, you should see something:
 
 ```bash
-Hash: 6ed243a3e5aade0133d5
-Version: webpack 4.43.0
-Time: 1494ms
-Built at: 07/09/2020 4:35:27 PM
-     Asset       Size  Chunks             Chunk Names
-index.html  237 bytes          [emitted]
-  main.css   7.28 KiB       0  [emitted]  main
-   main.js   1.12 KiB       0  [emitted]  main
-...
+⬡ webpack: Build Finished
+⬡ webpack: asset main.css 7.68 KiB [emitted] (name: main)
+  asset index.html 237 bytes [compared for emit]
+  asset main.js 193 bytes [compared for emit] [minimized] (name: main)
+  Entrypoint main 7.87 KiB = main.css 7.68 KiB main.js 193 bytes
+  orphan modules 261 bytes [orphan] 2 modules
+  code generated modules 309 bytes (javascript) 1.99 MiB (css/mini-extract) [code generated]
+    ./src/index.js + 1 modules 309 bytes [built] [code generated]
+    css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[0].use[2]!./src/main.css 1.99 MiB [code generated]
+  webpack 5.1.3 compiled successfully in 2429 ms
+
 ```
 
-The size of the style has decreased noticeably. Instead of 1.32, you have roughly 7k now. The difference would be even more significant for more massive CSS frameworks.
+The size of the style has decreased noticeably. Instead of 1.99 MiB, we have roughly 7 KiB now.
 
 W> Tailwind includes PurgeCSS out of the box and it can be preferable to use that. See [Tailwind documentation](https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css) for more information. The example above is enough to illustrate the idea, and it works universally.
 
