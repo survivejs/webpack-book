@@ -55,6 +55,8 @@ leanpub-end-insert
 
 If you build the project now (`npm run build`), you should see source maps in the project output at the `dist` directory. Take a good look at those _.map_ files. That's where the mapping between the generated and the source happens. During development, it writes the mapping information in the bundle.
 
+{pagebreak}
+
 ### Enabling source maps in browsers
 
 To use source maps within a browser, you have to enable source maps explicitly as per browser-specific instructions:
@@ -98,6 +100,8 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mai
 /***/ }),
 ```
 
+{pagebreak}
+
 ### `devtool: "cheap-eval-source-map"`
 
 `cheap-eval-source-map` goes a step further and it includes base64 encoded version of the code as a data url. The result contains only line data while losing column mappings. If you decode the resulting base64 string, you get following output:
@@ -114,8 +118,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mai
   "sourceRoot": ""
 }
 ```
-
-{pagebreak}
 
 ### `devtool: "cheap-module-eval-source-map"`
 
@@ -149,8 +151,6 @@ In this particular case, the difference between the options is minimal.
   "sourceRoot": ""
 }
 ```
-
-{pagebreak}
 
 ## Separate source map types
 
