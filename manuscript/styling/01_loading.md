@@ -106,7 +106,7 @@ T> The _CSS Modules_ appendix discusses an approach that allows you to treat loc
 The example below illustrates how to set up autoprefixing using PostCSS with [postcss-loader](https://www.npmjs.com/package/postcss-loader). You can mix this technique with other loaders to enable autoprefixing for any CSS flow.
 
 ```javascript
-{
+const config = {
   test: /\.css$/,
   use: [
     "style-loader",
@@ -114,14 +114,16 @@ The example below illustrates how to set up autoprefixing using PostCSS with [po
     {
       loader: "postcss-loader",
       options: {
-        plugins: () => ([
-          require("autoprefixer"),
-          require("precss"),
-        ]),
+        postcssOptions: {
+          plugins: () => [
+            require("autoprefixer"),
+            require("precss"),
+          ],
+        },
       },
     },
   ],
-},
+};
 ```
 
 You have to remember to include [autoprefixer](https://www.npmjs.com/package/autoprefixer) and [precss](https://www.npmjs.com/package/precss) to your project for this to work. The technique is discussed in detail in the _Autoprefixing_ chapter.
