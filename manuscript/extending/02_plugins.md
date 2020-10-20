@@ -184,7 +184,7 @@ module.exports = class DemoPlugin {
     this.options = options;
   }
   apply(compiler) {
-    compiler.hooks.emit.tapAsync(
+    compiler.hooks.thisCompilation.tap(
       "DemoPlugin",
       (compilation, cb) => {
         console.log(compilation);
@@ -225,21 +225,24 @@ module.exports = class DemoPlugin {
     const pluginName = "DemoPlugin";
     const { name } = this.options;
 
-    compiler.hooks.compilation.tap(pluginName, (compilation) => {
-      compilation.hooks.processAssets.tapPromise(
-        {
-          name: pluginName,
-          // See lib/Compilation.js in webpack to understand different stages
-          stage: Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
-        },
-        () => {
-          compilation.emitAsset(
-            name,
-            new sources.RawSource("demo", true)
-          );
-        }
-      );
-    });
+    compiler.hooks.thisCompilation.tap(
+      pluginName,
+      (compilation) => {
+        compilation.hooks.processAssets.tapPromise(
+          {
+            name: pluginName,
+            // See lib/Compilation.js in webpack to understand different stages
+            stage: Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
+          },
+          () => {
+            compilation.emitAsset(
+              name,
+              new sources.RawSource("demo", true)
+            );
+          }
+        );
+      }
+    );
   }
 };
 ```
