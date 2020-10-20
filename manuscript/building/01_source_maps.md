@@ -53,8 +53,6 @@ leanpub-end-insert
 
 `source-map` is the slowest and highest quality option of them all, but that's fine for a production build.
 
-{pagebreak}
-
 If you build the project now (`npm run build`), you should see source maps in the project output at the `dist` directory. Take a good look at those _.map_ files. That's where the mapping between the generated and the source happens. During development, it writes the mapping information in the bundle.
 
 ### Enabling source maps in browsers
@@ -85,8 +83,6 @@ To get a better idea of the available options, they are listed below while provi
 
 - `optimization.moduleIds = "named"` is set to improve readability. It's a good idea to set `optimization.chunkIds` as well in case you are using _Code Splitting_.
 - `mode` is set to `false` to avoid webpack's default processing
-
-{pagebreak}
 
 ### `devtool: "eval"`
 
