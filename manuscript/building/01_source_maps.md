@@ -166,8 +166,6 @@ Webpack can also generate production usage friendly source maps. These end up in
 
 `nosources-source-map` creates a source map without `sourcesContent` in it. You still get stack traces, though. The option is useful if you don't want to expose your source code to the client.
 
-{pagebreak}
-
 ### `devtool: "cheap-source-map"`
 
 `cheap-source-map` is similar to the cheap options above. The result is going to miss column mappings. Also, source maps from loaders, such as **css-loader**, are not going to be used.
