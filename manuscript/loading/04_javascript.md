@@ -2,7 +2,7 @@
 
 Webpack processes ES2015 module definitions by default and transforms them into code. It does **not** transform specific syntax, such as `const`, though. The resulting code can be problematic especially in the older browsers.
 
-To get a better idea of the default transform, consider the example output below (`npm run build -- --mode none`):
+To get a better idea of the default transform, we can generate a build while setting webpack's `mode` to `none` to avoid any transformation. Change the `build` target to use `none` temporarily (`{ mode: "none" }` in webpack configuration) and run `npm run build`:
 
 **dist/main.js**
 
