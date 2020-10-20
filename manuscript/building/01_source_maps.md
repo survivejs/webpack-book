@@ -291,8 +291,8 @@ There are a couple of other options that affect source map generation:
 const config = {
   output: {
     // Modify the name of the generated source map file.
-    // You can use [file], [id], and [hash] replacements here.
-    // The default option is enough for most use cases.
+    // You can use [file], [id], [fullhash], and [chunkhash]
+    // replacements here. The default option is often enough.
     sourceMapFilename: "[file].map", // Default
 
     // This is the source map filename template. It's default

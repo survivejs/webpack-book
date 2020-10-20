@@ -42,13 +42,13 @@ If you want to skip inlining altogether, you can use **file-loader** directly. T
   use: {
     loader: "file-loader",
     options: {
-      name: "[path][name].[hash].[ext]",
+      name: "[path][name].[contenthash].[ext]",
     },
   },
 },
 ```
 
-T> If you want to output your images below a particular directory, set it up with `name: "./images/[hash].[ext]"`.
+T> If you want to output your images below a particular directory, set it up with `name: "./images/[contenthash].[ext]"`.
 
 W> Be careful not to apply both loaders on images at the same time! Use the `include` field for further control if **url-loader** `limit` isn't enough.
 
