@@ -65,13 +65,11 @@ Set up a function as below:
 **webpack.parts.js**
 
 ```javascript
-exports.loadImages = ({ include, exclude, options } = {}) => ({
+exports.loadImages = ({ options } = {}) => ({
   module: {
     rules: [
       {
         test: /\.(png|jpg)$/,
-        include,
-        exclude,
         use: {
           loader: "url-loader",
           options,
