@@ -78,9 +78,7 @@ leanpub-start-delete
 const productionConfig = merge([]);
 leanpub-end-delete
 leanpub-start-insert
-const productionConfig = merge([
-  parts.extractCSS(),
-]);
+const productionConfig = merge([parts.extractCSS()]);
 leanpub-end-insert
 
 const developmentConfig = merge([
@@ -100,21 +98,19 @@ T> You can drop the `loadCSS` function now as it won't be needed anymore. The se
 After running `npm run build`, you should see output similar to the following:
 
 ```bash
-Hash: 88be5c6578f27b8e90ff
-Version: webpack 4.43.0
-Time: 158ms
-Built at: 07/09/2020 3:59:45 PM
-     Asset       Size  Chunks             Chunk Names
-index.html  237 bytes          [emitted]
-  main.css   34 bytes       0  [emitted]  main
-   main.js   1.06 KiB       0  [emitted]  main
-Entrypoint main = main.css main.js
-[0] ./src/main.css 39 bytes {0} [built]
-[1] ./src/index.js + 1 modules 247 bytes {0} [built]
-    | ./src/index.js 99 bytes [built]
-    | ./src/component.js 143 bytes [built]
-    + 1 hidden module
-...
+> wp5-demo@0.0.0 build /tmp/webpack-demo
+> wp --mode production
+
+⬡ webpack: Build Finished
+⬡ webpack: asset index.html 237 bytes [compared for emit]
+  asset main.js 136 bytes [compared for emit] [minimized] (name: main)
+  asset main.css 33 bytes [compared for emit] (name: main)
+  Entrypoint main 169 bytes = main.css 33 bytes main.js 136 bytes
+  orphan modules 190 bytes [orphan] 2 modules
+  code generated modules 238 bytes (javascript) 32 bytes (css/mini-extract) [code generated]
+    ./src/index.js + 1 modules 238 bytes [built] [code generated]
+    css ./node_modules/css-loader/dist/cjs.js!./src/main.css 32 bytes [code generated]
+  webpack 5.1.3 compiled successfully in 301 ms
 ```
 
 Now styling has been pushed to a separate CSS file. Thus, the JavaScript bundle has become slightly smaller, and you avoid the FOUC problem. The browser doesn't have to wait for JavaScript to load to get styling information. Instead, it can process the CSS separately, avoiding the flash.
