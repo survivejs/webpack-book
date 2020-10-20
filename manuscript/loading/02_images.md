@@ -80,6 +80,8 @@ exports.loadImages = ({ options } = {}) => ({
 });
 ```
 
+{pagebreak}
+
 To attach it to the configuration, adjust as follows:
 
 **webpack.config.js**
@@ -114,6 +116,10 @@ leanpub-end-insert
 ```
 
 The behavior changes depending on the `limit` you set. Below the limit, it should inline the image while above it should emit a separate asset and a path to it. The CSS lookup works because of **css-loader**. You can also try importing the image from JavaScript code and see what happens.
+
+## Loading `srcset`s
+
+Modern browsers support `srcset` attribute that lets you define an image in different resolutions. The browser can then choose the one that fits the display the best. The main options are [html-loader-srcset](https://www.npmjs.com/package/html-loader-srcset) and [responsive-loader](https://www.npmjs.com/package/responsive-loader).
 
 {pagebreak}
 
@@ -187,10 +193,6 @@ Webpack allows you to load images dynamically based on a condition. The techniqu
 ## Getting image dimensions
 
 Sometimes getting the only reference to an image isn't enough. [image-size-loader](https://www.npmjs.com/package/image-size-loader) emits image dimensions, type, and size in addition to the reference to the image itself.
-
-## Loading `srcset`s
-
-Modern browsers support `srcset` attribute that lets you define an image in different resolutions. The browser can then choose the one that fits the display the best. The main options are [html-loader-srcset](https://www.npmjs.com/package/html-loader-srcset) and [responsive-loader](https://www.npmjs.com/package/responsive-loader).
 
 ## Referencing to images
 
