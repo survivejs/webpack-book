@@ -41,7 +41,7 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
 });
 ```
 
-Above means that files ending with `.css` should invoke the given loaders. Loaders return the new source files with transformations applied on them. They can be chained together like a pipe in Unix, and are evaluated from right to left. This means that `loaders: ["style-loader", "css-loader"]` can be read as `styleLoader(cssLoader(input))`.
+Above means that files ending with `.css` should invoke the given loaders. Loaders return the new source files with transformations applied on them. They can be chained together like a pipe in Unix, and are evaluated from right to left (`styleLoader(cssLoader(input))`).
 
 You also need to connect the fragment to the primary configuration:
 
@@ -82,6 +82,8 @@ leanpub-end-insert
 Execute `npm start` and browse to `http://localhost:8080` if you are using the default port and open up _main.css_ and change the background color to something like `lime` (`background: lime`).
 
 ![Hello cornsilk world](images/hello_02.png)
+
+{pagebreak}
 
 ## Using CSS preprocessors
 
