@@ -128,8 +128,6 @@ const config = {
 
 You have to remember to include [autoprefixer](https://www.npmjs.com/package/autoprefixer) and [precss](https://www.npmjs.com/package/precss) to your project for this to work. The technique is discussed in detail in the _Autoprefixing_ chapter.
 
-T> PostCSS supports _postcss.config.js_ based configuration. It relies on [cosmiconfig](https://www.npmjs.com/package/cosmiconfig) internally for other formats.
-
 T> [postcss-preset-env](https://www.npmjs.com/package/postcss-preset-env) uses a browserslist to determine what kind of CSS to generate and which polyfills to load. You can consider it as the `@babel/preset-env` of CSS. Latter is discussed in more detail at the _Loading JavaScript_ chapter.
 
 {pagebreak}
