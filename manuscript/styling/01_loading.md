@@ -27,13 +27,11 @@ Add a new function at the end of the part definition:
 **webpack.parts.js**
 
 ```javascript
-exports.loadCSS = ({ include, exclude } = {}) => ({
+exports.loadCSS = () => ({
   module: {
     rules: [
       {
         test: /\.css$/,
-        include,
-        exclude,
         use: ["style-loader", "css-loader"],
       },
     ],
@@ -55,6 +53,8 @@ leanpub-start-insert
 leanpub-end-insert
 ]);
 ```
+
+{pagebreak}
 
 ## Setting up the initial CSS
 
