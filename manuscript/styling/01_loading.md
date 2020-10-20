@@ -16,7 +16,7 @@ Since inlining CSS isn't a good idea for production usage, it makes sense to use
 
 {pagebreak}
 
-To get started, invoke
+To get started, install the dependencies:
 
 ```bash
 npm add css-loader style-loader --develop
