@@ -288,6 +288,10 @@ const config = {
 
 T> The [official documentation](https://webpack.js.org/configuration/output/#output-sourcemapfilename) digs into `output` specifics.
 
+## Using dependency source maps
+
+Assuming you are using a package that uses inline source maps in its distribution, you can use [source-map-loader](https://www.npmjs.com/package/source-map-loader) to make webpack aware of them. Without setting it up against the package, you get a minified debug output. Often you can skip this step as it's a special case.
+
 ## `SourceMapDevToolPlugin` and `EvalSourceMapDevToolPlugin`
 
 If you want more control over source map generation, it's possible to use the [SourceMapDevToolPlugin](https://webpack.js.org/plugins/source-map-dev-tool-plugin/) or `EvalSourceMapDevToolPlugin` instead. The latter is a more limited alternative, and as stated by its name, it's handy for generating `eval` based source maps.
@@ -303,16 +307,6 @@ Given webpack matches only `.js` and `.css` files by default for source maps, yo
 You can prefix a source map option with a **pragma** character that gets injected into the source map reference. Webpack uses `#` by default that is supported by modern browsers, so you don't have to set it.
 
 To override this, you have to prefix your source map option with it (e.g., `@source-map`). After the change, you should see `//@` kind of reference to the source map over `//#` in your JavaScript files, assuming a separate source map type was used.
-
-## Using dependency source maps
-
-Assuming you are using a package that uses inline source maps in its distribution, you can use [source-map-loader](https://www.npmjs.com/package/source-map-loader) to make webpack aware of them. Without setting it up against the package, you get a minified debug output. Often you can skip this step as it's a special case.
-
-## Source maps for styling
-
-If you want to enable source maps for styling files, you can achieve this by enabling the `sourceMap` option. The same idea works with style loaders such as **css-loader**, **sass-loader**, and **less-loader**.
-
-The **css-loader** is [known to have issues](https://github.com/webpack-contrib/css-loader/issues/232) when you are using relative paths in imports. To overcome this problem, you should set `output.publicPath` to resolve the server url.
 
 ## Source maps on backend
 
@@ -338,6 +332,12 @@ const config = {
   },
 };
 ```
+
+## Source maps for styling
+
+If you want to enable source maps for styling files, you can achieve this by enabling the `sourceMap` option. The same idea works with style loaders such as **css-loader**, **sass-loader**, and **less-loader**.
+
+The **css-loader** is [known to have issues](https://github.com/webpack-contrib/css-loader/issues/232) when you are using relative paths in imports. To overcome this problem, you should set `output.publicPath` to resolve the server url.
 
 ## Conclusion
 
