@@ -124,6 +124,8 @@ leanpub-end-insert
 
 Following this format gives you more control over the splitting process if you don't prefer to rely on automation.
 
+{pagebreak}
+
 Starting from webpack 5, there's more control over chunking based on asset type. Consider the following example:
 
 ```javascript
@@ -146,8 +148,6 @@ Webpack provides more control over the generated chunks by two plugins:
 
 - `AggressiveSplittingPlugin` allows you to emit more and smaller bundles. The behavior is handy with HTTP/2 due to the way the new standard works.
 - `AggressiveMergingPlugin` is doing the opposite.
-
-{pagebreak}
 
 Here's the basic idea of aggressive splitting:
 
@@ -182,6 +182,8 @@ It's possible to get good caching behavior with these plugins if a webpack **rec
 `webpack.optimize` contains `LimitChunkCountPlugin` and `MinChunkSizePlugin` which give further control over chunk size.
 
 T> Tobias Koppers discusses [aggressive merging in detail at the official blog of webpack](https://medium.com/webpack/webpack-http-2-7083ec3f3ce6).
+
+{pagebreak}
 
 ## Chunk types in webpack
 
