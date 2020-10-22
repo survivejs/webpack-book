@@ -37,17 +37,28 @@ leanpub-end-insert
 Execute `npm run build` to get a baseline build. You should end up with something as below:
 
 ```bash
-Hash: 8243e4d4e821c80ebf23
-Version: webpack 4.43.0
-Time: 3440ms
-Built at: 07/10/2020 3:00:42 PM
-     Asset       Size  Chunks             Chunk Names
-      1.js  127 bytes       1  [emitted]
-index.html  237 bytes          [emitted]
-  main.css    8.5 KiB       0  [emitted]  main
-   main.js    129 KiB       0  [emitted]  main
-Entrypoint main = main.css main.js
-...
+⬡ webpack: Build Finished
+⬡ webpack: assets by path *.js 127 KiB
+    asset main.js 127 KiB [emitted] [minimized] (name: main) 2 related assets
+    asset 34.js 187 bytes [compared for emit] [minimized] 1 related asset
+  asset main.css 7.72 KiB [compared for emit] (name: main) 1 related asset
+  asset index.html 237 bytes [compared for emit]
+  Entrypoint main 135 KiB (323 KiB) = main.css 7.72 KiB main.js 127 KiB 2 auxiliary assets
+  runtime modules 6.76 KiB 11 modules
+  orphan modules 544 bytes [orphan] 2 modules
+  code generated modules 133 KiB (javascript) 1.99 MiB (css/mini-extract) [code generated]
+    modules by path ./node_modules/ 133 KiB
+      modules by path ./node_modules/react/ 6.48 KiB 2 modules
+      modules by path ./node_modules/react-dom/ 119 KiB 2 modules
+      modules by path ./node_modules/scheduler/ 4.91 KiB
+        ./node_modules/scheduler/index.js 198 bytes [built] [code generated]
+        ./node_modules/scheduler/cjs/scheduler.production.min.js 4.72 KiB [built] [code generated]
+      ./node_modules/object-assign/index.js 2.06 KiB [built] [code generated]
+    modules by path ./src/ 660 bytes (javascript) 1.99 MiB (css/mini-extract)
+      ./src/index.js + 1 modules 627 bytes [built] [code generated]
+      css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./src/main.css 1.99 MiB [code generated]
+      ./src/lazy.js 33 bytes [built] [code generated]
+  webpack 5.1.3 compiled successfully in 5401 ms
 ```
 
 As you can see, _main.js_ is big. That is something to fix next.
@@ -76,18 +87,30 @@ leanpub-end-insert
 If you try to generate a build now (`npm run build`), you should see something along this:
 
 ```bash
-Hash: 7d26879955396fd4464f
-Version: webpack 4.43.0
-Time: 3442ms
-Built at: 07/10/2020 3:01:31 PM
-          Asset       Size  Chunks             Chunk Names
-           2.js  127 bytes       2  [emitted]
-     index.html  276 bytes          [emitted]
-       main.css    8.5 KiB       0  [emitted]  main
-        main.js   2.65 KiB       0  [emitted]  main
-vendors~main.js    127 KiB       1  [emitted]  vendors~main
-Entrypoint main = vendors~main.js main.css main.js
-...
+⬡ webpack: Build Finished
+⬡ webpack: assets by status 128 KiB [emitted]
+    asset 935.js 124 KiB [emitted] [minimized] (id hint: vendors) 2 related assets
+    asset main.js 3.24 KiB [emitted] [minimized] (name: main) 1 related asset
+    asset index.html 267 bytes [emitted]
+  assets by status 7.9 KiB [compared for emit]
+    asset main.css 7.72 KiB [compared for emit] (name: main) 1 related asset
+    asset 34.js 187 bytes [compared for emit] [minimized] 1 related asset
+  Entrypoint main 135 KiB (326 KiB) = 935.js 124 KiB main.css 7.72 KiB main.js 3.24 KiB 3 auxiliary assets
+  runtime modules 7.95 KiB 11 modules
+  orphan modules 544 bytes [orphan] 2 modules
+  code generated modules 133 KiB (javascript) 1.99 MiB (css/mini-extract) [code generated]
+    modules by path ./node_modules/ 133 KiB
+      modules by path ./node_modules/react/ 6.48 KiB 2 modules
+      modules by path ./node_modules/react-dom/ 119 KiB 2 modules
+      modules by path ./node_modules/scheduler/ 4.91 KiB
+        ./node_modules/scheduler/index.js 198 bytes [built] [code generated]
+        ./node_modules/scheduler/cjs/scheduler.production.min.js 4.72 KiB [built] [code generated]
+      ./node_modules/object-assign/index.js 2.06 KiB [built] [code generated]
+    modules by path ./src/ 660 bytes (javascript) 1.99 MiB (css/mini-extract)
+      ./src/index.js + 1 modules 627 bytes [built] [code generated]
+      css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./src/main.css 1.99 MiB [code generated]
+      ./src/lazy.js 33 bytes [built] [code generated]
+  webpack 5.1.3 compiled successfully in 4847 ms
 ```
 
 Now the bundles look the way they should. The image below illustrates the current situation.
