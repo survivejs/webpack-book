@@ -157,7 +157,11 @@ T> Using [last-call-webpack-plugin](https://www.npmjs.com/package/last-call-webp
 
 ## Compressing bundles
 
-Compression techniques, such as gzip or brotli, can be used to reduce the file size further. The downside of using additional compression is that it will lead to extra computation on the client side but on the plus side you save bandwidth. Often the compression setup can be done on server-side although it's possible to perform preprocessing using webpack using the following plugins:
+Compression techniques, such as gzip or brotli, can be used to reduce the file size further. The downside of using additional compression is that it will lead to extra computation on the client side but on the plus side you save bandwidth.
+
+{pagebreak}
+
+Often the compression setup can be done on server-side although it's possible to perform preprocessing using webpack using the following plugins:
 
 - [compression-webpack-plugin](https://www.npmjs.com/package/compression-webpack-plugin) is a generic compression plugin that lets you choose amongst multiple option
 - [brotli-webpack-plugin](https://www.npmjs.com/package/brotli-webpack-plugin) works specifically with brotli.
