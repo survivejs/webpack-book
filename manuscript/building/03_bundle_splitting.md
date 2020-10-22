@@ -126,7 +126,7 @@ Following this format gives you more control over the splitting process if you d
 
 {pagebreak}
 
-Starting from webpack 5, there's more control over chunking based on asset type. Consider the following example:
+Starting from webpack 5, there's more control over chunking based on asset type:
 
 ```javascript
 const config = {
@@ -155,11 +155,11 @@ Here's the basic idea of aggressive splitting:
 const config = {
   plugins: [
     new webpack.optimize.AggressiveSplittingPlugin({
-        minSize: 10000,
-        maxSize: 30000,
+      minSize: 10000,
+      maxSize: 30000,
     }),
   ],
-},
+};
 ```
 
 There's a trade-off as you lose out in caching if you split to multiple small bundles. You also get request overhead in HTTP/1 environment.
@@ -170,11 +170,11 @@ The aggressive merging plugin works the opposite way and allows you to combine s
 const config = {
   plugins: [
     new AggressiveMergingPlugin({
-        minSizeReduce: 2,
-        moveToParents: true,
+      minSizeReduce: 2,
+      moveToParents: true,
     }),
   ],
-},
+};
 ```
 
 It's possible to get good caching behavior with these plugins if a webpack **records** are used. The idea is discussed in detail in the _Adding Hashes to Filenames_ chapter.
