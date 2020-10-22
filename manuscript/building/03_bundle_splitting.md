@@ -71,8 +71,6 @@ leanpub-end-insert
 ]);
 ```
 
-{pagebreak}
-
 If you try to generate a build now (`npm run build`), you should see something along this:
 
 ```bash
