@@ -97,23 +97,25 @@ If you open up the application (`npm start`) and click the button, you should se
 After executing `npm run build`, you should see something:
 
 ```bash
-Hash: 23034e6ca912f0dace72
-Version: webpack 4.43.0
-Time: 2708ms
-Built at: 07/10/2020 2:48:54 PM
-     Asset       Size  Chunks             Chunk Names
-leanpub-start-insert
-      1.js  127 bytes       1  [emitted]
-leanpub-end-insert
-
-index.html  237 bytes          [emitted]
-  main.css    8.5 KiB       0  [emitted]  main
-   main.js   2.43 KiB       0  [emitted]  main
-Entrypoint main = main.css main.js
+⬡ webpack: Build Finished
+⬡ webpack: assets by status 7.95 KiB [compared for emit]
+    asset main.css 7.72 KiB [compared for emit] (name: main) 1 related asset
+    asset index.html 237 bytes [compared for emit]
+  assets by status 3.06 KiB [emitted]
+    asset main.js 2.88 KiB [emitted] [minimized] (name: main) 1 related asset
+    asset 34.js 187 bytes [emitted] [minimized] 1 related asset
+  Entrypoint main 10.6 KiB (14.3 KiB) = main.css 7.72 KiB main.js 2.88 KiB 2 auxiliary assets
+  runtime modules 6.76 KiB 11 modules
+  orphan modules 544 bytes [orphan] 2 modules
+  code generated modules 624 bytes (javascript) 1.99 MiB (css/mini-extract) [code generated]
+    ./src/index.js + 1 modules 591 bytes [built] [code generated]
+    css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./src/main.css 1.99 MiB [code generated]
+    ./src/lazy.js 33 bytes [built] [code generated]
+  webpack 5.1.3 compiled successfully in 3846 ms
 ...
 ```
 
-That _1.js_ is your split point. Examining the file reveals webpack has wrapped the code in a `webpackJsonp` block and processed the code bit.
+That _34.js_ is your split point. Examining the file reveals webpack has processed the code.
 
 T> If you want to adjust the name of the chunk, set `output.chunkFilename`. For example, setting it to `"chunk.[id].js"` would prefix each split chunk with the word "chunk".
 
