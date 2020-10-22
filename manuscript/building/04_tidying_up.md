@@ -31,12 +31,13 @@ exports.clean = () => ({
 });
 ```
 
-Connect it with the project:
+For the plugin to work, we'll have to set project output path explicitly. Connect the configuration as follows:
 
 **webpack.config.js**
 
 ```javascript
 ...
+const path = require("path");
 
 const commonConfig = merge([
 leanpub-start-insert
@@ -100,7 +101,7 @@ leanpub-end-insert
 ]);
 ```
 
-If you build the project (`npm run build`), you should notice the built files contain comments like `/*! 0b5bb05 */` or `/*! v1.7.0-9-g5f82fe8 */` in the beginning.
+If you build the project (`npm run build`), you should notice the files ending with `.LICENSE.txt` containing comments like `/*! 0b5bb05 */` or `/*! v1.7.0-9-g5f82fe8 */` in the beginning.
 
 The output can be customized further by adjusting the banner. You can also pass revision information to the application using `webpack.DefinePlugin`. This technique is discussed in detail in the _Environment Variables_ chapter.
 
