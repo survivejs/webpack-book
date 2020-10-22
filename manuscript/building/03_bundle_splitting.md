@@ -44,20 +44,7 @@ Execute `npm run build` to get a baseline build. You should end up with somethin
   asset main.css 7.72 KiB [compared for emit] (name: main) 1 related asset
   asset index.html 237 bytes [compared for emit]
   Entrypoint main 135 KiB (323 KiB) = main.css 7.72 KiB main.js 127 KiB 2 auxiliary assets
-  runtime modules 6.76 KiB 11 modules
-  orphan modules 544 bytes [orphan] 2 modules
-  code generated modules 133 KiB (javascript) 1.99 MiB (css/mini-extract) [code generated]
-    modules by path ./node_modules/ 133 KiB
-      modules by path ./node_modules/react/ 6.48 KiB 2 modules
-      modules by path ./node_modules/react-dom/ 119 KiB 2 modules
-      modules by path ./node_modules/scheduler/ 4.91 KiB
-        ./node_modules/scheduler/index.js 198 bytes [built] [code generated]
-        ./node_modules/scheduler/cjs/scheduler.production.min.js 4.72 KiB [built] [code generated]
-      ./node_modules/object-assign/index.js 2.06 KiB [built] [code generated]
-    modules by path ./src/ 660 bytes (javascript) 1.99 MiB (css/mini-extract)
-      ./src/index.js + 1 modules 627 bytes [built] [code generated]
-      css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./src/main.css 1.99 MiB [code generated]
-      ./src/lazy.js 33 bytes [built] [code generated]
+  ...
   webpack 5.1.3 compiled successfully in 5401 ms
 ```
 
@@ -84,6 +71,8 @@ leanpub-end-insert
 ]);
 ```
 
+{pagebreak}
+
 If you try to generate a build now (`npm run build`), you should see something along this:
 
 ```bash
@@ -96,20 +85,7 @@ If you try to generate a build now (`npm run build`), you should see something a
     asset main.css 7.72 KiB [compared for emit] (name: main) 1 related asset
     asset 34.js 187 bytes [compared for emit] [minimized] 1 related asset
   Entrypoint main 135 KiB (326 KiB) = 935.js 124 KiB main.css 7.72 KiB main.js 3.24 KiB 3 auxiliary assets
-  runtime modules 7.95 KiB 11 modules
-  orphan modules 544 bytes [orphan] 2 modules
-  code generated modules 133 KiB (javascript) 1.99 MiB (css/mini-extract) [code generated]
-    modules by path ./node_modules/ 133 KiB
-      modules by path ./node_modules/react/ 6.48 KiB 2 modules
-      modules by path ./node_modules/react-dom/ 119 KiB 2 modules
-      modules by path ./node_modules/scheduler/ 4.91 KiB
-        ./node_modules/scheduler/index.js 198 bytes [built] [code generated]
-        ./node_modules/scheduler/cjs/scheduler.production.min.js 4.72 KiB [built] [code generated]
-      ./node_modules/object-assign/index.js 2.06 KiB [built] [code generated]
-    modules by path ./src/ 660 bytes (javascript) 1.99 MiB (css/mini-extract)
-      ./src/index.js + 1 modules 627 bytes [built] [code generated]
-      css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./src/main.css 1.99 MiB [code generated]
-      ./src/lazy.js 33 bytes [built] [code generated]
+  ...
   webpack 5.1.3 compiled successfully in 4847 ms
 ```
 
