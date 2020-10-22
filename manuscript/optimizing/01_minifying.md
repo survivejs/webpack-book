@@ -140,21 +140,15 @@ leanpub-end-insert
 If you build the project now (`npm run build`), you should notice that CSS has become smaller as it's missing comments and has been concatenated:
 
 ```bash
-Hash: 4aec3cf57b570ddd492a
-Version: webpack 4.43.0
-Time: 2837ms
-Built at: 07/10/2020 3:34:23 PM
-                Asset       Size  Chunks             Chunk Names
-                 2.js  186 bytes       2  [emitted]
-     2.js.LICENSE.txt   15 bytes          [emitted]
-           index.html  270 bytes          [emitted]
-             main.css   2.39 KiB       0  [emitted]  main
-              main.js   2.71 KiB       0  [emitted]  main
-  main.js.LICENSE.txt   15 bytes          [emitted]
-            vendor.js    126 KiB       1  [emitted]  vendor
-vendor.js.LICENSE.txt  806 bytes          [emitted]
-Entrypoint main = vendor.js main.css main.js
+⬡ webpack: Build Finished
+⬡ webpack: assets by path *.js 129 KiB
+    asset vendor.js 126 KiB [emitted] [minimized] (name: vendor) (id hint: commons) 2 related assets
+    asset main.js 3.32 KiB [emitted] [minimized] (name: main) 2 related assets
+    asset 34.js 247 bytes [emitted] [minimized] 2 related assets
+  asset main.css 730 bytes [emitted] (name: main)
 ...
+  webpack 5.1.3 compiled successfully in 6388 ms
+
 ```
 
 T> [compression-webpack-plugin](https://www.npmjs.com/package/compression-webpack-plugin) allows you to push the problem of generating compressed files to webpack to potentially save processing time on the server.
