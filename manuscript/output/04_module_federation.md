@@ -70,10 +70,8 @@ const commonConfig = merge([
 ]);
 
 const configs = {
-  development: {
-    parts.devServer(),
-  },
-  production: {}
+  development: parts.devServer(),
+  production: {},
 };
 
 module.exports = merge(commonConfig, configs[mode], { mode });
