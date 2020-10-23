@@ -49,13 +49,9 @@ This change gave a separate file that contains the runtime. In the output above 
 
 Try adjusting `src/index.js` and see how the hashes change. This time around it should **not** invalidate the vendor bundle, and only the runtime and app bundle names should become different.
 
+Starting from webpack 5, the tool will take your browserslist definition into account when generating the runtime. See the _Autoprefixing_ chapter for an expanded discussion. In webpack 5, it's possible to use `output.ecmaVersion` to define in which format the runtime is written. Setting it to `5` would emit ECMAScript 5 compatible code while setting to `2015` would generate shorter code for the newer target. The setting also affects the _Minifying_ process.
+
 T> To get a better idea of the runtime contents, run the build in development mode or pass `none` to mode through configuration. You should see something familiar there.
-
-T> Starting from webpack 5, the tool will take your browserslist definition into account when generating the runtime. See the _Autoprefixing_ chapter for an expanded discussion.
-
-T> With webpack 5, it's possible to use `output.ecmaVersion` to define in which format the runtime is written. Setting it to `5` would emit ECMAScript 5 compatible code while setting to `2015` would generate shorter code for the newer target. The setting also affects the _Minifying_ process.
-
-T> The build can be improved further by loading popular dependencies, such as React, through a CDN. That would decrease the size of the vendor bundle even further while adding an external dependency on the project. The idea is that if the user has hit the CDN earlier, caching can kick in like here.
 
 ## Using records
 
@@ -85,8 +81,6 @@ leanpub-end-insert
 ]);
 ```
 
-{pagebreak}
-
 If you build the project (`npm run build`), you should see a new file, `records.json`, at the project root. The next time webpack builds, it picks up the information and rewrites the file if it has changed.
 
 Records are particularly valuable if you have a complicated setup with code splitting and want to make sure the split parts gain correct caching behavior. The biggest problem is maintaining the record file.
@@ -98,8 +92,6 @@ W> If you change the way webpack handles module IDs, possible existing records a
 ## Integrating with asset pipelines
 
 To integrate with asset pipelines, you can consider using plugins like [webpack-manifest-plugin](https://www.npmjs.com/package/webpack-manifest-plugin), or [webpack-assets-manifest](https://www.npmjs.com/package/webpack-assets-manifest). These solutions emit JSON that maps the original asset path to the new one.
-
-{pagebreak}
 
 ## Conclusion
 
