@@ -79,9 +79,7 @@ To incorporate the idea into the configuration, the way it's composed has to cha
 ```javascript
 const commonConfig = merge([
 leanpub-start-delete
-  {
-    entry: ["./src"],
-  }
+  { entry: ["./src"] },
   parts.page({ title: "Webpack demo" }),
 leanpub-end-delete
   ...
