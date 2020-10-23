@@ -20,75 +20,67 @@ T> To understand the plugin flow in detail, see [Under the hood webpack: core li
 
 ## Setting up a development environment
 
-Since plugins have to be run against webpack, you have to set up one to run a demo plugin that will be developed further:
+To test and develop plugins against webpack, a good practice is to set up a harness that captures file output in-memory so you can assert output. You can also validate output against webpack `stats`.
 
-**webpack.plugin.js**
+The trick is to use [memfs](https://www.npmjs.com/package/memfs) in combination with `compiler.outputFileSystem` as below:
 
-```javascript
-const path = require("path");
-const DemoPlugin = require("./plugins/demo-plugin.js");
-
-module.exports = {
-  mode: "development",
-  entry: {
-    lib: path.join(__dirname, "src", "shake.js"),
-  },
-  plugins: [new DemoPlugin({ name: "demo" })],
-};
-```
-
-T> If you don't have a `lib` entry file set up yet, write one. The contents don't matter as long as it's JavaScript that webpack can parse.
-
-{pagebreak}
-
-To make it convenient to run, set up a build shortcut:
-
-**package.json**
-
-```json
-"scripts": {
-leanpub-start-insert
-  "build:plugin": "wp --config webpack.plugin.js",
-leanpub-end-insert
-  ...
-},
-```
-
-Executing it should result in an `Error: Cannot find module` failure as the actual plugin is still missing.
-
-T> If you want an interactive development environment, consider setting up [nodemon](https://www.npmjs.com/package/nodemon) against the build. Webpack's watcher won't work in this case.
-
-TODO: Integrate below with the test harness above and use memfs instead of memory-fs
-
-The trick is to use [memory-fs](https://www.npmjs.com/package/memory-fs) in combination with `compiler.outputFileSystem` as below:
+**plugins/test.js**
 
 ```javascript
 const webpack = require("webpack");
-const MemoryFs = require("memory-fs");
-const _ = require("lodash");
-const config = require("./webpack.config");
+const { createFsFromVolume, Volume } = require("memfs");
 
-const compiler = webpack(config);
-compiler.outputFileSystem = new MemoryFs();
-compiler.run((err, stats) => {
-  // 1. Handle possible err and stats.hasErrors() case
-  if (err || stats.hasErrors()) {
-    // stats.toString("errors-only") contains the errors
-    return reject(err);
-  }
+// The compiler helper accepts filenames should be in the output
+// so it's possible to assert the output easily.
+function compile(config, filenames = []) {
+  return new Promise((resolve, reject) => {
+    const compiler = webpack(config);
 
-  const pathParts = compiler.outputFileSystem // Check webpack fs
-    .pathToArray(__dirname)
-    .concat(["dist", "main.js"]);
+    compiler.outputFileSystem = createFsFromVolume(new Volume());
+    const memfs = compiler.outputFileSystem;
 
-  // https://lodash.com/docs/4.17.15#get
-  const file = _.get(
-    compiler.outputFileSystem.data,
-    pathParts
-  ).toString();
+    compiler.run((err, stats) => {
+      if (err) {
+        return reject(err);
+      }
 
-  // 3. TODO: Assert the file using your testing framework.
-});
+      // Now only errors are captured from stats.
+      // It's possible to capture more to assert.
+      if (stats.hasErrors()) {
+        return reject(stats.toString("errors-only"));
+      }
+
+      const ret = {};
+
+      filenames.forEach((filename) => {
+        // The assumption is that webpack outputs behind ./dist.
+        ret[filename] = memfs.readFileSync(`./dist/${filename}`, {
+          encoding: "utf-8",
+        });
+      });
+
+      return resolve(ret);
+    });
+  });
+}
+
+function getConfig(options: {}, config: {}) {
+  return Object.assign(
+    {
+      entry: "./test/index.js",
+    },
+    config
+  );
+}
+
+// To test, assert as follows:
+async function test() {
+  const result = await compile({
+    entry: "./fixtures/test.js",
+  });
+}
+
+test();
 ```
 
 T> [See Stack Overflow](https://stackoverflow.com/questions/39923743/is-there-a-way-to-get-the-output-of-webpack-node-api-as-a-string) for related discussion.
