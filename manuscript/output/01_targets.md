@@ -8,9 +8,9 @@ Webpack's output target is controlled by the `target` field. You'll learn about 
 
 Webpack uses the _web_ target by default. The target is ideal for a web application like the one you have developed in this book. Webpack bootstraps the application and loads its modules. The initial list of modules to load is maintained in a manifest, and then the modules can load each other as defined.
 
-Starting from webpack 5, the default is set to _browserslist_ in case a browserslist configuration has been found. The change means that webpack will compile its runtime to match the setting instead of generating code that will work in legacy browsers as well.
+Starting from webpack 5, the default is set to _browserslist_ in case a browserslist configuration has been found. The change means that webpack will compile its runtime to match the setting instead of generating code that will work in legacy browsers as well. Webpack can target specific language specifications (i.e. `es2020`) and also an array of targets is possible (i.e. `["web", "es2020"]`).
 
-T> Starting from webpack 5, webpack can target specific language specifications (i.e. `es2020`) and also an array of targets is possible (i.e. `["web", "es2020"]`).
+{pagebreak}
 
 ### Web workers
 
@@ -29,8 +29,6 @@ The main use case for using the Node target is _Server-Side Rendering_ (SSR).
 
 Starting from webpack 5, it's possible to target a specific version of Node using for example `node10.13`.
 
-T> To learn more about the topic, read [James Long's series](https://jlongster.com/Backend-Apps-with-Webpack--Part-I) about developing backend applications with webpack.
-
 T> If you develop a server using webpack, see [nodemon-webpack-plugin](https://www.npmjs.com/package/nodemon-webpack-plugin). The plugin is able to restart your server process without having to set up an external watcher.
 
 ## Desktop targets
@@ -42,10 +40,6 @@ There are desktop shells, such as [NW.js](https://nwjs.io/) (previously _node-we
 - `electron-renderer` - Targets Electron renderer process.
 
 [electron-react-boilerplate](https://github.com/electron-react-boilerplate/electron-react-boilerplate) is a good starting point if you want hot loading webpack setup for Electron and React-based development. Using [the official quick start for Electron](https://github.com/electron/electron-quick-start) is one way.
-
-## Targeted builds
-
-Webpack is often used to compile a single target by either returning a configuration object, a `Promise` resolving to one, or a function returning one. In addition, it allows you to specify multiple targets at once in case you return an array of configurations. The technique is useful when generating _Multiple Pages_ or with _Internationalization_. [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) is able to run multiple instances of webpack in parallel to speed this kind of usage.
 
 ## Conclusion
 
