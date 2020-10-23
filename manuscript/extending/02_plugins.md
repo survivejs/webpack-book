@@ -300,4 +300,3 @@ To recap:
 - Plugins have access to webpack's **compiler** and **compilation** processes. Both provide hooks for different stages of webpack's execution flow and allow you to manipulate it. Webpack itself works this way.
 - Plugins can emit new assets and shape existing assets.
 - Plugins can implement plugin systems of their own. `HtmlWebpackPlugin` is an example of such a plugin.
-- Plugins can run compilers on their own. The isolation gives more control and allows plugins like **offline-plugin** to be written.
