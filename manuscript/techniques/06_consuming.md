@@ -124,6 +124,8 @@ Sometimes modules depend on globals. `$` provided by jQuery is a good example. W
 },
 ```
 
+{pagebreak}
+
 ### Resolving globals
 
 Webpack's `ProvidePlugin` allows webpack to resolve globals as it encounters them:
@@ -229,6 +231,8 @@ Symbolic links, or symlinks, are an operating system level feature that allows y
 Webpack resolves symlinks to their full path as Node does. The problem is that if you are unaware of this fact, the behavior can surprise you especially if you rely on webpack processing. It's possible to work around the behavior as discussed in [webpack issue #985](https://github.com/webpack/webpack/issues/985). Webpack core behavior may improve in the future to make a workaround unnecessary.
 
 T> You can disable webpack's symlink handling by setting `resolve.symlinks` as `false`.
+
+{pagebreak}
 
 ## Getting insights on packages
 

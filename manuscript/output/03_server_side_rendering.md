@@ -68,6 +68,8 @@ You are still missing webpack configuration to turn this file into something the
 
 W> Given ES2015 style imports and CommonJS exports cannot be mixed, the entry point was written in CommonJS style.
 
+{pagebreak}
+
 ## Configuring webpack
 
 To keep things nice, we will define a separate configuration file. A lot of the work has been done already. Given you have to consume the same output from multiple environments, using UMD as the library target makes sense:
@@ -161,8 +163,6 @@ Run the server now (`node ./server.js`) and go below `http://localhost:8080`, yo
 
 ![Hello world](images/hello_01.png)
 
-{pagebreak}
-
 Even though there is a React application running now, it's difficult to develop. If you try to modify the code, nothing happens. The problem can be solved running webpack in a multi-compiler mode as discussed in the _Multiple Pages_ chapter. Another option is to run webpack in **watch mode** against the current configuration and set up a watcher for the server. You'll learn the setup next.
 
 T> If you want to debug output from the server, set `export DEBUG=express:application`.
@@ -221,8 +221,6 @@ Run `node_modules/.bin/browser-refresh ./server.js` in another terminal and open
 
 If the server crashes, it loses the WebSocket connection. You have to force a refresh in the browser in this case. If the server was managed through webpack as well, the problem could have been avoided.
 
-{pagebreak}
-
 To prove that SSR works, check out the browser inspector. You should see something familiar there:
 
 ![SSR output](images/ssr.png)
@@ -253,8 +251,6 @@ SSR isn't the only solution to the SEO problem. **Prerendering** is an alternate
 
 - [prerender-spa-plugin](https://www.npmjs.com/package/prerender-spa-plugin) uses [Puppeteer](https://www.npmjs.com/package/puppeteer) underneath.
 - [prerender-loader](https://www.npmjs.com/package/prerender-loader) integrates with _html-webpack-plugin_ but also works without it against HTML files. The loader is flexible and can be customized to fit your use case (i.e. React or other framework).
-
-{pagebreak}
 
 ## Conclusion
 
