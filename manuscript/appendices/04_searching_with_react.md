@@ -31,15 +31,10 @@ const App = () => {
   const [lines, setLines] = React.useState([]);
   const [results, setResults] = React.useState([]);
 
-  const search = (lines, index, query) => {
-    // Search against index and match README lines.
-    return index
-      .search(query.trim())
-      .map((match) => lines[match.ref]);
-  };
+  const search = (lines, index, query) =>
+    index.search(query.trim()).map((match) => lines[match.ref]);
 
   const onChange = ({ target: { value } }) => {
-    // Set captured value to input
     setValue(value);
 
     // Search against lines and index if they exist
@@ -56,8 +51,6 @@ const App = () => {
       .then(({ index, lines }) => {
         setIndex(index);
         setLines(lines);
-
-        // Search against the index now
         setResults(search(lines, index, value));
       })
       .catch((err) => console.error(err));
@@ -94,17 +87,14 @@ function loadIndex() {
   // Here's the magic. Set up `import` to tell Webpack
   // to split here and load our search index dynamically.
   //
-  // Note that you will need to shim Promise.all for
-  // older browsers and Internet Explorer!
+  // Shim Promise.all for older browsers and Internet Explorer!
   return Promise.all([
     import("lunr"),
     import("../search_index.json"),
-  ]).then(([{ Index }, { index, lines }]) => {
-    return {
-      index: Index.load(index),
-      lines,
-    };
-  });
+  ]).then(([{ Index }, { index, lines }]) => ({
+    index: Index.load(index),
+    lines,
+  }));
 }
 ```
 
