@@ -74,8 +74,6 @@ exports.dontParse = ({ name, path }) => ({
 });
 ```
 
-{pagebreak}
-
 To use the function, you call it as follows:
 
 ```javascript
@@ -101,8 +99,6 @@ There are various webpack 4 specific tricks to improve performance:
 - Sometimes there are version related performance regressions which can be fixed in the user space [Kenneth Chau](https://medium.com/@kenneth_chau/speeding-up-webpack-typescript-incremental-builds-by-7x-3912ba4c1d15) has compiled a great list of them for webpack 4. The main ideas are related to simplifying `stats.toJson` using **ts-loader** with `experimentalWatchApi` and setting `output.pathinfo` to `false`.
 - [Jared Palmer mentions](https://twitter.com/jaredpalmer/status/1265298834906910729) that setting `optimization` property and its `splitChunks`, `removeAvailableModules`, and `removeEmptyChunks` properties to `false` can improve performance in the `development` mode.
 - [webpack-plugin-ramdisk](https://www.npmjs.com/package/webpack-plugin-ramdisk) writes the build output to a RAM disk and it can help during development and in case you have to perform many successive builds.
-
-{pagebreak}
 
 ## Conclusion
 
