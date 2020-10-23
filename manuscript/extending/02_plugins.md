@@ -35,7 +35,6 @@ const { createFsFromVolume, Volume } = require("memfs");
 function compile(config, filenames = []) {
   return new Promise((resolve, reject) => {
     const compiler = webpack(config);
-
     compiler.outputFileSystem = createFsFromVolume(new Volume());
     const memfs = compiler.outputFileSystem;
 
@@ -51,25 +50,23 @@ function compile(config, filenames = []) {
       }
 
       const ret = {};
-
       filenames.forEach((filename) => {
         // The assumption is that webpack outputs behind ./dist.
         ret[filename] = memfs.readFileSync(`./dist/${filename}`, {
           encoding: "utf-8",
         });
       });
-
       return resolve(ret);
     });
   });
 }
 
 async function test() {
-  const result = await compile({
-    entry: "./test-entry.js",
-  });
-
-  console.log(result);
+  console.log(
+    await compile({
+      entry: "./test-entry.js",
+    })
+  );
 }
 
 test();
@@ -112,10 +109,14 @@ leanpub-end-insert
 ...
 
 async function test() {
-  const result = await compile({
-    entry: "./test-entry.js",
-    plugins: [new DemoPlugin()],
-  });
+  console.log(
+    await compile({
+      entry: "./test-entry.js",
+leanpub-start-insert
+      plugins: [new DemoPlugin()],
+leanpub-end-insert
+    })
+  );
 }
 ```
 
@@ -146,22 +147,19 @@ Adjust the configuration to pass an option:
 
 ```javascript
 ...
-leanpub-start-insert
-const DemoPlugin = require("./demo-plugin");
-leanpub-end-insert
-
-...
 
 async function test() {
-  const result = await compile({
-    entry: "./test-entry.js",
+  console.log(
+    await compile({
+      entry: "./test-entry.js",
 leanpub-start-delete
-    plugins: [new DemoPlugin()],
+      plugins: [new DemoPlugin()],
 leanpub-end-delete
 leanpub-start-insert
-    plugins: [new DemoPlugin({ name: "demo" })],
+      plugins: [new DemoPlugin({ name: "demo" })],
 leanpub-end-insert
-  });
+    })
+  );
 }
 ```
 
