@@ -16,8 +16,6 @@ When the plugin is connected to webpack configuration, webpack will run its cons
 
 T> [webpack-defaults](https://www.npmjs.com/package/webpack-defaults) works as a starting point for webpack plugins. It contains the infrastructure used to develop official webpack loaders and plugins.
 
-T> To understand the plugin flow in detail, see [Under the hood webpack: core library behind the event-driven architecture](https://codecrumbs.io/stories/webpack-tapable-core) for specific analysis.
-
 ## Setting up a development environment
 
 To test and develop plugins against webpack, a good practice is to set up a harness that captures file output in-memory so you can assert output. You can also validate output against webpack `stats`.
@@ -334,3 +332,5 @@ To recap:
 - Plugins can emit new assets and shape existing assets.
 - Plugins can implement plugin systems of their own. `HtmlWebpackPlugin` is an example of such a plugin.
 - Plugins can run compilers on their own. The isolation gives more control and allows plugins like _offline-plugin_ to be written.
+
+T> To understand the plugin flow in detail, see [Under the hood webpack: core library behind the event-driven architecture](https://codecrumbs.io/stories/webpack-tapable-core) for specific analysis.
