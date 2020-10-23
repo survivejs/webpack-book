@@ -416,6 +416,10 @@ const getConfig = (mode) => {
     ]),
   };
 
+  if (!component) {
+    throw new Error("Missing component name");
+  }
+
   return merge(
     commonConfig,
     configs[mode],
