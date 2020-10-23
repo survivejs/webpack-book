@@ -105,8 +105,6 @@ T> Starting from webpack 5, the tool supports [externalsType](https://webpack.js
 
 Sometimes modules depend on globals. `$` provided by jQuery is a good example. Webpack offers a few ways that allow you to handle them.
 
-{pagebreak}
-
 ### Injecting globals
 
 [imports-loader](https://www.npmjs.com/package/imports-loader) allows you to inject globals as below:
@@ -140,8 +138,6 @@ Webpack's `ProvidePlugin` allows webpack to resolve globals as it encounters the
 },
 ```
 
-{pagebreak}
-
 ### Exposing globals to the browser
 
 Sometimes you have to expose packages to third-party scripts. [expose-loader](https://www.npmjs.com/package/expose-loader) allows this as follows:
@@ -164,8 +160,6 @@ if (process.env.NODE_ENV !== "production") {
 T> It can be a good idea to install [React Developer Tools](https://github.com/facebook/react-devtools) to Chrome for even more information as it allows you to inspect _props_ and _state_ of your application.
 
 T> [script-loader](https://www.npmjs.com/package/script-loader) allows you to execute scripts in a global context. You have to do this if the scripts you are using rely on a global registration setup.
-
-{pagebreak}
 
 ## Removing unused modules
 
