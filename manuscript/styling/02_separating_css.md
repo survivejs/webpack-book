@@ -80,7 +80,7 @@ leanpub-end-insert
 
 T> If you are using _CSS Modules_, remember to tweak `use` as discussed in the _Loading Styles_ chapter. You can maintain separate setups for standard CSS and CSS Modules so that they get loaded through discrete logic.
 
-T> You can drop the `loadCSS` function now as it won't be needed anymore. The setup above replaces it entirely.
+{pagebreak}
 
 After running `npm run build`, you should see output similar to the following:
 
@@ -92,11 +92,7 @@ After running `npm run build`, you should see output similar to the following:
 ⬡ webpack: asset index.html 237 bytes [compared for emit]
   asset main.js 136 bytes [compared for emit] [minimized] (name: main)
   asset main.css 33 bytes [compared for emit] (name: main)
-  Entrypoint main 169 bytes = main.css 33 bytes main.js 136 bytes
-  orphan modules 190 bytes [orphan] 2 modules
-  code generated modules 238 bytes (javascript) 32 bytes (css/mini-extract) [code generated]
-    ./src/index.js + 1 modules 238 bytes [built] [code generated]
-    css ./node_modules/css-loader/dist/cjs.js!./src/main.css 32 bytes [code generated]
+...
   webpack 5.1.3 compiled successfully in 301 ms
 ```
 
@@ -107,16 +103,13 @@ Now styling has been pushed to a separate CSS file. Thus, the JavaScript bundle 
 Even though referring to styling through JavaScript and then bundling is the recommended option, it's possible to achieve the same result through an `entry` and [globbing](https://www.npmjs.com/package/glob) the CSS files through an entry:
 
 ```javascript
-...
 const glob = require("glob");
 
 const commonConfig = merge([
   {
     entry: {
-      ...
       style: glob.sync("./src/**/*.css"),
     },
-    ...
   },
   ...
 ]);
