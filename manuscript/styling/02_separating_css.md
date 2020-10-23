@@ -72,24 +72,11 @@ const commonConfig = merge([
 leanpub-start-delete
   parts.loadCSS(),
 leanpub-end-delete
-]);
-
-leanpub-start-delete
-const productionConfig = merge([]);
-leanpub-end-delete
 leanpub-start-insert
-const productionConfig = merge([parts.extractCSS()]);
-leanpub-end-insert
-
-const developmentConfig = merge([
-  ...
-leanpub-start-insert
-  parts.extractCSS({ options: { hmr: true } }),
+  parts.extractCSS(),
 leanpub-end-insert
 ]);
 ```
-
-Using this setup, you can still benefit from the HMR during development. For a production build, it's possible to generate a separate CSS, though. `HtmlWebpackPlugin` picks it up automatically and injects it into `index.html`.
 
 T> If you are using _CSS Modules_, remember to tweak `use` as discussed in the _Loading Styles_ chapter. You can maintain separate setups for standard CSS and CSS Modules so that they get loaded through discrete logic.
 

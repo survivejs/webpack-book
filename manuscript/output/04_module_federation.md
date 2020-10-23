@@ -66,19 +66,14 @@ const commonConfig = merge([
     },
     mode,
   }),
+  parts.extractCSS({ loaders: cssLoaders }),
 ]);
 
 const configs = {
-  development: merge([
+  development: {
     parts.devServer(),
-    parts.extractCSS({ loaders: cssLoaders }),
-  ]),
-  production: merge([
-    parts.extractCSS({
-      options: { hmr: true },
-      loaders: cssLoaders,
-    }),
-  ]),
+  },
+  production: {}
 };
 
 module.exports = merge(commonConfig, configs[mode], { mode });

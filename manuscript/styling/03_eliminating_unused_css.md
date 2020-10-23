@@ -42,22 +42,13 @@ leanpub-start-insert
 const cssLoaders = [parts.tailwind()];
 leanpub-end-insert
 
+const commonConfig = merge([
+  ...
 leanpub-start-delete
-const productionConfig = merge([parts.extractCSS()]);
+  parts.extractCSS(),
 leanpub-end-delete
 leanpub-start-insert
-const productionConfig = merge([
   parts.extractCSS({ loaders: cssLoaders }),
-]);
-leanpub-end-insert
-
-const developmentConfig = merge([
-  parts.devServer(),
-leanpub-start-delete
-  parts.extractCSS({ options: { hmr: true } }),
-leanpub-end-delete
-leanpub-start-insert
-  parts.extractCSS({ options: { hmr: true }, loaders: cssLoaders }),
 leanpub-end-insert
 ]);
 ```
