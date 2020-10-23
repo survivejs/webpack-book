@@ -144,18 +144,11 @@ Adjust the configuration to pass an option:
 **plugins/test.js**
 
 ```javascript
-...
-
 async function test() {
   console.log(
     await compile({
       entry: "./test-entry.js",
-leanpub-start-delete
-      plugins: [new DemoPlugin()],
-leanpub-end-delete
-leanpub-start-insert
       plugins: [new DemoPlugin({ name: "demo" })],
-leanpub-end-insert
     })
   );
 }
@@ -257,13 +250,6 @@ To make sure the file was emitted, adjust the test:
 ```javascript
 async function test() {
   console.log(
-leanpub-start-delete
-    await compile({
-      entry: "./test-entry.js",
-      plugins: [new DemoPlugin({ name: "demo" })],
-    })
-leanpub-end-delete
-leanpub-start-insert
     await compile(
       {
         entry: "./test-entry.js",
@@ -271,7 +257,6 @@ leanpub-start-insert
       },
       ["demo"]
     );
-leanpub-end-insert
   );
 }
 ```
