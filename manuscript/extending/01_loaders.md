@@ -379,6 +379,8 @@ Input: {}
 
 T> The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API in detail. You can see all fields available through `this` there. For example, `mode` is exposed.
 
+{pagebreak}
+
 ## Caching with loaders
 
 Although webpack caches loaders by default unless they set `this.cacheable(false)`, writing a caching loader can be a good exercise as it helps you to understand how loader stages can work together. The example below shows how to achieve this (courtesy of Vladimir Grenaderov):
@@ -410,6 +412,8 @@ module.exports.pitch = function () {
 ```
 
 A pitch loader can be used to attach metadata to the input to use later. In this example, a cache was constructed during the pitching stage, and it was accessed during normal execution.
+
+{pagebreak}
 
 ## Conclusion
 
