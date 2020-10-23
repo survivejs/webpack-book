@@ -297,6 +297,8 @@ Next, we should connect the federated module with our configuration. It's here w
 
 T> It's possible to make the setup work in a multi-compiler setup as well. In that case, you should either use **webpack-dev-server** or run **webpack-plugin-serve** in a server mode. [See the full example](https://github.com/shellscape/webpack-plugin-serve/blob/master/test/fixtures/multi/webpack.config.js) at their documentation.
 
+{pagebreak}
+
 To make the changes more manageable, we should define a configuration part encapsulating the module federation concern and then consume that:
 
 **webpack.parts.js**
