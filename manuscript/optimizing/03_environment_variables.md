@@ -109,8 +109,6 @@ leanpub-end-insert
 ]);
 ```
 
-{pagebreak}
-
 Finally, add something to replace:
 
 **src/component.js**
@@ -126,6 +124,8 @@ leanpub-end-insert
   ...
 };
 ```
+
+{pagebreak}
 
 If you run the application, you should see a new message on the button.
 
