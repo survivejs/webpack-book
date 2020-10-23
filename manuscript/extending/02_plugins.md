@@ -156,6 +156,8 @@ async function test() {
 
 Now you should see `apply { name: 'demo' }` after running.
 
+{pagebreak}
+
 ## Understanding compiler and compilation
 
 `apply` receives webpack's compiler as a parameter. Adjust as below:
@@ -194,8 +196,6 @@ module.exports = class DemoPlugin {
   }
 };
 ```
-
-W> Forgetting the callback and running the plugin makes webpack fail silently!
 
 Running the build should show more information than before because a compilation object contains the whole dependency graph traversed by webpack. You have access to everything related to it here, including entries, chunks, modules, assets, and more.
 
