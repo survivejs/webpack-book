@@ -23,23 +23,19 @@ As discussed in the previous chapter, generating stats can be used to measure bu
 
 ## High-level optimizations
 
-Webpack uses only a single instance by default, meaning you aren't able to benefit from a multi-core processor without extra effort. This is where [thread-loader](https://www.npmjs.com/package/thread-loader) and third-party solutions, such as [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) and [HappyPack](https://www.npmjs.com/package/happypack) come in.
+Webpack uses only a single instance by default, meaning you aren't able to benefit from a multi-core processor without extra effort. This is where **thread-loader** and third-party solutions, such as **parallel-webpack**.
 
 ### **parallel-webpack** - run multiple webpack instances in parallel
 
-**parallel-webpack** allows you to parallelize webpack configuration in two ways. Assuming you have defined your webpack configuration as an array, it can run them in parallel. In addition to this, **parallel-webpack** can generate builds based on given **variants**.
+[parallel-webpack](https://www.npmjs.com/package/parallel-webpack) allows you to parallelize webpack configuration in two ways. Assuming you have defined your webpack configuration as an array, it can run them in parallel. In addition to this, **parallel-webpack** can generate builds based on given **variants**.
 
 Variants allow you to generate both production and development builds at once. They let you to create bundles with different targets to make them easier to consume depending on the environment. Variants can be used to implement feature flags when combined with `DefinePlugin` as discussed in the _Environment Variables_ chapter.
 
-The underlying idea can be implemented using a [worker-farm](https://www.npmjs.com/package/worker-farm). In fact, **parallel-webpack** relies on _worker-farm_ underneath.
+The underlying idea can be implemented using a [worker-farm](https://www.npmjs.com/package/worker-farm). In fact, **parallel-webpack** relies on **worker-farm** underneath.
 
 **parallel-webpack** can be used by installing it to your project as a development dependency and then replacing `webpack` command with `parallel-webpack`.
 
 {pagebreak}
-
-### **thread-loader** and _happypack_ - module level parallelism
-
-**thread-loader** and **parallel-webpack** let you parallelize execution on a module level. **thread-loader** fits into a loader chain. [Using it doesn't always guarantee speed improvements, though](https://blog.johnnyreilly.com/2018/12/you-might-not-need-thread-loader.html). _happypack_ is a more involved approach that's in maintenance mode, and it's worth checking out if parallelization with **thread-loader** doesn't work.
 
 ## Low-level optimizations
 
@@ -50,9 +46,7 @@ Specific lower-level optimizations can be nice to know. The key is to allow webp
 - Skip polyfills during development. Attaching a package, such as [core-js](https://www.npmjs.com/package/core-js), to the development version of an application adds processing overhead.
 - Disable the portions of the application you don't need during development. It can be a valid idea to compile only a small fraction you are working on as then you have less to bundle.
 - Polyfill less of Node and provide nothing instead. For example, a package could be using Node `process` which in turn will bloat your bundle if polyfilled. [See webpack documentation](https://webpack.js.org/configuration/node/) for the default values.
-- Push bundles that change less to **Dynamically Loaded Libraries** (DLL) to avoid unnecessary processing and to speed up recompilation time. The [official webpack example](https://github.com/webpack/webpack/tree/master/examples/dll-user) gets to the point while [Rob Knight's blog post](https://robertknight.me.uk/posts/webpack-dll-plugins/) explains the idea further. [autodll-webpack-plugin](https://www.npmjs.com/package/autodll-webpack-plugin) can automate the process, and it's going to be made redundant by webpack 5.
-
-T> Starting from version 5, there's a file system level cache that can be enabled by setting `cache.type = "filesystem"`. To invalidate it on configuration change, you should set `cache.buildDependencies.config = [__filename]`. Webpack handles anything watched by the build automatically including plugins, loaders, and project files.
+- Starting from version 5, there's a file system level cache that can be enabled by setting `cache.type = "filesystem"`. To invalidate it on configuration change, you should set `cache.buildDependencies.config = [__filename]`. Webpack handles anything watched by the build automatically including plugins, loaders, and project files.
 
 ### Loader specific optimizations
 
@@ -62,8 +56,6 @@ Loaders have their optimizations as well:
 - Use either `include` or `exclude` with JavaScript specific loaders. Webpack traverses `node_modules` by default, and executes **babel-loader** over the files unless it has been configured correctly.
 - Cache the results of expensive loaders (e.g., image manipulation) to the disk using the [cache-loader](https://www.npmjs.com/package/cache-loader).
 - Parallelize the execution of expensive loaders using [thread-loader](https://www.npmjs.com/package/thread-loader). Given workers come with an overhead in Node, using **thread-loader** is worth it only if the parallelized operation is heavy.
-
-{pagebreak}
 
 ## Optimizing rebundling speed during development
 
@@ -96,8 +88,6 @@ dontParse({
   ),
 }),
 ```
-
-{pagebreak}
 
 After this change, the application should be faster to rebuild, depending on the underlying implementation. The technique can also be applied to production.
 

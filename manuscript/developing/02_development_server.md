@@ -133,7 +133,7 @@ The server is running, and if you open `http://localhost:8080/` at your browser,
 
 If you try modifying the code, you should see the output in your terminal. The browser should also perform a hard refresh so that you can see the change.
 
-T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environment variables through a `.env` file. _dotenv_ allows you to control the host and port setting of the setup quickly.
+T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environment variables through a `.env` file. **dotenv** allows you to control the host and port setting of the setup quickly.
 
 T> Enable the `historyFallback` flag if you are using HTML5 History API based routing.
 
