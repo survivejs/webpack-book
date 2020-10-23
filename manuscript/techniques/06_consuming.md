@@ -182,6 +182,8 @@ const config = {
 
 T> You can use the same mechanism to work around problematic dependencies. Example: `new webpack.IgnorePlugin({ resourceRegExp: /^(buffertools)$/ })`.
 
+{pagebreak}
+
 To bring specific locales to your project, you should use `ContextReplacementPlugin`:
 
 ```javascript
@@ -197,7 +199,7 @@ const config = {
 
 T> There's a [Stack Overflow question](https://stackoverflow.com/questions/25384360/how-to-prevent-moment-js-from-loading-locales-with-webpack/25426019) that covers these ideas in detail. See also [Ivan Akulov's explanation of `ContextReplacementPlugin`](https://iamakulov.com/notes/webpack-contextreplacementplugin/).
 
-T> [webpack-libs-optimizations)](https://github.com/GoogleChromeLabs/webpack-libs-optimizations) lists further library specific optimizations as above.
+T> [webpack-libs-optimizations](https://github.com/GoogleChromeLabs/webpack-libs-optimizations) lists further library specific optimizations as above.
 
 ## Managing pre-built dependencies
 
@@ -215,11 +217,9 @@ The warning can happen if a package points at a pre-built (i.e., minified and al
 The warning can be eliminated by aliasing the package to a source version as discussed above. Given sometimes the source is not available, another option is to tell webpack to skip parsing the files through `module.noParse`. It accepts either a RegExp or an array of RegExps and can be configured as below:
 
 ```javascript
-{
-  module: {
-    noParse: /node_modules\/demo-package\/dist\/demo-package.js/,
-  },
-},
+const config = {
+  module: { noParse: /node_modules\/demo-package\/index.js/ },
+};
 ```
 
 W> Take care when disabling warnings as it can hide underlying issues. Consider alternatives first. There's a [webpack issue](https://github.com/webpack/webpack/issues/1617) that discusses the problem in detail.
