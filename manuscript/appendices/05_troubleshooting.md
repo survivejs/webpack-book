@@ -2,7 +2,7 @@
 
 Using webpack can lead to a variety of runtime warnings or errors. Often a particular part of the build fails for a reason or another. A basic process can be used to figure out these problems:
 
-1. Pass `--display-error-details` flag to webpack to get a more accurate error to study. Example: `npm run build -- --display-error-details`.
+1. Enable `stats.errorDetails` in webpack configuration to get more information.
 2. Study the origin of the error carefully. Sometimes you can infer what's wrong with context. If webpack fails to parse a module, it's likely not passing it through a loader you expect for example.
 3. Try to understand where the error stems. Does it come from your code, a dependency, or webpack?
 4. Remove code until the error goes away and add code back till it appears again. Simplify as much as possible to isolate the problem.
@@ -18,29 +18,33 @@ Sometimes it's fastest to drop the error to a search engine and gain an answer t
 
 You'll learn about the most common errors next and how to deal with them.
 
-## ERROR in Entry module not found
+## Module related errors
 
-You can end up with this error if you make an entry path point at a place that does not exist. The error message tells you what path webpack fails to find.
+Webpack emits various module related errors. I've listed the main ones and how to resolve them here.
 
-## ERROR ... Module not found
+### Entry module not found
 
-You can get the error in two ways. Either by breaking a loader definition so that it points to a loader that does not exist or by breaking an import path within your code so that it leads to a module that doesn't exist. The message points out what to fix.
+You can get `ERROR in Entry module not found` if you make an entry path point at a place that does not exist. The error message tells you what path webpack fails to find.
 
-## Module parse failed
+### Module not found
 
-Even though webpack could resolve to your modules fine, it can still fail to build them. This case can happen if you are using syntax that your loaders don't understand. You could be missing something in your processing pass.
+You can receive `ERROR ... Module not found` in two ways. Either by breaking a loader definition so that it points to a loader that does not exist or by breaking an import path within your code so that it leads to a module that doesn't exist. The message points out what to fix.
 
-## Loader Not Found
+### Module parse failed
 
-There's another subtle loader related error. If a package matching to a loader name that does not implement the loader interface exists, webpack matches to that and gives a runtime error that says the package is not a loader.
+Even though webpack could resolve to your modules fine, it can still fail to build them and that's when you likely receive a `Module parse failed` error. This case can happen if you are using syntax that your loaders don't understand. You could be missing something in your processing pass.
+
+### Loader not found
+
+There's another subtle loader related error, `Loader Not Found`. If a package matching to a loader name that does not implement the loader interface exists, webpack matches to that and gives a runtime error that says the package is not a loader.
 
 If you write `loader: "eslint"` instead of `loader: "eslint-loader"`, you'll receive this error. If the package doesn't exist at all, then `Module not found` error will be raised.
 
-## Module build failed: Unknown word
+### Module build failed: Unknown word
 
-This error fits the same category. Parsing the file succeeded, but there was the unknown syntax. Most likely the problem is a typo, but this error can also occur when Webpack has followed an import and encountered syntax it doesn't understand. Most likely this means that a loader is missing for that particular file type.
+`Module build failed: Unknown word` fits the same category. Parsing the file succeeded, but there was the unknown syntax. Most likely the problem is a typo, but this error can also occur when Webpack has followed an import and encountered syntax it doesn't understand. Most likely this means that a loader is missing for that particular file type.
 
-## SyntaxError: Unexpected token
+### SyntaxError: Unexpected token
 
 `SyntaxError` is another error for the same category. This error is possible if you use ES2015 syntax that hasn't been transpiled alongside terser. As it encounters a syntax construct it does not recognize, it raises an error.
 
