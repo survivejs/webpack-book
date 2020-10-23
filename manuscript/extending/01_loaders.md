@@ -151,6 +151,8 @@ To interpolate the file name, you need to use [loader-utils](https://www.npmjs.c
 npm add loader-utils --develop
 ```
 
+{pagebreak}
+
 You could apply the logic as below:
 
 **loaders/demo-loader.js**
@@ -218,6 +220,8 @@ leanpub-end-insert
 );
 ```
 
+{pagebreak}
+
 To connect it to the loader, set it to capture `name` and pass it through webpack's interpolator:
 
 **loaders/demo-loader.js**
@@ -239,8 +243,6 @@ leanpub-end-insert
   ...
 };
 ```
-
-{pagebreak}
 
 After running (`node ./run-loader.js`), you should see something:
 
