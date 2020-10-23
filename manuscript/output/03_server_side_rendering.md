@@ -249,6 +249,8 @@ T> Routing is a big problem of its own solved by frameworks like Next.js. Patric
 
 T> Webpack provides [require.resolveWeak](https://webpack.js.org/api/module-methods/#requireresolveweak) for implementing SSR. It's a specific feature used by solutions such as [react-universal-component](https://www.npmjs.com/package/react-universal-component) underneath.
 
+T> `__non_webpack_require__(path)` allows you to separate imports that should be evaluated outside of webpack. See the [issue #4175](https://github.com/webpack/webpack/issues/4175) for more information.
+
 ## Prerendering
 
 SSR isn't the only solution to the SEO problem. **Prerendering** is an alternate technique that is easier to implement. The point is to use a headless browser to render the initial HTML markup of the page and then serve that to the crawlers. The caveat is that the approach won't work well with highly dynamic data. The following solutions exist for webpack:

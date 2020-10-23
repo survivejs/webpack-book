@@ -27,13 +27,11 @@ Webpack provides two Node-specific targets: `node` and `async-node`. It uses sta
 
 The main use case for using the Node target is _Server-Side Rendering_ (SSR).
 
-T> Starting from webpack 5, it's possible to target a specific version of Node using for example `node10.13`.
+Starting from webpack 5, it's possible to target a specific version of Node using for example `node10.13`.
 
 T> To learn more about the topic, read [James Long's series](https://jlongster.com/Backend-Apps-with-Webpack--Part-I) about developing backend applications with webpack.
 
 T> If you develop a server using webpack, see [nodemon-webpack-plugin](https://www.npmjs.com/package/nodemon-webpack-plugin). The plugin is able to restart your server process without having to set up an external watcher.
-
-T> It can be useful to use `__non_webpack_require__(path)` to separate imports that should be evaluated outside of webpack. See the [issue #4175](https://github.com/webpack/webpack/issues/4175) for more information.
 
 ## Desktop targets
 
@@ -44,8 +42,6 @@ There are desktop shells, such as [NW.js](https://nwjs.io/) (previously _node-we
 - `electron-renderer` - Targets Electron renderer process.
 
 [electron-react-boilerplate](https://github.com/electron-react-boilerplate/electron-react-boilerplate) is a good starting point if you want hot loading webpack setup for Electron and React-based development. Using [the official quick start for Electron](https://github.com/electron/electron-quick-start) is one way.
-
-{pagebreak}
 
 ## Targeted builds
 
