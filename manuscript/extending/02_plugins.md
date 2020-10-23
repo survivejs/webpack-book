@@ -64,14 +64,23 @@ function compile(config, filenames = []) {
   });
 }
 
-// To test, assert as follows:
 async function test() {
   const result = await compile({
-    entry: "./fixtures/test.js",
+    entry: "./test-entry.js",
   });
+
+  console.log(result);
 }
 
 test();
+```
+
+In addition, set up a test entry:
+
+**plugins/test-entry.js**
+
+```javascript
+console.log("hello from entry");
 ```
 
 T> [See Stack Overflow](https://stackoverflow.com/questions/39923743/is-there-a-way-to-get-the-output-of-webpack-node-api-as-a-string) for related discussion.
@@ -90,7 +99,27 @@ module.exports = class DemoPlugin {
 };
 ```
 
-If you run the plugin (`npm run build:plugin`), you should see `applying` message at the console. Given most plugins accept options, it's a good idea to capture those and pass them to `apply`.
+To test the plugin, connect it to our test environment:
+
+**plugins/test.js**
+
+```javascript
+...
+leanpub-start-insert
+const DemoPlugin = require("./demo-plugin");
+leanpub-end-insert
+
+...
+
+async function test() {
+  const result = await compile({
+    entry: "./test-entry.js",
+    plugins: [new DemoPlugin()],
+  });
+}
+```
+
+If you run the test (`node ./test.js`), you should see `applying` message at the console. Given most plugins accept options, it's a good idea to capture those and pass them to `apply`.
 
 {pagebreak}
 
@@ -115,19 +144,27 @@ Running the plugin now would result in `apply undefined` kind of message given n
 
 Adjust the configuration to pass an option:
 
-**webpack.plugin.js**
+**plugins/test.js**
 
 ```javascript
-module.exports = {
-  ...
+...
+leanpub-start-insert
+const DemoPlugin = require("./demo-plugin");
+leanpub-end-insert
+
+...
+
+async function test() {
+  const result = await compile({
+    entry: "./test-entry.js",
 leanpub-start-delete
-  plugins: [new DemoPlugin()],
+    plugins: [new DemoPlugin()],
 leanpub-end-delete
 leanpub-start-insert
-  plugins: [new DemoPlugin({ name: "demo" })],
+    plugins: [new DemoPlugin({ name: "demo" })],
 leanpub-end-insert
-  ],
-};
+  });
+}
 ```
 
 Now you should see `apply { name: 'demo' }` after running.
@@ -169,11 +206,7 @@ module.exports = class DemoPlugin {
   apply(compiler) {
     compiler.hooks.thisCompilation.tap(
       "DemoPlugin",
-      (compilation, cb) => {
-        console.log(compilation);
-
-        cb();
-      }
+      (compilation) => console.log(compilation)
     );
   }
 };
@@ -198,7 +231,7 @@ Adjust the code as follows to write through `RawSource`:
 **plugins/demo-plugin.js**
 
 ```javascript
-const { sources } = require("webpack");
+const { sources, Compilation } = require("webpack");
 
 module.exports = class DemoPlugin {
   constructor(options) {
@@ -211,18 +244,17 @@ module.exports = class DemoPlugin {
     compiler.hooks.thisCompilation.tap(
       pluginName,
       (compilation) => {
-        compilation.hooks.processAssets.tapPromise(
+        compilation.hooks.processAssets.tap(
           {
             name: pluginName,
             // See lib/Compilation.js in webpack to understand different stages
             stage: Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
           },
-          () => {
+          () =>
             compilation.emitAsset(
               name,
-              new sources.RawSource("demo", true)
-            );
-          }
+              new sources.RawSource("hello", true)
+            )
         );
       }
     );
@@ -230,21 +262,34 @@ module.exports = class DemoPlugin {
 };
 ```
 
-After building, you should see output:
+To make sure the file was emitted, adjust the test:
 
-```bash
-Hash: 83bfa70a7d07c82ea551
-Version: webpack 4.44.1
-Time: 48ms
-Built at: 08/19/2020 1:54:23 PM
- Asset      Size  Chunks             Chunk Names
-  demo   4 bytes          [emitted]
-lib.js  1.06 KiB       0  [emitted]  lib
-Entrypoint lib = lib.js
-[0] ./src/shake.js 106 bytes {0} [built]
+**plugins/test.js**
+
+```javascript
+...
+
+async function test() {
+leanpub-start-delete
+  const result = await compile({
+    entry: "./test-entry.js",
+  });
+leanpub-end-delete
+leanpub-start-insert
+  const result = await compile(
+    {
+      entry: "./test-entry.js",
+      plugins: [new DemoPlugin({ name: "demo" })],
+    },
+    ["demo"]
+  );
+leanpub-end-insert
+
+  console.log(result);
+}
 ```
 
-If you examine _dist/demo_ file, you'll see it contains the word _demo_ as per code above.
+If you run the test again (`node ./test.js`), you should see `{ demo: 'hello' }` in the console output.
 
 T> Compilation has a set of hooks of its own as covered in [the official compilation reference](https://webpack.js.org/api/plugins/compiler/).
 
