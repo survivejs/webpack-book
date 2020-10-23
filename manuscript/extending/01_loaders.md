@@ -14,9 +14,7 @@ T> If you want a good starting point for a standalone loader or plugin project, 
 npm add loader-runner --develop
 ```
 
-{pagebreak}
-
-To have something to test with, set up a loader that returns twice what's passed to it:
+To have something to test, set up a loader that returns twice what's passed to it:
 
 **loaders/demo-loader.js**
 
@@ -24,13 +22,7 @@ To have something to test with, set up a loader that returns twice what's passed
 module.exports = (input) => input + input;
 ```
 
-Set up a file to process:
-
-**demo.txt**
-
-```
-foobar
-```
+Create a `demo.txt` file with text in it to the project root as well.
 
 There's nothing webpack specific in the code yet. The next step is to run the loader through **loader-runner**:
 
@@ -50,8 +42,6 @@ runLoaders(
   (err, result) => (err ? console.error(err) : console.log(result))
 );
 ```
-
-{pagebreak}
 
 If you run the script now (`node run-loader.js`), you should see output:
 
