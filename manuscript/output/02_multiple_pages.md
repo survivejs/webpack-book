@@ -181,26 +181,14 @@ leanpub-start-insert
   ];
 leanpub-end-insert
   let config;
-  switch (mode) {
-    case "production":
-      config = productionConfig;
-      break;
-    case "development":
-    default:
-      config = developmentConfig;
-  };
 
-  return pages.map(page =>
-    merge(commonConfig, config, page, { mode })
-  );
+  ...
 };
 ```
 
 After these changes `/another` should show something familiar:
 
 ![Another page shows up](images/another.png)
-
-{pagebreak}
 
 ### Pros and cons
 
@@ -255,14 +243,8 @@ leanpub-end-insert
     }),
   ];
   let config;
-  switch (mode) {
-    case "production":
-      config = productionConfig;
-      break;
-    case "development":
-    default:
-      config = developmentConfig;
-  };
+
+...
 
 leanpub-start-delete
   return pages.map(page =>
