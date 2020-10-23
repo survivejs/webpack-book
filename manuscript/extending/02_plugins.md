@@ -304,10 +304,6 @@ You can use the API familiar from `console` so `warning`, `error`, and `group` a
 
 A plugin can provide hooks of its own. [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) is a good example of a plugin providing its own plugin interface.
 
-## Plugins can run compilers of their own
-
-In specific cases, like [offline-plugin](https://www.npmjs.com/package/offline-plugin), it makes sense to run a child compiler. It gives full control over related entries and output. Arthur Stolyar, the author of the plugin, has explained [the idea of child compilers at Stack Overflow](https://stackoverflow.com/questions/38276028/webpack-child-compiler-change-configuration).
-
 ## Conclusion
 
 When you begin to design a plugin, spend time studying existing plugins that are close enough. Develop plugins piece-wise so that you validate one piece at a time. Studying webpack source can give more insight, given it's a collection of plugins itself.
