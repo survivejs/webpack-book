@@ -2,7 +2,7 @@
 
 When webpack writes bundles, it maintains a **runtime** as well. The runtime includes a manifest of the files to be loaded initially. If the names of the files change, then the manifest changes and the change invalidates the file in which it is contained.
 
-For this reason, it can be a good idea to write the runtime to a file of its own or inline the manifest information to the _index.html_ file of the project.
+For this reason, it can be a good idea to write the runtime to a file of its own or inline the manifest information to the `index.html` file of the project.
 
 ## Extracting a runtime
 
@@ -45,9 +45,9 @@ If you build the project now (`npm run build`), you should see something:
   webpack 5.1.3 compiled successfully in 7209 ms
 ```
 
-This change gave a separate file that contains the runtime. In the output above it has been marked with `runtime` chunk name. Because the setup is using `MiniHtmlWebpackPlugin`, there is no need to worry about loading the runtime ourselves as the plugin adds a reference to _index.html_.
+This change gave a separate file that contains the runtime. In the output above it has been marked with `runtime` chunk name. Because the setup is using `MiniHtmlWebpackPlugin`, there is no need to worry about loading the runtime ourselves as the plugin adds a reference to `index.html`.
 
-Try adjusting _src/index.js_ and see how the hashes change. This time around it should **not** invalidate the vendor bundle, and only the runtime and app bundle names should become different.
+Try adjusting `src/index.js` and see how the hashes change. This time around it should **not** invalidate the vendor bundle, and only the runtime and app bundle names should become different.
 
 T> To get a better idea of the runtime contents, run the build in development mode or pass `none` to mode through configuration. You should see something familiar there.
 
@@ -87,7 +87,7 @@ leanpub-end-insert
 
 {pagebreak}
 
-If you build the project (`npm run build`), you should see a new file, _records.json_, at the project root. The next time webpack builds, it picks up the information and rewrites the file if it has changed.
+If you build the project (`npm run build`), you should see a new file, `records.json`, at the project root. The next time webpack builds, it picks up the information and rewrites the file if it has changed.
 
 Records are particularly valuable if you have a complicated setup with code splitting and want to make sure the split parts gain correct caching behavior. The biggest problem is maintaining the record file.
 
@@ -103,13 +103,13 @@ To integrate with asset pipelines, you can consider using plugins like [webpack-
 
 ## Conclusion
 
-The project has basic caching behavior now. If you try to modify _index.js_ or _component.js_, the vendor bundle should remain the same.
+The project has basic caching behavior now. If you try to modify `index.js` or `component.js`, the vendor bundle should remain the same.
 
 To recap:
 
 - Webpack maintains a **runtime** containing information needed to run the application.
 - If the runtime manifest changes, the change invalidates the containing bundle.
-- Certain plugins allow you to write the runtime to the generated _index.html_. It's also possible to extract the information to a JSON file. The JSON comes in handy with _Server-Side Rendering_.
+- Certain plugins allow you to write the runtime to the generated `index.html`. It's also possible to extract the information to a JSON file. The JSON comes in handy with _Server-Side Rendering_.
 - **Records** allow you to store module IDs across builds. As a downside, you have to track the records file.
 
 You'll learn to analyze the build in the next chapter as it's essential for understanding and improving your build.

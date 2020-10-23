@@ -33,7 +33,7 @@ leanpub-end-insert
 
 To make the asset paths work on GitHub Pages, `output.publicPath` field has to be adjusted. Otherwise, the asset paths end up pointing at the root, and that doesn't work unless you are hosting behind a domain root (say `survivejs.com`) directly.
 
-`publicPath` gives control over the resulting urls you see at _index.html_ for instance. If you are hosting your assets on a CDN, this would be the place to tweak.
+`publicPath` gives control over the resulting urls you see at `index.html` for instance. If you are hosting your assets on a CDN, this would be the place to tweak.
 
 In this case, it's enough to set it to point the GitHub project as below:
 
@@ -63,7 +63,7 @@ After building (`npm run build`) and deploying (`npm run deploy`), you should ha
 
 T> If you need a more elaborate setup, use the Node API that **gh-pages** provides. The default command line tool it gives is enough for essential purposes, though.
 
-T> GitHub Pages allows you to choose the branch where you deploy. It's possible to use the `master` branch even as it's enough for minimal sites that don't need bundling. You can also point below the _./docs_ directory within your `master` branch and maintain your site.
+T> GitHub Pages allows you to choose the branch where you deploy. It's possible to use the `master` branch even as it's enough for minimal sites that don't need bundling. You can also point below the `./docs` directory within your `master` branch and maintain your site.
 
 ### Archiving old versions
 
@@ -71,7 +71,7 @@ T> GitHub Pages allows you to choose the branch where you deploy. It's possible 
 
 1. Copy the old version of the site in a temporary directory and remove _archive_ directory from it. You can name the archival directory as you want.
 2. Clean and build the project.
-3. Copy the old version below dist/archive/<version>\_
+3. Copy the old version below `dist/archive/<version>`
 4. Set up a script to call **gh-pages** through Node as below and capture possible errors in the callback:
 
 ```javascript

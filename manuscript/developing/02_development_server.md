@@ -21,7 +21,7 @@ Although this solves the problem of recompiling your source on change, it does n
 If you go with WDS, there are a couple of relevant fields that you should be aware of:
 
 - `devServer.historyApiFallback` should be set if you rely on HTML5 History API based routing.
-- `devServer.contentBase` - Assuming you don't generate _index.html_ dynamically and prefer to maintain it yourself in a specific directory, you need to point WDS to it. `contentBase` accepts either a path (e.g., `"build"`) or an array of paths (e.g., `["build", "images"]`). The value defaults to the project root.
+- `devServer.contentBase` - Assuming you don't generate `index.html` dynamically and prefer to maintain it yourself in a specific directory, you need to point WDS to it. `contentBase` accepts either a path (e.g., `"build"`) or an array of paths (e.g., `["build", "images"]`). The value defaults to the project root.
 - `devServer.proxy` - If you are using multiple servers, you have to proxy WDS to them. The proxy setting accepts an object of proxy mappings (e.g., `{ "/api": "http://localhost:3000/api" }`) that resolve matching queries to another server. Proxying is disabled by default.
 - `devServer.headers` - Attach custom headers to your requests here.
 
@@ -133,7 +133,7 @@ The server is running, and if you open `http://localhost:8080/` at your browser,
 
 If you try modifying the code, you should see the output in your terminal. The browser should also perform a hard refresh so that you can see the change.
 
-T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environment variables through a _.env_ file. _dotenv_ allows you to control the host and port setting of the setup quickly.
+T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environment variables through a `.env` file. _dotenv_ allows you to control the host and port setting of the setup quickly.
 
 T> Enable the `historyFallback` flag if you are using HTML5 History API based routing.
 
