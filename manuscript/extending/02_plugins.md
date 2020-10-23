@@ -255,25 +255,24 @@ To make sure the file was emitted, adjust the test:
 **plugins/test.js**
 
 ```javascript
-...
-
 async function test() {
+  console.log(
 leanpub-start-delete
-  const result = await compile({
-    entry: "./test-entry.js",
-  });
-leanpub-end-delete
-leanpub-start-insert
-  const result = await compile(
-    {
+    await compile({
       entry: "./test-entry.js",
       plugins: [new DemoPlugin({ name: "demo" })],
-    },
-    ["demo"]
-  );
+    })
+leanpub-end-delete
+leanpub-start-insert
+    await compile(
+      {
+        entry: "./test-entry.js",
+        plugins: [new DemoPlugin({ name: "demo" })],
+      },
+      ["demo"]
+    );
 leanpub-end-insert
-
-  console.log(result);
+  );
 }
 ```
 
@@ -296,7 +295,6 @@ There's a logging API that lets you pass messages to webpack. Consider the API b
 
 ```javascript
 const logger = compiler.getInfrastructureLogger("Demo Plugin");
-
 logger.log("hello from compiler");
 ```
 
@@ -321,6 +319,4 @@ To recap:
 - Plugins have access to webpack's **compiler** and **compilation** processes. Both provide hooks for different stages of webpack's execution flow and allow you to manipulate it. Webpack itself works this way.
 - Plugins can emit new assets and shape existing assets.
 - Plugins can implement plugin systems of their own. `HtmlWebpackPlugin` is an example of such a plugin.
-- Plugins can run compilers on their own. The isolation gives more control and allows plugins like _offline-plugin_ to be written.
-
-T> To understand the plugin flow in detail, see [Under the hood webpack: core library behind the event-driven architecture](https://codecrumbs.io/stories/webpack-tapable-core) for specific analysis.
+- Plugins can run compilers on their own. The isolation gives more control and allows plugins like **offline-plugin** to be written.
