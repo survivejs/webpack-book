@@ -26,12 +26,7 @@ leanpub-end-insert
 
 The above is the basic setup you need, regardless of your webpack configuration. Execute `npm run build:stats` now. After a while you should find _stats.json_ at your project root. This file can be pushed through a variety of tools to understand better what's going on.
 
-{pagebreak}
-
-You can also consider using the following flags:
-
-- `--profile` to capture timing-related information. The setting is optional but good to set.
-- `--progress` to show how long webpack spent in different stages of the build.
+T> To capture timing-related information during the build, set `profile` to `true` in webpack configuration.
 
 T> [0x](https://www.npmjs.com/package/0x) can generate a flamegraph of webpack execution to understand where time is spent.
 
