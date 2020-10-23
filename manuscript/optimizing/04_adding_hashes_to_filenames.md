@@ -37,7 +37,9 @@ Assume you have the following configuration:
 },
 ```
 
-Webpack would generate filenames like these based on it:
+{pagebreak}
+
+Webpack generates filenames like these based on it:
 
 ```bash
 main.d587bbd6e38337f5accd.js
@@ -109,18 +111,15 @@ leanpub-end-insert
 If you generate a build now (`npm run build`), you should see something:
 
 ```bash
-Hash: d165393a1d50d17e439d
-Version: webpack 4.43.0
-Time: 3676ms
-Built at: 07/10/2020 4:07:37 PM
-                Asset       Size  Chunks                         Chunk Names
-            2.426a.js  191 bytes       2  [emitted] [immutable]
-2.426a.js.LICENSE.txt   15 bytes          [emitted]
-           index.html  285 bytes          [emitted]
-        main.0166.css   1.61 KiB       0  [emitted] [immutable]  main
-         main.492e.js   2.73 KiB       0  [emitted] [immutable]  main
-       vendor.2ef5.js    126 KiB       1  [emitted] [immutable]  vendor
-Entrypoint main = vendor.2ef5.js main.0166.css main.492e.js
+⬡ webpack: Build Finished
+⬡ webpack: assets by path *.js 129 KiB
+    asset vendor.1622.js 126 KiB [emitted] [immutable] [minimized] (name: vendor) (id hint: commons) 2 related assets
+    asset main.db11.js 3.4 KiB [emitted] [immutable] [minimized] (name: main) 2 related assets
+    asset 34.a4c5.js 257 bytes [emitted] [immutable] [minimized] 2 related assets
+  asset main.bdca.css 1.87 KiB [emitted] [immutable] (name: main)
+  asset index.html 285 bytes [emitted]
+...
+  webpack 5.1.3 compiled successfully in 6593 ms
 ```
 
 The files have neat hashes now. To prove that it works for styling, you could try altering _src/main.css_ and see what happens to the hashes when you rebuild.
