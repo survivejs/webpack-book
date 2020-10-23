@@ -49,7 +49,7 @@ This change gave a separate file that contains the runtime. In the output above 
 
 Try adjusting `src/index.js` and see how the hashes change. This time around it should **not** invalidate the vendor bundle, and only the runtime and app bundle names should become different.
 
-Starting from webpack 5, the tool will take your browserslist definition into account when generating the runtime. See the _Autoprefixing_ chapter for an expanded discussion. In webpack 5, it's possible to use `output.ecmaVersion` to define in which format the runtime is written. Setting it to `5` would emit ECMAScript 5 compatible code while setting to `2015` would generate shorter code for the newer target. The setting also affects the _Minifying_ process.
+Starting from webpack 5, the tool will take your browserslist definition into account when generating the runtime. See the _Autoprefixing_ chapter for an expanded discussion. In webpack 5, it's possible to use `target` to define in which format the runtime is written. Setting it to `es5` would emit ECMAScript 5 compatible code while setting to `es2015` would generate shorter code for the newer target. The setting also affects the _Minifying_ process.
 
 T> To get a better idea of the runtime contents, run the build in development mode or pass `none` to mode through configuration. You should see something familiar there.
 
