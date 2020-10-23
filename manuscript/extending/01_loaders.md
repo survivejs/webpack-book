@@ -373,17 +373,11 @@ Input: {}
 
 {
   result: [ 'export default __webpack_public_path__ + "demo.txt";' ],
-  resourceBuffer: null,
-  cacheable: true,
-  fileDependencies: [],
-  contextDependencies: [],
-  missingDependencies: []
+  ...
 }
 ```
 
 T> The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API in detail. You can see all fields available through `this` there. For example, `mode` is exposed.
-
-{pagebreak}
 
 ## Caching with loaders
 
