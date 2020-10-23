@@ -184,6 +184,8 @@ The next question is how to pass a file name to the loader.
 
 T> `loader-utils` contains utilities beyond name interpolation. A good example is `loaderUtils.parseQuery(this.resourceQuery)` that allows you to parse query parameters passed to the loader and control its behavior in another way.
 
+{pagebreak}
+
 ## Passing options to loaders
 
 To demonstrate passing options, the runner needs a small tweak:
@@ -271,8 +273,6 @@ To get the most out of loaders, you have to connect them with webpack. To achiev
 ```javascript
 import "!../loaders/demo-loader?name=foo!./main.css";
 ```
-
-{pagebreak}
 
 Given the definition is verbose, the loader can be aliased as below:
 
