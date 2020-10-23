@@ -73,6 +73,7 @@ To integrate the feature into the project, adjust the configuration as below:
 
 ```javascript
 const productionConfig = merge([
+  ...
 leanpub-start-insert
   {
     performance: {
@@ -82,7 +83,6 @@ leanpub-start-insert
     },
   },
 leanpub-end-insert
-  ...
 ]);
 ```
 
@@ -93,11 +93,11 @@ In case your project exceeds the limits, you should see a warning similar to bel
 ```bash
 WARNING in entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (48.8 KiB). This can impact web performance.
 Entrypoints:
-  main (130 KiB)
-      runtime.b241.js
-      vendor.3be8.js
-      main.0166.css
-      main.8406.js
+  main (131 KiB)
+      runtime.41f8.js
+      vendor.1622.js
+      main.aca1.css
+      main.eddd.js
 ```
 
 If you want to enforce a strict limit in a CI environment, set `hints` to `error`. Doing this will fail the build in case it is reached and force the developers either go below the limit or raise a discussion about good limits.
@@ -131,8 +131,6 @@ It's possible to analyze bundle dependencies in a graphical manner, and many too
 [dependency-cruiser](https://www.npmjs.com/package/dependency-cruiser) is a bundler independent tool for analyzing project dependencies.
 
 ### madge
-
-![madge](images/madge.png)
 
 [madge](https://www.npmjs.com/package/madge) is another independent tool that can output a graph based on module input. The graph output allows you to understand the dependencies of your project in greater detail.
 
