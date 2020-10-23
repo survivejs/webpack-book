@@ -4,8 +4,6 @@ When webpack writes bundles, it maintains a **runtime** as well. The runtime inc
 
 For this reason, it can be a good idea to write the runtime to a file of its own or inline the manifest information to the _index.html_ file of the project.
 
-T> Starting from webpack 5, the tool will take your browserslist definition into account when generating the runtime. See the _Autoprefixing_ chapter for an expanded discussion.
-
 ## Extracting a runtime
 
 Most of the work was done already when `extractBundles` was set up in the _Bundle Splitting_ chapter. To extract the runtime, define `optimization.runtimeChunk` as follows:
@@ -51,9 +49,11 @@ This change gave a separate file that contains the runtime. In the output above 
 
 Try adjusting _src/index.js_ and see how the hashes change. This time around it should **not** invalidate the vendor bundle, and only the runtime and app bundle names should become different.
 
-T> Starting from webpack 5, it's possible to use `output.ecmaVersion` to define in which format the runtime is written. Setting it to `5` would emit ECMAScript 5 compatible code while setting to `2015` would generate shorter code for the newer target. The setting also affects the _Minifying_ process.
-
 T> To get a better idea of the runtime contents, run the build in development mode or pass `none` to mode through configuration. You should see something familiar there.
+
+T> Starting from webpack 5, the tool will take your browserslist definition into account when generating the runtime. See the _Autoprefixing_ chapter for an expanded discussion.
+
+T> With webpack 5, it's possible to use `output.ecmaVersion` to define in which format the runtime is written. Setting it to `5` would emit ECMAScript 5 compatible code while setting to `2015` would generate shorter code for the newer target. The setting also affects the _Minifying_ process.
 
 T> The build can be improved further by loading popular dependencies, such as React, through a CDN. That would decrease the size of the vendor bundle even further while adding an external dependency on the project. The idea is that if the user has hit the CDN earlier, caching can kick in like here.
 
