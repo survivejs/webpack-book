@@ -188,6 +188,8 @@ After running, you should see a lot of data. Especially `options` should look fa
 
 If you go through webpack's [plugin development documentation](https://webpack.js.org/api/plugins/), you'll see a compiler provides a large number of hooks. Each hook corresponds to a specific stage. For example, to emit files, you could listen to the `emit` event and then write.
 
+{pagebreak}
+
 Change the implementation to listen and capture `compilation`:
 
 **plugins/demo-plugin.js**
@@ -213,6 +215,8 @@ Running the build should show more information than before because a compilation
 T> Many of the available hooks expose compilation, but sometimes they reveal a more specific structure, and it takes a more particular study to understand those.
 
 T> Loaders have dirty access to `compiler` and `compilation` through underscore (`this._compiler`/`this._compilation`).
+
+{pagebreak}
 
 ## Writing files through compilation
 
@@ -287,6 +291,8 @@ If you run the test again (`node ./test.js`), you should see `{ demo: 'hello' }`
 
 T> Compilation has a set of hooks of its own as covered in [the official compilation reference](https://webpack.js.org/api/plugins/compiler/).
 
+{pagebreak}
+
 ## Managing warnings and errors
 
 Plugin execution can be caused to fail by throwing (`throw new Error("Message")`). If you validate options, you can use this method.
@@ -315,6 +321,8 @@ A plugin can provide hooks of its own. [html-webpack-plugin](https://www.npmjs.c
 ## Plugins can run compilers of their own
 
 In specific cases, like [offline-plugin](https://www.npmjs.com/package/offline-plugin), it makes sense to run a child compiler. It gives full control over related entries and output. Arthur Stolyar, the author of the plugin, has explained [the idea of child compilers at Stack Overflow](https://stackoverflow.com/questions/38276028/webpack-child-compiler-change-configuration).
+
+{pagebreak}
 
 ## Conclusion
 
