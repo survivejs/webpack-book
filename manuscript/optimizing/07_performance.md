@@ -31,17 +31,13 @@ Webpack uses only a single instance by default, meaning you aren't able to benef
 
 Variants allow you to generate both production and development builds at once. They let you to create bundles with different targets to make them easier to consume depending on the environment. Variants can be used to implement feature flags when combined with `DefinePlugin` as discussed in the _Environment Variables_ chapter.
 
-The underlying idea can be implemented using a [worker-farm](https://www.npmjs.com/package/worker-farm). In fact, **parallel-webpack** relies on **worker-farm** underneath.
-
-**parallel-webpack** can be used by installing it to your project as a development dependency and then replacing `webpack` command with `parallel-webpack`.
-
-{pagebreak}
+**parallel-webpack** can be used by installing it to your project as a development dependency and then running webpack through `parallel-webpack`.
 
 ## Low-level optimizations
 
 Specific lower-level optimizations can be nice to know. The key is to allow webpack to perform less work. Consider the examples below:
 
-- Consider using faster source map variants during development or skip them. Skipping is possible if you don't process the code in any way.
+- Use faster source map variants during development or skip them. Skipping is possible if you don't process the code in any way.
 - Use [@babel/preset-env](https://www.npmjs.com/package/@babel/preset-env) during development instead of source maps to transpile fewer features for modern browsers and make the code more readable and more comfortable to debug.
 - Skip polyfills during development. Attaching a package, such as [core-js](https://www.npmjs.com/package/core-js), to the development version of an application adds processing overhead.
 - Disable the portions of the application you don't need during development. It can be a valid idea to compile only a small fraction you are working on as then you have less to bundle.
@@ -78,7 +74,9 @@ exports.dontParse = ({ name, path }) => ({
 });
 ```
 
-To use the function, you would call it as follows:
+{pagebreak}
+
+To use the function, you call it as follows:
 
 ```javascript
 dontParse({
@@ -99,7 +97,7 @@ W> Not all modules support `module.noParse`. They should not have a reference to
 
 There are various webpack 4 specific tricks to improve performance:
 
-- If `output.futureEmitAssets` is set, the related logic from webpack 5 is enabled. [Based on Shawn Wang](https://twitter.com/swyx/status/1218173290579136512), it both reduces memory usage and improves performance.
+- If `output.futureEmitAssets` is set, webpack 5 related logic is enabled. [Based on Shawn Wang](https://twitter.com/swyx/status/1218173290579136512), it reduces memory usage and improves situation.
 - Sometimes there are version related performance regressions which can be fixed in the user space [Kenneth Chau](https://medium.com/@kenneth_chau/speeding-up-webpack-typescript-incremental-builds-by-7x-3912ba4c1d15) has compiled a great list of them for webpack 4. The main ideas are related to simplifying `stats.toJson` using **ts-loader** with `experimentalWatchApi` and setting `output.pathinfo` to `false`.
 - [Jared Palmer mentions](https://twitter.com/jaredpalmer/status/1265298834906910729) that setting `optimization` property and its `splitChunks`, `removeAvailableModules`, and `removeEmptyChunks` properties to `false` can improve performance in the `development` mode.
 - [webpack-plugin-ramdisk](https://www.npmjs.com/package/webpack-plugin-ramdisk) writes the build output to a RAM disk and it can help during development and in case you have to perform many successive builds.
