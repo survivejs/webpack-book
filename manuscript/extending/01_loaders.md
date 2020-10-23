@@ -119,6 +119,8 @@ But what's the point? You can pass to loaders through webpack entries. Instead o
 
 T> If you want to return `Buffer` output, set `module.exports.raw = true`. The flag overrides the default behavior, which expects a string is returned.
 
+{pagebreak}
+
 ## Writing files
 
 Loaders, like **file-loader**, emit files. Webpack provides a single method, `this.emitFile`, for this. Given **loader-runner** does not implement it, you have to mock it:
@@ -238,6 +240,8 @@ leanpub-end-insert
 };
 ```
 
+{pagebreak}
+
 After running (`node ./run-loader.js`), you should see something:
 
 ```javascript
@@ -265,6 +269,8 @@ To get the most out of loaders, you have to connect them with webpack. To achiev
 ```javascript
 import "!../loaders/demo-loader?name=foo!./main.css";
 ```
+
+{pagebreak}
 
 Given the definition is verbose, the loader can be aliased as below:
 
@@ -308,6 +314,8 @@ W> Although using **loader-runner** can be convenient for developing and testing
 ![Webpack loader processing](images/loader-processing.png)
 
 Webpack evaluates loaders in two phases: pitching and evaluating. If you are used to web event semantics, these map to capturing and bubbling. The idea is that webpack allows you to intercept execution during the pitching (capturing) phase. It goes through the loaders left to right first and executes them from right to left after that.
+
+{pagebreak}
 
 A pitch loader allows you shape the request and even terminate it. Set it up:
 
@@ -372,6 +380,8 @@ Input: {}
 ```
 
 T> The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API in detail. You can see all fields available through `this` there. For example, `mode` is exposed.
+
+{pagebreak}
 
 ## Caching with loaders
 
