@@ -121,8 +121,6 @@ async function test() {
 
 If you run the test (`node ./test.js`), you should see `applying` message at the console. Given most plugins accept options, it's a good idea to capture those and pass them to `apply`.
 
-{pagebreak}
-
 ## Capturing options
 
 Options can be captured through a `constructor`:
@@ -169,8 +167,6 @@ leanpub-end-insert
 
 Now you should see `apply { name: 'demo' }` after running.
 
-{pagebreak}
-
 ## Understanding compiler and compilation
 
 `apply` receives webpack's compiler as a parameter. Adjust as below:
@@ -191,8 +187,6 @@ module.exports = class DemoPlugin {
 After running, you should see a lot of data. Especially `options` should look familiar as it contains webpack configuration. You can also see familiar names like `records`.
 
 If you go through webpack's [plugin development documentation](https://webpack.js.org/api/plugins/), you'll see a compiler provides a large number of hooks. Each hook corresponds to a specific stage. For example, to emit files, you could listen to the `emit` event and then write.
-
-{pagebreak}
 
 Change the implementation to listen and capture `compilation`:
 
@@ -247,7 +241,7 @@ module.exports = class DemoPlugin {
         compilation.hooks.processAssets.tap(
           {
             name: pluginName,
-            // See lib/Compilation.js in webpack to understand different stages
+            // See lib/Compilation.js in webpack for more
             stage: Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
           },
           () =>
