@@ -64,15 +64,6 @@ function compile(config, filenames = []) {
   });
 }
 
-function getConfig(options: {}, config: {}) {
-  return Object.assign(
-    {
-      entry: "./test/index.js",
-    },
-    config
-  );
-}
-
 // To test, assert as follows:
 async function test() {
   const result = await compile({
