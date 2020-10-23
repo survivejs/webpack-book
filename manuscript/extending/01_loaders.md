@@ -360,17 +360,7 @@ leanpub-end-insert
 );
 ```
 
-If you run (`node ./run-loader.js`) now, the pitch loader should log intermediate data and intercept the execution:
-
-```javascript
-Remaining: ./demo.txt, preceding: webpack-demo/loaders/demo-loader?{"name":"demo.[ext]"}
-Input: {}
-
-{
-  result: [ 'export default __webpack_public_path__ + "demo.txt";' ],
-  ...
-}
-```
+If you run (`node ./run-loader.js`) now, the pitch loader should log intermediate data and intercept the execution.
 
 {pagebreak}
 
