@@ -86,6 +86,8 @@ leanpub-end-insert
 ]);
 ```
 
+{pagebreak}
+
 In case your project exceeds the limits, you should see a warning similar to below:
 
 ```bash
@@ -106,8 +108,6 @@ It's possible to analyze bundle dependencies in a graphical manner, and many too
 
 ### The official analyse tool
 
-![The official analyse tool](images/analyse.png)
-
 [The official analyse tool](https://github.com/webpack/analyse) gives you recommendations and a good idea of your application's dependency graph. It can be run locally as well.
 
 ### webpack-xray
@@ -115,8 +115,6 @@ It's possible to analyze bundle dependencies in a graphical manner, and many too
 [webpack-xray](https://github.com/akx/webpack-xray) is similar to the official analyse tool while having a modernized UI and support for drilling down in the data.
 
 ### Stellar Webpack
-
-![Stellar Webpack](images/stellar-webpack.jpg)
 
 [Stellar Webpack](https://alexkuz.github.io/stellar-webpack/) gives a universe based visualization and allows you to examine your application in a 3D form.
 
@@ -215,8 +213,6 @@ In addition to inspectpack, there are other tools for figuring out duplicates:
 
 [duplicate-package-checker-webpack-plugin](https://www.npmjs.com/package/duplicate-package-checker-webpack-plugin) warns you if it finds single package multiple times in your build. This situation can be hard to spot otherwise.
 
-{pagebreak}
-
 [inspectpack](https://www.npmjs.com/package/inspectpack) can be used for figuring out specific places of code to improve. The example below performs duplication analysis:
 
 ```bash
@@ -239,9 +235,7 @@ The tool also comes with a plugin you can attach directly to your configuration 
 
 [whybundled](https://www.npmjs.com/package/whybundled) has been designed to answer the question why a specific module was included to the bundles.
 
-T> `--display-reasons` flag gives more information as well. Example: `npm run build -- --display-reasons`. Another option is to set `stats.reasons` to `true` through webpack configuration.
-
-{pagebreak}
+T> Set `stats.reasons` to `true` through webpack configuration to capture similar information.
 
 ## Conclusion
 
