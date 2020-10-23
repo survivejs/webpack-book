@@ -25,13 +25,15 @@ As discussed in the previous chapter, generating stats can be used to measure bu
 
 Webpack uses only a single instance by default, meaning you aren't able to benefit from a multi-core processor without extra effort. This is where **thread-loader** and third-party solutions, such as **parallel-webpack**.
 
+[webpack-plugin-ramdisk](https://www.npmjs.com/package/webpack-plugin-ramdisk) writes the build output to a RAM disk and it can help during development and in case you have to perform many successive builds.
+
 ### **parallel-webpack** - run multiple webpack instances in parallel
 
 [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) allows you to parallelize webpack configuration in two ways. Assuming you have defined your webpack configuration as an array, it can run them in parallel. In addition to this, **parallel-webpack** can generate builds based on given **variants**.
 
 Variants allow you to generate both production and development builds at once. They let you to create bundles with different targets to make them easier to consume depending on the environment. Variants can be used to implement feature flags when combined with `DefinePlugin` as discussed in the _Environment Variables_ chapter.
 
-**parallel-webpack** can be used by installing it to your project as a development dependency and then running webpack through `parallel-webpack`.
+**parallel-webpack** can be used by installing it to your project as a development dependency and then running webpack through `parallel-webpack` command.
 
 ## Low-level optimizations
 
@@ -40,7 +42,6 @@ Specific lower-level optimizations can be nice to know. The key is to allow webp
 - Use faster source map variants during development or skip them. Skipping is possible if you don't process the code in any way.
 - Use [@babel/preset-env](https://www.npmjs.com/package/@babel/preset-env) during development instead of source maps to transpile fewer features for modern browsers and make the code more readable and more comfortable to debug.
 - Skip polyfills during development. Attaching a package, such as [core-js](https://www.npmjs.com/package/core-js), to the development version of an application adds processing overhead.
-- Disable the portions of the application you don't need during development. It can be a valid idea to compile only a small fraction you are working on as then you have less to bundle.
 - Polyfill less of Node and provide nothing instead. For example, a package could be using Node `process` which in turn will bloat your bundle if polyfilled. [See webpack documentation](https://webpack.js.org/configuration/node/) for the default values.
 - Starting from version 5, there's a file system level cache that can be enabled by setting `cache.type = "filesystem"`. To invalidate it on configuration change, you should set `cache.buildDependencies.config = [__filename]`. Webpack handles anything watched by the build automatically including plugins, loaders, and project files.
 
@@ -63,14 +64,8 @@ You can encapsulate the idea within a function:
 
 ```javascript
 exports.dontParse = ({ name, path }) => ({
-  module: {
-    noParse: [new RegExp(path)],
-  },
-  resolve: {
-    alias: {
-      [name]: path,
-    },
-  },
+  module: { noParse: [new RegExp(path)] },
+  resolve: { alias: { [name]: path } },
 });
 ```
 
@@ -98,7 +93,6 @@ There are various webpack 4 specific tricks to improve performance:
 - If `output.futureEmitAssets` is set, webpack 5 related logic is enabled. [Based on Shawn Wang](https://twitter.com/swyx/status/1218173290579136512), it reduces memory usage and improves situation.
 - Sometimes there are version related performance regressions which can be fixed in the user space [Kenneth Chau](https://medium.com/@kenneth_chau/speeding-up-webpack-typescript-incremental-builds-by-7x-3912ba4c1d15) has compiled a great list of them for webpack 4. The main ideas are related to simplifying `stats.toJson` using **ts-loader** with `experimentalWatchApi` and setting `output.pathinfo` to `false`.
 - [Jared Palmer mentions](https://twitter.com/jaredpalmer/status/1265298834906910729) that setting `optimization` property and its `splitChunks`, `removeAvailableModules`, and `removeEmptyChunks` properties to `false` can improve performance in the `development` mode.
-- [webpack-plugin-ramdisk](https://www.npmjs.com/package/webpack-plugin-ramdisk) writes the build output to a RAM disk and it can help during development and in case you have to perform many successive builds.
 
 ## Conclusion
 
