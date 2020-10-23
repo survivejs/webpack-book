@@ -172,15 +172,11 @@ The styling portion sets up Tailwind for styling so we can make the demonstratio
 
 If you `npm run start:mf`, you should see the application running. In case you click on any of the buttons,
 
-W> Before proceeding further, make sure you have webpack 5 installed and set up in your project.
-
 ## Separating bootstrap
 
 The next step is breaking the monolith into separate modules. In practice, these portions can be different projects and developed in various technologies.
 
 As a first step, we should use webpack's `ModuleFederationPlugin` and load the application asynchronously. The change in loading is due to the way module federation works. As it's a runtime operation, a small bootstrap is needed.
-
-{pagebreak}
 
 Add a bootstrap file to the project like this:
 
