@@ -62,7 +62,7 @@ $ npx wp
   You can also set it to 'none' to disable any default behavior. Learn more: https://webpack.js.org/configuration/mode/
 
   ERROR in main
-  Module not found: Error: Can't resolve './src' in 'tmp/webpack-demo'
+  Module not found: Error: Can't resolve './src' in 'webpack-demo'
 
   webpack 5.1.3 compiled with 1 error and 1 warning in 115 ms
 ```

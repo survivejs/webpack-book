@@ -368,7 +368,7 @@ If you run (`node ./run-loader.js`) now, the pitch loader should log intermediat
 
 ```javascript
 Remaining request: ./demo.txt
-Preceding request: /Users/juhovepsalainen/Projects/tmp/webpack-demo/loaders/demo-loader?{"name":"demo.[ext]"}
+Preceding request: webpack-demo/loaders/demo-loader?{"name":"demo.[ext]"}
 Input: {}
 
 {

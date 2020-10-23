@@ -98,7 +98,7 @@ T> You can drop the `loadCSS` function now as it won't be needed anymore. The se
 After running `npm run build`, you should see output similar to the following:
 
 ```bash
-> wp5-demo@0.0.0 build /tmp/webpack-demo
+> wp5-demo@0.0.0 build webpack-demo
 > wp --mode production
 
 ⬡ webpack: Build Finished
