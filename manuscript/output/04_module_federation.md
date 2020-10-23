@@ -325,6 +325,8 @@ exports.federateModule = ({
 
 The next step is more involved, as we'll have to set up two builds. We'll reuse the current target and pass `--component` parameter to it to define which one to compile. That gives enough flexibility for the project.
 
+{pagebreak}
+
 Change the webpack configuration as below:
 
 **webpack.mf.js**
@@ -340,35 +342,13 @@ leanpub-end-insert
 
 ...
 
+leanpub-start-insert
 const commonConfig = merge([
   parts.clean(),
   parts.loadJavaScript(),
   parts.loadImages(),
-leanpub-start-delete
-  parts.page({
-    entry: {
-      app: path.join(__dirname, "src", "mf.js"),
-    },
-    mode,
-  }),
-  {
-    plugins: [
-      new ModuleFederationPlugin({
-        name: "app",
-        remotes: {},
-        shared: {
-          react: {
-            singleton: true,
-          },
-          "react-dom": {
-            singleton: true,
-          },
-        },
-      }),
-    ],
-  },
-leanpub-end-delete
 ]);
+leanpub-end-insert
 
 ...
 
@@ -435,8 +415,6 @@ leanpub-end-insert
 To test, compile the header component first using `npm run build:mf -- --component header`. Then, to run the built module against the shell, use `npm run start:mf -- --component app`.
 
 If everything went well, you should still get the same outcome.
-
-{pagebreak}
 
 ## Pros and cons
 
