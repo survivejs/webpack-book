@@ -163,8 +163,6 @@ W> You have to be careful when doing a check against `process.env.NODE_ENV` in c
 
 [babel-plugin-transform-inline-environment-variables](https://www.npmjs.com/package/babel-plugin-transform-inline-environment-variables) can be used to achieve the same effect. [babel-plugin-transform-define](https://www.npmjs.com/package/babel-plugin-transform-define) and [babel-plugin-minify-replace](https://www.npmjs.com/package/babel-plugin-minify-replace) are other alternatives for Babel.
 
-{pagebreak}
-
 ## Conclusion
 
 Setting environment variables is a technique that allows you to control which paths of the source are included in the build.
