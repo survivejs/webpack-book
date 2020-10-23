@@ -10,13 +10,13 @@ To demonstrate SSR, you can use webpack to compile a client-side build that then
 
 The _Composing Configuration_ chapter covers the configuration approach and the _Loading JavaScript_ chapter covers the essentials of using Babel with webpack. You should make sure you've completed the basic setup before continuing here.
 
-{pagebreak}
-
 To use React, we require further configuration. Given most of React projects rely on [JSX](https://facebook.github.io/jsx/) format, you have to enable it through Babel:
 
 ```bash
 npm add @babel/preset-react --develop
 ```
+
+{pagebreak}
 
 Connect the preset with Babel configuration as follows:
 
@@ -97,8 +97,6 @@ module.exports = merge([
   parts.loadJavaScript(),
 ]);
 ```
-
-{pagebreak}
 
 To make it convenient to generate a build, add a helper script:
 
