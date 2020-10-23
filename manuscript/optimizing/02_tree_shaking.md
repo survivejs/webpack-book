@@ -30,9 +30,7 @@ bake();
 
 If you build the project again (`npm run build`) and examine the build (`dist/main.js`), it should contain `console.log("bake")`, but miss `console.log("shake")`. That's tree shaking in action.
 
-To get a better idea of what webpack is using for tree shaking, run it through `npm run build -- --display-used-exports`. You should see additional output like `[no exports used]` or `[only some exports used: bake]` in the terminal.
-
-T> If you are using **terser-webpack-plugin**, enable warnings for a similar effect. In addition to other messages, you should see lines like `Dropping unused variable treeShakingDemo [./src/component.js:17,6]`.
+T> To understand which exports are being shaked out, set `stats.usedExports` field to `true` in webpack configuration.
 
 W> For tree shaking to work with TypeScript, you have to set `compilerOptions.module` to `es2015` or equivalent. The idea is to retain ES2015 module definitions for webpack to process as it needs the information for tree shaking.
 
