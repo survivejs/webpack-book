@@ -8,6 +8,10 @@ You can find packages that rely on this behavior. React is perhaps the most know
 
 Starting from webpack 4, `process.env.NODE_ENV` is set within the build based on the given mode but not globally. To pass the variable to other tools, you'll have to set it explicitly outside of webpack or within webpack configuration.
 
+T> `webpack.EnvironmentPlugin(["NODE_ENV"])` is a shortcut that allows you to refer to environment variables. It uses `DefinePlugin` underneath, and you can achieve the same effect by passing `process.env.NODE_ENV`.
+
+T> [dotenv-webpack](https://www.npmjs.com/package/dotenv-webpack) goes a step further and maps environment variables from a dotfile (`.env`) to a build using `DefinePlugin` underneath.
+
 {pagebreak}
 
 ## The basic idea of `DefinePlugin`
@@ -125,19 +129,7 @@ leanpub-end-insert
 };
 ```
 
-{pagebreak}
-
 If you run the application, you should see a new message on the button.
-
-T> `webpack.EnvironmentPlugin(["NODE_ENV"])` is a shortcut that allows you to refer to environment variables. It uses `DefinePlugin` underneath, and you can achieve the same effect by passing `process.env.NODE_ENV`.
-
-T> [dotenv-webpack](https://www.npmjs.com/package/dotenv-webpack) goes a step further and maps environment variables from a dotfile (`.env`) to a build using `DefinePlugin` underneath.
-
-## Replacing free variables through Babel
-
-[babel-plugin-transform-inline-environment-variables](https://www.npmjs.com/package/babel-plugin-transform-inline-environment-variables) can be used to achieve the same effect. [babel-plugin-transform-define](https://www.npmjs.com/package/babel-plugin-transform-define) and [babel-plugin-minify-replace](https://www.npmjs.com/package/babel-plugin-minify-replace) are other alternatives for Babel.
-
-{pagebreak}
 
 ## Choosing which module to use
 
@@ -166,6 +158,10 @@ Webpack can pick the right code based on the `DefinePlugin` declaration and this
 T> A related technique, **aliasing**, is discussed in the _Consuming Packages_ chapter.
 
 W> You have to be careful when doing a check against `process.env.NODE_ENV` in complex pieces of code. [Johnny Reilly gives a good example of a problematic case](https://blog.johnnyreilly.com/2018/03/its-not-dead-webpack-and-dead-code.html).
+
+## Replacing free variables through Babel
+
+[babel-plugin-transform-inline-environment-variables](https://www.npmjs.com/package/babel-plugin-transform-inline-environment-variables) can be used to achieve the same effect. [babel-plugin-transform-define](https://www.npmjs.com/package/babel-plugin-transform-define) and [babel-plugin-minify-replace](https://www.npmjs.com/package/babel-plugin-minify-replace) are other alternatives for Babel.
 
 {pagebreak}
 
