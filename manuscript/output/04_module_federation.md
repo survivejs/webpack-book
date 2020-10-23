@@ -243,8 +243,6 @@ To get started, let's split the header section of the application into a module 
 
 Note the `singleton` bits in the code above. In this case, we'll treat the current code as a host and mark **react** and **react-dom** as a singleton for each federated module to ensure each is using the same version to avoid problems with React rendering.
 
-{pagebreak}
-
 ## Separating header
 
 Now we're in a spot where we can begin breaking the monolith. Set up a file with the header code as follows:
@@ -264,6 +262,8 @@ function Header() {
 
 export default Header;
 ```
+
+{pagebreak}
 
 We should also alter the application to use the new component. We'll go through a custom namespace, `mf`, which we'll manage through module federation:
 
