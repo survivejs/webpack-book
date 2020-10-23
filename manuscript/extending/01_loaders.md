@@ -311,6 +311,8 @@ You could also handle the loader definition through `rules`. Once the loader is 
 
 W> Although using **loader-runner** can be convenient for developing and testing loaders, implement integration tests that run against webpack. Subtle differences between environments make this essential.
 
+T> The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API in detail. You can see all fields available through `this` there. For example, `mode` is exposed.
+
 ## Pitch loaders
 
 ![Webpack loader processing](images/loader-processing.png)
@@ -329,14 +331,8 @@ const loaderUtils = require("loader-utils");
 module.exports = function (input) {
   return input + loaderUtils.getOptions(this).text;
 };
-module.exports.pitch = function (
-  remainingReq,
-  precedingReq,
-  input
-) {
-  console.log(`
-Remaining request: ${remainingReq}
-Preceding request: ${precedingReq}
+module.exports.pitch = function (remaining, preceding, input) {
+  console.log(`Remaining: ${remaining}, preceding: ${preceding}
 Input: ${JSON.stringify(input, null, 2)}
   `);
 
@@ -367,8 +363,7 @@ leanpub-end-insert
 If you run (`node ./run-loader.js`) now, the pitch loader should log intermediate data and intercept the execution:
 
 ```javascript
-Remaining request: ./demo.txt
-Preceding request: webpack-demo/loaders/demo-loader?{"name":"demo.[ext]"}
+Remaining: ./demo.txt, preceding: webpack-demo/loaders/demo-loader?{"name":"demo.[ext]"}
 Input: {}
 
 {
@@ -376,8 +371,6 @@ Input: {}
   ...
 }
 ```
-
-T> The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API in detail. You can see all fields available through `this` there. For example, `mode` is exposed.
 
 {pagebreak}
 
