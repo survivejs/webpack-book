@@ -35,24 +35,19 @@ The name `runtime` is used by convention. You can use any other name, and it wil
 If you build the project now (`npm run build`), you should see something:
 
 ```bash
-Hash: 78dfb4662ef4977a2fde
-Version: webpack 4.43.0
-Time: 3641ms
-Built at: 07/10/2020 4:10:48 PM
-          Asset       Size  Chunks                         Chunk Names
-      3.b965.js  191 bytes       3  [emitted] [immutable]
-     index.html  324 bytes          [emitted]
-  main.0166.css   1.61 KiB       0  [emitted] [immutable]  main
-   main.8406.js  580 bytes       0  [emitted] [immutable]  main
-leanpub-start-insert
-runtime.b241.js   2.29 KiB       1  [emitted] [immutable]  runtime
-leanpub-end-insert
- vendor.3be8.js    126 KiB       2  [emitted] [immutable]  vendor
-Entrypoint main = runtime.b241.js vendor.3be8.js main.0166.css main.8406.js
+⬡ webpack: Build Finished
+⬡ webpack: assets by path *.js 130 KiB
+    asset vendor.1622.js 126 KiB [emitted] [immutable] [minimized] (name: vendor) (id hint: commons) 2 related assets
+    asset runtime.41f8.js 3.01 KiB [emitted] [immutable] [minimized] (name: runtime) 2 related assets
+    asset main.eddd.js 633 bytes [emitted] [immutable] [minimized] (name: main) 2 related assets
+    asset 34.a4c5.js 257 bytes [emitted] [immutable] [minimized] 2 related assets
+  asset main.aca1.css 1.87 KiB [emitted] [immutable] (name: main)
+  asset index.html 324 bytes [emitted]
 ...
+  webpack 5.1.3 compiled successfully in 7209 ms
 ```
 
-This change gave a separate file that contains the runtime. In the output above it has been marked with `runtime` chunk name. Because the setup is using `MiniHtmlWebpackPlugin`, there is no need to worry about loading the manifest ourselves as the plugin adds a reference to _index.html_.
+This change gave a separate file that contains the runtime. In the output above it has been marked with `runtime` chunk name. Because the setup is using `MiniHtmlWebpackPlugin`, there is no need to worry about loading the runtime ourselves as the plugin adds a reference to _index.html_.
 
 Try adjusting _src/index.js_ and see how the hashes change. This time around it should **not** invalidate the vendor bundle, and only the runtime and app bundle names should become different.
 
