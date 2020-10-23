@@ -329,11 +329,11 @@ Compared to Facebook's type checker Flow, TypeScript is a safer option in terms 
 
 You can also compile TypeScript with Babel through [@babel/plugin-transform-typescript](https://www.npmjs.com/package/@babel/plugin-transform-typescript) although this comes with small [caveats](https://babeljs.io/docs/en/next/babel-plugin-transform-typescript.html#caveats).
 
-T> You can find types for webpack behind [@types/webpack](https://www.npmjs.com/package/@types/webpack) and [@types/webpack-env](https://www.npmjs.com/package/@types/webpack-env). Webpack 5 includes TypeScript support out of the box and you shouldn't install `@types/webpack` with it.
+W> Webpack 5 includes TypeScript support out of the box. Make sure you don't have `@types/webpack` installed in your project as it will conflict.
+
+T> [@types/webpack-env](https://www.npmjs.com/package/@types/webpack-env) contains webpack types related to the environment. If you use features like `require.context`, then you should install this one.
 
 T> To split TypeScript configuration, use the `extends` property (`"extends": "./tsconfig.common"`) and then use **ts-loader** `configFile` to control which file to use through webpack.
-
-T> There's a [TypeScript parser for ESLint](https://www.npmjs.com/package/typescript-eslint-parser). It's also possible to lint it through [tslint](https://www.npmjs.com/package/tslint).
 
 ### Using TypeScript to write webpack configuration
 
