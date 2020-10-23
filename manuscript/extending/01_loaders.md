@@ -56,11 +56,14 @@ runLoaders(
 If you run the script now (`node run-loader.js`), you should see output:
 
 ```javascript
-{ result: [ 'foobar\nfoobar\n' ],
+{
+  result: [ 'foobar\nfoobar\n' ],
   resourceBuffer: <Buffer 66 6f 6f 62 61 72 0a>,
   cacheable: true,
   fileDependencies: [ './demo.txt' ],
-  contextDependencies: [] }
+  contextDependencies: [],
+  missingDependencies: []
+}
 ```
 
 The output tells the `result` of the processing, the resource that was processed as a buffer, and other meta information. The data is enough to develop more complicated loaders.
@@ -96,7 +99,9 @@ W> Given webpack injects its API through `this`, the shorter function form (`() 
 
 T> If you want to pass a source map to webpack, give it as the third parameter of the callback.
 
-Running the demo script (`node run-loader.js`) again should give the same result as before. To raise an error during execution, try the following:
+Running the demo script (`node run-loader.js`) again should give the same result as before.
+
+To raise an error during execution, try the following:
 
 **loaders/demo-loader.js**
 
@@ -250,11 +255,15 @@ leanpub-end-insert
 After running (`node ./run-loader.js`), you should see something:
 
 ```javascript
-{ result: [ 'export default __webpack_public_path__+"demo.txt";' ],
+{
+  result: [ 'export default __webpack_public_path__ + "demo.txt";' ],
   resourceBuffer: <Buffer 66 6f 6f 62 61 72 0a>,
   cacheable: true,
   fileDependencies: [ './demo.txt' ],
-  contextDependencies: [] }
+  contextDependencies: [],
+  missingDependencies: []
+}
+
 ```
 
 You can see that the result matches what the loader should have returned. You can try to pass more options to the loader or use query parameters to see what happens with different combinations.
@@ -279,9 +288,8 @@ Given the definition is verbose, the loader can be aliased as below:
 
 ```javascript
 const commonConfig = merge([
-  {
-  ...
 leanpub-start-insert
+  {
     resolveLoader: {
       alias: {
         "demo-loader": path.resolve(
@@ -290,8 +298,8 @@ leanpub-start-insert
         ),
       },
     },
-leanpub-end-insert
   },
+leanpub-end-insert
   ...
 ]);
 ```
@@ -368,14 +376,17 @@ If you run (`node ./run-loader.js`) now, the pitch loader should log intermediat
 
 ```javascript
 Remaining request: ./demo.txt
-Preceding request: .../webpack-demo/loaders/demo-loader?{"name":"demo.[ext]"}
+Preceding request: /Users/juhovepsalainen/Projects/tmp/webpack-demo/loaders/demo-loader?{"name":"demo.[ext]"}
 Input: {}
 
-{ result: [ 'export default __webpack_public_path__ + "demo.txt";' ],
+{
+  result: [ 'export default __webpack_public_path__ + "demo.txt";' ],
   resourceBuffer: null,
   cacheable: true,
   fileDependencies: [],
-  contextDependencies: [] }
+  contextDependencies: [],
+  missingDependencies: []
+}
 ```
 
 T> The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API in detail. You can see all fields available through `this` there. For example, `mode` is exposed.
