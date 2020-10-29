@@ -68,6 +68,8 @@ Even though it would be possible to develop an arbitrary configuration using the
 
 Linting is a good example because the build should fail before it does anything else. Using `enforce: "post"` is rarer and it would imply you want to perform a check against the built source. Performing analysis against the built source is one potential example.
 
+{pagebreak}
+
 The basic syntax goes as below:
 
 ```javascript
@@ -100,6 +102,8 @@ const config = {
 
 This style of configuration works in entries and source imports too as webpack picks it up. The format comes in handy in certain individual cases, but often you are better off using more readable alternatives.
 
+{pagebreak}
+
 It's preferable to go through `use`:
 
 ```javascript
@@ -117,8 +121,6 @@ const config = {
   },
 };
 ```
-
-{pagebreak}
 
 If you wanted to use more than one loader, you could pass an array to `use` and expand from there:
 
@@ -181,8 +183,6 @@ Boolean based fields can be used to constrain these matchers further:
 - `and` - Match against an array of conditions. All must match.
 - `or` - Match against an array while any must match.
 
-{pagebreak}
-
 ## Branching at `use` using a function
 
 In the book setup, you compose configuration on a higher level. Another option to achieve similar results would be to branch at `use` as webpack's loader definitions accept functions that allow you to branch depending on the environment. Consider the example below:
@@ -205,8 +205,6 @@ const config = {
 ```
 
 Carefully applied, this technique allows different means of composition.
-
-{pagebreak}
 
 ## Loading based on `issuer`
 
@@ -245,8 +243,6 @@ const config = {
   ],
 };
 ```
-
-{pagebreak}
 
 ## Loading with `info` object
 
