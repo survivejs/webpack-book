@@ -39,10 +39,10 @@ It's good to keep in mind that webpack's loaders are always evaluated from right
 To see the rule in action, consider the example below:
 
 ```javascript
-{
+const config = {
   test: /\.css$/,
   use: ["style-loader", "css-loader"],
-},
+};
 ```
 
 {pagebreak}
@@ -50,14 +50,16 @@ To see the rule in action, consider the example below:
 Based on the right to left rule, the example can be split up while keeping it equivalent:
 
 ```javascript
-{
-  test: /\.css$/,
-  use: "style-loader",
-},
-{
-  test: /\.css$/,
-  use: "css-loader",
-},
+const config = [
+  {
+    test: /\.css$/,
+    use: "style-loader",
+  },
+  {
+    test: /\.css$/,
+    use: "css-loader",
+  },
+];
 ```
 
 ### Enforcing order
@@ -69,14 +71,14 @@ Linting is a good example because the build should fail before it does anything 
 The basic syntax goes as below:
 
 ```javascript
-{
+const config = {
   // Conditions
   test: /\.js$/,
   enforce: "pre", // "post" too
 
   // Actions
   use: "eslint-loader",
-},
+};
 ```
 
 It would be possible to write the same configuration without `enforce` if you chained the declaration with other loaders related to the `test` carefully. Using `enforce` removes the necessity for that and allows you to split loader execution into separate stages that are easier to compose.
@@ -86,14 +88,14 @@ It would be possible to write the same configuration without `enforce` if you ch
 There's a query format that allows passing parameters to loaders:
 
 ```javascript
-{
+const config = {
   // Conditions
   test: /\.js$/,
   include: PATHS.app,
 
   // Actions
   use: "babel-loader?presets[]=env",
-},
+};
 ```
 
 This style of configuration works in entries and source imports too as webpack picks it up. The format comes in handy in certain individual cases, but often you are better off using more readable alternatives.
@@ -101,7 +103,7 @@ This style of configuration works in entries and source imports too as webpack p
 It's preferable to go through `use`:
 
 ```javascript
-{
+const config = {
   // Conditions
   test: /\.js$/,
   include: PATHS.app,
@@ -113,7 +115,7 @@ It's preferable to go through `use`:
       presets: ["env"],
     },
   },
-},
+};
 ```
 
 {pagebreak}
@@ -121,7 +123,7 @@ It's preferable to go through `use`:
 If you wanted to use more than one loader, you could pass an array to `use` and expand from there:
 
 ```javascript
-{
+const config = {
   test: /\.js$/,
   include: PATHS.app,
   use: [
@@ -132,7 +134,7 @@ If you wanted to use more than one loader, you could pass an array to `use` and 
       },
     },
   ],
-},
+};
 ```
 
 ## Inline definitions
@@ -186,7 +188,7 @@ Boolean based fields can be used to constrain these matchers further:
 In the book setup, you compose configuration on a higher level. Another option to achieve similar results would be to branch at `use` as webpack's loader definitions accept functions that allow you to branch depending on the environment. Consider the example below:
 
 ```javascript
-{
+const config = {
   test: /\.css$/,
 
   // `resource` refers to the resource path matched.
@@ -199,7 +201,7 @@ In the book setup, you compose configuration on a higher level. Another option t
       return ["css-loader", "style-loader"];
     }
   },
-},
+};
 ```
 
 Carefully applied, this technique allows different means of composition.
@@ -211,7 +213,7 @@ Carefully applied, this technique allows different means of composition.
 `issuer` can be used to control behavior based on where a resource was imported. In the example below adapted from [css-loader issue 287](https://github.com/webpack-contrib/css-loader/pull/287#issuecomment-261269199), **style-loader** is applied when webpack captures a CSS file from a JavaScript import:
 
 ```javascript
-{
+const config = {
   test: /\.css$/,
   rules: [
     {
@@ -222,24 +224,26 @@ Carefully applied, this technique allows different means of composition.
       use: "css-loader",
     },
   ],
-},
+};
 ```
 
 Another approach would be to mix `issuer` and `not`:
 
 ```javascript
-{
+const config = {
   test: /\.css$/,
   rules: [
-    { // CSS imported from other modules is added to the DOM
+    {
+      // CSS imported from other modules is added to the DOM
       issuer: { not: /\.css$/ },
       use: "style-loader",
     },
-    { // Apply css-loader against CSS imports to return CSS
+    {
+      // Apply css-loader against CSS imports to return CSS
       use: "css-loader",
     },
   ],
-}
+};
 ```
 
 {pagebreak}
@@ -249,7 +253,7 @@ Another approach would be to mix `issuer` and `not`:
 Webpack provides advanced access to compilation if you pass a function as a loader definition for the `use` field. It expects you to return a loader from the call:
 
 ```javascript
-{
+const config = {
   rules: [
     {
       test: /\.js$/,
@@ -287,7 +291,7 @@ The function is an escape hatch for customizing loaders further.
 `oneOf` field makes it possible to route webpack to a specific loader based on a resource related match:
 
 ```javascript
-{
+const config = {
   test: /\.png$/,
   oneOf: [
     {
@@ -299,7 +303,7 @@ The function is an escape hatch for customizing loaders further.
       use: "file-loader",
     },
   ],
-},
+};
 ```
 
 If you wanted to embed the context information to the filename, the rule could use `resourcePath` over `resourceQuery`.
