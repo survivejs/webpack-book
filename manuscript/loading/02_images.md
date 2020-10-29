@@ -11,7 +11,7 @@ Starting from webpack 5, the tool supports [asset modules](https://webpack.js.or
 - `type: "asset/source"` matches [raw-loader](https://www.npmjs.com/package/raw-loader) and returns full source of the matched resource.
 - `type: "asset"` is a mixture between `asset/inline` and `asset/source` and it will alter the behavior depending on the asset size. It's comparable to using the `limit` option of **file-loader** earlier.
 
-To control the filenames of resources emitted this way, use the `output.assetModuleFilename` field. You could for example set it to `[hash][ext][query]` or include a directory to the path before these fragments.
+`output.assetModuleFilename` field can be used to control where the assets are emitted. You could for example set it to `[hash][ext][query]` or include a directory to the path before these fragments.
 
 {pagebreak}
 
@@ -77,6 +77,8 @@ The behavior changes depending on the `limit` you set. Below the limit, it shoul
 
 Modern browsers support `srcset` attribute that lets you define an image in different resolutions. The browser can then choose the one that fits the display the best. The main options are [html-loader-srcset](https://www.npmjs.com/package/html-loader-srcset) and [responsive-loader](https://www.npmjs.com/package/responsive-loader).
 
+{pagebreak}
+
 ## Loading SVGs
 
 Webpack allows a [couple ways](https://github.com/webpack/webpack/issues/595) to load SVGs. However, the easiest way is to set `type` as follows:
@@ -103,6 +105,8 @@ Consider also the following loaders:
 - [svg-url-loader](https://www.npmjs.com/package/svg-url-loader) loads SVGs as UTF-8 encoded data urls. The result is smaller and faster to parse than base64.
 - [@svgr/webpack](https://www.npmjs.com/package/@svgr/webpack) exposes imported SVGs as React components to consume.
 
+{pagebreak}
+
 ## Optimizing images
 
 In case you want to compress your images, use [image-webpack-loader](https://www.npmjs.com/package/image-webpack-loader), [svgo-loader](https://www.npmjs.com/package/svgo-loader) (SVG specific), or [imagemin-webpack-plugin](https://www.npmjs.com/package/imagemin-webpack-plugin). This type of loader should be applied first to the data, so remember to place it as the last within `use` listing.
@@ -116,6 +120,8 @@ Compression is particularly valuable for production builds as it decreases the a
 ## Loading images dynamically
 
 Webpack allows you to load images dynamically based on a condition. The techniques covered in the _Code Splitting_ and _Dynamic Loading_ chapters are enough for this purpose. Doing this can save bandwidth and load images only when you need them or preload them while you have time.
+
+{pagebreak}
 
 ## Loading sprites
 

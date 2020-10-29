@@ -52,6 +52,8 @@ If the file contents related to a chunk are different, the hash changes as well,
 
 The same result can be achieved by generating static filenames and invalidating the cache through a querystring (i.e., `main.js?d587bbd6e38337f5accd`). The part behind the question mark invalidates the cache. According to [Steve Souders](http://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/), attaching the hash to the filename is the most performant option.
 
+{pagebreak}
+
 ## Setting up hashing
 
 The build needs tweaking to generate proper hashes. Adjust as follows:
@@ -95,6 +97,8 @@ leanpub-end-insert
 };
 ```
 
+{pagebreak}
+
 If you generate a build now (`npm run build`), you should see something:
 
 ```bash
@@ -112,6 +116,8 @@ If you generate a build now (`npm run build`), you should see something:
 The files have neat hashes now. To prove that it works for styling, you could try altering _src/main.css_ and see what happens to the hashes when you rebuild.
 
 W> The hashes have been sliced to make the output fit better in the book. In practice, you can skip slicing them.
+
+{pagebreak}
 
 ## Conclusion
 
