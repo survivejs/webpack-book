@@ -4,7 +4,7 @@ Loading fonts is similar to loading images. It does come with unique challenges,
 
 The problem can be solved by deciding a set of browsers and platforms that should receive first class service. The rest can use system fonts.
 
-You can approach the problem in several ways through webpack. You can still use **url-loader** and **file-loader** as with images. Font `test` patterns tend to be more complicated, though, and you have to worry about font file related lookups.
+You can approach the problem in several ways through webpack. You can still use the `type` loader field as with images. Font `test` patterns tend to be more complicated, though, and you have to worry about font file related lookups.
 
 T> [canifont](https://www.npmjs.com/package/canifont) helps you to figure out which font formats you should support. It accepts a **.browserslistrc** definition and then checks font support of each browser based on the definition.
 
@@ -17,56 +17,47 @@ If you exclude Opera Mini, all browsers support the _.woff_ format. Its newer ve
 Going with one format, you can use a similar setup as for images and rely on both **file-loader** and **url-loader** while using the limit option:
 
 ```javascript
-{
+const config = {
   test: /\.woff$/,
   use: {
     loader: "url-loader",
-    options: {
-      limit: 50000,
+    type: "asset",
+    parser: {
+      dataUrlCondition: {
+        maxSize: 50000,
+      },
     },
   },
-},
+};
 ```
 
 A more elaborate approach to achieve a similar result that includes _.woff2_ and others would be to end up with the code as below:
 
 ```javascript
-{
+const config = {
   // Match woff2 in addition to patterns like .woff?v=1.1.1.
   test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/,
-  use: {
-    loader: "url-loader",
-    options: {
+  type: "asset",
+  parser: {
+    dataUrlCondition: {
       // Limit at 50k. Above that it emits separate files
-      limit: 50000,
-
-      // url-loader sets mimetype if it's passed.
-      // Without this it derives it from the file extension
-      mimetype: "application/font-woff",
-
-      // Output below fonts directory
-      name: "./fonts/[name].[ext]",
-    }
+      maxSize: 50000,
+    },
   },
-},
+};
 ```
 
 {pagebreak}
 
 ## Supporting multiple formats
 
-In case you want to make sure the site looks good on a maximum amount of browsers, you can use **file-loader** and forget about inlining. Again, it's a trade-off as you get extra requests, but perhaps it's the right move. Here you could end up with a loader configuration:
+In case you want to make sure the site looks good on a maximum amount of browsers, you can use `type: "asset/resource"` field at a loader definition and forget about inlining. Again, it's a trade-off as you get extra requests, but perhaps it's the right move. Here you could end up with a loader configuration:
 
 ```javascript
-{
+const config = {
   test: /\.(ttf|eot|woff|woff2)$/,
-  use: {
-    loader: "file-loader",
-    options: {
-      name: "fonts/[name].[ext]",
-    },
-  },
-},
+  type: "asset/resource",
+};
 ```
 
 The way you write your CSS definition matters. To make sure you are getting the benefit from the newer formats, they should become first in the definition. This way the browser picks them up.

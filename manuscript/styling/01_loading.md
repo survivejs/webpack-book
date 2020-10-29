@@ -10,7 +10,7 @@ To load CSS, you need to use [css-loader](https://www.npmjs.com/package/css-load
 
 **style-loader** injects the styling through a `style` element. The way it does this can be customized. It also implements the _Hot Module Replacement_ interface providing for a pleasant development experience.
 
-The matched files can be processed through loaders like [file-loader](https://www.npmjs.com/package/file-loader) or [url-loader](https://www.npmjs.com/package/url-loader), and these possibilities are discussed in the _Loading Assets_ part of the book.
+The matched files can be processed through asset modules by using the `type` field at a loader definition. The feature is discussed in the _Loading Assets_ part of the book.
 
 Since inlining CSS isn't a good idea for production usage, it makes sense to use `MiniCssExtractPlugin` to generate a separate CSS file. You will do this in the next chapter.
 

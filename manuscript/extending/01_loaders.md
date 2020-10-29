@@ -62,7 +62,7 @@ The output tells the `result` of the processing, the resource that was processed
 
 T> If you want to capture the output to a file, use either `fs.writeFileSync("./output.txt", result.result)` or its asynchronous version as discussed in [Node documentation](https://nodejs.org/api/fs.html).
 
-T> It's possible to refer to loaders installed to the local project by name instead of resolving a full path to them. Example: `loaders: ["raw-loader"]`.
+T> It's possible to refer to loaders installed to the local project by name instead of resolving a full path to them. Example: `loaders: ["babel-loader"]`.
 
 ## Implementing an asynchronous loader
 

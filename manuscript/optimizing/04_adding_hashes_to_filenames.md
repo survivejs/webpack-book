@@ -59,28 +59,13 @@ The build needs tweaking to generate proper hashes. Adjust as follows:
 **webpack.config.js**
 
 ```javascript
-const commonConfig = merge([
-  ...
-  parts.loadImages({
-    options: {
-      limit: 15000,
-leanpub-start-delete
-      name: "[name].[ext]",
-leanpub-end-delete
-leanpub-start-insert
-      name: "[name].[contenthash:4].[ext]",
-leanpub-end-insert
-    },
-  }),
-  ...
-])
-
 const productionConfig = merge([
 leanpub-start-insert
   {
     output: {
       chunkFilename: "[name].[contenthash:4].js",
       filename: "[name].[contenthash:4].js",
+      assetModuleFilename: "[name].[contenthash:4][ext][query]",
     },
   },
 leanpub-end-insert

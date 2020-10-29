@@ -4,75 +4,32 @@ Image loading and processing can be a concern when developing sites and applicat
 
 For smaller scale usage, webpack is a good option as it can both consume and process images. Doing this comes with build overhead depending on the types of operations you are performing.
 
-Webpack can **inline** assets by using [url-loader](https://www.npmjs.com/package/url-loader). It emits your images as base64 strings within your JavaScript bundles. The process decreases the number of requests needed while growing the bundle size.
+Starting from webpack 5, the tool supports [asset modules](https://webpack.js.org/guides/asset-modules/). Earlier dealing with assets required using loaders such as[url-loader](https://www.npmjs.com/package/url-loader) and [file-loader](https://www.npmjs.com/package/file-loader) but now the functionality is integrated to webpack. The following options are supported at a loader definition:
 
-Webpack gives control over the inlining process and can defer loading to [file-loader](https://www.npmjs.com/package/file-loader). **file-loader** outputs image files and returns paths to them instead of inlining. This technique works with other asset types, such as fonts, as you see in the later chapters.
+- `type: "asset/inline"` emits your resources as base64 strings within the emitted assets. The process decreases the number of requests needed while growing the bundle size. The behavior corresponds with **url-loader**.
+- `type: "asset/resource"` matches the behavior of **file-loader** and emits resources as separate files while writing references to them.
+- `type: "asset/source"` matches **raw-loader** and returns full source of the matched resource.
+- `type: "asset"` is a mixture between `asset/inline` and `asset/source` and it will alter the behavior depending on the asset size. It's comparable to using the `limit` option of **file-loader** earlier. In loader definition, setting `parser.dataUrlCondition.maxSize` lets you configure the limit.
 
-## Setting up **url-loader**
-
-**url-loader** is a good starting point, and it's the perfect option for development purposes, as you don't have to care about the size of the resulting bundle. It comes with a _limit_ option that can be used to defer image generation to **file-loader** after an absolute limit is reached. This way you can inline small files to your JavaScript bundles while generating separate files for the bigger ones.
-
-If you use the `limit` option, you need to install both **url-loader** and **file-loader** to your project. Assuming you have configured your styles correctly, webpack resolves any `url()` statements your styling contains. You can point to the image assets through your JavaScript code as well.
-
-In case the `limit` option is used, **url-loader** passes possible additional options to **file-loader** making it possible to configure its behavior further.
-
-To load _.jpg_ and _.png_ files while inlining files below 25kB, you would have to set up a loader:
-
-```javascript
-{
-  test: /\.(jpg|png)$/,
-  use: {
-    loader: "url-loader",
-    options: {
-      limit: 25000,
-    },
-  },
-},
-```
-
-T> If you prefer to use another loader than **file-loader** as the _limit_ is reached, set `fallback: "some-loader"`. Then webpack will resolve to that instead of the default.
-
-## Setting up **file-loader**
-
-If you want to skip inlining altogether, you can use **file-loader** directly. The following setup customizes the resulting filename. By default, **file-loader** returns the MD5 hash of the file's contents with the original extension:
-
-```javascript
-{
-  test: /\.(jpg|png)$/,
-  use: {
-    loader: "file-loader",
-    options: {
-      name: "[path][name].[contenthash].[ext]",
-    },
-  },
-},
-```
-
-T> If you want to output your images below a particular directory, set it up with `name: "./images/[contenthash].[ext]"`.
-
-W> Be careful not to apply both loaders on images at the same time! Use the `include` field for further control if **url-loader** `limit` isn't enough.
+To control the filenames of resources emitted this way, use the `output.assetModuleFilename` field. You could for example set it to `[hash][ext][query]` or include a directory to the path before these fragments.
 
 ## Integrating images to the project
 
-The ideas above can be wrapped in a small helper that can be incorporated into the book project. To get started, install the dependencies:
-
-```bash
-npm add file-loader url-loader --develop
-```
-
-Set up a function as below:
+The syntax above can be wrapped in a small helper that can be incorporated into the book project. Set up a function as below:
 
 **webpack.parts.js**
 
 ```javascript
-exports.loadImages = ({ options } = {}) => ({
+exports.loadImages = ({ limit } = {}) => ({
   module: {
     rules: [
       {
         test: /\.(png|jpg)$/,
-        use: {
-          loader: "url-loader",
-          options,
+        type: "asset",
+        parser: {
+          dataUrlCondition: {
+            maxSize: limit,
+          },
         },
       },
     ],
@@ -91,10 +48,7 @@ const commonConfig = merge([
   ...
 leanpub-start-insert
   parts.loadImages({
-    options: {
-      limit: 15000,
-      name: "[name].[ext]",
-    },
+    limit: 15000,
   }),
 leanpub-end-insert
 ]);
@@ -144,7 +98,7 @@ Assuming you have set up your styling correctly, you can refer to your SVG files
 
 Consider also the following loaders:
 
-- [raw-loader](https://www.npmjs.com/package/raw-loader) gives access to the raw SVG content.
+- [raw-loader](https://www.npmjs.com/package/raw-loader) gives access to the raw SVG content. Starting from webpack 5, using `type: "asset/source"` at a loader definition achieves the same.
 - [svg-inline-loader](https://www.npmjs.com/package/svg-inline-loader) goes a step further and eliminates unnecessary markup from your SVGs.
 - [svg-sprite-loader](https://www.npmjs.com/package/svg-sprite-loader) can merge separate SVG files into a single sprite, making it potentially more efficient to load as you avoid request overhead. It supports raster images (_.jpg_, _.png_) as well.
 - [svg-url-loader](https://www.npmjs.com/package/svg-url-loader) loads SVGs as UTF-8 encoded data urls. The result is smaller and faster to parse than base64.
@@ -238,8 +192,7 @@ Webpack allows you to inline images within your bundles when needed. Figuring ou
 
 To recap:
 
-- **url-loader** inlines the assets within JavaScript. It comes with a `limit` option that allows you to defer assets above it to **file-loader**.
-- **file-loader** emits image assets and returns paths to them to the code. It allows hashing the asset names.
+- Use loader `type` field to set asset loading behavior. It replaces **file-loader** and **url-loader** used before.
 - You can find image optimization related loaders and plugins that allow you to tune their size further.
 - It's possible to generate **sprite sheets** out of smaller images to combine them into a single request.
 - Webpack allows you to load images dynamically based on a given condition.
