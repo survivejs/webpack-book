@@ -4,6 +4,8 @@ Even though the generated build works, the file names it uses is problematic. It
 
 T> Starting from version 5, webpack is using a deterministic way of generating filenames that's a good compromise between bundle size and long time caching. The behavior is controllable through `optimization.moduleIds` and `optimization.chunkIds`. Latter applies to _Code Splitting_.
 
+W> [As discussed by Jake Archibald](https://jakearchibald.com/2020/multiple-versions-same-time/), deploying code or bundle split source comes with inherent challenges. It's possible the user is running an old version. The problem is detecting the case and dealing with it. One option would be to ask the user to refresh the site/application for example.
+
 ## Placeholders
 
 Webpack provides **placeholders** for this purpose. These strings are used to attach specific information to webpack output. The most valuable ones are:
