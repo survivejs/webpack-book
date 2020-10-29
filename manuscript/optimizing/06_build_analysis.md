@@ -231,7 +231,7 @@ The tool also comes with a plugin you can attach directly to your configuration 
 
 ## Understanding why a module was bundled
 
-[whybundled](https://www.npmjs.com/package/whybundled) has been designed to answer the question why a specific module was included to the bundles.
+[whybundled](https://www.npmjs.com/package/whybundled) has been designed to answer the question why a specific module was included to the bundles. [statoscope](https://github.com/smelukov/statoscope) is a visual interface for the same purpose.
 
 T> Set `stats.reasons` to `true` through webpack configuration to capture similar information.
 
