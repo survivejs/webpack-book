@@ -2,7 +2,7 @@
 
 # SurviveJS - Webpack
 
-<img align="right" width="255" height="329" src="manuscript/images/title_page_small.png" />
+<img align="right" width="255" height="330" src="manuscript/images/title_page_small.png" />
 
 > **IMPORTANT!** If you want to support the development of this book, you can [purchase a copy at Leanpub](https://leanpub.com/survivejs-webpack). A part (~30%) of the proceedings will go directly to the author of webpack to support its development.
 
