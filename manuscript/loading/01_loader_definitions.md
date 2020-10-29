@@ -139,6 +139,8 @@ const config = {
 };
 ```
 
+{pagebreak}
+
 ## Inline definitions
 
 Even though configuration level loader definitions are preferable, it's possible to write loader definitions inline:
@@ -152,8 +154,6 @@ import "!!url-loader!./bar.png";
 ```
 
 The problem with this approach is that it couples your source with webpack. Nonetheless, it's still an excellent form to know.
-
-{pagebreak}
 
 Since configuration entries go through the same mechanism, the same forms work there as well:
 
