@@ -1,6 +1,6 @@
 [![build status](https://secure.travis-ci.org/survivejs/webpack-book.svg)](https://secure.travis-ci.org/survivejs/webpack-book) [![Join the chat at https://gitter.im/survivejs/webpack](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/survivejs/webpack)
 
-# SurviveJS - Webpack
+# SurviveJS - Webpack 5
 
 <img align="right" width="255" height="330" src="manuscript/images/title_page_small.png" />
 
@@ -18,11 +18,11 @@ Please note that the repository defaults to the `dev` branch of the book. `maste
 
 As no book is perfect, you will likely come by issues and might have some questions related to the content. There are a couple of options to deal with this:
 
-* Contact me through [GitHub Issue Tracker](https://github.com/survivejs/webpack/issues)
-* Join me at [Gitter Chat](https://gitter.im/survivejs/webpack)
-* Follow [@survivejs](https://twitter.com/survivejs) at Twitter for official news or poke me through [@bebraw](https://twitter.com/bebraw) directly
-* Send me email at [info@survivejs.com](mailto:info@survivejs.com)
-* Ask me anything about webpack or React at [SurviveJS AmA](https://github.com/survivejs/ama/issues)
+- Contact me through [GitHub Issue Tracker](https://github.com/survivejs/webpack/issues)
+- Join me at [Gitter Chat](https://gitter.im/survivejs/webpack)
+- Follow [@survivejs](https://twitter.com/survivejs) at Twitter for official news or poke me through [@bebraw](https://twitter.com/bebraw) directly
+- Send me email at [info@survivejs.com](mailto:info@survivejs.com)
+- Ask me anything about webpack or React at [SurviveJS AmA](https://github.com/survivejs/ama/issues)
 
 If you post questions to [Stack Overflow](https://stackoverflow.com/search?q=survivejs), tag them using [**survivejs**](https://stackoverflow.com/questions/tagged/survivejs) so I will get notified of them. You can also use the hashtag [**#survivejs**](https://twitter.com/hashtag/survivejs?src=hash) at Twitter.
 
@@ -30,15 +30,15 @@ If you post questions to [Stack Overflow](https://stackoverflow.com/search?q=sur
 
 I announce SurviveJS related news through a couple of channels:
 
-* [Mailing list](https://eepurl.com/bth1v5)
-* [Twitter](https://twitter.com/survivejs)
-* [Blog RSS](https://survivejs.com/atom.xml)
+- [Mailing list](https://eepurl.com/bth1v5)
+- [Twitter](https://twitter.com/survivejs)
+- [Blog RSS](https://survivejs.com/atom.xml)
 
 Feel free to subscribe.
 
 ## Contributing
 
-Feedback and PRs are welcome! See [*CONTRIBUTING.md*](CONTRIBUTING.md) for more information.
+Feedback and PRs are welcome! See [_CONTRIBUTING.md_](CONTRIBUTING.md) for more information.
 
 ## License
 
