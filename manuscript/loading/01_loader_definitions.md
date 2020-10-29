@@ -268,6 +268,8 @@ const config = {
 }
 ```
 
+{pagebreak}
+
 If you execute code like this, you'll see a print in the console:
 
 ```bash
