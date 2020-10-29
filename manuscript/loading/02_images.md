@@ -8,10 +8,12 @@ Starting from webpack 5, the tool supports [asset modules](https://webpack.js.or
 
 - `type: "asset/inline"` emits your resources as base64 strings within the emitted assets. The process decreases the number of requests needed while growing the bundle size. The behavior corresponds with **url-loader**.
 - `type: "asset/resource"` matches the behavior of **file-loader** and emits resources as separate files while writing references to them.
-- `type: "asset/source"` matches **raw-loader** and returns full source of the matched resource.
-- `type: "asset"` is a mixture between `asset/inline` and `asset/source` and it will alter the behavior depending on the asset size. It's comparable to using the `limit` option of **file-loader** earlier. In loader definition, setting `parser.dataUrlCondition.maxSize` lets you configure the limit.
+- `type: "asset/source"` matches [raw-loader](https://www.npmjs.com/package/raw-loader) and returns full source of the matched resource.
+- `type: "asset"` is a mixture between `asset/inline` and `asset/source` and it will alter the behavior depending on the asset size. It's comparable to using the `limit` option of **file-loader** earlier.
 
 To control the filenames of resources emitted this way, use the `output.assetModuleFilename` field. You could for example set it to `[hash][ext][query]` or include a directory to the path before these fragments.
+
+{pagebreak}
 
 ## Integrating images to the project
 
@@ -37,8 +39,6 @@ exports.loadImages = ({ limit } = {}) => ({
 });
 ```
 
-{pagebreak}
-
 To attach it to the configuration, adjust as follows:
 
 **webpack.config.js**
@@ -53,6 +53,8 @@ leanpub-start-insert
 leanpub-end-insert
 ]);
 ```
+
+{pagebreak}
 
 To test that the setup works, download an image or generate it (`convert -size 100x100 gradient:blue logo.png`) and refer to it from the project:
 
@@ -75,16 +77,14 @@ The behavior changes depending on the `limit` you set. Below the limit, it shoul
 
 Modern browsers support `srcset` attribute that lets you define an image in different resolutions. The browser can then choose the one that fits the display the best. The main options are [html-loader-srcset](https://www.npmjs.com/package/html-loader-srcset) and [responsive-loader](https://www.npmjs.com/package/responsive-loader).
 
-{pagebreak}
-
 ## Loading SVGs
 
-Webpack allows a [couple ways](https://github.com/webpack/webpack/issues/595) to load SVGs. However, the easiest way is through **file-loader** as follows:
+Webpack allows a [couple ways](https://github.com/webpack/webpack/issues/595) to load SVGs. However, the easiest way is to set `type` as follows:
 
 ```javascript
 {
   test: /\.svg$/,
-  use: "file-loader",
+  type: "asset",
 },
 ```
 
@@ -98,13 +98,10 @@ Assuming you have set up your styling correctly, you can refer to your SVG files
 
 Consider also the following loaders:
 
-- [raw-loader](https://www.npmjs.com/package/raw-loader) gives access to the raw SVG content. Starting from webpack 5, using `type: "asset/source"` at a loader definition achieves the same.
 - [svg-inline-loader](https://www.npmjs.com/package/svg-inline-loader) goes a step further and eliminates unnecessary markup from your SVGs.
 - [svg-sprite-loader](https://www.npmjs.com/package/svg-sprite-loader) can merge separate SVG files into a single sprite, making it potentially more efficient to load as you avoid request overhead. It supports raster images (_.jpg_, _.png_) as well.
 - [svg-url-loader](https://www.npmjs.com/package/svg-url-loader) loads SVGs as UTF-8 encoded data urls. The result is smaller and faster to parse than base64.
 - [@svgr/webpack](https://www.npmjs.com/package/@svgr/webpack) exposes imported SVGs as React components to consume.
-
-T> You can still use **url-loader** and the tips above with SVGs too.
 
 ## Optimizing images
 
@@ -192,7 +189,7 @@ Webpack allows you to inline images within your bundles when needed. Figuring ou
 
 To recap:
 
-- Use loader `type` field to set asset loading behavior. It replaces **file-loader** and **url-loader** used before.
+- Use loader `type` field to set asset loading behavior. It replaces **file-loader** and **url-loader** used before webpack 5.
 - You can find image optimization related loaders and plugins that allow you to tune their size further.
 - It's possible to generate **sprite sheets** out of smaller images to combine them into a single request.
 - Webpack allows you to load images dynamically based on a given condition.
