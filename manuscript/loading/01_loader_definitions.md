@@ -195,17 +195,8 @@ In the book setup, you compose configuration on a higher level. Another option t
   use: ({ resource, resourceQuery, issuer }) => {
     // You have to return something falsy, object, or a
     // string (i.e., "style-loader") from here.
-    //
-    // Returning an array fails! Nest rules instead.
     if (env === "development") {
-      return {
-        use: {
-          loader: "css-loader", // css-loader first
-          rules: [
-            "style-loader", // style-loader after
-          ],
-        },
-      };
+      return ["css-loader", "style-loader"];
     }
   },
 },
