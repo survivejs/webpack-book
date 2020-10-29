@@ -339,6 +339,10 @@ If you want to enable source maps for styling files, you can achieve this by ena
 
 The **css-loader** is [known to have issues](https://github.com/webpack-contrib/css-loader/issues/232) when you are using relative paths in imports. To overcome this problem, you should set `output.publicPath` to resolve the server url.
 
+## Extracting source from source maps
+
+If a source has been minified and has source maps available, then it's possible to reconstruct the original source by using [source-from-sourcemaps](https://www.npmjs.com/package/source-from-sourcemaps) tool. It accepts the minified source and source map as an input and then emits the source.
+
 ## Conclusion
 
 Source maps can be convenient during development. They provide better means to debug applications as you can still examine the original code over a generated one. They can be valuable even for production usage and allow you to debug issues while serving a client-friendly version of your application.
