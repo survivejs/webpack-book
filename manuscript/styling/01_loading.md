@@ -39,7 +39,9 @@ exports.loadCSS = () => ({
 });
 ```
 
-Above means that files ending with `.css` should invoke the given loaders. Loaders return the new source files with transformations applied on them. They can be chained together like a pipe in Unix, and are evaluated from right to left (`styleLoader(cssLoader(input))`).
+Above means that files ending with `.css` should invoke the given loaders. Loaders return the new source files with transformations applied on them. They can be chained together like a pipe in Unix, and are evaluated from right to left:
+
+> `styleLoader(cssLoader(input))`
 
 You also need to connect the fragment to the primary configuration:
 
