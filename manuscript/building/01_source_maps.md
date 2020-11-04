@@ -8,7 +8,7 @@ One approach is to skip source maps during development and rely on browser suppo
 
 If you are using webpack 4 or newer and the `mode` option, the tool will generate source maps automatically for you in `development` mode. Production usage requires attention, though.
 
-T> If you want to understand the ideas behind source maps in greater detail, [read Ryan Seddon's introduction to the topic](https://www.html5rocks.com/en/tutorials/developertools/sourcemaps/).
+T> If you want to understand the ideas behind source maps in greater detail, see [the source map specification](https://sourcemaps.info/spec.html).
 
 T> To see how webpack handles source maps, see [source-map-visualization](https://sokra.github.io/source-map-visualization/) by the author of the tool.
 
