@@ -4,7 +4,7 @@ Before getting started, make sure you are using a recent version of [Node](http:
 
 You should have `node` and `npm` commands available at your terminal. [Yarn](https://yarnpkg.com/) is a good alternative to npm and works for the tutorial as well. To get a more controlled environment, use [Docker](https://www.docker.com/), [nvm](https://www.npmjs.com/package/nvm) or a similar tool.
 
-T> The completed configuration is available at [GitHub](https://github.com/survivejs-demos/webpack-demo).
+T> [The completed configuration is available at GitHub](https://github.com/survivejs-demos/webpack-demo) for reference.
 
 ## Setting up the project
 
