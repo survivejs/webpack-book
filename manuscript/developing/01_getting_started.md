@@ -46,14 +46,14 @@ T> `npm add` is an alias for `npm install`. It's used in the book as it aligns w
 
 ## Running webpack
 
-Type `npx wp` to run the locally installed **webpack-nano**.
+Type `npx webpack-nano` to run the locally installed **webpack-nano**.
 
 T> `npx` is installed with npm and could be used to run npm packages without installation, as well as to run locally installed packages.
 
 After running, you should see a version, a link to the command line interface guide and an extensive list of options. Most aren't used in this project, but it's good to know that this tool is packed with functionality if nothing else.
 
 ```bash
-$ npx wp
+$ npx webpack-nano
 ⬡ webpack: Build Finished
 ⬡ webpack: assets by status 0 bytes [cached] 1 asset
 
