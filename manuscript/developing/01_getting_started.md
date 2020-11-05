@@ -46,14 +46,12 @@ T> `npm add` is an alias for `npm install`. It's used in the book as it aligns w
 
 ## Running webpack
 
-Type `npx webpack-nano` to run the locally installed **webpack-nano**.
-
-T> `npx` is installed with npm and could be used to run npm packages without installation, as well as to run locally installed packages.
+Type `node_modules/.bin/wp` to run the locally installed **webpack-nano**.
 
 After running, you should see a version, a link to the command line interface guide and an extensive list of options. Most aren't used in this project, but it's good to know that this tool is packed with functionality if nothing else.
 
 ```bash
-$ npx webpack-nano
+$ node_modules/.bin/wp
 ⬡ webpack: Build Finished
 ⬡ webpack: assets by status 0 bytes [cached] 1 asset
 
@@ -72,7 +70,7 @@ The output tells that webpack cannot find the source to compile. Ideally we woul
 To make webpack compile, do the following:
 
 1. Set up `src/index.js` with something like `console.log("Hello world");`.
-2. Execute `npx wp`. Webpack will discover the source file by convention.
+2. Execute `node_modules/.bin/wp`. Webpack will discover the source file by convention.
 3. Examine `dist/main.js`. You should see webpack bootstrap code that begins executing the code. Below the bootstrap, you should find something familiar.
 
 T> You can display the exact path of the executables using `npm bin`. Most likely it points to `./node_modules/.bin`.
@@ -101,7 +99,7 @@ import component from "./component";
 document.body.appendChild(component());
 ```
 
-Examine the output after building the project by running `npx wp` again. You should see both modules in the bundle that webpack wrote to the `dist` directory. One problem remains, though. How can we test the application in the browser?
+Examine the output after building the project by running `node_modules/.bin/wp` again. You should see both modules in the bundle that webpack wrote to the `dist` directory. One problem remains, though. How can we test the application in the browser?
 
 ## Configuring **mini-html-webpack-plugin**
 
@@ -141,11 +139,13 @@ module.exports = {
 
 Now that the configuration is done, try the following:
 
-1. Build the project using `npx wp --mode production`. You can try the `development` and `none` modes too.
+1. Build the project using `node_modules/.bin/wp --mode production`. You can try the `development` and `none` modes too.
 2. Enter the build directory using `cd dist`.
 3. Run the server using `serve` (`npm add serve -g` or `npx serve`) or a similar command you are familiar with.
 
 T> The `none` mode doesn't apply any defaults. Use it for debugging.
+
+T> `npx` is installed with npm and could be used to run npm packages without installation, as well as to run locally installed packages.
 
 You should see a hello message in your browser:
 
@@ -159,7 +159,7 @@ W> Webpack has default configuration for its entries and output. It looks for so
 
 ## Examining the output
 
-If you execute `npx wp --mode production`, you should see output:
+If you execute `node_modules/.bin/wp --mode production`, you should see output:
 
 ```bash
 ⬡ webpack: Build Finished
@@ -174,7 +174,7 @@ Starting from webpack 5, the output has been simplified and it's largely self-ex
 
 ## Adding a build shortcut
 
-Given executing `npx wp --mode production` gets boring after a while, let's adjust `package.json` to run tasks as below:
+Given executing `node_modules/.bin/wp --mode production` gets boring after a while, let's adjust `package.json` to run tasks as below:
 
 **package.json**
 
