@@ -68,8 +68,6 @@ Even though it would be possible to develop an arbitrary configuration using the
 
 Linting is a good example because the build should fail before it does anything else. Using `enforce: "post"` is rarer and it would imply you want to perform a check against the built source. Performing analysis against the built source is one potential example.
 
-{pagebreak}
-
 The basic syntax goes as below:
 
 ```javascript
@@ -101,8 +99,6 @@ const config = {
 ```
 
 This style of configuration works in entries and source imports too as webpack picks it up. The format comes in handy in certain individual cases, but often you are better off using more readable alternatives.
-
-{pagebreak}
 
 It's preferable to go through `use`:
 
@@ -138,8 +134,6 @@ const config = {
   ],
 };
 ```
-
-{pagebreak}
 
 ## Inline definitions
 
@@ -267,8 +261,6 @@ const config = {
   ];
 }
 ```
-
-{pagebreak}
 
 If you execute code like this, you'll see a print in the console:
 
