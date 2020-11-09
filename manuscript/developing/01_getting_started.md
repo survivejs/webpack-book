@@ -101,6 +101,8 @@ document.body.appendChild(component());
 
 Examine the output after building the project by running `node_modules/.bin/wp` again. You should see both modules in the bundle that webpack wrote to the `dist` directory. One problem remains, though. How can we test the application in the browser?
 
+{pagebreak}
+
 ## Configuring **mini-html-webpack-plugin**
 
 The problem can be solved by writing an `index.html` file that points to the generated file. Instead of doing that on our own, we can use a webpack plugin to do this.
