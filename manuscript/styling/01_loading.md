@@ -177,10 +177,6 @@ You can load files directly from your node_modules directory. Consider Bootstrap
 
 W> If you are using **postcss-loader**, you can skip using `~` as discussed in [postcss-loader issue tracker](https://github.com/postcss/postcss-loader/issues/166). **postcss-loader** can resolve the imports without a tilde.
 
-## Enabling source maps
-
-If you want to enable source maps for CSS, you should enable `sourceMap` option for **css-loader** and set `output.publicPath` to an absolute url pointing to your development server. If you have multiple loaders in a chain, you have to enable source maps separately for each. **css-loader** [issue 29](https://github.com/webpack/css-loader/issues/29) discusses this problem further.
-
 ## Converting CSS to strings
 
 Especially with Angular 2, it can be convenient if you can get CSS in a string format that can be pushed to components. [to-string-loader](https://www.npmjs.com/package/to-string-loader) achieves exactly this.
