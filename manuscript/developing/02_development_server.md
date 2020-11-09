@@ -25,8 +25,6 @@ If you go with WDS, there are a couple of relevant fields that you should be awa
 - `devServer.proxy` - If you are using multiple servers, you have to proxy WDS to them. The proxy setting accepts an object of proxy mappings (e.g., `{ "/api": "http://localhost:3000/api" }`) that resolve matching queries to another server. Proxying is disabled by default.
 - `devServer.headers` - Attach custom headers to your requests here.
 
-T> [The official documentation](https://webpack.js.org/configuration/dev-server/) covers more options.
-
 T> To integrate with another server, it's possible to emit files from WDS to the file system by setting `devServer.writeToDisk` property to `true`.
 
 W> You should use WDS strictly for development. If you want to host your application, consider other solutions, such as Apache or Nginx.
