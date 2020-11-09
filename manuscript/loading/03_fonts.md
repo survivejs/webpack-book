@@ -6,17 +6,14 @@ The problem can be solved by deciding a set of browsers and platforms that shoul
 
 You can approach the problem in several ways through webpack. You can still use the `type` loader field as with images. Font `test` patterns tend to be more complicated, though, and you have to worry about font file related lookups.
 
-## Choosing format to support
+## Setting up a loader
 
-If you exclude Opera Mini, all browsers support the _.woff_ format based on [Can I Use](https://caniuse.com/woff). Its newer version, _.woff2_, is widely supported by modern browsers and can be a good alternative.
-
-Going with one format, you can use a similar setup as for images and rely on both **file-loader** and **url-loader** while using the limit option:
+If you exclude Opera Mini, all browsers support the _.woff_ format based on [Can I Use](https://caniuse.com/woff). _.woff2_, is widely supported by modern browsers and is another option. Going with one format, you can use a similar setup as for images and rely on both **file-loader** and **url-loader** while using the limit option:
 
 ```javascript
 const config = {
   test: /\.woff$/,
   use: {
-    loader: "url-loader",
     type: "asset",
     parser: {
       dataUrlCondition: {
@@ -69,6 +66,16 @@ The way you write your CSS definition matters. To make sure you are getting the 
 
 T> [MDN discusses the font-family rule](https://developer.mozilla.org/en/docs/Web/CSS/@font-face) in detail.
 
+## Using Google Fonts
+
+[@beyonk/google-fonts-webpack-plugin](https://www.npmjs.com/package/@beyonk/google-fonts-webpack-plugin) can download Google Fonts to webpack build directory or connect to them using a CDN.
+
+## Using icon fonts
+
+[iconfont-webpack-plugin](https://www.npmjs.com/package/iconfont-webpack-plugin) was designed to simplify loading icon based fonts. It inlines SVG references within CSS files.
+
+To make sure you are including only the icons that are only needed, use [fontmin-webpack](https://www.npmjs.com/package/fontmin-webpack).
+
 ## Manipulating **file-loader** output path and `publicPath`
 
 As discussed above and in [webpack issue tracker](https://github.com/webpack/file-loader/issues/32#issuecomment-250622904), **file-loader** allows shaping the output. This way you can output your fonts below `fonts/`, images below `images/`, and so on over using the root.
@@ -98,16 +105,6 @@ T> In the example above, the usage of **file-loader** is obscured **url-loader**
 If you prefer to use SVG based fonts, they can be bundled as a single font file by using [webfonts-loader](https://www.npmjs.com/package/webfonts-loader).
 
 W> Take care with SVG images if you have SVG specific image setup in place already. If you want to process font SVGs differently, set their definitions carefully. The _Loader Definitions_ chapter covers alternatives.
-
-## Using Google Fonts
-
-[@beyonk/google-fonts-webpack-plugin](https://www.npmjs.com/package/@beyonk/google-fonts-webpack-plugin) can download Google Fonts to webpack build directory or connect to them using a CDN.
-
-## Using icon fonts
-
-[iconfont-webpack-plugin](https://www.npmjs.com/package/iconfont-webpack-plugin) was designed to simplify loading icon based fonts. It inlines SVG references within CSS files.
-
-To make sure you are including only the icons that are only needed, use [fontmin-webpack](https://www.npmjs.com/package/fontmin-webpack).
 
 ## Eliminating unused characters
 

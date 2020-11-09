@@ -156,13 +156,13 @@ To get it to work, you have to install it first through `npm add nodemon --devel
 },
 ```
 
-{pagebreak}
-
 ## Polling instead of watching files
 
 Webpack's file watching may not work on certain systems, for example on older versions of Windows and Ubuntu.
 
 Polling is almost mandatory when using Vagrant, Docker, or any other solution that doesn't forward events for changes on a file located in a folder shared with the virtualized machine where webpack is running. [vagrant-notify-forwarder](https://github.com/mhallin/vagrant-notify-forwarder) solves the problem for macOS and Unix.
+
+{pagebreak}
 
 For any of these cases, polling is a good option:
 
@@ -207,6 +207,8 @@ The webpack plugin ecosystem is diverse, and there are a lot of plugins that can
 - [case-sensitive-paths-webpack-plugin](https://www.npmjs.com/package/case-sensitive-paths-webpack-plugin) can be handy when you are developing on mixed environments. For example, Windows, Linux, and macOS have different expectations when it comes to path naming.
 - [react-dev-utils](https://www.npmjs.com/package/react-dev-utils) contains webpack utilities developed for [Create React App](https://www.npmjs.com/package/create-react-app). Despite its name, they can find use beyond React. If you want only webpack message formatting, consider [webpack-format-messages](https://www.npmjs.com/package/webpack-format-messages).
 - [webpack-notifier](https://www.npmjs.com/package/webpack-notifier) uses system notifications to let you know of webpack status.
+
+{pagebreak}
 
 ## Conclusion
 

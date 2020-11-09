@@ -121,8 +121,6 @@ T> The [process](https://nodejs.org/api/process.html) module used in the code is
 
 W> [Webpack does not set global NODE_ENV](https://github.com/webpack/webpack/issues/7074) based on `mode` by default. If you have any external tooling, such as Babel, relying on it, make sure to set it explicitly. To do this, set `process.env.NODE_ENV = mode;` within the webpack configuration function.
 
-{pagebreak}
-
 ## Benefits of composing configuration
 
 There are several benefits to composing configuration:
@@ -136,8 +134,6 @@ There are several benefits to composing configuration:
 ## Configuration layouts
 
 In the book project, you will push all of the configuration into two files: `webpack.config.js` and `webpack.parts.js`. The former contains higher level configuration while the lower level isolates you from webpack specifics. The chosen approach allows more file layouts than the one we have.
-
-{pagebreak}
 
 ### Split per configuration target
 
@@ -171,8 +167,6 @@ To add hierarchy to the way configuration parts are managed, you could decompose
 
 This arrangement can make it faster to find configuration related to a category. Additionally, it can also reduce your build time if you're consuming parts from a published package as then only the required plugins will have to be loaded. A good alternative for better readability would be to arrange the functions within a single file and use comments to split it up.
 
-{pagebreak}
-
 ### Guidelines for building your own configuration packages
 
 If you go with the configuration package approach I mentioned, consider the guidelines below:
@@ -184,8 +178,6 @@ If you go with the configuration package approach I mentioned, consider the guid
 - For parameters that have a loader string within them, use `require.resolve` to resolve against a loader within the configuration package. Otherwise the build can fail as it's looking into the wrong place for the loaders.
 - When wrapping loaders, use the associated TypeScript type in function parameters.
 - Consider testing the package by using snapshots (`expect().toMatchSnapshot()` in Jest) to assert output changes. See the _Extending with Plugins_ chapters for an example of a test harness.
-
-{pagebreak}
 
 ## Conclusion
 

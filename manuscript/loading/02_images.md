@@ -115,8 +115,6 @@ Consider also the following loaders:
 
 Webpack allows you to load images dynamically based on a condition. The techniques covered in the _Code Splitting_ and _Dynamic Loading_ chapters are enough for this purpose. Doing this can save bandwidth and load images only when you need them or preload them while you have time.
 
-{pagebreak}
-
 ## Loading sprites
 
 **Spriting** technique allows you to combine multiple smaller images into a single image. It has been used for games to describe animations and it's valuable for web development as well as you avoid request overhead.
@@ -172,8 +170,6 @@ const Profile = () => (
 ```
 
 The benefit of using the [URL interface](https://developer.mozilla.org/en-US/docs/Web/API/URL) is that it lets the code work without using a bundler.
-
-{pagebreak}
 
 It's also possible to set up dynamic imports as discussed in the _Code Splitting_ chapter. Here's a small example:
 

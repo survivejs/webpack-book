@@ -199,14 +199,6 @@ If you want to enable source maps for CSS, you should enable `sourceMap` option 
 
 Especially with Angular 2, it can be convenient if you can get CSS in a string format that can be pushed to components. [css-to-string-loader](https://www.npmjs.com/package/css-to-string-loader) achieves exactly this. [to-string-loader](https://www.npmjs.com/package/to-string-loader) is another option.
 
-## Using Bootstrap
-
-There are a couple of ways to use [Bootstrap](https://getbootstrap.com/) through webpack. One option is to point to the [npm version](https://www.npmjs.com/package/bootstrap) and perform loader configuration as above.
-
-The [Sass version](https://www.npmjs.com/package/bootstrap-sass) is another option. In this case, you should set `precision` option of **sass-loader** to at least 8. This is [a known issue](https://www.npmjs.com/package/bootstrap-sass#sass-number-precision) explained at _bootstrap-sass_.
-
-The third option is to go through [bootstrap-loader](https://www.npmjs.com/package/bootstrap-loader). It does a lot more and allows customization.
-
 {pagebreak}
 
 ## Conclusion
