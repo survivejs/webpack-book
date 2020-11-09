@@ -66,26 +66,29 @@ That's not all there is to the bundling process. For example, you can define spe
 
 ## Webpack is configuration driven
 
-At its core, webpack relies on configuration. Here is a sample adapted from [the official webpack tutorial](https://webpack.js.org/get-started/) and expanded to cover the main points:
+At its core, webpack relies on configuration. Here is a sample covering the main points:
 
 **webpack.config.js**
 
 ```javascript
+const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
-  entry: { // Where to start bundling
+  entry: {
+    // Where to start bundling
     app: "./entry.js",
   },
-  output: { // Where to output
-    // Output to the same directory
-    path: __dirname,
+  output: {
+    // Where to output
+    path: path.join(__dirname, "dist"),
 
     // Capture name from the entry using a pattern
     // In the example, it will result as app.js.
     filename: "[name].js",
   },
-  module: { // How to resolve encountered imports
+  // How to resolve encountered imports
+  module: {
     rules: [
       {
         test: /\.css$/,
@@ -98,11 +101,16 @@ module.exports = {
       },
     ],
   },
-  plugins: [ // What extra processing to perform
-    new webpack.DefinePlugin({ ... }),
+  plugins: [
+    // What extra processing to perform
+    new webpack.DefinePlugin({ HELLO: "hello from config" }),
   ],
-  resolve: { // Adjust module resolution algorithm
-    alias: { ... },
+  resolve: {
+    // Adjust module resolution algorithm
+    alias: {
+      react: "preact-compat",
+      "react-dom": "preact-compat",
+    },
   },
 };
 ```
