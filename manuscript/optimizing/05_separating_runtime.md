@@ -45,7 +45,7 @@ If you build the project now (`npm run build`), you should see something:
   webpack 5.1.3 compiled successfully in 7209 ms
 ```
 
-This change gave a separate file that contains the runtime. In the output above it has been marked with `runtime` chunk name. Because the setup is using `MiniHtmlWebpackPlugin`, there is no need to worry about loading the runtime ourselves as the plugin adds a reference to `index.html`.
+This change gave a separate file that contains the runtime. In the output above it has been marked with `runtime` chunk name. As the setup is using `MiniHtmlWebpackPlugin`, there is no need to worry about loading the runtime ourselves as the plugin adds a reference to `index.html`.
 
 Try adjusting `src/index.js` and see how the hashes change. This time around it should **not** invalidate the vendor bundle, and only the runtime and app bundle names should become different.
 
