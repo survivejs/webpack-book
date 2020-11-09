@@ -73,9 +73,15 @@ leanpub-end-insert
 
 The behavior changes depending on the `limit` you set. Below the limit, it should inline the image while above it should emit a separate asset and a path to it. The CSS lookup works because of **css-loader**. You can also try importing the image from JavaScript code and see what happens.
 
-## Loading `srcset`s
+## Using `srcset`s
 
-Modern browsers support `srcset` attribute that lets you define an image in different resolutions. The browser can then choose the one that fits the display the best. The main options are [html-loader-srcset](https://www.npmjs.com/package/html-loader-srcset) and [responsive-loader](https://www.npmjs.com/package/responsive-loader).
+Modern browsers support `srcset` attribute that lets you define an image in different resolutions. The browser can then choose the one that fits the display the best. The main options are [resize-image-loader](https://www.npmjs.com/package/resize-image-loader), [html-loader-srcset](https://www.npmjs.com/package/html-loader-srcset), and [responsive-loader](https://www.npmjs.com/package/responsive-loader).
+
+## Optimizing images
+
+In case you want to compress your images, use [image-webpack-loader](https://www.npmjs.com/package/image-webpack-loader), [svgo-loader](https://www.npmjs.com/package/svgo-loader) (SVG specific), or [imagemin-webpack-plugin](https://www.npmjs.com/package/imagemin-webpack-plugin). This type of loader should be applied first to the data, so remember to place it as the last within `use` listing.
+
+Compression is particularly valuable for production builds as it decreases the amount of bandwidth required to download your image assets and speed up your site or application as a result.
 
 {pagebreak}
 
@@ -104,18 +110,6 @@ Consider also the following loaders:
 - [svg-sprite-loader](https://www.npmjs.com/package/svg-sprite-loader) can merge separate SVG files into a single sprite, making it potentially more efficient to load as you avoid request overhead. It supports raster images (_.jpg_, _.png_) as well.
 - [svg-url-loader](https://www.npmjs.com/package/svg-url-loader) loads SVGs as UTF-8 encoded data urls. The result is smaller and faster to parse than base64.
 - [@svgr/webpack](https://www.npmjs.com/package/@svgr/webpack) exposes imported SVGs as React components to consume.
-
-{pagebreak}
-
-## Optimizing images
-
-In case you want to compress your images, use [image-webpack-loader](https://www.npmjs.com/package/image-webpack-loader), [svgo-loader](https://www.npmjs.com/package/svgo-loader) (SVG specific), or [imagemin-webpack-plugin](https://www.npmjs.com/package/imagemin-webpack-plugin). This type of loader should be applied first to the data, so remember to place it as the last within `use` listing.
-
-Compression is particularly valuable for production builds as it decreases the amount of bandwidth required to download your image assets and speed up your site or application as a result.
-
-## Utilizing `srcset`
-
-[resize-image-loader](https://www.npmjs.com/package/resize-image-loader) and [responsive-loader](https://www.npmjs.com/package/responsive-loader) allow you to generate `srcset` compatible collections of images for modern browsers. `srcset` gives more control to the browsers over what images to load and when resulting in higher performance.
 
 ## Loading images dynamically
 
