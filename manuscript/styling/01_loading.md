@@ -197,9 +197,7 @@ If you want to enable source maps for CSS, you should enable `sourceMap` option 
 
 ## Converting CSS to strings
 
-Especially with Angular 2, it can be convenient if you can get CSS in a string format that can be pushed to components. [css-to-string-loader](https://www.npmjs.com/package/css-to-string-loader) achieves exactly this. [to-string-loader](https://www.npmjs.com/package/to-string-loader) is another option.
-
-{pagebreak}
+Especially with Angular 2, it can be convenient if you can get CSS in a string format that can be pushed to components. [to-string-loader](https://www.npmjs.com/package/to-string-loader) achieves exactly this.
 
 ## Conclusion
 

@@ -150,6 +150,8 @@ If you split the configuration per target, you could end up with a file structur
 
 In this case, you would point to the targets through webpack `--config` parameter and `merge` common configuration through `module.exports = merge(common, config);`.
 
+{pagebreak}
+
 ### Split parts per purpose
 
 To add hierarchy to the way configuration parts are managed, you could decompose `webpack.parts.js` per category:
@@ -172,11 +174,11 @@ This arrangement can make it faster to find configuration related to a category.
 If you go with the configuration package approach I mentioned, consider the guidelines below:
 
 - It can make sense to develop the package using TypeScript to document the interface well. It's particularly useful if you are authoring your configuration in TypeScript as discussed in the _Loading JavaScript_ chapter.
-- Expose functions that cover only one piece of functionality at a time. Doing this allows you to replace a _Hot Module Replacement_ implementation easily for example.
+- Expose functions that cover only one piece of functionality at a time as it lets you to replace a _Hot Module Replacement_ implementation easily for example.
 - Provide enough customization options through function parameters. It can be a good idea to expose an object as that lets you mimic named parameters in JavaScript. You can then destructure the parameters from that while combining this with good defaults and TypeScript types.
 - Include all related dependencies within the configuration package. In specific cases you could use `peerDependencies` if you want that the consumer is able to control specific versions. Doing this means you'll likely download more dependencies that you would need but it's a good compromise.
 - For parameters that have a loader string within them, use `require.resolve` to resolve against a loader within the configuration package. Otherwise the build can fail as it's looking into the wrong place for the loaders.
-- When wrapping loaders, use the associated TypeScript type in function parameters.
+- When wrapping loaders, use the associated TypeScript type in parameters.
 - Consider testing the package by using snapshots (`expect().toMatchSnapshot()` in Jest) to assert output changes. See the _Extending with Plugins_ chapters for an example of a test harness.
 
 ## Conclusion

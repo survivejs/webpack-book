@@ -154,16 +154,9 @@ import src from "./avatar.png";
 const Profile = () => <img src={src} />;
 ```
 
-If you are using React, then you use [babel-plugin-transform-react-jsx-img-import](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-img-import) to generate the `require` automatically. In that case, you would end up with code:
-
-```javascript
-const Profile = () => <img src="avatar.png" />;
-```
-
 Starting from webpack 5, it's possible to achieve the same without an import like this:
 
 ```javascript
-// Use the image in your code somehow now
 const Profile = () => (
   <img src={new URL("./avatar.png", import.meta.url)} />
 );
