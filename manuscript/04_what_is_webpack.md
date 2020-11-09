@@ -75,10 +75,8 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
-  entry: {
-    // Where to start bundling
-    app: "./entry.js",
-  },
+  // Where to start bundling
+  entry: { app: "./entry.js" },
   output: {
     // Where to output
     path: path.join(__dirname, "dist"),

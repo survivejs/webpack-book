@@ -107,11 +107,8 @@ const glob = require("glob");
 
 const commonConfig = merge([
   {
-    entry: {
-      style: glob.sync("./src/**/*.css"),
-    },
+    entry: { style: glob.sync("./src/**/*.css") },
   },
-  ...
 ]);
 ```
 

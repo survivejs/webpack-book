@@ -84,9 +84,7 @@ const parts = require("./webpack.parts");
 module.exports = merge([
   {
     mode: "production",
-    entry: {
-      index: path.join(__dirname, "src", "ssr.js"),
-    },
+    entry: { index: path.join(__dirname, "src", "ssr.js") },
     output: {
       path: path.join(__dirname, "static"),
       filename: "[name].js",

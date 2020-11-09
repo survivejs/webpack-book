@@ -70,13 +70,7 @@ exports.devServer = () => ({
 });
 
 exports.page = ({ title }) => ({
-  plugins: [
-    new MiniHtmlWebpackPlugin({
-      context: {
-        title,
-      },
-    }),
-  ],
+  plugins: [new MiniHtmlWebpackPlugin({ context: { title } })],
 });
 ```
 
@@ -92,18 +86,14 @@ const { merge } = require("webpack-merge");
 const parts = require("./webpack.parts");
 
 const commonConfig = merge([
-  {
-    entry: ["./src"],
-  },
+  { entry: ["./src"] },
   parts.page({ title: "Webpack demo" }),
 ]);
 
 const productionConfig = merge([]);
 
 const developmentConfig = merge([
-  {
-    entry: ["webpack-plugin-serve/client"],
-  },
+  { entry: ["webpack-plugin-serve/client"] },
   parts.devServer(),
 ]);
 
