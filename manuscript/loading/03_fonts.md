@@ -6,13 +6,9 @@ The problem can be solved by deciding a set of browsers and platforms that shoul
 
 You can approach the problem in several ways through webpack. You can still use the `type` loader field as with images. Font `test` patterns tend to be more complicated, though, and you have to worry about font file related lookups.
 
-T> [canifont](https://www.npmjs.com/package/canifont) helps you to figure out which font formats you should support. It accepts a **.browserslistrc** definition and then checks font support of each browser based on the definition.
-
 ## Choosing format to support
 
-If you exclude Opera Mini, all browsers support the _.woff_ format. Its newer version, _.woff2_, is widely supported by modern browsers and can be a good alternative.
-
-{pagebreak}
+If you exclude Opera Mini, all browsers support the _.woff_ format based on [Can I Use](https://caniuse.com/woff). Its newer version, _.woff2_, is widely supported by modern browsers and can be a good alternative.
 
 Going with one format, you can use a similar setup as for images and rely on both **file-loader** and **url-loader** while using the limit option:
 
@@ -47,8 +43,6 @@ const config = {
 };
 ```
 
-{pagebreak}
-
 ## Supporting multiple formats
 
 In case you want to make sure the site looks good on a maximum amount of browsers, you can use `type: "asset/resource"` field at a loader definition and forget about inlining. Again, it's a trade-off as you get extra requests, but perhaps it's the right move. Here you could end up with a loader configuration:
@@ -75,8 +69,6 @@ The way you write your CSS definition matters. To make sure you are getting the 
 
 T> [MDN discusses the font-family rule](https://developer.mozilla.org/en/docs/Web/CSS/@font-face) in detail.
 
-{pagebreak}
-
 ## Manipulating **file-loader** output path and `publicPath`
 
 As discussed above and in [webpack issue tracker](https://github.com/webpack/file-loader/issues/32#issuecomment-250622904), **file-loader** allows shaping the output. This way you can output your fonts below `fonts/`, images below `images/`, and so on over using the root.
@@ -101,8 +93,6 @@ Furthermore, it's possible to manipulate `publicPath` and override the default p
 
 T> In the example above, the usage of **file-loader** is obscured **url-loader**. It uses **file-loader** underneath with the `limit` option. The loader options are passed to it. You can override the behavior by using the `fallback` option.
 
-{pagebreak}
-
 ## Generating font files based on SVGs
 
 If you prefer to use SVG based fonts, they can be bundled as a single font file by using [webfonts-loader](https://www.npmjs.com/package/webfonts-loader).
@@ -122,8 +112,6 @@ To make sure you are including only the icons that are only needed, use [fontmin
 ## Eliminating unused characters
 
 [subfont](https://www.npmjs.com/package/subfont) is a tool that performs static analysis against webpack's HTML output and then rewrites the fonts to include only glyphs that are used. The subsetting process can reduce the size of the font files dramatically.
-
-{pagebreak}
 
 ## Conclusion
 
