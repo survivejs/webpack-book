@@ -68,8 +68,6 @@ Even though it would be possible to develop an arbitrary configuration using the
 
 Linting is a good example because the build should fail before it does anything else. Using `enforce: "post"` is rarer and it would imply you want to perform a check against the built source. Performing analysis against the built source is one potential example.
 
-{pagebreak}
-
 The basic syntax goes as below:
 
 ```javascript
@@ -82,6 +80,8 @@ const config = {
   use: "eslint-loader",
 };
 ```
+
+{pagebreak}
 
 It would be possible to write the same configuration without `enforce` if you chained the declaration with other loaders related to the `test` carefully. Using `enforce` removes the necessity for that and allows you to split loader execution into separate stages that are easier to compose.
 
@@ -101,8 +101,6 @@ const config = {
 ```
 
 This style of configuration works in entries and source imports too as webpack picks it up. The format comes in handy in certain individual cases, but often you are better off using more readable alternatives.
-
-{pagebreak}
 
 It's preferable to go through `use`:
 
@@ -138,8 +136,6 @@ const config = {
   ],
 };
 ```
-
-{pagebreak}
 
 ## Inline definitions
 
@@ -205,8 +201,6 @@ const config = {
 ```
 
 Carefully applied, this technique allows different means of composition.
-
-{pagebreak}
 
 ## Loading based on `issuer`
 

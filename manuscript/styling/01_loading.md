@@ -153,43 +153,29 @@ If you want to process **css-loader** imports in a specific way, you should set 
 
 {pagebreak}
 
-Consider the following import from a CSS file:
-
-```css
-@import "./variables.sass";
-```
-
-To process the Sass file, you would have to write configuration:
+Consider the following import from a CSS file: `@import "./variables.sass";`. To process the Sass file, you would have to write configuration:
 
 ```javascript
-{
+const config = {
   test: /\.css$/,
   use: [
     "style-loader",
     {
       loader: "css-loader",
-      options: {
-        importLoaders: 1,
-      },
+      options: { importLoaders: 1 },
     },
     "sass-loader",
   ],
-},
+};
 ```
 
-If you added more loaders, such as _postcss-loader_, to the chain, you would have to adjust the `importLoaders` option accordingly.
+If you added more loaders, such as **postcss-loader**, to the chain, you would have to adjust the `importLoaders` option accordingly.
 
 ### Loading from `node_modules` directory
 
-You can load files directly from your node_modules directory. Consider Bootstrap and its usage for example:
+You can load files directly from your node_modules directory. Consider Bootstrap and its usage for example: `@import "~bootstrap/less/bootstrap";`. The tilde character (`~`) tells webpack that it's not a relative import as by default. If tilde is included, it performs a lookup against `node_modules` (default setting) although this is configurable through the [resolve.modules](https://webpack.js.org/configuration/resolve/#resolve-modules) field.
 
-```less
-@import "~bootstrap/less/bootstrap";
-```
-
-The tilde character (`~`) tells webpack that it's not a relative import as by default. If tilde is included, it performs a lookup against `node_modules` (default setting) although this is configurable through the [resolve.modules](https://webpack.js.org/configuration/resolve/#resolve-modules) field.
-
-W> If you are using _postcss-loader_, you can skip using `~` as discussed in [postcss-loader issue tracker](https://github.com/postcss/postcss-loader/issues/166). _postcss-loader_ can resolve the imports without a tilde.
+W> If you are using **postcss-loader**, you can skip using `~` as discussed in [postcss-loader issue tracker](https://github.com/postcss/postcss-loader/issues/166). **postcss-loader** can resolve the imports without a tilde.
 
 ## Enabling source maps
 

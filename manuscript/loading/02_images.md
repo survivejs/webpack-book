@@ -164,11 +164,7 @@ const Profile = () => (
 
 The benefit of using the [URL interface](https://developer.mozilla.org/en-US/docs/Web/API/URL) is that it lets the code work without using a bundler.
 
-It's also possible to set up dynamic imports as discussed in the _Code Splitting_ chapter. Here's a small example:
-
-```javascript
-const src = require(`./avatars/${avatar}`);`.
-```
+It's also possible to set up dynamic imports as discussed in the _Code Splitting_ chapter. Here's a small example: `const src = require(`./avatars/\${avatar}`);`.
 
 ## Images and **css-loader** source map gotcha
 

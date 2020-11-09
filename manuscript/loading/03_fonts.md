@@ -51,6 +51,8 @@ const config = {
 };
 ```
 
+{pagebreak}
+
 The way you write your CSS definition matters. To make sure you are getting the benefit from the newer formats, they should become first in the definition. This way the browser picks them up.
 
 ```css
@@ -99,6 +101,8 @@ Furthermore, it's possible to manipulate `publicPath` and override the default p
 ```
 
 T> In the example above, the usage of **file-loader** is obscured **url-loader**. It uses **file-loader** underneath with the `limit` option. The loader options are passed to it. You can override the behavior by using the `fallback` option.
+
+{pagebreak}
 
 ## Generating font files based on SVGs
 

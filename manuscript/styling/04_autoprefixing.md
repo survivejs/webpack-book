@@ -4,7 +4,7 @@ It can be challenging to remember which vendor prefixes you have to use for spec
 
 ## Setting up autoprefixing
 
-Achieving autoprefixing takes a small addition to the current setup. Install _postcss-loader_ and **autoprefixer** first:
+Achieving autoprefixing takes a small addition to the current setup. Install **postcss-loader** and **autoprefixer** first:
 
 ```bash
 npm add postcss-loader autoprefixer --develop
@@ -62,7 +62,7 @@ IE 8 # Or IE 8
 
 If you build the application now (`npm run build`) and examine the built CSS, you should see that CSS was added to support older browsers. Try adjusting the definition to see what difference it makes on the build output.
 
-T> You can lint CSS through [Stylelint](http://stylelint.io/). It can be set up the same way through _postcss-loader_ as autoprefixing above.
+T> You can lint CSS through [Stylelint](http://stylelint.io/). It can be set up the same way through **postcss-loader** as autoprefixing above.
 
 T> It's possible to define a browserslist per development target (`BROWSERSLIST_ENV` or `NODE_ENV` in the environment) by using `[development]` kind of syntax between the declarations. See [browserslist documentation](https://www.npmjs.com/package/browserslist#configuring-for-different-environments) for further information and options.
 

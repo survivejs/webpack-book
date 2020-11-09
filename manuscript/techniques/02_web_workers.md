@@ -8,7 +8,7 @@ As discussed in the _Build Targets_ chapter, webpack allows you to build your ap
 
 ## Setting up **worker-loader**
 
-To get started, install _worker-loader_ to the project:
+To get started, install **worker-loader** to the project:
 
 ```bash
 npm add worker-loader --develop
