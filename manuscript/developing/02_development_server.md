@@ -183,8 +183,6 @@ module.exports = {
 
 The setup is more resource-intensive than the file watching, but it's worth trying out if the file watching doesn't work for you.
 
-{pagebreak}
-
 ## Integrating with servers using middlewares
 
 In case you are developing your entire project against a Node server without a separate frontend build, then one option is to run webpack using a middleware:
@@ -201,8 +199,6 @@ There's also a [Node API](https://webpack.js.org/configuration/dev-server/) if y
 By default webpack only watches files that your project depends on directly, for example, when you are using `MiniHtmlWebpackPlugin` and have customized it to load the template from a file.
 
 I've created the [webpack-add-dependency-plugin](https://www.npmjs.com/package/webpack-add-dependency-plugin) that makes webpack watch additional files.
-
-{pagebreak}
 
 ## Development plugins
 
