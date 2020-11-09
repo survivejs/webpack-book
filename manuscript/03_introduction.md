@@ -63,7 +63,7 @@ Even if you use webpack through an abstraction such as Create React App, it can 
 
 The book uses several conventions to keep the content accessible. I've listed examples below:
 
-> This is a tip. Often you can find auxiliary information and further references in tips.
+T> This is a tip. Often you can find auxiliary information and further references in tips.
 
 W> This is a warning that's highlighting unexpected behavior or a common problem point that you should know.
 
