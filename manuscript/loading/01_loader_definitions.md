@@ -75,7 +75,6 @@ const config = {
   // Conditions
   test: /\.js$/,
   enforce: "pre", // "post" too
-
   // Actions
   use: "eslint-loader",
 };
@@ -151,6 +150,8 @@ import "!!url-loader!./bar.png";
 
 The problem with this approach is that it couples your source with webpack. Nonetheless, it's still an excellent form to know.
 
+{pagebreak}
+
 Since configuration entries go through the same mechanism, the same forms work there as well:
 
 ```javascript
@@ -202,6 +203,8 @@ const config = {
 
 Carefully applied, this technique allows different means of composition.
 
+{pagebreak}
+
 ## Loading based on `issuer`
 
 `issuer` can be used to control behavior based on where a resource was imported. In the example below adapted from [css-loader issue 287](https://github.com/webpack-contrib/css-loader/pull/287#issuecomment-261269199), **style-loader** is applied when webpack captures a CSS file from a JavaScript import:
@@ -232,6 +235,8 @@ const config = {
   ],
 };
 ```
+
+{pagebreak}
 
 ## Loading with `info` object
 
@@ -296,6 +301,8 @@ If you wanted to embed the context information to the filename, the rule could u
 Loader behavior can be understood in greater detail by inspecting them. [loader-runner](https://www.npmjs.com/package/loader-runner) allows you to run them in isolation without webpack. Webpack uses this package internally and _Extending with Loaders_ chapter covers it in detail.
 
 [inspect-loader](https://www.npmjs.com/package/inspect-loader) allows you to inspect what's being passed between loaders. Instead of having to insert `console.log`s within `node_modules`, you can attach this loader to your configuration and inspect the flow there.
+
+{pagebreak}
 
 ## Conclusion
 
