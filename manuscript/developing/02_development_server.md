@@ -120,6 +120,8 @@ If you execute either _npm run start_ or _npm start_ now, you should see somethi
   0 (webpack 5.1.3) compiled successfully in 157 ms
 ```
 
+{pagebreak}
+
 The server is running, and if you open `http://localhost:8080/` at your browser, you should see a hello:
 
 ![Hello world](images/hello_01.png)
