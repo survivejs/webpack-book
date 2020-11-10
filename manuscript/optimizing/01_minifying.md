@@ -71,10 +71,6 @@ Since webpack 4, it applies scope hoisting in production mode by default. It hoi
 
 T> Set `stats.optimizationBailout` flag as `true` to gain debugging information related to hoisting results.
 
-### Pre-evaluation
-
-[prepack-webpack-plugin](https://www.npmjs.com/package/prepack-webpack-plugin) uses [Prepack](https://prepack.io/), a partial JavaScript evaluator. It rewrites computations that can be done compile-time and therefore speeds up code execution. See also [val-loader](https://www.npmjs.com/package/val-loader) and [babel-plugin-preval](https://www.npmjs.com/package/babel-plugin-preval) for alternative approaches.
-
 ## Minifying HTML
 
 If you consume HTML templates through your code using [html-loader](https://www.npmjs.com/package/html-loader), you can preprocess it through [posthtml](https://www.npmjs.com/package/posthtml) with [posthtml-loader](https://www.npmjs.com/package/posthtml-loader). You can use [posthtml-minifier](https://www.npmjs.com/package/posthtml-minifier) to minify your HTML through it and [posthtml-minify-classnames](https://www.npmjs.com/package/posthtml-minify-classnames) to reduce the length of class names.
