@@ -175,8 +175,6 @@ Even though the demo illustrates the basic idea of SSR, it still leaves open que
 
 Questions like these are the reason why solutions such as Next.js or razzle exist. They have been designed to solve SSR-specific problems like these.
 
-T> Routing is a big problem of its own solved by frameworks like Next.js. Patrick Hund [discusses how to solve it with React and React Router 4](https://ebaytech.berlin/universal-web-apps-with-react-router-4-15002bb30ccb).
-
 T> Webpack provides [require.resolveWeak](https://webpack.js.org/api/module-methods/#requireresolveweak) for implementing SSR. It's a specific feature used by solutions such as [react-universal-component](https://www.npmjs.com/package/react-universal-component) underneath.
 
 T> `__non_webpack_require__(path)` allows you to separate imports that should be evaluated outside of webpack. See the [issue #4175](https://github.com/webpack/webpack/issues/4175) for more information.
