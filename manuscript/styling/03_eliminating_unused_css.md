@@ -62,8 +62,6 @@ body {
 }
 ```
 
-## Using Tailwind classes
-
 You should also make the demo component use Tailwind classes:
 
 **src/component.js**
