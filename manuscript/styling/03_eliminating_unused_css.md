@@ -4,11 +4,7 @@ Frameworks like [Bootstrap](https://getbootstrap.com/) or [Tailwind](https://tai
 
 [PurgeCSS](https://www.npmjs.com/package/purgecss) is a tool that can achieve this by analyzing files. It walks through your code and figures out which CSS classes are being used. Often there is enough information for it to strip unused CSS from your project. It also works with single page applications to an extent.
 
-[uncss](https://www.npmjs.com/package/uncss) is a good alternative to PurgeCSS. It operates through PhantomJS and performs its work differently. You can use uncss itself as a PostCSS plugin. [dropcss](https://www.npmjs.com/package/dropcss) is another option.
-
-Given PurgeCSS works the best with webpack, we'll demonstrate the usage in this chapter.
-
-{pagebreak}
+[uncss](https://www.npmjs.com/package/uncss) is a good alternative to PurgeCSS. It operates through PhantomJS and performs its work differently. You can use uncss itself as a PostCSS plugin. Given PurgeCSS works the best with webpack, we'll demonstrate the usage in this chapter.
 
 ## Setting up Tailwind
 
@@ -33,6 +29,8 @@ exports.tailwind = () => ({
 });
 ```
 
+{pagebreak}
+
 The new configuration still needs to be connected:
 
 **webpack.config.js**
@@ -52,8 +50,6 @@ leanpub-start-insert
 leanpub-end-insert
 ]);
 ```
-
-{pagebreak}
 
 To make the project aware of Tailwind, `import` it from CSS:
 
@@ -89,8 +85,6 @@ export default (text = "Hello world") => {
 };
 ```
 
-{pagebreak}
-
 If you run the application (`npm start`), the "Hello world" should look like a button.
 
 ![Styled hello](images/styled-button.png)
@@ -112,8 +106,6 @@ Building the application (`npm run build`) should yield output:
 ```
 
 As you can see, the size of the CSS file grew, and this is something to fix with PurgeCSS.
-
-{pagebreak}
 
 ## Enabling PurgeCSS
 
@@ -152,8 +144,6 @@ exports.eliminateUnusedCSS = () => ({
 
 T> For exceptions, [PurgeCSS 3.0](https://github.com/FullHuman/purgecss/releases/tag/v3.0.0) includes **safelist** and **blocklist** options.
 
-{pagebreak}
-
 Next, the part has to be connected with the configuration. It's essential the plugin is used _after_ the `MiniCssExtractPlugin`; otherwise, it doesn't work:
 
 **webpack.config.js**
@@ -188,8 +178,6 @@ If you execute `npm run build` now, you should see something:
 The size of the style has decreased noticeably. Instead of 1.99 MiB, we have roughly 7 KiB now.
 
 W> Tailwind includes PurgeCSS out of the box and it can be preferable to use that. See [Tailwind documentation](https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css) for more information. The example above is enough to illustrate the idea, and it works universally.
-
-{pagebreak}
 
 ### Critical path rendering
 
