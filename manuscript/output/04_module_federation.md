@@ -124,20 +124,14 @@ To avoid manual work with the DOM, we can use React to develop the application q
 
 **src/mf.js**
 
-```javascript
+```jsx
 import ReactDOM from "react-dom";
 import React from "react";
 import "./main.css";
 
 function App() {
-  const options = [
-    "Hello world",
-    "Hello federation",
-    "Hello webpack",
-  ];
-  const [content, setContent] = React.useState(
-    "The content should change based on what's clicked."
-  );
+  const options = ["Hello world", "Hello fed", "Hello webpack"];
+  const [content, setContent] = React.useState("Changes on click.");
 
   return (
     <main className="max-w-md mx-auto space-y-8">
