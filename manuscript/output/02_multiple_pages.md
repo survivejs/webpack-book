@@ -63,8 +63,6 @@ leanpub-end-delete
   ...
 ]);
 
-...
-
 leanpub-start-insert
 const getConfig = mode => {
   const pages = [
@@ -83,14 +81,14 @@ const getConfig = mode => {
       config = developmentConfig;
   }
 
-  return pages.map(page =>
-    merge(commonConfig, config, page, { mode })
-  );
+  return pages.map(page => merge(commonConfig, config, page, { mode }));
 };
 leanpub-end-insert
 
 module.exports = getConfig(mode);
 ```
+
+{pagebreak}
 
 After this change you should have two pages in the application: `/` and `/another`. It should be possible to navigate to both while seeing the same output.
 
