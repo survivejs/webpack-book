@@ -29,46 +29,24 @@ const {
   MiniHtmlWebpackPlugin,
 } = require("mini-html-webpack-plugin");
 
-exports.page = ({
-  path = "",
-  template,
-  title,
-  entry,
-  chunks,
-  mode,
-} = {}) => ({
+exports.entry = ({ name, mode, path }) => ({
   entry:
     mode === "development"
-      ? addEntryToAll(entry, "webpack-plugin-serve/client")
-      : entry,
+      ? { [name]: [path, "webpack-plugin-serve/client"] }
+      : { [name]: path },
+});
+
+exports.page = ({ path = "", template, title, chunks } = {}) => ({
   plugins: [
     new MiniHtmlWebpackPlugin({
       chunks,
       filename: `${path && path + "/"}index.html`,
-      context: {
-        title,
-      },
+      context: { title },
       template,
     }),
   ],
 });
-
-function addEntryToAll(entries, entry) {
-  const ret = {};
-
-  Object.keys(entries).forEach((key) => {
-    const e = entries[key];
-
-    ret[key] = (Array.isArray(e) ? e : [e]).concat(entry);
-  });
-
-  return ret;
-}
 ```
-
-T> The `chunks` and `entry` fields will be used later in this chapter to control which script gets associated with the page.
-
-{pagebreak}
 
 ### Integrating to configuration
 
@@ -90,7 +68,10 @@ leanpub-end-delete
 leanpub-start-insert
 const getConfig = mode => {
   const pages = [
-    parts.page({ title: "Webpack demo", entry: "./src", mode }),
+    merge(
+      parts.entry({ name: "app", path: "./src", mode }),
+      parts.page({ title: "Webpack demo" })
+    ),
   ];
   let config;
   switch (mode) {
@@ -110,8 +91,6 @@ leanpub-end-insert
 
 module.exports = getConfig(mode);
 ```
-
-{pagebreak}
 
 After this change you should have two pages in the application: `/` and `/another`. It should be possible to navigate to both while seeing the same output.
 
@@ -158,26 +137,30 @@ leanpub-end-insert
 const getConfig = (mode) => {
 leanpub-start-delete
   const pages = [
-    parts.page({ title: "Webpack demo", entry: "./src", mode }),
+    merge(
+      parts.entry({ name: "app", path: "./src", mode }),
+      parts.page({ title: "Webpack demo" })
+    )
   ];
 leanpub-end-delete
 leanpub-start-insert
   const pages = [
-    parts.page({
-      title: "Webpack demo",
-      entry: {
-        app: path.join(__dirname, "src", "index.js"),
-      },
-      mode,
-    }),
-    parts.page({
-      title: "Another demo",
-      path: "another",
-      entry: {
-        app: path.join(__dirname, "src", "another.js"),
-      },
-      mode,
-    }),
+    merge(
+      parts.entry({
+        name: 'app',
+        path: path.join(__dirname, "src", "index.js"),
+        mode
+      }),
+      parts.page({ title: "Webpack demo" }),
+    ),
+    merge(
+      parts.entry({
+        name: 'another',
+        path: path.join(__dirname, "src", "another.js"),
+        mode
+      }),
+      parts.page({ title: "Another demo" }),
+    ),
   ];
 leanpub-end-insert
   let config;
@@ -218,27 +201,31 @@ Adjustment is needed to share code between the pages. Most of the code can remai
 
 const getConfig = (mode) => {
   const pages = [
-    parts.page({
-      title: "Webpack demo",
-      entry: {
-        app: path.join(__dirname, "src", "index.js"),
-      },
-      mode,
+    merge(
+      parts.entry({ ... }),
+leanpub-start-delete
+      parts.page({ title: "Webpack demo" }),
+leanpub-end-delete
 leanpub-start-insert
-      chunks: ["app", "runtime", "vendor"],
+      parts.page({
+        title: "Webpack demo",
+        chunks: ["app", "runtime", "vendor"],
+      }),
 leanpub-end-insert
-    }),
-    parts.page({
-      title: "Another demo",
-      path: "another",
-      entry: {
-        another: path.join(__dirname, "src", "another.js"),
-      },
-      mode,
+    ),
+    merge(
+      parts.entry({ ... }),
+leanpub-start-delete
+      parts.page({ title: "Another demo" }),
+leanpub-end-delete
 leanpub-start-insert
-      chunks: ["another", "runtime", "vendor"],
+      parts.page({
+        title: "Another demo",
+        path: "another",
+        chunks: ["another", "runtime", "vendor"],
+      }),
 leanpub-end-insert
-    }),
+    ),
   ];
   let config;
 
