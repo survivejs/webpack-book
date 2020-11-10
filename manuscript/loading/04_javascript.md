@@ -16,16 +16,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((text = "Hello world") => {
   const element = document.createElement("div");
-
   element.className = "rounded bg-red-100 border max-w-md m-4 p-4";
   element.innerHTML = text;
-
   return element;
 });
 ...
 ```
 
-The problem can be worked around by processing the code through [Babel](https://babeljs.io/), a famous JavaScript compiler that supports ES2015+ features and more. It resembles ESLint in that it's built on top of presets and plugins. Presets are collections of plugins, and you can define your own as well.
+The problem can be worked around by processing the code through [Babel](https://babeljs.io/), a JavaScript transpiler that supports ES2015+ features and more. It resembles ESLint in that it's built on top of presets and plugins. Presets are collections of plugins, and you can define your own as well.
 
 T> Babel isn't the only option, although it's the most popular one. [esbuild-loader](https://www.npmjs.com/package/esbuild-loader), [swc-loader](https://www.npmjs.com/package/swc-loader), and [@sucrase/webpack-loader](https://www.npmjs.com/package/@sucrase/webpack-loader) are worth checking out if you don't need any specific Babel presets or plugins.
 
@@ -39,7 +37,7 @@ Skipping processing is a good option, primarily if you don't rely on any custom 
 
 You can use Babel with webpack through [babel-loader](https://www.npmjs.com/package/babel-loader). It can pick up project-level Babel configuration, or you can configure it at the webpack loader itself. [babel-webpack-plugin](https://www.npmjs.com/package/babel-webpack-plugin) is another lesser-known option.
 
-Connecting Babel with a project allows you to process webpack configuration through it. To achieve this, name your webpack configuration using the **webpack.config.babel.js** convention. [interpret](https://www.npmjs.com/package/interpret) package enables this, and it supports other compilers as well.
+Connecting Babel with a project allows you to process webpack configuration through it. Name your webpack configuration as **webpack.config.babel.js** to achieve this. [interpret](https://www.npmjs.com/package/interpret) package enables this, and it supports other tools as well.
 
 T> Given that [Node supports the ES2015 specification well](http://node.green/) these days, you can use a lot of ES2015 features without having to process configuration through Babel.
 
@@ -159,9 +157,7 @@ T> [@babel/preset-modules](https://www.npmjs.com/package/@babel/preset-modules) 
 
 **@babel/preset-env** allows you to polyfill certain language features for older browsers. For this to work, you should enable its `useBuiltIns` option and install [core-js](https://www.npmjs.com/package/core-js). If you are using `async` functions and want to support older browsers, then [regenerator-runtime](https://www.npmjs.com/package/regenerator-runtime) is required as well.
 
-You have to include **core-js** to your project either through an import or an entry (`app: ["core-js", PATHS.app]`), except if you're using `useBuiltIns: 'usage'` to configure `@babel/preset-env`. **@babel/preset-env** rewrites the import based on your browser definition and loads only the polyfills that are needed.
-
-T> To learn more about **core-js** and why it's needed, [read core-js 3 release post](https://github.com/zloirock/core-js/blob/master/docs/2019-03-19-core-js-3-babel-and-a-look-into-the-future.md).
+You have to include **core-js** to your project either through an import or an entry (`app: ["core-js", PATHS.app]`), except if you're using `useBuiltIns: 'usage'` to configure `@babel/preset-env`. **@babel/preset-env** rewrites the import based on your browser definition and loads only the polyfills that are needed. To learn more about **core-js** and why it's needed, [read core-js 3 release post](https://github.com/zloirock/core-js/blob/master/docs/2019-03-19-core-js-3-babel-and-a-look-into-the-future.md).
 
 T> [corejs-upgrade-webpack-plugin](https://www.npmjs.com/package/corejs-upgrade-webpack-plugin) makes sure you are using the newest **core-js** polyfills. Using it can help to reduce the size of the output.
 
@@ -176,8 +172,6 @@ W> Certain webpack features, such as _Code Splitting_, write `Promise` based cod
 There are other possible [`.babelrc` options](https://babeljs.io/docs/usage/options/) beyond the ones covered here. Like ESLint, `.babelrc` supports [JSON5](https://www.npmjs.com/package/json5) as its configuration format meaning you can include comments in your source, use single quoted strings, and so on.
 
 Sometimes you want to use experimental features that fit your project. Although you can find a lot of them within so-called stage presets, it's a good idea to enable them one by one and even organize them to a preset of their own unless you are working on a throwaway project. If you expect your project to live a long time, it's better to document the features you are using well.
-
-Babel isn't the only option although it's the most popular one. [Buble](https://buble.surge.sh) by Rich Harris is another compiler worth checking out. There's experimental [buble-loader](https://www.npmjs.com/package/buble-loader) that allows you to use it with webpack. Buble doesn't support ES2015 modules, but that's not a problem as webpack provides that functionality.
 
 ## Babel plugins
 
