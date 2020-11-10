@@ -37,7 +37,6 @@ The new configuration still needs to be connected:
 leanpub-start-insert
 const cssLoaders = [parts.tailwind()];
 leanpub-end-insert
-
 const commonConfig = merge([
   ...
 leanpub-start-delete
