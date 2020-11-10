@@ -71,6 +71,8 @@ leanpub-end-insert
 ]);
 ```
 
+{pagebreak}
+
 To make sure extracted CSS receives hashes as well, adjust:
 
 **webpack.parts.js**
@@ -108,6 +110,8 @@ If you generate a build now (`npm run build`), you should see something:
 ```
 
 The files have neat hashes now. To prove that it works for styling, you could try altering _src/main.css_ and see what happens to the hashes when you rebuild.
+
+{pagebreak}
 
 ## Conclusion
 
