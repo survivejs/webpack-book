@@ -1,6 +1,6 @@
 # Eliminating Unused CSS
 
-Frameworks like [Bootstrap](https://getbootstrap.com/) or [Tailwind](https://tailwindcss.com/) tend to come with a lot of CSS. Often you use only a small part of it and if you aren't careful, you will bundle the unused CSS.
+Frameworks like Bootstrap or Tailwind tend to come with a lot of CSS. Often you use only a small part of it and if you aren't careful, you will bundle the unused CSS.
 
 [PurgeCSS](https://www.npmjs.com/package/purgecss) is a tool that can achieve this by analyzing files. It walks through your code and figures out which CSS classes are being used as often there is enough information for it to strip unused CSS from your project. It also works with single page applications to an extent.
 
