@@ -20,13 +20,9 @@ Webpack provides **placeholders** for this purpose. These strings are used to at
 
 It's preferable to use particularly `hash` and `contenthash` only for production purposes as hashing doesn't do much good during development.
 
-T> It's possible to slice `hash` and `contenthash` using specific syntax: `[contenthash:4]`. Instead of a hash like `8c4cbfdb91ff93f3f3c5` this would yield `8c4c`.
+T> There are more options available, and you can even modify the hashing and digest type as discussed at [loader-utils](https://www.npmjs.com/package/loader-utils) documentation.
 
-T> There are more options available, and you can even modify the hashing and digest type as discussed at [loader-utils](https://www.npmjs.com/package/loader-utils#interpolatename) documentation.
-
-W> If you are using webpack 4, be careful with `contenthash` as [it's not fully reliable](https://github.com/webpack/webpack/issues/11146). There `chunkhash` may be the preferable option. Webpack 5 provides a better solution for this.
-
-{pagebreak}
+W> If you are using webpack 4, be careful with `contenthash` as [it's not fully reliable](https://github.com/webpack/webpack/issues/11146). There `chunkhash` may be the preferable option.
 
 ### Example placeholders
 
@@ -65,9 +61,9 @@ const productionConfig = merge([
 leanpub-start-insert
   {
     output: {
-      chunkFilename: "[name].[contenthash:4].js",
-      filename: "[name].[contenthash:4].js",
-      assetModuleFilename: "[name].[contenthash:4][ext][query]",
+      chunkFilename: "[name].[contenthash].js",
+      filename: "[name].[contenthash].js",
+      assetModuleFilename: "[name].[contenthash][ext][query]",
     },
   },
 leanpub-end-insert
@@ -89,7 +85,7 @@ leanpub-start-delete
         filename: "[name].css",
 leanpub-end-delete
 leanpub-start-insert
-        filename: "[name].[contenthash:4].css",
+        filename: "[name].[contenthash].css",
 leanpub-end-insert
       }),
     ],
@@ -104,18 +100,16 @@ If you generate a build now (`npm run build`), you should see something:
 ```bash
 ⬡ webpack: Build Finished
 ⬡ webpack: assets by path *.js 129 KiB
-    asset vendor.1622.js 126 KiB [emitted] [immutable] [minimized] (name: vendor) (id hint: commons) 2 related assets
-    asset main.db11.js 3.4 KiB [emitted] [immutable] [minimized] (name: main) 2 related assets
-    asset 34.a4c5.js 257 bytes [emitted] [immutable] [minimized] 2 related assets
-  asset main.bdca.css 1.87 KiB [emitted] [immutable] (name: main)
+    asset vendor.16...22.js 126 KiB [emitted] [immutable] [minimized] (name: vendor) (id hint: commons) 2 related assets
+    asset main.db...11.js 3.4 KiB [emitted] [immutable] [minimized] (name: main) 2 related assets
+    asset 34.a4...c5.js 257 bytes [emitted] [immutable] [minimized] 2 related assets
+  asset main.bd...ca.css 1.87 KiB [emitted] [immutable] (name: main)
   asset index.html 285 bytes [emitted]
 ...
   webpack 5.1.3 compiled successfully in 6593 ms
 ```
 
 The files have neat hashes now. To prove that it works for styling, you could try altering _src/main.css_ and see what happens to the hashes when you rebuild.
-
-W> The hashes have been sliced to make the output fit better in the book. In practice, you can skip slicing them.
 
 {pagebreak}
 

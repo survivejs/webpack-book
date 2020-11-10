@@ -35,11 +35,11 @@ If you build the project now (`npm run build`), you should see something:
 ```bash
 ⬡ webpack: Build Finished
 ⬡ webpack: assets by path *.js 130 KiB
-    asset vendor.1622.js 126 KiB [emitted] [immutable] [minimized] (name: vendor) (id hint: commons) 2 related assets
-    asset runtime.41f8.js 3.01 KiB [emitted] [immutable] [minimized] (name: runtime) 2 related assets
-    asset main.eddd.js 633 bytes [emitted] [immutable] [minimized] (name: main) 2 related assets
-    asset 34.a4c5.js 257 bytes [emitted] [immutable] [minimized] 2 related assets
-  asset main.aca1.css 1.87 KiB [emitted] [immutable] (name: main)
+    asset vendor.16...22.js 126 KiB [emitted] [immutable] [minimized] (name: vendor) (id hint: commons) 2 related assets
+    asset runtime.41...f8.js 3.01 KiB [emitted] [immutable] [minimized] (name: runtime) 2 related assets
+    asset main.ed...dd.js 633 bytes [emitted] [immutable] [minimized] (name: main) 2 related assets
+    asset 34.a4...c5.js 257 bytes [emitted] [immutable] [minimized] 2 related assets
+  asset main.ac...a1.css 1.87 KiB [emitted] [immutable] (name: main)
   asset index.html 324 bytes [emitted]
 ...
   webpack 5.1.3 compiled successfully in 7209 ms
