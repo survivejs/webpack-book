@@ -68,6 +68,8 @@ You are still missing webpack configuration to turn this file into something the
 
 W> Given ES2015 style imports and CommonJS exports cannot be mixed, the entry point was written in CommonJS style.
 
+{pagebreak}
+
 ## Configuring webpack
 
 To keep things nice, we will define a separate configuration file. A lot of the work has been done already. Given you have to consume the same output from multiple environments, using UMD as the library target makes sense:
