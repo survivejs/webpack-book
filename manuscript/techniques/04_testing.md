@@ -156,6 +156,12 @@ Jest captures tests through `package.json` [configuration](https://facebook.gith
 
 Porting a webpack setup to Jest requires more effort especially if you rely on webpack specific features. [The official guide](https://jestjs.io/docs/en/webpack.html) covers quite a few of the common problems. You can configure Jest to use Babel through [babel-jest](https://www.npmjs.com/package/babel-jest) as it allows you to use Babel plugins like [babel-plugin-module-resolver](https://www.npmjs.com/package/babel-plugin-module-resolver) to match webpack's functionality.
 
+## Mocking
+
+Mocking is a technique that allows you to replace test objects. Consider using [Sinon](https://www.npmjs.com/package/sinon) for this purpose as it works well with webpack.
+
+{pagebreak}
+
 ## Removing files from tests
 
 If you execute tests through webpack, you may want to alter the way it treats assets like images. You can match them and then use a `noop` function to replace the modules as follows:
@@ -170,10 +176,6 @@ const config = {
   ],
 };
 ```
-
-## Mocking
-
-Mocking is a technique that allows you to replace test objects. Consider using [Sinon](https://www.npmjs.com/package/sinon) for this purpose as it works well with webpack.
 
 ## Conclusion
 
