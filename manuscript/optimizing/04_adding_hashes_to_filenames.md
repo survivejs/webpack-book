@@ -29,13 +29,15 @@ W> If you are using webpack 4, be careful with `contenthash` as [it's not fully 
 Assume you have the following configuration:
 
 ```javascript
-{
+const config = {
   output: {
     path: PATHS.build,
     filename: "[name].[contenthash].js",
   },
-},
+};
 ```
+
+{pagebreak}
 
 Webpack generates filenames like these based on it:
 
@@ -47,8 +49,6 @@ vendor.dc746a5db4ed650296e1.js
 If the file contents related to a chunk are different, the hash changes as well, thus the cache gets invalidated. More accurately, the browser sends a new request for the file. If only `main` bundle gets updated, only that file needs to be requested again.
 
 The same result can be achieved by generating static filenames and invalidating the cache through a querystring (i.e., `main.js?d587bbd6e38337f5accd`). The part behind the question mark invalidates the cache. According to [Steve Souders](http://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/), attaching the hash to the filename is the most performant option.
-
-{pagebreak}
 
 ## Setting up hashing
 
@@ -93,8 +93,6 @@ leanpub-end-insert
 };
 ```
 
-{pagebreak}
-
 If you generate a build now (`npm run build`), you should see something:
 
 ```bash
@@ -110,8 +108,6 @@ If you generate a build now (`npm run build`), you should see something:
 ```
 
 The files have neat hashes now. To prove that it works for styling, you could try altering _src/main.css_ and see what happens to the hashes when you rebuild.
-
-{pagebreak}
 
 ## Conclusion
 
