@@ -8,31 +8,17 @@ You can approach the problem in several ways through webpack. You can still use 
 
 ## Setting up a loader
 
-If you exclude Opera Mini, all browsers support the _.woff_ format based on [Can I Use](https://caniuse.com/woff). _.woff2_, is widely supported by modern browsers and is another option. Going with one format, you can use a similar setup as for images and rely on both **file-loader** and **url-loader** while using the limit option:
-
-```javascript
-const config = {
-  test: /\.woff$/,
-  use: {
-    type: "asset",
-    parser: {
-      dataUrlCondition: {
-        maxSize: 50000,
-      },
-    },
-  },
-};
-```
-
-A more elaborate approach to achieve a similar result that includes _.woff2_ and others would be to end up with the code as below:
+If you exclude Opera Mini, all browsers support the _.woff_ format based on [Can I Use](https://caniuse.com/woff). _.woff2_, is widely supported by modern browsers and is another option. Going with one format, you can use a similar setup as for images and rely on `maxSize`:
 
 ```javascript
 const config = {
   test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/, // Match .woff?v=1.1.1.
-  type: "asset",
-  parser: {
-    dataUrlCondition: {
-      maxSize: 50000, // Inline up to 50k
+  use: {
+    type: "asset",
+    parser: {
+      dataUrlCondition: {
+        maxSize: 50000, // Inline up to 50k
+      },
     },
   },
 };
@@ -94,8 +80,6 @@ Furthermore, it's possible to manipulate `publicPath` and override the default p
 ```
 
 T> In the example above, the usage of **file-loader** is obscured **url-loader**. It uses **file-loader** underneath with the `limit` option. The loader options are passed to it. You can override the behavior by using the `fallback` option.
-
-{pagebreak}
 
 ## Generating font files based on SVGs
 
