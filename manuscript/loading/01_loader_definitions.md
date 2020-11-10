@@ -188,12 +188,9 @@ const config = {
   // `resource` refers to the resource path matched.
   // `resourceQuery` contains possible query passed to it
   // `issuer` tells about match context path
-  use: ({ resource, resourceQuery, issuer }) => {
-    // You have to return something falsy, object, or a string
-    if (env === "development") {
-      return ["css-loader", "style-loader"];
-    }
-  },
+  // You have to return something falsy, object, or a string
+  use: ({ resource, resourceQuery, issuer }) =>
+    env === "development" && ["css-loader", "style-loader"],
 };
 ```
 
