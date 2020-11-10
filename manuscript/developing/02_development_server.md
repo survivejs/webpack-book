@@ -53,7 +53,7 @@ npm add webpack-plugin-serve --develop
 
 {pagebreak}
 
-To integrate WPS to the project, define an npm script for launching it. To follow npm conventions, call it as _start_ like below:
+To integrate WPS to the project, define an npm script for launching it:
 
 **package.json**
 
@@ -65,7 +65,6 @@ leanpub-start-insert
 leanpub-end-insert
     "build": "wp --mode production"
   },
-  ...
 }
 ```
 
@@ -85,11 +84,7 @@ module.exports = {
   entry: ["./src", "webpack-plugin-serve/client"],
   mode,
   plugins: [
-    new MiniHtmlWebpackPlugin({
-      context: {
-        title: "Webpack demo",
-      },
-    }),
+    new MiniHtmlWebpackPlugin({ context: { title: "Demo" } }),
     new WebpackPluginServe({
       port: process.env.PORT || 8080,
       static: "./dist",
