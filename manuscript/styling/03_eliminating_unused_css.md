@@ -99,6 +99,8 @@ Building the application (`npm run build`) should yield output:
 
 As you can see, the size of the CSS file grew, and this is something to fix with PurgeCSS.
 
+{pagebreak}
+
 ## Enabling PurgeCSS
 
 [purgecss-webpack-plugin](https://www.npmjs.com/package/purgecss-webpack-plugin) allows you to eliminate most of the CSS as ideally we would bundle only the CSS classes we are using.
