@@ -64,11 +64,9 @@ body {
 }
 ```
 
-{pagebreak}
-
 ## Using Tailwind classes
 
-You should also make the demo component use Tailwind classes, so there is something to work with:
+You should also make the demo component use Tailwind classes:
 
 **src/component.js**
 
@@ -80,6 +78,8 @@ export default (text = "Hello world") => {
   return element;
 };
 ```
+
+{pagebreak}
 
 If you run the application (`npm start`), the "Hello world" should look like a button.
 
