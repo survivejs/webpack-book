@@ -145,16 +145,6 @@ Sometimes you have to expose packages to third-party scripts. [expose-loader](ht
 },
 ```
 
-With the small extra tweak, the technique can be used to expose React performance utilities to the browser through `React.Perf` global. You have to insert the following code to your application entry point for this to work:
-
-```javascript
-if (process.env.NODE_ENV !== "production") {
-  React.Perf = require("react-addons-perf");
-}
-```
-
-T> It can be a good idea to install [React Developer Tools](https://github.com/facebook/react-devtools) to Chrome for even more information as it allows you to inspect _props_ and _state_ of your application.
-
 T> [script-loader](https://www.npmjs.com/package/script-loader) allows you to execute scripts in a global context. You have to do this if the scripts you are using rely on a global registration setup.
 
 ## Removing unused modules
@@ -231,8 +221,6 @@ To get more information, npm provides `npm info <package>` command for basic que
 - [package-config-checker](https://www.npmjs.com/package/package-config-checker) goes a step further. It allows you to understand better which packages of your project have updated recently and it provides means to get insight into your dependencies. It can reveal which packages could use download size related improvements for example.
 - [slow-deps](https://www.npmjs.com/package/slow-deps) can reveal which dependencies of a project are the slowest to install.
 - [weigh](https://www.npmjs.com/package/weigh) can be used figure out the approximate size of a package when it's served to a browser in different ways (uncompressed, minified, gzipped).
-
-{pagebreak}
 
 ## Conclusion
 
