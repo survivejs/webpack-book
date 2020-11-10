@@ -185,7 +185,6 @@ In the book setup, you compose configuration on a higher level. Another option t
 ```javascript
 const config = {
   test: /\.css$/,
-
   // `resource` refers to the resource path matched.
   // `resourceQuery` contains possible query passed to it
   // `issuer` tells about match context path
@@ -201,8 +200,6 @@ const config = {
 
 Carefully applied, this technique allows different means of composition.
 
-{pagebreak}
-
 ## Loading based on `issuer`
 
 `issuer` can be used to control behavior based on where a resource was imported. In the example below adapted from [css-loader issue 287](https://github.com/webpack-contrib/css-loader/pull/287#issuecomment-261269199), **style-loader** is applied when webpack captures a CSS file from a JavaScript import:
@@ -216,6 +213,8 @@ const config = {
   ],
 };
 ```
+
+{pagebreak}
 
 Another approach would be to mix `issuer` and `not`:
 
@@ -233,8 +232,6 @@ const config = {
   ],
 };
 ```
-
-{pagebreak}
 
 ## Loading with `info` object
 
