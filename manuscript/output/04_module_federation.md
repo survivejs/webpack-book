@@ -60,12 +60,12 @@ const commonConfig = merge([
   parts.clean(),
   parts.loadJavaScript(),
   parts.loadImages(),
-  parts.page({
-    entry: {
-      app: path.join(__dirname, "src", "mf.js"),
-    },
+  parts.entry({
+    name: "app",
+    path: path.join(__dirname, "src", "mf.js"),
     mode,
   }),
+  parts.page(),
   parts.extractCSS({ loaders: cssLoaders }),
 ]);
 
@@ -201,17 +201,17 @@ const commonConfig = merge([
   parts.clean(),
   parts.loadJavaScript(),
   parts.loadImages(),
-  parts.page({
-    entry: {
+  parts.entry({
+    name: "app",
 leanpub-start-delete
-      app: path.join(__dirname, "src", "mf.js"),
+    path: path.join(__dirname, "src", "mf.js"),
 leanpub-end-delete
 leanpub-start-insert
-      app: path.join(__dirname, "src", "bootstrap.js"),
+    path: path.join(__dirname, "src", "bootstrap.js"),
 leanpub-end-insert
-    },
     mode,
   }),
+  parts.page(),
 leanpub-start-insert
   {
     plugins: [
@@ -367,12 +367,12 @@ const getConfig = (mode) => {
 
   const componentConfigs = {
     app: merge([
-      parts.page({
-        entry: {
-          app: path.join(__dirname, "src", "bootstrap.js"),
-        },
+      parts.entry({
+        name: "app",
+        path: path.join(__dirname, "src", "bootstrap.js"),
         mode,
       }),
+      parts.page(),
       parts.federateModule({
         name: "app",
         remotes: {
