@@ -2,9 +2,7 @@
 
 Frameworks like Bootstrap or Tailwind tend to come with a lot of CSS. Often you use only a small part of it and if you aren't careful, you will bundle the unused CSS.
 
-[PurgeCSS](https://www.npmjs.com/package/purgecss) is a tool that can achieve this by analyzing files. It walks through your code and figures out which CSS classes are being used as often there is enough information for it to strip unused CSS from your project. It also works with single page applications to an extent.
-
-[uncss](https://www.npmjs.com/package/uncss) is a good alternative to PurgeCSS. It operates through PhantomJS and performs its work differently. You can use uncss itself as a PostCSS plugin. Given PurgeCSS works the best with webpack, we'll demonstrate the usage in this chapter.
+[PurgeCSS](https://www.npmjs.com/package/purgecss) is a tool that can achieve this by analyzing files. It walks through your code and figures out which CSS classes are being used as often there is enough information for it to strip unused CSS from your project. It also works with single page applications to an extent. Given PurgeCSS works well with webpack, we'll demonstrate it in this chapter.
 
 ## Setting up Tailwind
 
@@ -54,9 +52,7 @@ To make the project aware of Tailwind, `import` it from CSS:
 ```javascript
 @tailwind base;
 @tailwind components;
-
 /* Write your utility classes here */
-
 @tailwind utilities;
 
 body {
@@ -174,6 +170,8 @@ If you execute `npm run build` now, you should see something:
 The size of the style has decreased noticeably. Instead of 1.99 MiB, we have roughly 7 KiB now.
 
 W> Tailwind includes PurgeCSS out of the box and it can be preferable to use that. See [Tailwind documentation](https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css) for more information. The example above is enough to illustrate the idea, and it works universally.
+
+T> [uncss](https://www.npmjs.com/package/uncss) is a good alternative to PurgeCSS. It operates through PhantomJS and performs its work differently. You can use uncss itself as a PostCSS plugin.
 
 ### Critical path rendering
 
