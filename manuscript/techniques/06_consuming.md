@@ -183,6 +183,8 @@ T> There's a [Stack Overflow question](https://stackoverflow.com/questions/25384
 
 T> [webpack-libs-optimizations](https://github.com/GoogleChromeLabs/webpack-libs-optimizations) lists further library specific optimizations as above.
 
+{pagebreak}
+
 ## Managing pre-built dependencies
 
 It's possible webpack gives the following warning with certain dependencies:
@@ -204,23 +206,17 @@ const config = {
 };
 ```
 
-W> Take care when disabling warnings as it can hide underlying issues. Consider alternatives first. There's a [webpack issue](https://github.com/webpack/webpack/issues/1617) that discusses the problem in detail.
+W> Take care when disabling warnings as it can hide underlying issues. Consider alternatives first. There's a [webpack issue](https://github.com/webpack/webpack/issues/1617) that discusses the problem.
 
 ## Managing symbolic links
 
 Symbolic links, or symlinks, are an operating system level feature that allows you to point to other files through a file system without copying them. You can use `npm link` to create global symlinks for packages under development and then use `npm unlink` to remove the links.
 
-Webpack resolves symlinks to their full path as Node does. The problem is that if you are unaware of this fact, the behavior can surprise you especially if you rely on webpack processing. It's possible to work around the behavior as discussed in [webpack issue #985](https://github.com/webpack/webpack/issues/985). Webpack core behavior may improve in the future to make a workaround unnecessary.
-
-T> You can disable webpack's symlink handling by setting `resolve.symlinks` as `false`.
+Webpack resolves symlinks to their full path as Node does. The problem is that if you are unaware of this fact, the behavior can surprise you especially if you rely on webpack processing. It's possible to work around the behavior as discussed in [webpack issue #985](https://github.com/webpack/webpack/issues/985). Webpack core behavior may improve in the future to make a workaround unnecessary. You can disable webpack's symlink handling by setting `resolve.symlinks` as `false`.
 
 ## Getting insights on packages
 
-To get more information, npm provides `npm info <package>` command for basic queries. You can use it to check the metadata associated with packages while figuring out version related information. Consider the following tools as well:
-
-- [package-config-checker](https://www.npmjs.com/package/package-config-checker) goes a step further. It allows you to understand better which packages of your project have updated recently and it provides means to get insight into your dependencies. It can reveal which packages could use download size related improvements for example.
-- [slow-deps](https://www.npmjs.com/package/slow-deps) can reveal which dependencies of a project are the slowest to install.
-- [weigh](https://www.npmjs.com/package/weigh) can be used figure out the approximate size of a package when it's served to a browser in different ways (uncompressed, minified, gzipped).
+To get more information, npm provides `npm info <package>` command for basic queries. You can use it to check the metadata associated with packages while figuring out version related information.
 
 ## Conclusion
 
