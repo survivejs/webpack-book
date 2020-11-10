@@ -2,7 +2,9 @@
 
 Frameworks like Bootstrap or Tailwind tend to come with a lot of CSS. Often you use only a small part of it and if you aren't careful, you will bundle the unused CSS.
 
-[PurgeCSS](https://www.npmjs.com/package/purgecss) is a tool that can achieve this by analyzing files. It walks through your code and figures out which CSS classes are being used as often there is enough information for it to strip unused CSS from your project. It also works with single page applications to an extent. Given PurgeCSS works well with webpack, we'll demonstrate it in this chapter.
+[PurgeCSS](https://www.npmjs.com/package/purgecss) is a tool that can achieve this by analyzing files. It walks through your code and figures out which CSS classes are being used as often there is enough information for it to strip unused CSS from your project. It also works with single page applications to an extent.
+
+Given PurgeCSS works well with webpack, we'll demonstrate it in this chapter.
 
 ## Setting up Tailwind
 
@@ -24,6 +26,8 @@ exports.tailwind = () => ({
   },
 });
 ```
+
+{pagebreak}
 
 The new configuration still needs to be connected:
 
@@ -60,6 +64,8 @@ body {
 }
 ```
 
+{pagebreak}
+
 ## Using Tailwind classes
 
 You should also make the demo component use Tailwind classes, so there is something to work with:
@@ -69,10 +75,8 @@ You should also make the demo component use Tailwind classes, so there is someth
 ```javascript
 export default (text = "Hello world") => {
   const element = document.createElement("div");
-
   element.className = "rounded bg-red-100 border max-w-md m-4 p-4";
   element.innerHTML = text;
-
   return element;
 };
 ```
