@@ -232,8 +232,6 @@ Webpack resolves symlinks to their full path as Node does. The problem is that i
 
 T> You can disable webpack's symlink handling by setting `resolve.symlinks` as `false`.
 
-{pagebreak}
-
 ## Getting insights on packages
 
 To get more information, npm provides `npm info <package>` command for basic queries. You can use it to check the metadata associated with packages while figuring out version related information. Consider the following tools as well:
