@@ -179,8 +179,6 @@ The remaining part is harder than what was done so far. How to make the server a
 npm add browser-refresh --develop
 ```
 
-{pagebreak}
-
 The client portion requires two small changes to the server code:
 
 **server.js**
