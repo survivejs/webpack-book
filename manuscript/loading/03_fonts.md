@@ -33,29 +33,27 @@ const config = {
 };
 ```
 
-The way you write your CSS definition matters. To make sure you are getting the benefit from the newer formats, they should become first in the definition. This way the browser picks them up.
+The way you write your [CSS definition](https://developer.mozilla.org/en/docs/Web/CSS/@font-face) matters. To make sure you are getting the benefit from the newer formats, they should become first in the definition.
 
 ```css
 @font-face {
   font-family: "Demo Font";
-  src: url("./fonts/font.woff2") format("woff2"), url("./fonts/font.woff")
+  src: url("./fonts/df.woff2") format("woff2"), url("./fonts/df.woff")
       format("woff"),
-    url("./fonts/font.eot") format("embedded-opentype"), url("./fonts/font.ttf")
+    url("./fonts/df.eot") format("embedded-opentype"), url("./fonts/df.ttf")
       format("truetype");
 }
 ```
-
-T> [MDN discusses the font-family rule](https://developer.mozilla.org/en/docs/Web/CSS/@font-face) in detail.
-
-## Using Google Fonts
-
-[@beyonk/google-fonts-webpack-plugin](https://www.npmjs.com/package/@beyonk/google-fonts-webpack-plugin) can download Google Fonts to webpack build directory or connect to them using a CDN.
 
 ## Using icon fonts
 
 [iconfont-webpack-plugin](https://www.npmjs.com/package/iconfont-webpack-plugin) was designed to simplify loading icon based fonts. It inlines SVG references within CSS files.
 
-To make sure you are including only the icons that are only needed, use [fontmin-webpack](https://www.npmjs.com/package/fontmin-webpack).
+To include only the icons that are only needed, use [fontmin-webpack](https://www.npmjs.com/package/fontmin-webpack).
+
+## Using Google Fonts
+
+[@beyonk/google-fonts-webpack-plugin](https://www.npmjs.com/package/@beyonk/google-fonts-webpack-plugin) can download Google Fonts to webpack build directory or connect to them using a CDN.
 
 ## Manipulating **file-loader** output path and `publicPath`
 
