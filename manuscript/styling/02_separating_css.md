@@ -39,10 +39,6 @@ exports.extractCSS = ({ options = {}, loaders = [] } = {}) => {
             { loader: MiniCssExtractPlugin.loader, options },
             "css-loader",
           ].concat(loaders),
-          // If you distribute your code as a package and want to
-          // use _Tree Shaking_, then you should mark CSS extraction
-          // to emit side effects. For most use cases, you don't
-          // have to worry about setting flag.
           sideEffects: true,
         },
       ],
@@ -57,6 +53,8 @@ exports.extractCSS = ({ options = {}, loaders = [] } = {}) => {
 ```
 
 That `[name]` placeholder uses the name of the entry where the CSS is referred. Placeholders and hashing are discussed in detail in the _Adding Hashes to Filenames_ chapter.
+
+T> `sideEffects: true` is needed if you distribute your code as a package and want to use _Tree Shaking_ against it. In most use cases, you don't have to worry about setting the flag.
 
 T> If you wanted to output the resulting file to a specific directory, you could do it by passing a path. Example: `filename: "styles/[name].css"`.
 
