@@ -28,19 +28,15 @@ A more elaborate approach to achieve a similar result that includes _.woff2_ and
 
 ```javascript
 const config = {
-  // Match woff2 in addition to patterns like .woff?v=1.1.1.
-  test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/,
+  test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/, // Match .woff?v=1.1.1.
   type: "asset",
   parser: {
     dataUrlCondition: {
-      // Limit at 50k. Above that it emits separate files
-      maxSize: 50000,
+      maxSize: 50000, // Inline up to 50k
     },
   },
 };
 ```
-
-## Supporting multiple formats
 
 In case you want to make sure the site looks good on a maximum amount of browsers, you can use `type: "asset/resource"` field at a loader definition and forget about inlining. Again, it's a trade-off as you get extra requests, but perhaps it's the right move. Here you could end up with a loader configuration:
 
@@ -51,18 +47,15 @@ const config = {
 };
 ```
 
-{pagebreak}
-
 The way you write your CSS definition matters. To make sure you are getting the benefit from the newer formats, they should become first in the definition. This way the browser picks them up.
 
 ```css
 @font-face {
-  font-family: "myfontfamily";
-  src: url("./fonts/myfontfile.woff2") format("woff2"), url("./fonts/myfontfile.woff")
+  font-family: "Demo Font";
+  src: url("./fonts/font.woff2") format("woff2"), url("./fonts/font.woff")
       format("woff"),
-    url("./fonts/myfontfile.eot") format("embedded-opentype"), url("./fonts/myfontfile.ttf")
+    url("./fonts/font.eot") format("embedded-opentype"), url("./fonts/font.ttf")
       format("truetype");
-  /* Add other formats as you see fit */
 }
 ```
 
