@@ -265,8 +265,6 @@ If you execute code like this, you'll see a print in the console:
 
 The function is an escape hatch for customizing loaders further.
 
-{pagebreak}
-
 ## Loading based on `resourceQuery`
 
 `oneOf` field makes it possible to route webpack to a specific loader based on a resource related match:
@@ -289,13 +287,13 @@ const config = {
 
 If you wanted to embed the context information to the filename, the rule could use `resourcePath` over `resourceQuery`.
 
+{pagebreak}
+
 ## Understanding loader behavior
 
 Loader behavior can be understood in greater detail by inspecting them. [loader-runner](https://www.npmjs.com/package/loader-runner) allows you to run them in isolation without webpack. Webpack uses this package internally and _Extending with Loaders_ chapter covers it in detail.
 
 [inspect-loader](https://www.npmjs.com/package/inspect-loader) allows you to inspect what's being passed between loaders. Instead of having to insert `console.log`s within `node_modules`, you can attach this loader to your configuration and inspect the flow there.
-
-{pagebreak}
 
 ## Conclusion
 
