@@ -124,7 +124,7 @@ To avoid manual work with the DOM, we can use React to develop the application q
 
 **src/mf.js**
 
-```jsx
+```javascript
 import ReactDOM from "react-dom";
 import React from "react";
 import "./main.css";
@@ -181,6 +181,8 @@ import("./mf");
 ```
 
 It's using the syntax you likely remember from the _Code Splitting_ chapter. Although it feels trivial, we need to do this step as otherwise, the application would emit an error while loading with `ModuleFederationPlugin`.
+
+{pagebreak}
 
 To test the new bootstrap and the plugin, adjust webpack configuration as follows:
 
