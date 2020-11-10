@@ -202,7 +202,7 @@ Carefully applied, this technique allows different means of composition.
 
 ## Loading based on `issuer`
 
-`issuer` can be used to control behavior based on where a resource was imported. In the example below adapted from [css-loader issue 287](https://github.com/webpack-contrib/css-loader/pull/287#issuecomment-261269199), **style-loader** is applied when webpack captures a CSS file from a JavaScript import:
+`issuer` can be used to control behavior based on where a resource was imported. In the example below, **style-loader** is applied when webpack captures a CSS file from a JavaScript import:
 
 ```javascript
 const config = {
