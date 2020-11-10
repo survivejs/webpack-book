@@ -56,6 +56,8 @@ To run Mocha against the test, add a script:
 },
 ```
 
+{pagebreak}
+
 If you execute `npm run test:mocha` now, you should see the following output:
 
 ```
@@ -75,8 +77,6 @@ T> `--grep <pattern>` can be used for constraining the behavior if you want to f
 Webpack can provide similar functionality through a web interface. The hard parts of the problem have been solved in the earlier chapters of this book. What remains is combining those solutions through configuration.
 
 To tell webpack which tests to run, they need to be imported somehow. The _Dynamic Loading_ chapter discussed `require.context` that allows to aggregate files based on a rule and it's ideal here.
-
-{pagebreak}
 
 Set up an entry point as follows:
 

@@ -123,6 +123,8 @@ Sometimes modules depend on globals. `$` provided by jQuery is a good example. W
 },
 ```
 
+{pagebreak}
+
 ### Resolving globals
 
 Webpack's `ProvidePlugin` allows webpack to resolve globals as it encounters them:
