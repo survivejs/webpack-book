@@ -180,7 +180,7 @@ Boolean based fields can be used to constrain these matchers further:
 
 ## Branching at `use` using a function
 
-In the book setup, you compose configuration on a higher level. Another option to achieve similar results would be to branch at `use` as webpack's loader definitions accept functions that allow you to branch depending on the environment. Consider the example below:
+In the book setup, you compose configuration on a higher level. Another option to achieve similar results would be to branch at `use` as webpack's loader definitions accept functions that allow you to branch depending on the environment:
 
 ```javascript
 const config = {
@@ -189,8 +189,7 @@ const config = {
   // `resourceQuery` contains possible query passed to it
   // `issuer` tells about match context path
   use: ({ resource, resourceQuery, issuer }) => {
-    // You have to return something falsy, object, or a
-    // string (i.e., "style-loader") from here.
+    // You have to return something falsy, object, or a string
     if (env === "development") {
       return ["css-loader", "style-loader"];
     }
