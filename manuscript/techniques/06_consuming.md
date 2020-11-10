@@ -7,7 +7,7 @@ Sometimes packages have not been packaged the way you expect, and you have to tw
 Sometimes packages do not follow the standard rules and their `package.json` contains a faulty `main` field. It can be missing altogether. `resolve.alias` is the field to use here as in the example below:
 
 ```javascript
-{
+const config = {
   resolve: {
     alias: {
       demo: path.resolve(
@@ -16,7 +16,7 @@ Sometimes packages do not follow the standard rules and their `package.json` con
       ),
     },
   },
-},
+};
 ```
 
 The idea is that if webpack resolver matches `demo` in the beginning, it resolves from the target. You can constrain the process to an exact name by using a pattern like `demo$`.
@@ -43,11 +43,11 @@ T> The same technique works with loaders too. You can use `resolveLoader.alias` 
 By default, webpack will resolve only against `.js`, `.mjs`, and `.json` files while importing without an extension, to tune this to include JSX files, adjust as below:
 
 ```javascript
-{
+const config = {
   resolve: {
     extensions: [".js", ".json", ".jsx"],
   },
-},
+};
 ```
 
 {pagebreak}
@@ -57,11 +57,11 @@ By default, webpack will resolve only against `.js`, `.mjs`, and `.json` files w
 The module resolution process can be altered by changing where webpack looks for modules. By default, it will look only within the `node_modules` directory. If you want to override packages there, you could tell webpack to look into other directories first:
 
 ```javascript
-{
+const config = {
   resolve: {
     modules: ["my_modules", "node_modules"],
   },
-},
+};
 ```
 
 After the change, webpack will try to look into the _my_modules_ directory first. The method can be applicable in large projects where you want to customize behavior.
@@ -82,9 +82,9 @@ Browser dependencies, like jQuery, are often served through publicly available C
 To use this technique, you should first mark the dependency in question as an external:
 
 ```javascript
-externals: {
-  jquery: "jquery",
-},
+const config = {
+  externals: { jquery: "jquery" },
+};
 ```
 
 You still have to point to a CDN and ideally provide a local fallback, so there is something to load if the CDN does not work for the client:
@@ -110,33 +110,26 @@ Sometimes modules depend on globals. `$` provided by jQuery is a good example. W
 [imports-loader](https://www.npmjs.com/package/imports-loader) allows you to inject globals as below:
 
 ```javascript
-{
+const config = {
   module: {
     rules: [
       {
-        // Resolve against a package path.
         test: require.resolve("jquery-plugin"),
         loader: "imports-loader?$=jquery",
       },
     ],
   },
-},
+};
 ```
-
-{pagebreak}
 
 ### Resolving globals
 
 Webpack's `ProvidePlugin` allows webpack to resolve globals as it encounters them:
 
 ```javascript
-{
-  plugins: [
-    new webpack.ProvidePlugin({
-      $: "jquery",
-    }),
-  ],
-},
+const config = {
+  plugins: [new webpack.ProvidePlugin({ $: "jquery" })],
+};
 ```
 
 ### Exposing globals to the browser

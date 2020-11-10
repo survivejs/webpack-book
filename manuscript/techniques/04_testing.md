@@ -78,6 +78,8 @@ Webpack can provide similar functionality through a web interface. The hard part
 
 To tell webpack which tests to run, they need to be imported somehow. The _Dynamic Loading_ chapter discussed `require.context` that allows to aggregate files based on a rule and it's ideal here.
 
+{pagebreak}
+
 Set up an entry point as follows:
 
 **tests/index.js**
@@ -129,8 +131,6 @@ Add a helper script to make it convenient to run:
 },
 ```
 
-T> If you want to understand what `--hot` does better, see the _Hot Module Replacement_ appendix.
-
 If you execute the server now and navigate to `http://localhost:8080/`, you should see the test:
 
 ![Mocha in browser](images/mocha-browser.png)
@@ -144,6 +144,8 @@ Compared to the vanilla Mocha setup, configuring Mocha through webpack comes wit
 
 **mocha-loader** is at its best as a development helper. The problem can be solved by running the tests through a headless browser.
 
+{pagebreak}
+
 ## Jest
 
 Facebook's [Jest](https://facebook.github.io/jest/) is an opinionated alternative that encapsulates functionality, including coverage and mocking, with minimal setup. It can capture snapshots of data making it valuable for projects where you have the behavior you would like to record and retain.
@@ -154,23 +156,19 @@ Jest captures tests through `package.json` [configuration](https://facebook.gith
 
 Porting a webpack setup to Jest requires more effort especially if you rely on webpack specific features. [The official guide](https://jestjs.io/docs/en/webpack.html) covers quite a few of the common problems. You can configure Jest to use Babel through [babel-jest](https://www.npmjs.com/package/babel-jest) as it allows you to use Babel plugins like [babel-plugin-module-resolver](https://www.npmjs.com/package/babel-plugin-module-resolver) to match webpack's functionality.
 
-## AVA
-
-[AVA](https://www.npmjs.com/package/ava) is a test runner that has been designed to take advantage of parallel execution. It comes with a test suite definition of its own. [webpack-ava-recipe](https://github.com/greyepoxy/webpack-ava-recipe) covers how to connect it with webpack.
-
-The main idea is to run both webpack and AVA in watch mode to push the problem of processing code to webpack while allowing AVA to consume the processed code. The `require.context` idea discussed with Mocha comes in handy here as you have to capture tests for webpack to handle somehow.
-
 ## Removing files from tests
 
 If you execute tests through webpack, you may want to alter the way it treats assets like images. You can match them and then use a `noop` function to replace the modules as follows:
 
 ```javascript
-plugins: [
-  new webpack.NormalModuleReplacementPlugin(
-    /\.(gif|png|scss|css)$/,
-    "lodash/noop"
-  ),
-];
+const config = {
+  plugins: [
+    new webpack.NormalModuleReplacementPlugin(
+      /\.(gif|png|scss|css)$/,
+      "lodash/noop"
+    ),
+  ],
+};
 ```
 
 ## Mocking
