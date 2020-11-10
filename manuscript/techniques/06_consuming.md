@@ -114,8 +114,7 @@ Sometimes modules depend on globals. `$` provided by jQuery is a good example. W
   module: {
     rules: [
       {
-        // Resolve against package path.
-        // require.resolve returns a path to it.
+        // Resolve against a package path.
         test: require.resolve("jquery-plugin"),
         loader: "imports-loader?$=jquery",
       },
@@ -123,8 +122,6 @@ Sometimes modules depend on globals. `$` provided by jQuery is a good example. W
   },
 },
 ```
-
-{pagebreak}
 
 ### Resolving globals
 
@@ -181,8 +178,6 @@ const config = {
 ```
 
 T> You can use the same mechanism to work around problematic dependencies. Example: `new webpack.IgnorePlugin({ resourceRegExp: /^(buffertools)$/ })`.
-
-{pagebreak}
 
 To bring specific locales to your project, you should use `ContextReplacementPlugin`:
 

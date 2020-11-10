@@ -14,15 +14,11 @@ In this chapter, you'll see a few ways to run testing tools with webpack as that
 
 {pagebreak}
 
-### Configuring **mocha-loader** with webpack
-
 To get started, include Mocha and **mocha-loader** to your project:
 
 ```bash
 npm add mocha mocha-loader --develop
 ```
-
-### Setting up code to test
 
 To have something to test, set up a function:
 
@@ -46,8 +42,6 @@ describe("Demo", () => {
   });
 });
 ```
-
-{pagebreak}
 
 ### Configuring Mocha
 
