@@ -124,19 +124,16 @@ Then, to get something running, implement a server as follows:
 ```javascript
 const express = require("express");
 const { renderToString } = require("react-dom/server");
-
 const SSR = require("./static");
 
 server(process.env.PORT || 8080);
 
 function server(port) {
   const app = express();
-
   app.use(express.static("static"));
   app.get("/", (req, res) =>
     res.status(200).send(renderMarkup(renderToString(SSR)))
   );
-
   app.listen(port);
 }
 
