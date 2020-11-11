@@ -77,18 +77,17 @@ const combineContexts = (...contexts) => {
         contexts.map((context) => context.keys())
       )
     );
-
   return webpackContext;
 };
 ```
-
-{pagebreak}
 
 ## Dealing with dynamic paths
 
 Given the approaches discussed here rely on static analysis and webpack has to find the files in question, it doesn't work for every possible case. If the files you need are on another server or have to be accessed through a particular end-point, then webpack isn't enough.
 
 Consider using browser-side loaders like [\$script.js](https://www.npmjs.com/package/scriptjs) or [little-loader](https://www.npmjs.com/package/little-loader) on top of webpack in this case.
+
+{pagebreak}
 
 ## Conclusion
 
