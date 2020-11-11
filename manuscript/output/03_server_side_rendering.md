@@ -164,7 +164,9 @@ T> `__non_webpack_require__(path)` allows you to separate imports that should be
 
 ## Prerendering
 
-SSR isn't the only solution to the SEO problem. **Prerendering** is an alternate technique that is easier to implement. The point is to use a headless browser to render the initial HTML markup of the page and then serve that to the crawlers. The caveat is that the approach won't work well with highly dynamic data. The following solutions exist for webpack:
+SSR isn't the only solution to the SEO problem. **Prerendering** is an alternate technique that is easier to implement. The point is to use a headless browser to render the initial HTML markup of the page and then serve that to the crawlers. The caveat is that the approach won't work well with highly dynamic data.
+
+The following solutions exist for webpack:
 
 - [prerender-spa-plugin](https://www.npmjs.com/package/prerender-spa-plugin) uses [Puppeteer](https://www.npmjs.com/package/puppeteer) underneath.
 - [prerender-loader](https://www.npmjs.com/package/prerender-loader) integrates with _html-webpack-plugin_ but also works without it against HTML files. The loader is flexible and can be customized to fit your use case (i.e. React or other framework).
