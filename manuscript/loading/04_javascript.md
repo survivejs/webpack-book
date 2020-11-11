@@ -111,10 +111,6 @@ Adjust the target definition as you like. As long as you follow [browserslist](h
 
 If you execute `npm run build -- --mode none` now and examine _dist/main.js_, you will see something different based on your `.browserslistrc` file.
 
-T> See the _Autoprefixing_ chapter for an expanded discussion of browserslist.
-
-{pagebreak}
-
 Try to include only a definition like `IE 8` there, and the code should change accordingly:
 
 **dist/main.js**
@@ -141,7 +137,7 @@ Note especially how the function was transformed. You can try out different brow
 
 T> [@babel/preset-modules](https://www.npmjs.com/package/@babel/preset-modules) goes beyond **@babel/preset-env** by fixing bugs in modern browsers. A part of the work has been ported to **@babel/preset-env** as well and can be enabled by setting the `bugfixes` flag to `true`. The preset is useful only for modern browsers!
 
-{pagebreak}
+T> See the _Autoprefixing_ chapter for an expanded discussion of browserslist.
 
 ## Polyfilling features
 
@@ -154,8 +150,6 @@ T> [corejs-upgrade-webpack-plugin](https://www.npmjs.com/package/corejs-upgrade-
 W> **core-js** pollutes the global scope with objects like `Promise`. Given this can be problematic for library authors, there's [@babel/plugin-transform-runtime](https://babeljs.io/docs/plugins/transform-runtime/) option. It can be enabled as a Babel plugin, and it avoids the problem of globals by rewriting the code in a such way that they aren't be needed.
 
 W> Certain webpack features, such as _Code Splitting_, write `Promise` based code to webpack's bootstrap after webpack has processed loaders. The problem can be solved by applying a shim before your application code is executed. Example: `entry: { app: ["core-js/es/promise", PATHS.app] }`.
-
-{pagebreak}
 
 ## Babel tips
 
@@ -183,8 +177,6 @@ T> It's possible to connect Babel with Node through [babel-register](https://www
 Babel allows you to control which presets and plugins are used per environment through its [env option](https://babeljs.io/docs/usage/babelrc/#env-option). You can manage Babel's behavior per build target this way.
 
 `env` checks both `NODE_ENV` and `BABEL_ENV` and adds functionality to your build based on that. If both `BABEL_ENV` and `NODE_ENV` are set, the former takes precedence to resolve `env`.
-
-{pagebreak}
 
 Consider the example below:
 
@@ -216,8 +208,6 @@ leanpub-end-insert
 
 T> The way `env` works is subtle. Consider logging `env` and make sure it matches your Babel configuration or otherwise the functionality you expect is not applied to your build.
 
-{pagebreak}
-
 ## Generating differential builds
 
 To benefit from the support for modern language features and to support legacy browsers, it's possible to use webpack to generate two bundles and then write bootstrapping code that's detected by the browsers so that they use the correct ones. Doing this gives smaller bundles for modern browsers while improving JavaScript parsing time. Legacy browsers will still work as well.
@@ -238,8 +228,6 @@ The fallback isn't without problems as in the worst case, it can force the brows
 On webpack side, you will have to take care to generate two builds with differing browserslist definitions and names. In addition, you have to make sure the HTML template receives the `script` tags as above so it's able to load them.
 
 T> [webpack-module-nomodule-plugin](https://www.npmjs.com/package/webpack-module-nomodule-plugin) automates the process of injecting `nomodule` scripts for `html-webpack-plugin`.
-
-{pagebreak}
 
 To give you a better idea on how to implement the technique, consider the following and set up a browserslist as below:
 
@@ -276,8 +264,6 @@ const getConfig = (mode) => {
   }
 };
 ```
-
-{pagebreak}
 
 Above would expect the following target:
 
