@@ -174,6 +174,8 @@ const config = {
 
 Carefully applied, this technique allows different means of composition.
 
+{pagebreak}
+
 ## Loading based on `issuer`
 
 `issuer` can be used to control behavior based on where a resource was imported. In the example below, **style-loader** is applied when webpack captures a CSS file from a JavaScript import:
@@ -201,6 +203,8 @@ const config = {
   ],
 };
 ```
+
+{pagebreak}
 
 ## Loading with `info` object
 
@@ -237,6 +241,8 @@ If you execute code like this, you'll see a print in the console:
 ```
 
 The function is an escape hatch for customizing loaders further.
+
+{pagebreak}
 
 ## Loading based on `resourceQuery`
 
