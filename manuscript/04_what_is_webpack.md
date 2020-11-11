@@ -135,8 +135,6 @@ There's [an official migration guide](https://webpack.js.org/migrate/5/) that li
 
 It's possible that a project will run without any changes to the configuration but that you'll receive deprecation warnings. To find out where they are coming from, use `node --trace-deprecation node_modules/webpack/bin/webpack.js` when running webpack.
 
-{pagebreak}
-
 ## Conclusion
 
 Webpack comes with a significant learning curve. However, it's a tool worth learning, given how much time and effort it can save over the long term. To get a better idea how it compares to others, check out the _Comparison of Build Tools_ appendix.
