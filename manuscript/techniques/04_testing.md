@@ -37,9 +37,7 @@ const assert = require("assert");
 const add = require("./add");
 
 describe("Demo", () => {
-  it("should add correctly", () => {
-    assert.equal(add(1, 1), 2);
-  });
+  it("should add correctly", () => assert.equal(add(1, 1), 2));
 });
 ```
 
@@ -78,8 +76,6 @@ Webpack can provide similar functionality through a web interface. The hard part
 
 To tell webpack which tests to run, they need to be imported somehow. The _Dynamic Loading_ chapter discussed `require.context` that allows to aggregate files based on a rule and it's ideal here.
 
-{pagebreak}
-
 Set up an entry point as follows:
 
 **tests/index.js**
@@ -105,7 +101,6 @@ A small change is required in webpack configuration:
 ```javascript
 const path = require("path");
 const { merge } = require("webpack-merge");
-
 const parts = require("./webpack.parts");
 
 module.exports = merge([
@@ -144,8 +139,6 @@ Compared to the vanilla Mocha setup, configuring Mocha through webpack comes wit
 
 **mocha-loader** is at its best as a development helper. The problem can be solved by running the tests through a headless browser.
 
-{pagebreak}
-
 ## Jest
 
 Facebook's [Jest](https://facebook.github.io/jest/) is an opinionated alternative that encapsulates functionality, including coverage and mocking, with minimal setup. It can capture snapshots of data making it valuable for projects where you have the behavior you would like to record and retain.
@@ -159,8 +152,6 @@ Porting a webpack setup to Jest requires more effort especially if you rely on w
 ## Mocking
 
 Mocking is a technique that allows you to replace test objects. Consider using [Sinon](https://www.npmjs.com/package/sinon) for this purpose as it works well with webpack.
-
-{pagebreak}
 
 ## Removing files from tests
 
