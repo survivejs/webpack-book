@@ -45,6 +45,8 @@ const config = {
 };
 ```
 
+{pagebreak}
+
 Based on the right to left rule, the example can be split up while keeping it equivalent:
 
 ```javascript
@@ -72,9 +74,9 @@ const config = {
 };
 ```
 
-{pagebreak}
-
 It would be possible to write the same configuration without `enforce` if you chained the declaration with other loaders related to the `test` carefully. Using `enforce` removes the necessity for that and allows you to split loader execution into separate stages that are easier to compose.
+
+{pagebreak}
 
 ## Passing parameters to a loader
 
@@ -127,8 +129,6 @@ import "!!url-loader!./bar.png";
 ```
 
 The problem with this approach is that it couples your source with webpack. Nonetheless, it's still an excellent form to know.
-
-{pagebreak}
 
 Since configuration entries go through the same mechanism, the same forms work there as well:
 
@@ -187,8 +187,6 @@ const config = {
   ],
 };
 ```
-
-{pagebreak}
 
 Another approach would be to mix `issuer` and `not`:
 
@@ -255,8 +253,6 @@ const config = {
 ```
 
 If you wanted to embed the context information to the filename, the rule could use `resourcePath` over `resourceQuery`.
-
-{pagebreak}
 
 ## Understanding loader behavior
 
