@@ -98,6 +98,8 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mai
 /***/ }),
 ```
 
+{pagebreak}
+
 ### `devtool: "cheap-eval-source-map"`
 
 `cheap-eval-source-map` goes a step further and it includes base64 encoded version of the code as a data url. The result contains only line data while losing column mappings. If you decode the resulting base64 string, you get following output:
