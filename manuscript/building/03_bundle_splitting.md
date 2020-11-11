@@ -89,6 +89,8 @@ Now the bundles look the same as in the image above.
 
 T> The `chunks: "initial"` option doesn't apply to code-split modules while `all` does.
 
+{pagebreak}
+
 ## Controlling bundle splitting
 
 The configuration above can be rewritten with an explicit test against `node_modules` as below to gain more control:
@@ -128,6 +130,8 @@ const config = {
   },
 };
 ```
+
+{pagebreak}
 
 ## Splitting and merging chunks
 
