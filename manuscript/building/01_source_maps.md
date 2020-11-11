@@ -33,9 +33,7 @@ To get started, you can wrap the core idea within a configuration part. You can 
 **webpack.parts.js**
 
 ```javascript
-exports.generateSourceMaps = ({ type }) => ({
-  devtool: type,
-});
+exports.generateSourceMaps = ({ type }) => ({ devtool: type });
 ```
 
 Webpack supports a wide variety of source map types. These vary based on quality and build speed. For now, you enable `source-map` for production and let webpack use the default for development. Set it up as follows:
@@ -54,8 +52,6 @@ leanpub-end-insert
 `source-map` is the slowest and highest quality option of them all, but that's fine for a production build.
 
 If you build the project now (`npm run build`), you should see source maps in the project output at the `dist` directory. Take a good look at those _.map_ files. That's where the mapping between the generated and the source happens. During development, it writes the mapping information in the bundle.
-
-{pagebreak}
 
 ### Enabling source maps in browsers
 
