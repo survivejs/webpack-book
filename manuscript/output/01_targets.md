@@ -10,8 +10,6 @@ Webpack uses the _web_ target by default. The target is ideal for a web applicat
 
 Starting from webpack 5, the default is set to _browserslist_ in case a browserslist configuration has been found. The change means that webpack will compile its runtime to match the setting instead of generating code that will work in legacy browsers as well. Webpack can target specific language specifications (i.e. `es2020`) and also an array of targets is possible (i.e. `["web", "es2020"]`).
 
-{pagebreak}
-
 ### Web workers
 
 The _webworker_ target wraps your application as a [web worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API). Using web workers is valuable if you want to execute computation outside of the main thread of the application without slowing down the user interface. There are a couple of limitations you should be aware of:
