@@ -174,14 +174,6 @@ It's possible to get good caching behavior with these plugins if a webpack **rec
 
 T> Tobias Koppers discusses [aggressive merging in detail at the official blog of webpack](https://medium.com/webpack/webpack-http-2-7083ec3f3ce6).
 
-## Chunk types in webpack
-
-In the example above, you used different types of webpack chunks. Webpack treats chunks in three types:
-
-- **Entry chunks** contain webpack runtime and modules it then loads.
-- **Normal chunks** **don't** contain webpack runtime. Instead, these can be loaded dynamically while the application is running. A suitable wrapper (JSONP for example) is generated for these. You generate a normal chunk in the next chapter as you set up code splitting.
-- **Initial chunks** are normal chunks that count towards initial loading time of the application. As a user, you don't have to care about these. It's the split between entry chunks and normal chunks that is important.
-
 ## Bundle splitting at entry configuration
 
 Starting from webpack 5, it's possible to define bundle splitting using entries:
@@ -201,6 +193,14 @@ const config = {
 If you have this configuration in place, you can drop `optimization.splitChunks` and the output should still be the same.
 
 W> To use the approach with **webpack-plugin-serve**, you'll have to inject `webpack-plugin-serve/client` within `app.import` in this case.
+
+## Chunk types in webpack
+
+In the example above, you used different types of webpack chunks. Webpack treats chunks in three types:
+
+- **Entry chunks** contain webpack runtime and modules it then loads.
+- **Normal chunks** **don't** contain webpack runtime. Instead, these can be loaded dynamically while the application is running. A suitable wrapper (JSONP for example) is generated for these. You generate a normal chunk in the next chapter as you set up code splitting.
+- **Initial chunks** are normal chunks that count towards initial loading time of the application. As a user, you don't have to care about these. It's the split between entry chunks and normal chunks that is important.
 
 ## Conclusion
 
