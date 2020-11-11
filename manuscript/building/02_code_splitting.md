@@ -82,9 +82,7 @@ export default (text = "Hello world") => {
       .then((lazy) => {
         element.textContent = lazy.default;
       })
-      .catch((err) => {
-        console.error(err);
-      });
+      .catch((err) => console.error(err));
 
   return element;
 };
@@ -135,8 +133,6 @@ There are React specific solutions that wrap the pattern behind a small npm pack
 - [react-imported-component](https://www.npmjs.com/package/react-imported-component) is another full featured solution based on hooks.
 - See [React's official documentation](https://reactjs.org/docs/code-splitting.html) to learn about the code splitting APIs included out of the box. The most important ones are `React.lazy` and `React.Suspense`. Currently these don't support server-side rendering.
 
-{pagebreak}
-
 ## Disabling code splitting
 
 Although code splitting is a good behavior to have by default, it's not correct always, especially on server-side usage. For this reason, it can be disabled as below:
@@ -144,9 +140,7 @@ Although code splitting is a good behavior to have by default, it's not correct 
 ```javascript
 const config = {
   plugins: [
-    new webpack.optimize.LimitChunkCountPlugin({
-      maxChunks: 1,
-    }),
+    new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
   ],
 };
 ```
@@ -156,8 +150,6 @@ T> See [Glenn Reyes' detailed explanation](https://medium.com/@glennreyes/how-to
 ## Machine learning driven prefetching
 
 Often users use an application in a specific way. The fact means that it makes sense to load specific portions of the application even before the user has accessed them. [guess-webpack](https://www.npmjs.com/package/guess-webpack) builds on this idea of prediction based preloading. [Minko Gechev explains the approach in detail in his article](https://blog.mgechev.com/2018/03/18/machine-learning-data-driven-bundling-webpack-javascript-markov-chain-angular-react/).
-
-{pagebreak}
 
 ## Conclusion
 
