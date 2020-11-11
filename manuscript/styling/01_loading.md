@@ -30,10 +30,7 @@ Add a new function at the end of the part definition:
 exports.loadCSS = () => ({
   module: {
     rules: [
-      {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"],
-      },
+      { test: /\.css$/, use: ["style-loader", "css-loader"] },
     ],
   },
 });
