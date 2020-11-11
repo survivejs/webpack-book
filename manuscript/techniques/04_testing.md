@@ -76,6 +76,8 @@ Webpack can provide similar functionality through a web interface. The hard part
 
 To tell webpack which tests to run, they need to be imported somehow. The _Dynamic Loading_ chapter discussed `require.context` that allows to aggregate files based on a rule and it's ideal here.
 
+{pagebreak}
+
 Set up an entry point as follows:
 
 **tests/index.js**
