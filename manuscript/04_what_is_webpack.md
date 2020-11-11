@@ -60,13 +60,13 @@ A good example is bundle extraction performed by the `MiniCssExtractPlugin` whic
 
 After every module has been evaluated, webpack writes **output**. The output includes a bootstrap script. It is a small runtime that executes the result in a browser and a manifest listing bundles to load.
 
-The manifest can be extracted to a file of its own, as discussed later in the book. The output differs based on the build target you are using (targeting the web is not the only option).
+The manifest can be extracted to a file of its own, as discussed later in the book. The output differs based on the build target you are using as web isn't the only option.
 
 That's not all there is to the bundling process. For example, you can define specific **split points** where webpack generates separate bundles that are loaded based on application logic. This idea is discussed in the _Code Splitting_ chapter.
 
 ## Webpack is configuration driven
 
-At its core, webpack relies on configuration. Here is a sample covering the main points:
+At its core, webpack relies on configuration as in the sample below:
 
 **webpack.config.js**
 
@@ -75,40 +75,27 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
-  // Where to start bundling
-  entry: { app: "./entry.js" },
+  entry: { app: "./entry.js" }, // Start bundling
   output: {
     // Where to output
     path: path.join(__dirname, "dist"),
-
-    // Capture name from the entry using a pattern
-    // In the example, it will result as app.js.
+    // Capture name from the entry. Here it will emit app.js.
     filename: "[name].js",
   },
-  // How to resolve encountered imports
+  // Resolve encountered imports
   module: {
     rules: [
-      {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"],
-      },
-      {
-        test: /\.js$/,
-        use: "babel-loader",
-        exclude: /node_modules/,
-      },
+      { test: /\.css$/, use: ["style-loader", "css-loader"] },
+      { test: /\.js$/, use: "swc-loader", exclude: /node_modules/ },
     ],
   },
+  // Perform additional processing
   plugins: [
-    // What extra processing to perform
     new webpack.DefinePlugin({ HELLO: "hello from config" }),
   ],
+  // Adjust module resolution algorithm
   resolve: {
-    // Adjust module resolution algorithm
-    alias: {
-      react: "preact-compat",
-      "react-dom": "preact-compat",
-    },
+    alias: { react: "preact-compat", "react-dom": "preact-compat" },
   },
 };
 ```
@@ -126,8 +113,6 @@ With webpack, you can inject a hash to each bundle name (e.g., _app.d587bbd6.js_
 ## Hot Module Replacement
 
 You are likely familiar with tools, such as [LiveReload](http://livereload.com/) or [BrowserSync](http://www.browsersync.io/), already. These tools refresh the browser automatically as you make changes. _Hot Module Replacement_ (HMR) takes things one step further. In the case of React, it allows the application to maintain its state without forcing a refresh. While this does not sound all that special, it can make a big difference in practice.
-
-HMR is also available in Browserify via [livereactload](https://github.com/milankinen/livereactload), so it's not a webpack exclusive feature.
 
 ## Code splitting
 
