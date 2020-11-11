@@ -19,9 +19,7 @@ const productionConfig = merge([
         ...
       },
 leanpub-start-insert
-      runtimeChunk: {
-        name: "runtime",
-      },
+      runtimeChunk: { name: "runtime" },
 leanpub-end-insert
     },
   },
@@ -71,13 +69,10 @@ leanpub-end-insert
 ...
 
 const productionConfig = merge([
-  {
-    ...
-leanpub-start-insert
-    recordsPath: path.join(__dirname, "records.json"),
-leanpub-end-insert
-  },
   ...
+leanpub-start-insert
+  { recordsPath: path.join(__dirname, "records.json") },
+leanpub-end-insert
 ]);
 ```
 

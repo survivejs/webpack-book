@@ -23,12 +23,9 @@ Next, you need to define a function to wrap the basic idea. You could use the pl
 **webpack.parts.js**
 
 ```javascript
-...
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
-exports.clean = () => ({
-  plugins: [new CleanWebpackPlugin()],
-});
+exports.clean = () => ({ plugins: [new CleanWebpackPlugin()] });
 ```
 
 For the plugin to work, we'll have to set project output path explicitly. Connect the configuration as follows:
@@ -36,16 +33,11 @@ For the plugin to work, we'll have to set project output path explicitly. Connec
 **webpack.config.js**
 
 ```javascript
-...
 const path = require("path");
 
 const commonConfig = merge([
 leanpub-start-insert
-  {
-    output: {
-      path: path.resolve(process.cwd(), "dist"),
-    },
-  },
+  { output: { path: path.resolve(process.cwd(), "dist") } },
   parts.clean(),
 leanpub-end-insert
   ...
@@ -73,7 +65,6 @@ Then define a part to wrap the idea:
 **webpack.parts.js**
 
 ```javascript
-...
 const webpack = require("webpack");
 const GitRevisionPlugin = require("git-revision-webpack-plugin");
 

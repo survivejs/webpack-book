@@ -32,9 +32,7 @@ To attach it to the configuration, define a part for it first:
 const TerserPlugin = require("terser-webpack-plugin");
 
 exports.minifyJavaScript = () => ({
-  optimization: {
-    minimizer: [new TerserPlugin()],
-  },
+  optimization: { minimizer: [new TerserPlugin()] },
 });
 ```
 
@@ -118,11 +116,7 @@ const productionConfig = merge([
   ...
   parts.minifyJavaScript(),
 leanpub-start-insert
-  parts.minifyCSS({
-    options: {
-      preset: ["default"],
-    },
-  }),
+  parts.minifyCSS({ options: { preset: ["default"] } }),
 leanpub-end-insert
   ...
 ]);
