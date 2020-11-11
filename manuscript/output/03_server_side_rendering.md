@@ -64,9 +64,7 @@ if (typeof document === "undefined") {
 }
 ```
 
-You are still missing webpack configuration to turn this file into something the server can pick up.
-
-W> Given ES2015 style imports and CommonJS exports cannot be mixed, the entry point was written in CommonJS style.
+Given ES2015 style imports and CommonJS exports cannot be mixed, the entry point was written in CommonJS style.
 
 ## Configuring webpack
 
