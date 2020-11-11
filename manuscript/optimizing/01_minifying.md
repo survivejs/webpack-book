@@ -118,8 +118,6 @@ leanpub-end-insert
 ]);
 ```
 
-{pagebreak}
-
 If you build the project now (`npm run build`), you should notice that CSS has become smaller as it's missing comments and has been concatenated:
 
 ```bash
