@@ -128,9 +128,7 @@ const {
 module.exports = {
   mode,
   plugins: [
-    new MiniHtmlWebpackPlugin({
-      context: { title: "Webpack demo" },
-    }),
+    new MiniHtmlWebpackPlugin({ context: { title: "Demo" } }),
   ],
 };
 ```

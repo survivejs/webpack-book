@@ -58,7 +58,7 @@ To incorporate the idea into the configuration, the way it's composed has to cha
 const commonConfig = merge([
 leanpub-start-delete
   { entry: ["./src"] },
-  parts.page({ title: "Webpack demo" }),
+  parts.page({ title: "Demo" }),
 leanpub-end-delete
   ...
 ]);
@@ -68,7 +68,7 @@ const getConfig = mode => {
   const pages = [
     merge(
       parts.entry({ name: "app", path: "./src", mode }),
-      parts.page({ title: "Webpack demo" })
+      parts.page({ title: "Demo" })
     ),
   ];
   let config;
@@ -137,7 +137,7 @@ leanpub-start-delete
   const pages = [
     merge(
       parts.entry({ name: "app", path: "./src", mode }),
-      parts.page({ title: "Webpack demo" })
+      parts.page({ title: "Demo" })
     )
   ];
 leanpub-end-delete
@@ -149,7 +149,7 @@ leanpub-start-insert
         path: path.join(__dirname, "src", "index.js"),
         mode
       }),
-      parts.page({ title: "Webpack demo" }),
+      parts.page({ title: "Demo" }),
     ),
     merge(
       parts.entry({
@@ -157,7 +157,7 @@ leanpub-start-insert
         path: path.join(__dirname, "src", "another.js"),
         mode
       }),
-      parts.page({ title: "Another demo" }),
+      parts.page({ title: "Demo" }),
     ),
   ];
 leanpub-end-insert
@@ -202,11 +202,11 @@ const getConfig = (mode) => {
     merge(
       parts.entry({ ... }),
 leanpub-start-delete
-      parts.page({ title: "Webpack demo" }),
+      parts.page({ title: "Demo" }),
 leanpub-end-delete
 leanpub-start-insert
       parts.page({
-        title: "Webpack demo",
+        title: "Demo",
         chunks: ["app", "runtime", "vendor"],
       }),
 leanpub-end-insert
