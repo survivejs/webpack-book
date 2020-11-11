@@ -46,14 +46,13 @@ Next, the React code needs a small entry point. If you are on the browser side, 
 
 {pagebreak}
 
-Adjust as follows:
+Given ES2015 style imports and CommonJS exports cannot be mixed, the entry point was written in CommonJS style. Adjust as follows:
 
 **src/ssr.js**
 
 ```javascript
 const React = require("react");
 const ReactDOM = require("react-dom");
-
 const SSR = <div onClick={() => alert("hello")}>Hello world</div>;
 
 // Render only in the browser, export otherwise
@@ -63,8 +62,6 @@ if (typeof document === "undefined") {
   ReactDOM.hydrate(SSR, document.getElementById("app"));
 }
 ```
-
-Given ES2015 style imports and CommonJS exports cannot be mixed, the entry point was written in CommonJS style.
 
 ## Configuring webpack
 
