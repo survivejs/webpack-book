@@ -227,7 +227,7 @@ The fallback isn't without problems as in the worst case, it can force the brows
 
 On webpack side, you will have to take care to generate two builds with differing browserslist definitions and names. In addition, you have to make sure the HTML template receives the `script` tags as above so it's able to load them.
 
-T> [webpack-module-nomodule-plugin](https://www.npmjs.com/package/webpack-module-nomodule-plugin) automates the process of injecting `nomodule` scripts for `html-webpack-plugin`.
+{pagebreak}
 
 To give you a better idea on how to implement the technique, consider the following and set up a browserslist as below:
 
@@ -252,11 +252,9 @@ const getConfig = (mode) => {
   switch (mode) {
     case "production:legacy":
       process.env.BROWSERSLIST_ENV = 'legacy';
-
       return merge(commonConfig, productionConfig, { mode });
     case "production:modern":
       process.env.BROWSERSLIST_ENV = 'modern';
-
       return merge(commonConfig, productionConfig, { mode });
     ...
     default:
@@ -264,6 +262,8 @@ const getConfig = (mode) => {
   }
 };
 ```
+
+{pagebreak}
 
 Above would expect the following target:
 
