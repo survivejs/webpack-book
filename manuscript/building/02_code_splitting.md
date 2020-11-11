@@ -57,7 +57,7 @@ The code above creates separate bundles to a request. If you wanted only one, yo
 
 W> The syntax works only with JavaScript after configuring it the right way. If you use another environment, you may have to use alternatives covered in the following sections.
 
-### Defining a Split Point Using a Dynamic `import`
+### Defining a split point using a dynamic `import`
 
 The idea can be demonstrated by setting up a module that contains a string that replaces the text of the demo button:
 
