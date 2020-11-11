@@ -91,7 +91,7 @@ T> `chunks: "initial"` would give the same result in this case. You can see the 
 
 ## Controlling bundle splitting
 
-The configuration above can be rewritten with an explicit test against `node_modules` as below:
+The configuration above can be rewritten with an explicit test against `node_modules` as below to gain more control:
 
 **webpack.config.js**
 
@@ -115,8 +115,6 @@ leanpub-start-insert
 leanpub-end-insert
 ]);
 ```
-
-Following this format gives you more control over the splitting process if you don't prefer to rely on automation.
 
 Starting from webpack 5, there's more control over chunking based on asset type:
 
