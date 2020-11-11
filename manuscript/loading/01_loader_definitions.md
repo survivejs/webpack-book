@@ -58,10 +58,8 @@ Linting is a good example because the build should fail before it does anything 
 
 ```javascript
 const config = {
-  // Conditions
   test: /\.js$/,
   enforce: "pre", // "post" too
-  // Actions
   use: "eslint-loader",
 };
 ```
@@ -74,9 +72,7 @@ There's a query format that allows passing parameters to loaders:
 
 ```javascript
 const config = {
-  // Conditions
   test: /\.js$/,
-  // Actions
   use: "babel-loader?presets[]=env",
 };
 ```
@@ -87,9 +83,7 @@ It's preferable to go through `use`:
 
 ```javascript
 const config = {
-  // Conditions
   test: /\.js$/,
-  // Actions
   use: { loader: "babel-loader", options: { presets: ["env"] } },
 };
 ```
