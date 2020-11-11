@@ -28,8 +28,6 @@ const config = {
 };
 ```
 
-T> If you are not sure how a particular RegExp matches, consider using an online tool, such as [regex101](https://regex101.com/), [RegExr](http://regexr.com/), [Regexper](https://regexper.com) or [ExtendsClass RegEx Tester](https://extendsclass.com/regex-tester.html).
-
 T> In webpack 5, there's an experimental syntax available. To access it, set `experiments.assets` to `true`. After that you can use `type: "asset"` instead of having to define a loader and webpack will do the right thing out of the box. webpack's [simple asset example](https://github.com/webpack/webpack/tree/master/examples/asset-simple) and [complex asset example](https://github.com/webpack/webpack/tree/master/examples/asset-advanced) illustrate the usage.
 
 ## Loader evaluation order
@@ -45,8 +43,6 @@ const config = {
 };
 ```
 
-{pagebreak}
-
 Based on the right to left rule, the example can be split up while keeping it equivalent:
 
 ```javascript
@@ -55,6 +51,8 @@ const config = [
   { test: /\.css$/, use: "css-loader" },
 ];
 ```
+
+T> If you are not sure how a particular RegExp matches, consider using an online tool, such as [regex101](https://regex101.com/), [RegExr](http://regexr.com/), [Regexper](https://regexper.com) or [ExtendsClass RegEx Tester](https://extendsclass.com/regex-tester.html).
 
 ### Enforcing order
 
@@ -204,7 +202,21 @@ const config = {
 };
 ```
 
-{pagebreak}
+## Loading based on `resourceQuery`
+
+`oneOf` field makes it possible to route webpack to a specific loader based on a resource related match:
+
+```javascript
+const config = {
+  test: /\.png$/,
+  oneOf: [
+    { resourceQuery: /inline/, use: "url-loader" },
+    { resourceQuery: /external/, use: "file-loader" },
+  ],
+};
+```
+
+If you wanted to embed the context information to the filename, the rule could use `resourcePath` over `resourceQuery`.
 
 ## Loading with `info` object
 
@@ -239,26 +251,6 @@ If you execute code like this, you'll see a print in the console:
   compiler: 'mini-css-extract-plugin /webpack-demo/node_modules/css-loader/dist/cjs.js!/webpack-demo/node_modules/postcss-loader/src/index.js??ref--4-2!/webpack-demo/node_modules/postcss-loader/src/index.js??ref--4-3!/webpack-demo/src/main.css'
 }
 ```
-
-The function is an escape hatch for customizing loaders further.
-
-{pagebreak}
-
-## Loading based on `resourceQuery`
-
-`oneOf` field makes it possible to route webpack to a specific loader based on a resource related match:
-
-```javascript
-const config = {
-  test: /\.png$/,
-  oneOf: [
-    { resourceQuery: /inline/, use: "url-loader" },
-    { resourceQuery: /external/, use: "file-loader" },
-  ],
-};
-```
-
-If you wanted to embed the context information to the filename, the rule could use `resourcePath` over `resourceQuery`.
 
 ## Understanding loader behavior
 
