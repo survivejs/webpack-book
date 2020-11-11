@@ -87,8 +87,6 @@ Now the bundles look the way they should. The image below illustrates the curren
 
 T> `chunks: "initial"` would give the same result in this case. You can see the difference after _Code Splitting_ as the `all` option is able to extract commonalities even chunks that have been code split while `initial` doesn't go as far.
 
-{pagebreak}
-
 ## Controlling bundle splitting
 
 The configuration above can be rewritten with an explicit test against `node_modules` as below:
@@ -118,19 +116,14 @@ leanpub-end-insert
 
 Following this format gives you more control over the splitting process if you don't prefer to rely on automation.
 
-{pagebreak}
-
 Starting from webpack 5, there's more control over chunking based on asset type:
 
 ```javascript
 const config = {
   optimization: {
     splitChunks: {
-      minSize: {
-        javascript: 20000,
-        // This type is injected by mini-css-extract-plugin
-        "css/mini-extra": 10000,
-      },
+      // css/mini-extra is injected by mini-css-extract-plugin
+      minSize: { javascript: 20000, "css/mini-extra": 10000 },
     },
   },
 };
@@ -176,8 +169,6 @@ It's possible to get good caching behavior with these plugins if a webpack **rec
 `webpack.optimize` contains `LimitChunkCountPlugin` and `MinChunkSizePlugin` which give further control over chunk size.
 
 T> Tobias Koppers discusses [aggressive merging in detail at the official blog of webpack](https://medium.com/webpack/webpack-http-2-7083ec3f3ce6).
-
-{pagebreak}
 
 ## Chunk types in webpack
 
