@@ -87,6 +87,8 @@ Now the bundles look the way they should. The image above illustrates the curren
 
 T> `chunks: "initial"` would give the same result in this case. You can see the difference after _Code Splitting_ as the `all` option is able to extract commonalities even chunks that have been code split while `initial` doesn't go as far.
 
+{pagebreak}
+
 ## Controlling bundle splitting
 
 The configuration above can be rewritten with an explicit test against `node_modules` as below:
@@ -174,13 +176,13 @@ T> Tobias Koppers discusses [aggressive merging in detail at the official blog o
 
 In the example above, you used different types of webpack chunks. Webpack treats chunks in three types:
 
-- **Entry chunks** - Entry chunks contain webpack runtime and modules it then loads.
-- **Normal chunks** - Normal chunks **don't** contain webpack runtime. Instead, these can be loaded dynamically while the application is running. A suitable wrapper (JSONP for example) is generated for these. You generate a normal chunk in the next chapter as you set up code splitting.
-- **Initial chunks** - Initial chunks are normal chunks that count towards initial loading time of the application. As a user, you don't have to care about these. It's the split between entry chunks and normal chunks that is important.
+- **Entry chunks** contain webpack runtime and modules it then loads.
+- **Normal chunks** **don't** contain webpack runtime. Instead, these can be loaded dynamically while the application is running. A suitable wrapper (JSONP for example) is generated for these. You generate a normal chunk in the next chapter as you set up code splitting.
+- **Initial chunks** are normal chunks that count towards initial loading time of the application. As a user, you don't have to care about these. It's the split between entry chunks and normal chunks that is important.
 
 ## Bundle splitting at entry configuration
 
-Starting from webpack 5, it's possible to define bundle splitting using entry configuration:
+Starting from webpack 5, it's possible to define bundle splitting using entries:
 
 ```javascript
 const config = {
@@ -196,9 +198,7 @@ const config = {
 
 If you have this configuration in place, you can drop `optimization.splitChunks` and the output should still be the same.
 
-W> To use the approach with **webpack-plugin-serve**, you'll have to inject `webpack-plugin-serve/client` within `app.import` in this case. Doing this will require an extra check in `addEntryToAll`. The function was introduced in the _Multiple Pages_ chapter.
-
-T> [webpack-cascade-optimizer-plugin](https://www.npmjs.com/package/webpack-cascade-optimizer-plugin) provides an approach of distributing code along output files in a smart order. The plugin allows you to get the benefits of bundle splitting without splitting.
+W> To use the approach with **webpack-plugin-serve**, you'll have to inject `webpack-plugin-serve/client` within `app.import` in this case.
 
 ## Conclusion
 
