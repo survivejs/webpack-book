@@ -52,6 +52,8 @@ As you can see, _main.js_ is big. That is something to fix next.
 
 ## Setting up a `vendor` bundle
 
+![Main and vendor bundles after applying configuration](images/bundle_02.png)
+
 Before webpack 4, there used to be `CommonsChunkPlugin` for managing bundle splitting. The plugin has been replaced with automation and configuration. To extract a vendor bundle from the `node_modules` directory, adjust the code as follows:
 
 **webpack.config.js**
@@ -81,9 +83,7 @@ If you try to generate a build now (`npm run build`), you should see something a
   webpack 5.1.3 compiled successfully in 4847 ms
 ```
 
-Now the bundles look the way they should. The image below illustrates the current situation.
-
-![Main and vendor bundles after applying configuration](images/bundle_02.png)
+Now the bundles look the way they should. The image above illustrates the current situation.
 
 T> `chunks: "initial"` would give the same result in this case. You can see the difference after _Code Splitting_ as the `all` option is able to extract commonalities even chunks that have been code split while `initial` doesn't go as far.
 
