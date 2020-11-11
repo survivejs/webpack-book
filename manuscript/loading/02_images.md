@@ -28,11 +28,7 @@ exports.loadImages = ({ limit } = {}) => ({
       {
         test: /\.(png|jpg)$/,
         type: "asset",
-        parser: {
-          dataUrlCondition: {
-            maxSize: limit,
-          },
-        },
+        parser: { dataUrlCondition: { maxSize: limit } },
       },
     ],
   },

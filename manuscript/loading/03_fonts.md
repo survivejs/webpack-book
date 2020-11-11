@@ -15,11 +15,7 @@ const config = {
   test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/, // Match .woff?v=1.1.1.
   use: {
     type: "asset",
-    parser: {
-      dataUrlCondition: {
-        maxSize: 50000, // Inline up to 50k
-      },
-    },
+    parser: { dataUrlCondition: { maxSize: 50000 } }, // Inline up to 50k
   },
 };
 ```

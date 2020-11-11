@@ -61,11 +61,8 @@ const APP_SOURCE = path.join(__dirname, "src");
 exports.loadJavaScript = () => ({
   module: {
     rules: [
-      {
-        test: /\.js$/,
-        include: APP_SOURCE, // Consider extracting as a parameter
-        use: "babel-loader",
-      },
+      // Consider extracting include as a parameter
+      { test: /\.js$/, include: APP_SOURCE, use: "babel-loader" },
     ],
   },
 });
@@ -108,14 +105,7 @@ Adjust the target definition as you like. As long as you follow [browserslist](h
 
 ```json
 {
-  "presets": [
-    [
-      "@babel/preset-env",
-      {
-        "modules": false
-      }
-    ]
-  ]
+  "presets": [["@babel/preset-env", { "modules": false }]]
 }
 ```
 
@@ -202,14 +192,7 @@ Consider the example below:
 
 ```json
 {
-  ...
-  "env": {
-    "development": {
-      "plugins": [
-        "annotate-console-log"
-      ]
-    }
-  }
+  "env": { "development": { "plugins": ["annotate-console-log"] } }
 }
 ```
 
@@ -340,12 +323,7 @@ If you run webpack in watch mode or through **webpack-dev-server**, by default c
 **tsconfig.json**
 
 ```json
-{
-  "ts-node": {
-    "logError": true,
-    "transpileOnly": true
-  }
-}
+{ "ts-node": { "logError": true, "transpileOnly": true } }
 ```
 
 Especially the `logError` portion is important as without this **ts-node** would crash the build on error. `transpileOnly` is useful to set if you want to handle type-checking outside of the process. For example, you could run `tsc` using a separate script. Often editor tooling can catch type issues as you are developing as well eliminating the need to check through **ts-node**.
