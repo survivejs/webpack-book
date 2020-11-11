@@ -43,14 +43,10 @@ To attach it to the configuration, adjust as follows:
 const commonConfig = merge([
   ...
 leanpub-start-insert
-  parts.loadImages({
-    limit: 15000,
-  }),
+  parts.loadImages({ limit: 15000 }),
 leanpub-end-insert
 ]);
 ```
-
-{pagebreak}
 
 To test that the setup works, download an image or generate it (`convert -size 100x100 gradient:blue logo.png`) and refer to it from the project:
 
@@ -79,17 +75,12 @@ In case you want to compress your images, use [image-webpack-loader](https://www
 
 Compression is particularly valuable for production builds as it decreases the amount of bandwidth required to download your image assets and speed up your site or application as a result.
 
-{pagebreak}
-
 ## Loading SVGs
 
 Webpack allows a [couple ways](https://github.com/webpack/webpack/issues/595) to load SVGs. However, the easiest way is to set `type` as follows:
 
 ```javascript
-{
-  test: /\.svg$/,
-  type: "asset",
-},
+const config = { test: /\.svg$/, type: "asset" };
 ```
 
 Assuming you have set up your styling correctly, you can refer to your SVG files as below. The example SVG path below is relative to the CSS file:
