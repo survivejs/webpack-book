@@ -87,12 +87,7 @@ The configuration is a subset of what we've used in the book so far. It relies o
 {
   "presets": [
     "@babel/preset-react",
-    [
-      "@babel/preset-env",
-      {
-        "modules": false
-      }
-    ]
+    ["@babel/preset-env", { "modules": false }]
   ]
 }
 ```

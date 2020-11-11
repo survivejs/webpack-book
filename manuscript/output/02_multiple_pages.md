@@ -111,8 +111,6 @@ document.body.appendChild(demoComponent);
 
 The file could go to a directory of its own. Here the existing code is reused to get something to show up.
 
-{pagebreak}
-
 Webpack configuration has to point to this file still:
 
 **webpack.config.js**
@@ -120,12 +118,8 @@ Webpack configuration has to point to this file still:
 ```javascript
 const commonConfig = merge([
 leanpub-start-insert
-  {
-    output: {
-      // Needed for code splitting to work in nested paths
-      publicPath: "/",
-    },
-  },
+  // Needed for code splitting to work in nested paths
+  { output: { publicPath: "/" } },
 leanpub-end-insert
   ...
 ]);
