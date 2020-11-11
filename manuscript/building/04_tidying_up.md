@@ -46,8 +46,6 @@ leanpub-end-insert
 
 After this change, the `build` directory should remain tidy while building and developing. You can verify this by building the project and making sure no old files remained in the output directory.
 
-{pagebreak}
-
 ## Attaching a revision to the build
 
 Attaching information related to the current build revision to the build files themselves can be used for debugging. [webpack.BannerPlugin](https://webpack.js.org/plugins/banner-plugin/) allows you to achieve this. It can be used in combination with [git-revision-webpack-plugin](https://www.npmjs.com/package/git-revision-webpack-plugin) to generate a small comment at the beginning of the generated files.
@@ -76,8 +74,6 @@ exports.attachRevision = () => ({
   ],
 });
 ```
-
-{pagebreak}
 
 And connect it to the main configuration:
 
