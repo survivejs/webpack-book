@@ -7,7 +7,7 @@ Using webpack can lead to a variety of runtime warnings or errors. Often a parti
 3. Try to understand where the error stems. Does it come from your code, a dependency, or webpack?
 4. Remove code until the error goes away and add code back till it appears again. Simplify as much as possible to isolate the problem.
 5. If the code worked in another project, figure out what's different. It's possible the dependencies between the projects vary, or the setup differs somehow. At the worst case, a package you rely upon has gained a regression. Using a `lockfile` is a good idea for this reason.
-6. Study the related packages carefully. Sometimes looking into the package `package.json` can yield insight. It's possible the package you are using does not resolve the way you expect.
+6. Study the related packages carefully. Looking into the package `package.json` can yield insight. It's possible the package you are using does not resolve the way you expect.
 7. Search for the error online. Perhaps someone else has run into it. [Stack Overflow](https://stackoverflow.com/questions/tagged/webpack) and [the official issue tracker](https://github.com/webpack/webpack/issues) are good starting points.
 8. Enable `stats: "verbose"` to get more information out of webpack. The [official documentation covers more flags](https://webpack.js.org/configuration/stats/).
 9. Add a temporary `console.log` near the error to get more insight into the problem. A heavier option is to [debug webpack through Chrome Dev Tools](https://medium.com/webpack/webpack-bits-learn-and-debug-webpack-with-chrome-dev-tools-da1c5b19554).
