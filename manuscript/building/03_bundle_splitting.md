@@ -67,6 +67,8 @@ leanpub-end-insert
 ]);
 ```
 
+{pagebreak}
+
 If you try to generate a build now (`npm run build`), you should see something along this:
 
 ```bash
@@ -83,11 +85,9 @@ If you try to generate a build now (`npm run build`), you should see something a
   webpack 5.1.3 compiled successfully in 4847 ms
 ```
 
-Now the bundles look the way they should. The image above illustrates the current situation.
+Now the bundles look the same as in the image above.
 
-T> `chunks: "initial"` would give the same result in this case. You can see the difference after _Code Splitting_ as the `all` option is able to extract commonalities even chunks that have been code split while `initial` doesn't go as far.
-
-{pagebreak}
+T> The `chunks: "initial"` option doesn't apply to code-split modules while `all` does.
 
 ## Controlling bundle splitting
 
