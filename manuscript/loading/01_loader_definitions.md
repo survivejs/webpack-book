@@ -15,11 +15,9 @@ const config = {
       {
         // **Conditions** to match files using RegExp, function.
         test: /\.js$/,
-
         // **Restrict** matching to a directory.
         include: path.join(__dirname, "app"),
         exclude: (path) => path.match(/node_modules/);
-
         // **Actions** to apply loaders to the matched files.
         use: "babel-loader",
       },
@@ -32,9 +30,7 @@ T> In webpack 5, there's an experimental syntax available. To access it, set `ex
 
 ## Loader evaluation order
 
-It's good to keep in mind that webpack's loaders are always evaluated from right to left and from bottom to top (separate definitions). The right-to-left rule is easier to remember when you think about as functions. You can read definition `use: ["style-loader", "css-loader"]` as `style(css(input))` based on this rule.
-
-To see the rule in action, consider the example below:
+It's good to keep in mind that webpack's loaders are always evaluated from right to left and from bottom to top (separate definitions). The right-to-left rule is easier to remember when you think about as functions. You can read definition `use: ["style-loader", "css-loader"]` as `style(css(input))` based on this rule. Consider the example below:
 
 ```javascript
 const config = {
@@ -60,8 +56,6 @@ Even though it would be possible to develop an arbitrary configuration using the
 
 Linting is a good example because the build should fail before it does anything else. Using `enforce: "post"` is rarer and it would imply you want to perform a check against the built source. Performing analysis against the built source is one potential example.
 
-The basic syntax goes as below:
-
 ```javascript
 const config = {
   // Conditions
@@ -82,7 +76,6 @@ There's a query format that allows passing parameters to loaders:
 const config = {
   // Conditions
   test: /\.js$/,
-  include: PATHS.app,
   // Actions
   use: "babel-loader?presets[]=env",
 };
@@ -96,7 +89,6 @@ It's preferable to go through `use`:
 const config = {
   // Conditions
   test: /\.js$/,
-  include: PATHS.app,
   // Actions
   use: { loader: "babel-loader", options: { presets: ["env"] } },
 };
@@ -107,7 +99,6 @@ If you wanted to use more than one loader, you could pass an array to `use` and 
 ```javascript
 const config = {
   test: /\.js$/,
-  include: PATHS.app,
   use: [{ loader: "babel-loader", options: { presets: ["env"] } }],
 };
 ```
@@ -129,9 +120,7 @@ The problem with this approach is that it couples your source with webpack. None
 Since configuration entries go through the same mechanism, the same forms work there as well:
 
 ```javascript
-const config = {
-  entry: { app: "babel-loader!./app" },
-};
+const config = { entry: { app: "babel-loader!./app" } };
 ```
 
 ## Branching at `use` using a function
@@ -205,7 +194,6 @@ const config = {
   rules: [
     {
       test: /\.js$/,
-      include: PATHS.app,
       use: [
         (info) =>
           console.log(info) || {

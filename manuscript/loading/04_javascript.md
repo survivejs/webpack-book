@@ -143,13 +143,13 @@ T> See the _Autoprefixing_ chapter for an expanded discussion of browserslist.
 
 **@babel/preset-env** allows you to polyfill certain language features for older browsers. For this to work, you should enable its `useBuiltIns` option and install [core-js](https://www.npmjs.com/package/core-js). If you are using `async` functions and want to support older browsers, then [regenerator-runtime](https://www.npmjs.com/package/regenerator-runtime) is required as well.
 
-You have to include **core-js** to your project either through an import or an entry (`app: ["core-js", PATHS.app]`), except if you're using `useBuiltIns: 'usage'` to configure `@babel/preset-env`. **@babel/preset-env** rewrites the import based on your browser definition and loads only the polyfills that are needed. To learn more about **core-js** and why it's needed, [read core-js 3 release post](https://github.com/zloirock/core-js/blob/master/docs/2019-03-19-core-js-3-babel-and-a-look-into-the-future.md).
+You have to include **core-js** to your project either through an import or an entry (`app: ["core-js", "./src"]`), except if you're using `useBuiltIns: 'usage'` to configure `@babel/preset-env`. **@babel/preset-env** rewrites the import based on your browser definition and loads only the polyfills that are needed. To learn more about **core-js** and why it's needed, [read core-js 3 release post](https://github.com/zloirock/core-js/blob/master/docs/2019-03-19-core-js-3-babel-and-a-look-into-the-future.md).
 
 T> [corejs-upgrade-webpack-plugin](https://www.npmjs.com/package/corejs-upgrade-webpack-plugin) makes sure you are using the newest **core-js** polyfills. Using it can help to reduce the size of the output.
 
 W> **core-js** pollutes the global scope with objects like `Promise`. Given this can be problematic for library authors, there's [@babel/plugin-transform-runtime](https://babeljs.io/docs/plugins/transform-runtime/) option. It can be enabled as a Babel plugin, and it avoids the problem of globals by rewriting the code in a such way that they aren't be needed.
 
-W> Certain webpack features, such as _Code Splitting_, write `Promise` based code to webpack's bootstrap after webpack has processed loaders. The problem can be solved by applying a shim before your application code is executed. Example: `entry: { app: ["core-js/es/promise", PATHS.app] }`.
+W> Certain webpack features, such as _Code Splitting_, write `Promise` based code to webpack's bootstrap after webpack has processed loaders. The problem can be solved by applying a shim before your application code is executed. Example: `entry: { app: ["core-js/es/promise", "./src"] }`.
 
 ## Babel tips
 
