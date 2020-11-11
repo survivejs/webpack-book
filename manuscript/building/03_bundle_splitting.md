@@ -60,13 +60,7 @@ Before webpack 4, there used to be `CommonsChunkPlugin` for managing bundle spli
 const productionConfig = merge([
   ...
 leanpub-start-insert
-  {
-    optimization: {
-      splitChunks: {
-        chunks: "all",
-      },
-    },
-  },
+  { optimization: { splitChunks: { chunks: "all" } } },
 leanpub-end-insert
 ]);
 ```
