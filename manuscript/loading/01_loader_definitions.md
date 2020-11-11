@@ -74,6 +74,8 @@ const config = {
 
 It would be possible to write the same configuration without `enforce` if you chained the declaration with other loaders related to the `test` carefully. Using `enforce` removes the necessity for that and allows you to split loader execution into separate stages that are easier to compose.
 
+{pagebreak}
+
 ## Passing parameters to a loader
 
 There's a query format that allows passing parameters to loaders:
