@@ -48,6 +48,8 @@ leanpub-end-insert
 ]);
 ```
 
+{pagebreak}
+
 To test that the setup works, download an image or generate it (`convert -size 100x100 gradient:blue logo.png`) and refer to it from the project:
 
 **src/main.css**

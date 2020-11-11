@@ -79,21 +79,14 @@ const config = {
 
 This style of configuration works in entries and source imports too as webpack picks it up. The format comes in handy in certain individual cases, but often you are better off using more readable alternatives.
 
+{pagebreak}
+
 It's preferable to go through `use`:
 
 ```javascript
 const config = {
   test: /\.js$/,
   use: { loader: "babel-loader", options: { presets: ["env"] } },
-};
-```
-
-If you wanted to use more than one loader, you could pass an array to `use` and expand from there:
-
-```javascript
-const config = {
-  test: /\.js$/,
-  use: [{ loader: "babel-loader", options: { presets: ["env"] } }],
 };
 ```
 
@@ -116,6 +109,8 @@ Since configuration entries go through the same mechanism, the same forms work t
 ```javascript
 const config = { entry: { app: "babel-loader!./app" } };
 ```
+
+{pagebreak}
 
 ## Branching at `use` using a function
 
@@ -149,6 +144,8 @@ const config = {
 };
 ```
 
+{pagebreak}
+
 Another approach would be to mix `issuer` and `not`:
 
 ```javascript
@@ -179,6 +176,8 @@ const config = {
 
 If you wanted to embed the context information to the filename, the rule could use `resourcePath` over `resourceQuery`.
 
+{pagebreak}
+
 ## Loading with `info` object
 
 Webpack provides advanced access to compilation if you pass a function as a loader definition for the `use` field. It expects you to return a loader from the call:
@@ -189,11 +188,10 @@ const config = {
     {
       test: /\.js$/,
       use: [
-        (info) =>
-          console.log(info) || {
-            loader: "babel-loader",
-            options: { presets: ["env"] },
-          },
+        (info) => ({
+          loader: "babel-loader",
+          options: { presets: ["env"] },
+        }),
       ],
     },
   ],
@@ -235,6 +233,8 @@ Boolean based fields can be used to constrain these matchers further:
 Loader behavior can be understood in greater detail by inspecting them. [loader-runner](https://www.npmjs.com/package/loader-runner) allows you to run them in isolation without webpack. Webpack uses this package internally and _Extending with Loaders_ chapter covers it in detail.
 
 [inspect-loader](https://www.npmjs.com/package/inspect-loader) allows you to inspect what's being passed between loaders. Instead of having to insert `console.log`s within `node_modules`, you can attach this loader to your configuration and inspect the flow there.
+
+{pagebreak}
 
 ## Conclusion
 
