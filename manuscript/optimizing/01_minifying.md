@@ -75,8 +75,6 @@ If you consume HTML templates through your code using [html-loader](https://www.
 
 ## Minifying CSS
 
-[clean-css-loader](https://www.npmjs.com/package/clean-css-loader) allows you to use a popular CSS minifier [clean-css](https://www.npmjs.com/package/clean-css).
-
 [css-minimizer-webpack-plugin](https://www.npmjs.com/package/css-minimizer-webpack-plugin) is a plugin-based option that applies a chosen minifier on CSS assets. Using `MiniCssExtractPlugin` can lead to duplicated CSS given it only merges text chunks. **css-minimizer-webpack-plugin** avoids this problem by operating on the generated result and thus can lead to a better outcome. The plugin uses [cssnano](http://cssnano.co/) underneath.
 
 ### Setting Up CSS minification
@@ -86,8 +84,6 @@ To get started, install **css-minimizer-webpack-plugin** first:
 ```bash
 npm add css-minimizer-webpack-plugin --develop
 ```
-
-{pagebreak}
 
 Like for JavaScript, you can wrap the idea in a configuration part:
 
@@ -145,8 +141,6 @@ T> Using [last-call-webpack-plugin](https://www.npmjs.com/package/last-call-webp
 ## Compressing bundles
 
 Compression techniques, such as gzip or brotli, can be used to reduce the file size further. The downside of using additional compression is that it will lead to extra computation on the client side but on the plus side you save bandwidth.
-
-{pagebreak}
 
 Often the compression setup can be done on server-side although it's possible to perform preprocessing using webpack using the following plugins:
 
