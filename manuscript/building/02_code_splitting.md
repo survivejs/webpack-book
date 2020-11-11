@@ -102,13 +102,7 @@ After executing `npm run build`, you should see something:
   assets by status 3.06 KiB [emitted]
     asset main.js 2.88 KiB [emitted] [minimized] (name: main) 1 related asset
     asset 34.js 187 bytes [emitted] [minimized] 1 related asset
-  Entrypoint main 10.6 KiB (14.3 KiB) = main.css 7.72 KiB main.js 2.88 KiB 2 auxiliary assets
-  runtime modules 6.76 KiB 11 modules
-  orphan modules 544 bytes [orphan] 2 modules
-  code generated modules 624 bytes (javascript) 1.99 MiB (css/mini-extract) [code generated]
-    ./src/index.js + 1 modules 591 bytes [built] [code generated]
-    css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./src/main.css 1.99 MiB [code generated]
-    ./src/lazy.js 33 bytes [built] [code generated]
+...
   webpack 5.1.3 compiled successfully in 3846 ms
 ...
 ```
@@ -127,11 +121,7 @@ Especially in a complex environment with third-party dependencies and an advance
 
 ## Code splitting in React
 
-There are React specific solutions that wrap the pattern behind a small npm package:
-
-- [@loadable/component](https://www.npmjs.com/package/@loadable/component) wraps the pattern in a `createAsyncComponent` call and provides server-side rendering specific functionality.
-- [react-imported-component](https://www.npmjs.com/package/react-imported-component) is another full featured solution based on hooks.
-- See [React's official documentation](https://reactjs.org/docs/code-splitting.html) to learn about the code splitting APIs included out of the box. The most important ones are `React.lazy` and `React.Suspense`. Currently these don't support server-side rendering.
+See [React's official documentation](https://reactjs.org/docs/code-splitting.html) to learn about the code splitting APIs included out of the box. The most important ones are `React.lazy` and `React.Suspense`. Currently these don't support server-side rendering. Packages like [@loadable/component](https://www.npmjs.com/package/@loadable/component) wrap the idea behind an interface.
 
 ## Disabling code splitting
 
