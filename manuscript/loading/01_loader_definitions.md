@@ -136,24 +136,6 @@ const config = {
 };
 ```
 
-## Alternate ways to match files
-
-`test` combined with `include` or `exclude` to constrain the match is the most common approach to match files. These accept the data types as listed below:
-
-- `test` - Match against a RegExp, string, function, an object, or an array of conditions like these.
-- `include` - The same.
-- `exclude` - The same, except the output is the inverse of `include`.
-- `resource: /inline/` - Match against a resource path including the query. Examples: `/path/foo.inline.js`, `/path/bar.png?inline`.
-- `issuer: /bar.js/` - Match against a resource requested from the match. Example: `/path/foo.png` would match if it was requested from `/path/bar.js`.
-- `resourcePath: /inline/` - Match against a resource path without its query. Example: `/path/foo.inline.png`.
-- `resourceQuery: /inline/` - Match against a resource based on its query. Example: `/path/foo.png?inline`.
-
-Boolean based fields can be used to constrain these matchers further:
-
-- `not` - Do **not** match against a condition (see `test` for accepted values).
-- `and` - Match against an array of conditions. All must match.
-- `or` - Match against an array while any must match.
-
 ## Branching at `use` using a function
 
 In the book setup, you compose configuration on a higher level. Another option to achieve similar results would be to branch at `use` as webpack's loader definitions accept functions that allow you to branch depending on the environment:
@@ -171,8 +153,6 @@ const config = {
 ```
 
 Carefully applied, this technique allows different means of composition.
-
-{pagebreak}
 
 ## Loading based on `issuer`
 
@@ -251,6 +231,24 @@ If you execute code like this, you'll see a print in the console:
   compiler: 'mini-css-extract-plugin /webpack-demo/node_modules/css-loader/dist/cjs.js!/webpack-demo/node_modules/postcss-loader/src/index.js??ref--4-2!/webpack-demo/node_modules/postcss-loader/src/index.js??ref--4-3!/webpack-demo/src/main.css'
 }
 ```
+
+## Alternate ways to match files
+
+`test` combined with `include` or `exclude` to constrain the match is the most common approach to match files. These accept the data types as listed below:
+
+- `test` - Match against a RegExp, string, function, an object, or an array of conditions like these.
+- `include` - The same.
+- `exclude` - The same, except the output is the inverse of `include`.
+- `resource: /inline/` - Match against a resource path including the query. Examples: `/path/foo.inline.js`, `/path/bar.png?inline`.
+- `issuer: /bar.js/` - Match against a resource requested from the match. Example: `/path/foo.png` would match if it was requested from `/path/bar.js`.
+- `resourcePath: /inline/` - Match against a resource path without its query. Example: `/path/foo.inline.png`.
+- `resourceQuery: /inline/` - Match against a resource based on its query. Example: `/path/foo.png?inline`.
+
+Boolean based fields can be used to constrain these matchers further:
+
+- `not` - Do **not** match against a condition (see `test` for accepted values).
+- `and` - Match against an array of conditions. All must match.
+- `or` - Match against an array while any must match.
 
 ## Understanding loader behavior
 
