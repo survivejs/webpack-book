@@ -58,9 +58,7 @@ A good example is bundle extraction performed by the `MiniCssExtractPlugin` whic
 
 ### Finishing
 
-After every module has been evaluated, webpack writes **output**. The output includes a bootstrap script. It is a small runtime that executes the result in a browser and a manifest listing bundles to load.
-
-The manifest can be extracted to a file of its own, as discussed later in the book. The output differs based on the build target you are using as web isn't the only option.
+After every module has been evaluated, webpack writes **output**. The output a small runtime that executes the result in a browser and a manifest listing bundles to load. The runtime can be extracted to a file of its own, as discussed later in the book.
 
 That's not all there is to the bundling process. For example, you can define specific **split points** where webpack generates separate bundles that are loaded based on application logic. This idea is discussed in the _Code Splitting_ chapter.
 
@@ -77,9 +75,9 @@ const webpack = require("webpack");
 module.exports = {
   entry: { app: "./entry.js" }, // Start bundling
   output: {
-    // Where to output
+    // Output to dist directory
     path: path.join(__dirname, "dist"),
-    // Capture name from the entry. Here it will emit app.js.
+    // Capture name from the entry and emit app.js
     filename: "[name].js",
   },
   // Resolve encountered imports
@@ -100,19 +98,19 @@ module.exports = {
 };
 ```
 
-Webpack's configuration model can feel a bit opaque at times as the configuration file can appear monolithic and it can be difficult to understand what webpack is doing unless you know the ideas behind it. It's the reason why the book exists as once you know the concepts and what each part of the configuration is doing, webpack makes more sense and you can get more out of it.
+Webpack's configuration model can feel a bit opaque at times as the configuration file can appear monolithic and it can be difficult to understand what webpack is doing unless you know the ideas behind it. The book exists to make the concepts and ideas to address this problem.
 
-T> Often webpack's property definitions are flexible and it's the best to look at either the documentation or TypeScript definitions to see what's allowed. For example, `entry` can be a function and an asynchronous one even. Sometimes there are multiple ways to achieve the same and this applies especially to loaders.
+T> Often webpack's property definitions are flexible and it's the best to look at either the documentation or TypeScript definitions to see what's allowed. For example, `entry` can be a function and an asynchronous one even. At times, there are multiple ways to achieve the same, especially with loaders.
 
 W> Webpack's plugins are registered from top to bottom but loaders follow the opposite rule. That means if you add a loader definition after the existing ones and it matches the same `test`, it will be evaluated first. See the _Loader Definitions_ chapter to understand the different possibilities better.
-
-## Asset hashing
-
-With webpack, you can inject a hash to each bundle name (e.g., _app.d587bbd6.js_) to invalidate bundles on the client side as changes are made. **Bundle splitting** allows the client to reload only a small part of the data in the ideal case.
 
 ## Hot Module Replacement
 
 You are likely familiar with tools, such as [LiveReload](http://livereload.com/) or [BrowserSync](http://www.browsersync.io/), already. These tools refresh the browser automatically as you make changes. _Hot Module Replacement_ (HMR) takes things one step further. In the case of React, it allows the application to maintain its state without forcing a refresh. While this does not sound all that special, it can make a big difference in practice.
+
+## Asset hashing
+
+With webpack, you can inject a hash to each bundle name (e.g., _app.d587bbd6.js_) to invalidate bundles on the client side as changes are made. **Bundle splitting** allows the client to reload only a small part of the data in the ideal case.
 
 ## Code splitting
 
