@@ -45,20 +45,12 @@ const config = {
 };
 ```
 
-{pagebreak}
-
 Based on the right to left rule, the example can be split up while keeping it equivalent:
 
 ```javascript
 const config = [
-  {
-    test: /\.css$/,
-    use: "style-loader",
-  },
-  {
-    test: /\.css$/,
-    use: "css-loader",
-  },
+  { test: /\.css$/, use: "style-loader" },
+  { test: /\.css$/, use: "css-loader" },
 ];
 ```
 
@@ -108,12 +100,7 @@ const config = {
   test: /\.js$/,
   include: PATHS.app,
   // Actions
-  use: {
-    loader: "babel-loader",
-    options: {
-      presets: ["env"],
-    },
-  },
+  use: { loader: "babel-loader", options: { presets: ["env"] } },
 };
 ```
 
@@ -123,14 +110,7 @@ If you wanted to use more than one loader, you could pass an array to `use` and 
 const config = {
   test: /\.js$/,
   include: PATHS.app,
-  use: [
-    {
-      loader: "babel-loader",
-      options: {
-        presets: ["env"],
-      },
-    },
-  ],
+  use: [{ loader: "babel-loader", options: { presets: ["env"] } }],
 };
 ```
 
@@ -153,11 +133,9 @@ The problem with this approach is that it couples your source with webpack. None
 Since configuration entries go through the same mechanism, the same forms work there as well:
 
 ```javascript
-{
-  entry: {
-    app: "babel-loader!./app",
-  },
-},
+const config = {
+  entry: { app: "babel-loader!./app" },
+};
 ```
 
 ## Alternate ways to match files
@@ -219,10 +197,7 @@ const config = {
   test: /\.css$/,
   rules: [
     // CSS imported from other modules is added to the DOM
-    {
-      issuer: { not: /\.css$/ },
-      use: "style-loader",
-    },
+    { issuer: { not: /\.css$/ }, use: "style-loader" },
     // Apply css-loader against CSS imports to return CSS
     { use: "css-loader" },
   ],
@@ -273,14 +248,8 @@ The function is an escape hatch for customizing loaders further.
 const config = {
   test: /\.png$/,
   oneOf: [
-    {
-      resourceQuery: /inline/,
-      use: "url-loader",
-    },
-    {
-      resourceQuery: /external/,
-      use: "file-loader",
-    },
+    { resourceQuery: /inline/, use: "url-loader" },
+    { resourceQuery: /external/, use: "file-loader" },
   ],
 };
 ```
