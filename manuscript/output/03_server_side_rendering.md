@@ -44,6 +44,8 @@ npm add react react-dom
 
 Next, the React code needs a small entry point. If you are on the browser side, you should mount `Hello world` `div` to the document. To prove it works, clicking it should give a dialog with a "hello" message. On server-side, the React component is returned and the server can pick it up.
 
+{pagebreak}
+
 Adjust as follows:
 
 **src/ssr.js**
@@ -113,7 +115,9 @@ To keep things clear to understand, you can set up a standalone Express server t
 npm add express --develop
 ```
 
-Then, to get something running, implement a server as follows:
+{pagebreak}
+
+Then, to get something running, implement a server:
 
 **server.js**
 
@@ -141,9 +145,7 @@ function renderMarkup(html) {
 }
 ```
 
-Run the server now (`node ./server.js`) and go below `http://localhost:8080`, you should see something familiar:
-
-![Hello world](images/hello_01.png)
+Run the server now (`node ./server.js`) and go below `http://localhost:8080`, you should see a "Hello World".
 
 Even though there is a React application running now, it's difficult to develop. If you try to modify the code, nothing happens. The problem can be solved running webpack in a multi-compiler mode as discussed in the _Multiple Pages_ chapter.
 
