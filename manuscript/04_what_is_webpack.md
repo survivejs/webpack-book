@@ -75,10 +75,8 @@ const webpack = require("webpack");
 module.exports = {
   entry: { app: "./entry.js" }, // Start bundling
   output: {
-    // Output to dist directory
-    path: path.join(__dirname, "dist"),
-    // Capture name from the entry and emit app.js
-    filename: "[name].js",
+    path: path.join(__dirname, "dist"), // Output to dist directory
+    filename: "[name].js", // Capture name from the entry and emit app.js
   },
   // Resolve encountered imports
   module: {
@@ -88,13 +86,9 @@ module.exports = {
     ],
   },
   // Perform additional processing
-  plugins: [
-    new webpack.DefinePlugin({ HELLO: "hello from config" }),
-  ],
+  plugins: [new webpack.DefinePlugin({ HELLO: "hello" })],
   // Adjust module resolution algorithm
-  resolve: {
-    alias: { react: "preact-compat", "react-dom": "preact-compat" },
-  },
+  resolve: { alias: { react: "preact-compat" } },
 };
 ```
 
