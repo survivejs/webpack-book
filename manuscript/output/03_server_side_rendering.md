@@ -8,12 +8,10 @@ To demonstrate SSR, you can use webpack to compile a client-side build that then
 
 ## Setting up Babel with React
 
-The _Composing Configuration_ chapter covers the configuration approach and the _Loading JavaScript_ chapter covers the essentials of using Babel with webpack. You should make sure you've completed the basic setup before continuing here.
-
-To use React, we require further configuration. Given most of React projects rely on [JSX](https://facebook.github.io/jsx/) format, you have to enable it through Babel:
+To use React, we require specific configuration. Given most of React projects rely on [JSX](https://facebook.github.io/jsx/) format, you have to enable it through Babel:
 
 ```bash
-npm add @babel/preset-react --develop
+npm add babel-loader @babel/core @babel/preset-react --develop
 ```
 
 {pagebreak}
@@ -24,12 +22,9 @@ Connect the preset with Babel configuration as follows:
 
 ```json
 {
-  ...
   "presets": [
-leanpub-start-insert
-    "@babel/preset-react",
-leanpub-end-insert
-    ...
+    ["@babel/preset-env", { "modules": false }],
+    "@babel/preset-react"
   ]
 }
 ```
@@ -71,22 +66,28 @@ To keep things nice, we will define a separate configuration file. A lot of the 
 
 ```javascript
 const path = require("path");
-const { merge } = require("webpack-merge");
-const parts = require("./webpack.parts");
 
-module.exports = merge([
-  {
-    mode: "production",
-    entry: { index: path.join(__dirname, "src", "ssr.js") },
-    output: {
-      path: path.join(__dirname, "static"),
-      filename: "[name].js",
-      libraryTarget: "umd",
-      globalObject: "this",
-    },
+const APP_SOURCE = path.join(__dirname, "src");
+
+module.exports = {
+  mode: "production",
+  entry: { index: path.join(APP_SOURCE, "ssr.js") },
+  output: {
+    path: path.join(__dirname, "static"),
+    filename: "[name].js",
+    libraryTarget: "umd",
+    globalObject: "this",
   },
-  parts.loadJavaScript(),
-]);
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        include: APP_SOURCE,
+        use: "babel-loader",
+      },
+    ],
+  },
+};
 ```
 
 To make it convenient to generate a build, add a helper script:
@@ -169,7 +170,7 @@ SSR isn't the only solution to the SEO problem. **Prerendering** is an alternate
 The following solutions exist for webpack:
 
 - [prerender-spa-plugin](https://www.npmjs.com/package/prerender-spa-plugin) uses [Puppeteer](https://www.npmjs.com/package/puppeteer) underneath.
-- [prerender-loader](https://www.npmjs.com/package/prerender-loader) integrates with _html-webpack-plugin_ but also works without it against HTML files. The loader is flexible and can be customized to fit your use case (i.e. React or other framework).
+- [prerender-loader](https://www.npmjs.com/package/prerender-loader) integrates with **html-webpack-plugin** but also works without it against HTML files. The loader is flexible and can be customized to fit your use case (i.e. React or other framework).
 
 ## Conclusion
 
