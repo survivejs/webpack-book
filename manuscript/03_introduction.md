@@ -49,6 +49,8 @@ The appendices at the end of the book cover secondary topics and sometimes dig d
 
 The _Troubleshooting_ appendix at the end covers what to do when webpack gives you an error. It includes a process, so you know what to do and how to debug the problem. When in doubt, study the appendix. If you are unsure of a term and its meaning, see the _Glossary_ at the end of the book.
 
+{pagebreak}
+
 ## Who is the book for
 
 The book has been written mainly beginner and intermediate developers in mind. For experts that already know webpack well, there's value in the form of techniques. The book summaries included in each chapter and at the _Conclusion_ chapter, make it fast to skim and pick up the ideas.
@@ -64,6 +66,8 @@ The book uses several conventions to keep the content accessible. I've listed ex
 T> This is a tip. Often you can find auxiliary information and further references in tips.
 
 W> This is a warning that's highlighting unexpected behavior or a common problem point that you should know.
+
+{pagebreak}
 
 Especially in the early part of the book, the code is written in a tutorial form. For this reason, the following syntax is used:
 
@@ -93,8 +97,6 @@ leanpub-end-insert
 Sometimes the code assumes addition without the highlighting for insertion and many examples of the book work without by themselves and I've crosslinked to prerequisites where possible.
 
 You'll also see `code` within sentences and occasionally important terms have been **highlighted**. You can find the definition of these terms at the _Glossary_.
-
-T> The book examples have been formatted using [Prettier](https://www.npmjs.com/package/prettier) with `"printWidth": 68` to make the examples fit the book pages.
 
 ## How is the book versioned
 
