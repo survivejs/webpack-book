@@ -24,11 +24,9 @@ Webpack becomes an indispensable tool after you begin to understand how it works
 
 ## What will you learn
 
-This book has been written to complement [the official documentation of webpack](https://webpack.js.org/), and it can be considered a companion to it. The book helps you to get through the initial learning curve and go further.
+This book has been written to complement the official documentation of webpack and it helps you to get through the initial learning curve and go further.
 
 You will learn to develop a composable webpack configuration for both development and production purposes. Advanced techniques covered by the book allow you to get the most out of webpack.
-
-{pagebreak}
 
 ## How is the book organized
 
@@ -95,8 +93,6 @@ leanpub-end-insert
 Sometimes the code assumes addition without the highlighting for insertion and many examples of the book work without by themselves and I've crosslinked to prerequisites where possible.
 
 You'll also see `code` within sentences and occasionally important terms have been **highlighted**. You can find the definition of these terms at the _Glossary_.
-
-T> **Trailing commas** are used in the book examples on purpose as it gives cleaner diffs for the code examples.
 
 T> The book examples have been formatted using [Prettier](https://www.npmjs.com/package/prettier) with `"printWidth": 68` to make the examples fit the book pages.
 
