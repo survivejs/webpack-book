@@ -132,8 +132,6 @@ On Windows you need to set your `HOST` to match your IP to make it accessible. E
 
 WPS will handle restarting the server when you change a bundled file. It's oblivious to changes made to webpack configuration, though, and you have to restart the WPS whenever you change something. The process can be automated as [discussed on GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892) by using [nodemon](https://www.npmjs.com/package/nodemon) monitoring tool.
 
-{pagebreak}
-
 To get it to work, you have to install it first through `npm add nodemon --develop`, and then add it to your `start` npm script:
 
 **package.json**
@@ -166,8 +164,6 @@ module.exports = {
 ```
 
 The setup is more resource-intensive than the file watching, but it's worth trying out if the file watching doesn't work for you.
-
-{pagebreak}
 
 ## Integrating with servers using middlewares
 
