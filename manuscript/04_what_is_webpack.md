@@ -76,7 +76,7 @@ module.exports = {
   entry: { app: "./entry.js" }, // Start bundling
   output: {
     path: path.join(__dirname, "dist"), // Output to dist directory
-    filename: "[name].js", // Capture name from the entry and emit app.js
+    filename: "[name].js", // Emit app.js by capturing entry name
   },
   // Resolve encountered imports
   module: {
