@@ -138,7 +138,7 @@ exports.eliminateUnusedCSS = () => ({
 
 T> For exceptions, [PurgeCSS 3.0](https://github.com/FullHuman/purgecss/releases/tag/v3.0.0) includes **safelist** and **blocklist** options.
 
-Next, the part has to be connected with the configuration. It's essential the plugin is used _after_ the `MiniCssExtractPlugin`; otherwise, it doesn't work:
+Next, the part has to be connected with the configuration. It's essential the plugin is used _after_ the `MiniCssExtractPlugin` as it doesn't work otherwise:
 
 **webpack.config.js**
 
