@@ -107,20 +107,10 @@ If you execute either _npm run start_ or _npm start_ now, you should see somethi
   runtime modules 25.2 KiB 11 modules
   cacheable modules 25 KiB
     modules by path ./node_modules/webpack-plugin-serve/lib/client/ 23.7 KiB
-      modules by path ./node_modules/webpack-plugin-serve/lib/client/*.js 8.02 KiB 4 modules
-      modules by path ./node_modules/webpack-plugin-serve/lib/client/overlays/*.js 15.7 KiB
-        ./node_modules/webpack-plugin-serve/lib/client/overlays/progress-minimal.js 2.38 KiB [built] [code generated]
-        ./node_modules/webpack-plugin-serve/lib/client/overlays/progress.js 3.88 KiB [built] [code generated]
-        ./node_modules/webpack-plugin-serve/lib/client/overlays/status.js 8.27 KiB [built] [code generated]
-        ./node_modules/webpack-plugin-serve/lib/client/overlays/util.js 1.17 KiB [built] [code generated]
-    modules by path ./src/*.js 217 bytes
-      ./src/index.js 77 bytes [built] [code generated]
-      ./src/component.js 140 bytes [built] [code generated]
+...
     ./node_modules/webpack-plugin-serve/client.js 1.05 KiB [built] [code generated]
   0 (webpack 5.1.3) compiled successfully in 157 ms
 ```
-
-{pagebreak}
 
 The server is running, and if you open `http://localhost:8080/` at your browser, you should see a hello:
 
@@ -159,8 +149,6 @@ Webpack's file watching may not work on certain systems, for example on older ve
 
 Polling is almost mandatory when using Vagrant, Docker, or any other solution that doesn't forward events for changes on a file located in a folder shared with the virtualized machine where webpack is running. [vagrant-notify-forwarder](https://github.com/mhallin/vagrant-notify-forwarder) solves the problem for macOS and Unix.
 
-{pagebreak}
-
 For any of these cases, polling is a good option:
 
 **webpack.config.js**
@@ -168,12 +156,9 @@ For any of these cases, polling is a good option:
 ```javascript
 module.exports = {
   watchOptions: {
-    // Delay the rebuild after the first change (in ms)
-    aggregateTimeout: 300,
-    // Poll using interval (in ms, accepts a boolean too)
-    poll: 1000,
-    // Ignore node_modules to decrease CPU usage
-    ignored: /node_modules/,
+    aggregateTimeout: 300, // Delay the first rebuild (in ms)
+    poll: 1000, // Poll using interval (in ms or a boolean)
+    ignored: /node_modules/, // Ignore to decrease CPU usage
   },
 };
 ```
@@ -204,8 +189,6 @@ The webpack plugin ecosystem is diverse, and there are a lot of plugins that can
 - [case-sensitive-paths-webpack-plugin](https://www.npmjs.com/package/case-sensitive-paths-webpack-plugin) can be handy when you are developing on mixed environments. For example, Windows, Linux, and macOS have different expectations when it comes to path naming.
 - [react-dev-utils](https://www.npmjs.com/package/react-dev-utils) contains webpack utilities developed for [Create React App](https://www.npmjs.com/package/create-react-app). Despite its name, they can find use beyond React. If you want only webpack message formatting, consider [webpack-format-messages](https://www.npmjs.com/package/webpack-format-messages).
 - [webpack-notifier](https://www.npmjs.com/package/webpack-notifier) uses system notifications to let you know of webpack status.
-
-{pagebreak}
 
 ## Conclusion
 
