@@ -166,14 +166,7 @@ The setup is more resource-intensive than the file watching, but it's worth tryi
 
 ## Integrating with servers using middlewares
 
-In case you are developing your entire project against a Node server without a separate frontend build, then one option is to run webpack using a middleware:
-
-- [webpack-dev-middleware](https://www.npmjs.com/package/webpack-dev-middleware)
-- [webpack-hot-middleware](https://www.npmjs.com/package/webpack-hot-middleware)
-- [webpack-isomorphic-dev-middleware](https://www.npmjs.com/package/webpack-isomorphic-dev-middleware)
-- [koa-webpack](https://www.npmjs.com/package/koa-webpack)
-
-There's also a [Node API](https://webpack.js.org/configuration/dev-server/) if you want more control and flexibility.
+In case you are developing your entire project against a Node server without a separate frontend build, then one option is to run webpack using [webpack-dev-middleware](https://www.npmjs.com/package/webpack-dev-middleware).
 
 ## Watching files outside of webpack's module graph
 
@@ -186,7 +179,7 @@ I've created the [webpack-add-dependency-plugin](https://www.npmjs.com/package/w
 The webpack plugin ecosystem is diverse, and there are a lot of plugins that can help with development:
 
 - [case-sensitive-paths-webpack-plugin](https://www.npmjs.com/package/case-sensitive-paths-webpack-plugin) can be handy when you are developing on mixed environments. For example, Windows, Linux, and macOS have different expectations when it comes to path naming.
-- [react-dev-utils](https://www.npmjs.com/package/react-dev-utils) contains webpack utilities developed for [Create React App](https://www.npmjs.com/package/create-react-app). Despite its name, they can find use beyond React. If you want only webpack message formatting, consider [webpack-format-messages](https://www.npmjs.com/package/webpack-format-messages).
+- [react-dev-utils](https://www.npmjs.com/package/react-dev-utils) contains webpack utilities developed for [Create React App](https://www.npmjs.com/package/create-react-app). Despite its name, they can find use beyond React.
 - [webpack-notifier](https://www.npmjs.com/package/webpack-notifier) uses system notifications to let you know of webpack status.
 
 {pagebreak}
