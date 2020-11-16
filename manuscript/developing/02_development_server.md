@@ -12,8 +12,6 @@ Webpack's `watch` mode rebuilds the bundle on any change of the project files. I
 
 Although this solves the problem of recompiling your source on change, it does nothing on the frontend side and browser updates. That's where further solutions are required.
 
-{pagebreak}
-
 ## **webpack-dev-server**
 
 [webpack-dev-server](https://www.npmjs.com/package/webpack-dev-server) (WDS) is the officially maintained development server running **in-memory**, meaning the bundle contents aren't written out to files but stored in memory. The distinction is vital when trying to debug code and styles.
@@ -39,10 +37,6 @@ WPS also supports webpack's multi-compiler mode (i.e., when you give an array of
 
 Given webpack's watch mode emits to the file system by default, WPS provides an option for [webpack-plugin-ramdisk](https://www.npmjs.com/package/webpack-plugin-ramdisk) to write to the RAM instead. Using the option improves performance while avoiding excessive writes to the file system.
 
-T> Learn more about HMR in the _Hot Module Replacement_ appendix. Applying it won't be necessary to complete the tutorial, though.
-
-W> WPS requires an Active LTS version of Node to work. The attached client scripts have been written with modern browsers in mind (`async`/`await`). It's possible to transpile them for older browsers, though.
-
 ### Getting started with **webpack-plugin-serve**
 
 To get started with WPS, install it first:
@@ -50,8 +44,6 @@ To get started with WPS, install it first:
 ```bash
 npm add webpack-plugin-serve --develop
 ```
-
-{pagebreak}
 
 To integrate WPS to the project, define an npm script for launching it:
 
