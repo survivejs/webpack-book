@@ -98,42 +98,11 @@ T> The _CSS Modules_ appendix discusses an approach that allows you to treat loc
 
 ## PostCSS
 
-[PostCSS](http://postcss.org/) allows you to perform transformations over CSS through JavaScript plugins. PostCSS is the equivalent of Babel for styling and you can find plugins for many purposes. It can mimic Sass syntax ([precss](https://www.npmjs.com/package/precss)) and even fix browser bugs like `100vh` behavior on Safari [postcss-100vh-fix](https://www.npmjs.com/package/postcss-100vh-fix).
-
-{pagebreak}
-
-The example below illustrates how to set up autoprefixing using PostCSS with [postcss-loader](https://www.npmjs.com/package/postcss-loader). You can mix this technique with other loaders to enable autoprefixing for any CSS flow.
-
-```javascript
-const config = {
-  test: /\.css$/,
-  use: [
-    "style-loader",
-    "css-loader",
-    {
-      loader: "postcss-loader",
-      options: {
-        postcssOptions: {
-          plugins: () => [
-            require("autoprefixer"),
-            require("precss"),
-          ],
-        },
-      },
-    },
-  ],
-};
-```
-
-You have to remember to include [autoprefixer](https://www.npmjs.com/package/autoprefixer) and [precss](https://www.npmjs.com/package/precss) to your project for this to work. The technique is discussed in detail in the _Autoprefixing_ chapter.
-
-T> [postcss-preset-env](https://www.npmjs.com/package/postcss-preset-env) uses a browserslist to determine what kind of CSS to generate and which polyfills to load. You can consider it as the `@babel/preset-env` of CSS. Latter is discussed in more detail at the _Loading JavaScript_ chapter.
-
-{pagebreak}
+[PostCSS](http://postcss.org/) allows you to perform transformations over CSS through JavaScript plugins. PostCSS is the equivalent of Babel for styling and you can find plugins for many purposes. It can even fix browser bugs like `100vh` behavior on Safari [postcss-100vh-fix](https://www.npmjs.com/package/postcss-100vh-fix). PostCSS is discussed in detail at the _Autoprefixing_ chapter.
 
 ## Understanding **css-loader** lookups
 
-To get most out of **css-loader**, you should understand how it performs its lookups. Even though **css-loader** handles relative imports by default, it doesn't work with the following cases:
+To get most out of **css-loader**, you should understand how it performs its lookups. Even though the loader handles relative imports by default, it doesn't work with the following cases:
 
 - Absolute imports - `url("https://mydomain.com/static/demo.png")`
 - Root relative imports - `url("/static/img/demo.png")`
@@ -147,8 +116,6 @@ T> [resolve-url-loader](https://www.npmjs.com/package/resolve-url-loader) comes 
 ### Processing **css-loader** imports
 
 If you want to process **css-loader** imports in a specific way, you should set up `importLoaders` option to a number that tells the loader how many loaders before the **css-loader** should be executed against the imports found. If you import other CSS files from your CSS through the `@import` statement and want to process the imports through specific loaders, this technique is essential.
-
-{pagebreak}
 
 Consider the following import from a CSS file: `@import "./variables.sass";`. To process the Sass file, you would have to write configuration:
 
