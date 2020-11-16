@@ -131,11 +131,15 @@ To get it to work, you have to install it first through `npm add nodemon --devel
 **package.json**
 
 ```json
-"scripts": {
-  "start": "nodemon --watch webpack.* --exec \"wp --mode development\"",
-  "build": "wp --mode production"
-},
+{
+  "scripts": {
+    "start": "nodemon --watch webpack.* --exec \"wp --mode development\"",
+    "build": "wp --mode production"
+  }
+}
 ```
+
+{pagebreak}
 
 ## Polling instead of watching files
 
