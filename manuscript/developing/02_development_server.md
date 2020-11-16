@@ -162,6 +162,14 @@ To get it to work, you have to install it first through `npm add nodemon --devel
 }
 ```
 
+## Development plugins
+
+The webpack ecosystem contains many development plugins:
+
+- [case-sensitive-paths-webpack-plugin](https://www.npmjs.com/package/case-sensitive-paths-webpack-plugin) can be handy when you are developing on mixed environments. For example, Windows, Linux, and macOS have different expectations when it comes to path naming.
+- [react-dev-utils](https://www.npmjs.com/package/react-dev-utils) contains webpack utilities developed for Create React App.
+- [webpack-notifier](https://www.npmjs.com/package/webpack-notifier) uses system notifications to let you know of webpack status.
+
 ## Integrating with servers using middlewares
 
 In case you are developing your entire project against a Node server without a separate frontend build, then one option is to run webpack using [webpack-dev-middleware](https://www.npmjs.com/package/webpack-dev-middleware).
@@ -170,22 +178,12 @@ In case you are developing your entire project against a Node server without a s
 
 By default webpack only watches files that your project depends on directly, for example, when you are using `MiniHtmlWebpackPlugin` and have customized it to load the template from a file. [webpack-add-dependency-plugin](https://www.npmjs.com/package/webpack-add-dependency-plugin) solves the problem.
 
-## Development plugins
-
-The webpack ecosystem contains many development plugins:
-
-- [case-sensitive-paths-webpack-plugin](https://www.npmjs.com/package/case-sensitive-paths-webpack-plugin) can be handy when you are developing on mixed environments. For example, Windows, Linux, and macOS have different expectations when it comes to path naming.
-- [react-dev-utils](https://www.npmjs.com/package/react-dev-utils) contains webpack utilities developed for [Create React App](https://www.npmjs.com/package/create-react-app). Despite its name, they can find use beyond React.
-- [webpack-notifier](https://www.npmjs.com/package/webpack-notifier) uses system notifications to let you know of webpack status.
-
 ## Conclusion
 
-WPS and WDS complement webpack and make it more developer-friendly.
-
-To recap:
+WPS and WDS complement webpack and make it more developer-friendly. To recap:
 
 - Webpack's `watch` mode is the first step towards a better development experience. You can have webpack compile bundles as you edit your source.
-- WPS and WDS refresh the browser on change. They also implement **Hot Module Replacement**.
+- WPS and WDS refresh the browser on change. They also implement _Hot Module Replacement_.
 - The default webpack watching setup can be problematic on specific systems, where more resource-intensive polling is an alternative.
 - WDS can be integrated into an existing Node server using a middleware, giving you more control than relying on the command line interface.
 - WPS and WDS do far more than refreshing and HMR. For example, proxying allows you to connect it to other servers.
