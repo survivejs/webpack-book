@@ -69,15 +69,10 @@ It would be possible to write the same configuration without `enforce` if you ch
 There's a query format that allows passing parameters to loaders:
 
 ```javascript
-const config = {
-  test: /\.js$/,
-  use: "babel-loader?presets[]=env",
-};
+const config = { test: /\.js$/, use: "babel-loader?presets[]=env" };
 ```
 
-This style of configuration works in entries and source imports too as webpack picks it up. The format comes in handy in certain individual cases, but often you are better off using more readable alternatives.
-
-It's preferable to go through `use`:
+This style of configuration works in entries and source imports too as webpack picks it up. The format comes in handy in certain individual cases, but often you are better off using more readable alternatives. In this case, it's preferable to go through `use`:
 
 ```javascript
 const config = {
@@ -91,11 +86,8 @@ const config = {
 Even though configuration level loader definitions are preferable, it's possible to write loader definitions inline:
 
 ```javascript
-// Process foo.png through url-loader and other possible ones.
-import "url-loader!./foo.png";
-
-// Override possible higher level match completely
-import "!!url-loader!./bar.png";
+import "url-loader!./foo.png"; // Process through url-loader first
+import "!!url-loader!./bar.png"; // Override completely
 ```
 
 The problem with this approach is that it couples your source with webpack. Nonetheless, it's still an excellent form to know.
@@ -105,8 +97,6 @@ Since configuration entries go through the same mechanism, the same forms work t
 ```javascript
 const config = { entry: { app: "babel-loader!./app" } };
 ```
-
-{pagebreak}
 
 ## Branching at `use` using a function
 
@@ -140,8 +130,6 @@ const config = {
 };
 ```
 
-{pagebreak}
-
 Another approach would be to mix `issuer` and `not`:
 
 ```javascript
@@ -171,8 +159,6 @@ const config = {
 ```
 
 If you wanted to embed the context information to the filename, the rule could use `resourcePath` over `resourceQuery`.
-
-{pagebreak}
 
 ## Loading with `info` object
 
@@ -229,8 +215,6 @@ Boolean based fields can be used to constrain these matchers further:
 Loader behavior can be understood in greater detail by inspecting them. [loader-runner](https://www.npmjs.com/package/loader-runner) allows you to run them in isolation without webpack. Webpack uses this package internally and _Extending with Loaders_ chapter covers it in detail.
 
 [inspect-loader](https://www.npmjs.com/package/inspect-loader) allows you to inspect what's being passed between loaders. Instead of having to insert `console.log`s within `node_modules`, you can attach this loader to your configuration and inspect the flow there.
-
-{pagebreak}
 
 ## Conclusion
 
