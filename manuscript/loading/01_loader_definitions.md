@@ -118,51 +118,6 @@ const config = {
 
 Carefully applied, this technique allows different means of composition.
 
-## Loading based on `issuer`
-
-`issuer` can be used to control behavior based on where a resource was imported. In the example below, **style-loader** is applied a CSS file is captured through JavaScript:
-
-```javascript
-const config = {
-  test: /\.css$/,
-  rules: [
-    { issuer: /\.js$/, use: "style-loader" },
-    { use: "css-loader" },
-  ],
-};
-```
-
-Another approach would be to mix `issuer` and `not`:
-
-```javascript
-const config = {
-  test: /\.css$/,
-  rules: [
-    // Add CSS imported from other modules to the DOM
-    { issuer: { not: /\.css$/ }, use: "style-loader" },
-    { use: "css-loader" }, // Apply against CSS imports
-  ],
-};
-```
-
-{pagebreak}
-
-## Loading based on `resourceQuery`
-
-`oneOf` field makes it possible to route webpack to a specific loader based on a resource related match:
-
-```javascript
-const config = {
-  test: /\.png$/,
-  oneOf: [
-    { resourceQuery: /inline/, use: "url-loader" },
-    { resourceQuery: /external/, use: "file-loader" },
-  ],
-};
-```
-
-If you wanted to embed the context information to the filename, the rule could use `resourcePath` over `resourceQuery`.
-
 ## Loading with `info` object
 
 Webpack provides advanced access to compilation if you pass a function as a loader definition for the `use` field. It expects you to return a loader from the call:
@@ -194,6 +149,49 @@ If you execute code like this, you'll see a print in the console:
   compiler: 'mini-css-extract-plugin /webpack-demo/node_modules/css-loader/dist/cjs.js!/webpack-demo/node_modules/postcss-loader/src/index.js??ref--4-2!/webpack-demo/node_modules/postcss-loader/src/index.js??ref--4-3!/webpack-demo/src/main.css'
 }
 ```
+
+## Loading based on `issuer`
+
+`issuer` can be used to control behavior based on where a resource was imported. In the example below, **style-loader** is applied a CSS file is captured through JavaScript:
+
+```javascript
+const config = {
+  test: /\.css$/,
+  rules: [
+    { issuer: /\.js$/, use: "style-loader" },
+    { use: "css-loader" },
+  ],
+};
+```
+
+Another approach would be to mix `issuer` and `not`:
+
+```javascript
+const config = {
+  test: /\.css$/,
+  rules: [
+    // Add CSS imported from other modules to the DOM
+    { issuer: { not: /\.css$/ }, use: "style-loader" },
+    { use: "css-loader" }, // Apply against CSS imports
+  ],
+};
+```
+
+## Loading based on `resourceQuery`
+
+`oneOf` field makes it possible to route webpack to a specific loader based on a resource related match:
+
+```javascript
+const config = {
+  test: /\.png$/,
+  oneOf: [
+    { resourceQuery: /inline/, use: "url-loader" },
+    { resourceQuery: /external/, use: "file-loader" },
+  ],
+};
+```
+
+If you wanted to embed the context information to the filename, the rule could use `resourcePath` over `resourceQuery`.
 
 ## Alternate ways to match files
 
