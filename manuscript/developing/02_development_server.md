@@ -122,26 +122,6 @@ T> Enable the `historyFallback` flag if you are using HTML5 History API based ro
 
 To access your development server from the network, you need to figure out the IP address of your machine. For example, using `ifconfig | grep inet` on Unix, or `ipconfig` on Windows. Then you need to set your `HOST` to match your IP like this: `HOST=<ip goes here> npm start`.
 
-## Making it faster to develop webpack configuration
-
-WPS will handle restarting the server when you change a bundled file. It's oblivious to changes made to webpack configuration, though, and you have to restart the WPS whenever you change something. The process can be automated as [discussed on GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892) by using [nodemon](https://www.npmjs.com/package/nodemon) monitoring tool.
-
-To get it to work, you have to install it first through `npm add nodemon --develop`, and then set up a script:
-
-**package.json**
-
-```json
-{
-  "scripts": {
-    "watch": "nodemon --watch webpack.* --exec \"npm run start\"",
-    "start": "wp --mode development",
-    "build": "wp --mode production"
-  }
-}
-```
-
-{pagebreak}
-
 ## Polling instead of watching files
 
 Webpack's file watching may not work on certain systems, for example on older versions of Windows and Ubuntu.
@@ -164,25 +144,39 @@ module.exports = {
 
 The setup is more resource-intensive than the file watching, but it's worth trying out if the file watching doesn't work for you.
 
+## Making it faster to develop webpack configuration
+
+WPS will handle restarting the server when you change a bundled file. It's oblivious to changes made to webpack configuration, though, and you have to restart the WPS whenever you change something. The process can be automated as [discussed on GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892) by using [nodemon](https://www.npmjs.com/package/nodemon) monitoring tool.
+
+To get it to work, you have to install it first through `npm add nodemon --develop`, and then set up a script:
+
+**package.json**
+
+```json
+{
+  "scripts": {
+    "watch": "nodemon --watch webpack.* --exec \"npm run start\"",
+    "start": "wp --mode development",
+    "build": "wp --mode production"
+  }
+}
+```
+
 ## Integrating with servers using middlewares
 
 In case you are developing your entire project against a Node server without a separate frontend build, then one option is to run webpack using [webpack-dev-middleware](https://www.npmjs.com/package/webpack-dev-middleware).
 
 ## Watching files outside of webpack's module graph
 
-By default webpack only watches files that your project depends on directly, for example, when you are using `MiniHtmlWebpackPlugin` and have customized it to load the template from a file.
-
-I've created the [webpack-add-dependency-plugin](https://www.npmjs.com/package/webpack-add-dependency-plugin) that makes webpack watch additional files.
+By default webpack only watches files that your project depends on directly, for example, when you are using `MiniHtmlWebpackPlugin` and have customized it to load the template from a file. [webpack-add-dependency-plugin](https://www.npmjs.com/package/webpack-add-dependency-plugin) solves the problem.
 
 ## Development plugins
 
-The webpack plugin ecosystem is diverse, and there are a lot of plugins that can help with development:
+The webpack ecosystem contains many development plugins:
 
 - [case-sensitive-paths-webpack-plugin](https://www.npmjs.com/package/case-sensitive-paths-webpack-plugin) can be handy when you are developing on mixed environments. For example, Windows, Linux, and macOS have different expectations when it comes to path naming.
 - [react-dev-utils](https://www.npmjs.com/package/react-dev-utils) contains webpack utilities developed for [Create React App](https://www.npmjs.com/package/create-react-app). Despite its name, they can find use beyond React.
 - [webpack-notifier](https://www.npmjs.com/package/webpack-notifier) uses system notifications to let you know of webpack status.
-
-{pagebreak}
 
 ## Conclusion
 
