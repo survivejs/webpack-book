@@ -150,6 +150,22 @@ If you execute code like this, you'll see a print in the console:
 }
 ```
 
+## Loading based on `resourceQuery`
+
+`oneOf` field makes it possible to route webpack to a specific loader based on a resource related match:
+
+```javascript
+const config = {
+  test: /\.png$/,
+  oneOf: [
+    { resourceQuery: /inline/, use: "url-loader" },
+    { resourceQuery: /external/, use: "file-loader" },
+  ],
+};
+```
+
+If you wanted to embed the context information to the filename, the rule could use `resourcePath` over `resourceQuery`.
+
 ## Loading based on `issuer`
 
 `issuer` can be used to control behavior based on where a resource was imported. In the example below, **style-loader** is applied a CSS file is captured through JavaScript:
@@ -176,24 +192,6 @@ const config = {
   ],
 };
 ```
-
-{pagebreak}
-
-## Loading based on `resourceQuery`
-
-`oneOf` field makes it possible to route webpack to a specific loader based on a resource related match:
-
-```javascript
-const config = {
-  test: /\.png$/,
-  oneOf: [
-    { resourceQuery: /inline/, use: "url-loader" },
-    { resourceQuery: /external/, use: "file-loader" },
-  ],
-};
-```
-
-If you wanted to embed the context information to the filename, the rule could use `resourcePath` over `resourceQuery`.
 
 ## Alternate ways to match files
 
