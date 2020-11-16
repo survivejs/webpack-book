@@ -54,7 +54,8 @@ To make the project aware of Tailwind, `import` it from CSS:
 
 ```css
 @tailwind base;
-@tailwind components; /* Write your utility classes after this one */
+@tailwind components;
+/* Write your utility classes here */
 @tailwind utilities;
 
 body {
