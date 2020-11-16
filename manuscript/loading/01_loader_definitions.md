@@ -120,7 +120,7 @@ Carefully applied, this technique allows different means of composition.
 
 ## Loading based on `issuer`
 
-`issuer` can be used to control behavior based on where a resource was imported. In the example below, **style-loader** is applied when webpack captures a CSS file from a JavaScript import:
+`issuer` can be used to control behavior based on where a resource was imported. In the example below, **style-loader** is applied a CSS file is captured through JavaScript:
 
 ```javascript
 const config = {
@@ -138,15 +138,12 @@ Another approach would be to mix `issuer` and `not`:
 const config = {
   test: /\.css$/,
   rules: [
-    // CSS imported from other modules is added to the DOM
+    // Add CSS imported from other modules to the DOM
     { issuer: { not: /\.css$/ }, use: "style-loader" },
-    // Apply css-loader against CSS imports to return CSS
-    { use: "css-loader" },
+    { use: "css-loader" }, // Apply against CSS imports
   ],
 };
 ```
-
-{pagebreak}
 
 ## Loading based on `resourceQuery`
 
@@ -183,8 +180,6 @@ const config = {
   ],
 };
 ```
-
-{pagebreak}
 
 If you execute code like this, you'll see a print in the console:
 
