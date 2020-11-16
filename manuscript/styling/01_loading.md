@@ -82,7 +82,9 @@ Execute `npm start` and browse to `http://localhost:8080` if you are using the d
 
 ![Hello cornsilk world](images/hello_02.png)
 
-{pagebreak}
+## PostCSS
+
+[PostCSS](http://postcss.org/) allows you to perform transformations over CSS through JavaScript plugins. PostCSS is the equivalent of Babel for styling and you can find plugins for many purposes. It can even fix browser bugs like `100vh` behavior on Safari [postcss-100vh-fix](https://www.npmjs.com/package/postcss-100vh-fix). PostCSS is discussed in detail at the _Autoprefixing_ chapter.
 
 ## Using CSS preprocessors
 
@@ -95,10 +97,6 @@ Webpack provides support for the most popular styling approaches as listed below
 For anything css-in-js related, please refer to the documentation of the specific solution. Often webpack is well supported by the options.
 
 T> The _CSS Modules_ appendix discusses an approach that allows you to treat local to files by default. It avoids the scoping problem of CSS.
-
-## PostCSS
-
-[PostCSS](http://postcss.org/) allows you to perform transformations over CSS through JavaScript plugins. PostCSS is the equivalent of Babel for styling and you can find plugins for many purposes. It can even fix browser bugs like `100vh` behavior on Safari [postcss-100vh-fix](https://www.npmjs.com/package/postcss-100vh-fix). PostCSS is discussed in detail at the _Autoprefixing_ chapter.
 
 ## Understanding **css-loader** lookups
 
