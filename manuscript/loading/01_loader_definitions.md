@@ -180,6 +180,8 @@ const config = {
 };
 ```
 
+{pagebreak}
+
 Another approach would be to mix `issuer` and `not`:
 
 ```javascript
