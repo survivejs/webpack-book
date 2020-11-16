@@ -126,14 +126,15 @@ To access your development server from the network, you need to figure out the I
 
 WPS will handle restarting the server when you change a bundled file. It's oblivious to changes made to webpack configuration, though, and you have to restart the WPS whenever you change something. The process can be automated as [discussed on GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892) by using [nodemon](https://www.npmjs.com/package/nodemon) monitoring tool.
 
-To get it to work, you have to install it first through `npm add nodemon --develop`, and then add it to your `start` npm script:
+To get it to work, you have to install it first through `npm add nodemon --develop`, and then set up a script:
 
 **package.json**
 
 ```json
 {
   "scripts": {
-    "start": "nodemon --watch webpack.* --exec \"wp --mode development\"",
+    "watch": "nodemon --watch webpack.* --exec \"npm run start\"",
+    "start": "wp --mode development",
     "build": "wp --mode production"
   }
 }
