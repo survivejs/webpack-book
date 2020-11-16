@@ -175,6 +175,8 @@ If you go with the configuration package approach I mentioned, consider the guid
 - When wrapping loaders, use the associated TypeScript type in parameters.
 - Consider testing the package by using snapshots (`expect().toMatchSnapshot()` in Jest) to assert output changes. See the _Extending with Plugins_ chapters for an example of a test harness.
 
+{pagebreak}
+
 ## Conclusion
 
 Even though the configuration is technically the same as before, now you have room to grow it through composition.
