@@ -48,8 +48,6 @@ const config = [
 
 T> If you are not sure how a particular RegExp matches, consider using an online tool, such as [regex101](https://regex101.com/), [RegExr](http://regexr.com/), or [ExtendsClass RegEx Tester](https://extendsclass.com/regex-tester.html).
 
-{pagebreak}
-
 ### Enforcing order
 
 Even though it would be possible to develop an arbitrary configuration using the rule above, it can be convenient to be able to force specific rules to be applied before or after regular ones. The `enforce` field can come in handy here. It can be set to either `pre` or `post` to push processing either before or after other loaders.
@@ -78,8 +76,6 @@ const config = {
 ```
 
 This style of configuration works in entries and source imports too as webpack picks it up. The format comes in handy in certain individual cases, but often you are better off using more readable alternatives.
-
-{pagebreak}
 
 It's preferable to go through `use`:
 
