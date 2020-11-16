@@ -165,7 +165,7 @@ If you execute `npm run build` now, you should see something:
   code generated modules 309 bytes (javascript) 1.99 MiB (css/mini-extract) [code generated]
     ./src/index.js + 1 modules 309 bytes [built] [code generated]
     css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[0].use[2]!./src/main.css 1.99 MiB [code generated]
-  webpack 5.1.3 compiled successfully in 2429 ms
+  webpack 5.4.0 compiled successfully in 2429 ms
 
 ```
 

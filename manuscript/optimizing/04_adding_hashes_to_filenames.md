@@ -106,7 +106,7 @@ If you generate a build now (`npm run build`), you should see something:
   asset main.bd...ca.css 1.87 KiB [emitted] [immutable] (name: main)
   asset index.html 285 bytes [emitted]
 ...
-  webpack 5.1.3 compiled successfully in 6593 ms
+  webpack 5.4.0 compiled successfully in 6593 ms
 ```
 
 The files have neat hashes now. To prove that it works for styling, you could try altering _src/main.css_ and see what happens to the hashes when you rebuild.

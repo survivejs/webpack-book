@@ -128,7 +128,7 @@ If you build the project now (`npm run build`), you should notice that CSS has b
     asset 34.js 247 bytes [emitted] [minimized] 2 related assets
   asset main.css 730 bytes [emitted] (name: main)
 ...
-  webpack 5.1.3 compiled successfully in 6388 ms
+  webpack 5.4.0 compiled successfully in 6388 ms
 
 ```
 
