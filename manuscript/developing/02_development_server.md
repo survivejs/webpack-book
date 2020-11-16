@@ -91,6 +91,8 @@ module.exports = {
 };
 ```
 
+{pagebreak}
+
 If you execute either _npm run start_ or _npm start_ now, you should see something similar to this in the terminal:
 
 ```bash
@@ -113,8 +115,6 @@ The server is running, and if you open `http://localhost:8080/` at your browser,
 ![Hello world](images/hello_01.png)
 
 If you try modifying the code, you should see the output in your terminal. The browser should also perform a hard refresh so that you can see the change.
-
-T> [dotenv](https://www.npmjs.com/package/dotenv) allows you to define environment variables through a `.env` file. **dotenv** allows you to control the host and port setting of the setup quickly.
 
 T> Enable the `historyFallback` flag if you are using HTML5 History API based routing.
 
@@ -185,6 +185,8 @@ The webpack plugin ecosystem is diverse, and there are a lot of plugins that can
 - [case-sensitive-paths-webpack-plugin](https://www.npmjs.com/package/case-sensitive-paths-webpack-plugin) can be handy when you are developing on mixed environments. For example, Windows, Linux, and macOS have different expectations when it comes to path naming.
 - [react-dev-utils](https://www.npmjs.com/package/react-dev-utils) contains webpack utilities developed for [Create React App](https://www.npmjs.com/package/create-react-app). Despite its name, they can find use beyond React. If you want only webpack message formatting, consider [webpack-format-messages](https://www.npmjs.com/package/webpack-format-messages).
 - [webpack-notifier](https://www.npmjs.com/package/webpack-notifier) uses system notifications to let you know of webpack status.
+
+{conclusion}
 
 ## Conclusion
 
