@@ -81,6 +81,8 @@ const config = {
 };
 ```
 
+{pagebreak}
+
 ## Inline definitions
 
 Even though configuration level loader definitions are preferable, it's possible to write loader definitions inline:
