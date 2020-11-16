@@ -84,7 +84,7 @@ Execute `npm start` and browse to `http://localhost:8080` if you are using the d
 
 ## PostCSS
 
-[PostCSS](http://postcss.org/) allows you to perform transformations over CSS through JavaScript plugins. PostCSS is the equivalent of Babel for styling and you can find plugins for many purposes. It can even fix browser bugs like `100vh` behavior on Safari [postcss-100vh-fix](https://www.npmjs.com/package/postcss-100vh-fix). PostCSS is discussed in detail at the _Autoprefixing_ chapter.
+[PostCSS](http://postcss.org/) allows you to perform transformations over CSS through JavaScript plugins. PostCSS is the equivalent of Babel for styling and you can find plugins for many purposes. It can even fix browser bugs like `100vh` behavior on Safari [postcss-100vh-fix](https://www.npmjs.com/package/postcss-100vh-fix). PostCSS is discussed in the next chapters.
 
 ## Using CSS preprocessors
 
