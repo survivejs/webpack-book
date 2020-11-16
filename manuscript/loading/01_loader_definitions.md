@@ -177,6 +177,8 @@ const config = {
 };
 ```
 
+{pagebreak}
+
 ## Loading based on `resourceQuery`
 
 `oneOf` field makes it possible to route webpack to a specific loader based on a resource related match:
