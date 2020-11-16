@@ -146,6 +146,8 @@ const config = {
 };
 ```
 
+{pagebreak}
+
 ## Loading based on `resourceQuery`
 
 `oneOf` field makes it possible to route webpack to a specific loader based on a resource related match:
@@ -182,6 +184,8 @@ const config = {
 };
 ```
 
+{pagebreak}
+
 If you execute code like this, you'll see a print in the console:
 
 ```bash
@@ -198,9 +202,7 @@ If you execute code like this, you'll see a print in the console:
 
 `test` combined with `include` or `exclude` to constrain the match is the most common approach to match files. These accept the data types as listed below:
 
-- `test` - Match against a RegExp, string, function, an object, or an array of conditions like these.
-- `include` - The same.
-- `exclude` - The same, except the output is the inverse of `include`.
+- `test`, `include`, `exclude` - Match against a RegExp, string, function, an object, or an array of conditions like these.
 - `resource: /inline/` - Match against a resource path including the query. Examples: `/path/foo.inline.js`, `/path/bar.png?inline`.
 - `issuer: /bar.js/` - Match against a resource requested from the match. Example: `/path/foo.png` would match if it was requested from `/path/bar.js`.
 - `resourcePath: /inline/` - Match against a resource path without its query. Example: `/path/foo.inline.png`.
