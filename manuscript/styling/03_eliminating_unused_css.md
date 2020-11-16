@@ -139,20 +139,18 @@ exports.eliminateUnusedCSS = () => ({
 
 T> For exceptions, [PurgeCSS 3.0](https://github.com/FullHuman/purgecss/releases/tag/v3.0.0) includes **safelist** and **blocklist** options.
 
-Next, the part has to be connected with the configuration. It's essential the plugin is used _after_ the `MiniCssExtractPlugin` as it doesn't work otherwise:
+Next, the part has to be connected with the configuration:
 
 **webpack.config.js**
 
 ```javascript
-const productionConfig = merge([
-  parts.extractCSS({ loaders: cssLoaders }),
+leanpub-start-delete
+const productionConfig = merge();
+leanpub-end-delete
 leanpub-start-insert
-  parts.eliminateUnusedCSS(),
+const productionConfig = merge([parts.eliminateUnusedCSS()]);
 leanpub-end-insert
-]);
 ```
-
-The order of the CSS related calls doesn't matter as the plugins will register to different parts of the build.
 
 If you execute `npm run build` now, you should see something:
 
