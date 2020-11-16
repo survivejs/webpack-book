@@ -94,13 +94,9 @@ Building the application (`npm run build`) should yield output:
   code generated modules 309 bytes (javascript) 1.99 MiB (css/mini-extract) [code generated]
     ./src/index.js + 1 modules 309 bytes [built] [code generated]
     css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[0].use[2]!./src/main.css 1.99 MiB [code generated]
-
-...
 ```
 
 As you can see, the size of the CSS file grew, and this is something to fix with PurgeCSS.
-
-{pagebreak}
 
 ## Enabling PurgeCSS
 
@@ -109,6 +105,8 @@ As you can see, the size of the CSS file grew, and this is something to fix with
 ```bash
 npm add glob purgecss-webpack-plugin --develop
 ```
+
+{pagebreak}
 
 You also need to configure as below:
 
@@ -138,6 +136,8 @@ exports.eliminateUnusedCSS = () => ({
 ```
 
 T> For exceptions, [PurgeCSS 3.0](https://github.com/FullHuman/purgecss/releases/tag/v3.0.0) includes **safelist** and **blocklist** options.
+
+{pagebreak}
 
 Next, the part has to be connected with the configuration:
 
@@ -173,6 +173,8 @@ The size of the style has decreased noticeably. Instead of 1.99 MiB, we have rou
 W> Tailwind includes PurgeCSS out of the box and it can be preferable to use that. See [Tailwind documentation](https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css) for more information. The example above is enough to illustrate the idea, and it works universally.
 
 T> [uncss](https://www.npmjs.com/package/uncss) is a good alternative to PurgeCSS. It operates through PhantomJS and performs its work differently. You can use uncss itself as a PostCSS plugin.
+
+{pagebreak}
 
 ### Critical path rendering
 
