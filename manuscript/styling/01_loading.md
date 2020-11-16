@@ -143,6 +143,8 @@ W> If you are using **postcss-loader**, you can skip using `~` as discussed in [
 
 Especially with Angular 2, it can be convenient if you can get CSS in a string format that can be pushed to components. [to-string-loader](https://www.npmjs.com/package/to-string-loader) achieves exactly this.
 
+{pagebreak}
+
 ## Conclusion
 
 Webpack can load a variety of style formats. The approaches covered here write the styling to JavaScript bundles by default.
