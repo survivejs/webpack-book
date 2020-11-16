@@ -120,9 +120,7 @@ T> Enable the `historyFallback` flag if you are using HTML5 History API based ro
 
 ## Accessing development server from the network
 
-To access your development server from the network, you need to figure out the IP address of your machine. For example, using `ifconfig | grep inet` on Unix, or `ipconfig` on Windows. An npm package, such as [node-ip](https://www.npmjs.com/package/node-ip), come in handy as well.
-
-On Windows you need to set your `HOST` to match your IP to make it accessible. Example: `HOST=<ip goes here> npm start`.
+To access your development server from the network, you need to figure out the IP address of your machine. For example, using `ifconfig | grep inet` on Unix, or `ipconfig` on Windows. Then you need to set your `HOST` to match your IP like this: `HOST=<ip goes here> npm start`.
 
 ## Making it faster to develop webpack configuration
 
