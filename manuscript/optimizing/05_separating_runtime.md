@@ -28,6 +28,8 @@ leanpub-end-insert
 
 The name `runtime` is used by convention. You can use any other name, and it will still work.
 
+{pagebreak}
+
 If you build the project now (`npm run build`), you should see something:
 
 ```bash
@@ -43,9 +45,7 @@ If you build the project now (`npm run build`), you should see something:
   webpack 5.4.0 compiled successfully in 7209 ms
 ```
 
-This change gave a separate file that contains the runtime. In the output above it has been marked with `runtime` chunk name. As the setup is using `MiniHtmlWebpackPlugin`, there is no need to worry about loading the runtime ourselves as the plugin adds a reference to `index.html`.
-
-Try adjusting `src/index.js` and see how the hashes change. This time around it should **not** invalidate the vendor bundle, and only the runtime and app bundle names should become different.
+This change gave a separate file that contains the runtime. In the output above it has been marked with `runtime` chunk name. As the setup is using `MiniHtmlWebpackPlugin`, there is no need to worry about loading the runtime ourselves as the plugin adds a reference to `index.html`. Try adjusting `src/index.js` and see how the hashes change.
 
 Starting from webpack 5, the tool will take your browserslist definition into account when generating the runtime. See the _Autoprefixing_ chapter for an expanded discussion. In webpack 5, it's possible to use `target` to define in which format the runtime is written. Setting it to `es5` would emit ECMAScript 5 compatible code while setting to `es2015` would generate shorter code for the newer target. The setting also affects the _Minifying_ process.
 
