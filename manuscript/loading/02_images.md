@@ -130,6 +130,8 @@ Webpack allows you to load images dynamically based on a condition. The techniqu
 
 [lqip-loader](https://www.npmjs.com/package/lqip-loader) implements a similar idea. Instead of tracing, it provides a blurred image instead of a traced one.
 
+{pagebreak}
+
 ## Referencing to images
 
 Webpack can pick up images from style sheets through `@import` and `url()` assuming **css-loader** has been configured. You can also refer to your images within the code. In this case, you have to import the files explicitly:
@@ -156,6 +158,8 @@ It's also possible to set up dynamic imports as discussed in the _Code Splitting
 ```javascript
 const src = require(`./avatars/\${avatar}`);
 ```
+
+{pagebreak}
 
 ## Conclusion
 
