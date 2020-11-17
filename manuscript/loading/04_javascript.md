@@ -324,4 +324,4 @@ To recap:
 - Babel gives you control over what browsers to support. It can compile ES2015+ features to a form the older browser understand. **@babel/preset-env** is valuable as it can choose which features to compile and which polyfills to enable based on your browser definition.
 - Babel allows you to use experimental language features. You can find numerous plugins that improve development experience and the production build through optimizations.
 - Babel functionality can be enabled per development target. This way you can be sure you are using the correct plugins at the right place.
-- Besides Babel, webpack supports other solutions like TypeScript or WebAssembly.
+- Besides ES2015+ through Babel, webpack supports other languages like TypeScript or WebAssembly.
