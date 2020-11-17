@@ -222,8 +222,6 @@ The fallback isn't without problems as in the worst case, it can force the brows
 
 On webpack side, you will have to take care to generate two builds with differing browserslist definitions and names. In addition, you have to make sure the HTML template receives the `script` tags as above so it's able to load them.
 
-{pagebreak}
-
 To give you a better idea on how to implement the technique, consider the following and set up a browserslist as below:
 
 **.browserslistrc**
@@ -314,8 +312,6 @@ Especially the `logError` portion is important as without this **ts-node** would
 [WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly) allows developers to compile to a low-level representation of code that runs within the browser. It complements JavaScript and provides one path of potential optimization. The technology can also be useful when you want to run an old application without porting it entirely to JavaScript.
 
 Starting from webpack 5, the tool supports new style asynchronous WebAssembly. The official examples, [wasm-simple](https://github.com/webpack/webpack/tree/master/examples/wasm-simple) and [wasm-complex](https://github.com/webpack/webpack/tree/master/examples/wasm-complex), illustrate the experimental functionality well. [wasmpack's webpack tutorial](https://rustwasm.github.io/docs/wasm-pack/tutorials/hybrid-applications-with-webpack/index.html) shows how to package Rust code using WebAssembly to be consumed through webpack.
-
-{pagebreak}
 
 ## Conclusion
 
