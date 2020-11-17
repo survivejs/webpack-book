@@ -274,8 +274,6 @@ const config = {
 };
 ```
 
-T> The [official documentation](https://webpack.js.org/configuration/output/#output-sourcemapfilename) digs into `output` specifics.
-
 ## `SourceMapDevToolPlugin` and `EvalSourceMapDevToolPlugin`
 
 If you want more control over source map generation, it's possible to use the [SourceMapDevToolPlugin](https://webpack.js.org/plugins/source-map-dev-tool-plugin/) or `EvalSourceMapDevToolPlugin` instead. The latter is a more limited alternative, and as stated by its name, it's handy for generating `eval` based source maps.
@@ -286,15 +284,15 @@ Given webpack matches only `.js` and `.css` files by default for source maps, yo
 
 `EvalSourceMapDevToolPlugin` accepts only `module` field. Therefore it can be considered as an alias to `devtool: "eval"` while allowing a notch more flexibility.
 
-## Extracting source from source maps
-
-If a source has been minified and has source maps available, then it's possible to reconstruct the original source by using [source-from-sourcemaps](https://www.npmjs.com/package/source-from-sourcemaps) tool. It accepts the minified source and source map as an input and then emits the source.
-
 ## Changing source map prefix
 
 You can prefix a source map option with a **pragma** character that gets injected into the source map reference. Webpack uses `#` by default that is supported by modern browsers, so you don't have to set it.
 
 To override this, you have to prefix your source map option with it (e.g., `@source-map`). After the change, you should see `//@` kind of reference to the source map over `//#` in your JavaScript files, assuming a separate source map type was used.
+
+## Extracting source from source maps
+
+If a source has been minified and has source maps available, then it's possible to reconstruct the original source by using [source-from-sourcemaps](https://www.npmjs.com/package/source-from-sourcemaps) tool. It accepts the minified source and source map as an input and then emits the source.
 
 ## Source maps on backend
 
