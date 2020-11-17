@@ -123,6 +123,6 @@ To recap:
 - The most valuable placeholders are `[name]`, `[contenthash]`, and `[ext]`. A content hash is derived based on the chunk content.
 - If you are using `MiniCssExtractPlugin`, you should use `[contenthash]` as well. This way the generated assets get invalidated only if their content changes.
 
-Even though the project generates hashes now, the output isn't flawless. The problem is that if the application changes, it invalidates the vendor bundle as well. The next chapter digs deeper into the topic and shows you how to extract webpack **runtime** to resolve the issue.
+The next chapter discusses the topic of webpack **runtime**. To make sure changes made to it won't invalidate more code than it should, it's a good practice to separate it.
 
 T> [Philip Walton has written about caching in detail](https://philipwalton.com/articles/cascading-cache-invalidation/) and his article is a great read if you want to know more about the topic on a more general level.

@@ -1,8 +1,6 @@
 # Separating a Runtime
 
-When webpack writes bundles, it maintains a **runtime** as well. The runtime includes a manifest of the files to be loaded initially. If the names of the files change, then the manifest changes and the change invalidates the file in which it is contained.
-
-For this reason, it can be a good idea to write the runtime to a file of its own or inline the manifest information to the `index.html` file of the project.
+When webpack writes bundles, it maintains a **runtime** as well. The runtime includes a manifest of the files to be loaded initially. If the names of the files change, then the manifest changes and the change invalidates the file in which it is contained. For this reason, it can be a good idea to write the runtime to a file of its own or inline the manifest information to the `index.html` file of the project.
 
 ## Extracting a runtime
 
@@ -13,16 +11,18 @@ Most of the work was done already when `extractBundles` was set up in the _Bundl
 ```javascript
 const productionConfig = merge([
   ...
+leanpub-start-delete
+  { optimization: { splitChunks: { chunks: "all" } } },
+leanpub-end-delete
+leanpub-start-insert
   {
     optimization: {
-      splitChunks: {
-        ...
-      },
-leanpub-start-insert
+      splitChunks: { chunks: "all" },
       runtimeChunk: { name: "runtime" },
-leanpub-end-insert
     },
   },
+leanpub-end-insert
+  ...
 ]);
 ```
 
