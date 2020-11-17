@@ -50,6 +50,8 @@ Execute `npm run build` to get a baseline build. You should end up with somethin
 
 As you can see, `main.js` is big. That is something to fix next.
 
+{pagebreak}
+
 ## Setting up a `vendor` bundle
 
 Before webpack 4, there used to be `CommonsChunkPlugin` for managing bundle splitting. The plugin has been replaced with automation and configuration. To extract a vendor bundle from the `node_modules` directory, adjust the code as follows:
@@ -86,8 +88,6 @@ Now the bundles look the same as in the image above.
 T> The `chunks: "initial"` option doesn't apply to code-split modules while `all` does.
 
 ![Main and vendor bundles after applying configuration](images/bundle_02.png)
-
-{pagebreak}
 
 ## Controlling bundle splitting
 
@@ -128,8 +128,6 @@ const config = {
   },
 };
 ```
-
-{pagebreak}
 
 ## Splitting and merging chunks
 
