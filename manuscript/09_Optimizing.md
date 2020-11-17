@@ -1,3 +1,3 @@
 -# Optimizing
 
-In this part, you will learn about aspects like code minification, setting environment variables, adding hashing to filenames, webpack runtime, and analyzing build statistics. Understanding these techniques allows you to reach production level output. You also learn about tuning webpack performance.
+In this part, you will learn about code minification, setting environment variables, adding hashing to filenames, webpack runtime, analyzing build statistics, and improving webpack performance.
