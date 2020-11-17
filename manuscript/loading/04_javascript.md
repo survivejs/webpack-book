@@ -207,6 +207,8 @@ T> The way `env` works is subtle. Consider logging `env` and make sure it matche
 
 To benefit from the support for modern language features and to support legacy browsers, it's possible to use webpack to generate two bundles and then write bootstrapping code that's detected by the browsers so that they use the correct ones. Doing this gives smaller bundles for modern browsers while improving JavaScript parsing time. Legacy browsers will still work as well.
 
+{pagebreak}
+
 As [discussed by Philip Walton](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/), on browser-side you should use HTML like this:
 
 ```html
@@ -255,8 +257,6 @@ const getConfig = (mode) => {
   }
 };
 ```
-
-{pagebreak}
 
 Above would expect the following target:
 
