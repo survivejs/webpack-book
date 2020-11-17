@@ -50,11 +50,13 @@ Execute `npm run build` to get a baseline build. You should end up with somethin
 
 As you can see, `main.js` is big. That is something to fix next.
 
-{pagebreak}
-
 ## Setting up a `vendor` bundle
 
-Before webpack 4, there used to be `CommonsChunkPlugin` for managing bundle splitting. The plugin has been replaced with automation and configuration. To extract a vendor bundle from the `node_modules` directory, adjust the code as follows:
+Before webpack 4, there used to be `CommonsChunkPlugin` for managing bundle splitting. The plugin has been replaced with automation and configuration.
+
+{pagebreak}
+
+To extract a vendor bundle from the `node_modules` directory, adjust the code as follows:
 
 **webpack.config.js**
 
@@ -83,9 +85,7 @@ If you try to generate a build now (`npm run build`), you should see something a
   webpack 5.4.0 compiled successfully in 4847 ms
 ```
 
-Now the bundles look the same as in the image above.
-
-T> The `chunks: "initial"` option doesn't apply to code-split modules while `all` does.
+Now the bundles look the same as in the image below.
 
 ![Main and vendor bundles after applying configuration](images/bundle_02.png)
 
@@ -128,6 +128,8 @@ const config = {
   },
 };
 ```
+
+T> The `chunks: "initial"` option doesn't apply to code-split modules while `all` does.
 
 ## Splitting and merging chunks
 
