@@ -150,14 +150,6 @@ Webpack can also generate production usage friendly source maps. These end up in
 
 `source-map` is a reasonable default here. Even though it takes longer to generate the source maps this way, you get the best quality. If you don't care about production source maps, you can skip the setting there and get better performance in return.
 
-### `devtool: "hidden-source-map"`
-
-`hidden-source-map` is the same as `source-map` except it doesn't write references to the source maps to the source files. If you don't want to expose source maps to development tools directly while you wish proper stack traces, this is handy.
-
-### `devtool: "nosources-source-map"`
-
-`nosources-source-map` creates a source map without `sourcesContent` in it. You still get stack traces, though. The option is useful if you don't want to expose your source code to the client.
-
 ### `devtool: "cheap-source-map"`
 
 `cheap-source-map` is similar to the cheap options above. The result is going to miss column mappings. Also, source maps from loaders, such as **css-loader**, are not going to be used.
@@ -184,8 +176,6 @@ Examining the `.map` file reveals the following output in this case:
 ```
 
 The source contains `//# sourceMappingURL=main.js.map` kind of comment at its end to map to this file.
-
-{pagebreak}
 
 ### `devtool: "cheap-module-source-map"`
 
@@ -250,7 +240,13 @@ W> `cheap-module-source-map` is [currently broken if minification is used](https
 
 T> [The official documentation](https://webpack.js.org/configuration/devtool/#devtool) contains more information about `devtool` options.
 
-{pagebreak}
+### `devtool: "hidden-source-map"`
+
+`hidden-source-map` is the same as `source-map` except it doesn't write references to the source maps to the source files. If you don't want to expose source maps to development tools directly while you wish proper stack traces, this is handy.
+
+### `devtool: "nosources-source-map"`
+
+`nosources-source-map` creates a source map without `sourcesContent` in it. You still get stack traces, though. The option is useful if you don't want to expose your source code to the client.
 
 ## Other source map options
 
@@ -279,8 +275,6 @@ const config = {
 ```
 
 T> The [official documentation](https://webpack.js.org/configuration/output/#output-sourcemapfilename) digs into `output` specifics.
-
-{pagebreak}
 
 ## Using dependency source maps
 
