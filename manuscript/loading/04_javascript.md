@@ -133,7 +133,7 @@ __webpack_require__.r(__webpack_exports__);
 
 Note especially how the function was transformed. You can try out different browser definitions and language features to see how the output changes based on the selection.
 
-T> [@babel/preset-modules](https://www.npmjs.com/package/@babel/preset-modules) goes beyond **@babel/preset-env** by fixing bugs in modern browsers. A part of the work has been ported to **@babel/preset-env** as well and can be enabled by setting the `bugfixes` flag to `true`. The preset is useful only for modern browsers!
+T> **@babel/preset-env** comes with a `bugfixes` option that, when enabled, writes modern syntax to one that works also in older browsers without compiling down to ES5.
 
 T> See the _Autoprefixing_ chapter for an expanded discussion of browserslist.
 
@@ -151,20 +151,15 @@ W> Certain webpack features, such as _Code Splitting_, write `Promise` based cod
 
 ## Babel tips
 
-There are other possible [`.babelrc` options](https://babeljs.io/docs/usage/options/) beyond the ones covered here. Like ESLint, `.babelrc` supports [JSON5](https://www.npmjs.com/package/json5) as its configuration format meaning you can include comments in your source, use single quoted strings, and so on.
+There are other possible [`.babelrc` options](https://babeljs.io/docs/en/options) beyond the ones covered here. Like ESLint, `.babelrc` supports [JSON5](https://www.npmjs.com/package/json5) as its configuration format meaning you can include comments in your source, use single quoted strings, and so on.
 
-Sometimes you want to use experimental features that fit your project. Although you can find a lot of them within so-called stage presets, it's a good idea to enable them one by one and even organize them to a preset of their own unless you are working on a throwaway project. If you expect your project to live a long time, it's better to document the features you are using well.
+Sometimes you want to use experimental features that fit your project. If you expect your project to live a long time, it's better to document the features you are using well.
 
 ## Babel plugins
 
-Perhaps the greatest thing about Babel is that it's possible to extend with plugins:
+Perhaps the greatest thing about Babel is that it's possible to extend with plugins. Consider the following examples:
 
 - [babel-plugin-import](https://www.npmjs.com/package/babel-plugin-import) rewrites module imports so that you can use a form such as `import { Button } from "antd";` instead of pointing to the module through an exact path.
-- [babel-plugin-import-asserts](https://www.npmjs.com/package/babel-plugin-import-asserts) asserts that your imports have been defined.
-- [babel-plugin-jsdoc-to-assert](https://www.npmjs.com/package/babel-plugin-jsdoc-to-assert) converts [JSDoc](http://usejsdoc.org/) annotations to runnable assertions.
-- [babel-plugin-log-deprecated](https://www.npmjs.com/package/babel-plugin-log-deprecated) uses `@deprecate` annotation to add `console.warn` to functions that have it.
-- [babel-plugin-annotate-console-log](https://www.npmjs.com/package/babel-plugin-annotate-console-log) annotates `console.log` calls with information about invocation context, so it's easier to see where they logged.
-- [babel-plugin-sitrep](https://www.npmjs.com/package/babel-plugin-sitrep) logs all assignments of a function and prints them.
 - [babel-plugin-transform-react-remove-prop-types](https://www.npmjs.com/package/babel-plugin-transform-react-remove-prop-types) removes `propType` related code from your production build. It also allows component authors to generate code that's wrapped so that setting environment at `DefinePlugin` can kick in as discussed in the _Environment Variables_ chapter.
 - [babel-plugin-macros](https://www.npmjs.com/package/babel-plugin-macros) provides a runtime environment for small Babel modifications without requiring additional plugin setup.
 
@@ -312,16 +307,6 @@ If you run webpack in watch mode or through **webpack-dev-server**, by default c
 
 Especially the `logError` portion is important as without this **ts-node** would crash the build on error. `transpileOnly` is useful to set if you want to handle type-checking outside of the process. For example, you could run `tsc` using a separate script. Often editor tooling can catch type issues as you are developing as well eliminating the need to check through **ts-node**.
 
-## Flow
-
-[Flow](https://flow.org/) performs static analysis based on your code and its type annotations. You have to install it as a separate tool and then run it against your code.
-
-If you use React, the React specific Babel preset does most of the work through [babel-plugin-syntax-flow](https://www.npmjs.com/package/babel-plugin-syntax-flow). It can strip Flow annotations and convert your code into a format that is possible to transpile further.
-
-[flow-runtime](https://www.npmjs.com/package/flow-runtime) allows runtime checks based on our Flow annotations. The approaches complement Flow static checker and allow you to catch even more issues.
-
-T> [flow-coverage-report](https://www.npmjs.com/package/flow-coverage-report) shows how much of your code is covered by Flow type annotations.
-
 ## WebAssembly
 
 [WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly) allows developers to compile to a low-level representation of code that runs within the browser. It complements JavaScript and provides one path of potential optimization. The technology can also be useful when you want to run an old application without porting it entirely to JavaScript.
@@ -337,4 +322,4 @@ To recap:
 - Babel gives you control over what browsers to support. It can compile ES2015+ features to a form the older browser understand. **@babel/preset-env** is valuable as it can choose which features to compile and which polyfills to enable based on your browser definition.
 - Babel allows you to use experimental language features. You can find numerous plugins that improve development experience and the production build through optimizations.
 - Babel functionality can be enabled per development target. This way you can be sure you are using the correct plugins at the right place.
-- Besides Babel, webpack supports other solutions like TypeScript or Flow. Flow can complement Babel while TypeScript represents an entire language compiling to JavaScript.
+- Besides Babel, webpack supports other solutions like TypeScript or WebAssembly.
