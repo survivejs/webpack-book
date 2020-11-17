@@ -1,18 +1,18 @@
 # Bundle Splitting
 
-Currently, the production version of the application is a single JavaScript file. If the application is changed, the client must download vendor dependencies as well.
+Although code splitting gives control over when code is loaded, it's not the only way webpack lets you shape the output.
 
-It would be better to download only the changed portion. If the vendor dependencies change, then the client should fetch only the vendor dependencies. The same goes for actual application code. **Bundle splitting** can be achieved using `optimization.splitChunks.cacheGroups`. When running in production mode, [starting from webpack 4, the tool can perform a series of splits out of the box](https://gist.github.com/sokra/1522d586b8e5c0f5072d7565c2bee693) but in this case, we'll do something manually.
+**Bundle splitting** is a complementary technique that lets you define splitting behavior on the level of configuration. A common use case is extracting so called vendor bundle that contains third-party dependencies.
 
-T> To invalidate the bundles correctly, you have to attach hashes to the generated bundles as discussed in the _Adding Hashes to Filenames_ chapter.
-
-## The idea of bundle splitting
-
-With bundle splitting, you can push the vendor dependencies to a bundle of their own and benefit from client level caching. The process can be done in such a way that the whole size of the application remains the same. Given there are more requests to perform, there's a slight overhead. But the benefit of caching makes up for this cost.
+The split allows the client to download only the application bundle if there are changes only in the application code. The same goes for vendor-only changes.
 
 To give you a quick example, instead of having `main.js` (100 kB), you could end up with `main.js` (10 kB) and `vendor.js` (90 kB). Now changes made to the application are cheap for the clients that have already used the application earlier.
 
-Caching comes with its problems. One of those is cache invalidation. A potential approach related to that is discussed in the _Adding Hashes to Filenames_ chapter.
+Bundle splitting can be achieved using `optimization.splitChunks.cacheGroups`. When running in production mode, [starting from webpack 4, the tool can perform a series of splits out of the box](https://gist.github.com/sokra/1522d586b8e5c0f5072d7565c2bee693) but in this chapter, we'll do something manually.
+
+T> To invalidate the bundles correctly, you have to attach hashes to the generated bundles as discussed in the _Adding Hashes to Filenames_ chapter.
+
+{pagebreak}
 
 ## Adding something to split
 
