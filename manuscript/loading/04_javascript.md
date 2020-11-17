@@ -68,6 +68,8 @@ exports.loadJavaScript = () => ({
 
 Next, you need to connect this to the main configuration. If you are using a modern browser for development, you can consider processing only the production code through Babel. It's used for both production and development environments in this case. Also, only application code is processed through Babel.
 
+{pagebreak}
+
 Adjust as below:
 
 **webpack.config.js**
@@ -82,8 +84,6 @@ leanpub-end-insert
 ```
 
 Even though you have Babel installed and set up, you are still missing one bit: Babel configuration. The configuration can be set up using a `.babelrc` dotfile as then other tooling can use the same.
-
-W> If you try to import files **outside** of your configuration root directory and then process them through **babel-loader**, this fails. It's [a known issue](https://github.com/babel/babel-loader/issues/313), and there are workarounds including maintaining `.babelrc` at a higher level in the project and resolving against Babel presets through `require.resolve` at webpack configuration.
 
 ### Setting up `.babelrc`
 
