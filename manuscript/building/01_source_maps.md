@@ -309,6 +309,10 @@ const config = {
 };
 ```
 
+## Extracting source from source maps
+
+If a source has been minified and has source maps available, then it's possible to reconstruct the original source by using [source-from-sourcemaps](https://www.npmjs.com/package/source-from-sourcemaps) tool. It accepts the minified source and source map as an input and then emits the source.
+
 ## Ignoring source map related warnings
 
 Sometimes third-party dependencies lead to source map related warnings in the browser inspector. Webpack allows you to filter the messages as follows:
@@ -320,10 +324,6 @@ const config = {
   },
 };
 ```
-
-## Extracting source from source maps
-
-If a source has been minified and has source maps available, then it's possible to reconstruct the original source by using [source-from-sourcemaps](https://www.npmjs.com/package/source-from-sourcemaps) tool. It accepts the minified source and source map as an input and then emits the source.
 
 ## Conclusion
 
