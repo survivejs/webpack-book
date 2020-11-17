@@ -69,6 +69,8 @@ T> Set `stats.optimizationBailout` flag as `true` to gain debugging information 
 
 If you consume HTML templates through your code using [html-loader](https://www.npmjs.com/package/html-loader), you can preprocess it through [posthtml](https://www.npmjs.com/package/posthtml) with [posthtml-loader](https://www.npmjs.com/package/posthtml-loader). You can use [posthtml-minifier](https://www.npmjs.com/package/posthtml-minifier) to minify your HTML through it and [posthtml-minify-classnames](https://www.npmjs.com/package/posthtml-minify-classnames) to reduce the length of class names.
 
+{pagebreak}
+
 ## Minifying CSS
 
 [css-minimizer-webpack-plugin](https://www.npmjs.com/package/css-minimizer-webpack-plugin) is a plugin-based option that applies a chosen minifier on CSS assets. Using `MiniCssExtractPlugin` can lead to duplicated CSS given it only merges text chunks. **css-minimizer-webpack-plugin** avoids this problem by operating on the generated result and thus can lead to a better outcome. The plugin uses [cssnano](http://cssnano.co/) underneath.
