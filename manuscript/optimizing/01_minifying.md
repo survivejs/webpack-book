@@ -55,10 +55,6 @@ T> Source maps are disabled by default. You can enable them through the `sourceM
 
 T> To adjust Terser behavior, attach `terserOptions` with the related options to the plugin.
 
-## Minifying JavaScript with Closure Compiler
-
-[closure-webpack-plugin](https://www.npmjs.com/package/closure-webpack-plugin) uses Google's Closure Compiler underneath, runs parallel and often gives good results.
-
 ## Speeding up JavaScript execution
 
 Specific solutions allow you to preprocess code so that it will run faster. They complement the minification technique and can be split into **scope hoisting**, **pre-evaluation**, and **improving parsing**. It's possible these techniques grow overall bundle size sometimes while allowing faster execution.
@@ -109,7 +105,6 @@ Then, connect with the main configuration:
 
 ```javascript
 const productionConfig = merge([
-  ...
   parts.minifyJavaScript(),
 leanpub-start-insert
   parts.minifyCSS({ options: { preset: ["default"] } }),
@@ -132,31 +127,24 @@ If you build the project now (`npm run build`), you should notice that CSS has b
 
 ```
 
-T> [compression-webpack-plugin](https://www.npmjs.com/package/compression-webpack-plugin) allows you to push the problem of generating compressed files to webpack to potentially save processing time on the server.
-
 T> Using [last-call-webpack-plugin](https://www.npmjs.com/package/last-call-webpack-plugin) is a more generic approach and you can use it to define which processing to use against which file format before webpack finishes processing.
 
 ## Compressing bundles
 
 Compression techniques, such as gzip or brotli, can be used to reduce the file size further. The downside of using additional compression is that it will lead to extra computation on the client side but on the plus side you save bandwidth.
 
-Often the compression setup can be done on server-side although it's possible to perform preprocessing using webpack using the following plugins:
-
-- [compression-webpack-plugin](https://www.npmjs.com/package/compression-webpack-plugin) is a generic compression plugin that lets you choose amongst multiple option
-- [brotli-webpack-plugin](https://www.npmjs.com/package/brotli-webpack-plugin) works specifically with brotli.
+Often the compression setup can be done on server-side. Using webpack, it's possible to perform preprocessing with [compression-webpack-plugin](https://www.npmjs.com/package/compression-webpack-plugin).
 
 ## Obfuscating output
 
 To make it more tricky for third parties to use your code, [obfuscator-loader](https://github.com/javascript-obfuscator/obfuscator-loader) can be applied. Although protecting code is difficult when it's shared with the client, the code can be made much harder to use.
-
-{pagebreak}
 
 ## Conclusion
 
 Minification is the most comfortable step you can take to make your build smaller. To recap:
 
 - **Minification** process analyzes your source code and turns it into a smaller form with the same meaning if you use safe transformations. Specific unsafe transformations allow you to reach even smaller results while potentially breaking code that relies, for example, on exact parameter naming.
-- Webpack performs minification in production mode using Terser by default. Other solutions, such as Google Closure Compiler, provide similar functionality with costs of their own.
+- Webpack performs minification in production mode using Terser by default.
 - Besides JavaScript, it's possible to minify other assets, such as CSS and HTML too. Minifying these requires specific technologies that have to be applied through loaders and plugins of their own.
 
 You'll learn to apply tree shaking against code in the next chapter.
