@@ -28,23 +28,15 @@ To understand the idea of `DefinePlugin` better, consider the example below:
 
 ```javascript
 var foo;
-
-// Not free due to "foo" above, not ok to replace
-if (foo === "bar") console.log("bar");
-
-// Free since you don't refer to "bar", ok to replace
-if (bar === "bar") console.log("bar");
+if (foo === "bar") console.log("bar"); // Not free
+if (bar === "bar") console.log("bar"); // Free
 ```
 
 If you replaced `bar` with a string like `"foobar"`, then you would end up with the code as below:
 
 ```javascript
 var foo;
-
-// Not free due to "foo" above, not ok to replace
-if (foo === "bar") console.log("bar");
-
-// Free since you don't refer to "bar", ok to replace
+if (foo === "bar") console.log("bar"); // Not free
 if ("foobar" === "bar") console.log("bar");
 ```
 
@@ -52,24 +44,15 @@ Further analysis shows that `"foobar" === "bar"` equals `false` so a minifier gi
 
 ```javascript
 var foo;
-
-// Not free due to "foo" above, not ok to replace
-if (foo === "bar") console.log("bar");
-
-// Free since you don't refer to "bar", ok to replace
+if (foo === "bar") console.log("bar"); // Not free
 if (false) console.log("bar");
 ```
-
-{pagebreak}
 
 A minifier eliminates the `if` statement as it has become dead code:
 
 ```javascript
 var foo;
-
-// Not free, not ok to replace
-if (foo === "bar") console.log("bar");
-
+if (foo === "bar") console.log("bar"); // Not free
 // if (false) means the block can be dropped entirely
 ```
 
