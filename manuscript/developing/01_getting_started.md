@@ -62,7 +62,7 @@ $ node_modules/.bin/wp
   ERROR in main
   Module not found: Error: Can't resolve './src' in 'webpack-demo'
 
-  webpack 5.4.0 compiled with 1 error and 1 warning in 115 ms
+  webpack 5.5.0 compiled with 1 error and 1 warning in 115 ms
 ```
 
 The output tells that webpack cannot find the source to compile. Ideally we would pass `mode` parameter to it as well to define which defaults we want.
@@ -165,7 +165,7 @@ If you execute `node_modules/.bin/wp --mode production`, you should see output:
   asset main.js 136 bytes [compared for emit] [minimized] (name: main)
   orphan modules 140 bytes [orphan] 1 module
   ./src/index.js + 1 modules 217 bytes [built] [code generated]
-  webpack 5.4.0 compiled successfully in 193 ms
+  webpack 5.5.0 compiled successfully in 193 ms
 ```
 
 Starting from webpack 5, the output has been simplified and it's largely self-explanatory. The default output has improved as well as you can see by studying `dist/main.js`. Earlier it contained an entire webpack runtime but starting from webpack 5, the tool is able to optimize the result to a minimum required.

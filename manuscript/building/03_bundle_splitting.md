@@ -45,7 +45,7 @@ Execute `npm run build` to get a baseline build. You should end up with somethin
   asset index.html 237 bytes [compared for emit]
   Entrypoint main 135 KiB (323 KiB) = main.css 7.72 KiB main.js 127 KiB 2 auxiliary assets
   ...
-  webpack 5.4.0 compiled successfully in 5401 ms
+  webpack 5.5.0 compiled successfully in 5401 ms
 ```
 
 As you can see, `main.js` is big. That is something to fix next.
@@ -82,7 +82,7 @@ If you try to generate a build now (`npm run build`), you should see something a
     asset 34.js 187 bytes [compared for emit] [minimized] 1 related asset
   Entrypoint main 135 KiB (326 KiB) = 935.js 124 KiB main.css 7.72 KiB main.js 3.24 KiB 3 auxiliary assets
   ...
-  webpack 5.4.0 compiled successfully in 4847 ms
+  webpack 5.5.0 compiled successfully in 4847 ms
 ```
 
 {pagebreak}

@@ -107,7 +107,7 @@ If you execute either _npm run start_ or _npm start_ now, you should see somethi
     modules by path ./node_modules/webpack-plugin-serve/lib/client/ 23.7 KiB
 ...
     ./node_modules/webpack-plugin-serve/client.js 1.05 KiB [built] [code generated]
-  0 (webpack 5.4.0) compiled successfully in 157 ms
+  0 (webpack 5.5.0) compiled successfully in 157 ms
 ```
 
 The server is running, and if you open `http://localhost:8080/` at your browser, you should see a hello:

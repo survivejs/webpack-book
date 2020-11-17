@@ -103,7 +103,7 @@ After executing `npm run build`, you should see something:
     asset main.js 2.88 KiB [emitted] [minimized] (name: main) 1 related asset
     asset 34.js 187 bytes [emitted] [minimized] 1 related asset
 ...
-  webpack 5.4.0 compiled successfully in 3846 ms
+  webpack 5.5.0 compiled successfully in 3846 ms
 ...
 ```
 

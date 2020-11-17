@@ -91,7 +91,7 @@ After running `npm run build`, you should see output similar to the following:
   asset main.js 136 bytes [compared for emit] [minimized] (name: main)
   asset main.css 33 bytes [compared for emit] (name: main)
 ...
-  webpack 5.4.0 compiled successfully in 301 ms
+  webpack 5.5.0 compiled successfully in 301 ms
 ```
 
 Now styling has been pushed to a separate CSS file. Thus, the JavaScript bundle has become slightly smaller, and you avoid the FOUC problem. The browser doesn't have to wait for JavaScript to load to get styling information. Instead, it can process the CSS separately, avoiding the flash.
