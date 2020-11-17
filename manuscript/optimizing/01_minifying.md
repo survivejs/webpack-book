@@ -99,6 +99,8 @@ exports.minifyCSS = ({ options }) => ({
 
 T> To override **cssnano** with another option, use the `minify` option. It accepts a function with the signature `(data, inputMap, minimizerOptions) => <string>`.
 
+{pagebreak}
+
 Then, connect with the main configuration:
 
 **webpack.config.js**
@@ -128,6 +130,8 @@ If you build the project now (`npm run build`), you should notice that CSS has b
 ```
 
 T> Using [last-call-webpack-plugin](https://www.npmjs.com/package/last-call-webpack-plugin) is a more generic approach and you can use it to define which processing to use against which file format before webpack finishes processing.
+
+{pagebreak}
 
 ## Compressing bundles
 
