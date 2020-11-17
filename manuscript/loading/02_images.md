@@ -130,10 +130,6 @@ Webpack allows you to load images dynamically based on a condition. The techniqu
 
 [lqip-loader](https://www.npmjs.com/package/lqip-loader) implements a similar idea. Instead of tracing, it provides a blurred image instead of a traced one.
 
-## Getting image dimensions
-
-Sometimes getting the only reference to an image isn't enough. [image-size-loader](https://www.npmjs.com/package/image-size-loader) emits image dimensions, type, and size in addition to the reference to the image itself.
-
 ## Referencing to images
 
 Webpack can pick up images from style sheets through `@import` and `url()` assuming **css-loader** has been configured. You can also refer to your images within the code. In this case, you have to import the files explicitly:
@@ -145,7 +141,7 @@ import src from "./avatar.png";
 const Profile = () => <img src={src} />;
 ```
 
-Starting from webpack 5, it's possible to achieve the same without an import like this:
+Starting from webpack 5, it's possible to achieve the same as below:
 
 ```javascript
 const Profile = () => (
@@ -155,11 +151,11 @@ const Profile = () => (
 
 The benefit of using the [URL interface](https://developer.mozilla.org/en-US/docs/Web/API/URL) is that it lets the code work without using a bundler.
 
-It's also possible to set up dynamic imports as discussed in the _Code Splitting_ chapter. Here's a small example: `const src = require(`./avatars/\${avatar}`);`.
+It's also possible to set up dynamic imports as discussed in the _Code Splitting_ chapter. Here's a small example:
 
-## Images and **css-loader** source map gotcha
-
-If you are using images and **css-loader** with the `sourceMap` option enabled, it's important that you set `output.publicPath` to an absolute value pointing to your development server. Otherwise, images aren't going to work. See [the relevant webpack issue](https://github.com/webpack/style-loader/issues/55) for further explanation.
+```javascript
+const src = require(`./avatars/\${avatar}`);
+```
 
 ## Conclusion
 
@@ -171,6 +167,5 @@ To recap:
 - You can find image optimization related loaders and plugins that allow you to tune their size further.
 - It's possible to generate **sprite sheets** out of smaller images to combine them into a single request.
 - Webpack allows you to load images dynamically based on a given condition.
-- If you are using source maps, you should remember to set `output.publicPath` to an absolute value for the images to show up.
 
 You'll learn to load fonts using webpack in the next chapter.
