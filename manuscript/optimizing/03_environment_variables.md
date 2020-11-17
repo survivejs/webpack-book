@@ -30,14 +30,10 @@ To understand the idea of `DefinePlugin` better, consider the example below:
 var foo;
 
 // Not free due to "foo" above, not ok to replace
-if (foo === "bar") {
-  console.log("bar");
-}
+if (foo === "bar") console.log("bar");
 
 // Free since you don't refer to "bar", ok to replace
-if (bar === "bar") {
-  console.log("bar");
-}
+if (bar === "bar") console.log("bar");
 ```
 
 If you replaced `bar` with a string like `"foobar"`, then you would end up with the code as below:
@@ -46,17 +42,11 @@ If you replaced `bar` with a string like `"foobar"`, then you would end up with 
 var foo;
 
 // Not free due to "foo" above, not ok to replace
-if (foo === "bar") {
-  console.log("bar");
-}
+if (foo === "bar") console.log("bar");
 
 // Free since you don't refer to "bar", ok to replace
-if ("foobar" === "bar") {
-  console.log("bar");
-}
+if ("foobar" === "bar") console.log("bar");
 ```
-
-{pagebreak}
 
 Further analysis shows that `"foobar" === "bar"` equals `false` so a minifier gives the following:
 
@@ -64,14 +54,10 @@ Further analysis shows that `"foobar" === "bar"` equals `false` so a minifier gi
 var foo;
 
 // Not free due to "foo" above, not ok to replace
-if (foo === "bar") {
-  console.log("bar");
-}
+if (foo === "bar") console.log("bar");
 
 // Free since you don't refer to "bar", ok to replace
-if (false) {
-  console.log("bar");
-}
+if (false) console.log("bar");
 ```
 
 A minifier eliminates the `if` statement as it has become dead code:
@@ -80,16 +66,12 @@ A minifier eliminates the `if` statement as it has become dead code:
 var foo;
 
 // Not free, not ok to replace
-if (foo === "bar") {
-  console.log("bar");
-}
+if (foo === "bar") console.log("bar");
 
 // if (false) means the block can be dropped entirely
 ```
 
 Elimination is the core idea of `DefinePlugin` and it allows toggling. A minifier performs analysis and toggles entire portions of the code.
-
-{pagebreak}
 
 ## Setting `process.env.NODE_ENV`
 
