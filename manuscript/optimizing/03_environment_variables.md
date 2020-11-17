@@ -60,6 +60,8 @@ if (foo === "bar") console.log("bar");
 if (false) console.log("bar");
 ```
 
+{pagebreak}
+
 A minifier eliminates the `if` statement as it has become dead code:
 
 ```javascript
@@ -72,6 +74,8 @@ if (foo === "bar") console.log("bar");
 ```
 
 Elimination is the core idea of `DefinePlugin` and it allows toggling. A minifier performs analysis and toggles entire portions of the code.
+
+T> [babel-plugin-transform-define](https://www.npmjs.com/package/babel-plugin-transform-define) achieves similar behavior with Babel.
 
 ## Setting `process.env.NODE_ENV`
 
@@ -148,10 +152,6 @@ Webpack can pick the right code based on the `DefinePlugin` declaration and this
 T> A related technique, **aliasing**, is discussed in the _Consuming Packages_ chapter.
 
 W> You have to be careful when doing a check against `process.env.NODE_ENV` in complex pieces of code. [Johnny Reilly gives a good example of a problematic case](https://blog.johnnyreilly.com/2018/03/its-not-dead-webpack-and-dead-code.html).
-
-## Replacing free variables through Babel
-
-[babel-plugin-transform-inline-environment-variables](https://www.npmjs.com/package/babel-plugin-transform-inline-environment-variables) can be used to achieve the same effect. [babel-plugin-transform-define](https://www.npmjs.com/package/babel-plugin-transform-define) and [babel-plugin-minify-replace](https://www.npmjs.com/package/babel-plugin-minify-replace) are other alternatives for Babel.
 
 ## Conclusion
 
