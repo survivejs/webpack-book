@@ -65,7 +65,7 @@ leanpub-end-insert
 }
 ```
 
-The behavior changes depending on the `limit` you set. Below the limit, it should inline the image while above it should emit a separate asset and a path to it. The CSS lookup works because of **css-loader**. You can also try importing the image from JavaScript code and see what happens.
+The behavior changes depending on the `limit` you set. Below the limit, it should inline the image while above it should emit a separate asset and a path to it.
 
 ## Using `srcset`s
 
@@ -76,6 +76,8 @@ Modern browsers support `srcset` attribute that lets you define an image in diff
 In case you want to compress your images, use [image-webpack-loader](https://www.npmjs.com/package/image-webpack-loader), [svgo-loader](https://www.npmjs.com/package/svgo-loader) (SVG specific), or [imagemin-webpack-plugin](https://www.npmjs.com/package/imagemin-webpack-plugin). This type of loader should be applied first to the data, so remember to place it as the last within `use` listing.
 
 Compression is particularly valuable for production builds as it decreases the amount of bandwidth required to download your image assets and speed up your site or application as a result.
+
+{pagebreak}
 
 ## Loading SVGs
 
