@@ -97,6 +97,8 @@ npm add @babel/preset-env --develop
 
 To make Babel aware of the preset, you need to write a `.babelrc`. Given webpack supports ES2015 modules out of the box, you can tell Babel to skip processing them. Jumping over this step would break webpack's HMR mechanism although the production build would still work. You can also constrain the build output to work only in recent versions of Chrome.
 
+{pagebreak}
+
 Adjust the target definition as you like. As long as you follow [browserslist](https://www.npmjs.com/package/browserslist), it should work. Here's a sample configuration:
 
 **.babelrc**
@@ -107,7 +109,7 @@ Adjust the target definition as you like. As long as you follow [browserslist](h
 }
 ```
 
-If you execute `npm run build -- --mode none` now and examine _dist/main.js_, you will see something different based on your `.browserslistrc` file.
+If you execute `npm run build -- --mode none` now and examine `dist/main.js`, you will see something different based on your `.browserslistrc` file.
 
 Try to include only a definition like `IE 8` there, and the code should change accordingly:
 
@@ -312,6 +314,8 @@ Especially the `logError` portion is important as without this **ts-node** would
 [WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly) allows developers to compile to a low-level representation of code that runs within the browser. It complements JavaScript and provides one path of potential optimization. The technology can also be useful when you want to run an old application without porting it entirely to JavaScript.
 
 Starting from webpack 5, the tool supports new style asynchronous WebAssembly. The official examples, [wasm-simple](https://github.com/webpack/webpack/tree/master/examples/wasm-simple) and [wasm-complex](https://github.com/webpack/webpack/tree/master/examples/wasm-complex), illustrate the experimental functionality well. [wasmpack's webpack tutorial](https://rustwasm.github.io/docs/wasm-pack/tutorials/hybrid-applications-with-webpack/index.html) shows how to package Rust code using WebAssembly to be consumed through webpack.
+
+{pagebreak}
 
 ## Conclusion
 
