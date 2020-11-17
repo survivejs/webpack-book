@@ -57,12 +57,10 @@ If you build the project now (`npm run build`), you should see source maps in th
 
 To use source maps within a browser, you have to enable source maps explicitly as per browser-specific instructions:
 
-- [Chrome](https://developer.chrome.com/devtools/docs/javascript-debugging)
+- [Chrome](https://developers.google.com/web/tools/chrome-devtools)
 - [Firefox](https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Use_a_source_map)
 - [IE Edge](https://docs.microsoft.com/en-us/microsoft-edge/devtools-guide/debugger#source-maps)
-- [Safari](https://support.apple.com/guide/safari/use-the-safari-develop-menu-sfri20948/mac)
-
-W> If you want to use breakpoints (i.e., a `debugger;` statement or ones set through the browser), the `eval`-based options won't work in Chrome!
+- [Safari](https://support.apple.com/guide/safari/use-the-developer-tools-in-the-develop-menu-sfri20948/mac)
 
 ## Source map types supported by webpack
 
@@ -332,12 +330,6 @@ const config = {
   },
 };
 ```
-
-## Source maps for styling
-
-If you want to enable source maps for styling files, you can achieve this by enabling the `sourceMap` option. The same idea works with style loaders such as **css-loader**, **sass-loader**, and **less-loader**.
-
-The **css-loader** is [known to have issues](https://github.com/webpack-contrib/css-loader/issues/232) when you are using relative paths in imports. To overcome this problem, you should set `output.publicPath` to resolve the server url.
 
 ## Extracting source from source maps
 
