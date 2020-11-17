@@ -238,6 +238,8 @@ IE 8
 > 1% # Browser usage over 1%
 ```
 
+{pagebreak}
+
 The idea is to then write webpack configuration to control which target is chosen like this:
 
 **webpack.config.js**
