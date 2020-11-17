@@ -104,7 +104,7 @@ You are likely familiar with tools, such as [LiveReload](http://livereload.com/)
 
 ## Asset hashing
 
-With webpack, you can inject a hash to each bundle name (e.g., _app.d587bbd6.js_) to invalidate bundles on the client side as changes are made. **Bundle splitting** allows the client to reload only a small part of the data in the ideal case.
+With webpack, you can inject a hash to each bundle name (e.g., `app.d587bbd6.js`) to invalidate bundles on the client side as changes are made. **Bundle splitting** allows the client to reload only a small part of the data in the ideal case.
 
 ## Code splitting
 

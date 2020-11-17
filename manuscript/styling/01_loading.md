@@ -78,7 +78,7 @@ leanpub-end-insert
 ...
 ```
 
-Execute `npm start` and browse to `http://localhost:8080` if you are using the default port and open up _main.css_ and change the background color to something like `lime` (`background: lime`).
+Execute `npm start` and browse to `http://localhost:8080` if you are using the default port and open up `main.css` and change the background color to something like `lime` (`background: lime`).
 
 ![Hello cornsilk world](images/hello_02.png)
 

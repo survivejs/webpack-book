@@ -40,7 +40,7 @@ leanpub-end-insert
 
 W> The order of the loaders matters since autoprefixing should occur after Tailwind finishes processing. The above gets evaluated as `autoprefix(tailwind(input))`.
 
-T> PostCSS supports _postcss.config.js_ based configuration. It relies on [cosmiconfig](https://www.npmjs.com/package/cosmiconfig) internally for other formats.
+T> PostCSS supports `postcss.config.js` based configuration. It relies on [cosmiconfig](https://www.npmjs.com/package/cosmiconfig) internally for other formats.
 
 ## Defining a browserslist
 

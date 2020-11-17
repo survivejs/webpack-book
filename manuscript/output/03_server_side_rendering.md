@@ -103,7 +103,7 @@ leanpub-end-insert
 },
 ```
 
-If you build the SSR demo (`npm run build:ssr`), you should see a new file at _./static/index.js_. The next step is to set up a server to render it.
+If you build the SSR demo (`npm run build:ssr`), you should see a new file at `./static/index.js`. The next step is to set up a server to render it.
 
 ## Setting up a server
 

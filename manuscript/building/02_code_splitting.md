@@ -107,11 +107,9 @@ After executing `npm run build`, you should see something:
 ...
 ```
 
-That _34.js_ is your split point. Examining the file reveals webpack has processed the code.
+That `34.js` is your split point. Examining the file reveals webpack has processed the code.
 
 T> If you want to adjust the name of the chunk, set `output.chunkFilename`. For example, setting it to `"chunk.[id].js"` would prefix each split chunk with the word "chunk".
-
-T> [bundle-loader](https://www.npmjs.com/package/bundle-loader) gives similar results, but through a loader interface. It supports bundle naming through its `name` option.
 
 W> If you are using TypeScript, make sure to set `compilerOptions.module` to `esnext` or `es2020` for code splitting to work correctly.
 
@@ -150,7 +148,6 @@ To recap:
 - **Code splitting** comes with extra effort as you have to decide what to split and where. Often, you find good split points within a router. Or you notice that specific functionality is required only when a particular feature is used. Charting is an excellent example of this.
 - Use naming to pull separate split points into the same bundles.
 - The techniques can be used within modern frameworks and libraries like React. You can wrap related logic to a specific component that handles the loading process in a user-friendly manner.
-- To disable code splitting, use `webpack.optimize.LimitChunkCountPlugin` with `maxChunks` set to one.
 
 In the next chapter, you'll learn how to split a vendor bundle without through webpack configuration.
 

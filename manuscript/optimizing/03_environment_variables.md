@@ -151,7 +151,7 @@ The techniques discussed in this chapter can be used to choose entire modules de
     └── store.prod.js
 ```
 
-The idea is that you choose either `dev` or `prod` version of the store depending on the environment. It's that _index.js_ which does the hard work:
+The idea is that you choose either `dev` or `prod` version of the store depending on the environment. It's that `index.js` which does the hard work:
 
 ```javascript
 if (process.env.NODE_ENV === "production") {

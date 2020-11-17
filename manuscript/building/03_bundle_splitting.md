@@ -10,7 +10,7 @@ T> To invalidate the bundles correctly, you have to attach hashes to the generat
 
 With bundle splitting, you can push the vendor dependencies to a bundle of their own and benefit from client level caching. The process can be done in such a way that the whole size of the application remains the same. Given there are more requests to perform, there's a slight overhead. But the benefit of caching makes up for this cost.
 
-To give you a quick example, instead of having _main.js_ (100 kB), you could end up with _main.js_ (10 kB) and _vendor.js_ (90 kB). Now changes made to the application are cheap for the clients that have already used the application earlier.
+To give you a quick example, instead of having `main.js` (100 kB), you could end up with `main.js` (10 kB) and `vendor.js` (90 kB). Now changes made to the application are cheap for the clients that have already used the application earlier.
 
 Caching comes with its problems. One of those is cache invalidation. A potential approach related to that is discussed in the _Adding Hashes to Filenames_ chapter.
 
@@ -48,7 +48,7 @@ Execute `npm run build` to get a baseline build. You should end up with somethin
   webpack 5.4.0 compiled successfully in 5401 ms
 ```
 
-As you can see, _main.js_ is big. That is something to fix next.
+As you can see, `main.js` is big. That is something to fix next.
 
 ## Setting up a `vendor` bundle
 

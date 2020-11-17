@@ -16,7 +16,7 @@ Framework specific abstractions, such as [create-react-app](https://www.npmjs.co
 
 ## How webpack changes the situation
 
-Webpack takes another route. It allows you to treat your project as a dependency graph. You could have an _index.js_ in your project that pulls in the dependencies the project needs through the standard `require` or `import` statements. You can refer to your style files and other assets the same way if you want.
+Webpack takes another route. It allows you to treat your project as a dependency graph. You could have an `index.js` in your project that pulls in the dependencies the project needs through the standard `require` or `import` statements. You can refer to your style files and other assets the same way if you want.
 
 Webpack does all the preprocessing for you and gives you the bundles you specify through its configuration and code. This declarative approach is versatile, but it's challenging to learn.
 
