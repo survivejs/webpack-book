@@ -85,6 +85,8 @@ If you try to generate a build now (`npm run build`), you should see something a
   webpack 5.4.0 compiled successfully in 4847 ms
 ```
 
+{pagebreak}
+
 Now the bundles look the same as in the image below.
 
 ![Main and vendor bundles after applying configuration](images/bundle_02.png)
@@ -137,6 +139,8 @@ Webpack provides more control over the generated chunks by two plugins:
 
 - `AggressiveSplittingPlugin` allows you to emit more and smaller bundles. The behavior is handy with HTTP/2 due to the way the new standard works.
 - `AggressiveMergingPlugin` is doing the opposite.
+
+{pagebreak}
 
 Here's the basic idea of aggressive splitting:
 
