@@ -12,8 +12,6 @@ Bundle splitting can be achieved using `optimization.splitChunks.cacheGroups`. W
 
 T> To invalidate the bundles correctly, you have to attach hashes to the generated bundles as discussed in the _Adding Hashes to Filenames_ chapter.
 
-{pagebreak}
-
 ## Adding something to split
 
 Given there's not much to split into the vendor bundle yet, you should add something there. Add React to the project first:
@@ -21,6 +19,8 @@ Given there's not much to split into the vendor bundle yet, you should add somet
 ```bash
 npm add react react-dom
 ```
+
+{pagebreak}
 
 Then make the project depend on it:
 
@@ -52,8 +52,6 @@ As you can see, `main.js` is big. That is something to fix next.
 
 ## Setting up a `vendor` bundle
 
-![Main and vendor bundles after applying configuration](images/bundle_02.png)
-
 Before webpack 4, there used to be `CommonsChunkPlugin` for managing bundle splitting. The plugin has been replaced with automation and configuration. To extract a vendor bundle from the `node_modules` directory, adjust the code as follows:
 
 **webpack.config.js**
@@ -66,8 +64,6 @@ leanpub-start-insert
 leanpub-end-insert
 ]);
 ```
-
-{pagebreak}
 
 If you try to generate a build now (`npm run build`), you should see something along this:
 
@@ -88,6 +84,8 @@ If you try to generate a build now (`npm run build`), you should see something a
 Now the bundles look the same as in the image above.
 
 T> The `chunks: "initial"` option doesn't apply to code-split modules while `all` does.
+
+![Main and vendor bundles after applying configuration](images/bundle_02.png)
 
 {pagebreak}
 
