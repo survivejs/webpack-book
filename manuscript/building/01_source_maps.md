@@ -75,8 +75,6 @@ Thanks to their speed, inline source maps are ideal for development. Given they 
 
 Webpack provides multiple inline source map variants. Often `eval` is the starting point and [webpack issue #2145](https://github.com/webpack/webpack/issues/2145#issuecomment-409029231) recommends `inline-module-source-map` as it's a good compromise between speed and quality while working reliably in Chrome and Firefox browsers.
 
-{pagebreak}
-
 To get a better idea of the available options, they are listed below while providing a small example for each. The examples are generated with the following extra webpack setup:
 
 - `optimization.moduleIds = "named"` is set to improve readability. It's a good idea to set `optimization.chunkIds` as well in case you are using _Code Splitting_.
@@ -95,8 +93,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mai
 
 /***/ }),
 ```
-
-{pagebreak}
 
 ### `devtool: "cheap-eval-source-map"`
 
