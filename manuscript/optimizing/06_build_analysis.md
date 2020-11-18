@@ -119,23 +119,6 @@ It's possible to analyze bundle dependencies in a graphical manner, and many too
 
 Pie charts, treemaps, and command-line tools let you visualize bundle composition. Studying the generated graphics can generate insights and understand what's contributing to the bundle size.
 
-### webpack-bundle-size-analyzer
-
-[webpack-bundle-size-analyzer](https://www.npmjs.com/package/webpack-bundle-size-analyzer) emits a text based composition:
-
-```bash
-$ webpack-bundle-size-analyzer stats.json
-react: 93.99 KB (74.9%)
-purecss: 15.56 KB (12.4%)
-style-loader: 6.99 KB (5.57%)
-fbjs: 5.02 KB (4.00%)
-object-assign: 1.95 KB (1.55%)
-css-loader: 1.47 KB (1.17%)
-<self>: 572 B (0.445%)
-```
-
-{pagebreak}
-
 ### Pie charts
 
 ![Webpack Visualizer](images/webpack-visualizer.png)
@@ -153,6 +136,21 @@ In addition to providing a pie chart visualization, [Auxpack](http://auxpack.com
 [webpack-bundle-analyzer](https://www.npmjs.com/package/webpack-bundle-analyzer) provides a zoomable treemap.
 
 [source-map-explorer](https://www.npmjs.com/package/source-map-explorer) is a tool independent of webpack. It allows you to get insight into your build by using source maps. It gives a treemap based visualization showing what code contributes to the result. [bundle-wizard](https://www.npmjs.com/package/bundle-wizard) is another similar tool.
+
+### webpack-bundle-size-analyzer
+
+[webpack-bundle-size-analyzer](https://www.npmjs.com/package/webpack-bundle-size-analyzer) emits a text based composition:
+
+```bash
+$ webpack-bundle-size-analyzer stats.json
+react: 93.99 KB (74.9%)
+purecss: 15.56 KB (12.4%)
+style-loader: 6.99 KB (5.57%)
+fbjs: 5.02 KB (4.00%)
+object-assign: 1.95 KB (1.55%)
+css-loader: 1.47 KB (1.17%)
+<self>: 572 B (0.445%)
+```
 
 {pagebreak}
 
