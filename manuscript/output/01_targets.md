@@ -6,17 +6,17 @@ Webpack's output target is controlled by the `target` field. You'll learn about 
 
 ## Web targets
 
-Webpack uses the _web_ target by default. The target is ideal for a web application like the one you have developed in this book. Webpack bootstraps the application and loads its modules. The initial list of modules to load is maintained in a manifest, and then the modules can load each other as defined.
+Webpack uses the `web` target by default. The target is ideal for a web application like the one you have developed in this book. Webpack bootstraps the application and loads its modules. The initial list of modules to load is maintained in a manifest, and then the modules can load each other as defined.
 
-Starting from webpack 5, the default is set to _browserslist_ in case a browserslist configuration has been found. The change means that webpack will compile its runtime to match the setting instead of generating code that will work in legacy browsers as well. Webpack can target specific language specifications (i.e. `es2020`) and also an array of targets is possible (i.e. `["web", "es2020"]`).
+Starting from webpack 5, the default is set to `browserslist` in case a browserslist configuration has been found. The change means that webpack will compile its runtime to match the setting instead of generating code that will work in legacy browsers as well. Webpack can target specific language specifications (i.e. `es2020`) and also an array of targets is possible (i.e. `["web", "es2020"]`).
 
 {pagebreak}
 
 ### Web workers
 
-The _webworker_ target wraps your application as a [web worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API). Using web workers is valuable if you want to execute computation outside of the main thread of the application without slowing down the user interface. There are a couple of limitations you should be aware of:
+The `webworker` target wraps your application as a [web worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API). Using web workers is valuable if you want to execute computation outside of the main thread of the application without slowing down the user interface. There are a couple of limitations you should be aware of:
 
-- You cannot use webpack's hashing features when the _webworker_ target is used.
+- You cannot use webpack's hashing features when the `webworker` target is used.
 - You cannot manipulate the DOM from a web worker. If you wrapped the book project as a worker, it would not display anything.
 
 T> Web workers and their usage are discussed in detail in the _Web Workers_ chapter.
@@ -35,7 +35,7 @@ T> If you develop a server using webpack, see [nodemon-webpack-plugin](https://w
 
 ## Desktop targets
 
-There are desktop shells, such as [NW.js](https://nwjs.io/) (previously _node-webkit_) and [Electron](http://electron.atom.io/) (previously _Atom_). Webpack can target these as follows:
+There are desktop shells, such as [NW.js](https://nwjs.io/) (previously **node-webkit**) and [Electron](http://electron.atom.io/) (previously **Atom**). Webpack can target these as follows:
 
 - `node-webkit` - Targets NW.js while considered experimental.
 - `atom`, `electron`, `electron-main` - Targets [Electron main process](https://github.com/electron/electron/blob/master/docs/tutorial/quick-start.md).
