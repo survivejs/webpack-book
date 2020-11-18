@@ -107,33 +107,17 @@ If you want to enforce a strict limit in a CI environment, set `hints` to `error
 
 ## Dependency analysis
 
-It's possible to analyze bundle dependencies in a graphical manner, and many tools exist for this purpose.
+It's possible to analyze bundle dependencies in a graphical manner, and many tools exist for this purpose:
 
-### The official analyse tool
-
-[The official analyse tool](https://github.com/webpack/analyse) gives you recommendations and a good idea of your application's dependency graph. It can be run locally as well.
-
-### webpack-deps-tree
-
-[webpack-deps-tree](https://restrry.github.io/webpack-deps-tree/static/) displays webpack module graph. Using the tool you can understand how modules of your bundles are related to each other.
-
-### circular-dependency-plugin
-
-[circular-dependency-plugin](https://www.npmjs.com/package/circular-dependency-plugin) lets you detect cycles in the module graph. Often this implies a bug, and it can be a good idea to refactor cycles out.
-
-### dependency-cruiser
-
-[dependency-cruiser](https://www.npmjs.com/package/dependency-cruiser) is a bundler independent tool for analyzing project dependencies.
-
-### madge
-
-[madge](https://www.npmjs.com/package/madge) is another independent tool that can output a graph based on module input. The graph output allows you to understand the dependencies of your project in greater detail.
+- [The official analyse tool](https://github.com/webpack/analyse) gives you recommendations and a good idea of your application's dependency graph. It can be run locally as well.
+- [webpack-deps-tree](https://restrry.github.io/webpack-deps-tree/static/) displays webpack module graph. Using the tool you can understand how modules of your bundles are related to each other.
+- [circular-dependency-plugin](https://www.npmjs.com/package/circular-dependency-plugin) lets you detect cycles in the module graph. Often this implies a bug, and it can be a good idea to refactor cycles out.
+- [dependency-cruiser](https://www.npmjs.com/package/dependency-cruiser) is a bundler independent tool for analyzing project dependencies.
+- [madge](https://www.npmjs.com/package/madge) is another independent tool that can output a graph based on module input. The graph output allows you to understand the dependencies of your project in greater detail.
 
 ## Composition analysis
 
 Pie charts, treemaps, and command-line tools let you visualize bundle composition. Studying the generated graphics can generate insights and understand what's contributing to the bundle size.
-
-{pagebreak}
 
 ### webpack-bundle-size-analyzer
 
@@ -149,6 +133,8 @@ object-assign: 1.95 KB (1.55%)
 css-loader: 1.47 KB (1.17%)
 <self>: 572 B (0.445%)
 ```
+
+{pagebreak}
 
 ### Pie charts
 
