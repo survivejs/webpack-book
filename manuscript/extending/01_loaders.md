@@ -4,8 +4,6 @@ As you have seen so far, loaders are one of the building blocks of webpack. If y
 
 You'll learn to develop a couple of small loaders next. But before that, it's good to understand how to debug them in isolation.
 
-T> If you want a good starting point for a standalone loader or plugin project, consider using [webpack-defaults](https://github.com/webpack-contrib/webpack-defaults). It provides an opinionated starting point that comes with linting, testing, and other goodies.
-
 ## Debugging loaders with **loader-runner**
 
 [loader-runner](https://www.npmjs.com/package/loader-runner) allows you to run loaders without webpack, allowing you to learn more about loader development. Install it first:
