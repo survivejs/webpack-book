@@ -133,9 +133,11 @@ It's possible to analyze bundle dependencies in a graphical manner, and many too
 
 Pie charts, treemaps, and command-line tools let you visualize bundle composition. Studying the generated graphics can generate insights and understand what's contributing to the bundle size.
 
+{pagebreak}
+
 ### webpack-bundle-size-analyzer
 
-[webpack-bundle-size-analyzer](https://www.npmjs.com/package/webpack-bundle-size-analyzer) emits a text based composition.
+[webpack-bundle-size-analyzer](https://www.npmjs.com/package/webpack-bundle-size-analyzer) emits a text based composition:
 
 ```bash
 $ webpack-bundle-size-analyzer stats.json
@@ -147,8 +149,6 @@ object-assign: 1.95 KB (1.55%)
 css-loader: 1.47 KB (1.17%)
 <self>: 572 B (0.445%)
 ```
-
-{pagebreak}
 
 ### Pie charts
 
