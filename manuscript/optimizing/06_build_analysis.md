@@ -113,10 +113,6 @@ It's possible to analyze bundle dependencies in a graphical manner, and many too
 
 [The official analyse tool](https://github.com/webpack/analyse) gives you recommendations and a good idea of your application's dependency graph. It can be run locally as well.
 
-### Stellar Webpack
-
-[Stellar Webpack](https://alexkuz.github.io/stellar-webpack/) gives a universe based visualization and allows you to examine your application in a 3D form.
-
 ### webpack-deps-tree
 
 [webpack-deps-tree](https://restrry.github.io/webpack-deps-tree/static/) displays webpack module graph. Using the tool you can understand how modules of your bundles are related to each other.
@@ -133,11 +129,26 @@ It's possible to analyze bundle dependencies in a graphical manner, and many too
 
 [madge](https://www.npmjs.com/package/madge) is another independent tool that can output a graph based on module input. The graph output allows you to understand the dependencies of your project in greater detail.
 
-{pagebreak}
-
 ## Composition analysis
 
 Pie charts, treemaps, and command-line tools let you visualize bundle composition. Studying the generated graphics can generate insights and understand what's contributing to the bundle size.
+
+### webpack-bundle-size-analyzer
+
+[webpack-bundle-size-analyzer](https://www.npmjs.com/package/webpack-bundle-size-analyzer) emits a text based composition.
+
+```bash
+$ webpack-bundle-size-analyzer stats.json
+react: 93.99 KB (74.9%)
+purecss: 15.56 KB (12.4%)
+style-loader: 6.99 KB (5.57%)
+fbjs: 5.02 KB (4.00%)
+object-assign: 1.95 KB (1.55%)
+css-loader: 1.47 KB (1.17%)
+<self>: 572 B (0.445%)
+```
+
+{pagebreak}
 
 ### Pie charts
 
@@ -156,21 +167,6 @@ In addition to providing a pie chart visualization, [Auxpack](http://auxpack.com
 [source-map-explorer](https://www.npmjs.com/package/source-map-explorer) is a tool independent of webpack. It allows you to get insight into your build by using source maps. It gives a treemap based visualization showing what code contributes to the result. [bundle-wizard](https://www.npmjs.com/package/bundle-wizard) is another similar tool.
 
 {pagebreak}
-
-### Command line utilities
-
-[webpack-bundle-size-analyzer](https://www.npmjs.com/package/webpack-bundle-size-analyzer) emits a text based composition.
-
-```bash
-$ webpack-bundle-size-analyzer stats.json
-react: 93.99 KB (74.9%)
-purecss: 15.56 KB (12.4%)
-style-loader: 6.99 KB (5.57%)
-fbjs: 5.02 KB (4.00%)
-object-assign: 1.95 KB (1.55%)
-css-loader: 1.47 KB (1.17%)
-<self>: 572 B (0.445%)
-```
 
 ## Output plugins
 
