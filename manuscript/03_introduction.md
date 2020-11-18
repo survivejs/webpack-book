@@ -10,7 +10,7 @@ Web browsers consume HTML, CSS, JavaScript, and multimedia files. As a project g
 
 Webpack isn't the only available bundler, and a collection of different tools have emerged. Task runners, such as Grunt and Gulp, are good examples of higher-level tools. Often the problem is that you need to write the workflows by hand. Pushing that issue to a bundler, such as webpack, is a step forward.
 
-Framework specific abstractions, such as [create-react-app](https://www.npmjs.com/package/create-react-app), [rockpack](https://github.com/AlexSergey/rockpack), or [@angular/cli](https://www.npmjs.com/package/@angular/cli), use webpack underneath. That said, there's still value in understanding the tool if you have to customize the setup.
+Framework specific abstractions, such as [create-react-app](https://create-react-app.dev/), [rockpack](https://www.rockpack.io/), or [@angular/cli](https://www.npmjs.com/package/@angular/cli), use webpack underneath. That said, there's still value in understanding the tool if you have to customize the setup.
 
 {pagebreak}
 

@@ -66,7 +66,7 @@ Due to the cost of serialization, passing data between the host and the worker c
 
 ## Other options
 
-The API of [webworkify-webpack](https://www.npmjs.com/package/webworkify-webpack) allows you to use the worker as a regular JavaScript module as well given you avoid the `self` requirement visible in the example solution. [workerize-loader](https://github.com/developit/workerize-loader) and [worker-plugin](https://github.com/GoogleChromeLabs/worker-plugin) are other options with slightly different APIs.
+[workerize-loader](https://www.npmjs.com/package/workerize-loader) and [worker-plugin](https://www.npmjs.com/package/worker-plugin) let you use the worker as a regular JavaScript module as well given you avoid the `self` requirement visible in the example solution.
 
 [threads.js](https://threads.js.org/) provides a comprehensive solution for more complex setups and it includes features such as observables and thread pools out of the box. There's a custom [threads-plugin](https://github.com/andywer/threads-plugin) you can use to integrate it with webpack.
 

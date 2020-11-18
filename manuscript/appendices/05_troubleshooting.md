@@ -12,7 +12,7 @@ Using webpack can lead to a variety of runtime warnings or errors. Often a parti
 8. Enable `stats: "verbose"` to get more information out of webpack. The [official documentation covers more flags](https://webpack.js.org/configuration/stats/).
 9. Add a temporary `console.log` near the error to get more insight into the problem. A heavier option is to [debug webpack through Chrome Dev Tools](https://medium.com/webpack/webpack-bits-learn-and-debug-webpack-with-chrome-dev-tools-da1c5b19554).
 10. [Ask a question at Stack Overflow](https://stackoverflow.com/questions/tagged/webpack) or [use the official Gitter channel](https://gitter.im/webpack/webpack).
-11. If everything fails and you are convinced you have found a bug, [report an issue at the official issue tracker](https://github.com/webpack/webpack/issues) or at other appropriate places if it's an issue in a dependency. Follow the issue template carefully, and provide a minimal runnable example as it helps to resolve the problem.
+11. If everything fails and you are convinced you have found a bug, report the problem at the issue tracker that's closest to it. Follow the issue template carefully, and provide a minimal runnable example as that will help the maintainers.
 
 Sometimes it's fastest to drop the error to a search engine and gain an answer that way. Other than that this is an excellent debugging order. If your setup worked in the past, you could also consider using commands like [git bisect](https://git-scm.com/docs/git-bisect) to figure out what has changed between the known working state and the current broken one.
 

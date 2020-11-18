@@ -113,10 +113,6 @@ It's possible to analyze bundle dependencies in a graphical manner, and many too
 
 [The official analyse tool](https://github.com/webpack/analyse) gives you recommendations and a good idea of your application's dependency graph. It can be run locally as well.
 
-### webpack-xray
-
-[webpack-xray](https://github.com/akx/webpack-xray) is similar to the official analyse tool while having a modernized UI and support for drilling down in the data.
-
 ### Stellar Webpack
 
 [Stellar Webpack](https://alexkuz.github.io/stellar-webpack/) gives a universe based visualization and allows you to examine your application in a 3D form.
