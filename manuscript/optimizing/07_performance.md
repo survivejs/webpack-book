@@ -15,21 +15,19 @@ T> If you hit memory limits with webpack, you can give it more memory with `node
 
 ## Measuring impact
 
-As discussed in the previous chapter, generating stats can be used to measure build time. [speed-measure-webpack-plugin](https://www.npmjs.com/package/speed-measure-webpack-plugin) gives more granular information, so you know which take most of the time in your process to guide your performance work.
-
-[webpack.debug.ProfilingPlugin](https://webpack.js.org/plugins/profiling-plugin/) and [cpuprofile-webpack-plugin](https://github.com/jantimon/cpuprofile-webpack-plugin) are similar options that are able to emit the timings of plugin execution as a file you can pass to Chrome Inspector. The latter generates a flame graph as well.
+As discussed in the previous chapter, generating stats can be used to measure build time. [webpack.debug.ProfilingPlugin](https://webpack.js.org/plugins/profiling-plugin/) and [cpuprofile-webpack-plugin](https://github.com/jantimon/cpuprofile-webpack-plugin) are able to emit the timings of plugin execution as a file you can pass to Chrome Inspector. The latter generates a flame graph as well.
 
 {pagebreak}
 
 ## High-level optimizations
 
-Webpack uses only a single instance by default, meaning you aren't able to benefit from a multi-core processor without extra effort. This is where **thread-loader** and third-party solutions, such as **parallel-webpack**.
+Webpack uses only a single instance by default, meaning you aren't able to benefit from a multi-core processor without extra effort. This is where [thread-loader](https://www.npmjs.com/package/thread-loader) and third-party solutions, such as [parallel-webpack](https://www.npmjs.com/package/parallel-webpack).
 
 [webpack-plugin-ramdisk](https://www.npmjs.com/package/webpack-plugin-ramdisk) writes the build output to a RAM disk and it can help during development and in case you have to perform many successive builds.
 
 ### **parallel-webpack** - run multiple webpack instances in parallel
 
-[parallel-webpack](https://www.npmjs.com/package/parallel-webpack) allows you to parallelize webpack configuration in two ways. Assuming you have defined your webpack configuration as an array, it can run them in parallel. In addition to this, **parallel-webpack** can generate builds based on given **variants**.
+**parallel-webpack** allows you to parallelize webpack configuration in two ways. Assuming you have defined your webpack configuration as an array, it can run them in parallel. In addition to this, the tool can generate builds based on given **variants**.
 
 Variants allow you to generate both production and development builds at once. They let you to create bundles with different targets to make them easier to consume depending on the environment. Variants can be used to implement feature flags when combined with `DefinePlugin` as discussed in the _Environment Variables_ chapter.
 
@@ -51,8 +49,7 @@ Loaders have their optimizations as well:
 
 - Perform less processing by skipping loaders during development. Especially if you are using a modern browser, you can skip using **babel-loader** or equivalent altogether.
 - Use either `include` or `exclude` with JavaScript specific loaders. Webpack traverses `node_modules` by default, and executes **babel-loader** over the files unless it has been configured correctly.
-- Cache the results of expensive loaders (e.g., image manipulation) to the disk using the [cache-loader](https://www.npmjs.com/package/cache-loader).
-- Parallelize the execution of expensive loaders using [thread-loader](https://www.npmjs.com/package/thread-loader). Given workers come with an overhead in Node, using **thread-loader** is worth it only if the parallelized operation is heavy.
+- Parallelize the execution of expensive loaders using **thread-loader**. Given workers come with an overhead in Node, the loader is worth it only if the parallelized operation is heavy.
 
 ## Optimizing rebundling speed during development
 
