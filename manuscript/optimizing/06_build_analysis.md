@@ -16,12 +16,13 @@ To make webpack emit analysis information, you should set the `--json` flag and 
 **package.json**
 
 ```json
-"scripts": {
+{
+  "scripts": {
 leanpub-start-insert
-  "build:stats": "wp --mode production --json > stats.json",
+    "build:stats": "wp --mode production --json > stats.json"
 leanpub-end-insert
-  ...
-},
+  }
+}
 ```
 
 The above is the basic setup you need, regardless of your webpack configuration. Execute `npm run build:stats` now. After a while you should find _stats.json_ at your project root. This file can be pushed through a variety of tools to understand better what's going on.
