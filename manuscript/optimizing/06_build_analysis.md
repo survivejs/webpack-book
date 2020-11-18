@@ -157,8 +157,6 @@ In addition to providing a pie chart visualization, [Auxpack](http://auxpack.com
 
 [webpack-bundle-analyzer](https://www.npmjs.com/package/webpack-bundle-analyzer) provides a zoomable treemap.
 
-[Webpack Monitor](http://webpackmonitor.com/) is another similar tool with an emphasis on a clear user interface. It's able to provide recommendations on what to improve the build.
-
 [source-map-explorer](https://www.npmjs.com/package/source-map-explorer) is a tool independent of webpack. It allows you to get insight into your build by using source maps. It gives a treemap based visualization showing what code contributes to the result. [bundle-wizard](https://www.npmjs.com/package/bundle-wizard) is another similar tool.
 
 {pagebreak}
@@ -185,7 +183,6 @@ There are multiple plugins to make the webpack output easier to understand and m
 - [webpackbar](https://www.npmjs.com/package/webpackbar) has been made especially for tracking build progress.
 - `webpack.ProgressPlugin` is included out of the box and can be used as well.
 - [webpack-dashboard](https://www.npmjs.com/package/webpack-dashboard) gives an entire terminal-based dashboard over the standard webpack output. If you prefer clear visual output, this one comes in handy.
-- [test-webpack-reporter-plugin](https://www.npmjs.com/package/test-webpack-reporter-plugin) abstracts webpack's internals to make it easier to write your own reporters.
 
 ## Online services
 
@@ -196,7 +193,7 @@ It's possible to integrate bundle analysis to your build process by using [Bundl
 There are multiple packages which let you compare webpack bundles over time:
 
 - [bundle-stats-webpack-plugin](https://www.npmjs.com/package/bundle-stats-webpack-plugin) lets you generate graphical bundle reports and compare them across builds.
-- [webpack-bundle-diff](https://github.com/smikula/webpack-bundle-diff) operates on a lower level and emits a JSON file with the difference. It could work well with a custom visualization.
+- [webpack-bundle-diff](https://www.npmjs.com/package/webpack-bundle-diff) operates on a lower level and emits a JSON file with the difference. It could work well with a custom visualization.
 - [size-plugin](https://www.npmjs.com/package/size-plugin) prints out the size difference since the last build, and it can be useful during local development.
 
 ## Unused files analysis
@@ -205,36 +202,15 @@ There are multiple packages which let you compare webpack bundles over time:
 
 ## Duplication analysis
 
-In addition to inspectpack, there are other tools for figuring out duplicates:
+There are multiple tools for finding duplicates in a project:
 
-- [bundle-duplicates-plugin](https://www.npmjs.com/package/bundle-duplicates-plugin) operates on a function level.
+- [inspectpack](https://www.npmjs.com/package/inspectpack) has both a command line tool and a webpack plugin for finding duplicate packages.
 - [find-duplicate-dependencies](https://www.npmjs.com/package/find-duplicate-dependencies) achieves the same on an npm package level.
 - [depcheck](https://www.npmjs.com/package/depcheck) goes further and warns if there are redundant dependencies or dependencies missing from the project.
-- [bundle-buddy](https://www.npmjs.com/package/bundle-buddy) can find duplicates across bundles while providing a user interface to tune webpack code splitting behavior. [bundle-buddy-webpack-plugin](https://www.npmjs.com/package/bundle-buddy-webpack-plugin) makes it simpler to use.
-
-[duplicate-package-checker-webpack-plugin](https://www.npmjs.com/package/duplicate-package-checker-webpack-plugin) warns you if it finds single package multiple times in your build. This situation can be hard to spot otherwise.
-
-[inspectpack](https://www.npmjs.com/package/inspectpack) can be used for figuring out specific places of code to improve. The example below performs duplication analysis:
-
-```bash
-$ inspectpack --action=duplicates --bundle=bundle.js
-## Summary
-
-* Bundle:
-    * Path:                /PATH/TO/bundle.js
-    * Bytes (min):         1678533
-* Missed Duplicates:
-    * Num Unique Files:    116
-    * Num Extra Files:     131
-    * Extra Bytes (min):   253955
-    * Pct of Bundle Size:  15 %
-```
-
-The tool also comes with a plugin you can attach directly to your configuration in case you prefer to perform the check during the build.
 
 ## Understanding why a module was bundled
 
-[whybundled](https://www.npmjs.com/package/whybundled) has been designed to answer the question why a specific module was included to the bundles. [statoscope](https://github.com/smelukov/statoscope) is a visual interface for the same purpose.
+[whybundled](https://www.npmjs.com/package/whybundled) has been designed to answer the question why a specific module was included to the bundles. [statoscope](https://www.npmjs.com/package/@statoscope/ui-webpack) is a visual interface for the same purpose.
 
 T> Set `stats.reasons` to `true` through webpack configuration to capture similar information.
 
