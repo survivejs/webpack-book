@@ -38,7 +38,7 @@ Variants allow you to generate both production and development builds at once. T
 Specific lower-level optimizations can be nice to know. The key is to allow webpack to perform less work. Consider the examples below:
 
 - Use faster source map variants during development or skip them. Skipping is possible if you don't process the code in any way.
-- Use [@babel/preset-env](https://www.npmjs.com/package/@babel/preset-env) during development instead of source maps to transpile fewer features for modern browsers and make the code more readable and more comfortable to debug.
+- Use [@babel/preset-env](https://www.npmjs.com/package/@babel/preset-env) to transpile fewer features for modern browsers and make the code more readable and more comfortable to debug while dropping source maps.
 - Skip polyfills during development. Attaching a package, such as [core-js](https://www.npmjs.com/package/core-js), to the development version of an application adds processing overhead.
 - Polyfill less of Node and provide nothing instead. For example, a package could be using Node `process` which in turn will bloat your bundle if polyfilled. [See webpack documentation](https://webpack.js.org/configuration/node/) for the default values.
 - Starting from version 5, there's [a file system level cache](https://github.com/webpack/changelog-v5/blob/master/guides/persistent-caching.md) that can be enabled by setting `cache.type = "filesystem"`. To invalidate it on configuration change, you should set `cache.buildDependencies.config = [__filename]`. Webpack handles anything watched by the build automatically including plugins, loaders, and project files.
