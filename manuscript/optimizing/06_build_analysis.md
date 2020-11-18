@@ -144,6 +144,8 @@ css-loader: 1.47 KB (1.17%)
 
 In addition to providing a pie chart visualization, [Auxpack](http://auxpack.com/) is able to track bundle size over time.
 
+{pagebreak}
+
 ### Treemaps
 
 ![webpack-bundle-analyzer](images/webpack-bundle-analyzer.jpg)
