@@ -52,7 +52,9 @@ webpack(config, (err, stats) => {
 });
 ```
 
-This technique can be valuable if you want to do further processing on stats although often the other solutions are enough.
+To detect how webpack configuration is imported, use `if (require.main === module)` kind of check to detect usage through Node. The idea is then to export the configuration (`module.exports = getConfig;`) for `if` and do `module.exports = getConfig(mode);` for the `else` clause.
+
+The technique can be valuable if you want to do further processing on stats although often the other solutions are enough.
 
 T> If you want JSON output from `stats`, use `stats.toJson()`. To get _verbose_ output, use `stats.toJson("verbose")`. It follows all stat options webpack supports.
 
