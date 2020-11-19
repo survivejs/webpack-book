@@ -39,8 +39,6 @@ exports.page = ({ url = "", title, chunks } = {}) => ({
 });
 ```
 
-{pagebreak}
-
 To generate multiple pages using the new helper, set up a configuration file as below:
 
 **webpack.multi.js**
@@ -78,8 +76,6 @@ And add a script to generate the pages:
   },
 }
 ```
-
-{pagebreak}
 
 ### Testing the build
 
