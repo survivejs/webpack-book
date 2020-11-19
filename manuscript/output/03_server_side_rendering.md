@@ -144,7 +144,7 @@ function renderMarkup(html) {
 
 Run the server now (`node ./server.js`) and go below `http://localhost:8080`, you should see a "Hello World". Clicking the text should show an alert and you should see pre-rendered HTML in the source.
 
-Even though there is a React application running now, it's difficult to develop. If you try to modify the code, nothing happens. The problem can be solved running webpack in a multi-compiler mode as discussed in the _Multiple Pages_ chapter.
+Even though there is a React application running now, it's difficult to develop. If you try to modify the code, nothing happens. The problem can be solved for example by using [webpack-dev-middleware](https://www.npmjs.com/package/webpack-dev-middleware).
 
 T> If you want to debug output from the server, set `export DEBUG=express:application`.
 

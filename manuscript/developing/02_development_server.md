@@ -170,10 +170,6 @@ The webpack ecosystem contains many development plugins:
 - [react-dev-utils](https://www.npmjs.com/package/react-dev-utils) contains webpack utilities developed for Create React App.
 - [webpack-notifier](https://www.npmjs.com/package/webpack-notifier) uses system notifications to let you know of webpack status.
 
-## Integrating with servers using middlewares
-
-In case you are developing your entire project against a Node server without a separate frontend build, then one option is to run webpack using [webpack-dev-middleware](https://www.npmjs.com/package/webpack-dev-middleware).
-
 ## Watching files outside of webpack's module graph
 
 By default webpack only watches files that your project depends on directly, for example, when you are using `MiniHtmlWebpackPlugin` and have customized it to load the template from a file. [webpack-add-dependency-plugin](https://www.npmjs.com/package/webpack-add-dependency-plugin) solves the problem.
