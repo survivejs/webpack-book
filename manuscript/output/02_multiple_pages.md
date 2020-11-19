@@ -29,13 +29,6 @@ const {
   MiniHtmlWebpackPlugin,
 } = require("mini-html-webpack-plugin");
 
-exports.entry = ({ name, mode, path }) => ({
-  entry:
-    mode === "development"
-      ? { [name]: [path, "webpack-plugin-serve/client"] }
-      : { [name]: path },
-});
-
 exports.page = ({ url = "", title, chunks } = {}) => ({
   plugins: [
     new MiniHtmlWebpackPlugin({
@@ -56,11 +49,8 @@ To generate multiple pages using the new helpers, set up a configuration file as
 const { merge } = require("webpack-merge");
 const parts = require("./webpack.parts");
 
-const mode = "production";
-
 module.exports = merge(
-  { mode },
-  parts.entry({ name: "app", path: "./src/multi.js", mode }),
+  { mode: "production", entry: { app: "./src/multi.js" } },
   parts.page({ title: "Demo" }),
   parts.page({ title: "Another", url: "another" })
 );
@@ -74,7 +64,6 @@ Implement a small module to render on the page:
 
 ```javascript
 const element = document.createElement("div");
-
 element.innerHTML = "hello multi";
 document.body.appendChild(element);
 ```
@@ -91,7 +80,6 @@ And add a script to generate the pages:
     "build:multi": "wp --config webpack.multi.js",
     ...
   },
-  ...
 }
 ```
 
