@@ -12,15 +12,15 @@ When generating multiple pages with webpack, you have a couple of possibilities:
 - Set up a single configuration and extract the commonalities. The way you do this can differ depending on how you chunk it up.
 - If you follow the idea of [Progressive Web Applications](https://developers.google.com/web/progressive-web-apps/) (PWA), you can end up with either an **app shell** or a **page shell** and load portions of the application as it's used.
 
-In practice, you have more dimensions. For example, you have to generate i18n variants for pages. These ideas grow on top of the basic approaches.
+In practice, you have more dimensions. For example, you have to generate i18n variants for pages. These ideas grow on top of the basic approaches. Here we'll set up single configuration based on which to experiment further.
 
 ## Generating multiple pages
 
-To generate multiple separate pages, they should be initialized somehow. You should also be able to return a configuration for each page, so webpack picks them up and process them through the multi-compiler mode.
+To generate multiple pages with webpack, we can leverage **mini-html-webpack-plugin**. **html-webpack-plugin** would work well for the purpose as well and using it would give you access to the plugins written for it. For the demonstration, using the former is enough.
 
-### Abstracting pages
+### Configuring webpack
 
-To initialize a page, it should receive page title, output path, and an optional template, at least. Each page should receive an optional output path and a template for customization. The idea can be modeled as a configuration part and you replace the possible previous implementation with this one:
+A page should receive title, url, and chunks for deciding which scripts to include to the page. The idea can be modeled as a configuration part as below:
 
 **webpack.parts.js**
 
@@ -36,230 +36,72 @@ exports.entry = ({ name, mode, path }) => ({
       : { [name]: path },
 });
 
-exports.page = ({ path = "", template, title, chunks } = {}) => ({
+exports.page = ({ url = "", title, chunks } = {}) => ({
   plugins: [
     new MiniHtmlWebpackPlugin({
+      publicPath: "/",
       chunks,
-      filename: `${path && path + "/"}index.html`,
+      filename: `${url && url + "/"}index.html`,
       context: { title },
-      template,
     }),
   ],
 });
 ```
 
-### Integrating to configuration
+To generate multiple pages using the new helpers, set up a configuration file as below:
 
-To incorporate the idea into the configuration, the way it's composed has to change. Also, a page definition is required. To get started, let's reuse the same JavaScript logic for each page for now:
-
-**webpack.config.js**
+**webpack.multi.js**
 
 ```javascript
-const commonConfig = merge([
-leanpub-start-delete
-  { entry: ["./src"] },
+const { merge } = require("webpack-merge");
+const parts = require("./webpack.parts");
+
+const mode = "production";
+
+module.exports = merge(
+  { mode },
+  parts.entry({ name: "app", path: "./src/multi.js", mode }),
   parts.page({ title: "Demo" }),
-leanpub-end-delete
-  ...
-]);
-
-...
-
-const developmentConfig = merge([
-leanpub-start-delete
-  { entry: ["webpack-plugin-serve/client"] },
-leanpub-end-delete
-  ...
-]);
-
-...
-
-leanpub-start-insert
-const getConfig = mode => {
-  const pages = [
-    merge(
-      parts.entry({ name: "app", path: "./src", mode }),
-      parts.page({ title: "Demo" })
-    ),
-  ];
-  let config;
-  switch (mode) {
-    case "production":
-      config = productionConfig;
-      break;
-    case "development":
-    default:
-      config = developmentConfig;
-  }
-
-  return pages.map(page => merge(commonConfig, config, page, { mode }));
-};
-leanpub-end-insert
-
-module.exports = getConfig(mode);
+  parts.page({ title: "Another", url: "another" })
+);
 ```
 
-After this change you should have two pages in the application: `/` and `/another`. It should be possible to navigate to both while seeing the same output.
+### Setting up a module to render
 
-T> You could add a check against the mode and throw and an error in case it's not found.
+Implement a small module to render on the page:
 
-### Injecting a different script per page
-
-The question is how to inject a different script per each page. In the current configuration, the same `entry` is shared by both. To solve the problem, you should move the `entry` configuration to a lower level and manage it per page. To have a script to test with, set up another entry point:
-
-**src/another.js**
+**src/multi.js**
 
 ```javascript
-import "./main.css";
-import component from "./component";
+const element = document.createElement("div");
 
-const demoComponent = component("Another");
-
-document.body.appendChild(demoComponent);
+element.innerHTML = "hello multi";
+document.body.appendChild(element);
 ```
 
-The file could go to a directory of its own. Here the existing code is reused to get something to show up.
+### Adding a build shortcut
 
-{pagebreak}
+And add a script to generate the pages:
 
-Webpack configuration has to point to this file still:
+**package.json**
 
-**webpack.config.js**
-
-```javascript
-const commonConfig = merge([
-leanpub-start-insert
-  // Needed for code splitting to work in nested paths
-  { output: { publicPath: "/" } },
-leanpub-end-insert
+```json
+{
+  "scripts": {
+    "build:multi": "wp --config webpack.multi.js",
+    ...
+  },
   ...
-]);
-
-...
-
-const getConfig = (mode) => {
-leanpub-start-delete
-  const pages = [
-    merge(
-      parts.entry({ name: "app", path: "./src", mode }),
-      parts.page({ title: "Demo" })
-    )
-  ];
-leanpub-end-delete
-leanpub-start-insert
-  const pages = [
-    merge(
-      parts.entry({
-        name: 'app',
-        path: path.join(__dirname, "src", "index.js"),
-        mode
-      }),
-      parts.page({ title: "Demo" }),
-    ),
-    merge(
-      parts.entry({
-        name: 'another',
-        path: path.join(__dirname, "src", "another.js"),
-        mode
-      }),
-      parts.page({ title: "Demo" }),
-    ),
-  ];
-leanpub-end-insert
-  let config;
-
-  ...
-};
+}
 ```
 
-After these changes `/another` should show something familiar:
+### Testing the build
 
-![Another page shows up](images/another.png)
+After these steps, you have a minimal build with two pages: `/` and `/another`. To see it in the browser, run `npx serve dist` to display the result. You should be able to navigate to both pages any other should not be available.
 
-### Pros and cons
+To control which entries are used on each page, use the `chunks` parameter of `parts.page`. If you set it to `chunks: []` for one of the pages, you should see nothing on the page for example. While experimenting, match the `name` given at `parts.entry`. The parameter allows capturing chunks generated by _Bundle Splitting_ and doing this would allow you to load a shared `vendor` bundle for all pages.
 
-If you build the application (`npm run build`), you should find _another/index.html_. Based on the generated code, you can make the following observations:
-
-- It's clear how to add more pages to the setup.
-- The generated assets are directly below the build root. The pages are an exception as those are handled by `MiniHtmlWebpackPlugin`. It would be possible to add more abstraction in the form of `webpack.page.js` and manage the paths by exposing a function that accepts page configuration.
-- Records should be written separately per each page in files of their own. Currently, the last configuration wins. The above solution would allow solving this.
-- Processes like linting and cleaning run twice now. The _Targets_ chapter discussed potential solutions to that problem.
-
-The approach can be pushed in another direction by dropping the multi-compiler mode. Even though it's slower to process this kind of build, it enables code sharing and the implementation of shells. The first step towards a shell setup is to rework the configuration so that it picks up the code shared between the pages.
-
-## Generating multiple pages while sharing code
-
-The current configuration shares code by coincidence already due to the usage patterns. Only a small part of the code differs, and as a result, only the page manifests, and the bundles mapping to their entries differ.
-
-In a complex application, you should apply techniques covered in the _Bundle Splitting_ chapter across the pages. Dropping the multi-compiler mode can be worthwhile then.
-
-### Adjusting configuration
-
-Adjustment is needed to share code between the pages. Most of the code can remain the same. The way you expose it to webpack has to change so that it receives a single configuration object. As **mini-html-webpack-plugin** picks up all chunks by default, you have to adjust it to pick up only the chunks that are related to each page:
-
-**webpack.config.js**
-
-```javascript
-...
-
-const getConfig = (mode) => {
-  const pages = [
-    merge(
-      parts.entry({ ... }),
-leanpub-start-delete
-      parts.page({ title: "Demo" }),
-leanpub-end-delete
-leanpub-start-insert
-      parts.page({
-        title: "Demo",
-        chunks: ["app", "runtime", "vendor"],
-      }),
-leanpub-end-insert
-    ),
-    merge(
-      parts.entry({ ... }),
-leanpub-start-delete
-      parts.page({ title: "Another demo" }),
-leanpub-end-delete
-leanpub-start-insert
-      parts.page({
-        title: "Another demo",
-        path: "another",
-        chunks: ["another", "runtime", "vendor"],
-      }),
-leanpub-end-insert
-    ),
-  ];
-  let config;
-
-...
-
-leanpub-start-delete
-  return pages.map(page =>
-    merge(commonConfig, config, page, { mode })
-  );
-leanpub-end-delete
-leanpub-start-insert
-  return merge([commonConfig, config, { mode }].concat(pages));
-leanpub-end-insert
-};
-```
-
-If you generate a build (`npm run build`), you should notice that something is different compared to the first multiple page build. Instead of two manifest files, there's only one. Because of the new setup, the manifest contains references to all of the bundles that were generated.
-
-In turn, the entry specific files point to different parts of the manifest and the manifest runs different code depending on the entry. Multiple separate manifests are not therefore needed.
-
-W> The setup won't work in development mode without an adjustment to how **webpack-plugin-serve** is set up. For it to work, you'll need to run it as a server and then attach it to each of the configurations. [See the full example](https://github.com/shellscape/webpack-plugin-serve/blob/master/test/fixtures/multi/webpack.config.js) at the documentation to understand how to do this.
-
-{pagebreak}
-
-### Pros and cons
-
-Compared to the earlier approach, something was gained, but also lost:
-
-- Given the configuration isn't in the multi-compiler form anymore, processing can be slower.
-- Plugins such as `CleanWebpackPlugin` don't work without additional consideration now.
-- Instead of multiple manifests, only one remains. The result is not a problem, though, as the entries use it differently based on their setup.
+T> To support development mode, see the _Composing Configuration_ chapter on how to set it up. The development target requires `parts.devServer()` helper and a more complex `merge` operation based on the target type.
 
 ## Progressive web applications
 
