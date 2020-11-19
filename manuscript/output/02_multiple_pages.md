@@ -73,7 +73,9 @@ And add a script to generate the pages:
 ```json
 {
   "scripts": {
+leanpub-start-insert
     "build:multi": "wp --config webpack.multi.js",
+leanpub-end-insert
     ...
   },
 }

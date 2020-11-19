@@ -64,7 +64,6 @@ To keep things nice, we will define a separate configuration file. A lot of the 
 
 ```javascript
 const path = require("path");
-
 const APP_SOURCE = path.join(__dirname, "src");
 
 module.exports = {
@@ -88,17 +87,21 @@ module.exports = {
 };
 ```
 
+{pagebreak}
+
 To make it convenient to generate a build, add a helper script:
 
 **package.json**
 
 ```json
-"scripts": {
+{
+  "scripts": {
 leanpub-start-insert
-  "build:ssr": "wp --config webpack.ssr.js",
+    "build:ssr": "wp --config webpack.ssr.js",
 leanpub-end-insert
-  ...
-},
+    ...
+  }
+}
 ```
 
 If you build the SSR demo (`npm run build:ssr`), you should see a new file at `./static/index.js`. The next step is to set up a server to render it.
@@ -110,8 +113,6 @@ To keep things clear to understand, you can set up a standalone Express server t
 ```bash
 npm add express --develop
 ```
-
-{pagebreak}
 
 Then, to get something running, implement a server:
 
@@ -141,7 +142,7 @@ function renderMarkup(html) {
 }
 ```
 
-Run the server now (`node ./server.js`) and go below `http://localhost:8080`, you should see a "Hello World".
+Run the server now (`node ./server.js`) and go below `http://localhost:8080`, you should see a "Hello World". Clicking the text should show an alert and you should see pre-rendered HTML in the source.
 
 Even though there is a React application running now, it's difficult to develop. If you try to modify the code, nothing happens. The problem can be solved running webpack in a multi-compiler mode as discussed in the _Multiple Pages_ chapter.
 
