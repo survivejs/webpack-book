@@ -267,8 +267,6 @@ leanpub-end-insert
     </main>
   );
 }
-
-...
 ```
 
 Next, we should connect the federated module with our configuration. It's here where things get more complicated as we have to either run webpack in multi-compiler mode (array of configurations) or compile modules separately. I've gone with the latter approach, as it works better with the current configuration.
@@ -405,6 +403,8 @@ Given module federation is a runtime process, it provides a degree of flexibilit
 
 On a team level, the approach lets you have feature teams that work only a specific portion of the application. A monolith may still be a good option for a single developer unless you find the possibility to AB test and to defer compilation valuable.
 
+{pagebreak}
+
 ## Learn more
 
 Consider the following resources to learn more:
@@ -414,8 +414,6 @@ Consider the following resources to learn more:
 - [mizx/module-federation-examples](https://github.com/mizx/module-federation-examples)
 - [Webpack 5 and Module Federation - A Microfrontend Revolution](https://dev.to/marais/webpack-5-and-module-federation-4j1i)
 - [The State of Micro Frontends](https://blog.bitsrc.io/state-of-micro-frontends-9c0c604ed13a)
-
-{pagebreak}
 
 ## Conclusion
 
