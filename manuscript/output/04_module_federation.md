@@ -383,6 +383,8 @@ module.exports = merge(
 leanpub-end-insert
 ```
 
+{pagebreak}
+
 To test, compile the header component first using `npm run build:mf -- --component header`. Then, to run the built module against the shell, use `npm run start:mf -- --component app`.
 
 If everything went well, you should still get the same outcome.
