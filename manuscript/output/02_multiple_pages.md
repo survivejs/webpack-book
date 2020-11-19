@@ -99,8 +99,6 @@ Especially [Workbox](https://developers.google.com/web/tools/workbox/) and its a
 
 T> [Twitter](https://developers.google.com/web/showcase/2017/twitter) and [Tinder](https://medium.com/@addyosmani/a-tinder-progressive-web-app-performance-case-study-78919d98ece0) case studies illustrate how the PWA approach can improve platforms.
 
-T> [HNPWA](https://hnpwa.com/) provides implementations of a Hacker News reader application written in different PWA approaches.
-
 ## Conclusion
 
 Webpack allows you to manage multiple page setups. The PWA approach allows the application to be loaded as it's used and webpack allows implementing it.
