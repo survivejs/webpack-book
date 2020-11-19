@@ -24,7 +24,7 @@ Above could be modeled as HTML markup along this:
 
 ```html
 <body>
-  <h1>Module federation demo</h1>
+  <h1>Demo</h1>
   <aside>
     <ul>
       <li><button>Hello world</button></li>
@@ -131,7 +131,7 @@ function App() {
 
   return (
     <main className="max-w-md mx-auto space-y-8">
-      <h1 className="text-xl">Module federation demo</h1>
+      <h1 className="text-xl">Demo</h1>
       <aside>
         <ul className="flex space-x-8">
           {options.map((option) => (
@@ -234,9 +234,7 @@ Now we're in a spot where we can begin breaking the monolith. Set up a file with
 ```javascript
 import React from "react";
 
-function Header() {
-  return <h1 className="text-xl">Module federation demo</h1>;
-}
+const Header = () => <h1 className="text-xl">Demo</h1>;
 
 export default Header;
 ```
@@ -258,7 +256,7 @@ function App() {
   return (
     <main className="max-w-md mx-auto space-y-8">
 leanpub-start-delete
-      <h1 className="text-xl">Module federation demo</h1>>
+      <h1 className="text-xl">Demo</h1>
 leanpub-end-delete
 leanpub-start-insert
       <Header />
