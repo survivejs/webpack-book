@@ -31,17 +31,15 @@ Connect the preset with Babel configuration as follows:
 
 ## Setting up a React demo
 
-To make sure the project has the dependencies in place, install React and [react-dom](https://www.npmjs.com/package/react-dom). The latter package is needed to render the application to the DOM.
+To make sure the project has the dependencies in place, install React and **react-dom** to render the application to the DOM.
 
 ```bash
 npm add react react-dom
 ```
 
-Next, the React code needs a small entry point. If you are on the browser side, you should mount `Hello world` `div` to the document. To prove it works, clicking it should give a dialog with a "hello" message. On server-side, the React component is returned and the server can pick it up.
+Next, the React code needs a small entry point. For browser, we'll render a `div` and show an alert on click. For server, we return JSX to render.
 
-{pagebreak}
-
-Given ES2015 style imports and CommonJS exports cannot be mixed, the entry point was written in CommonJS style. Adjust as follows:
+As ES2015 style imports and CommonJS exports cannot be mixed, the entry point has to be written in CommonJS style. Adjust as follows:
 
 **src/ssr.js**
 
