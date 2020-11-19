@@ -18,8 +18,6 @@ In practice, you have more dimensions. For example, you have to generate i18n va
 
 To generate multiple pages with webpack, we can leverage **mini-html-webpack-plugin**. **html-webpack-plugin** would work well for the purpose as well and using it would give you access to the plugins written for it. For the demonstration, using the former is enough.
 
-### Configuring webpack
-
 A page should receive title, url, and chunks for deciding which scripts to include to the page. The idea can be modeled as a configuration part as below:
 
 **webpack.parts.js**
@@ -58,8 +56,6 @@ module.exports = merge(
 );
 ```
 
-### Setting up a module to render
-
 Implement a small module to render on the page:
 
 **src/multi.js**
@@ -70,8 +66,6 @@ element.innerHTML = "hello multi";
 document.body.appendChild(element);
 ```
 
-### Adding a build shortcut
-
 And add a script to generate the pages:
 
 **package.json**
@@ -79,10 +73,13 @@ And add a script to generate the pages:
 ```json
 {
   "scripts": {
-    "build:multi": "wp --config webpack.multi.js"
-  }
+    "build:multi": "wp --config webpack.multi.js",
+    ...
+  },
 }
 ```
+
+{pagebreak}
 
 ### Testing the build
 
