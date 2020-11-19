@@ -93,11 +93,11 @@ If you push the idea further by combining it with code splitting and smart routi
 
 App shell is loaded initially, and it manages the whole application, including its routing. Page shells are more granular, and more are loaded as the application is used. The total size of the application is larger in this case. Conversely, you can load initial content faster.
 
-PWA combines well with a plugin like [sw-precache-webpack-plugin](https://www.npmjs.com/package/sw-precache-webpack-plugin). Using [Service Workers](https://developer.mozilla.org/en/docs/Web/API/Service_Worker_API) improves offline experience.
-
-Especially [Workbox](https://developers.google.com/web/tools/workbox/) and its associated [workbox-webpack-plugin](https://www.npmjs.com/package/workbox-webpack-plugin) can be useful for setting up Service Workers with minimal effort.
+Using [Service Workers](https://developer.mozilla.org/en/docs/Web/API/Service_Worker_API) improves offline experience and especially [Workbox](https://developers.google.com/web/tools/workbox/) and its associated [workbox-webpack-plugin](https://www.npmjs.com/package/workbox-webpack-plugin) can be useful for setting up the approach with minimal effort.
 
 T> [Twitter](https://developers.google.com/web/showcase/2017/twitter) and [Tinder](https://medium.com/@addyosmani/a-tinder-progressive-web-app-performance-case-study-78919d98ece0) case studies illustrate how the PWA approach can improve platforms.
+
+{pagebreak}
 
 ## Conclusion
 
