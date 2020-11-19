@@ -79,9 +79,8 @@ And add a script to generate the pages:
 ```json
 {
   "scripts": {
-    "build:multi": "wp --config webpack.multi.js",
-    ...
-  },
+    "build:multi": "wp --config webpack.multi.js"
+  }
 }
 ```
 
