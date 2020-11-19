@@ -17,14 +17,14 @@ T> To learn more about module federation, [see module federation examples](https
 To get started with module federation, let's build a small application that we'll then split into specific bundles loaded using the technique. The basic requirements of the application are as follows:
 
 1. There should be a UI control with a list of items. Clicking on an item should show related information.
-2. There should be a header with the application title.
+2. There should be a h1 with the application title.
 3. From requirement 1., it follows that there should be a main section which will be connected to the control.
 
 Above could be modeled as HTML markup along this:
 
 ```html
 <body>
-  <header>Module federation demo</header>
+  <h1>Module federation demo</h1>
   <aside>
     <ul>
       <li><button>Hello world</button></li>
@@ -40,6 +40,8 @@ Above could be modeled as HTML markup along this:
 
 The idea is that as any button is clicked, the content is updated to match the text.
 
+T> To be semantically correct, you could wrap the `h1` inside a `header`.
+
 {pagebreak}
 
 ## Adding webpack configuration
@@ -54,23 +56,22 @@ const { mode } = require("webpack-nano/argv");
 const { merge } = require("webpack-merge");
 const parts = require("./webpack.parts");
 
-const cssLoaders = [parts.autoprefix(), parts.tailwind()];
-
 const commonConfig = merge([
-  parts.clean(),
+  {
+    entry: [path.join(__dirname, "src", "mf.js")],
+    output: { publicPath: "/" },
+  },
   parts.loadJavaScript(),
   parts.loadImages(),
-  parts.entry({
-    name: "app",
-    path: path.join(__dirname, "src", "mf.js"),
-    mode,
-  }),
   parts.page(),
-  parts.extractCSS({ loaders: cssLoaders }),
+  parts.extractCSS({ loaders: [parts.tailwind()] }),
 ]);
 
 const configs = {
-  development: parts.devServer(),
+  development: merge(
+    { entry: ["webpack-plugin-serve/client"] },
+    parts.devServer()
+  ),
   production: {},
 };
 
@@ -130,9 +131,7 @@ function App() {
 
   return (
     <main className="max-w-md mx-auto space-y-8">
-      <header className="h-32 flex flex-wrap content-center">
-        <h1 className="text-xl">Module federation demo</h1>
-      </header>
+      <h1 className="text-xl">Module federation demo</h1>
       <aside>
         <ul className="flex space-x-8">
           {options.map((option) => (
@@ -157,9 +156,9 @@ document.body.appendChild(container);
 ReactDOM.render(<App />, container);
 ```
 
-The styling portion sets up Tailwind for styling so we can make the demonstration look better. I've disabled the background image applied to `body` in an earlier demonstration from the _Loading Images_ chapter to make the output look neater.
+The styling portion uses Tailwind setup from the _Eliminating Unused CSS_ chapter for styling so we can make the demonstration look better.
 
-If you `npm run start:mf`, you should see the application running. In case you click on any of the buttons,
+If you `npm run start:mf`, you should see the application running. In case you click on any of the buttons, the selection should change.
 
 ## Separating bootstrap
 
@@ -189,20 +188,16 @@ leanpub-end-insert
 ...
 
 const commonConfig = merge([
-  parts.clean(),
-  parts.loadJavaScript(),
-  parts.loadImages(),
-  parts.entry({
-    name: "app",
+  {
 leanpub-start-delete
-    path: path.join(__dirname, "src", "mf.js"),
+    entry: [path.join(__dirname, "src", "mf.js")],
 leanpub-end-delete
 leanpub-start-insert
-    path: path.join(__dirname, "src", "bootstrap.js"),
+    entry: [path.join(__dirname, "src", "bootstrap.js")],
 leanpub-end-insert
-    mode,
-  }),
-  parts.page(),
+    output: { publicPath: "/" },
+  },
+  ...
 leanpub-start-insert
   {
     plugins: [
@@ -224,13 +219,13 @@ leanpub-end-insert
 
 If you run the application (`npm run start:mf`), it should still look the same.
 
-In case you change the entry to the original file, you'll receive an `Uncaught Error: Shared module is not available for eager consumption` error in the browser.
+In case you change the entry to point at the original file, you'll receive an `Uncaught Error: Shared module is not available for eager consumption` error in the browser.
 
 To get started, let's split the header section of the application into a module of its own and load it during runtime through module federation.
 
 Note the `singleton` bits in the code above. In this case, we'll treat the current code as a host and mark **react** and **react-dom** as a singleton for each federated module to ensure each is using the same version to avoid problems with React rendering.
 
-## Separating header
+## Separating the header
 
 Now we're in a spot where we can begin breaking the monolith. Set up a file with the header code as follows:
 
@@ -240,17 +235,11 @@ Now we're in a spot where we can begin breaking the monolith. Set up a file with
 import React from "react";
 
 function Header() {
-  return (
-    <header className="h-32 flex flex-wrap content-center">
-      <h1 className="text-xl">Module federation demo</h1>
-    </header>
-  );
+  return <h1 className="text-xl">Module federation demo</h1>;
 }
 
 export default Header;
 ```
-
-{pagebreak}
 
 We should also alter the application to use the new component. We'll go through a custom namespace, `mf`, which we'll manage through module federation:
 
@@ -269,9 +258,7 @@ function App() {
   return (
     <main className="max-w-md mx-auto space-y-8">
 leanpub-start-delete
-      <header className="h-32 flex flex-wrap content-center">
-        <h1 className="text-xl">Module federation demo</h1>
-      </header>
+      <h1 className="text-xl">Module federation demo</h1>>
 leanpub-end-delete
 leanpub-start-insert
       <Header />
@@ -284,11 +271,9 @@ leanpub-end-insert
 ...
 ```
 
-Next, we should connect the federated module with our configuration. It's here where things get more complicated as we have to either run webpack in multi-compiler mode (array of configurations) or compile modules separately. Given it works better with the current setup, I've gone with the latter approach.
+Next, we should connect the federated module with our configuration. It's here where things get more complicated as we have to either run webpack in multi-compiler mode (array of configurations) or compile modules separately. I've gone with the latter approach, as it works better with the current configuration.
 
 T> It's possible to make the setup work in a multi-compiler setup as well. In that case, you should either use **webpack-dev-server** or run **webpack-plugin-serve** in a server mode. [See the full example](https://github.com/shellscape/webpack-plugin-serve/blob/master/test/fixtures/multi/webpack.config.js) at their documentation.
-
-{pagebreak}
 
 To make the changes more manageable, we should define a configuration part encapsulating the module federation concern and then consume that:
 
@@ -316,9 +301,7 @@ exports.federateModule = ({
 });
 ```
 
-The next step is more involved, as we'll have to set up two builds. We'll reuse the current target and pass `--component` parameter to it to define which one to compile. That gives enough flexibility for the project.
-
-{pagebreak}
+The next step is more involved, as we'll have to set up two builds. We'll have to reuse the current target and pass `--component` parameter to it to define which one to compile. That gives enough flexibility for the project.
 
 Change the webpack configuration as below:
 
@@ -326,82 +309,87 @@ Change the webpack configuration as below:
 
 ```javascript
 leanpub-start-delete
-const { component, mode } = require("webpack-nano/argv");
+const { mode } = require("webpack-nano/argv");
 const { ModuleFederationPlugin } = require("webpack").container;
 leanpub-end-delete
 leanpub-start-insert
 const { component, mode } = require("webpack-nano/argv");
 leanpub-end-insert
 
-...
+const commonConfig = merge([
+  {
+leanpub-start-delete
+    entry: [path.join(__dirname, "src", "bootstrap.js")],
+leanpub-end-delete
+    output: { publicPath: "/" },
+  }
+  ...
+leanpub-start-delete
+  parts.extractCSS({ loaders: [parts.tailwind()] }),
+  {
+    plugins: [
+      new ModuleFederationPlugin({
+        name: "app",
+        remotes: {},
+        shared: {
+          react: { singleton: true },
+          "react-dom": { singleton: true },
+        },
+      }),
+    ],
+  },
+leanpub-end-delete
+]);
 
 leanpub-start-insert
-const commonConfig = merge([
-  parts.clean(),
-  parts.loadJavaScript(),
-  parts.loadImages(),
-]);
-leanpub-end-insert
+const shared = {
+  react: { singleton: true },
+  "react-dom": { singleton: true },
+};
+const componentConfigs = {
+  app: merge(
+    {
+      entry: [path.join(__dirname, "src", "bootstrap.js")],
+    },
+    parts.page(),
+    parts.federateModule({
+      name: "app",
+      remotes: {
+        mf: "mf@/mf.js",
+      },
+      shared,
+    })
+  ),
+  header: merge(
+    {
+      entry: [path.join(__dirname, "src", "header.js")],
+    },
+    parts.federateModule({
+      name: "mf",
+      filename: "mf.js",
+      exposes: {
+        "./header": "./src/header",
+      },
+      shared,
+    })
+  ),
+};
 
-...
+if (!component) {
+  throw new Error("Missing component name");
+}
+leanpub-end-insert
 
 leanpub-start-delete
 module.exports = merge(commonConfig, configs[mode], { mode });
 leanpub-end-delete
 leanpub-start-insert
-
-const getConfig = (mode) => {
-  const shared = {
-    react: { singleton: true },
-    "react-dom": { singleton: true },
-  };
-
-  const componentConfigs = {
-    app: merge([
-      parts.entry({
-        name: "app",
-        path: path.join(__dirname, "src", "bootstrap.js"),
-        mode,
-      }),
-      parts.page(),
-      parts.federateModule({
-        name: "app",
-        remotes: {
-          mf: "mf@/mf.js",
-        },
-        shared,
-      }),
-    ]),
-    header: merge([
-      {
-        entry: path.join(__dirname, "src", "header.js"),
-      },
-      parts.federateModule({
-        name: "mf",
-        filename: "mf.js",
-        exposes: {
-          "./header": "./src/header",
-        },
-        shared,
-      }),
-    ]),
-  };
-
-  if (!component) {
-    throw new Error("Missing component name");
-  }
-
-  return merge(
-    commonConfig,
-    configs[mode],
-    componentConfigs[component],
-    {
-      mode,
-    }
-  );
-};
-
-module.exports = getConfig(mode);
+module.exports = merge(
+  commonConfig,
+  configs[mode],
+  { mode },
+  componentConfigs[component]
+);
 leanpub-end-insert
 ```
 
