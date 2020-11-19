@@ -225,7 +225,7 @@ To get started, let's split the header section of the application into a module 
 
 Note the `singleton` bits in the code above. In this case, we'll treat the current code as a host and mark **react** and **react-dom** as a singleton for each federated module to ensure each is using the same version to avoid problems with React rendering.
 
-## Separating the header
+## Separating header
 
 Now we're in a spot where we can begin breaking the monolith. Set up a file with the header code as follows:
 
@@ -350,9 +350,7 @@ const componentConfigs = {
     parts.page(),
     parts.federateModule({
       name: "app",
-      remotes: {
-        mf: "mf@/mf.js",
-      },
+      remotes: { mf: "mf@/mf.js" },
       shared,
     })
   ),
@@ -363,17 +361,13 @@ const componentConfigs = {
     parts.federateModule({
       name: "mf",
       filename: "mf.js",
-      exposes: {
-        "./header": "./src/header",
-      },
+      exposes: { "./header": "./src/header" },
       shared,
     })
   ),
 };
 
-if (!component) {
-  throw new Error("Missing component name");
-}
+if (!component) throw new Error("Missing component name");
 leanpub-end-insert
 
 leanpub-start-delete
@@ -400,8 +394,6 @@ You could say our build process is a notch more complex now, so what did we gain
 Given module federation is a runtime process, it provides a degree of flexibility that would be hard to achieve otherwise. For example, you could run experiments and see what happens if a piece of functionality is replaced without rebuilding your entire project.
 
 On a team level, the approach lets you have feature teams that work only a specific portion of the application. A monolith may still be a good option for a single developer unless you find the possibility to AB test and to defer compilation valuable.
-
-{pagebreak}
 
 ## Learn more
 
