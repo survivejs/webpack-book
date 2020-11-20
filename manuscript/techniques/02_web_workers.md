@@ -22,7 +22,7 @@ self.onmessage = ({ data: { text } }) => {
 
 ## Setting up a host
 
-The host has to instantiate the worker and then communicate with it. The idea is almost the same except the host has the control:
+The host has to instantiate the worker and then communicate with it:
 
 **src/component.js**
 
