@@ -18,6 +18,8 @@ self.onmessage = ({ data: { text } }) => {
 };
 ```
 
+{pagebreak}
+
 ## Setting up a host
 
 The host has to instantiate the worker and then communicate with it. The idea is almost the same except the host has the control:
@@ -46,7 +48,9 @@ export default (text = HELLO) => {
 
 After you have these two set up, it should work as webpack detects the `Worker` syntax. As you click the text, it should mutate the application state when the worker completes its execution. To demonstrate the asynchronous nature of workers, you could try adding delay to the answer and see what happens.
 
-## Sharing data between the host and the worker
+{pagebreak}
+
+## Sharing data
 
 Due to the cost of serialization, passing data between the host and the worker can be expensive. The cost can be minimized by using [Transferable objects](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers#Passing_data_by_transferring_ownershi) and in the future, sharing data will become possible thanks to [SharedArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer).
 
