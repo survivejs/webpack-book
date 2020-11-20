@@ -38,7 +38,6 @@ export default (text = HELLO) => {
     state.text = text;
     element.innerHTML = text;
   });
-
   element.innerHTML = state.text;
   element.onclick = () => worker.postMessage({ text: state.text });
 
