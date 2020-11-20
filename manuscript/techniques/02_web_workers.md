@@ -4,19 +4,7 @@
 
 Moving data between the main thread and the worker comes with communication-related overhead. The split provides isolation that forces workers to focus on logic only as they cannot manipulate the user interface directly.
 
-As discussed in the _Build Targets_ chapter, webpack allows you to build your application as a worker itself. To get the idea of web workers better, you'll learn how to develop a small worker using [worker-loader](https://www.npmjs.com/package/worker-loader).
-
-## Setting up **worker-loader**
-
-To get started, install **worker-loader** to the project:
-
-```bash
-npm add worker-loader --develop
-```
-
-Instead of pushing the loader definition to webpack configuration, you can use inline loader definitions to keep the demonstration minimal. See the _Loader Definitions_ chapter for more information about the alternatives.
-
-{pagebreak}
+As discussed in the _Build Targets_ chapter, webpack allows you to build your application as a worker itself. To get the idea of web workers better, we'll write a small worker to bundle using webpack.
 
 ## Setting up a worker
 
@@ -37,12 +25,12 @@ The host has to instantiate the worker and then communicate with it. The idea is
 **src/component.js**
 
 ```javascript
-import Worker from "worker-loader!./worker";
-
-export default () => {
+export default (text = HELLO) => {
   const element = document.createElement("h1");
-  const worker = new Worker();
-  const state = { text: "foo" };
+  const worker = new Worker(
+    new URL("./worker.js", import.meta.url)
+  );
+  const state = { text };
 
   worker.addEventListener("message", ({ data: { text } }) => {
     state.text = text;
@@ -56,9 +44,7 @@ export default () => {
 };
 ```
 
-After you have these two set up, it should work. As you click the text, it should mutate the application state as the worker completes its execution. To demonstrate the asynchronous nature of workers, you could try adding delay to the answer and see what happens.
-
-T> Starting from webpack 5, the tool supports standard worker syntax out of the box. Example: `new Worker(new URL("./worker.js", import.meta.url))`. The benefit of the new syntax is that it follows the standards and doesn't necessarily require a bundler to work.
+After you have these two set up, it should work as webpack detects the `Worker` syntax. As you click the text, it should mutate the application state when the worker completes its execution. To demonstrate the asynchronous nature of workers, you could try adding delay to the answer and see what happens.
 
 ## Sharing data between the host and the worker
 
@@ -66,11 +52,11 @@ Due to the cost of serialization, passing data between the host and the worker c
 
 ## Other options
 
+Before webpack 5, [worker-loader](https://www.npmjs.com/package/worker-loader) was the preferred option and it can still be used if you want more control over the bundling process.
+
 [workerize-loader](https://www.npmjs.com/package/workerize-loader) and [worker-plugin](https://www.npmjs.com/package/worker-plugin) let you use the worker as a regular JavaScript module as well given you avoid the `self` requirement visible in the example solution.
 
 [threads.js](https://threads.js.org/) provides a comprehensive solution for more complex setups and it includes features such as observables and thread pools out of the box. There's a custom [threads-plugin](https://github.com/andywer/threads-plugin) you can use to integrate it with webpack.
-
-{pagebreak}
 
 ## Conclusion
 
