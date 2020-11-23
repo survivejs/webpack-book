@@ -54,8 +54,6 @@ T> When using dynamic imports, specify file extension in the path as that keeps 
 
 T> There's a full implementation of the idea in the _Internationalization_ chapter.
 
-{pagebreak}
-
 ## Combining multiple `require.context`s
 
 Multiple separate `require.context`s can be combined into one by wrapping them behind a function:

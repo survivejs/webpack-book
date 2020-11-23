@@ -114,6 +114,8 @@ If you want to improve the setup further, add _Hot Module Replacement_ to it, as
 
 T> If you haven't completed the book examples, [check out the demonstration from GitHub](https://github.com/survivejs-demos/webpack-demo) to find the configuration.
 
+{pagebreak}
+
 ## Implementing the application with React
 
 To avoid manual work with the DOM, we can use React to develop the application quickly. Make sure you have both **react** and **react-dom** installed.
