@@ -91,6 +91,8 @@ T> To get access to the generated files and their paths, consider using [assets-
 
 W> To make sure clients relying on the older bundles still work after deploying a new version, do **not** remove the old files until they are old enough. You can perform a specific check on what to remove when deploying instead of removing every old asset.
 
+{pagebreak}
+
 ## Resolving `output.publicPath` dynamically
 
 If you don't know `publicPath` beforehand, it's possible to resolve it based on the environment by following these steps:
