@@ -303,9 +303,9 @@ import "!demo-loader?name=foo!./main.css";
 leanpub-end-insert
 ```
 
-You could also handle the loader definition through `rules`. Once the loader is stable enough, set up a project based on _webpack-defaults_, push the logic there, and begin to consume the loader as a package.
+You could also handle the loader definition through `rules` and publish it as an npm package to consume.
 
-W> Although using **loader-runner** can be convenient for developing and testing loaders, implement integration tests that run against webpack. Subtle differences between environments make this essential.
+W> Although using **loader-runner** can be convenient for developing and testing loaders, implement integration tests that run against webpack. Subtle differences between environments make this essential. You can find a full testing setup at the _Extending with Plugins_ chapter.
 
 T> The [official documentation](https://webpack.js.org/api/loaders/) covers the loader API in detail. You can see all fields available through `this` there. For example, `mode` is exposed.
 

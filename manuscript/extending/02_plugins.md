@@ -14,8 +14,6 @@ Regardless of your approach, you should capture possible options passed by a use
 
 When the plugin is connected to webpack configuration, webpack will run its constructor and call `apply` with a compiler object passed to it. The object exposes webpack's plugin API and allows you to use its hooks as listed by [the official compiler reference](https://webpack.js.org/api/plugins/compiler/).
 
-T> [webpack-defaults](https://www.npmjs.com/package/webpack-defaults) works as a starting point for webpack plugins. It contains the infrastructure used to develop official webpack loaders and plugins.
-
 ## Setting up a development environment
 
 To test and develop plugins against webpack, a good practice is to set up a harness that captures file output in-memory so you can assert output. You can also validate output against webpack `stats`.
