@@ -23,48 +23,25 @@ The idea is that if webpack resolver matches `demo` in the beginning, it resolve
 
 Light React alternatives, such as [Preact](https://www.npmjs.com/package/preact) or [Inferno](https://www.npmjs.com/package/inferno), offer smaller size while trading off functionality like `propTypes` and synthetic event handling. Replacing React with a lighter alternative can save a significant amount of space, but you should test well if you do this.
 
-With Preact, the basic setup looks like this:
-
-```javascript
-const config = {
-  resolve: {
-    alias: {
-      react: "preact-compat",
-      "react-dom": "preact-compat",
-    },
-  },
-};
-```
-
 T> The same technique works with loaders too. You can use `resolveLoader.alias` similarly. You can use the method to adapt a RequireJS project to work with webpack.
-
-## `resolve.extensions`
-
-By default, webpack will resolve only against `.js`, `.mjs`, and `.json` files while importing without an extension, to tune this to include JSX files, adjust as below:
-
-```javascript
-const config = {
-  resolve: {
-    extensions: [".js", ".json", ".jsx"],
-  },
-};
-```
-
-{pagebreak}
 
 ## `resolve.modules`
 
 The module resolution process can be altered by changing where webpack looks for modules. By default, it will look only within the `node_modules` directory. If you want to override packages there, you could tell webpack to look into other directories first:
 
 ```javascript
-const config = {
-  resolve: {
-    modules: ["my_modules", "node_modules"],
-  },
-};
+const config = { resolve: { modules: ["demo", "node_modules"] } };
 ```
 
 After the change, webpack will try to look into the _my_modules_ directory first. The method can be applicable in large projects where you want to customize behavior.
+
+## `resolve.extensions`
+
+By default, webpack will resolve only against `.js`, `.mjs`, and `.json` files while importing without an extension, to tune this to include JSX files, adjust as below:
+
+```javascript
+const config = { resolve: { extensions: [".js", ".jsx"] } };
+```
 
 ## `resolve.plugins`
 
@@ -73,8 +50,6 @@ After the change, webpack will try to look into the _my_modules_ directory first
 - [directory-named-webpack-plugin](https://www.npmjs.com/package/directory-named-webpack-plugin) maps imports made against directories to files matching the directory name. For example, it would map `import foo from "./foo";` to `import foo from "./foo/foo.js";`. The pattern is popular with React and using the plugin will allow you to simplify your code. [babel-plugin-module-resolver](https://www.npmjs.com/package/babel-plugin-module-resolver) achieves the same behavior through Babel.
 - [webpack-resolve-short-path-plugin](https://www.npmjs.com/package/webpack-resolve-short-path-plugin) was designed to avoid deeply nested imports like `import foo from "../../../foo";` by adding support for tilde (`~`) syntax. `import foo from "~foo"` would resolve against the project root if the plugin is used.
 
-{pagebreak}
-
 ## Consuming packages outside of webpack
 
 Browser dependencies, like jQuery, are often served through publicly available Content Delivery Networks (CDN). CDNs allow you to push the problem of loading popular packages elsewhere. If a package has been already loaded from a CDN and it's in the user cache, there is no need to load it.
@@ -82,9 +57,7 @@ Browser dependencies, like jQuery, are often served through publicly available C
 To use this technique, you should first mark the dependency in question as an external:
 
 ```javascript
-const config = {
-  externals: { jquery: "jquery" },
-};
+const config = { externals: { jquery: "jquery" } };
 ```
 
 You still have to point to a CDN and ideally provide a local fallback, so there is something to load if the CDN does not work for the client:
@@ -132,17 +105,15 @@ const config = {
 };
 ```
 
-{pagebreak}
-
 ### Exposing globals to the browser
 
 Sometimes you have to expose packages to third-party scripts. [expose-loader](https://www.npmjs.com/package/expose-loader) allows this as follows:
 
 ```javascript
-{
+const config = {
   test: require.resolve("react"),
   use: "expose-loader?React",
-},
+};
 ```
 
 T> [script-loader](https://www.npmjs.com/package/script-loader) allows you to execute scripts in a global context. You have to do this if the scripts you are using rely on a global registration setup.
@@ -182,8 +153,6 @@ const config = {
 T> There's a [Stack Overflow question](https://stackoverflow.com/questions/25384360/how-to-prevent-moment-js-from-loading-locales-with-webpack/25426019) that covers these ideas in detail. See also [Ivan Akulov's explanation of `ContextReplacementPlugin`](https://iamakulov.com/notes/webpack-contextreplacementplugin/).
 
 T> [webpack-libs-optimizations](https://github.com/GoogleChromeLabs/webpack-libs-optimizations) lists further library specific optimizations as above.
-
-{pagebreak}
 
 ## Managing pre-built dependencies
 
