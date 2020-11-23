@@ -77,15 +77,18 @@ Sometimes modules depend on globals. `$` provided by jQuery is a good example. W
 
 ### Injecting globals
 
-[imports-loader](https://www.npmjs.com/package/imports-loader) allows you to inject globals as below:
+[imports-loader](https://www.npmjs.com/package/imports-loader) allows you to inject globals to modules. In the example below, `import $ from 'jquery';` is injected as a global to each:
 
 ```javascript
 const config = {
   module: {
     rules: [
       {
-        test: require.resolve("jquery-plugin"),
-        loader: "imports-loader?$=jquery",
+        test: /\.js$/,
+        loader: "imports-loader",
+        options: {
+          imports: ["default jquery $"],
+        },
       },
     ],
   },
@@ -101,8 +104,6 @@ const config = {
   plugins: [new webpack.ProvidePlugin({ $: "jquery" })],
 };
 ```
-
-{pagebreak}
 
 ### Exposing globals to the browser
 
