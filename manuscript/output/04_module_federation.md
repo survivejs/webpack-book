@@ -100,11 +100,11 @@ Set up npm scripts as follows:
 ```json
 {
   "scripts": {
+leanpub-start-insert
     "build:mf": "wp --config webpack.mf.js --mode production",
-    "start:mf": "wp --config webpack.mf.js --mode development",
-    ...
-  },
-  ...
+    "start:mf": "wp --config webpack.mf.js --mode development"
+leanpub-end-insert
+  }
 }
 ```
 

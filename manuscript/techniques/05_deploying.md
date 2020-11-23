@@ -23,12 +23,13 @@ You are also going to need a script in `package.json`:
 **package.json**
 
 ```json
-"scripts": {
+{
+  "scripts": {
 leanpub-start-insert
-  "deploy": "gh-pages -d dist",
+    "deploy": "gh-pages -d dist"
 leanpub-end-insert
-  ...
-},
+  }
+}
 ```
 
 To make the asset paths work on GitHub Pages, `output.publicPath` field has to be adjusted. Otherwise, the asset paths end up pointing at the root, and that doesn't work unless you are hosting behind a domain root (say `survivejs.com`) directly.

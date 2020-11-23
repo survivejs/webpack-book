@@ -265,10 +265,13 @@ Above would expect the following target:
 **package.json**
 
 ```json
-"scripts": {
-  "build": "wp --mode production:legacy && wp --mode production:modern",
-  ...
-},
+{
+  "scripts": {
+leanpub-start-insert
+    "build": "wp --mode production:legacy && wp --mode production:modern"
+leanpub-end-insert
+  }
+}
 ```
 
 To complete the setup, you have to write a script reference to your HTML using one of the techniques outlined above. The webpack builds can run parallel and you could use for example use the [concurrently](https://www.npmjs.com/package/concurrently) package to speed up the execution.

@@ -48,10 +48,13 @@ To run Mocha against the test, add a script:
 **package.json**
 
 ```json
-"scripts": {
-  "test:mocha": "mocha tests",
-  ...
-},
+{
+  "scripts": {
+leanpub-start-insert
+    "test:mocha": "mocha tests"
+leanpub-end-insert
+  }
+}
 ```
 
 {pagebreak}
@@ -122,10 +125,13 @@ Add a helper script to make it convenient to run:
 **package.json**
 
 ```json
-"scripts": {
-  "test:mocha:watch": "wp --config webpack.mocha.js",
-  ...
-},
+{
+  "scripts": {
+leanpub-start-insert
+    "test:mocha:watch": "wp --config webpack.mocha.js"
+leanpub-end-insert
+  }
+}
 ```
 
 If you execute the server now and navigate to `http://localhost:8080/`, you should see the test:

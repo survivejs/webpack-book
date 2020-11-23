@@ -57,8 +57,7 @@ To integrate WPS to the project, define an npm script for launching it:
 leanpub-start-insert
     "start": "wp --mode development",
 leanpub-end-insert
-    "build": "wp --mode production"
-  },
+  }
 }
 ```
 
@@ -155,9 +154,10 @@ To get it to work, you have to install it first through `npm add nodemon --devel
 ```json
 {
   "scripts": {
+leanpub-start-insert
     "watch": "nodemon --watch webpack.* --exec \"npm run start\"",
-    "start": "wp --mode development",
-    "build": "wp --mode production"
+    "start": "wp --mode development"
+leanpub-end-insert
   }
 }
 ```

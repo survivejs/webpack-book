@@ -56,11 +56,15 @@ Even though npm CLI wasn't primarily designed to be used as a task runner, it wo
 **package.json**
 
 ```json
-"scripts": {
-  "start": "wp --mode development",
-  "build": "wp --mode production",
-  "build:stats": "wp --mode production --json > stats.json"
-},
+{
+  "scripts": {
+leanpub-start-insert
+    "start": "wp --mode development",
+    "build": "wp --mode production",
+    "build:stats": "wp --mode production --json > stats.json"
+leanpub-end-insert
+  }
+}
 ```
 
 These scripts can be listed using `npm run` and then executed using `npm run <script>`. You can also namespace your scripts using a convention like `test:watch`. The problem with this approach is that it takes care to keep it cross-platform.
