@@ -139,7 +139,7 @@ leanpub-end-insert
 );
 ```
 
-To implement the essential idea of **file-loader**, you have to do two things: emit the file and return path to it.
+To implement the essential idea of asset loading, you have to do two things: emit the file and return path to it.
 
 To interpolate the file name, you need to use [loader-utils](https://www.npmjs.com/package/loader-utils). It has also utilities to parse loader options and queries. Install it:
 
