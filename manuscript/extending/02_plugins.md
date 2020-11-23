@@ -78,6 +78,8 @@ console.log("hello from entry");
 
 T> [See Stack Overflow](https://stackoverflow.com/questions/39923743/is-there-a-way-to-get-the-output-of-webpack-node-api-as-a-string) for related discussion.
 
+{pagebreak}
+
 ## Implementing a basic plugin
 
 The most basic plugin should do two things: capture options and provide `apply` method:
