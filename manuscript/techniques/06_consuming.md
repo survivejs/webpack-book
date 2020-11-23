@@ -102,6 +102,8 @@ const config = {
 };
 ```
 
+{pagebreak}
+
 ### Exposing globals to the browser
 
 Sometimes you have to expose packages to third-party scripts. [expose-loader](https://www.npmjs.com/package/expose-loader) allows this as follows:
@@ -109,7 +111,10 @@ Sometimes you have to expose packages to third-party scripts. [expose-loader](ht
 ```javascript
 const config = {
   test: require.resolve("react"),
-  use: "expose-loader?React",
+  loader: "expose-loader",
+  options: {
+    exposes: ["React"],
+  },
 };
 ```
 
@@ -149,8 +154,6 @@ const config = {
 
 T> There's a [Stack Overflow question](https://stackoverflow.com/questions/25384360/how-to-prevent-moment-js-from-loading-locales-with-webpack/25426019) that covers these ideas in detail. See also [Ivan Akulov's explanation of `ContextReplacementPlugin`](https://iamakulov.com/notes/webpack-contextreplacementplugin/).
 
-T> [webpack-libs-optimizations](https://github.com/GoogleChromeLabs/webpack-libs-optimizations) lists further library specific optimizations as above.
-
 ## Managing pre-built dependencies
 
 It's possible webpack gives the following warning with certain dependencies:
@@ -168,7 +171,7 @@ The warning can be eliminated by aliasing the package to a source version as dis
 
 ```javascript
 const config = {
-  module: { noParse: /node_modules\/demo-package\/index.js/ },
+  module: { noParse: /node_modules\/demo\/index.js/ },
 };
 ```
 
