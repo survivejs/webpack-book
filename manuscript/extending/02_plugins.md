@@ -260,7 +260,7 @@ async function test() {
         plugins: [new DemoPlugin({ name: "demo" })],
       },
       ["demo"]
-    );
+    )
   );
 }
 ```
