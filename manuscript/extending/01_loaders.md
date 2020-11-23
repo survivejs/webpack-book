@@ -43,7 +43,7 @@ runLoaders(
 );
 ```
 
-If you run the script now (`node run-loader.js`), you should see output:
+If you run the script now (`node ./run-loader.js`), you should see output:
 
 ```javascript
 {
@@ -87,7 +87,7 @@ W> Given webpack injects its API through `this`, the shorter function form (`() 
 
 T> If you want to pass a source map to webpack, give it as the third parameter of the callback.
 
-Running the demo script (`node run-loader.js`) again should give the same result as before.
+Running the demo script (`node ./run-loader.js`) again should give the same result as before.
 
 To raise an error during execution, try the following:
 

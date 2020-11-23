@@ -18,7 +18,13 @@ When the plugin is connected to webpack configuration, webpack will run its cons
 
 To test and develop plugins against webpack, a good practice is to set up a harness that captures file output in-memory so you can assert output. You can also validate output against webpack `stats`.
 
-The trick is to use [memfs](https://www.npmjs.com/package/memfs) in combination with `compiler.outputFileSystem` as below:
+The trick is to use [memfs](https://www.npmjs.com/package/memfs) in combination with `compiler.outputFileSystem`. Install **memfs** first:
+
+```bash
+npm add memfs --develop
+```
+
+Implement a test bootstrap:
 
 **plugins/test.js**
 
@@ -77,8 +83,6 @@ console.log("hello from entry");
 ```
 
 T> [See Stack Overflow](https://stackoverflow.com/questions/39923743/is-there-a-way-to-get-the-output-of-webpack-node-api-as-a-string) for related discussion.
-
-{pagebreak}
 
 ## Implementing a basic plugin
 
