@@ -74,4 +74,4 @@ To recap:
 
 - Autoprefixing can be enabled through the **autoprefixer** PostCSS plugin.
 - Autoprefixing writes missing CSS definitions based on your minimum browser definition.
-- _.browserslistrc_ is a standard file that works with tooling beyond **autoprefixer**
+- _.browserslistrc_ is a standard file that works with tooling beyond **autoprefixer**.
