@@ -52,6 +52,8 @@ The same idea works with `require` as webpack can then perform static analysis. 
 
 T> When using dynamic imports, specify file extension in the path as that keeps the context smaller and helps with performance.
 
+T> There's a full implementation of the idea in the _Internationalization_ chapter.
+
 {pagebreak}
 
 ## Combining multiple `require.context`s
