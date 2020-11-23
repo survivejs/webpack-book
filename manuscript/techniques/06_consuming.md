@@ -45,10 +45,7 @@ const config = { resolve: { extensions: [".js", ".jsx"] } };
 
 ## `resolve.plugins`
 
-`resolve.plugins` field allows you to customize the way webpack resolves modules. Consider the following plugin examples:
-
-- [directory-named-webpack-plugin](https://www.npmjs.com/package/directory-named-webpack-plugin) maps imports made against directories to files matching the directory name. For example, it would map `import foo from "./foo";` to `import foo from "./foo/foo.js";`. The pattern is popular with React and using the plugin will allow you to simplify your code. [babel-plugin-module-resolver](https://www.npmjs.com/package/babel-plugin-module-resolver) achieves the same behavior through Babel.
-- [webpack-resolve-short-path-plugin](https://www.npmjs.com/package/webpack-resolve-short-path-plugin) was designed to avoid deeply nested imports like `import foo from "../../../foo";` by adding support for tilde (`~`) syntax. `import foo from "~foo"` would resolve against the project root if the plugin is used.
+`resolve.plugins` field allows you to customize the way webpack resolves modules. [directory-named-webpack-plugin](https://www.npmjs.com/package/directory-named-webpack-plugin) is a good example as it's mapping `import foo from "./foo";` to `import foo from "./foo/foo.js";`. The pattern is popular with React and using the plugin will allow you to simplify your code. [babel-plugin-module-resolver](https://www.npmjs.com/package/babel-plugin-module-resolver) achieves the same behavior through Babel.
 
 ## Consuming packages outside of webpack
 
