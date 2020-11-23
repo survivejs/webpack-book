@@ -104,21 +104,27 @@ A small change is required in webpack configuration:
 **webpack.mocha.js**
 
 ```javascript
-const path = require("path");
-const { merge } = require("webpack-merge");
-const parts = require("./webpack.parts");
+const {
+  MiniHtmlWebpackPlugin,
+} = require("mini-html-webpack-plugin");
+const { WebpackPluginServe } = require("webpack-plugin-serve");
 
-module.exports = merge([
-  { mode: "development" },
-  parts.devServer(),
-  parts.page({
-    title: "Mocha demo",
-    entry: { tests: path.join(__dirname, "tests") },
-  }),
-]);
+module.exports = {
+  mode: "development",
+  entry: ["./tests", "webpack-plugin-serve/client"],
+  watch: true,
+  plugins: [
+    new WebpackPluginServe({
+      port: process.env.PORT || 8080,
+      static: "./dist",
+      waitForBuild: true,
+    }),
+    new MiniHtmlWebpackPlugin(),
+  ],
+};
 ```
 
-T> See the _Composing Configuration_ chapter for the full `devServer` setup. The page setup is explained in the _Multiple Pages_ chapter.
+T> If you have implemented book configuration so far, this is a good spot to write the configuration using the utilities.
 
 Add a helper script to make it convenient to run:
 
