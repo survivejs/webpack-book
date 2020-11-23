@@ -131,9 +131,7 @@ runLoaders(
     resource: "./demo.txt",
     loaders: [path.resolve(__dirname, "./loaders/demo-loader")],
 leanpub-start-insert
-    context: {
-      emitFile: () => {},
-    },
+    context: { emitFile: () => {} },
 leanpub-end-insert
     readResource: fs.readFile.bind(fs),
   },
