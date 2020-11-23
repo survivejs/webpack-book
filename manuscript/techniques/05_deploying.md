@@ -45,7 +45,6 @@ const productionConfig = merge([
   {
     output: {
 leanpub-start-delete
-      // Needed for code splitting to work in nested paths
       publicPath: "/",
 leanpub-end-delete
 leanpub-start-insert
@@ -77,8 +76,6 @@ T> GitHub Pages allows you to choose the branch where you deploy. It's possible 
 ghpages.publish(path.join(__dirname, "dist"), { add: true }, cb);
 ```
 
-{pagebreak}
-
 ## Deploying to other environments
 
 Even though you can push the problem of deployment outside of webpack, there are a couple of webpack specific utilities that come in handy:
@@ -90,8 +87,6 @@ Even though you can push the problem of deployment outside of webpack, there are
 T> To get access to the generated files and their paths, consider using [assets-webpack-plugin](https://www.npmjs.com/package/assets-webpack-plugin). The path information allows you to integrate webpack with other environments while deploying.
 
 W> To make sure clients relying on the older bundles still work after deploying a new version, do **not** remove the old files until they are old enough. You can perform a specific check on what to remove when deploying instead of removing every old asset.
-
-{pagebreak}
 
 ## Resolving `output.publicPath` dynamically
 
