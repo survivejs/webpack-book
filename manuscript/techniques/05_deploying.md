@@ -43,9 +43,7 @@ In this case, it's enough to set it to point the GitHub project as below:
 ```javascript
 const productionConfig = merge([
   {
-    ...
     output: {
-      ...
 leanpub-start-delete
       // Needed for code splitting to work in nested paths
       publicPath: "/",
@@ -78,6 +76,8 @@ T> GitHub Pages allows you to choose the branch where you deploy. It's possible 
 ```javascript
 ghpages.publish(path.join(__dirname, "dist"), { add: true }, cb);
 ```
+
+{pagebreak}
 
 ## Deploying to other environments
 
