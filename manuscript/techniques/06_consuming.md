@@ -120,6 +120,12 @@ const config = {
 
 T> [script-loader](https://www.npmjs.com/package/script-loader) allows you to execute scripts in a global context. You have to do this if the scripts you are using rely on a global registration setup.
 
+## Managing symbolic links
+
+Symbolic links, or symlinks, are an operating system level feature that allows you to point to other files through a file system without copying them. You can use `npm link` to create global symlinks for packages under development and then use `npm unlink` to remove the links.
+
+Webpack resolves symlinks to their full path as Node does. The problem is that if you are unaware of this fact, the behavior can surprise you especially if you rely on webpack processing. It's possible to work around the behavior as discussed in [webpack issue #985](https://github.com/webpack/webpack/issues/985). Webpack core behavior may improve in the future to make a workaround unnecessary. You can disable webpack's symlink handling by setting `resolve.symlinks` as `false`.
+
 ## Removing unused modules
 
 Even though packages can work well out of the box, they bring too much code to your project sometimes. [Moment.js](https://www.npmjs.com/package/moment) is a popular example. It brings locale data to your project by default.
@@ -176,12 +182,6 @@ const config = {
 ```
 
 W> Take care when disabling warnings as it can hide underlying issues. Consider alternatives first. There's a [webpack issue](https://github.com/webpack/webpack/issues/1617) that discusses the problem.
-
-## Managing symbolic links
-
-Symbolic links, or symlinks, are an operating system level feature that allows you to point to other files through a file system without copying them. You can use `npm link` to create global symlinks for packages under development and then use `npm unlink` to remove the links.
-
-Webpack resolves symlinks to their full path as Node does. The problem is that if you are unaware of this fact, the behavior can surprise you especially if you rely on webpack processing. It's possible to work around the behavior as discussed in [webpack issue #985](https://github.com/webpack/webpack/issues/985). Webpack core behavior may improve in the future to make a workaround unnecessary. You can disable webpack's symlink handling by setting `resolve.symlinks` as `false`.
 
 ## Getting insights on packages
 
