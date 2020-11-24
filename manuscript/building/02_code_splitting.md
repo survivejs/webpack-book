@@ -12,7 +12,7 @@ T> Philip Walton's [idle until urgent technique](https://philipwalton.com/articl
 
 ## Code splitting formats
 
-Code splitting can be done in two primary ways in webpack: through a dynamic `import` or `require.ensure` syntax. The former is used in this project and `require.ensure` is considered the legacy syntax.
+Code splitting can be done in two primary ways in webpack: through a dynamic `import` or `require.ensure` syntax. The latter is so called legacy syntax.
 
 The goal is to end up with a split point that gets loaded on demand. There can be splits inside splits, and you can structure an entire application based on splits. The advantage of doing this is that then the initial payload of your site can be smaller than it would be otherwise.
 
