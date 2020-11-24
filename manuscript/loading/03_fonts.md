@@ -77,15 +77,15 @@ To have more control over font output, one option is to use **url-loader** and *
 
 T> In the example above, the usage of **file-loader** is obscured **url-loader**. It uses **file-loader** underneath with the `limit` option. The loader options are passed to it. You can override the behavior by using the `fallback` option.
 
+## Eliminating unused characters
+
+[subfont](https://www.npmjs.com/package/subfont) is a tool that performs static analysis against webpack's HTML output and then rewrites the fonts to include only glyphs that are used. The subsetting process can reduce the size of the font files dramatically.
+
 ## Generating font files based on SVGs
 
 If you prefer to use SVG based fonts, they can be bundled as a single font file by using [webfonts-loader](https://www.npmjs.com/package/webfonts-loader).
 
 W> Take care with SVG images if you have SVG specific image setup in place already. If you want to process font SVGs differently, set their definitions carefully. The _Loader Definitions_ chapter covers alternatives.
-
-## Eliminating unused characters
-
-[subfont](https://www.npmjs.com/package/subfont) is a tool that performs static analysis against webpack's HTML output and then rewrites the fonts to include only glyphs that are used. The subsetting process can reduce the size of the font files dramatically.
 
 ## Conclusion
 
