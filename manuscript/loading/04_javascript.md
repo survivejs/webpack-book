@@ -184,6 +184,8 @@ The fallback isn't without problems as in the worst case, it can force the brows
 
 On webpack side, you will have to take care to generate two builds with differing browserslist definitions and names. In addition, you have to make sure the HTML template receives the `script` tags as above so it's able to load them.
 
+{pagebreak}
+
 To give you a better idea on how to implement the technique, consider the following and set up a browserslist as below:
 
 **.browserslistrc**
@@ -217,6 +219,8 @@ const getConfig = (mode) => {
   }
 };
 ```
+
+{pagebreak}
 
 Above would expect the following target:
 
