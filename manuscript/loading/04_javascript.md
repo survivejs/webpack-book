@@ -205,14 +205,16 @@ The idea is to then write webpack configuration to control which target is chose
 **webpack.config.js**
 
 ```javascript
+// Remember to set "mode": "production" in productionConfig
+// so webpack knows to compile for the production target.
 const getConfig = (mode) => {
   switch (mode) {
     case "prod:legacy":
-      process.env.BROWSERSLIST_ENV = 'legacy';
-      return merge(commonConfig, productionConfig, { mode });
+      process.env.BROWSERSLIST_ENV = "legacy";
+      return merge(commonConfig, productionConfig);
     case "prod:modern":
-      process.env.BROWSERSLIST_ENV = 'modern';
-      return merge(commonConfig, productionConfig, { mode });
+      process.env.BROWSERSLIST_ENV = "modern";
+      return merge(commonConfig, productionConfig);
     ...
     default:
       throw new Error(`Trying to use an unknown mode, ${mode}`);
@@ -278,11 +280,10 @@ Starting from webpack 5, the tool supports new style asynchronous WebAssembly. T
 
 ## Conclusion
 
-Babel has become an indispensable tool for developers given it bridges the standard with older browsers. Even if you targeted modern browsers, transforming through Babel is an option.
+Webpack loads JavaScript out of the box. Tools like Babel let you target specific browsers and have more control over the output.
 
 To recap:
 
 - Babel gives you control over what browsers to support. It can compile ES2015+ features to a form the older browser understand. **@babel/preset-env** is valuable as it can choose which features to compile and which polyfills to enable based on your browser definition.
-- Babel allows you to use experimental language features. You can find numerous plugins that improve development experience and the production build through optimizations.
+- Babel allows you to use experimental language features. Babel ecosystem has numerous presets and plugins to customize it.
 - Babel functionality can be enabled per development target. This way you can be sure you are using the correct plugins at the right place.
-- Besides ES2015+ through Babel, webpack supports other languages like TypeScript or WebAssembly.
