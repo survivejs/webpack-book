@@ -247,10 +247,10 @@ The idea is to then write webpack configuration to control which target is chose
 ```javascript
 const getConfig = (mode) => {
   switch (mode) {
-    case "production:legacy":
+    case "prod:legacy":
       process.env.BROWSERSLIST_ENV = 'legacy';
       return merge(commonConfig, productionConfig, { mode });
-    case "production:modern":
+    case "prod:modern":
       process.env.BROWSERSLIST_ENV = 'modern';
       return merge(commonConfig, productionConfig, { mode });
     ...
@@ -268,7 +268,7 @@ Above would expect the following target:
 {
   "scripts": {
 leanpub-start-insert
-    "build": "wp --mode production:legacy && wp --mode production:modern"
+    "build": "wp --mode prod:legacy && wp --mode prod:modern"
 leanpub-end-insert
   }
 }
