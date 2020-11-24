@@ -87,7 +87,7 @@ Even though you have Babel installed and set up, you are still missing one bit: 
 
 ### Setting up `.babelrc`
 
-At a minimum, you need [@babel/preset-env](https://www.npmjs.com/package/@babel/preset-env). It's a Babel preset that enables the required plugins based on the optional environment definition you pass to it. The preset is aware of [browserslist](https://www.npmjs.com/package/browserslist) and it generates code using the definition.
+At a minimum, you need [@babel/preset-env](https://www.npmjs.com/package/@babel/preset-env). It's a Babel preset that enables the required plugins based on [browserslist](https://www.npmjs.com/package/browserslist) definition.
 
 Install the preset first:
 
