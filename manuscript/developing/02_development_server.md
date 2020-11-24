@@ -172,7 +172,7 @@ The webpack ecosystem contains many development plugins:
 
 ## Watching files outside of webpack's module graph
 
-By default webpack only watches files that your project depends on directly, for example, when you are using `MiniHtmlWebpackPlugin` and have customized it to load the template from a file. [webpack-add-dependency-plugin](https://www.npmjs.com/package/webpack-add-dependency-plugin) solves the problem.
+By default webpack only watches files that your project depends on directly, for example, when you are using **mini-html-webpack-plugin** and have customized it to load the template from a file. [webpack-add-dependency-plugin](https://www.npmjs.com/package/webpack-add-dependency-plugin) solves the problem.
 
 ## Conclusion
 
