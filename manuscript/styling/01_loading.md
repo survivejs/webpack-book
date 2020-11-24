@@ -55,7 +55,7 @@ leanpub-end-insert
 
 {pagebreak}
 
-## Setting up the initial CSS
+## Setting up initial CSS
 
 You are missing the CSS still:
 
