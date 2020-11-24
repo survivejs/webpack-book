@@ -57,9 +57,7 @@ To include only the icons that are only needed, use [fontmin-webpack](https://ww
 
 ## Manipulating **file-loader** output path and `publicPath`
 
-As discussed above and in [webpack issue tracker](https://github.com/webpack/file-loader/issues/32#issuecomment-250622904), **file-loader** allows shaping the output. This way you can output your fonts below `fonts/`, images below `images/`, and so on.
-
-Furthermore, it's possible to manipulate `publicPath` and override the default per loader definition. The following example illustrates these techniques together:
+To have more control over font output, one option is to use **url-loader** and **file-loader** as they still work. Furthermore, it's possible to manipulate `publicPath` and override the default per loader definition. The following example illustrates these techniques together:
 
 ```javascript
 {
