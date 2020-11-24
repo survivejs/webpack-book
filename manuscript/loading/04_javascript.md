@@ -238,8 +238,6 @@ leanpub-end-insert
 
 To complete the setup, you have to write a script reference to your HTML using one of the techniques outlined above. The webpack builds can run parallel and you could use for example use the [concurrently](https://www.npmjs.com/package/concurrently) package to speed up the execution.
 
-T> [webpack-babel-multi-target-plugin](https://www.npmjs.com/package/webpack-babel-multi-target-plugin) wraps the idea of differential builds within a webpack plugin that relies on Babel for generating the targets.
-
 T> These days it's possible to go one step further and [use native JavaScript modules directly in the browser](https://philipwalton.com/articles/using-native-javascript-modules-in-production-today/).
 
 ## TypeScript
@@ -248,13 +246,11 @@ Microsoft's [TypeScript](http://www.typescriptlang.org/) is a compiled language 
 
 Compared to Facebook's type checker Flow, TypeScript is a safer option in terms of ecosystem. As a result, you find more premade type definitions for it, and overall, the quality of support should be better.
 
-[ts-loader](https://www.npmjs.com/package/ts-loader) is the recommended option for TypeScript. One option is to leave only compilation to it and then handle type checking either outside of webpack or to use [fork-ts-checker-webpack-plugin](https://www.npmjs.com/package/fork-ts-checker-webpack-plugin) for the purpose to handle checking in a separate process.
+[ts-loader](https://www.npmjs.com/package/ts-loader) is the recommended option for TypeScript. One option is to leave only compilation to it and then handle type checking either outside of webpack or to use [fork-ts-checker-webpack-plugin](https://www.npmjs.com/package/fork-ts-checker-webpack-plugin) to handle checking in a separate process.
 
 You can also compile TypeScript with Babel through [@babel/plugin-transform-typescript](https://www.npmjs.com/package/@babel/plugin-transform-typescript) although this comes with small [caveats](https://babeljs.io/docs/en/next/babel-plugin-transform-typescript.html#caveats).
 
-W> Webpack 5 includes TypeScript support out of the box. Make sure you don't have `@types/webpack` installed in your project as it will conflict.
-
-T> [@types/webpack-env](https://www.npmjs.com/package/@types/webpack-env) contains webpack types related to the environment. If you use features like `require.context`, then you should install this one.
+W> Webpack 5 includes TypeScript support out of the box. Make sure you don't have `@types/webpack` installed in your project as it will conflict. [@types/webpack-env](https://www.npmjs.com/package/@types/webpack-env) contains webpack types related to the environment. If you use features like `require.context`, then you should install this one.
 
 T> To split TypeScript configuration, use the `extends` property (`"extends": "./tsconfig.common"`) and then use **ts-loader** `configFile` to control which file to use through webpack.
 
