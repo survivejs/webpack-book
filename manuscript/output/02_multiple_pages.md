@@ -27,7 +27,7 @@ const {
   MiniHtmlWebpackPlugin,
 } = require("mini-html-webpack-plugin");
 
-exports.page = ({ url = "", title, chunks } = {}) => ({
+exports.page = ({ title, url = "", chunks } = {}) => ({
   plugins: [
     new MiniHtmlWebpackPlugin({
       publicPath: "/",
