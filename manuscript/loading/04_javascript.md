@@ -165,47 +165,9 @@ Perhaps the greatest thing about Babel is that it's possible to extend with plug
 
 T> It's possible to connect Babel with Node through [babel-register](https://www.npmjs.com/package/babel-register) or [babel-cli](https://www.npmjs.com/package/babel-cli). These packages can be handy if you want to execute your code through Babel without using webpack.
 
-## Enabling presets and plugins per environment
-
-Babel allows you to control which presets and plugins are used per environment through its [env option](https://babeljs.io/docs/usage/babelrc/#env-option). You can manage Babel's behavior per build target this way.
-
-`env` checks both `NODE_ENV` and `BABEL_ENV` and adds functionality to your build based on that. If both `BABEL_ENV` and `NODE_ENV` are set, the former takes precedence to resolve `env`.
-
-Consider the example below:
-
-**.babelrc**
-
-```json
-{
-  "env": { "development": { "plugins": ["annotate-console-log"] } }
-}
-```
-
-Any shared presets and plugins are available to all targets still. `env` allows you to specialize your Babel configuration further.
-
-It's possible to pass the webpack environment to Babel with a tweak:
-
-**webpack.config.js**
-
-```javascript
-const getConfig = (mode) => {
-leanpub-start-insert
-  // You could use NODE_ENV here as well
-  // for a more generic solution.
-  process.env.BABEL_ENV = mode;
-leanpub-end-insert
-
-  ...
-};
-```
-
-T> The way `env` works is subtle. Consider logging `env` and make sure it matches your Babel configuration or otherwise the functionality you expect is not applied to your build.
-
 ## Generating differential builds
 
 To benefit from the support for modern language features and to support legacy browsers, it's possible to use webpack to generate two bundles and then write bootstrapping code that's detected by the browsers so that they use the correct ones. Doing this gives smaller bundles for modern browsers while improving JavaScript parsing time. Legacy browsers will still work as well.
-
-{pagebreak}
 
 As [discussed by Philip Walton](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/), on browser-side you should use HTML like this:
 
@@ -235,8 +197,6 @@ IE 8
 [modern]
 > 1% # Browser usage over 1%
 ```
-
-{pagebreak}
 
 The idea is to then write webpack configuration to control which target is chosen like this:
 
