@@ -43,7 +43,7 @@ W> If you use **webpack.config.babel.js**, take care with the `"modules": false,
 
 ### Setting up **babel-loader**
 
-The first step towards configuring Babel to work with webpack is to set up [babel-loader](https://www.npmjs.com/package/babel-loader). It takes the code and turns it into a format older browsers can understand. Install **babel-loader** and include its peer dependency _@babel/core_:
+The first step towards configuring Babel to work with webpack is to set up [babel-loader](https://www.npmjs.com/package/babel-loader). It takes the code and turns it into a format older browsers can understand. Install **babel-loader** and include its peer dependency **@babel/core**:
 
 ```bash
 npm add babel-loader @babel/core --develop
