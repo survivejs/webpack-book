@@ -87,7 +87,7 @@ Even though you have Babel installed and set up, you are still missing one bit: 
 
 ### Setting up `.babelrc`
 
-At a minimum, you need [@babel/preset-env](https://www.npmjs.com/package/@babel/preset-env). It's a Babel preset that enables the required plugins based on the optional environment definition you pass to it.
+At a minimum, you need [@babel/preset-env](https://www.npmjs.com/package/@babel/preset-env). It's a Babel preset that enables the required plugins based on the optional environment definition you pass to it. The preset is aware of [browserslist](https://www.npmjs.com/package/browserslist) and it generates code using the definition.
 
 Install the preset first:
 
@@ -95,11 +95,13 @@ Install the preset first:
 npm add @babel/preset-env --develop
 ```
 
-To make Babel aware of the preset, you need to write a `.babelrc`. Given webpack supports ES2015 modules out of the box, you can tell Babel to skip processing them. Jumping over this step would break webpack's HMR mechanism although the production build would still work. You can also constrain the build output to work only in recent versions of Chrome.
+To make Babel aware of the preset, you need to write a `.babelrc`. Given webpack supports ES2015 modules out of the box, you should tell Babel to skip processing them.
+
+T> See the _Autoprefixing_ chapter for an expanded discussion of browserslist.
 
 {pagebreak}
 
-Adjust the target definition as you like. As long as you follow [browserslist](https://www.npmjs.com/package/browserslist), it should work. Here's a sample configuration:
+Here's a sample configuration:
 
 **.babelrc**
 
@@ -109,7 +111,7 @@ Adjust the target definition as you like. As long as you follow [browserslist](h
 }
 ```
 
-If you execute `npm run build -- --mode none` now and examine `dist/main.js`, you will see something different based on your `.browserslistrc` file.
+If you execute `npm run build -- --mode none` and examine `dist/main.js`, you will see something different based on your `.browserslistrc` file.
 
 Try to include only a definition like `IE 8` there, and the code should change accordingly:
 
@@ -136,8 +138,6 @@ __webpack_require__.r(__webpack_exports__);
 Note especially how the function was transformed. You can try out different browser definitions and language features to see how the output changes based on the selection.
 
 T> **@babel/preset-env** comes with a `bugfixes` option that, when enabled, writes modern syntax to one that works also in older browsers without compiling down to ES5.
-
-T> See the _Autoprefixing_ chapter for an expanded discussion of browserslist.
 
 ## Polyfilling features
 
