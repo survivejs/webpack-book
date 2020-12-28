@@ -102,11 +102,11 @@ You'll also see `code` within sentences and occasionally important terms have be
 
 The book uses a versioning scheme, and release notes for each new version are maintained at [the book blog](https://survivejs.com/blog/). You can also use GitHub _compare_ tool for this purpose. Example:
 
-`https://github.com/survivejs/webpack-book/compare/v2.6.4...v3.0.0`
+`https://github.com/survivejs/webpack-book/compare/v3.0.0...v3.0.1`
 
 The page shows you the individual commits that went to the project between the given version range. You can also see the lines that have changed in the book.
 
-The current version of the book is **3.0.0**.
+The current version of the book is **3.0.1**.
 
 ## How to get support
 
