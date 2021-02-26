@@ -30,7 +30,7 @@ If you post questions to [Stack Overflow](https://stackoverflow.com/search?q=sur
 
 I announce SurviveJS related news through a couple of channels:
 
-- [Mailing list](https://eepurl.com/bth1v5)
+- [Mailing list](https://buttondown.email/SurviveJS)
 - [Twitter](https://twitter.com/survivejs)
 - [Blog RSS](https://survivejs.com/atom.xml)
 
