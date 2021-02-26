@@ -113,7 +113,7 @@ To get started, install [mini-html-webpack-plugin](https://www.npmjs.com/package
 npm add mini-html-webpack-plugin --develop
 ```
 
-T> [html-webpack-plugin](https://www.npmjs.com/package/mini-html-webpack-plugin) is a versatile option that can be expanded with plugins. For anything beyond basic usage, it's a good option.
+T> [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) is a versatile option that can be expanded with plugins. For anything beyond basic usage, it's a good option.
 
 To connect the plugin with webpack, set up the configuration as below:
 
