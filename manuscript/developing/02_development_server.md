@@ -90,6 +90,8 @@ module.exports = {
 };
 ```
 
+W> If you use Safari, you may have to set `host: "127.0.0.1",` for `WebpackPluginServe` for live reloading to work.
+
 {pagebreak}
 
 If you execute either _npm run start_ or _npm start_ now, you should see something similar to this in the terminal:
