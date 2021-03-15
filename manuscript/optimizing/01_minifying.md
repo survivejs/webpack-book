@@ -143,7 +143,7 @@ Often the compression setup can be done on server-side. Using webpack, it's poss
 
 ## Obfuscating output
 
-To make it more tricky for third parties to use your code, [obfuscator-loader](https://github.com/javascript-obfuscator/obfuscator-loader) can be applied. Although protecting code is difficult when it's shared with the client, the code can be made much harder to use.
+To make it more tricky for third parties to use your code, use [webpack-obfuscator](https://www.npmjs.com/package/webpack-obfuscator). Although protecting code is difficult when it's shared with the client, the code can be made much harder to use.
 
 ## Conclusion
 
