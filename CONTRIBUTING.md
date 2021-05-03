@@ -1,4 +1,4 @@
-One of the unique aspects of this book is that its development happens mostly in the open. You can actually see as develops. As a result you'll be able to contribute just like for any open source project.
+One of the unique aspects of this book is that its development happens mostly in the open. You can actually see as it develops. As a result you'll be able to contribute just like for any open source project.
 
 ## PRs
 
