@@ -100,12 +100,9 @@ T> The _CSS Modules_ appendix discusses an approach that allows you to treat loc
 
 ## Understanding **css-loader** lookups
 
-To get most out of **css-loader**, you should understand how it performs its lookups. Even though the loader handles relative imports by default, it doesn't work with the following cases:
+To get most out of **css-loader**, you should understand how it performs its lookups. Even though the loader handles absolute and relative imports by default, it doesn't work with root relative imports - `url("/static/img/demo.png")`
 
-- Absolute imports - `url("https://mydomain.com/static/demo.png")`
-- Root relative imports - `url("/static/img/demo.png")`
-
-If you rely on these kind of imports, you have to copy the files to your project as discussed in the _Tidying Up_ chapter. [copy-webpack-plugin](https://www.npmjs.com/package/copy-webpack-plugin) works for this purpose, but you can also copy the files outside of webpack. The benefit of the former approach is that a _Development Server_ can pick that up.
+If you rely on root relative imports, you have to copy the files to your project as discussed in the _Tidying Up_ chapter. [copy-webpack-plugin](https://www.npmjs.com/package/copy-webpack-plugin) works for this purpose, but you can also copy the files outside of webpack. The benefit of the former approach is that a _Development Server_ can pick that up.
 
 Any other lookup will go through webpack and it will try to evaluate the `url` and `@import` expressions. To disable this default behavior, set **css-loader** `url: false` and `import: false` through the loader options.
 
