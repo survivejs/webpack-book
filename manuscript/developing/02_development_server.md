@@ -157,7 +157,7 @@ To get it to work, you have to install it first through `npm add nodemon --devel
 {
   "scripts": {
 leanpub-start-insert
-    "watch": "nodemon --watch webpack.*.js --exec \"npm start\"",
+    "watch": "watch": "nodemon --watch \"./webpack.*\" --exec \"npm start\""
     "start": "wp --mode development"
 leanpub-end-insert
   }
