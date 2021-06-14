@@ -6,29 +6,35 @@ Another nice touch would be to include information about the build itself to the
 
 ## Cleaning the build directory
 
-This issue can be resolved either by using a webpack plugin or solving it outside of it. You could trigger `rm -rf ./build && webpack` or `rimraf ./build && webpack` in an npm script to keep it cross-platform. A task runner could work for this purpose as well.
+Starting from webpack 5.20, it supports cleaning out of the box by using the following configuration:
 
-### Setting up `CleanWebpackPlugin`
-
-Install the [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin) first:
-
-```bash
-npm add clean-webpack-plugin --develop
+```javascript
+const config = {
+  output: {
+    clean: true,
+  },
+};
 ```
+
+For earlier versions, you can either use [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin) or solve the problem outside of webpack. You could for example trigger `rm -rf ./build && webpack` or `rimraf ./build && webpack` in an npm script to keep it cross-platform.
 
 {pagebreak}
 
-Next, you need to define a function to wrap the basic idea. You could use the plugin directly, but this feels like something that could be used across projects, so it makes sense to push it to the library:
+### Setting up `output.clean`
+
+To wrap the syntax into a function, add a function as follows.
 
 **webpack.parts.js**
 
 ```javascript
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-
-exports.clean = () => ({ plugins: [new CleanWebpackPlugin()] });
+exports.clean = () => ({
+  output: {
+    clean: true,
+  },
+});
 ```
 
-For the plugin to work, we'll have to set project output path explicitly. Connect the configuration as follows:
+Connect the configuration as follows:
 
 **webpack.config.js**
 
@@ -39,7 +45,6 @@ leanpub-end-insert
 
 const commonConfig = merge([
 leanpub-start-insert
-  { output: { path: path.resolve(process.cwd(), "dist") } },
   parts.clean(),
 leanpub-end-insert
   ...
