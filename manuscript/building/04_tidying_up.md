@@ -71,7 +71,7 @@ Then define a part to wrap the idea:
 
 ```javascript
 const webpack = require("webpack");
-const GitRevisionPlugin = require("git-revision-webpack-plugin");
+const { GitRevisionPlugin } = require("git-revision-webpack-plugin");
 
 exports.attachRevision = () => ({
   plugins: [
