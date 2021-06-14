@@ -58,7 +58,7 @@ A good example is bundle extraction performed by the `MiniCssExtractPlugin` whic
 
 ### Finishing
 
-After every module has been evaluated, webpack writes **output**. The output a small runtime that executes the result in a browser and a manifest listing bundles to load. The runtime can be extracted to a file of its own, as discussed later in the book.
+After every module has been evaluated, webpack writes **output**. The output is a small runtime that executes the result in a browser and a manifest listing bundles to load. The runtime can be extracted to a file of its own, as discussed later in the book.
 
 That's not all there is to the bundling process. For example, you can define specific **split points** where webpack generates separate bundles that are loaded based on application logic. This idea is discussed in the _Code Splitting_ chapter.
 
