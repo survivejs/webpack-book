@@ -13,10 +13,8 @@ If you exclude Opera Mini, all browsers support the _.woff_ format based on [Can
 ```javascript
 const config = {
   test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/, // Match .woff?v=1.1.1.
-  use: {
-    type: "asset",
-    parser: { dataUrlCondition: { maxSize: 50000 } },
-  },
+  type: "asset",
+  parser: { dataUrlCondition: { maxSize: 50000 } },
 };
 ```
 
