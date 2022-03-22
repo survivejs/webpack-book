@@ -41,8 +41,6 @@ exports.tailwind = () => ({
 });
 ```
 
-{pagebreak}
-
 The new configuration still needs to be connected:
 
 **webpack.config.js**
@@ -90,8 +88,6 @@ export default (text = "Hello world") => {
 };
 ```
 
-{pagebreak}
-
 If you run the application (`npm start`), the "Hello world" should look like a button.
 
 ![Styled hello](images/styled-button.png)
@@ -111,8 +107,6 @@ Building the application (`npm run build`) should yield output:
 ```
 
 As you can see, the size of the CSS file grew, and this is something to fix with PurgeCSS.
-
-{pagebreak}
 
 ## Enabling PurgeCSS
 
@@ -151,8 +145,6 @@ exports.eliminateUnusedCSS = () => ({
 
 T> For exceptions, [PurgeCSS 3.0](https://github.com/FullHuman/purgecss/releases/tag/v3.0.0) includes **safelist** and **blocklist** options.
 
-{pagebreak}
-
 Next, the part has to be connected with the configuration:
 
 **webpack.config.js**
@@ -187,8 +179,6 @@ The size of the style has decreased noticeably. Instead of 1.99 MiB, we have rou
 W> Tailwind includes PurgeCSS out of the box and it can be preferable to use that. See [Tailwind documentation](https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css) for more information. The example above is enough to illustrate the idea, and it works universally.
 
 T> [uncss](https://www.npmjs.com/package/uncss) is a good alternative to PurgeCSS. It operates through PhantomJS and performs its work differently. You can use uncss itself as a PostCSS plugin.
-
-{pagebreak}
 
 ### Critical path rendering
 
