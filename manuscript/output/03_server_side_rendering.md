@@ -127,7 +127,7 @@ app.use(express.static("static"));
 app.get("/", (req, res) =>
   res.status(200).send(renderMarkup(renderToString(SSR)))
 );
-app.listen(process.env.PORT || 8080);
+app.listen(parseInt(process.env.PORT, 10) || 8080);
 
 function renderMarkup(html) {
   return `<!DOCTYPE html>

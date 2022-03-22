@@ -81,7 +81,7 @@ module.exports = {
   plugins: [
     new MiniHtmlWebpackPlugin({ context: { title: "Demo" } }),
     new WebpackPluginServe({
-      port: process.env.PORT || 8080,
+      port: parseInt(process.env.PORT, 10) || 8080,
       static: "./dist",
       liveReload: true,
       waitForBuild: true,
