@@ -64,6 +64,8 @@ leanpub-end-insert
 ]);
 ```
 
+{pagebreak}
+
 To make the project aware of Tailwind, `import` it from CSS:
 
 **src/main.css**
@@ -96,6 +98,8 @@ If you run the application (`npm start`), the "Hello world" should look like a b
 
 ![Styled hello](images/styled-button.png)
 
+{pagebreak}
+
 Building the application (`npm run build`) should yield output:
 
 ```bash
@@ -119,6 +123,8 @@ As you can see, the size of the CSS file grew, and this is something to fix with
 ```bash
 npm add glob purgecss-webpack-plugin --develop
 ```
+
+{pagebreak}
 
 You also need to configure as below:
 
@@ -148,6 +154,8 @@ exports.eliminateUnusedCSS = () => ({
 ```
 
 T> For exceptions, [PurgeCSS 3.0](https://github.com/FullHuman/purgecss/releases/tag/v3.0.0) includes **safelist** and **blocklist** options.
+
+{pagebreak}
 
 Next, the part has to be connected with the configuration:
 
@@ -183,6 +191,8 @@ The size of the style has decreased noticeably. Instead of 1.99 MiB, we have rou
 W> Tailwind includes PurgeCSS out of the box and it can be preferable to use that. See [Tailwind documentation](https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css) for more information. The example above is enough to illustrate the idea, and it works universally.
 
 T> [uncss](https://www.npmjs.com/package/uncss) is a good alternative to PurgeCSS. It operates through PhantomJS and performs its work differently. You can use uncss itself as a PostCSS plugin.
+
+{pagebreak}
 
 ### Critical path rendering
 
