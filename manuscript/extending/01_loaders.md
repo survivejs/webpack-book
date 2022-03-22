@@ -141,7 +141,7 @@ leanpub-end-insert
 
 To implement the essential idea of asset loading, you have to do two things: emit the file and return path to it.
 
-To interpolate the file name, you need to use [loader-utils](https://www.npmjs.com/package/loader-utils). It has also utilities to parse loader options and queries. Install it:
+To interpolate the file name, you need to use [loader-utils](https://www.npmjs.com/package/loader-utils). Install it first:
 
 ```bash
 npm add loader-utils --develop
@@ -149,7 +149,7 @@ npm add loader-utils --develop
 
 {pagebreak}
 
-You could apply the logic as below:
+Apply the logic as below:
 
 **loaders/demo-loader.js**
 
@@ -177,8 +177,6 @@ Webpack provides two additional `emit` methods:
 These calls should be used over `console` based alternatives. As with `this.emitFile`, you have to mock them for **loader-runner** to work.
 
 The next question is how to pass a file name to the loader.
-
-T> `loader-utils` contains utilities beyond name interpolation. A good example is `loaderUtils.parseQuery(this.resourceQuery)` that allows you to parse query parameters passed to the loader and control its behavior in another way.
 
 {pagebreak}
 
@@ -234,7 +232,7 @@ leanpub-start-delete
   });
 leanpub-end-delete
 leanpub-start-insert
-  const { name } = loaderUtils.getOptions(this);
+  const { name } = this.getOptions();
   const url = loaderUtils.interpolateName(this, name, { content });
 leanpub-end-insert
 
@@ -325,7 +323,7 @@ A pitch loader allows you shape the request and even terminate it. Set it up:
 const loaderUtils = require("loader-utils");
 
 module.exports = function (input) {
-  return input + loaderUtils.getOptions(this).text;
+  return input + this.getOptions().text;
 };
 module.exports.pitch = function (remaining, preceding, input) {
   console.log(`Remaining: ${remaining}, preceding: ${preceding}
@@ -404,7 +402,6 @@ To recap:
 - Webpack **loaders** accept input and produce output based on it.
 - Loaders can be either synchronous or asynchronous. In the latter case, you should use `this.async()` webpack API to capture the callback exposed by webpack.
 - If you want to generate code dynamically for webpack entries, that's where loaders can come in handy. A loader does not have to accept input. It's acceptable that it returns only output in this case.
-- Use **loader-utils** to parse possible options passed to a loader and consider validating them using **schema-utils**.
 - When developing loaders locally, consider setting up a `resolveLoader.alias` to clean up references.
 - Pitching stage complements the default behavior allowing you to intercept and to attach metadata.
 
