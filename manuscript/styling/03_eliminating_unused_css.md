@@ -14,6 +14,20 @@ To make the demo more realistic, let's install Tailwind to the project.
 npm add tailwindcss postcss-loader --develop
 ```
 
+Generate a starter configuration using `npx tailwindcss init`. After this you'll end up with a `tailwind.config.js` file at the project root. To make sure the tooling can find files containing Tailwind classes, adjust it as follows:
+
+**tailwind.config.js**
+
+```javascript
+module.exports = {
+  content: ["./src/**/*.{js}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};
+```
+
 To load Tailwind, we'll have to use PostCSS:
 
 **webpack.parts.js**
