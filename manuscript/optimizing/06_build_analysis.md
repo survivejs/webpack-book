@@ -174,6 +174,7 @@ There are multiple packages which let you compare webpack bundles over time:
 - [bundle-stats-webpack-plugin](https://www.npmjs.com/package/bundle-stats-webpack-plugin) lets you generate graphical bundle reports and compare them across builds.
 - [webpack-bundle-diff](https://www.npmjs.com/package/webpack-bundle-diff) operates on a lower level and emits a JSON file with the difference. It could work well with a custom visualization.
 - [size-plugin](https://www.npmjs.com/package/size-plugin) prints out the size difference since the last build, and it can be useful during local development.
+- [webpack-bundle-delta](https://github.com/trainline/webpack-bundle-delta) computes a delta between the base branch and the head in pull requests giving you a better idea of the impact of a change size-wise.
 
 ## Unused files analysis
 
