@@ -115,6 +115,7 @@ It's possible to analyze bundle dependencies in a graphical manner, and many too
 - [circular-dependency-plugin](https://www.npmjs.com/package/circular-dependency-plugin) lets you detect cycles in the module graph. Often this implies a bug, and it can be a good idea to refactor cycles out.
 - [dependency-cruiser](https://www.npmjs.com/package/dependency-cruiser) is a bundler independent tool for analyzing project dependencies.
 - [madge](https://www.npmjs.com/package/madge) is another independent tool that can output a graph based on module input. The graph output allows you to understand the dependencies of your project in greater detail.
+- [Arkit](https://arkit.pro) goes a step beyond madge and it constructs entire architectural overviews of projects.
 
 ## Composition analysis
 
