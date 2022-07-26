@@ -151,7 +151,7 @@ const Profile = () => (
 );
 ```
 
-The benefit of using the [URL interface](https://developer.mozilla.org/en-US/docs/Web/API/URL) is that it lets the code work without using a bundler.
+The [URL interface](https://developer.mozilla.org/en-US/docs/Web/API/URL) is standard and technically it would work even without a bundler assuming the image was in the correct location. If webpack is used, it will let you process the image.
 
 It's also possible to set up dynamic imports as discussed in the _Code Splitting_ chapter. Here's a small example:
 
