@@ -59,7 +59,7 @@ Before webpack 5, [worker-loader](https://www.npmjs.com/package/worker-loader) w
 
 [workerize-loader](https://www.npmjs.com/package/workerize-loader) and [worker-plugin](https://www.npmjs.com/package/worker-plugin) let you use the worker as a regular JavaScript module as well given you avoid the `self` requirement visible in the example solution.
 
-[threads.js](https://threads.js.org/) provides a comprehensive solution for more complex setups and it includes features such as observables and thread pools out of the box. There's a custom [threads-plugin](https://github.com/andywer/threads-plugin) you can use to integrate it with webpack.
+[threads.js](https://threads.js.org/) provides a comprehensive solution for more complex setups and it includes features such as observables and thread pools out of the box.
 
 ## Conclusion
 
