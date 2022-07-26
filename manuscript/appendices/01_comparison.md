@@ -262,6 +262,10 @@ Compared to the other tools, webpack comes with initial complexity, but it makes
 
 To make it easier to use, tools such as [create-react-app](https://www.npmjs.com/package/create-react-app), [poi](https://poi.js.org/), and [instapack](https://www.npmjs.com/package/instapack) have been built around it.
 
+### Vite
+
+[Vite](https://vitejs.dev/) is tool comparable to webpack. It comes with features like lazy loading, ESM, JSX, and TypeScript support out of the box. The build functionality relies on Rollup and the development server is custom code. Originally it was developed with Vue in mind but since the scope of the tool has grown to support popular frameworks like React. It's possible to extend the tool using Vite specific plugins and also Rollup plugins are supported making it a versatile solution.
+
 ## Zero configuration bundlers
 
 There's a whole category of _zero configuration_ bundlers. The idea is that they work out of the box without any extra setup. [Parcel](https://parceljs.org/) is perhaps the famous of them.
