@@ -50,6 +50,8 @@ T> [parcel-css-loader)](https://www.npmjs.com/package/parcel-css-loader) is a fa
 
 To define which browsers you want to support, set up a `.browserslistrc` file. Different tools pick up this definition, **autoprefixer** included.
 
+{pagebreak}
+
 Create a file as follows:
 
 **.browserslistrc**
@@ -67,6 +69,8 @@ T> You can lint CSS through [Stylelint](http://stylelint.io/). It can be set up 
 T> It's possible to define a browserslist per development target (`BROWSERSLIST_ENV` or `NODE_ENV` in the environment) by using `[development]` kind of syntax between the declarations. See [browserslist documentation](https://www.npmjs.com/package/browserslist#configuring-for-different-environments) for further information and options.
 
 T> [postcss-preset-env](https://www.npmjs.com/package/postcss-preset-env) uses a browserslist to determine what kind of CSS to generate and which polyfills to load. You can consider it as the `@babel/preset-env` of CSS. Latter is discussed in more detail at the _Loading JavaScript_ chapter.
+
+{pagebreak}
 
 ## Conclusion
 

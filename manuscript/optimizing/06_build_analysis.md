@@ -128,8 +128,6 @@ Pie charts, treemaps, and command-line tools let you visualize bundle compositio
 
 In addition to providing a pie chart visualization, [Auxpack](http://auxpack.com/) is able to track bundle size over time.
 
-{pagebreak}
-
 ### Treemaps
 
 ![webpack-bundle-analyzer](images/webpack-bundle-analyzer.jpg)
