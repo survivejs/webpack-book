@@ -161,6 +161,8 @@ const config = {
 
 T> There's a [Stack Overflow question](https://stackoverflow.com/questions/25384360/how-to-prevent-moment-js-from-loading-locales-with-webpack/25426019) that covers these ideas in detail. See also [Ivan Akulov's explanation of `ContextReplacementPlugin`](https://iamakulov.com/notes/webpack-contextreplacementplugin/).
 
+T> [You can load locales of date-fns](https://github.com/date-fns/date-fns/blob/main/docs/webpack.md) with a similar technique to avoid bundling each.
+
 ## Managing pre-built dependencies
 
 It's possible webpack gives the following warning with certain dependencies:
