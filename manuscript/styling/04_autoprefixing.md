@@ -42,6 +42,8 @@ W> The order of the loaders matters since autoprefixing should occur after Tailw
 
 T> PostCSS supports `postcss.config.js` based configuration. It relies on [cosmiconfig](https://www.npmjs.com/package/cosmiconfig) internally for other formats.
 
+T> [parcel-css-loader)](https://www.npmjs.com/package/parcel-css-loader) is a faster alternative for PostCSS. If you don't rely on PostCSS plugins, it alone would be enough for autoprefixing your CSS.
+
 ## Defining a browserslist
 
 **autoprefixer** relies on a [browserslist](https://www.npmjs.com/package/browserslist) definition to work.
