@@ -110,6 +110,7 @@ If you want to enforce a strict limit in a CI environment, set `hints` to `error
 It's possible to analyze bundle dependencies in a graphical manner, and many tools exist for this purpose:
 
 - [The official analyse tool](https://github.com/webpack/analyse) gives you recommendations and a good idea of your application's dependency graph. It can be run locally as well.
+- [Statoscope](https://statoscope.tech/) is comparable to the official analyse tool except for the lack of a graph view and it comes with additional filters to understand the output better.
 - [webpack-deps-tree](https://restrry.github.io/webpack-deps-tree/static/) displays webpack module graph. Using the tool you can understand how modules of your bundles are related to each other.
 - [circular-dependency-plugin](https://www.npmjs.com/package/circular-dependency-plugin) lets you detect cycles in the module graph. Often this implies a bug, and it can be a good idea to refactor cycles out.
 - [dependency-cruiser](https://www.npmjs.com/package/dependency-cruiser) is a bundler independent tool for analyzing project dependencies.
