@@ -8,7 +8,7 @@ T> If you want to map a directory tree as a website, see [directory-tree-webpack
 
 When generating multiple pages with webpack, you have a couple of possibilities:
 
-- Go through the _multi-compiler mode_ and return an array of configurations. The approach would work as long as the pages are separate, and there is a minimal need for sharing code across them. The benefit of this approach is that you can process it through [parallel-webpack](https://www.npmjs.com/package/parallel-webpack) to improve build performance.
+- Go through the _multi-compiler mode_ and return an array of configurations. The approach would work as long as the pages are separate, and there is a minimal need for sharing code across them.
 - Set up a single configuration and extract the commonalities. The way you do this can differ depending on how you chunk it up.
 - If you follow the idea of [Progressive Web Applications](https://developers.google.com/web/progressive-web-apps/) (PWA), you can end up with either an **app shell** or a **page shell** and load portions of the application as it's used.
 

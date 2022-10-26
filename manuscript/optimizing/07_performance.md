@@ -21,17 +21,7 @@ As discussed in the previous chapter, generating stats can be used to measure bu
 
 ## High-level optimizations
 
-Webpack uses only a single instance by default, meaning you aren't able to benefit from a multi-core processor without extra effort. This is where [thread-loader](https://www.npmjs.com/package/thread-loader) and third-party solutions, such as [parallel-webpack](https://www.npmjs.com/package/parallel-webpack).
-
-[webpack-plugin-ramdisk](https://www.npmjs.com/package/webpack-plugin-ramdisk) writes the build output to a RAM disk and it can help during development and in case you have to perform many successive builds.
-
-### **parallel-webpack** - run multiple webpack instances in parallel
-
-**parallel-webpack** allows you to parallelize webpack configuration in two ways. Assuming you have defined your webpack configuration as an array, it can run them in parallel. In addition to this, the tool can generate builds based on given **variants**.
-
-Variants allow you to generate both production and development builds at once. They let you to create bundles with different targets to make them easier to consume depending on the environment. Variants can be used to implement feature flags when combined with `DefinePlugin` as discussed in the _Environment Variables_ chapter.
-
-**parallel-webpack** can be used by installing it to your project as a development dependency and then running webpack through `parallel-webpack` command.
+Webpack uses only a single instance by default, meaning you aren't able to benefit from a multi-core processor without extra effort. This is where solutions like [thread-loader](https://www.npmjs.com/package/thread-loader) come in. [webpack-plugin-ramdisk](https://www.npmjs.com/package/webpack-plugin-ramdisk) writes the build output to a RAM disk and it can help during development and in case you have to perform many successive builds.
 
 ## Low-level optimizations
 
