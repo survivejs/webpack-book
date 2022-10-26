@@ -9,7 +9,7 @@ You'll learn to develop a couple of small loaders next. But before that, it's go
 [loader-runner](https://www.npmjs.com/package/loader-runner) allows you to run loaders without webpack, allowing you to learn more about loader development. Install it first:
 
 ```bash
-npm add loader-runner --develop
+npm add loader-runner -D
 ```
 
 To have something to test, set up a loader that returns twice what's passed to it:
@@ -144,7 +144,7 @@ To implement the essential idea of asset loading, you have to do two things: emi
 To interpolate the file name, you need to use [loader-utils](https://www.npmjs.com/package/loader-utils). Install it first:
 
 ```bash
-npm add loader-utils --develop
+npm add loader-utils -D
 ```
 
 {pagebreak}

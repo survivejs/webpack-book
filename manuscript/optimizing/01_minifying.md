@@ -21,7 +21,7 @@ To tune the defaults, we'll attach [terser-webpack-plugin](https://www.npmjs.com
 To get started, include the plugin to the project:
 
 ```bash
-npm add terser-webpack-plugin --develop
+npm add terser-webpack-plugin -D
 ```
 
 To attach it to the configuration, define a part for it first:
@@ -80,7 +80,7 @@ If you consume HTML templates through your code using [html-loader](https://www.
 To get started, install **css-minimizer-webpack-plugin** first:
 
 ```bash
-npm add css-minimizer-webpack-plugin --develop
+npm add css-minimizer-webpack-plugin -D
 ```
 
 Like for JavaScript, you can wrap the idea in a configuration part:

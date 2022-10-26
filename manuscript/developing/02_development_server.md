@@ -44,7 +44,7 @@ Given webpack's watch mode emits to the file system by default, WPS provides an 
 To get started with WPS, install it first:
 
 ```bash
-npm add webpack-plugin-serve --develop
+npm add webpack-plugin-serve -D
 ```
 
 To integrate WPS to the project, define an npm script for launching it:
@@ -149,7 +149,7 @@ The setup is more resource-intensive than the file watching, but it's worth tryi
 
 WPS will handle restarting the server when you change a bundled file. It's oblivious to changes made to webpack configuration, though, and you have to restart the WPS whenever you change something. The process can be automated as [discussed on GitHub](https://github.com/webpack/webpack-dev-server/issues/440#issuecomment-205757892) by using [nodemon](https://www.npmjs.com/package/nodemon) monitoring tool.
 
-To get it to work, you have to install it first through `npm add nodemon --develop`, and then set up a script:
+To get it to work, you have to install it first through `npm add nodemon -D`, and then set up a script:
 
 **package.json**
 
@@ -163,7 +163,6 @@ leanpub-end-insert
   }
 }
 ```
-
 ## Development plugins
 
 The webpack ecosystem contains many development plugins:

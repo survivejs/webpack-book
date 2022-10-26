@@ -21,7 +21,7 @@ To test and develop plugins against webpack, a good practice is to set up a harn
 The trick is to use [memfs](https://www.npmjs.com/package/memfs) in combination with `compiler.outputFileSystem`. Install **memfs** first:
 
 ```bash
-npm add memfs --develop
+npm add memfs -D
 ```
 
 Implement a test bootstrap:

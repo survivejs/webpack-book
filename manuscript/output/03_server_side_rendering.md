@@ -11,7 +11,7 @@ To demonstrate SSR, you can use webpack to compile a client-side build that then
 To use React, we require specific configuration. Given most of React projects rely on [JSX](https://facebook.github.io/jsx/) format, you have to enable it through Babel:
 
 ```bash
-npm add babel-loader @babel/core @babel/preset-react --develop
+npm add babel-loader @babel/core @babel/preset-react -D
 ```
 
 {pagebreak}
@@ -110,7 +110,7 @@ If you build the SSR demo (`npm run build:ssr`), you should see a new file at `.
 To keep things clear to understand, you can set up a standalone Express server that picks up the generated bundle and renders it following the SSR principle. Install Express first:
 
 ```bash
-npm add express --develop
+npm add express -D
 ```
 
 Then, to get something running, implement a server:

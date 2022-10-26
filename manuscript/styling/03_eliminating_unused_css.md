@@ -11,7 +11,7 @@ Given PurgeCSS works well with webpack, we'll demonstrate it in this chapter.
 To make the demo more realistic, let's install Tailwind to the project.
 
 ```bash
-npm add tailwindcss postcss-loader --develop
+npm add tailwindcss postcss-loader -D
 ```
 
 Generate a starter configuration using `npx tailwindcss init`. After this you'll end up with a `tailwind.config.js` file at the project root.
@@ -121,7 +121,7 @@ As you can see, the size of the CSS file grew, and this is something to fix with
 [purgecss-webpack-plugin](https://www.npmjs.com/package/purgecss-webpack-plugin) allows you to eliminate most of the CSS as ideally we would bundle only the CSS classes we are using.
 
 ```bash
-npm add glob purgecss-webpack-plugin --develop
+npm add glob purgecss-webpack-plugin -D
 ```
 
 {pagebreak}

@@ -62,7 +62,7 @@ Attaching information related to the current build revision to the build files t
 To get started, install the revision plugin:
 
 ```bash
-npm add git-revision-webpack-plugin --develop
+npm add git-revision-webpack-plugin -D
 ```
 
 Then define a part to wrap the idea:
