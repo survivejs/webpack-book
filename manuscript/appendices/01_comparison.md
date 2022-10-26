@@ -279,7 +279,6 @@ These tools include [microbundle](https://www.npmjs.com/package/microbundle), [b
 You can find more alternatives as listed below:
 
 - [Rome](https://romefrontend.dev/) is an entire toolchain built around the problems of linting, compiling, and bundling.
-- [Snowpack](https://www.snowpack.dev/) is a lightweight toolchain for web development. [Drew Powers explains well how it differs from webpack](https://blog.logrocket.com/snowpack-vs-webpack/).
 - [esbuild](https://www.npmjs.com/package/esbuild) is a performance-oriented bundler written in Go.
 - [AssetGraph](https://www.npmjs.com/package/assetgraph) takes an entirely different approach and builds on top of HTML semantics making it ideal for [hyperlink analysis](https://www.npmjs.com/package/hyperlink) or [structural analysis](https://www.npmjs.com/package/assetviz). [webpack-assetgraph-plugin](https://www.npmjs.com/package/webpack-assetgraph-plugin) bridges webpack and AssetGraph together.
 - [StealJS](https://stealjs.com/) is a dependency loader and a build tool focusing on performance and ease of use.
