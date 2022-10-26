@@ -12,6 +12,8 @@ Webpack isn't the only available bundler, and a collection of different tools ha
 
 Framework specific abstractions, such as [create-react-app](https://create-react-app.dev/), [rockpack](https://www.rockpack.io/), or [@angular/cli](https://www.npmjs.com/package/@angular/cli), use webpack underneath. That said, there's still value in understanding the tool if you have to customize the setup.
 
+T> [Turbopack](https://turbo.build/pack) is the official successor to webpack. It has been rewritten in Rust with performance in mind out of the box.
+
 {pagebreak}
 
 ## How webpack changes the situation
