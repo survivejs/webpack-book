@@ -133,7 +133,7 @@ You also need to configure as below:
 ```javascript
 const path = require("path");
 const glob = require("glob");
-const PurgeCSSPlugin = require("purgecss-webpack-plugin");
+const { PurgeCSSPlugin } = require("purgecss-webpack-plugin");
 
 const ALL_FILES = glob.sync(path.join(__dirname, "src/*.js"));
 
@@ -153,7 +153,7 @@ exports.eliminateUnusedCSS = () => ({
 });
 ```
 
-T> For exceptions, [PurgeCSS 3.0](https://github.com/FullHuman/purgecss/releases/tag/v3.0.0) includes **safelist** and **blocklist** options.
+T> For exceptions, starting from 3.0 [PurgeCSS](https://github.com/FullHuman/purgecss/releases/tag/v3.0.0) includes **safelist** and **blocklist** options.
 
 {pagebreak}
 
