@@ -111,7 +111,7 @@ Here's a sample configuration:
 }
 ```
 
-If you execute `npm run build -- --mode none` and examine `dist/main.js`, you will see something different based on your `.browserslistrc` file. Try to include only a definition like `IE 8` there, and the code should change accordingly:
+If you execute `npm run build --mode none` and examine `dist/main.js`, you will see something different based on your `.browserslistrc` file. Try to include only a definition like `IE 8` there, and the code should change accordingly:
 
 **dist/main.js**
 
