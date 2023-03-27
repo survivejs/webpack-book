@@ -24,7 +24,7 @@ To make sure the tooling can find files containing Tailwind classes, adjust it a
 
 ```javascript
 module.exports = {
-  content: ["./src/**/*.{js}"],
+  content: ["./src/**/*.js"],
   theme: {
     extend: {},
   },
