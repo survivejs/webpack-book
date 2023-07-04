@@ -112,7 +112,7 @@ const config = {
   // `issuer` tells about match context path
   // You have to return something falsy, object, or a string
   use: ({ resource, resourceQuery, issuer }) =>
-    env === "development" && ["css-loader", "style-loader"],
+    env === "development" && ["style-loader", "css-loader"],
 };
 ```
 
