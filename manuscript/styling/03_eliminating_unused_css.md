@@ -11,7 +11,7 @@ Given PurgeCSS works well with webpack, we'll demonstrate it in this chapter.
 To make the demo more realistic, let's install Tailwind to the project.
 
 ```bash
-npm add tailwindcss postcss-loader -D
+npm add tailwindcss postcss-loader @tailwindcss/postcss -D
 ```
 
 Generate a starter configuration using `npx tailwindcss init`. After this you'll end up with a `tailwind.config.js` file at the project root.
@@ -40,7 +40,7 @@ To load Tailwind, we'll have to use PostCSS:
 exports.tailwind = () => ({
   loader: "postcss-loader",
   options: {
-    postcssOptions: { plugins: [require("tailwindcss")()] },
+    postcssOptions: { plugins: [require("@tailwindcss/postcss")()] },
   },
 });
 ```
@@ -71,11 +71,10 @@ To make the project aware of Tailwind, `import` it from CSS:
 **src/main.css**
 
 ```css
-@tailwind base;
-@tailwind components;
-/* Write your utility classes here */
+@import "tailwindcss";
 @tailwind utilities;
 
+/* Write your utility classes here */
 body {
   background: cornsilk;
 }
