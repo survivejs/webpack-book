@@ -55,7 +55,7 @@ The _Troubleshooting_ appendix at the end covers what to do when webpack gives y
 
 ## Who is the book for
 
-The book has been written mainly beginner and intermediate developers in mind. For experts that already know webpack well, there's value in the form of techniques. The book summaries included in each chapter and at the _Conclusion_ chapter, make it fast to skim and pick up the ideas.
+The book has mainly been written with beginner and intermediate developers in mind. For experts that already know webpack well, there's value in the form of techniques. The book summaries included in each chapter and at the _Conclusion_ chapter, make it fast to skim and pick up the ideas.
 
 Especially at the beginning and intermediate levels it can make sense to follow the book tutorial and develop your own webpack configuration from scratch and then check the chapters that feel most relevant to you. The only expectation is that you have a basic knowledge of JavaScript, Node, and npm.
 
