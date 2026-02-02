@@ -73,7 +73,7 @@ If you consume HTML templates through your code using [html-loader](https://www.
 
 ## Minifying CSS
 
-[css-minimizer-webpack-plugin](https://www.npmjs.com/package/css-minimizer-webpack-plugin) is a plugin-based option that applies a chosen minifier on CSS assets. Using `MiniCssExtractPlugin` can lead to duplicated CSS given it only merges text chunks. **css-minimizer-webpack-plugin** avoids this problem by operating on the generated result and thus can lead to a better outcome. The plugin uses [cssnano](http://cssnano.co/) underneath.
+[css-minimizer-webpack-plugin](https://www.npmjs.com/package/css-minimizer-webpack-plugin) is a plugin-based option that applies a chosen minifier on CSS assets. Using `MiniCssExtractPlugin` can lead to duplicated CSS given it only merges text chunks. **css-minimizer-webpack-plugin** avoids this problem by operating on the generated result and thus can lead to a better outcome. The plugin uses [cssnano](https://cssnano.github.io/cssnano/) underneath.
 
 ### Setting Up CSS minification
 
